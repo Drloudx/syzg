@@ -29,7 +29,7 @@
           </div>
         </div>
 
-        <div class="collection-counter">
+        <div class="collection-counter" style="margin-left: auto;">
           已收集 <span class="count-num">{{ collectedCount }}</span> / {{ achievements.length }}
         </div>
       </div>
@@ -137,7 +137,10 @@ import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppStateStore } from '../stores/appState'
 import BackToTop from '../components/BackToTop.vue'
+import BaseModal from '../components/BaseModal.vue'
 import { isBlacklisted } from '../config/blacklist.js'
+import { fetchWithFallback } from '../utils/request.js'
+import { getImageUrl } from '../utils/env.js'
 
 const route = useRoute()
 const router = useRouter()
@@ -170,12 +173,12 @@ const isDataReady = ref(false)
 // Map category to icons in /AchievementPanel/
 const getCategoryIcon = (cat) => {
   const iconMap = {
-    adv: '/AchievementPanel/achv_icon_adv.png',
-    exp: '/AchievementPanel/achv_icon_exp.png',
-    hide: '/AchievementPanel/achv_icon_hide.png',
-    live: '/AchievementPanel/achv_icon_live.png'
+    adv: getImageUrl('/AchievementPanel/achv_icon_adv.png'),
+    exp: getImageUrl('/AchievementPanel/achv_icon_exp.png'),
+    hide: getImageUrl('/AchievementPanel/achv_icon_hide.png'),
+    live: getImageUrl('/AchievementPanel/achv_icon_live.png')
   }
-  return iconMap[cat] || '/AchievementPanel/achv_icon_adv.png'
+  return iconMap[cat] || getImageUrl('/AchievementPanel/achv_icon_adv.png')
 }
 
 const isCollected = (id) => {
@@ -233,14 +236,14 @@ const handleLocateAchievement = (targetId, queryQ) => {
 onMounted(async () => {
   try {
     const [achRes, rewRes, itemRes] = await Promise.all([
-      fetch('/data/achievement.json'),
-      fetch('/data/reward.json'),
-      fetch('/data/item.json')
+      fetchWithFallback('data/achievement.json'),
+      fetchWithFallback('data/reward.json'),
+      fetchWithFallback('data/item.json')
     ])
 
-    const achJson = await achRes.json()
-    const rewJson = await rewRes.json()
-    const itemJson = await itemRes.json()
+    const achJson = achRes
+    const rewJson = rewRes
+    const itemJson = itemRes
 
     const rawAchList = Object.values(achJson.achievement || {})
     const rewardMap = rewJson.datas || {}
@@ -257,7 +260,7 @@ onMounted(async () => {
       // Money (银币) -> /Common_ItemIcon/item_00001.png
       if (rewardObj.money && rewardObj.money > 0) {
         rewards.push({
-          icon: '/Common_ItemIcon/item_00001.png',
+          icon: getImageUrl('/Common_ItemIcon/item_00001.png'),
           count: rewardObj.money,
           name: '银币'
         })
@@ -266,7 +269,7 @@ onMounted(async () => {
       // Ke (氪金) -> /Common_ItemIcon/item_00002.png
       if (rewardObj.ke && rewardObj.ke > 0) {
         rewards.push({
-          icon: '/Common_ItemIcon/item_00002.png',
+          icon: getImageUrl('/Common_ItemIcon/item_00002.png'),
           count: rewardObj.ke,
           name: '氪金'
         })
@@ -282,7 +285,7 @@ onMounted(async () => {
               if (rule.typeId) {
                 const count = rule.min || rule.max || it.num || 1
                 rewards.push({
-                  icon: `/Common_ItemIcon/${rule.typeId}.png`,
+                  icon: getImageUrl(`/Common_ItemIcon/${rule.typeId}.png`),
                   count,
                   typeId: rule.typeId
                 })
@@ -446,6 +449,7 @@ const filteredAchievements = computed(() => {
   font-weight: 600;
   color: var(--text-sub);
   white-space: nowrap;
+  padding: 0px 12px 0px 12px;
 }
 
 .count-num {
