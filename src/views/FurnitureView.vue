@@ -1,7 +1,9 @@
 <template>
   <div class="page-view-container" data-view="furniture" data-image-fallback="custom">
-    <div class="filter-panel paper-panel">
-      <UiSearchInput v-model="searchQuery" placeholder="搜索家具名称、描述、材料..." />
+    <UiFilterPanel class="filter-panel paper-panel">
+      <template #search>
+        <UiSearchInput v-model="searchQuery" placeholder="搜索家具名称、描述、材料..." />
+      </template>
 
       <UiFilterRow label="一级分类：">
         <UiFilterPill :active="selectedMain === null" @click="selectMain(null)">全部</UiFilterPill>
@@ -60,7 +62,7 @@
           <span class="furniture-count">共 {{ filteredFurniture.length }} 件家具</span>
         </template>
       </UiFilterRow>
-    </div>
+    </UiFilterPanel>
 
     <UiVirtualGrid
       v-if="isDataReady"
@@ -117,7 +119,8 @@
           </div>
         </div>
         <div class="furniture-badges-row">
-          <UiTag>ID: {{ selectedFurniture.id }}</UiTag>
+          <!-- 家具 ID 按用户要求隐藏（保留数据与标记，便于以后恢复） -->
+          <!-- <UiTag>ID: {{ selectedFurniture.id }}</UiTag> -->
           <UiTag :quality="Number(selectedFurniture.quality)">
             {{ getRarityName(selectedFurniture.quality) }}
           </UiTag>
@@ -230,7 +233,8 @@
               </span>
               <span class="blueprint-entry__content">
                 <strong :class="`quality-text-${Number(blueprint.quality) || 1}`">{{ blueprint.name }}</strong>
-                <small>{{ blueprint.typeId }}</small>
+                <!-- 制作图 ID（item_500xx）按用户要求隐藏（保留数据与标记，便于以后恢复） -->
+                <!-- <small>{{ blueprint.typeId }}</small> -->
                 <span v-if="blueprint.skinNames?.length">包含外观：{{ blueprint.skinNames.join('、') }}</span>
               </span>
               <span class="blueprint-entry__action">查看物品</span>
@@ -259,7 +263,7 @@ import {
   UiInfoRow,
   UiModal,
   UiRewardCard,
-  UiSearchInput,
+  UiFilterPanel, UiSearchInput,
   UiSection,
   UiTag
 } from '../components/ui/index.js'

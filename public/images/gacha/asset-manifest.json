@@ -1656,123 +1656,191 @@
     "sha256": "9237c30f81fa6e059d1fbd37cec6d81c708be3de4086defe816640d8908f3bc0"
   },
   {
-    "file": "audio/gacha_ready_chara.wav",
+    "file": "audio/gacha_ready_chara.mp4",
     "source": "4.24路资源包/assets/res/audio/bgm/gacha_ready_chara.wav",
-    "bytes": 7372844,
-    "sha256": "5a5302691a5d83bb2803d1c170ff211c70fde14784b511780ecf0a449ffdef8b"
+    "bytes": 529641,
+    "sha256": "555e7ae2c3985c969f789348cb0f787c14315e9d03cdeae50c6547db0df8920d",
+    "sourceSha256": "5a5302691a5d83bb2803d1c170ff211c70fde14784b511780ecf0a449ffdef8b",
+    "encode": "opus 96k VBR stereo 48kHz in MP4 container"
   },
   {
-    "file": "audio/gacha_show_chara.wav",
+    "file": "audio/gacha_show_chara.mp4",
     "source": "4.24路资源包/assets/res/audio/bgm/gacha_show_chara.wav",
-    "bytes": 17192492,
-    "sha256": "406aaea7890c04cf70d7d5115138dd79b745a4131917c7bcf37bafc4ea4683ef"
+    "bytes": 1243710,
+    "sha256": "a08a515f8b16dc7c22751fe1148a58feb0f1481b26af085cf6200b7058534332",
+    "sourceSha256": "406aaea7890c04cf70d7d5115138dd79b745a4131917c7bcf37bafc4ea4683ef",
+    "encode": "opus 96k VBR stereo 48kHz in MP4 container"
   },
   {
-    "file": "audio/gacha_ready_egg.wav",
+    "file": "audio/gacha_ready_egg.mp4",
     "source": "4.24路资源包/assets/res/audio/bgm/gacha_ready_egg.wav",
-    "bytes": 7372844,
-    "sha256": "28eed22f61e40e2455403cce337500f932de4265898a3ebd085d5f65c9848c80"
+    "bytes": 564687,
+    "sha256": "c72e98cec1cc1693d159836a887e76e10d430cc708731803f1a689c4e44498f7",
+    "sourceSha256": "28eed22f61e40e2455403cce337500f932de4265898a3ebd085d5f65c9848c80",
+    "encode": "opus 96k VBR stereo 48kHz in MP4 container"
   },
   {
-    "file": "audio/gacha_show_egg.wav",
+    "file": "audio/gacha_show_egg.mp4",
     "source": "4.24路资源包/assets/res/audio/bgm/gacha_show_egg.wav",
-    "bytes": 17192492,
-    "sha256": "7fb315a5a5d4914c545f2f4a4258296aac0057d6f8d2cd34efa8a34da7c5efa8"
+    "bytes": 1343514,
+    "sha256": "0f8bf3cac83fb90fb848fef0ca35ab4d6111a3307261b95f47edfaf6ab9499f5",
+    "sourceSha256": "7fb315a5a5d4914c545f2f4a4258296aac0057d6f8d2cd34efa8a34da7c5efa8",
+    "encode": "opus 96k VBR stereo 48kHz in MP4 container"
   },
   {
-    "file": "audio/gacha_shop.wav",
+    "file": "audio/gacha_shop.mp4",
     "source": "4.24路资源包/assets/res/audio/bgm/gacha_shop.wav",
-    "bytes": 13648940,
-    "sha256": "deb603ef70840cbc020d7be6da1349005114bf773f0434eb8813a9b63055cfd4"
+    "bytes": 1059335,
+    "sha256": "8a087fbcae64e1a40737e581a6fd9e72097708057e8e0ea38546318a9e6c57e1",
+    "sourceSha256": "deb603ef70840cbc020d7be6da1349005114bf773f0434eb8813a9b63055cfd4",
+    "encode": "opus 96k VBR stereo 48kHz in MP4 container"
   },
   {
-    "file": "audio/card.wav",
+    "file": "audio/card.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card.wav",
-    "bytes": 248876,
-    "sha256": "8f5dc9e92f70e9a42a06626def7082e97aaa5e7a9489de28a6881943d2d72e2c"
+    "bytes": 12551,
+    "sha256": "411cc427e2dfe1a417a64a5bb18669a68983216ee62ac492fcca0b7cb0824b76",
+    "sourceSha256": "8f5dc9e92f70e9a42a06626def7082e97aaa5e7a9489de28a6881943d2d72e2c",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card2.wav",
+    "file": "audio/card2.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card2.wav",
-    "bytes": 654380,
-    "sha256": "d4a8f774a7cf9b9e7b7b26459b84682748d1ed6e7dee8caa542ef17163979337"
+    "bytes": 31572,
+    "sha256": "baf0992981142216d944b235c8a5cfd19efbfa7751065bd0f1c121931f210962",
+    "sourceSha256": "d4a8f774a7cf9b9e7b7b26459b84682748d1ed6e7dee8caa542ef17163979337",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card3.wav",
+    "file": "audio/card3.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card3.wav",
-    "bytes": 820268,
-    "sha256": "7e957590f1a1357f793875123289b9bfc9fbcdfd04fc4e30d3c50293b6106b96"
+    "bytes": 35010,
+    "sha256": "3b4c29354e787293842f17960f6a16e5c03a743468e45b3fc01c69aab4935d5b",
+    "sourceSha256": "7e957590f1a1357f793875123289b9bfc9fbcdfd04fc4e30d3c50293b6106b96",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card7.wav",
+    "file": "audio/card7.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card7.wav",
-    "bytes": 548396,
-    "sha256": "bf9efdddb92e49b3bd98b1e32e10cb2585fa39dbbf605fc52679c4f4c3c44db5"
+    "bytes": 24843,
+    "sha256": "1d459edd2fb75cf9c12a0e030d0f5677b9500bcfdc28440840f2b8b0f096d506",
+    "sourceSha256": "bf9efdddb92e49b3bd98b1e32e10cb2585fa39dbbf605fc52679c4f4c3c44db5",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card8.wav",
+    "file": "audio/card8.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card8.wav",
-    "bytes": 460844,
-    "sha256": "c329a9853ecf3782ebebe397c18d399e035ce6cde634f9433caeb9652a4eaa4f"
+    "bytes": 22840,
+    "sha256": "8b2c34a842216898765c0800a8856518e68692ca09198bbfb1d46af0e4d9cb2d",
+    "sourceSha256": "c329a9853ecf3782ebebe397c18d399e035ce6cde634f9433caeb9652a4eaa4f",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card9.wav",
+    "file": "audio/card9.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card9.wav",
-    "bytes": 387116,
-    "sha256": "286e36852ed722d7746fd5b8835e89dc406baaffc536251f9a4a263a9e5b1bf9"
+    "bytes": 17152,
+    "sha256": "c15ace1819e23a76aedf29383779a3bd793d17aa859f9f07acab05b7e1a1b40e",
+    "sourceSha256": "286e36852ed722d7746fd5b8835e89dc406baaffc536251f9a4a263a9e5b1bf9",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card10.wav",
+    "file": "audio/card10.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card10.wav",
-    "bytes": 364076,
-    "sha256": "2a71060ccc6be92064676b02f00ab87da6f52cc474dc183cdff590043f0928c6"
+    "bytes": 11559,
+    "sha256": "c6b2ac4b1063f69fbbeb31800fe5b75dc55b1a56e9d69a19b4508c1d954cf42f",
+    "sourceSha256": "2a71060ccc6be92064676b02f00ab87da6f52cc474dc183cdff590043f0928c6",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card12.wav",
+    "file": "audio/card12.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card12.wav",
-    "bytes": 737324,
-    "sha256": "b3ab75d5cae0721e15b40095d2464d7565f231d32f504746048dfa82e07b545f"
+    "bytes": 34669,
+    "sha256": "88797333ac0ae7eb4f155d34b9f51a6820a212daf92fe5ca49400b94b838c7b8",
+    "sourceSha256": "b3ab75d5cae0721e15b40095d2464d7565f231d32f504746048dfa82e07b545f",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/card11.wav",
+    "file": "audio/card11.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/card11.wav",
-    "bytes": 354860,
-    "sha256": "9f1c725d04938705c5d7d49a0dcff18985962cdf2b2b2474d906d3fc928d1cc1"
+    "bytes": 9515,
+    "sha256": "912f0690a0eb6ec5ebc6881cf902ef2d72e82558350d676b82b5367ead6315a2",
+    "sourceSha256": "9f1c725d04938705c5d7d49a0dcff18985962cdf2b2b2474d906d3fc928d1cc1",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/get3.wav",
+    "file": "audio/get3.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/get3.wav",
-    "bytes": 806444,
-    "sha256": "9efaeb438dcb0ef0211c939f3b5cf9a1b66310e806c30925e799fdc0a0c56fde"
+    "bytes": 31793,
+    "sha256": "cbe1d5dbfd8ec643257ee6489b0c4ecf56ea60e4150b201e6b73b00714715b45",
+    "sourceSha256": "9efaeb438dcb0ef0211c939f3b5cf9a1b66310e806c30925e799fdc0a0c56fde",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/get5.wav",
+    "file": "audio/get5.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/get5.wav",
-    "bytes": 419372,
-    "sha256": "e868b3a3fd5907881bf920258a7e3de7a62c4e07f1ef4ebec2d0179ed27f4d4a"
+    "bytes": 18705,
+    "sha256": "50dd3bce795e27af88ef228adaa1d44dc157ebbf43eb93cb8ccfc33c3349c451",
+    "sourceSha256": "e868b3a3fd5907881bf920258a7e3de7a62c4e07f1ef4ebec2d0179ed27f4d4a",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/getcard.wav",
+    "file": "audio/getcard.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/getcard.wav",
-    "bytes": 364076,
-    "sha256": "a82b1e6909bcdb72d060c6764501ac0f1188cb3491e74db73974fc3fb9750863"
+    "bytes": 16748,
+    "sha256": "3789a81dde10c7ba08f5fa864f0d3d2895490d5173efd87f23ac2213cf2b6e4f",
+    "sourceSha256": "a82b1e6909bcdb72d060c6764501ac0f1188cb3491e74db73974fc3fb9750863",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/itemGet.wav",
+    "file": "audio/itemGet.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/itemGet.wav",
-    "bytes": 188972,
-    "sha256": "33f480da52e4cbce6d316f3a56f2101a5f0df6d45c7e349241128ee92ca9fd66"
+    "bytes": 9373,
+    "sha256": "dbc3e4c23e4e19b0769f8b68e860457126d9c2e04692624bdd9254a1756b7858",
+    "sourceSha256": "33f480da52e4cbce6d316f3a56f2101a5f0df6d45c7e349241128ee92ca9fd66",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
-    "file": "audio/shining1.wav",
+    "file": "audio/shining1.mp4",
     "source": "4.24路资源包/assets/res/audio/effect/ui/shining1.wav",
-    "bytes": 539180,
-    "sha256": "3e15477cbde818298b37809c2d48e014f6c04541929d0490eb5b8fff42fd60ef"
+    "bytes": 27211,
+    "sha256": "86c646deaeb58c4458208437ff5476698a43e8bf9021154e48d7ecc4b2497236",
+    "sourceSha256": "3e15477cbde818298b37809c2d48e014f6c04541929d0490eb5b8fff42fd60ef",
+    "encode": "opus 64k VBR mono 48kHz in MP4 container"
   },
   {
     "file": "SPINE-LICENSE.txt",
     "source": "vue-myrzg/node_modules/@esotericsoftware/spine-webgl/LICENSE",
     "bytes": 1454,
     "sha256": "6142ee6cc2c03d3a918793e4750ae772bd3755c534d4a35e559e301acf51ec39"
+  },
+  {
+    "file": "../HeroGachaPanel_Atlas/gacha_egg_3.png",
+    "source": "UI_Atlases/HeroGachaPanel_Atlas/sprites/gacha_egg_3.png",
+    "bytes": 65960,
+    "sha256": "a2d844089166b59eda4226ac243bc20cfbf48fa5701972a2b00c5793d59ff60e"
+  },
+  {
+    "file": "../HeroGachaPanel_Atlas/gacha_egg_4.png",
+    "source": "UI_Atlases/HeroGachaPanel_Atlas/sprites/gacha_egg_4.png",
+    "bytes": 69332,
+    "sha256": "d130379190531e568290a8e34d9e291f83a9e9799041e07dfe08735ca243ca97"
+  },
+  {
+    "file": "../HeroGachaPanel_Atlas/gacha_egg_5.png",
+    "source": "UI_Atlases/HeroGachaPanel_Atlas/sprites/gacha_egg_5.png",
+    "bytes": 78774,
+    "sha256": "42258ae8b2fe8c02862ca83edb69eaa70b73ac2ba1354b91f3a18944ee92e647"
+  },
+  {
+    "file": "../HeroGachaPanel_Atlas/gacha_egg_name.png",
+    "source": "UI_Atlases/HeroGachaPanel_Atlas/sprites/gacha_egg_name.png",
+    "bytes": 17684,
+    "sha256": "82f6232ac25ca608d0869909f893c7f3170ca2d9f75e651249f6555765c70cf2"
+  },
+  {
+    "file": "../HeroGachaPanel_Atlas/gacha_star.png",
+    "source": "UI_Atlases/HeroGachaPanel_Atlas/sprites/gacha_star.png",
+    "bytes": 3985,
+    "sha256": "850a392c4e6f3097c48c2371897673fb765b6a017551619856eb913918c0e903"
   }
 ]
