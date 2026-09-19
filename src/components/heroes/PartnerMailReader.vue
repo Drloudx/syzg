@@ -5,7 +5,7 @@
         class="mail-hero" :class="{ active: selectedHero?.id === hero.id }"
         :aria-label="hero.name" :aria-pressed="selectedHero?.id === hero.id" :title="hero.name"
         @click="emit('select-hero', hero)">
-        <img class="hero-portrait" :src="getImageUrl(`/images/HeadIconAtals/${hero.icon}.png`)" alt="" @error="avatarFallback" />
+        <img class="hero-portrait" :src="getImageUrl(`/images/HeadIconAtals/${hero.icon}.webp`)" alt="" @error="avatarFallback" />
         <img class="hero-frame" :src="skin('at_f_M')" alt="" />
         <img v-if="selectedHero?.id === hero.id" class="hero-selection" :src="skin('chara_srat_now')" alt="" />
       </UiButton>
@@ -148,10 +148,16 @@ onBeforeUnmount(() => {
   clearTimeout(selectionTimer)
   document.fonts?.removeEventListener('loadingdone', scheduleLayout)
 })
+/**
+ * 邮件 sprite 名 → URL。
+ *
+ * 全站图片已统一为 `.webp`（内容为 WebP，无损；见 `scripts/dev/convert-remaining-to-webp.mjs`），
+ * 故这里可以直接拼 `.webp`，不再需要按名查扩展名的例外表。
+ */
 const skin = name => {
   const folder = name === 'mail_botm' ? 'uipanel/emailpanel'
     : (name.startsWith('mail_') ? 'EmailPanel_Atlas' : 'Common_Atlas')
-  return getImageUrl(`/images/${folder}/${name}.png`)
+  return getImageUrl(`/images/${folder}/${name}.webp`)
 }
 const rewardLabel = computed(() => getPartnerMailPresentation(props.selectedMail).rewardLabel)
 const skinStyle = computed(() => Object.fromEntries(['mail_at', 'mail_page', 'mail_page_on', 'mail_botm']

@@ -53,7 +53,7 @@
         >
           <!-- Card Background -->
           <img
-            :src="getImageUrl(`/images/HeroBagPanel/card_${hero.rare}_botm.png`)"
+            :src="getImageUrl(`/images/HeroBagPanel/card_${hero.rare}_botm.webp`)"
             class="bag-card-background"
             alt="background"
             loading="lazy"
@@ -63,7 +63,7 @@
 
           <!-- Frame Background -->
           <img
-            :src="getImageUrl(`/images/HeroBagPanel/card_${hero.rare}.png`)"
+            :src="getImageUrl(`/images/HeroBagPanel/card_${hero.rare}.webp`)"
             class="bag-card-frame"
             alt="frame"
             loading="lazy"
@@ -73,7 +73,7 @@
 
           <!-- Character Avatar -->
           <img
-            :src="getImageUrl(`/images/HeroBagPanel/${hero.img}_ka.png`)"
+            :src="getImageUrl(`/images/HeroBagPanel/${hero.img}_ka.webp`)"
             :alt="hero.name"
             class="bag-card-avatar"
             loading="lazy"
@@ -83,7 +83,7 @@
 
           <!-- Attribute Icon (Top-Left) -->
           <img
-            :src="getImageUrl(`/images/HeroBagPanel/card_atr_${getElementSlug(hero.element)}.png`)"
+            :src="getImageUrl(`/images/HeroBagPanel/card_atr_${getElementSlug(hero.element)}.webp`)"
             class="bag-card-element"
             :title="hero.elementName"
             loading="lazy"
@@ -93,7 +93,7 @@
 
           <!-- Class Icon (Top-Right) -->
           <img
-            :src="getImageUrl(`/images/HeroBagPanel/class_icon_s_${getJobSlug(hero.job)}.png`)"
+            :src="getImageUrl(`/images/HeroBagPanel/class_icon_s_${getJobSlug(hero.job)}.webp`)"
             class="bag-card-job"
             :title="hero.jobName"
             loading="lazy"
@@ -108,7 +108,7 @@
 
           <!-- Nameplate Star Icon (Bottom-Left Diamond) -->
           <img
-            :src="getImageUrl('/PicHandBookPanel_Atlas/colect_star.png')"
+            :src="getImageUrl('/PicHandBookPanel_Atlas/colect_star.webp')"
             class="bag-card-name-star"
             alt="star"
             loading="lazy"
@@ -148,19 +148,53 @@
               @click="protagonistGender = protagonistGender === 'female' ? 'male' : 'female'">
               {{ protagonistGender === 'female' ? '切换男主' : '切换女主' }}
             </UiButton>
-            <div v-for="portrait in protagonistPortraits" :key="portrait.gender"
-              class="protagonist-portrait-slot" :class="{ 'is-selected': protagonistGender === portrait.gender }">
-              <img :src="getImageUrl(portrait.image)" :alt="portrait.label"
-                class="chara-portrait-img" @error="handlePortraitImgError" />
-            </div>
+            <!-- 模型图模式：与立绘模式同样处理——桌面端男女模型**并列显示**，手机端只显示选中性别 -->
+            <template v-if="showHeroModel">
+              <div v-for="variant in protagonistModels" :key="variant.gender"
+                class="protagonist-portrait-slot" :class="{ 'is-selected': protagonistGender === variant.gender }">
+                <img :src="getImageUrl(variant.image)"
+                  :alt="`${selectedHero.name}（${variant.gender === 'female' ? '女主' : '男主'}）模型图`"
+                  class="chara-model-img"
+                  @error="handleModelImgError" />
+              </div>
+            </template>
+            <template v-else>
+              <div v-for="portrait in protagonistPortraits" :key="portrait.gender"
+                class="protagonist-portrait-slot" :class="{ 'is-selected': protagonistGender === portrait.gender }">
+                <img :src="getImageUrl(portrait.image)" :alt="portrait.label"
+                  class="chara-portrait-img" @error="handlePortraitImgError" />
+              </div>
+            </template>
+            <!-- 切换「立绘 / 模型图」：手机端由 CSS 放到性别切换按钮**下面** -->
+            <UiButton v-if="hasHeroModel" class="hero-model-toggle" size="sm" variant="secondary"
+              :aria-label="showHeroModel ? '切换到立绘' : '切换到模型图'"
+              @click="showHeroModel = !showHeroModel">
+              {{ showHeroModel ? '立绘' : '模型' }}
+            </UiButton>
           </template>
-          <img
-            v-else
-            :src="getImageUrl(`/images/chara/l/${selectedHero.img}.png`)"
-            :alt="selectedHero.name"
-            class="chara-portrait-img"
-            @error="handlePortraitImgError"
-          />
+          <template v-else>
+            <img
+              v-if="!showHeroModel"
+              :src="getImageUrl(`/images/chara/l/${selectedHero.img}.webp`)"
+              :alt="selectedHero.name"
+              class="chara-portrait-img"
+              @error="handlePortraitImgError"
+            />
+            <!-- 角色模型图（Q 版小人立绘）：与立绘同区二选一，叠在立绘区域右下角 -->
+            <img
+              v-else-if="heroModelImage"
+              :src="getImageUrl(heroModelImage)"
+              :alt="heroModelAlt"
+              class="chara-model-img"
+              @error="handleModelImgError"
+            />
+            <!-- 切换「立绘 / 模型图」：仅对**有模型图**的角色显示 -->
+            <UiButton v-if="hasHeroModel" class="hero-model-toggle" size="sm" variant="secondary"
+              :aria-label="showHeroModel ? '切换到立绘' : '切换到模型图'"
+              @click="showHeroModel = !showHeroModel">
+              {{ showHeroModel ? '立绘' : '模型' }}
+            </UiButton>
+          </template>
         </div>
 
         <!-- Badges & Favorite Gifts Row -->
@@ -175,13 +209,13 @@
             @click="isJobDetailExpanded = !isJobDetailExpanded"
           >
             <UiTag tone="default" class="badge job-badge">
-              <img :src="getImageUrl(`/images/HeroBagPanel/class_icon_s_${getJobSlug(selectedHero.job)}.png`)" class="badge-icon" />
+              <img :src="getImageUrl(`/images/HeroBagPanel/class_icon_s_${getJobSlug(selectedHero.job)}.webp`)" class="badge-icon" />
               {{ selectedHero.jobName }}
               <span class="job-badge-chevron" aria-hidden="true"></span>
             </UiTag>
           </button>
           <UiTag tone="accent" class="badge element-badge">
-            <img :src="getImageUrl(`/images/HeroGachaShowPanel/spGachaTag${getSpGachaElementSlug(selectedHero.element)}03.png`)" class="badge-icon" />
+            <img :src="getImageUrl(`/images/HeroGachaShowPanel/spGachaTag${getSpGachaElementSlug(selectedHero.element)}03.webp`)" class="badge-icon" />
             {{ selectedHero.elementName }}属性
           </UiTag>
           <UiTag :quality="selectedHero.rare" class="badge rare-badge">
@@ -214,7 +248,7 @@
           >
             <div class="job-traits-heading">
               <img
-                :src="getImageUrl(`/images/HeroBagPanel/class_icon_s_${getJobSlug(selectedHero.job)}.png`)"
+                :src="getImageUrl(`/images/HeroBagPanel/class_icon_s_${getJobSlug(selectedHero.job)}.webp`)"
                 class="job-traits-icon"
                 alt=""
               />
@@ -254,7 +288,7 @@
               >
                 <img
                   v-if="skill.type !== 'normal'"
-                  :src="getImageUrl(`/images/Common_SkillIcon/${skill.icon}.png`)"
+                  :src="getImageUrl(`/images/Common_SkillIcon/${skill.icon}.webp`)"
                   class="skill-select-icon"
                   @error="handleSkillIconError"
                 />
@@ -273,7 +307,7 @@
                 @click="activeSkillIndex = (selectedHero.skills.length + tIdx)"
               >
                 <img
-                  :src="getImageUrl(`/images/Common_SkillIcon/${talent.icon}.png`)"
+                  :src="getImageUrl(`/images/Common_SkillIcon/${talent.icon}.webp`)"
                   class="skill-select-icon"
                   @error="handleSkillIconError"
                 />
@@ -425,7 +459,7 @@
                 @click="activeStarIndex = sIdx"
               >
                 <img
-                  :src="getImageUrl(`/images/Common_SkillIcon/${star.icon}.png`)"
+                  :src="getImageUrl(`/images/Common_SkillIcon/${star.icon}.webp`)"
                   class="star-select-icon"
                   @error="handleSkillIconError"
                 />
@@ -456,7 +490,7 @@
                     <div class="shard-cost-pills" v-if="lvl.cost > 0">
                       <span class="shard-cost-label">消耗专属碎片:</span>
                       <span class="shard-cost-value">
-                        <img :src="getImageUrl(`/images/HeroInfoPanel_Atlas/${selectedHero.img}_p.png`)" class="shard-item-img-small" />
+                        <img :src="getImageUrl(`/images/HeroInfoPanel_Atlas/${selectedHero.img}_p.webp`)" class="shard-item-img-small" />
                         {{ lvl.cost }}
                       </span>
                     </div>
@@ -472,7 +506,7 @@
                   <li>
                     满命（全部点满）后，再次抽到重复角色多余的专属碎片会自动转化为通用货币：
                     <span class="limit-crystal">
-                      <img :src="getImageUrl('/Common_ItemIcon/item_20026.png')" class="crystal-icon" />
+                      <img :src="getImageUrl('/Common_ItemIcon/item_20026.webp')" class="crystal-icon" />
                       记忆结晶 x{{ selectedHero.starLimitInfo.rewardItemNum }}
                     </span>。
                   </li>
@@ -641,6 +675,7 @@ import {
 } from '../utils/gameMappings'
 import HeroStoryPanels from '../components/heroes/HeroStoryPanels.vue'
 import HeroSkinsPanel from '../components/heroes/HeroSkinsPanel.vue'
+import { hasHeroModel as hasHeroModelFor, getHeroModelImage } from '../utils/heroModels.js'
 import {
   UiBackToTop,
   UiButton,
@@ -699,9 +734,28 @@ const selectedHero = ref(null)
 // ExtentionMethod.SetSexHeroImg: hero_001 的男版立绘为 chara001b_0。
 const isProtagonist = computed(() => selectedHero.value?.id === 'hero_001')
 const protagonistGender = ref('female')
+/** 立绘区显示的是「模型图」还是「立绘」；仅对有模型图的角色有效 */
+const showHeroModel = ref(false)
+const hasHeroModel = computed(() => hasHeroModelFor(selectedHero.value?.id))
+// 主角传当前性别以取对应模型（女主 hero_001 / 男主 hero_001_male）；其他角色忽略该参数
+const heroModelImage = computed(() => getHeroModelImage(selectedHero.value?.id, protagonistGender.value))
+const heroModelAlt = computed(() => isProtagonist.value
+  ? `${selectedHero.value?.name || ''}（${protagonistGender.value === 'female' ? '女主' : '男主'}）模型图`
+  : `${selectedHero.value?.name || ''}模型图`)
 const protagonistPortraits = [
-  { gender: 'female', label: '希尔（女主）', image: '/images/chara/l/chara001_0.png' },
-  { gender: 'male', label: '希尔（男主）', image: '/images/chara/l/chara001b_0.png' }
+  { gender: 'female', label: '希尔（女主）', image: '/images/chara/l/chara001_0.webp' },
+  { gender: 'male', label: '希尔（男主）', image: '/images/chara/l/chara001b_0.webp' }
+]
+/**
+ * 主角的 Q 版模型（两个性别）。
+ *
+ * 与立绘同样处理：桌面端**并列显示**男女两个模型，手机端由 CSS 只显示选中性别
+ * （`.protagonist-portrait-slot:not(.is-selected){display:none}`）。
+ * 男主模型不在 hero.json 里，是用导出工具单独生成的，详见 utils/heroModels.js。
+ */
+const protagonistModels = [
+  { gender: 'female', image: '/images/chara/Q/hero_001.webp' },
+  { gender: 'male', image: '/images/chara/Q/hero_001_male.webp' }
 ]
 const activeTab = ref('skills')
 
@@ -858,6 +912,7 @@ function openFromQueryId(id) {
     // 详情才需要物品表（突破材料名称/图标）；不 await，详情先渲染，材料到位后计算属性自行重算。
     loadItemsOnce()
     protagonistGender.value = 'female'
+    showHeroModel.value = false
     detailVisible.value = true
     // Reset tabs
     activeTab.value = route.query.tab === 'skins' && found.skins?.length ? 'skins' : 'skills'
@@ -947,9 +1002,15 @@ function handlePortraitImgError(e) {
   e.target.style.display = 'none'
 }
 
+/** 模型图加载失败：退回立绘（而不是留一块空白），并避免重复触发 */
+function handleModelImgError(e) {
+  e.target.onerror = null
+  showHeroModel.value = false
+}
+
 function handleSkillIconError(e) {
   // Use a generic skill icon fallback
-  e.target.src = '/ui/item_00002.png'
+  e.target.src = '/ui/item_00002.webp'
 }
 
 // Active Skill selected getter
@@ -1368,6 +1429,22 @@ const handleGiftClick = (giftId) => {
   width: 90%;
   height: 340px;
 }
+/* 模型图（Q 版小人）：与立绘同区二选一，不设 max-width 让 90% 生效 */
+.chara-model-img {
+  max-height: 340px;
+  width: 90%;
+  height: 340px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+/* 切换「立绘 / 模型图」：叠在立绘区右上角（与主角的性别切换同一位置）；仅对有模型图的角色渲染 */
+.hero-model-toggle {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 1;
+  min-height: 32px;
+}
 .protagonist-portrait-toggle { display: none; }
 @media (max-width: 640px) {
   .portrait-section--protagonist {
@@ -1381,6 +1458,10 @@ const handleGiftClick = (giftId) => {
     right: 8px;
     z-index: 1;
     min-height: 32px;
+  }
+  /* 主角页手机端两个按钮都在右上角：模型切换放在性别切换**下面**避免重叠 */
+  .portrait-section--protagonist .hero-model-toggle {
+    top: 46px;
   }
 }
 

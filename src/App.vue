@@ -10,7 +10,7 @@
       <div class="header-content">
         <div class="header-top-row">
           <div class="header-left">
-            <img src="/ui/logo.png" class="app-logo" alt="深渊之歌" />
+            <img src="/ui/logo.webp" class="app-logo" alt="深渊之歌" />
             <div class="header-title-wrap">
               <h1 class="header-title">{{ pageTitle }}</h1>
               <span class="header-brand">深渊之歌 · 资料库</span>
@@ -126,6 +126,16 @@
               <div class="info-row">
                 <span class="info-label">游戏版本</span>
                 <span class="info-value">v1.0.0</span>
+              </div>
+              <!-- 交流群：字号与配色沿用 .info-value（与「网站版本」一致），点击跳转加群链接 -->
+              <div class="info-row">
+                <span class="info-label">交流群</span>
+                <a
+                  class="info-value info-value--link"
+                  href="https://qm.qq.com/q/iolDkZyD2E"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >963318625</a>
               </div>
             </div>
             <div class="info-section">
@@ -1109,7 +1119,7 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 .info-cover-image {
   width: 100%;
   height: 110px;
-  background-image: url('/ui/map_w1_bg.png');
+  background-image: url('/ui/map_w1_bg.webp');
   background-position: center;
   background-size: cover;
   border-bottom: 1px solid var(--border-color, #8f7351);
@@ -1147,6 +1157,15 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 .info-value {
   color: var(--text-main, #3e2a14);
   font-weight: 600;
+}
+/* 可点击的 info-value（交流群）：字号、配色、字重全部沿用 .info-value，仅加可点提示 */
+.info-value--link {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.info-value--link:hover {
+  opacity: 0.75;
 }
 .info-section {
   margin-top: 4px;

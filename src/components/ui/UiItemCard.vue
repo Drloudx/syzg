@@ -6,7 +6,7 @@
   >
     <div
       class="ui-item-card__slot"
-      :style="{ backgroundImage: `url('${getImageUrl(`/ItemBagPanel/item_f_${getQualityFrame(quality)}.png`)}')` }"
+      :style="{ backgroundImage: `url('${getImageUrl(`/ItemBagPanel/item_f_${getQualityFrame(quality)}.webp`)}')` }"
     >
       <img
         v-if="img"
@@ -82,9 +82,17 @@ const getQualityFrame = (q) => {
 .ui-item-card__slot {
   width: 100%;
   aspect-ratio: 1 / 1;
+  /*
+   * `aspect-ratio` 只是**首选**尺寸：内容更高时会被顶开（flex 项 min-height 默认为 auto）。
+   * 竖长图（如「庭院柱灯制作图」原图 59×170）会把 slot 从 82×82 撑成 82×161，
+   * 于是边框被纵向拉伸、且图标反而更窄（max-height:68% 是相对被撑高的 slot 计算，恶性循环）。
+   * 用 min-height:0 取消 auto 下限，让 aspect-ratio 成为硬约束；图标再由 object-fit 缩放适配。
+   */
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -92,10 +100,12 @@ const getQualityFrame = (q) => {
   box-sizing: border-box;
 }
 
-/* 中间图标微调适中（68% 大小） */
+/* 中间图标微调适中（68% 大小）；宽高同时受限，长图/宽图都按 contain 缩放，不撑开外框 */
 .ui-item-card__icon {
   max-width: 68%;
   max-height: 68%;
+  width: auto;
+  height: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
 }
@@ -114,7 +124,7 @@ const getQualityFrame = (q) => {
   padding: 1px 0;
   min-height: 21px;
   border: 4px solid transparent;
-  border-image-source: url('/images/PicHandBookPanel_Atlas/colect_list_mx.png');
+  border-image-source: url('/images/PicHandBookPanel_Atlas/colect_list_mx.webp');
   border-image-slice: 20 32 fill;
   border-image-width: 4px 8px;
   border-image-outset: 0;
@@ -135,7 +145,7 @@ const getQualityFrame = (q) => {
 
 .dark-mode .ui-item-card__name {
   background: transparent;
-  border-image-source: url('/images/PicHandBookPanel_Atlas/colect_list_mx.png');
+  border-image-source: url('/images/PicHandBookPanel_Atlas/colect_list_mx.webp');
   color: #eaddc2;
 }
 

@@ -1,21 +1,21 @@
 <template>
   <!-- 窄窗口完整缩放固定坐标控件，宽窗口只延展布景，立绘与按钮保持原比例。 -->
-  <GachaStage :backdrop="getImageUrl('/images/gacha/gacha_cardbackground_main_output.png')" fit="height">
+  <GachaStage :backdrop="getImageUrl('/images/gacha/gacha_cardbackground_main_output.webp')" fit="height">
     <!-- ── 背景层：prefab `gacha_pool_BG`（深度 0~3），贴图由 TextureLoad 在 Awake 加载，
-         对应关系取自 prefab：BG_main→`gacha_cardbackground_main_output_blur.png`(2048×1024，与
-         该 UITexture 尺寸完全一致)、BG_main_blured→`..._blured.png`(1024×512，scale 2)、
-         BG_HL→`..._HL_output.png`(1680×1000)、desk→`elsa_desk_foreground.png`(1680×1000，scale 1.25)
+         对应关系取自 prefab：BG_main→`gacha_cardbackground_main_output_blur.webp`(2048×1024，与
+         该 UITexture 尺寸完全一致)、BG_main_blured→`..._blured.webp`(1024×512，scale 2)、
+         BG_HL→`..._HL_output.webp`(1680×1000)、desk→`elsa_desk_foreground.webp`(1680×1000，scale 1.25)
          ── -->
     <div class="g-abs g-layer-bg pool-scenery" :style="gachaPos(0, 0)">
       <img
-        :src="getImageUrl('/images/gacha/gacha_cardbackground_main_output_blur.png')"
+        :src="getImageUrl('/images/gacha/gacha_cardbackground_main_output_blur.webp')"
         alt=""
         class="pool-bgmain"
       />
     </div>
     <div class="g-abs g-layer-bg pool-scenery" :style="gachaPos(0, 0)">
       <img
-        :src="getImageUrl('/images/gacha/gacha_cardbackground_main_output_blured.png')"
+        :src="getImageUrl('/images/gacha/gacha_cardbackground_main_output_blured.webp')"
         alt=""
         class="pool-bgblur"
       />
@@ -23,18 +23,18 @@
     <!-- BG_HL：depth 1，TweenAlpha 0.5↔0.65 呼吸（style=2 ping-pong） -->
     <div class="g-abs g-layer-bg pool-scenery" :style="gachaPos(0, 0)">
       <img
-        :src="getImageUrl('/images/gacha/gacha_cardbackground_HL_output.png')"
+        :src="getImageUrl('/images/gacha/gacha_cardbackground_HL_output.webp')"
         alt=""
         class="pool-hl"
       />
     </div>
     <!-- desk：前景桌面，depth 1，scale 1.25 @(0,-18) -->
     <div class="g-abs g-layer-bg pool-foreground" :style="gachaPos(0, -18)">
-      <img :src="getImageUrl('/images/gacha/elsa_desk_foreground.png')" alt="" />
+      <img :src="getImageUrl('/images/gacha/elsa_desk_foreground.webp')" alt="" />
     </div>
     <!-- TweenParent/mask：fb_page_black 480×750，pos (-767,0)，depth 2（左侧压暗） -->
     <div class="g-abs g-layer-bg" :style="gachaPos(-767, 0)">
-      <img :src="getImageUrl('/images/InsBattlePanel_Atlas/fb_page_black.png')" alt="" class="pool-side-mask" />
+      <img :src="getImageUrl('/images/InsBattlePanel_Atlas/fb_page_black.webp')" alt="" class="pool-side-mask" />
     </div>
     <!-- Draw/Heros：depth 3，切池时 TweenScale 1.2→1.0 + TweenAlpha 0→1。
          游戏用 `MakePixelPerfect` 按贴图原始像素显示（角色池 1680×1000、魔物蛋池 879×946），
@@ -54,7 +54,7 @@
          但源码从不给它们赋值、游戏画面里也不出现，故不渲染。 ── -->
     <div class="g-abs g-layer-ui" :style="gachaPos(-500, 315)">
       <img
-        :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${kind === 'hero' ? 'gacha_title_chara' : 'gacha_title_egg'}.png`)"
+        :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${kind === 'hero' ? 'gacha_title_chara' : 'gacha_title_egg'}.webp`)"
         :alt="kind === 'hero' ? '伙伴招募' : '魔物蛋贩售'"
         class="pool-title-art"
       />
@@ -63,7 +63,7 @@
     <!-- ── 保底提示：RareTip (-609,-283)，icon_info 28×28 + Label（prefab fontSize=20）。
          **左对齐**：图标左边缘与下方「概率详情」按钮左边缘同在 design −631（用户要求这几项左对齐）。 ── -->
     <div v-if="safeHint" class="g-abs g-layer-ui safe-hint" :style="{ left: 'calc(50% - 631px)', top: 'calc(50% + 283px)' }">
-      <img :src="getImageUrl('/images/Common_Atlas/icon_info.png')" alt="" class="safe-hint__icon" />
+      <img :src="getImageUrl('/images/Common_Atlas/icon_info.webp')" alt="" class="safe-hint__icon" />
       <span class="g-text g-text--md safe-hint__text">{{ safeHint }}</span>
     </div>
 
@@ -119,7 +119,7 @@
         :title="`补充模拟${slot.name}`"
         @click="emit('topup', slot.typeId)"
       >
-        <img :src="getImageUrl('/images/MainPanel/M_rt_btn_add.png')" alt="补充" />
+        <img :src="getImageUrl('/images/MainPanel/M_rt_btn_add.webp')" alt="补充" />
       </button>
     </div>
 
@@ -127,16 +127,16 @@
 
     <!-- ── 期次：periodType (461,227)，贴图为 gacha_name_chara/egg（312×76） ── -->
     <div class="g-abs g-layer-ui" :style="gachaPos(461, 227)">
-      <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${periodSprite}.png`)" alt="" class="pool-period" />
+      <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${periodSprite}.webp`)" alt="" class="pool-period" />
     </div>
     <!-- longPeriod (-1,-54)：永久池显示「永·久·开·放」，底板 `gacha_name_stay` 228×32（prefab `longPeriod/bg`） -->
     <div v-if="isPermanent" class="g-abs g-layer-ui period-badge" :style="gachaPos(460, 173)">
-      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_name_stay.png')" alt="" class="period-badge__bg" />
+      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_name_stay.webp')" alt="" class="period-badge__bg" />
       <span class="g-text g-text--xs period-badge__text">永·久·开·放</span>
     </div>
     <!-- limitedPeriod (-47,-54)：限时池显示倒计时，底板 `gacha_name_limit` 228×32 -->
     <div v-else class="g-abs g-layer-ui period-badge" :style="gachaPos(414, 173)">
-      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_name_limit.png')" alt="" class="period-badge__bg" />
+      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_name_limit.webp')" alt="" class="period-badge__bg" />
       <span class="g-text g-text--xs period-badge__text">{{ remainingText }}</span>
       <span class="g-text g-text--xs period-badge__text">后结束</span>
     </div>
@@ -149,7 +149,7 @@
       :title="`打开礼包：${pool.packDisplay}`"
       @click="emit('exchange')"
     >
-      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_btn_exchange.png')" alt="礼包兑换" />
+      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_btn_exchange.webp')" alt="礼包兑换" />
     </button>
 
     <!-- ── 角色 / 魔物蛋 切换：heroTypeTog (-561,233)、petTypeTog (-393,233)，168×84 ── -->
@@ -160,7 +160,7 @@
       :aria-pressed="kind === 'hero'"
       @click="emit('update:kind', 'hero')"
     >
-      <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${kind === 'hero' ? 'gacha_page_chara_on' : 'gacha_page_chara'}.png`)" alt="角色招募" />
+      <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${kind === 'hero' ? 'gacha_page_chara_on' : 'gacha_page_chara'}.webp`)" alt="角色招募" />
     </button>
     <button
       v-if="petOpen"
@@ -170,10 +170,10 @@
       :aria-pressed="kind === 'pet'"
       @click="emit('update:kind', 'pet')"
     >
-      <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${kind === 'pet' ? 'gacha_page_egg_on' : 'gacha_page_egg'}.png`)" alt="魔物蛋贩售" />
+      <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${kind === 'pet' ? 'gacha_page_egg_on' : 'gacha_page_egg'}.webp`)" alt="魔物蛋贩售" />
     </button>
     <div v-else class="g-abs g-layer-ui" :style="gachaPos(-393, 233)">
-      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_page_egg_disable.png')" alt="魔物蛋（未开放）" />
+      <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_page_egg_disable.webp')" alt="魔物蛋（未开放）" />
     </div>
 
     <!-- ── 卡池页签：Toggles (-484,135)，UIGrid arrangement=1 即 Vertical、cellHeight=90，
@@ -194,14 +194,14 @@
         aria-hidden="true"
       ></div>
       <img
-        :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${item.assets.poolSprite}.png`)"
+        :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${item.assets.poolSprite}.webp`)"
         alt=""
         class="pool-tab__icon"
         :class="item.kind === 'hero' ? 'pool-tab__icon--hero' : 'pool-tab__icon--pet'"
       />
       <span class="g-text g-text--sm pool-tab__label">{{ item.name }}</span>
       <template v-if="tabTime(item)">
-        <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_page_time.png')" alt="" class="pool-tab__time-icon" />
+        <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_page_time.webp')" alt="" class="pool-tab__time-icon" />
         <span class="g-text g-text--xs g-text--gold pool-tab__time">{{ tabTime(item) }}</span>
       </template>
     </button>
@@ -212,7 +212,7 @@
          desc0 「概率提升！」 @(566,-124)、desc2 提示 @(617,-155) ── -->
     <template v-if="upCandidates.length">
       <div class="g-abs g-layer-art up-plate-wrap" :style="gachaPos(474, -113)">
-        <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_up_botm.png')" alt="" class="up-plate" />
+        <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_up_botm.webp')" alt="" class="up-plate" />
       </div>
       <div class="g-abs g-layer-ui g-text up-label" :style="gachaPos(489, -124)">
         {{ kind === 'hero' ? '指定伙伴' : '指定魔物蛋' }}
@@ -228,10 +228,10 @@
         :title="`${candidate.name}（点击查看详情）`"
         @click="emit('open-candidate', candidate)"
       >
-        <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/at_f_${candidate.quality}.png`)" alt="" class="up-slot__frame" />
+        <img :src="getImageUrl(`/images/HeroPoolPanel_Atlas/at_f_${candidate.quality}.webp`)" alt="" class="up-slot__frame" />
         <img :src="getImageUrl(upAvatar(candidate))" :alt="candidate.name" class="up-slot__icon" />
         <!-- 概率提升角标：prefab `chanceUp` = com_up 24×56 @(37.9,0) -->
-        <img :src="getImageUrl('/images/Common_Atlas/com_up.png')" alt="" class="up-slot__badge" />
+        <img :src="getImageUrl('/images/Common_Atlas/com_up.webp')" alt="" class="up-slot__badge" />
       </button>
     </template>
 
@@ -263,7 +263,7 @@
       class="g-abs g-layer-ui draw-cost"
       :style="gachaPos(400 + option.offsetX, -264)"
     >
-      <img class="draw-cost__plate" :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_btn_tag.png')" alt="" />
+      <img class="draw-cost__plate" :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_btn_tag.webp')" alt="" />
       <img class="draw-cost__icon" :src="getImageUrl(option.ticket.icon)" alt="" />
       <span class="g-text g-text--md" :class="{ 'g-text--danger': !option.ticket.enough }">{{ option.ticket.text }}</span>
       <template v-if="option.exchange">
@@ -281,7 +281,7 @@
       title="返回"
       @click="emit('close')"
     >
-      <img :src="getImageUrl('/images/Common_Atlas/com_btn_close.png')" alt="返回" />
+      <img :src="getImageUrl('/images/Common_Atlas/com_btn_close.webp')" alt="返回" />
     </button>
 
     <!-- ── 音效开关（本页新增，游戏内无对应控件）：放在货币条与关闭按钮之间腾出的空位
@@ -298,7 +298,7 @@
       @click="emit('toggle-sound')"
     >
       <img
-        :src="getImageUrl(soundOn ? '/images/HeroInfoPanel_Atlas/chara_btn_voice.png' : '/images/HeroInfoPanel_Atlas/chara_btn_voice_press.png')"
+        :src="getImageUrl(soundOn ? '/images/HeroInfoPanel_Atlas/chara_btn_voice.webp' : '/images/HeroInfoPanel_Atlas/chara_btn_voice_press.webp')"
         :alt="soundOn ? '音效开' : '音效关'"
       />
     </button>
@@ -448,10 +448,11 @@ const currencySlots = computed(() => buildCurrencySlots(props.pool, props.wallet
 function upAvatar(candidate) {
   const typeId = String(candidate?.typeId ?? '')
   if (props.kind === 'hero') {
+    // 头像文件已统一为 .webp（`at<3位编号>_0.webp` / `_1.webp`）
     const plain = /^hero_0*(\d+)$/.exec(typeId)
-    if (plain) return `/images/HeadIconAtals/at${String(plain[1]).padStart(3, '0')}_0.png`
+    if (plain) return `/images/HeadIconAtals/at${String(plain[1]).padStart(3, '0')}_0.webp`
     const variant = /^new_hero_0*(\d+)$/.exec(typeId)
-    if (variant) return `/images/HeadIconAtals/at${String(variant[1]).padStart(3, '0')}_1.png`
+    if (variant) return `/images/HeadIconAtals/at${String(variant[1]).padStart(3, '0')}_1.webp`
   }
   return candidate?.icon ?? ''
 }

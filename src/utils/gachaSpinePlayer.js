@@ -14,6 +14,26 @@ import {
   AtlasAttachmentLoader, SkeletonJson, SkeletonBinary, Skeleton,
   AnimationState, AnimationStateData
 } from '@esotericsoftware/spine-webgl'
+import { activeBackend, getCanvasBufferSize } from './gachaRenderShared'
+import { createSpineCanvas2DScene } from './gachaSpineCanvas2D'
+
+/**
+ * 由 URL 推断图片 MIME 类型。
+ *
+ * 必要性：贴图走 `fetch → Blob → objectURL → Image` 加载。`new Blob([buf])` 不指定 type 时
+ * blob URL 没有 Content-Type，浏览器**不再按内容嗅探**（PNG 时代能蒙对，WebP 会直接解码失败：
+ * `贴图加载失败：blob:…`）。故必须显式给出类型。
+ *
+ * 实现在 gachaRenderShared（与 Canvas2D 后端共用），此处仅转出保持既有引用不变。
+ */
+function imageMimeFromUrl(url) {
+  const path = url.split('?')[0].toLowerCase()
+  if (path.endsWith('.webp')) return 'image/webp'
+  if (path.endsWith('.png')) return 'image/png'
+  if (path.endsWith('.jpg') || path.endsWith('.jpeg')) return 'image/jpeg'
+  if (path.endsWith('.gif')) return 'image/gif'
+  return 'application/octet-stream'
+}
 
 function loadImage(url) {
   return new Promise((resolve, reject) => {
@@ -50,11 +70,13 @@ export function preloadGachaSpineAssets(layers) {
     cachedFetch(def.atlas)
       .then(buffer => new TextDecoder('utf-8').decode(buffer))
       .then(text => {
-        // 解析 atlas 页名，把贴图一并预热
-        const pageNames = text
-          .split('\n')
-          .map(line => line.trim())
-          .filter(name => name && !name.includes(':') && !/^(size|filter|repeat|format)\b/.test(name))
+        // 页名用 TextureAtlas 解析器取，**不要用正则猜**：
+        // atlas 里除页名外还有大量附件名（如 armA_l / bagHandle），正则会把它们误当页名，
+        // 于是请求一堆不存在的文件（dev server 回 SPA fallback 的 HTML）→ Image 解码失败刷错误。
+        let pageNames = []
+        try {
+          pageNames = new TextureAtlas(text).pages.map(page => page.name)
+        } catch { /* 解析失败则跳过预热，播放时仍会正常加载 */ }
         for (const name of pageNames) {
           try {
             const pageUrl = new URL(name, new URL(def.atlas, window.location.href)).href
@@ -63,7 +85,7 @@ export function preloadGachaSpineAssets(layers) {
                 const image = new Image()
                 image.onload = resolve
                 image.onerror = reject
-                image.src = URL.createObjectURL(new Blob([buffer]))
+                image.src = URL.createObjectURL(new Blob([buffer], { type: imageMimeFromUrl(pageUrl) }))
               }))
               .catch(() => {})
           } catch { /* 非页名行，忽略 */ }
@@ -107,7 +129,39 @@ export function createSpineScene(canvas, layers, options = {}) {
   const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true })
   if (!gl) return Promise.reject(new Error('WebGL 不可用'))
   gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
-  const renderer = new SceneRenderer(canvas, gl)
+  /**
+   * 上下文丢失兜底：移动端显存紧张时浏览器会丢弃 WebGL 上下文。
+   * **必须 preventDefault**，否则上下文永久丢失、画面永久残缺（且不会自动恢复）。
+   * 这里只做「允许恢复」；真正的成因（渲染缓冲过大）已由 `getCanvasBufferSize`
+   * 的像素预算从源头压低。
+   */
+  const onContextLost = event => {
+    event.preventDefault()
+    console.warn('[gachaSpine] WebGL 上下文丢失，等待浏览器恢复')
+  }
+  canvas.addEventListener('webglcontextlost', onContextLost, false)
+  const sceneRenderer = new SceneRenderer(canvas, gl)
+  /**
+   * 渲染器适配器：把「相机对象」与「绘制调用」抽象出来。
+   *
+   * 现有相机数学（fit: 'stage' / 'bounds' / 'card-stage' / 'width' 四套取景）
+   * 直接读写 `renderer.camera.viewportWidth/Height`、`camera.position.set(...)`、
+   * `camera.update()`。用这个适配器把同样的接口暴露给 Canvas2D 后端，
+   * **相机代码一行都不用改**，两端构图自然一致。
+   *
+   * `begin/end` 在 WebGL 侧必须存在（SceneRenderer 需要成对调用）；
+   * Canvas2D 侧为空实现，因为绘制直接用 ctx 变换。
+   */
+  const renderer = {
+    camera: sceneRenderer.camera,
+    begin() { sceneRenderer.begin() },
+    end() { sceneRenderer.end() },
+    drawSkeleton(skeleton) { sceneRenderer.drawSkeleton(skeleton, true) },
+    /** 缓冲区尺寸变化后同步 WebGL viewport（用 drawingBufferWidth 而非 canvas.width，
+     *  避免改动 canvas.width 导致上下文重置时拿到 null）。 */
+    setViewport() { gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight) },
+    dispose() { sceneRenderer.dispose() },
+  }
   const pad = Number(options.pad) > 0 ? Number(options.pad) : 1
   const padding = Number(options.padding) > 0 ? Number(options.padding) : 1.12
   let disposed = false
@@ -129,7 +183,7 @@ export function createSpineScene(canvas, layers, options = {}) {
       for (const page of atlas.pages) {
         const url = new URL(page.name, new URL(def.atlas, window.location.href)).href
         const buffer = await cachedFetch(url)
-        const blob = new Blob([buffer])
+        const blob = new Blob([buffer], { type: imageMimeFromUrl(url) })
         const objectUrl = URL.createObjectURL(blob)
         try {
           const source = def.premultiply ? await loadPremultipliedCanvas(objectUrl) : await loadImage(objectUrl)
@@ -293,8 +347,8 @@ export function createSpineScene(canvas, layers, options = {}) {
       resizeCardStage()
       // 修改 canvas 缓冲区不会自动更新 WebGL viewport；共享画布重挂载也会改尺寸。
       // 必须与当前缓冲区同步，否则场景只绘制在旧宽度内，角色偏左、桌面出现竖缝。
-      gl.viewport(0, 0, canvas.width, canvas.height)
-      const delta = Math.min((now - last) / 1000, 0.1)
+      renderer.setViewport()
+      let delta = Math.min((now - last) / 1000, 0.1)
       last = now
       for (const actor of actors) {
         actor.state.update(delta)
@@ -306,7 +360,7 @@ export function createSpineScene(canvas, layers, options = {}) {
       gl.clearColor(0, 0, 0, 0)
       gl.clear(gl.COLOR_BUFFER_BIT)
       renderer.begin()
-      for (const actor of actors) renderer.drawSkeleton(actor.skeleton, true)
+      for (const actor of actors) renderer.drawSkeleton(actor.skeleton)
       renderer.end()
       rafId = requestAnimationFrame(frame)
     }
@@ -344,6 +398,7 @@ export function createSpineScene(canvas, layers, options = {}) {
       disposed = true
       paused = true
       cancelAnimationFrame(rafId)
+      canvas.removeEventListener('webglcontextlost', onContextLost, false)
       try { renderer.dispose() } catch { /* 已释放则忽略 */ }
       for (const texture of gpuTextures) {
         try { texture.dispose() } catch { /* 已释放则忽略 */ }
@@ -363,6 +418,89 @@ export function createSpineScene(canvas, layers, options = {}) {
   }
 
   return init()
+}
+
+/**
+ * 按 `activeBackend()` 选择渲染后端并创建场景。
+ *
+ * - **当前一律 WebGL**（原路径，行为不变）。
+ * - **Canvas2D 分支保留备用**：把 `gachaRenderShared.js` 的 `activeBackend()` 返回值
+ *   改成按环境判断即可启用。两条路径共用同一份相机数学（由 buildCamera 注入）、
+ *   图层参数与画布尺寸逻辑，保证取景一致。
+ */
+function createSceneForBackend(canvas, layers, options = {}) {
+  if (activeBackend() !== 'canvas2d') return createSpineScene(canvas, layers, options)
+
+  /**
+   * 相机计算：与 WebGL 路径逐条对应（stage / bounds / card-stage / width / 默认）。
+   * 通过 `cam` 适配器读写，使同一份数学既能驱动 OrthoCamera 也能驱动 Canvas2D 变换。
+   */
+  const buildCamera = (cam, actors, { pad, padding }) => {
+    const aspect = cam.aspect
+    if (options.fit === 'stage') {
+      const vh = Number(options.viewportHeight) > 0 ? Number(options.viewportHeight) : 2400
+      cam.viewportHeight = vh
+      cam.viewportWidth = vh * aspect
+      const groundY = Number(options.groundY) > 0 ? Number(options.groundY) : 202
+      const logicalHeight = canvas.clientHeight || canvas.height
+      const cy = (groundY / logicalHeight * 2 - 1) * (vh / 2)
+      cam.setPosition(0, cy)
+      return
+    }
+    if (options.fit === 'bounds') {
+      const firstActor = actors[0]
+      if (options.initialAnimation && firstActor.data.findAnimation(options.initialAnimation)) {
+        firstActor.state.setAnimation(0, options.initialAnimation, false)
+        firstActor.state.apply(firstActor.skeleton)
+      }
+      firstActor.skeleton.updateWorldTransform()
+      const offset = new Vector2()
+      const size = new Vector2()
+      firstActor.skeleton.getBounds(offset, size, [])
+      const boundWidth = Math.max(size.x, 1)
+      const boundHeight = Math.max(size.y, 1)
+      const height = Math.max(boundHeight, boundWidth / aspect) * padding * pad
+      cam.viewportHeight = height
+      cam.viewportWidth = height * aspect
+      cam.setPosition(
+        offset.x + boundWidth / 2,
+        offset.y + boundHeight / 2 + (Number(options.yOffset) || 0)
+      )
+      return
+    }
+    // 其余三种都基于首层骨架数据头部的场景包围盒
+    const first = actors[0].data
+    const sceneRect = {
+      x: first.x ?? 0,
+      y: first.y ?? 0,
+      width: first.width || 1,
+      height: first.height || 1
+    }
+    if (options.fit === 'card-stage') {
+      const zoom = Number(options.zoom) > 1 ? Number(options.zoom) : 1.2
+      const vh = (sceneRect.width * pad * zoom) / (1534 / 750)
+      cam.viewportHeight = vh
+      cam.viewportWidth = vh * aspect
+      cam.setPosition(sceneRect.x + sceneRect.width / 2, sceneRect.y + vh / 2)
+    } else if (options.fit === 'width') {
+      const zoom = Number(options.zoom) > 1 ? Number(options.zoom) : 1
+      cam.viewportWidth = sceneRect.width * pad * zoom
+      cam.viewportHeight = sceneRect.width / aspect * pad * zoom
+      cam.setPosition(
+        sceneRect.x + sceneRect.width / 2,
+        sceneRect.y + cam.viewportHeight / 2
+      )
+    } else {
+      cam.viewportHeight = sceneRect.height * pad
+      cam.viewportWidth = sceneRect.height * aspect * pad
+      cam.setPosition(
+        sceneRect.x + sceneRect.width / 2,
+        sceneRect.y + sceneRect.height / 2
+      )
+    }
+  }
+
+  return createSpineCanvas2DScene(canvas, layers, options, buildCamera)
 }
 
 /**
@@ -415,7 +553,7 @@ export function mountSharedSpineScene(key, host, layers, options = {}, styleCss 
   canvas.height = height
   entry = { canvas, refs: 1, scene: null, ready: null }
   sharedScenes.set(key, entry)
-  entry.ready = createSpineScene(canvas, layers, options).then(scene => {
+  entry.ready = createSceneForBackend(canvas, layers, options).then(scene => {
     entry.scene = scene
     if (entry.refs <= 0) scene.pause()
     return scene
@@ -451,16 +589,6 @@ export function disposeSharedSpineScenes() {
  * 每次揭晓新建画布 = 每轮揭晓多建/丢一个上下文，同样会累积待回收显存。
  */
 const sharedCanvases = new Map()
-
-function getCanvasBufferSize(canvas) {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2)
-  // client 尺寸为局部设计坐标，忽略外层缩放、相机动画和手机 90° 横置。
-  // 尤其小人画布 440×520 不等于其 380×380 宿主，不能按宿主的屏幕包围盒取景。
-  return {
-    width: Math.max(1, Math.round(canvas.clientWidth * dpr)),
-    height: Math.max(1, Math.round(canvas.clientHeight * dpr))
-  }
-}
 
 export function acquireSharedCanvas(key, host, styleCss = {}) {
   let canvas = sharedCanvases.get(key)
@@ -511,8 +639,8 @@ export function mountCanvasScene(canvasKey, sceneKey, host, layers, options = {}
     entry = null
   }
   if (!entry) {
-    // createSpineScene 内部首帧 rAF 由其 init 启动；此处先建后由下方 resume/pause 统一调度
-    const created = createSpineScene(canvas, layers, options).then(scene => {
+    // createSceneForBackend 内部首帧 rAF 由其 init 启动；此处先建后由下方 resume/pause 统一调度
+    const created = createSceneForBackend(canvas, layers, options).then(scene => {
       entry.scene = scene
       if (entry.paused) scene.pause()
       return scene
@@ -530,11 +658,21 @@ export function mountCanvasScene(canvasKey, sceneKey, host, layers, options = {}
   }
   if (!entry.scene) {
     // 新场景仍在创建：清掉画布上其他场景暂停时残留的最后一帧（否则旧小人会
-    // 和新角色的立绘/名牌同框，直到新场景渲染出第一帧）
+    // 和新角色的立绘/名牌同框，直到新场景渲染出第一帧）。
+    //
+    // **两条后端都要清**：同一画布只能有一个上下文，Canvas2D 后端下
+    // `getContext('webgl')` 会返回 null，若只写 WebGL 分支，Canvas2D 路径的
+    // 旧小人最后一帧就会留在画布上（表现为切下一个角色时右侧仍是上一个角色）。
     const gl = canvas.getContext('webgl')
     if (gl) {
       gl.clearColor(0, 0, 0, 0)
       gl.clear(gl.COLOR_BUFFER_BIT)
+    } else {
+      const ctx2d = canvas.getContext('2d')
+      if (ctx2d) {
+        ctx2d.setTransform(1, 0, 0, 1, 0, 0)
+        ctx2d.clearRect(0, 0, canvas.width, canvas.height)
+      }
     }
   }
   entry.paused = false

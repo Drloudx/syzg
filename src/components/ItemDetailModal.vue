@@ -19,7 +19,8 @@
           {{ item.name }}
         </h2>
         <div class="item-tags">
-          <UiTag class="copy-tag" @click="copyId(item.typeId)" title="点击复制 ID">ID: {{ item.typeId }}</UiTag>
+          <!-- 物品 / 装备 ID 按需求隐藏（保留代码，需要时取消注释即可恢复） -->
+          <!-- <UiTag class="copy-tag" @click="copyId(item.typeId)" title="点击复制 ID">ID: {{ item.typeId }}</UiTag> -->
           <UiTag v-if="categoryName">{{ categoryName }}</UiTag>
           <UiTag v-if="item.maxNum > 1">可堆叠 ({{ item.maxNum }})</UiTag>
         </div>
@@ -212,7 +213,7 @@
 
     <UiSection v-if="recipeInfo && PREVIEW_AVAILABLE_IDS.has(recipeInfo.typeId)" title="预览图">
       <div class="recipe-preview-box">
-        <img :src="getImageUrl(`/menu_prev/${recipeInfo.typeId}_prev.png`)" alt="预览图" class="recipe-prev-img" />
+        <img :src="getImageUrl(`/menu_prev/${recipeInfo.typeId}_prev.webp`)" alt="预览图" class="recipe-prev-img" />
       </div>
     </UiSection>
 
@@ -283,7 +284,7 @@
           <span class="home-item-unlock-icon" :class="`quality-bg-${Number(unlock.quality) || 1}`">
             <img
               v-if="unlock.icon"
-              :src="getImageUrl(`/BuildItem/${unlock.icon}.png`)"
+              :src="getImageUrl(`/BuildItem/${unlock.icon}.webp`)"
               :alt="unlock.name"
               loading="lazy"
             />
@@ -303,7 +304,7 @@
         <UiButton class="unlock-hero-link" variant="link" size="sm" @click="handleHeroNavigate">
           <img
             v-if="heroUnlock.heroIcon"
-            :src="getImageUrl(`/images/HeadIconAtals/${heroUnlock.heroIcon}.png`)"
+            :src="getImageUrl(`/images/HeadIconAtals/${heroUnlock.heroIcon}.webp`)"
             :alt="heroUnlock.heroName"
             class="unlock-hero-icon"
           />
@@ -342,7 +343,7 @@
       <div class="skin-portrait-preview" :class="[skinUnlock.quality ? `quality-border-${skinUnlock.quality}` : '', { 'has-model': skinUnlock.modelImage }]">
         <div class="skin-preview-pane">
           <img
-            :src="getImageUrl(`/images/chara/l/${skinUnlock.img}.png`)"
+            :src="getImageUrl(`/images/chara/l/${skinUnlock.img}.webp`)"
             :alt="`${skinUnlock.skinName}立绘`"
             loading="lazy"
           />
@@ -506,14 +507,15 @@ const handleClose = () => {
   }
 }
 
-const copyId = async (id) => {
-  if (!id) return
-  try {
-    await navigator.clipboard.writeText(id)
-  } catch (err) {
-    console.warn('复制失败', err)
-  }
-}
+// ID 显示已隐藏，复制入口随之停用（保留实现，恢复 ID 显示时一并取消注释）
+// const copyId = async (id) => {
+//   if (!id) return
+//   try {
+//     await navigator.clipboard.writeText(id)
+//   } catch (err) {
+//     console.warn('复制失败', err)
+//   }
+// }
 
 const categoryName = computed(() => {
   if (!props.item?.category || !props.categoryTree) return ''
@@ -856,7 +858,7 @@ const hasItemSources = computed(() => currentItemSources.value.length > 0)
 
 const canNavigateToSource = (src) => {
   if (getRuneSourceTarget(src)) return true
-  return ['monster', 'achievement', 'recipe', 'pvp', 'hidden', 'task', 'exchange', 'dungeon', 'smithing', 'facility', 'event', 'explore', 'plant', 'camp', 'container'].includes(src.type)
+  return ['monster', 'achievement', 'recipe', 'pvp', 'hidden', 'task', 'exchange', 'dungeon', 'smithing', 'facility', 'event', 'explore', 'plant', 'camp', 'container', 'gacha'].includes(src.type)
 }
 
 const handleSourceClick = (src) => {
@@ -927,6 +929,18 @@ const handleSourceClick = (src) => {
   else if (src.type === 'facility') {
     targetPath = '/facilities'
     targetQuery = { facility: src.facility || 'workbench', mode: 'crafting', level: src.level || 1, item: props.item?.typeId || '' }
+  }
+  else if (src.type === 'gacha') {
+    // 卡池来源（`remainingItemSources.js` 生成）：跳招募页并直接打开该池的概率详情。
+    // URL 契约见 GachaView 顶部注释：`?kind=hero|pet&pool=<poolId>&view=pool`。
+    // `pool` 必须用**完整 pool id**（如 `pet:1:1:0`）——GachaView 的 syncFromRoute 按
+    // `pool.id` 校验，传 poolTypeId（如 `1`）会被判为无效并回退到默认池。
+    targetPath = '/gacha'
+    targetQuery = {
+      kind: src.poolKind || 'hero',
+      pool: src.id || '',
+      view: 'pool'
+    }
   }
 
   router
