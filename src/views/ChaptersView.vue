@@ -1,38 +1,65 @@
 <template>
   <div class="page-view-container chapters-page">
 
-    <!-- 世界地图视图（仅桌面端）：点击地区切章节；不在世界地图上的章节由 extra 插槽补入口 -->
-    <ChapterMapCanvas
-      v-if="showMap && chapterMap && isDataReady"
-      :map="chapterMap"
-      :active-id="chapterId"
-      :visible-ids="mapVisibleIds"
-      :total-stages="visibleStages.length"
-      @select="selectChapter"
-    >
-      <template #extra>
-        <UiButton
-          v-for="chapter in mapExtraChapters"
-          :key="chapter.id"
-          size="sm"
-          variant="secondary"
-          @click="selectChapter(chapter.id)"
-        >
-          {{ chapter.areaName }}
-        </UiButton>
-      </template>
-    </ChapterMapCanvas>
+    <!--
+      地图视图（仅桌面端），分两级：
+        未选章节 → 世界地图（点地区进入该地区）
+        已选章节 → 该地区的路线图（底图 + 关卡/地区/副本节点 + 连线）
+      两级共用同一块区域与同一个实测高度；「展开列表」切到列表视图。
+    -->
+    <div v-if="showMap && chapterMap && isDataReady" ref="mapAreaRef" class="chapters-map-area">
+      <ChapterMapCanvas
+        v-if="!regionRoute"
+        :map="chapterMap"
+        :active-id="chapterId"
+        :visible-ids="mapVisibleIds"
+        :total-stages="visibleStages.length"
+        :height="mapAreaHeight"
+        @select="selectChapter"
+        @list="openList"
+      >
+        <template #extra>
+          <UiButton
+            v-for="chapter in mapExtraChapters"
+            :key="chapter.id"
+            size="sm"
+            variant="secondary"
+            @click="selectChapter(chapter.id)"
+          >
+            {{ chapter.areaName }}
+          </UiButton>
+        </template>
+      </ChapterMapCanvas>
+
+      <RegionRouteMap
+        v-else
+        :region="regionRoute"
+        :map-title="chapterMap.title"
+        :stage-platform="chapterMap.stagePlatform"
+        :stage-crystal="chapterMap.stageCrystal"
+        :stage-crystal-small="chapterMap.stageCrystalSmall"
+        :current-stage-id="stageDetail?.id || ''"
+        :caption="regionCaption"
+        :height="mapAreaHeight"
+        @select="openStageById"
+        @back="backToWorldMap"
+        @list="openList"
+      />
+    </div>
 
     <UiEmptyState v-if="!isDataReady" type="loading" text="正在装配关卡数据..." />
     <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage">
       <template #action><UiButton @click="loadChapters">重试</UiButton></template>
     </UiEmptyState>
 
-    <!-- 列表视图：地图与列表是两屏，选定章节后才切过来；点章节行的「全部」回到地图 -->
+    <!-- 列表视图：与地图是两屏；桌面端搜索框右侧的「进入地图」切回地图（手机端没有地图，不显示） -->
     <template v-else-if="showStageList">
       <UiFilterPanel class="filter-panel paper-panel">
         <template #search>
-          <UiSearchInput v-model="searchQuery" placeholder="搜索关卡名称、描述、掉落物..." />
+          <div class="chapters-search-row">
+            <UiSearchInput v-model="searchQuery" placeholder="搜索关卡名称、描述、掉落物..." />
+            <UiButton v-if="!isMobile" variant="secondary" @click="openMap">进入地图</UiButton>
+          </div>
         </template>
 
         <UiFilterRow label="章节：">
@@ -89,8 +116,8 @@
               <div class="stage-card-name-row">
                 <span class="stage-card-name">{{ item.name }}</span>
                 <UiTag v-if="chapterId === 'all'" tone="accent">{{ item.chapterName }}</UiTag>
-                <UiTag v-for="label in item.difficultyLabels" :key="label" tone="wood">{{ label }}</UiTag>
-                <UiTag v-if="item.level" tone="muted">Lv.{{ item.level }}</UiTag>
+                <UiTag tone="wood">{{ displayDifficulty(item) }}</UiTag>
+                <UiTag v-if="displayLevel(item)" tone="muted">Lv.{{ displayLevel(item) }}</UiTag>
               </div>
               <div class="stage-card-des">{{ item.des || '（无描述）' }}</div>
             </div>
@@ -136,7 +163,18 @@
           <UiTag v-if="difficulty.level" tone="gold">推荐等级 Lv.{{ difficulty.level }}</UiTag>
         </div>
 
-        <UiSegmentedTabs v-model="difficultyIndex" :options="difficultyTabs" class="stage-difficulty-tabs" />
+        <!-- 难度切换用列表页同款的 UiFilterPill：UiSegmentedTabs 是深色木条（为深色底设计），
+             放在羊皮纸弹窗里不搭；换成胶囊后与列表页的难度筛选完全一致。 -->
+        <UiFilterRow label="难度：" class="stage-difficulty-tabs">
+          <UiFilterPill
+            v-for="(item, index) in stageDetail.difficulties"
+            :key="item.key"
+            :active="difficultyIndex === index"
+            @click="difficultyIndex = index"
+          >
+            {{ item.label }}
+          </UiFilterPill>
+        </UiFilterRow>
 
         <UiSection title="关卡信息">
           <UiInfoRow label="关卡" :value="`${stageDetail.shortName} ${stageDetail.name}`" />
@@ -188,11 +226,11 @@ import {
   UiModal,
   UiSearchInput,
   UiSection,
-  UiSegmentedTabs,
   UiTag
 } from '../components/ui/index.js'
 import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
 import ChapterMapCanvas from '../components/chapters/ChapterMapCanvas.vue'
+import RegionRouteMap from '../components/chapters/RegionRouteMap.vue'
 import RewardPools from '../components/RewardPools.vue'
 import RoomContentList from '../components/RoomContentList.vue'
 import { fetchWithFallback } from '../utils/request.js'
@@ -235,20 +273,49 @@ const visibleStages = computed(() => visibleChapters.value.flatMap(chapter => ch
 const mapVisibleIds = computed(() => visibleChapters.value.map(chapter => chapter.id))
 
 /**
- * 地图只在桌面端显示：手机宽度下拼块里的章节名只有约 9px 高、读不清，
- * 一张读不了的地图占掉大半屏反而更差——手机端直接给列表，用章节按钮切章节。
+ * 地图视图与列表视图是两屏，互斥，由显式的 `view` 决定：
+ *   - 地图视图（仅桌面端）：整块区域只有地图，内部再分世界地图 / 地区路线图两级。
+ *   - 列表视图：地图不出现；桌面端搜索框右侧的「进入地图」切回地图。
+ * 手机端不出地图（拼块章节名在 390px 下读不清），恒为列表视图。
+ * 地图层级由 `chapterId` 推导（选了章节就是地区路线图），不另存状态，刷新与分享自然一致。
  */
 const MOBILE_QUERY = '(max-width: 767px)'
 const isMobile = ref(typeof window !== 'undefined' && window.matchMedia(MOBILE_QUERY).matches)
+const view = ref(route.query.view === 'list' ? 'list' : 'map')
+
+const showMap = computed(() => !isMobile.value && view.value === 'map')
+const showStageList = computed(() => !showMap.value)
+
+const openList = () => { view.value = 'list' }
+const openMap = () => { view.value = 'map' }
+
+/** 选了章节 → 地图视图的第二级（该地区的路线图）；未选 → 世界地图。 */
+const regionRoute = computed(() => {
+  if (chapterId.value === 'all') return null
+  return chapterMap.value?.regions?.[chapterId.value] || null
+})
+const regionCaption = computed(() => {
+  const chapter = visibleChapters.value.find(item => item.id === chapterId.value)
+  if (!chapter) return ''
+  return `${chapter.areaName} · ${chapter.stages.length} 关`
+})
+const backToWorldMap = () => { chapterId.value = 'all' }
 
 /**
- * 地图视图与列表视图是两屏，互斥：
- *   - 桌面端「未选章节且没有搜索词」→ 地图视图（整块区域只有地图）
- *   - 选定章节（或输入搜索词、或手机端）→ 列表视图，地图不出现
- * 手机端不出地图（拼块章节名读不清），直接列表。点章节行的「全部」回到地图视图。
+ * 地图区高度 = 左右面板底部 − 地图区顶部，由页面测一次给两个地图组件共用。
+ * 取左右面板而不是视口：两侧 sticky 面板要留底部安全区，比视口底还高一点，
+ * 按视口算地图会比面板长出一截。
  */
-const showMap = computed(() => !isMobile.value && chapterId.value === 'all' && !searchQuery.value.trim())
-const showStageList = computed(() => !showMap.value)
+const mapAreaRef = ref(null)
+const mapAreaHeight = ref(640)
+const measureMapArea = () => {
+  const el = mapAreaRef.value
+  if (!el) return
+  const top = el.getBoundingClientRect().top
+  const sidePanel = document.querySelector('.desktop-sidebar-container, .desktop-right-container')
+  const bottom = sidePanel ? sidePanel.getBoundingClientRect().bottom : window.innerHeight - 10
+  mapAreaHeight.value = Math.max(360, Math.min(Math.round(bottom - top), 900))
+}
 
 /** 不在世界地图上的章节（幽夜古堡、黏滑溪谷）：地图视图里由 extra 插槽给入口，否则无路可进。 */
 const mapTileIds = computed(() => new Set((chapterMap.value?.tiles || []).map(tile => tile.id)))
@@ -263,9 +330,19 @@ const stages = computed(() => {
   return (chapter?.stages || []).map(stage => ({ ...stage, chapterName: chapter.areaName }))
 })
 
-const chapterLabel = (chapter) => chapter.chapterNo === null
-  ? chapter.areaName
-  : `${chapter.chapterNo} ${chapter.areaName}`
+const chapterLabel = (chapter) => chapter.areaName
+
+/**
+ * 卡片上只显示**一个**难度标签：按当前难度筛选显示对应难度；筛选为「全部」时默认显示「普通」。
+ * 关卡没有「普通」（如序章只有简单）时退回它实际有的第一个难度。
+ */
+const displayDifficulty = (stage) => {
+  const wanted = difficultyFilter.value !== 'all' ? difficultyFilter.value : '普通'
+  return stage.difficultyLabels.includes(wanted) ? wanted : stage.difficultyLabels[0]
+}
+
+/** 等级跟着上面的难度走——三难度的推荐等级不同。 */
+const displayLevel = (stage) => stage.levels?.[displayDifficulty(stage)] || 0
 
 const filteredStages = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
@@ -278,9 +355,6 @@ const filteredStages = computed(() => {
   })
 })
 
-const difficultyTabs = computed(() => (stageDetail.value?.difficulties || [])
-  .map((item, index) => ({ value: index, label: item.label })))
-
 const difficulty = computed(() => stageDetail.value?.difficulties?.[difficultyIndex.value] || null)
 const detailTitle = computed(() => stageDetail.value
   ? `${stageDetail.value.shortName} ${stageDetail.value.name}`
@@ -291,7 +365,14 @@ const handleImgError = handleImageFallback
 const selectChapter = (id) => {
   // 换章节后列表内容整体替换，`UiVirtualGrid` 会在 items 变化时自行把列表滚回顶部；
   // 这里不要再调 scrollToItem——它用 align:'center' 会把整页滚动，把上方的地图推出视口。
+  // 视图不在这里切：地图视图里选地区会自然进入该地区的路线图，列表视图里选章节仍留在列表。
   chapterId.value = id
+}
+
+/** 路线图上点关卡节点 → 打开该关卡详情（节点只带 id，要回索引里取详情文件路径）。 */
+const openStageById = (stageId) => {
+  const found = visibleStages.value.find(stage => stage.id === stageId)
+  if (found) openStage(found)
 }
 
 // ---------- 数据 ----------
@@ -376,13 +457,27 @@ onMounted(() => {
   query.addEventListener('change', sync)
   onBeforeUnmount(() => query.removeEventListener('change', sync))
 })
+// 地图区高度实测：地图区挂载后测一次，窗口变化时重测。
+// 必须等 isDataReady —— 首次挂载时地图区还没渲染（v-if 里带 isDataReady），
+// 量不到元素就会一直停在默认值，表现为地图比左右面板短一截。
+onMounted(() => {
+  measureMapArea()
+  window.addEventListener('resize', measureMapArea, { passive: true })
+  onBeforeUnmount(() => window.removeEventListener('resize', measureMapArea))
+})
+watch([showMap, isDataReady], async () => {
+  await nextTick()
+  measureMapArea()
+})
 onBeforeUnmount(() => { loadOperation += 1; detailOperation += 1 })
 
-watch([chapterId, difficultyFilter, searchQuery], () => {
+watch([chapterId, difficultyFilter, searchQuery, view], () => {
   const query = {}
   if (chapterId.value !== 'all') query.chapter = chapterId.value
   if (difficultyFilter.value !== 'all') query.diff = difficultyFilter.value
   if (searchQuery.value.trim()) query.q = searchQuery.value.trim()
+  // 列表视图没有章节时也要能分享/刷新回同一屏，所以显式带上 view
+  if (view.value === 'list') query.view = 'list'
   if (route.query.stage) query.stage = route.query.stage
   router.replace({ query })
 })
@@ -397,9 +492,34 @@ watch(() => route.query.stage, (value) => {
   const found = visibleStages.value.find(stage => stage.id === value)
   if (found) openStage(found, { syncUrl: false })
 })
+
+/**
+ * 浏览器前进/后退或粘贴 URL 时同步其余筛选状态。
+ * 这些值原先只在初始化时读一次，从 ?chapter=c0 后退到 ?chapter=c1 视图不会跟着变
+ * （地图层级现在也由 chapterId 决定，不跟随就会停在上一章的地图上）。
+ * 自身 router.replace 写入的是同样的值，所以这里比较后再赋值，不会来回打架。
+ */
+watch(() => route.query, (query) => {
+  const chapter = query.chapter || 'all'
+  if (chapter !== chapterId.value) chapterId.value = chapter
+  const diff = DIFFICULTY_LABELS.includes(query.diff) ? query.diff : 'all'
+  if (diff !== difficultyFilter.value) difficultyFilter.value = diff
+  const keyword = query.q || ''
+  if (keyword !== searchQuery.value) searchQuery.value = keyword
+  const nextView = query.view === 'list' ? 'list' : 'map'
+  if (nextView !== view.value) view.value = nextView
+})
 </script>
 
 <style scoped>
+/* 搜索框右侧放「进入地图」：与筛选面板同高的一行 */
+.chapters-search-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chapters-search-row :deep(.ui-search) { flex: 1; min-width: 0; }
+
 .chapters-counter {
   font-size: 13px;
   font-weight: 600;
@@ -494,7 +614,9 @@ watch(() => route.query.stage, (value) => {
 }
 
 /* ---------- 详情 ---------- */
-.stage-difficulty-tabs { margin: 6px 0 12px; }
+/* 与其它详情页同款：徽标行必须有 gap，否则 UiTag 之间只剩空白字符的间距，看着像没做间距。 */
+.detail-badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 4px; }
+.stage-difficulty-tabs { margin: 8px 0 12px; }
 .stage-entry-cost { display: inline-flex; align-items: center; justify-content: flex-end; gap: 3px; font-weight: 700; white-space: nowrap; }
 .stage-entry-cost img { width: 22px; height: 22px; object-fit: contain; }
 .stage-empty-reward { margin: 0; color: var(--text-muted); font-size: 13px; }
