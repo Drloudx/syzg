@@ -13,7 +13,7 @@
         :map="chapterMap"
         :active-id="chapterId"
         :visible-ids="mapVisibleIds"
-        :total-stages="visibleStages.length"
+        :total-stages="totalNormalStages"
         :height="mapAreaHeight"
         @select="selectChapter"
         @list="openList"
@@ -38,6 +38,7 @@
         :stage-platform="chapterMap.stagePlatform"
         :stage-crystal="chapterMap.stageCrystal"
         :stage-crystal-small="chapterMap.stageCrystalSmall"
+        :area-tag="chapterMap.areaTag"
         :current-stage-id="stageDetail?.id || ''"
         :caption="regionCaption"
         :height="mapAreaHeight"
@@ -195,7 +196,7 @@
           <RewardPools :entries="difficulty.firstReward" @item-click="goToItem" />
         </UiSection>
 
-        <UiSection title="通关掉落" data-source-entry="settlement">
+        <UiSection :title="stageDetail.kind === 'area' ? '探索产出' : '通关掉落'" data-source-entry="settlement">
           <RewardPools v-if="difficulty.reward.length" :entries="difficulty.reward" @item-click="goToItem" />
           <p v-else class="stage-empty-reward">暂无可展示的掉落配置</p>
         </UiSection>
@@ -204,7 +205,6 @@
           <RoomContentList :rooms="difficulty.rooms" @item-click="goToItem" />
         </UiSection>
 
-        <p class="stage-drop-note">房间与掉落取自完整 `battle.json` / `room.json`：怪物按波次列出，采集物与怪物自动掉落按奖励池展示；随机候选房间按配置概率确定，不代表每次必然遭遇。</p>
         <UiBackToTop scroll-container="#chapterStageScroll" />
       </template>
     </UiModal>
@@ -238,7 +238,7 @@ import { getImageUrl, handleImageFallback } from '../utils/env.js'
 import { BASE_REWARD_PATHS } from '../utils/gameMappings.js'
 import { isBlacklisted } from '../config/blacklist.js'
 
-const DIFFICULTY_LABELS = ['简单', '普通', '困难']
+const DIFFICULTY_LABELS = ['简单', '普通', '困难', '自由探索']
 
 const route = useRoute()
 const router = useRouter()
@@ -269,6 +269,11 @@ const visibleChapters = computed(() => chapters.value.filter(chapter =>
 /** 可见章节的全部关卡（深链定位也走这里：黑名单影响列表、搜索与直接入口）。 */
 const visibleStages = computed(() => visibleChapters.value.flatMap(chapter => chapter.stages))
 
+/** 可见章节的纯关卡总数（不含自由探索小地区，供世界地图与统计汇总显示）。 */
+const totalNormalStages = computed(() =>
+  visibleChapters.value.reduce((sum, chapter) => sum + (chapter.stageCount ?? chapter.stages.filter(s => s.kind !== 'area').length), 0)
+)
+
 /** 地图上可见的章节 id：被黑名单隐藏的章节不出现，地图上该区域保持底图原样（未探索）。 */
 const mapVisibleIds = computed(() => visibleChapters.value.map(chapter => chapter.id))
 
@@ -297,7 +302,8 @@ const regionRoute = computed(() => {
 const regionCaption = computed(() => {
   const chapter = visibleChapters.value.find(item => item.id === chapterId.value)
   if (!chapter) return ''
-  return `${chapter.areaName} · ${chapter.stages.length} 关`
+  const count = chapter.stageCount ?? chapter.stages.filter(s => s.kind !== 'area').length
+  return `${chapter.areaName} · ${count} 关`
 })
 const backToWorldMap = () => { chapterId.value = 'all' }
 
@@ -421,8 +427,9 @@ const openStage = async (item, { syncUrl = true } = {}) => {
     const data = await fetchWithFallback(`data/parsed/${item.detailFile}`)
     if (operation !== detailOperation) return
     stageDetail.value = data
-    const requested = DIFFICULTY_LABELS.indexOf(route.query.diff)
-    difficultyIndex.value = requested >= 0 && requested < data.difficulties.length ? requested : 0
+    const targetLabel = DIFFICULTY_LABELS.includes(route.query.diff) ? route.query.diff : difficultyFilter.value
+    const matchedIdx = data.difficulties.findIndex(d => d.label === targetLabel)
+    difficultyIndex.value = matchedIdx >= 0 ? matchedIdx : 0
   } catch (err) {
     if (operation !== detailOperation) return
     console.error('加载关卡详情失败:', err)
@@ -620,7 +627,6 @@ watch(() => route.query, (query) => {
 .stage-entry-cost { display: inline-flex; align-items: center; justify-content: flex-end; gap: 3px; font-weight: 700; white-space: nowrap; }
 .stage-entry-cost img { width: 22px; height: 22px; object-fit: contain; }
 .stage-empty-reward { margin: 0; color: var(--text-muted); font-size: 13px; }
-.stage-drop-note { margin: 14px 0 0; color: var(--text-muted); font-size: 12px; line-height: 1.6; }
 
 @media (max-width: 640px) {
   .stage-card-rewards { display: none; }
