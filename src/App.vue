@@ -10,7 +10,7 @@
       <div class="header-content">
         <div class="header-top-row">
           <div class="header-left">
-            <img src="/ui/logo.webp" class="app-logo" alt="深渊之歌" />
+            <img :src="getImageUrl('/ui/logo.webp')" class="app-logo" alt="深渊之歌" />
             <div class="header-title-wrap">
               <h1 class="header-title">{{ pageTitle }}</h1>
               <span class="header-brand">深渊之歌 · 资料库</span>
@@ -551,8 +551,8 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   background-color: var(--wood, #2b1f15);
   z-index: 10000;
   padding-top: var(--safe-top);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  border-bottom: 3px solid var(--accent-bright, #7a9a99);
+  box-shadow: 0 4px 10px #00000080;
+  border-bottom: 2px solid var(--border-color, #6b5134);
 }
 
 @media (min-width: 1025px) {

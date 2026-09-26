@@ -14,7 +14,7 @@
 
 ## 一、项目与路由
 
-Vue 3 + Vite 8 + Vue Router 4（Hash）+ Pinia 4，Android 使用 Capacitor 8 与 Capgo Updater。依赖版本以 [package.json](../package.json) 为准。路由集中在 [router/index.js](../src/router/index.js)，全部懒加载，路径与名称唯一；`/` 重定向 `/recipes`，切页统一关闭全局物品详情。
+Vue 3 + Vite 8 + Vue Router 4（Hash）+ Pinia 4，Android 使用 Capacitor 8 与 Capgo Updater。依赖版本以 [package.json](../package.json) 为准。路由集中在 [router/index.js](../src/router/index.js)，全部懒加载，路径与名称唯一；`/` 重定向 `/items`（首页为物品图鉴，按用户指定），切页统一关闭全局物品详情。
 
 下表是页面与主要运行时数据的索引。页面组件均在 `src/views/`，数据文件均相对 `public/data/parsed/`；不是原表加载清单。
 
@@ -225,7 +225,7 @@ Vue 3 + Vite 8 + Vue Router 4（Hash）+ Pinia 4，Android 使用 Capacitor 8 �
 
 ### 菜谱查询
 
-入口 `/recipes`，页面 `RecipesView.vue`，也是根路由默认页。构建期关联 `menu/item/buff/gameSetting`，运行时读取 `parsed/recipes.json`，不在缺产物时回退原表重建。
+入口 `/recipes`，页面 `RecipesView.vue`。构建期关联 `menu/item/buff/gameSetting`，运行时读取 `parsed/recipes.json`，不在缺产物时回退原表重建。（根路由 `/` 重定向的是 `/items`，不是这里。）
 
 - 提供标签、搜索和料理卡片，展示食材、料理效果及获取方式；图标优先用已关联 `item.img`。通用食材和具体材料一律由 `buildRecipeIngredients` 组装，物品详情复用同样结果。
 - 料理预览只在 `PREVIEW_AVAILABLE_IDS` 登记时出现，使用对应 `menu_prev` 图片；未登记不猜测文件存在。Buff 说明用清洗后的纯文本。
@@ -528,6 +528,8 @@ Android 将核心代码作为 Capgo 热更包，将图片和运行时 JSON 作�
 | `npm run data:monsters:tower` | 从完整 tower/battle/room 生成轻量 Boss 塔层索引，不复制全量来源到浏览器 |
 | `npm run skins:export` | 离线导出皮肤模型 PNG 与清单；普通页面构建只验证并引用，不重新渲染模型 |
 | `scripts/dev/import-buff-icons.mjs` | 从图集 `CombatPanel_Atlas` 导入状态图标为无损 WebP（28×28，清单由精选判定推导）；默认预览，`--apply` 才写，逐张与图集 sprite 表核对像素 |
+| `scripts/dev/subset-fonts.mjs` | 字体子集化：从**随包发布的数据产物 + 源码 + HTML** 现算字符集，把全字集 woff2 裁到实际用得到的字形（8.28 MB → 0.93 MB）；默认预览，`--apply` 才写，`--check` 由 `npm run verify` 调用断言不过期。数据更新后字符集变大必须重新生成 |
+| `npm run cdn:check` | 只读核对线上缓存头与 `public/_headers` 是否一致（需网络，**不进 verify**）。站点是 Cloudflare Pages + 外层腾讯云 EdgeOne，后者策略优先，文件写对不等于线上生效 |
 | `npm run data:build` | 运行当前解析入口，生成页面数据与关联产物 |
 | `npm run search:update` | 重建搜索、来源与类型；重算副本来源，合并已有 PVP/隐藏产物，不替代全量数据构建 |
 
@@ -562,6 +564,12 @@ node scripts/dev/compress-images.mjs <public/images子目录> --apply --allow-lo
 去重复用 `dedupe-image-resources.mjs`：默认只预览内容相同且全仓库无任何引用的副本，保留被引用的那一份；`--hash-suffix` 才把 `#编号` 重名导出副本纳入范围（它们与同目录同名文件像素不同，需人工确认）；`--apply` 先备份到 `../vue-myrzg备份-资源/dedupe-images-<时间>/` 并逐文件校验 SHA-256 再删除。只按内容与引用判定，同名或目录名不构成删除依据。
 
 静态皮肤导出见 [工具说明](technical/SKIN_MODEL_EXPORT.md)。
+
+### 字体与缓存头（性能敏感）
+
+- **字体必须用子集版**（`public/fonts/*.subset.woff2`）。全字集 woff2 各约 4.2 MB，两项合计 8.28 MB，占冷启动传输量约 94%，是所有页面"打开慢"的第一位原因。子集由 `scripts/dev/subset-fonts.mjs` 从随包数据现算字符集生成（0.93 MB）。`npm run verify` 有**三条**断言：字符集是否过期、**产物里每条 `@font-face` 是否真的指向子集**、以及**每个字体 URL 是否带 `?v=<内容哈希>`**。后两条都是必需的，因为漏带子集或漏带版本号都**不会报错**、只会静默降级（回退全字集／缓存发旧字形最长 7 天）。字体 URL 的版本号由 `vite.config.js` 的 `fontUrlVersionPlugin` 构建期补上，因此 `/fonts/*` 可以 1 年 `immutable`，重新子集化后部署即生效。规则与红线见 [UI 组件库 1.3](UI_COMPONENT_LIBRARY.md#13-字体与可读性红线)。
+- **图片版本表按目录分组内联进首屏 chunk**，用完整 SHA-256 判定真碰撞；首屏那组数据哈希（`data/parsed/`）也内联，用来省掉"先读 manifest 再读数据"的串行 RTT。机制见 [架构 4.7](ARCHITECTURE.md#47-资源版本与容错)。
+- **缓存头有两层**：Cloudflare Pages 读 `public/_headers`，但外层腾讯云 EdgeOne 的缓存策略优先级更高。改完 `_headers` 必须用 `npm run cdn:check` 打真实响应头复测，不能只看文件内容。
 
 ### 图片种类与导入核对
 
