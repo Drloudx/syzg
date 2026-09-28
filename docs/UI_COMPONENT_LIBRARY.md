@@ -71,6 +71,33 @@
 - **`--safe-top` 默认 `0px`，只在"页面真的占满屏幕、没有任何宿主 UI 遮住状态栏"时才取值**（`@media (display-mode: standalone|fullscreen|minimal-ui)`，以及 `html:has(.app-container.is-native-shell)` 为原生壳兜底）。判定必须做在**变量这一层**，因为它是全局布局变量（顶栏内边距、吸顶偏移、弹窗内边距与高度、body 背景位置等十余处共用）；只改顶栏的 `padding-top` 会让其余位置仍按 `header + safe-top` 计算，空隙只是从顶栏挪到弹窗/吸顶元素上。
 - **为什么默认 0**：`env(safe-area-inset-top)` 非零意味着"页面被铺到状态栏下、需要自己让开"，但**已经画了自己标题栏的宿主**（QQ / 微信等内置浏览器）同样会报非零 → 我们让一次、宿主也让一次 → 顶栏上方多出一条空带。2026-09-27 实测：QQ 里那条空带是 40px 木色（用 CDP 注入 `top: 40px` 完全复现，header 高 101 → 141px）；微信与 Chrome 报 0，没有这个问题。本项目各环境实测——**原生 APK 的 `MainActivity` 显式 `setDecorFitsSystemWindows(getWindow(), true)`（targetSdk 36 本会强制 edge-to-edge，这里主动贴合系统栏）→ inset 为 0**；普通浏览器 0；微信 0；只有 QQ 这类宿主非零。所以默认 0 对现有环境**零行为变化**，只是去掉 QQ 那条多余空带。
 
+### 1.6 视口高度用 `var(--vh100)`，不要写两遍
+
+- **`dvh` 需要 Chromium 108+**。旧内核（安卓系统 WebView 常年不更新很常见）解析到未知单位会**整条丢弃**该声明，于是高度/尺寸约束消失（虚拟列表可能因此拿到无界高度、把全部卡片渲染出来）。
+- **不要用"同属性写两遍"（`height: 100vh; height: 100dvh;`）做兜底**：实测 **CSS 压缩器会把前一条当重复声明删掉**——`cssMinify: false` 时两条都在、打开压缩后就只剩 `dvh` 那条，兜底**根本到不了线上**。`build.cssTarget` 只能部分救回（实测 15 条里约活一半），且让 CSS 涨 2.3%，不划算。
+- **正确做法：一处判定、处处引用**。`theme.css` 里定义
+  ```css
+  :root { --vh100: 100vh; }
+  @supports (height: 100dvh) { :root { --vh100: 100dvh; } }
+  ```
+  各处以 `height: var(--vh100)`、`calc(var(--vh100) - …)` 引用（30% 视口高写成 `calc(var(--vh100) * 0.3)`）。每个位置只有**一条**声明，压缩器无从下手；自定义属性的 `@supports` 覆盖也已实测能存活到产物里。
+  > ⚠️ `@supports` 的**条件里不能用 `var()`**（非法，整块会被丢弃），所以那处必须保留字面量 `100dvh`。
+- 2026-09-27 已按此把全仓 21 处 `dvh` 全部改为 `var(--vh100)`：产物里字面量 `100dvh` 只剩 `@supports` 的条件与覆盖值两处，`var(--vh100)` 18 处；现代浏览器计算值仍是 `100dvh`（无回归），模拟旧内核（强制 `--vh100: 100vh`）布局高度与虚拟列表行为完全一致。
+
+### 1.7 滚动热路径不许读几何属性
+
+`utils/scrollTarget.js` 把两条路径分开，**不要混用**：
+
+| 路径 | 何时用 | 可用 | **禁用** |
+| --- | --- | --- | --- |
+| **热路径**（滚动/指针/resize 等每帧处理器） | 判断"这次滚动是不是我的容器"、读滚动位置 | `resolveScrollRootFromEvent(event, preferred)`、`getScrollTop(target)` | `resolveScrollTarget`、`getScrollMetrics`、`scrollHeight`/`clientHeight`/`offsetParent` |
+| **动作路径**（点击、切页、定位元素） | 点"回到顶部"、把元素滚到中间 | `resolveScrollTarget`、`getScrollMetrics`、`alignElementInScrollTarget` | — |
+
+- **为什么**：`resolveScrollTarget` 为判断"哪个元素真的能滚"要读 `scrollHeight`，**强制同步布局**（实测单次 12~14ms、最高 46ms）；而**滚动事件的 `target` 本身就是滚动元素**，比较一下即可，零布局开销。原实现里 `UiBackToTop` 与 `useLazyList` 都在每帧调它，`/items` 每次滚动事件造成 **2 次**强制布局、占主线程 **13%**。
+- **护栏**：`resolveScrollTarget` 在开发期统计调用频率，1 秒超 30 次就 `console.warn` 并指回这条规则；`tests/unit/scroll-target.test.mjs` 用"读了就抛错的几何 getter"把热路径钉死——谁在热路径读了几何属性，测试立刻失败。
+- **⚠️ 实测结论（别把它当性能优化）**：按此改完后强制布局确实从 13% 降到 **0%**，但**滚动长任务没有改善**（2277~2321ms → 2339~2358ms，帧 p95 83ms 不变）。原因是**强制布局是"把本来就要做的布局提前"，不是额外工作**——总工作量不变。所以这条规则的价值在**结构**（消除一个开销随实例数增长的陷阱、语义明确、有测试守住），**不是**已量到的提速。
+- **真正的大头在哪**（同次 CDP `Performance.getMetrics` 实测）：`TaskDuration` 3899ms 里 **JS 只有 86ms（2.2%）**、布局 484ms（12.4%）、样式重算 487ms（12.5%），**其余约 73% 是绘制/合成/光栅化/图片解码**；同时 60 步滚动里 **DOM 节点净增 5780 个**。也就是说滚动卡顿的主因是**虚拟列表的 DOM 增删与随之而来的渲染量**，不是 JS 计算。要真正提速应从那里入手（overscan、卡片 DOM 体积、图片解码），而不是继续优化 JS。
+
 ## 2. 组件库目录（src/components/ui/）
 
 统一从 `index.js` 导入：
