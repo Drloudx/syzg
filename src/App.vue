@@ -28,13 +28,40 @@
           />
 
           <div class="header-right">
-            <button class="icon-btn" @click="toggleDarkMode" :title="isDarkMode ? '切换浅色模式' : '切换暗色模式'">
+            <!--
+              深色模式切换：暂时隐藏，功能代码完整保留（useNativeShell 的 isDarkMode /
+              toggleDarkMode 与 html.dark-mode 样式都没删）。深色模式尚有未解决的问题，
+              等修好后再用 v-if 恢复这个按钮即可。localStorage 里已存的 theme=dark
+              仍会在启动时生效，不会因为按钮隐藏而失效。
+            -->
+            <button
+              v-if="showThemeToggle"
+              class="icon-btn"
+              @click="toggleDarkMode"
+              :title="isDarkMode ? '切换浅色模式' : '切换暗色模式'"
+            >
               <img
                 :src="isDarkMode ? getImageUrl('/ui/theme-light.svg') : getImageUrl('/ui/theme-dark.svg')"
                 class="theme-icon-img"
                 alt="主题切换"
                 loading="lazy"
               />
+            </button>
+
+            <!-- 讨论区入口：进入独立路由 /#/discussions（不在当前页就地替换，
+                 这样链接可分享可刷新、滚动天然隔离，也不用 11 个视图各自接入聊天状态） -->
+            <button
+              class="icon-btn"
+              :class="{ 'is-active': route.path === '/discussions' }"
+              @click.stop="openDiscussions"
+              :title="route.path === '/discussions' ? '返回上一页' : '讨论区'"
+            >
+              <img :src="getImageUrl('/ui/chat-bubble.svg')" alt="讨论区" class="theme-icon-img" />
+            </button>
+
+            <!-- 账号：点击弹出账号面板 -->
+            <button class="icon-btn" @click.stop="isAccountOpen = true" title="账号">
+              <img :src="getImageUrl('/ui/account.svg')" alt="账号" class="theme-icon-img" />
             </button>
             <div class="settings-container">
               <button class="icon-btn" @click.stop="toggleSettings" title="设置">
@@ -105,45 +132,65 @@
         <router-view />
       </main>
 
-      <!-- 右侧页面信息面板（模板 infobox 风格）：放页面标题 + 概况 + 备注区。
-           卡池页是固定设计分辨率的游戏画面，隐藏右栏把宽度让给设计画布。 -->
+      <!-- 右栏：讨论区预览（用户要求把原「页面信息面板」换成讨论）。
+           原面板放的是当前模块/网站版本/游戏版本/交流群/备注；
+           按用户决定替换为讨论预览。**交流群链接保留在底部**（拉新入口）；
+           版本号原是硬编码 v1.0.0、仓库内仅此一处，随面板一并移除。
+           卡池页是固定设计分辨率画面，隐藏右栏把宽度让给设计画布。 -->
       <div v-if="!isNative && route.path !== '/gacha'" class="desktop-right-container desktop-only">
         <aside class="page-info-panel paper-panel corner-nails">
           <div class="info-title-bar">
-            <span class="info-title-text">{{ pageTitle }}</span>
+            <button type="button" class="info-title-text info-title-link" @click="openDiscussions">
+              最新讨论
+            </button>
+            <!-- 进入讨论区：放在标题栏右侧（用户指定位置）。
+                 用文字「进入→」而不是箭头图形符号——后者在这套羊皮纸样式里显得突兀 -->
+            <button type="button" class="info-title-enter" @click="openDiscussions">进入→</button>
           </div>
-          <div class="info-cover-image"></div>
           <div class="info-body">
-            <div class="info-meta-rows">
-              <div class="info-row">
-                <span class="info-label">当前模块</span>
-                <span class="info-value">{{ pageTitle }}</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">网站版本</span>
-                <span class="info-value">v1.0.0</span>
-              </div>
-              <div class="info-row">
-                <span class="info-label">游戏版本</span>
-                <span class="info-value">v1.0.0</span>
-              </div>
-              <!-- 交流群：字号与配色沿用 .info-value（与「网站版本」一致），点击跳转加群链接 -->
-              <div class="info-row">
-                <span class="info-label">交流群</span>
+            <!-- 最近几条（只读、不放输入框）：点开进入讨论区 -->
+            <div class="recent-discussions">
+              <UiEmptyState v-if="recentLoading" type="loading" text="加载中..." />
+              <p v-else-if="!recentComments.length" class="info-note">还没有讨论。</p>
+              <ul v-else class="recent-list">
+                <li v-for="c in recentComments" :key="c.id" class="recent-item">
+                  <button type="button" class="recent-btn" @click="openDiscussionFor(c)">
+                    <!-- 缩小的头像：与讨论区里一致，没有头像时用昵称首字占位 -->
+                    <img
+                      v-if="recentAvatarUrl(c.avatar)"
+                      class="recent-avatar"
+                      :src="recentAvatarUrl(c.avatar)"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span v-else class="recent-avatar recent-avatar-fallback" aria-hidden="true">
+                      {{ (c.nick || '?').slice(0, 1) }}
+                    </span>
+                    <span class="recent-main">
+                      <!-- 不显示「站内讨论区」标签：这里本来就只放站内讨论区的内容，
+                           每条都标一遍是冗余（用户要求删掉） -->
+                      <span class="recent-nick">{{ c.nick }}</span>
+                      <span class="recent-body">{{ c.body }}</span>
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div class="info-section recent-foot">
+              <!-- 交流群：原信息面板的唯一入口，保留。配色与「进入讨论区」按钮一致 -->
+              <p class="info-note recent-group">
+                交流群
                 <a
-                  class="info-value info-value--link"
+                  class="recent-group-link"
                   href="https://qm.qq.com/q/iolDkZyD2E"
                   target="_blank"
                   rel="noopener noreferrer"
                 >963318625</a>
-              </div>
-            </div>
-            <div class="info-section">
-              <h3 class="info-section-title">备注与说明</h3>
-              <p class="info-note">
-                点击卡片可查看详细属性、词条与来源关系。
               </p>
             </div>
+
             <SidebarMascot v-if="mascotDesktop" />
           </div>
         </aside>
@@ -166,6 +213,7 @@
     <NoticeModal v-model="showNoticeModal" />
     <VersionCheckModal v-model="showVersionCheckModal" @request-update="handleRequestUpdate" />
     <AboutModal v-model="showAboutModal" />
+    <AccountModal v-model="isAccountOpen" />
     <UiModal
       :visible="!!itemLoadError"
       title="物品详情加载失败"
@@ -216,7 +264,11 @@ import MenuModeModal from './components/MenuModeModal.vue'
 import NoticeModal from './components/NoticeModal.vue'
 import VersionCheckModal from './components/VersionCheckModal.vue'
 import AboutModal from './components/AboutModal.vue'
-import { UiButton, UiModal } from './components/ui/index.js'
+import AccountModal from './components/AccountModal.vue'
+import { loadIdentity, registerAccountModal, avatarPath, avatarCatalogState, loadAvatarCatalog } from './utils/identity.js'
+import { fetchRecentComments } from './utils/commentApi.js'
+import { commentPostedAt } from './utils/commentEvents.js'
+import { UiButton, UiEmptyState, UiModal } from './components/ui/index.js'
 import ItemDetailModal from './components/ItemDetailModal.vue'
 import RewardProbabilityModal from './components/RewardProbabilityModal.vue'
 import { itemModalState, openItemDetail } from './utils/itemModalState'
@@ -264,7 +316,11 @@ const PAGE_TITLES = {
   '/exchange': '兑换',
   '/petseggs': '魔物收益',
   '/dungeons': '副本图鉴',
-  '/gacha': '模拟招募'
+  '/chapters': '关卡图鉴',
+  '/glossary': '词条',
+  '/gacha': '模拟招募',
+  '/admin': '评论管理',
+  '/discussions': '讨论区'
 }
 
 const pageTitle = computed(() => {
@@ -277,6 +333,146 @@ const isGachaFullscreen = computed(() => route.path === '/gacha')
 const isNavOpen = ref(false)
 const { globalQuery, isSearchOpen, filteredSearchIndex, handleSearchFocus, handleSelectSearchResult } = useGlobalSearch(route, router)
 const { isDarkMode, toggleDarkMode } = useNativeShell()
+
+/**
+ * 深色模式切换按钮是否显示。
+ * 暂时关闭：按钮位置改成了账号入口，而深色模式自身还有问题待修。
+ * 代码与 `html.dark-mode` 样式、localStorage 持久化都完整保留，改回 true 即恢复。
+ */
+const showThemeToggle = false
+
+/** 账号弹窗可见性 */
+const isAccountOpen = ref(false)
+
+/**
+ * 打开/离开讨论区。
+ *
+ * 讨论区是独立路由（不在当前页就地替换内容区）：链接可分享可刷新、
+ * 滚动天然隔离在内容区里，也不必让 11 个视图各自接入"聊天模式"状态。
+ * 在讨论区内再点一次 = 返回上一页。
+ */
+function openDiscussions() {
+  if (route.path === '/discussions') {
+    router.back()
+    return
+  }
+  // 从物品详情进入时带上当前物品，讨论区默认定位到它（见 DiscussionsView）
+  const query = {}
+  if (route.query.itemId) query.page = `item:${route.query.itemId}`
+  router.push({ path: '/discussions', query })
+}
+
+/** 右栏"最新讨论"：跳到那条讨论所属页面的讨论 */
+function openDiscussionFor(comment) {
+  router.push({
+    path: '/discussions',
+    query: { page: comment.pageKey, label: comment.pageLabel || '' }
+  })
+}
+
+/**
+ * 右栏的最近讨论。**数据由服务端带 30 秒边缘共享缓存**（`GET /api/recent`），
+ * 所以右栏在每个页面都可见，也不会变成"每打开一页查一次库"。
+ *
+ * 刷新时机有三个，缺一不可：
+ *   1. **路由变化**——覆盖站内切页，但**15 秒节流**（`allowThrottled` 可强制穿透）；
+ *   2. **本机发表评论后**（监听 commentEvents 广播，绕过缓存）——
+ *      实测踩到的坑：本站是 hash 路由，站内发帖**不改变路由也不重载应用**，
+ *      光靠时机 1 会看到"刚发的评论只在左边、右栏还是旧的"；
+ *   3. **30 秒定时 + 从后台切回时刷新**——让**别人发的**也能出现：
+ *      用户停在某页不动时，光靠前两个时机右栏会一直停在旧内容。
+ *
+ * 三个时机都走 `fresh`（跳服务端共享缓存 + 时间戳穿透中间层缓存），
+ * 否则会撞上 30 秒缓存窗口看到旧快照（实测：切页后新评论仍不出现）。
+ */
+const recentComments = ref([])
+const recentLoading = ref(false)
+const RECENT_CLIENT_THROTTLE_MS = 15000
+let recentFetchedAt = 0
+let recentInFlight = false
+
+async function loadRecentDiscussions({ fresh = false, allowThrottled = false } = {}) {
+  if (recentInFlight) return
+  if (!allowThrottled && !fresh && Date.now() - recentFetchedAt < RECENT_CLIENT_THROTTLE_MS) return
+  recentInFlight = true
+  recentLoading.value = true
+  try {
+    const data = await fetchRecentComments({ fresh })
+    recentComments.value = (data?.comments || []).slice(0, 5)
+    recentFetchedAt = Date.now()
+  } catch {
+    // 右栏是辅助信息：失败静默留空，不打扰主内容（完整错误态由讨论区页自己展示）
+    recentComments.value = []
+  } finally {
+    recentInFlight = false
+    recentLoading.value = false
+  }
+}
+
+// 站内切页时刷新右栏。**绕过节流**：用户切页是明确意图，且服务端共享缓存让开销可控
+watch(() => route.fullPath, () => loadRecentDiscussions({ fresh: true }))
+// 本机发表评论后立刻刷新
+watch(commentPostedAt, () => loadRecentDiscussions({ fresh: true }))
+
+/**
+ * 定时刷新右栏，让**别人发的**评论也能出现。
+ * 间隔与服务端共享缓存的窗口对齐，所以多数轮询会命中缓存、不落库。
+ * 页面隐藏时跳过（后台标签页不做无意义请求）。
+ */
+const RECENT_POLL_MS = 30000
+let recentTimer = 0
+
+function startRecentPolling() {
+  stopRecentPolling()
+  recentTimer = window.setInterval(() => {
+    if (document.visibilityState === 'hidden') return
+    loadRecentDiscussions({ fresh: true })
+  }, RECENT_POLL_MS)
+}
+
+function stopRecentPolling() {
+  if (recentTimer) {
+    window.clearInterval(recentTimer)
+    recentTimer = 0
+  }
+}
+
+/** 从后台切回前台时立即刷新一次（用户回来的第一眼应该是最新的） */
+function onVisibilityChange() {
+  if (document.visibilityState === 'visible') loadRecentDiscussions({ fresh: true })
+}
+
+/**
+ * 右栏每条评论的缩小头像路径。
+ * 用与讨论区同一份头像清单（`avatarPath`），没有清单或 ID 未知时返回空串，
+ * 模板会退化用昵称首字占位。
+ */
+function recentAvatarUrl(id) {
+  const path = avatarPath(id)
+  return path ? getImageUrl(path) : ''
+}
+
+// 右栏有带头像的评论时才需要清单（与讨论区同样的按需加载）
+watch(
+  recentComments,
+  (list) => {
+    if (list.some((c) => c.avatar) && avatarCatalogState.value === 'idle') loadAvatarCatalog()
+  },
+  { immediate: true }
+)
+
+/**
+ * 本机身份（昵称 + 头像）与账号弹窗的接线：
+ *   - 启动时读一次 localStorage，评论面板与账号弹窗共用同一份响应式状态；
+ *   - 把"打开账号弹窗"注册给 identity 模块，评论面板在未设昵称时调用它，
+ *     从而不必让子组件各自维护一份弹窗开关（页面上只有一个账号弹窗）。
+ */
+loadIdentity()
+registerAccountModal(() => {
+  isAccountOpen.value = true
+})
+// 右栏的"最新讨论"：首屏就绪后拉一次（服务端有 30 秒边缘缓存，成本可控）
+loadRecentDiscussions()
 
 // 新增设置菜单和弹窗状态
 const isSettingsOpen = ref(false)
@@ -446,11 +642,17 @@ onMounted(() => {
     }
     bootLoadingRaf = requestAnimationFrame(settle)
   }
+
+  // 右栏「最新讨论」定时刷新（见 startRecentPolling 的说明）
+  startRecentPolling()
+  document.addEventListener('visibilitychange', onVisibilityChange)
 })
 
 onBeforeUnmount(() => {
   document.removeEventListener('error', handleGlobalImageError, true)
   window.removeEventListener('resize', scheduleStickyClipping)
+  stopRecentPolling()
+  document.removeEventListener('visibilitychange', onVisibilityChange)
   if (stickyClipFrame) window.cancelAnimationFrame(stickyClipFrame)
   if (pendingClearRaf) cancelAnimationFrame(pendingClearRaf)
   if (bootLoadingRaf) cancelAnimationFrame(bootLoadingRaf)
@@ -728,6 +930,13 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 }
 .icon-btn:hover {
   background: rgba(85, 117, 116, 0.5);
+  border-color: var(--accent-bright, #7a9a99);
+}
+
+/* 当前正停留在这个入口对应的页面时（如讨论区）：给出选中态，
+   否则用户看不出"我已经在讨论区里" */
+.icon-btn.is-active {
+  background: rgba(85, 117, 116, 0.7);
   border-color: var(--accent-bright, #7a9a99);
 }
 
@@ -1101,10 +1310,11 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   overflow: hidden;
 }
 .info-title-bar {
+  position: relative; /* 供右侧「进入讨论区」箭头绝对定位（标题保持居中不动） */
   background-color: var(--border-color, #8f7351);
   color: var(--on-wood-text);
   text-align: center;
-  padding: 10px 14px;
+  padding: 10px 34px 10px 14px; /* 右侧留出箭头宽度，长标题也不会压到箭头 */
   font-family: var(--font-ui);
   font-weight: 700;
   font-size: 17px;
@@ -1117,6 +1327,157 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   text-overflow: ellipsis;
   white-space: nowrap;
   display: block;
+}
+
+/* 右栏标题做成可点入口（进讨论区），沿用原标题的字号与颜色 */
+.info-title-link {
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.info-title-link:hover {
+  text-decoration: underline;
+}
+
+/* 标题栏右侧的「进入→」：绝对定位在右侧，标题保持居中 */
+.info-title-enter {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  padding: 1px 6px;
+  border: 1px solid rgba(223, 206, 179, 0.5);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.12);
+  color: var(--on-wood-text, #dfceb3);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.info-title-enter:hover {
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+}
+
+/* 交流群链接配色与「进入讨论区」的强调色一致（用户要求） */
+.recent-group-link {
+  color: var(--accent-ink);
+  text-decoration: none;
+}
+.recent-group-link:hover {
+  text-decoration: underline;
+}
+
+/* 右栏「最新讨论」列表：紧凑、只读、不放输入框（点开进讨论区发言） */
+.recent-discussions {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.recent-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.recent-item {
+  min-width: 0;
+}
+.recent-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  background: var(--paper-soft);
+  color: var(--text-main);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.recent-btn:hover {
+  border-color: var(--accent-bright);
+}
+
+/* 缩小的头像（24px）：与讨论区里的头像同源，没有头像时用昵称首字占位 */
+.recent-avatar {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--border-soft);
+  object-fit: cover;
+}
+.recent-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-solid);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* 昵称 + 正文：竖排，占满头像右侧剩余宽度 */
+.recent-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.recent-nick {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 正文最多两行：右栏很窄，长评论会把其余消息挤下去 */
+.recent-body {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.recent-foot {
+  flex-shrink: 0;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+/* 交流群：字号/字重/颜色与上面聊天的昵称保持一致（用户要求） */
+.recent-group {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.recent-group-link {
+  font-size: 13px;
+  font-weight: 700;
 }
 .info-cover-image {
   width: 100%;

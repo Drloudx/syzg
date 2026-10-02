@@ -20,6 +20,9 @@ android_backup/
 # Vite缓存
 .vite/
 
+# Wrangler 本地状态（本地 D1 副本、缓存、日志），不进仓库
+.wrangler/
+
 # Python相关
 # 所有__pycache__编译缓存文件夹（各个子目录包括测试工具里面的都忽略）
 __pycache__/
@@ -59,3 +62,6 @@ scratch/
 
 # 原始素材全部构建产物，不进repo/构建产物，请看 scripts/dev/sync-raw.mjs 从Config_decrypted读取
 /raw/
+
+# Wrangler 本地开发变量（含本地令牌），不进仓库
+.dev.vars
