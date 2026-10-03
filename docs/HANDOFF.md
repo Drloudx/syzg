@@ -1,21 +1,287 @@
 # 项目交接说明文档 (HANDOFF)
 
-> 更新时间：2026-09-24
-> 项目路径：`E:\Desktop\html\myrzg\vue-myrzg`（Vue 3 + Vite 8 + Pinia + Capacitor Android）
+> 更新时间：2026-10-03（最近一次：发布闪烁修复 + **仓库/域名改名 myrzg → syzg** + 域名迁移落地）
+> 项目路径：`E:\Desktop\html\myrzg\vue-myrzg`（**目录名仍是 myrzg，这是刻意保留的**，见〇·0.0）
+> 远端仓库：`https://github.com/Drloudx/syzg` ｜ 线上域名：`https://syzg.yxzmy.top`
+> 技术栈：Vue 3 + Vite 8 + Pinia + Capacitor Android
 > 适用对象：后续接手开发对话/工程师
+>
+> ⚠️ **本次改名很彻底**，接手第一件事请先读 **〇·0.0「现在的仓库与域名」**——
+> 文档里不少地方还写着 `myrzg`，那是**旧名/历史记录**，不代表现状。
+>
+> 📘 **运维与迁移的完整版本在 [HANDOFF_FULL.md](HANDOFF_FULL.md)**：
+> 部署拓扑（EdgeOne → Pages → D1）、凭据与校验的坑、缓存策略、验证命令、
+> 改名迁移全过程、剩余待办优先级。**建议先读那份，再回来看本文的功能细节。**
+
+---
+
+## 〇、最新状态（2026-10-03）：改名完成 + 闪烁修复 + 双项目并存
+
+> 这一节是给接手者的**入口**。完整改名过程见 [改名落地文档](rename-myrzg-to-syzg.md)，
+> 当日细节见 [开发日志 2026-10-03](dev-logs/2026-10/2026-10-03.md)。
+
+### 0.0 现在的仓库与域名（**先看这个**）
+
+| | 现在（新） | 旧（保留中） |
+| --- | --- | --- |
+| GitHub 仓库 | **`Drloudx/syzg`** | `Drloudx/myrzg`（未删，原地保留） |
+| Pages 项目 | **`syzg`** → `syzg.pages.dev` | `myrzg` → `myrzg.pages.dev` |
+| 自定义域名 | **`syzg.yxzmy.top`** | `myrzg.yxzmy.top` |
+| EdgeOne 加速域名 | **`syzg.yxzmy.top`**（回源 `syzg.pages.dev`） | `myrzg.yxzmy.top`（回源 `myrzg.pages.dev`） |
+| 本地 git remote | `origin → https://github.com/Drloudx/syzg.git` | — |
+| 前端基址 `CLOUD_URL` | **`https://syzg.yxzmy.top`** | — |
+| D1 数据库 | `myrzg-comments`（**名字没改**，两个项目共用同一个库） | — |
+
+**三个刻意保留旧名的地方**（不要"顺手改掉"，会出问题）：
+
+1. **本地目录仍是 `vue-myrzg`** —— 改名会打断本机所有绝对路径引用（含 `_ai-credentials/`、`backups/` 的文档链接）。
+2. **旧仓库 / 旧 Pages 项目 / 旧域名全部保留** —— 旧 Android 包里的 `CLOUD_URL` 是**编译时写死**的，
+   旧域名一停，老包在线资源全失效。**这也是唯一的退路**：`myrzg.pages.dev` + `myrzg.yxzmy.top` 都还在服务。
+3. **`wrangler.toml` 的 `name` 与 `database_name` 仍是 `myrzg`** —— 本项目由控制台的 Git 集成构建，
+   该文件只在本地手动跑 wrangler 时生效；旧 Pages 项目还在，改名会冲突。理由写在文件注释里。
+
+**为什么是"删旧建新"而不是"改仓库名"**：`Drloudx/syzg` 这个仓库名**早已被占用**
+（2026-05 的一个旧版站点 + 它的 GitHub Pages）。经确认后：mirror 备份到
+`backups/syzg-old-repo-202605.git` → 删旧仓库 → 建同名空仓库 → 本仓历史整体推出。
+**没有改 `myrzg` 的名字。**
+
+### 0.1 一句话状态
+
+**新域名已完全可用**（2026-10-03）：`syzg.yxzmy.top` 证书已签、EdgeOne 已生效、
+`/api/health` 返回 JSON、前端产物里已是新域名；旧域名与旧项目**同时在线**作退路。
+本地与线上验证均通过；`npm run verify` 全绿；闪烁问题已解决（见 0.5）。
+
+### 0.2 这块是什么：全站唯一需要后端的部分
+
+整站其余部分都是**纯静态**（游戏文件在构建期生成 JSON，用户只读）。
+只有评论/讨论需要"一个用户写、所有人读"，所以必须有存储与服务端：
+
+| 组件 | 位置 |
+| --- | --- |
+| 存储 | Cloudflare **D1**（SQLite），库名 `myrzg-comments`，id `5f0d4c37-107f-4811-bc5e-768f73c51a3a` |
+| 服务端 | Cloudflare **Pages Functions**，单文件 `functions/api/[[path]].js` |
+| 前端 | `src/components/CommentsPanel.vue`（列表）+ `CommentComposer.vue`（发表区） |
+| 客户端 | `src/utils/commentApi.js`（接口 + `page_key` 前缀表）、`identity.js`（本机身份/头像）、`commentEvents.js`（跨组件广播） |
+| 管理端 | `/#/admin`（评论管理；本地令牌 `yxzm`，线上换随机串） |
+
+费用为 0：Functions 10 万次/天、D1 读 500 万行/天、写 10 万行/天，当前用量远低于此；
+**静态图鉴不限量不计费**，只有评论那点 JSON 走 API。
+
+### 0.3 讨论区怎么用
+
+- **顶栏聊天图标** → `/#/discussions`：站内讨论区（归属键 `site:general`），
+  与各图鉴页面的讨论 `item:xxx` / `hero:xxx` …**完全分开**，不聚合。
+- **各图鉴详情里的「讨论」**：物品 / 角色 / 魔物 / 家具 / 副本 / 关卡 / 怪物 / 任务 / 事件，共 9 处。
+  符石与菜谱**刻意不单独挂**（它们点卡片走全局物品详情，那里已有讨论区）。
+- **右栏「最新讨论」**：只显示站内讨论区的最新 5 条，只读、不放输入框。
+- **别人发的消息会自动出现**（2026-10-03 起）：中间区域与右栏都是**前台轮询**
+  （间隔 `config/discussions.js` 的 `DISCUSSION_POLL_MS`，当前 **1 分钟**，两处共用一处维护），
+  不必重开页面。中间区域此前**完全没有自动刷新**（`pageKey` 恒定不变、本机广播不跨设备），
+  表现就是"右栏有了、中间没有"。轮询只挂讨论区；**物品详情等页面的评论面板不轮询**——
+  那会把"每次打开详情一次请求"放大成"停留期间每 1 分钟一次"。详见
+  [评论后端方案](technical/COMMENTS_BACKEND.md#讨论区中间的自动刷新2026-10-03-补)。
+
+### 0.4 三个必须知道的开发约定（不然一定踩）
+
+1. **改了 `functions/` 必须重启 API**：`npm run dev:api` 起的 wrangler **不热加载**。
+   本日在此踩了两次（改 `MAX_BODY`、加 `site:` 白名单后没生效，误以为代码错）。
+2. **新增页面挂讨论区要改两处**：`src/utils/commentApi.js` 的 `COMMENT_PAGE_PREFIX`
+   **和** `functions/api/[[path]].js` 的 `PAGE_KEY_RE`；并记得把页面人话名字用 `pageLabel` 传上去
+   （否则管理端只显示 `item:item_00001` 这种内部标识）。
+3. **本站是 hash 路由**：站内切页**不重载应用**。所以"只在启动时拉一次"的写法
+   （右栏最初就是这样）会导致用户发完评论后数据一直是旧的。改数据要显式触发刷新。
+
+### 0.5 ✅ 已解决：发表时的闪烁（2026-10-03）
+用户反馈"中间区域发消息的时候闪一下"。**已定位并修复**，成因与交接时假设的**不一样**：
+
+| 交接时列的成因 | 复核结论 |
+| --- | --- |
+| 发表后重拉整页 → 列表 DOM 全部重建 | ✅ 早已修掉（只追加一条），列表 MutationObserver 只记录 `+1/-0` 一次 |
+| 浏览器滚动锚定与"滚到最新"打架 | ✅ 已由 `overflow-anchor: none` + `scrollbar-gutter: stable` 处理 |
+| 面板高度用 `--vh100` 推算有偏差 | ❌ **实测不成立**：6 种视口下面板底边恒在视口下 20px、输入区底边最小余量 36px、`.app-container` 纵向溢出 0px |
+
+**真正根因是"滚动跟随"本身**（逐帧数据）：
+
+1. 新评论插入后**晚两帧才滚**（`scrollToLatestAfterLayout` 的双 rAF 等布局），
+   中间会先绘制一帧"新消息已插进视野、列表还没跟下去"的画面，紧接下一帧整块再动；
+2. 滚动是 `scrollTop = scrollHeight` 的**一次瞬移**——用户往上翻着历史时点发表，
+   实测 `scrollTop 577 → 1196`，**619px 在一帧内甩过去**。
+
+修法在 `src/views/DiscussionsView.vue`：滚动位置收敛为**唯一决策点**
+（`watch(commentsLength, { flush:'post' })`，在"DOM 已更新、尚未绘制"这一帧决定），
+首次载入直接落底、之后走 260ms 动画曲线，且**只在插入前就贴着底部（120px 内）时才自动跟随**；
+用户往上翻历史时原地不动。A/B 对照：旧实现单帧 **78px** 瞬移 + 翻历史漂移 **619px**；
+修复后单帧最大 **14px**、漂移 **0.0px**。
+
+回归入口：`node scripts/dev/scratch/verify-post-scroll.mjs [宽] [高]`
+（桌面 1440×900 与手机 390×844 各 12/12；交接文档既有的 5 套专项全部复跑无回归）。
+完整分析见 [评论后端方案](technical/COMMENTS_BACKEND.md)，过程见
+[开发日志 2026-10-03](dev-logs/2026-10/2026-10-03.md)。
+
+> ⚠️ `- 190px` 这个面板高度魔数**仍是推算值**，且在 1025 宽时与其它视口差 12px；本轮刻意不动它
+> （上次改成脚本量高度被用户实测"高度不对"而回退）。要改请按评论后端方案里的三视口复核流程走。
+
+### 0.6 本地怎么跑起来（两个服务，缺一不可）
+
+```powershell
+# 1) 前端（5173）
+npm run dev
+
+# 2) 评论 API（8788）——不启动则页面上评论/讨论会报"无法连接评论服务器"
+npm run dev:api
+```
+
+- Vite 已配 `/api` 代理到 `127.0.0.1:8788`（否则 `npm run dev` 下评论不可用，早期踩过）。
+- 本地环境变量在 `.dev.vars`（gitignored）：`ADMIN_TOKEN=yxzm`、`IP_HASH_SALT=local-dev-salt`、
+  放宽的限流阈值。**线上必须换成足够长的随机 `ADMIN_TOKEN`**，且不存在免密旁路。
+- 本地 D1 里留了 **5 条演示数据**（站内讨论，含带头像/无头像两种，用户名是「旅行者/老玩家/萌新/工匠/路人」），
+  便于直接看效果。清库：`npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM comments; DELETE FROM rate_limits;"`
+  重建演示数据：`node scripts/dev/scratch/seed-site-discussion.mjs`。
+  ⚠️ **注意**：`scripts/dev/scratch/` 下的评论类测试脚本（`verify-no-flicker` / `verify-chat-order` /
+  `verify-autoscroll` / `verify-discussions*`）**开跑前会 `DELETE FROM comments` 再自己造数**，
+  跑完不会还原——跑完记得用上面的命令重建演示数据（2026-10-03 修闪烁时踩到过）。
+
+### 0.7 测试脚本（都在 `scripts/dev/scratch/`，gitignored）
+
+| 脚本 | 覆盖 |
+| --- | --- |
+| `test-comments-api.py` | 43 项：接口契约、错误文案、限流、幂等删除、超长拒绝 |
+| `verify-comments-ui.mjs` | 67 项：详情里评论全流程（发帖/自删/账号弹窗/管理页/顶栏标题） |
+| `verify-discussions.mjs` | 36 项：站内讨论区、发表区固定、右栏归属与样式 |
+| `verify-chat-order.mjs` | 11 项：最新在下、上滑自动加载 |
+| `verify-no-flicker.mjs` | 9 项：**逐帧采样 130 帧**证明布局不抖动 |
+| `verify-comment-mounts.mjs` | 27 项：9 个页面逐个验证挂载与 `page_key` 合法性 |
+| `verify-discussions-order.mjs` | 9 项：排序与 200 字上限 |
+| `verify-autoscroll.mjs` | 6 项：打开/发表后停在最新一条 |
+| `verify-hero-comment-e2e.mjs` | 4 项：非物品页面发帖 → 管理页可见 |
+
+**跑测试前先清限流**，否则会因限流误判失败：
+
+```powershell
+npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM rate_limits; DELETE FROM comments;"
+```
+
+### 0.8 上线清单（**2026-10-03 已执行并实测通过**）
+
+1. ✅ Cloudflare Pages 项目 → Settings → Environment variables：`ADMIN_TOKEN`、`IP_HASH_SALT` 已配。
+2. ✅ **已推送 `main`**（29 个提交，首个从 `952e06b6` 推到 `b67f6e07`），Pages 自动部署成功。
+3. ✅ **实测线上 `/api/health` 返回 JSON**：推送后 **40 秒**即生效
+   （此前是 `200 + text/html`，被 SPA 兜底吃掉）。同时确认 `_redirects` 的
+   `/api/*` 放行已上线：不存在的路径 → `200 text/html`（SPA 兜底正常），
+   不存在的 `/api/*` → `404`（不再被兜底吃掉）。
+4. ✅ 缓存头复测：`/api/health`、`/api/comments` 均为 `cache-control: no-store`（不会被 EdgeOne 缓存）；
+   `/data/parsed/items.json` 为 `public, immutable, max-age=31536000`；
+   `/ui/logo.webp` 仍是 `max-age=3600`（EdgeOne 按文件类型改写，已知且接受，见架构 4.7）。
+5. ⬜ Turnstile 仍未配（不影响功能，未配 `TURNSTILE_SECRET` 时自动跳过人机校验）。
+6. ⬜ **Fail open 必须保持**：Pages 的 Fail open/closed 要选 Fail open，
+   否则免费额度耗尽会让整个图鉴站变成错误页。
+
+**线上接口验收（2026-10-03 实测）**
+
+| 接口 | 结果 |
+| --- | --- |
+| `GET /api/health` | `200` + JSON |
+| `GET /api/comments?page=site:general` | `200` + JSON，公开列表 **0 条**（生产库为空，属正常） |
+| `GET /api/recent` | `200` + JSON |
+| `POST /api/comments` 非法 `page_key` | `400`（白名单生效） |
+| `POST /api/comments` 空内容 | `400` |
+| `GET /api/admin/comments` 无令牌 | `401` |
+| `POST /api/comments` 正常写入（探测用、已自删） | `201`，`status=0` 进待审（命中「外链」规则），自删 `200` |
+| 远程 D1 建表 | ✅ 写入/查询/删除全通，说明 `schema.sql` 已在远程执行过 |
+
+> 线上评论列表目前是空的：本地那 5 条演示数据只在**本地** D1，生产库没有。
+> 想造演示数据可对远程执行 `wrangler d1 execute myrzg-comments --remote --file=...`，
+> 或直接在线上发几条。
+
+### 0.9 账号体系（方案已落地成文档，未实施）
+
+用户提过"邮箱注册 + 改密码"。**落地版方案见 [账号体系落地方案](technical/ACCOUNT_SYSTEM.md)**
+（早期评估稿 [ACCOUNT_SYSTEM_EVALUATION.md](technical/ACCOUNT_SYSTEM_EVALUATION.md) 已被取代，
+只保留"不要自己存密码"的实测证据与邮件额度核实记录）。要点：
+
+- Workers 免费版 **10ms CPU 硬限**，PBKDF2 600k 轮实测 104ms → 自己存密码必然要做安全妥协。
+- Workers **封禁 25 端口**；且国内邮箱对"异地登录"会反复拦截（出口 IP 每次都可能不同）→
+  **不要走"个人邮箱 SMTP 直连"**。
+- 推荐路线：**邮箱验证码（无密码）** > 托管认证 > 自己实现。
+- 发信必须走云厂商邮件推送（腾讯云 SES / 阿里云 DirectMail），需为域名加 SPF/DKIM 解析记录。
+- ⚠️ **开工前有两个前置阻塞项**（详见落地方案〇节）：① 账号依赖后端，而线上 Functions
+  直到 2026-10-03 才真正生效；② 发信必须先做 ≤20 行最小验证。
+- ⚠️ **发信域名要跟着改名走**：现在应绑 `syzg.yxzmy.top` 或 `yxzmy.top` 的子域，
+  不要再去绑 `myrzg`。
+
+---
+
+## 〇·B、部署拓扑与线上运维（2026-10-03 现状）
+
+接手者最容易踩的就是这一节，因为它**不在代码里**。
+
+### B.1 一次请求怎么走
+
+```
+用户（大陆为主）
+  │  DNSPod：syzg.yxzmy.top CNAME → syzg.yxzmy.top.eo.dnse3.com
+  ▼
+腾讯云 EdgeOne 边缘节点（大陆加速；回源 syzg.pages.dev）
+  │
+  ▼
+Cloudflare Pages 项目 syzg（静态产物 + Pages Functions）
+  │
+  ▼
+Cloudflare D1（库名 myrzg-comments，两个项目共用）
+```
+
+**为什么是两层 CDN**：Cloudflare Pages 本身就是全球 CDN，但它在大陆没有节点，
+所以前面套了 EdgeOne。**只对大陆用户有意义**；两层不会让静态资源更快，
+EdgeOne 的价值只在"大陆可达性"。
+
+### B.2 缓存策略（两侧都在管，容易打架）
+
+| 路径 | 源站（`public/_headers`） | EdgeOne 规则 |
+| --- | --- | --- |
+| `/api/*` | `no-store` | 不缓存 |
+| `/`、`/index.html` | **`no-cache`**（每次回源校验） | — |
+| `/assets/*` | `immutable, max-age=31536000` | — |
+| `/data/parsed/**` | `immutable, max-age=31536000` | — |
+| `/fonts/*` | 1 年 + `?v=` 内容哈希 | 未被改（实测 604800） |
+| 图片 `jpg/png/gif/bmp/webp` | 7 天 | **浏览器缓存 TTL = 7 天**（2026-10-03 用户配置） |
+| `svg` | — | 单独一条 = 1 小时（**刻意短**：部分 svg 硬编码路径、不走 `?v=`） |
+
+> 历史：EdgeOne 曾把图片的 7 天改成 1 小时（2026-09-27 排查过，当时结论"免费版无入口"）。
+> 2026-10-03 用户在控制台找到了那组规则并改回 7 天。**改这类规则后必须复测**，用
+> `node scripts/dev/scratch/probe-cache-headers.mjs`。
+
+### B.3 三件必须记得的运维事
+
+1. **证书**：EdgeOne 免费证书 = **自动申请 + 自动续签**（域名详情里选「申请免费证书 + 自动验证」）。
+   ⚠️ **加了加速域名但不配证书 = 整个域名 HTTPS 不可用**——浏览器 `ERR_EMPTY_RESPONSE`、
+   curl `(52) Empty reply` / `(35) TLS 握手失败`，探测会发现 EdgeOne 甩兜底证书
+   `*.cdn.myqcloud.com`。**这个坑 2026-10-03 踩过**。
+2. **`.pages.dev` 会随项目名走**：改 Pages 项目名会**改掉** `*.pages.dev`，
+   而 EdgeOne 回源写的正是它 → **回源必须同步改**，否则整站 502。这也是当初选择
+   "新建项目"而不是"改名项目"的原因（保住退路）。
+3. **Cloudflare API 令牌**：账户级令牌（`cfat_` 前缀）**不能用 `/user/tokens/verify` 校验**
+   （它对用户级令牌才有效，对 `cfat_` 一律回 `1000 Invalid API Token`）。
+   正确校验方式是拿它去打真实端点（`/accounts`、`/accounts/{id}/pages/projects`）。
+   注意这种令牌通常**读不到 `/accounts/{id}` 本身**（403），属正常。
+            当前令牌只有 Pages Write + D1 Write，**没有 D1 Edit** → D1 库改名会返回 400。
 
 ---
 
 ## 一、当前项目状态概览
 
 1. **分支状态**：
-   - 处于 `main` 分支。
-   - 本地根据用户需求持续迭代，未推送到远端（用户环境网络存在代理限制，需要推送时需由用户在本地终端执行或提供对应代理）。
-2. **开发服务器**：
-   - 当前在端口 `5173`（或后台配置端口）运行：`npm run dev`。
+   - 处于 `main` 分支，远端 `origin` = **`https://github.com/Drloudx/syzg.git`**（2026-10-03 由 `Drloudx/myrzg` 迁入）。
+   - **已全部推送**，工作区干净、领先 0（历史上那次"本地领先 27 个提交未推送"已于 2026-10-03 推完）。
+2. **开发服务器（两个都要起）**：
+   - 前端 `npm run dev` → `5173`；
+   - **评论 API `npm run dev:api` → `8788`**（不起这个，评论/讨论会报"无法连接评论服务器"）。
+   - 详见上文〇·0.6。
 3. **构建与健康状态**：
-   - 运行 `npm run verify`（包含 `data:build` + `vite build` + 产物完整性与残留校验）已**全部通过（All Green）**。
-   - 代码整洁度：探索性的词条/Buff 实验模块已彻底清理，未留存任何多余文件或无用依赖。
+   - `npm run verify`（`data:build` + `vite build` + 产物完整性与残留校验）**全部通过**（2026-10-03 复跑，因改域名重新构建过）。
+   - 评论/讨论相关的专项脚本全部通过（数字见〇·0.7 + 本轮新增的两个，见〇·0.5 与"讨论区自动刷新"）。
+4. **代码整洁度**：
+   - 探索性的词条/Buff 实验模块已彻底清理，未留存多余文件或无用依赖。
+   - 评论/讨论的后端只有**一个文件**：`functions/api/[[path]].js`。
 
 ---
 
@@ -182,9 +448,11 @@ const SPECIAL_TRANSFORM_CONFIGS = {
 | 目标 | 执行命令 | 说明 |
 | --- | --- | --- |
 | 本地开发 | `cmd.exe /c npm run dev` | 启动 Vite 开发服务器（支持热重载） |
+| **评论 API（本地必需）** | `cmd.exe /c npm run dev:api` | 启动 wrangler Pages Functions（8788）；**改了 `functions/` 必须重启** |
 | 数据预构建 | `cmd.exe /c npm run data:build` | 重新生成所有 `parsed/*.json` 数据 |
 | 全量校验 | `cmd.exe /c npm run verify` | 执行完整预解析检查与生产构建打包 |
 | UI 自动化测试 | `cmd.exe /c npm run test:ui` | 运行 Playwright UI 交互与回归测试 |
+| 清本地评论/限流 | 见上文 0.7 | 跑评论测试前必须先清，否则被限流误判 |
 
 > **提示**：修改了 `monsterParser.js`、`items.mjs` 等预解析逻辑或原始配置表后，必须执行 `data:build` 重新生成 JSON 文件。交付前必须确保 `verify` 命令退出码为 0（全部 ✅）。
 
@@ -192,8 +460,12 @@ const SPECIAL_TRANSFORM_CONFIGS = {
 
 ## 七、后续可关注优化方向
 
-1. 关卡图鉴中更多特殊关卡（如隐藏探索点位、支线任务交互）的视觉高亮与过滤增强；
-2. 移动端在极端小屏（< 360px）下复杂概率文本的字号与排版微调；
-3. 为更多拥有特殊战斗机制的 Boss 配置 `SPECIAL_TRANSFORM_CONFIGS`，丰富阶段展示；
-4. 怪物 Buff / 异常状态数值补全（已做前期数据探索，`raw/buff.json` 中含完整 Buff 定义，可在后续版本中落地为独立模块）；
-5. 后续版本若有新增关卡/怪物/装备数据，运行 `scripts/parse/` 重新构建即可平滑接入。
+0. **[最优先] 推送上线**（〇·0.8 清单）——闪烁问题已于 2026-10-03 修复（见〇·0.5），
+   上线前唯一未做的是线上三项实测（`/api/health` 是 JSON、不被 EdgeOne 缓存、静态请求不调用 Function）。
+1. 讨论区面板高度仍是 `calc(--vh100 - … - 190px)` 的**推算魔数**（〇·0.5 末尾），
+   要动它必须先在 1025 / 1161 / 1440 三视口复核；
+2. 关卡图鉴中更多特殊关卡（如隐藏探索点位、支线任务交互）的视觉高亮与过滤增强；
+3. 移动端在极端小屏（< 360px）下复杂概率文本的字号与排版微调；
+4. 为更多拥有特殊战斗机制的 Boss 配置 `SPECIAL_TRANSFORM_CONFIGS`，丰富阶段展示；
+5. 怪物 Buff / 异常状态数值补全（已做前期数据探索，`raw/buff.json` 中含完整 Buff 定义，可在后续版本中落地为独立模块）；
+6. 后续版本若有新增关卡/怪物/装备数据，运行 `scripts/parse/` 重新构建即可平滑接入。

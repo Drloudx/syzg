@@ -105,11 +105,11 @@ D1 数据库：`myrzg-comments`，id `5f0d4c37-107f-4811-bc5e-768f73c51a3a`，re
 
 **Cloudflare 免费版可以支撑评论功能，不需要购买任何服务。** Cloudflare 免费账号自带 Workers / Pages Functions + D1（SQLite）+ KV + R2 + Turnstile，其中评论只需要用到 Functions、D1 和 Turnstile 三项。
 
-本站当前架构（2026-10-02 实测）：
+本站当前架构（2026-10-02 实测；2026-10-03 域名迁到 `syzg.yxzmy.top`，拓扑不变）：
 
 ```
 浏览器
-  │  CNAME → myrzg.yxzmy.top.eo.dnse3.com   （腾讯云 EdgeOne，NS: peach/henry.dnspod.net）
+  │  CNAME → syzg.yxzmy.top.eo.dnse3.com   （腾讯云 EdgeOne，NS: peach/henry.dnspod.net）
   ▼
 EdgeOne 边缘节点            Server: cloudflare / EO-Cache-Status / EO-LOG-UUID
   │  回源
@@ -430,21 +430,240 @@ CREATE TABLE rate_limits (
 - **交流群**站内群号与聊天昵称同字号同字重（13px / 700），颜色用强调色 `--accent-ink`。
 - 入口文案是**文字「进入→」**，不用箭头图形符号（后者在这套羊皮纸样式里显得突兀）。
 
-**刷新时机有三个，缺一不可**（前两个是实测踩坑后补的）：
+**刷新时机有四个，缺一不可**（前两个是实测踩坑后补的，第四个是 2026-10-03 补的）：
 
 | 时机 | 为什么需要 |
 | --- | --- |
 | **路由变化** | 覆盖站内切页 |
 | **本机发表评论后**（`utils/commentEvents.js` 广播） | 本站是 hash 路由，站内发帖**不改变路由也不重载应用**，光靠切页会看到"刚发的只在左边、右栏还是旧的"（用户实际反馈） |
-| **30 秒定时 + 从后台切回** | 让**别人发的**也能出现；用户停在某页不动时，前两个时机都不会触发 |
+| **60 秒前台轮询 + 从后台切回** | 让**别人发的**也能出现；用户停在某页不动时，前两个时机都不会触发 |
+| **讨论区也轮询**（2026-10-03 补，见下条） | 右栏出现了、中间区域却没有（见「讨论区中间的自动刷新」一节） |
 
-**三个时机都走 `fresh`**：服务端跳过共享缓存 + 客户端加时间戳参数穿透中间层缓存。
+**四个时机都走 `fresh`**：服务端跳过共享缓存 + 客户端加时间戳参数穿透中间层缓存。
 只让"发帖"走 fresh 是不够的——实测切页时仍会撞上 30 秒缓存窗口、新评论不出现。
 
 - 正常浏览仍吃 **30 秒共享缓存**（`s-maxage=30, stale-while-revalidate=60`）：
-  右栏在每个页面都可见，不缓存就变成"每打开一页查一次库"。
+  右栏在每个页面都可见，不缓存就变成"每打开一页查一次库"。轮询走 `?fresh=1`
+  会绕开它，所以**轮询周期与这个缓存窗口无关**（原先"间隔与缓存对齐"的说法已不成立）。
 - 版本号（硬编码 `v1.0.0`，仓库内仅此一处）随面板移除；
   **交流群链接保留**（唯一拉新入口），配色与「进入讨论区」的强调色一致。
+
+### 讨论区中间的自动刷新（2026-10-03 补）
+
+**现象**（用户反馈）：在别的设备发了消息，右栏出现了，**中间区域没有**，必须重开一次聊天。
+
+**根因**：中间区域**根本没有自动刷新**——`CommentsPanel` 只在 `pageKey`/`recent`
+**变化时**才 `load()`，而站内讨论区的 `pageKey` 永远是 `site:general`，不会变；
+`commentEvents` 广播又只在同一个标签页内传、**不跨设备**。所以只有重新挂载才刷新。
+
+**改法**：前台轮询（间隔 1 分钟），中间与右栏共用 `config/discussions.js` 的
+`DISCUSSION_POLL_MS`（**一处维护**——两处填不同数字会出现"右边出现了、中间还没有"
+的错位；此前两处各写各的 20 秒 / 30 秒，改一次要翻两个文件），
+并由 `composables/useVisibilityPolling.js` 统一管理。这个共享工具把四个边界集中在一处：
+
+| 边界 | 行为 |
+| --- | --- |
+| 标签页在后台 | **完全停跑**。实测隐藏 25 秒内 `/api/` 请求 **0 次** |
+| 切回前台 | **立即补一次**（不等下一个周期）。实测切回后 2.5 秒内确实产生请求 |
+| 预渲染阶段 | 不跑（`document.prerendering`），否则批量导航预渲染会凭空产生请求 |
+| 请求变慢 | 用 `setTimeout` 递归而非 `setInterval`，不会堆积 |
+
+**刷新必须是"只并新增"，不能替换列表**（`CommentsPanel.mergeNewComments`）：
+
+- `load()` 会拿服务端那一页**整体替换** `comments`，而用户可能已经"上滑加载更早消息"
+  拉进来好几页 —— 替换等于**把那些历史丢掉**。所以轮询按 id 只挑本地没有的条目，
+  聊天式接在末尾、列表式接在开头；
+- **不显示加载态、失败不弹错**：轮询周期比人眼快，闪加载态比不刷新更烦；
+- **不动滚动位置**：合并后 `commentsLength` 变化会走 `DiscussionsView` 的 watcher，
+  而那个 watcher 只在"插入前就贴着底部"时才滚动 —— 用户翻着历史时原地不动。
+
+**实测的轮询节奏与成本**（`scripts/dev/scratch/measure-poll-cadence.mjs` /
+`measure-poll-cost.mjs`）：
+
+| 项目 | 实测 |
+| --- | --- |
+| `comments` 轮询间隔 | **60024ms**（等于 `DISCUSSION_POLL_MS`） |
+| 每周期请求数 | **2 次**（中间 `/api/comments` 4850 B + 右栏 `/api/recent` 1923 B） |
+| 每周期数据量 | 约 6.8 KB |
+| 1 人停留 1 小时 | 120 次请求 / 约 0.4 MB |
+| 5 人 × 4 小时/天 | **2400 次请求/天**（Functions 免费版 10 万次/天的约 **2.4%**）/ 约 7.8 MB/天 |
+| 页面隐藏期间 | **0 次**请求 |
+
+> **额度上的瓶颈是请求数，不是流量**：流量即使按 20 秒轮询也只有 23 MB/天。
+> 所以"把轮询换成即时推送"在额度上几乎没有收益（请求数还要靠长连接 + 广播中枢换），
+> 详见下文"要不要做即时推送"。
+>
+> 注意：**只有讨论区挂了轮询**。`mergeNewComments` 由 `DiscussionsView` 通过
+> `listRef` 调用；物品详情等页面的评论面板没人调它，所以不轮询。
+> **不要**给每个物品详情的评论面板都加轮询——那会把"每次打开详情一次请求"
+> 放大成"停留期间每 60 秒一次"，而物品图鉴是首页、点开极频繁（见上文额度提醒）。
+
+**回归入口**：`scripts/dev/scratch/verify-cross-device-poll.mjs`
+（用两个独立浏览器上下文模拟两台设备，8/8：中间与右栏都自动出现、
+更早消息不丢、翻历史不被拽到底部、后台不轮询、无 JS 报错、测试数据自清）。
+
+### 要不要做即时推送（SSE/WebSocket）——**结论：不建议**
+
+2026-10-03 用户问过"即时推送性能消耗高吗"。以下是当时的分析与结论，避免以后重复讨论。
+
+**先纠正一个可能的误解**：有一种想法是"只做一个小的『有新消息吗』接口，没新消息就不轮询了"。
+**这做不到。** 客户端要知道有没有新数据，只有两条路：① 自己定期去问（轮询）；
+② 服务端主动推（SSE/WebSocket）。TCP 上服务端不主动说话，客户端不可能凭空知道。
+所谓轻量接口只是**让每次询问更便宜**（响应从 6.8 KB 降到约 50 B、D1 读从 20 行降到 1 行），
+**请求数一点没少**——而请求数才是瓶颈，所以它解决的是非瓶颈指标。
+
+**真正的问题是架构，不只是配额**：
+
+> Cloudflare Workers **不同请求之间没有共享内存**（每次请求可能落在不同 isolate）。
+
+所以"某人一发、所有在线的人立刻收到"需要一个**能被所有实例看见的会合点**，
+而 SSE 处理器自己不能原地等待别人（Workers 代码是每次请求执行的，不是每连接驻留）：
+
+| 做法 | 代价 |
+| --- | --- |
+| SSE + 处理器内部**定时回查 D1** | 那还是轮询，只是挪到服务端 —— **没有收益** |
+| SSE + **Durable Object** 做广播中枢 | 真正的解法，但多一个绑定/计费对象 |
+| SSE + 外部 pub/sub（Ably/Pusher 等） | 可能超预算，且多一个外部依赖 |
+
+另外两个**未核实**的风险（不猜，要做得先实测）：长连接能维持多久（Cloudflare 侧上限）、
+以及**EdgeOne 会不会把流式响应缓冲或超时切断**（它站在 Pages 前面）。
+
+**收益对比**（基于上面的实测成本）：
+
+| 方案 | 额外开销 | 复杂度/风险 | 建议 |
+| --- | --- | --- | --- |
+| 现状（1 分钟前台轮询） | 2400 请求/天 = 免费额度 2.4% | 无 | ✅ 保持 |
+| 轻量"有新消息吗"接口 | 请求数不变，流量降约 98% | 低，但**不解决瓶颈** | 不值 |
+| 真·即时推送 | 连接数与 DO 计费未知 | 高（DO 或外部服务 + 穿透 EdgeOne 未验证） | ⏸ 不做 |
+
+**什么时候才考虑**：只有当"聊天室那种秒级体验"本身成为需求时（性能不是理由），
+且先花半小时做探针（部署临时 `/api/_sse-test`，从本机接 60 秒看能否穿过 EdgeOne 持续收到）。
+探针不通就直接放弃，省掉后面所有工作。
+
+**真要降额度该怎么做**（而不是上 SSE）：请求量逼近 10 万/天时，
+先把"有没有新消息"存到 **KV（带 TTL）**，让轮询命中 KV 而不落到 Functions 与 D1 ——
+比 SSE 简单得多，也没有长连接的未知数。
+
+### 排序：详情页「最新在上」，站内讨论区「最新在下」
+
+服务端**一律按 id 倒序**（最新在前）返回，前端按需要决定展示顺序：
+
+| 位置 | 形态 | 顺序 |
+| --- | --- | --- |
+| 图鉴详情里的讨论区 | 列表 | **最新在上**（翻阅习惯，保持不变） |
+| 站内讨论区 `/#/discussions` | 聊天 | **最新在下**（`reverse`，紧挨下方输入框） |
+
+`CommentsPanel` 的 `reverse` 属性负责反转。**分页也要跟着反过来**：
+"加载更多"取回的更早一页同样是"最新在前"，反转后要**接在列表最前面**（prepend）。
+
+聊天式视图还要**自动停在最新一条**：`scrollTop = scrollHeight`。
+注意必须等布局落定——只 `await nextTick()` 不够，实测刚打开页面时 `scrollTop` 仍是 0
+（此时 `scrollHeight` 还是旧值），要用**双 `requestAnimationFrame`**。
+
+### 正文字数上限：200
+
+服务端 `MAX_BODY = 200`，前端 `CommentComposer.vue` 的 `maxlength` 与计数器必须一致。
+
+⚠️ **不要依赖 `sanitize()` 的截断**：它结尾是 `.slice(0, maxLen)`，超长会被**静默砍掉**——
+用户看到的是"我写了 300 字，发出去只剩 200 字"，毫无提示。
+因此服务端按**原始输入**显式判断并返回「评论最多 200 字，请精简后再发」。
+
+### 发表后不重新拉取，而是**就地把那一条插进去**
+
+发表成功后**不要 `reload()`**（重拉整页会替换整个数组 → Vue 销毁重建全部列表项 →
+DOM 闪一下）。改为只 push/unshift 一条：
+
+- `CommentsPanel.addPostedComment(comment)`：主区列表按 `reverse` 决定 push 还是 unshift；
+- `App.vue` 的右栏用 `addRecentComment(comment)`：同样是插入一条，**不重新请求接口**；
+- 广播信号 `commentEvents.notifyCommentPosted(comment)` 携带新评论对象，
+  这样消费方不必为了拿这一条再去请求一次。
+
+只有**进了待审**（`pending`，不在公开列表里）才需要重拉一次。
+
+### 闪烁（"发表时闪一下"）——真实成因是滚动跟随，2026-10-03 已修
+
+> 这一节原先写的"三个成因"里，**第三个（面板高度用 `--vh100` 推算有偏差）经实测不成立**；
+> 真正让用户看到闪烁的是**滚动跟随的时机与位移方式**。下面是复核数据与最终约定。
+
+**先被实测排除的假设**（6 种视口：1025×780 / 1161×661 / 1280×800 / 1440×900 / 1731×927 / 1920×1080）
+
+| 假设 | 实测 |
+| --- | --- |
+| 面板高度用 `--vh100` 推算有偏差，滚动区裁切边界卡在"差几像素"处 | **不成立**。面板底边恒在视口下 20px、输入区底边最小余量 36px、`.app-container` 纵向溢出 **0px** |
+| 发表区高度 / 滚动区可视高度 / 滚动条宽度抖动 | **不成立**。逐帧全程零变化（174 / 530 / 15px） |
+| 列表被整体重建 | **不成立**。列表 subtree 的 MutationObserver 只记录到 `+1/-0` 一次 |
+| 滚动锚定与"滚到最新"打架 | 已由 `overflow-anchor: none` + `scrollbar-gutter: stable` 处理，无需再改 |
+
+> 测量本身的坑：扫描脚本若把**首帧**取在"页面还没落定"时，会报出 29px 的假变化
+> （1920×1080 上复现过）。起采样前必须先等固定帧数，否则会去追一个不存在的 bug。
+
+**真实成因（逐帧数据）**
+
+| 缺陷 | 现象 |
+| --- | --- |
+| **滚动晚两帧** | `scrollToLatestAfterLayout()` 用双 `requestAnimationFrame` 等布局，于是先绘制"新消息已插进视野、列表还没跟下去"的中间态，紧接下一帧整块再动。帧序实测：`#24 items 20→21` → `#25 scrollTop 仍 1040` → `#26` 才变 |
+| **一次瞬移** | `el.scrollTop = el.scrollHeight` 是瞬间跳变。用户往上翻着历史时点发表，实测 `scrollTop 577 → 1196`，**619px 在一帧内甩过去** |
+
+**修法：滚动位置收敛为唯一决策点**（`src/views/DiscussionsView.vue`）
+
+- `watch(commentsLength, { flush: 'post' })` —— 在 **DOM 更新之后、浏览器绘制之前**决定滚动，
+  让"插入"和"滚动"落在同一帧（`flush: 'pre'`/默认都太早，DOM 还没更新）；
+- **首次载入直接落到底**（打开就该停在最新，不要动画）；**之后的增量走 260ms 动画曲线**
+  （easeOutCubic）。**目标每帧重取** `scrollHeight - clientHeight`——新评论高度要等布局，
+  写死起始目标会在收尾时对不齐、又得补跳一下；
+- 动画**首帧同步推进**（`step(performance.now())`），不要用 `requestAnimationFrame(step)` 启动，
+  否则第一次位移又会被推到下一帧；
+- **只在"插入前就贴着底部"时才自动跟随**（阈值 `NEAR_BOTTOM_PX = 120`，约一行半消息）。
+  用户往上翻着历史时**原地不动**——他的阅读位置比"跳到最新"更重要；
+- 用户自己滚动（容器的 `scroll` 事件）立刻放弃动画，不与用户抢滚动位置；
+- 上滑加载更早消息仍走 `suppressAutoScroll`，位置由 `CommentsPanel` 的锚点补偿负责。
+
+**A/B 对照（证明断言有效，不只是"跑绿了"）**
+
+| 断言 | 旧实现 | 修复后 |
+| --- | --- | --- |
+| 滚动逐帧推进（单帧位移 < 总位移 75%） | ❌ 单帧 **78px** = 总位移 | ✅ 单帧最大 **14px** / 总 78px |
+| 翻历史时发表，列表原地不动 | ❌ 漂移 **619px** | ✅ 漂移 **0.0px** |
+| `scrollTop` 单调增加无回落 / 最终精确停在底部 | ✅ | ✅ |
+| 发表区高 / 滚动区可视高 / 滚动条宽零变化 | ✅ | ✅ |
+
+回归入口：`node scripts/dev/scratch/verify-post-scroll.mjs [宽] [高]`
+（桌面 1440×900 与手机 390×844 各 **12/12**）。既有的 5 套专项（`verify-no-flicker` 9 项、
+`verify-chat-order` 11 项、`verify-autoscroll` 6 项、`verify-discussions` 36 项、
+`verify-discussions-order` 9 项）全部复跑通过。
+
+**遗留**：面板高度仍是 `calc(var(--vh100) - var(--header-height) - var(--safe-top) - 190px)` 的
+**推算魔数**（1025 宽时与其它视口差 12px）。本轮刻意不动它——上次改成脚本量高度被用户实测
+"高度不对"而回退。要动必须先按上文三视口核对「输入区底边 ≤ 视口高」且「`.app-container` 无纵向溢出」
+（`scripts/dev/scratch/diagnose-discussion-layout.mjs` 可直接打出这条链上的每一级）。
+
+### 列表与发表区之间的间距：**卡片底边 = 滚动条底端**，且保留 10px 呼吸间距
+
+这一条是用户看着截图逐轮校出来的，三个约束互相牵制，改的时候要一起满足：
+
+| 约束 | 为什么 |
+| --- | --- |
+| 滚动区里**不能有尾部外边距** | `UiSection` 自带 `margin-bottom: 18px`，而讨论区的 `.comments-panel` 正是滚动区最后一个区块；不清零就会变成滚动容器底部的空白尾巴，表现是**滚动条比最后一张卡片长出一截**（用户截图指出）。`DiscussionView` 用 `:deep(.comments-panel)` / `:deep(.comments-list)` 就地清零，**不动全局 `UiSection`**（其他页面仍需要章节间距） |
+| 滚动区与署名行之间**留 10px** | 完全贴死会显得挤（用户："挨得太近"）。用 `.discussion-composer { padding-top: 10px }` |
+| 面板底部内边距**同步收小到 6px** | 只加间距会把发表区往下推、挤出面板。收小底部内边距让**"最后一张卡片＋滚动条"这一整块整体上移**，而不是把下面的内容顶出去 |
+
+最终几何（1440×900 实测）：`panelBottom 880`、`scrollBottom 699`、`composerTop 699`、
+`lastCardBottom 699`、`gapCardToIdentity 11`、`composerBottom 872`、`.app-container` 溢出 0。
+
+> 另有一条保证：滚动动画**只增不减**（`rendered = want > rendered ? want : rendered`）。
+> 浏览器在收尾时会再微调一次 `scrollHeight`（新评论换行/图片解码），直接写目标值会出现 1px 回落。
+
+### 往上翻历史自动加载（聊天式不设按钮）
+
+聊天式视图 `loadMoreOnScroll`：**不显示「加载更多」按钮**，滚到距顶部 80px 内自动加载更早的。
+两个必须处理的点：
+
+- **监听要挂在真正的滚动祖先上**。`scroll` 事件不冒泡，用 capture 挂在自己身上
+  也**只能捕获后代的滚动**，而滚动容器是本组件的**祖先**——挂在自己身上永远收不到（实测踩到）。
+  且不能在 `onMounted` 一次找完：那一刻列表可能还没撑出滚动高度，要用 watcher 重试绑定。
+- **锚点补偿**：更早的消息是 prepend，浏览器保持 `scrollTop` 数值不变会让正在看的内容下移。
+  加载前后测同一条锚点相对容器顶部的位置，把差值补回 `scrollTop`。
+  同时通过 `loading-earlier` 事件让父组件**抑制"自动滚到最新"**，否则刚补完位置又会被拽回底部。
 
 ### 删除是幂等的
 `DELETE /api/comments` 的目标状态是"这条评论不再可见"。**已经不可见（或从未存在）时返回成功**，
@@ -532,23 +751,26 @@ Content-Type: text/html; charset=utf-8
 
 ### 6.3 域名与 DNS 现状（决定“能不能用子域绕开”）
 
-实测：
+实测（2026-10-03 更新为新域名）：
 
 ```
 yxzmy.top            NS:  peach.dnspod.net / henry.dnspod.net   （腾讯云 DNSPod）
-myrzg.yxzmy.top      CNAME → myrzg.yxzmy.top.eo.dnse3.com       （EdgeOne 加速）
-api.myrzg.yxzmy.top  A 28.0.0.116                                （已存在解析，疑似 EdgeOne 泛解析）
+syzg.yxzmy.top       CNAME → syzg.yxzmy.top.eo.dnse3.com       （EdgeOne 加速）
+myrzg.yxzmy.top      CNAME → myrzg.yxzmy.top.eo.dnse3.com       （旧域名，并存期退路）
 ```
 
-- 域名 DNS 在**腾讯云 DNSPod**，不在 Cloudflare。因此“把子域直接指向 Cloudflare Workers 以绕开 EdgeOne”需要先在 DNSPod 加 CNAME，**且必须确认该子域没有被 EdgeOne 的泛解析规则接管**（`api.` 当前已能解析，说明很可能被接管）。
-- **EdgeOne 控制台已确认的配置**（用户提供截图，2026-10-02）：
+- 域名 DNS 在**腾讯云 DNSPod**，不在 Cloudflare。因此"把子域直接指向 Cloudflare"需要先在 DNSPod 加 CNAME，**且要注意 EdgeOne 的泛解析规则会接管**（`*.yxzmy.top` 存在泛解析：实测 `api.myrzg.yxzmy.top` → A `28.0.0.116`，`syzg.yxzmy.top` 加记录前就已 CNAME 到 `*.eo.dnse3.com`）。
+- **EdgeOne 控制台已确认的配置**（用户提供截图）：
 
   | 加速域名 | 状态 | 源站类型 | 源站配置 | HTTPS |
   | --- | --- | --- | --- | --- |
-  | `myrzg.yxzmy.top` | 已生效 | IP/域名 | **`myrzg.pages.dev`** | 已部署 |
+  | `syzg.yxzmy.top` | 已生效 | IP/域名 | **`syzg.pages.dev`** | 已部署（2026-10-03 新增） |
+  | `myrzg.yxzmy.top` | 已生效 | IP/域名 | `myrzg.pages.dev` | 已部署（旧域名，并存） |
   | `hxsngh.yxzmy.top` | 已生效 | IP/域名 | `hxsngh.pages.dev` | 已部署 |
 
-  这条解决了一个前置疑问：源站指向 `*.pages.dev`，即**回源到 Cloudflare Pages**，因此 Pages Functions 能在本站生效（若源站是静态存储桶，Functions 方案直接作废）。另一个站 `hxsngh` 是同套架构。
+  这条解决了一个前置疑问：源站指向 `*.pages.dev`，即**回源到 Cloudflare Pages**，因此 Pages Functions 能在本站生效（若源站是静态存储桶，Functions 方案直接作废）。
+  ⚠️ **新加加速域名时必须配证书**：2026-10-03 加 `syzg` 时踩到过——域名加了但没配证书，EdgeOne 会甩出兜底证书
+  `*.cdn.myqcloud.com`，浏览器表现为 `ERR_EMPTY_RESPONSE` / TLS 握手失败。选「申请免费证书 + 自动验证」即可（该方式支持自动续签）。
 - 因此本方案**不依赖子域**：评论接口同域走 `/api`，靠 EdgeOne 规则保证不缓存（见 6.2）。这样只动一个控制台设置，不碰 DNS，风险最小。
 - 若将来想彻底绕开 EdgeOne（例如要上 WebSocket 实时评论），再评估独立子域方案，届时需先确认 DNSPod 上没有 `*.myrzg` 泛解析。
 
@@ -682,7 +904,7 @@ Pages 的 **Fail open / closed**（Settings → Runtime）**必须设为 Fail op
 ### 8.3 与现有约定的一致性
 
 - **不新增 URL query 参数**：评论归属由当前详情业务 ID 推导，评论面板自身的展开/收起是本地状态。SPEC 第四章「仅已实现的参数做 URL 同步」在此适用——不要发明 `?comment=` 之类的协议。
-- 提交成功后**乐观插入**或重新拉取首页，不整页刷新，避免破坏详情滚动位置（[KNOWN_BUGS](KNOWN_BUGS_AND_FIXES.md) 第 3 条）。
+- 提交成功后**乐观插入**或重新拉取首页，不整页刷新，避免破坏详情滚动位置（[KNOWN_BUGS](../KNOWN_BUGS_AND_FIXES.md) 第 3 条）。
 - 评论不影响收集标记、备份导入导出等 `appState` 字段。
 
 ## 九、实施步骤（建议顺序）
@@ -735,8 +957,8 @@ Pages 的 **Fail open / closed**（Settings → Runtime）**必须设为 Fail op
 | --- | --- | --- |
 | 1 | 配 `ADMIN_TOKEN` | Cloudflare Pages 项目 → Settings → Environment variables。**未配置时管理接口直接 404**，管理页会提示「当前未开放评论管理」。⚠️ 必须用足够长的随机串；本地开发用的是短令牌 `yxzm`，**不要照搬上线** |
 | 2 | 配 `IP_HASH_SALT` | 同上。用于 IP/邮箱哈希加盐。⚠️ 换盐等于重置全部限流计数 |
-| 3 | 推送到 `main` | `origin` 是 `github.com/Drloudx/myrzg`，Pages 由 GitHub 自动部署，push 即上线 |
-| 4 | **实测 `/api/health` 返回 JSON** | `curl.exe -i https://myrzg.yxzmy.top/api/health`，断言 `Content-Type: application/json` 而**不是 `text/html`**。被 SPA 兜底吃掉就说明 Functions 没生效 |
+| 3 | 推送到 `main` | `origin` 是 `github.com/Drloudx/syzg`（2026-10-03 由 `Drloudx/myrzg` 改名），Pages 由 GitHub 自动部署，push 即上线 |
+| 4 | **实测 `/api/health` 返回 JSON** | `curl.exe -i https://syzg.yxzmy.top/api/health`，断言 `Content-Type: application/json` 而**不是 `text/html`**。被 SPA 兜底吃掉就说明 Functions 没生效 |
 | 5 | **实测不被缓存** | 连打两次 `/api/health`，断言 `EO-Cache-Status` 均非 HIT、`Age` 不增长 |
 | 6 | 加 EdgeOne 规则 | 见上表第 4 项 |
 | 7 | 配 Turnstile（可延后） | 未配 `TURNSTILE_SECRET` 时接口跳过人机校验，功能可用。注册 Widget 后补 secret，代码不用改 |

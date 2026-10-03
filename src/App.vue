@@ -267,7 +267,7 @@ import AboutModal from './components/AboutModal.vue'
 import AccountModal from './components/AccountModal.vue'
 import { loadIdentity, registerAccountModal, avatarPath, avatarCatalogState, loadAvatarCatalog } from './utils/identity.js'
 import { fetchRecentComments } from './utils/commentApi.js'
-import { commentPostedAt } from './utils/commentEvents.js'
+import { lastPostedComment, commentPostedAt } from './utils/commentEvents.js'
 import { UiButton, UiEmptyState, UiModal } from './components/ui/index.js'
 import ItemDetailModal from './components/ItemDetailModal.vue'
 import RewardProbabilityModal from './components/RewardProbabilityModal.vue'
@@ -282,6 +282,8 @@ import { useBackupData } from './composables/app/useBackupData.js'
 import { useGlobalSearch } from './composables/app/useGlobalSearch.js'
 import { useNativeShell } from './composables/app/useNativeShell.js'
 import { useOverlay } from './composables/useOverlay.js'
+import { useVisibilityPolling } from './composables/useVisibilityPolling.js'
+import { DISCUSSION_POLL_MS } from './config/discussions.js'
 
 const route = useRoute()
 const router = useRouter()
@@ -387,6 +389,8 @@ function openDiscussionFor(comment) {
  */
 const recentComments = ref([])
 const recentLoading = ref(false)
+/** 是否已经成功载入过——用来避免"重拉时先把列表抹成加载态"的闪烁 */
+const recentLoaded = ref(false)
 const RECENT_CLIENT_THROTTLE_MS = 15000
 let recentFetchedAt = 0
 let recentInFlight = false
@@ -395,52 +399,64 @@ async function loadRecentDiscussions({ fresh = false, allowThrottled = false } =
   if (recentInFlight) return
   if (!allowThrottled && !fresh && Date.now() - recentFetchedAt < RECENT_CLIENT_THROTTLE_MS) return
   recentInFlight = true
-  recentLoading.value = true
+  // 只在**首次**载入时显示加载态：已有内容时静默替换，否则列表会先被抹掉再重建（闪一下）
+  if (!recentLoaded.value) recentLoading.value = true
   try {
     const data = await fetchRecentComments({ fresh })
-    recentComments.value = (data?.comments || []).slice(0, 5)
+    /*
+     * 接口按"最新在前"返回。右栏要与站内讨论区**同一种阅读顺序**（最新在下），
+     * 所以先取最新 5 条、再整体反转成"时间正序"——否则用户会觉得
+     * "左边最新在下面、右边最新在上面"，两处对不上（实测被指出过）。
+     */
+    recentComments.value = (data?.comments || []).slice(0, 5).reverse()
+    recentLoaded.value = true
     recentFetchedAt = Date.now()
   } catch {
-    // 右栏是辅助信息：失败静默留空，不打扰主内容（完整错误态由讨论区页自己展示）
-    recentComments.value = []
+    // 右栏是辅助信息：失败**保留已有内容**（清空会让它闪一下变成空态），首次失败才留空
+    if (!recentLoaded.value) recentComments.value = []
   } finally {
     recentInFlight = false
     recentLoading.value = false
   }
 }
 
+/**
+ * 本机发表成功后**直接把新评论插进右栏**，不重新拉取。
+ *
+ * 重新拉取会把整个列表替换掉（即使内容一样，DOM 也会被销毁重建），
+ * 用户看到的就是"右栏闪一下"（实测反馈）。站内讨论区在本站是唯一评论入口，
+ * 所以新评论一定属于 `site:general`，直接插入即可。
+ */
+function addRecentComment(comment) {
+  if (!comment?.id) return
+  if (recentComments.value.some((c) => c.id === comment.id)) return
+  // 最新在下：追加到末尾；超过 5 条时丢掉最旧的一条
+  const next = [...recentComments.value, comment]
+  recentComments.value = next.slice(-5)
+  recentLoaded.value = true
+}
+
+
 // 站内切页时刷新右栏。**绕过节流**：用户切页是明确意图，且服务端共享缓存让开销可控
 watch(() => route.fullPath, () => loadRecentDiscussions({ fresh: true }))
-// 本机发表评论后立刻刷新
-watch(commentPostedAt, () => loadRecentDiscussions({ fresh: true }))
+// 本机发表评论后**直接把那一条插进右栏**（不重新拉取，列表不重建、不闪）
+watch(commentPostedAt, () => addRecentComment(lastPostedComment.value))
 
 /**
- * 定时刷新右栏，让**别人发的**评论也能出现。
- * 间隔与服务端共享缓存的窗口对齐，所以多数轮询会命中缓存、不落库。
- * 页面隐藏时跳过（后台标签页不做无意义请求）。
+ * 定时刷新右栏，让**别人发的**评论也能出现（不必重开页面）。
+ *
+ * 这里原来是自己写的 `setInterval` + `visibilitychange`，改成共享的
+ * `useVisibilityPolling`：同一套边界（后台停跑、切回立即补一次、预渲染不跑、
+ * 用 `setTimeout` 递归避免请求慢时堆积）现在只维护一处，讨论区也用它。
+ *
+ * 间隔与讨论区**共用** `config/discussions.js` 的 `DISCUSSION_POLL_MS`
+ * （两处填不同数字的话，用户会看到"右边出现了、中间还没有"的错位）。
+ * 轮询走 `fresh`（跳服务端 30 秒共享缓存 + 时间戳穿透中间层），
+ * 否则会撞上那个缓存窗口、看到的是旧快照。
  */
-const RECENT_POLL_MS = 30000
-let recentTimer = 0
-
-function startRecentPolling() {
-  stopRecentPolling()
-  recentTimer = window.setInterval(() => {
-    if (document.visibilityState === 'hidden') return
-    loadRecentDiscussions({ fresh: true })
-  }, RECENT_POLL_MS)
-}
-
-function stopRecentPolling() {
-  if (recentTimer) {
-    window.clearInterval(recentTimer)
-    recentTimer = 0
-  }
-}
-
-/** 从后台切回前台时立即刷新一次（用户回来的第一眼应该是最新的） */
-function onVisibilityChange() {
-  if (document.visibilityState === 'visible') loadRecentDiscussions({ fresh: true })
-}
+useVisibilityPolling(() => loadRecentDiscussions({ fresh: true }), {
+  intervalMs: DISCUSSION_POLL_MS
+})
 
 /**
  * 右栏每条评论的缩小头像路径。
@@ -643,16 +659,12 @@ onMounted(() => {
     bootLoadingRaf = requestAnimationFrame(settle)
   }
 
-  // 右栏「最新讨论」定时刷新（见 startRecentPolling 的说明）
-  startRecentPolling()
-  document.addEventListener('visibilitychange', onVisibilityChange)
+  // 右栏「最新讨论」的前台轮询由 useVisibilityPolling 自动接管（见其定义处的说明）
 })
 
 onBeforeUnmount(() => {
   document.removeEventListener('error', handleGlobalImageError, true)
   window.removeEventListener('resize', scheduleStickyClipping)
-  stopRecentPolling()
-  document.removeEventListener('visibilitychange', onVisibilityChange)
   if (stickyClipFrame) window.cancelAnimationFrame(stickyClipFrame)
   if (pendingClearRaf) cancelAnimationFrame(pendingClearRaf)
   if (bootLoadingRaf) cancelAnimationFrame(bootLoadingRaf)
@@ -1378,7 +1390,13 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 
 /* 右栏「最新讨论」列表：紧凑、只读、不放输入框（点开进讨论区发言） */
 .recent-discussions {
-  flex: 1 1 auto;
+  /*
+   * **按内容高度**（`flex: 0 1 auto`），不能是 `flex: 1 1 auto`：
+   * 后者会把 info-body 的剩余高度全吃掉，评论只有几条时会在列表下方留一大块空白
+   * （用户反馈"这里为什么空这么多空白"）。仍需能收缩（`0 1` 的第二个 1）
+   * 以便评论多时在内部滚动。
+   */
+  flex: 0 1 auto;
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -1461,6 +1479,12 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 }
 .recent-foot {
   flex-shrink: 0;
+  /*
+   * 用普通间距，**不要 `margin-top: auto`**：吉祥物（SidebarMascot）自己就带
+   * `margin-top: auto` 且高约 240px，两边都抢剩余空间的话，空白会被"摊"成
+   * 列表→交流群之间的一大段（用户反馈"为什么空这么多空白"）。
+   * 这里让列表与交流群紧跟标题，剩余空白统一留在最下方。
+   */
   margin-top: 12px;
   display: flex;
   flex-direction: column;

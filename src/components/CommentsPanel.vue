@@ -1,5 +1,13 @@
 <template>
-  <UiSection :title="title" class="comments-panel">
+  <!-- `listRoot` 只是给滚动监听挂载用的锚点（真正的滚动容器由 CSS/父级决定） -->
+  <UiSection
+    ref="listRoot"
+    :title="title"
+    class="comments-panel"
+    :data-has-more="hasMore ? '1' : '0'"
+    :data-loading="loading ? '1' : '0'"
+    :data-count="comments.length"
+  >
     <!-- 加载 / 错误 / 空 三态：统一用 UiEmptyState -->
     <UiEmptyState v-if="loading && !comments.length" type="loading" text="评论加载中..." />
 
@@ -55,7 +63,15 @@
         </ul>
         <UiEmptyState v-else :text="readOnly ? '还没有讨论' : '还没有人讨论，来说两句吧'" />
 
-        <div v-if="!limit && hasMore" class="comments-more">
+        <!--
+          分页入口两种形态：
+          - `loadMoreOnScroll`（聊天式）：**不显示按钮**，往上翻到底部时自动加载更早的
+            （见 listRoot 上的滚动监听）。"往上翻看历史"本身就是加载意图，再点一次是多余。
+          - 默认（列表式）：保留「加载更多」按钮。
+          加载中/到底了都**不再额外提示**：前者有内容变化本身作为反馈，
+          后者用户翻到头自然知道（用户明确说这类提醒没必要）。
+        -->
+        <div v-if="!limit && hasMore && !loadMoreOnScroll" class="comments-more">
           <UiButton variant="secondary" size="sm" :disabled="loading" @click="loadMore()">
             {{ loading ? '加载中...' : '加载更多' }}
           </UiButton>
@@ -79,7 +95,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { UiButton, UiEmptyState, UiSection } from './ui/index.js'
 import CommentComposer from './CommentComposer.vue'
 import { getImageUrl } from '../utils/env.js'
@@ -117,15 +133,36 @@ const props = defineProps({
    * 数据源换成"全站最新讨论"（`GET /api/recent`）而不是某个页面的评论。
    * 右栏预览与讨论区首页的历史消息用它。
    */
-  recent: { type: Boolean, default: false }
+  recent: { type: Boolean, default: false },
+  /**
+   * 聊天式排序：**最新在最后**（站内讨论区与右栏预览用）。
+   *
+   * 服务端一律按"最新在前"返回，这里整体反转。默认关闭，
+   * 因为图鉴详情里的讨论区是"列表"形态（最新的在最上面更符合翻阅习惯），
+   * 而聊天形态是"最新在底部、输入框就在下面"。
+   */
+  reverse: { type: Boolean, default: false },
+  /**
+   * 上滑到顶部时**自动加载更早的**，不显示「加载更多」按钮。
+   *
+   * 聊天式视图里"往上翻看历史"本身就是加载意图，再让人点一次按钮是多余的；
+   * 按钮形态仍保留给默认（列表）形态使用。
+   */
+  loadMoreOnScroll: { type: Boolean, default: false }
 })
 
-const emit = defineEmits(['open-page'])
+const emit = defineEmits(['open-page', 'loading-earlier'])
 
 /** 实际上列表里显示的条目（`limit` 只是截断展示，不改变分页状态） */
 const shownComments = computed(() =>
   props.limit > 0 ? comments.value.slice(0, props.limit) : comments.value
 )
+
+/**
+ * 已载入的条数。供父组件判断"列表是否已经来了数据"
+ * （讨论区页面用它决定何时滚到最新一条）。
+ */
+const commentsLength = computed(() => comments.value.length)
 
 const comments = ref([])
 const loading = ref(false)
@@ -154,13 +191,39 @@ async function onPosted() {
  * 供父组件在"发表区在组件外"时刷新列表（讨论区页面就是这种结构）。
  * 例如 DiscussionsView 把 CommentComposer 放在滚动容器之外，
  * 发完由它调用本方法，让列表与发表区状态保持一致。
+ * 返回 Promise，调用方可以 `await` 后再滚到最新一条。
  */
 function reload() {
   actionError.value = ''
   return load()
 }
 
-defineExpose({ reload })
+/**
+ * 发表成功后**只把新评论并进列表**，不重新拉整页。
+ *
+ * 为什么不能直接 `reload()`：重拉会用服务端返回的新数组整体替换 `comments`，
+ * Vue 于是把全部列表项**销毁重建**；重建期间 `scrollHeight` 会短暂变化，
+ * 表现为"滚动条忽然变长又变短地闪一下"（用户反馈）。
+ * 只 push/unshift 一条，其余 DOM 完全不动，就没有这个闪烁。
+ *
+ * 列表顺序与 `reverse` 一致：聊天式最新在末尾（push），列表式最新在开头（unshift）。
+ */
+function addPostedComment(comment) {
+  if (!comment?.id) return
+  if (props.reverse) comments.value = [...comments.value, comment]
+  else comments.value = [comment, ...comments.value]
+  syncOwned()
+}
+
+defineExpose({
+  reload,
+  addPostedComment,
+  /** 轮询刷新：只并新增，不替换列表、不动滚动位置、不显示加载态 */
+  mergeNewComments,
+  commentsLength,
+  hasMore,
+  loading
+})
 
 function syncOwned() {
   const set = new Set()
@@ -179,11 +242,25 @@ async function load({ append = false } = {}) {
   loading.value = true
   errorMessage.value = ''
   try {
-    // 两种数据源：某个页面的评论（可分页）／全站最新（固定条数、服务端有边缘缓存）
+    // 两种数据源：某个页面的评论（可分页）／讨论区最新（固定条数、服务端有边缘缓存）
     const data = props.recent
       ? await fetchRecentComments()
       : await fetchComments(props.pageKey, { cursor: append ? cursor.value : undefined })
-    comments.value = append ? [...comments.value, ...data.comments] : data.comments
+
+    /*
+     * 排序：服务端一律按 **id 倒序**（最新在前）。
+     *
+     * `reverse` 模式（站内讨论区，聊天式）下改为**最新在最后**：
+     * 接口是"最新在前"，所以整体反转即可；而"加载更早的"这一页同样是"最新在前"，
+     * 反转后应**接在列表最前面**（`append` 时用 prepend 而不是 push）。
+     */
+    if (props.reverse) {
+      const page = [...data.comments].reverse()
+      comments.value = append ? [...page, ...comments.value] : page
+    } else {
+      comments.value = append ? [...comments.value, ...data.comments] : data.comments
+    }
+
     hasMore.value = !!data.hasMore
     cursor.value = data.nextCursor ?? null
     syncOwned()
@@ -195,10 +272,149 @@ async function load({ append = false } = {}) {
   }
 }
 
+/**
+ * 真正实现"只并新增"的刷新（轮询用）。
+ *
+ * 为什么不能直接复用 `load()`：`load()` 会拿服务端那一页**整体替换** `comments`，
+ * 而用户可能已经"上滑加载更早消息"拉进来好几页——替换等于把那些历史丢掉。
+ * 这里按 id 只挑本地没有的新条目并进对应端（聊天式接在末尾、列表式接在开头）。
+ *
+ * 另外两条也是必须的：
+ *   - **不显示加载态也不弹错**：轮询周期比人眼快，闪加载态比不刷新更烦；
+ *     失败就静默保留已有内容，下个周期还会再试（用户没在操作，不该被打扰）；
+ *   - **不动滚动位置**：合并后 `commentsLength` 变化会走 `DiscussionsView` 的 watcher，
+ *     而那个 watcher 只在"插入前就贴着底部"时才滚动——用户翻着历史时原地不动。
+ *
+ * @returns {Promise<number>} 实际并入的新条目数（0 表示没有新内容或失败）
+ */
+async function mergeNewComments() {
+  try {
+    const data = props.recent
+      ? await fetchRecentComments()
+      : await fetchComments(props.pageKey)
+    const incoming = data?.comments || []
+    if (!incoming.length) return 0
+
+    const known = new Set(comments.value.map((c) => c.id))
+    const fresh = incoming.filter((c) => !known.has(c.id))
+    if (!fresh.length) return 0
+
+    if (props.reverse) {
+      // 聊天式：最新在末尾，新的接在后面（服务端是倒序，所以先翻正）
+      comments.value = [...comments.value, ...[...fresh].reverse()]
+    } else {
+      // 列表式：最新在开头
+      comments.value = [...fresh, ...comments.value]
+    }
+    syncOwned()
+    return fresh.length
+  } catch {
+    return 0
+  }
+}
+
 function loadMore() {
   if (!hasMore.value || loading.value) return
   return load({ append: true })
 }
+
+/**
+ * 绑定滚动监听。
+ *
+ * **必须挂在真正的滚动祖先上，不能用 capture 挂在自己身上**：
+ * capture 只能捕获**后代**的滚动事件，而这里的滚动容器（`.discussion-scroll` /
+ * `#itemModalScroll`）是本组件的**祖先**——挂在自己身上永远收不到（实测踩到过）。
+ *
+ * 也不在 `onMounted` 里一次找完就罢：那一刻列表可能还没渲染出滚动高度，
+ * `findScrollParent` 会因为 `scrollHeight <= clientHeight` 而找不到目标。
+ * 所以用 watcher 在有数据后重试。
+ */
+const listRoot = ref(null)
+let boundScroller = null
+
+function scrollHost() {
+  return listRoot.value?.$el || listRoot.value || null
+}
+
+function findScrollParent(el) {
+  let node = el?.parentElement
+  while (node && node !== document.body) {
+    const oy = getComputedStyle(node).overflowY
+    if (oy === 'auto' || oy === 'scroll') return node
+    node = node.parentElement
+  }
+  return null
+}
+
+/** 找一个**能滚**的祖先；找不到时退回到最近的可滚样式祖先（内容还没撑开的情况） */
+function resolveScroller() {
+  const host = scrollHost()
+  let node = host?.parentElement
+  let fallback = null
+  while (node && node !== document.body) {
+    const oy = getComputedStyle(node).overflowY
+    if (oy === 'auto' || oy === 'scroll') {
+      if (!fallback) fallback = node
+      if (node.scrollHeight > node.clientHeight + 4) return node
+    }
+    node = node.parentElement
+  }
+  return fallback
+}
+
+async function loadEarlierKeepingPosition(scroller) {
+  if (!hasMore.value || loading.value) return
+  const root = scroller || resolveScroller()
+  if (!root) return
+
+  const anchor = root.querySelector?.('.comment-item')
+  const before = anchor ? anchor.getBoundingClientRect().top - root.getBoundingClientRect().top : 0
+
+  /*
+   * 通知父组件"这是往上补历史，别自动滚到底"。
+   * 否则父组件 watch 到条数变化会把用户又拽回最新一条，
+   * 同时覆盖掉下面这段锚点补偿（实测问题）。
+   */
+  emit('loading-earlier', true)
+  try {
+    await load({ append: true })
+    await nextTick()
+    const anchorAfter = root.querySelector?.('.comment-item')
+    if (anchorAfter) {
+      const after = anchorAfter.getBoundingClientRect().top - root.getBoundingClientRect().top
+      root.scrollTop += after - before
+    }
+  } finally {
+    emit('loading-earlier', false)
+  }
+}
+
+function onListScroll(event) {
+  if (!props.loadMoreOnScroll || !hasMore.value || loading.value) return
+  const root = event?.currentTarget || resolveScroller()
+  // 距离顶部 80px 内就触发，避免"必须精准拖到最顶"的手感
+  if (root && root.scrollTop <= 80) loadEarlierKeepingPosition(root)
+}
+
+function bindScroller() {
+  if (!props.loadMoreOnScroll) return
+  const next = resolveScroller()
+  if (!next || next === boundScroller) return
+  boundScroller?.removeEventListener('scroll', onListScroll)
+  next.addEventListener('scroll', onListScroll, { passive: true })
+  boundScroller = next
+}
+
+watch(
+  () => [props.loadMoreOnScroll, comments.value.length],
+  () => nextTick(bindScroller),
+  { immediate: true }
+)
+
+onBeforeUnmount(() => {
+  boundScroller?.removeEventListener('scroll', onListScroll)
+  boundScroller = null
+})
 
 /**
  * 删除自己的评论。
@@ -399,6 +615,16 @@ watch(
   display: flex;
   justify-content: center;
   padding: 8px 0 4px;
+}
+
+/* 分页提示（聊天式：自动加载的说明 / 已到最早） */
+.comments-more-hint {
+  margin: 0;
+  padding: 6px 0;
+  color: var(--text-faint);
+  font-size: 12.5px;
+  line-height: 1.6;
+  text-align: center;
 }
 
 /* 全站最新列表里标注「这条来自哪个页面」：做成可点的小胶囊 */

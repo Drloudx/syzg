@@ -5,6 +5,9 @@
 | 文档 | 负责内容 |
 | --- | --- |
 | [SPEC](SPEC.md) | 项目总览、各页面功能与关键业务规则、共享模块、数据链、URL、资源与验收 |
+| [HANDOFF_FULL](HANDOFF_FULL.md) | **完整交接文档**：现状、部署拓扑（EdgeOne→Pages→D1）、凭据与坑、验证命令、改名迁移、剩余待办 |
+| [HANDOFF](HANDOFF.md) | 项目交接（功能视角，〇节是最新状态）；运维与迁移细节看 HANDOFF_FULL |
+| [rename-myrzg-to-syzg](rename-myrzg-to-syzg.md) | 仓库/域名改名 myrzg → syzg：执行进度、两条偏离、踩坑与回滚点 |
 | [ARCHITECTURE](ARCHITECTURE.md) | 目录职责、依赖、数据请求/缓存、构建和发布机制 |
 | [UI_COMPONENT_LIBRARY](UI_COMPONENT_LIBRARY.md) | 公共组件 API、主题、布局、滚动和页面模板 |
 | [KNOWN_BUGS_AND_FIXES](KNOWN_BUGS_AND_FIXES.md) | 可复用的故障现象、根因和排查入口 |
@@ -28,6 +31,8 @@
 | --- | --- |
 | [统一奖励规则](technical/ACQUISITION_RULES.md) | 多页面共用的数据结构、概率/数量语义与兼容接口 |
 | [评论后端方案](technical/COMMENTS_BACKEND.md) | Cloudflare 免费版（Pages Functions + D1 + Turnstile）评论功能：设计、实现落点、CDN 缓存风险、错误文案契约与验收；**已实施** |
+| [账号体系落地方案](technical/ACCOUNT_SYSTEM.md) | 邮箱验证码（无密码）方案的**落地版**：D1 迁移、接口契约、发信最小验证、前端改造与里程碑；**方案，未实施** |
+| [账号体系方案（评估）](technical/ACCOUNT_SYSTEM_EVALUATION.md) | 早期评估稿，保留"为什么不做自己存密码"（10ms CPU 实测）与云厂商邮件额度核实记录；结论已被落地方案取代 |
 | [账号体系方案](technical/ACCOUNT_SYSTEM_EVALUATION.md) | 邮箱账号 + 改密码的成本评估（10ms CPU 坎、发信方案与已核实的云厂商额度）、迁移路径与待确认项；**评估，未实施** |
 | [皮肤模型导出](technical/SKIN_MODEL_EXPORT.md) | 仍在使用的导出命令、输入/输出和资源限制 |
 | [战斗机制与公式](technical/COMBAT_FORMULAS.md) | 源码及配置的完整通用伤害链、属性叠加、上限、Buff、护盾/回复、模式差异与尚未闭合的赋值问题 |

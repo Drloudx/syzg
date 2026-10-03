@@ -3,7 +3,15 @@
 #
 # 这是 **Pages** 项目配置，不是 Worker：
 #   - pages_build_output_dir 指向 Vite 产物，wrangler pages deploy 时使用
-#   - 站点由 GitHub 自动部署（origin: Drloudx/myrzg），本文件的作用是提供 D1 绑定
+#   - 站点由 GitHub 自动部署（origin: Drloudx/syzg），本文件的作用是提供 D1 绑定
+#
+# ⚠️ 2026-10-03 改名说明（详见 docs/rename-myrzg-to-syzg.md）：
+#   仓库与域名已从 myrzg 迁到 syzg。**但下面的 `name` 与 `database_name` 刻意保留 myrzg**——
+#   本项目由 Cloudflare 控制台的 Git 集成构建，本文件只在**本地手动 wrangler 命令**时生效。
+#   而旧 Pages 项目 `myrzg` 仍是线上退路，改名会与它冲突。
+#   D1 库名 `myrzg-comments` 同理：绑定走 database_id（不变），改名是纯装饰性的，
+#   且该账户的令牌只有 D1 Write、没有 Edit 权限（PATCH 改名返回 400）。
+#   若将来要统一：控制台改库名后，这里同步改 database_name 与 name。
 #
 # 密钥不写在这里，按项目在控制台/CLI 配置：
 #   wrangler pages secret put TURNSTILE_SECRET

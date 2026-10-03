@@ -1,7 +1,10 @@
 import { Capacitor } from '@capacitor/core';
 
 // 云端 CDN 域名
-export const CLOUD_URL = 'https://myrzg.yxzmy.top';
+// 2026-10-03 由 myrzg.yxzmy.top 迁移到 syzg.yxzmy.top（仓库/域名改名）。
+// ⚠️ 这个常量**会被编译进产物**，也就意味着**已发布到用户手机上的 Android 包仍指向旧域名**
+//    （见 docs/rename-myrzg-to-syzg.md 第六节）——所以旧域名在热更包铺开前不能停。
+export const CLOUD_URL = 'https://syzg.yxzmy.top';
 export const RESOURCE_BUILD_ID = typeof __RESOURCE_BUILD_ID__ !== 'undefined' ? __RESOURCE_BUILD_ID__ : ''
 export const DATA_RESOURCE_MANIFESTS = typeof __DATA_RESOURCE_MANIFESTS__ !== 'undefined' ? __DATA_RESOURCE_MANIFESTS__ : {}
 /**
