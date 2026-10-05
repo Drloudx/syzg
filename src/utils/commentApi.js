@@ -56,7 +56,11 @@ export const COMMENT_PAGE_PREFIX = {
  * **站内总讨论区**的归属键。
  *
  * 它是网站自己的一个讨论（"站内讨论区"），与各图鉴页面的讨论（`item:xxx`、`hero:xxx`…）
- * **完全分开**：不聚合、不互相搬运。右栏的"全站最新"只是发现入口，展示各页面的最新讨论。
+ * **完全分开**：不聚合、不互相搬运。
+ *
+ * 右栏「最新讨论」**只镜像这一个 key**（服务端 `/api/recent` 也这么查，
+ * 前端 `App.vue` 的 `addRecentComment` 发表后本地直插时也用它过滤）：
+ * 右栏不是"全站各页面最新"的聚合入口，就是站内讨论区的预览 + 一个进入讨论区的按钮。
  */
 export const SITE_PAGE_KEY = 'site:general'
 export const SITE_PAGE_LABEL = '站内讨论区'
@@ -141,10 +145,28 @@ async function request(path, { method = 'GET', body, adminToken } = {}) {
   return data
 }
 
-/** 读取某页面（如 `item:30047`）的评论 */
-export function fetchComments(pageKey, { cursor, limit = 20 } = {}) {
+/**
+ * 读取某页面（如 `item:30047`）的评论。
+ *
+ * `nested: true` 走**楼中楼**取法：服务端只按**顶层评论**分页，每条带出前几条回复
+ * （`replies`）与总回复数（`replyCount`）——详情页用。默认（平铺）返回这一页的全部评论，
+ * 站内讨论区的聊天式列表用；两种取法的形状差异见 [方案第五章「回复」]。
+ */
+export function fetchComments(pageKey, { cursor, limit = 20, nested = false } = {}) {
   const params = new URLSearchParams({ page: pageKey, limit: String(limit) })
   if (cursor) params.set('cursor', String(cursor))
+  if (nested) params.set('nested', '1')
+  return request(`/api/comments?${params.toString()}`)
+}
+
+/**
+ * 展开某一串回复（楼中楼的「全部 N 条回复」）。
+ *
+ * `parentId` 传**顶层评论**的 id（不是被直接回复的那条）：一串楼里的回复可能互相回复，
+ * 但它们在界面上属于同一个楼主，服务端按 thread 的顶层 id 归拢。
+ */
+export function fetchCommentReplies(pageKey, parentId, { limit = 50 } = {}) {
+  const params = new URLSearchParams({ page: pageKey, parent: String(parentId), limit: String(limit) })
   return request(`/api/comments?${params.toString()}`)
 }
 
@@ -173,11 +195,15 @@ export function fetchRecentComments({ fresh = false } = {}) {
  * `pageLabel` 是评论所在页面的人话名字（如「银币」）。由调用方用它手上已有的
  * 业务数据传上来并存进这条评论——这样管理端与账号弹窗不必为每条评论反查物品表
  * （那要多加载约 190 KB 的 items.json），而写入时多一列不增加 D1 的行数计费。
+ *
+ * `parentId` 是**被回复那一条的 id**（可选，点列表里的「回复」才有）。
+ * 服务端校验"存在 + 同一 page_key + 仍公开"，任一不满足就**静默降级成普通评论**，
+ * 客户端不必为"对方刚好把那条删了"写特殊分支。
  */
-export function postComment({ pageKey, pageLabel, nick, avatar, body, token, hp }) {
+export function postComment({ pageKey, pageLabel, nick, avatar, body, token, hp, parentId }) {
   return request('/api/comments', {
     method: 'POST',
-    body: { page: pageKey, pageLabel, nick, avatar, body, token, hp }
+    body: { page: pageKey, pageLabel, nick, avatar, body, token, hp, parentId }
   })
 }
 

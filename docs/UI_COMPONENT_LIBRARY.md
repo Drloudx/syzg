@@ -109,7 +109,8 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
 
 | 组件 | 职责 | 关键 Props |
 | --- | --- | --- |
-| `UiButton` | 通用按钮 | `variant`(primary/secondary/ghost/danger/link)、`size`(sm/md/lg)、`block`、`disabled` |
+| `UiButton` | 通用按钮 | `variant`(primary/secondary/ghost/danger/link)、`size`(sm/md/lg)、`block`、`disabled`、`type`(默认 `button`) |
+| `UiSplitButton` | 组合按钮：左侧主操作 + 右侧细箭头下拉，**外观上是同一个按钮**；调色板与禁用色仍来自 `UiButton`，本组件只改几何 + **整组状态**（悬停整组变亮但**不动描边**、禁用整组压暗），箭头随 `expanded` 上下翻转 | `variant`、`size`、`disabled`（只管主操作）、`caretDisabled`（只管下拉）、`caretLabel`、`caretTitle`、`expanded`；事件 `@click`（主操作）、`@toggle`（下拉）；默认插槽放主操作文案。`$attrs` 落在**主按钮**上，所以按 class 拿它读 `.disabled`/`.textContent` 与普通按钮一致 |
 | `UiSearchInput` | 搜索框（图标+清空）；在 `UiFilterPanel` 内自动显示右侧筛选折叠按钮 | `modelValue`、`placeholder`、`clearable` |
 | `UiFilterPanel` | 搜索与可折叠筛选面板，默认展开 | `search` 插槽放搜索框；默认插槽放筛选项；`footer` 插槽放始终保留的表头等内容；`collapsible`(默认 `true`，传 `false` 隐藏收起按钮且内容恒展开) |
 | `UiFilterRow` | 筛选行容器 | `label`（如"稀有度："），插槽放 UiFilterPill；使用 `#right` 放计数/操作时，手机端会自动独占一行 |
@@ -118,11 +119,11 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
 | `UiExchangeTrade` | 多列兑换卡片（普通、紧凑羊皮纸、礼包、商城商品和时装竖卡） | `title`、`rewardItems`、`consumeItems`、`limitText`、`metaText`、`packImage`、`skin`、`shop`、`compact`、`@item-click` |
 | `UiSegmentedTabs` | 木刻分段页签（横向溢出时隐藏滚动条并显示右滑提示；手机单指滑动、桌面鼠标拖动，到达末端后提示消失） | `modelValue`、`options`(`[{value,label}]`) |
 | `UiTabs` | 墨迹下划线页签（仅页签栏横向滚动；手机单指滑动、桌面鼠标拖动，并自动定位当前项） | `modelValue`、`options` |
-| `UiCardGrid` | 数据网格容器（桌面进入页面文档流，移动端内部滚动） | `id`（供回到顶部定位）、`small`、`wide` |
+| `UiCardGrid` | 数据网格容器（桌面进入页面文档流，移动端内部滚动；内置滚动速度感知并向子卡片 provide isFastScrolling，实现快滑图片加载防抖） | `id`（供回到顶部定位）、`small`、`wide` |
 | `UiVirtualGrid` | 基于 TanStack Virtual 的按行虚拟网格，复用 UiCardGrid 与实际 CSS 列数 | `items`、`itemKey`（默认 `id`）、`estimateSize`（默认 120）、`overscan`（默认 3 行）、`id`、`small`、`wide`；默认插槽 `{ item, index }`、空态插槽 `empty` |
-| `UiItemCard` | 图鉴卡片（图标+名称） | `name`、`img`、`quality`、`@click`、`@img-error` |
+| `UiItemCard` | 图鉴卡片（图标+名称；支持会话级图片内存缓存、快滑防挤占调度与加载淡入） | `name`、`img`、`quality`、`showName`、`@click`、`@img-error` |
 | `UiModal` | 羊皮纸弹窗（内嵌详情覆盖与位置恢复；全局弹窗安全区、背景锁及覆盖层登记） | `visible`(v-model)、`title`、`fullscreen`、`scrollId`、`zIndex`、`maxWidth`、`closable`、`closeOnOverlay`、`teleportTo`（全局弹窗传 `body`，层级最低 12000） |
-| `UiPopover` | 按钮上方的非模态选择窗，复用羊皮纸面板、覆盖层登记及窗外/Esc 关闭 | `visible`(v-model)、`anchor`（按钮 DOM）、`id`、`title`、`width`（720）、`zIndex`（6003）；默认插槽放选项 |
+| `UiPopover` | 按钮上方的非模态选择窗，复用羊皮纸面板、覆盖层登记及窗外/Esc 关闭；关闭钮与 `UiModal` 同一规格（28×28 + 14px `✕`） | `visible`(v-model)、`anchor`（按钮 DOM）、`id`、`title`、`width`（720）、`zIndex`（6003）、`align`（`end` 默认向左展开 / `start` 向右展开） |
 | `UiSection` | 详情章节（◆菱形标题，可选整章折叠） | `title`、`collapsible`、`open`（`v-model:open`），`title-end` 插槽 |
 | `UiInfoRow` | 键值信息行 | `label`、`value`（或插槽） |
 | `UiInfoPanel` | 信息面板（标题条+行组） | `title`、`media` 插槽 |
@@ -132,7 +133,8 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
 | `UiProgressBar` | 木轨进度条 | `value`(0~100)、`label` |
 | `UiEmptyState` | 空/加载/错误态 | `text`、`type`(empty/loading/error) |
 | `UiPageHeader` | 页面大标题（装饰线） | `title`、`subtitle` |
-| `UiBackToTop` | 回到顶部木钮（与移动导航共用悬浮按钮尺寸、边框、阴影和业务层级变量） | `scrollContainer`(选择器) |
+| `UiBackToTop` | 回到顶部木钮（桌面端显示；移动端统一由 EdgeFloatingWidget 接管） | `scrollContainer`(选择器) |
+| `EdgeFloatingWidget` | 移动端贴边二合一悬浮拉手（收起为极简原木半圆把手，支持垂直拖拽与跨屏磁吸换边；展开为一体化原木胶囊，包含「顶部」与「导航」；全场景智能寻迹置顶） | `hidden`、`@toggle-nav` |
 | `UiListRow` | 通栏列表行 | `id`、`clickable`、`right` 插槽 |
 | `UiStatGrid` | 属性数值网格 | `items`(`[{label,value,tone?}]`)、`doubleCol` |
 
@@ -165,8 +167,30 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
 - 桌面固定以 `.app-container` 为滚动 owner，详情临时钳制时不得切换 owner；手机使用页面内部容器。筛选更换后重置顶部，响应式列数/宽度变化时重新测量。
 - 程序定位使用组件暴露的异步 `scrollToItem(key/索引/匹配函数, options)`，不能对未挂载项目直接 `querySelector`。普通详情返回优先保留点击前位置；冷分享链接没有原锚点时才定位目标，不能覆盖正常嵌套返回。
 - 副本封面使用近视口 IntersectionObserver 延迟赋值 `src`，配合 `loading="lazy"`、`decoding="async"` 及稳定宽高占位；不为了加载优化重新压缩用户现有图片。
+- **快滑感知与图片请求防挤占调度（Fast-scroll Throttle）**：
+  - `UiCardGrid` 捕获滚动事件，基于位移与时间差实时测算速度（阈值 `0.8px/ms`，约 `800px/s`）。超过阈值时将 `isFastScrolling` 置为 `true` 并向下 `provide`。
+  - 手机端优先监听原生 `scrollend` 事件，配合 `120ms` 空闲防抖计时器，滑动停顿或减速时立刻解除快滑状态。
+  - `UiItemCard` 接入 `isFastScrolling` 并维护会话级内存缓存 `window.__loadedUiItemImages`（`Set`）：
+    1. **已缓存图片**：无论划动速度多快，直接同步挂载展示，零白屏零延迟；
+    2. **未缓存冷图片**：高速飞划期间暂不挂载 `<img>`，保留原生品质底框与名称；停顿或惯性停止后，当前视口内卡片立刻发起请求，独享 100% 浏览器并发流，避免请求队列在旧行排队堵车；
+    3. **柔和过渡**：新下载图片配合 `0.15s` 轻度渐入（`opacity: 0 -> 1`），避免生硬闪现。
 
-### 2.3 `FurnitureCard` 家具卡片规范
+### 2.3 `EdgeFloatingWidget` 移动端贴边悬浮拉手
+
+- 聚合「回到顶部」和「功能导航」：解决移动端底部讨论发表输入区与原右下角固定悬浮球重叠遮挡问题。
+- **视觉形态**：
+  - 收起态：小巧原木半圆把手（约 22×52px，带三道抓手防滑纹与方向箭头），紧贴屏幕边缘；
+  - 展开态：一体化原木胶囊外壳（`.edge-widget-capsule`）横向平滑伸展，把手充当端头，内嵌「顶部」与「导航」两枚按钮，消除割裂缝隙。
+- **手势交互**：
+  - 垂直方向自由拖拽并实时吸边，避开顶栏与底部安全区；松手后自动通过 `localStorage` 持久化垂直位置；
+  - 横向拖动跨越屏幕中线（35%~65%）可磁吸换边到左/右侧屏缘；
+  - 展开时点击外部任意区域自动收起。
+- **全场景智能寻迹置顶**：
+  - 前台打开详情弹窗（`UiModal`）时：精准平滑滚动最上层弹窗正文（`.ui-modal-body`）；
+  - 主页面状态时：精准定位移动端核心滚动容器（`[data-main-scroll]` / `.ui-card-grid-scroll` 等，如 `#itemsGridScroll`）；
+  - 桌面端与常规页面兜底：平滑滚动 `.app-container` 与 `window`。
+
+### 2.4 `FurnitureCard` 家具卡片规范
 
 - `FurnitureCard.vue` 是家具页按需加载的业务卡片，不进入通用 UI 出口。卡片使用稳定的正方形预览区、品质描边/底色、名称、图鉴分类、装饰值、放置范围和“有图纸”状态；目录桌面默认 5 列、手机 3 列，点击统一由父视图打开详情。
 - 家具与外观缩略图只允许使用 `/images/BuildItem/{配置 icon}.png`。图标字段为空或资源请求失败时显示统一 `/ui/visibility-off.svg`；禁止回退到基础家具图，也禁止使用游戏房间中的场景立绘补图。

@@ -28,17 +28,21 @@
  */
 
 import { matchReview } from '../../src/config/commentBlocklist.js'
+import { MAX_BODY_DISPLAY, MAX_BODY_RAW, countEmoticonDisplayChars } from '../../src/config/emoticons.js'
 
 /**
- * 正文长度上限。
+ * 正文上限 = **显示字数** 200（原为 1000，用户明确要求）。
  *
- * 200 是用户明确要求的（原为 1000）。对游戏讨论来说足够——
- * 这条限制的意义是防刷屏与防止单条评论撑爆列表高度，
+ * 对游戏讨论来说足够——这条限制的意义是防刷屏与防止单条评论撑爆列表高度，
  * 而不是"允许写多长"；真要长内容应另开帖子类功能。
  *
- * 前端 `CommentComposer.vue` 的 `maxlength` 与字数计数器必须与此一致。
+ * **一个表情算 1 字**：正文里的 `[e:包:名]` 是 7~25 个字符的 token
+ * （见 `src/config/emoticons.js`），若按原始字符计，用户插三个表情就吃掉几十字、
+ * 计数器与实际观感完全对不上。计数口径与前端共用同一个纯函数。
+ *
+ * 前端 `CommentComposer.vue` 的计数器与 `canSubmit` 必须与此一致。
  */
-const MAX_BODY = 200
+const MAX_BODY = MAX_BODY_DISPLAY
 const MAX_NICK = 24
 const MAX_LIMIT = 50
 
@@ -262,11 +266,38 @@ function toPublic(row) {
     // 这样管理端/账号弹窗不必为每条评论反查物品表，也不会因为缺产物而显示不出名字。
     pageLabel: row.page_label || null,
     // 命中审核词表的原因（供管理页面判断是误伤还是真垃圾）；干净评论为 null
-    reviewReason: row.review_reason || null
+    reviewReason: row.review_reason || null,
+    /*
+     * 回复：`parentId` 是被回复那一条的 id（普通评论为 null）。
+     * `replyTo` 只有**父评论仍公开**时才有值（查询用 `LEFT JOIN ... AND p.status = 1`）：
+     *   - 父评论被隐藏/删除 → `replyTo: null`，客户端据 `parentId` 显示"该消息已不可见"，
+     *     而**不会**把已隐藏的内容重新泄漏出去（这是刻意只用 `status = 1` 关联的原因）。
+     * 列表查询没做这个 JOIN 时（管理端等）两个字段退化为 null / 只有 parentId。
+     *
+     * `rootId` 只在天楼中楼模式（`?nested=1`）下有意义：**这条回复属于哪个顶层评论**。
+     * 回复别人的回复时 `parentId` 指向那条回复、`rootId` 仍然指向同一个顶层评论——
+     * 客户端据此把整串回复收在同一个楼主下面（B 站那种两层的形态）。
+     */
+    parentId: row.parent_id ?? null,
+    replyTo: row.parent_nick
+      ? { id: row.parent_id, nick: row.parent_nick, body: row.parent_body }
+      : null,
+    rootId: row.root_id ?? null
   }
 }
 
-/** GET /api/comments?page=item:30047&cursor=<id>&limit=20 —— 只返回 status=1 */
+/**
+ * GET /api/comments —— 三种取法（都由 query 决定）
+ *
+ * | 取法 | 参数 | 返回 |
+ * | --- | --- | --- |
+ * | 平铺分页（站内讨论区 / 聊天式） | `page` + 可选 `cursor` | 该页**全部**评论，最新在前 |
+ * | 楼中楼（详情页） | `page` + `nested=1`（可选 `cursor`） | **只返回顶层评论**，每条附 `replies`（前几条）+ `replyCount` |
+ * | 展开某串回复 | `page` + `parent=<顶层评论 id>` | 那一串的全部回复（旧的在前） |
+ *
+ * 为什么楼中楼要在服务端分页：平铺分页的一页里会有"父评论不在这页"的回复，
+ * 客户端拼不出完整的楼；只按顶层评论分页，才能保证每层楼都是完整的。
+ */
 async function listComments(env, url) {
   const pageKey = url.searchParams.get('page') || ''
   if (!PAGE_KEY_RE.test(pageKey)) return bad(ERR.badRequest)
@@ -276,12 +307,27 @@ async function listComments(env, url) {
   const cursor = Number.parseInt(url.searchParams.get('cursor') || '', 10)
   const hasCursor = Number.isFinite(cursor)
 
-  // 多取 1 条判断 hasMore，避免 COUNT(*)（全表扫描，D1 按行计费）
+  if (url.searchParams.get('nested') === '1') return listNestedComments(env, pageKey, { limit, cursor, hasCursor })
+
+  const threadId = Number.parseInt(url.searchParams.get('parent') || '', 10)
+  if (Number.isFinite(threadId) && threadId > 0) return listThreadReplies(env, pageKey, threadId, limit)
+
+  /*
+   * 多取 1 条判断 hasMore，避免 COUNT(*)（全表扫描，D1 按行计费）。
+   *
+   * 回复用**自连接**一次取回被回复那条的昵称与正文（`LEFT JOIN`，按主键关联，成本极低）：
+   * 比"先查列表再补一次 IN 查询"少一次往返。代价是 D1 读行数翻倍（每页 20 → 40 行），
+   * 在免费额度内可接受；`AND p.status = 1` 保证**已隐藏/已删除的父评论不会从这里泄漏内容**。
+   */
   const sql = hasCursor
-    ? `SELECT id, nick, avatar, body, created_at, status, page_key, page_label FROM comments
-       WHERE page_key = ?1 AND status = 1 AND id < ?2 ORDER BY id DESC LIMIT ?3`
-    : `SELECT id, nick, avatar, body, created_at, status, page_key, page_label FROM comments
-       WHERE page_key = ?1 AND status = 1 ORDER BY id DESC LIMIT ?2`
+    ? `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+              c.parent_id, p.nick AS parent_nick, p.body AS parent_body
+       FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
+       WHERE c.page_key = ?1 AND c.status = 1 AND c.id < ?2 ORDER BY c.id DESC LIMIT ?3`
+    : `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+              c.parent_id, p.nick AS parent_nick, p.body AS parent_body
+       FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
+       WHERE c.page_key = ?1 AND c.status = 1 ORDER BY c.id DESC LIMIT ?2`
 
   const stmt = hasCursor
     ? env.DB.prepare(sql).bind(pageKey, cursor, limit + 1)
@@ -300,6 +346,104 @@ async function listComments(env, url) {
   })
 }
 
+/** 楼中楼里每条楼主默认带出几条回复（再多要点「全部 N 条回复」） */
+const NESTED_PREVIEW_REPLIES = 3
+
+/**
+ * 楼中楼：**只按顶层评论分页**，每条附前几条回复与总回复数。
+ *
+ * "顶层评论" = `parent_id IS NULL`，**外加"父评论已经没了"的孤儿回复**：
+ * 别人删掉/隐藏了自己的评论后，回复它的人不该跟着消失——那种回复提到顶层显示，
+ * 客户端按 `replyTo: null` 渲染成「回复的那条消息已不可见」（与平铺视图一致）。
+ *
+ * ⚠️ 回复是**按 thread 的顶层 id 一把捞出来**的（`COALESCE(p.parent_id, r.parent_id)`）：
+ * 一次往返拿到这一页所有楼的回复，代价是读行数包含这些楼的**全部**回复
+ * （不只是要显示的 3 条）。本站评论量小，用读行换往返划算；真到量大时改成
+ * `ROW_NUMBER() OVER (PARTITION BY ...)` 限定每楼 3 条即可，API 形状不用变。
+ */
+async function listNestedComments(env, pageKey, { limit, cursor, hasCursor }) {
+  const rootSql = hasCursor
+    ? `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+              c.parent_id, p.nick AS parent_nick, p.body AS parent_body
+       FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
+       WHERE c.page_key = ?1 AND c.status = 1
+         AND (c.parent_id IS NULL OR NOT EXISTS (SELECT 1 FROM comments q WHERE q.id = c.parent_id AND q.status = 1))
+         AND c.id < ?2
+       ORDER BY c.id DESC LIMIT ?3`
+    : `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+              c.parent_id, p.nick AS parent_nick, p.body AS parent_body
+       FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
+       WHERE c.page_key = ?1 AND c.status = 1
+         AND (c.parent_id IS NULL OR NOT EXISTS (SELECT 1 FROM comments q WHERE q.id = c.parent_id AND q.status = 1))
+       ORDER BY c.id DESC LIMIT ?2`
+
+  const rootStmt = hasCursor
+    ? env.DB.prepare(rootSql).bind(pageKey, cursor, limit + 1)
+    : env.DB.prepare(rootSql).bind(pageKey, limit + 1)
+  const { results: rootRows } = await rootStmt.all()
+  const rows = rootRows || []
+  const hasMore = rows.length > limit
+  const page = hasMore ? rows.slice(0, limit) : rows
+
+  const comments = page.map(toPublic)
+  if (!comments.length) return json({ ok: true, comments, nextCursor: null, hasMore: false })
+
+  const placeholders = comments.map((_, i) => `?${i + 1}`).join(', ')
+  const { results: replyRows } = await env.DB.prepare(
+    `SELECT r.id, r.nick, r.avatar, r.body, r.created_at, r.status, r.page_key, r.page_label,
+            r.parent_id, COALESCE(p.parent_id, r.parent_id) AS root_id,
+            p.nick AS parent_nick, p.body AS parent_body
+     FROM comments r LEFT JOIN comments p ON p.id = r.parent_id AND p.status = 1
+     WHERE r.page_key = ?${comments.length + 1} AND r.status = 1
+       AND COALESCE(p.parent_id, r.parent_id) IN (${placeholders})
+     ORDER BY r.id ASC`
+  )
+    .bind(...comments.map((c) => c.id), pageKey)
+    .all()
+
+  const byRoot = new Map()
+  for (const row of replyRows || []) {
+    const list = byRoot.get(row.root_id) || []
+    list.push(toPublic(row))
+    byRoot.set(row.root_id, list)
+  }
+
+  return json({
+    ok: true,
+    comments: comments.map((root) => {
+      const all = byRoot.get(root.id) || []
+      return {
+        ...root,
+        replyCount: all.length,
+        replies: all.slice(0, NESTED_PREVIEW_REPLIES)
+      }
+    }),
+    // 游标看的是**顶层评论**的 id（回复不参与分页）
+    nextCursor: hasMore ? page[page.length - 1].id : null,
+    hasMore
+  })
+}
+
+/** 展开一串回复：某个顶层评论下的全部回复（旧的在前，与楼中楼里的顺序一致） */
+async function listThreadReplies(env, pageKey, threadId, limit) {
+  const { results } = await env.DB.prepare(
+    `SELECT r.id, r.nick, r.avatar, r.body, r.created_at, r.status, r.page_key, r.page_label,
+            r.parent_id, COALESCE(p.parent_id, r.parent_id) AS root_id,
+            p.nick AS parent_nick, p.body AS parent_body
+     FROM comments r LEFT JOIN comments p ON p.id = r.parent_id AND p.status = 1
+     WHERE r.page_key = ?1 AND r.status = 1
+       AND COALESCE(p.parent_id, r.parent_id) = ?2
+     ORDER BY r.id ASC LIMIT ?3`
+  )
+    .bind(pageKey, threadId, limit + 1)
+    .all()
+
+  const rows = results || []
+  const hasMore = rows.length > limit
+  const page = hasMore ? rows.slice(0, limit) : rows
+  return json({ ok: true, comments: page.map(toPublic), hasMore, nextCursor: null })
+}
+
 /** POST /api/comments —— 发评论，返回一次性自删令牌 */
 async function createComment(env, request) {
   let payload
@@ -316,17 +460,27 @@ async function createComment(env, request) {
   if (!PAGE_KEY_RE.test(pageKey)) return bad(ERR.badRequest)
 
   const nick = sanitize(payload?.nick, MAX_NICK)
-  const body = sanitize(payload?.body, MAX_BODY)
+  /*
+   * 原始长度闸门放在 sanitize **之前**：`sanitize()` 结尾是 `.slice(0, maxLen)`，
+   * 超长会被**静默砍掉**——若先截断再校验，被砍断的可能正好是一个表情 token
+   * （`[e:tieba:25` 少了右括号），用户看到的是"发出去少了半截"。
+   *
+   * MAX_BODY_RAW 是"200 个表情"这种极端合法输入的上界（200 × 最长 token 41 字），
+   * 只用来挡超长请求体；用户可见的限制始终是 200 显示字。
+   */
+  if (String(payload?.body ?? '').length > MAX_BODY_RAW) {
+    return bad(`评论最多 ${MAX_BODY} 字，请精简后再发`)
+  }
+  const body = sanitize(payload?.body, MAX_BODY_RAW)
   if (!nick) return bad(ERR.needNick)
   if (!body) return bad(ERR.emptyBody)
 
   /*
-   * 显式拒绝超长正文，**不要依赖 sanitize 的截断**：
-   * `sanitize()` 结尾是 `.slice(0, maxLen)`，超长会被**静默砍掉**，
-   * 用户看到的是"我明明写了 300 字，发出去只剩 200 字"，且毫无提示。
-   * 这里按**原始输入**判断并给出明确上限，前端 maxlength 只是第一道防线。
+   * 显示字数（一个表情算 1 字）**显式拒绝**，不要依赖 sanitize 的截断：
+   * 用户看到"我明明只写了 200 字，发出去却少了"是最难解释的一类失败。
+   * 前端计数器是第一道防线，这里按同一函数复核。
    */
-  if (String(payload?.body ?? '').trim().length > MAX_BODY) {
+  if (countEmoticonDisplayChars(body) > MAX_BODY) {
     return bad(`评论最多 ${MAX_BODY} 字，请精简后再发`)
   }
 
@@ -357,19 +511,44 @@ async function createComment(env, request) {
   const needsReview = reviewHits.length > 0
   const status = needsReview ? 0 : 1
 
-  // 5) 自删令牌：只把哈希入库，明文只在此次响应里给浏览器一次
+  /*
+   * 5) 回复目标（可选）。放在限流与人机校验**之后**：异常流量不该多花一次读行。
+   *
+   * 校验三条，全部不满足就**当普通评论发**（静默降级、不报错）：
+   *   - 是正整数；
+   *   - 那条评论存在、**与本条同一 page_key**（否则就成了跨页面乱回复）；
+   *   - 那条评论**仍公开**（status = 1）——回复一条待审/已隐藏的消息，
+   *     引用行会指向别人看不到的内容，等于把审核结果漏出去。
+   *
+   * 为什么降级而不是拒绝：用户点「回复」时对方那条可能刚好被删/被隐藏，
+   * 这时把他的正文整条拒掉是最糟的体验——他的话本身完全有效，只是少了个引用。
+   */
+  let parentId = Number.parseInt(payload?.parentId, 10)
+  if (!Number.isFinite(parentId) || parentId <= 0) parentId = null
+  let parent = null
+  if (parentId) {
+    parent = await env.DB.prepare(
+      `SELECT id, nick, body FROM comments WHERE id = ?1 AND page_key = ?2 AND status = 1`
+    )
+      .bind(parentId, pageKey)
+      .first()
+    if (!parent) parentId = null
+  }
+
+  // 6) 自删令牌：只把哈希入库，明文只在此次响应里给浏览器一次
   const deleteToken = randomToken()
   const tokenHash = await sha256Hex(deleteToken)
 
   const uaHash = await sha256Hex(String(request.headers.get('user-agent') || '').slice(0, 200))
 
   const inserted = await env.DB.prepare(
-    `INSERT INTO comments (page_key, nick, avatar, body, status, created_at, ip_hash, ua_hash, token_hash, review_reason, page_label)
-     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)
+    `INSERT INTO comments (page_key, parent_id, nick, avatar, body, status, created_at, ip_hash, ua_hash, token_hash, review_reason, page_label)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)
      RETURNING id, created_at`
   )
     .bind(
       pageKey,
+      parentId,
       nick,
       avatar,
       body,
@@ -386,7 +565,28 @@ async function createComment(env, request) {
   return json(
     {
       ok: true,
-      comment: { id: inserted.id, nick, avatar, body, createdAt: inserted.created_at, status },
+      /*
+       * `pageKey` / `pageLabel` 与列表接口（`GET /api/comments`、`/api/recent`）返回的字段保持一致：
+       * 调用方拿到一个 comment 对象时，字段不应该因"来自发表还是来自列表"而不同。
+       * 右栏「最新讨论」只镜像 `site:general`，**就是靠这个字段判断的**——
+       * 少了它，在物品/角色页发表的那条会被误插进右栏（2026-10-04 用户反馈）。
+       */
+      comment: {
+        id: inserted.id,
+        nick,
+        avatar,
+        body,
+        createdAt: inserted.created_at,
+        status,
+        pageKey,
+        pageLabel: pageLabel || null,
+        /*
+         * 回复：`replyTo` 直接复用校验时已经读到的那一行，**不多查一次**；
+         * 于是"刚发出去的回复"与"重新拉列表拿到的同一条"渲染结果一致（都带引用行）。
+         */
+        parentId,
+        replyTo: parent ? { id: parent.id, nick: parent.nick, body: parent.body } : null
+      },
       // 前端存 localStorage，用于"删除我的评论"。明文只出现这一次
       deleteToken,
       pending: status === 0,
@@ -541,9 +741,12 @@ async function listMyComments(env, request) {
   if (!wanted.length) return json({ ok: true, comments: [] })
 
   const placeholders = wanted.map((_, i) => `?${i + 1}`).join(', ')
+  // 同样带上被回复那条（列表、账号弹窗都按同一套字段渲染，引用行不会只在某一处出现）
   const { results } = await env.DB.prepare(
-    `SELECT id, page_key, page_label, nick, avatar, body, created_at, status, token_hash
-     FROM comments WHERE id IN (${placeholders})`
+    `SELECT c.id, c.page_key, c.page_label, c.nick, c.avatar, c.body, c.created_at, c.status, c.token_hash,
+            c.parent_id, p.nick AS parent_nick, p.body AS parent_body
+     FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
+     WHERE c.id IN (${placeholders})`
   )
     .bind(...wanted.map((w) => w.id))
     .all()
@@ -564,7 +767,11 @@ async function listMyComments(env, request) {
       createdAt: row.created_at,
       status: row.status,
       pageKey: row.page_key,
-      pageLabel: row.page_label || null
+      pageLabel: row.page_label || null,
+      parentId: row.parent_id ?? null,
+      replyTo: row.parent_nick
+        ? { id: row.parent_id, nick: row.parent_nick, body: row.parent_body }
+        : null
     })
   }
   verified.sort((a, b) => b.id - a.id)

@@ -19,7 +19,7 @@
 
       <template v-else>
         <ul v-if="shownComments.length" class="comments-list">
-          <li v-for="c in shownComments" :key="c.id" class="comment-item">
+          <li v-for="c in shownComments" :key="c.id" class="comment-item" :data-comment-id="c.id">
             <img
               v-if="avatarOf(c)"
               class="comment-avatar"
@@ -35,19 +35,87 @@
             <div class="comment-main">
               <div class="comment-head">
                 <span class="comment-nick">{{ c.nick }}</span>
+                <!-- 「回复你」：这条回复的是本机发过的评论（本机有它的删除令牌）。不依赖账号系统 -->
+                <span v-if="c.parentId && ownedIds.has(c.parentId)" class="comment-reply-you">回复你</span>
                 <time class="comment-time" :datetime="isoTime(c.createdAt)">{{ formatTime(c.createdAt) }}</time>
+                <!-- 操作区整块推到行尾：**不能给每个按钮各自 margin-left:auto**，
+                     那样「回复」会被推到中间、与「删除」之间空出一大截（实测被指出） -->
+                <div class="comment-actions">
+                  <button v-if="replyable" type="button" class="comment-reply" @click="requestReply(c)">回复</button>
+                  <button
+                    v-if="!readOnly && ownedIds.has(c.id)"
+                    type="button"
+                    class="comment-delete"
+                    :disabled="deletingId === c.id"
+                    @click="handleDelete(c)"
+                  >
+                    {{ deletingId === c.id ? '删除中' : '删除' }}
+                  </button>
+                </div>
+              </div>
+              <!--
+                引用行（回复）：点在父评论还在当前列表里时滚过去。
+                `replyTo` 为空但 `parentId` 有值 = 父评论已被删除/隐藏，
+                这时只说"已不可见"，不显示内容（服务端也只关联 status=1 的父评论）。
+              -->
+              <button
+                v-if="c.parentId"
+                type="button"
+                class="comment-quote"
+                @click="scrollToComment(c.parentId)"
+              >
+                <template v-if="c.replyTo">
+                  <span class="comment-quote-nick">回复 @{{ c.replyTo.nick }}</span>
+                  <span class="comment-quote-body"><EmoticonText :text="c.replyTo.body" /></span>
+                </template>
+                <!-- 父评论已被删除/隐藏：只说"不可见"，不渲染 @谁（否则会读成"回复 @该消息 该消息已不可见"） -->
+                <span v-else class="comment-quote-gone">回复的那条消息已不可见</span>
+              </button>
+              <!-- 纯文本渲染：不解析 HTML，评论里的标签按原文显示；
+                   正文里的 `[e:包:名]` 表情 token 由 EmoticonText 换成图片（其余仍是纯文本） -->
+              <p class="comment-body"><EmoticonText :text="c.body" /></p>
+
+              <!--
+                楼中楼（详情页形态）：一串回复收在楼主下面，只显示前几条 +
+                「全部 N 条回复」/「收起」。站内讨论区是平铺的（`nestedView` 为 false），
+                那里回复与普通消息一样按时间排，靠上面的引用行表示"在回应谁"。
+              -->
+              <div v-if="nestedView && c.replyCount > 0" class="comment-thread">
+                <div v-for="r in c.replies" :key="r.id" class="comment-nested" :data-comment-id="r.id">
+                  <p class="comment-nested-head">
+                    <span class="comment-nested-nick">{{ r.nick }}</span>
+                    <!-- 只有"回复的是楼内的另一条回复"才带这个前缀（回复楼主本身不用重复说） -->
+                    <span v-if="r.parentId !== c.id" class="comment-nested-to">
+                      {{ r.replyTo ? `回复 @${r.replyTo.nick}` : '回复的那条消息已不可见' }}
+                    </span>
+                    <span v-if="ownedIds.has(r.parentId)" class="comment-reply-you">回复你</span>
+                    <time class="comment-time" :datetime="isoTime(r.createdAt)">{{ formatTime(r.createdAt) }}</time>
+                    <div class="comment-actions">
+                      <button v-if="replyable" type="button" class="comment-reply" @click="requestReply(r)">回复</button>
+                      <button
+                        v-if="!readOnly && ownedIds.has(r.id)"
+                        type="button"
+                        class="comment-delete"
+                        :disabled="deletingId === r.id"
+                        @click="handleDelete(r)"
+                      >
+                        {{ deletingId === r.id ? '删除中' : '删除' }}
+                      </button>
+                    </div>
+                  </p>
+                  <p class="comment-nested-body"><EmoticonText :text="r.body" /></p>
+                </div>
                 <button
-                  v-if="!readOnly && ownedIds.has(c.id)"
+                  v-if="c.expanded || c.replyCount > c.preview.length"
                   type="button"
-                  class="comment-delete"
-                  :disabled="deletingId === c.id"
-                  @click="handleDelete(c)"
+                  class="comment-thread-toggle"
+                  :disabled="c.loadingReplies"
+                  @click="toggleThread(c)"
                 >
-                  {{ deletingId === c.id ? '删除中' : '删除' }}
+                  {{ c.loadingReplies ? '加载中...' : c.expanded ? '收起' : `全部 ${c.replyCount} 条回复` }}
+                  <span v-if="!c.loadingReplies" aria-hidden="true">{{ c.expanded ? '▲' : '▼' }}</span>
                 </button>
               </div>
-              <!-- 纯文本渲染：不解析 HTML，评论里的标签按原文显示 -->
-              <p class="comment-body">{{ c.body }}</p>
               <!-- 右栏预览里要标明"这条来自哪个页面"，否则一串消息没有上下文 -->
               <button
                 v-if="showPage && (c.pageLabel || c.pageKey)"
@@ -64,18 +132,11 @@
         <UiEmptyState v-else :text="readOnly ? '还没有讨论' : '还没有人讨论，来说两句吧'" />
 
         <!--
-          分页入口两种形态：
-          - `loadMoreOnScroll`（聊天式）：**不显示按钮**，往上翻到底部时自动加载更早的
-            （见 listRoot 上的滚动监听）。"往上翻看历史"本身就是加载意图，再点一次是多余。
-          - 默认（列表式）：保留「加载更多」按钮。
+          分页入口：**没有按钮**。往上/往下翻到边界就自动加载（见 listRoot 上的滚动监听）——
+          "翻到底"本身就是加载意图，再让人点一次按钮是多余的（用户明确要求去掉「加载更多」）。
           加载中/到底了都**不再额外提示**：前者有内容变化本身作为反馈，
-          后者用户翻到头自然知道（用户明确说这类提醒没必要）。
+          后者用户翻到头自然知道。
         -->
-        <div v-if="!limit && hasMore && !loadMoreOnScroll" class="comments-more">
-          <UiButton variant="secondary" size="sm" :disabled="loading" @click="loadMore()">
-            {{ loading ? '加载中...' : '加载更多' }}
-          </UiButton>
-        </div>
       </template>
 
       <!-- 删除等操作的失败提示：列表仍然可见，只提示这一次操作失败 -->
@@ -83,9 +144,12 @@
 
       <!-- 发表区：只读形态不显示（右栏预览）。
            抽成 CommentComposer 是为了让讨论区页面能把它放到**滚动容器之外**
-           （用户要求"悬浮在底部"：留在容器里消息一多就被推出视野） -->
+           （用户要求"悬浮在底部"：留在容器里消息一多就被推出视野）。
+           详情页就是普通的"在列表末尾"，**不做吸附**——试过 sticky 吸底，
+           实测观感很差（浮层压住最后几条评论），用户明确要求去掉。 -->
       <CommentComposer
         v-if="!readOnly"
+        ref="composerRef"
         :page-key="props.pageKey"
         :page-label="props.pageLabel"
         @posted="onPosted"
@@ -98,11 +162,12 @@
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { UiButton, UiEmptyState, UiSection } from './ui/index.js'
 import CommentComposer from './CommentComposer.vue'
+import EmoticonText from './EmoticonText.vue'
 import { getImageUrl } from '../utils/env.js'
 import {
   deleteOwnComment,
+  fetchCommentReplies,
   fetchComments,
-  fetchRecentComments,
   getDeleteToken,
   removeDeleteToken
 } from '../utils/commentApi.js'
@@ -112,7 +177,6 @@ const props = defineProps({
   /**
    * 评论归属键，形如 `item:30047`。
    * 由调用方从业务 ID 推导，不使用 URL 参数（SPEC 第四章：仅已实现的参数做 URL 同步）。
-   * 只读预览形态（`recent`）下不需要，所以非必填。
    */
   pageKey: { type: String, default: '' },
   /**
@@ -125,15 +189,27 @@ const props = defineProps({
   title: { type: String, default: '讨论' },
   /** 只读：不显示发表区与删除按钮（右栏预览用） */
   readOnly: { type: Boolean, default: false },
-  /** 最多显示几条（0 = 不限，走分页的"加载更多"） */
+  /**
+   * 显示每条消息的「回复」按钮。
+   *
+   * **与 `readOnly` 解耦**：讨论区页面用 `readOnly` 拿到纯列表，但发表区被放在
+   * 滚动容器之外（`DiscussionsView` 自己渲染 `CommentComposer`），回复照样要能用——
+   * 所以这里独立成一个开关，由调用方决定"有没有发表区可回复"。
+   */
+  replyable: { type: Boolean, default: true },
+  /** 最多显示几条（0 = 不限，滚动到底自动加载更多） */
   limit: { type: Number, default: 0 },
-  /** 每条下方显示它来自哪个页面（全站最新列表用） */
+  /** 每条下方显示它来自哪个页面（聚合列表才用得到；右栏只镜像站内讨论区，恒为 false） */
   showPage: { type: Boolean, default: false },
   /**
-   * 数据源换成"全站最新讨论"（`GET /api/recent`）而不是某个页面的评论。
-   * 右栏预览与讨论区首页的历史消息用它。
+   * **楼中楼**（默认开）：只按顶层评论分页，每条下面挂着自己的回复（前几条 +
+   * 「全部 N 条回复」）。图鉴详情、角色/魔物/副本弹窗都是这个形态。
+   *
+   * ⚠️ **`reverse`（聊天式）下强制平铺**，见 `nestedView`：聊天时间线是一维的，
+   * 分页、滚动锚点、贴底跟随都建立在这上面；把回复折进楼主会同时打破这三条。
+   * 站内讨论区因此不需要显式关掉这个开关，它本来就传了 `reverse`。
    */
-  recent: { type: Boolean, default: false },
+  nested: { type: Boolean, default: true },
   /**
    * 聊天式排序：**最新在最后**（站内讨论区与右栏预览用）。
    *
@@ -141,17 +217,57 @@ const props = defineProps({
    * 因为图鉴详情里的讨论区是"列表"形态（最新的在最上面更符合翻阅习惯），
    * 而聊天形态是"最新在底部、输入框就在下面"。
    */
-  reverse: { type: Boolean, default: false },
-  /**
-   * 上滑到顶部时**自动加载更早的**，不显示「加载更多」按钮。
-   *
-   * 聊天式视图里"往上翻看历史"本身就是加载意图，再让人点一次按钮是多余的；
-   * 按钮形态仍保留给默认（列表）形态使用。
-   */
-  loadMoreOnScroll: { type: Boolean, default: false }
+  reverse: { type: Boolean, default: false }
 })
 
-const emit = defineEmits(['open-page', 'loading-earlier'])
+const emit = defineEmits(['open-page', 'loading-earlier', 'reply'])
+/** 面板内部的发表区（详情页形态）；讨论区形态没有它，改由父组件接 `@reply` 事件 */
+const composerRef = ref(null)
+
+/**
+ * 是否用楼中楼形态。
+ *
+ * `reverse`（聊天式）下一律平铺：那里回复就是一条普通消息 + 一行引用，
+ * 折进楼主会打破"一维时间线"（分页游标、滚动锚点、贴底跟随都依赖它）。
+ */
+const nestedView = computed(() => props.nested && !props.reverse)
+
+/**
+ * 点「回复」：把目标交给发表区。
+ *
+ * 两种形态：
+ *   - 详情页：发表区就在本组件里 → 直接 `ref` 调 `startReply`；
+ *   - 讨论区：发表区在滚动容器之外（`DiscussionsView` 里）→ 抛 `reply` 事件让父组件转发。
+ * 不这样做的话，讨论区页面得把整份列表项复制一遍才能挂上回复按钮。
+ */
+function requestReply(comment) {
+  if (composerRef.value?.startReply) composerRef.value.startReply(comment)
+  else emit('reply', comment)
+}
+
+/**
+ * 滚到某条评论并闪一下（点引用行、或刚发表完回复时定位回去）。
+ *
+ * ⚠️ **只滚我们自己的滚动容器，不用 `scrollIntoView`**：后者会把**所有**可滚祖先
+ * 一起滚动，包括页面本身——详情弹窗里表现为"一操作整个页面往上挤"（用户反馈）。
+ * 这里自己算偏移，并把目标放在视口上方 1/3 处（比居中更稳，不会被底部的发表区挡住）。
+ */
+let flashTimer = 0
+function scrollToComment(id) {
+  const target = listRoot.value?.$el?.querySelector?.(`[data-comment-id="${id}"]`)
+  if (!target) return
+  const scroller = resolveScroller()
+  if (scroller) {
+    const offset = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top
+    const top = scroller.scrollTop + offset - scroller.clientHeight / 3
+    scroller.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
+  }
+  target.classList.add('is-quote-flash')
+  clearTimeout(flashTimer)
+  flashTimer = setTimeout(() => target.classList.remove('is-quote-flash'), 1200)
+}
+
+onBeforeUnmount(() => clearTimeout(flashTimer))
 
 /** 实际上列表里显示的条目（`limit` 只是截断展示，不改变分页状态） */
 const shownComments = computed(() =>
@@ -179,12 +295,21 @@ const ownedIds = ref(new Set())
 /**
  * 发表成功后的回调（由 CommentComposer 触发）。
  *
- * 重新拉一次列表：发表区已移到组件外（讨论区页面要把它固定在滚动容器之外），
- * 不能再靠"本地往前插一条"同步——那样两处状态会不一致。
+ * 默认**只把这一条并进列表**（`addPostedComment`），不整页重拉：详情页现在也会
+ * 滚动自动加载多页，重拉会把用户翻出来的那些页丢掉、滚动位置也会跳。
+ *
+ * ⚠️ **待审也不重拉**：待审的评论不在公开列表里，重拉只会让列表瞬间变短、
+ * 页面"挤一下"（用户反馈"一回复页面挤上去了"），而"已提交待审核"的提示由发表区自己给。
+ * 只有连评论对象都没拿到（异常返回）才退回整页重拉。
  */
-async function onPosted() {
+async function onPosted(data) {
   actionError.value = ''
-  await load()
+  const comment = data?.comment
+  if (!comment?.id) {
+    await load()
+    return
+  }
+  await addPostedComment(comment)
 }
 
 /**
@@ -207,12 +332,38 @@ function reload() {
  * 只 push/unshift 一条，其余 DOM 完全不动，就没有这个闪烁。
  *
  * 列表顺序与 `reverse` 一致：聊天式最新在末尾（push），列表式最新在开头（unshift）。
+ *
+ * ⚠️ **楼中楼里发的是回复**（`parentId` 有值）时不走上面那套：它属于某一层楼，
+ * 直接插到顶层会多出一条"孤儿回复"。这里改成**重新取那一串回复**并把该楼展开，
+ * 这样计数、顺序、`回复 @谁` 前缀全都与服务端一致（一次请求，不影响其它楼）。
  */
-function addPostedComment(comment) {
+async function addPostedComment(comment) {
   if (!comment?.id) return
+  if (nestedView.value && comment.parentId) {
+    const root = findThreadRoot(comment.parentId)
+    if (root) {
+      await loadThread(root, { force: true })
+      root.expanded = true
+      syncOwned()
+      /*
+       * 回到那一层楼并闪一下：用户可能是在列表别处点的「回复」，
+       * 不把视线带回去，他看不出自己那条落到了哪里（用户要求"能定位回去"）。
+       */
+      await nextTick()
+      scrollToComment(root.id)
+      return
+    }
+  }
   if (props.reverse) comments.value = [...comments.value, comment]
-  else comments.value = [comment, ...comments.value]
+  else comments.value = [toThread(comment), ...comments.value]
   syncOwned()
+}
+
+/** 找某条评论所属的楼（`parentId` 可能是楼主本身，也可能是楼里的一条回复） */
+function findThreadRoot(id) {
+  return comments.value.find(
+    (c) => c.id === id || c.replies?.some((r) => r.id === id) || c.allReplies?.some((r) => r.id === id)
+  )
 }
 
 defineExpose({
@@ -225,9 +376,23 @@ defineExpose({
   loading
 })
 
+/**
+ * 认领"本机发过的评论"：凡是本地存着删除令牌的 id，才显示「删除」。
+ *
+ * ⚠️ **必须连楼中楼里的回复一起扫**：嵌套回复的「删除」按钮同样看 `ownedIds`，
+ * 只扫顶层的话自己刚发的回复会没有删除入口（实测被指出："回复怎么没有删除"）。
+ * `allReplies` 是展开过的全量缓存，也要一起扫，否则收起状态下删不了。
+ */
 function syncOwned() {
   const set = new Set()
-  for (const c of comments.value) if (getDeleteToken(c.id)) set.add(c.id)
+  const consider = (c) => {
+    if (c?.id && getDeleteToken(c.id)) set.add(c.id)
+  }
+  for (const c of comments.value) {
+    consider(c)
+    for (const r of c.replies || []) consider(r)
+    for (const r of c.allReplies || []) consider(r)
+  }
   ownedIds.value = set
 }
 
@@ -238,14 +403,37 @@ function avatarOf(comment) {
   return path ? getImageUrl(path) : ''
 }
 
+/**
+ * 把服务端返回的一条顶层评论标准化成楼中楼形态的本地结构。
+ *
+ * 三个"显示态"字段是分开的，不要合并：
+ *   - `preview`：服务端给的预览回复（收起时显示这些，永远不变）；
+ *   - `replies`：**当前显示**的回复（展开后是全部，收起时回到 `preview`）；
+ *   - `allReplies`：展开过一次后的全部回复缓存（再展开不再请求）。
+ * 混用它们就会出"收起后少了一条""展开后重复"这类问题。
+ */
+function toThread(root) {
+  const preview = root.replies || []
+  return {
+    ...root,
+    preview,
+    replies: preview,
+    replyCount: root.replyCount ?? preview.length,
+    expanded: false,
+    loadingReplies: false,
+    allReplies: null
+  }
+}
+
 async function load({ append = false } = {}) {
   loading.value = true
   errorMessage.value = ''
   try {
-    // 两种数据源：某个页面的评论（可分页）／讨论区最新（固定条数、服务端有边缘缓存）
-    const data = props.recent
-      ? await fetchRecentComments()
-      : await fetchComments(props.pageKey, { cursor: append ? cursor.value : undefined })
+    const data = await fetchComments(props.pageKey, {
+      cursor: append ? cursor.value : undefined,
+      nested: nestedView.value
+    })
+    const page = nestedView.value ? data.comments.map(toThread) : data.comments
 
     /*
      * 排序：服务端一律按 **id 倒序**（最新在前）。
@@ -255,10 +443,10 @@ async function load({ append = false } = {}) {
      * 反转后应**接在列表最前面**（`append` 时用 prepend 而不是 push）。
      */
     if (props.reverse) {
-      const page = [...data.comments].reverse()
-      comments.value = append ? [...page, ...comments.value] : page
+      const reversed = [...page].reverse()
+      comments.value = append ? [...reversed, ...comments.value] : reversed
     } else {
-      comments.value = append ? [...comments.value, ...data.comments] : data.comments
+      comments.value = append ? [...comments.value, ...page] : page
     }
 
     hasMore.value = !!data.hasMore
@@ -269,6 +457,44 @@ async function load({ append = false } = {}) {
     errorMessage.value = err?.message || '评论加载失败，请稍后重试'
   } finally {
     loading.value = false
+  }
+}
+
+/** 展开/收起一层楼的回复（展开时按需取那一串的全部回复，取过就缓存） */
+async function toggleThread(root) {
+  if (root.loadingReplies) return
+  if (root.expanded) {
+    root.expanded = false
+    root.replies = root.preview
+    return
+  }
+  if (root.allReplies) {
+    root.replies = root.allReplies
+    root.expanded = true
+    return
+  }
+  await loadThread(root)
+  root.expanded = true
+}
+
+/** 取某一层楼的全部回复（`force` 用于"刚发完一条回复"后刷新） */
+async function loadThread(root, { force = false } = {}) {
+  if (!root?.id) return
+  if (root.allReplies && !force) {
+    root.replies = root.allReplies
+    return
+  }
+  root.loadingReplies = true
+  try {
+    const data = await fetchCommentReplies(props.pageKey, root.id)
+    root.allReplies = data?.comments || []
+    root.replies = root.allReplies
+    // 服务端返回的条数才是权威（本地只是乐观显示）
+    root.replyCount = Math.max(root.replyCount, root.allReplies.length)
+  } catch (err) {
+    actionError.value = err?.message || '回复加载失败，请稍后重试'
+  } finally {
+    root.loadingReplies = false
   }
 }
 
@@ -288,10 +514,13 @@ async function load({ append = false } = {}) {
  * @returns {Promise<number>} 实际并入的新条目数（0 表示没有新内容或失败）
  */
 async function mergeNewComments() {
+  /*
+   * 楼中楼**不做增量合并**：一条新回复必须落在它那层楼里，平铺着并进来会变成孤儿。
+   * 详情页也不轮询（轮询只在站内讨论区与右栏），所以这里直接返回 0 而不是做半套。
+   */
+  if (nestedView.value) return 0
   try {
-    const data = props.recent
-      ? await fetchRecentComments()
-      : await fetchComments(props.pageKey)
+    const data = await fetchComments(props.pageKey)
     const incoming = data?.comments || []
     if (!incoming.length) return 0
 
@@ -311,11 +540,6 @@ async function mergeNewComments() {
   } catch {
     return 0
   }
-}
-
-function loadMore() {
-  if (!hasMore.value || loading.value) return
-  return load({ append: true })
 }
 
 /**
@@ -362,19 +586,25 @@ function resolveScroller() {
   return fallback
 }
 
-async function loadEarlierKeepingPosition(scroller) {
+/**
+ * 加载下一页（两种方向共用）。
+ *
+ * `fromTop`（聊天式）：新页要**接在最前面**，加载后必须做锚点补偿，否则用户会被
+ * 顶下去一大截；同时要通知父组件"这是往上补历史，别自动滚到底"（它会 watch 条数变化）。
+ * 非 `fromTop`（详情页的列表形态）：新页接在**末尾**，浏览器本身不会跳动，无需补偿。
+ */
+async function loadMore({ fromTop, scroller } = {}) {
   if (!hasMore.value || loading.value) return
   const root = scroller || resolveScroller()
+  if (!fromTop) {
+    await load({ append: true })
+    return
+  }
   if (!root) return
 
   const anchor = root.querySelector?.('.comment-item')
   const before = anchor ? anchor.getBoundingClientRect().top - root.getBoundingClientRect().top : 0
 
-  /*
-   * 通知父组件"这是往上补历史，别自动滚到底"。
-   * 否则父组件 watch 到条数变化会把用户又拽回最新一条，
-   * 同时覆盖掉下面这段锚点补偿（实测问题）。
-   */
   emit('loading-earlier', true)
   try {
     await load({ append: true })
@@ -390,14 +620,23 @@ async function loadEarlierKeepingPosition(scroller) {
 }
 
 function onListScroll(event) {
-  if (!props.loadMoreOnScroll || !hasMore.value || loading.value) return
+  if (!hasMore.value || loading.value) return
   const root = event?.currentTarget || resolveScroller()
-  // 距离顶部 80px 内就触发，避免"必须精准拖到最顶"的手感
-  if (root && root.scrollTop <= 80) loadEarlierKeepingPosition(root)
+  if (!root) return
+  /*
+   * 触发方向跟着列表方向走：
+   *   - 聊天式（`reverse`）：更早的在上方，滚到**顶部**附近就补历史；
+   *   - 列表式（详情页）：更多在下方，滚到**底部**附近就接着加载。
+   * 阈值给 120px，避免"必须精准拖到底"的手感。
+   */
+  if (props.reverse) {
+    if (root.scrollTop <= 80) loadMore({ fromTop: true, scroller: root })
+    return
+  }
+  if (root.scrollHeight - root.scrollTop - root.clientHeight <= 120) loadMore({ fromTop: false, scroller: root })
 }
 
 function bindScroller() {
-  if (!props.loadMoreOnScroll) return
   const next = resolveScroller()
   if (!next || next === boundScroller) return
   boundScroller?.removeEventListener('scroll', onListScroll)
@@ -406,7 +645,7 @@ function bindScroller() {
 }
 
 watch(
-  () => [props.loadMoreOnScroll, comments.value.length],
+  () => comments.value.length,
   () => nextTick(bindScroller),
   { immediate: true }
 )
@@ -486,18 +725,15 @@ function isoTime(unixSec) {
  *   额度提醒（2026-10-02 记录，用户明确要求暂不优化）：物品图鉴是首页、点开很频繁，
  *   因此"每次打开详情一次评论请求"是评论功能最大的一项固定开销。要省额度时把本节的
  *   `UiSection` 改成 `collapsible` + 默认收起、展开时才 `load()` 即可（改动只需几行）。
- * - **最新形态**（右栏预览 / 讨论区首页的历史消息）：只在挂载时拉一次；
- *   服务端那条带 30 秒边缘共享缓存，所以频繁打开页面也不会反复查库。
  */
 watch(
-  () => [props.pageKey, props.recent],
+  () => props.pageKey,
   () => {
     comments.value = []
     cursor.value = null
     hasMore.value = false
     actionError.value = ''
-    actionError.value = ''
-    if (props.recent || props.pageKey) load()
+    if (props.pageKey) load()
   },
   { immediate: true }
 )
@@ -581,7 +817,6 @@ watch(
 }
 
 .comment-delete {
-  margin-left: auto;
   padding: 0;
   border: none;
   background: none;
@@ -594,6 +829,187 @@ watch(
 .comment-delete:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+/* 操作区（回复 / 删除）整块贴行尾；间距由容器给，不给按钮各自 margin */
+.comment-actions {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-left: auto;
+}
+
+/*
+ * 「回复」：平时低对比（每条都有，太抢眼会很吵），悬停/键盘聚焦时提亮。
+ */
+.comment-reply {
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text-faint);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.comment-reply:hover,
+.comment-reply:focus-visible {
+  color: var(--accent-ink);
+}
+
+/* 「回复你」：本机发过的评论被回复时标一下（不依赖账号系统，靠本机删除令牌认领） */
+.comment-reply-you {
+  padding: 0 6px;
+  border-radius: 3px;
+  background: var(--accent-bright);
+  color: var(--paper);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/*
+ * 引用行：左侧一道竖线 + 灰底，弱于正文——它是"这条在回应谁"的注解，不是内容本身。
+ * 整行可点（滚到父评论），所以用 `button` 而不是 `div`：键盘也能触发。
+ */
+.comment-quote {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 4px 0 0;
+  padding: 3px 8px;
+  border: none;
+  border-left: 2px solid var(--border-color);
+  border-radius: 0 3px 3px 0;
+  background: var(--paper-soft);
+  color: var(--text-faint);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: left;
+  cursor: pointer;
+}
+
+.comment-quote:hover {
+  border-left-color: var(--accent-bright);
+}
+
+.comment-quote-nick {
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+/* 摘录单行省略：引用不该把一条消息撑成三行 */
+.comment-quote-body {
+  display: inline;
+  margin-left: 4px;
+  overflow: hidden;
+}
+
+.comment-quote-gone {
+  margin-left: 4px;
+  font-style: italic;
+}
+
+/* 从引用跳过去时闪一下，否则用户看不出滚到了哪条 */
+.comment-item.is-quote-flash {
+  animation: comment-quote-flash 1.2s ease-out;
+}
+
+/*
+ * 楼中楼：一串回复收在楼主下面。
+ *
+ * 视觉上"退一级"：左侧一道浅竖线 + 略微缩进，字号比楼主小一档——
+ * 这样一眼能看出哪些是回复、哪些是新的楼主（B 站那种两层形态）。
+ * 回复**不带头像**：整块本来就窄，再放一次头像会把正文挤成一条。
+ */
+.comment-thread {
+  margin: 6px 0 0 6px;
+  padding-left: 10px;
+  border-left: 2px solid var(--border-faint, rgba(143, 115, 81, 0.25));
+}
+
+.comment-nested {
+  padding: 4px 0;
+}
+
+.comment-nested + .comment-nested {
+  border-top: 1px dashed var(--border-faint, rgba(143, 115, 81, 0.25));
+}
+
+.comment-nested-head {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+
+.comment-nested-nick {
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+/* 「回复 @谁」：比昵称弱一档，不抢正文的注意力 */
+.comment-nested-to {
+  color: var(--text-faint);
+}
+
+.comment-nested-body {
+  margin: 1px 0 0;
+  color: var(--text-main);
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* 嵌套回复上的「回复 / 删除」：与楼主的同款小字按钮，但更紧凑 */
+.comment-nested-head .comment-reply,
+.comment-nested-head .comment-delete {
+  font-size: 11.5px;
+}
+
+.comment-thread-toggle {
+  display: inline-block;
+  margin: 4px 0 2px;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+  color: var(--accent-ink);
+  font-family: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.comment-thread-toggle:hover:not(:disabled) {
+  border-color: var(--border-faint, rgba(143, 115, 81, 0.25));
+  background: var(--hover-bg, rgba(85, 117, 116, 0.14));
+}
+
+.comment-thread-toggle:disabled {
+  color: var(--text-faint);
+  cursor: default;
+}
+
+@keyframes comment-quote-flash {
+  0%,
+  30% {
+    background: var(--accent-bright, #7a9a99);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comment-item.is-quote-flash {
+    animation: none;
+    outline: 2px solid var(--accent-bright);
+  }
 }
 
 .comment-delete:hover:not(:disabled) {
@@ -611,23 +1027,7 @@ watch(
   overflow-wrap: anywhere;
 }
 
-.comments-more {
-  display: flex;
-  justify-content: center;
-  padding: 8px 0 4px;
-}
-
-/* 分页提示（聊天式：自动加载的说明 / 已到最早） */
-.comments-more-hint {
-  margin: 0;
-  padding: 6px 0;
-  color: var(--text-faint);
-  font-size: 12.5px;
-  line-height: 1.6;
-  text-align: center;
-}
-
-/* 全站最新列表里标注「这条来自哪个页面」：做成可点的小胶囊 */
+/* 聚合列表里标注「这条来自哪个页面」：做成可点的小胶囊（`showPage` 才渲染） */
 .comment-page-link {
   margin-top: 6px;
   padding: 1px 7px;

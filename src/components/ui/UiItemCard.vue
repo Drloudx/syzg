@@ -9,12 +9,15 @@
       :style="{ backgroundImage: `url('${getImageUrl(`/ItemBagPanel/item_f_${getQualityFrame(quality)}.webp`)}')` }"
     >
       <img
-        v-if="img"
+        v-if="img && isImgReady"
         :src="img"
         :alt="name"
         class="ui-item-card__icon"
+        :class="{ 'is-loaded': isLoaded }"
         loading="lazy"
-        @error="emit('img-error', $event)"
+        decoding="async"
+        @load="onImgLoad"
+        @error="onImgError"
       />
       <slot name="icon" />
       <div v-if="$slots.extra" class="ui-item-card__badge">
@@ -32,6 +35,7 @@
  * UiItemCard —— 图鉴网格卡片
  * 使用游戏原生 ItemBagPanel 背景框（item_f_1 ~ item_f_6.png）
  */
+import { ref, watch, inject } from 'vue'
 import { getImageUrl } from '../../utils/env'
 
 const props = defineProps({
@@ -41,6 +45,52 @@ const props = defineProps({
   quality: { type: [Number, String], default: 0 }
 })
 const emit = defineEmits(['click', 'img-error'])
+
+// 全局内存缓存：记录所有已在当前会话中成功加载过的图片 URL（防止二次滚动重复延迟）
+const loadedImages = (window.__loadedUiItemImages = window.__loadedUiItemImages || new Set())
+
+// 快滑感知（由上层 UiCardGrid / UiVirtualGrid provide 提供）
+const isFastScrolling = inject('isFastScrolling', ref(false))
+
+// 初始状态：若已在内存缓存中，或当前不是快速滑动，立刻就绪
+const isCached = !!(props.img && loadedImages.has(props.img))
+const isImgReady = ref(isCached || !isFastScrolling.value)
+const isLoaded = ref(isCached)
+
+const syncImgState = () => {
+  if (!props.img) return
+  if (loadedImages.has(props.img)) {
+    isImgReady.value = true
+    isLoaded.value = true
+    return
+  }
+  if (!isFastScrolling.value) {
+    isImgReady.value = true
+  }
+}
+
+watch(() => props.img, () => {
+  isLoaded.value = !!(props.img && loadedImages.has(props.img))
+  syncImgState()
+})
+
+watch(isFastScrolling, (fast) => {
+  if (!fast && props.img) {
+    isImgReady.value = true
+  }
+})
+
+const onImgLoad = () => {
+  if (props.img) {
+    loadedImages.add(props.img)
+  }
+  isLoaded.value = true
+}
+
+const onImgError = (e) => {
+  isLoaded.value = true
+  emit('img-error', e)
+}
 
 const getQualityFrame = (q) => {
   const num = Number(q)
@@ -108,6 +158,12 @@ const getQualityFrame = (q) => {
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.45));
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+.ui-item-card__icon.is-loaded {
+  opacity: 1;
 }
 
 /* 名称底板复用游戏图鉴资源 colect_list_mx.png，避免网页自定义纯色与游戏视觉不一致。 */

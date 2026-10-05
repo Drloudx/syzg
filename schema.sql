@@ -10,7 +10,7 @@
 CREATE TABLE IF NOT EXISTS comments (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
   page_key   TEXT    NOT NULL,            -- 'item:30047'
-  parent_id  INTEGER DEFAULT NULL,        -- 预留楼中楼，一期不使用
+  parent_id  INTEGER DEFAULT NULL,        -- 引用式回复：被回复那条评论的 id（NULL = 普通评论，一期预留、2026-10-04 启用）
   nick       TEXT    NOT NULL,
   email_hash TEXT    DEFAULT NULL,        -- SHA-256，绝不留明文邮箱
   body       TEXT    NOT NULL,
@@ -30,6 +30,10 @@ CREATE TABLE IF NOT EXISTS comments (
 --   ALTER TABLE comments ADD COLUMN review_reason TEXT DEFAULT NULL;
 --   ALTER TABLE comments ADD COLUMN avatar TEXT DEFAULT NULL;
 --   ALTER TABLE comments ADD COLUMN page_label TEXT DEFAULT NULL;
+--
+-- 回复（2026-10-04）**不需要迁移**：直接用建表时就预留的 `parent_id`。
+-- 引用式回复（不是楼中楼）——被回复的内容通过自连接按主键读出来，
+-- 所以**不需要** `parent_id` 上的索引，也不需要新的表。设计见方案第五章「回复」。
 --
 -- 说明：`email_hash` 列保留但不再使用（2026-10-02 起头像改为选游戏头像，
 -- 不再用邮箱哈希拼 Gravatar——那需要把标识发给第三方，与"不存明文邮箱"自相矛盾，

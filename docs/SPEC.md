@@ -74,6 +74,8 @@ Vue 3 + Vite 8 + Vue Router 4（Hash）+ Pinia 4，Android 使用 Capacitor 8 �
 | 招募规则、状态与舞台 | `gachaSim`、`gachaState`、`gachaLayout`、`gachaCurrency`、`gachaSpinePlayer`、`gachaAudio` |
 | 房间内容与奖励池展示 | `utils/roomDisplay.js`：波次文案、宝箱排序、奖励池分组与概率标签；`RewardPools.vue` / `RoomContentList.vue` 由副本图鉴与关卡图鉴共用 |
 | 状态（buff）数值说明 | `utils/buffParser.js`：**唯一**的 `para → 中文数值` 渲染实现（`describeBuff` / `describeBuffPara` / `resolveBuffEffect`），词条页与角色、怪物图鉴共用；单位语义与笔误归一化依据见 [词条页契约](#词条) |
+| 评论与回复 | `utils/commentApi.js`：页面归属键（`<前缀>:<实体ID>`）、自删令牌、`parent_id` **引用式回复**（不建楼中楼，父评论被删不级联）；`CommentsPanel.vue` 渲染列表与「回复」入口、`CommentComposer.vue` 负责发表（两者的引用关系与降级规则见 [评论后端方案第五章「回复」](technical/COMMENTS_BACKEND.md#回复引用式不建楼中楼2026-10-04)） |
+| 聊天表情 | `config/emoticons.js`：表情包目录、正文 token 语法 `[e:包:名]`、显示字数统计与分段（纯函数、零依赖，服务端复用同一份）；`EmoticonPicker.vue` 选择、`EmoticonText.vue` 渲染，页面与组件不自行解析正文。发表区是**富文本输入**（`contenteditable`，表情直接显图；`form.body` 仍是序列化后的 token 文本，提交/计数只看它），发送方式默认 `Enter`、可切 `Ctrl + Enter`（`UiSplitButton`，偏好存本机）。数据格式与上限口径见 [评论后端方案](technical/COMMENTS_BACKEND.md#聊天表情正文里存-e包名-token2026-10-04) |
 | 章节地图 | `components/chapters/ChapterMapCanvas.vue`：世界地图底图 + 拼块渲染与归属图命中判定；`RegionRouteMap.vue`：地区路线图（底图 + 节点 + 连线 + 缩放平移）；坐标、归属图与路线数据都由构建期产物提供 |
 
 纯规则模块在构建期完成多表计算；带请求、缓存或播放生命周期的运行时工具负责各自环境。不能因为它们同在 `utils/` 就把所有工具都当作无副作用纯函数。

@@ -3,7 +3,8 @@
     <!--
       这是**站内总讨论区**：归属键固定为 `site:general`，与各图鉴页面的讨论
       （`item:xxx`、`hero:xxx`…）是**完全分开**的两套内容，不聚合、不互相搬运。
-      各页面的讨论在各自详情里，右栏只做"全站最新"的发现入口。
+      各页面的讨论在各自详情里；右栏「最新讨论」只镜像**本站内讨论区**
+      （服务端 `/api/recent` 只查 `site:general`，右栏发表后本地直插也按 `pageKey` 过滤）。
 
       外层纸张面板：内容直接铺在地图背景上会看不清，与符石图鉴的内容区同一形态。
     -->
@@ -26,16 +27,18 @@
           title=""
           read-only
           reverse
-          load-more-on-scroll
           @loading-earlier="(busy) => (suppressAutoScroll = busy)"
+          @reply="(comment) => composerRef?.startReply(comment)"
         />
       </div>
 
       <!--
         发表区：**放在滚动容器之外**，因此始终固定在面板底部（用户要求"悬浮"）。
         留在容器里就只能跟着列表滚，消息一多会被推出视野——那是"列表底部"不是"容器底部"。
+        列表里的「回复」按钮在本组件之外（`CommentsPanel` 里），所以经这里把目标转发给发表区。
       -->
       <CommentComposer
+        ref="composerRef"
         class="discussion-composer"
         :page-key="SITE_PAGE_KEY"
         :page-label="SITE_PAGE_LABEL"
@@ -54,6 +57,8 @@ import { useVisibilityPolling } from '../composables/useVisibilityPolling.js'
 import { DISCUSSION_POLL_MS } from '../config/discussions.js'
 
 const listRef = ref(null)
+/** 发表区（在滚动容器之外）：接收列表里「回复」转发的目标 */
+const composerRef = ref(null)
 /** 滚动容器 DOM（`ref` 在 setup 期间为 null，所以必须 watch 而不是直接调用） */
 const scrollRoot = ref(null)
 
@@ -65,7 +70,7 @@ function scrollToLatest() {
 /**
  * 贴着底部（阈值内）就当作"用户在看最新"，新消息进来时自动跟到底。
  *
- * 阈值取一行消息的高度量级（新评论实测约 78px）：用户已经自己往上翻了一屏，
+ * 阈值取一条**文字**消息的高度量级（新评论实测约 78px）：用户已经自己往上翻了一屏，
  * 就不该再被拽下去。
  */
 const NEAR_BOTTOM_PX = 120
@@ -77,7 +82,24 @@ function isNearBottom() {
 }
 
 /**
- * 平滑滚到最新一条。
+ * **插入之前**是否贴着底部 —— 自动跟随与否只看这一个值。
+ *
+ * 为什么不能在 watcher 里现算：`flush:'post'` 的 watcher 跑在 DOM 已插入之后，
+ * 那时 `scrollHeight` 已经变大，贴底的用户会被算成"已经翻上去了"。文字消息约 78px
+ * 还不至于跨过 120px 阈值，但**表情/贴纸消息更高**（贴纸 64px + 署名行 ≈ 124px），
+ * 于是"发一条表情消息不自动滚到底"（2026-10-04 用户反馈，复现：gap 992→124）。
+ *
+ * 维护方式：滚动事件里刷新（用户滚动会触发；程序跟随结束时也停在新底部 → true），
+ * 输入过程中发表区高度变化不会触发滚动事件，因此这个值恰好就是"插入前"的状态。
+ */
+let nearBottomBeforeInsert = true
+
+function refreshNearBottom() {
+  nearBottomBeforeInsert = isNearBottom()
+}
+
+/**
+ * 平滑滚到最新一条，并在随后一小段窗口里**继续贴底**。
  *
  * 为什么不直接 `el.scrollTop = el.scrollHeight`：那是一次瞬移。用户往上翻着历史
  * 点发表时，画面会在**一帧内**被甩出近千像素（实测 471 → 1357），看起来就是"闪一下"。
@@ -88,66 +110,107 @@ function isNearBottom() {
  *
  * **目标每帧重取**（`el.scrollHeight - el.clientHeight`）：新评论的 DOM 先插入、
  * 高度随后才稳定，写死一个起始目标会在收尾时对不齐，还得再补跳一下。
+ *
+ * ⚠️ **动画结束后还要再跟一小段（`FOLLOW_SETTLE_MS`）**：表情图片解码、字体回退、
+ * 换行落定都可能在动画结束**之后**才改变内容高度，那时位置已经不在底部了——
+ * 用户看到的就是"发了表情消息，中间区域没自动滚到底"（2026-10-04 反馈）。
+ * 这段窗口内只做"贴到 scrollHeight"，用户一旦自己滚动就立刻放弃（`onUserScroll`）。
  */
+const FOLLOW_ANIM_MS = 260
+const FOLLOW_SETTLE_MS = 900
 let scrollAnimFrame = 0
 let scrollingToLatest = false
+let followUntil = 0
 
 function cancelScrollToLatest() {
   if (scrollAnimFrame) {
     cancelAnimationFrame(scrollAnimFrame)
     scrollAnimFrame = 0
   }
+  scrollingToLatest = false
 }
 
 function animateScrollToLatest() {
   const el = scrollRoot.value
   if (!el) return
   cancelScrollToLatest()
+  scrollingToLatest = true
 
+  const start = performance.now()
+  followUntil = start + FOLLOW_ANIM_MS + FOLLOW_SETTLE_MS
   const from = el.scrollTop
-  if (!(el.scrollHeight - el.clientHeight - from > 0.5)) return
-
-  /*
-   * 关键：**同步推第一帧**。此刻仍在"DOM 已更新、尚未绘制"的这一帧里，
-   * 用 `requestAnimationFrame(step)` 启动会把第一次位移推到下一次绘制，
-   * 中间白白多绘制一帧"新消息已插入、列表还没跟下去"的中间态——那正是用户看到的闪。
-   */
-  let start = performance.now()
   let rendered = from
+  let lastHeight = el.scrollHeight
 
   const step = (now) => {
     scrollAnimFrame = 0
-    if (!scrollRoot.value) return
-
-    const p = Math.min(1, (now - start) / 260)
-    if (p >= 1) {
-      // 收尾：直接对齐最终位置，并把 `scrollHeight` 的最新值算进去
-      el.scrollTop = el.scrollHeight
+    if (!scrollRoot.value) {
+      scrollingToLatest = false
       return
     }
 
-    // 目标每帧重取：新评论插入后 `scrollHeight` 会变，写死目标收尾会对不齐
-    const to = el.scrollHeight - el.clientHeight
-    // easeOutCubic：起步快、收尾稳，接近聊天软件"滑到最新"的手感
-    const want = from + (to - from) * (1 - Math.pow(1 - p, 3))
+    const p = Math.min(1, (now - start) / FOLLOW_ANIM_MS)
+    if (p < 1) {
+      // 目标每帧重取：新评论插入后 `scrollHeight` 会变，写死目标收尾会对不齐
+      const to = el.scrollHeight - el.clientHeight
+      // easeOutCubic：起步快、收尾稳，接近聊天软件"滑到最新"的手感
+      const want = from + (to - from) * (1 - Math.pow(1 - p, 3))
+      /*
+       * **只增不减**：这里只会"往最新滚"，任何回退都是抖动。
+       * 实测浏览器在收尾时会再微调一次 `scrollHeight`（新评论的换行/图片解码），
+       * 若直接写 `want` 就会出现 1px 的回落；钳一下即可消除，且不影响总位移。
+       */
+      rendered = want > rendered ? want : rendered
+      el.scrollTop = rendered
+      scrollAnimFrame = requestAnimationFrame(step)
+      return
+    }
 
     /*
-     * **只增不减**：这里只会"往最新滚"，任何回退都是抖动。
-     * 实测浏览器在收尾时会再微调一次 `scrollHeight`（新评论的换行/图片解码），
-     * 若直接写 `want` 就会出现 1px 的回落；钳一下即可消除，且不影响总位移。
+     * 落定窗口：**只在"内容高度又变了"时补一次贴底**，并且一旦发现位置已经被别人
+     * （用户、上滑加载、测试里的程序滚动）挪走就立刻放弃。
+     *
+     * 为什么不是"每帧强制贴底"：那会与任何外部滚动打架——实测 `verify-post-scroll`
+     * 的场景 B（往上翻历史时发表，要求列表原地不动）会被这个窗口反复拽回底部。
+     * 改成"高度变了才写 + 位置不对就退出"之后，它只补图片解码/字体落定这一种情况。
      */
-    rendered = want > rendered ? want : rendered
-    el.scrollTop = rendered
-    scrollAnimFrame = requestAnimationFrame(step)
+    const target = el.scrollHeight - el.clientHeight
+    if (Math.abs(el.scrollTop - target) > 2) {
+      scrollingToLatest = false
+      return
+    }
+    if (el.scrollHeight !== lastHeight) {
+      lastHeight = el.scrollHeight
+      el.scrollTop = el.scrollHeight
+    }
+    if (now < followUntil) {
+      scrollAnimFrame = requestAnimationFrame(step)
+      return
+    }
+    scrollingToLatest = false
   }
 
+  // 关键：**同步推第一帧**（此刻仍在"DOM 已更新、尚未绘制"这一帧里，用 rAF 启动会多画一帧中间态）
   step(start)
 }
 
 /* 用户自己滚动＝想自己看：立刻放弃"滑到最新"，不跟用户抢滚动位置。
-   只认用户发起的滚动，程序滚动（scrollingToLatest）不触发。 */
+   只认用户发起的滚动，程序滚动（scrollingToLatest）不触发。
+   顺带刷新"插入前是否贴底"（这个标志只能在插入之前维护，见 nearBottomBeforeInsert）。 */
 function onUserScroll() {
+  refreshNearBottom()
   if (!scrollingToLatest) cancelScrollToLatest()
+}
+
+/**
+ * 用户**明确的交互意图**：立刻放弃自动跟随。
+ *
+ * 为什么不能只靠 `scroll` 事件分辨：程序滚动也会触发 `scroll`，而 0.9 秒的落定窗口里
+ * 每帧都在写 `scrollTop`，靠"是不是我们滚的"去猜会很脆。滚轮 / 触摸 / 按键这些事件
+ * **只会由用户产生**，用它来打断最可靠（用户往上翻时不该被继续拽到底部）。
+ */
+function onUserIntent() {
+  cancelScrollToLatest()
 }
 
 /**
@@ -200,14 +263,13 @@ watch(
       scrollToLatest()
       return
     }
-    // 比"插入后"更早的时刻判断：插入会让 scrollHeight 变大，
-    // 若在插入之后判断，本来贴着底部的用户会被算成"已经翻上去了"。
-    if (typeof old === 'number' && old > 0 && !isNearBottom()) return
-    scrollingToLatest = true
+    /*
+     * 判据是 `nearBottomBeforeInsert`（**插入前**记下的状态），不是现算的 `isNearBottom()`：
+     * 这个 watcher 跑在 DOM 已插入之后，表情消息有 124px 高，现算会把贴底的用户误判成
+     * "已经翻上去了"，于是不跟随（2026-10-04 用户反馈的那个 bug）。
+     */
+    if (typeof old === 'number' && old > 0 && !nearBottomBeforeInsert) return
     animateScrollToLatest()
-    window.setTimeout(() => {
-      scrollingToLatest = false
-    }, 320)
   },
   { flush: 'post' }
 )
@@ -219,7 +281,10 @@ watch(
 watch(
   scrollRoot,
   (el) => {
-    if (el) scrollToLatest()
+    if (el) {
+      scrollToLatest()
+      refreshNearBottom()
+    }
   },
   { immediate: true }
 )
@@ -244,11 +309,20 @@ useVisibilityPolling(
 )
 
 onMounted(() => {
-  scrollRoot.value?.addEventListener('scroll', onUserScroll, { passive: true })
+  const el = scrollRoot.value
+  el?.addEventListener('scroll', onUserScroll, { passive: true })
+  // 落定窗口内用户一有滚动意图就停（滚轮/触摸/按键只可能来自用户）
+  el?.addEventListener('wheel', onUserIntent, { passive: true })
+  el?.addEventListener('touchstart', onUserIntent, { passive: true })
+  el?.addEventListener('keydown', onUserIntent)
 })
 
 onBeforeUnmount(() => {
-  scrollRoot.value?.removeEventListener('scroll', onUserScroll)
+  const el = scrollRoot.value
+  el?.removeEventListener('scroll', onUserScroll)
+  el?.removeEventListener('wheel', onUserIntent)
+  el?.removeEventListener('touchstart', onUserIntent)
+  el?.removeEventListener('keydown', onUserIntent)
   cancelScrollToLatest()
 })
 </script>

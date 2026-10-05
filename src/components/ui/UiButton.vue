@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     class="ui-btn"
     :class="[`ui-btn--${variant}`, `ui-btn--${size}`, { 'is-block': block, 'is-disabled': disabled }]"
     :disabled="disabled"
@@ -14,6 +15,12 @@
  * UiButton —— 羊皮纸主题通用按钮
  * variant: primary(原木) | secondary(羊皮纸描边) | ghost(无底) | danger(深红) | link(文字链)
  * size: sm | md | lg
+ * type: button(默认) | submit | reset
+ *
+ * ⚠️ `type` **必须绑定到模板上**（`:type="type"`）。原先只声明了 prop 却没用它，
+ * 于是所有 UiButton 渲染出来的 `<button>` 都没有 `type` 属性——**放在 `<form>` 里就是隐式
+ * `submit`**。评论发表区新增「插入表情」按钮时踩到过：点一下图标就把表单提交了
+ * （正文被清空、还多发了一条评论），而按钮自己的 `@click` 看上去完全正常。
  */
 defineProps({
   variant: { type: String, default: 'primary' }, // primary | secondary | ghost | danger | link

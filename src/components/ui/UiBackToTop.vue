@@ -98,6 +98,12 @@ onUnmounted(() => {
 .ui-btt-fade-enter-from, .ui-btt-fade-leave-to {
   opacity: 0;
 }
+@media (max-width: 1024px) {
+  /* 移动端统一由贴边吸附挂件 EdgeFloatingWidget 提供「回到顶部」，隐藏旧的右下角固定圆球 */
+  .ui-back-to-top {
+    display: none !important;
+  }
+}
 @media (min-width: 1025px) and (max-width: 1400px) {
   .ui-back-to-top {
     right: 270px;

@@ -107,7 +107,7 @@
                 <span class="my-page" :title="c.pageKey">{{ c.pageLabel || c.pageKey }}</span>
                 <time class="my-time">{{ formatTime(c.createdAt) }}</time>
               </div>
-              <p class="my-body">{{ c.body }}</p>
+              <p class="my-body"><EmoticonText :text="c.body" /></p>
               <div class="my-foot">
                 <button type="button" class="my-delete" :disabled="deleting" @click="askDelete(c)">删除</button>
               </div>
@@ -139,7 +139,7 @@
     @update:visible="(v) => { if (!v) pendingDelete = null }"
   >
     <p class="account-note">这条评论会从讨论区移除，且无法恢复。</p>
-    <p v-if="pendingDelete" class="confirm-quote">{{ pendingDelete.body }}</p>
+    <p v-if="pendingDelete" class="confirm-quote"><EmoticonText :text="pendingDelete.body" /></p>
     <p v-if="myError" class="my-error" role="alert">{{ myError }}</p>
     <template #footer>
       <UiButton variant="ghost" @click="pendingDelete = null">取消</UiButton>
@@ -153,6 +153,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue'
 import { UiModal, UiSection, UiButton, UiEmptyState, UiTag, UiAccordion } from './ui/index.js'
+import EmoticonText from './EmoticonText.vue'
 import { getImageUrl } from '../utils/env.js'
 import {
   avatarCatalogState,

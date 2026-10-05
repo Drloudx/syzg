@@ -1,4 +1,4 @@
-# 完整交接文档（2026-10-03 版）
+# 完整交接文档（2026-10-03 版 + 2026-10-04 评论模块追加）
 
 > 这份文档是给**下一个接手的人或 AI** 看的完整入口。读完应该能：
 > 知道站点现在跑在哪、怎么发版、怎么验证、改哪里会出什么事、还剩什么没做。
@@ -6,6 +6,8 @@
 > 它取代并整合了此前散落的临时说明。日常规范仍以
 > [SPEC](SPEC.md) / [ARCHITECTURE](ARCHITECTURE.md) / [UI 组件库](UI_COMPONENT_LIBRARY.md) 为准；
 > 本文只讲"现状 + 运维 + 这次的迁移 + 剩什么"。
+> **评论/讨论模块的功能细节**看 [HANDOFF 第九节](HANDOFF.md)（那里是收口），
+> 本文只记它对运维与验证的影响。
 >
 > 项目：[深歌小助手](https://syzg.yxzmy.top)（《深渊之歌》Wiki 工具）
 > 本地路径：`E:\Desktop\html\myrzg\vue-myrzg`（**目录名仍是 myrzg，刻意不改**）
@@ -27,7 +29,12 @@
 | 构建 | Cloudflare Pages 项目 `syzg`，`npm run build` → `dist`，GitHub 推送自动部署 |
 | 后端 | Pages Functions `functions/api/[[path]].js`（单文件）+ D1 |
 | 数据库 | `myrzg-comments`（**名字未改**，`5f0d4c37-107f-4811-bc5e-768f73c51a3a`） |
-| 验收 | `npm run verify` 全绿（2026-10-03 复跑） |
+| 验收 | `npm run verify` 全绿（2026-10-04 复跑）；单测 177/177；评论套件 14 套全绿 |
+
+**2026-10-04 追加的评论模块（表情 / 富文本 / 回复 / 楼中楼 / 滚动自动加载）当前还只在本地，
+未提交未推送。** 部署注意：**不需要 D1 迁移**（回复用的是建表时预留的 `parent_id`），
+但要多一次前端构建（新增 93 张表情素材 + 重生成的字体子集），
+新文件清单见 [HANDOFF §七·0](HANDOFF.md)。
 
 ---
 
@@ -154,8 +161,9 @@ node scripts/dev/scratch/probe-bundle-domain.mjs   # 线上产物里内嵌的是
 node scripts/dev/scratch/speed-compare.mjs 3       # 新旧域名耗时分解
 ```
 
-**评论/讨论的回归套件**（跑前注意：这些脚本会 `DELETE FROM comments` 再自己造数，**跑完不还原**；
-跑完用 `node scripts/dev/scratch/seed-site-discussion.mjs` 重建演示数据）：
+**评论/讨论的回归套件**（2026-10-04 起：脚本清库前会**自动备份本地评论**、退出时还原，
+实现见 `scripts/dev/scratch/lib/comment-fixture.mjs`；**别再手动 `DELETE FROM comments`**——
+开发时人就在同一个本地库上手点页面，清库会让他的页面"列表变短、挤一下"）：
 
 | 脚本 | 覆盖 | 上次结果 |
 | --- | --- | --- |
@@ -167,8 +175,20 @@ node scripts/dev/scratch/speed-compare.mjs 3       # 新旧域名耗时分解
 | `verify-autoscroll.mjs` | 打开/发表后停在最新 | 6/6 |
 | `verify-discussions-order.mjs` | 排序 + 200 字上限 | 9/9 |
 | `verify-comment-mounts.mjs` | 9 个页面逐个验证讨论区挂载 | 27/27 |
+| `verify-comments-ui.mjs` | 详情里评论全流程 | 68/68 |
+| `verify-emoticons.mjs` | 表情选择器 / 富文本插入 / 显示字数 / 四处渲染 | 66/66 |
+| `verify-replies.mjs` | 回复（引用式）：两条链路 + 手机端 + 服务端降级 | 24/24 |
+| `verify-nested-replies.mjs` | 楼中楼：前 3 条 + 展开收起 + 滚到底自动加载 + 孤儿升级 | 28/28 |
+| `verify-hero-comment-e2e.mjs` | 非物品页面发帖 → 管理页可见 | 4/4 |
+| `verify-admin-occlusion.mjs` | 管理页筛选面板遮挡（面板不透明 / z-index / 卡片确实滚过） | 5/5 |
 | `measure-poll-cadence.mjs` | 实测轮询间隔 | 60024ms |
 | `measure-poll-cost.mjs` | 实测轮询开销 | 2 请求/6.8KB 每周期 |
+
+> 跑之前清限流（`DELETE FROM rate_limits;` 即可，**不要连评论一起删**），
+> 否则会因"每 IP 每小时 5 条"的限流误判失败。
+> 本地库被测试数据堆脏时（几百条 `historyN` / `楼主N`）：
+> `node scripts/dev/scratch/clean-test-comments.mjs`（预览）→ `--apply` 真删，
+> 只按已知测试签名匹配，站主自己发的评论不会被删。
 
 ---
 
@@ -244,10 +264,37 @@ node scripts/dev/scratch/speed-compare.mjs 3       # 新旧域名耗时分解
 
 ---
 
+## 五·B、2026-10-04：评论模块补齐（运维视角）
+
+功能细节不在这里重复，**看 [HANDOFF §九](HANDOFF.md)**（数据怎么存、两种列表形态、
+接口契约、9 条踩坑清单、还没做的优先级表）。运维与验证只需记住这几点：
+
+1. **不需要 D1 迁移**：回复用建表时就预留的 `comments.parent_id`，
+   `schema.sql` 只是把注释从"一期预留"改成"已启用"。远端库不用跑任何 SQL。
+2. **多两类新产物**：`public/images/emoticons/`（93 张无损 WebP，约 590 KB）
+   与 `public/ui/emoticon.svg`；字体子集已重生成（`npm run fonts:subset` 的
+   断言会核对，忘了就会 `verify` 失败）。
+3. **接口形状变了但向后兼容**：`POST /api/comments` 多了可选 `parentId`，
+   返回体多了 `parentId` / `replyTo` /（列表侧）`rootId`；旧的平铺取法**一字未改**，
+   所以线上旧前端配新后端也能跑。
+4. **限流与字数**：上限改成"显示字数"（一个表情算 1 字），
+   服务端另有原始长度闸门 `MAX_BODY_RAW = 8200`（放在 `sanitize` **之前**）。
+5. **测试卫生**：脚本清了库会**自动还原**（`lib/comment-fixture.mjs`）。
+   ⚠️ 还原走 `--file`，不能用 `--command`（50 条以上的 INSERT 会超命令行长度上限，
+   实测"报错且数据没写回去"）。`seed-site-discussion.mjs` 是显式重置工具，故意不接入。
+6. **顺手修好的旧脚本**：`verify-admin-occlusion.mjs` 一直去 `#/admin/comments`，
+   而路由早改成 `#/admin`（脚本没跟着更新，长期跑不起来）→ 现在 5/5 通过。
+
+---
+
 ## 六、还没做的（按优先级）
+
+> **评论模块自身还没做的功能**（新消息提示 / 草稿与重试 / 表情"最近使用" / 回复提醒全局化…）
+> 单独列在 [HANDOFF §九·9.7](HANDOFF.md)，不重复。
 
 | 优先级 | 事项 | 为什么 / 前置 |
 | --- | --- | --- |
+| **P0** | **提交并推送 2026-10-04 的评论模块改动** | 目前只在本地；新文件要 `git add`（素材/组件/单测/开发日志）。**无 D1 迁移**，但要多一次构建 |
 | **P0** | **发 Android 热更包** | 旧 APK 的 `CLOUD_URL` 写死旧域名 → **这是下掉旧域名的唯一前置**。我能备包（`cap sync` + 打 zip + 更新 `hotupdate.json` 版本），**签名与真机安装要用户做** |
 | **P1** | 账号体系（未实施） | 方案已落地成文档：[账号体系落地方案](technical/ACCOUNT_SYSTEM.md)。路线定为**邮箱验证码（无密码）**。**两个前置**：① 发信最小验证（腾讯云 SES + SPF/DKIM，**发信域名要绑 `syzg`/`yxzmy.top`，不要再绑 myrzg**）；② 隐私政策页位置 |
 | **P2** | 收尾旧域名 | 热更包铺开后：移除 `myrzg.yxzmy.top` 的 Pages 自定义域名 + EdgeOne 加速域名。⚠️ 建议先保留 301 一段时间，避免老分享链接失效 |
@@ -270,7 +317,9 @@ cmd.exe /c "npm run verify"  # 全量验收（Windows 下 npm 必须走 cmd.exe 
 cmd.exe /c "npx cap sync android"   # 同步原生壳
 npm run fonts:subset -- --apply     # 数据更新后重新子集化字体（否则 verify 失败）
 npm run cdn:check            # 只读核对线上缓存头（需网络，不进 verify）
-node scripts/dev/scratch/seed-site-discussion.mjs   # 重建本地演示评论
+node scripts/dev/scratch/seed-site-discussion.mjs          # 显式重置本地演示评论（会清空评论表）
+node scripts/dev/scratch/clean-test-comments.mjs [--apply] # 只清测试脏数据，保留站主自己的评论
+npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM rate_limits;"   # 跑评论测试前清限流
 ```
 
 ### 7.2 红线（改了会出事）
@@ -282,8 +331,13 @@ node scripts/dev/scratch/seed-site-discussion.mjs   # 重建本地演示评论
 5. **`npm` 在 Windows 下走 `cmd.exe /c`**；**写中文文件用编辑工具或 Node `fs.writeFileSync(...,'utf8')`**，
    不要用 PowerShell `Set-Content`/`Out-File`（会 GBK 乱码或加 BOM——提交信息踩过 BOM）。
 6. **改 `functions/` 必须重启 `dev:api`**（wrangler 不热加载）。
-7. **评论类测试脚本会清库**（`DELETE FROM comments`）→ 跑完记得重建演示数据。
+7. **评论类测试脚本会清库造数**，但 2026-10-04 起**退出时自动还原**；
+   **不要手动 `DELETE FROM comments`**（开发时人就在同一个本地库上手点页面），
+   要重置演示数据就跑 `seed-site-discussion.mjs`（它才是显式的重置工具）。
 8. **`backups/**` 与 `docs/dev-logs/**` 是归档**，不做域名替换。
+9. **改了评论的数据/接口形状就同步三处**：`src/config/emoticons.js`（若是表情相关）、
+   `docs/technical/COMMENTS_BACKEND.md`、`docs/HANDOFF.md` §九——
+   评论模块的"收口"在 HANDOFF 第九节，接手者先看那里。
 
 ### 7.3 文档链接校验（纯文档改动时跑）
 
@@ -312,8 +366,8 @@ console.log(total+' 条相对链接，失效 '+bad+' 条');
 | [SPEC](SPEC.md) | 总规范：路由、21 个页面的功能/数据链/URL 契约、共享模块、资源与验收 |
 | [ARCHITECTURE](ARCHITECTURE.md) | 目录职责、依赖方向、请求/缓存、构建发布 |
 | [UI_COMPONENT_LIBRARY](UI_COMPONENT_LIBRARY.md) | 羊皮纸设计系统、组件接口、页面骨架、强制规则 |
-| [KNOWN_BUGS_AND_FIXES](KNOWN_BUGS_AND_FIXES.md) | 11 类疑难 bug 的「现象→根因→解法」（含滚动跟随、聊天式列表） |
-| [HANDOFF](HANDOFF.md) | 项目交接（功能视角）；**本文**是完整版（含运维与迁移） |
+| [KNOWN_BUGS_AND_FIXES](KNOWN_BUGS_AND_FIXES.md) | 14 类疑难 bug 的「现象→根因→解法」（含滚动跟随、聊天式列表、评论漏进右栏） |
+| [HANDOFF](HANDOFF.md) | 项目交接（功能视角）；**评论/讨论模块的收口在它的第九节**；本文是完整版（含运维与迁移） |
 | [rename-myrzg-to-syzg](rename-myrzg-to-syzg.md) | 改名迁移：执行进度、踩坑、回滚点 |
 | [技术·评论后端](technical/COMMENTS_BACKEND.md) | 评论/讨论：设计、缓存风险、错误文案契约、即时推送的成本分析 |
 | [技术·账号体系](technical/ACCOUNT_SYSTEM.md) | 账号落地：D1 迁移、接口契约、发信验证、里程碑 |
@@ -325,10 +379,13 @@ console.log(total+' 条相对链接，失效 '+bad+' 条');
 ## 九、接手建议（第一条该干什么）
 
 1. **先跑一遍验收**：`cmd.exe /c "npm run verify"` + 起两个 dev 服务 + 打开 `/#/discussions` 发一条评论。
-   （验完记得重建演示数据。）
+   （评论套件现在会自己备份/还原本地数据，不必再手动重建演示数据。）
 2. **确认线上两域名都活着**：`node scripts/dev/scratch/probe-domain.mjs`
    —— 应该看到 `syzg` 与 `myrzg` 都 `authorized=true`。
-3. **然后按第六节优先级挑活**。最该做的是 **P0：发 Android 热更包**，它是解锁旧域名下线的唯一前置。
+3. **评论模块先读 [HANDOFF §九](HANDOFF.md)**：数据怎么存、两种列表形态（讨论区平铺 /
+   详情页楼中楼）、接口契约、9 条踩坑清单、还没做的优先级表都在那里。
+4. **然后按第六节优先级挑活**。最该做的是 **P0：提交推送评论模块改动 + 发 Android 热更包**
+   （后者是解锁旧域名下线的唯一前置）。
 
 有任何不确定，**先只读探测、再改动**。这次的教训之一就是：
 "看起来像 X"（缓存没热 / token 无效 / 图片加载失败）经过实测往往是别的东西

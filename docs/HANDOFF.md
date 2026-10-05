@@ -15,10 +15,27 @@
 
 ---
 
-## 〇、最新状态（2026-10-03）：改名完成 + 闪烁修复 + 双项目并存
+## 〇、最新状态（2026-10-04）：评论模块补齐（表情 · 富文本 · 回复 · 楼中楼）
 
-> 这一节是给接手者的**入口**。完整改名过程见 [改名落地文档](rename-myrzg-to-syzg.md)，
-> 当日细节见 [开发日志 2026-10-03](dev-logs/2026-10/2026-10-03.md)。
+> 这一节是给接手者的**入口**。改名过程见 [改名落地文档](rename-myrzg-to-syzg.md)，
+> 闪烁修复见下文 0.5，评论模块的全部改动见
+> [开发日志 2026-10-04](dev-logs/2026-10/2026-10-04.md) 与
+> [评论后端方案](technical/COMMENTS_BACKEND.md)。
+
+**2026-10-04 一天里评论模块发生了什么（细节见 §二·9）**：
+
+| 能力 | 一句话 |
+| --- | --- |
+| 聊天表情 | 黄豆 emoji（85 张）+ 深渊之歌第1弹（8 张）；正文存 `[e:包:名]` token，**没有新列** |
+| 富文本输入 | 发表区换成 `contenteditable`，表情**直接显示成图片**；`form.body` 始终是 token 文本 |
+| 发送方式 | 「发布 ⌄」组合钮，默认 **Enter 发送**，可切 Ctrl+Enter（存本机） |
+| 回复 | **两种形态**：站内讨论区平铺 + 引用行；**详情页楼中楼**（前 3 条 + 「全部 N 条回复」） |
+| 分页 | 去掉「加载更多」按钮，改成**滚到底/翻到顶自动加载**（详情页按顶层评论分页） |
+| 长度上限 | 改成**显示字数**：一个表情算 1 字，200 字照旧；服务端两道闸门 |
+| 回归卫生 | 测试脚本清库前**自动备份、跑完自动还原**本地评论（`lib/comment-fixture.mjs`） |
+
+⚠️ **回复不需要 D1 迁移**：用的是建表时就预留的 `comments.parent_id`，
+所以远端库不用跑任何 SQL，代码推上去就能用。
 
 ### 0.0 现在的仓库与域名（**先看这个**）
 
@@ -51,6 +68,11 @@
 `/api/health` 返回 JSON、前端产物里已是新域名；旧域名与旧项目**同时在线**作退路。
 本地与线上验证均通过；`npm run verify` 全绿；闪烁问题已解决（见 0.5）。
 
+**2026-10-04 追加**：评论模块补齐表情 / 富文本输入 / 回复（平铺 + 楼中楼）/ 滚动自动加载，
+并把"测试脚本吃掉本地数据"这类开发体验问题一并修掉（见 §二·9）。
+当天的改动**尚未提交**（本地 `git status` 有一批已跟踪改动 + 新文件，
+`public/images/emoticons/`、`public/ui/emoticon.svg` 等新文件要记得 `git add`）。
+
 ### 0.2 这块是什么：全站唯一需要后端的部分
 
 整站其余部分都是**纯静态**（游戏文件在构建期生成 JSON，用户只读）。
@@ -74,6 +96,14 @@
 - **各图鉴详情里的「讨论」**：物品 / 角色 / 魔物 / 家具 / 副本 / 关卡 / 怪物 / 任务 / 事件，共 9 处。
   符石与菜谱**刻意不单独挂**（它们点卡片走全局物品详情，那里已有讨论区）。
 - **右栏「最新讨论」**：只显示站内讨论区的最新 5 条，只读、不放输入框。
+  ⚠️ 它**只镜像 `site:general`**：服务端 `/api/recent` 只查这一个 `page_key`，
+  前端"发表后本地直插"也必须按 `pageKey` 过滤（2026-10-04 修过一个 bug：在物品页发评论
+  会漏进右栏，见 [KNOWN_BUGS 第 14 条](KNOWN_BUGS_AND_FIXES.md)）。
+- **回复**（2026-10-04）：
+  - **站内讨论区**：回复就是一条普通消息 + 一行引用（「回复 @谁：摘录」），点引用行滚到原消息；
+  - **详情页**：**楼中楼**——顶层评论下面收着它的回复（默认前 3 条 + 「全部 N 条回复」），
+    回复楼内另一条时带「回复 @谁」，楼主有头像、嵌套回复不带头像。
+  - 自己发过的评论被回复时会标「回复你」（靠本机删除令牌认领，不依赖账号）。
 - **别人发的消息会自动出现**（2026-10-03 起）：中间区域与右栏都是**前台轮询**
   （间隔 `config/discussions.js` 的 `DISCUSSION_POLL_MS`，当前 **1 分钟**，两处共用一处维护），
   不必重开页面。中间区域此前**完全没有自动刷新**（`pageKey` 恒定不变、本机广播不跨设备），
@@ -134,34 +164,52 @@ npm run dev:api
 - Vite 已配 `/api` 代理到 `127.0.0.1:8788`（否则 `npm run dev` 下评论不可用，早期踩过）。
 - 本地环境变量在 `.dev.vars`（gitignored）：`ADMIN_TOKEN=yxzm`、`IP_HASH_SALT=local-dev-salt`、
   放宽的限流阈值。**线上必须换成足够长的随机 `ADMIN_TOKEN`**，且不存在免密旁路。
-- 本地 D1 里留了 **5 条演示数据**（站内讨论，含带头像/无头像两种，用户名是「旅行者/老玩家/萌新/工匠/路人」），
+- 本地 D1 里可能留着演示数据（站内讨论，含带头像/无头像两种，用户名是「旅行者/老玩家/萌新/工匠/路人」），
   便于直接看效果。清库：`npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM comments; DELETE FROM rate_limits;"`
   重建演示数据：`node scripts/dev/scratch/seed-site-discussion.mjs`。
-  ⚠️ **注意**：`scripts/dev/scratch/` 下的评论类测试脚本（`verify-no-flicker` / `verify-chat-order` /
-  `verify-autoscroll` / `verify-discussions*`）**开跑前会 `DELETE FROM comments` 再自己造数**，
-  跑完不会还原——跑完记得用上面的命令重建演示数据（2026-10-03 修闪烁时踩到过）。
+- ✅ **评论类测试脚本不再吃掉本地数据**（2026-10-04 起）：清库前会整表备份，
+  进程退出（正常/断言失败/Ctrl+C）**自动还原**，实现见
+  `scripts/dev/scratch/lib/comment-fixture.mjs`。
+  ⚠️ 还原**必须用 `--file`**（50 条以上的 INSERT 会超 `--command` 的命令行长度上限，
+  实测"报错且数据没写回去"）；`seed-site-discussion.mjs` 是显式重置工具，故意不接入。
+  ⚠️ **别再手动 `DELETE FROM comments` 清库**：开发时人常在同一个本地库上手点页面，
+  清库会让他的下一次刷新/发表出现"列表瞬间变短、页面挤一下"（2026-10-04 用户实际遇到）。
+- 本地库被测试数据堆脏时（例如几百条 `historyN` / `楼主N`）：先预览再清理——
+  `node scripts/dev/scratch/clean-test-comments.mjs`（预览）→ 加 `--apply` 才真删；
+  它只按**已知测试签名**匹配，站主自己发的评论不会被删。
 
 ### 0.7 测试脚本（都在 `scripts/dev/scratch/`，gitignored）
 
 | 脚本 | 覆盖 |
 | --- | --- |
 | `test-comments-api.py` | 43 项：接口契约、错误文案、限流、幂等删除、超长拒绝 |
-| `verify-comments-ui.mjs` | 67 项：详情里评论全流程（发帖/自删/账号弹窗/管理页/顶栏标题） |
+| `verify-comments-ui.mjs` | 68 项：详情里评论全流程（发帖/自删/账号弹窗/管理页/顶栏标题） |
+| `verify-emoticons.mjs` | 66 项：表情选择器（中文名 tooltip/向右展开/图片逐个解码）、富文本插入、显示字数、四处渲染 |
+| `verify-replies.mjs` | 24 项：回复（引用式）——两条链路、手机端、服务端降级、待审父评论不可引用 |
+| `verify-nested-replies.mjs` | 28 项：**楼中楼**（前 3 条 + 展开/收起）、回复落楼、嵌套删除、滚到底自动加载、孤儿升级 |
 | `verify-discussions.mjs` | 36 项：站内讨论区、发表区固定、右栏归属与样式 |
+| `verify-post-scroll.mjs` | 12 项：发表滚动跟随（同帧完成/贴底跟随/翻历史不动/三处高度零变化） |
 | `verify-chat-order.mjs` | 11 项：最新在下、上滑自动加载 |
 | `verify-no-flicker.mjs` | 9 项：**逐帧采样 130 帧**证明布局不抖动 |
 | `verify-comment-mounts.mjs` | 27 项：9 个页面逐个验证挂载与 `page_key` 合法性 |
 | `verify-discussions-order.mjs` | 9 项：排序与 200 字上限 |
 | `verify-autoscroll.mjs` | 6 项：打开/发表后停在最新一条 |
+| `verify-cross-device-poll.mjs` | 8 项：别人发的消息在中间区域与右栏都能自动出现 |
 | `verify-hero-comment-e2e.mjs` | 4 项：非物品页面发帖 → 管理页可见 |
+| `verify-admin-occlusion.mjs` | 5 项：管理页筛选面板的遮挡（面板不透明、z-index 高于卡片、卡片确实从背后滚过） |
 
-**跑测试前先清限流**，否则会因限流误判失败：
+**跑测试前先清限流**（限流是"每 IP 每小时 5 条 / 每天 20 条"，跑多了会误判失败）。
+⚠️ 只清 `rate_limits`，**不要连评论一起删**（评论由脚本自己备份还原）：
 
 ```powershell
-npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM rate_limits; DELETE FROM comments;"
+npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM rate_limits;"
 ```
 
 ### 0.8 上线清单（**2026-10-03 已执行并实测通过**）
+
+> **2026-10-04 的评论模块改动还没推**：推之前先确认第 1~4 条仍然成立，
+> 并按 §七·0 把新文件（表情素材 / 新组件 / 单测 / 开发日志）一起 `git add`。
+> 回复用的是预留列，**不需要跑任何 D1 迁移**；但要多一次前端构建（素材 + 字体子集已重生成）。
 
 1. ✅ Cloudflare Pages 项目 → Settings → Environment variables：`ADMIN_TOKEN`、`IP_HASH_SALT` 已配。
 2. ✅ **已推送 `main`**（29 个提交，首个从 `952e06b6` 推到 `b67f6e07`），Pages 自动部署成功。
@@ -370,6 +418,110 @@ EdgeOne 的价值只在"大陆可达性"。
   - 未来更新游戏原表，只需运行 `npm run data:build`，所有新角色、新怪物、新技能、新数值范围全自动同步更新。
 - **图鉴深度联动**：词条详情弹窗中，点击施加角色直达角色图鉴（`/heroes?id=`），点击怪物直达怪物图鉴（`/monsters?id=`），点击魔物直达魔物图鉴（`/pets?id=`），点击道具直达全局物品详情。
 
+### 9. 评论与讨论区（`2026-10-04`）—— 表情 · 富文本 · 回复 · 楼中楼
+
+> 这一节是评论模块的**收口**：数据怎么存、两种列表形态怎么分、踩过哪些坑、回归在哪。
+> 完整设计与数据流见 [评论后端方案](technical/COMMENTS_BACKEND.md)，
+> 当天逐项改动见 [开发日志 2026-10-04](dev-logs/2026-10/2026-10-04.md)。
+
+#### 9.1 数据怎么存（一句话：**没有新列、没有新表、没有迁移**）
+
+| 内容 | 存法 | 为什么 |
+| --- | --- | --- |
+| 表情 | 正文里的 `[e:包:名]`（如 `[e:tieba:tb_yiwen]`） | 这些表情是**图片**，Unicode 没有码位；存路径会随素材目录整理成批变死链 |
+| 回复 | `comments.parent_id` = 被回复那条的 id | **建表时就预留了**（原来的注释写着"预留楼中楼，一期不使用"），2026-10-04 启用 → 零迁移 |
+| 楼主 vs 回复 | `parent_id IS NULL` = 顶层；否则是回复 | 楼中楼只按顶层评论分页，`replyCount` 由同页查询算出来 |
+
+- **上限是"显示字数"**：一个认识的表情算 **1 字**（`countEmoticonDisplayChars`），200 字照旧。
+  服务端两道闸门：原始长度 `MAX_BODY_RAW = 8200`（放 `sanitize` 截断**之前**，
+  否则会把 token 砍成半截）+ 显示字数复核。
+- **`src/config/emoticons.js` 是唯一来源**（表情包目录 + token 语法 + 计数 + 分段 +
+  `emoticonPlainText`），**零依赖纯函数，Worker 也 import 同一份**——前后端计长口径不允许有两套。
+
+#### 9.2 两种列表形态（**别搞混**）
+
+| | 站内讨论区 `/discussions` | 详情页（9 个入口的弹窗） |
+| --- | --- | --- |
+| 排序 | `reverse`：最新在**底部**（聊天式） | 最新在**顶部**（列表式） |
+| 回复呈现 | 平铺 + 引用行「回复 @谁：摘录」 | **楼中楼**：楼主下面收着回复（前 3 条 + 「全部 N 条回复」） |
+| 头像 | 每条都有 | 楼主有、**嵌套回复没有**（整块窄，头像会挤正文） |
+| 分页游标 | **全部**评论的 id | **顶层评论**的 id（否则会出现"父评论不在本页"的孤儿） |
+| 加载方向 | 往上翻到顶 → 加载**更早** | 往下到底 → 加载**更多** |
+| 发表区位置 | 滚动容器**之外**（父组件渲染，常驻底部） | 列表末尾（普通文档流，**刻意不吸底**） |
+
+前端是同一个 `CommentsPanel`，用 `nested` 开关切换，**`reverse` 下强制平铺**——
+讨论区因此不需要显式关掉它（它本来就传了 `reverse`）。
+接口也是同一个 `GET /api/comments`：`?nested=1` 走楼中楼、`?parent=<楼主id>` 展开一串、缺省平铺。
+
+#### 9.3 接口契约（改动过的地方）
+
+- `POST /api/comments` 新增可选 `parentId`；返回的 `comment` 新增 `parentId` / `replyTo` /
+  （列表侧）`rootId`，并已与两个 GET 接口**字段对齐**（`pageKey` / `pageLabel` 那次教训见
+  [KNOWN_BUGS 第 14 条](KNOWN_BUGS_AND_FIXES.md)）。
+- `parentId` 只做三条校验（正整数 / 同一 `page_key` / 仍公开），**任一不满足就静默降级成普通评论**：
+  用户点回复时对方可能刚好删了，把正文整条拒掉是最糟的体验。
+- 父评论被删/被隐藏**不级联**：平铺视图里回复仍在，引用行退化成「回复的那条消息已不可见」；
+  楼中楼里那条回复**升级为顶层**继续显示（顶层查询含"父评论不公开"的孤儿）。
+
+#### 9.4 踩过的坑（都已在代码注释里标明，别再踩）
+
+1. **`UiButton` 的 `type` prop 没绑到模板** → 在 `<form>` 里等于隐式 `submit`，点表情按钮会把表单提交掉。
+   （[KNOWN_BUGS 12](KNOWN_BUGS_AND_FIXES.md)）
+2. **全局图片 `@error` 兜底会吃掉组件自己的 `@error`**（`App.vue` 在捕获阶段 `stopImmediatePropagation`）；
+   表情图要带 `data-image-fallback="custom"` 自己处理失败。
+3. **表情芯片的样式必须写在 `:deep()` 里**：芯片是 `document.createElement` 建的，
+   拿不到 scoped 样式的 `data-v-*`，否则输入框里的表情会按**原图大小**显示（240px 贴纸撑满输入区）。
+4. **光标位置只在输入框聚焦时记**（`keyup` / 框内 `mouseup`）：`focus`/`blur` 时拿到的选区不可信
+   （重新聚焦可能停在开头），表现为"第二次插入的表情跑到最前面"。
+5. **"是否贴底"必须在插入之前取**：`flush:'post'` 里现算会量到"插入后"的世界；
+   贴纸消息 124px 高 > 120px 阈值，于是"发完表情不自动滚到底"。
+6. **`scrollIntoView` 会把所有可滚祖先一起滚**（含页面本身）→ 详情弹窗里表现为"页面挤上去"；
+   只滚自己的滚动容器。
+7. **「回复 / 删除」要给操作区一个 `margin-left: auto`**，不能给两个按钮各自加（回复会被推到行中间）。
+8. **`ownedIds` 要连嵌套回复一起扫**，否则自己发的回复没有删除入口。
+9. **待审评论不要触发整页重拉**（列表会瞬间变短、页面挤一下），提示交给发表区自己。
+
+#### 9.5 回归与开发卫生
+
+- 套件清单见 §0.7；表情 / 回复 / 楼中楼三套是 2026-10-04 新增的。
+- **脚本不再吃掉本地数据**：`scripts/dev/scratch/lib/comment-fixture.mjs` 负责"清库前备份、
+  退出时还原"（详见 §0.6 的说明与 ⚠️）。本地被测试数据堆脏时用
+  `clean-test-comments.mjs`（先预览、`--apply` 才删）。
+- 加新表情包：改 `src/config/emoticons.js` 目录表 → `node scripts/dev/import-emoticons.mjs`
+  （预览）→ `--apply`；导入脚本与单测会**双向核对**目录表与 `public/images/emoticons/`。
+
+#### 9.6 表情素材与命名（换包/换名时看这里）
+
+- **两个包**：黄豆 emoji 85 张（来自 `贴吧经典黄豆表情包` 的 `tb_黄豆表情`(60) + `tb_物品与符号`(25)
+  两个子目录，**按这个顺序**展示）、深渊之歌第1弹 8 张（官方微信表情包去背景版）。
+  全部无损 WebP（像素与原图一致，不是"压缩"），共约 590 KB。
+- **中文名有据可查**，不是回忆出来的：与包内 `经典命名版`（50 张人工命名）**逐张像素比对**得到 50 条，
+  其余按包内拼音命名 + 逐张看图确认（`tb_wuzuixiao` 拼音有歧义，看图确认是「捂嘴笑」）。
+  名字与顺序手写在 `src/config/emoticons.js` 的目录表里，选择器的 tooltip / aria 用它们。
+- **导入**：`node scripts/dev/import-emoticons.mjs`（预览）→ `--apply`。
+  脚本与单测会**双向核对**目录表 ↔ `public/images/emoticons/`（少图 / 漏登记 / 缺名字 / 重名都报错），
+  `--apply` 还会清掉本包目录里不在目录表内的旧文件。
+- ⚠️ **命名方案换过一次**：黄豆从编号（`[e:tieba:20]`）改成拼音（`[e:tieba:tb_yiwen]`）——
+  **换名之前发的表情评论会退化成 token 原文**。当时线上还没有公开数据，所以没做别名映射；
+  将来若再换名，先加一层旧名映射再改目录表。
+- ⚠️ **Android 老包**：`public/images/**` 走 CDN 优先，在线时能自动拿到新素材；
+  离线且热更包未更新时，表情回退成**中文名文字**（不会显示破图）。
+
+#### 9.7 还没做的（按性价比排序，给接手者挑）
+
+| 优先级 | 事项 | 说明 |
+| --- | --- | --- |
+| P1 | **「↓ 新消息」提示 / 未读计数** | 现在翻历史时新消息来了**毫无提示**；和"贴底才跟随"的规则直接配套 |
+| P1 | **草稿保留 + 失败重试** | 刷新/切页会丢掉打的字（目前只存了"发送方式"偏好）；失败后正文还在但没有重试入口 |
+| P1 | **表情「最近使用」** | 85 格里翻常用表情很烦；纯前端 `localStorage` 即可 |
+| P2 | **回复提醒全局化** | 现在只有"正好看到那条"才有「回复你」标记；跨页面要"有 N 条新回复"，绕不开按 `parent_id` 反查（没索引 → 全表扫，得先决定要不要加索引） |
+| P2 | **点引用行跳到未加载的父评论** | 父评论更早、还没被加载时现在什么都不做（怕把阅读位置挪走） |
+| P2 | **链接自动识别** | 正文里的 http 链接目前是纯文本，不可点（需要 `rel="noopener"`） |
+| P2 | **举报入口** | 用户侧没有，只能等管理员看到 |
+| P3 | 连续同一人的消息合并、未读分隔线「以下是新消息」 | 纯观感 |
+| P3 | 楼中楼长列表虚拟化、消息搜索 | 现在 20 条/页 + 自动加载，几百条以内没问题 |
+| P3 | 账号体系 | 方案见 [ACCOUNT_SYSTEM.md](technical/ACCOUNT_SYSTEM.md)，未实施（§0.9） |
+
 ---
 
 ## 三、核心文件与代码架构
@@ -386,6 +538,11 @@ EdgeOne 的价值只在"大陆可达性"。
 | `src/views/ChaptersView.vue` | 关卡图鉴主页。管理世界地图、地区路线图与关卡详情的层级导航。 |
 | `src/components/RewardPools.vue` | 战利品货架。承载奖励池展示、掉落概率明细弹窗与跨池去重聚合。 |
 | `src/components/ItemDetailModal.vue` | 物品详情弹窗。处理装备品质展示、药水效果排序与符石包过滤。 |
+| `src/components/CommentsPanel.vue` | 评论列表（**两种形态**：讨论区平铺 / 详情页楼中楼）+ 面板内的发表区；列表、引用行、回复块、自动加载都在这里。 |
+| `src/components/CommentComposer.vue` | 发表区：富文本输入（`contenteditable`，表情直接显图）、序列化回 token、发送方式、回复条。 |
+| `src/components/EmoticonPicker.vue` / `EmoticonText.vue` | 表情选择层（两个页签、中文名 tooltip、向右展开）/ 正文渲染（token → 图片，未知 token 当普通文字）。 |
+| `src/config/emoticons.js` | **表情唯一来源**：包目录、token 语法、显示字数、分段、`emoticonPlainText`；零依赖，Worker 也 import 同一份。 |
+| `functions/api/[[path]].js` | 评论 API 单文件：列表（平铺/楼中楼/展开一串）、发表（含 `parentId` 校验与降级）、自删、管理端、右栏最新。 |
 
 ### 2. 数据流水线与预解析（`scripts/parse/`）
 - **数据源单一真实性**：
@@ -452,7 +609,9 @@ const SPECIAL_TRANSFORM_CONFIGS = {
 | 数据预构建 | `cmd.exe /c npm run data:build` | 重新生成所有 `parsed/*.json` 数据 |
 | 全量校验 | `cmd.exe /c npm run verify` | 执行完整预解析检查与生产构建打包 |
 | UI 自动化测试 | `cmd.exe /c npm run test:ui` | 运行 Playwright UI 交互与回归测试 |
-| 清本地评论/限流 | 见上文 0.7 | 跑评论测试前必须先清，否则被限流误判 |
+| 清本地限流 | `npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM rate_limits;"` | 跑评论测试前只清限流；**不要连评论一起删**（见 §0.6/0.7） |
+| 重建演示讨论 | `node scripts/dev/scratch/seed-site-discussion.mjs` | 显式重置：清空评论表并铺 5 条站内演示讨论（故意不接入备份还原） |
+| 清理测试脏数据 | `node scripts/dev/scratch/clean-test-comments.mjs [--apply]` | 只删已知测试签名的评论，保留站主自己发的 |
 
 > **提示**：修改了 `monsterParser.js`、`items.mjs` 等预解析逻辑或原始配置表后，必须执行 `data:build` 重新生成 JSON 文件。交付前必须确保 `verify` 命令退出码为 0（全部 ✅）。
 
@@ -460,12 +619,16 @@ const SPECIAL_TRANSFORM_CONFIGS = {
 
 ## 七、后续可关注优化方向
 
-0. **[最优先] 推送上线**（〇·0.8 清单）——闪烁问题已于 2026-10-03 修复（见〇·0.5），
-   上线前唯一未做的是线上三项实测（`/api/health` 是 JSON、不被 EdgeOne 缓存、静态请求不调用 Function）。
-1. 讨论区面板高度仍是 `calc(--vh100 - … - 190px)` 的**推算魔数**（〇·0.5 末尾），
+0. **[最优先] 提交并推送 2026-10-04 的评论模块改动**（见 §0.1 末尾与 §9）。
+   推送前记得：`public/images/emoticons/`（93 张）、`public/ui/emoticon.svg`、
+   `src/config/emoticons.js`、`EmoticonPicker/EmoticonText/UiSplitButton`、
+   `tests/unit/emoticons.test.mjs`、`docs/dev-logs/2026-10/2026-10-04.md` 都是**新文件**要 `git add`。
+   **回复不需要 D1 迁移**（用预留的 `parent_id`），推上去即可用。
+1. **评论模块还没做的功能**：见 §9.6 的优先级表（P1：新消息提示 / 草稿与重试 / 表情"最近使用"）。
+2. 讨论区面板高度仍是 `calc(--vh100 - … - 190px)` 的**推算魔数**（〇·0.5 末尾），
    要动它必须先在 1025 / 1161 / 1440 三视口复核；
-2. 关卡图鉴中更多特殊关卡（如隐藏探索点位、支线任务交互）的视觉高亮与过滤增强；
-3. 移动端在极端小屏（< 360px）下复杂概率文本的字号与排版微调；
-4. 为更多拥有特殊战斗机制的 Boss 配置 `SPECIAL_TRANSFORM_CONFIGS`，丰富阶段展示；
-5. 怪物 Buff / 异常状态数值补全（已做前期数据探索，`raw/buff.json` 中含完整 Buff 定义，可在后续版本中落地为独立模块）；
-6. 后续版本若有新增关卡/怪物/装备数据，运行 `scripts/parse/` 重新构建即可平滑接入。
+3. 关卡图鉴中更多特殊关卡（如隐藏探索点位、支线任务交互）的视觉高亮与过滤增强；
+4. 移动端在极端小屏（< 360px）下复杂概率文本的字号与排版微调；
+5. 为更多拥有特殊战斗机制的 Boss 配置 `SPECIAL_TRANSFORM_CONFIGS`，丰富阶段展示；
+6. 怪物 Buff / 异常状态数值补全（已做前期数据探索，`raw/buff.json` 中含完整 Buff 定义，可在后续版本中落地为独立模块）；
+7. 后续版本若有新增关卡/怪物/装备数据，运行 `scripts/parse/` 重新构建即可平滑接入。

@@ -171,7 +171,14 @@
                       <!-- 不显示「站内讨论区」标签：这里本来就只放站内讨论区的内容，
                            每条都标一遍是冗余（用户要求删掉） -->
                       <span class="recent-nick">{{ c.nick }}</span>
-                      <span class="recent-body">{{ c.body }}</span>
+                      <!--
+                        正文里的 `[e:包:名]` 表情 token 也要出图，否则右栏会显示成一串内部标识。
+                        **必须套一层普通 inline 容器**：`.recent-body` 是 `display:-webkit-box`
+                        的两行截断（-webkit-line-clamp:2），直接塞 `<img>` 会被当成 box item
+                        竖着堆起来；包一层 inline span 后，图片回到正常的行内排版，
+                        截断仍按这个容器的行数生效。
+                      -->
+                      <span class="recent-body"><span class="recent-body-text"><EmoticonText :text="c.body" /></span></span>
                     </span>
                   </button>
                 </li>
@@ -197,12 +204,11 @@
       </div>
     </div>
 
-    <!-- 移动端导航悬浮按钮（模拟招募为整页游戏画面，不显示） -->
-    <button v-if="!isGachaFullscreen" type="button" class="nav-fab-btn" :class="{ 'mobile-only': !isNative }" @click.stop="isNavOpen = !isNavOpen" title="功能导航" aria-label="功能导航">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <!-- 移动端边缘吸附可拖动快捷菜单挂件（方案 A）：二合一吸边手柄，点击展开顶部与导航 -->
+    <EdgeFloatingWidget
+      :hidden="isGachaFullscreen"
+      @toggle-nav="isNavOpen = !isNavOpen"
+    />
 
     <!-- 侧边导航栏（模拟招募为整页游戏画面，不显示） -->
     <NavigationMenu v-if="!isGachaFullscreen" :class="{ 'mobile-only': !isNative }" :is-open="isNavOpen" :menu-mode="menuMode" @close="isNavOpen = false" />
@@ -266,10 +272,11 @@ import VersionCheckModal from './components/VersionCheckModal.vue'
 import AboutModal from './components/AboutModal.vue'
 import AccountModal from './components/AccountModal.vue'
 import { loadIdentity, registerAccountModal, avatarPath, avatarCatalogState, loadAvatarCatalog } from './utils/identity.js'
-import { fetchRecentComments } from './utils/commentApi.js'
+import { SITE_PAGE_KEY, fetchRecentComments } from './utils/commentApi.js'
 import { lastPostedComment, commentPostedAt } from './utils/commentEvents.js'
-import { UiButton, UiEmptyState, UiModal } from './components/ui/index.js'
+import { UiButton, UiEmptyState, UiModal, EdgeFloatingWidget } from './components/ui/index.js'
 import ItemDetailModal from './components/ItemDetailModal.vue'
+import EmoticonText from './components/EmoticonText.vue'
 import RewardProbabilityModal from './components/RewardProbabilityModal.vue'
 import { itemModalState, openItemDetail } from './utils/itemModalState'
 import { fetchItemData } from './utils/itemParser'
@@ -424,11 +431,18 @@ async function loadRecentDiscussions({ fresh = false, allowThrottled = false } =
  * 本机发表成功后**直接把新评论插进右栏**，不重新拉取。
  *
  * 重新拉取会把整个列表替换掉（即使内容一样，DOM 也会被销毁重建），
- * 用户看到的就是"右栏闪一下"（实测反馈）。站内讨论区在本站是唯一评论入口，
- * 所以新评论一定属于 `site:general`，直接插入即可。
+ * 用户看到的就是"右栏闪一下"（实测反馈）。
+ *
+ * ⚠️ **只有站内讨论区（`site:general`）的那条才插**：右栏是"站内讨论区最新"的预览
+ * （服务端 `/api/recent` 也只查这一个 `page_key`）。早先这里写着"站内讨论区是唯一评论入口，
+ * 所以新评论一定属于 site:general"——后来图鉴详情弹窗也有了各自的讨论区
+ * （`item:xxx` / `hero:xxx`…），这条假设就不成立了：在物品页发一条，
+ * 右栏会立刻多出一条只该属于那个条目的讨论，而服务端刷新后又消失
+ * （用户反馈"我在详细页发的，右边怎么也能收到"）。
  */
 function addRecentComment(comment) {
   if (!comment?.id) return
+  if (comment.pageKey && comment.pageKey !== SITE_PAGE_KEY) return
   if (recentComments.value.some((c) => c.id === comment.id)) return
   // 最新在下：追加到末尾；超过 5 条时丢掉最旧的一条
   const next = [...recentComments.value, comment]
@@ -1476,6 +1490,21 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   overflow: hidden;
   word-break: break-word;
   overflow-wrap: anywhere;
+}
+/*
+ * 去掉 line-clamp 给末尾加的省略号之外，表情要按右栏的窄宽度收一档：
+ * 讨论区里 1.45em 的黄豆在 12.5px 正文下会把两行撑高，贴纸更不可能按 64px 放。
+ * 这里只压尺寸，不改讨论区/详情里的正文观感。
+ */
+.recent-body-text :deep(.emoticon-img--face) {
+  width: 1.1em;
+  height: 1.1em;
+  margin: 0;
+}
+.recent-body-text :deep(.emoticon-img--sticker) {
+  width: 34px;
+  height: 34px;
+  margin: 0;
 }
 .recent-foot {
   flex-shrink: 0;

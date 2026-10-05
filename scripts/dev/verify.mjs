@@ -2,7 +2,7 @@
  * 一键验收脚本（npm run verify）：
  *   1) 静态检查：parsed 产物齐全 + 源码/配置无旧脚本残留引用
  *   2) 完整构建：npm run build（数据预处理 + vite build）
- *   3) 产物检查：dist/data/parsed 关键产物存在
+ *   3) 产物检查：dist/data/parsed 关键产物存在 + 聊天表情素材齐全
  * 全部通过输出 PASS，任一失败 exit 1。
  * 依赖：Node 18+；脚本目录 scripts/dev/（开发工具，不进构建链）。
  */
@@ -11,6 +11,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { execSync } from 'node:child_process'
 import { checkFontSubset } from './font-subset-lib.mjs'
+import { EMOTICON_ITEMS } from '../../src/config/emoticons.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '../..')
 const parsedDir = join(root, 'public/data/parsed')
@@ -333,6 +334,21 @@ check('dist/data/parsed/dungeons 详情产物', distDungeonDetails.length === du
 
 const distMonsterEncounterDir = join(distParsedDir, 'monster-encounters')
 check('dist 不包含怪物来源分片', !existsSync(distMonsterEncounterDir), existsSync(distMonsterEncounterDir) ? '仍存在旧目录' : '')
+
+// ---------- 2e. 聊天表情素材（目录表 ↔ 源目录 ↔ dist） ----------
+/*
+ * 表情素材是**运行时按路径拼出来的**（目录表 + token 渲染），构建不会因为缺图而报错，
+ * 页面只会把那一格显示成文件名（或消息里显示 token 原文）。2026-10-04 就出现过
+ * 「维护目录被外部整理，28 张图进了回收站」而构建全绿的情况——所以在这里补一道断言。
+ */
+const missingEmoticonAssets = EMOTICON_ITEMS.filter((item) => !existsSync(join(root, 'public', item.path.replace(/^\//, ''))))
+check('聊天表情素材齐全（目录表每一项都有文件）', missingEmoticonAssets.length === 0,
+  missingEmoticonAssets.length ? `缺 ${missingEmoticonAssets.length} 个：${missingEmoticonAssets.slice(0, 3).map((i) => i.path).join(', ')}` : `${EMOTICON_ITEMS.length} 张`)
+check('聊天表情图标（发表区按钮）存在', existsSync(join(root, 'public/ui/emoticon.svg')), '')
+
+const missingBuiltEmoticons = EMOTICON_ITEMS.filter((item) => !existsSync(join(root, 'dist', item.path.replace(/^\//, ''))))
+check('聊天表情素材已进 dist', missingBuiltEmoticons.length === 0,
+  missingBuiltEmoticons.length ? `缺 ${missingBuiltEmoticons.length} 个` : `${EMOTICON_ITEMS.length} 张`)
 
 // ---------- 汇总 ----------
 const failed = results.filter(r => !r.ok)

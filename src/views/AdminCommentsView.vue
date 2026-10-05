@@ -74,7 +74,8 @@
               <time class="admin-time">{{ formatTime(c.createdAt) }}</time>
             </div>
 
-            <p class="admin-body">{{ c.body }}</p>
+            <!-- 与前台同一套渲染：正文里的 `[e:包:名]` 表情 token 换成图片，便于审核看到真实观感 -->
+            <p class="admin-body"><EmoticonText :text="c.body" /></p>
 
             <div class="admin-item-foot">
               <span v-if="c.reviewReason" class="admin-reason">命中：{{ c.reviewReason }}</span>
@@ -111,6 +112,7 @@ import {
   UiSearchInput,
   UiTag
 } from '../components/ui/index.js'
+import EmoticonText from '../components/EmoticonText.vue'
 import {
   CommentApiError,
   deleteCommentPermanently,
