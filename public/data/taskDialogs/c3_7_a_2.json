@@ -1,0 +1,204 @@
+{
+  "script": "c3_7_a_2",
+  "des": "c3_7_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]哇啊啊啊——头好晕啊——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哼哼，直接给你们揍晕！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]可笑，这什么治安队，战斗力还不如驿站的卫兵！后面还有多少，等米托拉大人一锅给他们烩了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]虽然是中了敌人的诡计，但这些治安队显然并不准备和我们讲道理。既然这样，那我们就把他们全部打倒，再来好好分说吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]这、这就是强者的想法吗……米托拉也就算了，连阿莱姐也是眼都不眨就决定要和整个大市集开战……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]两位，我、我们有没有比较和平一些的办法？在这里开打的话，先不说他们有没有能力冤枉我们……水占师之环和大市集的关系可就彻底完蛋了耶？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]那些贼人在这——！增援，快调遣增援——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你是想要我们大局为重？也不是不行啊！可是现在人都要围上来了，你给我找个不需要正面冲突的办法？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]呜哇……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]这样的办法，我刚好有哦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "众人",
+        "text": "[show]！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "塞弗德里克？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]嗯～虽然我不知道那位幕后黑手到底是谁，但看他的布置，想来他一定很希望你们和大市集彻底交恶。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]既然这样，我们就不能让他如愿，不是么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……这么说也是。那你的办法是什么呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]跟我来吧。这里刚好有一条密道，可以通往大市集的外围。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]到了那里，你们就能绕过治安队的搜捕线，只要打晕零星几个巡逻兵，就能安然撤到大市集之外了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]怎么样？要和我一起来吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哼！我看你这家伙就像是幕后黑手！不过……阿莱姐说得对，就算你是也没差，我米托拉大人一点都不带怕的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]哈哈，米托拉小姐的魄力我是见识到了。我很欣赏你们。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "请带路吧，塞弗德里克先生。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[cm][show]我很乐意。愿意相信我的人是有福的——别担心，你们很快就会庆幸于现在的决定了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

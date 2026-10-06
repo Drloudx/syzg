@@ -1,0 +1,62 @@
+{
+  "script": "c3_d2_2_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]唔……你们有没有感觉越来越冷了？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]除了更加阴冷潮湿……下到这一层之后，我能感觉到空气中不祥的气息越发浓重。就像是某种……恐惧，还有怨恨。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不、不要说这么可怕的事情啦……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这前面……恐怕将是不忍言之惨事。你们尽量做好准备。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呜……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_d2_2_1"
+}

@@ -1,0 +1,53 @@
+{
+  "script": "c0_5_a_6_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什、什么？居然只是一剑，就把这东西给拦腰斩断了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "现在不是说那些的时候！",
+            "tag": "tag_7"
+          },
+          {
+            "text": "马上要爆炸了！",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？爆……爆炸？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉！怎么突然抱住我——[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "【复制】Battle 0-00_5 劳伦斯劈匠器"
+}

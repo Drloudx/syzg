@@ -1,0 +1,57 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔……这个地方又是怎样？到处都是洞口，我们该往哪边走呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]逐个深入这些房间探查也太费事了。{myName}，你怎么看？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们分头调查洞口吧。",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]你是说那么多魔物穿过的洞口，肯定会留下痕迹对吧！嗯，有道理，就这么办！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]那我走这边。你们分别去另外几个洞口吧。有什么发现，就赶快“[color=ffb64d]集结[colorEnd]”其他人！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_d1_1_3",
+  "des": "几人发现这边都有被蜘蛛凿穿的洞口。你提议三人分头调查，看看哪个洞口里面是蜘蛛巢穴。"
+}

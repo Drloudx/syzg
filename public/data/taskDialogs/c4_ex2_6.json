@@ -1,0 +1,278 @@
+{
+  "script": "c4_ex2_6",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]第二轮测试到此结束，第二考官生成中，成绩评定开始……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]您是……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]我是你第二轮的考官。嗯……你叫我欧尔布洛就好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]欧尔布洛……枭灵大人？所、所以我第二轮的考核结果……是怎样的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]咕嚯嚯～！虽然我没有权限检查日志，但在考核之中自称“胆小鬼”的家伙，你可能是破天荒以来的第一个！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]呜……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]但别担心，勇气这种东西，从来不是说出来的，而是以行动证明出来的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]即使自称胆小鬼，但你的勇敢和包容心，已经超越了这世上无数的大言炎炎之徒。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]至少我个人——噢，本人格，是绝对赞同你通过这次测试的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]呜……谢……谢谢……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]不过少女啊，我有一个疑问。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]从你刚才你显现出来的“创伤”来看……你从小时候开始就一直受到他人的欺负、排挤、怀疑。你的心理创伤也几乎都是由他们造成的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]说句不好听的，像你这样的孩子，就算从此对金弦之厅充满仇视，我也毫不意外。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]但你却说，你试图通过这场测试，是要为他们阻止一场灾难？你会不会太好心了一点？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……我并没有觉得这么做有什么问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我在成长过程中，确实是遇到了一些事情，但大部分都是有原因的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]小时候我被欺负，是小孩子不懂事，他们也早就被负责教养的大人责罚过了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]而长大之后，不管是预言的事，还是我被村民们怀疑的事……那也基本都是源自于误解，和我的无能。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我不能说我一点都没有怀恨在心。但比起这些糟心事，我对黑森林的记忆，更多的是那些美好的一面。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这里有关心我的亲人、关系好的朋友，也是这里教育了我、培养了我。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]即使我曾受过伤……但我仍想要拯救这片森林。这很正常吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]要说正不正常……智慧生物的心理，从来就没有一个“正常”的标准啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]我个人是接受你的解释，但少女啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]有善良和责任心是好事，但对于那些让自己不开心的人呢，也不要太给他们脸了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]我建议你成为管理员之后，可以利用这得来不易的权限，狠狠地报复他们一番，让他们知错！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]反正你是领导嘛。他们自知理亏，应该也是敢怒不敢言吧？咕嚯嚯！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？这……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]嚯……我也就是这么一说，感觉还挺符合本人格的设定呢，真爽。具体要不要，你就自己决定吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]通过这一关之后，在前面等着你的也就只有最终测试了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]最终测试？内容是什么呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]等你到了，第三位考官会告诉你的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "欧尔布洛？",
+        "text": "[show]你还要拯救黑森林吧？那我这里就不耽误你了！走起～！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_ex2_6"
+}

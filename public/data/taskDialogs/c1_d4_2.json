@@ -1,0 +1,113 @@
+{
+  "script": "c1_d4_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这家伙！强度和我们之前遇到的同种完全不是一个档次！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但还是敌不过我们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]大家没受伤吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]嗯，我们没什么大碍。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那么又是稍事休息，好继续前进了吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "不，我们要先回去驿站一趟。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]咦？为什么不一鼓作气啊？我还能行的哦？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]我们在这地底深处走了太久了。战线拉得太长，万一前面还要走很久，补给会跟不上的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]而且也要提防魔物绕后袭击我们。{myName}的判断没错，我们应该在这附近建立补给阵线。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可是……好吧……我知道了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]哦？这么快就被说服了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]谁被说服了啊！我只是不想让毛耳朵担心。我最讨厌听她唠叨了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]噗。你们还挺有精神，这就好。那我们做好标记，先回去让菲尔德蕾征召援军吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

@@ -1,0 +1,224 @@
+{
+  "script": "c4_12_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]啊啊啊，凡人之子！看看你们都做了些什么！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]您是……鹿灵艾伦瑟大人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]你们居然……打扰了这些狂躁的灵魂！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]这些附身在魔花上的魂灵，已经陷入了永久的狂乱，如果不是我的安抚，早已经冲出圣域，淹没整个黑森林！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]而你们，你们这些凡人，竟然破坏了我艰辛数年的布置！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]艾伦瑟大人，我们并不是有意的，我们来此，是有重要的事情要找您！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]没有什么事情，比安抚这些灵魂更加重要！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]因为你们的莽撞，我必须在圣域深处花费更多的时间，重新让它们平静下来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]而你们！如果不想让你们的生存空间被怨灵啃食殆尽，就不要再用你们的“事情”打扰我！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]现在！立刻！离开！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]艾伦瑟大人——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……祂跑掉了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]所以，这个鹿灵是一直以来脾气都这么差吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]怎么会……在灵魂先知的典籍中，艾伦瑟大人是一位非常睿智而温和的守护灵……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……那看来祂应该是被超量工作惹烦了吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]从状况来看，祂大概是从三四年前异变初起的时候就开始在这边充当牛马安抚灵魂……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这全年无休地干了好几年，还连个帮手都没有，任何好脾气都要消磨没了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不知道为什么想起了阿莱姐……",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]都是因为我放弃了灵魂先知的职责……本来协助鹿灵也应该是我的工作……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "现在追究过去的责任已无意义。",
+            "tag": "tag_26"
+          },
+          {
+            "text": "关键是将来要如何解决问题。",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]嗯……！我会纠正，因为过去的懦弱而犯下的错误！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]现在艾伦瑟大人还在危险之中，我们不能抛下祂不管！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那就追上去！祂不听，就说到祂听！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]只要你以小辈的身份死缠烂打，那种老头子很轻松就能拿下啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这……我、我会试试看的……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_12_a_2"
+}

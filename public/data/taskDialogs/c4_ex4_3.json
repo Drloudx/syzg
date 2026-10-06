@@ -1,0 +1,94 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]呜啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]姐姐……他们……他们好强！又……又失败了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]可恶可恶可恶！都是你都是你，都是你不好好配合我！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]明明是姐姐的错！是姐姐不配合我！是姐姐的错！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]你总是这样……总是这样！当时是这样，现在又是这样！难道什么都是我的错吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]你……你不也是这样对我的吗？你没有错难道就都是我的错吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]可恶可恶！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]姐姐才是可恶可恶！呜，你别跑——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]啊！他们逃走了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]追上去！别让他们跑掉了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "打完后【c4_ex4_3】",
+  "script": "c4_ex4_3"
+}

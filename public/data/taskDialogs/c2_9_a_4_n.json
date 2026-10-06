@@ -1,0 +1,30 @@
+{
+  "script": "c2_9_a_4_n",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]（石柱发出了嘈杂的声响，一只魔物向你们逼近。）[l][cm]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]唔！意思是猜错了吗！赶快解决掉它，找到正确的石柱才能过关！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "试炼-柱子开错"
+}

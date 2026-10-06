@@ -1,0 +1,363 @@
+{
+  "script": "c4_5_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "枯萎蕈人A",
+        "text": "[show]敌人有点厉害的噗！大家，恶狠狠地撤退的噗！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "枯萎蕈人B",
+        "text": "[show]你们这些混蛋，可别以为赢了的噗！布斯波乌尔大人迟早要你们好看的噗！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这些坏坏蕈人真是没一点礼貌，嘴好臭啊！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "高兴的蕈人",
+        "text": "[show]好厉害的噗！这么简单就赢了的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]是啊，这下总算是可以安心了。蕈酵酿可算是保住了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]老爷子，这不对吧？敌人只是被打跑，他们还可以再过来的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]是啊，现在应该乘胜追击，不说消灭敌人的老巢，起码也得弄清楚这些敌人是从何而来吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]这……是不是太激进了一点……？你们没必要为我们做到这种程度……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]我可没有“为了你们”，但这里明显存在一批不属于金弦之厅的力量，我作为森林周边势力的首领，总不可能视而不见。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]当然，如果蕈人族真的觉得这样就好，那我也不是一定要自讨苦吃！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}，你觉得呢？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我认为还是不应该坐视。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "放任自流并非明智之举。",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我、我也这么觉得！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？艾薇杜尔……！你的眼睛……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我……又“[color=ffb64d]看到了[colorEnd]”……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]虽然看得不是很清楚，但是……顺着查下去，我们将会发现“有关毁灭的关键线索”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]就……就是这样！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]有关毁灭的关键线索？也就是说那些坏坏蕈人和异变有关？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这个还不确定，不过……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "只要查下去就知道了。",
+            "tag": "tag_26"
+          },
+          {
+            "text": "看来接下来的目标已经确定了。",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]噢！看来是这样！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]老爷子，你也听到了。关于这些蓝色的蕈人，你有什么可以告诉我的吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]这……我确实了解一些内情……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]那些枯萎蕈人的首领，正是我的兄弟——在三十年前莫名出走的酿造大师——布斯波乌尔。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]那家伙本来是个相当温柔的人，但是在三年前，他重新出现的时候，他已经变成了枯萎蕈人，身边跟随着许多堕落的同胞……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]我不知道他是怎么变成这样的，我只知道，现在的他一定非常、非常危险。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]危险？整个深渊就没几个人比姑奶奶我更危险！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]老爷子你就放心好了，你那个兄弟我们会替你搞定的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]就是不知道你准备拿他怎么样？是要活的还是死的，油炸还是红烧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]这……我不知道……我真的不知道……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]毕竟要亲冒危险的人是你们……到时候该怎么做，就由你们判断吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好吧，我明白了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那接下来，我们到哪里去找那个堕落的酿造大师呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这个就……就交给我吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我的“[color=ffb64d]朋友[colorEnd]”们正在帮我们监视着那些枯萎蕈人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]只要跟随着灵界的指引，相信很快就……就能找到他们的老巢了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "很好。",
+            "tag": "tag_43"
+          },
+          {
+            "text": "那就这么办。",
+            "tag": "tag_43"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]嗯！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_5_a_2"
+}

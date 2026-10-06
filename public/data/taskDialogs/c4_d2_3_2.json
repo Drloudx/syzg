@@ -1,0 +1,496 @@
+{
+  "script": "c4_d2_3_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]罗姆洛敏，束手就擒吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？你这是在做什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]小猫咪，你是眼睛瞎了还是脑子坏了，连这都看不明白吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]我当然是在解封这颗被先时工匠们封印的“旧神心脏”啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]解封“旧神心脏”……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那不是超级危险品吗！你为什么要这么做？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我大概猜得到。",
+            "tag": "tag_12"
+          },
+          {
+            "text": "是准备在某个地方“使用”它吧。",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]呵……不愧是那个人的孩子，你的创造力和想象力，和创造这片遗迹的先时工匠比，恐怕也不遑多让了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]如果有你这样的助力，“导师”的大愿应该能够更加容易地完成吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]{myName}，希拉尔德的子嗣。我再次对你发出邀请，“结社”的大门一直都为你敞开！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]加入我们，加入到正确的队伍之中吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}……你……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我的答案还是只有一个——",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我拒绝！",
+            "tag": "tag_20"
+          },
+          {
+            "text": "你就死了这条心吧！",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]……为什么？三番五次的拒绝，你有什么必须这样做的理由吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我是不知道你们的大愿到底是什么……",
+            "tag": "tag_23"
+          },
+          {
+            "text": "但你们做的事情实在是太过分了！",
+            "tag": "tag_23"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[cm][show]哈？居然是因为“道德”？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]真是可笑！明明有着那样的才能，却因为区区这种东西，就放弃了接近真相的机会！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]如果我说我们的事业是正义的，是在为凡人争取自由而平静的生活，你又怎么想？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]那你做的事情也太颠三倒四了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]因为……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]森林的大家……他们的平静生活，不就是被你亲手打破的吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎么？说不出话了？该不会你说着说着把自己骗了，真以为自己是正义的伙伴了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]现在被人戳穿了，开始恼羞成怒了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]牙尖嘴利的东西！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好好好，我们猫咪魔人就是牙尖嘴利！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过你这拖延时间，也拖延得够久了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]要是没活的话，能不能请你把施法给停下了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你莫不是在说笑？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]没错，我和你们说这些废话确实是在拖延时间，但是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你莫非以为我真的没有后手吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]……哼，果然！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇啊！这、这是什么啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]这当然是，那些森林人最崇拜的守护者了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]出来吧！我的仆人！履行你的使命，将入侵心之圣所的敌人彻底消灭吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]是……是艾伦瑟大人……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这……这老鹿头变化好大，该不会被控制住了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]哈哈哈哈！虽然是堕入凋亡腐朽的守护灵，但也是货真价实的[color=f1401c]半神之力[colorEnd]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你们这些家伙，绝无一丝取胜的可能！认命吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……这老鹿头好像确实有点厉害……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]不，还远没到认命的时候！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]艾伦瑟大人确实有着半神之力，但是……我也是巨木的“[color=ffb64d]临时先知[colorEnd]”！同样有着调动近神之力的权限！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不愧是艾薇杜尔！",
+            "tag": "tag_58"
+          },
+          {
+            "text": "我就知道你能行的！",
+            "tag": "tag_58"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]谢谢……这次短暂的冒险，确实让我成长了不少……不过现在不是说这些的时候！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]“巨木”的思维……“巨大灵体”啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我以“先知”之名祈愿，将近神之力，加护于我等之身！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]什么……！那股力量是……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦哦……！力量……力量涌上来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，这下在战力方面，咱们就扯平了……接下来……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]就让我看看，究竟是困在森林里千把年的老鹿头经验更多，还是咱们的团队协作更厉害吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "两位，我们上！",
+            "tag": "tag_69"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]哦——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_d2_3_2"
+}

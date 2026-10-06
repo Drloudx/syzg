@@ -5,6 +5,7 @@
 | 文档 | 负责内容 |
 | --- | --- |
 | [SPEC](SPEC.md) | 项目总览、各页面功能与关键业务规则、共享模块、数据链、URL、资源与验收 |
+| [CONTRIBUTING](CONTRIBUTING.md) | 贡献与提交规范：提交时机、提交信息格式与写作要求、构建前置与原表维护、提交范围约定 |
 | [HANDOFF_FULL](HANDOFF_FULL.md) | **完整交接文档**：现状、部署拓扑（EdgeOne→Pages→D1）、凭据与坑、验证命令、改名迁移、剩余待办 |
 | [HANDOFF](HANDOFF.md) | 项目交接（功能视角，〇节是最新状态）；运维与迁移细节看 HANDOFF_FULL |
 | [rename-myrzg-to-syzg](rename-myrzg-to-syzg.md) | 仓库/域名改名 myrzg → syzg：执行进度、两条偏离、踩坑与回滚点 |

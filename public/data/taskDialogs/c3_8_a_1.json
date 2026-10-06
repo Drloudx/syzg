@@ -1,0 +1,145 @@
+{
+  "script": "c3_8_a_1",
+  "des": "c3_8_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]说起来，这里就是贫民街吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不。这里是[color=f1401c]废镇[colorEnd]的周边。是在大兽潮中，被魔物铁蹄摧毁的镇子遗址。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]五年前，这里的“四指镇”被魔物淹没。绝大部分镇民四散而逃，一些故土难离的老幼病残，则在环会的帮助下建立了新的村子，在那里苟延残喘。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那座新的村子……在这条路的另一端，就是被人称为“贫民街”的地方。原先村民们认为这名字是在侮辱他们……但在如今却是比较恰当的村名了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来还有这种事……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]以前，在四指镇还在的时候，我经常到这边来义诊。贝尔卡就是那时候被我发掘出来，成为一名水占师学徒的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]是的。那时候……我和埃迪蒂虽都是无父无母的孤儿，但在镇民们……尤其是柏莉尔一家的接济下，生活还算无忧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]但随着大兽潮的到来，过去曾经熟悉的一切，转眼之间，就已面目全非了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "大兽潮……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这个词在哪儿都能听到。而且……每个人的不幸都和它有关……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]大兽潮就是深渊最大的伤疤。对于深渊的住民来说，它带来的伤痛，远不是这短短五年的光阴就可以轻易平复的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]好了！阿莱姐，米托拉，追忆往昔就到此为止！前面又有魔物冒出来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]看来贫民街的安全形势也不容乐观。反正是顺手而为的事，能帮就多帮一些吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]把这些魔物全都消灭了，村民们应该也能少一些危险。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好好好，就该这样！刚才一直打得不尽兴，搞得我整个人都气闷！这下有了新沙包，终于可以打个爽啦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

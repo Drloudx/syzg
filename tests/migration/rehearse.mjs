@@ -27,14 +27,21 @@
  * 用法：node --no-warnings tests/migration/rehearse.mjs
  */
 
-import { execFileSync } from 'node:child_process'
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
 
-/** 迁移前那一版 schema（`d8ef5dc5` 是**加**账号表的那次，它之前才是"旧"） */
-const BEFORE_ACCOUNT = '0c745272'
+/**
+ * 迁移前那一版 schema 的**冻结夹具**。
+ *
+ * 原先这里是 `git show 0c745272:schema.sql` —— 依赖一个具体的提交哈希。
+ * 2026-10-07 整理历史（按天合并 221 → 24 条）后那个哈希在**新克隆里不存在**，
+ * 演练会在任何干净检出上直接失败。夹具文件不依赖提交，历史怎么整理都不受影响。
+ *
+ * 夹具内容 = 加账号体系之前那一版 schema.sql（仅 comments / rate_limits 两表）。
+ */
+const BEFORE_ACCOUNT_SQL = path.join(import.meta.dirname, 'fixtures', 'schema-before-account.sql')
 
 const tmp = mkdtempSync(path.join(tmpdir(), 'myrzg-migrate-'))
 const dbFile = path.join(tmp, 'old.sqlite')
@@ -85,7 +92,7 @@ const colsOf = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().ma
 try {
   // ---- 1. 造一个"旧生产库" ----
   const seed = new DatabaseSync(dbFile)
-  seed.exec(execFileSync('git', ['show', `${BEFORE_ACCOUNT}:schema.sql`], { encoding: 'utf8' }))
+  seed.exec(readFileSync(BEFORE_ACCOUNT_SQL, 'utf8'))
   const now = Math.floor(Date.now() / 1000)
   const insert = seed.prepare(
     `INSERT INTO comments (id, page_key, parent_id, nick, avatar, body, status, created_at, ip_hash, ua_hash, token_hash, review_reason, page_label)
@@ -102,7 +109,7 @@ try {
   const tablesBefore = seed.prepare("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name").all().map((r) => r.name)
   seed.close()
 
-  console.log('  旧库（' + BEFORE_ACCOUNT + '）: ' + tablesBefore.join(', '))
+  console.log('  旧库（夹具 schema-before-account.sql）: ' + tablesBefore.join(', '))
   check('旧库里没有 users 表（确认取对了版本）', !tablesBefore.includes('users'))
   check('旧库有 2 条评论', before.comments === 2, String(before.comments))
 
@@ -193,7 +200,7 @@ try {
    * 所以手册要求"先迁移、再推送"。但那个建议要成立，必须先证明一件事：
    * **迁移对正在跑的旧代码没有副作用**；否则"先迁移"反而会提前把线上搞挂。
    *
-   * 这里不靠推理，直接拿**旧提交（0c745272）里真实的 SQL 形状**在迁移后的库上跑。
+   * 这里不靠推理，直接拿**旧库真实的 SQL 形状**（见 `fixtures/schema-before-account.sql`）在迁移后的库上跑。
    * 旧代码的写法是显式列出列名（不是 `SELECT *`），且不写 `user_id`：
    *
    *   读：SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label …

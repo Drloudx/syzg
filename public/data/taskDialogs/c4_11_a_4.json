@@ -1,0 +1,247 @@
+{
+  "des": "c4_11_a_4",
+  "script": "c4_11_a_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]呵……没想到我处心积虑忍辱负重，换来的居然是这样的结果……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]这绝不是我们太弱。只是你们的强大，远远超出了我的预期……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]{myName}、米托拉……你们两个，不愧是英雄好汉。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]如果只看你们其中一个，那也不过就是一个实力尚可的工匠，和一个过于天真的莽夫。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]但当你们站在一起，成为一心同体的搭档，那股智慧和力量相结合，就连传说中的大魔物也不是对手……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]啧……没想到菲尔德蕾手下居然还有你们这样的人物，如果不是你们的话，恐怕我是绝不会落到如此地步的吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你在说些什么狗屁？我们才不用你在那儿帮忙鼓吹，用来给自己的失败贴金呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]像你这种二五仔，不管有没有我们，你的失败都是注定的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]毕竟你根本就没有脑子啊！你说菲尔德蕾不肯给你们活路，但你亲口去问了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]如果你肯亲口说明自己的苦处，驿站那帮人又不是没耳朵听，那家伙应该不至于逼着你们挨饿的吧？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "我同意米托拉的意见。"
+          },
+          {
+            "tag": "tag_13",
+            "text": "你也说过，菲尔德蕾是有“道义”的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]是吗……原来在你们看来，我所做的一切都是笑话吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]就算你觉得是笑话，但你对森林造成的伤害，我们可不能一笑置之啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]呵。败军之将何足言勇。既然输了，我当然……认赌服输，愿意束手就擒。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]哼，如果你不是在失败之后才意识到自己的愚蠢就好了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]拷回去，带回大牢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "护林人",
+        "text": "[show]是！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]……这样一来，因瓦尔布的事情，就算是告一段落了吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]但、但是……罗姆洛敏那边……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]是啊……这次的事件中，因瓦尔布确实非常显眼，但在罗姆洛敏的整个阴谋之中，他顶多算是炮灰，连配角都算不上。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]虽然我们打倒了因瓦尔布，但罗姆洛敏根本毫发无伤，还带走了枭灵的精华……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "至少我们还抓住了因瓦尔布。"
+          },
+          {
+            "tag": "tag_28",
+            "text": "至少我们不是一无所获。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[cm][show]是啊，我们只能想办法，看看能不能从因瓦尔布那里榨出点消息了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "鹿灵那边也必须增派人手。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[cm][show]没错。三大守护灵，我们已经失利了两处，最后的一处无论如何也不能失败了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[cm][show]先回金弦之厅吧。等到我们从因瓦尔布那里得到了消息……或者还没得到消息，最后的决战就要开始了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

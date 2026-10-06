@@ -89,7 +89,16 @@ test('source rules drive open conditions and distinguish blueprint art from furn
   const horseDetail = page.locator('#furnitureModalScroll')
   await expect(horseDetail).toBeVisible()
   await expect(horseDetail).toContainText('获取方式')
-  await expect(horseDetail).toContainText('活动 / 通行证14级')
+  /*
+   * 来源「通行证」**被有意伪装成「未知」**（用户要求，见
+   * `src/utils/furnitureData.js` 的 `SOURCE_DISPLAY_ALIAS`：只改展示文案，
+   * 原始 `homeItem.tip` / `sourceTags` / 来源链路全都保留）。
+   *
+   * 所以这里断言的是「伪装生效」，而**不是**「通行证还在」：
+   * 将来若有人清空那张映射表，本用例会红并提醒——这正是它该有的作用。
+   */
+  await expect(horseDetail).toContainText('活动 / 未知14级')
+  await expect(horseDetail).not.toContainText('通行证')
   await expect(horseDetail).not.toContainText('玩家等级达到 1 级')
   await expect(horseDetail.locator('[data-detail-furniture-id="jiaju_muma"] img').first())
     .toHaveAttribute('src', /\/BuildItem\/build_mzh_kuijia\.webp/)

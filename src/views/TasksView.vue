@@ -36,6 +36,15 @@
           </div>
         </template>
       </UiFilterRow>
+
+      <!--
+        剧情搜索索引的加载/失败状态。索引约 0.84 MB（gzip），首次搜索才拉，
+        所以必须让用户知道「正在找剧情」，否则打字后结果迟迟不更新会像卡住。
+      -->
+      <div v-if="searchQuery.trim() && (dialogSearchLoading || dialogSearchError)" class="dialog-search-note">
+        <span v-if="dialogSearchLoading">正在加载剧情文本，稍后会自动把剧情命中的任务一并列出…</span>
+        <span v-else>{{ dialogSearchError }}（仍可按任务名与描述搜索）</span>
+      </div>
     </UiFilterPanel>
 
     <!-- 加载 / 错误 -->
@@ -72,6 +81,15 @@
               <UiTag v-if="item.close" tone="danger">已下架</UiTag>
             </div>
             <div class="task-card-des">{{ item.des || '（无描述）' }}</div>
+            <!--
+              剧情命中提示：显示命中片段，让用户知道「这条是因为剧情台词被搜到的」。
+              片段在 `dialogHits` 里**预先算好**（每次搜索只算一遍），
+              不在模板里重复调用 —— 虚拟网格会反复渲染可见行。
+            -->
+            <div v-if="dialogHits[item.id]" class="task-card-dialog-hit">
+              <span class="task-card-dialog-hit-label">剧情</span>
+              <span class="task-card-dialog-hit-text">{{ dialogHits[item.id] }}</span>
+            </div>
           </div>
         </div>
 
@@ -115,6 +133,8 @@
         <!-- 接取信息与背景 -->
         <UiSection title="接取信息与背景">
           <UiInfoRow v-if="selectedTask.getTask.npc" label="接取 NPC" :value="npcText(selectedTask.getTask.npc)" />
+          <UiInfoRow v-else-if="selectedTask.startNpc" label="起始 NPC" :value="npcText(selectedTask.startNpc)" />
+          <UiInfoRow v-if="selectedTask.startLocation" label="起始地点" :value="selectedTask.startLocation" />
           <UiInfoRow label="接取条件" :value="selectedTask.getTask.condition" />
           <UiInfoRow v-if="selectedTask.getTask.title" label="交互对话" :value="selectedTask.getTask.title" />
           <div v-if="selectedTask.getTask.dialog" class="get-task-dialog-row">
@@ -336,6 +356,61 @@ const filterType = ref(route.query.type || 'all')
 const filterSub = ref(route.query.sub || null)
 const searchQuery = ref(route.query.q || '')
 
+/*
+ * ─────────── 剧情全文搜索 ───────────
+ *
+ * 用户要能「用剧情里的原话搜到任务」（如搜「沃夫加」或某句台词）。
+ *
+ * 🔴 **索引必须懒加载，不能并进 tasks.json 或首屏搜索索引**：
+ * 全量剧情正文约 111 万字符 / 2.1 MB raw（gzip 约 0.84 MB），
+ * 而 `search-index.json` 是首屏就要下载的。并进去等于让每个冷启动用户
+ * 为「可能用不到的剧情搜索」买单。
+ *
+ * 触发时机：**用户真的在搜索框里打字时**才开始拉，拉之前先给一句轻提示。
+ * 拉取失败不影响普通搜索（按任务名/描述仍可用），只是剧情命中为空。
+ */
+const dialogSearch = shallowRef(null)
+const dialogSearchLoading = ref(false)
+const dialogSearchError = ref('')
+
+const ensureDialogSearch = async () => {
+  if (dialogSearch.value || dialogSearchLoading.value) return
+  dialogSearchLoading.value = true
+  dialogSearchError.value = ''
+  try {
+    const data = await fetchWithFallback('data/parsed/dialog-search.json')
+    dialogSearch.value = data?.tasks || {}
+  } catch (err) {
+    console.error('加载剧情搜索索引失败:', err)
+    dialogSearchError.value = '剧情搜索暂时不可用'
+    dialogSearch.value = {}
+  } finally {
+    dialogSearchLoading.value = false
+  }
+}
+
+/**
+ * 当前搜索词的**剧情命中摘要**：taskId -> 命中片段。
+ *
+ * 预先算成一个 map 而不是在模板里调函数：虚拟网格会反复渲染可见行，
+ * 每行都去 `indexOf` 一遍大文本（每任务数千字）是浪费。
+ * 只有搜索词或索引变化时才重算。
+ */
+const dialogHits = computed(() => {
+  const q = searchQuery.value.trim()
+  const hits = {}
+  if (!q || !dialogSearch.value) return hits
+  for (const [taskId, text] of Object.entries(dialogSearch.value)) {
+    const idx = text.indexOf(q)
+    if (idx < 0) continue
+    // 命中位置前后各取 18 字做摘要，避免卡片被长句撑破
+    const start = Math.max(0, idx - 18)
+    const end = Math.min(text.length, idx + q.length + 18)
+    hits[taskId] = `${start > 0 ? '…' : ''}${text.slice(start, end).replace(/\n/g, ' ')}${end < text.length ? '…' : ''}`
+  }
+  return hits
+})
+
 const detailVisible = ref(false)
 const selectedTask = ref(null)
 
@@ -376,11 +451,24 @@ const filteredTasks = computed(() => {
     if (searchQuery.value.trim()) {
       const q = searchQuery.value.trim().toLowerCase()
       const hit = [item.name, item.id, item.des, item.typeLabel, item.subLabel].some((x) => x && x.toLowerCase().includes(q))
-      if (!hit) return false
+      // 剧情正文命中：索引还没加载完时先按「未命中」处理，加载完会自动重算
+      if (!hit && !dialogHits.value[item.id]) return false
     }
     return true
   })
 })
+
+/**
+ * 搜索词变化时按需拉取剧情索引。
+ *
+ * 放在 watch 里而不是 `filteredTasks` 计算属性里：计算属性必须保持纯函数，
+ * 在里面发请求会造成「渲染触发副作用」。用 `flush:'post'` 让首帧先渲染
+ * 已有的任务名/描述结果，剧情命中随后补上（避免搜索框打字时卡一下）。
+ */
+watch(searchQuery, (q) => {
+  if (String(q || '').trim()) ensureDialogSearch()
+}, { flush: 'post' })
+
 
 const selectType = (key) => {
   filterType.value = key
@@ -597,6 +685,42 @@ watch(
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-word;
+}
+/*
+ * 剧情命中行：用强调色与前面加标签，与「任务描述」区分开 ——
+ * 否则用户会以为那句话是任务描述的一部分。
+ */
+.task-card-dialog-hit {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--accent-ink);
+  word-break: break-word;
+}
+.task-card-dialog-hit-label {
+  flex: 0 0 auto;
+  padding: 0 4px;
+  border: 1px solid var(--border-soft);
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-ink);
+  background: var(--paper-solid);
+}
+.task-card-dialog-hit-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.dialog-search-note {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
 }
 .task-card-rewards {
   display: flex;

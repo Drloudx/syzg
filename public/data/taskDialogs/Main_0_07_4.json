@@ -1,0 +1,54 @@
+{
+  "script": "Main_0_07_4旧",
+  "des": "寻找良材",
+  "exps": [
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]（这就是沃夫加先生说的硬质树木……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]米托拉小姐，可以帮我爬上去折几根树枝吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈？可以是可以……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]那就拜托你了！我需要这根、这根、这根……还有这根！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦哦，交给我！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]（等等。怎么突然有股被当成宠物使唤的感觉……？）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

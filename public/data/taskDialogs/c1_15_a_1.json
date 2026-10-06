@@ -1,0 +1,49 @@
+{
+  "script": "c1_15_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}，你的脸色好像有点不太好……？没事吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_2",
+            "text": "抱歉，我只是有点紧张。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]我懂，在面对真相的时候，不管那个“真相”是好是坏，大家都会紧张。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不过事实可不会因为人的想法而更改。[r]无论看到了何等惊人的一幕，你都只能承认它，然后接受。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没事的，有我米托拉在呢。走吧，{myName}！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

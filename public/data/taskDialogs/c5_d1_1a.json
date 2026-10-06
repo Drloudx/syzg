@@ -1,0 +1,422 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]几位英雄，多谢相救！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]要不是幸好遇到了你们，我们可就真要变成那些魔物的盘中餐了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]什么盘中餐，芙洛波这种魔物又不会吃人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]是、是吗……咳咳，总、总之……我们是要感谢你们的救命之恩。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]你们是来温泉谷游玩的游客？工作人员没有和你们说芙洛波作乱的事吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]唔……有、有倒是有……但人出来玩，哪能什么都听工作人员的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]……看来你们今后应该明白，工作人员的指示不会无的放矢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]是、是，我们今后一定小心，绝不会再犯了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯，这就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]对了，差点忘了问，现在温泉谷里面是什么情况？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]温泉谷里的情况？呃……我们也不是很清楚，只记得漫山遍野到处都是芙洛波，它们几乎把所有的浴池都占据了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]漫山遍野？芙洛波的数量有这么多……？这有点不对劲啊……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，别忘了真正反常的情况！",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]真正反常？啊，对了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们几个，就穿着一件单衣，是怎么在冰天雪地里活下来的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]这……你就算这么问，我们也……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]啊，对了！你这么一说，我想起来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]现在温泉谷里的气温反常地高，根本没有外面那么冷！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]阿嚏——！吸溜——刚才一直在逃命没觉得，现在才发现，这外面还是这么冷啊！阿嚏！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……奇瓦，你应该会点什么保温的魔法吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]给他们每人来一个，别让他们好不容易得救，反而被雪地冻僵了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]没问题，我这就施法。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]哦、哦哦！这个魔法，这个温暖……！多谢你们，你们又救了我们一次！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好了好了，不要再谢来谢去了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这个世界上不会总有人给你们擦屁股的，想要在世上活下去，就试着为自己的行为承担责任吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "现在立刻回温泉村去！",
+            "tag": "tag_30"
+          },
+          {
+            "text": "奥格会保护你们的！",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[cm][show]啊……是、是、是！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "倒霉的客人",
+        "text": "[show]我们会铭记今天的教训！各位英雄，我们后会有期！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真是……这世界上怎么还有这么没谱的人啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]智慧生物的感性是多种多样的，每次遇到这种人都要大发感慨，那可就没时间干别的了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]好啦，比起那些……倒霉的人，还是说说温泉谷的情况吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]你是说温泉谷的气温异常升高的事？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕呜……咕咕咕呜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]嗯……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]奇瓦姐姐，软软它怎么了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]软软说，前方的温泉谷内，有火属性魔力异常聚集……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]诶？怎么会这样？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们说，这会不会和希拉尔德的装置有关？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我早就说了，那个人不是好货，送来的东西肯定暗藏阴谋！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]这……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没有调查就没有发言权。",
+            "tag": "tag_51"
+          },
+          {
+            "text": "到底是不是，就能调查之后再说吧！",
+            "tag": "tag_51"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]嗯，也只能这样了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]唔……就算真的有问题，也请你们不要当场破坏那些装置……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没问题。",
+            "tag": "tag_49"
+          },
+          {
+            "text": "我们不会让你为难的。",
+            "tag": "tag_49"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就是！乌尔勒院长看起来是位明事理的大人，如果有确凿的证据说服她，想必她也不会反对我们的行动了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]嗯！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d1_1a",
+  "des": "第一张图，打完后【c5_d1_1a】。"
+}

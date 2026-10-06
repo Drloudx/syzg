@@ -1,0 +1,174 @@
+{
+  "script": "c2_d3_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]这就是……遗迹的内部吗……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]还真是不可思议啊……[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]虽然这里的水源已经全部变成了晶体，但我们还是可以从分布和流动痕迹上看出一些端倪……[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在这个遗迹里，明明重力都是正常的，偏偏只有水，在这里会[color=f1401c]从下往上流动[colorEnd]……看来导致天河逆流的动力源，应该就是这种选择性的异常重力。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这是那些建造遗迹的先民设计的吗？他们这么做有什么目的呢……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我不知道。[color=ffb64d]黄昏[colorEnd]之前的古代人，他们的技术力，是在灾后时代的我们无法想象的。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]有着这种不讲道理的技术暴力，他们完全有能力做出很多在现在的我们看来奢侈无比、甚至不可理喻的事情。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那座要耗费庞大能源的天梯，在那个时代可能仅仅只是用来观赏的风景呢。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这实在没可能吧……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们啊，现在我们可是在危机四伏的遗迹内部呢。先别忙着研究那些有的没的，好好看看眼前的敌人吧！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]岩蟾蜍、恐兽、哈比……！[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这怎么可能！这些家伙不是见面就会打架的吗？怎么现在居然混到一起去了？[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]应该是受到某种影响或控制了吧。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]例如上位魔物意味着拥有着绝对的地位，能够依靠自己的威压或者信息素一类的玩意，完全支配下位的魔物。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]就是说这些玩意……都是那个大家伙的手下？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]应该是这样没跑了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这个情况，稍微有点棘手啊……多种魔物优势互补，发挥出的实力可能不只是一加一等于二那么简单。[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不简单又怎么样？我们这边的实力更强，当然没有怕的道理。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我们会一起上，一波冲垮它们！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦哦——！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "众人"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "阿娜希塔遗迹-上层部"
+}

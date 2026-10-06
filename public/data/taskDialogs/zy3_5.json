@@ -1,0 +1,46 @@
+{
+  "script": "zy3_5",
+  "des": "",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "沃夫加",
+        "text": "[show]喀哈哈哈哈！这样就清理完了吗？可真没劲！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]剩下的角布林都逃走了……！我们赢了，储备粮！[r]多谢你，猎人大叔！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "沃夫加",
+        "text": "[show]小事。你们给我修的这把弓，可让我好好打爽了一阵！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "沃夫加",
+        "text": "[show]不过，闲话还是等会再叙吧。[r]你们的伙伴应该正在营地等你们，还是赶快回去看看她们的情况吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……！我们回去，储备粮！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

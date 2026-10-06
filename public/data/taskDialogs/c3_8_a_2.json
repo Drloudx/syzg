@@ -1,0 +1,46 @@
+{
+  "script": "c3_8_a_2",
+  "des": "c3_8_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]我们到了，前面就是贫民街。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦！这表面上看起来倒是比之前的废镇要好一点！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]只是比废墟“好一点”，并不是值得夸耀的事……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]如果可以的话，谁又会想要住在这种地方呢？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

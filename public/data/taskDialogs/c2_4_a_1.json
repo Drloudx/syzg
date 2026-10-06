@@ -1,0 +1,81 @@
+{
+  "script": "c2_4_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们看那边！这帮家伙不像是在巡逻……难道是在准备埋伏谁吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]那些家伙确实是在埋伏。就是水平不怎么高，连自己的身形都隐蔽不了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "似乎也有山民混在里面。",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[cm][show]看来也有不少村民被鼓动了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]他们应该就是被派来埋伏罗伯特的吧。只要他真的敢一人赴约，那结局就已经注定了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那工头大叔也会被当成人质……！真是阴险，居然设下这种毒计！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]这都是坏人的惯用手段了。至于这些家伙……既然占据了必经之路，看来是绕不过去了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没事～！我就知道要动手，早就做好准备啦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "背叛者的结局 1"
+}

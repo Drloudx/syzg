@@ -1,0 +1,530 @@
+{
+  "script": "c3_d2_2_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]喂，你们看……那些都是什么啊……？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]像是什么台面，又像是什么坑洞……那里面有什么东西吗？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我们靠近些看看吧。[l][cm][hide]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这……这是……！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show][color=f1401c]人[colorEnd]……！这些水池里，全都泡着[color=f1401c]人[colorEnd]！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我——我不——我——[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这到底是……呜……[l]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "！",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]（这是一座由黑石雕砌而成的水池，里面“坐”着好几个贫民装束的人，脖子以下的部位都浸泡在富魔水中——如果那样的姿势也能被称为“坐”的话。）[l][cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（他们的头发湿润黏稠，紧贴在头皮上，嘴唇干裂，眼眶深陷。水下，他们惨白的皮肤仿佛老树皮一样皱缩崩裂，四肢却浮肿得像克里斯汀儿童节路边小丑吹出的长条气球。）[l][cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（尽管还有呼吸，但显然他们已经失去了所有神智。无论是喊话还是碰触，他们都全无反应。）[l][cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这……这也太……过分了吧……[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我……我也亲手安葬过许多人……但这也……[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]人口失踪案，到这里就算是解决了……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]等等！你是说……！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这就是市镇里那些失踪者的末路吗……[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]怎么会这样！这些人……还活着吧？还是说……已经……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]要说活着……应该算是活着吧。至少……生命体征还是存在的。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]但是……我在他们身上，已经感受不到任何思维的火花。灵魂已经从他们的身体里离开，虽然活着，却……与失去性命毫无区别。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不、不可能！怎么会有这种事……！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德他做这些到底是为了什么！[l]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "应该是为了水吧。",
+            "tag": "tag_27"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]为了……水……？[l]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我还记得在图洛德办公室……",
+            "tag": "tag_29"
+          },
+          {
+            "text": "曾经找到过一份论文。",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[show][cm]啊，我记得……那还是我找到的呢。我想想……好像是什么生物体和富魔水之类的论文来着？[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "《生物体与富魔水：吸收与代谢》",
+            "tag": "tag_32"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊对了，好像这篇文章还有署名——[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "由水占师贝尔卡提出。",
+            "tag": "tag_36"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]喂喂喂，你该不会想说……！[l]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我只是草草翻了几页。",
+            "tag": "tag_40"
+          },
+          {
+            "text": "这里……应该就是那篇论文的理论实践。",
+            "tag": "tag_40"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是……我的理论？我的理论……导致了这一切……？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这不可能！我知道那篇论文，那是贝尔卡在大书院的结业论文，和这里有什么关系？这里和她有什么关系？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]有——有关系……有关系……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]贝尔卡……？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]生物体……对于富魔水……有吸收和代谢的现象……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]人类和魔人……对于富魔水……有着比魔物更高的耐受度……长时间接触……会导致富魔水症……失智发狂……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]富魔水中的紊乱魔力……被生物体吸收后……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]别说了，贝尔卡！这和你没关系！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]也就是说……只要用生物来过滤富魔水，就能大批量生产珍贵的无魔净水。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]而人体……则是最合适的“耗材”，和“器皿”。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是……我的理论……是我……是我害的……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]怎么可能……！你是说这里是在把人当成海绵，把魔力从富魔水中吸走？你想让我相信这种天方夜谭吗？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这——的确是天方夜谭。利用人体将富魔水中的所有魔力通过渗透压吸走从而将水滤净，在[color=ffb64d]现有的技术[colorEnd]根本就做不到。[l]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但……",
+            "tag": "tag_55"
+          },
+          {
+            "text": "如果使用的并非是现有的技术呢……",
+            "tag": "tag_55"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你是说——那个失踪的匠器核心？唔——！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦哟，这可不是我引诱你说出来的。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊……啊啊啊……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]胡说！这是人做得出来的事吗！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂。这是[color=f1401c]只有[colorEnd]人才做得出来的事。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]智慧让我们比野兽和魔物更加聪明。但同时，智慧也让我们比野兽和魔物更加残忍。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]收拾心情继续前进吧，现在还远远没到停步的时候。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]阿莱姐……[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂，照顾好贝尔卡。塞弗德里克先生，{myName}，米托拉，我们来打头阵。[l]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是……！",
+            "tag": "tag_66"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_d2_2_2"
+}

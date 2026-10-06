@@ -1,0 +1,46 @@
+{
+  "script": "zy3_3",
+  "des": "",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "希尔",
+        "text": "[show]芭杜尔小姐……！您怎么在这里！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]泥土、根须与树木指引着我，来惩戒那些与自然为敌者！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]往前行进吧，善良的护林人们！[r]我会守住这里……守住你们的营地！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]多谢了，芭杜尔！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们继续往前，储备粮！朝着那些角布林们来的方向！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

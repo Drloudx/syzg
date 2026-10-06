@@ -1,0 +1,54 @@
+{
+  "script": "c2_ex4_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]哦，你们醒了？头昏吗？身体有哪里不舒服吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]虽然上次没什么事，但这毕竟是用了内核不明的先时技术。如果有任何不适，一定要立刻告诉我哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]内核不明？这种危险的技术，亏你敢直接拿出来给我们用啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]没有风险就没有收益嘛。好了，我看你们俩都挺精神的，应该没什么大碍。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]在这地底下呆久了实在有些气闷，我们还是快点回去修行所吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入房间触发4"
+}

@@ -1,0 +1,216 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]好了，前面就是大书院的大门了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]从这里开始，任何喧哗打闹都会引来院卫。一旦被抓住，最少也要关六个小时的禁闭，你们千万要小心！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]噢，我知道了。不过……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]不过什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]那些人……也是大书院的成员吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]诶？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]哇啊啊——！发生什么事了？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]欢迎来到温泉与学识之都——大书院！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]我看看嗷，一、二、三、四，再加上这位熔火元素，总共就是五位，五位——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]五位就是异变之后拜访这里的第5555名访客！为了庆祝这个吉利的数字，我们温泉天国“奥格温泉村”将为你们提供宾至如归的服务！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]几位别在门口站着了，快进来登记入住吧~！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]温泉村接待处就在前面，一定要赏光哦~！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这就是你说的气氛沉闷的大书院？",
+            "tag": "tag_28"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这、我……我也不知道啊！软软，我们真的没有走错地方吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕咕——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，这句我听懂了，它肯定是觉得你不信任它，开始生气了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我、我怎么会不相信你呢！只、只不过……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]呜呜……到底是怎么回事！我这离开家也就只有五六年，大书院怎么就变成这样了啊……！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "大概都是因为那个温泉村吧。",
+            "tag": "tag_26"
+          },
+          {
+            "text": "那个温泉村奇瓦似乎没有提到过。",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]也就是说，那个温泉村就是大书院变化的原因之一？看来我们确实有必要去那里看看了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]希望那真的只是个普通的温泉，不要和“结社”那边有什么关系吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_2_a_4",
+  "des": "进入后播放c5_2_a_4"
+}

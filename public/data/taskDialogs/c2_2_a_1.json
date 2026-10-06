@@ -1,0 +1,168 @@
+{
+  "script": "c2_2_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等一下，前面好像有动静！好像是没见过的魔物……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]离这么远就发现了敌人？哼，看来你们确实不是泛泛之辈。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]正好，就用这些家伙来告诉你们，我们必须打倒恐怖蟾兽的理由吧——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？现在是说这些的时候吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]现在拦在路上的那些丑陋不堪的东西，就是它的“[color=f1401c]手下[colorEnd]”！从五年前，这些[color=f1401c]岩蟾蜍[colorEnd]随着[color=f1401c]红水晶[colorEnd]在山上出现以来，它们就狂暴地破坏一切目所能及的东西——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]不论是建筑、田地、人类、魔人，还是山上原本就有的其它魔物，都在他们的蹂躏之下痛苦不堪！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]五年前？那不就是……！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是“大兽潮”发生的时间。",
+            "tag": "tag_9"
+          },
+          {
+            "text": "也是异变开始蔓延的时间。",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]或许是吧，但那又怎样！就算知道它们从何而来，也没有人知道该如何解决这个麻烦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]幸好，我知道！在和这些魔物的不断战斗之中，我发现它们的行动并不是全无规律，而是受到它们的头目——[color=f1401c]恐怖蟾兽[colorEnd]的指使！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]只要能消灭掉恐怖蟾兽，失去了头目的岩蟾蜍就会群龙无首，我们就能一鼓作气彻底解决它们！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]相反……如果没法除掉那个大家伙，无论你们想在山上干什么，都会被这些混蛋搞得一团糟！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]所以帮助我，就是在帮助你们自己。不管你们心里抱着怎样的念头，最好都先牢牢记住这一点！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]有没有那么严重啊……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "无论如何，谢谢你的提醒。",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]哼，看来还是有晓事的人。既然这些东西出现在我们面前，我们也不能放着不管。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]既然之后要合作，就让我们借着这些东西，互相称量一下对方的斤两吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]要看谁干掉得多吗？正合我意，那就来吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "巴诺姆自卫团 1"
+}

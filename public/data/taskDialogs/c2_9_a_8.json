@@ -1,0 +1,299 @@
+{
+  "script": "c2_9_a_8",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]唔——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "两人",
+        "text": "[show]大姐——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]皮塔、卡夫……我不是说让你们别上来了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（怎么可能……攻击居然完全没效果……？）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（我现在的状态可比任何时候都好，接了我全力的二十招，这家伙居然一点反应都没有……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（难道说，就连我仅有的“力量”也已经一无是处了吗……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（要是这样的话……我到底……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（我到底……算个什么啊……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]欲渡此关……首在戒专用众。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（声音……？进到我脑海里来了？）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]一人之力有穷，而集众之力无穷，是故合众胜于独一。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]又是“团结”吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]施主，这个道理，你绝非不懂，你只是因为自负而不愿，因为恐惧而不敢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]你要做的，绝不是领悟一个所谓“团结”的大道理，而是要真正去找出自己真正的恐惧……以及自负的根源。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]通过试炼并非难事。但想真正理解自己，则艰辛百倍。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show][cm]理解……我自己……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米拉贝尔！振作起来！",
+            "tag": "tag_57"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show][cm]{myName}……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这里就交给我们吧！",
+            "tag": "tag_58"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "两人",
+        "text": "[show][cm]知道了，{myName}！我们现在就掩护你过去！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]怎……怎么了？{myName}……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]{myName}说，他从他那什么锤子里能感觉到，有什么魔法正在守着这个大家伙！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]没错！然后我们就发现那边有一个奇怪的东西！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]那是什么东西？我之前都没有注意到……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]总之，这东西就交给{myName}去处理就好！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]没错！在大姐头你发呆的时候，我们已经决定带他偷摸过去了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米拉贝尔，和它多缠斗一会！",
+            "tag": "tag_69"
+          },
+          {
+            "text": "相信我，我们一定能战胜它！",
+            "tag": "tag_69"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show][cm]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（所谓的试炼，原来是这样吗……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]（团结啊……说得还真好听。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我明白了！赶紧去吧，我来给你们争取时间！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "两人",
+        "text": "[show]大姐头，你千万小心啊——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_8"
+}

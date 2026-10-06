@@ -1,0 +1,38 @@
+{
+  "script": "zy3_4",
+  "des": "",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]鱿鱼头！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "茜塔",
+        "text": "[show]不好意思，来晚了！没受伤吧，两位！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "茜塔",
+        "text": "[show]我会把这里好好打扫个遍，你们往前推进就是！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]谢谢你，茜塔！储备粮，我们继续前进！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "script": "s_2_2_12",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那是……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]是狂暴化的魔物！居然在这里出现了……小心点！准备战斗！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "迈妮娅",
+        "text": "[show]我……我也来帮忙！[l][cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      }
+    }
+  ],
+  "des": "进入时【s_2_2_12】。"
+}

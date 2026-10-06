@@ -1,0 +1,246 @@
+{
+  "script": "Main_0_09_3旧",
+  "des": "新的冒险",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯……我开门见山了。三件事。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]一是……谢谢你。[r]之前在那个驿站的地窖，你救了我一次，我还没好好和你说谢谢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]啊……那件事。我们是伙伴嘛，这是自然的。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……第二个是，我不会再叫你储备粮了。[r]你……你的用处……比我想的还要大。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你能帮我修缮营地，还能和我一起战斗，咱们对很多事情也有类似的看法……[r]要是真的吃掉你……那、那就太划不来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]米托拉小姐……[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]相对的，你也不许再给我加什么“小姐”了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]啊，这是我父亲教导我的礼节，是为人处世最基本的——[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我——我才不管你是从哪里养成的习惯！在我这儿就是不行！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]啊……那、那好，我会尽量改一改……[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]第三。你帮我重建了这座营地，还帮我消灭了那只角布林首领……帮我报了仇。[r]我不管你之前对我有什么样的印象……比如自私啦，孤僻啦之类……什么的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我想说……你也可以把这里……当成你的家。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]啊……[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我、我可没说我很期待和你一起生活什么的哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就是说——你、你也是个流浪者，也没什么地方好去吧。[r]那既然这里都是你盖的房子，你自己住着肯定也舒服——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]总、总之……就是这样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]米托拉小……[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]不，米托拉。谢谢你，我会把这里当家的。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦、哦……哦。那就好。嘿嘿。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]那么……米托拉。明天一早，我们就继续外出探索吧。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦哦，有什么新计划吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]角布林的威胁也解除了，出多远的门也没关系了。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]我想探索更远的地方，收集更多更稀有的材料，认识更多的伙伴。[r]我想将我们的家园建设得更大、更气派、更高效，在这座深渊里扎稳脚跟。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……说起来，之前去过的驿站周边，好像还有很多地方可以去。[r]不如明早我们就往那边去看看吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]嗯。我有预感，会在那里经历许多新的冒险！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好！以后就多靠你了，储备粮——啊不，工匠小姐，希尔！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]嗯！以后也请您多指教了，米托拉！[l][cm][hide]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊对了！“您”也不许再说了！听见没！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]唉……？这么麻烦啊……[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不许抱怨！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

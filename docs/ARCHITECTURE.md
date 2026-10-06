@@ -1,4 +1,4 @@
-# 项目架构说明（深渊大书院 / vue-myrzg）
+﻿# 项目架构说明（深渊大书院 / vue-myrzg）
 
 > 本文档描述 `vue-myrzg` 项目的整体架构、目录职责、数据流与 UI 设计体系。
 > UI 组件库使用规则见 [docs/UI_COMPONENT_LIBRARY.md](./UI_COMPONENT_LIBRARY.md)。
@@ -178,7 +178,7 @@ vue-myrzg/
 
 状态数值同理有唯一底层 `buffParser.js`（纯函数，无请求与组件依赖）：它把 `buff.json` 的 `para` 翻成中文数值，`glossaryData` 用它生成词条产物，`monsterParser` 与 `heroParser` 用它回填怪物状态、技能附加状态与职业特性。单位语义取自源码 `AttrAdd.cs` / `UnitDataShowPanel.cs` / `ExtentionMethod.cs`，不按字段名猜；配置笔误只在渲染时归一化，不改写原表。页面与组件不得再自行解读 `para`。
 
-1. **构建**：`scripts/parse/index.mjs` 调用 `scripts/parse/*`，优先读取 `raw/`，生成 `public/data/parsed/`。业务纯函数位于 `utils/*Parser.js` / `*Data.js`；字段语义和可见性见 SPEC 与功能专题。输入不齐时沿用产物的条件见 [构建前置](../README.md#构建前置与原表维护)。
+1. **构建**：`scripts/parse/index.mjs` 调用 `scripts/parse/*`，优先读取 `raw/`，生成 `public/data/parsed/`。业务纯函数位于 `utils/*Parser.js` / `*Data.js`；字段语义和可见性见 SPEC 与功能专题。输入不齐时沿用产物的条件见 [CONTRIBUTING 构建前置](CONTRIBUTING.md#五构建前置与原表维护)。
 2. **运行时**：视图通过 `fetchWithFallback` 读取同版本产物；云端失败只回退包内同路径文件。副本按关卡请求详情，怪物详情另取等级系数小表；页面不重新关联原表，解析失败显示错误态。
 3. **来源**：`searchData` 合并正式玩法入口、`supplementalItemSources`、`remainingItemSources` 和专题来源，实际产物筛选复用 `acquisitionRules`。完整构建传入本次副本来源；独立搜索构建重算副本来源并读取已有 PVP/隐藏产物。只保存展示与定位实际消费的字段，无法确认的来源留在内部记录。
 4. **原表维护**：`sync-raw.mjs` 默认预览，`--apply` 补缺，`--apply --replace` 才刷新原表及兼容别名。`mon.json` 字段与头像只在 `shared.mjs` 内存归一化；副本提取输入和塔层索引不覆盖完整原表，任务维护不得裁剪写回 `battle/room`。
@@ -239,7 +239,7 @@ vue-myrzg/
 ## 5. 构建与运行
 
 
-完整数据再生成需要本机原表、副本提取输入及剧情资源；当前缺原表时沿用产物的条件、环境变量与同步命令统一见 [README 构建前置](../README.md#构建前置与原表维护)。
+完整数据再生成需要本机原表、副本提取输入及剧情资源；当前缺原表时沿用产物的条件、环境变量与同步命令统一见 [CONTRIBUTING 构建前置](CONTRIBUTING.md#五构建前置与原表维护)。
 
 日常命令统一见 [项目 README](../README.md#常用命令)。发布按以下顺序：
 
@@ -255,7 +255,7 @@ Web 正式部署用 HTTPS；包内数据与图片必须保留以支持离线回�
 
 ## 7. Git 提交与推送约定
 
-提交格式、验收和日报要求见 [项目 README](../README.md#git-提交规范)。
+提交格式、验收和日报要求见 [贡献与提交规范](CONTRIBUTING.md)。
 
 - 修改前检查工作区，保留已有改动；大规模重构或资源替换前先建立可恢复的存档点。不能把无关改动混入本次提交。
 - 每次提交对应一个明确主题，代码与重新生成的数据可分开提交；临时文件不进入提交，`dist/` 由完整构建和发布流程生成。

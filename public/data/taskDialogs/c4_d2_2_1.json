@@ -1,0 +1,118 @@
+{
+  "script": "c4_d2_2_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔……我们在这里上上下下绕来绕去……现在到底在哪儿？还在第二层吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们确实还在第二层没错。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]诶？你怎么知道的？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我对尺寸形制这类东西比较敏感……",
+            "tag": "tag_8"
+          },
+          {
+            "text": "我们上上下下这么久，高低差始终在五米以内。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]原来你还有这种技能，感觉好厉害！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "虽然可能有点自夸的嫌疑……",
+            "tag": "tag_10"
+          },
+          {
+            "text": "我在工匠相关的领域确实有些天赋。",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]什么自夸，那个“巨木”不都说你是大匠师了嘛！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "才没有那种好用的能力！",
+            "tag": "tag_12"
+          },
+          {
+            "text": "你才是给我好好侦查啦！",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_d2_2_1"
+}

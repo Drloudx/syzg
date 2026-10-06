@@ -1,0 +1,256 @@
+{
+  "script": "s_2_2_13",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可恶，这家伙真棘手！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "狂暴碎岩统领",
+        "text": "[show]呱——嘎啊——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]哇啊——！吃了迈妮娅全力一锄，竟然还能站起来……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]呜……不行。没想到岩蟾蜍的头领居然这么难搞。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]当初有米拉贝尔在，我们才用蛮力压制住了采石场的那只，现在我们几个的实力好像不太够。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]我们先回地面上去，找巴诺姆村要点人手再来吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好！我这就退过来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]现在回去的话，报酬是不是没有了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]嗯……回去要是叫人帮忙的话，报酬倒是会分给他们一些吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]那么……还是在这里解决它比较好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]等等，阿尔克丝！那家伙很危险的，别乱冲！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "小心！",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]吼啊啊啊啊啊——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？什么？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "狂暴碎岩统领",
+        "text": "[show]呱——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（阿尔克丝的身体喷发出黑色的火焰，一拳击倒了碎岩统领。后者抽搐了两下，不再动弹。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]呼……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这、这是什么情况？阿尔克丝，这是——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]我到一旁……休息一下。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]阿尔克丝……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]嗯哼。原来如此，难怪她对魔力感到不适。她刚刚的样子……和狂暴化的魔物非常相似。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]的、的确！就像袭击了我营地的角布林头领一样……难道这就是她不愿和我们一起战斗的缘故吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（轰隆——）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]等……等等！发生什么了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "大家小心！",
+            "tag": "tag_33"
+          },
+          {
+            "text": "地板出现了裂痕！",
+            "tag": "tag_33"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]糟了！大家都小心点！这里要塌下去了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]哇啊啊啊啊啊啊——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "通关后【s_2_2_13】"
+}

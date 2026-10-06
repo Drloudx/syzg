@@ -1,0 +1,70 @@
+{
+  "script": "c3_2_a_2",
+  "des": "c3_2_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]魔物先生们体力真不错，居然追到这里来了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]本来还想着如果有人掉队就放过它的，没想到送命这种事，大家都这么积极呀～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]既然如此……哎呀呀？这种地方居然有人来了？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]喂喂，你们快看那边！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]小女孩……？那份报告不是错觉！我们快过去！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]嗯——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+{
+  "script": "c3_12_a_4",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]解决完了……！唔，怎么感觉地面上的蛇怪比在蛇窟里还凶啊……[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们看这些蛇怪的表皮。蛇怪的表皮本来应该满是润滑的黏液，可这些蛇鳞都干燥得龟裂了。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这里明明不是它们的栖息地……强行在这里生活只会让它们痛苦万分。究竟是为什么……[l]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我有另一个问题……",
+            "tag": "tag_5"
+          },
+          {
+            "text": "这些奇怪的管道是什么？",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]管道？[l][cm][hide]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "形制上来看，应该是输水用的管道。",
+            "tag": "tag_11"
+          },
+          {
+            "text": "看来已经废弃了相当久了。",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]数量还挺多！这也是图洛德秘密修建的东西吗！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]也许，那不是什么装饰。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]唉？什么意思？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你还记得吗，圣女大人？在大兽潮刚刚结束，大市集建立之初……图洛德曾经采纳了一批学者的理论，利用某种蒸馏法净化富魔水。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]为此……我们伟大的图洛德会长在魔爪湖深处修建过一座“蒸馏工厂”。贝尔卡小姐在大书院留学，但已有志成为治安队一员的埃迪蒂小姐应该也略知一二吧？[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是有这件事。我曾经还在村里帮忙治疗过被富魔水感染的施工人员。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯。那时我还在为了成为治安队员刻苦训练。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯，当时图洛德会长为这项工程调集过很多人力。但在投产之后，人们发现蒸馏法的效率和理论之间有着显著的差距。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]如果不能解决某个技术问题，就无法像当时承诺的一样大规模净化水源。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]最终一直没有什么进展，为了重振镇民的信心，图洛德会长便和丹涅尔长老进行扩大净水仪式的方案了。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那座工厂也随之废弃，据说它的弃址最后在魔物的攻击中沦为了一片废墟。搞不好……[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦！所以这条路就是通向那个废弃了的蒸馏工厂咯？没人想起的工厂废墟，一看就适合做坏人的大本营！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]还不能确定这就是和那座工厂相关的东西。这位先生说的事……我上任治安队长之后也略有耳闻。但至少在我任职期间，图洛德会长并不忌讳提起这件事。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这些情报和你们要找的证据很可能并无关系。说到底，那些车辙也可能只是一群经常去工厂废墟拾荒的荒野客所留下的。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]即使所有状况都指向了图洛德会长，但我还是想保留自己的意见。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]至少……我还没亲眼见到决定性的证据。[l]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我明白了。",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]其实……就连我也偶尔会希望……希望这一切都是一个美丽的误会。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]水商商会和水占师之环紧密团结、亲如一家，魔爪湖地区的人民在这两者的庇护下，虽然艰难，但仍然安全而幸福地生活着……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]仅仅几天之前都还深信不疑的东西，现在却仿如一场幻梦。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂现在的迷茫，我……也有所体会。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "顺着这些管道前进吧。",
+            "tag": "tag_39"
+          },
+          {
+            "text": "在那之后就是真相了。",
+            "tag": "tag_39"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_12_a_4"
+}

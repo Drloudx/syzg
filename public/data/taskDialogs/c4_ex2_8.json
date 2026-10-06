@@ -1,0 +1,87 @@
+{
+  "script": "c4_ex2_8",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]唔……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "——艾薇杜尔！",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你怎么样了？",
+            "tag": "tag_7"
+          },
+          {
+            "text": "试炼成功了吗？",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]托您的福，算是成功了……吧……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "托我的福？",
+            "tag": "tag_9"
+          },
+          {
+            "text": "什么叫算是成功？",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]总之，现在我已经可以解决巨木下的危机了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]姐姐她们还在苦战，我们快点回去帮忙吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_ex2_8"
+}

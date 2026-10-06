@@ -1,0 +1,62 @@
+{
+  "script": "c2_10_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这里就是母巢附近吗……这些哈比的数量也太多了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]再多也得上！我们这次行动，不仅关系着能不能拿回核心，算出异变的源头，还关系着能不能镇压狂暴的哈比，减少村子遇袭的危险！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]没错！我们不能后退，只能前进！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]呵，诸位施主斗志可嘉，不过眼下还没到需要诸位出手的时候。吾看诸位比起群战更擅攻坚，那力气就留给巢穴深处的最终守卫吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]这里就由吾来开道！请诸位为我掠阵！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]喝啊啊啊——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_10_a_1"
+}

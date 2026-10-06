@@ -1,0 +1,166 @@
+{
+  "script": "Main_0_09_2旧",
+  "des": "凯旋归来",
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]茜塔和我说过，她要来还清理地窖时欠下的人情来着。[r]虽然我没法战斗，但驿站这边也承蒙过小妹妹的照顾，不来露个面多说不过去呀。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]尽管现在各个聚落之间的联盟早已名存实亡……[r]但各位说到底还是深渊的住民，这里也曾是我们驿站的辖区。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]诸位为我们摘除了这样一枚危害住民生命安全的毒瘤……[r]我代表菲尔德蕾和驿站，在这里真心向你们道谢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]而且说不定……一些停滞的东西，应该也会因此运转起来了吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]别这样。我们只是为了生存下去罢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]失去了家园的魔物想干掉我们，夺走我们的家园。[r]而我们不甘被干掉……于是便竭尽全力干掉了它们。仅此而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……这个可恶的世界每时每刻都在发生着这样的事。这没什么大不了的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]艾尔莎小姐。之前茜塔小姐提过，[r]角布林首领的姿态很像“狂化”……那究竟是什么？[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]那是五年前……我们深渊发生“兽潮之劫”时，魔物们表现出的形态。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]“它们狂暴不羁，身负怪力。它们毛发高耸，眼眶被魔血染红，[r]呼出的气息灼烫如黑色火焰。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]……它们失去了神智，只知进食和繁殖。[r]它们所经之处，只剩残垣断壁，而生灵则无一幸免。”[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]数以千计的狂化魔物从北方的白沙荒原倾巢而出，[r]践踏了深渊各地所有的聚落……这就是“兽潮之劫”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……还有这样的事……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]这五年间，我们一直在致力于重建兽潮带来的伤痕。[r]而值得欣慰的是，“狂化”现象在这之间也没有再出现过。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]如果你们所见属实，“狂化”的魔物又一次出现在深渊……[r]我觉得这实在没法算是什么好兆头。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]但现在也没必要担心这种事啦。况且那只角布林也被你们消灭了。[r]你们就好好享受这来之不易的安宁时光——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]剩下的，就先交给我们来调查吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]（艾尔莎小姐说的没错。现在考虑那些也只是徒增烦恼。[r]　现在只需要好好享受这一刻就好。）[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯……那个，储备粮。我有话和你说。等会来找下我吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]啊……好的，米托拉小姐。[l][cm][hide]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    }
+  ]
+}

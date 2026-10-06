@@ -1,0 +1,305 @@
+{
+  "script": "c1_6_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]搞定了，前辈。哈萨琳之手正在四散溃逃。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]好，这样就没事了。之前的铁匠大叔呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]已经派契约者将他撤回风车小镇附近，接受保护了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是吗，那就好。至于这些佣兵嘛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼，就算是坏蛋，就这么躺在这儿也不好。[r]不然让我把他们埋了，这些装备就当作是我让他们入土为安的报酬吧——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_41",
+            "text": "好熟悉的话！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]哪儿熟悉啦，你听错了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]唔……你很擅长这个吗？也好，那就麻烦你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼，包在我身上啦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "说起来……"
+          },
+          {
+            "tag": "tag_19",
+            "text": "第一次见到她的时候也是在埋人。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]我倒是从艾尔莎那有听说过米托拉的事。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]有传言说，“红发的野猫经常在荒野上安置那些无主的遗体”……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]由于经常被人目击到和遗体在一起，荒野客们甚至给她起了个“[color=ffb64d]索命凶猫[colorEnd]”的外号，[r]把她视为[color=ffb64d]不祥的象征[colorEnd]。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "原来如此。"
+          },
+          {
+            "tag": "tag_22",
+            "text": "之前的确有听到荒野客这么说。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]虽然这一带的佣兵败退了，但如果我想的没错，他们的目标应该就是黑铁锻炉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]以哈萨琳之手的战力和卑鄙作风，锻炉撑不了多久。我们必须加快速度了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]话说，你们一直念叨的哈萨琳之手……到底是什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是一群自从[color=ffb64d]五年前[colorEnd]，驿站前任首领哈萨琳牺牲之后，自称追随她遗志的人组成的佣兵团。他们不满于继任者菲尔德蕾的“软弱”，分裂出去自立门户。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]一开始他们只是一群散兵游勇。但这些人作风强硬、手段狠辣、行事卑鄙，通过威胁、收买，很快就搜罗到了一大批追随者，在各处和我们作对。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]总而言之，是一群非常极端的危险分子。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]也就是说……这群人的规模还挺大？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]正是如此。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "这也太荒谬了……"
+          },
+          {
+            "tag": "tag_31",
+            "text": "明明是同类，为什么要互相残害！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]（对啊……{myName}落到深渊的原因，就是因为被同类相残，不得已才……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我明白你的意思……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在你看来，在这个连生存都困难的深渊里，人们居然还有功夫互相敌对，而不是团结求存，这简直不可理喻，对吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]但人就是这样的生物。把恶行包装成宏大的愿景，压迫弱者来满足某些人的私欲。这种事在深渊内外都不鲜见。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]一直在荒野生活的米托拉，想必早就有了与人为敌的经验。但是{myName}……你虽然很擅长冒险，但我看得出来，你并没有[color=f1401c]对付同类的决心[colorEnd]。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "对付同类的决心……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]为了在深渊生存，我希望你能够早些做好准备。现在，我们要继续前进了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

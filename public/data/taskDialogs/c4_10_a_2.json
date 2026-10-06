@@ -1,0 +1,69 @@
+{
+  "des": "c4_10_a_2",
+  "script": "c4_10_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]话说啊，这里怎么还有哈萨琳之手的人啊？他们不知道因瓦尔布把他们卖了吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "我觉得他们不知道。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "知道因瓦尔布真面目的人都被我们拿下了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊，那我们还帮了因瓦尔布的忙了？真是让人气闷。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]不、不过这也算是好事吧……？既然哈萨琳之手在这里，那说明因瓦尔布也应该不远了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……但愿吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]但事情真的会如此简单吗……希望情况真的会如我们所想的那样发展吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

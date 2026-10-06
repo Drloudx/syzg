@@ -1,0 +1,157 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂，你们刚才看到没有？平地上居然有那么深的断崖……这地方可真不得了啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]虽然很危险，但这里的景色确实美不胜收……真不知道这些奇景是被何种伟力缔造而成的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]您是要询问这个问题吗？我现在立刻——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不不不不不、她不要！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]诶～好可惜～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]伽拉忒亚，我们都知道你记性很好，但记性好也不代表每句话都要从脑子里翻资料啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "艾薇杜尔只是在感叹而已。"
+          },
+          {
+            "tag": "tag_9",
+            "text": "她并没有真的很想知道这些景色的成因。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]诶？是这样吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我不是很理解……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你怎么比我还不会与人相处啊……我好歹是因为失忆忘记了很多事，你的人际处理能力不完全是张白纸吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]咦？米托拉你也失忆过吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么……？也……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕——！咕咕！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]大家小心！又有魔物冒出来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啧，偏偏挑了这种时候！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]行吧，刚才的话题就等解决了这些家伙再继续好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]大家，我们上吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_3_a_2",
+  "des": "打完后【c5_3_a_2】。"
+}

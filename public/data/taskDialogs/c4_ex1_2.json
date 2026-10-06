@@ -1,0 +1,368 @@
+{
+  "des": "c4_ex1_2",
+  "script": "c4_ex1_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]看起来……罗姆洛敏她……好像不在。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]确实没感觉到危险的气息，看来只能在这里找找看有没有什么情报了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]对了，{myName}你好像经常去各种遗迹冒险，对于搜查情报应该很熟吧？接下来该怎么做？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "一般来说要先进行整体性的观察。"
+          },
+          {
+            "tag": "tag_6",
+            "text": "先看看整个现场是怎么样的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]先观察整体是吗……我看看哈……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯嗯嗯……看上去非常像是那种故事里的魔女会居住的地方，感觉和芭杜尔在求生者草原的药圃也有几分相似之处……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]但这么乱七八糟的地方，真的能找到什么情报吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]确实……这地方感觉……不像是有生活气息，反而像是把很多东西单纯丢弃在这里……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]要从这里翻找出什么有用的东西，恐怕是一个大工程……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "或许不用那么复杂。"
+          },
+          {
+            "tag": "tag_12",
+            "text": "我的工匠锤有反应了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]诶？工匠锤……？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "把那边那本笔记本拿给我。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]笔记本……？可是，这个不是完全一片空白吗！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "这是我们工匠擅用的密文……"
+          },
+          {
+            "tag": "tag_20",
+            "text": "用来隐藏文字，躲避搜查的技巧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]哦，我想起来了，你们在那个什么克……[color=ffb64d]克里斯汀[colorEnd]国内好像是被追捕的异端！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这么说来只要你用你的工匠技艺稍微“叮”那么一下……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没错没错！笔记本上的字全都显现出来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这就是……先时工匠的技艺？真是神奇……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这么说来，这栋房子应该也是通过先时技艺修复的了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过……要说和魔女有关，还会用先时工匠技艺的人……应该就是[color=ffb64d]希拉尔德[colorEnd]了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？他……他懂那些吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……这个……毕竟他和{myName}……是吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？原、原来还有这种事吗……那……那……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "不用担心。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "我们也一直都在调查希拉尔德。"
+          },
+          {
+            "tag": "tag_31",
+            "text": "我们和结社对上恐怕不是第一次了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]是……是吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]放心啦，我们才不是希拉尔德的手下。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]比起那种小事，还是快点看看这本笔记说了什么吧！我看看……这上面到底写的什么啊？怎么我一个字都看不懂？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这是灵魂先知的[color=ffb64d]灵验文字[colorEnd]。只有灵魂先知一道的修行者才被允许学习的秘传书写体。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这本笔记……前面的内容记载的是罗姆洛敏弃职而去的始末，具体来说……和之前布斯波乌尔的日记记载的，基本没有区别。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]也就是说，魔女确实是因为坚守职责导致爱人的牺牲，才会离开金弦之厅的咯？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]是的……根据这上面记载，罗姆洛敏对于重视仪式、隐瞒不报的金弦之厅充满了怨恨。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]但是在最开始的时候，出于多年以来的信仰，罗姆洛敏并没有准备作出什么过激的报复举动。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？那她是怎么变得这么疯癫的？这和现在这个一心要毁灭森林的她，根本不是一个人吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]嗯……这里说，她的改变是因为希拉尔德告诉了她一个“[color=ffb64d]真相[colorEnd]”……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]但是到底是什么真相，这完全没有写啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]哦？上面没写吗？那让我来告诉你们怎么样？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "众人",
+        "text": "[show]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这、这个声音是……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是罗姆洛敏！她在外面！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

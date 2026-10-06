@@ -1,0 +1,126 @@
+{
+  "des": "c2_10_a_2",
+  "script": "c2_10_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]嗯……吾感觉到，前方有一股很强的力量，但却并非有情众生，想来就是诸位要找的“魔力核心”了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]前面？根据这个巢穴的分布情况来看，再往前走，应该就是哈比们的[color=f1401c]孵化所[colorEnd]了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]那是整个哈比巢穴之中防卫最为森严的地方，我们要过去，恐怕得经历一场苦战。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那肯定的嘛！我们都要抄它们老家了，肯定会遇到抵抗的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]而且不用“恐怕”——你们看，守巢的人来了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "皮塔",
+        "text": "[show]这就是……哈比巢母……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔，怎么总感觉……好像和其他哈比没多大差？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]魔物之威胁常不在体型，施主切不可放松警惕。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]放心吧！经过方才的试炼，我已经不是从前的我了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]不管你是什么样的强敌，我的身边都有伙伴！我不会退缩、不会放弃，当然也不会大意！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]喂，大鸟！我们要到里面去有事，你可以麻溜点滚开，让出道路吗？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哈！那就只有用武力来让你明白了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]大家，一起上吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

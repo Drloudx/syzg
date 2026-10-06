@@ -1,0 +1,62 @@
+{
+  "script": "c4_4_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "慌张的蕈人",
+        "text": "[show]是入侵者的噗！快迎击的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]天啊……你的预感好像成真了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]因为蕈人族一旦炸锅起来，基本都会变成这样。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]亏你们能和他们结盟这么多年，你们到底是怎么样才没打起来的啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这、这个……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好了，我也不是要你解释。总之，先让它们安静下来再说！上了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_4_a_1"
+}

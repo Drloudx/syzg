@@ -1,0 +1,509 @@
+{
+  "script": "c4_1_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]一段时间后——[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……这里就是黑森林的边境了吧？老板给的地图到底有没有画错啊……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "应该没错吧……",
+            "tag": "tag_7"
+          },
+          {
+            "text": "这里应该就是那座伐木场附近……",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]欢迎欢迎，你们就是信上说的驿站特使吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]据说还是拯救了好几个地区的英雄？菲尔德蕾老板派出如此强援，看来伐木场这次是有救了啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哦，差点忘了自我介绍。我就是樵夫之憩的首领因瓦尔布，老板应该和你们提过？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是有说过，说是“因瓦尔布绝对是个可靠的男人”……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我还以为是何方神圣，结果不就是个随处可见的大叔嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哈哈哈，说话真不客气啊，不愧是我们的小英雄！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]可靠不可靠，从外表是分辨不出来的。更何况我觉得，我在我这个年纪，应该也算是相貌堂堂，你们说是不是啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伐木工A",
+        "text": "[show]那是，老大可是我们这儿最俊的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伐木工A",
+        "text": "[show]我愿提名老大当深渊型男第一名！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啧……老男人之间的吹捧，真是够了……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "寒暄就先到这里……",
+            "tag": "tag_23"
+          },
+          {
+            "text": "能先讲讲伐木场现在的情况吗？",
+            "tag": "tag_23"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show][cm]现在的情况啊……你们这一路走来，对于黑森林有什么感觉？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]有什么感觉……？这……我是觉得蛮一般的，就是感觉光线不是太好，整个环境有点阴森……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]还有就是……自从进入森林范围之后，好像就一直有种若有若无的视线在盯着我们……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哈，看来你们已经感受到森林住民的热情了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]你的感觉一点没错，那些森林人的岗哨一直都在监视着我们，监视着踏入这片森林的每一个人。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "他们有这么多人手？",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[cm][show]人手？或许不是人手，而是别的帮手呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]那些黑森林里的萨满、德鲁伊、巡林客……总之诸如此类的玩意，全都拥有沟通动物伙伴的能力。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]他们不需要时时刻刻盯着我们，但森林里能帮他们做到这一点的东西可就太多了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]听起来你们过得很难啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]那是当然，如果不是伐木工们都是有着铁一般精神的好汉子，光是这些无处不在的视线就能把人逼疯好几回了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]怎么样，我想你们应该已经充分理解了伐木场的现状了。那关于我们的求援，老板他们是怎么说的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "事情是这样的……",
+            "tag": "tag_37"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（向因瓦尔布说明了情况……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]……所以，驿站的想法是准备退让吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我想更准确的说法是“维持现状”……",
+            "tag": "tag_40"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[cm][show]维持现状……哼，也行吧。只要你们能让那些森林人别再招惹我们，我们可以委屈、可以退让、可以……忍！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]不过，这退让不是没有底线的。只要让我的弟兄们活下去……樵夫之憩绝对配合驿站的方针。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]但要是你们不愿如此，把我们卖了……我因瓦尔布绝对不会善罢甘休。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈？你在威胁我们？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉。",
+            "tag": "tag_45"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]干嘛？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啧……又是你的“话术”出场的时候了吗……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "因瓦尔布老大，我们不会让那种事情发生。",
+            "tag": "tag_48"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[cm][show]嚯……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哈！既然我们的英雄都开口担保了，那我当然信你了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]不过……你们可得说到做到啊……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "惊慌的伐木工",
+        "text": "[show]老大——！因瓦尔布老大——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]出什么事了？别着急，慢慢说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "惊慌的伐木工",
+        "text": "[show]伐……伐木场那边……！出、出事了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]什么？谁攻击的我们？又是那些森林人？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "惊慌的伐木工",
+        "text": "[show]不、不是他们！是……是带着斗笠的角布林！它们有伪装，突然一下子从树林里冒出来，弟兄们全无防备，一下子被放倒了好几个！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]角布林？那些混蛋居然敢来惹我们？看来好长时间没教训它们，让它们胆子肥起来了啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]弟兄们，抄家伙，跟我走！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伐木工们",
+        "text": "[show]是，老大！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？这就走了？不要我们帮帮忙吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎么办？{myName}，我们要追上去吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "来都来了……",
+            "tag": "tag_69"
+          },
+          {
+            "text": "该帮的忙还是要帮……",
+            "tag": "tag_69"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]唔……说的也是……那我们就追上去，看看能不能搭把手吧——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "等等，米托拉，小心！",
+            "tag": "tag_105"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]什、什么？怎么了？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_1_a_1"
+}

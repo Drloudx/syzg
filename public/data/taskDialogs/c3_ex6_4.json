@@ -1,0 +1,390 @@
+{
+  "script": "c3_ex6_4",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……咳……！[l][cm][hide]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈……没想到束雷之冠的力量这么强。当初把我打成重伤的守护者，居然这么轻易就被我制服了。[l][cm]",
+        "charaName": "艾尔菲帕？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且还是以[color=ffb64d]你的样子[colorEnd]将你打倒……这种滋味可不好受吧？呵呵呵……[l][cm]",
+        "charaName": "艾尔菲帕？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……呼……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你就这点能耐吗……？我敢一个人来找你，可不是为了白白送命的。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我是……轰雷四宝器的守护者。为了履行我的职责……我不会轻易倒下。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咔哈哈！履行你的职责？这碎片可是你亲自拱手让给我的。你早就背弃了你的职责。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这片肮脏的土地，这些所谓的伙伴，甚至你的职责本身……你什么都守护不了。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……你愿意用碎片交换人质这一点倒是出乎我的预料。那些人类给了你什么好处，值得你这么做……？[l][cm][hide]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]艾尔菲帕！还好赶上了！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？怎么有两个艾尔菲帕？！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦？又见面了，几位。看来你们没我想得那么……没心没肺。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……你们怎么来了？[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快后退……！它吸取了束雷之冠的力量……变成了我的样子！它现在……很强！[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]再强那又如何？我们这一路，打倒的都是强者……！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]站起来，艾尔菲帕！我们合力……一起战胜它！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……为什么要舍命过来帮我？这种等级的怪物……可不是你们能应付的……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们是水占师。保护魔爪湖的住民，就是我们的职责——哈哈，本来想这么说的。[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐就是要保护妹妹，不是天经地义吗。[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可我并不是——[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]住口，噼哩妹妹。我们说是你就是！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是，噼哩妹妹。这么优柔寡断可不像你！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]！[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]噫。真是感人的桥段，我要是有耳朵都得起茧了——噢，你瞧，我现在就有耳朵。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然宝器的力量还没吸完，但对付你们已经绰绰有余了。我会尽量轻松送你们上路的。在那之后，我就会让魔爪湖的所有生灵去和你们陪葬。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你……偷走宝器还不够，还要摧毁魔爪湖？这里和你有什么仇什么怨？[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然是……深仇大怨了！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为你们这些魔爪湖的人类……谋害了我的朋友、我的恩人、我的主公——图洛德大人！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？图洛德？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在大兽潮来临之时，图洛德大人收留了未被紊乱魔力影响的我，将我藏身于黑涧浴池的深处……我从此以后就发誓效忠于他了。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那家伙做了许多伤天害理的错事！他也为了这些付出了生命的代价！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]伤天害理？你想加人类的肤浅道德于我这个魔物的身上？图洛德大人作为人类，用尽心血为延续魔爪湖的生命，而你们却以所谓的大义名分戕害了他！你们才是应以为耻的一方！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这家伙……！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……不管图洛德大人在你们的道德观里，到底是善是恶，这对我来说都无所谓！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在我眼中，只看到魔爪湖背叛了图洛德大人！所以我必须让魔爪湖——血债血偿！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就凭你？你做得到吗？[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼……如果是在刚才，我大概还做不到吧……[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过现在……[l][cm][hide]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇啊啊啊——！这……这是什么力量！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在我拥有束雷之冠的全部能量，在全部解放的状态之下，我的实力就能提升十倍甚至九倍之多！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]九比十大……？你这家伙脑袋昏了不识数吗……？[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]面对我这惊世力量，你们绝无任何胜算！想要免除痛苦的话，就给我跪下来，等着被我爽快干掉吧！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要来了……！大家，务必小心应战！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]乌帕、露帕……米托拉、{myName}……抱歉，但请助我一臂之力！[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦哦哦——！我们姐妹同心，一定能突破困局的！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要上了，大家——！[l][cm][hide]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "c3_ex6-5图进入后"
+}

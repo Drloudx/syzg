@@ -1,0 +1,238 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]守卫的哈比已经全都消灭了。[wait=200]接下来要处理的……[wait=100]就是这些还未孵化的蛋了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯？[wait=200]希尔，你在想什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]不，没什么……[wait=200]我只是想……[wait=100]我们真的要把这么多蛋全部打碎吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]哈比虽然是魔物……[wait=100]但它们也是受岩蟾蜍所迫，[wait=200]好像还没有坏到必须斩草除根的程度吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你这家伙[wait=50]…[wait=100]…[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]虽然平时挺能吃苦，看起来和一个普通的荒野客没什么两样……[r][l]我都有点忘了你其实是个城里人呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]这是什么意思……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]她的意思是你太心善了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]或许……[wait=100]我们能够找到许多放过这些蛋的理由。[wait=200]为了延续生命、[wait=100]维护生态……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]但身在深渊荒野之中，没人会有余裕去对他人施加这样的善意。[r][l]……更不用说是对一群魔物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我们这些人光是活着就不容易，活下去更不容易，[r][wait=200]让身边的人也活下去更是不容易中的不容易。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]放任这些魔物不管，便会威胁到我们族人的安危。[l]我是没空去发那种善心。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]…[wait=50]…[wait=100]呼呼呼。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]各位施主且稍事歇息。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]善良虽并非荒野的美德，但也不当受到苛责。[r][l]而且，若能不戕而达目的，何必多造恶业？[wait=200]此处由吾来处置便可。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]大师……？[l][cm][hide][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]唔！[wait=200]——喂喂！[wait=100]大哥……！[wait=300]我怎么一瞬间汗毛都竖起来了……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]我[wait=100]…[wait=150]…[wait=200]我也有这种感觉！[wait=200]这到底是怎么回事……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]希尔……你感觉到没有？[l]大师只是对着树干打了几拳，[r]我就突然莫名其妙地觉得，[wait=200]那棵树的感觉变得危险起来了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]无需惊慌，此乃拳意留痕。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]吾用禅武心印之法，将拳意印在这一招拳印之中。[r][l]此后数月之内，接近留印之徒皆会受威气影响，感受到强烈威胁。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]有此一招，附近哈比必寝食难安。[wait=200]它们为守护巢穴，定难再四处作妖。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]原来如此。[wait=200]…[wait=50]…[wait=100]这样也好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]大师的神功……真是惊人……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]雕虫小技，不值一哂。[r][l]诸位施主，此间事情已了，[wait=200]趁那些妖魔回巢之前，还是先行撤退吧！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]好！[wait=200]卡夫你动作快，让外面的弟兄们快点撤，我们马上跟上！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]是的，大姐！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]皮塔，你也去逆流天河那边看看。[l]如果连那边的哈比也都撤退了，[r]那就说明我们这一次的行动，是真正地成功了……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "zy0204_2",
+  "des": ""
+}

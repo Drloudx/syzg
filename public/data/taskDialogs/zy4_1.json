@@ -1,0 +1,54 @@
+{
+  "script": "zy4_1",
+  "des": "f1_1 到达关卡",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好！角布林歼灭战，现在开始！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]艾尔莎，佯攻的部分就麻烦你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]好～好～不要急。你们行进的路线我在地图中给你们标识好了。[r]只要按这一路走下来，路上应该不会有太多抵抗。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "芭杜尔",
+        "text": "[show]魔法、药水和治疗支援就请交给我。我一定要报小苗苗们的仇……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]我来做前锋。只要我认真防御，那些角布林们是打不倒我的。[r]希尔、米托拉，还有芭杜尔，请在我身后伺机攻击。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好——！希尔、芭杜尔，我们上！这次一定要把它们全赶走！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "script": "c1_1_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "风车平野农夫A",
+        "text": "[show]谢谢、谢谢契约者大人！谢谢你们保护了农庄！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "风车平野农夫B",
+        "text": "[show]啊啊，太好了，太好了，我的牛都还活着……我可爱的牛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "风车平野农夫C",
+        "text": "[show]我的篱笆……我的篱笆还是完蛋了啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呃……这个的确是我不小心……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "抱歉，我们会帮你修好的。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]嗯啊，我们可会修了！可不会给你们借口赖掉我们的契约金的～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "风车平野农夫C",
+        "text": "[show]啊？啊……？没……我没有啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "风车平野农夫B",
+        "text": "[show]就是！这家伙只是有点嘴笨！我们肯定会付钱的！契约者大人千万不要多想啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "风车平野农夫C",
+        "text": "[show]我嘴笨！我嘴笨！契约者大人，真的很对不起！我掌嘴！我掌嘴！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没、没有，不是，我开玩笑的！你们别这样啊——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]感觉很不可思议吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我不太明白。",
+            "tag": "tag_21"
+          },
+          {
+            "text": "我们有错在先，他们没必要如此卑屈。",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]不少和你一样的外来者一开始都是这么认为的，但这就是现在深渊住民的生存方式。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]至少在现在的深渊中，弱者需要依傍强者才能生存。而强者对于弱者，[color=ffb64d]并没有任何义务[colorEnd]。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这其中有很多原因……我不像老板和艾尔莎那样，能把道理讲得很清晰。不好意思。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "谢谢你和我说这些。",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]不客气。作为契约者的前辈，我有必要帮助你尽快熟悉这里的一切。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "驿站的卫兵",
+        "text": "[show]是增援的契约者吗！太好了——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]驿站的卫兵？你腿上有伤！怎么回事？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "驿站的卫兵",
+        "text": "[show]南、南边有几位契约者遭遇了[color=f1401c]狂暴化魔物[colorEnd]的围攻！[l]我是逃出来报信的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦！又有契约可以接了吗！真幸运！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "驿站的卫兵",
+        "text": "[show]当然！当然！肯定会和你们签订契约的！但求求你们，快先去帮帮他们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "驿站的卫兵",
+        "text": "[show]那些魔物太强了……他们肯定顶不住的！他们快要没命了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没命……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]冷静一点！别废话了，直接告诉我们位置！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "驿站的卫兵",
+        "text": "[show]啊！是……！位置、位置……我想想该怎么说……对了！你们带了地图吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "驿站的卫兵",
+        "text": "[show]他、他们就在我画的这里！请……请一定要救救他们！唔……好痛……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]尽管交给我们吧，你在这好好休息，包扎一下。{myName}……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们赶紧去救人吧！",
+            "tag": "tag_56"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉&茜塔",
+        "text": "[cm][show]嗯……！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

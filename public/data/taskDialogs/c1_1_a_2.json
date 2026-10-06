@@ -1,0 +1,77 @@
+{
+  "script": "c1_1_a_2",
+  "des": "",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看——！又是那些很暴躁的家伙！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]是狂暴化的魔物。居然连这里都有了……异变已经发展到这个程度了吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怕什么。再怎么狂暴也强不到哪里去。[r][l]喜欢瞎蹦跶的弱鸡也还是弱鸡嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看我这就干掉它们！上啦！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，小心！",
+            "tag": "tag_8"
+          },
+          {
+            "text": "米托拉，等等我们！",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[cm][show]有动力总归是好事。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]走吧，{myName}，我们也上！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

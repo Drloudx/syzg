@@ -1,0 +1,101 @@
+{
+  "des": "c4_10_a_1",
+  "script": "c4_10_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]说起来，我们这是在往哪儿走啊？怎么感觉周围的树林越来越密了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]前面是“[color=ffb64d]辛普拉的花圃[colorEnd]”，斥候报告说，在这边发现了因瓦尔布的踪迹。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "辛普拉的花圃？"
+          },
+          {
+            "tag": "tag_6",
+            "text": "辛普拉是谁？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show][color=f1401c]辛普拉[colorEnd]……是传说中的大魔物，人称“[color=f1401c]血口荆棘[colorEnd]”，或者“丛林之王”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]有传言说，她有着远超凡物的力量，是一切林间魔植的母亲。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这、这么厉害？我们不会要和那个辛普拉打吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]应该不会。那个传说中的大魔物，自从金弦之厅建立以来，就没人见到过了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]听起来是个好消息，但我还是觉得这地方有点瘆得慌。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]希望前面的斥候能够靠谱点，尽快找到因瓦尔布那家伙吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

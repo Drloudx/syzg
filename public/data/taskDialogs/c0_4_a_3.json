@@ -1,0 +1,38 @@
+{
+  "script": "c0_4_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嚯！你就是之前“狂暴化”了的角布林头领吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂——！就是你带人袭击了我的营地吧？空有一副大个子，也不过如此嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这次我绝对不会放水了！而且，我还有{myName}一起呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]营地的仇，就用你的命来偿还吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "空"
+}

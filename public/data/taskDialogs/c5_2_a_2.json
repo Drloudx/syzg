@@ -1,0 +1,85 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂喂，你们快看！这是路，是路啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们没走错，往这边走很快就能到有人烟的地方了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]嗯，这都多亏了软软！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]唔……居然已经这么近了吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "奇瓦，你的脸色有点差……"
+          },
+          {
+            "tag": "tag_7",
+            "text": "你有哪里不舒服吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]没、没有，我只是……只是看着越来越近，稍微有点……哈哈……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]不过别担心，既然说好了要给你们引路，我肯定会带你们走完这最后一程的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]唔……虽然路基本都是软软在带……哈哈……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_2_a_2",
+  "des": "进入后播放c5_2_a_2"
+}

@@ -1,0 +1,30 @@
+{
+  "script": "maimai_dungeon_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]呀呀呀呀呀……得救了得救了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]我是神秘的地下城商人麦麦！各位想必都是——[r]啊，原来是你们几位呀，这下成熟客了。赶快来看看我的货，买点什么吧～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]还真的是只在危险的地方摆摊啊。去看看能买点什么货吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "麦麦：C1地牢感谢救援"
+}

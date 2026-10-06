@@ -1,0 +1,201 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎么样？你看得懂这上面写的什么吗？有想起来什么东西吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这是先时工匠的密文……",
+            "tag": "tag_4"
+          },
+          {
+            "text": "我就是为了寻找这个才到遗迹来的……",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]还真想起来了……！不过为什么要寻找这种密文？这个有什么特别的吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（努力地进行回忆。）",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]也就是说……你父亲在你很小的时候就丢下你和你母亲逃走了，而他留下的唯一线索就是他的研究笔记……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你通过笔记认定他离去是为了进行这些……“先时工匠”的研究，所以在到处寻找和这些先时工匠有关的遗迹，哪怕触犯了你们国家严禁染指这些遗迹的禁令……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我只知道……我必须找到他……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "但是……为什么我非得找到他不可呢……",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]想不起来的事就别太勉强了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来是这样啊。你是为了寻找父亲才开始旅行的。所以明明失忆了，还是本能地想要从这个深渊里出去，继续自己的旅途……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我不知道我有没有父母……所以不太能理解你的感受。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过人嘛，有目标总比没有强！比如我，现在的目标就是经营好营地，好好活下去，你也一定可以——[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show][size=40]快追！目标就在这里！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯？怎么回事！这不是在我们记忆中吗，怎么还有别人啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是“戒律骑士”！",
+            "tag": "tag_24"
+          },
+          {
+            "text": "我记得，他们是来追捕我的！",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]什么戒什么士？追捕你？这到底又是——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "跟我来，往这里走……！",
+            "tag": "tag_38"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]嗯！总之先摆脱他们……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过按理说，下一个回忆应该又轮到我了吧？不知道会是什么样的回忆呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，稍微有点期待起来了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "3图调查石碑播放",
+  "script": "c0_5_a_4"
+}

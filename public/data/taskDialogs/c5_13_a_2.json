@@ -1,0 +1,738 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这里就是……火山口……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们看，那边那个是不是希拉尔德的装置？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]真的！看来大书院和希拉尔德已经事先勘探过这里了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]奇瓦，你之前查资料的时候，有查到什么相关的信息吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]既然是绝密计划，当然不可能在图书馆里留下什么纸质资料啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]不过我也猜到了，毕竟这么重要的地脉节点，书院和“结社”都不可能不去利用。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那我们就快点开始采集数据吧。",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]嗯，你们这边先忙，我也想调查一下这里的魔力环境与魔物狂暴化之间是否存在关联。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（半小时后——）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……你们两位，调查有什么结果了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们三个都只能干看着，一点参与感都没有啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我这边已经有初步的结果了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]先说结论吧——伽拉忒亚之前的随口猜测，居然分毫不差。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]造成那些熔火元素突然狂暴化的原因，就是“魔力有毒”——或者说，含有“紊乱”的魔力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]而且我还发现，这些会让魔物狂暴化的异种魔力，全都是“火属性”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？这……这意味着什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]状况情报还是太少，我没法准确地下结论。但出现这种情况的原因，我倒是有一个猜想。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]猜想是什么呀？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]简单来说，我认为“业火平原冰雪化”并非异变的“结果”，恰恰相反，它是“某个人物”……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]不，应该说“某个存在”，为了消除异变的影响，而刻意为之的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]什么……！你是说……这片雪原并不是“异变”造成的？为、为什么这么说……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]证据有二。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]首先是“有毒魔力”的属性分布。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]按照你们之前提出的，那位“莉拉首座”的研究表明，与异变有关的异种魔力普遍具有诱使魔物狂暴化的功能。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]而“有毒魔力”中只有火属性，也就是说，如果异变也具有“属性”之分的话……霜烬平原的异变，应该也是“火属性”才对。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊！原来如此！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]然后第二，则是因为火属性魔力之中，也存在“有毒”和“无毒”两种。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]比如之前，我们在温泉谷打败的那些芙洛波，它们都通过希拉尔德的装置吸收了不少火属性的魔力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]但它们都没有变得狂暴……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]是的。这说明希拉尔德从“某个地方”抽来的火属性魔力，是“无毒”的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]而我们在这处火山口找到的、残留在环境中的火属性魔力，却都是“有毒”的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这里我先问一个问题：你们觉得，希拉尔德是愿意净化魔力、帮助别人对抗异变的好心人吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]当然不是。实际上，“结社”在黑森林中所做的事情几乎就是在推动异变的发展。对于魔物狂暴化现象，他们也是在彻头彻尾地进行利用。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]很好，看来大家在这一点上都有基本的共识。那么问题来了——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这些被存储在“某个地方”的火属性魔力，究竟是从何而来，又为何是“无毒”的呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你认为是“某个存在”净化并储存了这些魔力？",
+            "tag": "tag_40"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]至少我认为，这是一个非常有力的猜测。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]{myName}！你的数据也采集完成了吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是的，已经完成了。",
+            "tag": "tag_84"
+          },
+          {
+            "text": "而且我还能为奇瓦的猜测增加一个新的论据。",
+            "tag": "tag_84"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]诶？是……是什么……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是火属性魔力的来历。",
+            "tag": "tag_45"
+          },
+          {
+            "text": "我想我已经找到那个储存魔力的“某个地方”了。",
+            "tag": "tag_45"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]什么？在哪里？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "当然是在我们经常去的“老地方”了。",
+            "tag": "tag_47"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]你是说……遗迹？你发现霜烬平原的遗迹了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我通过魔力的流向发现了大致位置。",
+            "tag": "tag_49"
+          },
+          {
+            "text": "标注在地图上的话，应该是在这一带……",
+            "tag": "tag_49"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]我看看……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]啊，这不是在霜燃之扉嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]霜燃之扉？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这个名字我有印象……",
+            "tag": "tag_86"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]咦……你是在哪里看到过吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "就在这上面！",
+            "tag": "tag_54"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]这、这是……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]又是一块石碑……？这上面写的是……[wait=1000][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]……唔……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]伽拉忒亚！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]唔……和、和上一次一样……！又有……又有画面涌进来了……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]伽拉忒亚……！你、你没事吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]奇瓦姐姐，我、我很好……我、我开始看清楚那些画面了……唔……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我……看清楚了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]先别说话，休息一下，缓一缓！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕呜！咕……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]嗯，放心吧，奇瓦姐姐，我没事了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真的没事了吗？你刚才看到了什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]上次一片昏暗的画面，这一次终于变得清晰起来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我看到那是一间石砖堆砌成的房间，看上去似乎已经历经了许多年头……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]在那房间中央有一个……嗯……不知道是干什么用的装置，底座是四四方方的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]四四方方的底座？难道说……！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是遗迹？",
+            "tag": "tag_72"
+          },
+          {
+            "text": "是匠器之间？",
+            "tag": "tag_72"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]这是怎么回事？为什么伽拉忒亚会看到和遗迹有关的画面啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]难道伽拉忒亚曾经住在遗迹里？莫非她也是先时工匠的后裔吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]住在遗迹里？这……这怎么想也……不太可能……吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "虽然有了新的线索……",
+            "tag": "tag_76"
+          },
+          {
+            "text": "但又多了新的谜团啊……",
+            "tag": "tag_76"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]是啊……真是让人郁闷。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]研究和调查就是这样，每次前进一步都会发现前方还有新的迷雾在等待着。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]不过，抛开伽拉忒亚的问题……有了关键数据的支持，你的环境改造方案应该已经没问题了吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那当然。",
+            "tag": "tag_80"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "接下来我会尽快制造样机。",
+            "tag": "tag_81"
+          },
+          {
+            "text": "最迟后天就可以请乌尔勒院长来验收了。",
+            "tag": "tag_81"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]这么快？那我和伽拉忒亚就立刻回书院联系妈妈。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]如果最终效果能够说服妈妈的话，接下来只要通过学系会议的审查……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们就能把大书院，从“结社”那边抢到我们这边来了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_13_a_2",
+  "des": "进入后【c5_13_a_2】"
+}

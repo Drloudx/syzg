@@ -1,0 +1,615 @@
+{
+  "script": "c4_d2_3_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]居……居然！拥有半神之力的艾伦瑟，居然也被打败了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你们这些家伙……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，这下你应该没戏唱了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]机关算尽到头来，突然就功亏一篑，是不是很酸爽啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哼哼，这就是你这种恶党应得的报应啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]可恶的小鬼！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你们以为这样就赢了……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊不是？你还有后手啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]还有后手……呵，我确实没什么后手了。但此时此刻，我的魔力正与匠器之下的“旧神心脏”互相勾连！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]在解封仪式完成之前，旧神的魔力会一直保护着我，没有任何人能够伤我分毫！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]竟、竟然还能这样……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]哈哈哈哈！现在功亏一篑的是你们了！你们感觉如何？感觉如何了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……这……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "别担心，还有办法。",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？还有办法？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]不愧是{myName}……不管在什么时候都有办法。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这……倒也没有你说的那么厉害……",
+            "tag": "tag_19"
+          },
+          {
+            "text": "只是刚好想到了一个办法而已。",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]好了，别在这里互吹了，快点把办法拿出来啊！你说的办法到底是什么？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "很简单——",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "既然罗姆洛敏被旧神心脏所庇护……",
+            "tag": "tag_22"
+          },
+          {
+            "text": "那就让旧神心脏的力量消失不就好了！",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？这是什么办法？我们几个凡人怎么把旧神心脏那种东西变没啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们确实没那个能力。",
+            "tag": "tag_24"
+          },
+          {
+            "text": "但某个东西有——",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我知道了！是[color=ffb64d]匠器[colorEnd]！数千年来一直用来封印旧神心脏的匠器！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来如此！现在旧神心脏的力量泄露，是因为匠器出现了故障……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]只要把匠器修复，旧神心脏就会被重新封印起来，罗姆洛敏的图谋就不攻自破了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]瞬间修复匠器……？连“导师”都不敢这么信口雌黄！那种事情怎么可能办到？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那种事，不试试怎么知道？",
+            "tag": "tag_29"
+          },
+          {
+            "text": "也许我真的比你那位“导师”还厉害呢？",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦！上吧！{myName}！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]什么……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]可恶……已经损毁千余年的匠器，居然真的被修好了……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]旧神之心的力量……在从我的身体里倒流？既然这样，那只能……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]希拉尔德的孽子……竟然逼我这么做！总有一天，我会讨回这笔账——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？发、发生什么事了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]罗姆洛敏她人呢？那么大一个人跑哪儿去了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]罗姆洛敏……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]……她窃取了旧神心脏的力量，然后用某种方式传送离开了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]老鹿头！我还以为你没了！原来你还在啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]……“我”的确逝去了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]之前那个腐化的我,确实被你们消灭了。但不知怎么的……我像是经历了一场洗礼……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]总之……我在“巨木”的力量下，又作为“备份”……重新活了过来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔……听不太懂……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]但总之你没事就好！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我也这么觉得。不过艾伦瑟大人……刚才您说罗姆洛敏窃取了旧神之心的力量……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]难、难道说……我们奋战了这么久，还是让她得逞了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]唔……要说得逞没有……我认为是一半一半吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]你们的奋战当然是有意义的，如果真的按照罗姆洛敏的计划……当封印旧神心脏的容器被打开……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]自匠器失控以来，积攒了数百年的能量，就会在神性因子的催化下一次性爆发出来，把整个黑森林从地表抹除。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]居然……她居然在图谋这种事……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]所以说幸好有你们阻止。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]因为你们的奋战，那场本应发生的爆炸被化解于无形，黑森林也不会再受到灭顶之灾。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]更重要的是，因为封印容器完好无损，罗姆洛敏只是抽走了旧神心脏中的能量和活性，而没能窃走它的本体。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]无论他们的目的是什么，缺少了旧神心脏的本体，总归会让他们少了一张关键的手牌。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……听你这么一说，我们好像确实做到了些什么……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]但让敌人达到目的还全身而退，这种事还是太让人不爽了一点……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]毕竟罗姆洛敏他们的计划已经筹划了好多年了，我们仓促应对能够做到这么多，已经很不错了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这我知道啦……就是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]人生总是要往前看的，在郁闷的时候不妨看看身边的人吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]比如……看看我，我这次可是被人控制还丢了一会性命，和我相比，你这点挫折也算不了什么吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……这么一说好像确实是，但您老这个安慰人的方法是不是有点……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]呵……效果好不就什么都好了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]好了，看来你的心情也差不多转换回来了，那我们就赶紧出去吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]现在森林的危机解除，巨木也恢复了正常，你们可是森林的英雄，是时候去接受欢呼了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦，对哦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]前几次虽然事后有名声传出来，但当时都没什么人给我们捧场呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这一次可不一样，我们可是万众瞩目的焦点！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "当初在秋日荒野的时候你还会不好意思呢……",
+            "tag": "tag_79"
+          },
+          {
+            "text": "现在居然这么喜欢这种场面了吗……？",
+            "tag": "tag_79"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]不然呢？当英雄不就图的这点儿嘛？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好了，走吧！我已经等不及要让大家为我喝彩了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]哦……哦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_d2_3_3"
+}

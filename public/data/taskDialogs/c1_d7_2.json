@@ -1,0 +1,135 @@
+{
+  "des": "遗迹深处一层：打完时",
+  "script": "c1_d7_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]瓦菲诺她们说得不错……一路上都是被唤醒的构装体。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这么多石头人，要是从星晷走出来的话，的确也够危险的。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "多亏有了小缇莎的魔法，推进的效率高多了。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]确实……这里弯弯绕绕的，但缇莎总能给我们带出一条路来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "缇莎",
+        "text": "[show]哼哼，缇莎对魔力可是很敏感的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "缇莎",
+        "text": "[show]缇莎能很清晰感觉到魔力的流动，这些弯绕对缇莎来说不算什么。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔。事到如今也只能相信你了吗……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "小缇莎，接下来该往哪里走？",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "缇莎",
+        "text": "[cm][show]唔……啊，从前面的通路继续前进吧！这里的深处的确有混沌魔力的感觉！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这么快就找到路了啊……干得不错！小缇莎。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉对你刮目相看了，小缇莎。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "缇莎",
+        "text": "[cm][show]嘿嘿！觉得缇莎做得不错的话，可以多夸夸缇莎哦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]喂，你们啊！总、总之，往这里继续深入就好了，对吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]走吧，{myName}，小缇莎……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

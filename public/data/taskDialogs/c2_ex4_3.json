@@ -1,0 +1,354 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这里是……哪里？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等等，这不就是我们刚去过的那个……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "阿娜希塔遗迹的……",
+            "tag": "tag_15"
+          },
+          {
+            "text": "匠器之间！",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]对！就是你修匠器的那个地方！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这到底是怎么回事啊？怎么每次都和这些遗迹有关？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]喂喂喂，能听见吗？嗯……通讯状况良好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]嗯——我现在引导的是工匠锤之中的魔力。恐怕，这柄工匠锤和那些先时遗迹之间有着某种关联，让你们更容易观测到遗迹相关的信息片段吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]到底是什么关联啊，这都第二次了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]呵……这个就有待之后慢慢发掘了。闲话少叙，还是先专注到记忆本身吧。万一错过了什么就再也看不到啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]也对……嗯……我看看……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "匠器旁边，有两个人！",
+            "tag": "tag_23"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦哦！我也看到了！那个人难道是——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是希拉尔德！",
+            "tag": "tag_30"
+          },
+          {
+            "text": "他又在这里做什么……！",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]但另一个……嗯……只有一个模糊的影子……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]模糊的影子啊。那和之前的哈萨琳一样，说明你们俩都不认识这个人，所以完全无法在脑子里形成认知。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]真可疑……我们凑近点听听看他们在说什么！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "神秘黑影",
+        "text": "[show]导师，您成功了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]嗯……姑且算是成功了吧。没有[color=ffb64d]那把锤子[colorEnd]的话，做到这种程度也就是极限了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]这枚索利德山的匠器“阿娜希塔”，拥有[color=ffb64d]融合[colorEnd]的力量。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]它本来是理性之楔计划中，整条深渊地脉的整流中枢……但在[color=f1401c]大兽潮[colorEnd]之后，地脉的状况已经发生了改变。这里怕是已经无流可整了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "神秘黑影",
+        "text": "[show]导师……那我们该怎么办？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]无须担心，这其实正合我意。本来汇整的庞大能量流重新拆分，这才方便为我所用。比如现在——通过这样的改造，我们便可直接抽取天河的能量，为我们的伟业提供能源了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "神秘黑影",
+        "text": "[show]不愧是导师……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]接下来的事情就交给你了。这里主要的能量管线虽已经被我导离，但这尊匠器的其他功能应该还有些用处。例如这些具有融合属性的魔力，还是很有特色……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]你就留在这里继续研究，看看能不能找到一些惊喜吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "神秘黑影",
+        "text": "[show]遵命，导师。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "神秘黑影",
+        "text": "[show]正好，我对最近结社入手的先时技术有些想法。有了这些特殊的魔力，我想我的实验一定会成功的——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "神秘黑影",
+        "text": "[show]当然，具体是什么实验，和您就没什么关系了。我“亲爱”的导师……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "神秘黑影",
+        "text": "[show]呵。呵呵呵……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔……好像到这里就没了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]虽然不太长，但看起来好像是挺关键的回忆啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]也就是说，这个希拉尔德也对索利德的匠器做过手脚。而且，他还有个看起来相当危险的手下……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "希拉尔德……",
+            "tag": "tag_65"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]好啦，故事读完了，这个空间过一会就会崩塌。我要开始引导挂坠里的魔力了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯，也好！走吧，{myName}，总结就留到结束之后再说！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入房间触发2",
+  "script": "c2_ex4_3"
+}

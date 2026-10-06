@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]终于快到终点了吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]没错，仪器的读数越来越夸张了。各位，走这边！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]终于到这一刻了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]诸位施主切勿急躁，谨慎前进吧！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c2_d3_2_2",
+  "des": "新增 阿娜希塔遗迹-功能部 结束"
+}

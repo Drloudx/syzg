@@ -1,0 +1,132 @@
+{
+  "script": "c3_5_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]好嘞。我们到啦。这样一来任务就完成了，只要在这把仪式用具摆好，等圣女大人和水占师们前来，在圣坛前进行仪式就好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呜哇……这就是献水圣坛吗……也太大了吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]听说这座圣坛是几百年前盖好的。有了水神大人的庇佑，一直没有魔物胆敢进犯这里。我们可是安全得很！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]咝……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我觉得这儿是不是有点冷……",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]唔……你们这么一说，我也觉得有点怪怪的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]我也感觉……不太好。全身上下……都毛毛刺刺的。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "大家小心，有什么东西要来了！",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]唉？怎么了？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这是……工匠锤在发光！难道说……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]呜哇啊啊啊——！看那边！有一大群魔物，冲着这边来了！可这怎么可能？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]仪式货车……不能损坏……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]大家保持阵型，准备防御！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_5_a_1"
+}

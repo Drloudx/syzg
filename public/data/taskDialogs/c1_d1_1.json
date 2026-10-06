@@ -1,0 +1,65 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这……这地窖也太大了吧？你们要这么大的地窖来干什么啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这是用本来就有的古代地宫改造的，在深渊里生存，储备再多的物资都不嫌多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]多注意一下那些绿色的小型蜘蛛。它们阵亡前会将体内的毒液溅射出来，沾到身上可不好受。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "多谢你的提醒，茜塔。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show][cm]这也是工作的一环，没什么。好了，跟紧我，我可不想看到你们在这里迷路。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]知、知道了啦。可别小看我们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们上，{myName}！让茜塔看看我们的实力！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_d1_1",
+  "des": ""
+}

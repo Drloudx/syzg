@@ -1,0 +1,14 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}……先赶紧离开这里吧，也不知道被回忆中的士兵追上会发生什么事！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "Battle 0-00_3 再次调查石碑",
+  "script": "c00_0_6a"
+}

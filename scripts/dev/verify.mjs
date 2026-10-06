@@ -43,6 +43,8 @@ const expected = {
   'pet-eggs.json': 5, 'search-index.json': 100, 'item-sources.json': 20,
   'itemAffixes.json': 1, 'parsed-exchange.json': 100, 'parsed-pvp.json': 5,
   'parsed-hidden.json': 10, 'dialogIndex.json': 50, 'dialogSegments.json': 1,
+  // 剧情全文搜索索引（单片全量，约 2.1 MB）；见 taskParser.buildDialogSearchIndex
+  'dialog-search.json': 100,
   'parsed-pvp-sources.json': 0, 'parsed-hidden-sources.json': 0,
   'parsed-dungeon-sources.json': 1, 'dungeons.json': 10
 }

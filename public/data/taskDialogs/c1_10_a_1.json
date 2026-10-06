@@ -1,0 +1,168 @@
+{
+  "script": "c1_10_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘘！我们到了！你看那边——[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "队长巴尼",
+        "text": "[show]想好了没有，你到底还要不要这两个丫头的小命？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "队长巴尼",
+        "text": "[show]如果想的话，那就赶紧把剑扔掉束手就擒，不然我可就要动手了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]动手？你没有听到上面传来的响动吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show][color=ffb64d]刚才[colorEnd]的爆炸应该是你的同伴制造的吧？你难道想不到他们这么做究竟有什么目的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在他们把你当做[color=ffb64d]炮灰[colorEnd]的这个时候，你依然还是要与我为敌吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "队长巴尼",
+        "text": "[show]炮、炮灰……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]（还好，现在他们还在对峙。）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "看来是时候行动了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]（当然！我这就……嗯？等等！）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（咔哒咔哒咔哒咔哒——）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手A",
+        "text": "[show]嗯？什么动静？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手B",
+        "text": "[show]这是……是……是蜘蛛！在我们背后！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手",
+        "text": "[show]呃啊——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]孩子们！快躲到我身后！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]（喂！那些东西是从哪里冒出来的啊！）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_67",
+            "text": "现在不是想那些的时候！"
+          },
+          {
+            "tag": "tag_67",
+            "text": "蜘蛛要攻击孩子们了！我们快上！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]哦哦——！上了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

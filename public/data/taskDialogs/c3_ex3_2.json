@@ -1,0 +1,585 @@
+{
+  "script": "c3_ex3_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]唔……这里是哪里？看起来……好像是在尾指村？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]喂喂，有听到吗？还挺清晰，看来信号挺好。[l][cm]",
+        "charaName": "瓦菲诺",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这里是来自挂坠的记忆。本来我是想要先引导工匠锤上的魔力，没想到这边的魔力一下爆发出来，只能先到这边来了。[l][cm]",
+        "charaName": "瓦菲诺",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那倒是没什么，反正不管先后，两边都要来一遍嘛！[l][cm][hide]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯……！那边的好像是阿莱克西娅她们！还有贝尔卡！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]说起来这不是记忆空间吗？这应该是几年前的记忆吧？为什么这几个人看起来和现在一模一样……[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你还记得之前的米拉贝尔吗？",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]呃。在记忆空间里是没法复现没见过的事物的。[l][cm]",
+        "charaName": "瓦菲诺",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们并没有见过这几人的年轻版本，这一点就和之前那个独角兔小姑娘一样！同样的事情不要让我再解释第三遍了！[l][cm]",
+        "charaName": "瓦菲诺",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊，这……好像是有这么回事……[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哎呀，这都不重要！我们还是快点过去，看看她们都在说些什么吧！[l][cm][hide]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]阿莱姐，你回来了！前线的战事如何了？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不用担心，大兽潮的余波已经暂时被我们压制了。虽然连惨胜都很难夸口，但我们至少赢得了生存的权利。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]从今天起，村子的戒备等级可以恢复到兽潮之前……伤疲交煎的战士们也终于可以睡一个好觉了。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是吗，那就好……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]小贝尔卡，你是有什么事吗？我看你一直欲言又止，难道是在担心前线还在焦灼，说出来怕我分心？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哎嘿嘿……不愧是阿莱姐。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]其实……柏莉尔的病情又加剧了……而且不光是柏莉尔，在避难的村民们中间，有不少人都出现了异常的衰弱症状……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]异常的衰弱症状？你们查出原因了吗？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]没有。我和另外几位水占师一起查询了环会的书库，没有发现任何这方面的记载，我们遇到的……恐怕是一种全新的病症。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]目前我们只能根据状况推测，这种病症可能和水有关。也许是水源受到了什么污染……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]全新的病症吗……那可就麻烦了。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]关于这一点，我有一个请求……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]之前我听来访的莉拉首座说，在灼热之地有一个大书院，那是遭到外界人排挤的秘术师们建立的知识传承之都。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我想到那里去求学！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]随着水占术的修行越发深入，我就越是感觉到了自己才能的局限。仅仅依靠环会传承下来的水占术，我已经走到了瓶颈……没办法去帮助更多的人。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]所以你想要到大书院求学，通过触类旁通，找到解救那些患者的方法？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这也是为了柏莉尔！阿莱姐……我的意思是……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不用说了，我支持你的想法。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]水占师之道，最重要的不是掌握更加高强的水占法术，而是践行塞瓦大人仁慈的道路，用自己的真心去帮助更多人。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你能够找到自己的目标，我很高兴。所以尽管去做吧，我和环会都会成为你的后盾。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]谢谢你，阿莱姐！[l][cm][hide]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]原来贝尔卡你一直在想着这种事。既然你已经先开了口，那我也可以坦率说出自己的想法了。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂……？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]阿莱姐，贝尔卡。我也准备离开村子，到商会去担当护卫队长。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]唉？为什么？你不是说想成为契约者的吗？为什么突然跑去当什么商队护卫？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我确实有过那样的梦想，但现在，我发现了自己更应该做的事。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]商会的图洛德会长是一位近期崛起的大商。但他和其他那些贪婪无度的商人不一样，他是一位雄才大略的人物，已经在筹备着要在四指村旁的废墟边上重建一座大镇子。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]跟着这样一位领路人，我想……我一定能为魔爪湖作出更多贡献。比起自由的契约者，现在的魔爪湖更需要脚踏实地做事的人。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]既然决定了，那就去做吧。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂你是一个成熟的孩子，我知道你一定是权衡再三之后才作出的决断。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]只是既然要做，那你就一定要拼尽全力，做到最好，无论如何，千万不要让将来的自己失望。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]谢谢，阿莱姐，我会做到的。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不过这么一来，我和贝尔卡都要离开尾指村。柏莉尔那边……[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在她痊愈之前，我会让她一直住在村子里。有医疗所的水占师照顾，你们大可不必担心。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是啊。阿莱姐说得对……[l][cm][hide]",
+        "charaName": "？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]阿莱姐。贝尔卡。埃迪蒂。我不要紧的。[l][cm]",
+        "charaName": "柏莉尔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们尽管去吧。追寻你们的梦想。不要让我……变成你们的绊脚石。[l][cm]",
+        "charaName": "柏莉尔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我会在这里养病。等到好一些，就会和爸爸妈妈一起回四指村……回到我们的故乡。[l][cm]",
+        "charaName": "柏莉尔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]等到你们追寻到梦想之后……不要忘记我就好。嘿嘿……[l][cm]",
+        "charaName": "柏莉尔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]柏莉尔！别开玩笑啦，我们怎么会忘记你。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]就是。虽然我和贝尔卡这家伙不怎么对付，但我们三个永远是最好的朋友。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哼。谁叫我们一起长大的！[l][cm][hide]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊，这位义士，您回来了。此行顺利吗？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯，你的情报很有用。顺着踪迹，我很轻易就发现了地脉紊乱的焦点。[l][cm]",
+        "charaName": "米托拉？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那就好。这之后，我还有什么可以帮忙的？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不必了。这边的兽潮余孽，我已经帮你们顺手解决了，你们顾好自己的事就好。[l][cm]",
+        "charaName": "米托拉？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]接下来，我必须立刻赶去魔爪沼泽……[l][cm]",
+        "charaName": "米托拉？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]魔爪沼泽？那里可不近啊……需要我帮你备车吗？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这也不必了，我直接飞过去就好。[l][cm]",
+        "charaName": "米托拉？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]唉？飞过去……但你翅膀上的伤……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这都是陈年旧创，不妨事的。[l][cm]",
+        "charaName": "米托拉？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这段时间多谢你的招待，那我们就此别过，后会……应该后会无期吧。[l][cm][hide]",
+        "charaName": "米托拉？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]后会无期？为什么她要说出这么悲伤的话啊……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]大概……她在背负着什么东西吧。就是因为有她这样的义士，这个世界才能有希望留下。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]如果可以，真希望还有能相见的一天……[l][cm][hide]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊，记忆好像就到此为止了。你们有什么收获吗？[l][cm]",
+        "charaName": "瓦菲诺",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]贝尔卡、埃迪蒂……还有柏莉尔啊……又勾起了有点悲伤的回忆。[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不过后面，“我”出现的时候……好像听到了一些奇怪的发言……[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]唉算了。这后面还有工匠锤的记忆吧？我们快点把那看完，等回去之后再慢慢分析吧。[l][cm][hide]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_ex3_2"
+}

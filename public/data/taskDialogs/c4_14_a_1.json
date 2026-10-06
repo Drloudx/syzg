@@ -1,0 +1,62 @@
+{
+  "script": "c4_14_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇啊！这、这是怎么回事！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你、你是依萝娜吧？你……你受伤了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]你们是……太好了……我还以为……我得在这儿孤……孤军奋战呢……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]依萝娜……你先别说话，到底发生什么了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]是我们的巨木侍女……她们被罗姆洛敏蛊惑……叛……叛变了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]小……小心！她们追上来了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_14_a_1"
+}

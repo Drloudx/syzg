@@ -1,0 +1,54 @@
+{
+  "script": "zy3_2",
+  "des": "",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "希尔",
+        "text": "[show]呼……呼……简直没完没了……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈啊啊！出来啊！你们的下一波呢！都死光了吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "？",
+        "text": "[show]嗨——！哈啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "远处的角布林",
+        "text": "[show]嘎——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "希尔",
+        "text": "[show]米托拉小姐……听！外面有战斗声！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎么回事……？我们出去看看！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "des": "进入3图播放",
+  "script": "c0_5_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咳咳、咳咳……这些讨厌的雾气……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唔……这里……又是刚才的遗迹？还真的又轮到你的回忆了……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那边好像有块石碑……！你快去看看，能不能再想起来些什么，找找出口！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

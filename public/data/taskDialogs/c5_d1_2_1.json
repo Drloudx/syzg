@@ -1,0 +1,158 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们看，那边的温泉！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]温泉……沸腾了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]怎么会这样！沸腾的温泉根本不能算是温泉，这种滚烫的水完全没法用来泡澡啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]如果我没有猜错，这应该是火属性魔力泄漏造成的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]被工匠装置泵入地下的火属性魔力，因为芙洛波的破坏而涌出，令温泉谷的环境发生了巨变……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]怎么样？至少从道理上是说得通的吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]听上去没什么问题，[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但研究原因什么的，那都是等我们解决问题之后的事情啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]现在还在冒险中，我们要关注的就只有一件事，那就是眼前的敌人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们要思考的也只有一件事，那就是如何把敌人消灭消灭再消灭！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]这是否有点……太极端了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]但我觉得这种思考方式很方便呀~！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]遇到困难时，先找出问题所在，然后果断解决！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]就连我这种不太聪明的人，都能很轻松地使用起来啦~！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]……不，我觉得你还是不要学她比较好……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]那是精通野外生存的人才会使用的思考方式……如果你要继续当妈妈的左右手，思维可千万不能这么简单哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]原来是这样吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]感觉……好复杂啊！不过，为了帮上妈妈的忙，我一定会继续努力的！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d1_2_1",
+  "des": "进入后【c5_d1_2_1】。"
+}

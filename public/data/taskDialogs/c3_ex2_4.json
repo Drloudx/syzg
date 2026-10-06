@@ -1,0 +1,388 @@
+{
+  "script": "c3_ex2_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]乌帕、露帕——你们还在这里！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]啊！圣女大人，契约者！你们来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]你们离开的这段时间，我们一直守在这里，保证没有一只魔物，侵入到仪式场中来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]圆满……完成任务。好想睡。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯，你们……真的辛苦了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]作为预备水占师，你们的修行也差不多圆满。只要再多调整一会，很快就能参加试炼了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]哇！真的吗？太好了，圣女大人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]圣女大人……万岁……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]呵呵，别这样。又不是我有意放水，放你们过关，能够得到认可，是因为你们确实有这个资格。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]呜……！这就是被人承认的感觉吗！圣女大人，请您再多夸我几句！我是那种越夸越厉害的类型哦！"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]好的，好的，乌帕和露帕都最棒了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]呀哈——！"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]嗯！"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]乌帕、露帕。你们这两年来……真的很努力。我想，任何人都必须承认，你们站在了成为水占师的门槛之上。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]不过这样还不够。要通过水神大人的试炼，你们还缺乏一样东西。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]缺乏一样东西……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]是的，这就是我将要给你们上的最后一课。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]塞弗德里克先生。我要的东西您带来了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]哦！当然！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦？是那个男人？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]哎呀，真不愧是圣女大人，隔着这么远就发现了。亏我对自己的身手还蛮有自信的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]塞弗德里克先生的实力确实毋庸置疑，只不过，经过一路上的调整，现在的我正处于前所未有的巅峰状态。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]在现在这个时间点上，我的能力多少有些……超出常理，所以您不用太过在意。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]哈，超出常理……嗯，多谢您的宽慰，我会试着与自己和解的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]不过接下来的事情，我就不去参与了。毕竟这种事，有我这种外人在场还是太过煞风景了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]我只能说……圣女阁下，在接下来的时间里，希望你能一直做个好梦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]谢谢您的祝福，请恕我不能远送。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]没关系没关系。我们将来再会。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯，再会。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等等，你们刚才在说什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]阿莱克西娅，你到底准备……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯？{myName}，你怎么是这种表情？你一点都不觉得奇怪吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这件事，{myName}大概早就有所猜测了吧。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "嗯。",
+            "tag": "tag_44"
+          },
+          {
+            "text": "确实早有猜测。",
+            "tag": "tag_44"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]果然啊，你是从什么时候开始猜到的？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "从你找塞弗德里克拜托的时候。",
+            "tag": "tag_46"
+          },
+          {
+            "text": "在我们从塞弗的藏身处出发之前。",
+            "tag": "tag_46"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]不愧是{myName}。这一路上，我们的思考总是很有默契……我的想法，果然瞒不过你。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你们到底在说什么？到头来只有我一个人被瞒在鼓里吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]别着急，米托拉。谜底很快就能揭晓了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]我来施放水纹花的法术。乌帕、露帕，帮我把这些……“装置”，搬到遗迹里去吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]我会在那里，给你们补上，成为水占师前的……最后一课。[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_ex2_4"
+}

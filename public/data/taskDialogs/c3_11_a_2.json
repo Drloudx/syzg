@@ -1,0 +1,137 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不堪一击！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]好、好强！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]这边被缠上了！呼叫支援，呼叫支援——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]呃啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]再这样下去会没完没了的！那个塞弗什么的，起点作用好吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]哦，我还以为你们不会问我了呢。其实从刚才我就在准备了，现在的话……时机刚刚好！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]咳咳……咳咳咳……！是——烟雾弹——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]全员、注意……咳、咳咳！不要让他们跑了——唔，这玩意——好辣！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]呵呵……这可是掺了满满赤剑草粉的特制烟雾弹。感受下来自索利德山的极致辣味吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]快。赶紧从这条密道转移！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦哦！这样就能到外面去了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]图洛德会长真是临机果决，先手将了我们一军。但可惜，在棋子不对等的棋局上，并不总是先手必胜的！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "接下来就轮到我们反击了！",
+            "tag": "tag_23"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[cm][show]正是如此！大家，跟我来！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_11_a_2",
+  "script": "c3_11_a_2"
+}

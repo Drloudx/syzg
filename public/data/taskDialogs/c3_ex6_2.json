@@ -1,0 +1,253 @@
+{
+  "script": "c3_ex6_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……我这是在什么地方……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（好黑好冷……周围都是岩石，这是什么洞穴里吗……）[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（这些困住我的雷电……感觉好奇怪……根本使不上力……好像浑身都麻痹了一般……）[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]别白费力气了，这牢笼你是无法挣脱的。[l][cm][hide]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你……你是……那个怪物……“贼人”……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]老老实实呆在这里当诱饵吧。等你那些伙伴们上门，你们就能团聚了。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（可恶……果然是个陷阱……这家伙根本……就没有交易的打算……）[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（露帕……千万不要过来啊……绝对……不能来救我……但……）[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（好黑……好冷……呜、我……我好害怕……露帕……你在哪里……）[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（我好想你来……救我出去……露帕……）[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喔，瞧，他们来了。[l][cm][hide]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]露……露帕？[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你在那里等一下……我……我们这就过来救你！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]别、别过来……这是陷阱！这家伙根本——[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜啊啊啊啊——！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐——？快放了我姐姐，你这混蛋——！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦，和乖巧的脸庞相比，你的嗓音可真狂野。不过还请你稍安勿躁。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这贼人……！[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，艾尔菲帕。你果然为我带碎片来了。说起来，不愧是落魄的守护者啊。你想守护的东西，是一个都守护不住。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来……我还是……第一次看见，会说话的史莱姆……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "难以置信。",
+            "tag": "tag_46"
+          },
+          {
+            "text": "野生的魔物居然拥有如此高度的智能……",
+            "tag": "tag_46"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]呵，真是傲慢啊，人类。即使眼见为实，依然自己是这片土地上的天选之子吗？[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那可不尽然吧？在智能相同，而力量远远优胜的我看来，你们才是需要被人评头论足的劣等品啊！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼！我管你是什么！我们很快就让你付出代价！听到了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……口气倒不小，就看看你有没有那样的本事了！把它们解决掉，我的仆从——！[l][cm][hide]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "c3_ex6-进入3图时"
+}

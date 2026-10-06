@@ -1,0 +1,206 @@
+{
+  "script": "c4_14_a_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]罗姆洛敏！你的党羽都完蛋了，快点放开老鹿头，束手就擒吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]老鹿头？这还真是个奇妙的称呼……不可否认，你在起外号这方面确实很有想象力。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]不过事情都来到这一步了，你觉得我会听你的，“束手就擒”吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我早知道你不会，但这不是有办法让你“束手就擒”吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]艾薇杜尔，给她来个狠的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……得罪了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]这！这是我的法术！你……！你居然用我教你的法术来对付我？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你怎么敢的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]有什么不敢的，你教出去的法术，还管别人怎么用吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]艾薇杜尔，上！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]罗姆洛敏……接受你的失败吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]失败？你休想！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]唔……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你们……！你们居然还有伏兵！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]那当然啦！对付你这么危险的敌人，当然要有保险啦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]芭杜尔本来带着人守在巨木北边，接到艾薇杜尔的信号之后，马上就派我过来增援了呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]算算时间，大部队也差不多该赶到了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]怎么样，这次你愿意“束手就擒”了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]我的回答当然是……不！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]因为你们的努力，我确实没能汲取到灵鹿的精华……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]但可惜……要进入巨木之心，只需要三份精华同在，可从来没说……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]精华必须汲取出来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]什么……！不好！快阻止她！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]艾伦瑟！愚蠢无能的守护灵啊！和我一起前往“巨木”的“真实”吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_14_a_4"
+}

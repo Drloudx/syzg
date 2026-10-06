@@ -1,0 +1,85 @@
+{
+  "script": "c3_d1_2_2",
+  "des": "c3_d1_2_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]魔物这种东西……还真是什么样的都有啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我是没想到，居然连大海带都可以变成魔物……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]从生态来看，这些杜吉芽在深水区域应该还挺多的……不过大家毕竟主要生活在岸上，所以很难遇上。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]反正我也不想再碰到它，难就难吧，不如说难点才好！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]消灭魔物之后，前方的机关门好像打开了……大概之前是杜吉芽们的叶子卡住了机关。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]门开了……？{myName}，你能感应到匠器所在的位置吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "工匠锤有反应。"
+          },
+          {
+            "tag": "tag_8",
+            "text": "应该就在前面。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]看来我们这条路是走对了。很好，那我们稍事休息，然后继续前进！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

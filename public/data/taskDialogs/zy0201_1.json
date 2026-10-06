@@ -1,0 +1,54 @@
+{
+  "script": "zy0201_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]醒醒！[wait=100]快醒醒！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]嗯[wait=50]…[wait=100]…？[wait=150]怎么了……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]有情况？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]是一些恐兽！[l]那些家伙就在上风口处，虽然还没发现我们，但那也只是时间问题，[r]所以我们必须先下手为强！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]为了防止被兽群发现，我们不能让它们离开！[wait=200]记住，[wait=100]放跑一只都不行！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]一只都不能放跑吗？[wait=200]嗯……[wait=100]应该还挺容易的！那就这么办吧！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

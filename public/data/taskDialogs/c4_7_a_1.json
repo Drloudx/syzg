@@ -1,0 +1,229 @@
+{
+  "script": "c4_7_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]看看看看。这是谁来了的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]一个拿着先知之杖的鹿人，还有三个外来者……而且所有人身上，都带着我那个愚蠢兄长的气息的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]没想到几十年过去，那个废物就已经连战斗也不敢了吗？居然借助外人的力量的噗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你这家伙一直在那叭叭叭地嘀咕什么呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]先回答我的问题！你就是那个布斯波乌尔……坏坏蕈人的首领吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]没错，我就是布斯波乌尔，蕈人一族真正的酿造大师的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]呵……“坏坏蕈人”。那些愚蠢的家伙是这样和你们说的噗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]很可惜，他们错了，而且是大错特错的噗！我们可不是什么“坏坏蕈人”，而是从腐败之中获取了进化的“新蕈人”的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]新、新蕈人……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]呵呵……那些惧怕枯萎的凡夫，还不知道自己错过了什么的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]看看我这从枯萎之中获得的力量……呵呵……多么强大的噗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]你们不觉得，这种强大的力量，就应该和更多人分享的噗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哦？看不出来你还挺好心的。你准备怎么做？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]哼哼哼……又一个自以为聪明的人类的噗，自以为能够通过通过话术从我这里套出秘密的噗。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]但没关系，我会告诉你们的噗。因为就算知道了我的打算，你们依然无能为力的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]看看你们脚下的这个地方——这里正是过去，蛇灵斯塞拉和我们蕈人一族的先祖们共同生活的地方的噗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]现在，蛇灵的精华已经被我掌控，融入了我所酿造的蕈酵酿之中的噗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]只要再把枯萎的神力也融汇进去，那至上的佳酿就将化作枯萎的源泉的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]到时候，这片土地上的每一个蕈人，都会投入枯萎的怀抱，化为我的大军，摧毁精灵和路人的房屋，让“新蕈人”成为森林唯一的主宰的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……这……这太疯狂了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是啊是啊，真是疯狂又可怕的计划……呵欠……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过听你话里的意思，你那个“至上的佳酿”好像还没准备好吧，的噗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]唔奴奴奴！可恶的家伙的噗——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那事情就简单了……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "趁你还没成功……",
+            "tag": "tag_28"
+          },
+          {
+            "text": "先下手为强！",
+            "tag": "tag_28"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]没错！你这阴险的家伙，给我纳命来啦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_7_a_1"
+}

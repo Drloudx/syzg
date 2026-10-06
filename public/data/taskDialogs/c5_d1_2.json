@@ -1,0 +1,220 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]呜……！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "艾薇杜尔？",
+            "tag": "tag_4"
+          },
+          {
+            "text": "你怎么了……？",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]唔……没、没什么，只是刚才……突然“看到”了什么……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？你又看到了不幸的未来了？我们有这么倒霉吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]不……这个应该不是未来……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]自从森林的异变结束之后，我的“眼睛”似乎退化了不少，但是偶尔……还是能够通过灵界获得一些情报。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]什么什么？难道说你这个就是传说中的……灵视和未来视的“魔眼”？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]你都看到了什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]我看到的应该是这次芙洛波风波的源头……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]那是在一处滚烫的温泉池里，一只体型巨大的芙洛波，正在通过希拉尔德的脉冲装置不断吸收火属性的魔力……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？这听起来……怎么好像希拉尔德反而成了受害者？这一切难道不是他的装置造成的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]等我们到那边实际看到就知道了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]比起那些，我真正在意的是“滚烫的温泉池”这个情报……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]奇瓦姐姐，这说明了什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这说明，事件的罪魁祸首应该就在火属性魔力最为富集的地方！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]只要顺着火属性魔力浓度更高的方向一路向前……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]然后就能找到那个芙洛波老大了，对吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]不愧是奇瓦姐姐，真是太厉害了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]你、你怎么一言不合就开始夸人，这也太……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]太……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]呜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]奇瓦姐姐——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "奇瓦姐姐脸皮薄。",
+            "tag": "tag_25"
+          },
+          {
+            "text": "做妹妹的之后还是稍微注意一下吧。",
+            "tag": "tag_25"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]注意……？可是……我明明什么也没干啊？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d1_2",
+  "des": "最后一张图，打完后【c5_d1_2】。"
+}

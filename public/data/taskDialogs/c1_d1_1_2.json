@@ -1,0 +1,150 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "白色的兔子？",
+        "text": "[show]呀呀呀呀呀……感谢帮忙，还以为这次真要挂彩了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]我是……神秘的地下城商人麦麦！各位想必都是经验丰富的驯养……啊呸，契约者对吧！赶快来麦麦这儿买点好东西吧！价格便宜量又足！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show][size=25]呸呸，差点把七百年后的称呼叫出来了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？咦？什么情况？买东西？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]我做侍者这么多年，从没有见过你这样的商人。[r]这里可是我们深渊契约者大本营的地窖，给我一个不把你当成入侵者撵上去关起来的理由。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]哎呀，我都说了我是神秘商人嘛，哪能那么容易在人眼前晃悠——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]我要动手了哦？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]呀呀呀呀呀别冲动嘛！不是我不想说，是说来话长嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]简单地说，我和一个阴暗又奸猾的家伙一起，受主人的嘱托，从很远很远的地方来到这里和你们做生意。我们得赚很多很多的钱带回去给主人，不然她就要破产了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]但我们刚到这附近就遇上了一阵地震，被魔物给冲散了——嗯，就是这么回事！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来是主人的任务啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]什么“刚到这附近就被冲散了”……这里可是地下唉……真会有这种事吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]那当然！和那个阴暗又奸猾的家伙可不一样，作为充满了善意的恶——啊不，神秘商人，我麦麦怎么可能说假话嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]你们只需要知道，我们会出现在所有危险的地下城中途，为各位冒险……唉呸、契约者提供优质的交易服务就可以了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show][size=20]这地方的冒险者名字怎么这么绕口。入乡随俗什么的真麻烦啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我觉得她倒也不是什么坏人……我们不是还有紧急任务在身吗？无论看不看她的货，早点完事吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]哼……等我们处理完魔物的事再来审你。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "麦麦",
+        "text": "[show]呀呀呀，不劳你们大驾，麦麦做完生意就会自己消失的，所以快来看看我的货，把不需要的闲钱都交给麦麦吧！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "白色兔子自称麦麦，感谢你们的帮助",
+  "script": "c1_d1_1_2"
+}

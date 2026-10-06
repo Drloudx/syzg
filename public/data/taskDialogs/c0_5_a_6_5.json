@@ -1,0 +1,86 @@
+{
+  "script": "c0_5_a_6_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]轰——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呜哇啊啊啊啊啊——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（没错，这就是我来到深渊的事件始末——）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（在巨大的爆炸声中，我的身体高高飞起，而意识逐渐沉沦，[r]仿佛要坠向深邃的黑暗……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（在那一刻，我还以为那就是我人生的终点。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（而现在一想，要是没有之后这位少女的救助，我可能真的就这么丢掉性命了。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（没想到这样的事情居然还能再体验一次……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（重新经历这种瞬间的体验真是太糟了……[r]如果有可能的话，我只希望千万别有下次……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "【复制】结束"
+}

@@ -1,0 +1,102 @@
+{
+  "script": "c1_3_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]茜塔，行军状况怎么样了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]目前前锋部队正在按照前辈的指示以锋矢阵前进，[r]道路两旁伏击的魔物也被侧翼小队击溃，行动并未遇到阻碍。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那就好，希望接下来也能一样顺利。[r]让他们继续保持警戒，如果遇到无法应付的敌人，要及时报告，千万不要贸然行动。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]好的，迦南前辈！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么嘛，亏你之前说得那么严肃，我还以为我们要从头打到尾呢！结果这不是清闲得很吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]攻坚小队的作用是攻坚，要为真正的难关预留精力。[r]而且，这次参战的都是驿站的精锐，自然不会那么容易就止步不前。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不过这次的[color=f1401c]异变[colorEnd]激化得非常快，我们人数再多，也没法轻松应付。再过不久，就该轮到我们出场了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]迦南前辈，侦查来报，前方发现大型魔物群，初步估计数量超过四十。前锋正在后退，该我们出动了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]你看，在深渊里，战斗总是会在任何时候找上门来。准备好了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]当然！野外的这些杂碎，我早就处理过不知道多少啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]真是可靠的回答。既然如此，那我们就上吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我和米托拉负责正面攻击，茜塔和{myName}在后方策应！[r]不要让其他契约者们久等，尽快解决战斗吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

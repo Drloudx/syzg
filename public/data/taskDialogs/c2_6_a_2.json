@@ -1,0 +1,424 @@
+{
+  "script": "c2_6_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（轰——！）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手A",
+        "text": "[show]这些人到底是怎么回事！太、太强了——快逃啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手B",
+        "text": "[show]噗啊啊啊！好痛——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]痛？痛就对了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]这就是惹怒了我们索利德山的代价——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]米拉贝尔，后面的就交给你了唷！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哦——！好好尝尝我的大锤吧，渣滓！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手A",
+        "text": "[show]好、好汉饶命啊！我们只是收钱办事，没有想和好汉们作对的——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手A",
+        "text": "[show]噗啊啊啊啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]出来混就是要还的！连这种觉悟都没有，你是第一天出来做事吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]像这种喽啰就不要和他们废话了！无谓多费口舌，快点解决掉他们吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手C",
+        "text": "[show]居、居然口出狂言！是瞧不起我们哈萨琳之手吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哈，我不是瞧不起哈手，我是瞧不起你们呀！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]垃圾就应该有垃圾的样子！给我乖乖躺下吧！喝！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手C",
+        "text": "[show]嘎啊啊啊——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手B",
+        "text": "[show]大、大哥！不行了，不行了——快逃啊啊啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]哦？来都来了，这么急着走做什么？中！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手B",
+        "text": "[show]呱呀呀呀呀——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]上啊，菲莉娜！把这个营地翻个底朝天！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]正有此意——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那个啊，{myName}……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这里是不是已经没有我们出手的必要了……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米拉贝尔她们心情不好。",
+            "tag": "tag_70"
+          },
+          {
+            "text": "就让她们多发泄一下吧。",
+            "tag": "tag_70"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]哈、哈哈……是的呢……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呼……你们终于搞定了啊。我们都杵这儿发半天呆了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]哈哈，稍微打得有些入迷了。好久没有这样和米拉贝尔一起战斗了，挺新鲜的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哼。山民的怒火可远远不止这些。光是挨一顿揍，算便宜他们了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]这儿还剩什么东西，干脆点收拾了吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不，等等！",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嗯？怎么了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]米拉贝尔，你看那边——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？那边好像有个人！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]喂，女人，你是学者吧！快点把钱交出来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]我记得你这种打扮的可都是肥羊，不可能没有钱的！你把钱藏到哪里去了？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]藏？呵……让我来指出你的一处谬误吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]学者确实都很有钱，但有钱和把钱带在身上，完全是两码事。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]如果是在别的地方还好说，但在这个荒凉无比的索利德山上，我想任何智力正常的旅人——不管他是不是学者——都没有必要随身携带大笔的现金。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]因为在这座物产贫瘠的山上，根本找不到可以花钱的地方。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]综上所述，你们之前从我身上抢走的50阿比，已经是我身上带着的全部通货。这样解释，你那被暴力锈蚀的脑袋，可以理解吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]唔，虽然听得不是很明白，但我莫名感觉非常生气啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]啊，当然，如果你有胆子的话，我身上的法袍，还有这本魔法书，也都值不少钱。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]不过这上面有着[color=ffb64d]大书院[colorEnd]的防窃魔法，你做好出手之后，被大书院的[color=ffb64d]守密人[colorEnd]追捕到天涯海角的准备了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]唔嗯——！你这家伙，真是给脸不要脸！准备受皮肉之苦吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]啊，多谢你陪我解闷，不过很可惜，愉快的聊天时间看来是结束了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]如果你还想有命继续赚钱，不妨先接待好那边的客人吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]客人？等等——敌袭！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]哦，看来该我们登场了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]正好，刚才的猴戏我已经看够了。既然敌人已经做好了准备……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]那就全力以赴，尽快送他们上路吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_6_a_2"
+}

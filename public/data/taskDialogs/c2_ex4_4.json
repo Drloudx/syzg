@@ -1,0 +1,616 @@
+{
+  "script": "c2_ex4_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这里是……索利德山？这个地方好像是……巴诺姆村的后山？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]看，那边是——[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那是菲莉娜！",
+            "tag": "tag_18"
+          },
+          {
+            "text": "还有驿站的契约者们？",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]还有巴诺姆村的村民！他们这是在干什么？感觉气氛好紧张啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]罗伯特大叔！这就是所有的人了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]是的……除开分散在山腰防线的自卫团和契约者，村中能动的战力就只有我们了……可恶，明明前两天还好好的，怎么事情突然就这样了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]这都是没办法的事。局势发展得太快了，我们都没法预见到。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]我刚刚收到天梯前线的消息。山顶防线已经崩溃，派驻来的深渊联军折损大半。他们正在向山下撤退。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]山腰上的阻击阵地可能也只是时间问题。如果他们也挡不住魔物，我们就是索利德山……巴诺姆村的最后防线。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]呜……可恶……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者斥候",
+        "text": "[show]报告！菲莉娜队长！大事不妙了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]怎么了？魔物潮又出现异动了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者斥候",
+        "text": "[show]不止！是采石场那边出事了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者斥候",
+        "text": "[show]就在刚才，采石场那边突然长出了很多巨大的红晶，山道都直接崩裂了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者斥候",
+        "text": "[show]我们安排的阻击阵地全都报销了，所有人只能撤退！山顶防线的撤军无路可回，怕是已经要被蚕食殆尽了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]巨大的红晶……？那、那魔物潮呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者斥候",
+        "text": "[show]魔物没有阻拦之后，已经顺着山道的狭缝攻下来了！大概只需要几小时就会到这儿来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者斥候",
+        "text": "[show]队长……巴诺姆肯定会失守的！我们也赶快撤退吧，现在还来得及！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]说什么胡话——！这是我的村子，是米拉露的村子！我绝不可能让给那些畜生——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]罗伯特大叔！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]我亲自带队顶上！只要这边不发话，我绝对不会后退一步，就算丢掉性命也要坚守在阵线上！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“锈锄”罗尼",
+        "text": "[show]不可以！罗伯特老哥！你不能去！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“自卫团员”马可",
+        "text": "[show]就是！老哥你别忘了米拉贝尔！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“自卫团员”马可",
+        "text": "[show]米拉露已经走了！要是你再没了，那米拉贝尔可就只剩一个人了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]我就算是拼上性命，也要——[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]那些魔物就由我来解决吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]你……？你是……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]我是谁不重要。告诉我，那些魔物到底是从哪儿来的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]那些魔物聚集的地方，应该就是地脉的汇流焦点。告诉我那是哪儿！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]魔物聚集的地方……我们不知道。但它们都是从山上攻下来的。或许……你说的地方是在更高的地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]更高的地方……是山顶吧。那就没问题了。我会阻止它们的……暂时。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]那边的指挥者，趁这个时间，重新集结你的部队，守住东侧的洞口。我会将它们引向易守难攻之地，你们还有机会。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]这只是喘息之机，之后还有很艰苦的仗要打。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]但，你要怎样才——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]没时间了。快按我说的做——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]我明白了。这位……朋友，感谢你的高义，能留下一个名字吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]名字……？我的名字……就算知道了也没什么意义……还是别问了吧……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者斥候",
+        "text": "[show]队长……我们要听她的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]不知道……但我的直觉告诉我……她值得信任。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]契约者们！立刻整队，向东部的洞窟布下防线！跟我来——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "契约者们",
+        "text": "[show]是，菲莉娜队长！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“锈锄”罗尼",
+        "text": "[show]我们也不能干站着！工友们，我们也出动！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "工人们",
+        "text": "[show]好嘞！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]等等，我也要——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“自卫团员”马可",
+        "text": "[show]罗伯特老哥，村里就麻烦你了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“锈锄”罗尼",
+        "text": "[show]就是，要是我们有个万一，也得有人带大家下山啊！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]等等！你们……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]爸爸……！您在这儿！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]米、米拉贝尔？我的心肝宝贝……！你不是在村里吗？怎么跑到这儿来了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我来找您，爸爸！艾玛婆婆说她儿子受伤了，正在吵着要到山上去，大家正在劝她！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]什么？谁告诉她的？啧！简直胡闹……！走，我去说她！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]爸爸……兽潮……很严重吗？我们是不是……会被赶走，永远回不了村子了……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]放心吧……米拉贝尔，不会的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]灾难再可怕，终究会有英雄解决这一切的。英雄……一定会出现的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]英雄……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]等到一切平息了，我们就可以再回到平稳的生活了。在那之前，爸爸一定会保护你，你也要乖乖的，知道了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]嗯！米拉贝尔最乖了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]记忆好像到这里就结束了，你们还好吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这个嘛……稍微有点五味杂陈吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]大兽潮原来这么残酷。那么多人命，好像说没就没了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过，罗伯特大叔有着这样的过去……也难怪他会如此溺爱米拉贝尔。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉似乎也相当活跃。",
+            "tag": "tag_123"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唔，都说了还不知道是不是我呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]探寻未知的记忆，经常就是会有这样意外的惊喜。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]也是……那，我们接着去下一段记忆吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]没有什么下一段了。这次法阵没有受什么意外的干扰，能够解析出来的信息只有刚才的这两幕而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？这就结束了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]这就结束了。如果没什么事的话，你们就快点在记忆空间崩塌前出来吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]我把出口设在了和你们很近的地方，只要走到那儿，你们就能清醒过来了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入房间触发3"
+}

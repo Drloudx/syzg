@@ -1,0 +1,242 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]呜咕……！呜……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]软软？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "软软怎么了？",
+            "tag": "tag_5"
+          },
+          {
+            "text": "它也不舒服起来了吗？",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]不……软软说，这里的魔力让它感觉很不好，和那些狂暴化魔物身上的魔力感觉差不多……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]也就是说，这里的火属性魔力也是“有毒”的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]可我记得，{myName}之前说过，那些“纯净”的魔力也被储存在这里……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]这并不冲突。环境中的火属性魔力依然带有异变的特征，而经过净化的火属性魔力则被储存在某个类似\"库存\"的地方……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]不……或许……那些“有毒”的魔力并不存在一个确定的总量。每时每刻，都有“纯净”的魔力被转化为“有毒”的状态。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "恐怕是这样的。",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "异变并不是在某一瞬间发生的。",
+            "tag": "tag_12"
+          },
+          {
+            "text": "它是一个魔力失衡后的持续性改变。",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[cm][show]这就是莉拉首座和你们对于“异变”的研究吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]看来大书院在前沿研究方面，已经被你们远远地落在后面了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "也不用这么说……",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[cm][show]不用担心，大书院可不是那种死要面子的“学棍”组织，别人比我们强，那就接受事实，知耻而后勇就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]现在真正重要的是要保护好软软。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]毕竟软软也是魔物，长期暴露在\"有毒\"的环境中恐怕不会那么轻松。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这一点可以交给我。我们带出战的魔物，还从来没有被异变侵蚀而狂暴的先例呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]这也是米托拉的特异能力吗？先是奇怪的魔物亲和，现在还能抵挡异变的力量……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]说不定米托拉失忆之前，其实是什么超～～～厉害的大人物呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]超～～～厉害的大人物才不会因为失忆而流落荒野呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好了，别想那些有的没的，还是快点前进吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]奇瓦，软软还能感觉到希拉尔德的位置吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]嗯……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕咕！咕咕！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]软软说，希拉尔德还在继续向遗迹深处前进，但我们之间的绝对距离并没有拉开。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]没有被拉开吗……很好，那就保持这个速度，我们继续前进，直到追上他们为止！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d2_2_1",
+  "des": "第一张图，进入后【c5_d2_2_1】。"
+}

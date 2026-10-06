@@ -1,0 +1,108 @@
+{
+  "script": "c2_8_a_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]各位，你们看！我们到啦。[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哇……！这种风格的砖瓦门墙，我从来没见过耶！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这里就是那一位的居所。[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这确实不是山民的风格。我在巴诺姆生活了这么久，对这里竟然也没有太多印象。[l]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "这看起来……似乎是一座古院。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]古院？那是什么？[l]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "古院是炼气士们修行的场所。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]（这种建筑风格，我好像在父亲的笔记上看到过……应该是龙岳的特色建筑。没想到会在这里遇到。）[l][cm]",
+        "nameSide": "left",
+        "charaName": "{myName}"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（到底是谁会居住在这里呢……）[l][cm]",
+        "nameSide": "left",
+        "charaName": "{myName}"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（菲莉娜想要介绍的人，该不会是一位……炼气士吧？）[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "{myName}"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]好啦，别杵在这不动了。我们进去吧！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_8_a_2"
+}

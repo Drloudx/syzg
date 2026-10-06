@@ -1,0 +1,30 @@
+{
+  "script": "c1_d2_1b",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]明明在这么深的遗迹里，怎么还是会碰到这些魔物……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]也许真如莉拉首座所说，遗迹深处的什么东西在不断吸引着狂暴的魔物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]也就是说还得继续往深处前进了是吧！好，我可不会认输！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "安瑟恩，1层胜利演出"
+}

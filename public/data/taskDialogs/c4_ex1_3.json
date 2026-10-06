@@ -1,0 +1,1092 @@
+{
+  "script": "c4_ex1_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]罗姆洛敏，你在这里干什么！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]这话应该是我来问才对吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]作为这里的主人，我回自己家取点东西可是再平常不过了。倒是你们几个不请自来的恶客，难道不知道非请勿入才是正确的为客之道吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]谁跟你主人客人的！我是兵你是贼，在你准备对森林不利的时候，你就不再受到一般的“道理”保护了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]哼，真是牙尖嘴利，完全不像是个荒野客出身啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]可惜这一次，我可不是来和你们争辩的，而是要来把“[color=f1401c]真相[colorEnd]”传达给你们的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]真相……？你说的真相是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]当然是，被金弦之厅宝贝得不得了，看得比人命还要重要的……[color=f1401c]巨木[colorEnd]的真相了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]巨、巨木的……真相……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]艾薇杜尔，我的好学生。在你跟随我学习之前，在那腐朽的金弦之厅里，学习着向巨木朝拜祈祷的时候……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你就从来没有怀疑过吗？怀疑……在这个黑森林里，“巨木”究竟扮演着怎样的角色？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？巨木不是那什么……森林的守护者吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]呵……是啊，巨木确实是森林的守护者，但它可从来不是“森林人”的守护者啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]没想到吗？森林人一直都有种误解，认为巨木在庇护着森林人，但那只是因为，巨木的使命和森林人的利益，非常“偶然”地相同了而已。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]事实上，被森林人视为神祇，多年来祭拜不休的巨木，根本不是什么慈悲的神明，而是具有明确使命，由先时工匠们制造的“[color=f1401c]生物机关[colorEnd]”！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]什么……？这不是一棵活着的大树吗？这玩意也是先时工匠制造的？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "工匠技艺之中确实有不少离经叛道的内容。",
+            "tag": "tag_20"
+          },
+          {
+            "text": "先时工匠的技术很多时候先进到我们难以捉摸。",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]不愧是专家，果然眼界就不是常人可比的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]根据希拉尔德在别处的文献中找到的记载，这台“生物机关”大约是黑森林之下埋藏的“匠器”的[color=f1401c]外部供能装置[colorEnd]，其作用是，在地脉能量不足的情况下，确保这一地区的“匠器”稳定运行。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]为了达到这一目标，先时工匠们让这台“生物机关”介入了本地的灵魂流向之中，从那之后，在这片黑森林之中诞生的每一个生命，都成为了供这台“生物机关”的柴薪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]灵魂的流向……竟然是这样吗……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我明白了……",
+            "tag": "tag_26"
+          },
+          {
+            "text": "是瞄准了灵魂的自我成长吧。",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]完全正确。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]生命的灵魂，来自于天地之间游离的灵性（Mana）。当凡物出生，不断成长，随着阅历的积累、精神的凝练，他们的灵魂会不断壮大。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]直到肉体毁灭，归于尘土，灵魂也会消散为灵性，重新归于天地之间。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]如果没有外力介入，天地之间的灵性就会在这生命的循环之中，不断累积、增加。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]但当年的先时工匠们，却以极大的想象力，从这个循环之中，发现了可供利用之处。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]他们……他们截留了增长的灵性……？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]是的，生物机关——“巨木”就是这样工作的，它将天地间游离的灵性转化为魔力，向地下的匠器源源不断地输送着能源。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]在一般情况下，为了维持这套系统的永续运转，巨木必须在自己周围维持一个标准线以上的生态圈。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]为了让生命能够在这里不断繁衍，它会调整山势水文、操纵土壤气候，它让这里物产丰饶、风调雨顺……看起来就好像在庇佑一方一样，甚至创造出，对真实使命一无所知的“守护灵”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]然而这只是在“一般情况”下……如果，出现了一种特殊的情况……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]比如，如果地脉淤塞、魔力枯竭，必须依靠这台“生物机关”来实现完整供能的话，你觉得被森林人视为神祇的“巨木”会怎么做呢？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "恐怕……",
+            "tag": "tag_43"
+          },
+          {
+            "text": "会优先完成“最重要”的工作吧。",
+            "tag": "tag_43"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]最重要的……工作……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "也就是给匠器供能。",
+            "tag": "tag_46"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[cm][show]是的，它当然会优先完成自己的使命。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]而如果情况更加极端，比如匠器本身出现了故障，而“巨木”因为自身的设计局限，将其误认为是“能源不足”的话……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]怎么会……这种事情……太可悲了……实在是……太可悲了……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]为了向永远不可能成功启动的匠器灌注“足够”的能量，“生物机关”会永不停歇地从大气中抽取灵性，甚至让整个森林的灵性陷入枯竭。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]因为灵性的缺乏，灵魂无法诞生，新生儿也不再降临。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]因为灵性的缺乏，森林缺少滋润，再无从前的活力。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]因为灵性的缺乏，世界失去藩篱，枯萎和黑暗也悄然而至。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]这就是黑森林“异变”的真相。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你们好奇这里的异变为什么会缺少狂暴化的魔物吗？那是因为灵性都被“巨木”吸干，被崇拜的“巨木”就是“异变”本身啊！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎怎怎……怎么会这样！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]如果事情真的是这样的话，要解决异变，岂不是要把巨木给……金弦之厅能同意吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，冷静。",
+            "tag": "tag_58"
+          },
+          {
+            "text": "不要落入对方的话术里了。",
+            "tag": "tag_58"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]诶？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "工匠手中永远不会只有一个选择。",
+            "tag": "tag_60"
+          },
+          {
+            "text": "别忘了，我们还可以修复匠器！",
+            "tag": "tag_60"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]对，对啊！我们还可以修复匠器！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]只要修复了匠器，这个什么外部装置，不就停下来了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你说得没错，只要修复了匠器，巨木的确是不会再过量抽取灵性了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]但即使如此，你们也不可否认，巨木对于黑森林来说，是束缚，而非庇佑。如果不毁灭它，黑森林就永远没有未来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]这种事情在很多地方都会发生，而我们……你父亲的结社，就是为了避免这些情况，为了杜绝最悲惨的未来才建立的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]我从希拉尔德那里听说过，你有着比你父亲更厉害的才能。这样的人正应该加入我们，所以我想对你，正式地发出邀请。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]{myName}……你，还有你的同伴，是否愿意加入我们，加入我们的伟大事业？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_69"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我想这个问题根本不用问。",
+            "tag": "tag_72"
+          },
+          {
+            "text": "我的答案只有一个。",
+            "tag": "tag_72"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]哦？所以你的意思是……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我拒绝。",
+            "tag": "tag_75"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]我就知道你会同……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]什么？你……你拒绝？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "如果我真的什么都不知道……",
+            "tag": "tag_78"
+          },
+          {
+            "text": "可能真的会上你这一当吧。",
+            "tag": "tag_78"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但可惜，对于一个到处对匠器出手……",
+            "tag": "tag_79"
+          },
+          {
+            "text": "说过之处一片狼藉的组织……",
+            "tag": "tag_79"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我实在是没办法对它有一丝一毫的认同！",
+            "tag": "tag_80"
+          },
+          {
+            "text": "我实在是没办法说服自己去和它站到一起！",
+            "tag": "tag_80"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[cm][show]你……！本以为你是导师的子嗣，一定能认同我们的大义，结果居然如此鼠目寸光！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呵！你们想让人认同，倒是做点人事啊？恐怖蟾兽是你们放出来的吧？还有图洛德那个丧心病狂的计划也是你们驱使的吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]在拉拢别人之前，好歹先假装一下，变得拟人一些怎么样？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]呵，一群拘泥于道德，和金弦之厅的愚民一样食古不化的东西！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]为了拉拢金弦之厅，你们就准备放任罪恶的巨木继续存在吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]罗姆洛敏老师……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我最后叫你一次老师……求求你……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]求求你不要再用冠冕堂皇的说辞掩饰自己了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]你那丑陋想法的味道，我隔着这么远都能闻得到，恶臭到让我想要作呕！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]……艾薇杜尔……你可从来不会这么说话的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]什么为了黑森林，什么大义……这些话你根本连一个标点都不信吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]不然的话，我这双眼睛“看见”的，就不会是黑森林的毁灭了，不是吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]看见？你的眼睛……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]原来如此！居然还有这种事……你在我身边这么久，居然还隐藏了如此了不起的才能！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]和什么才能、什么魔眼都无所谓！即使没有这双眼睛，我也能看得出来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]你其实很高兴吧——虽然嘴上说得好听，但你在听说了“巨木”的真相的时候，其实高兴地要笑出来了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]因为你终于有理由向巨木复仇了。你终于找到了理由，向无辜者泄愤！[wait=1500][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]金弦之厅的愚人们才不是什么无辜者，他们都是谋害[color=ffb64d]奥罗洛[colorEnd]的帮凶！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]真是扫兴！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]本来还以为能够收获几位同道，没想到却是被逆徒狺狺狂吠了一番。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇，说话真难听，被戳中痛处就开始人身攻击了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]哼，不明事理的家伙，就随你怎么说吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你们不是想要修复匠器吗？那就来试试吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]反正这边该做的准备都做了，你们就试着在我的仪式完成之前，终结这里的“异变”吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]仪式？你到底还想干什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]我想干的事，你们不是一清二楚吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]哼……想阻止我的话，就尽管到巨木之心来吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]虽然到最后，你们肯定什么也做不到就是了……哈哈……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊！又给她跑了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]都怪她一直在那东扯西拉的，我都忘了要动手了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "别慌，我们还是得到了一些情报的！",
+            "tag": "tag_117"
+          },
+          {
+            "text": "现在先要弄清楚所谓仪式是什么！",
+            "tag": "tag_117"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]嗯嗯，你说得对，现在我们还不算无计可施。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过艾薇杜尔，你刚才声音突然变得好大啊，我都不知道你居然还能吼这么大的声音。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]啊……那个……就是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]感觉气氛到了，不知不觉就……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]其实……我虽然被{myName}鼓舞了一番，但一直以来的性格，还是不那么好改的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]之前在西部猎场的时候，我本来想帮你们说话，但话到嘴边……最后还是没敢开口……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "有这份心意就好。",
+            "tag": "tag_124"
+          },
+          {
+            "text": "谢谢你愿意支持我们。",
+            "tag": "tag_124"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]我当然是愿意支持你们的，毕竟……如果不是你们……我也不会第一次，真正地帮助到别人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这一次面对罗姆洛敏，我实在是很～～生气，实在忍不住，一下～～子爆发了出来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]等真的站出来之后，我才发现，开口这件事……好像也没有想象中那么难。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]真是的，本来就没有那么难啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯，等等，你手上这本笔记……这个图，看起来像不像是某种仪式啊……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？我、我看看……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这、这是……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]不得了了！我们必须马上回去通知姐姐！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]罗姆洛敏……她的图谋居然是这样……如果被她得逞的话……不止是黑森林，就连周边几个地区，都会毁于一旦的！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_ex1_3"
+}

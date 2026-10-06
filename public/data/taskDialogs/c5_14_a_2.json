@@ -1,0 +1,145 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]根据地图，前面应该就是霜燃之扉了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]所以……遗迹在哪里呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这就是我们要调查的目标。",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这里就交给我吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]既然我们要找的是火属性魔力大量聚集的地方，那软软的魔力感应也许能派上用场。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可是我们现在是在山上……这山路七弯八拐的，就算软软感觉到了方向，找不到路也是白搭呀。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]不用担心，我对勘探学也有所涉猎。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]虽然不敢打包票，但大致规划一下路线，应该还难不倒我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]“有所涉猎”啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们这些文化人说起话来总是喜欢带上这些一点都不切实际的谦辞……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]{myName}是，阿莱姐是，还有你们大书院出身的那些学者都是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]谦辞？我倒觉得这不是谦虚，只是习惯性说话带点保留。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]毕竟话说得太满，万一翻车了那不就糟糕了吗？我还想在女儿们面前留下一个好形象呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，是吗？那就随你便吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]要是按照这个解释，那你们这些头脑派，骨子里都还蛮闷骚的呢……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_14_a_2",
+  "des": "打完后【c5_14_a_2】。"
+}

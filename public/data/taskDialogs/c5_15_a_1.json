@@ -1,0 +1,38 @@
+{
+  "script": "c5_15_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]天气越来越糟糕了……但是这些狂暴化的魔物，活动起来似乎完全不受大雪天的影响……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那当然啊。趋利避害的前提是有脑子，真正失了智的家伙，哪还管什么天气不天气啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]就别管那些魔物了，还是先看看这座山该怎么爬吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c5_15_a_1】。"
+}

@@ -1,0 +1,401 @@
+{
+  "script": "c3_7_a_3",
+  "des": "c3_7_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦，我们这么简单就跑出来了？居然真的没和治安队发生多少冲突……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]哈哈，毕竟我们是从密道里穿过去的嘛。治安队的本队，现在还在镇子里到处搜捕呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]现在我们避免了最遭的局面，没有因为别人的设计，让环会和商会直接冲突。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]但与此同时，我们也失去了所有的线索，被赶出了大市集，调查不得不戛然而止。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]如果不能找到匠器核心，魔爪湖就没有未来可言。在这么紧要的关头，却失去了方向。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]啊～确实是危急万分的状况，我光是听着心里就捏了把汗呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]但我看，你们几位好像都不太着急呀……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "因为你会为我们指明方向，不是么？"
+          },
+          {
+            "tag": "tag_11",
+            "text": "我相信会有智者为我们指明前路的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[cm][show]哦？这么相信我吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[cm][show]啊呀啊呀，这又说的是谁呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]别装了。不然你这么恰好地出现，又是为了什么呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]哈。我确实有一些特别的渠道，知道一些你们还不知道的秘密。但以你们的智慧，当真一点方向都没有吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]比如说……能够轻松调动治安队，制造出如此要命的巧合——陷害你们的人，一定是一个在大市集[color=f1401c]一手遮天[colorEnd]的大人物，不是么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]我怎么感觉你意有所指？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]不不不，我只是指出了一个事实，并没有特意暗示某个人物，应该说，只要符合这个要求，任何人都可以是你们的怀疑对象。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "这也包括你自己？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[cm][show]当然！虽然我并不觉得自己可以一手遮天，但我也没法证明不是吗？毕竟我也算是大市集的“有力人士”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啧啧，现在这话听起来又有点像是在故意撇清了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]那真是没办法，可能我做人有些失败，就是不太容易被人信任吧。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "这个话题可以到此为止了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]从现状来看……图洛德会长确实不能说不可疑。但要调查他，显然不是在大市集“外面”晃荡就可以做到的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]但如果您真的想把我们引上图洛德会长的对立面，刚才就应该放任我们和治安队交手。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]既然您大费周章，特意把我们带到了镇外，显然您心里还有一个希望我们去调查的，“真正的目标”。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "塞弗德里克先生，坦诚一些吧。"
+          },
+          {
+            "tag": "tag_28",
+            "text": "再说些侮辱彼此智慧的话，就不礼貌了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[cm][show]哎呀，不管是这位{callName1}也好，还是圣女大人也好，聪明人果然不好惹啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]话都说到这个份上，那我也直说了吧——我希望你们去调查[color=f1401c]贫民街[colorEnd]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]是的，就是贝尔卡小姐、埃迪蒂小姐，还有可怜的柏莉尔小姐的故居所在……如今，却被大市集荒弃的那座小村落。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]为什么突然让我们去那儿？你到底知道些什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]是啊，为什么呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]我注意到，不仅是你们，还是其他人，似乎总是认为柏莉尔的事，还有匠器的事，是两件互不相干的事情，所以一直试图先解决匠器的问题，再来调查人员失踪……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]如果是我的话，可能会想……有没有一种可能，这两件事其实根本就是一件事？失踪事件或许并不是单纯的“谜题”，而是解开一切的“谜底”呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]怎么会？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这可真是未曾设想的道路。但仔细一想，似乎也在情理之中。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔！别满口谜语了，就不能一次把话都说清楚吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]也许不是不想，而是单纯地不能呢？顺便一提，用武力来逼迫我也是没有用的。或者你们认为，这种程度都不能算作“协助”，“博取”不到任何对我的……信任？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]可恶！那我们真要去那个贫民街？我总感觉这家伙在给我们下套啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "去调查一下反正也不会亏。"
+          },
+          {
+            "tag": "tag_42",
+            "text": "要么查出真相，要么揭穿骗局。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]而且就像米托拉之前说的那样，我们这一队人的实力，完全无惧任何圈套。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]看来你们已经决定了，那……毕竟是我老家，接下来还是由我带路吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]嗯，你们的决定非常明智。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]在你们去调查的这段时间，我会去想点办法，消除你们的嫌疑。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]虽然治安队多半还不知道你们的身份，但一个开放的大市集，和一个戒严的大市集，我相信，你们肯定不会喜欢后面那个。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

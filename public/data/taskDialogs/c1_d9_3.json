@@ -1,0 +1,324 @@
+{
+  "script": "c1_d9_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呼……真是难缠。差点被这家伙的光线射到。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "还好我们技高一筹。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]等下……魔力好像还没有消散……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]还……还没有消散？难道说这附近还存在着一座匠器吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]不，这里的魔力给缇莎的感觉，和那座装置附近的魔力完全不一样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]缇莎觉得……这些魔力变得混乱……并不是他们自愿的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不是自愿的？",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嗯，在遗迹的中心部停止散逸魔力后，它们就失去了目标……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]所以，一直困在这里徘徊着……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？什么意思？不对，这种事你都能读懂的吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "所以，即使打倒了这台安瑟恩单元……",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嗯。这些魔力也会继续活化其他构装体，在这座遗迹流浪……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]就像，遇到妈妈之前的缇莎一样，没有归处……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]小缇莎……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "有什么办法帮帮它们吗，缇莎？",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]可是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]小缇莎可是经验丰富的秘术师哦？一定能想到办法的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]好……好的！缇莎会想办法的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]既然瓦菲诺姐姐说过，这些魔力是从地脉中被匠器抽取出来的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]我没有办法将它们引导回地脉之中……但我应该能给它们找到安身之处！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]流浪在地脉外的元素流啊，请让缇莎帮帮你们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇，小缇莎突然开始施法了！咦，{myName}？你在做什么？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（举起工匠锤，协助缇莎引导魔力。）",
+            "tag": "tag_28"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]完成了！呼……呼……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉……？你们做了什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]不仅是构装体，这座遗迹有很多装置，也是需要消耗魔力的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]缇莎引导这些魔力成为了灯火和门锁，而不是四处作乱的构装体魔物……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]这样，经过长年累月的时光……它们就能逐渐回归地脉了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]与其毫无目的地徘徊流浪，不如就在此处发光发热……就像遇到了妈妈的缇莎一样！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈……缇莎真的很爱妈妈呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]嗯，缇莎最喜欢妈妈了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "虽然这里的问题解决了……",
+            "tag": "tag_42"
+          },
+          {
+            "text": "但缇莎要好好想想怎么和妈妈交代了。",
+            "tag": "tag_42"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]唉？对啊！缇莎忘了还有这回事！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是啊，之后该担心的，应该就是要承受妈妈怒火的小缇莎了吧～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]哇——缇莎不要啊！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "遗迹深处三层：安瑟恩单元击败"
+}

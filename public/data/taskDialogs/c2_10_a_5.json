@@ -1,0 +1,452 @@
+{
+  "script": "c2_10_a_5",
+  "des": "c2_10_a_5",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]呼……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]刚刚打得不错，米托拉。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你也一样啊，“大姐头”。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "又救了我一次，米拉贝尔。",
+            "tag": "tag_4"
+          },
+          {
+            "text": "米托拉，多亏有你。",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]噗。这有什么。就当是……之前的“报恩”吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦……“又救”？“之前”？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]对哦，刚刚这家伙好像说过什么“在幻境里救过你一次”？喂，这到底怎么回事啊，{myName}？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]哼哼。这下知道我的好了吧。还不快多多依靠我一点？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]噗，你这丫头。本小姐那一锤的功劳你是一点都不提啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯～那就勉强算上你那一份吧。但不管怎么说，{myName}都得由我来保护！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]米拉贝尔，米托拉！你们没事吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那当然！我们能有什么事！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哈，这下终于念头通达了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "皮塔&卡夫",
+        "text": "[show]不愧是大姐头！大姐头真是太厉害了！大姐头万岁！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]好了好了，不用在这儿给我吹个没完了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]这次也是全靠各位伙伴……特别是米托拉的力量。光凭我一个人，是没法救下{myName}的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呜哇。怎么突然直率了这么多。我都不习惯了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]说起来……孵化场里的这些蛋，我们该怎么处理？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]放着不管的话……这些蛋都会孵化成哈比吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]那这些蛋就不能留了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "皮塔",
+        "text": "[show]对啊。那些哈比就隔三差五地袭击村子，弄得我们村子不胜其烦。要是再让它们增员，那还了得！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]哈比有很强的护巢本能。如果我们[color=ffb64d]打碎这些蛋[colorEnd]，所有的哈比都会在本能的驱使下归巢守卫。这么一来，在外面游荡袭击的哈比就会数量锐减。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]不过……哈比虽然是魔物，但也是索利德山[color=ffb64d]生态[colorEnd]的重要组成部分。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]要是我们一次性断绝它们整整一代的繁育，索利德山上的魔物分布，恐怕会出现[color=f1401c]难以预料的变化[colorEnd]，还是慎重行事为妙。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]而且它们现在到处袭击，总归还是异变和狂暴化的影响，如果我们能解决异变，它们应该会恢复到以前那样基本无害的状态。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]也就是说，就这样赶尽杀绝，也会有不好的影响是吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]两位施主各执己见，但其中理由道理却也各自分明。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]既然两位都难以说服对方，那何不请{myName}来决断呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]嗯。那{myName}，你觉得这些蛋，我们应该怎么办？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "还是除去为妙。",
+            "tag": "tag_30"
+          },
+          {
+            "text": "还是留下为好。",
+            "tag": "tag_42"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[cm][show]我明白了。尽管这些狂暴确由异变而生，但魔物对山民们的威胁也不能忽视。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]也罢，只是一个世代而已……大不了我多看顾一番，等到山上的生态恢复再离开就是。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]那我们动手吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]诸位施主……还是先行回院吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]大师……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]年轻人心性未定，最好不要枉造孽障，以免将来后悔，梦魇缠身。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]此等必要之恶，还是由吾承当就好，诸位施主先行一步，就当眼不见为净。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]让大师受苦了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]三界火宅，[color=ffb64d]众生皆苦[colorEnd]。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]去吧，去吧，莫要回头。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]唉，[color=ffb64d]造业须赎业，戕生为护生[colorEnd]哪……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]要留下吗？这也不是不可以。有你们两位在，我对解决异变还是挺有信心的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]不过现在那些狂暴化的哈比在山上到处乱窜，如果不能逼它们回巢守卫的话，我们在山上的行动还是会受到影响，这个怎么解决？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]这就交给吾来处理吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]喝——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]大师，您这是？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]吾以拳意留痕，将自身的真气灌入这树干之中。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]如此一来，那些感觉敏锐的魔物，便会从拳意之中，感受到强烈的威胁感，仿佛永远有一个和巢母实力相仿的强敌徘徊在孵化所周围。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]如此一来，那些在外游荡的哈比，就是想不归巢也不可能了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]至少在吾拳意散尽前的两三个月内都是如此。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]两三个月？完全足够了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]只要安娜那边顺利，我们三五天就能找到异变的源头，彻底消除山上的危机！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]如此甚好，能避免枉造孽业，终究是功德一桩。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]此间事了，就请诸位一同回院吧。[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

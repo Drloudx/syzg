@@ -1,0 +1,78 @@
+{
+  "script": "c3_3_a_1",
+  "des": "c3_3_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]说起来，我们要去接的那些“仪式物资”都是些什么啊？难道是故事里提到的那些法器啊贡品啊什么的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]那倒不是。仪式本身并不需要贡品，每次需要的物资基本都是“一次性法阵增幅用”的材料。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]一次性……增幅……法阵？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]我之前说过吧？净水仪式是利用水神大人的神力净化富魔水的仪式，但是在整个魔爪湖，拥有神力的却只有两位选民。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]大长老和圣女当然实力强大，不似凡人，但要净化出足够整个湖区饮用的净水，仍然不过是杯水车薪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]所以这时候就要把仪式的力量增幅了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]是的。这是大长老和水商商会的技术人员一起研究出来的技术，效果超乎想象得好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]正是因为这些物资如此重要，我们才必须慎之又慎，把它们万无一失地运回尾指村。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

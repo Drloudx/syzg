@@ -1,0 +1,121 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]嗯……根据地图，绕过这道弯，就到火山口了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不容易啊……之前在索利德山还不觉得，现在走雪山山道，可算是让我明白，为什么都说山路难走了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]明明这山顶的高度远远不及索利德山，但走起来耗费的体力竟然相差无几……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]毕竟天寒地冻，地面湿滑，对体力的消耗都很大。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我毕竟一路上都骑着软软，基本不费什么劲，倒是你们居然爬得这么快，你们几个的实力已经完全不像人了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]米托拉这种论外就先不说了，艾薇杜尔你不是秘术师吗，怎么也有这么好的体力啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]还有{myName}和伽拉忒亚，你们也不是特别强壮的类型，为什么耐力会这么好的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]这个……这应该算是灵界的加护……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我是因为被戒律骑士们锻炼得好。",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我的话……大概是天生的吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]……唔嗯嗯……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]你们……算了……果然攀比心是烦恼的根源，我一个学术型人才，还是不要和你们这些体育系的比了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_13_a_1",
+  "des": "进入后【c5_13_a_1】。"
+}

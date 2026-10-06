@@ -1,0 +1,619 @@
+{
+  "script": "c1_14_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]妈妈～我们来啦～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]叫什么叫叫叫，还好意思叫！看到妈妈遇险，救援居然还没外人积极！[r]妈妈真是伤心到家了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]哎嘿嘿～缇莎相信妈妈嘛～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]真是的……各位是驿站的契约者吧，非常感谢你们的及时支援。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]无需道谢，举手之劳。而且缇莎告诉过我们，这种程度对于首座阁下来说，应该根本就不算什么危机才对。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]所以我要感谢的不是什么救命之恩，而是要感谢你们拯救了我最喜欢的这件法袍。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]我如果拿出实力，这些杂鱼当然不算什么，但那样一来，[r]这件笨蛋女儿给我做的法袍，可就得化成灰烬了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]法袍会化为灰烬……？什么意思？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]嗯？我没有说过吗？妈妈是[color=ffb64d]恶魔[colorEnd]唷！[r][l]一旦显露真身，就会把周围的东西全部烧毁的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]什么意思？你说的恶魔是某种形容方式吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]恶魔倒不是什么……形容方式。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_46",
+            "text": "莉、莉拉首座……！"
+          },
+          {
+            "tag": "tag_46",
+            "text": "您这个姿态是……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]如你所见，我的笨女儿说得没错。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真……真的是……“恶魔”？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这可是连我都不知道的奇谭……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]她头上的火焰……好像一直都在熊熊燃烧……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]嘿哟。这样就戴好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]我看你们也不像什么坏人，这也没什么好隐瞒的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]恶魔就是恶魔，是来自魔界的高等智慧种族。[r]以前或许风光过几年，但现在已经是连家都回不去的剩种，不值一提啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]好了，千里迢迢来到这鸟不生蛋的观星高地，是要找我有什么事呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "我想请问你一些问题——"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show][cm]问问题啊。那就看在之前的份上，勉为其难地回答——嗯？等等……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]看来你们两个的身上……藏着非常有趣的东西呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？我和{myName}……？我、我们怎么了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]从你们两个身上，我好像闻到了非常熟悉的味道……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "（嗅嗅自己的身上。）"
+          },
+          {
+            "tag": "tag_14",
+            "text": "好像没有什么味道啊。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show][cm]别在那闻来闻去了——！我这是一种修辞、比喻！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]总之，你们两个身上，带着一件很古老……很古老的东西。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]很古老的东西？我们身上什么都没有啊……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_121",
+            "text": "难道你说的是……"
+          },
+          {
+            "tag": "tag_121",
+            "text": "（拿出奇怪的碎片。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]啊！这个！这个不就是我们在角布林营地拿到的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]嗯，这就是其中之一。虽然你们身上似乎还有些别的味道，不过这个[color=ffb64d]匠器碎片[colorEnd]涌出的魔力波动确实是格外显眼。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "你是说……先时工匠制造的“匠器”？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]没错，就是那个先时工匠们所创造的，工匠技艺的集大成，用来创作、修复、改造，[r]完成种种设计和工程的便利工具——嗯，你自己身上不也带着一件吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]别到处找了，就是你手里握着的这个东西！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唉？是说这个[color=ffb64d]工匠锤[colorEnd]？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]对啊，这家伙一看不就是哪个工匠家族的传人吗，带着一两件匠器在街上晃来晃去也是理所当然的吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？你是说、{myName}是什么古代工匠的传人？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_77",
+            "text": "是不是古代工匠的传人倒不知道……"
+          },
+          {
+            "tag": "tag_77",
+            "text": "但这把工匠锤，的确是从我父亲那继承来的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show][cm]啊，当然我也是瞎猜的。不过我感觉是八九不离十啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们这俩母女怎么一个赛一个不靠谱啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]所以，你的意思是，这个碎片，其实是某个什么，呃，匠器——[r]就是类似这个工匠锤的东西上掉出来的碎片？那又怎么样了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]我说你这小猫，可别觉得匠器只有锤子一样的形式。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]工具岂是如此不便之物。说到底，所谓工具不就是帮助完成工作的道具吗？[r]如果只是用来拼个桌子椅子什么的，木锯和手锤就是不错的工具。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]但如果想要整流地脉、改造自然，甚至……[color=ffb64d]重塑世界[colorEnd]呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "难道说……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]看来你已经明白了。所谓的匠器，便是黄昏前工匠用来完成工作的工具。那些先时工匠就是如此狂妄，他们的工具自然也和他们一样夸张。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]这枚碎片……我估计也来自一件相当强大的匠器上。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "原来如此，谢谢首座阁下的解惑。"
+          },
+          {
+            "tag": "tag_30",
+            "text": "在找到它的时候，的确发生了奇妙的事件。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]嗯？你说你们和这个匠器碎片发生了共鸣，然后互相看到了对方的[color=ffb64d]记忆[colorEnd]？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没错……那种感觉特别真实，仿佛亲身走进了彼此的记忆一样……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]唔……真是抱歉，关于这一点，我就没什么猜测了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]至少在我这千把年的生命中，我是没有见过什么匠器有这样的能耐。[r]如果排除掉匠器的影响，那有问题的，自然就只有你们自己了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]所以这个谜团，恐怕也只能你们自己去解决了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]哎呀，不小心说了这么多废话。我记得你们是要来问问题的吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]原来你还记得我们是来问问题的啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "那么请容我问出我的问题吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_37",
+            "text": "请告诉我离开深渊的方法——！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]离开深渊？原来如此！我就说深渊里怎么会有连我都不知道的古代工匠传人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]看来你是从外面不小心闯进来的？那还真是倒霉啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]别取笑{myName}了！快告诉我们答案吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]好啦，我直说了，根本就不存在什么“离开深渊的方法”。至少，“[color=ffb64d]现在[colorEnd]的深渊”是没有人能够出得去的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "我想要亲眼见证原因。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]好啊！你所说的那个“原因”，只要往北走到[color=ffb64d]北边的山崖[colorEnd]上，就能一眼看到了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]正好我们也要到那边去，就拜托你们几位，顺带护送一下我们吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊——？又要干活啊？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

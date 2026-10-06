@@ -1,0 +1,110 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]有人要害你！小心！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]有人要害我？到底怎么回事？你们发现了什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们在森林里发现了一群背叛者，他们打算袭击你们以破坏和驿站的盟约。快查查你周围的护林人吧，他们的人很有可能就在其中！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔？",
+        "text": "[show]什么？背叛者？你说的那些人……是什么样子的……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]快退后！她不是芭杜尔！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]什么？居然——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]……我们来晚了。心影草雾已经在金弦之厅蒸腾开来，这些烟雾已经迷惑了我们的心智！但我可以确认，眼前这个人绝不是芭杜尔！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔？",
+        "text": "[show]哼……没想到你们还有些本事呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔？",
+        "text": "[show]看来巨木那边的人失败了，真是一群废物。不过也好。虽然没能如期散播足量的心影草雾，但预期的目的也算达到了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔？",
+        "text": "[show]而且你们居然亲自送上门来……在我暗心祭司的威压下乖乖束手就擒吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]大家上！把他们全部拿下！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哼！休想！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "笼罩宴席的心之阴影",
+  "script": "c4_ex5_1"
+}

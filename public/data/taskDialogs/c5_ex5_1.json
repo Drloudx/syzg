@@ -1,0 +1,134 @@
+{
+  "script": "c5_ex5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]各位请看，这就是我说的那条管子了。[l][cm]",
+        "charaName": "货殖系学生库皮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔，这好像我们在碑林和山顶看到的那些管线呀。这也是结社那群家伙留下的吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……库皮，你没说明白啊。这哪里是管子，这是线缆啊！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]抱……抱歉！是我报告的时候太草率了，我也不是工匠学专业的啦……[l][cm]",
+        "charaName": "货殖系学生库皮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事……现在发现也还来得及。奥格小姐，你和库皮小姐先留在这里看着这里吧。[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]留在这里？你们打算去干嘛？[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们要去看看这条线缆通向哪里。如果真的有人在针对温泉村，我作为代理院长，绝不能坐视不理。你们只需守住管道末端，追踪的事情就交给我们来处理。[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事，让库皮看着就好，我跟你们一起去。[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？你也一起来？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那当然！别看我现在是温泉村的老板，我也曾是能上天入地的探险家！为了保护我的温泉村，舍身去探寻真相又有何妨？[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……你说的上天入地，指的就是把瓦菲诺一个人丢在遗迹里不管吗……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呸呸呸！你说什么呢！库皮，你就留在这里看着管道，如果有危险就去找院卫，我们很快就会回来的。[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是……是！保证完成任务！[l][cm]",
+        "charaName": "货殖系学生库皮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行，那……我们走吧。跟着这条管道，看看它最终会通向哪里。[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，我们走吧。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": ""
+}

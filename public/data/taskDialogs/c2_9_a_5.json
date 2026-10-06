@@ -1,0 +1,225 @@
+{
+  "script": "c2_9_a_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]唔，又是一个新的试炼吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]你们看，这堆的都是什么？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]是哦，有好多刚刚的石柱……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]然后，你们看那边！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]那儿也堆着许多石柱……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]{myName}，你再来给我们分析分析！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "或许是要我们把石头运到那边。",
+            "tag": "tag_40"
+          },
+          {
+            "text": "或许这代表了起点和终点。",
+            "tag": "tag_40"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但这石头也太重了……",
+            "tag": "tag_41"
+          },
+          {
+            "text": "肯定有什么省力的机关……",
+            "tag": "tag_41"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show][cm]是、是吗？我是觉得应该没那么麻烦才对。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]不过你是聪明人，这里就先听你的吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（几分钟后……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]呃，怎么样？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "好像没什么灵感……",
+            "tag": "tag_46"
+          },
+          {
+            "text": "到处都找不到机关……",
+            "tag": "tag_46"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show][cm]我感觉这真的没什么花活，要不我们先动起来试试？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "可是贸然行动的话，也许会——",
+            "tag": "tag_47"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show][cm]哈啊——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]走你——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]啊，简简单单就搬起来了。不愧是自卫团第一莽夫。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]那边传来了骚动。有魔物要过来了。做好准备——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我担心的就是这点……",
+            "tag": "tag_51"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show][cm]哈。我理解你的担心，但有时我也觉得先行动起来更好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]哈，有时候的确是这样。喂，卡夫！你专心搬运，我们来掩护你！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]好嘞——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_5"
+}

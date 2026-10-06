@@ -1,0 +1,105 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]很好，很好～！看来这个魔法的运作非常稳定。你们有感觉到任何不适吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……就是进去和出来的时候感觉头有些发胀，其余的时候就……还好吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]那就好，看来你们并没有产生任何不良的反应，这次的记忆之旅算是圆满结束了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]检查看看你们的东西吧。它们应该不会再闪闪发光了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "多谢。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦！这些东西都没再发光了！看来今晚是不会再失眠了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……不过一下子看到了这么多新东西，我总觉得脑子有点乱糟糟的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这是大脑接受信息之后的正常现象，吹吹风就好了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这间实验室也太闷了，我们还是先回地面上，再好好梳理一下这次的记忆之旅吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "总结了之前的旅行，几人非常混乱",
+  "script": "c1_ex1_5"
+}

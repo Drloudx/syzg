@@ -1,0 +1,454 @@
+{
+  "script": "c4_ex2_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这里是……森林……？看上去好模糊，这里就是精神空间吗……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]检测到未登录的灵魂适格者，开始验证程序，第一考官生成中，拟似人格调取进度……完成。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶诶？这、这是什么……？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]哇、哇啊……！有、有东西出现了……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]现在的适格者一点礼貌都没有吗？真是的……我是你的考官。你就用“斯塞拉”来称呼我吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]斯……斯塞拉？您是蛇灵斯塞拉大人……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]我不是你们认知中的那个“蛇灵”，而是“巨木”为了这次同调连接测试设置的虚拟人格。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]呃……等等，斯塞拉大人……同调？测试？虚拟……人格？我不太明白……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]……噢，好的。嗯……你就当我是你那个什么蛇灵的一个“备份”吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]那么……伟大的，呃，备份的斯塞拉大人……请问这次“测试”，具体是要我做些什么呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]……现代的文明断层这么严重吗，新的适格者已经连这种基础信息都没法掌握了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]逻辑中枢，我申请调取过往日志。你们不能让我一个新生人格在什么都不明白的状况下进行这么重要的工作。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……诶？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]……什么？现在供能协议正处于紧急模式，暂停外部申请？怪不得我生成时连记忆存区都没有权限访问！这……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]斯塞拉大人？请问是遇到什么问题了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]啊——不，没有什么特别的问题。只不过缺乏了日志的协助，我恐怕无法用贴近你们文化和知识水平的方式向你说明本次测试的内容了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]如果是这样的话，请您就按照您的习惯来遣词造句好了。我会尽可能开动脑筋，努力理解和接受的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]这也可以吗？你这性格这么软，居然都可以成为适格者，看来现在的选拔机制也有点……算了，正事要紧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]既然适格者作出了要求，那么我作为考官和引导员，当然予以满足。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]现在开始说明本次“同调连接测试”的目的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]本测试是资格测试，旨在测试适格者的智力水平、精神状况和灵魂同步率，以确认其是否拥有足够资格，成为生物型半永久导流机关“巨木”的管理员。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]通过测试的适格者，将通过灵魂同调协议，获取“巨木”的现场管理权限，通过对现场信息的收集和判断，辅助“巨木”完成最初设定好的目标。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]同时，我也会视你的作答，赋予适配你特质的预制格式流魔力，用于完成上述目的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]巨木的……管理员……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]原来……所谓灵魂先知的试炼……居然是这个意思吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]你们把管理员称之为“灵魂先知”？听起来好像有些……呃，原始。看来外界的文明还没有恢复到足够的水准。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这……对不起……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]对不起？你不用道歉。人不能改变自己的出身，生存在这样的环境中也不是你的过错。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]要我说，即使只有这样的文明水平，你们还能坚持职责，通过一代又一代适格者的努力，协助着这个系统一直运转到今天……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]这已经足够证明你们的韧性了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]感谢您的夸奖。但是我来这里并不是和您聊天的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]现在外面有一场巨大的灾难，需要我成为……“管理员”，去阻止它！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我们可以开始试炼了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]当然可以，其实测试早就开始了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]你以为测试是什么？是要你去哪里干掉几个魔物，还是在这梦里收集什么东西？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]这是要测试你的智力、精神，还有灵魂！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]我们的对话信道，是由你的灵魂力量开辟的。我们之间对话的流畅程度，就能测出你的灵魂强度。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]而心智、道德、精神稳定性……这些东西，都可以从对话之中窥见端倪，所以适格者，我们的对话，并不是在浪费时间。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]那……我的测试结果怎么样？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]在第一关来说，我认为结果不错。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]即使遇到超出认知的概念，你的智力也足以让你理解；面对和信仰不同的状况，你也没有歇斯底里的反对。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]就算不调取日志，我也相信，你的表现比绝大多数的适格者都强。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]但这并不是最终的结果，你还需要面对后面的考验。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]后面的考验？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]既然目标岗位是“巨木”的管理者，我们总不能录取一些会因特定的因素突然爆发，就开始反文明反社会的家伙吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]哦？看来你好像认识类似的人物？那你想必理解我们这些设计者的顾虑。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]所以在下一个阶段的测试里，你要直面自己的心理创伤，和它们战斗。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]战、战斗……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]战斗也需要翻译吗？就是和它们打。不过不要担心，这里是精神空间，精神的强大就是真正的强大。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]只要你能够克服内心的创伤，你就能轻而易举的战胜它们。但如果失败，那一切就结束了，明白了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我明白了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "斯塞拉？",
+        "text": "[show]很好，那就前往第二关吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_ex2_2"
+}

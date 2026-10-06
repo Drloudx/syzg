@@ -1,0 +1,134 @@
+{
+  "script": "c3_11_a_7",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]唔……！[wait=1000][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]胜负已分了……！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不愧是……圣女大人。我不是……对手。[l][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]能够在我手里走上这么多招，你确实成长了很多。你的努力有了成果，我也倍感欣慰。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]果然在强者面前……凡人的努力再怎么开花结果，也还是会在才能的高墙上碰得头破血流啊。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]阿莱姐……在我这个年纪的时候，你应该也能轻松战胜现在的我吧。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]大概……只是一般轻松？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]毕竟那时候我还没通过水神试炼成为神选……和你一样也是“凡人”啊。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是吗。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]身为失败者，我已经没资格阻止你们了。要对我做什么，随你们的便吧。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂……[l][cm][hide]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]只是把我绑在这里就行了……？等我恢复力气，搞不好会逃走的哦。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这样比较像俘虏嘛。你就在这等待一会儿吧，有阿莱姐和{myName}在，图洛德的阴谋很快就会浮出水面了。[l][cm][hide]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]希望你在那时，依然能够坚定自我……去相信你应该相信的东西。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_11_a_7"
+}

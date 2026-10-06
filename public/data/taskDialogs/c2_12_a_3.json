@@ -1,0 +1,121 @@
+{
+  "script": "c2_12_a_3",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]这……这是……！[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这个景象……！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]好……好大！这个骨头到底是什么呀！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]“山神之殒”……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]山神之殒？那不是村里长者们口中流传的传说吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯……我小时候听说过。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]山神是在龙岳传说之中的巨兽，传说它们数量稀少，每一个都拥有不可思议的伟力，能够开山破岭、分天裂地，实力甚至凌驾于真龙之上……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这个说法吾也知晓些许。但即使在龙岳，山神也只是传说，从未有人亲眼所见过。未想在此，居然能够看到如此巨兽的遗体……[l]",
+        "nameSide": "left",
+        "charaName": "剋"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "从工匠锤的反应来看，应该就是这里了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]哈，能长出那么大的水晶，不用想就知道是这里。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]根据我的推测，这里就是逆流天河的“下游”。所有的魔力都汇聚在这里，是最适合那个大家伙当老巢的地方。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]看来我们的目标就在这座山神之殒之中了。先就地扎营，取用一些补给，恢复下精力吧。[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯……说得对。等我们稍微恢复一些体力，就立刻进去！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_12_a_3"
+}

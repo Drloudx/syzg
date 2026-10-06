@@ -1,0 +1,272 @@
+{
+  "script": "c1_13_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]那个。不止米托拉有这种感觉，我也有点疑问。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]刚刚我们好像一直在这附近兜圈子。[r]真正爬坡的路没走几段，魔物倒是宰了一大堆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我就说吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]小缇莎……你确定这条路是对的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]唉？我……我……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "缇莎，你之前是靠什么辨认方向的？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show][cm]当然是靠感觉啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]嗯……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "靠感觉……是什么意思？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]就是靠“感觉”呀。之前都是越往某个方向走，妈妈的感觉就越明显，就仿佛妈妈在远方一直在呼唤着我呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我完全搞不清楚了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]小缇莎……该不会一直是靠感应魔力来认路的吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "用魔力来认路……？"
+          },
+          {
+            "tag": "tag_14",
+            "text": "说来，缇莎也算是个秘术师……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]就像猎人擅长追踪猎物的气味，秘术师也能感应其他事物的魔力流动。[r]可能小缇莎比其他秘术师更擅长这个也说不定。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]那么复杂的东西缇莎不是很懂……但说来，这一路上的感觉一直很奇怪……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]就好像……到处都是妈妈的感觉，到处又都不是妈妈的感觉……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]如果真的是迦南姐姐说的“魔力”，那就是有好多好多魔力交缠在一起的感觉……[r]缇莎好不容易才能在其中找到妈妈……缇莎才……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]太好啦！我们迷路啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]呜呜，对不起……米托拉姐姐……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "小缇莎，试试再专心一些。"
+          },
+          {
+            "tag": "tag_20",
+            "text": "先认准最有可能的方向，然后往前走就好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]真、真的吗……大家还愿意相信缇莎吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "我相信你。"
+          },
+          {
+            "tag": "tag_21",
+            "text": "现在只能靠你了，缇莎。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]那、我……我试试……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]这……是妈妈的感觉！这边！我们走这边！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "我们走，米托拉。"
+          },
+          {
+            "tag": "tag_24",
+            "text": "大家，跟着缇莎走吧！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唔。也没别的办法了……走吧，大家！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

@@ -1,0 +1,30 @@
+{
+  "script": "c1_11_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这一定是一段轻松的旅程——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]轻松……轻松个鬼啊！不是说魔物都被大部队吸引了吗？怎么还有这么多啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这已经是被先锋冲散的魔物群了。大家重振精神，把它们都消灭吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

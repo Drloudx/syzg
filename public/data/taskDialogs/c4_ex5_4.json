@@ -1,0 +1,174 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等等！你们快看那边！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]芭杜尔！你没事吧？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]呜……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]没用的，这家伙吸入了大量的心影草烟雾，还持续战斗了这么久，早就没有反抗能力了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]你们来得正好，就让我一口气把你们全部消灭吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]咳咳……你……你为什么要做这种事……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]为什么？哼……芭杜尔小姐，我曾经很敬重你。你在“灾变之宴”中救了我一命。你领导的护林人，也是一支足以保护森林的强大力量。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]但现在早已不同了！如今的你和驿站狼狈为奸，只想着向仇人出卖自己人的你已经不配当森林的守护者了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]你知道为什么我们能这么容易在金弦之厅释放这种毒气吗？那是因为我们森林有太多人对驿站不满了，所以我轻而易举就能策反他们为森林而战！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]有太多人无法原谅出卖黑森林、导致“灾变之宴”的叛徒！所以我为什么要这么做，答案不是很明显吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]而且你们还带着驿站的人让巨木失去了声音，你们对森林犯下的罪恶已经够多了！就由我来消灭你们，净化整个森林吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]少扯你们那些狗屁理论！出卖黑森林、导致“灾变之宴”的根本就不是驿站！这根本就是你洗脑民众的话术罢了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]哼！你一个驿站的走狗、森林的叛徒，有什么资格在这里说话？当“灾变之宴”发生的时候，你还在驿站联军里吃香喝辣呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]一派胡言！在大兽潮发生时，整个深渊都在承受着难以忍受的痛苦，我也一直跟随联军四处奔波救援，何来吃香喝辣之说？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]真正导致灾难的是大兽潮，它才是这一切的幕后黑手，为什么不明白！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]没错……当时联军确实未能及时前来支援，但那是有原因的……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]闭嘴！就是因为你们给自己找的借口，那么多人失去了性命！一条两条都是背叛森林的丧家之犬，还敢在这里狺狺狂吠！就让我来亲手制裁你们这些叛徒——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]正合我意！来吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}！我们快跟上去，把他们全部打倒！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]就在这里偿还你们的罪恶吧！此处就是你们三枝议会和驿站的“灾变之宴”！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "4图进入",
+  "script": "c4_ex5_4"
+}

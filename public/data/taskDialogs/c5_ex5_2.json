@@ -1,0 +1,229 @@
+{
+  "script": "c5_ex5_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]奇怪……我感受到了一股很强大却又似乎被压制住的魔力……[l][cm]",
+        "charaName": "艾薇杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我也有这种感觉，莫非是有什么强大的魔物在这里？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等……前面好像有人。[l][cm][hide]",
+        "charaName": "艾薇杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么回事？都调试这么久了，还没好吗？[l][cm]",
+        "charaName": "？？？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这些线和玻璃罩都是从垃圾堆里淘出来的，能凑合用就不错了角角。[l][cm]",
+        "charaName": "？？？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了这次行动，我们可是准备了很久。等到那什么温泉派对开启时，一定要让那个小瞧我们的矮子见识见识霜火队的厉害！[l][cm][hide]",
+        "charaName": "？？？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]铁线……玻璃罩！莫非……我知道了！[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是你们干的，霜火队！[l][cm][hide]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁在那里？[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是大书院那群蠢货，还有温泉村那个矮子，角角！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么矮子！角布林还好意思说别人矮！你们这些混蛋，要对我的温泉派对做什么！给我接受魔宠对决吧！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔奴奴奴！喂，要魔宠对决了角角！我要用石矛戳爆她的魔宠角角！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]别激动！这里先撤退！快用魔宠拦住她们，回到机器那边再说！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……可恶，竟然这么丢人啊角角！那就这么办吧角角！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么？魔宠对决是不能拒绝的！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈哈哈——！对于我们反派来说，你们的规则可不适用啊！再见了——！[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！你给我站住！雷素去哪了？你们到底有什么阴谋？[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔，可恶的家伙！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……米托拉，我知道他们想做什么了。[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这里满是他们从垃圾堆里捡来的金属……在雪地里铺了那么长的管线，还要把雷素抢走，他们的目的已经非常明确了。[l]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "金属……电缆……雷素……温泉派对……",
+            "tag": "tag_25"
+          },
+          {
+            "text": "原来如此！",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]你是说……他们想把这些金属做成的线通到温泉派对里，然后让雷素通电？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是这样！他们就是想趁着温泉派对举办之际，让雷素电击池子里的宾客！[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽说这些材料杂质太多，而且距离也很远，电力会减弱许多……但雷素的电量，也足以让池子里的人难受好一阵了。[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么？居然还有这种恶毒的计划！他们这么一弄，温泉村的名声就得彻底臭了！我们得去阻止他们！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那还等什么？我们快走吧！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": ""
+}

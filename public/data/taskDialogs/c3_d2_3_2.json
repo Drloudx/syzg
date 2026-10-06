@@ -1,0 +1,990 @@
+{
+  "script": "c3_d2_3_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德……！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哼……[l][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们终于来了。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在我收到消息说……圣女一行开始调查近期外出的商会高层的时候……我就预想到，我们最终会在这里相见。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]为了筹备这次会面，我马不停蹄地从尾指村赶了回来，没想到你们的效率还是出乎我的预料。即使我已经处处先手，还是差一点就没能做好准备。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不愧是索利德山的英雄，不愧是水占师的圣女……正是因为有了你们这样的英雄人物，世界才会变得更加美好。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呵，一点也不掩饰自己的恶行呢。[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我倒不讨厌这样的遗言！现在说这些已经没用了！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]因此，我才想诚挚地邀请你们，加入到我的伟大事业之中。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]如果你们能够和我站到一起，以我们的力量，一定能够带给魔爪湖一个更加光明的未来！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]邀请我们加入你？即使在我们知道……做出如此残忍之事的人，的确是你之后？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]当然。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]诸位不妨看看自己，看看这区区数人组成的队伍，是何等精锐——[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]米托拉小姐和圣女大人，是在整个深渊也寥寥有数的强者、领袖，{myName}阁下是工匠技艺的达人，同时也身负不俗的巧智……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]而尊敬的塞弗德里克先生是我重要的合作伙伴，是即使相识多年，仍然感觉深藏不露的“朋友”……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]即使是年轻的贝尔卡和埃迪蒂，你们一个是杰出的研究者，另一个更是我亲自培养和信任的左膀右臂！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在场诸位，包括区区不才在内，无一不是一时俊杰。而我们的才能和禀赋，就令我们的眼光超脱世俗的藩篱，我们的见地，可以不受迂腐的道德观和各种陈规陋习所左右。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]只要各位能够冷静下来，好好回想，你们就应该能够意识到，我对魔爪湖是何等热爱，我为了魔爪湖又作出了怎样的付出。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]而当你们意识到这一点，你们就会明白，我们从始至终都是同路人。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]既然目的相同，我们就应该理智一些，不要为了一些夹杂个人感情和善恶道德之类的无用之物，放弃对现今的魔爪湖最有益的选择。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]而不是，放任它的毁灭。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]满口歪理——！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]口口声声说你是为了魔爪湖……那些被你当成“耗材”，泡在池子里的人呢？他们就不是魔爪湖的人民吗？你的“热爱”就不能分给他们一些吗？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我当然是爱着他们的。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]事实上，我就平等地爱着魔爪湖的所有人。而正是为了湖区的所有人，我们就不免要作出一些……必要的牺牲。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你说必要的牺牲……？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是的。这都是必要的牺牲。我想睿智如{myName}，以及圣女阁下应该已经猜到了，我会在这里设立这个“净水基地”的原因。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是因为净水仪式的效能不够吗？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]您果然心中有数。是的，虽然我们一直在对外宣称，是我们强化了水占师之环的“净水仪式”给湖区带来了足够安全的无魔净水……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]但事实上，光是净水仪式生产的净水，还远远、远远不够让整个湖区的居民使用。根据我们的测算，仅靠你们水占师，只能供养现今的魔爪湖百分之六十的人口。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]唔……！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]即使为了弥补这一点，圣女大人……您在仪式之外，每天24小时，不眠不食，毫无间断地施展着净水魔法……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]什么……？24小时……不眠不食……？[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "所以阿莱克西娅经常犯困是因为……",
+            "tag": "tag_41"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]圣女大人的确无愧于圣女之名。为了湖区的人民，她几乎已经奉献了全部的身心，但这仍然是杯水车薪。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]就是在圣女大人如此拼命的情况下，这些多出来的净水，也远远，远远不及大半个湖区的缺额。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]为了让湖区的人民能够生存下去，我才不得不在某篇重要的论文基础上，开发出了这一套效率绝佳的净水装置……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这还得多亏了你，贝尔卡小姐……愿意将这么重要的文献，交付到我的手中。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呜……！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我明白你的研究是为了拯救魔爪湖。而我们的确做到了。这所付出的代价，不过是一些固然可悲可叹……但对整座魔爪湖来说微不足道的牺牲。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]微不足道？你是说……柏莉尔的生命，这么多人的生命，只是微不足道的东西吗！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]当然，生命相当宝贵，尤其是我们“人”的生命。“人”的生命之宝贵，就在于他们能够以主观的意志改造世界，创造出无限的“可能性”，我一直对此充满敬畏。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]但是，[color=ffb64d]宝贵[colorEnd]是一种相对的概念——再多的财富，在一个人的生命面前，都不值一提；而一个人的生死，与千万人的存亡相比，亦无足轻重。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]整个魔爪湖上下，超过三千七百名民众，五百余名战士，四十多位施法者……要供应足够的“无魔净水”，每一年，就需要四十条生命的“牺牲”。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们应该知道，这个数字并不算大。为了维持商道、采集建材、狩猎魔物，每一年自然伤亡的人数，就绝不在这个数字之下。而没有这座塔，百分之四十的人民会会因缺水丢失性命……！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]而相比起某些根本是无端浪掷的生命，我更能保证每一份“牺牲”都绝对必要，必无浪费。比起对生命的尊重，相信在整个魔爪湖地区，就无人能够与我相提并论。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]四十条生命……[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]和整座湖区……百分之四十的人民……[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，不要进了他的套！",
+            "tag": "tag_58"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德……我不得不承认，您的演说确实听着很有“道理”。如果顺着你的逻辑，这些人的牺牲，似乎就真的都有其“必要”。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不愧是圣女大人，那么您赞同我的意见了吗？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]很遗憾。我不能赞同！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]因为你始终没有回答——这种“牺牲”是否经过了那些牺牲者的同意！如果没有的话……又是“谁”，在“决定”由谁来牺牲！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]“谁”在决定……？那当然是“我”在决定！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]人性都是软弱的，每个生命，生来都会贪生怕死，即使面临大义，也完全不懂得付出。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]因此，当一个集体需要有人牺牲之时，就需要一个没有私情、绝对公平的领袖，为他的人民选择“合适”的牺牲者。[l]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你标榜自己为绝对公正？",
+            "tag": "tag_69"
+          },
+          {
+            "text": "你又是如何决定谁是“合适”的？",
+            "tag": "tag_69"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]那当然是有一个标准，标准的建立，正是公正的前提！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]正如我之前所说，生命无比宝贵，但宝贵的生命也有价值高下之分。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]一个人的生命，就比不过两个人。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]犯罪者的生命，就比不过生产者。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]行将就木的生命，就比不过健康强壮者。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]没有能力创造价值的生命，就比不过创造更多价值者……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]通过这种种因素，我就能把每一个人的价值进行量化，然后选择其中价值最低者，为整个魔爪湖作出“牺牲”。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这些人本来都是社会的不适者，或是秩序的破坏者。即使生存下去，对社会也毫无益处。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]但经由神圣的牺牲，他们就用自己无用的生命，创造出了千百倍于原本的巨大价值。这不仅是牺牲，更是生命的升华！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我可不觉得这是什么“生命的升华”！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]即使你说了这么多，我也只能看到你在对本就弱势的边缘者，施以更加残酷的毒手，将他们和他们的家人本就岌岌可危的生命彻底推入深渊！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这不是什么价值的问题，更没有什么因为立场不同而产生的模糊空间……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德！你的所作所为，正是毫无疑问的，纯粹的邪恶！哪怕你说得再怎么天花乱坠也好，你自己心里也早已有所察觉——[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]证据就是，你没有把这一套所谓“公正”的方案公之于众！因为你也明白，邪恶之物就好像是蟑螂和老鼠，永远只能存在于阴暗的沟渠之中，岂能暴露在光天化日之下！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哈。我本以为圣女大人有何高论，结果还是只有这些陈旧的善与恶。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我所做的一切，对于湖区来说，就是最“正确”，最“有利”的选择。不是用善恶这种非理性的感觉可以评判的！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]圣女大人说我是“不得不”将这一切隐藏？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不！你小看了民众对于生存的渴望！为了生存，他们可以允许任何残忍的事情发生——只要不是发生在自己身上！这就是人性！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]看，你也想象得到吧？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]而且你说光天化日，就是指你们的目光所及之处吗？你们尾指村自有神明的选民庇护，不曾因为水源而发生种种惨剧，但在大市集又是如何呢？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]因为一口水，父与子相轻，夫与妻相残，善良者被欺骗，老弱者被驱逐……这些事情没有发生在你们眼前，所以就不是你们的责任了吗……？不要太可笑！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那是……！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我正面回答你的话吧。我完全有信心，即使将这一切公之于众，我的决定也绝对会受到民众的支持。因为他们就明白，真正有利于自己的究竟是什么！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]但是……就像你所质疑的一样，这一切在道德上终究是存在瑕疵和污点的……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]现在或许不算什么，但魔爪湖要向前走，就离不开这座塔和我！而要更好地领导魔爪湖，我就需要一个清白的名声！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这才是我选择隐藏这一切的原因，那绝不是因为我恐惧于他人的误解，而是为了让魔爪湖更好发展而作出的考量！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是吗……但我可完全没觉得你这样的领袖会让魔爪湖变得更好……！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦，埃迪蒂。作为我最信赖的助手，你也不能理解我吗？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不，我完全理解。正因为我是你的左右手，我才能够更全面地观察和理解你。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]无论是平时那个温和有礼、英明睿智的图洛德会长，还是现在我们眼前，这个傲慢残忍、理智冷酷的你……[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]真实不虚地体现出了你将魔爪湖视为自己私产的“欲望”，还有“野心”！说什么为了魔爪湖，那不就是你为了掌握更大的权力而提出的借口吗！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]如果没有了这座塔，半数的湖区居民就会没命？这算什么规则，算什么秩序？我发誓要守护的规则可不是这样写的——！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你这份可悲的顽固曾得到过我的青睐……而如今你口中的话则令我失望至极，埃迪蒂。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哎呀，这话说得真是刺耳，不愧是治安队长，对于坏人的看法就是一针见血。怎么样，图洛德老兄？有后悔自己把埃迪蒂小姐培养得如此敏锐和正直吗？[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]塞弗德里克。你也是个吃里扒外的家伙。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这处“黑涧浴池”的设备，可有不少都是[color=ffb64d]你们[colorEnd]提供的技术……现在，你却站在了我的对立面。你有这个脸吗？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦，这个我可以辩解的，毕竟技术无罪，使用技术的人才有罪嘛。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哈。大言不惭。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我听不下去了——！这家伙都承认自己的罪行了，废话就说到这里吧！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你比我见过的任何人、任何魔物都要可恶！给我伸直脖子等好了，图洛德！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哼……没想到堂堂的索利德英雄，居然会是这样毫无头脑的劣等生物，遇到任何事情就只知道诉诸暴力，而没有任何的思考。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你说什么？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我也无法接受这样的道理！你的花言巧语不会让我分心……我要为柏莉尔报仇——！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我要依大市集法条现场逮捕你，前会长图洛德——！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]真是令我失望。不过，我早已料到我的主张可能不会被你们这些伪善者接受。还有你，塞弗德里克……你的确不可信任。[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]为了应对在这个深渊之中也称得上强者的对手，我也准备了足以匹敌的同等级别的武力！[l][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]什么……？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]他手上的那个是……！[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是匠器核心！",
+            "tag": "tag_125"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哈哈哈哈！多亏了你们愿意陪我闲聊，我最后的准备也完成了——！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]现在，准备见识先时匠技与现代魔法的完美融合吧！[l][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]各位，准备应战——！[l][cm][hide]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这就是……匠器、魔力、魔物之血与人类智能的完全统合——！[l][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在这完美的躯体面前——[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们才是挑战者！[l][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_d2_3_2"
+}

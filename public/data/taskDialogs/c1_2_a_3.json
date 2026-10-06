@@ -1,0 +1,195 @@
+{
+  "script": "c1_2_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "受伤的契约者A",
+        "text": "[show]得、得救了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者C",
+        "text": "[show]谢、谢谢你们……唔，好痛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]别动。我来帮你们做应急处理。事先问一句，{myName}，用一些我们自己的治疗物资没问题吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "无妨。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]明白。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者B",
+        "text": "[show]谢……谢谢你们。特别是你……猫耳的契约者……[r][l]没有你冲上来的那一击……可能我们早就没命了吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这没什么。你们能活着就好。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]听到没有！能活着才好！接任务前好好确认一下自己的能力，不要为了报酬把命送掉！听到了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者A",
+        "text": "[show]啊！是……茜塔前辈！我们一定不会再逞能了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "契约者会经常救援别的契约者吗？",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]有能力就会去救。为什么问这种显而易见的问题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]你说……你知道的“佣兵”之间并不会这样做吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这么多年来，契约者已经越来越像佣兵了，这没得辩。[r]不过比起他们，我们还是多了一点点人情味。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]就是这一点点的差别，我们愿意把后背托付给陌生的同伴。也有不少人就是冲着这一点才加入到驿站的队伍中来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]所以你才这么信任我们？就因为我们也加入了契约者？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]一方面是啦。另一方面……作为后辈，你们确实很能干不是吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我能明白。",
+            "tag": "tag_21"
+          },
+          {
+            "text": "职场气氛确实很重要。",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]好啦……伤口都包扎好了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]你们几个，能动就快点站起来，和我们一起撤回驿站！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者们",
+        "text": "[show]是！茜塔前辈！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]人情味……是吗……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

@@ -1,0 +1,277 @@
+{
+  "des": "c4_11_a_3",
+  "script": "c4_11_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]何等亵渎！你们这些罪人——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]亵渎？我身后这位魔女，按照你们的教义，可能确实算是亵渎吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]但我作为“森林之敌”，和你们敌对是理所应当的吧？有哪里算是亵渎了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]你——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]姐姐，不要被他激怒了！我们必须先阻止罗姆洛敏！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]你说得对！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]背叛者，你该停手了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]树冠守望者大人，你要攻击我的盟友，我可不能视而不见啊。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "盟友？和一个试图毁灭森林的人？"
+          },
+          {
+            "tag": "tag_20",
+            "text": "没有森林，你们准备去哪儿伐木？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[cm][show]不不不，英雄大人，您对罗姆洛敏女士似乎有些误解。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]这位“魔女”阁下所要的，只是毁灭巨木，以及食古不化的金弦之厅。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]如果没有那些碍手碍脚的森林人，我们的伐木场，岂不是从此就能稳如索利德山了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]亏你自己都是个二五仔，没想到居然会这么简单就相信别人啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]相信？不，我只是觉得……就算被骗了也没什么不好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]毕竟魔女阁下是真的想要对付金弦之厅，而她交给我的这份力量，也是真的足够强大……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]至于事后她是否会爽约，又或者是否会出卖我……我完全不在乎。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]毕竟最糟的情况，我也可以让一直欺压我们的森林人好好喝上一壶，这又何乐而不为呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]你可真是看得通透，只是不知道你想过没有，你所认为的“最糟的情况”，或许并不是真的最糟呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]呵……我觉得，那是不可能的。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哦，“魔女”阁下，您的事情办完了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]你做得很好。枭灵的力量……也已经落于我手了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]那就表示，我可以正式动手咯？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗姆洛敏",
+        "text": "[show]按照约定，我会告诉你“那东西”的启动咒语，剩下的就随你喜欢吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]啊！罗姆洛敏她——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]喂，小姐，你在看哪里？明明我这个“森林之敌”才是现在你们必须正视的敌人啊——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]……！你手里的东西是！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哈哈哈哈！感觉到了吗？树冠守望者！这股不祥的力量——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]这就是“魔女”阁下给我的“报酬”！将布斯波乌尔的枯萎伞盖中凝聚的枯萎魔法，附上辛普拉的种子制造出的绝对凶兽！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]恸哭的辛普拉长子——戴欧耶亚！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]哈哈哈！睁开眼睛，将你眼前的饵食吞噬殆尽吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你说谁是饵食呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]想吃我们？我早让你别发梦啦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

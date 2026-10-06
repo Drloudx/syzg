@@ -1,0 +1,62 @@
+{
+  "script": "c1_14_a_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们快看！那边是不是有人！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]真的！有人正在被魔物围攻！我们快过去！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]啊！不用急不用急！那是首座大人啦～首座大人的话，什么都应付得来啦～[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]缇莎，你这个笨蛋女儿！来都来了还不快点过来帮忙！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]啊～！是～～！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呃……她们这个母女关系……到底算好还是不好啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我觉得应该算不错？呵呵，先不管这些，我们还是快点动手吧！[r]再等下去，我怕那位首座阁下要发脾气了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

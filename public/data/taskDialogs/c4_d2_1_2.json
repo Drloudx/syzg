@@ -1,0 +1,355 @@
+{
+  "script": "c4_d2_1_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这是什么地方？看起来好像有些奇奇怪怪的装置……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这里是能够与“巨木”的逻辑中枢对话的控制间。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我用自己的临时权限，应该能够让“巨木”帮我们找到敌人的所在。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦，那快来试试吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]“巨木”，请为我们揭示非法入侵者的所在坐标。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]入侵者当前所在位置……地下三层，心之圣所。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]心之圣所？不是匠器之间吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]“巨木”，请说明心之圣所的相关情报……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]心之圣所，是封印“[color=ffb64d]旧神心脏[colorEnd]”的核心舱室，本机构的匠器也安置于此。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]在黄金时代降临前，如今被称为“[color=ffb64d]旧日之神[colorEnd]”的多个强大存在降临到卡露蒂亚大陆，在漫长的时间中，被这片大陆上的生灵们陆续讨伐。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]但“旧日之神”的强大超脱了常理，即使逝去之后其躯体依然具有极高的活性，并会对周围的自然环境造成影响。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]这一现象被工匠们发现，并设法予以利用，其最终成果，就是“[color=ffb64d]景观改造匠器·地脉组网阵列[colorEnd]”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]景观改造匠器……地脉组网阵列……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是说“深渊”里的所有匠器……",
+            "tag": "tag_16"
+          },
+          {
+            "text": "都是某个大型匠器的一部分吗！",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[cm][show]正确。被你们称为“深渊”的这片区域，在███年前只是一片毫无生命的岩原。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]设计者们在这里用多个匠器组建了威力强大的地脉网络，通过调节地下的魔力平衡，将大量的魔力集中起来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]其目的就是为了镇压被封印的“旧神心脏”，将其中的活性因子通过地脉抽取到整个区域，从而引发积极的地貌景观改变。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]经过███年的运行，该阵列已成功将目标区域改造为充满生机的宜居区域，最初的设计指标圆满达成。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]等等……还有这么重要的事，但试炼结束的时候……您交给我的信息里没有这些啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]这是最高级的机密信息。没有最高权限者的许可，不能向一般工作人员，甚至是管理员透露。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]咦……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？那现在呢？现在怎么又可以说了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]因为有两位最高权限者陪同，逻辑中枢判断，临时管理员的询问得到了默许。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呜喵喵？我、我和{myName}是最高权限者？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]你们两位并没有灵魂同调的相应资质，因此无法与“巨木”同调进行直接操作。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]但你们的访问权限，确实是最高的等级，无可辩驳。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "“巨木”，说明我们的权限来源！",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[cm][show]尊敬的大匠师。根据您所持有的“万应之钥”的解封等级，您已具有相关工程状况的审查权限。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]“巨木”判断您具备数据库最高许可。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]另一位，尊敬的“二重灵魂之人”。在您的灵魂波动中，发现了设计早期录入的权限印记。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]“巨木”判断您与设计者具备直接关联，同样赋予您数据库的最高许可。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？啊……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]什么二重灵魂之人，什么关联……能不能说得更简单易懂一点……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "“巨木”",
+        "text": "[show]为应对入侵者，“巨木”正在调用迎击策略，本终端供能中止，现在停止使用……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]喂！话说到一半怎么停了！给我说清楚啊！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "看来这个终端已经不能使用了……",
+            "tag": "tag_39"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啧！还以为先时造物有多厉害呢，结果也这么不顶用！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好啦，虽然还有很多疑问，但至少我们已经知道了敌人在哪儿！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]更多的就等解决敌人之后再问吧！我想到那时候，这个“巨木”应该不会拒绝我们这两个“最高权限者”吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]肯定不会的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]刚才的对话意外地浪费了不少时间……保险起见，我们还是快往下一层去吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_d2_1_2"
+}

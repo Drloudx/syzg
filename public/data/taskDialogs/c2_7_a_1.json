@@ -1,0 +1,46 @@
+{
+  "script": "c2_7_a_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]大家注意了，从这里往前，就开始进入哈比的警戒范围了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]所有人都提高警惕，我们随时可能遇到哈比的狩猎小队！[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]没事啦，不就是野生的魔物而已，包管让它们有来无回！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯，你们的实力我还是很相信的。不过哈比毕竟会飞，如果没有应付这类敌人的经验，最好还是稳扎稳打吧。[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_7_a_1"
+}

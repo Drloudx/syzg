@@ -1,0 +1,389 @@
+{
+  "script": "c2_4_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]菲莉娜？怎么突然停下来了？前面——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]嘘——！小声点，看那边——[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]马可叔叔……你为什么要做这种事？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]这些人……是外面来的佣兵吧？为什么你会和他们在一起？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]为什么？当然是因为老子要当人上人呀！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]村子里的那些蠢材们，本来就应该被我这样的聪明人统治和领导才对！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]你……你就为了这个，勾结哈萨琳之手，背叛了村子？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]乖侄女。你这说得也太难听了。这怎么叫勾结，又怎么能叫背叛？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]我只是为了帮一些困难的村民改善生活，请求了外乡朋友的帮助而已啊！你可千万不要诽谤我的善举啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]要是你乖乖听话，我还能看在多年乡亲的份上照顾你一下。但你要是惹火了我，那我可不敢保证，在拿下罗伯特之后，你会有什么下场啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]什么？你……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]马可叔叔……你真的要这么绝情，一定要对村子不利？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]我们一起在巴诺姆生活了这么多年。村里的大家……难道不是像家人一样互相帮助，互相扶持才走到现在的吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]哈哈哈……家人！也就你这样的小丫头才会这样觉得了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]你以为今天村子里为什么差点打起来？这是光靠我能煽动起来的吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]不，是因为他们本来就快要火并了，我只是给了他们一丁点……提醒而已。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]是，你爹当这个工头以来，确实是很公平，所有的收益都给村里人平分了，就连他自己也没多拿一份。但这有什么用？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]这里的水晶花意味着什么，他们不明白吗？不，他们心知肚明。只要现实的困难没法解决，人心中就会催生不满。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]公平并不会让这不满消失，而不公，更会让这不满加剧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]小丫头，你所谓的“一家人”只不过是你的一厢情愿而已。人人都有自己的盘算，更何况是在生死危机的当下。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]眼下只有我能替代罗伯特这个蠢材接管巴诺姆。只有我才配带领你们，你们懂吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]所以你就抓住了这个机会，在村里人之间挑拨离间……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]对于那些快要活不下去的人，只要给他们活下去的希望，他们就会朝着你指出的方向一路狂奔。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]那些蠢材一心只想着重开采石场……却没想到打通山路之后，魔物袭击村子该怎么办。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]不过没关系。我替他们想好了——这种时候就得靠我的这些外乡的朋友了。看到这几位佣兵先生了吗？等到山路重新打通，他们会负责做好村子的……“守卫”的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]现在村里那些老古董能对佣兵横挑鼻子竖挑眼，无非是因为村子里太过安全。等山路重新打开，有了魔物的威胁，那就是谁能够提供保护，谁才能当家做主！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]为了活下去，那些蠢材不惜冒着魔物袭击的风险也要打开山路。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]那同样是为了活下去……想必他们也愿意上交九成的收入，换取我的庇护吧！哈哈哈哈哈！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]什么人上人……你这样和做他们的走狗，有什么区别？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]只要能够成为人上人，就是给哈萨琳之手当狗，又有什么问题？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]哈哈，还是马可老弟的算盘打得精啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]没错，你的算盘确实不错。不过……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]不过什么？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]不过你想没想过，惹恼了姑奶奶的代价，你到底付不付得起呀！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]啊……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]你、你……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]哦，看来他们聊完了！米拉贝尔，我们来帮忙了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]菲莉娜？还有你们……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]真是的，干嘛浪费这么多时间啊！早点动手不是早就结束了嘛！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "或许米拉贝尔也有自己的想法吧。",
+            "tag": "tag_54"
+          },
+          {
+            "text": "因为米拉贝尔有想要知道的事情。",
+            "tag": "tag_54"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]搞得那么复杂干什么啊？光听那个狗头混蛋滔滔不绝我就已经很烦躁了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "马可",
+        "text": "[show]喂、你们这些佣兵！快，快上！我们有过契约的，快把他们拿下——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]增援吗！乖乖女就闪边点，让专业的来！别对那些叛徒手下留情，{myName}！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]这是我要说的台词！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "背叛者的结局 2"
+}

@@ -1,0 +1,86 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]我们现在……好像是在往山上走？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]对呀！从这里开始，就是霜烬平原地区最大的火山地带——洛希奇火山群了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]不过别担心，这些火山上一次喷发已经是三百多年前的事了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]而且自从异变之后，这里就彻底冷却了下来，现在已经和普通的山地没什么两样了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真的吗？那可太遗憾了，我这辈子还没见过火山喷发的样子呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我觉得人一辈子没有经历过火山喷发是很好的事……真希望这世界能一直和平下去。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]奇瓦你太认真了，这种时候明明随口附和一下就好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]啰、啰嗦！路这么难走，都堵不住你的嘴吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]与其在这闲聊浪费体力，不如好好爬山！现在天气越来越糟了，你们可千万小心，不要一失足滚下山去！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_10_a_1",
+  "des": "进入后【c5_10_a_1】。"
+}

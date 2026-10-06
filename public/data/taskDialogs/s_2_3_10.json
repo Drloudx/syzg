@@ -1,0 +1,140 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]快看！她在那里！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]呼呼……好痛……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "小蝙蝠",
+        "text": "[show]吱……吱吱……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]可恶……几下就被打成这样……就这点本事，还说什么复兴家族……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]这不是……和那个时候完全一样嘛……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你还好吧，贝拉多娜？",
+            "tag": "tag_22"
+          },
+          {
+            "text": "啊不……贝拉多娜小姐。",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]唉？是、是你们……你们来了……呜呜……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]咳咳……本、本小姐不是嘱咐你们不要跟过来了吗！你们怎么还是过来了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……我们是贝拉多娜小姐的下仆嘛。而且那位村长也给我们下了委托，让我们也来帮忙清理村子附近的魔物，算是一石二鸟啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]原、原来如此……很好！忠诚可嘉！就让你们见识一下本小姐战斗的英姿吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这点程度还不劳小姐使力。",
+            "tag": "tag_27"
+          },
+          {
+            "text": "米托拉，我们上就好。",
+            "tag": "tag_27"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]唉？啊……好、好的……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]小心点跟上哦，贝拉多娜小姐！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "小蝙蝠",
+        "text": "[show]吱吱——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进1图",
+  "script": "s_2_3_10"
+}

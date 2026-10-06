@@ -1,0 +1,342 @@
+{
+  "script": "c3_ex6_5",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]已经结束了，贼人！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么可能！这怎有可能——！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]小偷先生，真是傲慢啊！即使眼见为实，依然不肯承认现状吗？[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我想你应该认清实力的差距了。把束雷之冠交还给我吧。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵……呵呵……没想到……没想到……你还存有这么强大的力量。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是我小瞧你了……我的同胞。或者应该叫你……古代雷鸟的亡灵小姐！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么？古代雷鸟的亡灵？什么意思……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]同为魔物的你能感应到我的身份并不奇怪。虽然……我也从来没有想过伪装就是了……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此……我早该想到的，为什么束雷之冠的魔力和你如此相似，原来……你不仅是这些宝器的守护者，还是这些宝器真正的主人……[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]诶？难道说艾尔菲帕是……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]正是如此。此身既非人类，也非魔人，而是逝去雷鸟的灵体，依附在凭雷之杖上……借物还魂的……物灵属魔物。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]物灵属？那不就是幽灵吗！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你可以这么理解。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咳咳……这样……这样就更可笑了。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这家伙……明明连遗体都被人类亵渎，锻成了法器，还要给你强加上莫须有的职责……为什么还要和我作对，庇护那些伤害你的家伙？[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为，我和你是一样的……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我和你没有什么不同。就像你是在为了你的朋友图洛德而战一样……我也是在为了当初的某一份遗愿在守护。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而如今……我可能，又要多一份和你作对的理由了。对吧，乌帕“姐姐”？[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]艾尔菲帕……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵……有趣……看来我们只是立场不同罢了……[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……我可不会投降的……只要还尚有一丝气息……我的复仇之火绝不会停歇！直到这把火焰焚尽魔爪湖的一切为止！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说够了没有！[l][cm][hide]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜啊——！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]露……露帕？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]揍死你！揍死你！揍死你！叫你绑走姐姐！叫你欺负姐姐！叫你弄伤姐姐——！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]痛——！好痛、好痛——[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜啊？露帕……没……没必要这么生气啦……！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还有……艾尔菲帕……才不是和你一样！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你是和坏人同流合污……而艾尔菲帕不管是不是人类，她一直为了自己的职责而努力……为了大家在战斗……[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]艾尔菲帕是我们重要的妹妹！别把她和你混为一谈——！滚蛋吧！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜嘎——！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……呃……[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了……露帕。那家伙已经听不见你说话了。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼呼……好累……累死我了……[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我、我还是第一次见到露帕发这么大火……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那姐姐想多见几次吗？[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不——不了不了不了不了……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]束雷之冠已经回收……真的很感谢你们。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……已经结束了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，结束了。你们或许还有很多疑问，我出去之后会为你们解答的。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是吗……那我们先出去吧。这里太冷了……[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "c3_ex6-5图打完后"
+}

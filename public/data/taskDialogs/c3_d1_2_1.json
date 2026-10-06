@@ -1,0 +1,54 @@
+{
+  "script": "c3_d1_2_1",
+  "des": "新增-辛瓦特2层进入",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]越往深处走，就越有一种让人发寒的感觉呢……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]越往深处探索，我们就越要小心。因为我们很有可能和从未遇见的敌人战斗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]深水之下……潜藏着无以计数的魔物啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没关系，我已经慢慢习惯在水下行动了。不管遇到什么新敌人，我都会把它们打跑的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]有信心是好事，不过还是要谨慎，毕竟没有人知道深水中会隐藏着什么……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]发现敌人！准备战斗吧！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

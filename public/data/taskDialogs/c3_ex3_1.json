@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]进入记忆空间的方法你们还记得吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]没错，就像以前那样，站到魔法阵中间，等我激活就好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]当然，你们要是紧张，也可以再多准备一会儿。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]放心，法阵在预备阶段并不会消耗多少能量，你们大可以随便逛逛，等做好了心理准备，我们再开始。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]准备好了就放轻松，向着记忆空间出发吧！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c3_ex3_1",
+  "des": "c3_ex3_1"
+}

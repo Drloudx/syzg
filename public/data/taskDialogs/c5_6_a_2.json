@@ -1,0 +1,65 @@
+{
+  "script": "c5_6_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦，是芙洛波！我们许久未见的老朋友了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "上次遇到好像还是在黑铁锻炉那儿……",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]没错没错，当时多亏了它们，可让我们狠狠地大赚了一笔呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]看来你们和芙洛波们也有很多故事啊，那我就不打扰你们叙旧了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]当然，我们是专业的，怎么会让发布契约的老板亲自动手呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]探险家朋友就在一边好好等着吧，接下来就由米托拉大人来好好招待它们！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c5_6_a_2】。"
+}

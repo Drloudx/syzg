@@ -1,0 +1,45 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来补给线已经建立完毕了。咦，这不是老板吗？[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们来了。和你们说的一样，那些魔物会想方设法从后方包围你们。[r][l]我们会在这附近严防死守……让你们没有后顾之忧。[l]",
+        "charaName": "菲尔德蕾"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "包在我们身上。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "大家，准备好后就继续前进吧……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_d5_1",
+  "des": "地窖深处三层 入口处进入时"
+}

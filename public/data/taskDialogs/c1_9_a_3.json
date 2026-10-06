@@ -1,0 +1,141 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "哈萨琳之手工兵",
+        "text": "[show]哈哈，队长，刚才的爆炸怎么样，得不得劲！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手队长",
+        "text": "[show]白痴！你会不会用炸弹啊！让你试爆，试爆懂吗？我们差点都嗝屁了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手工兵",
+        "text": "[show]哎呀对不起啊队长！这些新型号的炼金炸药我也是第一次用，吃不准用量！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手工兵",
+        "text": "[show]不过这炸弹威力这么大，应该很容易就能[color=f1401c]把矿道炸塌[colorEnd]！[r][l]到时候管他什么明星契约者，就算没丢掉小命，也得先躺个几年了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手队长",
+        "text": "[show]哈哈！说得好！只要没有了那个可恶的迦南，黑铁锻炉还不是任由我们拿捏！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手队长",
+        "text": "[show]倒是二队那个蠢货巴尼，仗着有两手三脚猫功夫就想抢老子的位置！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手队长",
+        "text": "[show]他不是要搞什么[color=f1401c]人质作战[colorEnd]吗？[r][l]看老子把他、他的人质还有那个迦南一起，[color=f1401c]全都活埋在矿坑里[colorEnd]！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手工兵",
+        "text": "[show]嘿嘿嘿，队长高明！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]高明？我看也没高明到哪里去啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手队长",
+        "text": "[show]什么人？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们这些恶棍人渣，遇到我米托拉算你们倒霉！快把孩子们放了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手队长",
+        "text": "[show]哪来的小鬼，在这里胡言乱语！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手队长",
+        "text": "[show]弟兄们给我上！我们可是有炸弹的，谁玩完还不一定呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "米托拉，你去拦住他们！"
+          },
+          {
+            "tag": "tag_24",
+            "text": "我来拆除这些炸弹！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]放心，有我在，他们动不了你一根汗毛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]上了，{myName}！让他们看看我们是怎么联手的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_9_a_3",
+  "des": ""
+}

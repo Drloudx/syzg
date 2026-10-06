@@ -1,0 +1,46 @@
+{
+  "des": "",
+  "script": "c1_8_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦，好多狂暴的芙洛波啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]这种魔物喜欢在土中挖洞，在煅炉和矿坑旁挺常见的，但溪谷附近聚集这么多还是头一次见。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那既然要夺回溪谷，就是要揍跑这些家伙啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]简单来说就是这样。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那好！管他正常不正常，把它们赶跑就完事了！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

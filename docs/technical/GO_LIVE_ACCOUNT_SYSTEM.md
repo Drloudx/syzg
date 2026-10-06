@@ -44,7 +44,7 @@ git push  ──────►  Cloudflare 自动构建部署  ─────�
 
 > 这句"无副作用"不是推断，是**实测**的：
 > [`tests/migration/rehearse.mjs`](../../tests/migration/rehearse.mjs) 会拿
-> **旧提交（`0c745272`）里真实的 SQL 形状**在迁移后的库上跑一遍 ——
+> **旧库（加账号体系之前那一版）的真实 SQL 形状**在迁移后的库上跑一遍 ——
 > 读评论、写评论、改状态、删评论四条都验，并确认旧代码写入的行
 > `user_id` 为 `NULL`（新代码读它不会炸）。
 >
@@ -325,11 +325,39 @@ curl -s "https://syzg.yxzmy.top/api/comments?page=site:general&limit=2" | \
 | --- | --- |
 | 所有人都登不上，且"邮箱或密码不对" | `AUTH_PEPPER` 被改过 |
 | 所有人都"邮箱不存在"，注册时说邮箱已占用但查不到 | `SALT_SECRET` 被改过 |
-| 验证码邮件收不到 | `TENCENT_SECRET_*` 没配 / `MAIL_STUB` 被设成了 1 / 模板未过审 |
+| 验证码邮件收不到 | ① `TENCENT_SECRET_*` 没配 / ② `MAIL_STUB` 被设成了 1 / ③ 模板未过审 / ④ **SES 参数类型不对（见下）** |
 | 后台整个 404 | `ADMIN_TOKEN` 没配（这是**设计如此**，不是故障） |
 | 「我的评论」「谁回复了我」很慢 | 第 3 步的索引没建 |
 | 换绑邮箱后登不上 | `users.pw_salt` 缺失（第 2 步没跑完） |
 | 发码按钮点了没反应 | 看服务端日志；本地可能是验证码冷却与限流（见 `.dev.vars`） |
+
+### 🔴 「收不到验证码」但**接口与数据库看起来都正常**
+
+2026-10-06 实际发生过：接口返回「验证码已发送」、`auth_codes` 表里**也有那条记录**，
+但邮件一封都到不了。根因是 `src/utils/authMail.js` 的 **`Unsubscribe` 传了数字 `0`**，
+而腾讯云 SES 要求**字符串 `'0'`**（严格类型校验，传数字整封拒收）：
+
+```
+Code=InvalidParameter
+Message=The value type of parameter `Unsubscribe` is not valid, input type should be `string`
+```
+
+**为什么查库查不出来**：发信在 `context.waitUntil` 里**异步**执行，
+失败只写 Worker 日志 —— 所以「有记录」**不能证明「信发出去了」**。
+本地测试也全绿，因为 `MAIL_STUB=1` 时根本不发信。
+
+**最快的定位方式**：直接调 `sendVerifyCode`，收件人用 `@example.invalid`
+（RFC 2606 保留 TLD，不会真发信），错误码会直接区分凭据 / 模板 / 参数问题：
+
+```js
+// 临时脚本；凭据取自 _ai-credentials/TENCENT_SES.md
+const r = await sendVerifyCode({ TENCENT_SECRET_ID, TENCENT_SECRET_KEY },
+  { to: 'nobody@example.invalid', code: '000000', minutes: 10 })
+console.log(r)   // {ok:false, error:'InvalidParameter'} 等
+```
+
+> ⚠️ `TriggerType: 1` **接受数字**（实测正常），**只有 `Unsubscribe` 要求字符串** ——
+> 不要"统一成一种类型"。回归见 `tests/unit/mail-payload.test.mjs`。
 
 **排查顺序**：先看 HTTP 状态码（401/403/404/429 各指向完全不同的原因），
 再看服务端日志，最后才读代码。反过来的话，很容易在无关的地方耗掉一小时。

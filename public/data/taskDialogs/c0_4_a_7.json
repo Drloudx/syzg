@@ -1,0 +1,38 @@
+{
+  "script": "c0_4_a_7",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼，不过如此！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯？你说这些角布林既然这么想拖延时间，深处肯定有它们的首领坐镇？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼！以为靠什么首领就能对付得了我？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那就尽管来吧！之前是我疏忽大意，这次可别想逃！我们走，{myName}！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

@@ -1,0 +1,121 @@
+{
+  "script": "c2_12_a_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]这里就是山顶了。对于前面的地界，我们可说是一无所知。大家都打起精神来，千万不要放松警惕！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]说起来，你们不是索利德山的山民吗？难道就没到山顶上来过？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]就算在异变之前，山顶也是非常危险的，除了沃夫加大哥那样的精英猎人之外，一般也不会有人跑上来。[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我们几个年纪都太小了，在异变之前，也没资格跟着他们上山。[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]大兽潮发生之后，天梯立刻就被狂暴化的哈比们占领了。在异变之后才到山里来的我和大师，自然也不可能来过。[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不过，诸位心志坚定，想来不会因为此等小事心生退意。[l][cm]",
+        "nameSide": "left",
+        "charaName": "剋"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯，很有气势，不过在拼气势之前，还是让我来给你们降低一点难度吧。[l]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "安娜你有头绪？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]我不是说过，我经常用望远镜监视山顶吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]虽然不知道远处的地形，但至少入口这片缓坡我还是看得清楚的。恐怖蟾兽的行动路线我已经记下来了。你们跟我来就是！[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]安娜……好，我明白了！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（果然同伴越多，就越是会在意想不到的地方得到帮助，为了村子的未来，我必须团结更多的人……）[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]大家快跟上，路上保持阵型，可不要掉队了！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_12_a_1"
+}

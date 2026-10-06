@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕咕——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]哦，这次要往这个方向吗？好，那就往这边走吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_2_a_1",
+  "des": "进入后播放c5_2_a_1"
+}

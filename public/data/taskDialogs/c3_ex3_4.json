@@ -1,0 +1,109 @@
+{
+  "script": "c3_ex3_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]回来了吗……唔……我的力量……好像又变强了？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "好像上一次力量也有增长……",
+            "tag": "tag_3"
+          },
+          {
+            "text": "这是什么原理？",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]可能米托拉的记忆本身就有“力量”，所以随着记忆的恢复，力量也会随之“回归”？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]记忆本身就有力量……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]嗯～不是有种理论说，“记忆也是魔力的一种”嘛。魔力回归了你的身体，感觉到变强也是理所当然。你们也是从这份魔力中读取的记忆，不是嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]不过这只是我的猜测，但我觉得现阶段来说，这是最有可能的可能。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]倒是没听过这种事……算了，这种难懂的事情就等以后再说吧。现在我只想快点回到地面呼吸一下新鲜空气。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]那我们就回去吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这一次的记忆之中，我好像听到了不少值得讨论的对话。我想你们应该也迫不及待想要研究一番了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]那就让我们回到修行所继续吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_ex3_4"
+}

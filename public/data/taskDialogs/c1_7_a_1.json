@@ -1,0 +1,127 @@
+{
+  "script": "c1_7_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]茜塔，情报都传达下去了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]已经传达好了。[l]所有人都知道我们的首要敌人从魔物变成了哈萨琳之手，[r]也听从前辈您的指示，在后方随时等待前线的指令。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是吗，那就好。让他们做好准备吧，马上就需要他们出手了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "发现敌人了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]没错，鸟儿们的歌声告诉我，只要穿过这片树林，我们就会抵达黑铁锻炉周边，在那里正面遭遇哈萨琳之手的大部队。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]为了尽可能避免伤亡，我们四个会作为锋矢，以全力凿穿敌阵，由后方的大部队收割战果。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]唯一的问题是，{myName}……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "我与同类为敌的经验倒是不少。"
+          },
+          {
+            "tag": "tag_14",
+            "text": "只是通常都是在被人追缉。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "虽然我确实还没有亲手消灭过同类……"
+          },
+          {
+            "tag": "tag_15",
+            "text": "但，我也做好心理准备了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是吗……那就照着你说的去做吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不要犹豫，不要迟疑。或许在你的国度，人们还可以不弄脏自己的双手就能平静地生活，但这深渊里，已远没有那么温柔了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]请记得，自己的生命最重要。话就说到这里，我们出发吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

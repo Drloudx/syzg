@@ -1,0 +1,69 @@
+{
+  "script": "c1_2_a_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]在那！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者A",
+        "text": "[show]可、可恶……！如果有迦南大人在的话……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者B",
+        "text": "[show]撑住……我们一定要撑住……不能在这种地方丢掉性命……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者C",
+        "text": "[show]魔、魔力要耗尽了……哥哥……救救我……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们上，米托拉！",
+            "tag": "tag_6"
+          },
+          {
+            "text": "一定要救下他们！",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]那还用说！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

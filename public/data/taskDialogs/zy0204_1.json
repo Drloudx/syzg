@@ -1,0 +1,46 @@
+{
+  "script": "zy0204_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]这里就是哈比的主[wait=300]巢[wait=200]！[wait=200]这个数量……[wait=100]也太多了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "nameSide": "right",
+        "text": "[show]诸位！此战至关重要，成败在此一举，务必鼓足干劲！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "nameSide": "right",
+        "text": "[show]接下来由吾为诸位开道！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]哈！[wait=200]有大师做先锋，[wait=100]我也可以放开手脚啦！[wait=200]小的们，[wait=100]跟我上——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "自卫团员",
+        "nameSide": "left",
+        "text": "[show]哦哦哦哦哦！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

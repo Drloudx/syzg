@@ -1,0 +1,57 @@
+{
+  "script": "c2_1_a_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]哈！还以为有多厉害呢，结果也就这样而已嘛！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这个大一点的鸟怪明显是这一带的老大，感觉连角布林首领都不如，完全不堪一击！[l]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "米托拉，还是要小心！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]诶？你说这些家伙看起来像在逃跑，后面可能还有了不得的玩意？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯……虽然我觉得应该是你想多了，不过小心无大错，我们就顺着这些家伙的来路，看看到底是怎么回事吧！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "与野性之兔的邂逅 2"
+}

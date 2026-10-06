@@ -1,0 +1,302 @@
+{
+  "script": "c5_ex5_3",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快看！雷素在那儿！[l][cm][hide]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……哔哔……哔哔！[l][cm][hide]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼，没用的！这顶玻璃罩可是我们的得意之作，你放再多电都没用！老老实实地待在里面吧，小雷素！[l][cm][hide]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！你们的阴谋诡计到此为止，快把雷素给放了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈，那么多魔宠都没法阻止你们……还是有两把刷子的。不过你说放就放吗？现在雷素就在这里，你们有本事就抢回去啊！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错！就拿你们这群三流契约者当我们的垫脚石吧——我们霜火队迈向巅峰的垫脚石呀！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们的目的到底是什么？[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼哼……霜火队就是由我们三个组成的梦之队！我们所做的一切都是为了让这支队伍的名声响彻世界！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？你们威胁温泉村，抢走雷素，就是为了出名吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那当然！我们要让每条大街小巷都传颂着我们的大名，让孩子们在篝火旁聆听我们的传奇，让霜火队这三个字永远铭刻在卡露蒂亚大陆的史册上！[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是如此绝妙，角角！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们还是小孩子吗？做这种事也太淘气了吧……[l][cm]",
+        "charaName": "艾薇杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]根据大书院医疗记录，三位目前可能已患上臆想症。具体症状为相信自己与众不同，做出各种夸张自满的举动。不过虽然称之为病，但请放心，这些症状都是可以逆转的……[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]住口！你们这群迂腐无知者，怎会懂得我们理想的崇高！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼！你们干的事可谈不上什么伟大。把温泉村的客人电上一遍，能给你们赢得什么好名声吗？[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然要威名远扬，既然要流芳千古，我们可不会在乎是美名还是恶名！[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]想让我的温泉村蒙受损失，就冲这一点我就和你们势不两立！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那正好！决一胜负吧，矮子老板！魔宠对决，开始！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]出来吧！我们的魔宠！[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就决定是你了——掘冰芙洛波！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱——！[l][cm][hide]",
+        "charaName": "掘冰芙洛波"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈哈……只有你一人有魔宠吗。真是可惜，你一人却要对阵我们三个！[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵，以多打少吗！但我的背后可是整个温泉村，我绝对不会退却！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}、米托拉……你们还没有魔宠，先退后吧。这里就交给我，让他们看看我的意志，和我驯养芙洛波的实力！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……这种时候了还要搞什么魔宠对决吗……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说什么呢！除了魔宠对决，难道还有什么别的方法战斗吗！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]连魔宠都没有的家伙，没有资格在这里逼逼赖赖啊角角！给我眼前一黑吧角角！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我要直接和你们本人对决啊！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……咦？[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什、什么？居然要直接攻击对决者？怎么可能，有这样的规则吗？[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看起来好像就是有这样的规则呢～[l][cm]",
+        "charaName": "艾薇杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不、不可以呀！你们不可以这样做呀角角——！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我、我们可不会战斗呀——！保护我，魔宠们——！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]出来吧，朋友们！教教他们什么才是真正的对决吧～！[l][cm]",
+        "charaName": "艾薇杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔哦哦哦！出来吧，炎魂之剑！雷素，我来救你啦——！[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哔哔——哔哩哔哩！[l][cm][hide]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": ""
+}

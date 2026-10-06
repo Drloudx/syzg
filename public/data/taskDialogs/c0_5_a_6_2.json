@@ -1,0 +1,125 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "戒律骑士",
+        "text": "[cm][show]队长！那个装置突然发光了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "戒律骑士",
+        "text": "[show]可恶的异端！表面上装出一副好人的样子，暗地里还在搞些小动作！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "戒律骑士",
+        "text": "[show]劳伦斯队长，这里就由我来……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]站住！这可不是连骑士都不是的你们可以插手的状况！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]就算表面上再怎么和善也好，终究是掌握了禁忌技术的古代工匠残党！[r]这里就由我来处理！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]最佳方案是——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]一刀两断，圣光——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show][size=56]斩——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]轰——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]什、什么？居然只是一剑，就把这东西给拦腰斩断了？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "现在不是说那些的时候！",
+            "tag": "tag_59"
+          },
+          {
+            "text": "马上要爆炸了！",
+            "tag": "tag_59"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？爆……爆炸？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唉？怎么突然抱住我——[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "Battle 0-00_5 劳伦斯劈匠器",
+  "script": "c0_5_a_6_2"
+}

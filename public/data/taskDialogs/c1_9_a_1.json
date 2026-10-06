@@ -1,0 +1,85 @@
+{
+  "script": "c1_9_a_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]还好，这条路上的魔物似乎被迦南前辈清理过一遍。[r][l]如果孩子们真的走过这里，应该没有什么危险……[l][cm]",
+        "charaName": "茜塔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们找到什么线索了吗？[l][cm]",
+        "charaName": "茜塔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]快，你们看！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这是……鞋子？[l]",
+        "charaName": "茜塔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这个大小应该是小孩子穿的。",
+            "tag": "tag_11"
+          },
+          {
+            "text": "应该是在躲避魔物的时候跑掉了吧。",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]除了鞋子，还有其它发现吗？[l][cm]",
+        "charaName": "茜塔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那倒没有，既没有血迹，也没有碎布、爪痕或者别的什么。[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那就好。如果不是被史莱姆整个吞掉的话，孩子们应该还没有出事……[l][cm]",
+        "charaName": "茜塔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]无论如何，这只鞋子至少证明了孩子们确实是往这边走的。抓紧时间，继续前进吧！[l][cm]",
+        "charaName": "茜塔",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

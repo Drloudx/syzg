@@ -1,0 +1,297 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]什么？这怎么可能？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]强大无比的超天界格莉姆……居然失败了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]牛皮吹得那么响，亏我还以为这玩意儿有多厉害呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]现在看来，你的技术就和你的头脑一样，蠢得令人发笑！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]不可能！这种“融合术”可是大恶魔[color=ffb64d]纳贝留斯[colorEnd]的遗产，那可是魔界[color=ffb64d]七将军[colorEnd]之一的“奥秘之魔将”……才不是什么会被凡人嘲笑的残次品——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]基于[color=ffb64d]控制变量法[colorEnd]的观点，如果技术没有问题，那有问题就只有你这个使用技术的人了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]是学艺不精无法发挥出技术的精髓，还是思路有误，居然用恶魔的技术去干涉天使的造物……究竟是什么原因导致的失败，现在就选一个吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]虽然无论选择哪一个，最终的原因都是因为你的智力有差就是了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]可、可恶——！我才不会有错！按照你们在索利德山的战斗数据，即使有大书院的帮忙，你们也是必死无疑的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]嗯？等等……！如果我的计算没有误差，那造成误差的自然是[color=ffb64d]别的东西[colorEnd]……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]原来如此！我明白了！原来……是你！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈？你在说什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]呵呵呵……本以为所谓的“告死凶猫”，充其量也就是一个稍微能打一点的荒野客，顶多算是{myName}的跟班……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]没想到居然还有这种事——你这家伙，从索利德山到现在，一共也才过去了不到半年，你为什么[color=ffb64d]变强[colorEnd]了这么多？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啥？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]你这家伙……一点自觉都没有吗？你的战斗数据，在不到半年的时间里，增长了将近数倍……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]这可不是一个初出茅庐的冒险者简单的实力增长，而是在百尺竿头、几乎无法更进一步的情况下，凭空提升的一倍！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]这种明显的异常，你都察觉不到吗？你这家伙……[color=ffb64d]究竟是什么人[colorEnd]！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_36"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]越来越离谱了！你这家伙，接受不了自己的失败，就开始往别人身上甩锅了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]哦？你是这样以为的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]呵……那你就当作是那样吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]经过这一战，我更加确信了自己的想法。你们二人，毫无疑问就是\"结社\"最大的敌人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]为了组织的大业，我会用我自己的方式消除这个隐患！你们就等着吧，这次的事情，绝不会就这样算了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]好耶！大坏蛋被我们打跑了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不是，这家伙刚才放狠话放得那么重，怎么溜起来这么果断啊？我还想着趁机把他留下的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]如果你真的想，完全可以等一会再实施你的计划。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]奇瓦的意思是——你觉得那个巴赫洛克斯……现在能逃到哪里去呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]当然是希拉尔德那——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦，对诶！我们正要去找希拉尔德的麻烦，那不就巧了嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]很好，我们快追！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那个可恶的蜥蜴人，竟敢叽里咕噜尽说些怪话污蔑我！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]今天不打得他满脸桃花开，他就不知道花儿为什么这样红啊！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d2_3_3",
+  "des": "打完后【c5_d2_3_3】《播放完BOSS沉入岩浆的动画后》"
+}

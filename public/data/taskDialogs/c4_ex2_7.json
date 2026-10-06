@@ -1,0 +1,470 @@
+{
+  "script": "c4_ex2_7",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]适格者，我等你很久了。我是艾伦瑟。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]您是……鹿灵艾伦瑟大人……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]你已经通过了关于智力、精神、心性等等一系列的基础测试。在这最后一关，我只考验你一样东西。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]一样东西……？是什么呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]是职责。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]你是否愿意，帮助“巨木”完成它的原初职责？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]是否愿意，无论遇到何种情况，始终以守护“巨木”完成原初职责为最优先的目标？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]怎么了，适格者。这应该是个很好回答的问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]一旦同意，你就与“巨木”完成了契约。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]在履行职责之余，“巨木”将赋予适配你特质的预制格式流魔力，让你也有一些权限，去使用“巨木”的力量，完成你所希望的事。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]适格者，你因何而迟疑？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]艾伦瑟大人，我可以问一个问题吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]问。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]您刚才所说的……“无论遇到何种情况”，也包括巨木本身出现错误的情况吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]这真是个有趣的问题，我应该理清你话中的深意。你所说的“出错”，具体是怎样的情形？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]比如说……在“匠器”出现故障的情况下。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]如果“巨木”对匠器的状态出现了误判，因而采用了错误的应对方式，造成了致命的危机……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]在这种情况下，我也必须顺应“巨木”，按照错误的目标行动吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]我理解了你的担忧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]管理员作为现场管理者，确实有权力依据状况更改“巨木”的某些待执行项目。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]但与“匠器”有关的内容，属于设计者在原初职责中规定的根协议范围。在根协议的范围内，管理员的行动，必须服从于“巨木”的统一指标。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……即使这指标来源于错误的判断，会让森林陷入灭顶之灾？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]是非错误将依“巨木”的原初职责进行判断。只要根协议认定为正确，管理员就必须依照根协议的规定执行。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……那就太可惜了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]所以，你的回答是……“否”？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]不，我准备提出一个新的方案。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]艾伦瑟大人……不，应该说是……“巨木”的化身啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]虽然您只是先时工匠的造物，但您拥有自身的意识，力量更是宛如神明。这样的您，想必也不是一段枯燥运行的规则，而是拥有自主思考能力的高等存在吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]对你的猜想予以肯定。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]经过长达███年的运行，位于“巨木”内部的逻辑中枢——“灵质处理核心·巨大灵体（Great Soul）”已经获得了真正的自我意识，这一现象也在最初规划的设计指标内。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]如果按照“巨木”建造时期的生物分类学，这一现象代表着“巨木”的种属发生了迁移，从[color=ffb64d]造物属[colorEnd]，转变为了[color=ffb64d]物灵属[colorEnd]。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这就是说，您确实是有自我意识，以及自我裁量的权限的人格，对吧？既然如此……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我有一个想法……如果我能够举荐一个人选，为您解决“匠器”的故障问题，您能赋予我一份临时的权限，让我先解决黑森林的危机吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]你是想要……和“巨木”做个交易？真是胆大的适格者。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]但……这理由并不违反“巨木”的原初职责。如果真的能够帮忙解决系统外可能存在的……故障，赋予你一日的临时权限并无不可。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]但你必须先做出证明，证明你找来的人，有能力解决这一切。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]没有问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]{myName}……和您一起来，果然是正确的选择。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]您不仅是为我的人生指明方向的导师，也是我的幸运星啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]适格者，你为何喃喃自语？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]啊、没什么……我想说的是……现在我的身体，在物质世界内所在的那处石阵……既然我能够通过灵魂连接到“巨木”，那里应该也在您的感应范围内吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我要向您引荐的人物就在那里，您感应到了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]感应？那里确实在我的感应范围内，可是你要我感应的到底是……嗯？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]这个波动是……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]怎、怎么样……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]……我没想到，你要“引荐”的人，居然是持有“[color=ffb64d]万应之钥[colorEnd]”的[color=ffb64d]大匠师[colorEnd]。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]如果是那位阁下的话，确实能够解决关联系统中可能存在的……问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]{myName}是……“大匠师”？那、那就是说……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]我同意你的交易，你会得到你想要的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]至于之后……如果在事情结束之后，你还有意来当这个“管理员”……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]到时候，尽管来找我吧！这份权限将永远为你保留，无论何时。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]谢谢您的认可。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟？",
+        "text": "[show]回去吧！去做你认为该做的事！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我会的！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_ex2_7"
+}

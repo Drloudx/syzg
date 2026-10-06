@@ -1,0 +1,260 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]说起来，大书院到底是个什么样的地方？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]虽然一开始就说要来，但对于大书院本身，我们似乎还一无所知呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]对哦！明明我们和安娜还有贝尔卡都很熟了，但好像从来没听她们提过大书院是什么样子呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我懂的……因为大书院这地方根本就没什么好说的啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "就算是这样……",
+            "tag": "tag_7"
+          },
+          {
+            "text": "能和我们讲讲吗？",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]呜……一定要说的话……那是个特别、特别无聊的地方！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]那时候……虽然这片平原还没有被冰雪覆盖，但大书院的气氛可一点都不比冰天雪地的旷野来得温暖……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇……那是什么感觉啊……真是难以想象。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]毕竟大书院也算是个学术组织嘛……会在那里的不是埋头苦学的卷王，就是德高望重的老教授……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]整个组织的氛围说好听点叫庄严肃穆，说难听点就是死气沉沉，就没几个活人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]有时候大白天走进主楼，装满了人的大楼里却连一点声音也没有……说实话，在那里待得久了，还蛮考验人的神经的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]听上去……呜……就算我总是和幽灵打交道，都觉得有点可怕……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]确实挺可怕的，但是……贝尔卡就算了，安娜不是挺活泼的嘛？就她那样子，根本不像是你描述的那种地方出来的人啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]就是因为学姐太活泼了，所以才会被“流放”到远离大书院的研究所啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]总之，大书院是个非常、非常沉闷的地方，你们可别把它想得太好了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我大概明白了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]所以，你就是因为这个才离家出走的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]诶……诶？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]你、你怎么知道我是离家出走……我应该没有露出破绽才对呀！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]没有……露出破绽……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不如说是破绽百出才对。",
+            "tag": "tag_29"
+          },
+          {
+            "text": "不如说无处不是破绽才对。",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]居、居然是这样……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]好、好吧，既然你们看出来了，那我也就坦白好了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我确实是逃家跑出来的，但不是因为对大书院有什么不满……毕竟我从小就在那里长大，对那地方早就习惯了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]诶？那你为什么要离家出走啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这、这个……这这这暂时不关各位英雄的事！哈哈……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]总、总之！你们只要跟紧我，谨言慎行，切记不要大声喧哗，这样就没问题了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔～真是可疑呢，奇瓦妹妹……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_2_a_3",
+  "des": "打完后播放c5_2_a_3"
+}

@@ -1,0 +1,86 @@
+{
+  "script": "zy0201_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]哼，我就说很简单吧！[r][l]真是的，大晚上的到处乱窜，害得人睡都睡不好，活该你们变成肉排！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]嘘……！[wait=200]小声点……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]嗯……？怎么了……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]注意听！这个声音——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[show][l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "（沉重的脚步声）",
+        "nameSide": "left",
+        "text": "[show]（轰隆——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "（沉重的脚步声）",
+        "nameSide": "left",
+        "text": "轰隆——！）[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

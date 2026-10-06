@@ -1,0 +1,142 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]……这里就是灵魂之流吗？感觉和我们之前进入回忆世界很像啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诸位都还习惯吗？姐姐……唉？我们的手能松开了……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]都已经灵魂离体了，手自然就松开啦。要是灵魂状态还得牵着手，那咱们恐怕永远都得牵着彼此咯。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]哈哈，突然松手还有点不习惯呢。姐姐的手……比我想象中要粗糙好多呀，至少比小时候粗糙多了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]……我是用了太多自然魔法，手上的皮肤都树皮化了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……姐姐，你辛苦啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]你不也一样嘛。你小时候皮肤那叫一个水灵，每次摸你手的时候，就感觉像融进柔软的清水似的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]现在摸你的手，总能摸到手上的茧子，想必和你常年抄书施法有很大关系吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]嘿嘿……什么都瞒不过姐姐呀……自从咱们分开以后，各自都经历了不少事儿呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这么多年，两位都辛苦啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]有件事儿我想说一说……其实一路上跑了这么久，我心里一直有个困惑没解开。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]森林里姐妹可不止咱们这一对，为啥这个诅咒偏偏找上咱俩呢？而且这个魔法又是怎么跑到这个娃娃身上的呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这个……我也没啥头绪……自从姐姐把娃娃给我，我就一直把它放在房间里，我也不太清楚这娃娃咋就找上门来的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]好吧……不过黑森林里本就怪事多，莫名其妙中诅咒的情况也不是没可能。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]眼下还是抓紧时间找那对姐妹吧，我们时间可不宽裕。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]嗯，走吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c4_ex4_1】",
+  "script": "c4_ex4_1"
+}

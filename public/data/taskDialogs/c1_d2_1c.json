@@ -1,0 +1,30 @@
+{
+  "script": "c1_d2_1c",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这里就是门后的区块了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]从这里开始就要面对未知的危险了。做好准备再向前推进吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "安瑟恩，3层进门演出"
+}

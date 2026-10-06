@@ -1,0 +1,118 @@
+{
+  "script": "c2_d2_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]那个……感觉我们越往下，那些红水晶就越密集……看上去好瘆人啊！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]据说这些红水晶是随着兽潮结束，在山脉中突然出现的，肯定和异变有关。但我搜集了一些之后，并没有什么特别的发现。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不过，和山上那些随处可见的红水晶不同……这里更加靠近魔力波动，这些晶簇也可能会有什么特殊的地方。总之，我得先进行一些采样——[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不就是砸石头嘛？好说啦！看我的——[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（嘣——）[l][cm]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呜喵——我的手都震麻了！这水晶是怎么回事，怎么这么硬？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]让开，我来！喝——！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（轰——！）[l][cm]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呼！确实很硬，和地表上的那些完全不同。好在我锤子砸上去，多少还是有点反应……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呜哇。真是个怪力女。和在村里的反差也太大了……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你脑袋也想吃我一锤？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]很好，这就说明这里的红水晶确实有问题。接下来只要把这些砸下来的粉末放到仪器里稍微分析一下……[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯，这样就可以了。趁着仪器在自动工作的时候，我们先继续前进吧。说不定前面还有其它的发现在等着我们呢。[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_d2_1"
+}

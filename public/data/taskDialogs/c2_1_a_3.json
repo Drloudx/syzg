@@ -1,0 +1,459 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（轰隆——！）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]喂喂！这是什么鬼动静！到底发生什么了？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]费了这么大功夫，终于让你落单了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]可恶的怪物！就是你把我们的村子给……！给我纳命来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]嘿呀——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]唔——！怎么会……！居然……这么强……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]算计了那么多，最后还棋差一着……竟然是因为实力之差……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]真是没想到……我米拉贝尔居然会在这里倒下……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]喂喂！这怪物强得有点不像话……那姑娘好像也站不起来了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们也去帮忙！",
+            "tag": "tag_29"
+          },
+          {
+            "text": "至少把人救走！",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]好嘞！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]谁……？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦？怎么了！那个大家伙掉头走掉了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]可恶！你的意思是连干掉我的兴趣都没有吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]混账家伙，居然敢这么藐视我……！你会后悔的！一定会后悔的！下次……下次我一定要……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]喂，你没事吧？刚才有受伤吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我这里有几瓶伤药。",
+            "tag": "tag_55"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]我没事，不用你们管！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]你们是进山的旅人？那你们可是走错了地方！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]就像你们看到的那样，现在这山里没有别的，只有危险！为了你们的小命着想，还是快点从哪里来就滚回哪里去吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呜喵喵，你说什么？我们好心救你，连句谢谢都没有，口气还这么冲！[r]怎么？想打架吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]打架？好啊！山民从不畏惧挑战。很快你就会明白自己选错对手了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈！神气什么啊，明明刚才一下子就败下阵来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]刚才确实是我一时失手，不过打不过那家伙，我还打不过你吗！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "等等，都给我停下！",
+            "tag": "tag_66"
+          },
+          {
+            "text": "我们不是来打架的。",
+            "tag": "tag_66"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]嘁……！我知道了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这位小姐，你是本地的山民？",
+            "tag": "tag_68"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]没错，怎么了？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（说出自己的来意。）",
+            "tag": "tag_70"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]驿站的契约者……？接受委托来调查采石场的[color=f1401c]异变[colorEnd]，顺便购买一些[color=ffb64d]魔岩矿[colorEnd]？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]靠这些说辞可赢得不了我的信任。对我们山民来说，[color=ffb64d]外来者[colorEnd]就意味着[color=f1401c]欺骗[colorEnd]和[color=f1401c]麻烦[colorEnd]。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]不过……看在刚才冲上来帮我的份上，我可以帮你们一把。不过这可不是免费的，你们也得帮我一个忙作为交换。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈？你也太斤斤计较了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]山民从你们这些外来者那里上的当已经太多了，现在没有任何人能够让我们无偿付出。这个交易你们接不接受？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]所以到底要帮什么忙？你不肯吃亏，那也不能让我们吃亏啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]很简单。你们帮我解决刚才那个大家伙……被我们叫做[color=f1401c]恐怖蟾兽[colorEnd]的巨大魔物。我来帮你们寻找异变的线索，还有协调魔岩矿的卖家。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]怎么样？我在山里还是有点身份的，过了这个村可就没这个店了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]干掉那个怪物？{myName}，怎么办？我们要不要相信她呀……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "无论如何，这也算是一个突破口。",
+            "tag": "tag_80"
+          },
+          {
+            "text": "我们成交了。",
+            "tag": "tag_80"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]很好！既然你们这么上道，那我也不会小气。看你们刚进山也没地方落脚，就跟我一起先回村再说。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]先说好，因为恐怖蟾兽的威胁，现在村子的情况非常糟糕。在彻底解决那家伙之前，我都要先专注[color=ffb64d]讨伐工作[colorEnd]，魔岩矿的事情得往后挪一挪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]如果能接受的话，就给我跟上来吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哦对了，忘了说，我叫米拉贝尔——你们的名字刚才我已经听到了，所以介绍就免了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊！真是自说自话的家伙！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}，我们真的要听她的吗？明明我们还有自己的事……她不会是想要骗我们打白工吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没关系。",
+            "tag": "tag_90"
+          },
+          {
+            "text": "我们也有我们的做法。",
+            "tag": "tag_90"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]你说我们没有和她订立契约……只要到了村子里，我们大可以按照自己的想法行动？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇！不愧是外来者，我们真是太坏了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那就按你说的，先到村里调查一番。之后要怎么做，就看情况来决定好了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "与野性之兔的邂逅 3",
+  "script": "c2_1_a_3"
+}

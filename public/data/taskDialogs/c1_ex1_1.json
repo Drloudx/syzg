@@ -1,0 +1,86 @@
+{
+  "script": "c1_ex1_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦哦！我们怎么跑到[color=ffb64d]遗迹里面[colorEnd]来了？这里就是你的实验室吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]是的，这里就是莉拉那家伙为我收拾出来的实验室，如你们所见，这里有非常完美的隔绝能力，可以避免实验受到外部干扰的影响。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]而你们看到的这些东西，全都是从先时遗迹里挖出来的古籍和设备。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]通过先时科技，我才得以进行一些，以现在的技术没有能力进行的研究。[r]包括即将为你们举行的魔法仪式，也是出自我们的发掘。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]当然，请放心，会存放在这里的魔法道具，都是经过验证的，绝对没有任何安全问题，没验证的东西都在那边的仓库里等着清理呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……既然你这么说，那我们就姑且相信你吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]接下来该怎么办？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]看到那边的[color=ffb64d]魔法阵[colorEnd]了吗？站在那边就好。我会引导魔法到这块匠器碎片上。之后我会在外面通过精神通信给你们导航的。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好吧，那就听你的。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "研究室"
+}

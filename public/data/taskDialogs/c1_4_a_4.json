@@ -1,0 +1,201 @@
+{
+  "script": "c1_4_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "村民的声音",
+        "text": "[show]英雄！我们的英雄来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "村民的声音",
+        "text": "[show]迦南大人！还有各位！谢谢你们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "村民的声音",
+        "text": "[show]契约者大人万岁！驿站万岁！菲尔德蕾万岁！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "村民的声音",
+        "text": "[show]我们永远支持你们！你们是我们的英雄！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "村民的声音",
+        "text": "[show]我也要成为契约者！今后也要和你们一起并肩作战！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "真是惊人的声浪。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]是啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们……居然救了这么多人吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]没错，这些人的命，都是我们救的，你大可以坦然接受他们的欢呼。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是……吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可是我……总觉得有点不太真实……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]一开始都是这样的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]明明只是做了一些微不足道的小事，却被人这样顶礼膜拜，[r]一开始都会感觉像是在做梦一样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不过你反过来想就明白了。你觉得你做的只是微不足道的小事，[r]但对于被你拯救的人来说，那就是足以让整个人生为之翻转的重大事件。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]你们的观感不一样，只是因为视角和能力的不同。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]视角和……能力？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是啊，因为米托拉你很强。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]对于这些村民来说，他们拼尽全力也无法撼动的困难，[r]于你而言可能只是随手拂去的一点尘埃。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在这片残酷的荒原上，强者与弱者的分野就是这样一目了然……自大兽潮之后，就是如此。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]所以，就好像荒野客们会畏惧强者一样，村民们也会感激强者、追随强者。[r]既然你确实做了值得感谢的事情，那你自然[color=ffb64d]可以[colorEnd]坦然接受这份感谢之情。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]之前茜塔告诉过我们的话……应该就是这个意思了吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]看来你还有一些疑惑。不过没有关系。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]看到村里那位颤颤巍巍的老妇人了吗？[r]去和她聊聊吧，这样一来，你就会知道自己所做的这一切，究竟有什么意义了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

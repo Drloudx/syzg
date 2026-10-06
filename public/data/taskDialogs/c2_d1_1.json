@@ -1,0 +1,118 @@
+{
+  "script": "c2_d1_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]（嘀——嘀嘀——嘀嘀——）[l][cm]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我说，从进来之后，你手上那玩意就一直在嘀嘀叫，叫得人心烦……那玩意是干什么的啊？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你说这个？这是可以读取附近魔力波动数据的魔法仪器。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]由于材料珍贵，工艺也不成熟，这东西的价格非常昂贵，是你们的契约金无论如何也抵偿不了的数额。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]为了不被大书院追偿，请大家一定要慎重地保护我，爱护我就好像爱护自己的眼睛一样。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊？这么贵重？那你拿着这玩意还能战斗吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]当然不能了啊。不然请各位来是来做什么的？[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]切，我看你之前吹得那么厉害，还以为能看到你大显身手呢！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在合适的时候展现实力，这也是智慧的一种。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]现在就是不需要我亲自动手的那种时候，请你们多加努力，一定要配得上我给的报酬。[l][cm]",
+        "nameSide": "left",
+        "charaName": "安娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]好啦好啦，我知道了……米拉贝尔，你也说两句啊！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不好意思，没那个心情。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嘁。一个个的真不可爱。我们走，{myName}！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_d1_1"
+}

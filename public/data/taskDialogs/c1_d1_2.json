@@ -1,0 +1,77 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]小心！大东西出来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]看来就是这些家伙在不停地孵育小蜘蛛！真是恶心坏了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "它们身上也环绕着不祥的气息……！"
+          },
+          {
+            "tag": "tag_9",
+            "text": "小心，这些家伙也狂暴化了……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]这也是异变激化的影响！没时间聊天了，请两位消灭它们吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈？难道你就只是在旁边看着吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]嗯？艾尔莎给我的契约里，倒只说了要帮两位带路哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]而且，这不是两位大显身手的最好时机吗？[r]放心，万一两位不小心倒下了，我还是会略施小惠，把你们安全抬出去的啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呜——你这家伙！不上就不上，看我一秒钟就把它们全都打个稀巴烂！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_d1_2",
+  "des": ""
+}

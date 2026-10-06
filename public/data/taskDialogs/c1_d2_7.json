@@ -1,0 +1,834 @@
+{
+  "script": "c1_d2_7",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇……这里究竟是什么地方啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]巨大的石器悬浮在基座上……这也是先时工匠制造的装置吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}，你看那个！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "和之前回忆中一样的装置……！"
+          },
+          {
+            "tag": "tag_4",
+            "text": "就因为这种装置，我被卷进深渊！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]咦？你说是因为这种装置的爆炸，你才掉入深渊中的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[cm][show]那……那个……请问有……有人带吃的了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]我已经……十几天没有吃东西了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]啊。声音越来越明显了。说不定就在这儿。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]啊！这个声音是——之前妈妈提过的，失踪人口瓦菲诺姐姐！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]什么？这就是瓦菲诺的声音？在她开口之前，我一点都没感觉到这里有人啊！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]哈……可能是因为我饿得太久，太虚弱了吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]不说那些……你们有吃的吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_121",
+            "text": "（将随身的口粮递给她。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]啊呜啊呜！咔咔咔咔……咕咚、咕咚……吨吨吨……咕！咳咳、咳咳！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]咳咳……呼……！太好啦！我活过来啦——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]哎呀，还以为这次会挂掉呢，没想到那个小气鬼莉拉居然真的派来了救兵，这也是我命不该绝吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]不准你说妈妈的坏话！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "你怎么会在这里？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]这个……说来话长。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]我在探索遗迹的时候，被魔物逼进死角，迫不得已使用了卷轴上写的传送术……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]却被紊乱的魔力挟持到了这附近。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]之后我尝试过逃离这座遗迹。我好不容易躲过那些巡逻的构装体，但有一扇门死活也打不开。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]之后我只能来到这个暂且安全的地方……恰好还有个可以供我研究的巨大装置。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_274",
+            "text": "那这是什么地方？"
+          },
+          {
+            "tag": "tag_274",
+            "text": "你知道这个装置的作用吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "恢复暂停",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]根据我的研究和假设……这里是遗迹的最深处“匠器之间”。[r]而这尊被供奉的巨物，就是这个安瑟恩遗迹的核心“匠器”。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_192",
+            "text": "先时工匠的杰作……匠器！"
+          },
+          {
+            "tag": "tag_192",
+            "text": "莉拉首座也说过这个词。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]看来你们已经多少了解匠器是什么了，那接下来就好说了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]总之，根据我的考察，莉拉那家伙的猜测和事实基本吻合。[r]异变的源头确实就在这座遗迹之中，确切地说——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]这台装置，就是[color=f1401c]异变之源[colorEnd]本身。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]这装置就是异变之源？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]我还以为那只是一个单纯的假说……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]这枚匠器连接着这座荒野的地脉节点，流经它的魔力变得紊乱而混沌。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]这些魔力不断地被传输到荒野的每一隅，以异变的形式污染着大地上的一切。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]那只要毁掉这座装置的话……就可以解除异变的影响了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]秋日荒野也就得救了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]等等等等等等！别那么冲动，我话还没说完呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]事情没有那么简单……这装置确实是异变的源头，但异变并非因它而起。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哎？什么意思？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_38",
+            "text": "它发生了故障。"
+          },
+          {
+            "tag": "tag_38",
+            "text": "它没有正常工作。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]猜对了。你挺聪明的嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]根据我的研究，这枚匠器原本的功能，是将附近地脉中的魔力汇入其中，进行某种我们还未明了的处理。但它现在不知为什么，却将本应处于平稳状态的魔力重新紊乱化了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]如果直接摧毁它，非但不能解决异变的问题，这里的地脉也将会大面积紊乱，也许会引发出巨大的能量，毁灭周边的一切呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就像之前{myName}在记忆里做过的那样吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]啊长话短说吧。总之，光是毁掉它解决不了任何问题。我们要——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "修好它！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]又猜对了！这就是我多年来一直努力研究的课题——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]等等等等一下？你突然凑近来是想干什么？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_184",
+            "text": "（拿出工匠锤。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]等等，那把锤子是——？你、你是个……[color=ffb64d]工匠[colorEnd]？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_46",
+            "text": "这种装置我见过。"
+          },
+          {
+            "tag": "tag_46",
+            "text": "这种构造，和那时的装置一模一样。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_201",
+            "text": "虽然年代久远，但结构保存完好。"
+          },
+          {
+            "tag": "tag_201",
+            "text": "能源模块、功能模块、传输模块，全部正常……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_47",
+            "text": "为了逃脱追兵，我的确曾破坏过一枚匠器。"
+          },
+          {
+            "tag": "tag_47",
+            "text": "但如果是为了修复，而不是摧毁它的话……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]上啊，{myName}！让她们瞧瞧你的实力——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]等等，这不可能！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]这可是先时工匠的杰作，黄金时代人类集大成的智慧结晶——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_204",
+            "text": "找到了。需要修理的地方……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_293",
+            "text": "是这里——！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好耶——！{myName}果真是天才！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]那个装置……动起来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]难以置信……你真的把它给……修好了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]魔力的紊乱正在消失！缇莎感觉得到……那些魔力的丝缕，越来越柔软了……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]秋日荒野的异变……就这么结束了？我怎么一点实感都没有……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]这、这怎么可能？你到底是何方神圣？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]一个名不见经传的小小工匠，居然这么轻易就……修复了先时遗产？[r]就连萨利米亚的魔幻小说都不敢采用这么离谱的设定啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是什么人不重要。关键是……这个匠器，这样就算是修好了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]匠器这样的状态……我也不知道究竟能不能算修好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]不过从迹象上来看，这个匠器的功能应该是恢复如初了吧。[r]只要回到地面看看异变的情况，应该就能得出结果了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]稳妥起见，恐怕还得让修行所的人在这里搭建一个工作间，方便我继续观测匠器的状况。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是吗……没想到困扰我们这么久的异变，解决起来居然这么简单……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]{myName}只是轻轻地挥了一下那个锤子……困扰着驿站住民好几年的梦魇就这样消散了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不过这样也好，这些无聊的苦难，要是能轻松解决就最好了，倒也不需要多此一举地追求什么仪式感。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]有时候……所谓的“突破”就只是一瞬间的事，是吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那么，我们在这底下待得也够久了，可以回到地面了吗？瓦菲诺小姐应该也需要好好休息上一阵吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]当然！我要马上回去大吃一顿，顺便还要去找莉拉的麻烦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]那个混蛋魔女把我丢进遗迹置之不理，看我不把她那对犄角拗断！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]唉——！不许说妈妈坏话！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]好、好痛！居然敢踢我的小腿，你这小鬼——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]缇莎不光要踢你，还要给你屁股吃火球呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]你、你要干什么？呱！你……你不要过来呀！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_177",
+            "text": "……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]闹哄哄的家伙终于走了，这下这个契约也终于完成了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_178",
+            "text": "是啊，都结束了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]是啊，都结束了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没想到你居然一下子就拯救了秋日荒野，果然我看上的人，就是了不起！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_230",
+            "text": "倒也没那么了不起啦……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]我说了不起就是了不起！好啦，别那么谦虚，爽快点承认自己厉害又不是什么难事。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]累了这么久，我们也该去拿属于我们的报酬了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就快点回去修行所，让莉拉首座知道这里发生的事情吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

@@ -344,8 +344,15 @@ test.describe('desktop sidebar mascot', () => {
       document.dispatchEvent(new Event('visibilitychange'))
     })
     await expect(body).toHaveCSS('animation-play-state', 'running')
-    // Exercise the observer with a genuinely clipped scroll viewport, without changing character state.
-    await page.locator('.info-body').evaluate(el => { el.style.maxHeight = '120px'; el.scrollTop = 0 })
+    /*
+     * 用**真正裁掉**的滚动视口验证 IntersectionObserver。
+     *
+     * 原先这里把 `.info-body` 压到 `maxHeight: 120px`，但吉祥物高 286px、
+     * 压完后仍有约 109px（38%）落在可视区内 —— `intersectionRatio > 0`，
+     * 观察者判定"还在视口里"，动画继续 running 是**正确行为**。
+     * 实测只有压到约 10px（可视 0px、ratio 0）才会暂停，这里按真实阈值改。
+     */
+    await page.locator('.info-body').evaluate(el => { el.style.maxHeight = '10px'; el.scrollTop = 0 })
     await expect(body).toHaveCSS('animation-play-state', 'paused')
     await page.locator('.sidebar-mascot').scrollIntoViewIfNeeded()
     await expect(body).toHaveCSS('animation-play-state', 'running')

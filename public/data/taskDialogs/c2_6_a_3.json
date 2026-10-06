@@ -1,0 +1,361 @@
+{
+  "script": "c2_6_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好了，这下就结束了。我们可以收工回去了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]我个人希望你们可以稍微留步。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？你、你怎么自己走出来了？你不是被他们抓住了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]要让那些连魔法都不会的佣兵困住一位卷宗学者，你也太过为难他们了一些。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]自我介绍一下，我是来自大书院的安娜，目前正在这个索利德山地进行有关灾害的调查。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]灾害……？你是说异变吗？在这里？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]当然。所谓灾害研究，并不只是研究天灾地震之类的东西，“异变”这种奇特的现象，也是灾害研究的重要对象。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]根据我的调查，这个采石场是最早出现那种奇怪的红水晶簇的地方，我相信在这个[color=ffb64d]矿洞深处[colorEnd]，一定隐藏着有关[color=f1401c]异变原因[colorEnd]的线索。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]我本来准备利用那些嚣张的佣兵清理一下矿洞里的魔物，奈何那些废物实力实在糟糕，等了我足足一个星期，他们都还没推进到矿洞深处。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]无奈之下，我只能假装失手被擒，试图给他们提供一点小小的帮助——计划刚开始实施，你们几位就出现了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]原来如此，我明白你的意思了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]你是想让我们代替那些佣兵，帮你解决矿洞里的魔物？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]呵，和聪明人说话就是轻松。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]没错，我是想要雇佣你们护送我到[color=f1401c]矿洞深处[colorEnd]去采集数据，以你们的实力，应该胜任得了这份契约。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]算了吧，我们还有很多事情要做呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]不管是回去安抚村民也好，还是准备讨伐那只大怪物也好，不管干什么都比陪着莫名其妙的学者过家家要强。你还是去找别人吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]等等，别那么急嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]你刚才说你们想讨伐的大怪物……也就是[color=f1401c]恐怖蟾兽[colorEnd]，对吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]你怎么知道的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]可别小看学者收集信息的能力啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]我知道那家伙是跟随着异变的出现一同现身的。据此，我有一个猜测。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]如果能够了解异变的原因，我们就能找到那家伙的弱点，这样你们的讨伐也会更容易成功。这个理由你们满意吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show][color=f1401c]恐怖蟾兽的弱点[colorEnd]……你能保证吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]这个嘛……当然……能……吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]当、然、能、吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]能能能！可不要小看卷宗学者的研究力！肯定能！放一百个心！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我怎么觉得这家伙一点都不靠谱啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]算了……就算只有一点点希望也不能放弃。我要去。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]很好，那你们几位呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……只要能赚钱的话，我是没差。毕竟我们是契约者嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]要跟你下矿我倒是没问题。不过米拉贝尔，你不先回村里去一趟吗？我想罗伯特大叔应该已经等得很急了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]而且这附近……应该也需要派遣自卫团来“清理”吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]没关系，我已经等了很久，再多等一天半天也无所谓。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]我明白了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]{myName}、米托拉……能再拜托你们一件事吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]代我将刚才发生的事情报告给我老爸。就说，米拉贝尔受了惊吓，在菲莉娜的小屋休息。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唉？你都被绑架了，不出面你老爸会放得下心吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们就按米拉贝尔的指示做吧。",
+            "tag": "tag_51"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]嗯……好是好啦。之后你老爸会怎样我可不管哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]多谢……{myName}、米托拉。我安排好自卫团的事后……在后山等你们。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯。那我们也顺便做好下矿井的装备吧。打了这么多场硬仗，肚子也饿了，装备也该修了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]那等各位准备好以后，再继续前进吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_6_a_3"
+}

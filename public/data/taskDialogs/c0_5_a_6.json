@@ -1,0 +1,115 @@
+{
+  "script": "c0_5_a_6",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这又是什么地方？看起来和遗迹有点像，但是却是在悬崖上？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这……这里是……",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂，你怎么啦？干嘛脸色大变地冲出去？这个东西又是什么？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这里就是我记忆中最后的场景。",
+            "tag": "tag_25"
+          },
+          {
+            "text": "当时我正在激活这个装置伺机逃生。",
+            "tag": "tag_25"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "如果我没猜错的话，接下来会出现的应该是——",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]居然把自己逼到了悬崖绝路上。作为异端的末路，这确实足够讽刺了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]既然无路可逃，那就束手就擒吧！这里就由我——神圣骑士劳伦斯，[r]代表枢机厅大审判庭，以研究禁忌技术的罪名逮捕你！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入匠器房间"
+}

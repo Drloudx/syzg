@@ -1,0 +1,286 @@
+{
+  "script": "c5_ex1_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]这上面的密文……如果按照推移法来破译的话，看上去只是一篇普通的叙事诗，讲述的是有关\"完整而永久\"的\"伟大造物\"的传说……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]但如果再将这篇叙事诗截取句头句尾的字母相连起来的话……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]神、匠、器……？这是……有关“神匠器”的线索？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？？？",
+        "text": "[show]不愧是我的孩子，继承了先祖的智慧之血，你的才能甚至让我感到嫉妒和恐惧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]这个声音是……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]希拉尔德……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]希拉尔德……唉。没想到久别重逢，你第一句话就是直呼吾名，甚至连一声“父亲”都不肯叫了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]……我也很想。但您和您手下的“结社”……你们的所作所为，实在是很难让我叫得出口。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]我也没有想到，你会在这种时候闯入这座“深渊”里来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]我承认，我们的“结社”确实和你发生了一些不愉快的往事……但从主观来说，我和我的友人们从未想要与你为敌。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]他们只是太过看重“伟业”的愿景，愿意为了它排除一切危险和困难。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]那么，我就是那个要被排除的危险和困难？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]你之前明明告诉过我，工匠技艺是使人幸福的技术，但你做的事呢？你们做的事根本只会给人带来不幸而已！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]父亲……我在这里再喊你一声父亲。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]看在这声“父亲”的份上，你能不能坦率地告诉我，你们究竟在计划些什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]在你加入“结社”之前，我不能向你透露任何具体内容，否则就是对那些信任我的友人们的背叛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]但我可以告诉你，我所做的一切都是为了建立一个幸福的世界。我们的伟业将成为幸福世界的根基，让从今往后生活在这片大陆上的人们再也不会受到威胁！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]所以说到底是什么威胁！你们到底要做些什么！混账老头，你给我把话说清楚！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]孩子，我早就告诉过你，身为一名工匠，最重要的就是独立思考。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]不经过自己细致的调查，不经过自己独立的研究，从别人那里得来的思想、结论，全都是梦幻泡影，根本不足为凭！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]本来按我的想法，我这次来是准备再一次劝你加入我们的事业……但现在我改变主意了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]我一路看着你长大，知道你从小就极有主见。这样的你显然不会因为我的三言两语就产生动摇。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]所以我决定让你自己去寻找，去探索我们的计划，以及计划背后的原因。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]当你用自己的双手找出了答案，我想……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]到时候你一定会发自内心地认同我，和我们踏上同一条道路！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]不要再说谜语了，回答我的问题！你为什么要做出那么多残忍的事情！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]“不要试图从别人那里寻找答案”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]像个工匠一样，自己去探寻真相吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]这家伙……！居然给我玩这一手！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]那家伙所说的威胁是什么？计划的目标是什么？所谓的真相又是什么……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]谜团不仅没有减少，反而增多了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]可恶的臭老头！说什么是来招揽我，要我看，你跑过来这一趟，根本就是来找麻烦的吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c5_ex1_2】"
+}

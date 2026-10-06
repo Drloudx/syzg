@@ -1,0 +1,85 @@
+{
+  "script": "c1_d2_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这就是……先时遗迹的内部……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]和之前在[color=ffb64d]你的记忆[colorEnd]见过的遗迹感觉好像啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "确实很像。"
+          },
+          {
+            "tag": "tag_30",
+            "text": "毕竟都是先时工匠的手笔。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]呜……好……好冷！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]这、这里……让人毛骨悚然。好多奇怪的感觉交缠在一起……[r]缇莎有点……害怕……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]也就是说，这里的魔力完全处于紊乱状态。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]还不知道有怎样的强敌在等着我们，大家提高警惕！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

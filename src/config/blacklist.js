@@ -208,3 +208,31 @@ export const isEquipTierHidden = (item) => {
 /** 可见的品阶列表（用于筛选行渲染，已排除被隐藏的） */
 export const visibleEquipTiers = () =>
   EQUIP_TIER_RANGE.filter(t => !HIDDEN_EQUIP_TIERS.map(Number).includes(t))
+
+/**
+ * ─────────── 设施配方可见性 ───────────
+ *
+ * 设施页（`FacilitiesView`）在渲染前会把配方过两道闸：产出物/任一材料命中黑名单，
+ * 以及装备打造模式下被隐藏的品阶。**其他页面在生成「前往设施」链接时必须用同一个判据**，
+ * 否则会出现「物品详情写着可以打造、点过去是一个空列表」的死链。
+ *
+ * 已知的两类死链（2026-10-06 实测）：
+ *   1. 4/5 阶装备（`HIDDEN_EQUIP_TIERS`）——物品详情的「查看锻造台」带着 `level=4` 跳过去，
+ *      而设施页的等级筛选行已经不含 4 阶，落地即空；
+ *   2. 产出物或材料被黑名单隐藏的配方（如「熔火护盾」「燃烧炼金炸弹」）——配方本身被过滤。
+ *
+ * 注意本函数只回答「这条配方在设施页是否会出现」，**不含**等级筛选（那是页面交互状态）。
+ *
+ * @param {Object} recipe 设施配方；装备配方用 `equipLevel`，普通配方用 `level`
+ * @returns {boolean} true 表示该配方会被设施页隐藏（不应据此生成可点的「前往」）
+ */
+export const isFacilityRecipeHidden = (recipe) => {
+  if (!recipe) return true
+  if (isBlacklisted({ id: recipe.output?.typeId, name: recipe.output?.name })) return true
+  if ((recipe.materials || []).some(m => isBlacklisted({ id: m.typeId, name: m.name }))) return true
+  // 装备打造：物品详情的 `smithing.recipes` 用 `equipLevel`，设施产物的装备配方用 `mode+level`
+  const isEquipment = recipe.mode === 'equipment' || recipe.equipLevel != null
+  const level = Number(recipe.equipLevel ?? recipe.level)
+  if (isEquipment && HIDDEN_EQUIP_TIERS.map(Number).includes(level)) return true
+  return false
+}

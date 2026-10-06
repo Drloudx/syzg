@@ -1,0 +1,129 @@
+{
+  "script": "c1_12_a_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]怎么这边也有魔物！村子里的人该不会都……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]不，路上[color=ffb64d]没有血迹[colorEnd]，修行所的修业者们应该没什么大碍。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]有人吗——？巴尔德爷爷，你们没事吗——？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副座巴尔德",
+        "text": "[show][size=23]缇莎？是缇莎吗！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副座巴尔德",
+        "text": "[show][size=23]这里！我们都在这儿！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show][size=35]太好了！是巴尔德爷爷！原来你们都躲起来了呀！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副座巴尔德",
+        "text": "[show][size=35]笨蛋——别那么大声！魔物都被你叫过来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "魔物们",
+        "text": "[show]嘎嗷嗷嗷嗷嗷？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副座巴尔德",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "看，魔物真的全被叫过来了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]真是不是一家人，不进一家门……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]无妨，这点魔物还不是我们的对手。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但是这一架本来可以不打的啊……这下平白增加劳动了……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

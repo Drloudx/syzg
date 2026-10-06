@@ -1,0 +1,151 @@
+{
+  "script": "c2_9_a_6",
+  "exps": [
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]大姐……呼……呼、呼哈……我到了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]道路通了！你做得好，你做得好呀，卡夫！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你还行吗，卡夫？",
+            "tag": "tag_52"
+          },
+          {
+            "text": "多亏有你，卡夫。",
+            "tag": "tag_52"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show][cm]没事，我好得很！这有什么谢的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]此地为戒羸戒弱之林。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]欲渡此关，首在戒羸用力。若遇困阻，常思别辟途径，不知勇往直前者，是善谋者溺于思，虽似明智，其实怯懦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]长路漫漫、险关重重，非谋勇兼备者无以致远。应知人智有极限，人力有穷时，欲求远者，半点不可偏废。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]这次我又听懂了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]这是说你们聪明人总想着用脑子解决问题，长此以往就总想着绕路，等遇到绕不过去的阻碍就没辙了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这确实是我的问题。",
+            "tag": "tag_58"
+          },
+          {
+            "text": "有时太过踌躇，反而会失去勇气。",
+            "tag": "tag_58"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show][cm]看来这些试炼，针对的都是你们三人呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]也就是说，下一场试炼，就该到我了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]哈哈哈！大姐头你这么强，智勇兼备，怎么会有试炼难得倒你。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "总之，先往深处前进吧……！",
+            "tag": "tag_61"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嗯……我们走吧，{myName}！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_6"
+}

@@ -1,0 +1,30 @@
+{
+  "des": "莓莓：C1地牢初遇",
+  "script": "meimei_dungeon_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]救～命～呀。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦……？我好像又听见了呼救声？可是感觉懒懒散散的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]该不会是之前那个白色的家伙提到的，另一个神秘商人吧……？[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

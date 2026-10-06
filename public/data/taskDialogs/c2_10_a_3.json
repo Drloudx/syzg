@@ -1,0 +1,105 @@
+{
+  "script": "c2_10_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]很好！说什么强敌，结果也就只是这样而已嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]嗯……这和吾的预想有些出入。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]数月前，那巢母曾带领手下大举攻打古院，吾全力抵挡。当时那妖婆凶猛成性，可没这么容易被打倒。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]会不会是它被大师你打伤，这么久都没有恢复？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哎呀，说这干嘛？这事情很重要吗？我们还是快点进去，找到那什么核心回去交差好了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]这么说起来，我也觉得刚才的巢母实力略弱。它可是一直在这附近作威作福，把恐兽和岩蟾蜍全都驱下山头了呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "难道……还有一只更强的巢母？",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]咦？难道之前和大师交过手的那只还没现身？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]这么说来的确有可能。哈比并不是完全无智的魔物……恐怕那家伙正在哪里暗中监视，等着我们的破绽……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呜哇……说得好可怕！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]但我们现在也只能先前进了。各位，保持警惕！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_10_a_3"
+}

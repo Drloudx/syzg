@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "惊慌的蕈人",
+        "text": "[show]你们是什么人的噗！为什么会在这里的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "惊慌的蕈人",
+        "text": "[show]难道是、是入侵者的噗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "惊慌的蕈人",
+        "text": "[show]这里有入侵者的噗！快过来的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……他们是不是误会了什么？明明我还一句话都没说啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]请……请你们手下留情……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这、这些都是布拉格乌尔庄园的村民……等制服他们之后，我……我会让他们道歉的。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_3_a_2",
+  "script": "c4_3_a_2"
+}

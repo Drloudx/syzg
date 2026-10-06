@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咦，魔物？明明来的时候还没有这些杂鱼的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，倒不用摆出那么紧张的架势啦。[r]这种角布林是附近最弱鸡的魔物，随手两下就能解决啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？你说你也能战斗？你不是失忆了吗？你行不行啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈？“你感觉你可以？”[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]行，既然你都这么说了，那就一起上吧。[r]不过千万别拖我的后腿，不然我可饶不了你哦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "回正",
+        "nameSide": "right"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c00_1_4",
+  "des": "空"
+}

@@ -1,0 +1,22 @@
+{
+  "script": "c4_1_a_1_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是角布林？难道一直在埋伏我们？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]还真是被看扁了！{myName}，我们上，干掉这些杂鱼，追上那些伐木工！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "临时"
+}

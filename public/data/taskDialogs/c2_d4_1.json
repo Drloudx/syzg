@@ -1,0 +1,94 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]等等！仪器有反应了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎么了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]这个数值是……呵……看来我们终于找到那个“[color=f1401c]匠器之间[colorEnd]”的位置了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]居然距离这么近才有反应，藏得可真够深的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]你是说，我们距离“匠器之间”已经很近了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]根据这个估算，最多再经过八九个房间就能抵达了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]好，那也挺近了！加把劲，大家！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]太好了，看来索利德山的异变很快就会结束了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]恭喜诸位即将得偿所愿。只是行百里者半九十，不到最后一刻，诸位施主还请勿要掉以轻心哪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]多谢大师提醒，我们会警醒的。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "阿娜希塔遗迹-中枢部",
+  "script": "c2_d4_1"
+}

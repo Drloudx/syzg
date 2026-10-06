@@ -1,0 +1,70 @@
+{
+  "script": "c3_d2_1_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]没想到……失去神智的人和魔物一起在这里当护卫，这种场面也太吓人了。[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是的，我也是第一次看到这种……奇怪的景象。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]把他们安排在这里的人为什么要这么做？就跟阿莱姐说的一样，明明用钱就能解决的问题，为什么要搞这么奇怪的安排？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我想一方面是为了节省成本吧。另一方面……或许是为了保护某个秘密，就连普通的护卫也不能知道的秘密。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦？那可真是太稀奇了……[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]花了这么多功夫……就为了守护这地方背后的秘密……我开始好奇，这下面的秘密究竟有多要命了。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不知道为什么，我有种不好的预感。做好万全准备之后再继续前进吧。[l][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_d2_1_2"
+}

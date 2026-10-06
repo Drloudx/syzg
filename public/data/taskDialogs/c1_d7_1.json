@@ -1,0 +1,163 @@
+{
+  "script": "c1_d7_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咳、咳咳……灰尘好大！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们已经走了多远了？这就是遗迹的开拓区吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这里好像没什么特别的东西……",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]嗯……不过依然能感觉到四周有不少魔力，而且空间比通往匠器的路上还要广阔。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]要是小缇莎在的话，说不定能给我们指引下方向呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]那就让缇莎来给你们帮忙吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这个声音是——！",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]{myName}、米托拉姐姐——！你们最惦记的缇莎来啦！缇莎一定能帮大家带好路的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你从哪里冒出来的？难道说从修行所开始就一直偷偷跟着我们吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]没错！坏妈妈想把我拴在修行所里，但这里明明有更重要的事等着缇莎做！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]米托拉姐姐不需要担心缇莎，缇莎可是经验丰富的秘术师，而且绝对不会再迷路了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]越是强调迷路，我越是会想起不好的回忆啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]{myName}……我们要怎么做？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "浅部的魔物会重新聚集，送她回去也太麻烦了。",
+            "tag": "tag_30"
+          },
+          {
+            "text": "还是保护好缇莎，继续往里面深入吧。",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]嗯……就这么办吧。缇莎，呆在我身边！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]好！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "遗迹深处一层：1图进入时"
+}

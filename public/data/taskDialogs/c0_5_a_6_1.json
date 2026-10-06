@@ -1,0 +1,140 @@
+{
+  "script": "c0_5_a_6_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔嗯……这些铁罐头嘴真臭！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]等等？铁罐头？难道，就是一开始和你一起从天上掉下来的那些人！这到底是怎么回事——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "什么异端，根本只是你们自说自话而已！",
+            "tag": "tag_50"
+          },
+          {
+            "text": "什么禁忌，这些明明都是造福人类的技术！",
+            "tag": "tag_50"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]唉……？{myName}……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[cm][show]看来你存有异议。确实，我可以理解你的想法。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]追捕期间我看过你的履历——在你被通缉以来，你确实没有伤害任何人，也没有用你的奇技淫巧引发过什么麻烦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]但是！既然被枢机厅认定为禁忌，认定为异端，那你个人品性如何，已经毫无意义！在被指定为犯罪者的那一刻起，你就已经是破坏秩序之人，必须接受裁断！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]所以束手就擒吧！看在你心性不坏的份上，我可以给你权限范围内的优待！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]不回复是吗。看来你已经打定主意要顽抗到底了！没办法……诸位，准备——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]嗯？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "劳伦斯",
+        "text": "[show]等等——！不要动！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这、这是怎么回事？这个装置好像突然……启动了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那时的我就是这么做的。",
+            "tag": "tag_22"
+          },
+          {
+            "text": "我开启了这个装置，想要拖延时间。",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "Battle 0-00_5 与劳伦斯对峙"
+}

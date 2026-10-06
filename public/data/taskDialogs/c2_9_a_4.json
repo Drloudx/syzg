@@ -1,0 +1,120 @@
+{
+  "script": "c2_9_a_4",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]这里和刚才那片林子又不一样了……[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这些石柱是……机关？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不管是什么，总之只要破坏掉就好了吧！[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]等等，卡夫，不要急躁。刚刚的教训都忘了吗！[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嘎……说得也对。[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]此地为戒愚戒痴之林。尔等面前五柱，有一与他者不同。[l][cm]",
+        "nameSide": "left",
+        "charaName": "谜之声"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]提示：——[color=ffb64d]山变石凋，奸邪遍野。唯见苍郁，神意犹存[colorEnd]。[l][cm]",
+        "nameSide": "left",
+        "charaName": "谜之声"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊？这次的提示在一开始就给到了吗。不过这句话是什么意思？[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我这下真的一个字也听不懂了。{myName}，你怎么看？[l]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "山变石凋，奸邪遍野……"
+          },
+          {
+            "tag": "tag_17",
+            "text": "唯见苍郁，神意犹存……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "应该是让我们选择某根正确的石柱。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[show][cm]看来你心里已经有答案了。我们来处理这些怪物，然后调查正确的石柱看看吧！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_4"
+}

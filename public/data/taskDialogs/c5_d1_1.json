@@ -1,0 +1,89 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕——！咕……咕咕咕！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]大家！软软说……前面有人！该不会就是我们要找的那些客人吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]有人吗？我看看……！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]啊，是真的！有四个穿着浴袍的人！他们一路奔逃，然后被芙洛波们困住了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]冰天雪地里穿着浴袍？这些人是怎么活下来的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]米托拉，现在不是好奇这些的时候！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]不管他们是怎么活下来的，如果我们再不出手，他们很快就会活不下去了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "大家，我们上！",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]哦哦~！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d1_1",
+  "des": "第一张图，进入后【c5_d1_1】。"
+}

@@ -1,0 +1,22 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看来还有好多魔物等着我们呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]那就让它们尝尝我们的厉害！为了索利德山——！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c2_d3_2_1",
+  "des": "新增 阿娜希塔遗迹-功能部 开始"
+}

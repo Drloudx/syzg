@@ -1,0 +1,195 @@
+{
+  "script": "c3_d1_3_2",
+  "des": "c3_d1_3_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]刚才那个……到底是什么啊！我真是第一次见到这么大、这么吓人的史莱姆！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_3",
+            "text": "那东西绝对不是自然产生的。"
+          },
+          {
+            "tag": "tag_3",
+            "text": "恐怕是吸收了匠器溢出的魔力产生的变异。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[cm][show]魔物哪有那么容易就变异……[wait=700]的……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]等等……！这么一说，史莱姆好像确实是非常容易变异的魔物。如果能采集到这附近的地脉魔力流向的话，搞不好可以研究出——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]别讨论那些了，我完全不想知道那东西是怎么来的！那史莱姆的碎块崩得到处都是，我只想赶紧结束冒险，把装备好好洗一洗啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]在水里我都能够闻到那家伙的臭味……上了岸会怎么样，我想都不敢想啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]没关系，我有非常好用的清洁魔法。所有的脏东西和气味，都能轻松一扫而空～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？这也是水神的力量？有这么好用吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]没错，是千真万确的水神之力哦。只需要一小点就能搓出好多泡泡，好用到不行。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]你们聊到哪里去了啊……{myName}，我们要继续往这个方向前进吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "是的。"
+          },
+          {
+            "tag": "tag_12",
+            "text": "圣女大人有感觉到吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯。到了这里，我终于有所感觉了。原来所谓的“混沌魔力”居然是这么一回事……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这股强大的能量，好像从地脉渗入每一滴湖水中，要把整座魔爪湖搅成巨大的漩涡……既然专家在场，我们就一鼓作气，赶紧“处理”掉它吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "交给我就好！"
+          },
+          {
+            "tag": "tag_20",
+            "text": "圣女大人我就绝不会让你失望呀！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦哦哦——！斗志满满出发啦——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]发什么癫啊！赶快前进啦——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

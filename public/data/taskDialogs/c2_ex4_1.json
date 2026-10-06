@@ -1,0 +1,54 @@
+{
+  "script": "c2_ex4_1",
+  "des": "进入房间触发",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]嗯……好了，读数调整到这个水平，仪器就可以使用了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这次你们携带的共鸣魔力，波形和上次略有不同，这让我不得不多花了一点时间……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]不过没关系，在我高明的技术之下，这不过是一些微不足道的小小波折，根本不值一提。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]现在你们可以站到[color=ffb64d]魔法阵[colorEnd]上了，让我们马上开始这次的记忆之旅吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]大脑放空，不要胡思乱想！让心灵乘上这股魔力的湍流，进入记忆的湖底吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

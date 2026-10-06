@@ -1,0 +1,101 @@
+{
+  "script": "c3_d2_2_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是大蛇怪！这家伙我们也见过，是在蛇怪的巢穴里！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这一只首领比之前那只要强出不少。从这点来看，前面那道门后面应该就是核心区域了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我也这么觉得，不过……刚才的战斗，我总觉得有点怪怪的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]你是说，这个大家伙没什么攻击性？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是啊！明明是个狂暴化的魔物，但战斗中一直都以防御和闪避为主，总觉得像是在拖延时间……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "说不定就是在拖延时间。",
+            "tag": "tag_7"
+          },
+          {
+            "text": "这种时候就要相信自己的直觉。",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]诶？真的假的？魔物也懂得战术吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]别忘了，这些魔物很可能是受人操纵的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]如果是幕后黑手……图洛德希望它们拖延时间的话……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那我们就走快点，别让他得逞！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_d2_2_3"
+}

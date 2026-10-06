@@ -1,0 +1,105 @@
+{
+  "script": "c1_7_a_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "哈萨琳之手",
+        "text": "[show]饶、饶了我吧！我什么都说！我知道的已经全告诉你们了——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]他是这么说的。怎么样？要干掉他吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]不，他能说的都说完了。让他走吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "哈萨琳之手",
+        "text": "[show]谢、谢谢！谢谢各位爷放过我！我这就走，这就走！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啧，跑得倒快！我说，你干嘛要放走他？[r]就算现在放了他，他将来也不会记得的，还是要和你们对着干啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "是为了震慑潜在的敌人吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]没错，放走他的话，周围的人就会知道这里来了厉害的家伙，从而心生惧意，[r]营地失守的消息也会让他们士气大跌，这就是我们进攻的机会了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]迦南前辈说得没错。根据讯问的结果，哈萨琳之手的主力就堵在黑铁煅炉的外围，和当地驻守的民兵和契约者对峙。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]而他们纠集的荒野客及其他狂暴的魔物，则在其他的方向向黑铁煅炉不断施压。以后者驻守的兵力，难以长守。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]嗯，不过反过来说，只要我们能击溃哈萨琳之手的主力，那契约者们的战力就能解放出来到别处去救火。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那接下来的计划就很简单了——我们[color=ffb64d]内外夹攻[colorEnd]，把他们的主力一扫而空！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

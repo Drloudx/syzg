@@ -1,0 +1,132 @@
+{
+  "script": "c0_3_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]这、这里就是角布林营地的门前了……我、我可以走了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈！看看我们发现了什么！是角——布——林！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，有点不对劲！",
+            "tag": "tag_16"
+          },
+          {
+            "text": "那家伙的气息和之前那只头领一样！",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]那、那是“[color=f1401c]狂暴化[colorEnd]”的魔物！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]“狂暴化”？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]嗯啊！据说是受[color=f1401c]异变[colorEnd]影响，变得异常狂暴的强大魔物！[r][l]我就是被它们撵成这样的……你们一定得小心啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈，放心吧。食物、药剂……我们也做了不少准备。[r][l]现在管它什么狂什么暴，都没法阻止我！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "猎人先生，路带到这里就可以了。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "小心点回去吧，前面会很危险。",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]那、那我就不打扰你们了……谢谢！谢谢两位恩人！回见！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼——走吧，{myName}！打倒那个看门狗，我们就直接突入它们的老巢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "空"
+}

@@ -1,0 +1,22 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好大的空间……看来又得是一场恶战了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]那就多多麻烦各位好好保护我啦！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c2_d1_1_2",
+  "des": "新增 二层开始 进入输送部"
+}

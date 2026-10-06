@@ -1,0 +1,101 @@
+{
+  "script": "c3_d2_1_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]这个地方，感觉好糟糕，我尾巴上的毛都竖起来了！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]确实……这里弥漫着某种不祥的气息，空起来还有针刺般的恶意……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这里到底是干什么用的……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]干什么用先不论……你们看那边！[l][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那些佣兵……还有治安队员？难道和地面上那些人一样，他们也都失去神智了？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]还有蛇怪——啊，你们看，蛇怪居然没有攻击那些家伙，反而都站在一起？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我记得之前，{myName}曾经怀疑，蛇怪们是受到人为操纵的……[l]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "看来那些佣兵也是如此。",
+            "tag": "tag_9"
+          },
+          {
+            "text": "这也是富魔水症的影响吗……",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]到底是怎么做到的……而且，明明用钱就可以让他们卖命，为什么还要更进一步，做出如此不人道的事呢……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德……你究竟是堕入了黑暗，还是说……这之前你所做的一切，都只是人前的假象和谎言……？[l][cm][hide]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_d2_1_1"
+}

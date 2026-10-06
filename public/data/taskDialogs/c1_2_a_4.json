@@ -1,0 +1,314 @@
+{
+  "script": "c1_2_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]前面就是驿站的大门了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者A",
+        "text": "[show]太、太好了……我们安全了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者B",
+        "text": "[show]这都是多亏了茜塔前辈她们……对了，差点忘了，我们还不知道这两位恩人的名字呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "我的名字不值一提。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "这是米托拉，把她报上去就好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "受伤的契约者A",
+        "text": "[cm][show]米托拉……是吗。我们不会忘记这个名字的，之后如果有需要，我们一定会来帮忙！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]行、行了行了！你们快点走吧，回去好好养伤！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呼……好累。总算打发走了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]我都看到了，你们干得不错。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]谁？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这个声音是……老板，还有迦南前辈！[wait=300]你们回来了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]茜塔，还有两位，我们不在的这段时间，真是辛苦你们了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]驿站绝不会让任何人的努力白费。所有的辛苦都会获得应得的报偿。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]无论是作为契约者的契约金，还是作为侍者的加班费。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]回去以后你可得好好说说艾尔莎。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]我会的。你辛苦了，茜塔。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]老板？也就是说……你就是那个毛耳朵经常挂在嘴边的……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "菲尔德蕾女士。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[cm][show]是我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[show]这两位面生的朋友……你们就是艾尔莎信中所写的，那对非常厉害的新人吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]毛尾巴告诉过你？没错，那两个最强新人就是我们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[show]嗯，我看到了你们的战斗，你们确实不是泛泛之辈。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "菲尔德蕾女士，我有一个问题……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[cm][show]我知道你想问什么，不过抱歉，现在我们没有时间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[show]现在秋日荒野的情况非常糟糕，我必须尽快回到驿站，安排契约者展开战线。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[show]你的问题，仅仅一句两句恐怕没法给你满意的答案。如果你有耐心的话，就稍微等等吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[show]等我这边告一段落，我会在[color=ffb64d]旅店吧台[colorEnd]那里等你。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么呀，自说自话的家伙！我们都来找你了，就不能通融一下嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]现在情况确实非常紧急，还请两位稍微体谅一下菲尔的难处吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]她其实是个挺热心的人，不管你们有什么疑问，我想她都会尽力为你们解答的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "我明白了。"
+          },
+          {
+            "tag": "tag_23",
+            "text": "我会等她忙完。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]多谢你们的理解。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]两位如果等得无聊，可以在旅店坐坐，结账的时候，尽管记在我的账上就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇，这么大方！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这不算什么，就当是我个人报答你们拯救同僚的义举了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]玩得开心点，我们稍后再见。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

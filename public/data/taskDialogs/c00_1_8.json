@@ -1,0 +1,150 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]什、什么鬼！这家伙还有这种招数……是什么新伎俩吗！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉！",
+            "tag": "tag_9"
+          },
+          {
+            "text": "休想伤她！",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]……欸？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呜喵！呜喵喵喵？你，你怎么跑过来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]快闪开！这里危险！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉是我的恩人！",
+            "tag": "tag_38"
+          },
+          {
+            "text": "我不可能丢下你不管的！",
+            "tag": "tag_38"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]谁、谁要你管啊！我只是太饿了才一时失手，倒是你——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]——{myName}！小心！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "角布林头领",
+        "text": "[show]吼呜嗷嗷嗷嗷——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "呜——！",
+            "tag": "tag_42"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（好痛……意识……逐渐远去……）",
+            "tag": "tag_43"
+          },
+          {
+            "text": "（看来……到此为止了吗……）",
+            "tag": "tag_43"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]真是的！你这个人……！都说了让你闪开了！谁让你突然跳出来……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]可恶的角布林！现在就先放你们一马！等我把这家伙安顿好，马上就回来把你们全灭了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们先撤——！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "角布林殴打女主差分",
+  "script": "c00_1_8"
+}

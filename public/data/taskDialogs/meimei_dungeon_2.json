@@ -1,0 +1,62 @@
+{
+  "script": "meimei_dungeon_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]初次见面，欢迎光临。我是神秘商人莓莓。[r]只出现在最危险的地下城，为经验丰富的冒险……啊不，契约者准备珍贵的宝藏。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你就是麦麦口中那个“阴暗又奸猾的家伙”啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]看各位的样子，已经接触过我那个脱线又伪善的同伴了。[r]麦麦那家伙卖的东西没几样，还搞什么限量，就是为了营造稀缺感，让你们感到焦虑。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]而我莓莓不一样。在这里的三个宝箱，里面都塞满了珍贵的素材和装备。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]只需支付固定的价格就可以买走超值的商品，附赠打开宝箱时的刺激体验，绝对能让各位充实而满足。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]我感觉你们俩都是半斤八两吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]怎么办，{myName}？要是有闲钱的话，我们要不要去开一个看看？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "莓莓：C1地牢感谢救援"
+}

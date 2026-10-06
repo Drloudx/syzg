@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这里的魔物，和秋日荒野也没差多少嘛，就只是颜色变了，还长出了鱼尾巴！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]那些是魔爪湖特有的魔物——鱼布林。和近亲角布林不同，这些家伙都是非常擅长水战的水生种。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]小心迎战吧，注意千万不要被它们卷到湖里去了！切记切记！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c3_1_a_2】。可以在这里表达对魔物的看法。",
+  "script": "c3_1_a_2"
+}

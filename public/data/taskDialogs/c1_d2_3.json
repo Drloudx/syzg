@@ -1,0 +1,172 @@
+{
+  "script": "c1_d2_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]这就是遗迹的最深处了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]这里还有一扇门，前面应该就是地图上没有标绘的区域了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]看起来也没别的路了。{myName}，你有什么头绪吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "其实和之前的星晷一样。"
+          },
+          {
+            "tag": "tag_13",
+            "text": "（取出匠器碎片。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][show]（咣啷啷啷啷……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦，开了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]真奇妙啊！有了这东西，所有的先时遗迹都能随便出入了吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "不，没有那么简单……"
+          },
+          {
+            "tag": "tag_15",
+            "text": "（说明遗迹相关的知识。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]呃……你的意思是说，每座遗迹都会采用[color=ffb64d]不同的技术[colorEnd]……而这个遗迹和你之前造访过的遗迹并不相同？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那为什么这玩意可以和这个遗迹共鸣啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]恐怕，这个匠器碎片，就是被狂暴的魔物们从这个遗迹里[color=ffb64d]带到外面[colorEnd]去的吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]然后就落在了角布林手里，弄得草原也乱七八糟，还把我家给毁了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这就是最可能的发展了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那我还真是倒霉……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]为了让这种倒霉的破事不要再来第二次，这次一定要找到异变的源头，彻彻底底地把它解决！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]很好，就要有这个气势！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]准备好了的话，那我们就继续向前吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

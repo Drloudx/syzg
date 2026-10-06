@@ -1,0 +1,200 @@
+{
+  "script": "c2_9_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（清理完过了好久，似乎再没有角布林跳出来了……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]唔……这么说来……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]这算是通过试炼了吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]太好了！回过头来想想，以我们的实力，就算和这些角布林打上一整天，好像也没什么可担心的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]我到底在急些什么啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]可能这就是大师想告诉我们的某种道理吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]然。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]大姐头！是哪里传来的声音？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]此地为戒骄戒躁之林。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "谜之声",
+        "text": "[show]欲渡此关，首在戒急用忍。凡处逆境，有焦心、躁心，放逐理智、意气用事，是嗔心作怪，当悉戒之。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]戒骄戒躁之林……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]哦哦！虽然他用的词汇我都不是很懂，但这个意思我倒是弄明白了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]简单来说，就是皮塔太急躁了，干什么一不顺心就容易烦躁发脾气，要改掉这一点才行，对吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]你居然听懂了？就凭你那个肌肉脑子？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我听说炼气士大师能够以心传心。",
+            "tag": "tag_19"
+          },
+          {
+            "text": "或许是这股谜之声有些神异。",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show][cm]嗯。先不管这个声音到底有什么特别，但它说的确实很对。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]不论是皮塔、卡夫，还是我……都有过焦躁的时候。冲动的确容易酿成祸害。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]是啊……有今天这码事在，以后是该注意点了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]大姐快看，好像可以从东边继续前进了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "看来试炼好像不止这一关。",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嗯，前面应该还有别的关卡在等着我们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我们稍事休息，就继续前进吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_3"
+}

@@ -1,0 +1,307 @@
+{
+  "script": "s_2_2_14",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咳咳……咳咳……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "大家都没事吧？",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]我……我没事！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]好疼……我的腰，哎呦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我也没事！阿尔克丝，你还好吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]我也没事……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]呼……看来大家都还行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这……这里是什么地方啊……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是个大坑。",
+            "tag": "tag_25"
+          },
+          {
+            "text": "没有出口。",
+            "tag": "tag_25"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[cm][show]这地方……也有人工挖掘的痕迹。难道……这是陷阱？我们中计了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？这种大坑还是有人故意挖的？挖这种地方干嘛啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]唔。这里很有可能就是为了防止我们接近才修建的陷阱。一旦刚才那只蟾蜍被击败，上面的地板就会塌陷，无论有没有证据，也都被销毁了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]难道有人想在这里藏什么……？到底会是谁……他们的目的是什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]不知道。现在真相没了，我的论文也没了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]我……我们先从这里出去吧。一直呆在这里也不是办法。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没错！我爬——喵呜——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不、不行，坡面太陡，根本没什么着力点……而且这墙也太高了吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]那、那我试试，用我这把锄头来——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（嘣——！阿尔克丝向墙面捶了一拳。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]你看……没用。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（轰！轰！轰！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（阿尔克丝用尽全力，但只在墙壁上打出了几个小凹槽。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]呜……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好、好大的力气！但……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]我没劲了……墙后面还是墙。我没办法了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（见没有效果，阿尔克丝直接躺在了地上。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呃……直接躺平了啊……那还有什么出去的办法吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]没办法了。咱们之中又没有人会飞。我们只能节省体力，在这里等待救援了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "有人会来救我们吗？",
+            "tag": "tag_45"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[cm][show]动静这么大，洞口还有这么多设备，应该会有巡逻的自卫团注意到的吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么，原来你没有预备的吗？那我们得在这里等多久啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]谁知道会遇到这种麻烦啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]你们都先休息一下吧，让我再想想办法。如果我们只能在这里等救援，那最好别耗费太多的体力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好……我们知道了，那就先休息一下吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入时【s_2_2_14】"
+}

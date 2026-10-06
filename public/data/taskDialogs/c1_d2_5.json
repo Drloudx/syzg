@@ -1,0 +1,88 @@
+{
+  "script": "c1_d2_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]这是……！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_2",
+            "text": "大家小心！"
+          },
+          {
+            "tag": "tag_2",
+            "text": "那有个奇怪的构装体启动了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]看来它就是这座机械之巢的巢母了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][show]（滋滋滋滋……！）[l]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "它好像在启动其他的构装体？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]是、是的！缇莎能感觉到……周围的魔力正在被它引导，灌注进了其他的构装体内……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]缇莎感觉……十分不妙！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]看来是收到了什么指令，让它开始运转起来了……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]放任它不管的话，这些构装体都会一个个启动的！我们上！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

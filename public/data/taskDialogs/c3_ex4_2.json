@@ -1,0 +1,356 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]我们到了……！露帕，我们走！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]嗯！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]好了，水神大人的神念回应我了！魔力通道已经打开了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]就是……现在！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]很好！记得要注意艾茵的动作哦～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]灵魂之躯，展开！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]这就是灵魂之躯……好纯净的灵体！有它的话……确实可以承载圣女大人的意志……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]姐姐！集中精神……呼唤圣女大人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]嗯！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]圣女大人，您的弟子——候补圣女乌帕、露帕正在呼唤您，请您分出一丝神力，顺着我的精神指引，降临到这副身躯之中吧——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]圣女大人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]请您……苏醒吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "阿莱克西娅！",
+            "tag": "tag_22"
+          },
+          {
+            "text": "阿莱姐！",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]成、成功了吗……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕&露帕",
+        "text": "[show]圣女大人……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]各位，好久不见。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]圣女大人……！太、太好了……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]非常感谢你们为我做的一切。虽然我的意识一直都在沉睡，但外界发生的一切，我都有所察觉。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]本来我还以为这一睡，几十年就过去了，没想到居然这么快就能重见天日……这都是多亏了小艾茵，还有{myName}、米托拉你们的帮忙。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]艾茵只是为了报答{callName4}的恩情，圣女大人要感谢就感谢{callName4}们吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]艾茵？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]怎么了？大姐姐？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]小艾茵你……这就准备离开了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]对呀～！艾茵这一次就是专程为了报答{callName4}们才来的嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]既然事情已经做完了，那小艾茵当然就该退场了呀！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]毕竟，在家里还有人在等着艾茵，作为听话的孩子，艾茵可不能让家里人担心呢～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]家里人……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那小艾茵路上小心，我们就不送了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]嗯！圣女大人你也保重。还有{callName4}你……记得一直跟好米托拉姐姐，保护好自己的小命哦～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]艾茵这就走啦，之后有缘再会～！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]圣女大人……这个孩子虽然帮了我们，但她的表现……着实有些可疑。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]我们真的要放她离开吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]你也说了，她可是刚刚才帮了我们。至少她对湖区、对尾指村应该没有什么恶意……既然如此，那就由她去吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]嗯……也只能这样了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]圣女大人……您感觉如何……身体有什么不妥吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]小艾茵制造的这具灵魂之躯，和我的意识完美融洽，如臂使指，没有任何隐患和瑕疵，就连水神大人的神力也能承载……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]真是不可思议的技术……现在的我，稍微努力一下，应该能发挥出三成的战力吧……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那也非常了不起了。",
+            "tag": "tag_52"
+          },
+          {
+            "text": "只有三成功力也是湖区无敌啊！",
+            "tag": "tag_52"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]谢谢你的称赞，但世间能人异士层出不穷，或许我还没到可以小看天下英雄的地步。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]那圣女大人，您接下来有什么计划吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这个嘛……我们还是先回尾指村，等我了解一下情况之后，再从长计议吧。[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c3_ex4_2】。艾茵将从仪器中分出的一丝圣女神力灌注进灵魂之躯，一具圣女的分身出现。你们约定前往尾指村外围汇合。",
+  "script": "c3_ex4_2"
+}

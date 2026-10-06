@@ -1,0 +1,297 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这里是……安瑟恩遗迹的……匠器之间？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这次没问题了。匠器碎片的共鸣固定在了工匠锤上，你们进入的应该就是和它相关的记忆了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]也就是说，这是{myName}的记忆？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不，这里绝不是我的记忆。",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]诶？可是我这里显示的波形没有问题啊？你发现什么问题了吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没有问题，但是……",
+            "tag": "tag_8"
+          },
+          {
+            "text": "那个人，绝对不应该在这里出现。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]诶？就是那边那个人？那是谁啊？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那就是我一直在寻找的男人……",
+            "tag": "tag_14"
+          },
+          {
+            "text": "我失踪已久的父亲——希拉尔德。",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]什么？{myName}的老爸？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这还真是超出预料的情况，不过也不是不可以解释……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]毕竟共鸣现象只是与魔力共振，魔力的来源也并不固定。[r]或许这段记忆并不是源自于你的脑海，而是被储存在别的某处，经由某种特殊的联系流入到了这只锤子里……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好了，原理什么的都不重要！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}，你不是一直在找他吗！既然他在这里出现了，那不就是最好的线索吗！我们赶快去听听他在说些什么吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "走！",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]对匠器的调整……这种程度就已经是极限了吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]这样一来，地脉多少也会受到点影响。这也是不可避免的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]凭我的匠技，终究只能止步于此了吗……可恶，要是我也能使用[color=ffb64d]那把锤子[colorEnd]的话……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "模糊不清的人影",
+        "text": "[show]希拉尔德……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]我知道你想说什么，哈萨琳。这是……必要的牺牲。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]你也知道现在卡露蒂亚要面对的境况。即使我什么也不做，情况也不会好上多少。[r]比起注定的结局，我还是要放手一搏。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]只要能达成我们的伟业。只要能完成[color=ffb64d]集大成匠器“理性之楔”[colorEnd]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]无论多大的牺牲，都完全值得！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳",
+        "text": "[show]我还是无法认同你的做法……无论如何，我会用自己的办法拯救深渊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳",
+        "text": "[show]在那之前，你就收起你的计划，不要给我，给我们的住民添任何麻烦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]我明白了。我会静候你成功守护住这片土地的消息。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "希拉尔德",
+        "text": "[show]在那之前，我会继续我的研究，完善我这个备用计划……直到你终于肯认清事实，承认自己失败的那一天。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这段回忆好像也到此为止了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "他竟然亲自调整过匠器……",
+            "tag": "tag_44"
+          },
+          {
+            "text": "他竟然认识深渊的领袖哈萨琳……",
+            "tag": "tag_44"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]好了好了，不管你们有什么发现，都可以等回去之后再说。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这段魔力好像要用完了，这片记忆空间很快就要坍塌。快点移步去下一个记忆空间吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？这么快？好吧，那我们快走吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "匠器之间的回忆",
+  "script": "c1_ex1_3"
+}

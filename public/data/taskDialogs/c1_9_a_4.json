@@ -1,0 +1,68 @@
+{
+  "des": "战斗结束",
+  "script": "c1_9_a_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好，这样一来就搞定了！真有你的，{myName}！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这种式样的炸弹，我七岁就会拆了。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]呃，这么厉害吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]接下来我们怎么办？听那个佣兵说下面都是炸弹，还抓了孩子们做人质……[r]就算是那个迦南也不敢轻举妄动，我们更没办法了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们偷偷潜入进去，看看能做点什么。",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]有道理。只要有机会，我们就把孩子们解救出来。[r]只要敌人手里没有人质，不管有多少个，都不够迦南打的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那就这么定了，我们赶紧下去吧！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

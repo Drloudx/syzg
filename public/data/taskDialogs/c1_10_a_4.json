@@ -1,0 +1,78 @@
+{
+  "script": "c1_10_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "海利",
+        "text": "[show]好……好厉害！荒野客姐姐好厉害！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呼……呼……我们打倒它了，迦南！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]真是好身手，米托拉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不过感慨就等到之后再说吧。后面的魔物还在追吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]在这个大家伙没了反应之后，好像就没有在追了。也有可能是在等待积攒一波攻势吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]有这种可能，不过无论是不是都无所谓了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这次的任务[color=ffb64d]失败[colorEnd]了，[r]因为哈萨琳之手的破坏，这座矿坑恐怕只能等驿站派人来修复才能重新运作了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可恶的家伙……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我们赶紧出去，把小孩子们送回煅炉吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

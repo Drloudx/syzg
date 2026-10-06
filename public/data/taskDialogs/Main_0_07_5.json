@@ -1,0 +1,150 @@
+{
+  "script": "Main_0_07_5旧",
+  "des": "交付订单",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（乒……乒……乓……乓……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]沃夫加先生，还合您的意吗？[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]这把弓……竟然和之前一样轻盈精准。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]用来强化弓身的金属……看上去只是增加了配重，[r]却反而让它更韧、更劲，意外地更适合我拉弓的力道……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]它比修复之前……更强了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]我不知道该用什么来形容我现在的心情。[r]谢谢你，小人类。还有你，米托拉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦、哦哦……也、也没什么啦，都是她在忙。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]我现在迫不及待想用它来好好教训下那群畜生。[r]但看样子，这片猎场上应该暂时见不着角布林了吧。乐子全被你们找完了，真可惜。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]那可不一定哦，沃夫加先生。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]我们准备把这群作妖作乱的角布林，同它们的首领一起连根拔掉。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]我们的队伍……正好还缺一位技艺精湛的老猎手。[r]把您的怒火留给我们当作报酬吧，沃夫加先生。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]喀哈哈哈！你的话很中听，小人类！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]虽然我很惜财，但也不是一毛不拔。该给的报酬还是得给你们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]然后……如果你们准备好需要我的尖牙和利齿，独狼随时在此静候。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦、哦哦！多、多谢，大叔！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]（有、有点东西！这储备粮的话术真是一套一套的！以后可不能小看她！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]（这样一来沃夫加先生也加入我们了。[r]在刚才的冒险中，我好像也回想起如何用废旧的装备强化武器的方法……）[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]（今天颇有收获。天色渐晚，现在就先回营地休息吧。）[l][cm][hide]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    }
+  ]
+}

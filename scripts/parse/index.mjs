@@ -21,7 +21,7 @@ import { buildItemsFile } from './items.mjs'
 import { buildRunesFile } from './runes.mjs'
 import { buildFurnitureFile } from './furniture.mjs'
 import { buildFacilitiesFile } from './facilities.mjs'
-import { buildTasksFile } from './tasks.mjs'
+import { buildDialogSearchFile, buildTasksFile } from './tasks.mjs'
 import { buildHeroesFile } from './heroes.mjs'
 import { buildPetsFile } from './pets.mjs'
 import { buildMonstersFile } from './monsters.mjs'
@@ -108,6 +108,12 @@ const jobs = [
   { name: 'furniture', build: () => buildFurnitureFile(), dependsOnItems: false },
   { name: 'facilities', build: () => buildFacilitiesFile(), dependsOnItems: false },
   { name: 'tasks', build: () => buildTasksFile(), dependsOnItems: false },
+  /*
+   * 剧情全文搜索索引：依赖 tasks 产物（要知道每个任务引用了哪些 dialog）
+   * 与 `public/data/taskDialogs/`（已裁剪的剧本副本，由 check-task-data.mjs 维护）。
+   * 紧随 tasks 之后单独一步，方便在日志里看到它的大小。
+   */
+  { name: 'dialog-search', build: () => buildDialogSearchFile(taskData), dependsOnItems: false },
   { name: 'recipes', build: () => buildRecipesFile(), dependsOnItems: false },
   { name: 'achievements', build: () => buildAchievementsFile(), dependsOnItems: false },
   { name: 'events', build: () => buildEventsFile(), dependsOnItems: false },
@@ -122,6 +128,7 @@ const jobs = [
 
 console.log('\n── [page] 页面级预解析 ──')
 let itemData = null
+let taskData = null
 let monsterData = null
 let recipeData = null
 let heroData = null
@@ -139,6 +146,7 @@ for (const job of jobs) {
     monsterData = output.files?.[0]?.data?.monsters || output.data?.monsters
   }
   if (job.name === 'items') itemData = output.data
+  if (job.name === 'tasks') taskData = output.data
   if (job.name === 'recipes') recipeData = output.data
   if (job.name === 'heroes') heroData = output.data
   if (job.name === 'pets') petData = output.data

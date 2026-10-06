@@ -1,0 +1,244 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕！咕咕！咕咕咕咕！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]大家！奇瓦说希拉尔德就在前面，我们马上就能追上他们了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是吗？那可太好了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？？",
+        "text": "[show]太好？追上来，对你们来说，真的是一件好事吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是你——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "巴赫洛克斯！",
+            "tag": "tag_31"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]你这家伙！是希拉尔德让你来拦住我们的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]导师让我拦住你们？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]不！这是我自己的选择！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]{myName}……从在索利德山第一次见到你的时候，我就知道，你和你的技术，一定会成为“结社”的巨大威胁！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]可惜，我的那些同僚们，多数自大短视，认识不到这一点，而“导师”又因为和你的关系，一直试图对你怀柔……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[cm][show]但我不同，我的直觉告诉我，你就是“结社”必须解决的最大敌人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]为了“结社”的未来，我要在这里将你抹杀！即便事后会受到导师的惩罚，我也在所不惜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈？听你在那放屁！说得像个殉道者似的，不知道的还以为你是正派人物呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]我倒是明白你对{myName}的重视，毕竟这是一位我也非常欣赏的年轻人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]不过……当着我的面说要抹杀大书院的贵客？你这家伙，是不是太不把我放在眼里了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]呵……我怎么会小看你们这样的强者……但人力是有极限的！面对超越人类智慧的敌人，你们又能做到什么！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]出来吧！我的最高杰作！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]以天地战争时期，天使一族的毁灭兵器为基础，融合冰火属性魔力制造的造物型合成兽——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show][size=50][color=f1401c]超天界格莉姆·霜烬融合态！[colorEnd][sizeEnd][l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]好、好大——！那是……什么东西……！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是智慧型魔像吗！",
+            "tag": "tag_32"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]哈哈哈哈！感受到这股力量了吗？这股令人绝望的威力！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]你们这些可悲的虫豸！在这超越时光的咆哮轰鸣中粉碎消失吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]谁是虫豸？谁要粉碎啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]拿着一坨大石头就想对付我们？哈！姑奶奶这就让你知道，你的想法有多可笑啦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d2_3_2",
+  "des": "进入后【c5_d2_3_2】"
+}

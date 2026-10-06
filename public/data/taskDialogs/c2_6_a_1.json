@@ -1,0 +1,142 @@
+{
+  "script": "c2_6_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦！快看！那些家伙的营地果然在这里！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]他们看上去非常放松，应该是觉得有魔物拦路，不可能有人找上门来吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]我们动作轻点，先听听看他们在说些什么。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵A",
+        "text": "[show]喂，你说，那个傻○马可到底能不能成功啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵B",
+        "text": "[show]成功如何？不成功又如何？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵B",
+        "text": "[show]反正不过是个连点甜头都没尝到，只是看人画了个饼，就迫不及待出卖族人的蠢货。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵B",
+        "text": "[show]上头对他的期待也就那样，只要他能卖力气搅乱那个村子就行。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵B",
+        "text": "[show]如果他那拙劣的计谋能成，那咱么就当省了点力气；如果不成，哼，我们也做好准备，要拿下那座穷山村了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵A",
+        "text": "[show]终于要动手了吗？太好了！那些个石头脑袋一直油盐不进。这次我倒要看看，在刀子面前，那个罗伯特还有没有那么硬！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]他脑袋硬不硬我不知道，但你们的脑袋肯定没有我的锤子硬！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵A",
+        "text": "[show]什么人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]你姑奶奶我！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊！米拉贝尔冲上去了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]我早就猜到会这样了。我们也上！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_6_a_1"
+}

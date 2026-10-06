@@ -1,0 +1,181 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]好了，到这里大雪好像就停了！看来刚才那场雪只是特定区域发生的异常现象。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]所以这个异常现象到底是怎么回事？我之前来往这么多次都没发生过这种事啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]据安娜研究员于两个月前提交的最新研究，所谓“异变\"是指一种复杂的混沌魔力系统对外部系统产生侵蚀影响的全部过程的统称。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]由于混沌系统本身的复杂性和多样性，其对外界造成的影响也呈现出多种多样的形态，在地域和时间维度上均能显示出较大的差异性。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]这一研究不仅揭示了“异变”在不同地区呈现不同现象的原因，同时也指出，过往经验对应对异变缺乏足够的指导作用。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]唔……大概就是这样……但这些话到底是什么意思啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我想安娜学姐的意思应该是，随着时间的推移，异变中的地区无论发生什么也不奇怪。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]就算是“从来没有发生”的现象，比如局限在某一地区的大雪，即使真的发生，也丝毫不足为奇。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]啊？这算什么解释？那不就是说，遇到这种事情算我们倒霉？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]我想安娜小姐确实是有这种意思……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但更多的应该还是夸大事情的严重性，准备多要一点经费吧。涉及到钱，那家伙可是一点都不老实啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]啊哈哈……这个……其实书院的学者，在经费上多少都有点斤斤计较，这也算是书院的传统了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "各位，比起在那闲聊些有的没的……",
+            "tag": "tag_16"
+          },
+          {
+            "text": "我们是不是应该尊重一下眼前的客人？",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]尊重？不过是一些芙洛波杂兵？需要尊重吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不是我说，这些家伙根本轮不到米托拉大人动手，让奇瓦或者伽拉忒亚随便摆弄两下不就解决了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]你这家伙……之前还自称是专业的契约者，这才多久就开始懈怠起来了啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没有挑战的工作只不过是重复劳动而已，谁会喜欢呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]奇瓦和伽拉忒亚是我们的朋友，又不是给钱的雇主，让朋友多点参与感，那不是理所当然的嘛~！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]米托拉说得没错……我也要加强锻炼！我们上吧，奇瓦、伽拉忒亚……！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_8_a_1",
+  "des": "进入后【c5_8_a_1】。"
+}

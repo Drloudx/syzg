@@ -1,0 +1,492 @@
+{
+  "script": "c0_3_a_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，轻轻松松！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不愧是米托拉。",
+            "tag": "tag5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]嘿嘿～真痛快啊。这里也算是它们的巢穴，在继续前进之前，看看有没有什么值得搜刮的东西吧。快些快些～！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉……就不该对角布林有什么期待。[r]你那边怎么样？有找到什么值钱的东西吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "里面基本都是破烂……",
+            "tag": "tag85"
+          },
+          {
+            "text": "不过，除了这个。",
+            "tag": "tag85"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咦？你说……这颗绿色的东西吗？这是什么啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "看起来好像是一个……蛋？",
+            "tag": "tag18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]蛋？啊，看起来的确是魔物下的蛋！[r]但怎么感觉有点不对劲……而且，角布林的蛋不应该是黄色的吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "原来魔物是靠下蛋来繁衍的吗？",
+            "tag": "tag20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]那当然啦，不然靠什么啊？[r]虽、虽然我也是第一次见真正的魔物蛋，但这可是常识来着！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过……我们该拿它怎么办呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]要是放着不管，也许会孵出新的祸害。[r]但要拿回营地去，对我们好像也没什么用处。[r]我在这一带生活这么久，也没见着人会拿魔物的蛋换钱……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "嘘，米托拉！",
+            "tag": "tag87"
+          },
+          {
+            "text": "注意！",
+            "tag": "tag87"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咦？等等，这颗蛋刚刚是不是动了一下？难道——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]里面的魔物要孵出来了！小心！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]姆～姆姆～？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咦？这……这是什么魔物啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "好像是……史莱姆？",
+            "tag": "tag35"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]史莱姆？看起来确实很像，不过我还是第一次见到这个样子的史莱姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]姆？姆姆——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喵呜！它……它好像要朝我们冲过来了！是、是要攻击我们吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "慢着，米托拉。",
+            "tag": "tag39"
+          },
+          {
+            "text": "它好像没有敌意。",
+            "tag": "tag39"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唉？是……是这样吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]姆姆～姆姆～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]噗，它怎么一直在我脚下蹭来蹭去啊？[r]好、好痒痒呢！噗哈——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]姆～姆姆姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呜……怎么感觉它还有些可爱。我还是第一次见到这么温顺的魔物呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]看起来是那些角布林们从别处的史莱姆巢里搜刮来的蛋。[r]真是可怜的家伙……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "它好像很喜欢你呢。",
+            "tag": "tag46"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[cm][show]姆姆～姆姆～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？是想让我抱抱你吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔，好吧，来……让我来抱抱你——嘿咻～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]姆姆～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿……好软好软～还挺舒服的～所以它为什么这么黏着我啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "它可能是把你当成了妈妈吧。",
+            "tag": "tag52"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]咦？还、还有这样的事吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你说……你听说过刚出生的小鸟会把第一眼看到的动物当作妈妈……？[r]这、这也太奇怪了，我才不会——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]姆姆～姆～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘻嘻……好痒！别、别蹭啦！干嘛这么激动嘛！我、我是妈妈，我是妈妈！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]姆——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真是的……非得这么说才行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……那我们该怎么办呢。让它单独留在这么残酷的野外也太危险了。[r]而且看它这幅样子……估计会一直黏着我们不放吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那个……{myName}。[r]要不我们就把它带回营地吧，怎么样……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我同意。",
+            "tag": "tag61"
+          },
+          {
+            "text": "看起来并没有什么害处。",
+            "tag": "tag61"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]好耶——！在这之前还是先给你起个名字吧。[r]不然……就叫你姆姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "姆姆",
+        "text": "[show]姆姆～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呀，它好像很高兴的样子！你也很喜欢这个名字，对吧！怎么样姆姆？要和我们一起走吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "姆姆",
+        "text": "[show]姆姆！姆姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好！那要好好跟紧我们哦！我们会把你安全带回营地的。[r]从现在开始那里就是你的新家了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]等安顿好姆姆，我们就继续找那些可恶的角布林！走吧，{myName}！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "姆姆消失",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "镜头跟随，zoom1",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "等500",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "打完0-3后，发现了姆姆的蛋。"
+}

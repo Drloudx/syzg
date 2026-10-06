@@ -1,0 +1,319 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊，是[color=ffb64d]驿站[colorEnd]的那个谁！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那个谁？",
+            "tag": "tag_97"
+          },
+          {
+            "text": "哪个谁？",
+            "tag": "tag_97"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]是——是——啊，我想起来了，是驿站的那个毛耳朵！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]还是和以前一样没礼貌呢，小野猫。我应该告诉过你我的名字吧——[r][l]艾·尔·莎！驿站的契约官艾尔莎！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啧……那种小事谁会记得啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]记不住人家的名字可不是小事哦。[r][l]也不知道当初是谁把你安顿在草原里，之后的那些粮食是谁放在你营地门口的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那、那些事我不都好好报答过你了吗！我们一直可是两清的吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[cm][show]嗯，如果是说把整个草原拾荒来的废品全堆给我也算是报答的话，那姑且是两清了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那、那有什么办法嘛！我又不像你们一样有路数换到钱！[r][l]倒是你这个毛耳朵，不在那什么驿站里待着，跑到这里来干嘛啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[cm][show]当然是工作啦。而且，这份工作看起来已经被人抢先了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]工作？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]最近几天，秋日荒野的[color=f1401c]异变[colorEnd]突然加剧，不少住民都深受其害。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]有情报说，就连求生者草原这边也出现了许多“狂暴化”的魔物。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]这些魔物形成了盘踞地，威胁着附近重要的补给商道。[r][l]我和这几位来自驿站的[color=ffb64d]契约者[colorEnd]就是来处理这件事的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈？这帮家伙不光毁了我的营地，还干了这么多坏事啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]什么？你的营地……被毁了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是啊，就是这群不长眼睛的家伙们干的。要不是遇到了{myName}，现在我可麻烦喽。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]怎么回事？现在情况怎么样？你人没受伤吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呀！突、突然靠得这么近干嘛！没事，我没事啦！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（向艾尔莎自我介绍，并讲述之前的经过。）",
+            "tag": "tag_27"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[cm][show]呼啊……原来如此。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]你说你是叫{myName}吗……是你帮助了小野猫，真的非常感谢你。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]噫，干什么啦，突然好恶心哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]嗯——这样吧。[l]在这里站着说话也不怎么方便，怎么样，能邀请我去你们营地坐一会吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈啊？我才不要！为什么非要到我家去！肯定有什么图谋！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]我姑且也是驿站的契约官嘛。[r][l]领下发生了这么重大的灾害，我得去亲眼看看情况。这也是工作的一部分哦。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，我们也很累了。",
+            "tag": "tag_75"
+          },
+          {
+            "text": "先回营地休息一下吧。",
+            "tag": "tag_75"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]这……也确实……经历过那么多事情，我也很疲倦了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那好吧，只许坐一小会哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]大家，不要闲着，开始干活吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]虽然战斗的部分已经有小野猫帮忙解决了……[r][l]你们只需要负责清理这里，确保商道畅通，驿站这边还是会以契约规定的酬金来结算。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]对了，附近这些还能回收的物资，就都堆到这辆马车里吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "契约者",
+        "text": "[show]当然！艾尔莎小姐，您真是太慷慨了！我们这就开始干活——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]嗯嗯，这样就处理好了——那我们赶紧回去吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎么说得像你家一样啊！想去就去，想回就回！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "",
+  "script": "c0_5_a_8"
+}

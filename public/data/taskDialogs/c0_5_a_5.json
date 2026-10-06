@@ -1,0 +1,202 @@
+{
+  "script": "c0_5_a_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……咳咳……这……又是哪里？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这到底是什么地方……不是说好轮到我了吗？怎么又是个不认识的地方呀……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，你看那边——",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯？那是……！唉？是我？不对呀，我完全想不起来我来过这种地方……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "神秘的光球",
+        "text": "[show]哔哔——这个“实验室”已经完全废弃。你听到的是我给你的最后留言。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "神秘的光球",
+        "text": "[show]你长久以来的追逐已经使我渐失耐心，这将是我的最终警告。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "神秘的光球",
+        "text": "[show]看在——哔哔——的份上，停下你的脚步。[r][l]珍惜你苟延残喘的短暂生命，用你的余生去偿还你的背叛和欺瞒吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "神秘的光球",
+        "text": "[show]我们的伟业已经无法阻止。若再相见，就是情谊走到了尽头。[r][l]愿你的余生充满悲痛和悔恨，然后再也不见。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "回忆中的少女",
+        "text": "[show]……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没有下文了。",
+            "tag": "tag_31"
+          },
+          {
+            "text": "关键的地方根本听不清。",
+            "tag": "tag_31"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]呜喵喵……这、这都是什么啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这个地方，还有这个光球，还有他们说的那些东西，[r]我一没见过，二没听过，可以说是一点印象也没有！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "所以这并不是你的记忆？",
+            "tag": "tag_33"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]我……我不知道！但、但是！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我很肯定，那边站着的那个，应该……确实是我！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]虽然不知道怎么说明……但内心有种很确定的感觉告诉我那就是我，不会错……[r][l]这到底是怎么回事？我、我都有点弄不明白了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不用担心，我们有机会弄明白的。",
+            "tag": "tag_35"
+          },
+          {
+            "text": "看来我们彼此都有记不起来的事。",
+            "tag": "tag_35"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]嗯！我才不担心，我只是……稍微被这些复杂的事情弄得有点糊涂了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真是的，这种事情本来就不是我应该思考的，硬要去想根本就不像我！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]算了，看来这里也没什么别的事情了。我们还是找找看有没有出口，继续前进吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉，也不知道现实里的我们到底怎么样了……希望不会遇到什么危险才好啊！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入4图播放"
+}

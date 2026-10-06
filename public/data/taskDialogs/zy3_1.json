@@ -1,0 +1,22 @@
+{
+  "script": "zy3_1",
+  "des": "",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "希尔",
+        "text": "[show]米托拉小姐！做好准备，它们冲进来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们绝不会把我们的家拱手让人！让这些畜生看看我们的意志！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

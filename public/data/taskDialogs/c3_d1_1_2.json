@@ -1,0 +1,62 @@
+{
+  "script": "c3_d1_1_2",
+  "des": "新增-辛瓦特1层打完后",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]终……终于把它们都干掉了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]还是不太习惯在水里战斗……要是在陆地上的话，我几下就能干掉这些鱼布林！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]在水下作战确实需要一段时间去适应，像我们这样的水系法师可能不会受太大的影响，但是使用武器近身攻击的人可能会不太习惯。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]不过别害怕，我在这期间会保护好两位的，请按放心按自己的节奏和敌人作战！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，有你这句话，那我就放心啦～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯，你们可以信任贝尔卡哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]做好休整以后就继续出发吧，魔物能在水里自由流动，小心不要被它们包围了。[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

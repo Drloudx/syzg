@@ -1,0 +1,61 @@
+{
+  "script": "c2_9_a_8_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]（装置的嗡鸣声逐渐停止了。）[l][cm]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦哦，这是成功了吗！[l]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_80",
+            "text": "装置停下了，米拉贝尔！"
+          },
+          {
+            "tag": "tag_80",
+            "text": "用全力上吧，大家！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]好极了！上啊，大姐头——！[l][cm]",
+        "nameSide": "left",
+        "charaName": "两人"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]用不着你们提醒我——！吃我一锤，蛤蟆头！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_8_1 解除防御"
+}

@@ -1,0 +1,78 @@
+{
+  "script": "c4_4_a_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]前、前面就是布拉格乌尔庄园了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]噢……我是第一次看到蕈人族的房子……他们就是住在这种地方吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "因瓦尔布",
+        "text": "[show]到处都是长满了蘑菇的木桩……但这些蘑菇应该是不能吃的吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]确实不能吃。虽然蕈人们会拿它们当做口粮……但这里大部分的蘑菇，对于精灵、鹿人、人类……这些有血肉的生物来说，都是有毒的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我还蛮喜欢吃蘑菇的……本来还想尝个鲜呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]无毒的蘑菇也是有的。我刚好认识一些，等会就由我带你们采吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]啊，但是！没有人带着，你们可千万不要自己动手啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]放心好了，我们又不是笨蛋。活着这么舒服，我才不想这么早丢掉性命呢！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_4_a_4"
+}

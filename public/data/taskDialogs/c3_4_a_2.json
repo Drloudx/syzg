@@ -1,0 +1,116 @@
+{
+  "script": "c3_4_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]好了，前面就是献水圣坛了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]一路上的魔物都被我们清理干净了，货车也没受损。到这里应该算是……暂时安全了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哼哼，路上的杂鱼确实是多得有点心烦，不过整体看来终究不外如是！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]倒是乌帕，你之前说得牛皮哄哄的，结果最后自己差点被车挤下水，还是{myName}拉了你一把！到底谁才是“有得学”的那边啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]啰、啰嗦！我只是、一时没小心！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]笨蛋姐姐，嘴硬。今年她必当不上水占师。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]呜哇！住口啦，呆瓜妹妹！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "各位，不要大意。",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]怎么了？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这里是开阔地带，容易遭受伏击。",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]的确是这样。这种经验和身在湖区内外没有关系。先赶快前去你们说的圣坛吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]唔……有道理！那我们就多走几步，等进了圣坛之后再好好休息！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_4_a_2"
+}

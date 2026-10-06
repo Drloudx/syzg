@@ -1,0 +1,86 @@
+{
+  "script": "c4_d1_2_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]好了各位，解药已经完成了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]太好了！那接下来我们就能靠这玩意一路平推了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这个解药的分量……应该不够我们挥霍使用。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]为了最后的胜利，我觉得是不是……用在最关键的战斗上……比较好呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯，你说的也对。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]既然是深思熟虑的意见，那就挺起胸膛好好说出来，别在那畏畏缩缩的呀～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]唔……下、下次我会注意的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]哈哈哈，艾薇杜尔的胆量还要多练啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]这下秘密武器也做好了……是时候好好教训一下那个蠢弟弟，让他回归到正途上来了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_d1_2_3"
+}

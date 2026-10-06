@@ -1,0 +1,134 @@
+{
+  "script": "c1_6_a_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "铁匠",
+        "text": "[show]你……你们不要过来！不要过来呀！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "着甲士兵A",
+        "text": "[show]哈！你不会以为还有人会来救你吧！[r][l]实话告诉你，黑铁锻炉周边的所有道路，都已经被我们截断了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "着甲士兵A",
+        "text": "[show]就连这种鸟不拉屎的小路，我们都特意[color=f1401c]引来了一大群角布林[colorEnd]，就算驿站的契约者想打，不交出二三十条命也是打不过来的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "着甲士兵A",
+        "text": "[show]就这你还想有人来救你？哈，你就别在这发你的白日梦了，乖乖接受自己的命运吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]哼，那可不一定吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "着甲士兵B",
+        "text": "[show]什么人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是我！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "着甲士兵A",
+        "text": "[show]什、什么？你是……驿站那个迦南！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "着甲士兵A",
+        "text": "[show]怎么可能！驿站的家伙怎么会来得这么快的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "着甲士兵B",
+        "text": "[show]别在那发呆了！我们不是她的对手！大家快退呀！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]想走？现在还来得及吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这位铁匠，快到我们背后，让我们来对付他们！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]原来如此……这就是迦南说的敌[color=f1401c]人[colorEnd]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show][cm]别傻站着了，{myName}！那些哈萨琳之手攻过来了！反击吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

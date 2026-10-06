@@ -1,0 +1,394 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]说起来，那个“沉星冰湖”是在哪里啊？我都不记得有这种地方……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]等等——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊……太迟了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]沉星冰湖，旧称熔火裂隙，位于大书院东面。在异变发生前，这里原是一处岩浆湖，后因岩浆遇冰冷却，形成了坚硬的湖底。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]经过数年的演变，沉星冰湖已成为霜烬平原区域最大的淡水冻湖，承担着整个平原地区的用水和渔业资源供给。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]以上就是有关沉星冰湖的全部信息，我有帮上忙吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]嗯……确实帮上忙了……其实只要第一句就够了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]哈哈……毕竟我这只是把脑子里装着的信息倒出来嘛，要是擅自改动原文，背错了可就不好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]哈……你记性好是很不错，但知识光是记着是没用的。既然身为大书院的学生，你就该想着把它们融会贯通才行啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，是小老师奇瓦呢～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我确实在不断学习，但我记住的东西太多了，想要融会贯通……嗯……稍微有那么一点点困难……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]记住的东西太多……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]对呀，我不是说过吗？我可是大书院的[color=ffb64d]最终保险[colorEnd]呀~！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]等等！之前我还没反应过来……你说的最终保险，是“那个”最终保险吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]没错，就是“那个”最终保险！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们两个究竟在说什么谜语呢？快点来个人解释一下啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我只是……稍微有点太惊讶了……毕竟我也没想过，“最终保险”这种胡来的计划，有朝一日居然真的可以实施……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我从妈妈塞给我背的古籍上读到过。由于“人外的黄昏”太过惨烈，自大书院建成之初，历代的学者们就一直怀揣着一种巨大的不安——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]文明世界遭遇了灾变，因此大书院将文明的瑰宝保存了下来。然而，如果大书院也遭遇了灾变，这些仅存的知识又该如何延续到下一个千年呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_44",
+            "text": "这确实是个令人绝望的问题。"
+          },
+          {
+            "tag": "tag_44",
+            "text": "大书院的先贤们找到解决办法了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]这个问题没有正确答案。“当旧日的文明消散，大书院已不再具备当年的条件，再重新建立一套文明保护机制”～这段我背得对吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_45",
+            "text": "所以就有了最终保险？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]是的。学者们认为，如果存在一个记忆力超群、脑容量无与伦比的个体……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]如果他能记住整个大书院所有的藏书、资料、文献……那么这个个体，在某种意义上就拥有了与大书院同等的价值。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]接下来要做的就是“不断延长他的寿命，让他能够活到大书院覆灭之后，由他点燃新文明的火种”～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这一步倒是相当简单，毕竟在这个卡露蒂亚上，维持一个个体的存在，可比延续文明要简单得多了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "结合先时技术来看，的确如此。"
+          },
+          {
+            "tag": "tag_30",
+            "text": "还真是个宏伟而无情的计划。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]那是相当乱来啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]这不就是……把责任完全推给某个“命定之人”吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]从道德上来说，确实如此。但在文明的延续面前，个人的感受……说实话，根本无足轻重……我不喜欢这样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]唔……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]好啦好啦，能够被选为最终保险的执行人，明明是很棒的事啊！怎么你们都感觉我在受苦的样子……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "这种事情，确实是当事人自己的感受最重要。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]对吧？所以说你们没必要担心我啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好好好，不担心不担心！你们几位聪明人，学术交流什么的就等之后有空再做吧，我们这还没走几步路呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]艾薇杜尔，对于这次行动，你有“看见”些什么吗？后面的行动应该不会有什么不顺吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]我也不清楚……可能是因为这边的灵力比较稀薄，我一路上都没能“看见”什么。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是这样吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]也行吧，反正不是坏事！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]现在天色不早了，我们加快脚步吧！东边……是往这边走吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]是的，方向没错，不过一路上还有很多小岔路和小危险。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]总之大家跟紧我，肯定不会有事的！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_3_a_1",
+  "des": "进入时【c5_3_a_1】。"
+}

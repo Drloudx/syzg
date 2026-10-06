@@ -1,0 +1,81 @@
+{
+  "script": "c1_ex4_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]你没事吧？有哪儿受伤吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修业学徒玛姬",
+        "text": "[show]谢谢你们，我……我没事……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]还好迦南来得及时……哪怕再晚一点，我都只能给你报仇了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag\u001f_6",
+            "text": "还好玛姬小姐平安无事。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]嗯，我也只是巡逻正好路过，恰逢其会。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]虽然结果很好，但现在可不是说话的时候。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]玛姬现在刚刚脱险，心情还没平复下来。保险起见，我们还是先把她带回安全的地方再聊吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就这么办吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南出手消灭了包围玛姬的魔物，你们决定送玛姬回到修道院。"
+}

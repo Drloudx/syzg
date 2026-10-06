@@ -1,0 +1,172 @@
+{
+  "script": "c1_11_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没想到你还挺厉害的，那你刚才在那哇呀呀地怪叫什么啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]欸？缇莎……缇莎没有怪叫呀！缇莎只是不小心忘记了咒语，所以在试着回忆呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]咒语？咒语也能忘记的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]诶嘿嘿……因为缇莎稍微有点冒失，所以偶尔也会有这种事啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]小姐，你这已经不是“冒失”的程度了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]看你的打扮，你应该是修行所的人吧？在这里干什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]没错，缇莎是修行所的学徒。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]你们几位是要前往修行所的旅人吗？[r][l]很可惜没办法给你们带路，因为缇莎正有事要到[color=ffb64d]观星高地[colorEnd]去呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "观星高地？"
+          },
+          {
+            "tag": "tag_40",
+            "text": "观星高地是往这边走吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]不，虽然我也不知道往观星高地该怎么走，但我好歹知道那地方是在[color=ffb64d]修行所的北边[colorEnd]，[r]而这里是[color=ffb64d]修行所南面[colorEnd]！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那不是完全走反了嘛！就算是冒失，这个程度也太离谱了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]嘿嘿，[color=ffb64d]首座妈妈[colorEnd]也经常这么说，她说缇莎比一般人冒失多了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]她一点也没有在反省——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "你刚才说“首座妈妈”……？"
+          },
+          {
+            "tag": "tag_28",
+            "text": "你是莉拉首座的女儿？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show][cm]唉？缇莎没有说过吗？缇莎是首座妈妈的养女呀！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]原来是莉拉首座的养女吗……这可不是一般人啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哈……反正我们也要去修行所，这里就先带她一程吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我懂我懂……如果把她扔在这里，我怕她会在平地上遇难。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]既然遇到了，我们还是好人做到底，把她带回修行所去吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

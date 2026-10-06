@@ -1,0 +1,46 @@
+{
+  "script": "c2_5_a_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]啊！可以看到光亮了！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]从这个洞口出去，就是采石场前的峡谷平地。哈萨琳之手的营地，最有可能的选址就是在这儿！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]也就是说，只要出去，我们随时都有可能接敌。[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那不是挺好！冲冲冲！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "岩蟾蜍洞窟 2"
+}

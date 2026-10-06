@@ -1,0 +1,545 @@
+{
+  "script": "c2_d2_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呼、呼——这家伙真难缠，一直跳来跳去的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]它应该就是这群岩蟾蜍的首领了。巴诺姆村赖以生存的采石场，竟然被糟蹋成这样。真是可恨。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]各位——在你们恣意施展暴力行为的时候，我收到了一个好消息和一个坏消息。[r]要先听哪个？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]别卖关子了。到底是什么样的消息？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]嗯——那就先坏消息吧。刚才的红水晶样品的分析已经出来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]我就直说了吧——根据仪器的分析，被我们称之为“红水晶”的玩意，并不是什么矿石，而是在特种魔法能量的作用下，产生了性状变化的——[color=f1401c]水[colorEnd]。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "什么……？",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]你说是……水？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]哈……这下可真是要命了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂喂，你们怎么了？水不是挺好的吗，至少没什么害处——为什么脸色突然变得这么糟糕啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]我来解释吧。你还记得山上那些巨大的红水晶晶簇吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]记得啊，怎么了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]那些东西不是一开始就有那么大的，是在异变发生的这五年来，[color=f1401c]持续生长[colorEnd]到现在这个规模的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那又怎么了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "山地的水正在不断地结晶。",
+            "tag": "tag_16"
+          },
+          {
+            "text": "然后，总有一天会彻底枯竭。",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]什么？这、这这这……这可怎么办！人不喝水可是活不下去的呀！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]难怪农田一再萎缩，植被也越来越稀少。确实这些时候，连我住的那座营地附近都有干旱的迹象。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]但这件事真正的麻烦在于……就算我们哪一天能解决恐怖蟾兽的威胁……所有人也不得不面临缺水的问题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]难道巴诺姆村的结局已经注定了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]怎么会……这样……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]那么轮到好消息了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]根据我在这里采集到的最新读数，我们可以确定，这种水源结晶化现象的源头，和让岩蟾蜍狂暴的，是同一种能量波动。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]之所以在地面上检测不到，而在矿脉深处却能有所发现，我猜是因为，这种能量波的传播，是借助了某种深埋在地下的天然能量管路——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是地脉。",
+            "tag": "tag_65"
+          },
+          {
+            "text": "能量通过地脉从某处传到了这里。",
+            "tag": "tag_65"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]地脉……？难道……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]唔哦，看来你是真懂，不是不懂装懂。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]根据仪器的读数，我认为这种能量的波形太过规整，恐怕不是自然产物，而是源自于某种人造的强大能量源。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]这也可以反过来解释，那个恐怖蟾兽为什么会这么可怕——像那种异常个体，按理说就不该是自然界中应该存在的魔物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]但是！加入它不光能够从自然环境中摄取能量，还能从那个特殊能量源之中抽取能源，那它能够有现在的强度，就完全可以理解了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]大家伙和使水结晶的来源……是同一种东西……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]没错。我的下一步想法，就是——嗯？怎么了？你一脸严肃的样子，是有什么话要说吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "其实，我们也有一些想法。",
+            "tag": "tag_61"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（简单分享关于秋日荒野异变的情报。）",
+            "tag": "tag_34"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]什么……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]唉……？你说秋日荒野的异变……来自于一种装置？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show][color=f1401c]先时工匠的遗迹[colorEnd]和[color=f1401c]被称为匠器的工匠装置[colorEnd]？这可真是闻所未闻……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]作为学者应该对所有的理论保持怀疑，何况我还没完全认可你们的学派。不过听你这么一说……嗯，这倒是能验证我的推论——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]{myName}——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呜哇！叫那么大声干嘛！喂、别靠我们家{myName}这么近啊！鼻子都贴脸上了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]推论什么理论什么的，那些怎么样都好！我只有一个问题！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]只要修复了那个什么匠器，异变就会停止，村子就能得救，是这样吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我不能百分之百确定。",
+            "tag": "tag_43"
+          },
+          {
+            "text": "但我只能说有极大可能。",
+            "tag": "tag_43"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]我明白了。既然这样，那我们就去找到它、修复它！只要能解救村子，你想要的什么魔岩矿，只管开口就是！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘁，这是求人的态度嘛。正常来说不是“求求了，大工匠{myName}，让我做什么都可以”吗。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你小心脑袋上挨锤子。",
+            "tag": "tag_46"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[cm][show]安娜，你认为魔力波动的源头——那个匠器，会在什么地方？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]嗯，这就是问题了。你们也看到了，我现在手上只有一些手持式设备，要通过几个读数定位到那种古代遗物，根本就不现实。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]那怎么办？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]这好办，我已经采集到了足够的样本波形，接下来只要回到我的研究所，就能利用那里的仪器，通过数据分析定位到匠器的准确……嗯，大概位置。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]那看来还得继续探索一番啊。米托拉，{myName}……不止是米拉贝尔，我对这座村子也有些感情。就算我的个人之请，能请两位随行吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "事到如今，我们没法见死不救。",
+            "tag": "tag_52"
+          },
+          {
+            "text": "处理匠器也是我们的目标。",
+            "tag": "tag_52"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]就是这样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]米托拉……{myName}……还有菲莉娜……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]啊，非常感谢你们愿意护送我回去。不过这超出了我们的契约，我可不会额外付款。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]没关系，我不是契约者，也不要什么契约金。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]曾经熟悉的村子已经变得无比陌生，但我还是想为它做些什么。但就像{myName}说的那样，至少保护村子肯定是不会有错。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我想要……也只有我能做的……就是尽我所能地去保护它……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼，看来你也下定决心啦。废话就别多说了，你的研究所在哪儿？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]嗯……总之先从这里出去再说吧。我的研究所就在东面的山腰上，也不远。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_d2_2"
+}

@@ -1,0 +1,78 @@
+{
+  "script": "c4_d1_2_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]前面就是酿造场了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]果然，到这里就有重兵把守了，接下来这段路，只能我们一起闯进去了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没关系没关系！你能载我们到这里已经很好啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那，布斯波乌尔就在这里咯？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]不……我的“朋友”说……布斯波乌尔并不在这里……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]但是……这里的灵一直在呼唤……说是……这里有布斯波乌尔的秘密……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]布斯波乌尔的秘密？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]看来……这里有必要好好调查一番了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_d1_2_1"
+}

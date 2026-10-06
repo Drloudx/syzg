@@ -1,0 +1,435 @@
+{
+  "script": "c3_6_a_2",
+  "des": "c3_6_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]你们看，前面就能看到大市集了——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊，确实有个挺大的镇子！惊了，看起来比驿站和巴诺姆村加起来还大耶？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]原来那就是大市集。光是远远看着，就能感觉到它的繁华。这样的镇子居然只用两三年就建起来了，看来图洛德会长确实是人中龙凤。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……？前面好像有什么声音……有人在战斗？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]哼……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "唔！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}，你怎么了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦、咦？怎么突然躲到我背后？[wait=500]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]噗哈，你这样子可好笑——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "那个人……我认识！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？你不是从外面掉进来的吗？怎么在深渊里还有熟人？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]劳伦斯队长！您一直看着那边……那些旅者有什么问题吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]不，没什么。只是以为看到了熟人，不过是错觉罢了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]啊，我明白！我也经常看错人，哈哈！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]那你可要好好保养一下自己的眼睛。干佣兵这行，眼睛不亮是不行的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]啊……？哦！明白，好的，队长！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]走吧。我们还有任务，不要被些魔物浪费了时间。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]啊……！是的，没问题，队长！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]……[wait=1500][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]咦……那人刚才是不是往这边看了一眼？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_119",
+            "text": "那家伙眼神一直很好。"
+          },
+          {
+            "tag": "tag_119",
+            "text": "他绝对认出我了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]呃，说到底，那家伙究竟是谁啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_52",
+            "text": "你还记得……"
+          },
+          {
+            "tag": "tag_52",
+            "text": "我们第一次“共鸣”的时候吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]第一次……你是说我们看到你从山上炸飞的那一次吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊！难道是他？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]他不是那个追着你的戒律骑士队长吗？我之前埋人的时候没有发现他，还以为他早就被炸成碎片了！原来他还活着啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看他现在这个样子，和之前完全不像是一个人！而且他……现在是在干什么？当佣兵？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_56",
+            "text": "确实是佣兵……"
+          },
+          {
+            "tag": "tag_56",
+            "text": "而且是哈萨琳之手的佣兵。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]对了！你这么一说，那些家伙确实是穿着哈萨琳之手的衣服！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这些家伙怎么像是蟑螂一样，往哪哪都有啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那个……请问，“哈萨琳之手”……怎么了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]咦，你们不知道吗？那些家伙在深渊各处流窜，一个个坏事做尽！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]唔，我确实有听说哈萨琳之手在其他地方的斑斑劣迹，但在魔爪湖，情况有点不一样。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哪儿不一样？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]嗯～这么解释吧。在魔爪湖地区，水占师之环和水商商会的实力占据了绝对的优势，还掌握了生存所必须的水源，暂时没有组织能挑战这二者的地位。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]哈萨琳之手确实也在湖区有过发展，但并没有采取太多的激烈手段。他们的形式基本是，以普通佣兵的名义加入水商商会麾下的“佣兵行会”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]这里的居民对他们的看法，顶多就是一群更粗鲁的佣兵。但佣兵的态度普遍都不好，所以感觉上也没什么特别的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？居然是这样？唔……反正每个地方都有每个地方的风格，只要你们觉得没问题，那就当是没问题吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过，刚才那些家伙是往大市集的方向走的，我们过去的话，会不会和他们撞个正着啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们几个倒是没什么问题，不过{myName}就……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_69",
+            "text": "没关系。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_70",
+            "text": "刚才劳伦斯没有过来。"
+          },
+          {
+            "tag": "tag_70",
+            "text": "他应该是……不太想追捕我了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]毕竟……如今的深渊只能进不能出。外界的恩怨，除非是生死大仇，在这个封闭的深渊里都会失去意义。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]也是。那我们就没必要太担心了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过，说要调查，我们到了大市集之后，要从哪里查起呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]我想……应该先去找埃迪蒂。虽然关于柏莉尔的事，我们有一些不同的看法……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]但我相信她会出手帮我们的。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "script": "c1_ex1_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……头好晕……我们这是……进到回忆空间了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这里是……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "似乎是在修行所门外？",
+            "tag": "tag_5"
+          },
+          {
+            "text": "你在这里有什么回忆吗？",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]咳咳，这应该不是你们的记忆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]我尝试从匠器碎片中引导魔力，但好像受到了一些干扰。[r]根据这个波形的显示，应该是修行所附近的地脉魔力，不知为何也和你们发生同调了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]不过这没什么大不了的。你们就放松一点，把这里当成自己的记忆，随便走走吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]如果找不到什么事可做，就和那边的[color=ffb64d]莉拉[colorEnd]，还有[color=ffb64d]我[colorEnd]说说话也好。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊！真的！是莉拉和瓦菲诺！她们在说什么啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]瓦菲诺，我的老朋友，见到你真是高兴！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]见到你我也很高兴，但现在恐怕不是高兴的时候。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]在回来之前，我已经事先巡游了整个深渊，一个坏消息是——深渊各处的地脉已经彻底乱套了，就和我在卡露蒂亚其它地方看到的一样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]情况有那么糟糕吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]比你想象的还要糟糕，所以这次我回来之后就不走了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]不论如何，我们必须尽快行动起来，否则……我说不好之后会不会出现什么变故……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]是吗……或许你的担心是对的，但我们还有足够的时间，并不缺这么一天两天。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]先在这儿好好休息吧，等休息好之后，我们再讨论一下，之后该怎么做。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]那就多叨扰了……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]唔，没了。就这么多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这记忆也太假了！该不会是伪造的吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]莉拉和瓦菲诺居然这么友好，互相一点攻击性都没有，这也太奇怪了吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]你感觉奇怪的点才是真的奇怪啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]再怎么说我和莉拉也都是成年人，也是有好好交流的时候的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真的吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这是你刚到深渊来的时候吗？",
+            "tag": "tag_35"
+          },
+          {
+            "text": "这段记忆大概是多久之前的事？",
+            "tag": "tag_35"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]大概五年多吧，也就是在[color=ffb64d]大兽潮[colorEnd]发生之前。[r]我们以这座修行所为基地，对深渊的地脉开展研究，最终找到了这些遗迹。[r]但随后没多久，灾难就发生了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿……那么早啊……不过……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "怎么了？",
+            "tag": "tag_38"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]就是……那个……你和莉拉五年前就是这个样子，一直没变吗？看上去和现在简直一模一样……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]因为这些不是真正的我们，只是回忆中的幻影，说白了就是魔力通过提取你们脑海之中的信息模拟出来的景象。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]因为你们没有见过五年前的我们，大脑就会直接用你们印象中的我们“代入”到相应的角色之中。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]毕竟就算是在做梦，人也无法看见从未见过的事物。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "原来如此……",
+            "tag": "tag_43"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]好了，这边的调试已经完成了，接下来应该不会再出现这种岔子了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "瓦菲诺",
+        "text": "[show]如果没什么别的事，就尽快动身，前往下一个记忆空间吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "莉拉的修行所的回忆"
+}

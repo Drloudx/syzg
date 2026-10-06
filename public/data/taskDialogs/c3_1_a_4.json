@@ -1,0 +1,165 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]贝尔卡……到这边就不能再让恐兽拉车的原因……就是因为这个吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]是的。就是因为这个，因为这场“异变”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]可老板不是说过，魔爪湖的异变被水占师之环控制住了吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]说控制住了也没错……但那只是表象。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]虽然我们水占师在一开始就察觉到异变的前兆，并迅速展开了行动……但魔爪湖的湖水仍然在异变的影响下，成了如今这样的“[color=ffb64d]富魔水[colorEnd]”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]富、富魔水……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]没错。任何生物一旦接触到湖水，都会被其中的魔力逐渐侵染，产生种种影响。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]智慧生物会逐渐衰弱、丧失理智，直至失去生命……而魔物则会被混乱的魔力刺激，变得狂暴不羁、凶猛异常。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]如果不做任何处理便直接饮下富魔水，反应会更为剧烈，就如同刚刚瞬间狂暴化的魔物一样。而对于人来说……可能会直接丧命吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]还有这种事……这就是魔爪湖异变的“形式”吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]没错，魔爪湖的异变与索利德山那满山红晶的表象不同。它没有任何震撼眼球的景象，但却破坏了更为本质的事物。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]现在的魔爪湖，正处于恐怖的“干旱”之中。明明赖以维生的水满地都是，但它们却全都是致命的毒液——这就是魔爪湖的现状。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]怎么会这样……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]我们水占师之环一直致力于改变这种情况。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]正是多亏了圣女大人和大家的共同努力，我们才能打破异变的阴霾，让魔爪湖的居民重新喝到安全的水。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你刚刚提到的这位圣女……",
+            "tag": "tag_18"
+          },
+          {
+            "text": "似乎是位了不起的人物。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[cm][show]这可不仅仅是“了不起”，圣女大人完全可以说是“伟大”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]尾指村就在前面，之后见到她你们就会明白我没说假话。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "打完后【c3_1_a_4】。",
+  "script": "c3_1_a_4"
+}

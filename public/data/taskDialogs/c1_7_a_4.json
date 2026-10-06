@@ -1,0 +1,78 @@
+{
+  "script": "c1_7_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]你们是——！敌、敌袭！后方有敌人出现！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嚯？这些就是哈萨琳之手的大部队？[r]怎么感觉他们比刚才的哨兵还邋遢一些啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]因为这些并不全都是哈萨琳之手的人。除了领队的队长和主力之外，其余的基本都是他们在本地召集的荒野客。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]事实上，招募荒野客迅速扩大兵力，本来就是哈萨琳之手的常用手段。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？招募荒野客？那怎么从来没人来找我？难道我不算荒野客吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]因为米托拉小姐在荒野客中的名声很差。如果找了你的话，其他的荒野客恐怕就不会加入了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈？还有这种事？太过分了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那些荒野客并不是哈萨琳之手的嫡系，多半会被他们当成炮灰。[r]我们不要被他们绊住，直接冲破敌阵攻击对方的精锐。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]无需留手，速战速决！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

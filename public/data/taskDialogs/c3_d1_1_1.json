@@ -1,0 +1,149 @@
+{
+  "script": "c3_d1_1_1",
+  "des": "c3_d1_1_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呜哇……真的可以在水下行动自如耶！冰冰凉凉的，这也太好玩了吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_3",
+            "text": "我还是第一次经历这种体验。"
+          },
+          {
+            "tag": "tag_3",
+            "text": "不仅呼吸，动作也像岸上一样自如。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]呵呵……我倒已经习惯这种体验了。比如偶尔有小朋友把东西掉到水里，村里也只有我和丹涅尔长老能下水，就总是由我们帮忙捡回。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？那个老登还会亲自下水帮村民捡东西？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]他可愿意呢。毕竟能受到大家称赞嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这个爱慕虚荣的家伙……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]说起来，我们还是把乌帕和露帕留在上面了吗？我看她们还蛮想跟我们一起的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]遗迹内毕竟状况不明，她们下来可能会有危险。而且也需要人手维持守卫法阵，保护仪式道具。有她们在，应该没有问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]唔……遗迹内的状况，远比我预想的要复杂呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]你们看这周围……遗迹的外壁几乎到处都是破洞，湖水应该就是从这些洞里涌进来的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]从洞里进来的不止湖水，还有湖里的魔物！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]毕竟是对魔物们充满吸引力的“匠器”之所在，在这里碰到多厉害的魔物，应该都不足为奇。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]总之，大家一定要保持警戒！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]倒也不用那么小心啦，我们这边都是高手，完全用不着担心。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]适当放轻松一些！就我们这几个，在魔爪湖横着走，都是没问题的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]噗……说得也是呢。那大家，悠闲一点上吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

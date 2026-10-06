@@ -1,0 +1,141 @@
+{
+  "script": "c2_12_a_2",
+  "des": "c2_12_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]我认识的路就到这了。再前面究竟该往哪边走，我认为还需要仔细研究一番。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]这个嘛……以我们携带的补给来看，恐怕没有太多时间让我们研究。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]只能地毯式搜索了吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉。",
+            "tag": "tag_4"
+          },
+          {
+            "text": "你还记得去观星高地时的情况吗？",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]去观星高地时？记得倒是记得……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]当时越是靠近观星高地，狂暴化的魔物就越多。你还说这可能和异变的源头有关，结果匠器果然就在那座星晷之中……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]哦？还有这种事？那问题就简单了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]我们一路过来干掉了多少魔物，我都有记录，把这些魔物群之中狂暴魔物的比例标注在地图上的话，按照从低到高用线连起来的话……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]怎么样，有结果了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]嗯，这样就可以看到，数据样本近似均匀分布在直线两侧，也就是说，我们要找的源头，就在这条直线的延长线上！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]原来如此，是这个方向吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "皮塔",
+        "text": "[show]我侦查的时候就看到了，这个方向上的魔物多得有点不正常，原来源头就在这边吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]确实，这边的魔物老多了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]很好，这下我们连事实佐证也有了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]那就顺着这个方向走吧！到底是不是，我们很快就会有结果了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

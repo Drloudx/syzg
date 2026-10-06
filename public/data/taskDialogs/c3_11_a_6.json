@@ -1,0 +1,334 @@
+{
+  "script": "c3_11_a_6",
+  "exps": [
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我们到了！这里就是图洛德的办公室！那张办公桌里一定——[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]到此为止！[l][cm]",
+        "charaName": "？",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这声音是……！[l][cm][hide]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]告诉我……为什么要这样做。告诉我……为什么是你，贝尔卡。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]从那张桌子旁闪开，埃迪蒂！[l][cm][hide]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我是治安队的队长。保护市政厅……保护这座魔爪湖，就是我的职责。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你保护的不过是假象——！图洛德正在计划着什么阴谋，你不必也不能做他的帮凶！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我也不必相信你们无由的诋毁。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我从未看到过任何阴谋和假象。我只看到图洛德会长的确给魔爪湖带来的秩序与繁荣。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那如果这一切都是付出了代价的呢？如果这些所谓的秩序与繁荣都是无数牺牲才换来的呢？如果柏莉尔的失踪也和你的偶像有关呢？即使这样，你还会袒护他吗？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]给我注意你的措辞，水占师！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我说了，我不相信你们无由的诋毁。你们擅闯要地阻扰公务，伤害了所有住民的利益。凭这点就应该接受正义的裁断。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在我们来到大市集之后，所有调查的线索都被突然打断。无论是大市集的商人、贫民街的村民、还是哈萨琳之手的佣兵，全都遭了毒手！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]能在魔爪湖做到这一切的，除了水商商会的会长、大市集的领导者图洛德以外，还有谁能做到吗？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]就算这一切还不能让你信服，那这些徘徊在市政厅的私兵又怎么说？图洛德根本就不像你想的那样无私，你为什么还这么信任他？你该醒悟过来了！埃迪蒂！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]要说的只有这些吗……？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这都只是你的猜测罢了。你的发言无凭无据，根本说明不了什么！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这些佣兵隶属于佣兵行会，不止是政府机构的成员，也是湖区重要的防卫力量。就因为和佣兵有瓜葛就要成为怀疑对象？那向佣兵行会要求保护的所有住民和行商也都是嫌疑人。你要只凭这一点就指控他们所有人吗？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]看来你还真是把图洛德当成完美无缺的圣人了。这么多线索都指向他，你居然还站在他那一边！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]自大市集成立以来，图洛德会长遭遇过多少非议，我清楚得很。但最后，那些质疑者要么是想捞政治财的贪心之徒，要么就是未能成功夺权的失败者。你们又与那些家伙有何分别？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德会长并非不可质疑。但质疑者应该拿出证据，走规则制定的程序，而不是像你们现在这样空口无凭，利用蛮横的暴行践踏大市集的荣光与尊严！[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]正规程序？要在你们这些当权者制定的规则下行事，那我们永远也调查不出什么！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]冷静一些吧，贝尔卡。你不过脑子的行为只会带来无尽的混乱。倘若能以调查真相为由践踏规则，那人人都能以正义的名义将世界变为地狱。这么简单的道理，水占师之环应该教过你吧。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]埃迪蒂……！[l][cm][hide]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不必多说了，贝尔卡。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]阿莱姐……！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]看来我们是没法扭转你的想法了，埃迪蒂。但是……你也应该明白吧？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在我面前，你连理论上的胜算都没有。即使如此，你还是要拦在我们面前吗？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]没错，圣女大人。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我很清楚我们之间的差距。但即使我粉身碎骨，我的职责和坚持不会动摇。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是吗……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]\"能够坚持自己的道路\"……这说明你确实没有辜负我当年的教诲。但是……你应该还记得我曾经告诉过你的那句话吧。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]坚持自我，是[color=f1401c]强者的特权[colorEnd]。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那不是因为弱者不应该坚持自我，而是因为，在自我之间的碰撞中，只有强者才会是胜利的一方！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]现在，我们要揭穿图洛德的真面目，而你要维护大市集的秩序与繁荣。既然两边的信念同样坚决，那就让我们的“自我”……好好碰撞一番吧！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那就这样吧。[l][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]水占师贝尔卡。圣女阿莱克西娅。还有你们，外来的契约者。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你们涉嫌多起刑案，擅闯政府机关要地，伤害了我许多部下，也侵害了所有魔爪湖居民的权益。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]魔爪湖大市集治安队长埃迪蒂，奉规则与正义之命，即刻逮捕全部疑犯——！[l][cm][hide]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_11_a_6"
+}

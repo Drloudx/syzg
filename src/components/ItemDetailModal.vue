@@ -414,7 +414,7 @@
       <div v-for="recipe in facilityCraftingRecipes" :key="recipe.id" class="smithing-recipe paper-panel-solid">
         <div class="smithing-recipe__head">
           <span>{{ recipe.facilityName }} {{ recipe.level }} 级制作</span>
-          <UiButton variant="link" size="sm" @click="handleFacilityNavigate(recipe)">查看设施</UiButton>
+          <UiButton v-if="canOpenFacilityRecipe(recipe)" variant="link" size="sm" @click="handleFacilityNavigate(recipe)">查看设施</UiButton>
         </div>
         <p v-if="recipe.makeTime" class="smithing-recipe__output">制作时间：{{ formatCraftingDuration(recipe.makeTime) }}</p>
         <div class="smithing-recipe__materials">
@@ -437,7 +437,7 @@
       <div v-for="recipe in smithingRecipes" :key="recipe.exchangeId" class="smithing-recipe paper-panel-solid">
         <div class="smithing-recipe__head">
           <span>第 {{ recipe.equipLevel }} 阶装备打造</span>
-          <UiButton variant="link" size="sm" @click="handleSmithingNavigate(recipe)">查看锻造台</UiButton>
+          <UiButton v-if="canOpenSmithingRecipe(recipe)" variant="link" size="sm" @click="handleSmithingNavigate(recipe)">查看锻造台</UiButton>
         </div>
         <div class="smithing-recipe__meta">
           <span>品质概率</span>
@@ -535,6 +535,7 @@ import { fetchWithFallback } from '../utils/request.js'
 import { PREVIEW_AVAILABLE_IDS } from '../utils/recipeUtils'
 import { formatHighlightedText, EQUIP_QUALITY_LABELS, translateStatName } from '../utils/gameMappings.js'
 import { compareExchangeSources } from '../utils/exchangeData.js'
+import { isFacilityRecipeHidden } from '../config/blacklist.js'
 import { resolveItemRelations, resolveSimilarItems } from '../utils/relationData.js'
 import { UiModal, UiSection, UiTag, UiInfoRow, UiButton, UiFilterPill, UiStatGrid, UiRewardCard, UiAccordion, UiBackToTop } from './ui/index.js'
 import CommentsPanel from './CommentsPanel.vue'
@@ -685,7 +686,21 @@ const handleSkinNavigate = () => {
   router.push({ path: '/heroes', query: { id: heroTypeId, tab: 'skins' } })
 }
 
+/**
+ * 「查看设施 / 查看锻造台」的可达性判断。
+ *
+ * 设施页渲染前会过滤掉黑名单配方与被隐藏品阶（`HIDDEN_EQUIP_TIERS`），
+ * 而物品详情里这些配方仍然存在。不加判断就会生成**指向空列表的死链**：
+ * 例如 4 阶装备的「查看锻造台」带着 `level=4` 跳过去，落地一条都不显示。
+ *
+ * 判据与设施页共用 `isFacilityRecipeHidden`（`config/blacklist.js`），
+ * 避免两处各写一份、日后改了一边漏另一边。
+ */
+const canOpenFacilityRecipe = recipe => !isFacilityRecipeHidden(recipe)
+const canOpenSmithingRecipe = recipe => !isFacilityRecipeHidden({ ...recipe, mode: 'equipment' })
+
 const handleSmithingNavigate = recipe => {
+  if (!canOpenSmithingRecipe(recipe)) return
   router.push({
     path: '/facilities',
     query: {
@@ -698,7 +713,7 @@ const handleSmithingNavigate = recipe => {
 }
 
 const handleFacilityNavigate = recipe => {
-  if (!recipe?.facility) return
+  if (!recipe?.facility || !canOpenFacilityRecipe(recipe)) return
   router.push({
     path: '/facilities',
     query: {
@@ -1086,6 +1101,16 @@ const hasItemSources = computed(() => currentItemSources.value.length > 0)
 
 const canNavigateToSource = (src) => {
   if (getRuneSourceTarget(src)) return true
+  // 设施/锻造来源：配方被设施页隐藏时（黑名单产出物或材料、4/5 阶装备）不提供「前往」，
+  // 否则点过去是一个空列表。来源文案保留——它本身是真实的获取途径，只是没有可达的详情页。
+  if (src.type === 'smithing') {
+    const recipe = smithingRecipes.value.find(r => r.exchangeId === src.exchangeId) || smithingRecipes.value[0]
+    if (!canOpenSmithingRecipe(recipe)) return false
+  }
+  if (src.type === 'facility') {
+    const recipe = facilityCraftingRecipes.value.find(r => r.facility === src.facility && Number(r.level) === Number(src.level))
+    if (recipe && !canOpenFacilityRecipe(recipe)) return false
+  }
   return ['monster', 'achievement', 'recipe', 'pvp', 'hidden', 'task', 'exchange', 'dungeon', 'smithing', 'facility', 'event', 'explore', 'plant', 'camp', 'container', 'gacha'].includes(src.type)
 }
 

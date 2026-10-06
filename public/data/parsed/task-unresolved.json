@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-10-06T15:12:39.541Z",
+  "summary": {
+    "taskTotal": 323,
+    "removedDemo": 7,
+    "removedPartnerArchive": 1,
+    "keptClosed": 63,
+    "refTotal": 1081,
+    "refMiss": 0
+  },
+  "stepTypes": {
+    "collect": 8,
+    "getItem": 4,
+    "getItemNpc": 81,
+    "gotoCamp": 6,
+    "gotoStage": 55,
+    "hunter": 32,
+    "hunterUid": 14,
+    "level": 1,
+    "npcTalkBattle": 85,
+    "openAreaShow": 59,
+    "passInstance": 154,
+    "passStage": 14,
+    "sellPet": 1,
+    "tag": 26,
+    "talk": 522
+  },
+  "unresolved": []
+}

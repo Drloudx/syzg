@@ -1,0 +1,46 @@
+{
+  "script": "c1_d4_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]说起来，这里也是旅店地窖的一部分吧？[r][l]为什么完全没有什么使用的痕迹啊，全是废弃的东西。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]因为这边本是上代领袖哈萨琳时期使用的储藏空间。[r][l]大兽潮来临时，为了阻止地下魔物的暴乱干扰后方补给，我们很早就把多余的部分给封闭了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]勉强抵挡住兽潮后，秋日荒野的住民人口锐减了大半，也不再需要这么大的空间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]原来如此……所以才有这么多废旧的装备啊。[r][l]这么看起来，这里也算是某种“遗迹”喽。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]好啦，准备继续探索了。{myName}队长，我们继续前进吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

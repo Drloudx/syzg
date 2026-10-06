@@ -1,0 +1,73 @@
+{
+  "des": "颠覆的谷物箱",
+  "script": "dc01_main_start_f1_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（一箱被打翻的果物，已经被糟蹋得不能吃了。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊——！这是我昨天才捡回来的橘果！全烂掉了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]但是我明明把它放在营地帐篷的最里面啊，怎么会——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你看，这附近有痕迹。",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]什么——？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊啊啊啊！是那些角布林的脚印！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不、不会吧……难道说，那些蟊贼趁我不在，跑到我的营地里——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]快点，{myName}！要出大事了！[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

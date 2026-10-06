@@ -1,0 +1,399 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]干掉啦！我们真厉害！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]看来这只就是它们的小头目了。几位后辈的战斗技巧真不赖，还有米拉贝尔。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米拉贝尔简直势如破竹。",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]这种程度的魔物，战力不及那个大家伙一成。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]如果连对付它都要喘气，可没有脸面领导巴诺姆自卫团。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]明明是在夸你，就好好接受嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]嗯……真厉害。这东西可真厉害。真厉害……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]安娜？我看你在旁边嘀嘀咕咕了好久，怎么了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]啊，我在检查你们刚刚撂倒家伙的遗体，确实有些发现。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]我现在基本可以确定，这个突然出现的种群的来源了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]来源……？这些家伙不就是从兽潮结束后就凭空出现的——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]万物皆有源头，哪有什么凭空。我在大书院系统进修过博物学和生物学，对于魔物的演化非常了解。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]能看它们的眼睛——视网膜浑浊，瞳孔占比大，显然是为了在微光甚至无光环境生存而产生的进化。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]观察它们的四足——蹼状结构上分布着许多凸起，显著提升了吸附能力，这显然是为了满足攀爬墙壁的需要而演化出的特征。与此同时，其前肢远比后肢发达，则是为了在高低错落的立体环境中自如行动所发展形成的关键进化。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我建议你把话说清楚一点。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]也就是说，这些种群原本的栖息地很可能是一个几乎没有光源，主要依赖在垂直或倾斜表面移动，结构复杂且立体的环境。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]那么答案就显然易见了——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "它们来自地下洞窟？",
+            "tag": "tag_19"
+          },
+          {
+            "text": "或者来自山体之中。",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[cm][show]没错！{callName3}很有研学天赋嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]不出意外的话，这些家伙应该就是来自索利德山体或地下的魔物种群，因为某种我们尚不了解的原因，扩大了自己的活动范围，入侵来到了地面。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]原来这些家伙也是本地魔物吗……不愧是学者阁下，果然智慧非凡。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃……知道了来源又怎样？难道有什么办法把它们赶回地洞里去？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]别急嘛。你们看这边，这只岩蟾蜍身上的旧伤痕！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]伤痕？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]这些旧伤并非来自你们刚刚的武器和魔法，而且太过规律。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]规律？这些伤痕看上去杂乱无章的，你能不能别打谜语了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]哼哼……你们都被外在的表象蒙蔽了，没能透过现象看到本质。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]这只岩蟾蜍身上的伤痕，虽然看上去东一点西一点，长短形状也是各不相同，但如果不用形状，而是用[color=f1401c]愈合的程度[colorEnd]来分组的话……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]你们看，这一组伤疤比那一组浅一点，那一组又比另一组浅一点。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]岩蟾蜍在山地地表几乎没有天敌。我们可以假设这些伤痕全都是它们发狂的时候……互相造成的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]那么根据这些伤痕的状态，我们就有一个推论——它们的狂暴是[color=f1401c]周期性[colorEnd]的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]然后你猜怎么着？我的数据观测显示，这座山上存在某种异常的[color=f1401c]魔力波动[colorEnd]，也是在进行着周期性的变化。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "魔力的波动和狂暴化……！",
+            "tag": "tag_34"
+          },
+          {
+            "text": "缇莎之前也有过相同的推测……！",
+            "tag": "tag_34"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]对，我也记得，在修行所的时候……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]当然，虽然没有明确的证据，但任何有点智力的人，恐怕都会作出同样的推理吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]但你可要明白，在没有证据的情况下，猜测永远只是猜测。我们不能把猜测当做事实，更不能以猜测为基础来行动。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]这就是我为什么要深入到矿坑深处——因为只有在那里，我才能通过确切的数据，将猜想转化为确定的结论。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？这里还不够深吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]当然不够。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]我要去的，是充满了红水晶的矿脉深层。不过看情况，那里应该已经成了岩蟾蜍的孵卵场。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]一旦坐实了我们的猜测……我敢肯定，那只“大家伙”的弱点也就唾手可得了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]所以，接下来还得继续看你们的发挥啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哼，看起来你肚子里确有真货。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]那接下来你就放心好了，有我在，绝对不会让你伤到一根汗毛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]提起大家伙，米拉贝尔就干劲满满呢。我们契约者也不能输，{myName}、菲莉娜！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]呵呵……那是当然！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_d1_2",
+  "script": "c2_d1_2"
+}

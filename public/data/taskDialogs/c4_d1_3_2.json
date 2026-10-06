@@ -1,0 +1,246 @@
+{
+  "des": "c4_d1_3_2",
+  "script": "c4_d1_3_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]找到了！布斯波乌尔就在这儿！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你们快看！他手底下那一团带状的光团是什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]那是……蛇灵的精华……是三大兽灵之一的蛇灵斯塞拉在入灭之后留下的残蜕。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]入灭……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？等等！那个蛇灵原来已经没命了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]“大兽潮”是货真价实的大灾难，在那场灾难之中，即使是强大的守护灵，而已未必能够保全自身……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]或许经过数十上百年，在巨木的力量催化下，下一尊守护灵又会诞生出来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]但那已经不是蛇灵斯塞拉了。蛇灵斯塞拉……这个个体的意志，已经永远地从世上消失了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]还有这种事……果然什么坏事都能和那个大兽潮扯上关系啊……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]哼，听我们说了这么久，你就一点表示都没有吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]我们都已经站在你眼前了，我可不相信你还能稳坐钓鱼台啊，我愚蠢的弟弟！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]愚蠢？愚蠢的人是你们的噗！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]都已经来到这里，居然还在不紧不慢的聊天，真是不知天高地厚的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]我在等仪式完成，你们在等什么的噗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]既然你们蠢到给我时间，那我就让你们看看，枯萎带来的真正力量的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]结合了蛇之灵萃、枯萎之精，返祖而成的最强蕈兽啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]在此现身，替我消灭眼前之敌的噗——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]呵呵呵呵……看看这强大的身躯，这可怕的力量的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]在它登场的一刻，等待你们的就只有穷途末路了的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦？是吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]的噗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你刚才问我们在等待什么……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们在等待的，当然是老爷子的解药彻底挥发开来啊！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]什么？这……这雾气是什么……！枯萎的力量……力量在……消退的噗……？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布斯波乌尔",
+        "text": "[show]什么？就连我的终极蕈兽也……？这是怎么回事的噗，哥哥！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]想不到吧！这就是我们的秘密武器！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看起来终极武器的比拼，是我们这边更胜一筹！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]既然这样，那这场胜利，我就毫不客气的收下啦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

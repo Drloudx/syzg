@@ -1,0 +1,374 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等等……前面那是……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]呵呵……愚蠢的妹妹啊，都过去这么多年了，你还想着用你那蹩脚的魔法打败我吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]哼！我看愚蠢的是你才对！你捣鼓的那些药水，到最后不都没起效果吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]还说是想“保护大家”，可最后不但当了叛徒，还害死了自己最亲近的人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]你……你说谁是叛徒？明明你才是那个叛徒！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]说的就是你！你就是个没用的、胆小的废物姐姐！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]看来你是不挨打不知错了！来打一场吧！奥菲娜！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]来就来！这笨蛋姐姐是该教训一顿了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]这么大的火气……莫非她们就是传说中那对反目成仇的姐妹？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]她们再这样下去肯定会打起来的，得赶紧阻止她们才行！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]那个……两位！快住手！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]嗯？你们是什么人？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]无关的人赶紧滚开，伤到你们我可不负责任！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]很遗憾，你们的仇恨已经伤害到我们了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]伤害到你们了？你在说什么？等等……你们身上怎么有股熟悉的气息，奥菲娜，你闻到了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]闻到了……这两位女士的气息和我们的气息很相似啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]我们中了你们两人的诅咒魔法。还请两位能够帮忙解除掉！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]诅咒魔法？什么诅咒魔法？你们可别瞎说，我从来不会做这种事情！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我能感觉到，我和姐姐身上的魔法和两位的非常相似。毫无疑问，两位的执念就是这个魔法的来源……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]中了这个魔法以后，我和姐姐的双手就无法分开了。这给我们造成了很多困扰，还请两位能够帮忙解除！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]你们两位……也是姐妹吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]是的！和两位一样，我和她也是姐妹。她是姐姐芭杜尔，我是妹妹艾薇杜尔。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]原来如此……是我们的执念经过扭曲后形成了诅咒，然后这个诅咒的力量传导到了你们身上。没想到巨木还有这种力量……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]都是姐姐的错！要不是姐姐背叛了我，背叛了部族，事情怎么会发展到现在这个地步！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]明明是你的错！你才是那个叛徒！背叛我们姐妹的是你才对！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]两位，很抱歉打扰你们，我们不能在悲怆之丘逗留太久，所以有些事情必须尽快解决。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]是非对错你们可以之后再争论，在此之前可以先解开我们身上的诅咒吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]没看到我们正在处理家事吗？真是没礼貌的家伙……我告诉你吧，你们身上的诅咒，不可能解除！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这是为什么？你们没法直接解除吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]你们也知道你们身上的诅咒是由我们的执念所形成的，那在我和妹妹的问题解决之前，你们身上的魔法无法解除。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]怎么会……那你们要什么时候才能解决你们的纷争？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]等着吧……等我教训完这愚蠢的妹妹之后，可能就可以了吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]等我教训完这姐姐之后，你们身上的魔法应该就可以解除了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]你们……你们在这里都争了多久了……我们要等到什么时候……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]不行。我和我的妹妹因为你们的争执饱受困扰，我不希望再这样下去了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]哈？我们的家事与你们又有什么关系？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]如果你们还不老实听话，乖乖坐下来好好聊，我们可能就要采取强制手段了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜&奥菲娜",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]听到了吗？奥菲娜，这位小姐说要对我们采取“强制手段”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]听到了，姐姐。这人也太不自量力了，她是不清楚我们两姐妹联合在一起的力量吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]喂，外来者。虽然不知道你们有多强，但你们别干扰我们两姐妹的家事。否则要是我们姐妹联起手来，你们可不是对手。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]我们这边可有两位英雄助阵，而且我和妹妹联手也不弱。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]最后再重复一遍，如果你们还不肯冷静下来，我们就用强硬手段让你们住手。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]哼……既然你们执迷不悟，那就来吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]让你们见识一下，我们姐妹的实力！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c4_ex4_2】",
+  "script": "c4_ex4_2"
+}

@@ -1,0 +1,89 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]居然这么快就把活都干完了。两位，干得不错。[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说得轻松！你不是什么忙也没帮上吗？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我作为向导，已经完成了我的[color=f1401c]契约[colorEnd]内容。[r]和狂暴化的蜘蛛育母战斗是两位的责任，而你们也将它履行得很漂亮。[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而这就是艾尔莎邀请你们的原因，不是吗？[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……！[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "她是在夸奖你。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]什么夸奖，我可听不出来——！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这倒不至于。我只是说出事实罢了，并没有要讨好你们的意思。[l]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这里已经清理完毕了。为了早点下班，我们还是快点回去吧！[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！又在那里自说自话了！战利品还没搜刮呢，等等我们呀！喂——！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_d1_3",
+  "des": ""
+}

@@ -1,0 +1,819 @@
+{
+  "script": "c3_10_a_2",
+  "des": "c3_10_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看到了！前面是哈萨琳之手的小队！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]在那旁边……都是蛇怪的遗体！这些佣兵都这么厉害的吗，和之前的战力完全不一样唉？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]不，这应该都是那个劳伦斯的手笔。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]相比起那些佣兵，这位先生可谓是压倒性的强大。之前的战斗中，应该是由他以一己之力，庇护着队伍里的所有人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没错！我能感觉到，这家伙是真正的高手！厉害程度也就比迦南稍微差了一点点！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]{myName}，你真的要去和他面对面吗？在这么厉害的家伙面前，我可不敢保证你的安全啊！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "没问题。我们没有敌对的理由。"
+          },
+          {
+            "tag": "tag_14",
+            "text": "我们的恩怨应该已经留在了深渊之外。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]是吗？那你一定要小心啊！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "劳伦斯队长。"
+          },
+          {
+            "tag": "tag_21",
+            "text": "好久不见了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]果然是你，{myName}。之前我还以为是自己看错了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]结果你也从那场爆炸中生还了啊……其他人呢？你在深渊里，还见过其他幸存者……我的部下吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]如果你是说那些铁罐头的话，全都没有气息了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]当时安葬他们的就是我。那么多摔下来的人里，最后也就只活下来这么一个。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]看来是你给我的部下入土为安的……还真是谢谢你了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]作为一名失败的首领，对于这些追随我的可怜人，我本应做些什么……但现在我们身处这个封闭的深渊之中，想做些什么也都失去了意义。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
+        "text": "[show]劳伦斯队长！这些人可正是——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]我知道。他们是这里的……“契约者”，我们的敌人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]（握紧刀柄。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]但或许，承受故人的[color=ffb64d]嘲笑[colorEnd]，就是我能做到的，对他们仅有的祭奠了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]所以，{myName}……无论是要奚落、唾骂还是侮辱……我都会坦然承受，绝无怨言。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呃，这……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_34",
+            "text": "我并不是来嘲笑你的。"
+          },
+          {
+            "tag": "tag_34",
+            "text": "我是来问你问题的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]原来我这样的失败者，已经连被嘲笑都失去资格了吗……哼……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]那就说说吧。你们的来意——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们想问问你，关于这个的事。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（米托拉将从蛇窟中找到的佣兵徽章递给了劳伦斯。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]什么？这是……我部下的佣兵徽章？你们是在哪儿找到的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]这些徽章，是我们在贫民街附近的一处蛇怪巢穴里找到的。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "本来我还想问问……"
+          },
+          {
+            "tag": "tag_40",
+            "text": "你们是否掌握着操纵蛇怪的方法……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_41",
+            "text": "不过从现状看来，这个答案似乎是否定的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]呵。操纵蛇怪。我们怎么可能掌握那种邪术。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]但看到这些徽章，我总算是弄清楚了，看来这段时间以来，我们失踪的那些兄弟……应该全都在那个蛇怪的巢穴里丢掉性命了吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]没错。我们在那确实发现了很多……遗体。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]你们的人也失踪了？能详细说说吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]哦？原来在这个地区，还在发生着其他的失踪事件吗？我倒是不太清楚。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]本来这件事涉及到哈萨琳之手内部的机密，我不应该泄露。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]但考虑到你们给我带来了兄弟们的消息——哪怕是坏消息——我可以告诉你们这件事的来龙去脉。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]简单来说……我们被人阴了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]被人阴了？一直以来不都只有你们阴谋害人吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]哼……即使我到深渊才两个多月，我也知道哈萨琳之手确实不是什么积善从良的组织。你们的成见大多数都是事实。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]但是这一次……我的小队，我曾经的小队……确实是受害者。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]为了渗透魔爪湖地区，首领派我带领几支小队，到这边伪装成自由佣兵，接受图洛德会长管理的佣兵行会雇佣。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]但在来到这里不久，我的副手就开始以“劳伦斯是新人”为由，在队伍里制造分裂。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]由于那家伙的巧舌如簧和人脉关系，在魔爪湖这边的任务接洽几乎被他垄断，很快，所有任务都变成必须由他经手。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_55",
+            "text": "然后他就利用这个权限制造事端？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]比那更加彻底——没过多久，一些忠于首领、忠于我的小队，就开始经常性被指派出击高危任务。我们的兄弟战损越来越多，而他则在图洛德那儿赚得了不少声望。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]现在看来，应该是被那家伙和他身后的人通过什么方法清洗掉了。而留下来的人中，听命于那家伙的人数开始占据多数，不断挤压我们的空间——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]直到今天，我们爆发了激烈的冲突。为了保护余下的部下，我决定立刻撤退，带着这些战士返回总部。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]至于之后要如何处理叛徒，那就是总部和首领需要考虑的事情了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来哈萨琳之手内部还发生了这么多事……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_61",
+            "text": "你认为他们是背叛了哈萨琳之手？"
+          },
+          {
+            "tag": "tag_61",
+            "text": "这件事难道不是单纯的权力斗争吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]你太高看那家伙了。那家伙根本没有足够的智能来施展阴谋，否则他也不至于败给我这个新来的家伙，屈居于副手之位。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]能够策划这一连串动作，最终完成排挤我的目标，这肯定是有人在他的背后支招。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_64",
+            "text": "那么这个幕后黑手你有头绪吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]佣兵行会的管理者，水商商会的会长，[color=ffb64d]图洛德[colorEnd]。除他以外别无他人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]图洛德会长？真的是他吗……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]在来到深渊之前，我可是隶属于专门清剿异端的审判骑士团。没有人能在我眼皮底下私会谁，而不被我发现。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]能够给那个叛徒出谋划策的家伙，显然就只有能光明正大地与他接触的人——也就是图洛德。他就是那个叛徒的雇主，也是你们要找的黑手。不可能有别人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这确实是非常有力的指控……看来那位“幕后黑手”的真身，已是十有八九了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]看来你们已经决定要调查他了。居然这么有决断，不愧是传说中的圣女。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]不过这一切都与我无关了。对于我来说，最重要的就是保护好这些信赖我的部下。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]不管你们在魔爪湖打成什么样，我也只要做一件事，那就是把他们安全地带回总部去。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_78",
+            "text": "劳伦斯——！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]怎么了？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_85",
+            "text": "我们正在寻找离开深渊的方法。"
+          },
+          {
+            "tag": "tag_85",
+            "text": "你……可以加入我们吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]离开深渊……？呵，不必了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]在那场爆炸之后，曾经的劳伦斯就已经不存在了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]那个可怜的失败者。他辜负了敬仰他的手下，辜负了帝皇的信任。他甚至辜负了自己的信念。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]这种人，没有返回阳光之下的资格——所以我不会奢望返回克里斯汀。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]现在的我只想从零开始。这是我的……赎罪。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_91",
+            "text": "劳伦斯……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[cm][show]嘁，少在那里摆出一副同情的样子了。你忘了我们彼此的身份了吗，{myName}？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]过去的你是罪人，我是追缉者。现在的你是驿站的契约者，而我是哈萨琳之手的佣兵。即使在这座魔爪湖我们还能和平相处，但下一次见面——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "劳伦斯",
+        "text": "[show]我们还是敌人！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_100",
+            "text": "……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好啦，反正你们之前关系也不好，叙旧就到此为止了吧。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_103",
+            "text": "也是。"
+          },
+          {
+            "tag": "tag_103",
+            "text": "我应该着眼于现在。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]这下确认了目标，接下来，我们总可以正式调查那个图洛德了吧？说老实话，我老早就觉得这家伙很可疑了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_105",
+            "text": "米托拉，放马后炮谁都会。"
+          },
+          {
+            "tag": "tag_105",
+            "text": "你之前明明还觉得图洛德是个好人。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你好烦！我说有就有！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]可是……图洛德会长居然就是幕后黑手……直到现在我都有点难以置信……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]这下要是处理不好，水商商会和水占师之环可是真的要开战了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]所以我们需要一个计划。一个完善的计划能够收集到足够的证据，让我们规避很多不必要的麻烦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]正好，我们还认识某位本地的地头蛇。而他似乎也对图洛德有着某些想法……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_111",
+            "text": "看来必须和塞弗德里克好好商量一番了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]我看那老小子早就等着这一刻了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我们这就过去，把他的计划、备用计划、隐藏计划，全都一股脑地掏出来吧！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

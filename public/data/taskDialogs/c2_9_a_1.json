@@ -1,0 +1,264 @@
+{
+  "script": "c2_9_a_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]呼……还以为这次又要被丢下了，没想到大师居然这么宽容。[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]就是说啊！我们跟着大姐头是为了什么，还不是为了保护村子！[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]如果这么重要的战斗我都不能参加的话，我肯定要后悔一辈子！[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你说得对！不过……我们和大姐参加试炼也就罢了，你这个外来者，跟我们一起是图的什么啊？[l]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "我和你们一样。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]哈？和我们一样？你不会说你也想要保护巴诺姆村吧？[l]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "不，我的意思是……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "我和你们一样，不想成为累赘。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]啊……[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]也对，和你一起的那个野猫确实强得像怪物一样。你会有这种想法好像也蛮正常的……[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]{myName}……那个米托拉，是个那么优秀，值得你付出这么多努力也要追随的人吗……？[l]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "不是追随。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]不是追随……那是什么？[l]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "我们是约定了命运的伙伴。"
+          },
+          {
+            "tag": "tag_15",
+            "text": "必须有能力携手同行才可以。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]伙伴……是吗……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦哦！说得好！看你这么细胳膊细腿的，没想到还挺有气魄的嘛！[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哼。卡夫，皮塔，别忘了我们是来接受试炼的，现在还是不要闲聊了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]大姐说得对。我们快看看试炼怎么开始。[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯……？这里好像没什么特别的东西，只有一块空地……咦？[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]咦，那些魔物是什么啊。感觉在山地从来没见过。[l]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "咦……？那些不是……"
+          },
+          {
+            "tag": "tag_24",
+            "text": "角布林吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[show][cm]你是说，在山下很常见的魔物？怎么在这儿出现的啊？[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那已经足够特别了吧……总之，先打倒它们看看！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦哦哦——！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "两人"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哼，还真是被小瞧了啊。如果试炼就只有这种程度的话，想必很快就可以通关了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]走吧，{myName}！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（真的是这样吗……？）[l][cm]",
+        "nameSide": "left",
+        "charaName": "{myName}"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]（我记得炼气士的修行重在修心，或许……这次试炼不会像米拉贝尔想象的那么简单吧……）[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "{myName}"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_1"
+}

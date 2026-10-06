@@ -1,0 +1,65 @@
+{
+  "script": "c1_13_a_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那个……我说两句。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]怎么了，米托拉姐姐？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]刚刚你好像有保证什么“超级安全”，“走几十次”，“跟着你准没错”……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但这前面不都是狂暴魔物吗！这不是坑我们么！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]可、可缇莎之前一直都是这么走的啊……这条路之前也没有这么多魔物……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "应该不是缇莎的错。",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]哈啊……你们就宠她吧。[l]……我们该不会又迷路了吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

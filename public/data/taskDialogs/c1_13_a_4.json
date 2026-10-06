@@ -1,0 +1,117 @@
+{
+  "script": "c1_13_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]这不还是干掉了一大堆狂暴魔物吗！这真的是正确的路吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]还别不信，米托拉。看那边。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]看起来终于稍微靠近目的地了。你感觉怎样，缇莎？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]妈妈的感觉……比之前清晰好多！这条路肯定没错！[r]缇莎拍拍胸脯保证！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]竟然还真的找对了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "似乎我们干掉越多魔物……"
+          },
+          {
+            "tag": "tag_6",
+            "text": "缇莎的感觉就越准确。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]这么说的话，缇莎也有这样的感觉……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]每次消灭魔物之后，妈妈的感觉都会更清晰一些！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]狂暴魔物的存在竟会干扰对魔力的感知？居然还有这种事……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]还好我不会用魔法。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]总之，我们消灭越多魔物，去路就越准对吧。那这事情就简单多了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]干得不错，缇莎！我们走！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嗯！米托拉姐姐！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

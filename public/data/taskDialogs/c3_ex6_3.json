@@ -1,0 +1,489 @@
+{
+  "script": "c3_ex6_3",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了！这些魔物都解决掉了！下一个就是你了，小贼！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]把我姐姐还来！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈哈……果然有两把刷子。我本想直接在这里干掉你们，奈何你们确实有点本事。不过别忘了我手上可是还有人质的。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们若再敢靠近，我就把这个小丫头……就这么“噼啪——”掉。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]交出束雷之冠的碎片，守护者。和我们约定的一样。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……不要答应它……要是束雷之冠……落到它手里……魔爪湖会……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜哇——！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]人质可没有说话的份。快点做决定吧，守护者。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]束雷之冠……我自诞生和存在的这数百年来……一定要守护的宝器……我的友人……交给我的唯一职责……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（咬牙。）[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（米托拉攥紧了握着匕首的双手。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（……你会怎么做呢，艾尔菲帕……）[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（要是你的选择会对乌帕不利的话……我就得……）[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我明白了。我把碎片……交给你。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]艾尔菲帕……！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说什么？[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你一直心心念念的束雷之冠碎片，我交给你。把无关者给放了。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵呵呵呵呵……没想到你这个冷酷的守护者，居然愿意为一个陌生人，把束雷之冠这么简单地让给了我，我还真是有点……笑不出来。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不要废话了。离她远点，我把碎片给你。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那我便照做吧……[l][cm][hide]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了。快把碎片扔过来，别想着耍花招。[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]给你！[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦哦……哼哼！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]的确是……束雷之冠的碎片！全都到手了！哈哈哈——！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]至于人质嘛……对我来说已经没用了——就这么在雷电的牢笼里烧成焦炭吧——！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜啊！[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐！[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]——你别想！[r]把头低下——！[l][cm][hide]",
+        "charaName": "艾尔菲帕&米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么？！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一边雷击我的同时……一边用匕首破坏了我诱导雷电的锁链？！[l][cm]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这就是我们留着的一手，厉害吧！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂，你这混蛋，别逃！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]奸诈的人类！自作聪明的小伎俩——！你们的畅快也就这一时了！[l][cm][hide]",
+        "charaName": "“贼人”"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐——！[l][cm][hide]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐！你还好吗？有没有受伤？[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事，我还好……就是……有点麻酥酥的……嘿嘿……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那家伙……说好的放过乌帕，结果还是动手了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐……姐姐没事真是太好了……[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈、哈哈……我可是很强的。比起长老罚我冲厕所的那些日子……就这种程度的电击……可伤不了我一点……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]被它从贫民街一路拐到这里，想必还是会对你的体力有所影响。接下来的战斗很凶险……你还是先好好疗伤休息吧。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]居然轮到……妹妹来关心姐姐……真是丢人……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……我还以为你……不会那么轻易放弃碎片。谢谢你，艾尔菲帕。[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不必。接下来的战斗，就交给我吧。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么？你要一个人和那家伙去打吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它退回到深处，想必就是想要吸收束雷之冠的力量。充盈雷鸣之力的它，实力会比现在还要强大十倍。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只有我能干扰它吸收束雷之冠的仪式。但我也没法保证一定能阻止它。万一我失败了……你们也可以提前给魔爪湖发出警告，调动更多的力量。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]话就说这么多了，时间不等人。这是我的战斗。几位……快把乌帕姐姐带回村子里去吧。[l][cm][hide]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊……走掉了……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}，我们该怎么办？我们总不能放她一个人去和那贼人战斗吧。但她说的也有道理，乌帕这边的情况也……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说什么呢……！[l][cm][hide]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐……！你不能勉强——[l][cm]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我要是被你们拖回去了……晋升考核……不就中止了吗。而且……[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那家伙刚刚也喊了我姐姐。我总不能一直让妹妹们担心我。我也得有……做姐姐的样子呀。[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对吧，露帕。[l][cm]",
+        "charaName": "乌帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姐姐！嗯！[l]",
+        "charaName": "露帕"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "看来大家都有答案了。",
+            "tag": "tag_108"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好——！那我们走吧！追上艾尔菲帕，继续前进！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    }
+  ],
+  "des": "c3_ex6-3图打完后"
+}

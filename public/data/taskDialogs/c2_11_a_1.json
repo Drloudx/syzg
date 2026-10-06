@@ -1,0 +1,105 @@
+{
+  "script": "c2_11_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]很好，外围的魔物都已经解决了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]天梯已经空出来了，大家快上去！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]在那之前，我必须提醒你们。天梯的运行完全依赖于逆流天河冲刷而出的魔力流，而如今水源大量晶化，想必没法持续运行太久。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]一旦登顶，再想下山就难了。如果中途遇到任何变故，我们都无法撤退，也不会有任何支援，只能依靠我们自己。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]是说心理准备么。我们早就做好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没错！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]路上的重重阻碍，就不用浪费时间一一告知了。我们在意的难关只有最后的那一个，对吧，{myName}！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "正是如此！",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[cm][show]哈哈，看来是你多虑了，施主。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]是啊。看来米拉贝尔已经把大家拧成了一股绳。那我们就一鼓作气，上山去吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "众人",
+        "text": "[show]哦——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_11_a_1"
+}

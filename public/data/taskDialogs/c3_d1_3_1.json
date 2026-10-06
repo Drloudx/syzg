@@ -1,0 +1,62 @@
+{
+  "script": "c3_d1_3_1",
+  "des": "c3_d1_3_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]走过那扇门之后，这边的氛围感觉都不一样了。空气……啊不，我是说水里到处都传来一股尖锐的感觉！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那是危险在刺激着你的直觉，换句话说，前面的魔物，至少有着能对米托拉造成一定威胁的实力……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]那也太危险了吧？米托拉小姐可是英雄二人组的武力担当，在整个深渊都是有数的强者啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]所以我们才要小心。不过没关系，我会用魔法保护大家的，大家尽管放心向前就是。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我倒是不用什么魔法保护！有空的话，还是多保护一下{myName}和贝尔卡吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]我也没有那么弱啦——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "script": "c2_d3_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]真没想到，食物链上下层的魔物，居然也会组成阵型、合作战斗……上位魔物的支配特性，效果有这么强吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]不，再怎么说也不至于这样。狂暴化的魔物可是完全不存在理智，只有破坏冲动的。不懂得趋利避害，自然也就不会因为畏惧而服从……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不用解释那么多啦，直接说结论吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]结论就是我也不知道。可能是在异变之中产生的什么突然变异吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]那个大家伙本来也挺奇怪的啊，看上去就是恐兽和岩蟾蜍的融合体，显然也不是什么正经演化出来的魔物吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是啊……",
+            "tag": "tag_8"
+          },
+          {
+            "text": "简直像是制造出来的一样。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]制造？难道有谁还拥有这种能力吗？而且制造这种东西，图的是什么啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这也只是猜测而已啦……",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[cm][show]变异也好，人造也罢，我只是觉得……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]毕竟我只是个学者，会不会在外面给你们提供技术支持会稍微符合我的身份一点？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们需要你的智慧。",
+            "tag": "tag_13"
+          },
+          {
+            "text": "技术支持也需要有现场即时响应的版本。",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[cm][show]唔……我知道、我知道啦！真是……我又没想逃跑……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]明明就是怕了吧……我会多注意一下你的安全的。现在就给我认真干活！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]是、是是是，别推我了啦——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]不说那些了，大家继续前进吧！我们这才只是刚刚穿过遗迹的大门，在深处还有更多东西在等着我们呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "阿娜希塔遗迹-上层部"
+}

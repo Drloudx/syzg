@@ -1,0 +1,158 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]唔……两位好心帮忙的情是领了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？说的什么事？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]圣女大人也太不信任我们了！明明说了就我们两个来就好的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]不过是一些魔物而已，我看连呆瓜妹妹都不用出手，我一个人就能轻松解决了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]呼啊。圣女大人自有深意，笨蛋姐姐乖乖听话就好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没错没错，你看露帕就懂事多了。圣女大人是怕你们没战斗经验，吃魔物的亏，特地让我们看着你们呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]说谁没经验啊！我们可是原住民耶，你们才是没经验的吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]不然我问你，你知道怎么预防“[color=f1401c]魔水疹[colorEnd]”吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？魔水枕……？是什么充了水的枕头吗？感觉睡起来好像挺舒服的耶……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]呼啊。是疹子，不是枕头。是人畜接触到富魔水之后，产生的病变。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]要避免魔水疹，所有人都得事先加持[color=f1401c]防水符文[colorEnd]，拉车的魔物还得事先[color=f1401c]吞服药物[colorEnd]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]就算这样，所有人和魔物还是要千万小心，不能把湖水弄进眼睛和嘴巴里……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦！原来是这样！我就说嘛！明明贝尔卡都说了在湖区不能用一般的魔物拉车，结果你们自己倒是用得很好……结果居然是有秘密武器！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]那当然！这个“秘密武器”——这些符文和药物，其实就是贝尔卡辅佐官设计的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]还有这种事？我都没听说过，贝尔卡居然还有这么一手！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]贝尔卡姐……曾经到大书院进修过。不是单纯的水占师。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]好了，废话就不多说了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]既然是来帮忙的，那就打好辅助就好。在湖区作战最重要的是防止落水，在习惯这一点之前，你们这些外地人还有得学呢！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_4_a_1",
+  "script": "c3_4_a_1"
+}

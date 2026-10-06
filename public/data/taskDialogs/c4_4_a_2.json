@@ -1,0 +1,136 @@
+{
+  "script": "c4_4_a_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "冷静下来的蕈人",
+        "text": "[show]谢、谢谢你们手下留情的噗！我们不是故意的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "冷静下来的蕈人",
+        "text": "[show]我们只是被坏坏蕈人吓怕了的噗！真的不是有意的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]坏坏蕈人？蕈人族里也有坏人吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "冷静下来的蕈人",
+        "text": "[show]蕈人族里才没有坏人的噗！好蕈人都是好人的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我大概明白了。",
+            "tag": "tag_8"
+          },
+          {
+            "text": "“坏坏蕈人”是不是都很“奇怪”？",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊！你是说……！露比特提过的那个……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "冷静下来的蕈人",
+        "text": "[show]奇怪……是很奇怪的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "冷静下来的蕈人",
+        "text": "[show]坏坏蕈人的伞盖都枯萎了的噗——咦，好、好晕的噗……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊！看来时间又到了……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "至少我们又弄明白了一些事。",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]看他们跑来的方向……那些“枯萎的蕈人”应该就在那边……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那就过去看看呗！如果能顺手救下布拉格乌尔庄园的话，蕈人族应该会同意重申盟约吧～！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_4_a_2"
+}

@@ -1,0 +1,523 @@
+{
+  "script": "c3_d2_3_3",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]唔……！[l][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]即使是完美的战躯……还是赢不了吗……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呵……与真正的强者相比……我的战斗经验……还是太少了……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德……[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哈！看你那是什么表情。莫非是在怜悯我吗？收起你们那假惺惺的神态吧！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]即使到了现在，你也不肯承认自己的错误吗？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]错误？呵……我只是失败，并没有什么错误！错误的……是你……是你们！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]现在你们打倒了我，摧毁了这座工厂，阻止了我的计划……但那有什么意义呢？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]或许你们是顺应所谓的“正义”，拯救了那些“弱者”，但其他魔爪湖的居民呢？光靠你们，又要怎样拯救他们？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那当然是——[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]当然是……没有办法，对吧？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]在最初的时候……我就是这么想的……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]水神、环会、选民、圣女。对比无能为力的凡人。他们的力量的确无比强大。但在民众的生命面前，在这场可憎的异变面前，他们又能做到什么？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]神明、信仰、英雄……这些东西救不了任何人！能够拯救我们的，只有我们自己！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这一点，你也明白吧？正是因为明白这一点，你才会去大书院进行那样的研究，写出那样的论文……还告诉我，光靠水占师的力量，是不够的……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]虽然因为自己的软弱和所谓的善恶，你就和真正的解决方案失之交臂，但正是靠着你的研究，我才能够拯救魔爪湖……[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]拯救……？靠着让柏莉尔……靠着让大家牺牲来拯救吗？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是又怎样？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这个深渊……不，这个世界上，有任何事情是可以不付出代价就能成功的吗？有哪个族群不需要牺牲就能赢得未来？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]图洛德，你说的没错。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]没有牺牲和奉献……没有族群能走得长远。但即使需要牺牲，那也不应该是由你来居高临下地做出选择。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你把自己当成什么了？是绞架旁的行刑官？是羊群的牧羊人？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嘴里说着什么为了凡人……但你早已经把自己当成了神明。你没有这个资格！[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哈哈。“神明”。哈哈哈哈哈哈——！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]确实，你想说作为凡人，就没有像神明一样行事的“资格”吗？[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]既然如此，那就让有“资格”的你们去拯救魔爪湖好了！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我会在逝者之国看着你们，看着你们如何用信仰、正义、善恶，这些虚无缥缈的东西去拯救他们，拯救我们这些凡人——！[l][cm]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]你就作为神明的选民，尽管让我开开眼界吧——！[l][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哈哈……！哈哈哈……！哈哈哈哈哈哈哈哈——[wait=1000][cm][hide]",
+        "charaName": "图洛德",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]他……没气息了。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]一切都……结束了。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那这个匠器核心，我们可以拿回去了吗？[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_49"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]{myName}……？你还有什么担心的吗？[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我在想这个黑涧浴池的运转。",
+            "tag": "tag_51"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哦！这个地下设施里的净化设备，确实是基于这枚匠器核心来操作魔力运转的。你是担心你拿走了这东西，这里的生产就会停止？[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那有什么可担心的？只要我们修复匠器，异变不就结束了吗？这里也再不需要这种吃人的工厂了！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]没有那么简单……[l]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没错。就算异变结束……",
+            "tag": "tag_56"
+          },
+          {
+            "text": "湖水的污染也不会凭空消失。",
+            "tag": "tag_56"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]唉？[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "忘记索利德山的红晶了吗？",
+            "tag": "tag_58"
+          },
+          {
+            "text": "异变的消解需要时间。",
+            "tag": "tag_58"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]对哦……安娜她们说过，可能需要好几年的时间才会消失……[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "搞不好，魔爪湖还需要这里。",
+            "tag": "tag_60"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]意思是……如果不能持续供应和之前一样多的“无魔净水”，恐怕在异变的影响彻底消退之前，湖区半数的居民就会因缺水而失去生命。[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]怎么会这样……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]不用担心水源的事，尽管把匠器核心取走吧。[l]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "阿莱姐……？",
+            "tag": "tag_65"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]净水的事情我会想办法。但只要异变不结束，魔爪湖就不会恢复正常。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]只有这句话图洛德说得没错——孰轻孰重，我们一定要分清。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯……[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]异变不结束，即使我们做得再多，魔爪湖也不会得到拯救。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]所以，{myName}，拜托你了。把那颗匠器核心捡起来……我们一起回地面上吧。[l]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我明白了。",
+            "tag": "tag_71"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_d2_3_3"
+}

@@ -1,0 +1,304 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]搞定！任务完成了，可以和米拉贝尔交差了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那个……贝拉多娜呢？",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊……我们好像把她抛下很远了……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]原来……我只是个彻头彻尾的弱者啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]就连两个普通人，都有这么强大的力量……就我这个样子……根本没法复兴家族嘛……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那个……你没事吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]呜呜……贝拉多娜……这么久了……我还是个没用的家伙……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等等……你别哭啊！把你丢在后面是我们不对——[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊不，我们也没做错什么事情吧……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "贝拉多娜……",
+            "tag": "tag_28"
+          },
+          {
+            "text": "可以告诉我们真相吗？",
+            "tag": "tag_28"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]我……我撒谎了。其实我根本就没有什么力量……也没办法给什么爵位……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这倒是猜得到啦。那你嘴里的那个家族，也是骗我们的吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]不……！我确实是希斯珀利亚家族的后裔。那也的确是个强大而神秘的家族……但我年纪太小……根本就没继承到什么家族秘传的力量。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]在后来的一场变故之后，我的家族也衰落了。余下的人一直在深渊四处流浪，寻找复兴希斯珀利亚的方法……但在大兽潮来临前，我就和亲人失散，来到了这片山地……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]我自称希斯珀利亚的贝拉多娜小姐……大家好像相信我有着家族神秘的力量，便收留了我，给我吃住。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]在灾难过去之后……我想报答大家的恩情，一时冲动，就跟大家宣扬我出去消灭魔物了……但我走出村子才发现，那些魔物因为异变，变得太过强大……我一个人根本对抗不了它们。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]好不容易捡回一条命的我……觉得当初的谎言肯定会败露，大家也不会再接纳一个骗子和小丑……就躲到这附近的山洞去了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这么一躲就是好几年啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]现在的我根本不是什么高贵家族的继承人……只是一个衰落家族的遗孤……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]无论是之前还是现在……我都太弱小了。我没办法保护大家，更没办法复兴我的家族……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "原来如此。",
+            "tag": "tag_40"
+          },
+          {
+            "text": "贝拉多娜小姐还有这样一段轶事。",
+            "tag": "tag_40"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]总之，现在异变结束了，你可以从洞穴里出来了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]但如果你一直顶着这个头衔的话，可永远都没法在村里安宁地住下去哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]呜呜……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "站起来吧，贝拉多娜。",
+            "tag": "tag_44"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]唉？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你是希斯珀利亚家的骄傲。",
+            "tag": "tag_46"
+          },
+          {
+            "text": "要挺胸抬头，铭记复兴家族的使命。",
+            "tag": "tag_46"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]可我的力量根本就配不上家族的名声。{myName}……我该怎么做才好……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "先一起回村子吧。",
+            "tag": "tag_48"
+          },
+          {
+            "text": "很快你就会知道该怎么做了。",
+            "tag": "tag_48"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]唉……？真的吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看来{myName}已经有想法了呢。快和我也说说吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "打完3图",
+  "script": "s_2_3_12"
+}

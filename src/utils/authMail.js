@@ -108,7 +108,9 @@ async function buildTc3Headers({ secretId, secretKey, action, payload, timestamp
  */
 export async function sendVerifyCode(env, { to, code, minutes }) {
   const stub = String(env.MAIL_STUB || '') === '1'
-  const hasKeys = Boolean(env.TENCENT_SECRET_ID && env.TENCENT_SECRET_KEY)
+  const secretId = String(env.TENCENT_SECRET_ID || '').replace(/^\uFEFF/, '').trim()
+  const secretKey = String(env.TENCENT_SECRET_KEY || '').replace(/^\uFEFF/, '').trim()
+  const hasKeys = Boolean(secretId && secretKey)
 
   if (stub) {
     /*
@@ -140,8 +142,24 @@ export async function sendVerifyCode(env, { to, code, minutes }) {
       //    变量名必须与模板里的 {{...}} 完全一致，否则邮件里的验证码会是空白。
       TemplateData: JSON.stringify({ [SES_VARS.code]: code, [SES_VARS.minutes]: String(minutes) })
     },
-    TriggerType: 1,   // 1 = 触发类（验证码）。**不能设成 0**，否则会被当成营销类
-    Unsubscribe: 0    // 触发类不加退订链接，见 ses-templates/README.md
+    TriggerType: 1,      // 1 = 触发类（验证码）。**不能设成 0**，否则会被当成营销类
+    /*
+     * 🔴 **必须是字符串 `'0'`，不能是数字 `0`。**
+     *
+     * 腾讯云 SES 对这个字段做**严格类型校验**，传数字会整封被拒：
+     *   Code=InvalidParameter
+     *   Message=The value type of parameter `Unsubscribe` is not valid,
+     *           input type should be `string`
+     *
+     * 2026-10-06 实测：生产库能查到验证码记录（`auth_codes` 有行）、接口返回
+     * 「验证码已发送」，但**邮件一封都到不了** —— 因为发信在 `context.waitUntil`
+     * 里异步执行，失败只写服务端日志，用户侧完全无感。改成字符串后同参数调用
+     * 立刻返回正常 MessageId。
+     *
+     * ⚠️ 注意与 `TriggerType: 1` 的区别：那个字段**接受数字**（实测正常），
+     * 只有 `Unsubscribe` 要求字符串 —— 不要"统一成一种类型"。
+     */
+    Unsubscribe: '0'     // 触发类不加退订链接，见 ses-templates/README.md
   }
   // undefined 会让 JSON.stringify 直接丢掉该字段，比写空串更干净
   const from = env.TENCENT_FROM || '深渊大书院 <noreply@mail.yxzmy.top>'
@@ -151,8 +169,8 @@ export async function sendVerifyCode(env, { to, code, minutes }) {
 
   try {
     const { headers, body } = await buildTc3Headers({
-      secretId: env.TENCENT_SECRET_ID,
-      secretKey: env.TENCENT_SECRET_KEY,
+      secretId,
+      secretKey,
       action: 'SendEmail',
       payload,
       timestamp: Math.floor(Date.now() / 1000)

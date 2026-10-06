@@ -1,0 +1,142 @@
+{
+  "script": "zy4_2",
+  "des": "f1_5清空回合",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呼……呼……我、我们赢啦——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]大家没受伤吧？[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "芭杜尔",
+        "text": "[show]没、没有……我们都……都挺好的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]哎呀哎呀～看来你们已经处理完了。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没错！有这么多人帮忙，这种魔物可不就是轻轻松松！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]我……我也尽力了……让工匠狩猎魔物什么的……我还是好难习惯……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈——你拿锤子敲爆它们脑袋的时候不是挺开心的嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]哪里算是开心了啊……那可是我们家族祖传的工匠锤……[r]现在上面全是魔物的黏液……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，这些都是我家里的东西！我的花衣裳！我的枕头！[r]还有我辛辛苦苦攒大的粮袋——哇，这里面是什么！好恶心！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]……这里面的东西已经不能吃了吧……[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]好啦，你们就先回去，这里就交给我们驿站来善后吧。[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喔！好，我们收工！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]（小茜塔……你刚刚也看到了吧？）[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]（嗯。突然发作的狂暴，血红的眼珠，背后若隐若现的黑色雾气……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]（是和兽潮那时一样的“狂暴化”……不会有错。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]（这件事要尽快报告给菲尔。如今魔界山口已经闭锁，[r]我们……已经没法再承受一次灾难了。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]（……我知道了。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

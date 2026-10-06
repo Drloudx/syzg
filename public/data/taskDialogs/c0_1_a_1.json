@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯，就在这附近了！我说的食材，就在这片森林比较深的地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]路上虽然稍～微有些不长眼的魔物，不过也耽误不了多少时间。我们很快就要到了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c0_1_a_1",
+  "des": "空"
+}

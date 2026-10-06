@@ -1,0 +1,197 @@
+{
+  "script": "c3_12_a_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]大、大侠饶命……我什么都不知道啊……[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]说不说！不说我给你们全打包丢湖里去！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]咕嘎哇哇啊啊啊……我真的、真的什么都不知道……放过我吧……[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]治、治安队长！我之前说错话了！放过我，我们所有人都任你差遣！[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]唉……[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]看起来也不太像演的。怎么办，阿莱姐？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]放他走吧。看来他们是真的不知道为什么要守在这里。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]谢、谢谢！谢谢各位大侠！[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]结果还是比不过阿莱姐啊。我打倒一个人的时间，都够你打倒十个了！[l]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，这没什么好比较的。",
+            "tag": "tag_12"
+          },
+          {
+            "text": "秘术师在清杂上就是有优势。",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]嗯～如果是需要隐秘行动的场合，米托拉应该会比我更有优势吧。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哎嘿嘿……说起来，贝尔卡去哪里了？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我在看这里的土质……有些不太寻常的地方。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]土质……？我知道贝尔卡是会进行些研究来着，但连土质都懂吗？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯，土壤也是探水学科体系里的一环啦。不说这个了……这一带的土质比其他湿地干燥，并不容易留下痕迹，但仍然有一些不太自然的地方。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]就像这里……这里，还有这一些地方。像是经常被重物碾压、翻动，不同种类泥土中的杂质都被混合在了一起。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]难道，是那些装着水桶的车……？[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]照这个思路想的话，这些痕迹连续起来的样子，的确很像车辙。[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]原来如此！只要照着车辙来的方向追查，就能找到那个图洛德的秘密了！太厉害了，贝尔卡！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这、这也只是学科基础的一环——哎呀不说这个了，我们赶快前进吧……！[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]……[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哼哼，我们离真相越来越近了！[l][cm][hide]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_12_a_2"
+}

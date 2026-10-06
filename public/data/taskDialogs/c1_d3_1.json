@@ -1,0 +1,38 @@
+{
+  "script": "c1_d3_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这里就是地窖深处吗……好广阔的空间……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]好不容易才找到通往这里的道路……这些魔物到底多能挖啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]前面的路看起来也很曲折，魔物的数量应该也少不到哪去。[r][l]看来是一场难得的挑战呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]看来这次探索和之前不可同日而语。[r][l]那边有之前探索队留下的篝火，在这里做好充足的准备再前进吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "地窖深处一层 入口处进入时"
+}

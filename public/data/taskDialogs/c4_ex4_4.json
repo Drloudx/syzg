@@ -1,0 +1,295 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]快看！她们在那边！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]啊啊啊啊啊啊啊啊啊啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]放弃吧！你们无路可逃了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]姐妹能永远牵着手，永远在一起，永远不会背叛……这么好的魔法，你们为什么要解除？莫非你们也只是虚伪的姐妹吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜",
+        "text": "[show]既然如此……那我们就同归于尽吧！让一切都结束吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]糟糕！她正在吸收灵魂之流中的魔力，想用自爆的方式把我们全部抹杀！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]姐姐……不要这样，这样我们都会毁灭的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]糟糕！瑟蕾娜听不进去了……！怎么办，你们有什么好办法吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "我有个办法……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[cm][show]你有什么办法就赶紧说吧！现在这爆炸的威力，我们想逃都来不及了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "奥菲娜！"
+          },
+          {
+            "tag": "tag_13",
+            "text": "握住你姐姐的手！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[cm][show]哈？这时候握住姐姐的手有什么用？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "你要是不想迎来毁灭的结局……"
+          },
+          {
+            "tag": "tag_15",
+            "text": "就握住你姐姐的手！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[cm][show]啧……明明只是个外人，居然敢在这儿指手画脚……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜",
+        "text": "[show]算了！握就握吧，反正也没有比现在更糟糕的情况了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（瑟蕾娜和奥菲娜手握住的一瞬间，一阵强光挡住了众人的视线。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呜……这是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜？",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜？",
+        "text": "[show]奥菲娜，我没有把你们部落的守备地点告诉酋长。最后一次见面时，是我太冲动了，对不起。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唉？瑟蕾娜说话了？刚刚她还一副癫狂的样子，怎么突然就向自己的妹妹坦诚了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]原来是这样！我明白{myName}的意思了。这个魔法并不是诅咒，而是祝福！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？祝福魔法？这是什么意思啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]嘿嘿……你接着看就知道了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜？",
+        "text": "[show]姐姐……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜？",
+        "text": "[show]对不起，冲动的是我。当时你们打猎队的行踪，也绝不是我透露的。我们从一开始……就误会了对方……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥菲娜？",
+        "text": "[show]我们一直误解对方、憎恨对方、想要杀死对方……但我想这一切早就该结束了才对。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑟蕾娜？",
+        "text": "[show]嗯……该结束了……妹妹……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]她们身上的魔力正在消散……也就是说……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（两姐妹的身体化作点点荧光，消散在空中。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这……她们就这么消失了？诅咒解开了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]嗯，应该是解开了。她们应该也已经毫无遗憾地离开了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等等，让我缓一缓，怎么拉一拉手的功夫，突然就结束了？怎么回事儿？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这些问题等出去之后再说吧，我们回去向雅拉德报告。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c4_ex4_4】",
+  "script": "c4_ex4_4"
+}

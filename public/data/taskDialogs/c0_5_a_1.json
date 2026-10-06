@@ -1,0 +1,143 @@
+{
+  "script": "c0_5_a_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这、这是什么地方呀……！刚刚我们不是还在角布林的营地里吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……我的头好晕。我只记得白光一闪，一睁眼我们就出现在这里了……到底怎么回事？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]而且，这里的氛围好奇怪啊……雾蒙蒙的，感觉让人喘不上气……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你……你的表情好奇怪啊。没事吧，{myName}？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这里是……",
+            "tag": "tag_4"
+          },
+          {
+            "text": "先时工匠的遗迹。",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]遗迹？[color=ffb64d]先时工匠[colorEnd]？这都是什么和什……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉，等等！你……你的[color=f1401c]记忆恢复[colorEnd]了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我稍微想起来了一些。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "在落到深渊之前，我就在这里。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]你说……你来到深渊前就在这里……那这就说明……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们可能身在……我的记忆里。",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]唉……？还有这种事……那我们现在该怎么办呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唔……看你的样子，好像也想不起来之后发生了什么……[r]不然就先离开这里，看看其他地方有些什么，走一步算一步吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那边好像有一条路可以去，说不定就是出口呢。我们动身吧，{myName}！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入1图播放"
+}

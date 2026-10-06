@@ -1,0 +1,464 @@
+{
+  "script": "c3_ex1_4",
+  "des": "c3_ex1_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]好了，这附近没有其他人。我们可以好好聊聊这次袭击了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唉？原来我们从村里出来是为了这个？我还以为我们是被村里人讨厌赶出来的呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]村子的大家确实因为敌人的恶行，对我们有一些误解。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]如果我们真的决定要留在那里，没有人能让我们离开。但……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "村子里可能还有幕后黑手的眼线。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]没错。这次袭击——包括来袭的蛇怪，还有之后不明身份的袭击者，都来自于一个十分严密的灭口计划。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]幕后黑手的理想计划，当然是一旦出现暴露的风险，就立刻利用潜藏在附近的蛇怪，毁灭整个村子。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]但如果蛇怪起不到应有的作用，那就调虎离山，让暗处的人手在村里毁灭证据……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]所以他们袭击才这么精准！毕竟绑人的也是他们……他们手里肯定有受害者的名单！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]除此之外，他们肯定还在村里埋伏有监视的人手。起码……能够洞悉我们的调查进度。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]但……不过为什么倒霉的是艾婕的老公，而斯通的妹妹和布彻他爹就没事？像这种专业的特务，要补刀不是随手就行吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "可能是因为威胁程度不同吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]斯通和布彻本人都是自己决定离开的。他们的亲人在事前一无所觉，所以只要烧毁房屋，毁灭证据就好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]即使存在某些糊弄人用的文书，村里人也都不识字，不虞他们发现什么端倪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]但是艾婕的丈夫对于艾婕被人劝诱一事知之甚详，那是因为他对艾婕怨念极深，长期监视着自己的妻子，也就是说……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "他恐怕看到了劝诱者的脸。"
+          },
+          {
+            "tag": "tag_18",
+            "text": "敌人害怕他识破身份。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]就因为这样……就被灭口？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]是的，就是因为这样一件小事。一件如果不是他被灭口，我们甚至不一定能够察觉到的小事。一条生命就这样消失了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]这么凶残的幕后黑手，只是放任他继续存在都是在犯罪！我们必须彻底消灭这个丧心病狂的势力！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那肯定！换了我也不愿意有这么凶的邻居啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过，现在线索不是全都断了吗？我们又要从哪里寻找到幕后黑手的身份呢？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "我们还有一处线索。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]唉……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "是哈萨琳之手。"
+          },
+          {
+            "tag": "tag_26",
+            "text": "蛇怪巢穴里的佣兵。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]是的。我想，这次灭口行动，应该只是幕后黑手留在贫民街的潜伏人员所为。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这些人大概实力平平，猜不到真正的高手究竟能强到何种地步，因此才没有清理掉巢穴内的遗体——当然也可能是没有能力清理，这才被我们发现了问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你们两个好厉害啊！这次出来调查，有好几次我都觉得无路可走，要打道回府了，结果每一次你们都能找到新的“可能性”……你们到底是怎么练出来的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]或许这也是水神大人的恩赐……？我感觉……我好像比较容易发现被忽略的关键之处。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "我是因为命不好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_34",
+            "text": "逃命久了，该学会的差不多都得学会了。"
+          },
+          {
+            "tag": "tag_34",
+            "text": "不然我现在就该呆在克里斯汀的大牢里了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]你这逃命的时候怎么什么都学啊？还有水神大人的恩赐也太万能了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]说回正题吧——既然{myName}和圣女大人都认为哈萨琳之手值得一查，那我们就得加快脚步了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]毕竟敌人已经有过悍然灭口的前科，我们不能保证这些“活线索”究竟能够存在多久。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]是这个道理，所以我们应该立刻赶回大市集。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]可是我们之前被人陷害，现在治安队不是在搜捕我们吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]我们还没有和治安队直接摊牌。只要我摆明圣女的身份，他们应该不会怀疑我们。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]有道理！咦，怎么了，{myName}，你不同意吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "圣女身份是张大牌，还是捏在手里比较好。"
+          },
+          {
+            "tag": "tag_42",
+            "text": "直接以圣女身份现身，不便于秘密调查。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]那你觉得，我们应该怎么做呢？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_44",
+            "text": "我想……我们不如相信一下塞弗德里克。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？但那家伙不是非常可疑吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯……从之前两次碰面来看，塞弗先生的手腕相当不俗。既然他宣称会协助我们……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_47",
+            "text": "实在不行我们就杀上门去。"
+          },
+          {
+            "tag": "tag_47",
+            "text": "逼也要逼着他帮忙摆平。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]哦，这个好！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]反正塞弗德里克的老巢在大市集外围，我们悄悄地摸过去，肯定不会惊动任何人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]（米托拉的潜行能力，确实非常值得信任。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]（不过，老巢？以塞弗德里克显露的心计，那里恐怕只是十分外围的联络点，甚至算不上狡兔三窟之一啊……）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

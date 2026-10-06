@@ -1,0 +1,210 @@
+{
+  "script": "c1_d2_6",
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]呼……呼……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]终、终于……打败它了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]可恶……明明只是一堆石头，却这么难缠！刀都要给磨钝了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]缇莎也……精疲力尽了啦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]我做契约者这么多年，头一次和这样的家伙打。明明没有拳脚爪牙，却仿佛胜过凶狠的魔兽……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[cm][show]有……人吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "你们……有没有听到什么声音？"
+          },
+          {
+            "tag": "tag_22",
+            "text": "好像从哪里传来……虚弱的求救？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]哈……是不是有人在叫我们？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]你在说什么呢。刚不是有扇连魔物都挠不进来的门嘛，怎么会有人求救。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]请、请不要吓缇莎……缇莎最怕鬼了啦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]那应该不是什么鬼——你们还记得莉拉首座曾经拜托我们的事情吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "寻找一名失踪的学者？"
+          },
+          {
+            "tag": "tag_13",
+            "text": "我记得是叫做……瓦菲诺？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]啊对。打得太入迷，完全忘记还有这档事了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]呃。我也是。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]啊，是有这回事！缇莎好像也有点印象！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "没关系。"
+          },
+          {
+            "tag": "tag_25",
+            "text": "我也才刚想起来。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]才不是没关系啦！得赶快去救人才对吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[cm][show]饿……我好饿啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]噫——！米托拉姐姐！有鬼——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]别、别一下扑上来黏着我啦！走、走开啦——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "声音看起来是从深处传来的。"
+          },
+          {
+            "tag": "tag_20",
+            "text": "继续前进吧，各位！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

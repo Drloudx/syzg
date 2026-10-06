@@ -1,0 +1,72 @@
+{
+  "des": "",
+  "script": "c1_2_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]就是这附近了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "茜塔对这边的路很熟悉呢。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[cm][show]毕竟这都是驿站的先驱者和绘图师们辛劳探索的结果。[r]只要熟悉地图，很容易就能找到路线。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "找到目标了吗，米托拉？",
+            "tag": "tag_5"
+          },
+          {
+            "text": "难得这么认真呢，米托拉。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]就在那边。有争斗和哭喊的声音。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]肯定就是那些受伤的契约者了吧。{myName}、米托拉，我们上……！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

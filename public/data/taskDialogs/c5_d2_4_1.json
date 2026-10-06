@@ -1,0 +1,1849 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]这里就是……匠器之间？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]哦？这里就是遗迹的最深处了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]嗯……这个房间似乎只有一个入口……看来这里就是终点了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦？也就是说捉迷藏游戏终于可以结束了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]巴赫洛克斯老兄，你准备好迎接我这愤怒的拳头了吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？？",
+        "text": "[show]真抱歉啊，大姐姐。这家伙虽然没用，但也不能任由你们处置呢～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么……！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这个声音是……！",
+            "tag": "tag_13"
+          },
+          {
+            "text": "这个语气是……！",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]{callName4}们，你们好呀～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]能够在这里相遇，艾茵可是高兴得很呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]艾茵……？你、你怎么会在这里……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]是呀，艾茵怎么在这里呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]如果在这里的不是艾茵，而是魔女姐姐和老爷爷，你[color=ffb64d]违反命令[colorEnd]的事情，不就可以轻松揭过了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]……我没有违反命令。导师并没有禁止我去找他们的麻烦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]不错的辩护，父亲大人确实没有明确禁止，但是，父亲大人也说过，为了伟业的实行，还需要继续招揽{callName4}，对吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]明知道父亲大人的意图，还独断地做出完全相反的行为……巴赫洛克斯，你有点不听话，需要惩罚了呢～♪[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]哎呀，居然没有一怒之下，朝艾茵挥拳吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]真是警觉……看来这次是没法借题发挥，只能小惩大诫了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]没办法，那就咬牙挺住吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]唔——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]这就是违背父亲大人的下场哦，下次再偷跑之前，记得祈祷不要被艾茵抓到吧～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]抱歉抱歉，{callName4}们是不是被吓到了？艾茵不是故意的哦，艾茵对你们可是一点敌意都没有呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]艾茵……你……你原来是“结社”的人？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]对呀！米托拉姐姐原来没有发现吗？艾茵还以为自己表现得很明显呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_34"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[cm][show]哦，倒是{callName4}这边，好像早就有所预料？不愧是父亲大人的孩子，头脑就和父亲大人一样聪明！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]你说的父亲大人……难道是……希拉尔德……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]是的！艾茵是父亲大人的养女，是父亲大人来到\"深渊\"之后收养的孩子！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]养女？那就是说……你和{myName}的关系，就和我与奇瓦的关系一样……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]哎呀？原来这里也有和艾茵际遇相似的伙伴？之后我们可以多多走动，亲近一下呀～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]谁要和你亲近了！伽拉忒亚是我的妹妹，才不需要接近你这种危险人物！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]为什么这么说……艾茵也是{myName}的妹妹啊。妹妹和妹妹之间建立友好同盟，难道不是理所当然的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]怎么了？奇瓦姐姐？为什么不说话了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]我想她只是因为你的逻辑过于粗暴而陷入了失语。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]倒是艾茵小姐，可以请你不要再插科打诨拖延时间了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]希拉尔德在哪里？你们“结社”在这个遗迹里，究竟要做些什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]这个嘛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？？",
+        "text": "[show]我哪也没去，只是稍微对装置进行一些最后的检查。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]幸好，这并没有花上太多时间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]在受到阻碍之前，所有的准备工作终于都完成了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕呜呜呜！咕呜！咕呜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]诶？发生什么事了？软软在叫什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]是魔力！遗迹内的魔力环境突然开始剧烈变化了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是那个装置搞的鬼！看我一巴掌把它打得稀巴烂！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]不行！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]米托拉，不能碰那个装置！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]如果破坏那个装置的话……这处遗迹马上就会爆炸！到时候……我们所有人都会葬身于地底！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么！这是你“看到”的吗……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]希拉尔德，你究竟做了什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]不是什么大事，不过是对你们的新计划采取的反制措施。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]既然采用隐蔽方式输送魔力已经不可能，那不如直接竭泽而渔，把能拿的全部拿到手！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "全部拿到手……",
+            "tag": "tag_66"
+          },
+          {
+            "text": "莫非是“对冲活性化原理”……？",
+            "tag": "tag_66"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[cm][show]哦，看来这么多年，你不光技术精进，对于基础理论的温习也没有落下，我很欣慰。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]对冲活性化原理？我、我找找看——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]不用找了！所谓对冲活性化，就是指属性相反的魔力在对冲过程中，使魔力的稳态破坏，变得更[color=ffb64d]容易流动[colorEnd]转移……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]原来如此！你是打的这个主意！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]看来你们都理解了，那解释起来就简单了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]比起我自己的孩子，{myName}……作为父亲的我，只能算是一个蹩脚的工匠。我制作的装置，其效能更是望尘莫及。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]但是，工匠造物的效能并非一成不变的。只要赋予它合适的运行环境，就算是我制作的那些二流货色，一样可以在短短数日之内，把整个霜烬平原的冰属性魔力抽空。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]说了这么多，你提到的“合适的运行环境”到底是什么呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]很简单——我把遗迹的\"盖子\"打开了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]遗迹的……“盖子”……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]啊，抱歉，这只是修辞上的比喻。实际上这里并不存在物理意义上的\"盖子\"，我只是用装置破坏了火属性魔力的\"储存装置\"而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]事实上，能制定出这个计划，还要多亏了你们。正是通过你们的调查，我才终于查明了那些凭空消失的火属性魔力究竟去向何方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]而在察觉了这一点之后，我就立刻提出了一个备用计划。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]现在，整个业火平原的火属性魔力都被封印在这座遗迹的深处，只要稍有缝隙，这些高密度的能量就会倾泻而出。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]受到这些火属性魔力的对冲刺激，整个霜烬平原的冰属性魔力也会迅速活性化……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]如此一来，输送魔力的效率，可就不止是增长区区“十倍”而已了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]……希拉尔德，我果然没看错，你是个货真价实的危险人物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]打开“盖子”让火属性魔力倾泻而出，说得这么轻巧……你可曾想过这样做的后果？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]结果大概就是……在一到两周之内，让早已消失的业火平原“[color=f1401c]卷土重来[colorEnd]”吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]但这一次，“业火”就不再是形容词了。在巨量的火属性魔力爆发之下，整个平原都会如字面意思一般，被业火焚烧殆尽吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]明知道会发生这种事，你还是作出了这种选择吗……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]我知道这绝非一个善良的选择……但这也是因为你们阻扰在先，我不得不采取的反制措施。更何况，为了我们的伟业……为了人类的彻底自由，这些牺牲都是值得的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "就算有什么牺牲是值得的……！",
+            "tag": "tag_89"
+          },
+          {
+            "text": "那也绝不是由你这家伙来选择的牺牲！",
+            "tag": "tag_89"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[cm][show]……或许吧，但现在说这些已经没有意义了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]此时此刻，你们不该在这里浪费时间。你们应该立即返回大书院，在业火蔓延之前，尽可能撤离人员、抢救典籍和转移财物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]是啊，毕竟你还给我们留了一个星期呢！我们是不是该感谢你的好心？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]不……现在还没到绝望的时候……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]希拉尔德的计划，是建立在魔力爆发的基础上……但别忘了，我们还有一张底牌，可以梳理平复暴动的魔力！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊！你说的莫非是……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是匠器！",
+            "tag": "tag_96"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "只要用匠器平复地脉的话……",
+            "tag": "tag_237"
+          },
+          {
+            "text": "霜烬平原就还有救！",
+            "tag": "tag_237"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]真不错，你的同伴们都很优秀，在这种情况下依然不放弃希望。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]只可惜……这份希望从一开始就不曾存在过！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]你、你说什么……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]睁大眼睛看清楚吧！好好看看，匠器[color=f1401c]本应[colorEnd]存在的位置！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "本应……",
+            "tag": "tag_102"
+          },
+          {
+            "text": "！",
+            "tag": "tag_102"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]匠器……没、没有匠器……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]为了阻止我们，居然先一步将匠器给拆除了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]哦不不不，父亲大人可没有那么做！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]那边那个方台基座上，可是从一开始就[color=f1401c]什么都没有[colorEnd]哦！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "什么……？",
+            "tag": "tag_108"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[cm][show]{myName}，你应该明白的吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]作为先时工匠的传承者，没有人会忍心去破坏这些巧夺天工的古代造物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]你们之所以一直都没能发现匠器的踪迹，那只是因为这座遗迹里从一开始就不存在那样东西。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]所以我才说，你们所追寻的希望，从一开始就是梦幻泡影。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]还是说……{myName}……以你那聪明的头脑，在这种情况下，还能想出破局的方法呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_114"
+          },
+          {
+            "text": "……",
+            "tag": "tag_114"
+          },
+          {
+            "text": "……",
+            "tag": "tag_114"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（不行……完全找不到破绽……！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（希拉尔德的计划……真的要成功了吗……我们……又一次要……失败了……？）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？？",
+        "text": "[show]不，现在还没到绝望的时候！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉……？",
+            "tag": "tag_238"
+          },
+          {
+            "text": "你……你在说什么……？",
+            "tag": "tag_238"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]现在还没到绝望的时候！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这、这是什么情况……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]我用魔法暂时停止了时流。但这没法维持太久！快，神匠士希格维特的后裔啊——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]拔出你的万应之钥，现在还有挽救的机会！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]万应……之钥？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[show]就是你手里的那柄工匠锤——“[color=ffb64d]乌曼塔提亚[colorEnd]”！你应该知道它的名字吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "知道是知道……",
+            "tag": "tag_128"
+          },
+          {
+            "text": "但问题不是这个……",
+            "tag": "tag_128"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你……不是米托拉吧？",
+            "tag": "tag_129"
+          },
+          {
+            "text": "你到底是谁？",
+            "tag": "tag_129"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉？",
+        "text": "[cm][show]……你可以用“缪娅”这个名字来称呼我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]不用担心我会占据你伙伴的躯体。你们可以把我当成是……她的“前身”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]现在……我也只是因为这处遗迹的能量，才短暂地取回了意识。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]原来是这样……所以您是准备帮助我们？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]当然！工匠技艺是让人幸福的力量。用工匠技艺去伤害别人，这种行为我绝对不能容忍！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]好了，快一点！我能保持清醒的时间不多了，快按我说的做！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "好的。",
+            "tag": "tag_136"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]然后是那边的小姑娘——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]诶？我？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]是的，就是你，快站到这里来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]哦……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]很好，这样就准备完成了。那么——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]解锁万应之钥，启封原始蓝图。比对缺损状况，压缩流程工序——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]将一万小时的辛劳凝聚于一次敲击之中——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]修复吧！[color=ffb64d]中枢匠器·格兰康提丝[colorEnd]！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这……这是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕……咕呜？咕呜、咕呜——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]软软说……这里的魔力……突然、恢复“纯净”了……？难道说……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]呼……看来这是成功了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]真是的……过了这么多年，我的工匠技艺也没怎么退步嘛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]感谢你们的援手，{myName}，还有你……缪娅。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]多亏了你们的帮助，我才得以修复损坏的机体，找回丢失的记忆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]因为机能的修复，我终于可以真正地镇服地脉的污染，而不必再选用表面化的手段。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "伽拉忒亚……！",
+            "tag": "tag_156"
+          },
+          {
+            "text": "难道说……？",
+            "tag": "tag_156"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[cm][show]伽拉忒亚是……匠器本身？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]什、什么？这怎么可能——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]难道、净化并封存了火属性魔力的，也是你……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]是我。当时因为机能损坏，我不得不出此下策。由于回路过载，我被爆炸冲击波掀飞到雪原上，不知为何失去了记忆。恐怕是某个回路单元出现了故障。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]伽拉忒亚……你、你到底在说什么啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]奇瓦姐姐，请稍等片刻。现在请先让我履行自己的职责。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]……连我的魔法也解除了吗。这就是先时工匠的杰作……真是令人敬畏的力量。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]好了，这样一来，地脉的污染就彻底平复了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]霜烬平原的异变到此终结，环境改造的工作也可以慢慢进行了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]真是令我大开眼界。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]你们似乎在刚刚的一瞬间完成了什么动作——看你们这副神态，我也能猜出个一二来。但我对这些不感兴趣。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]不得不说，古代的工匠们确实给了我一个惊喜。就连我也想象不到，我们寻找了那么久的匠器，居然一直都在我们眼前。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]你想干什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]即使伽拉忒亚来历神奇，但她依然是我的女儿！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]我绝不会让你这种居心叵测之徒靠近她半步！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]妈妈～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]不，我并没有想要对令爱不利，只是想要对她提出一个邀请。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]邀请……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]伽拉忒亚小姐，你有兴趣加入“结社”吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]现在你已经取回了记忆和力量，不再是凡人之身，应该不必再扮演乌尔勒院长的女儿了吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]我从此处的文献中隐隐有些了解。匠器被创造出来的使命，正是为了改造整个大陆，为人类创造永世的乐土。想必，你恢复完全的记忆库中也储存着相关的信息。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]如今的情形你也看到了——天灾降临，秩序崩塌，人类只能偏安一隅，整个荒野都被狂暴的魔物占据……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]在这种情况下，继续留在深渊，你注定无法完成自己的使命。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]那么，要不要跟我一起来呢？让我们放眼更广阔的世界，将自由还给全人类……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]作为先时工匠的造物，想必你能够理解这份伟大情怀吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]……希拉尔德先生，您似乎真的继承了我那些创造者的遗志呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]在我的记忆里，那些创造者们也是整天把\"宽广\"\"伟大\"\"自由\"\"明天\"之类的美好词汇挂在嘴边。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]但结果……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]结果……他们的狂妄导致了“人外的黄昏”降临，曾经辉煌的文明毁于一旦，只有仅存的幸存者苟延残喘。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]……这是无耻的污蔑。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]是否构成污蔑我无法确定，因为关于\"人外的黄昏\"的相关记忆，绝大部分都已被前代管理员从我的数据库中删除，如今仅存的不过是些零碎片段。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]但是，当年那最后一任管理员的留言，时至今日我依然清晰地记得。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]“谨慎、戒惧、切勿因狂妄而重蹈覆辙”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]现在看来，你和我的创造者们一样，已经因为自己的技术变得太过高傲，开始自诩为导师、神明，开始追求所谓“真正的自由”了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]而你们这些本应引领人民的导师和神明，却根本不肯回身看一眼被你们领导的人们……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]正如你认为整个平原的人们流离失所，不过是\"值得的牺牲\"一样，我的创造者们，在铸成不可挽回的大错之前，想必也曾自诩高瞻远瞩吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]……所以你的意思是，你不愿意加入我们了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我想我已经表达得很清楚了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]即使这样一来，你就永远无法离开深渊，甚至连离开这个“霜烬平原”都非常困难？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]是的，这就是我的选择。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]在失忆之前，我就为了拯救这里拼上了一切，总不会机能修复之后，我反而要改弦更张吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]是吗？那就太遗憾了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]本以为像你这样的古代造物能有什么高见，原来也不过是个拘泥于道德的痴人，不值得我浪费时间。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "希拉尔德！",
+            "tag": "tag_205"
+          },
+          {
+            "text": "你准备逃了吗？",
+            "tag": "tag_205"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[cm][show]逃跑？不。有艾茵在，我根本不需要“逃跑”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]嘿嘿，艾茵可是很厉害的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]不过，这里已经没有值得我留恋的事物了。为了\"结社\"的大业，我必须珍惜每一分每一秒。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]巴赫洛克斯。休息好了就准备动身吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "巴赫洛克斯",
+        "text": "[show]……是，导师。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]那么{myName}，来日再会了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希拉尔德",
+        "text": "[show]……当然，还有你，某位从先代浮现出来的神秘来客……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾茵",
+        "text": "[show]{callName4}，要记得想艾茵哦～！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]都是什么和什么啊……！这些家伙！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]呼……！亏你们能够废话那么长时间！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缪娅",
+        "text": "[show]魔力……消耗得差不多了。我也差不多该……回去……了……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]啊？这又是怎么回事？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉？",
+            "tag": "tag_222"
+          },
+          {
+            "text": "缪娅？",
+            "tag": "tag_222"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]她没事。刚才“上浮”的那个意识似乎重新回归沉睡了。等到再次醒来，苏醒的应该就是米托拉本人了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]是吗，那就好……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]一边是米托拉……一边是伽拉忒亚……还有“结社”……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]算了，无论如何，这片平原的异变，看起来总算是告一段落……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]伽拉忒亚，你应该还有很多事情要和我们说吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]是的，妈妈。不过别着急，我们还有很多时间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]是吗……那……我们就先尽快离开这里吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]希拉尔德的计划虽然被阻止了，但刚才那一阵的魔力活化现象，说不定已经造成了某些损害。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]我们还有许多事情要做，无论是巡查各地受灾情况，还是尽快摧毁希拉尔德的装置，全都刻不容缓。{myName}……虽然我很感激你们，但……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们明白。",
+            "tag": "tag_233"
+          },
+          {
+            "text": "我们会先自己修整一阵子。",
+            "tag": "tag_233"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[cm][show]……嗯，多谢理解。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]剩下的事情，就等米托拉醒了之后再说吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]发生了这么多事……真希望她不会太钻牛角尖啊……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_d2_4_1",
+  "des": "进入后【c5_d2_4_1】"
+}

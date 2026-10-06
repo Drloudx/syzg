@@ -1,0 +1,14 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（面前的匠器发出悦耳的嗡鸣。它看起来已经被修复了，哪怕再次触摸也没有任何反应。）[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_d2_8",
+  "des": "再次和匠器对话"
+}

@@ -8,6 +8,11 @@ export const configRoot = resolve(process.env.MYRZG_CONFIG_DIR || join(projectRo
 export const dialogRoot = resolve(process.env.MYRZG_DIALOG_DIR || join(projectRoot, '../GAoNano_decrypted'))
 export const gameSourceRoot = resolve(process.env.MYRZG_SOURCE_DIR || join(projectRoot, '../源码'))
 export const imageBackupRoot = resolve(process.env.MYRZG_IMAGE_BACKUP_DIR || join(projectRoot, '../vue-myrzg备份-资源/images'))
+/**
+ * 项目级备份根（`../vue-myrzg备份-资源/`，里面按 images / fonts / ui / data 分子目录）。
+ * SPEC 六章约定的原图备份位置；非图片类产物（如剧情 JSON）瘦身前也备份到这里。
+ */
+export const backupRoot = resolve(process.env.MYRZG_BACKUP_DIR || join(projectRoot, '../vue-myrzg备份-资源'))
 
 export function resolveChild(root, child) {
   const result = resolve(root, child)

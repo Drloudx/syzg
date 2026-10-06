@@ -1,0 +1,305 @@
+{
+  "script": "c5_ex5_4",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜啊！好疼！怎么还能这样的啊角角！她们太强大了角角！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]搞定那些魔宠后，这些人完全没什么像样的抵抗啊。就这点实力还想在深渊打什么名号……回去当荒野客练个几年再说吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可、可恶……只能暂时撤退了……等我们养精蓄锐再回来，一定能把你们揍一顿，打响我们霜火队的威名……[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们只是一时失利而已！别太得意了，你们这群不守规则的家伙！[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……之前你们也不怎么守规则啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们这些混蛋，做了这么多坏事，你们想着就这样一走了之吗？[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]脚长在我们身上！我们的去留可不是你们说了算的！喂，要撤退了，角角！[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看招角角！这次是我丢的，没想到吧角角！[l][cm]",
+        "charaName": "霜火队角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]小心！又是烟雾弹！[l]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（用锤子把烟雾弹打回去。）",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哇？烟雾弹被打回来了！快逃啊啊啊啊——！[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咳咳……咳咳……[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大、大意了……没想到还有这一招……快、快逃……[l][cm]",
+        "charaName": "霜火队男"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]想逃？晚了！雷素，干掉他们！[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哔哔！哔哩哔哩！[l][cm]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什、什么？雷素的玻璃罩——难道，被刚刚的烟雾弹给——等等，雷素，快停下来！我们可没亏待过你——[l][cm]",
+        "charaName": "霜火队女"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]雷素，现在你可以报仇啦！把这些坏人好好教训一顿吧！[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哔哔哔哔哔哔！[l][cm]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜哇啊啊啊嘎啊啊哔啊啊呱啊啊啊！@#￥%……&——！[l][cm]",
+        "charaName": "霜火队全员"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show][size=30]好[sizeEnd]——[size=25]难[sizeEnd]——[size=20]受[sizeEnd]——[size=15]的[sizeEnd]——[size=12]感[sizeEnd]——[size=10]觉[sizeEnd]——[size=8]啊[sizeEnd]——[l][cm][hide]",
+        "charaName": "霜火队全员"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哔哩……哔哩哔哩！哔哩！[l][cm]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇哦，他们都被电飞了。看来你的怨气确实很大啊。干得好，雷素！[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哔哩！[l][cm]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？你们关系什么时候变这么好的？明明上次还把你电得不轻。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……这孩子现在也知道，我们是它的好伙伴啦。[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的吗？我可以摸摸你吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哔哔，哔～！[l][cm]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿。摸摸～真可爱。虽然感觉它不是很情愿，但好歹不会电我们了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这下雷素应该愿意和我们回家了。[l][cm]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这一趟没有白跑。不仅救回了雷素，还成功阻止了霜火队的阴谋。[l][cm]",
+        "charaName": "艾薇杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼哼，我也守护住了我的温泉村！[l][cm]",
+        "charaName": "奥格"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……好像都是你的芙洛波在出力，你根本就没做什么吧……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱～！[l][cm]",
+        "charaName": "掘冰芙洛波"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了，我们先回温泉村吧。不光是我们，雷素也需要休息，对吧？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哔哔……哔哔～！[l][cm]",
+        "charaName": "雷素"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好。雷素……我们走吧。[l][cm][hide]",
+        "charaName": "伽拉忒亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": ""
+}

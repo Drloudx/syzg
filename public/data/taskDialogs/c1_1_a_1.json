@@ -1,0 +1,164 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]呃……你们终于到了啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊，这不是茜塔嘛！你不是下班了嘛，在这儿干嘛呢？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "麻烦你了，茜塔。"
+          },
+          {
+            "tag": "tag_42",
+            "text": "艾尔莎让我们在附近找你带路。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]欸？是这样的吗？这毛耳朵竟然这么体贴？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]唉……就是如此。从这里开始，再走上一段时间，就能到达农庄了。和我一起来吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]可恶。从你们营地回来，我屁股都没坐热呢，又得来这加班……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你们看，有人朝我们跑过来了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "风车平野农夫",
+        "text": "[show]是契约者们吗！你们终于来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]情况怎么样？这里也有魔物入侵吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "风车平野农夫",
+        "text": "[cm][show]没错……！[wait=300]这两天许多魔物都闯进农庄，戕害牲畜、践踏农田……[r][l]农夫们已经安全疏散了，请不要有任何顾虑，消灭那些入侵的魔物吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]和信报说的一样……[color=f1401c]异变[colorEnd]造成的问题越来越严重了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我好像经常听你们说起异变这个词……",
+            "tag": "tag_19"
+          },
+          {
+            "text": "所谓异变到底是……？",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[cm][show]简单地说，就是我们现在看到的情景——[r]角布林拆掉你们的家，蜘蛛从地窖里涌出来，还有这片风车平野。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]它可能是[color=f1401c]任何形式[colorEnd]的天灾人祸，但一定伴随着[color=f1401c]狂暴化魔物[colorEnd]的出现。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]也就是说，我的营地也是因为异变才……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]嗯，没错。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唔！我们快上吧，{myName}！把那些魔物和异变什么的全都消灭掉，顺便再多赚点钱！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]呵……我也曾经有过那样热心工作的时期。话就说到这。走吧，伙伴！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "",
+  "script": "c1_1_a_1"
+}

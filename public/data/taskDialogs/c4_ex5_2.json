@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]哦？不仅抵抗住了我的烟雾，还把我的手下都解决掉了，有点本事……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]喂！你们把芭杜尔怎么样了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]你们有异见可以提报给议会，为什么要搞这种阴谋诡计？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]呵！那议会早就是驿站的奴隶了，有什么值得拥戴的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]至于芭杜尔……你们可以猜猜看，她到底怎么样了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]站住！可恶……快追上去！一定要找到芭杜尔！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "1图打完后",
+  "script": "c4_ex5_2"
+}

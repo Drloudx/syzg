@@ -1,0 +1,38 @@
+{
+  "script": "c2_8_a_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]菲莉娜……我们路过天梯之后走了好久了，你要介绍的人到底在哪里啊？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]别急嘛。那一位住的地方确实有点偏僻，不过走到这里，基本也就只有一刻钟的路程了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "菲莉娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是不是真的啊？算了，就再相信你一回！真想看看，让我们走了这么远的家伙，究竟是何方神圣！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_8_a_1"
+}

@@ -1,0 +1,46 @@
+{
+  "script": "s_2_2_10",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这里到处都是废弃的工具和材料……！莫非这个洞穴之前也有人进来过？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]小心了！这里有很多魔物！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "迈妮娅",
+        "text": "[show]哇！是……是岩蟾蜍！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]看来麻烦还不少啊，准备战斗！[l][cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      }
+    }
+  ],
+  "des": "s_2_2_10"
+}

@@ -1,0 +1,46 @@
+{
+  "script": "c3_ex6_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]一下来就感觉空气冷了很多……这地方不对劲。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]这里……漂浮着很多紊乱的雷属性魔力，影响了很多魔物。它们都狂暴化了……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]应该都是那家伙用来守门的。看来它是打算用这些魔物消耗我们的体力……不过它恐怕要失望了，这点小手段可没用。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]来吧！干掉他们！把乌帕救出来！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_ex6-进入1图时"
+}

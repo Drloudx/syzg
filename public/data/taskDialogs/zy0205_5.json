@@ -1,0 +1,302 @@
+{
+  "script": "zy0205_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]唔……脑袋里……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]好、好痛——呜哇……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]又来了……这就是……米托拉的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]我的……记忆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]喂喂！你们两个没事吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]那个玩意刚暗下来，你们就在那捂着额头发癫，该不会是被那东西伤到了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]不……没事……这是“正常现象”……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]哈啊……哈啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]这样算是……正常吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]这就不知道了。如果我没猜错，他们应该是和那个装置……[r][l]他们好像是叫做“神匠器”的玩意，发生了共鸣。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]真是有趣的现象……如果不是涉及到朋友的秘密，我还真想回萨利米亚多写几篇论文……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]还真看不出来，在知识面前，居然还愿意替我们保密……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]那是因为灵魂学并不是我的专精领域。[r][l]相比起来，在不明装置停止之后，“灾害”的恢复情况才更值得我去探究。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]地脉的恢复……听你这么说，这次应该是真的全部结束了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]我这里检测不到任何能让水脉晶化的灾害魔力读数了。[r][l]至少水晶不会再增生，魔物狂化的事件也许也会减少了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]至于会不会有新的问题，那就只能有待日后观察了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]那不就是彻底解决了嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]只要这些异变的现象结束，剩下的事情都能靠我们的双手慢慢处理。[r][l]不管是五个月还是六个月，村子的生活总有一天能恢复到异变之前的状况……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]那就太好了，我想驿站这边应该也很愿意给予你们更多的支持。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]之前不来帮忙，等到事情解决了再支持，这也太鸡贼了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]别这么说，皮塔。锦上添花总是比雪中送炭容易，[r][wait=200]之前驿站肯派人帮忙我们抵御魔物，已经算是非常不错的盟友了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]尤其是现在村子百废待兴，对于任何真心的支持，我们都要欢迎，知道了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]唔……大姐头说的是！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]总之，先从洞里出去吧，这儿真的好冷。我们是就地解散，还是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]对了，我之前是不是听说过哪里有免费的晚餐吃？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]当然会有啦！和我们一起回村吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]好耶——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]嗯。我们就一起回巴诺姆村，从那里回驿站也比较方便。[r][l]我们得快点回去向菲尔德蕾和莉拉首座通知这里的结果……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]希～尔～？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]哈哈。当然，先得去参加庆功宴。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]唔……听起来又很麻烦。我还是在这里和你们分道扬镳吧，还有很多研究工作要做呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]巴诺姆随时欢迎你，安娜。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]免啦免啦。有空给我的研究所送点吃的比什么都好～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]（等会出去的时候，请你们两位稍微留一会，我有事情要和你们说。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]（唉？安娜小姐？）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]（什么事情？为什么要偷偷摸摸地说啊？）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]（我突然想到一些事，关乎你们两位的秘密。我想你们听了之后一定会感兴趣的。）[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

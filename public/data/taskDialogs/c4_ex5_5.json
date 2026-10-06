@@ -1,0 +1,352 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]哇啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好！打倒暗心祭司了！接下来……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]呵呵……呵……没想到……没想到啊，这里竟成了我的“灾变之宴”……你们就和当年的魔物一样……一次又一次……将我毁灭……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]你们赢了，你们又赢了……这个世界……总是如此不公……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]什么？明明是你在胡说八道……三枝议会从来没有出卖森林，驿站也从来没有对不起我们——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]放下武器吧，嘉莉缇，那家伙已经没有反抗能力了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]暗心祭司，我知道你有很多问题。驿站和三枝议会的代表就在这里，你想问就问吧。到了下面，别说我们不给你机会。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]呵呵……问题？事到如今，我又有什么好问的呢？真相不都已经摆在眼前了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]在“灾变之宴”发生的前几年，哈萨琳以联合之名带走了我们的战士和资源。在“灾变之宴”发生之时，联军掌握着整个深渊最强大的力量，却对森林不闻不问。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]你看看周围的人吧，他们也是在那场灾难中失去了最亲的亲人、最好的朋友。而当初如果驿站出手，这一切就不会发生，毕竟驿站当初是给过承诺的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "倒下的反叛者",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]可结果是什么？我们联合了，我们付出了，结果却是妻离子散、家破人亡！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]我们相信了一次你们，结果却得知巨木不存。难道现在要眼睁睁看着我们再次签下相同的契约，再次犯下相同的错误，再次等待悲剧的重演吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]对于你们亲朋好友的遭遇，我深表遗憾。我也不打算说驿站在这件事上完全没有责任，但必须强调一点，在大兽潮发生时，驿站绝对没有对森林袖手旁观。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]你们认为袭击宴会的兽潮规模很恐怖吧，但这已经是哈萨琳大人极力削弱后的结果了。当时深渊到处都是遮天蔽日的魔物潮，驿站联军根本无力应对。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]在“灾变之宴”发生的前几天，我们就已经派信使加急向森林传递情报了，不过很遗憾还是慢了一步。这场悲剧驿站有责任，但绝对没有你说的那么严重。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]是的，那场悲剧……并非驿站所导致的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]这是借口！这些都是借口！我的父母……我的妹妹……都死在了那场宴会上！你告诉我这不是驿站的错！那是谁的错！是谁的错——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]等等，她的神智似乎有些不太清晰……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没事，有我在，她伤不了人——喂，你怎么了？要去哪里……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]哈哈……哈哈……爸爸、妈妈……啊，我的妹妹……你们原来在这里啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]哈哈……你们在就好。我好像做了一个很长的梦，梦里的你们被魔物杀死了。那真是一个……糟糕透顶的梦啊，但还好……只是一个梦……真好……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]我们继续去……参加宴会吧，我最近新学了一首歌……我在宴会上给你们表演。我们永远……永远在一起，不要分开了……可以吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]嗯……我爱你们……我永远……爱……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（暗心祭司往前走了几步，随后便倒在地上，没有了声响。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]……她走去的那个方向……什么都没有。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "她已经虚弱得无法控制心影草的魔力了。"
+          },
+          {
+            "tag": "tag_43",
+            "text": "她彻底陷入幻觉之中了……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]她已经……与家人团聚了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]在美梦中死去。对她来说，或许也是一个更好的结局吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]那么……你们的暗心祭司已经死了，你们还要继续反抗吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "倒下的反叛者",
+        "text": "[show]……不……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]很好，都放下武器吧。等一下我会让菲奥努拉把你们带到大牢里……日后再审。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_44",
+            "text": "（听见嘉莉缇的话，一众反叛者纷纷放下武器。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]嗯……看来事情……算是解决了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]树冠守望者。你还好吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]是驿站的契约官啊……还有两位英雄……多谢你们。我……受了些伤，需要点时间复原。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]芭杜尔……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]先回三枝议会善后吧，我想事情很快就会结束了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "4图打完",
+  "script": "c4_ex5_5"
+}

@@ -1,0 +1,45 @@
+{
+  "script": "c0_1_a_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈，看来这场骚动把周围的野猪也引来了。[r][l]毕竟这也算是你们的觅食场嘛～被我们糟蹋，肯定很不高兴吧～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过很可惜，弱肉强食就是深渊的真理！这里那里的蘑菇，还有这里那里的猪猪——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（她好像在泄角布林的愤一样……）",
+            "tag": "tag_11"
+          },
+          {
+            "text": "（我还是专心解决魔物吧……）",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]乖乖成为我的盘中餐吧——！呜喵呜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "空"
+}

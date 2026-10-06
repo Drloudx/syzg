@@ -1,0 +1,209 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]说起来，奥格小姐为什么会在这里开温泉村？你不是探险家吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]探险家怎么啦，探险家就不能做点小生意吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]而且你以为谁喜欢探险吗？要不是因为莉拉那狗东西给得多，我才不会给她卖命呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]所以说，探险只是工作，温泉才是生活啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我完全明白你对温泉的热爱了……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但你有没有想过，要是温泉开不下去了怎么办？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]比如说……万一异变突然结束，这片平原又重新变成熔岩之地，你有想过你的温泉该怎么办吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]当然有想过啊！你以为我是谁？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]你……居然考虑过异变结束的事情吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]不然呢？异变既然会发生，那自然就会结束，这不是理所当然的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]就算我以前意识不到这件事，在秋日荒野的异变终结之后，我也差不多该早做准备了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]不愧是大探险家，果然厉害！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]不过，你所谓的准备到底是什么呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]很简单啊，就是在最初的最初，就做好温泉的选址咯！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]你们听我说，这处伊菲卡温泉谷虽然是因为异变造成的大雪才显现出来的，但其实在异变之前，它就已经是这副样子了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]就算异变结束，业火平原重现，我的温泉村也不会被熔岩吞没，顶多就是温泉的水温大幅上升。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]只是这种程度的变化，解决的办法要多少有多少。不管是重新引流源泉降低温度，还是干脆开设温泉桑拿，都再简单不过了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]怎么样？听到我周密的计划，是不是开始有些崇拜我了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，嗯……确实还蛮像样的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可能你确实还挺聪明的，但可惜，之前几个月，我对聪明人已经见得够多了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]真正的聪明人？你见过谁呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那可就多了~！比如说……{myName}，不就是嘛~！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "谢谢你的夸奖。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]噫，真是肉麻。好啦，我们抓紧时间继续前进吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_7_a_1",
+  "des": "进入后【c5_7_a_1】。"
+}

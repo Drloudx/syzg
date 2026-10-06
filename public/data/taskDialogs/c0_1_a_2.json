@@ -1,0 +1,37 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喏，就是这里！你看这些蘑菇，还有那边的角猪，我平时经常过来狩猎这些玩意！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "蘑菇和野猪，我明白了。"
+          },
+          {
+            "tag": "tag_6",
+            "text": "就拿它们做今天的午餐吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]好了，我们上——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c0_1_a_2",
+  "des": "空"
+}

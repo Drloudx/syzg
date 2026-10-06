@@ -1,0 +1,49 @@
+{
+  "script": "c1_d3_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]前方的魔物在向深处撤退。我们暂时安全了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呼……呼……战得我都有点累了。[r][l]虽然不是很强，但一路上的魔物也太多了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]稍微休息一下吧。之后的战斗应该更困难。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "稍事休息，继续往深层前进吧……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]好，就这么办吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

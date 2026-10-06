@@ -1,0 +1,30 @@
+{
+  "script": "maimai_dungeon_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]救——救命呀——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，又是那个神秘商人的声音。我记得是叫麦麦来着？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]怎么每次都是同样的光景啊……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "麦麦：C1地牢再次相遇"
+}

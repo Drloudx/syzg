@@ -1,0 +1,544 @@
+{
+  "script": "c1_15_a_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]喏，我们到了！只要走到悬崖边，你就能看到你想要的“真相”了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]这里没有什么魔物，你就尽情地看个够吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "（向山下望去。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]看到了吗。那里就是深渊盆地[color=ffb64d]唯一[colorEnd]的出入口，魔界山口。而它的前面……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那……那都是……什么东西啊……！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]原来从高地俯瞰山口，是这样的景色啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]简直像是黑色的潮水一样。不愧是大兽潮的余孽。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]呜……呜喵！好多小黑点密密麻麻的，还都在蠕动的样子！那到底是什么啊，好恶心喵！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]那些都是狂暴化的魔物唷！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]魔物？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂喂喂，你给我说清楚了！什么叫“那[color=ffb64d]都是[colorEnd]狂暴化的魔物”啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]米托拉姐姐好笨呀！就是说，那些比蚊子还小的小黑点，每一个都是一只狂暴化的魔物！[r][color=f1401c]每一个[colorEnd]都是哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]怎……怎么会……有这种事……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_98",
+            "text": "原来深渊无法逃离，是这个意思……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]据菲尔估算，那边可能有超过[color=f1401c]十万只[colorEnd]魔物聚集着。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]十……万……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这就是五年前的[color=f1401c]大兽潮[colorEnd]，为深渊留下的恶疾。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]五年前，无数的狂暴魔物从深渊各处疯狂地涌向魔界山口，摧毁了沿途的一切。前任领袖哈萨琳大人带领深渊各地的住民组成联军，在你们眼前的这座沙原奋勇阻挡。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在付出了你们无法想象的巨大牺牲后……联军成功地抵挡住了魔物的铁蹄，取得了最终的胜利。这是你们知道的大兽潮结局。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]但事实上……大兽潮是因不明原因，自行退去的。那些来到沙原的狂暴魔物，并没有依原路返回，而是着了魔一般聚集在魔界山口。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]如你们所见……那里现在已经彻底被魔物海淹没，任何人试图通过，都是十死无生。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就只能任由它们留在那里吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]没有办法处理。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在大兽潮的最后，损失惨重，溃不成军，驿站前代领袖，盟主哈萨琳也战死沙场。哪怕最后神迹降临，兽潮退却，联军最终也躲不过分崩离析的结局。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]尽管菲尔一直努力重建驿站对深渊各地的影响力，但她的威望和哈萨琳大人比还是差了不少。更何况各地都在疲于重建，住民们的生活都成问题，组织新的联军远征魔界山口，更是无从说起。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]更何况，如今这个节骨眼上，所有人想的，都只有在不知何时到来的下一次大兽潮之中保全自己……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这就是……那个老板想让我们亲眼目睹的真相……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这也……太不可理喻了吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]异变、荒野客、弱者与强者、哈萨琳之手。这就是大兽潮带给我们深渊住民的遗产，萦绕的梦魇，无法拔除的肿瘤。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可是这样也于事无补啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]魔界山口的这些魔物，已经不可能正面力敌了，我们能做的要么就是置之不理……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]要么就是[color=ffb64d]另辟蹊径[colorEnd]！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唉？难道……还有什么办法？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show][color=ffb64d]力量[colorEnd]解决不了问题的时候，当然是要靠脑子咯！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]为了解决兽潮的余孽拯救深渊，我们修行所一直在试图破解遗迹的秘密，为此更是组织了专门的调查队，驻扎在观星高地，对这里的遗迹进行长期调查。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]经过我的研究，我认为大兽潮和现在被称为“[color=f1401c]异变[colorEnd]”的现象有很深的联系。而这个异变又和深渊各地的[color=ffb64d]先时遗迹[colorEnd]有关系。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "你说……先时遗迹？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]没错！先时遗迹！那些[color=ffb64d]先时工匠[colorEnd]一手打造的宫殿，遗失在黄昏灾变中的遗迹！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]不过……本来最近我们调查进展不错，已经深入到了遗迹的下层部，结果异变突然加剧，所有人都被狂暴的魔物赶了出来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]更糟糕的是，我们之中对遗迹研究最深，也是调查团二号人物的学者[color=ffb64d]瓦菲诺[colorEnd]，也在逃亡之中迷失在了遗迹内部……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]现在我们虽然已经重整旗鼓，但没有人懂得怎么操弄遗迹机关，我们就连门都打不开，事情就这样僵住了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？你们这也太菜了吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]唯一的学者跑丢了，我有什么办法嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]咳咳，怎么样，听到这里，是不是稍微有点感兴趣了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "我不知道……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]呵呵，就算你没法立刻回答，我也能感觉得到，你对我说的遗迹非常在意。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]年轻人，我知道你大概在深渊外面有很重要的事情要做，所以对于被困在这里这件事感到非常沮丧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]但是年轻人总得向前看，即使是在深渊里，你也应该找些能做的事情，这样才不算浪费生命、浪费才能啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]莉拉首座说得没错。{myName}这么有才华的工匠，可不能自暴自弃啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]虽然我只是个不起眼的契约者，但我有强烈的感觉。凭{myName}的能力，一定能有所作为的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]对啊，她刚才可是说了[color=ffb64d]各处的遗迹[colorEnd]！你不是说在深渊外面好不容易才找到一个什么遗迹的吗，在这里可是要用“[color=ffb64d]各处[colorEnd]”来形容的那么多啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]要是这里真有那么多先时遗迹，说不定也会有你爸爸的线索的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "大家……"
+          },
+          {
+            "tag": "tag_43",
+            "text": "米托拉……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]你的同伴们也都这么说了。如何？有兴趣加入我们的调查队，一起拯救一下我们可怜的瓦菲诺小姐吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_44",
+            "text": "谢谢你们的关心。"
+          },
+          {
+            "tag": "tag_44",
+            "text": "我明白了，我就先加入吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]很好，那我也加入！这家伙是我罩着的，我可不能让{myName}一个人去冒险！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]先时遗迹……一听就是非常危险的地方。但越是危险，你们肯定也越需要帮手才对吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]我也一起去。反正回驿站也是加班，不如看看我们到底能做些什么。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]哇，大家一下就鼓起斗志了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]首座，听见了吧！这份契约我们接了！契约金可不能少算哦，我还有一个营地要养呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[cm][show]哈，事情顿时就有了进展！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莉拉",
+        "text": "[show]好了，光站这儿也不好谈。我们回去之前的星晷那边吧，那儿就是遗迹的入口了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

@@ -1,0 +1,57 @@
+{
+  "script": "c1_d9_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？和之前我们修匠器前遇到的一模一样的，竟然还有一台！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那也就是说……它们守护的东西也相似。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]难道说这附近还存在着一座匠器吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]不，这里的魔力给缇莎的感觉，[wait=300]和那座装置附近的魔力完全不一样。[wait=500][r]不如说，[wait=300]缇莎觉得这里的魔力……好“可怜”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈……？没时间说这些奇怪的话了，我们赶紧打倒那个危险的家伙！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "遗迹深处三层：安瑟恩单元刷出"
+}

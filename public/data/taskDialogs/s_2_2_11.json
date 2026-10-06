@@ -1,0 +1,110 @@
+{
+  "script": "s_2_2_11",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喵呜！阿尔克丝！你刚刚差点挥到我了！小心啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]我、我刚刚也被阿尔克丝丢过来的岩蟾蜍给砸到了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]抱歉。我下次注意。我……去别处看看。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]总感觉那家伙一点反省的样子都没有。她到底是怎么想的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]我感觉阿尔克丝小姐……不是讨厌我们，她更像是……想要避开我们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不管怎么说都是在合作吧。总是单打独斗，又不看同伴的位置，这也太难一起行动了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]嗯……人嘛，各种各样都有吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]忍耐一下吧。她的身法的确是有实力的，每个人都有自己的战斗风格嘛。只要能完成任务就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉。我知道了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（嘀——！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]仪表上的指针已经超出可测量的读数了。前面就是目的地。做好准备，我们要进去了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "s_2_2_11"
+}

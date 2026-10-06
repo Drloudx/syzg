@@ -1,0 +1,46 @@
+{
+  "script": "c5_9_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈哈……没想到还没过去半天，我们又回到这里了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]要是被奥格看见，会不会觉得奇怪，我们怎么这么快就去而复返了呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]没办法，要去火龙山径，这就是最近的一条路了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]要是觉得尴尬的话，不如趁着奥格老板发现之前，赶紧溜之大吉吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c5_9_a_1】。"
+}

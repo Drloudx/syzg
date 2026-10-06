@@ -1,0 +1,14 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这样就告一段落了！前面的路还很长呢，稍微休整一下，继续前进吧——！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c2_d1_1_1",
+  "des": "新增 一层结束 进入输送部"
+}

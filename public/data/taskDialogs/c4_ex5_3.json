@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "护林人A",
+        "text": "[show]芭杜尔大人！出什么事了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "暗心祭司",
+        "text": "[show]噢，是你们。那群异族人想要谋害三枝议会成员，快干掉他们！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "护林人A",
+        "text": "[show]什么！如此大胆——！列队！阻止他们！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "护林人B",
+        "text": "[show]守护树冠守望者！保卫金弦之厅！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]喂，放我们过去，是我、嘉莉缇呀！可恶，那些护林人都被心影草蛊惑了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔莎",
+        "text": "[show]眼下只能先突围了。对那些被蛊惑的人别下死手，打晕就行！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "2图进入",
+  "script": "c4_ex5_3"
+}

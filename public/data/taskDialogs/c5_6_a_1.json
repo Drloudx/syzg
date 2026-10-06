@@ -1,0 +1,94 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]诶？等等！我们不是要去温泉谷吗？怎么一路跑到冰湖来了呀？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]亏你到现在才察觉到啊，我可是刚一出门就发现不对劲了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]我们之前询问过，从大书院前往温泉谷的栈道似乎是被芙洛波们破坏了……在栈道修复之前，我们只能从冰湖绕路。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]哇！这就是专业的契约者吗？居然不声不响就完成了这么多工作！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]其实之前在大书院的温泉村办事处就有告示……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]呜……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]没关系，这是伽拉忒亚的特色，不必觉得不好意思。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]比起智力超群、心思缜密，我还是更喜欢你这种心地善良、乐于助人的朋友啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，没错，然后被你占便宜是吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]这是说的哪里话，我这是人之常情，大家都能理解的，对吧？好了别废话啦，咱们赶紧赶路！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_6_a_1",
+  "des": "进入后【c5_6_a_1】。"
+}

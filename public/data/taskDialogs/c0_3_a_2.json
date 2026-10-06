@@ -1,0 +1,133 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好了，你得救啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]谢、谢谢你们……咦？红、红发……还有猫耳……难、难道你就是那个谁——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯？你知道我？我怎么了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]周、周围的荒野客都说过你的事！[r][l]每次都会出现在不幸罹难之人身旁的红发野猫……简直就是不祥的象征呀……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你这说的是什么话！那都是因为——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "可是她刚刚救了你。"
+          },
+          {
+            "tag": "tag_8",
+            "text": "这可不是对救命恩人的态度。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就——就是！我都还没让你给点报酬呢，就先骂上了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]唏……！对，对不起……我不是那个意思……我能做些什么报答两位？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你一个在这附近狩猎的猎人，应该知道最近的角布林营地在哪里吧？[r][l]带我们过去，就算是你报答过了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]你说……你们在找通往角布林营地的路？这个我确实知道！[r][l]可、可我这细胳膊细腿的，可是完全对付不了那些家伙啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]放心吧，不会要你战斗的！哼，就你这样子，你想要战斗我还嫌你碍手碍脚呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客猎人",
+        "text": "[show]那、那好……！跟我来吧，两位！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c0_3_a_2",
+  "des": "救猎人"
+}

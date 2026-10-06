@@ -1,0 +1,253 @@
+{
+  "script": "c3_2_a_4",
+  "des": "c3_2_a_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]谢谢你们！你们是水占师的人吧！多亏你们来得及时，要是再来晚一点，我们可就彻底完蛋了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]你们似乎不是渔民耶？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]是、是的！我们是大市集的治安队，负责往尾指村运送净水仪式相关的物资！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]我们这一队是运输队的先导队伍，负责打通前方道路。本来一路上都很顺畅，没想到刚走到渔场这一带，突然冒出来这么多魔物……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]然后你们就被困在这里了？本队现在在哪儿？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]应该还在三指木桥那儿吧……为了保证物资送到，没有接到我们的消息，他们绝对不会冒险行动的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]真是英明的决策。图洛德会长做事果然周到。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]仪式重要，不能让运输队等得太久了。我先赶紧治疗伤员，然后立刻过去木桥那边……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]不，圣女大人，迎接运输队的工作就交给我吧。您治疗完伤员之后，就先和他们一起返回尾指村。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]米托拉之前说得对……您真的不需要事必躬亲的。在净水仪式之前，您最需要的就是保重好自己。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]刚刚是因为担忧离群的小女孩对吧？现在已经没什么需要担心的了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]可是，小贝尔卡～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]圣女大人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]唔……没想到贝尔卡居然也有这么强硬的时候……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那好吧，作为我的辅佐官，就由你代替我出面也好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这边的伤员就交给我！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "治安队员",
+        "text": "[show]是！请来这边！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]贝尔卡，突然怎么啦？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]呃……也不是突然吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]只是感觉如果有两位在的话，圣女大人应该多少也会听一下我的话……这样子。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "圣女大人应该会理解的。"
+          },
+          {
+            "tag": "tag_29",
+            "text": "这份工作也不轻松呢。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show][cm]她要真的理解就不会这么为难我了啦……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show][cm]真是的……我是真的担心她会倒下啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]总之不这么说是不行的。本来仪式的工作就已经很繁重了，偏偏她是闲不下来的那种人。我得在每个可能的时机劝她好好休息！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]两位……能拜托你们继续和我一起，往三指木桥走一趟吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯！反正我们也准备到处走走。{myName}也说了，去哪儿都是一样。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]非常感谢。有了你们同行，想来路上是不会遇上什么危险了。三指木桥距离这里还有一段距离，我们还是快点动身吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "黑屏"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

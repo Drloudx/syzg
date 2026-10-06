@@ -1,0 +1,134 @@
+{
+  "script": "c3_12_a_1",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]商路到这里就是尽头了。接下来该往哪里走呢……塞弗德里克先生？[l][cm]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哎呀呀。这之后的事情，对于我来说也是完全未知的。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]各位不妨开动脑筋想想办法，以我们的能力，任何问题应该都不是问题。[l][cm]",
+        "charaName": "塞弗德里克",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那都是之后的事啦！你们都没发现吗？我们被人包围了！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]什么？包围？[l][cm][hide]",
+        "charaName": "贝尔卡",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哼，不愧是大老板要我们特意关照的敌人，居然能够识破我们完美的潜行！[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]啊？完美的潜行？你认真的吗？[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嚯……看来你也不简单。好不容易识破了我们完美的潜行，居然没有洋洋得意，反而趁机虚张声势……这种敌人确实不容小觑！[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]所以说，别再把那个什么“完美的潜行”挂在嘴边了！你们的潜行就连随便一个荒野客都比不上，就算说再多“完美”也不可能真的变得完美啦！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]可恶的家伙……居然还妄图用言语贬低来挫伤我们的战意！我们“旷野之牙”可不会坐视不管！[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]等等！你们是“旷野之牙”佣兵团？为什么你们会在这里？[l][cm]",
+        "charaName": "埃迪蒂",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]嗯？你不是治安队的队长吗？你也背叛了大老板？[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]真可惜，我本来还很敬仰你的，但大老板的命令是“任何人”都不经允许来到这里！我们收了这么多钱，当然是要帮忙办事的！抱歉了！[l][cm]",
+        "charaName": "行会佣兵头目",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]佣兵团的各位的勇气着实可嘉。可惜，挑战不可能的强敌，实非明智之举。[l][cm]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]我会尽可能留手的，请各位佣兵也小心配合，不要在战斗中受伤吧～！[l][cm][hide]",
+        "charaName": "阿莱克西娅",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_12_a_1"
+}

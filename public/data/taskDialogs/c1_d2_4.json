@@ -1,0 +1,124 @@
+{
+  "script": "c1_d2_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]嗯？这些东西是……？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这是什么？魔像？这些也是魔物吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_3",
+            "text": "是自动构装体。"
+          },
+          {
+            "tag": "tag_3",
+            "text": "它们是遗迹的守卫。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]你说别的遗迹中也会有这样的东西……是黄昏前的工匠遗产？[r]启动后能漂浮在空中？真是神奇！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "但毕竟过了好几百年……"
+          },
+          {
+            "tag": "tag_4",
+            "text": "这些构装体应该没法启动了才对……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]有可能这里的这些构什么体比较有活力吧～我能摸摸它们看吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]小心，米托拉姐姐！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咦——！竟然攻过来了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]居然动起来了？是把我们当成敌人了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]搞什么啊！我还没摸到呢！这些家伙也太不可爱了吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]大家小心，这些构装体的内部突然聚集了不少魔力……！呜呜、感觉又开始乱起来了——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]看来这段路也不会那么无趣了。我们走，打烂这些拦路的飞天石头！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

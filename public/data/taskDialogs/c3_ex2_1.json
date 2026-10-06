@@ -1,0 +1,358 @@
+{
+  "script": "c3_ex2_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]阿莱姐……？不是说要走吗？怎么还在这站着呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯……确实是要出去，不过在那之前……我还想稍微再看看这个村子。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看看村子……这么多年你还没看够吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯，因为一直都没什么机会。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]我上一次能够好好看看这座尾指村，应该还是在……[color=f1401c]大兽潮[colorEnd]之前吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]当时我作为水占师的代表参加了深渊联军。兽潮散去之后不久，魔爪湖的异变就爆发了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那真是一段噩梦般的日子。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]兽潮毁灭了村镇，还没等屋子重建起来，新的异变就又给湖区带来了无数的病痛和毁灭。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "听上去真可怕。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]可怕……？嗯，或许吧。但在那个情境下，我实在是没有感到可怕的余裕。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]为了践行水神大人的仁德，为湖区的人民带来一条生路，我没有别的办法，只能没日没夜的工作、工作……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]早上去清理发狂的魔物，下午为受伤和中毒的民众治疗，到了晚上则要抓紧研究，怎么用水占术净化有毒的水。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]还好，这段日子并没有持续太长的时间。大概一个月之后，大长老和旧日修行所的莉拉首座一起，设计出净水仪式，算是有了个解决方法。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]然后……你就能轻松一些了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]并没有。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]异变没有结束，苦难没有结束，我的工作……自然也不会结束。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]在不断地进行着仪式之后，异变的影响被暂时压制，水占师们渐渐也恢复了力量。不少水占师担起更多的责任，我也不用再去野外清剿魔物，压力确实减轻了不少。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]但在净水仪式的增幅法……还有图洛德的黑涧浴池被开发出来之前，为了给村里的大家供上安全的水源，我只能日夜不停地施展净水魔法，仍旧是没有多少休息时间。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "阿莱姐……",
+            "tag": "tag_28"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊！这么一说……对了，我记得图洛德说过，你好像一直都在24小时不停地施法……！那不是完全没有休息吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这个……我是稍微用了一点“小小的”修辞手法，你们倒也不用那么敏感……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来你真的是一点都不休息啊……！有了仪式和图洛德那个鬼地方之后，无魔净水不是够用了吗？你干嘛还要一直忙活啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这个嘛……经过净化的水只能说“几乎纯净”。但总有一些人，比如小孩子和伤患，对于水中残留魔力更不耐受。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]不过别担心，我身体里流淌着返祖的龙血，还有塞瓦大人的加护，睡眠对于我来说并无必要。我的身体机能随时都在巅峰状态，比谁都健康！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那也不是这么拼的理由啊……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但心理上还是有需要的吧。",
+            "tag": "tag_35"
+          },
+          {
+            "text": "之前你不是走路都要打瞌睡了吗？",
+            "tag": "tag_35"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]呃……嗯……是这样没错，嘿嘿。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]总、总之！在异变之后，我一直都几乎没什么时间……好好看看这村子。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这话题转变真是生硬……不过算了，就让你蒙混过去吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯。接下来的日子……肯定会有更重要的工作在等待我吧。在回去之前……我还是想要好好看看这座尾指村。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]毕竟这是我这么多年以来，一直拼命努力保护的地方。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那就好好看看吧。",
+            "tag": "tag_41"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]哇……你们两个说话怎么这么煽情！搞得像是再也看不到了一样！不用这么夸张吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]嗯……是有些夸张了。或许我……应该更加平常心一些吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]现在看看……村子能从那场巨大的灾难之中，恢复成现在的样子，我真的很高兴。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]尤其是想到在这之中，我自己出了很大一份力，我就越发感觉到自豪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]今后我也会像从前一样，一直……一直保护这片土地……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]阿莱克西娅……？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]抱歉让你们陪我站这么久……时间不早了，我们出发吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_ex2_1"
+}

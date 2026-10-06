@@ -1,0 +1,278 @@
+{
+  "script": "c4_15_a_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]全军止步！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]这里就是最后的阵地了。斥候，汇报侦查情况！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "护林人斥候",
+        "text": "[show]是！树冠守望者大人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "护林人斥候",
+        "text": "[show]前方直到巨木根部为止的大路上，有大量叛徒伴着魔花怪列阵堵截，初步判断，不具有绕过防御的可能。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]是吗，那就只能强攻了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]各位，到这里为止，我们也进行了不少小规模战斗了，对于敌人，你们发现了什么弱点，或者可行的针对之法吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]呵呵呵，这我可就有话说了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]之前听艾薇杜尔说，这些魔花发狂，是因为被怨灵附身。而我们的蕈酵酿，一直以来都在庆典之中被当做镇抚灵魂的灵酿使用。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]考虑到这一点，我就让孩子们把库存的窖藏都带上了，事实证明，这个灵光一闪的想法非常不错。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]使用蕈酵酿泼洒，可以非常显著地降低那些怨灵的攻击欲望，给我们的战士创造时机。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]布拉格乌尔大师……我们的蕈人伙伴还真是值得信赖。这么一来，应该足够应付接下来的决战了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]哈！足够，当然足够！我们可是把所有库存还有还在发酵的原浆都带来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "布拉格乌尔",
+        "text": "[show]就算拼到今后十年没酿可喝，我们也一定要赢得这一战！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]没错！我们还发现比起单纯泼洒，制作成佳酿团子投掷效率会更高。现在布宴者的厨师们都已经在战场上加班加点地忙起来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]还有我的族人们的说！大根子们也要出一份力的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]真没想到，厨子也能在战场上大放光彩啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "嘉莉缇",
+        "text": "[show]哈哈，平时的积累能派得上用场，大家都很高兴呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]巨木侍女这边，我已经进行了排查，剩下的都是最为可靠的同胞，不存在叛变的可能。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]我们也要和护林人一同冲锋！哪怕拼上性命，我们也要用行动洗刷我们的耻辱！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]关于这件事……还请忍耐一下，依萝娜！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]艾薇杜尔？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]那个……可能我没有这么说的资格……但巨木侍女并非战士，跟随护林人盲目冲上前线，恐怕只会虚掷生命。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]各位巨木侍女，可以随我一起行动在侧翼，联合施法压制那些叛乱者的法术吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]……虽然我对你当初弃职而走的事情还有很多怨言，但你这段时间为了森林作出的努力，确实不负候任先知之名……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]依萝娜……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]但……也许你说得有道理。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "依萝娜",
+        "text": "[show]不管怎么说，灵魂先知都是巨木侍女的首领。既然候任先知有所吩咐，我们自当遵从。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "巨木侍女们",
+        "text": "[show]谨遵先知所示！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]依萝娜……大家！谢谢你们……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]嗯……看来所有人都准备好了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]那接下来，就请诸位奋力作战了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]此战有胜无败，有敌无我！全军——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]随我冲锋！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_15_a_1"
+}

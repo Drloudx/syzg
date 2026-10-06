@@ -1,0 +1,120 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（深渊，北部，求生者草原某处……）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]呼……好了，这个坑就是最后一个啦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]居然一下子从山上掉下来这么多人……就这么无缘无故躺在这儿也太惨了，就让我帮你们入土为安吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]你们呢，就把身上这些值钱的装备都交给我废物利用～这也很合理吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]这附近到底出了什么事啊。[r]在营地旁边听见了异样的响声，出来一看竟然是这幅景象……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]真是的……这么古怪，害我心里也有些发毛了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]快点把这最后一个倒霉蛋的装备给扒了，让{callName1}尘归尘、土归土吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "唔……！",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[cm][show]嗯？我是不是听到了什么声音？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（将嘴里的土吐出来。）",
+            "tag": "tag_12"
+          },
+          {
+            "text": "（奋力挣扎。）",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[cm][show]呜……呜喵！有鬼——不对、这、这个人……这个人还活着！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]这这这……这可不能把他就这么埋了！这时候该怎么办来着……对！对了！急救！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "空",
+  "script": "c00_1_1"
+}

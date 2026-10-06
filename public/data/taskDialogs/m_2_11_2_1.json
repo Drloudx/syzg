@@ -1,0 +1,520 @@
+{
+  "script": "m_2_11_2_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "工人A",
+        "text": "[show]啊，米拉贝尔？你……你这身打扮是？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "工人B",
+        "text": "[show]还、还有这些外来者，怎么也在这里！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]各位叔伯、各位兄弟、各位山民同胞们——！我有重要的事情要向你们坦白！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]我，米拉贝尔，罗伯特之女，就是巴诺姆村自卫团的团长，团员口中的大姐头！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "村民们",
+        "text": "[show]什、什么……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]我有两个好消息告诉大家！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]第一个好消息：一直威胁着村子的强大魔物——恐怖蟾兽，已经被我们自卫团，和来自驿站的同伴们一起讨伐。这就是[color=ffb64d]它的头颅[colorEnd]！看到了吗——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "村民们",
+        "text": "[show]（一阵骚动——）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]第二个好消息：随着恐怖蟾兽的倒下，困扰着索利德山的异变，也终于在我们的奋战下[color=ffb64d]彻底结束[colorEnd]了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]我们解决了异变的源头！这些漫山遍野的红晶，还有狂暴化的魔物，都已经成为了[color=ffb64d]无源之水[colorEnd]！我们很容易就能把它们全部扫清！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]这也意味着，索利德采石场，很快就能重新开工了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]想必大家很快就能再次过上异变之前的日子，我们的生活又有了新的奔头——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "村民们",
+        "text": "[show]哦哦哦哦哦——！自卫团万岁！米拉贝尔万岁——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]但这样就足够了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]我的叔伯、我的兄弟、我的同胞们！你们这样就满意了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]我觉得，还远远不够！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]哪怕赶走了凶恶的魔物，铲除了诡异的红晶，收复了重要的采石场……那些早已纠缠在巴诺姆身上的“异变”，也不会就此消失！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]工友、同袍之间的观念分歧导致的分裂……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]如哈萨琳之手一般的恶人对我们的觊觎……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]若是我们不去正视，不去改变，这些异变就永远不会消灭，永远如梦魇一般，萦绕在我们山民的心头！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]所以我问你们，只是回到过去就可以了吗——？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "村民们",
+        "text": "[show]不可以——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]没错，不可以！绝对不可以呀！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]为了应对这些威胁，我们就要团结起来，比以往的任何时候团结得更加紧密！我需要大家的力量和智慧，让村子变得比以往的任何时候都更加强大！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]只有这样，我们才能面对威胁和挑战！只有这样，我们才能得到更美好的明天！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]曾经，我以为，只要自己隐藏起来，在暗中为村子出力，这就已经可以。但是，我只看到已经因为异变和灾难而离散的人心。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]若是各位已经失去了过去对彼此的信任，那我愿意成为那个大家都能相信的人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]所以，我的叔伯、我的兄弟、我的同胞们！请你们相信我吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]相信我这可以把恐怖蟾兽诛灭的[color=ffb64d]力量[colorEnd]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]相信我这可以将异变彻底终结的[color=ffb64d]智慧[colorEnd]！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]相信我、我父亲，以及整个自卫团多年以来对村子的付出！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]相信我，能为你们抵御所有的威胁和恶人的窥视！相信我，能带给大家一个更好的巴诺姆村！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]相信我，能成为大家的同伴！相信我，能够把巴诺姆再次团结起来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]现在，我的叔伯、我的兄弟、我的同胞们！你们是否支持我？是否支持我成为巴诺姆村的村长，支持我成为你们的领袖？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]来，尽管回答我吧——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "村民们",
+        "text": "[show]米拉贝尔当村长！米拉贝尔当村长！米拉贝尔万岁！自卫团万岁！巴诺姆万岁——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]谢谢你们！谢谢！我米拉贝尔绝不会辜负你们的信任！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]现在，尽管回家去和家人庆祝吧！为了我们的胜利，还有巴诺姆崭新的希望！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "村民们",
+        "text": "[show]哦哦——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我真是惊到了，米拉贝尔。你刚才的演讲，感觉好厉害啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]虽然之前就知道你要当村长，但我真没想到你会这么雷厉风行。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]夜长梦多。如果不趁着大胜之势凝聚人心，今后再遇到马可叔叔那样的人捣乱，说不定又得多费一番手脚。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米拉贝尔……你成长得太快了。",
+            "tag": "tag_54"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嘿嘿……就像大师说的：少年人的成长总是只在一念之间吧？这几天我都转了不知道多少个念头了，稍微有点成长也是应该的吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]我……我的乖——啊不……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]米拉贝尔。我有话想和你说。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]老爸……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]如果可以……我真不希望你走上这条路……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]我真的希望你能一直当我的小乖乖，由我为你遮风挡雨……不想让你也掺和进这些危险的战斗……和大人们的纷争之中……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]从你刚生下来开始……到你母亲走了之后……直到现在……我也一直是这么希望的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]爸爸……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]但是可惜啊……我也只是一个工人。就算被他们拥戴成为工头，成为村长……我也知道自己没有那个能力保护好大家……也没有那个能力，永远做你的树荫。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]但现在，我至少可以永远支持你了。你刚刚的演说……打动了我。我很欣慰。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米拉贝尔",
+        "text": "[show]爸爸！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]你比爸爸要强上太多了。你一定会成为一个好领袖、好村长的，米拉贝尔……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]真好啊，真好啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]米拉贝尔……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们也回去吧。",
+            "tag": "tag_71"
+          },
+          {
+            "text": "给她们父女一些时间吧。",
+            "tag": "tag_71"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]嗯，我们一会再来吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "npc2133消失"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "索利德的未来-回到巴诺姆村-演讲"
+}

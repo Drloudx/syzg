@@ -1,0 +1,118 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]距离阿莱克西娅沉睡已经过去了半个多月了，这里和当初……好像一点变化都没有啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]那是自然，圣女大人身负龙威，即使是狂暴化的魔物也不敢靠近，这里自然成为了不受打扰的净土。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来还有这种事……那什么水神的选民好处也太多了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]那都是应该的……呼啊……毕竟那是……通过了艰难试炼的奖赏……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇啊！原来你不是只能说几个字啊！听到露帕一口气说出这么长的话，这还是第一次！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]露帕她只是有点嗜睡体质，语言功能是没有问题的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]好了，现在不是说这些的时候……那个……艾茵小妹妹，我们接下来要怎么做？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]嗯？很简单啊！大姐姐们先用祈祷和圣女大人建立魔力通道，然后，只要顺着通道，把一丝神力牵引到这具灵魂之躯……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]圣女的意识就能依靠这具身躯自由活动，而她的本体则继续留在水下净化魔爪湖的水源，是吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]没错，就是这么简单！怎么样，很方便吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]要说简单……这也确实不难。不过魔力通道……是要仰仗水神大人的魔力作为沟通的桥梁吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]这个……可以做到……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]嗯，刚好我们这个月才学了这方面的内容。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]现在到了学以致用的时候，就让你们看看水占师的实力吧！我们走！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c3_ex4_1】。这里似乎一点变化也没有，你们着手清理魔物。",
+  "script": "c3_ex4_1"
+}

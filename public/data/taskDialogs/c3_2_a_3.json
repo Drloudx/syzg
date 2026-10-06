@@ -1,0 +1,223 @@
+{
+  "script": "c3_2_a_3",
+  "des": "c3_2_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]小姑娘，你没事吧？有哪里受伤吗？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "？",
+        "text": "[show]没有哦～！多亏了各位大姐姐，艾茵一点伤都没受呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]艾茵？你是叫艾茵吗……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "真的是这样吗？"
+          },
+          {
+            "tag": "tag_7",
+            "text": "靠艾茵一个人也能摆平这些魔物吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[cm][show]呼唉？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[cm][show]唉？你的意思是……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]哎呀，艾茵的演技有这么差吗？居然这么简单就被看出来了？我还以为大家都会被艾茵的可爱给迷住呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]什、什么意思？这个小女孩……难道非常厉害？[l][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_44",
+            "text": "我毕竟有过一段逃亡岁月。"
+          },
+          {
+            "tag": "tag_44",
+            "text": "靠观察找出隐藏的密探，我还蛮拿手的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[cm][show]原来如此原来如此，也就是说不是艾茵不够可爱，只是因为{callName4}太心细啦……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]简直像是遇到了天敌一样呢，太麻烦啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这位艾茵小妹妹，我们已经知道你很厉害了，不过……你在这里干什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]嗯，是在干什么呢～？当然是在帮助大家呀～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]艾茵看到几个大叔在滩头那边被魔物围住了，特地跑出来帮他们吸引注意力呢～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]谢谢你，艾茵，谢谢你愿意为了素不相识的人挺身而出。不过，小孩子还是远离战场比较好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]既然受困人员的位置已经清楚，接下来的事情，就交给大姐姐们吧，艾茵你……能一个人先回尾指村吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾茵",
+        "text": "[show]嗯，没问题哦～！那接下来就交给大姐姐们啦～！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇！动作好快！刚才战斗的时候我真的一点都没看出来！你到底是怎么发现她不简单的啊！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "直觉和经验吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]这孩子究竟是何方神圣？这种藏头露尾的人物，放她进尾指村里……真的没问题吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]没问题的。我能感觉得到，小艾茵帮助别人的心情，是真实无虚的。对于这样的好孩子，我们不需要过多探究，只要真心相待就可以了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]既然圣女大人都这么说了，那就这么做吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "script": "c3_12_a_3",
+  "des": "c3_12_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那些是……蛇怪？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]贝尔卡，你不是说这些蛇怪是生活在溶洞里的吗？怎么全在地面上晃荡？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]道、道理是这个道理啦！它们要攻过来了，先解决掉再说吧——！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

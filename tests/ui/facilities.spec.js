@@ -73,12 +73,24 @@ test('facility page exposes source-backed facilities and real level ranges', asy
   expect(await page.getByText('铜锭', { exact: true }).count()).toBeGreaterThan(0)
 
   await page.getByRole('button', { name: '工作台', exact: true }).click()
-  await expect(page.getByRole('button', { name: '7级', exact: true })).toBeVisible()
-  await page.getByRole('button', { name: '7级', exact: true }).click()
-  await expect(page.getByText('熔火护盾', { exact: true }).first()).toBeVisible()
+  /*
+   * 工作台 6 / 7 级的配方（燃烧炼金炸弹、提纯的冰晶、寒冰爆桶、熔火护盾）
+   * **被有意隐藏**：它们的产出物或材料在 `src/config/blacklist.js` 里
+   * （「霜烬平原/黑森林相关素材与道具（按用户要求隐藏）」）。
+   *
+   * 因此这里断言的是「该等级不会作为空按钮出现、内容也确实不在」——
+   * 而不是「熔火护盾还在」。将来若有人把黑名单里那几项去掉，本用例会红并提醒。
+   */
+  await expect(page.getByRole('button', { name: '5级', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '7级', exact: true })).toHaveCount(0)
+  await page.getByRole('button', { name: '5级', exact: true }).click()
+  await expect(page.locator('.facility-recipe').first()).toBeVisible()
+  await expect(page.getByText('熔火护盾', { exact: true })).toHaveCount(0)
 
   await page.getByRole('button', { name: '制药台', exact: true }).click()
-  await expect(page.getByRole('button', { name: '6级', exact: true })).toBeVisible()
+  // 制药台 6 级同理（寒冰粉在黑名单里），不应留下空等级按钮
+  await expect(page.getByRole('button', { name: '5级', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: '6级', exact: true })).toHaveCount(0)
 
   const layout = await page.locator('.facility-recipe').first().evaluate(element => ({
     clientWidth: element.clientWidth,

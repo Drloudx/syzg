@@ -1,0 +1,54 @@
+{
+  "script": "c00_1_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]看吧，是不是很轻松！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]“真是了不起”——是吧！米托拉大人可是附近这一带最厉害的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过话说回来……你战斗起来有模有样的，并没有看起来那么弱嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]说不定你失忆之前其实挺习惯冒险的！这样一来，说不定能让你帮忙干活来偿债……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……说起来，为什么会突然有这么多角布林出没呢……它们明明很怕我，都不敢靠近这边的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不管啦。现在还是先回营地，这些问题之后再想吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "空"
+}

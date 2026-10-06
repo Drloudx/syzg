@@ -1,0 +1,308 @@
+{
+  "script": "c5_ex1_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呼……温泉……真舒服……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]对吧……我没有骗你吧……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呼噜噜噜……感觉快要融化惹……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]哼哼，果然温泉就是增进感情最好的方式呀！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]奇瓦姐姐，你有没有觉得我们的感情变得更加深厚了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奇瓦",
+        "text": "[show]哪有人会因为一起泡澡就突然变得感情深厚啊？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奇瓦",
+        "text": "[show]说到底，本来就只有感情深厚的同伴才会一起泡澡吧？你这已经是逻辑谬误，倒果为因了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]挪～季～谬～雾～？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]奇瓦……泡澡的时候就不要说那么多难懂的事啦，伽拉忒亚的脑子转不过来啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]诶嘿嘿……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]大家的感情真好……我要不要也带姐姐来温泉试试呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]想来就来嘛！如果是和妈妈还有奇瓦姐姐一起，要我每天都来也可以呀！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奇瓦",
+        "text": "[show]不，那也实在是有点……总之请容我拒绝！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]怎么会这样～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "伽拉忒亚",
+        "text": "[show]奇瓦姐姐要是再坦率一点就好了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]……嗯？{myName}，你怎么了？为什么一直不说话？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是不喜欢温泉，还是有哪里不舒服？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不……",
+            "tag": "tag_37"
+          },
+          {
+            "text": "我只是在思考……",
+            "tag": "tag_37"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]是之前那个石碑的事吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我总觉得装置所在地有石碑并不是偶然。",
+            "tag": "tag_24"
+          },
+          {
+            "text": "那个石碑肯定和希拉尔德的计划有某种关联。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？你不泡了吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "嗯，我稍微有点不安。",
+            "tag": "tag_27"
+          },
+          {
+            "text": "关于石碑的事还是要弄清楚。",
+            "tag": "tag_27"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你是要回屋去研究碑文吗？我和你一起回去！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不用了。",
+            "tag": "tag_30"
+          },
+          {
+            "text": "米托拉就好好享受温泉吧。",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]真的不用我一起吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "真的不用了。",
+            "tag": "tag_32"
+          },
+          {
+            "text": "等你泡完澡，我们餐厅见。",
+            "tag": "tag_32"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]这样吗……我的，我明白了。那你可千万要注意身体，不要着凉了啊。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我会注意的。",
+            "tag": "tag_34"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]{myName}……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "进入后【c5_ex1_1】。"
+}

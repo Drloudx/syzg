@@ -116,7 +116,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { fetchWithFallback } from '../utils/request.js'
 import { getImageUrl } from '../utils/env.js'
 import { resolveScrollTarget } from '../utils/scrollTarget.js'
-import { isBlacklisted, isEquipTierHidden, visibleEquipTiers, HIDDEN_EQUIP_TIERS } from '../config/blacklist.js'
+import { isFacilityRecipeHidden } from '../config/blacklist.js'
 import CampFacilitiesPanel from '../components/facilities/CampFacilitiesPanel.vue'
 import {
   UiBackToTop,
@@ -170,11 +170,23 @@ const facilityOptions = computed(() => recipeFacilities.value.map(facility => ({
 const modeOptions = computed(() => (currentFacility.value?.modes || []).map(mode => ({ value: mode.key, label: mode.name })))
 const levelOptions = computed(() => {
   const isEquipMode = currentMode.value?.key === 'equipment'
+  /*
+   * 等级按钮**从实际可见的配方反推**，而不是照抄 `mode.levels`。
+   *
+   * 原先只对装备打造模式排除了隐藏品阶，于是普通设施会留下「点了是空列表」的
+   * 空等级按钮：黑名单会把某级的配方整级滤空（工作台 6/7 级、制药台 6 级、磨坊 4 级），
+   * 而 `mode.levels` 里那些级还在。同一个坑项目在装备品阶上已经踩过一次，
+   * 这里改成统一口径，以后无论黑名单怎么变都不会再出现空按钮。
+   */
+  const visibleLevels = new Set(
+    (currentMode.value?.recipes || [])
+      .filter(recipe => !isFacilityRecipeHidden({ ...recipe, mode: currentMode.value?.key }))
+      .map(recipe => Number(recipe.level))
+  )
   return [
     { value: 'all', label: '全部' },
-    // 装备打造模式下，被隐藏的品阶不出现在筛选行（否则点了是空列表）
     ...(currentMode.value?.levels || [])
-      .filter(level => !(isEquipMode && HIDDEN_EQUIP_TIERS.map(Number).includes(Number(level))))
+      .filter(level => visibleLevels.has(Number(level)))
       .map(level => ({
         value: level,
         label: `${level}${isEquipMode ? '阶' : '级'}`
@@ -183,14 +195,11 @@ const levelOptions = computed(() => {
 })
 const filteredRecipes = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
-  const isEquipMode = currentMode.value?.key === 'equipment'
   return (currentMode.value?.recipes || []).filter(recipe => {
-    // 黑名单：产出物或任一材料命中即隐藏。
-    // 之前本页完全没过黑名单，导致「【未使用】石镐」等仍显示在配方列表里。
-    if (isBlacklisted({ id: recipe.output?.typeId, name: recipe.output?.name })) return false
-    if ((recipe.materials || []).some(m => isBlacklisted({ id: m.typeId, name: m.name }))) return false
-    // 隐藏品阶：装备打造模式按配方 level 过滤（已验证 recipe.level 与装备 equipLevel 完全一致）
-    if (isEquipMode && HIDDEN_EQUIP_TIERS.map(Number).includes(Number(recipe.level))) return false
+    // 黑名单与隐藏品阶统一走 `isFacilityRecipeHidden`（`config/blacklist.js`）：
+    // 物品详情的「查看设施 / 查看锻造台」用同一个判据决定是否给出「前往」，
+    // 两处必须一致，否则又会生成指向空列表的死链。
+    if (isFacilityRecipeHidden(recipe)) return false
     if (selectedLevel.value !== 'all' && Number(recipe.level) !== Number(selectedLevel.value)) return false
     if (!query) return true
     return [recipe.output?.name, recipe.output?.typeId, ...(recipe.materials || []).flatMap(material => [material.name, material.typeId])]

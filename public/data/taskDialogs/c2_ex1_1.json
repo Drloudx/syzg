@@ -1,0 +1,504 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]快看，他们在那边！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]很好，还没打起来。我们先观察一下，找一个好一点的登场时机……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]你们这群数典忘祖的家伙！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]你们忘了我们的祖辈，是怎么在这个穷山恶水的索利德扎稳脚跟的吗？我们靠的是团结！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]因为团结，才能建立起属于我们的村子！因为团结，我们才能开采出魔岩矿，填饱所有人的肚子！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]现在只是遭遇了一点点挫折，你们就要丢掉我们巴诺姆赖以生存的品德，开始窝里反了吗！回答我！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "工人们",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]回答我啊！怎么不说话了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]是，当初我们是很团结啊！但是现在不团结的是哪一边啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]只要大家愿意重新团结起来，重建运石道、收复采石场，村子的难题不就解决了吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "保守派工人",
+        "text": "[show]我们之前在运石路为了阻挡魔物丢掉了多少人的性命，你难道忘了吗？这次又准备让多少人丢命？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]因为战斗丢命的工友是人，因为饥饿丢命的工友就不是人了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]你们……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "保守派工人",
+        "text": "[show]天天说要挨饿要挨饿，那是我们的错吗？难道不是那些奸商的错吗？有脾气你去冲奸商发啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]换了这批奸商，新来的就不是奸商了吗？只有重新开工，村子才能变好，你们知不知道！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]我把话放在这里，今天谁敢拦我们开工，我就打烂他的狗头！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]你们……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "保守派工人",
+        "text": "[show]你打烂谁的头？我才要打烂你的狗头！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]不要废话了，大家上！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "保守派工人",
+        "text": "[show]我们也上！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]你们——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这工头大叔好像也词穷了啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]是时候了……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "工人们",
+        "text": "[show]哇啊啊啊——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]哎呀哎呀，干什么这么大火气，大家抬头不见低头见，就不能各退一步，互相让一让吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]你是……菲莉娜！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "保守派工人",
+        "text": "[show]菲莉娜！你来干什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]我来确保你们不要闹出什么不可收拾的场面啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]大家都是多年的同事和邻居，虽然现在是有一点纠纷，但如果真的弄出什么伤亡，今后几十年，你们都会后悔的吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "众人",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]对吧？为了不要让自己做出追悔莫及的事情，这里就先各自退让一步，怎么样？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]我会联系驿站，马上给村子送一批廉价的粮食，先把这段时间撑过去。趁着这段时间呢，我们可以先试着满足你们两方的需求。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]喏，驿站这不给我们派来了两个高手嘛。我听说他们刚刚解决了秋日荒野的异变，显然是这方面的专家，应该可以想出点什么办法吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]怎么样，我这个提议，你们可以接受吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]这边的老叔，你家老伴之前生病，你的药是我给你找的吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]还有那边的小哥，之前在山里碰上岩蟾蜍，我可是救过你的命吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]你们能不能给我一个面子，看在我的份上，先再多忍一两个月，实在不行我们再作计较？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "激进派工人",
+        "text": "[show]行！菲莉娜大姐你是我的恩人，我就给你这个面子！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "保守派工人",
+        "text": "[show]哼，我也不可能比他们更不晓事理，这个面子……我也给了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]很好，我看马上就到饭点了，两边就先握手言和，先都回村里吃饭再说吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "罗伯特",
+        "text": "[show]听到没，还不快给我回去！别在这丢人现眼！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "工人们",
+        "text": "[show]知、知道了啦……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好厉害！菲莉娜，原来你这么有威望啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]哈，因为平时经常给大家帮忙，所以大家多少会愿意听听我的意见。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]这次能镇住场面，除了大家给我面子，契约者的武力威慑也很重要，所以你们两位光是站在那里，就已经给我帮了大忙了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "有帮上忙就好。",
+            "tag": "tag_58"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[cm][show]嗯！现在这边的事情姑且算是告一段落……但这事发生得有些蹊跷，背后肯定还有问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？有什么问题？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]工友们虽然对于收复采石场的意见不同，但毕竟是多年的同事，应该不会这么轻易就成伙成伙地发生冲突。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]至少我上个月来村里的时候，村子里还没有这样成型的派系组织，这么快就能拉起来这么多人，很显然不是一般的手笔。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]所以你的意思是？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]这不是明摆着的嘛！这次冲突背后肯定有人在推波助澜，或者根本就是有人煽动的！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "如果我们找出这个幕后黑手……",
+            "tag": "tag_65"
+          },
+          {
+            "text": "能让工头把魔岩矿卖给我们吗？",
+            "tag": "tag_65"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[cm][show]你们是想给罗伯特卖个人情，让他同意把货出给你们？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]那个大叔确实比较讲究这个，只要你们要的不多的话，他应该愿意把货让给你们吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]很好！那接下来的目标就是找到那个幕后黑手了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]只要能够拿到魔岩矿，我们的营地就彻底稳了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]呵呵，那挺好啊。其实，关于这个幕后黑手，我心里已经大概有数了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]现在工人都散场回家，那家伙应该已经收到风声。不过我们动作快的话，应该还是可以把他堵在村里！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]真的吗！那我们还等什么！快点回去吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_ex1_1 剑拔弩张",
+  "script": "c2_ex1_1"
+}

@@ -1,0 +1,110 @@
+{
+  "script": "zy0201_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]呼……[wait=100]走……[wait=200]走了吗……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]是吧……[wait=200]应该……[wait=200]走了吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]走了好……[wait=200]走了好啊……！[r][l]那……那玩意到底是什么……？[wait=200]是……是魔物吗……？[wait=200]沃夫加，你见过那东西没有？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]没有见过。我可以肯定，自己绝对没有见过那种双手四足的奇怪生物！[r][l]而且你们没有注意到吗？那东西绝对不是自然的产物。[r][l]……它的上半身和下半身，甚至不是出自同一个物种！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]这么说来……好像确实是这样……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]虽然颜色有点不对，但我能看得出来。[r][l]那东西的下半身像是恐兽，但是上半身，应该是来源于某种我没有见过的魔物！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]你的意思那个大家伙是拼起来的？[wait=200]哈啊？[r][l]这种事情到底是谁干的？造出来那种危险的家伙到底有什么好处？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]这我就不得而知了。[wait=200]但我想，制造这种怪物，肯定不会是出于好意……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]啧！所以现在还有一个造出了那种东西的谜之恶棍隐藏在这座山上？[r][l]我开始有点后悔跑到这里来了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]我能理解你的感受，不过那些话还是等回去了再和菲尔德蕾女士抱怨吧。[r][l]现在最重要的问题是——我们接下来怎么办？要立刻转移吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]不。[l]虽然这里的确不宜久留，但现在夜色还深，风雨也没有停歇，并不是离开的好时机，[r][wait=300]最好还是等上一晚，明天天一亮就立即出发。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "right",
+        "text": "[show]不过，为了确保能够及时反应，我们必须确保任何时候至少有两人醒着，[r][wait=200]所以希尔也得加入守夜才行了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]我明白，就按沃夫加说的做吧。[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

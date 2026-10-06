@@ -1,0 +1,205 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]各位，注意看，前面就是我发现的\"此生的珍宝\"！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]整个深渊里最适合休养的度假胜地——伊菲卡温泉谷·奥格温泉村！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]说什么度假胜地……这门口连个人影都看不到，不是完全不景气吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]那只是因为芙洛波作乱，客人们都躲在屋里而已！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]经过四年多的经营，如今这里一年已能接待九百多位客人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？等等……发展了四年多，才能一年接待九百多人……那之前你说的总计第5555位来客……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]当然是吹牛的啊……不找个噱头做活动，哪有那么多客人来啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]所以你之前说的什么度假胜地之类的……全都是在画饼……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]啊，这个问题我也问过！当时奥格小姐说，这些都是“行将实现的愿景”！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]噗……行将实现的愿景……哈哈，说话还挺文绉绉的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]笑什么？我有说错吗？你看看大书院，现在所有教授的度假服务可都被我承包了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]因为奥格小姐让利很足，真的很难让人拒绝呀~！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]妈妈私下里和我说过，比起直接发放度假金，温泉券不仅让花费减少了三分之一，满意度还提升了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]诶？原、原来是靠价格战……？如果是为了节约经费，这种事情妈妈确实做得出来……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这不是挺好的吗？",
+            "tag": "tag_24"
+          },
+          {
+            "text": "价格战也是经营手腕的一种啊。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]噢，看来这里总算还有明事理的人啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]没错，我奥格可不会局限于什么探险家的职业，总有一天我会成为温泉大亨给你们看的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我完全相信你的豪言壮语，但在那之前，你还得先除掉捣乱的芙洛波，不是吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]啧……你说得没错！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]不解决芙洛波的问题，我的温泉大计就只是空中楼阁，永远无法开展。这就是为什么我要请来你们这些专业人士。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]对于之后的战斗，我本人只保证契约金绝对到位，剩下的一切就都交给你们，这样没问题吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]完全没问题！你就坐在家里，看着我们大显身手吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c5_8_a_2",
+  "des": "打完后【c5_8_a_2】。"
+}

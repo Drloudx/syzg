@@ -1,0 +1,149 @@
+{
+  "script": "c3_11_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]很好！跑到这里，就算是暂时脱离包围圈了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哼！接下来就是我们的回合了。接下来怎么办？还是去市政厅收集证据吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]我们得赶快。图洛德显然已经有所行动，一切对他不利的证据都可能随时湮灭掉。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]兵贵神速！现在我们比的就是哪边更快！他想要用一整个大市集绊住我们的手脚，那我们就更要以最快的速度揭破他的真面目！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]继续按照原计划，我们去市政厅！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]呃，看起来现在街上已经戒严了。除了治安队，各处要地也全都会有佣兵行会把守。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那都不重要。有水神大人的伟力加护，即使是整个大市集，也不是我的对手！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]我们直接进攻[color=f1401c]市政厅[colorEnd]！如果图洛德本人还在，那就直接制服他！如果他不在，那我们就找出他的罪证！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]不不不，圣女阁下。我很同意把市政厅作为接下来的目标，但您这样还是有些太极端了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]在胜利已经是确定事项的前提下，我们没有必要和将来治下的人民闹得不愉快。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]我的意思是说……我们可以不要当街开打，把镇民推向我们的对立面。只要镇民们看不见，用多强硬的手段镇压图洛德的人马，这都不是问题。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "的确不需增加多余的麻烦。",
+            "tag": "tag_14"
+          },
+          {
+            "text": "所以，我们还是要潜入？",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[cm][show]是的，我正好知道一条通道，可以进入市政厅。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]您说的确实有道理……那就有劳您带路了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "塞弗德里克",
+        "text": "[show]当然乐意效劳。走，我们从那边绕过去！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_11_a_3"
+}

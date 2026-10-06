@@ -1,0 +1,152 @@
+{
+  "script": "c1_7_a_7",
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]迦南前辈！黑铁煅炉内的哈萨琳之手已经全面溃败了。锻炉之围已经解除，但我们还不知道他们会不会卷土重来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]做得好。无论如何，我们也算是胜了一场。先让契约者们休息吧，接下来的安排，就等我和掌炉者聊过之后再做决定。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼～哼哼哼～什么哈萨琳之手，就这点程度啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_50",
+            "text": "因为米托拉很强，大部分敌人都难不倒你吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]那可不！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]感谢你们的支援！因为你们，黑铁锻炉终于有救了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]没想到驿站居然这么快就派来了援军，而且是您迦南大人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]掌炉您太客气了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]闲话少叙，直接说正事吧。目前黑铁锻炉的损失情况如何？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]铁匠铺塌了一间，村民加上契约者伤亡了十来人。还有七八个乡亲趁乱逃走了……也不知道还能不能回来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是吗……如果我能再早来一些的话……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]迦南大人不必自责，您的救援已经非常及时了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]而且，有您在这里，大家的士气就有了保证……我们就有了反攻的希望。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]活下来的人们都在村里等着呢。各位，先到镇子里坐坐吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "那我们就恭敬不如从命了。"
+          },
+          {
+            "tag": "tag_43",
+            "text": "先到镇子里休息下吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]也好。那就看您安排了，掌炉者。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

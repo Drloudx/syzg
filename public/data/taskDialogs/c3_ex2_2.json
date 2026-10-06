@@ -1,0 +1,272 @@
+{
+  "script": "c3_ex2_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "急忙的镇民",
+        "text": "[show]闪开点！唉哟、快走啊！慢吞吞的！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "路边的商人",
+        "text": "[cm][show]没长眼啊！踩着我东西了！干什么呢一个个的！喂，治安队你们管不管事啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "走神的治安队员",
+        "text": "[cm][show]啊，来了来了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇……我们才走了多久，怎么镇上就乱成这样了？难不成图洛德挂掉的消息已经走漏风声了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]贝尔卡和埃迪蒂都是稳重的人，图洛德的死讯应该还不会泄露。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]不过在这种情况下，长时间失联，本身已经算是某种预兆。现在这个时候，有心之人应该已经开始早做准备了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]山雨欲来风满楼……上层气氛的变化会自然而然地向下扩散。在这种气氛的裹挟之下，所有人都会本能地开始未雨绸缪……即使他们根本不知道发生了什么。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦，我懂！就像是冬天下雪之前，那些劫道的就会提前出来“做买卖”一样，是吧？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我姑且问一下……",
+            "tag": "tag_19"
+          },
+          {
+            "text": "那些做买卖的结果怎样了？",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]还能怎么样？不开眼碰到姑奶奶我，当然是入土为安了呗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]噗。[wait=200]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]荒野上的人们和镇上的人各有不同的生存方式，不过道理总是共通的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]是啊，这年头哪有真正的蠢材呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过……这个大市集，之后究竟会怎么样啊？失去图洛德以后，该不会整个镇子都要分……分什么崩什么来着……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "分崩离析。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊，对，就是那个词！[wait=300]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没有了图洛德，这个大市集还有未来可言吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]不用担心。大市集的繁荣确有图洛德的功劳，但更重要的是，这里本就得天独厚。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]即使四面都是有毒的湖水，如今依然能够吸引足够多的商人在此定居，已经足够证明了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]只要在不久的将来，水源的问题彻底解决之后，就算没有了图洛德，大家也一定能生活无忧。届时，镇上的人们自然会推举出新的领袖，找到新的出路。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]唯一可虑的，不过是新秩序建立之前，镇子会不会因内乱瓦解……[wait=300]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]但有贝尔卡和埃迪蒂在，她们不会让这种情况发生的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那就好……可是，这个前提是要解决水源问题吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]没有了那座工厂……这个净水的缺口，我们有办法解决吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]关于这件事，我已经做好了安排。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]好了，大市集我们也逛了一圈了，接下来就去贫民街吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这么急？你不去市政厅看看贝尔卡她们吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]她们有她们的事，我们还是别打扰了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]毕竟已经嘱咐过一次，再来一次也是有些刻意……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]唉？你在说什么？嘱咐过一次？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]不，没什么，我们走吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]……[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c3_ex2_2"
+}

@@ -1,0 +1,144 @@
+{
+  "script": "c4_3_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "冷静下来的蕈人",
+        "text": "[show]原、原来是艾薇杜尔大人的噗！看来我们是认错人的噗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]你、你们能冷静下来就好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]是、是不是出什么事了……？我听你们说……有入侵者？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "冷静下来的蕈人",
+        "text": "[show]是出事了的噗！我们还以为你们也是[color=ffb64d]那些家伙[colorEnd]的同伙的噗！真是对不起的噗——呃呃，突然感觉好晕的噗……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]诶？等等！那些家伙到底是谁？给我把话说清楚再倒下啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]而且你们倒得也太及时了吧？早不倒晚不倒，怎么我一问话就倒下了？你们不会是在装样子吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]请、请别这么说。蕈人们因为没有脑子……我是说，没有“大脑”这个器官……在受到重击之后，确实会延迟好一会儿才倒下……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊？还有这种事！这还真是……各个种族各有特色啊……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但这么一来，线索就断了。",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]这、这个……和蕈人族打交道的话，这种事情很快就会习惯的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]而、而且……比起他们口中的“那些家伙”，我更担心的是蕈人族本身……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]看他们这么慌慌张张的样子，恐怕接下来我们还得“安抚”不少人……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那就谨慎一点。",
+            "tag": "tag_20"
+          },
+          {
+            "text": "小心前进吧。",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]……也只有这样了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c4_3_a_3"
+}

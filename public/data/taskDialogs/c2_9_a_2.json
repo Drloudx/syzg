@@ -1,0 +1,182 @@
+{
+  "script": "c2_9_a_2",
+  "exps": [
+    {
+      "para": {
+        "text": "[show]怎么回事！都已经清理三轮了吧，怎么还有魔物源源不断冒出来！[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]这都好几波了！到底有完没完啊！[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]有什么关系嘛！和这种杂鱼我能打上一整天！[l][cm]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]和这些家伙打再多，我们也不会有什么成长！这完全是在浪费时间！那个和尚根本就是在消遣我们！[l]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "我知道你很急。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "但是你先别急。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]哈？你到底想说什么？我现在火很大！[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]{myName}，你有什么想法吗？[l]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "我相信大师不会无故让我们白费功夫。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[show][cm]你的意思是说……大师并不是要为难我们，而是为了点醒我们？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]哈？这算哪门子点醒？[l]",
+        "nameSide": "left",
+        "charaName": "卡夫"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "比如……这就是在测试我们的耐心。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[show][cm]耐心啊……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]老爸也经常和我说……不要焦躁，要冷静思考……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]呃……真的是这样吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]那么这个通过这个试炼的正确方法……[l]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "只需要稳扎稳打，耐下心来就好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "text": "[cm][show]嗯，没错。试炼总会有结束的一刻，不需要为了一时的不顺利而焦急。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]皮塔、卡夫，冷静下来，不要浪费体力。先稳扎稳打，再看看会发生什么变化！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米拉贝尔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]是，大姐头！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "皮塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ],
+  "des": "c2_9_a_2"
+}

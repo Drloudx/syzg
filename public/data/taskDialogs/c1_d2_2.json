@@ -1,0 +1,46 @@
+{
+  "script": "c1_d2_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]巨大的建筑，华丽的装饰，精细的雕刻……这些都是先时工匠留下来的遗产吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]没有生活用品，也没有桌椅家具……怎么看都不像是有人住的地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是啊。也没有任何有用的设施，完全就是一处徒有其表的大空屋……不如说更像神庙或者圣坛吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]黄昏前的人们建造这种建筑，到底是为了什么呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]只有先前进到深处，才有机会知道了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}
