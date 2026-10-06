@@ -2,7 +2,7 @@
   <div
     ref="appScrollRoot"
     class="app-container"
-    :class="{ 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen }"
+    :class="{ 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy' }"
     @scroll.passive="scheduleStickyClipping"
   >
     <!-- 顶部木质导航条 -->
@@ -355,6 +355,8 @@ const showThemeToggle = false
 
 /** 账号弹窗可见性 */
 const isAccountOpen = ref(false)
+/** 移动端跳到隐私页时暂存：离开隐私页返回时恢复账号弹窗 */
+const wasRegisteringBeforePrivacy = ref(false)
 
 /**
  * 打开/离开讨论区。
@@ -733,12 +735,25 @@ const handleRequestUpdate = (info) => {
   }
 }
 
-watch(() => route.path, () => {
+watch(() => route.path, (newPath, oldPath) => {
   // Reset the shared page scroll before the old view is unmounted so route changes do not jump.
   resetModalScrollCoordinator()
   if (appScrollRoot.value) appScrollRoot.value.scrollTop = 0
   setRoutePending()
   nextTick(scheduleStickyClipping)
+
+  // 移动端/单窗口环境下，注册表单点击「隐私说明」跳到 /#/privacy 时，
+  // 账号弹窗不能继续挡在正上方（否则隐私协议会被盖在弹窗底下）。
+  // 离开 /privacy 返回上一页时，如果之前在注册，顺手恢复弹窗，避免用户重新找入口。
+  if (newPath === '/privacy') {
+    if (isAccountOpen.value) {
+      wasRegisteringBeforePrivacy.value = true
+      isAccountOpen.value = false
+    }
+  } else if (oldPath === '/privacy' && wasRegisteringBeforePrivacy.value) {
+    wasRegisteringBeforePrivacy.value = false
+    isAccountOpen.value = true
+  }
 }, { flush: 'sync' })
 
 const itemLoadError = ref('')
@@ -1339,6 +1354,42 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   min-height: 0;
   overflow: hidden;
   visibility: visible;
+}
+
+/* 隐私说明页：隐藏左右两栏，主视图全宽居中单栏展示 */
+.is-privacy-page .desktop-sidebar-container,
+.is-privacy-page .desktop-right-container {
+  display: none !important;
+}
+
+.is-privacy-page .main-layout-row {
+  grid-template-columns: minmax(0, 1fr) !important;
+  max-width: 900px !important;
+  margin: 0 auto;
+}
+
+.is-privacy-page .app-main {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .is-privacy-page .main-layout-row {
+    padding: 8px max(8px, env(safe-area-inset-right, 0px)) calc(8px + var(--safe-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)) !important;
+  }
+  .is-privacy-page .app-main {
+    display: block !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  .is-privacy-page .app-main :deep(.page-view-container) {
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+  }
 }
 
 /* 右侧页面信息面板（模板 .infobox 风格）：与左侧导航栏等高（height: 100%） */

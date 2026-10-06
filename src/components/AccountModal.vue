@@ -967,7 +967,11 @@ watch(
   () => props.modelValue,
   (open) => {
     if (!open) return
-    view.value = isLoggedIn.value ? 'center' : 'login'
+    if (isLoggedIn.value) {
+      view.value = 'center'
+    } else if (view.value !== 'register') {
+      view.value = 'login'
+    }
     loginForm.error = ''
     regForm.error = ''
     loadAvatarCatalog()
