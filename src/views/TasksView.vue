@@ -88,7 +88,7 @@
             -->
             <div v-if="dialogHits[item.id]" class="task-card-dialog-hit">
               <span class="task-card-dialog-hit-label">剧情</span>
-              <span class="task-card-dialog-hit-text">{{ dialogHits[item.id] }}</span>
+              <span class="task-card-dialog-hit-text">{{ dialogHits[item.id].snippet }}</span>
             </div>
           </div>
         </div>
@@ -279,7 +279,12 @@
 
                 <UiInfoRow v-if="step.des" label="步骤描述" :value="step.des" />
 
-                <div v-for="(dg, dgIdx) in step.dialogs" :key="'dg' + dgIdx" class="step-dialog-row">
+                <div
+                  v-for="(dg, dgIdx) in step.dialogs"
+                  :key="'dg' + dgIdx"
+                  class="step-dialog-row"
+                  :data-dialog-block="sIdx + ':' + dgIdx"
+                >
                   <div class="step-dialog-header">
                     <span class="step-dialog-label">{{ dg.label }}</span>
                     <div v-if="!dg.meta.isText" class="dialog-actions">
@@ -372,41 +377,74 @@ const searchQuery = ref(route.query.q || '')
 const dialogSearch = shallowRef(null)
 const dialogSearchLoading = ref(false)
 const dialogSearchError = ref('')
+/** 在途的索引加载 Promise；重复调用复用同一个，见 ensureDialogSearch 的说明 */
+let dialogSearchPending = null
 
-const ensureDialogSearch = async () => {
-  if (dialogSearch.value || dialogSearchLoading.value) return
+/**
+ * 按需加载剧情索引。**返回在途 Promise**，调用方 `await` 它即可等到数据可用。
+ *
+ * 🔴 早先的写法是「已在加载中就 `return`」——那对"重复触发时别重复请求"够用，
+ * 但调用方 `await` 到的却是 `undefined`，于是紧接着读 `dialogHits` 仍是空。
+ * 冷链接（`?task=...&q=...`）正好命中这个时序：watch 先发起加载，
+ * `openDetail` 随后调用本函数，被早退挡住 → 详情打开了但**没有定位**。
+ * 现在把在途 Promise 存下来复用，语义是"等到加载完成"而不是"别重复加载"。
+ */
+const ensureDialogSearch = () => {
+  if (dialogSearch.value) return Promise.resolve()
+  if (dialogSearchPending) return dialogSearchPending
   dialogSearchLoading.value = true
   dialogSearchError.value = ''
-  try {
-    const data = await fetchWithFallback('data/parsed/dialog-search.json')
-    dialogSearch.value = data?.tasks || {}
-  } catch (err) {
-    console.error('加载剧情搜索索引失败:', err)
-    dialogSearchError.value = '剧情搜索暂时不可用'
-    dialogSearch.value = {}
-  } finally {
-    dialogSearchLoading.value = false
-  }
+  dialogSearchPending = (async () => {
+    try {
+      const data = await fetchWithFallback('data/parsed/dialog-search.json')
+      dialogSearch.value = data?.tasks || {}
+    } catch (err) {
+      console.error('加载剧情搜索索引失败:', err)
+      dialogSearchError.value = '剧情搜索暂时不可用'
+      dialogSearch.value = {}
+    } finally {
+      dialogSearchLoading.value = false
+      dialogSearchPending = null
+    }
+  })()
+  return dialogSearchPending
 }
 
 /**
- * 当前搜索词的**剧情命中摘要**：taskId -> 命中片段。
+ * 当前搜索词的**剧情命中**：taskId -> `{ snippet, stepIndex, dialogIndex, lineIndex }`。
  *
  * 预先算成一个 map 而不是在模板里调函数：虚拟网格会反复渲染可见行，
- * 每行都去 `indexOf` 一遍大文本（每任务数千字）是浪费。
- * 只有搜索词或索引变化时才重算。
+ * 每行都去扫一遍索引是浪费。只有搜索词或索引变化时才重算。
+ *
+ * 命中位置（步骤/剧情/行）一并算出来，供 `openDetail` 打开详情后
+ * **自动展开对应步骤与剧情、并滚到那一行** —— 用户搜到一句话，
+ * 点进去就该看见它，而不是自己再翻。
  */
 const dialogHits = computed(() => {
   const q = searchQuery.value.trim()
   const hits = {}
   if (!q || !dialogSearch.value) return hits
-  for (const [taskId, text] of Object.entries(dialogSearch.value)) {
-    const idx = text.indexOf(q)
-    if (idx < 0) continue
-    // 命中位置前后各取 18 字做摘要，避免卡片被长句撑破
-    const start = Math.max(0, idx - 18)
-    const end = Math.min(text.length, idx + q.length + 18)
-    hits[taskId] = `${start > 0 ? '…' : ''}${text.slice(start, end).replace(/\n/g, ' ')}${end < text.length ? '…' : ''}`
+  for (const [taskId, blocks] of Object.entries(dialogSearch.value)) {
+    if (!Array.isArray(blocks)) continue
+    outer:
+    for (const [bIdx, block] of blocks.entries()) {
+      const lines = block?.lines || []
+      for (const [lIdx, line] of lines.entries()) {
+        const at = String(line).indexOf(q)
+        if (at < 0) continue
+        // 命中位置前后各取 18 字做摘要，避免卡片被长句撑破
+        const start = Math.max(0, at - 18)
+        const end = Math.min(line.length, at + q.length + 18)
+        hits[taskId] = {
+          snippet: `${start > 0 ? '…' : ''}${line.slice(start, end)}${end < line.length ? '…' : ''}`,
+          // block.key 形如 `步骤下标:剧情下标`，与 dialogOpen 的键一致
+          blockKey: block.key,
+          blockIndex: bIdx,
+          lineIndex: lIdx
+        }
+        break outer
+      }
+    }
   }
   return hits
 })
@@ -464,10 +502,14 @@ const filteredTasks = computed(() => {
  * 放在 watch 里而不是 `filteredTasks` 计算属性里：计算属性必须保持纯函数，
  * 在里面发请求会造成「渲染触发副作用」。用 `flush:'post'` 让首帧先渲染
  * 已有的任务名/描述结果，剧情命中随后补上（避免搜索框打字时卡一下）。
+ *
+ * 🔴 **`immediate: true` 是必需的**：搜索词可能来自 URL（`?q=记忆` 的分享/刷新），
+ * 那种情况下 `searchQuery` 在初始化时就已有值、不会触发 change 事件，
+ * 不加 immediate 索引永远不加载 —— 表现为"分享出去的搜索链接点开没有剧情命中"。
  */
 watch(searchQuery, (q) => {
   if (String(q || '').trim()) ensureDialogSearch()
-}, { flush: 'post' })
+}, { flush: 'post', immediate: true })
 
 
 const selectType = (key) => {
@@ -485,6 +527,81 @@ const openDetail = (item) => {
   dialogContent.value = {}
   detailVisible.value = true
   router.replace({ query: { ...route.query, task: item.id } })
+  // 从搜索结果点进来时，自动展开并滚到命中的那句剧情
+  revealDialogHit(item.id)
+}
+
+/**
+ * 展开命中的步骤与剧情，并把那一行滚进视野。
+ *
+ * 用户搜一句话就是为了找到它 —— 点进去还要自己翻步骤、找剧情、再往下滚，
+ * 等于把搜索的价值又还回去了。这里做成「点开即见」。
+ *
+ * 三个必须处理的时序问题：
+ *  1. 剧情正文是**按需 fetch** 的（`toggleDialog` 内部 await），所以要等它把
+ *     `dialogContent` 填好、DOM 渲染出来之后才能定位；
+ *  2. 详情弹窗本身是 `UiModal` 内嵌覆盖层，滚动容器是 `#taskModalScroll`，
+ *     不是页面 —— 用 `scrollIntoView` 会把外层页面一起滚（项目已知坑）；
+ *  3. 只在**用户从搜索结果进入**时定位；正常浏览点开任务时不该乱跳。
+ */
+const revealDialogHit = async (taskId) => {
+  /*
+   * 冷链接（`?task=...&q=...`）下索引可能**还在下载**：`openDetail` 由数据加载
+   * 完成触发，而索引是并行发起的。这时 `dialogHits` 还是空的，直接返回就会
+   * 出现"分享出去的搜索链接点开没有定位"。所以先等索引就绪（失败则静默放弃）。
+   */
+  if (!dialogSearch.value && searchQuery.value.trim()) {
+    await ensureDialogSearch()
+  }
+  const hit = dialogHits.value[taskId]
+  if (!hit) return
+  const [stepIndex, dialogIndex] = String(hit.blockKey).split(':').map(Number)
+  if (!Number.isFinite(stepIndex) || !Number.isFinite(dialogIndex)) return
+
+  // 1) 展开所属步骤
+  openSteps.value = { ...openSteps.value, [stepIndex]: true }
+
+  // 2) 展开该段剧情（内部会按需拉取剧本文件）
+  const dg = selectedTask.value?.steps?.[stepIndex]?.dialogs?.[dialogIndex]
+  if (dg && !dg.meta?.isText) {
+    await toggleDialog(hit.blockKey, dg.meta.raw)
+  }
+
+  // 3) 等布局稳定后，把命中行滚进弹窗可视区
+  await nextTick()
+  const scroller = document.getElementById('taskModalScroll')
+  if (!scroller) return
+  /*
+   * 🔴 两个必须避开的坑（都实测过）：
+   *
+   * 1. **偏移量用 `getBoundingClientRect()` 相减，不能用 `offsetTop`**。
+   *    `offsetTop` 相对 `offsetParent`，而命中行与滚动容器中间隔着
+   *    `.step-accordion` / `.dialog-lines` 等定位元素，相减会偏出可视区。
+   *
+   * 2. **要等布局稳定再滚**。剧情展开后内容会二次增长 ——
+   *    实测 `scrollHeight` 从 1377 涨到 2191（先展开步骤，随后剧情正文把高度撑开）。
+   *    若在涨的过程中滚，算出的目标位置在布局稳定后已经不对，
+   *    表现为"滚到中间某处、命中行仍在屏幕外"。
+   *
+   * 因此：逐帧等到 `scrollHeight` 连续两帧不变（布局已稳定），再滚一次。
+   */
+  const frame = () => new Promise((resolve) => requestAnimationFrame(() => resolve()))
+  let lastHeight = -1
+  for (let i = 0; i < 20; i++) {
+    await frame()
+    if (scroller.scrollHeight === lastHeight) break
+    lastHeight = scroller.scrollHeight
+  }
+
+  const target = document.querySelector(
+    `[data-dialog-block="${hit.blockKey}"] [data-dialog-line="${hit.lineIndex}"]`
+  )
+  if (!target) return
+  const targetRect = target.getBoundingClientRect()
+  const rootRect = scroller.getBoundingClientRect()
+  // 居中摆放，留出上下文；与 utils/scrollTarget.alignElementInScrollTarget 同一算法
+  const top = scroller.scrollTop + targetRect.top - rootRect.top - (scroller.clientHeight - targetRect.height) / 2
+  scroller.scrollTo({ top: Math.max(0, top), behavior: 'smooth' })
 }
 
 const closeDetail = () => {
@@ -601,6 +718,25 @@ watch([filterType, filterSub, searchQuery], () => {
   if (route.query.task) query.task = route.query.task
   router.replace({ query })
 })
+
+/**
+ * 外部修改 `q`（分享链接、浏览器前进/后退）时同步搜索框。
+ *
+ * 🔴 **必须监听，不能只在 setup 里读一次**：本站是 hash 路由，站内跳转
+ * （`#/tasks?task=x` → `#/tasks?task=x&q=记忆`）**不会重建组件**，
+ * setup 只跑一次，于是 URL 里的新 `q` 永远进不来 ——
+ * 表现为"分享出去的搜索链接，对方点开看不到搜索结果"。
+ *
+ * 只做「URL → 状态」单向同步：反向（状态 → URL）已由下面那个
+ * `watch([filterType, filterSub, searchQuery])` 负责，两边都写会打架。
+ */
+watch(
+  () => route.query.q,
+  (val) => {
+    const next = String(val || '')
+    if (next !== searchQuery.value) searchQuery.value = next
+  }
+)
 
 // 外部修改 task 参数（如浏览器前进/后退、粘贴分享链接）时同步打开/关闭详情
 watch(

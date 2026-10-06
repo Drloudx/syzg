@@ -5,6 +5,7 @@
       :key="idx"
       class="dialog-line"
       :class="{ 'option-row': line.isOption }"
+      :data-dialog-line="idx"
     >
       <template v-if="line.isOption">
         <span class="dialog-name">小工匠：</span>

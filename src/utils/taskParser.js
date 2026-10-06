@@ -18,7 +18,8 @@ import {
   getMapName,
   chapterSortKey,
   subSortKey,
-  parseRewardEntries
+  parseRewardEntries,
+  cleanDialogueLine
 } from './gameMappings.js'
 
 // ---------- 工具 ----------
@@ -731,75 +732,101 @@ export const loadTaskData = createCachedLoader(async () => {
 })
 
 /**
- * 剧情正文里的舞台标记。与 `gameMappings` 清洗对白用的是同一类标记
- * （`[show]` / `[l]` / `[cm]` / `[hide]`），搜索索引里没有保留价值。
+ * 把一条剧本文本行清成**与页面渲染完全一致**的纯文本。
+ *
+ * 🔴 **必须复用 `cleanDialogueLine`，不能自己写一套标记剥离。**
+ *
+ * 一开始这里用的是「只剥 `[show]/[l]/[cm]`」的简化实现，结果与页面渲染不一致：
+ * 页面还会把 `{myName}` / `主角` 换成「小工匠」、`{callNameN}` 换成「他（她）」。
+ * 于是：
+ *   · 用户**看到的是**「小工匠，你醒了。」，搜「小工匠」却搜不到（索引里是 `{myName}`）；
+ *   · 就算搜到了，索引里的行与页面上渲染出的行也对不上，没法滚动定位。
+ *
+ * 复用同一个清洗函数后，**索引里的每一行就是页面上那一行的文本**，
+ * 命中判定与定位才同时成立。
  */
-const DIALOG_MARKUP_RE = /\[[a-z]+\]/gi
-const DIALOG_BRACKET_RE = /\[[^\]]*\]/g
-
-/** 把一条剧本文本行清成可直接搜索+高亮的纯文本。 */
-export const cleanDialogSearchLine = (value) => String(value ?? '')
-  .replace(DIALOG_MARKUP_RE, '')
-  .replace(DIALOG_BRACKET_RE, '')
-  .replace(/\r/g, '')
-  .trim()
+export const cleanDialogSearchLine = (value) => cleanDialogueLine(String(value ?? ''))
 
 /**
  * 构建期纯函数：生成**任务图鉴剧情搜索索引** `parsed/dialog-search.json`。
  *
  * ## 为什么单独一份产物，而不是并进 `search-index.json`
  *
- * 全量剧情正文约 **111 万字符 / brotli 596 KB**，而 `search-index.json` 是
+ * 全量剧情正文约 74 万字符 / brotli 约 0.58 MB，而 `search-index.json` 是
  * **首屏就要下载**的（`INLINE_HASH_DIRECTORIES` 里的 `data/parsed/`）。并进去等于
  * 让每个冷启动用户为「可能用不到的剧情搜索」多付 0.6 MB，直接违反 SPEC 的首屏约束。
  * 因此拆成独立产物，**只在任务页真正开始搜索时才拉取**（懒加载、按会话缓存）。
  *
- * ## 为什么存「每任务一段全文」而不是倒排索引
+ * ## 为什么存「按剧情块分组的行数组」而不是一坨文本
  *
- * 实测过 2-gram 倒排：**brotli 680 KB，比直接存正文还大** ——
- * 111 万字的两字组合有 10 万个，索引本身的开销超过了原文。
- * 行去重（全局字典 + 引用）同样是负收益（607 KB > 596 KB，台词只有 14% 重复）。
- * 所以**直接存全文就是最优解**，浏览器的 `String.includes` 足够快。
+ * 用户要的不只是"搜得到"，还要**点开后自动展开并滚到那句话**。一坨文本只能回答
+ * "这个任务命中了吗"，无法回答"命中在哪一步、哪段剧情、第几行"，于是没法定位。
+ *
+ * 因此按 `步骤下标:剧情下标` 分块、块内保留**行数组**。实测这个形状与一坨文本的
+ * 压缩后体积**几乎相同**（brotli 0.58 MB，差 < 1%）—— 因为块边界与换行本来就存在，
+ * 拆成数组只是把它显式化，并没有引入额外冗余。
+ *
+ * 实测过的负收益方案（都不采用）：2-gram 倒排 brotli 680 KB、全局行去重字典 607 KB，
+ * **都比直接存正文更大** —— 中文两字组合太多，索引开销超过原文。
+ *
+ * ## 行文本必须与页面渲染的一致
+ *
+ * 这里用 `cleanDialogSearchLine` 清洗，页面用 `cleanDialogueLine`。
+ * 两者都剥掉 `[show]/[l]/[cm]` 一类舞台标记，所以**同一句话在索引与页面上
+ * 是同一个字符串**，`String.includes` 才能直接对齐到具体某一行。
  *
  * @param {object} tasksData `buildTaskData()` 的返回值
  * @param {Map<string, object>} dialogScripts dialogId -> 剧本对象（已裁剪/已回退「旧」变体）
- * @returns {{generatedAt: string, tasks: Object<string, string>, meta: object}}
+ * @returns {{generatedAt: string, tasks: Object<string, Array<{key: string, lines: string[]}>>, meta: object}}
  */
 export function buildDialogSearchIndex(tasksData, dialogScripts) {
   const scripts = dialogScripts instanceof Map ? dialogScripts : new Map(Object.entries(dialogScripts || {}))
   const out = {}
   let charCount = 0
   let dialogCount = 0
+  let lineCount = 0
 
   for (const task of arr(tasksData?.tasks)) {
-    const lines = []
-    const seenInTask = new Set()
-    for (const step of arr(task.steps)) {
-      for (const d of arr(step.dialogs)) {
+    const blocks = []
+    for (const [stepIndex, step] of arr(task.steps).entries()) {
+      for (const [dialogIndex, d] of arr(step.dialogs).entries()) {
         const raw = d?.meta?.raw
         // `isText` 的条目是配置里直接写的文本目标（「收集 3 株药浆草。」），不是剧本文件
         if (!raw || d.meta.isText) continue
         const script = scripts.get(raw)
         if (!script) continue
         dialogCount++
+
+        /*
+         * 🔴 这里必须**逐条镜像页面渲染出来的条目**，索引下标才能对上 DOM。
+         *
+         * 页面（`TasksView.toggleDialog`）把 exps 过滤成 text/option 后：
+         *   · `text`   → **一条**条目 `{ speaker, text }`，文本为空则整条丢弃；
+         *   · `option` → **一条**条目 `{ isOption: true, options: [...] }`，
+         *                所有选项收在同一个条目里（不是每个选项一条）。
+         *
+         * 一开始这里把每个选项**各推一行**，于是含选项的剧情里
+         * 索引行号与页面行号错位，滚动会落到错误的行上。
+         * 现在按同样的粒度产出：选项组合成一条，其可搜索文本是各选项的拼接。
+         */
+        const lines = []
         for (const e of arr(script.exps)) {
           if (e.key === 'text' && e.para?.text) {
             const t = cleanDialogSearchLine(e.para.text)
-            if (t && !seenInTask.has(t)) { seenInTask.add(t); lines.push(t) }
+            if (t) lines.push(t)
           } else if (e.key === 'option' && Array.isArray(e.para?.options)) {
-            for (const o of e.para.options) {
-              const t = cleanDialogSearchLine(o?.text)
-              if (t && !seenInTask.has(t)) { seenInTask.add(t); lines.push(t) }
-            }
+            const opts = e.para.options.map((o) => cleanDialogSearchLine(o?.text)).filter(Boolean)
+            if (opts.length) lines.push(opts.join('\n'))
           }
         }
+        if (!lines.length) continue
+        // key 用「步骤下标:剧情下标」，与 TasksView 里 dialogOpen 的键一致，可直接定位
+        blocks.push({ key: `${stepIndex}:${dialogIndex}`, lines })
+        charCount += lines.join('\n').length
+        lineCount += lines.length
       }
     }
-    if (lines.length) {
-      const text = lines.join('\n')
-      out[task.id] = text
-      charCount += text.length
-    }
+    if (blocks.length) out[task.id] = blocks
   }
 
   return {
@@ -808,9 +835,10 @@ export function buildDialogSearchIndex(tasksData, dialogScripts) {
     meta: {
       taskCount: Object.keys(out).length,
       dialogCount,
+      lineCount,
       charCount,
-      // 供 UI 提示与排查：这是「每任务一段全文」，检索用子串匹配即可
-      form: 'per-task-fulltext'
+      // 供 UI 提示与排查：按「步骤:剧情」分块、块内为行数组，可定位到具体某一行
+      form: 'per-dialog-lines'
     }
   }
 }
