@@ -29,7 +29,7 @@ import path from 'node:path'
 
 import { CAPTCHA_EGGS } from '../../src/config/captchaEggs.js'
 import { emailLookupHash } from '../../src/utils/authCrypto.js'
-import { deriveVerifier } from '../../src/utils/passwordKdf.js'
+import { deriveVerifier, generatePasswordSalt } from '../../src/utils/passwordKdf.js'
 
 const BASE = 'http://127.0.0.1:8788'
 const ROOT = path.resolve(import.meta.dirname, '../..')
@@ -265,25 +265,43 @@ let publicNo = null
 {
   const s = await api('GET', `/api/auth/salt?email=${encodeURIComponent(EMAIL)}`)
   check('GET /api/auth/salt 返回 200', s.status === 200)
-  check('盐是 64 位 hex', /^[a-f0-9]{64}$/.test(s.json?.salt || ''))
+  check('未注册邮箱返回占位盐（64 位 hex）', /^[a-f0-9]{64}$/.test(s.json?.salt || ''))
   check('返回 iters=600000', s.json?.iters === 600000)
 
+  /*
+   * 🔴 注册用的盐**必须客户端随机生成**，不能用上面那个占位盐。
+   *
+   * 占位盐是 `HMAC(SALT_SECRET, 'placeholder:'+邮箱)`，它不等于注册时存进
+   * `pw_salt` 的随机盐 —— 拿它派生 verifier 会注册成功、**之后永远登不上**。
+   * 这条断言（下面的"注册后用存下来的盐登录"）就是用来兜住这种不一致的。
+   */
+  const salt = generatePasswordSalt()
+  check('随机盐是 64 位 hex', /^[a-f0-9]{64}$/.test(salt))
+  check('🔴 随机盐与占位盐不同（证明不是派生值）', salt !== s.json.salt)
+
   const t0 = Date.now()
-  const verifier = await deriveVerifier(PASSWORD, s.json.salt)
+  const verifier = await deriveVerifier(PASSWORD, salt)
   const kdfMs = Date.now() - t0
   check('客户端 KDF 产出 64 位 hex verifier', /^[a-f0-9]{64}$/.test(verifier), verifier?.slice(0, 16))
   console.log(`     （本次 KDF 耗时 ${kdfMs}ms）`)
 
   // 先试试用错的验证码注册
   const wrongCode = await api('POST', '/api/auth/register', {
-    email: EMAIL, code: '000000', verifier, nick: NICK, avatar: 'at001_0'
+    email: EMAIL, code: '000000', verifier, salt, nick: NICK, avatar: 'at001_0'
   })
   check('验证码错 → 400', wrongCode.status === 400, `实际 ${wrongCode.status} ${wrongCode.text.slice(0, 60)}`)
+
+  // 盐形状不对必须被拒（否则是一道免费的 CPU/存储放大口子）
+  const { code: codeForSaltTest } = await sendCode(EMAIL, 'register')
+  const badSalt = await api('POST', '/api/auth/register', {
+    email: EMAIL, code: codeForSaltTest, verifier, salt: 'not-a-valid-salt', nick: NICK, avatar: 'at001_0'
+  })
+  check('🔴 盐形状不对 → 400', badSalt.status === 400, `实际 ${badSalt.status}`)
 
   const { code } = await sendCode(EMAIL, 'register')
   check('能从 D1 反解出 6 位验证码（证明 pepper 链路一致）', /^\d{6}$/.test(code))
 
-  const reg = await api('POST', '/api/auth/register', { email: EMAIL, code, verifier, nick: NICK, avatar: 'at001_0' })
+  const reg = await api('POST', '/api/auth/register', { email: EMAIL, code, verifier, salt, nick: NICK, avatar: 'at001_0' })
   check('注册成功 → 200', reg.status === 200, `实际 ${reg.status} ${reg.text.slice(0, 120)}`)
   check('返回会话令牌（64 hex）', /^[a-f0-9]{64}$/.test(reg.json?.token || ''))
   check('返回用户对象', Boolean(reg.json?.user))
@@ -293,13 +311,15 @@ let publicNo = null
   publicNo = reg.json?.user?.id
 
   // 验证码一次性
-  const reuse = await api('POST', '/api/auth/register', { email: EMAIL, code, verifier, nick: NICK + 'x', avatar: 'at001_0' })
+  const reuse = await api('POST', '/api/auth/register', { email: EMAIL, code, verifier, salt, nick: NICK + 'x', avatar: 'at001_0' })
   check('🔴 同一验证码不能复用', reuse.status !== 200, `实际 ${reuse.status}`)
 
   // 昵称唯一
   const { code: code2 } = await sendCode(`other-${stamp}@example.com`, 'register')
+  const otherSalt = generatePasswordSalt()
   const dupNick = await api('POST', '/api/auth/register', {
-    email: `other-${stamp}@example.com`, code: code2, verifier, nick: NICK, avatar: 'at001_0'
+    email: `other-${stamp}@example.com`, code: code2,
+    verifier: await deriveVerifier(PASSWORD, otherSalt), salt: otherSalt, nick: NICK, avatar: 'at001_0'
   })
   check('昵称重复 → 409', dupNick.status === 409, `实际 ${dupNick.status} ${dupNick.text.slice(0, 60)}`)
 }
@@ -441,8 +461,10 @@ console.log('\n【11】注销账号（软删除）')
   check('库里密码哈希已清空', rows[0]?.verifier_hash === '', `实际 "${rows[0]?.verifier_hash}"`)
 
   const { code: code3 } = await sendCode(NEW_EMAIL, 'register')
+  // 盐必须合法，否则会先被「盐形状不对 → 400」挡下，测不到这里想验的 409
+  const reclaimSalt = generatePasswordSalt()
   const reclaim = await api('POST', '/api/auth/register', {
-    email: NEW_EMAIL, code: code3, verifier: 'a'.repeat(64), nick: NICK + 'z', avatar: 'at001_0'
+    email: NEW_EMAIL, code: code3, verifier: 'a'.repeat(64), salt: reclaimSalt, nick: NICK + 'z', avatar: 'at001_0'
   })
   check('🔴 该邮箱不可被重新注册（防冒用历史评论）', reclaim.status === 409, `实际 ${reclaim.status} ${reclaim.text.slice(0, 60)}`)
 }
@@ -476,10 +498,11 @@ console.log('\n【12】管理端接口')
   const banEmail = `e2e-ban-${stamp}@example.com`
   const banNick = `禁测${stamp.slice(-4)}`
   const { code: banCode } = await sendCode(banEmail, 'register')
-  const banSalt = (await api('GET', `/api/auth/salt?email=${encodeURIComponent(banEmail)}`)).json.salt
+  // 注册用随机盐（客户端生成），不能用 /api/auth/salt 的占位盐
+  const banSalt = generatePasswordSalt()
   const banVerifier = await deriveVerifier(PASSWORD, banSalt)
   const reg = await api('POST', '/api/auth/register', {
-    email: banEmail, code: banCode, verifier: banVerifier, nick: banNick, avatar: 'at001_0'
+    email: banEmail, code: banCode, verifier: banVerifier, salt: banSalt, nick: banNick, avatar: 'at001_0'
   })
   check('为封禁测试建号成功', reg.status === 200, `实际 ${reg.status} ${reg.text.slice(0, 80)}`)
   const banToken = reg.json?.token
@@ -542,7 +565,7 @@ console.log('\n【12】管理端接口')
   // 与"用户自助注销（软删除）"的关键区别：彻底删除会**释放邮箱**
   const { code: reCode } = await sendCode(banEmail, 'register')
   const reReg = await api('POST', '/api/auth/register', {
-    email: banEmail, code: reCode, verifier: banVerifier, nick: banNick + 'x', avatar: 'at001_0'
+    email: banEmail, code: reCode, verifier: banVerifier, salt: banSalt, nick: banNick + 'x', avatar: 'at001_0'
   })
   check('🔴 彻底删除后该邮箱可重新注册（软删除则永远不可）', reReg.status === 200, `实际 ${reReg.status} ${reReg.text.slice(0, 80)}`)
 }

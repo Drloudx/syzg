@@ -135,13 +135,50 @@ export function emailLookupHash(email, saltSecret) {
 }
 
 /**
- * 公开给客户端的**密码盐**（与上面的查询哈希域分隔，互不可推）。
+ * **密码盐：每个用户独立随机生成**（对齐主流做法）。
  *
- * 客户端把它当 UTF-8 字符串直接用作 PBKDF2 的 salt —— 不做 hex 解码。
- * 这条约定由 `tests/ui/password-kdf.spec.js` 的跨端比对守住。
+ * ## 为什么改成随机（2026-10-07）
+ *
+ * 原先盐是 `HMAC(SALT_SECRET, 'salt:' + 邮箱)` **派生**出来的。它满足"每人不同"，
+ * 但**不是随机**，偏离了 bcrypt / Argon2 / scrypt 这些主流密码哈希的通行做法
+ * —— 它们都是每条记录一次 CSPRNG，并把盐随哈希一起存。
+ *
+ * 关键转折点：**盐后来被存进了 `users.pw_salt`**（为了支持换邮箱，见 §4.2.1）。
+ * 一旦盐入库，派生盐相对随机盐就**只剩缺点**了：
+ *   · 攻击者拿到数据库 + `SALT_SECRET` 时，可以自己算出所有盐 → 预计算可行；
+ *   · 而随机盐即使 `SALT_SECRET` 同时泄露，也仍需逐个用户单独爆破。
+ *
+ * ## 盐的编码约定没有变
+ *
+ * 仍然是**64 位小写 hex 字符串**，客户端把它**当 UTF-8 字符串**直接用作 PBKDF2 的
+ * salt（不做 hex 解码，见 `config/auth.js` 的 `SALT_ENCODING`）。
+ * 所以 `tests/ui/password-kdf.spec.js` 的跨端比对依然有效，协议本身没动。
+ *
+ * ## 盐由客户端生成
+ *
+ * 因为"先有盐才能派生 verifier"——登录前无法认证，注册时服务端也还没见过这个用户。
+ * 所以注册流程里由客户端生成盐、连同 `verifier` 一起提交，服务端只负责**校验格式**
+ * （必须是 64 位 hex）并原样存下来。
  */
-export function passwordSalt(email, saltSecret) {
-  return hmacHex(saltSecret, 'salt:' + normalizeEmail(email))
+export function generatePasswordSalt() {
+  const bytes = new Uint8Array(PBKDF2_KEY_BYTES)
+  crypto.getRandomValues(bytes)
+  return toHex(bytes)
+}
+
+/**
+ * 未注册邮箱查询盐时返回的**确定性占位盐**。
+ *
+ * ⚠️ **这不是为了防枚举**（2026-10-07 已明确不做防枚举）—— 而是为了**流程可用**：
+ * 登录页在提交前会先取盐，如果对未注册邮箱直接报错，用户会在还没点登录时
+ * 就看到一个"邮箱不存在"式的错误。返回一个形状正常的盐，让流程照常走到
+ * 服务端比对、统一返回「邮箱或密码不对」，体验与主流站点一致。
+ *
+ * 顺带的好处：它对同一邮箱是**稳定的**（不会两次请求返回不同值），
+ * 因此不会因为"响应随机"而变成新的账号枚举口子。**这是副作用，不是目的。**
+ */
+export function placeholderPasswordSalt(email, saltSecret) {
+  return hmacHex(saltSecret, 'placeholder:' + normalizeEmail(email))
 }
 
 /** 存 `verifier_hash` 与 `code_hash` 前混的那一层 pepper。 */

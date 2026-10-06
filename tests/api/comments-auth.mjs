@@ -15,7 +15,7 @@
 
 import { CAPTCHA_EGGS } from '../../src/config/captchaEggs.js'
 import { emailLookupHash } from '../../src/utils/authCrypto.js'
-import { deriveVerifier } from '../../src/utils/passwordKdf.js'
+import { deriveVerifier, generatePasswordSalt } from '../../src/utils/passwordKdf.js'
 import { createCodeReader } from '../helpers/localD1.mjs'
 
 const BASE = 'http://127.0.0.1:8788'
@@ -71,9 +71,10 @@ async function makeAccount(tag) {
   const cap = await solveCaptcha()
   await api('POST', '/api/auth/code', { email, purpose: 'register', captchaId: cap.captchaId, picks: cap.picks })
   const code = reader.readCode(await emailLookupHash(email, reader.saltSecret), 'register')
-  const salt = (await api('GET', `/api/auth/salt?email=${encodeURIComponent(email)}`)).json.salt
+  // 注册用客户端随机生成的盐（不能用 /api/auth/salt 的占位盐）
+  const salt = generatePasswordSalt()
   const verifier = await deriveVerifier(password, salt)
-  const reg = await api('POST', '/api/auth/register', { email, code, verifier, nick, avatar: 'at001_0' })
+  const reg = await api('POST', '/api/auth/register', { email, code, verifier, salt, nick, avatar: 'at001_0' })
   if (reg.status !== 200) throw new Error('建号失败: ' + reg.text)
   return { token: reg.json.token, nick, userId: reg.json.user.id, email }
 }

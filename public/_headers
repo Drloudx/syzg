@@ -12,6 +12,53 @@
 # 边缘节点的缓存策略优先级更高，需在 CDN 侧确认「忽略查询串」为关闭状态，
 # 否则 ?v= 不参与缓存键，长缓存会读到旧数据。详见开发日志 2026-09-18。
 
+# ── 全站安全响应头（对所有路径生效） ──
+#
+# ## CSP：为什么这些指令是这个值（逐条都对着本项目的实际写法核过）
+#
+# · `script-src 'self'` **不带 `'unsafe-inline'`** —— 这是 CSP 的核心价值，而本站
+#   扛得住：`index.html` 与构建产物里**内联 `<script>` 为 0 个**，
+#   也**没有任何 `onclick=` 之类的内联事件处理器**（全仓实测 0 处）。
+#   一旦将来有人加内联脚本，CSP 会直接拦下并报错 —— 这正是它该起的作用。
+#
+# · `style-src` 必须带 `'unsafe-inline'` —— Vue 的 `:style` 绑定会写成内联 style
+#   属性，全仓 141 处（招募舞台坐标、地图节点、吉祥物、营地研究树等）。
+#   不放开会让这些动态定位**全部失效**。`style-src` 的风险远低于 `script-src`，
+#   主流站点普遍这么配。
+#
+# · `img-src` 必须带 `data:` 与 `blob:`：
+#     - `data:` —— 点选验证码的 32 张蛋图是 base64（`config/captchaEggs.js`）
+#       内联进 SVG 的 `<image href>`；缺了它**注册页的蛋全部空白**；
+#     - `blob:` —— 招募页 Spine 贴图走 `URL.createObjectURL(new Blob(...))`
+#       （`gachaSpinePlayer.js` / `gachaSpineCanvas2D.js`）；缺了它立绘贴图不显示。
+#
+# · `media-src 'self'` —— 招募页 BGM/音效用 `new Audio(...)`（`gachaAudio.js`）。
+#
+# · `frame-ancestors 'none'` —— 防本站被第三方 iframe 嵌套（点击劫持）。
+#   它是 `X-Frame-Options` 的现代写法，两个都写是为了兼容老浏览器。
+#
+# · `connect-src 'self'` —— 事实核对：网页端所有接口与数据都是**同域**请求
+#   （`/api/*` 由 Pages Functions 提供，数据在 `/data/**`），没有跨域 XHR。
+#
+# 🔴 **改这个头之后必须实测**，因为 CSP 的误伤特点是「不报错、只静默失效」
+#   （图不显示、音不播、样式错位）。仓库内的自测入口：
+#   `node scripts/dev/check-csp.mjs`（无头浏览器加载构建产物 +
+#   注入本文件的 CSP，逐页收集违规并截图，不需要上线就能验）。
+#
+# ⚠️ **开发环境不受此文件影响**（Vite 不读 `_headers`），所以本地 `npm run dev`
+#   看不到 CSP 行为；要验就得走上面那个脚本或 `npm run preview`。
+#
+# ⚠️ **Android 原生壳也不受此文件影响**（它加载 `https://localhost` 的包内文件）
+#   —— 这是「原生端没有 CSP 保护」，不是配置错误，如实记录。
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+
 # ── 评论 API：绝不缓存 ──
 # 这是第二道防线。第一道是 EdgeOne 控制台给 /api/* 配的「不缓存」规则
 # （规则引擎优先级高于站点加速）；不过 2026-10-01 实测本站 EdgeOne 对 JSON
@@ -20,7 +67,6 @@
 # 源站语义仍是「不许缓存」，不会静默变成可缓存。
 /api/*
   Cache-Control: no-store
-  X-Content-Type-Options: nosniff
 
 # ── 应用壳：必须每次回源校验，否则用户拿不到新版本 ──
 /index.html

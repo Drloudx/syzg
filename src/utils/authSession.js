@@ -36,7 +36,7 @@ import {
   register,
   updateMe
 } from './authApi.js'
-import { deriveVerifier, isKdfAvailable } from './passwordKdf.js'
+import { deriveVerifier, isKdfAvailable, generatePasswordSalt } from './passwordKdf.js'
 
 const STORAGE_KEY = 'myrzg:auth'
 
@@ -187,11 +187,28 @@ export async function restoreSession() {
 // ---------- 密码 → verifier ----------
 
 /**
- * 取盐 + 跑 KDF。**每一步都要现取盐**，不可缓存（见 `authApi.fetchPasswordSalt` 的说明）。
+ * 取盐 + 跑 KDF。**每一步都要现取盐**，不可缓存。
+ *
+ * 用途：**登录 / 改密码 / 换邮箱** —— 这些场景用户已经注册过，
+ * 服务端存着随机盐，取回来就能重算出同一个 `verifier`。
  */
 async function deriveFor(email, password) {
   const { salt } = await fetchPasswordSalt(email)
   return deriveVerifier(password, salt)
+}
+
+/**
+ * 注册专用：**本地随机生成盐**，再派生 verifier。
+ *
+ * 为什么注册不能走 `deriveFor`：盐是随机的，注册时服务端还没有这个用户、
+ * 也就没有盐可给。所以由**客户端生成**，把 `(salt, verifier)` 一起提交，
+ * 服务端校验格式后原样存下。之后登录就能用存下来的盐重算出同一个 verifier。
+ *
+ * ⚠️ 生成的盐必须是 64 位小写 hex —— 服务端会按这个形状校验，不符合直接拒。
+ */
+function deriveForNewAccount(password) {
+  const salt = generatePasswordSalt()
+  return deriveVerifier(password, salt).then((verifier) => ({ salt, verifier }))
 }
 
 /** 任何带令牌的调用都可能拿到 401 → 统一在这里清掉本地登录态。 */
@@ -214,8 +231,9 @@ export async function loginWithPassword({ email, password }) {
 }
 
 export async function registerAccount({ email, code, password, nick, avatar }) {
-  const verifier = await deriveFor(email, password)
-  const data = await register({ email, code, verifier, nick, avatar })
+  // 盐本地随机生成（注册时服务端还没有这个用户），与 verifier 一起提交
+  const { salt, verifier } = await deriveForNewAccount(password)
+  const data = await register({ email, code, verifier, salt, nick, avatar })
   applySession(data.token, data.user)
   return data.user
 }

@@ -153,3 +153,13 @@ export const KDF_PROTOCOL = Object.freeze({
   output: 'hex-lowercase',
   saltEncoding: SALT_ENCODING
 })
+
+/**
+ * 生成**每用户独立随机的盐**（注册时用）。
+ *
+ * 从 `authCrypto.js` 重导出，让前端只从 `passwordKdf` 取 KDF 相关能力
+ * （盐 + 派生），不必同时 import 两个模块。服务端直接用 `authCrypto` 里的同名函数。
+ *
+ * 形状：64 位小写 hex（32 字节 CSPRNG）。服务端会按这个形状校验。
+ */
+export { generatePasswordSalt } from './authCrypto.js'

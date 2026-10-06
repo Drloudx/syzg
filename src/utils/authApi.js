@@ -124,17 +124,21 @@ export function sendAuthCode({ email, purpose, captchaId, picks }) {
 /**
  * 取密码盐。
  *
- * ⚠️ **每次登录/注册/改密前都要重新取**，不要缓存 —— 已注册用户返回的是
- * 库里存的 `pw_salt`，未注册返回的是现算值（**换过邮箱的账号两者不同**）。
+ * ⚠️ **每次登录/改密前都要重新取**，不要缓存 —— 已注册用户返回的是
+ * 库里存的**随机盐**（每人不同），未注册返回的是确定性占位盐。
+ *
+ * 注意：**注册不走这里**。注册时用户还没入库、没有盐可取，
+ * 由客户端本地随机生成一个盐随注册请求提交（见 `authSession.registerAccount`）。
  */
 export function fetchPasswordSalt(email) {
   return request(`/api/auth/salt?email=${encodeURIComponent(email)}`)
 }
 
-export function register({ email, code, verifier, nick, avatar }) {
+/** 注册：`salt` 由客户端随机生成，服务端校验形状后原样存下 */
+export function register({ email, code, verifier, salt, nick, avatar }) {
   return request('/api/auth/register', {
     method: 'POST',
-    body: { email, code, verifier, nick, avatar }
+    body: { email, code, verifier, salt, nick, avatar }
   })
 }
 

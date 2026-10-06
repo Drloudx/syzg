@@ -26,7 +26,7 @@
 
 import { CAPTCHA_EGGS } from '../../src/config/captchaEggs.js'
 import { emailLookupHash } from '../../src/utils/authCrypto.js'
-import { deriveVerifier } from '../../src/utils/passwordKdf.js'
+import { deriveVerifier, generatePasswordSalt } from '../../src/utils/passwordKdf.js'
 
 /** 蛋图 base64 → 蛋 id（用来把服务端 SVG 里的图还原成"题目要哪几个"） */
 const B64_TO_ID = new Map(CAPTCHA_EGGS.map((e) => [e.b64, e.id]))
@@ -91,11 +91,17 @@ export async function createAccount(base, reader, { nick, avatar = 'at001_0', pa
   const code = reader.readCode(await emailLookupHash(email, saltSecret), 'register')
   if (!/^\d{6}$/.test(code || '')) throw new Error('没能从本地 D1 反解出验证码')
 
-  const saltRes = await api(base, 'GET', `/api/auth/salt?email=${encodeURIComponent(email)}`)
-  const verifier = await deriveVerifier(password, saltRes.json.salt)
+  /*
+   * 盐由**客户端随机生成**（2026-10-07 起），注册时随请求一起提交。
+   * 不能再去 `GET /api/auth/salt` 取 —— 未注册邮箱那时返回的是**占位盐**，
+   * 用它派生的 verifier 与存下来的随机盐对不上，注册成功但**永远登不上**。
+   * 这里必须与 `authSession.registerAccount` 的真实流程一致。
+   */
+  const salt = generatePasswordSalt()
+  const verifier = await deriveVerifier(password, salt)
 
   const reg = await api(base, 'POST', '/api/auth/register', {
-    body: { email, code, verifier, nick: finalNick, avatar }
+    body: { email, code, verifier, salt, nick: finalNick, avatar }
   })
   if (reg.status !== 200) throw new Error('注册失败: ' + reg.status + ' ' + reg.text.slice(0, 120))
 

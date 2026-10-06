@@ -39,7 +39,7 @@ import { BLOCKED_EMAIL_DOMAINS } from '../../src/config/disposableEmails.js'
 import { buildCaptcha } from '../../src/utils/authCaptcha.js'
 import {
   emailLookupHash, generateNumericCode, generateSessionToken, isDisposableEmail,
-  isPlausibleEmail, normalizeEmail, passwordSalt, pepperHash, sha256Hex, timingSafeEqualHex
+  isPlausibleEmail, normalizeEmail, placeholderPasswordSalt, pepperHash, sha256Hex, timingSafeEqualHex
 } from '../../src/utils/authCrypto.js'
 import { sendVerifyCode } from '../../src/utils/authMail.js'
 
@@ -1488,12 +1488,15 @@ async function authRequestCode(env, request, context) {
 /**
  * `GET /api/auth/salt` —— 取密码盐。
  *
- * 🔴 **已注册用户返回库里存的 `pw_salt`，未注册才现算** —— 这一点是必须的：
- * 盐本来是"按邮箱派生"的，而换邮箱会换掉邮箱，现算就会得到与注册时不同的盐，
- * 用户**换完邮箱再也登不上**。
+ * ## 盐现在**每用户独立随机**（2026-10-07 改成对齐主流）
  *
- * 对外**不泄漏是否注册过**：注册时存的就是那个现算值，所以两种情况返回的完全一样；
- * 只有"换过邮箱"的账号才与现算值不同，而那种差异攻击者无从判断。
+ * 已注册：返回库里存的 `pw_salt`（注册时客户端随机生成、服务端原样存下）。
+ * 未注册：返回一个**确定性占位盐**（`placeholderPasswordSalt`），让登录流程
+ * 照常走到"邮箱或密码不对"，而不是在取盐这一步就抛错。
+ *
+ * 🔴 顺带说明：**返回库里的值这一步是必须的**，不能"每次按邮箱现算"。
+ * 盐是注册时随机的，现算出来的与注册时那个不同 → 用户**再也登不上**。
+ * （老实现是派生盐，现算等于存下来的值，所以没这个问题；改随机后这条就成了硬约束。）
  */
 async function authSalt(env, url) {
   const email = normalizeEmail(url.searchParams.get('email'))
@@ -1503,7 +1506,8 @@ async function authSalt(env, url) {
   const row = await env.DB.prepare(`SELECT pw_salt FROM users WHERE email_hash = ?1`)
     .bind(emailHash)
     .first()
-  const salt = row?.pw_salt || (await passwordSalt(email, env.SALT_SECRET))
+  // 已注册用库里的随机盐；未注册给确定性占位盐（见 placeholderPasswordSalt 注释）
+  const salt = row?.pw_salt || (await placeholderPasswordSalt(email, env.SALT_SECRET))
 
   return json({ ok: true, salt, iters: PBKDF2_ITERS, algo: 'client-pbkdf2-sha256' })
 }
@@ -1517,10 +1521,21 @@ async function authRegister(env, request, ts) {
   const nick = sanitize(body.nick, NICK_MAX)
   const avatar = AVATAR_ID_RE.test(String(body.avatar || '')) ? String(body.avatar) : DEFAULT_AVATAR
   const verifier = String(body.verifier || '')
+  /*
+   * 盐由**客户端随机生成**并随注册请求提交（2026-10-07 起）。
+   *
+   * 为什么让客户端生成：派生 `verifier` 必须先有盐，而注册时服务端还没见过这个用户。
+   * 服务端只做两件事：**校验格式**（64 位小写 hex）与**原样存下**。
+   *
+   * 🔴 必须校验：盐会参与 PBKDF2，塞进任意长的字符串会变成一道免费的
+   *    CPU/存储放大口子；形状不对就直接拒。
+   */
+  const pwSalt = String(body.salt || '')
 
   if (!isPlausibleEmail(email)) return bad(AERR.emailFormat, 400)
   if (nick.length < NICK_MIN) return bad(AERR.nickShort, 400)
   if (!/^[a-f0-9]{64}$/.test(verifier)) return bad(AERR.badRequest, 400)
+  if (!/^[a-f0-9]{64}$/.test(pwSalt)) return bad(AERR.badRequest, 400)
 
   const emailHash = await emailLookupHash(email, env.SALT_SECRET)
 
@@ -1538,9 +1553,7 @@ async function authRegister(env, request, ts) {
   if (nickTaken) return bad(AERR.nickTaken, 409)
 
   const verifierHash = await pepperHash(verifier, env.AUTH_PEPPER)
-  // 存下客户端**实际用的那个盐**（未注册时 /api/auth/salt 现算出来的值）。
-  // 存下来之后，将来换邮箱就不会让密码失效 —— 见 authSalt 的说明。
-  const pwSalt = await passwordSalt(email, env.SALT_SECRET)
+  // 盐已在上面校验过格式，这里直接存客户端提交的那个（每用户独立随机）
   try {
     // public_no = 9999 + id 的等价写法：MAX+1，起始 10000。UNIQUE 兜住并发撞号。
     await env.DB.prepare(

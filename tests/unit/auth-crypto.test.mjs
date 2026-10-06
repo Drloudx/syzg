@@ -5,12 +5,13 @@ import test from 'node:test'
 import {
   emailLookupHash,
   generateNumericCode,
+  generatePasswordSalt,
   generateSessionToken,
   hmacHex,
   isDisposableEmail,
   isPlausibleEmail,
   normalizeEmail,
-  passwordSalt,
+  placeholderPasswordSalt,
   pepperHash,
   sha256Hex,
   timingSafeEqualHex,
@@ -20,11 +21,12 @@ import {
 /**
  * 账号体系密码学工具的守护测试。
  *
- * 重点守三件事：
+ * 重点守四件事：
  * 1. **与 Node 的 OpenSSL 实现一致** —— 这些哈希/ HMAC 是两端协议的一部分，
  *    实现跑偏会让"注册成功、之后永远登不上"；
- * 2. **域分隔确实生效** —— 公开的盐推不出入库的 email_hash（见下面专门的用例）；
- * 3. **随机数的质量** —— 验证码与会话令牌不能用可预测的伪随机。
+ * 2. **域分隔确实生效** —— 公开接口暴露的值推不出入库的 email_hash；
+ * 3. **随机数的质量** —— 验证码、会话令牌与**密码盐**不能用可预测的伪随机；
+ * 4. **随机盐的形状与稳定性** —— 盐是 64 位 hex，占位盐对同一邮箱稳定。
  */
 
 const SECRET = 'unit-test-salt-secret-0123456789'
@@ -60,7 +62,7 @@ test('🔴 空密钥必须抛可读错误（真实场景 = 环境变量没配）
   // 这一条守的是"fail-closed"：没配 pepper 时**必须报错**，
   // 绝不能静默算出一个看起来正常的哈希存进库。
   await assert.rejects(() => emailLookupHash(EMAIL, ''), /密钥为空/)
-  await assert.rejects(() => passwordSalt(EMAIL, ''), /密钥为空/)
+  await assert.rejects(() => placeholderPasswordSalt(EMAIL, ''), /密钥为空/)
   await assert.rejects(() => pepperHash('x', ''), /密钥为空/)
 })
 
@@ -70,58 +72,90 @@ test('sha256Hex 与 Node 的 createHash 逐字节一致', async () => {
   }
 })
 
-test('emailLookupHash / passwordSalt / pepperHash 都与 Node 一致', async () => {
+test('emailLookupHash / placeholderPasswordSalt / pepperHash 都与 Node 一致', async () => {
   assert.equal(await emailLookupHash(EMAIL, SECRET), nodeHmac(SECRET, 'lookup:player@example.com'))
-  assert.equal(await passwordSalt(EMAIL, SECRET), nodeHmac(SECRET, 'salt:player@example.com'))
+  assert.equal(await placeholderPasswordSalt(EMAIL, SECRET), nodeHmac(SECRET, 'placeholder:player@example.com'))
   assert.equal(await pepperHash('abc123', PEPPER), nodeHmac(PEPPER, 'abc123'))
 })
 
 // ============================================================
-// 二、域分隔（这条守的是"公开的盐推不出入库哈希"）
+// 二、密码盐：每用户独立随机（对齐主流）
 // ============================================================
+
+test('generatePasswordSalt 是 64 位小写 hex，且每次不同', () => {
+  const seen = new Set()
+  for (let i = 0; i < 300; i++) {
+    const s = generatePasswordSalt()
+    assert.match(s, /^[0-9a-f]{64}$/, `第 ${i} 次得到 ${s}`)
+    assert.equal(seen.has(s), false, '盐出现重复 —— 随机源有问题')
+    seen.add(s)
+  }
+})
 
 test('🔴 盐与 email_hash 必须不同（域分隔生效）', async () => {
   const lookup = await emailLookupHash(EMAIL, SECRET)
-  const salt = await passwordSalt(EMAIL, SECRET)
+  const salt = await placeholderPasswordSalt(EMAIL, SECRET)
+  const random = generatePasswordSalt()
 
-  assert.notEqual(lookup, salt, '盐与 email_hash 相等 —— 域分隔没生效，公开接口会泄漏 email_hash')
+  assert.notEqual(lookup, salt, '占位盐与 email_hash 相等 —— 域分隔没生效')
+  assert.notEqual(lookup, random)
+  assert.notEqual(salt, random)
 
-  // 再证一层：裸 HMAC(secret, email)（无前缀）与两者都不同
+  // 裸 HMAC(secret, email)（无前缀）与两者都不同
   const naked = nodeHmac(SECRET, 'player@example.com')
   assert.notEqual(lookup, naked)
   assert.notEqual(salt, naked)
 
-  // 而且盐确实等于"带 salt: 前缀"的那个
-  assert.equal(salt, nodeHmac(SECRET, 'salt:player@example.com'))
-  assert.equal(lookup, nodeHmac(SECRET, 'lookup:player@example.com'))
+  assert.equal(salt, nodeHmac(SECRET, 'placeholder:player@example.com'))
 })
 
-test('同一邮箱大小写/空格不同，得到的哈希与盐相同（规范化生效）', async () => {
-  const variants = ['Player@Example.COM', '  player@example.com  ', 'PLAYER@EXAMPLE.COM']
-  const hashes = await Promise.all(variants.map((e) => emailLookupHash(e, SECRET)))
-  const salts = await Promise.all(variants.map((e) => passwordSalt(e, SECRET)))
-  assert.equal(new Set(hashes).size, 1)
-  assert.equal(new Set(salts).size, 1)
+test('占位盐对同一邮箱稳定、不同邮箱不同（否则流程会抖）', async () => {
+  // 稳定性是**流程要求**：登录页取两次盐必须拿到同一个值，
+  // 否则同一密码会派生两次不同的 verifier。
+  const a1 = await placeholderPasswordSalt('a@x.com', SECRET)
+  const a2 = await placeholderPasswordSalt('  A@X.COM  ', SECRET)
+  const b = await placeholderPasswordSalt('b@x.com', SECRET)
+  assert.equal(a1, a2, '同一邮箱（含大小写/空格差异）必须得到相同的占位盐')
+  assert.notEqual(a1, b)
 })
 
-test('不同邮箱得到不同哈希与盐', async () => {
-  const a = await emailLookupHash('a@x.com', SECRET)
-  const b = await emailLookupHash('b@x.com', SECRET)
-  assert.notEqual(a, b)
-})
-
-test('换 SALT_SECRET 会让哈希与盐都变（这正是"绝不能改"的原因）', async () => {
+test('换 SALT_SECRET 会让 email_hash 与占位盐都变（这正是"绝不能改"的原因）', async () => {
   const h1 = await emailLookupHash(EMAIL, SECRET)
   const h2 = await emailLookupHash(EMAIL, SECRET + '-changed')
-  const s1 = await passwordSalt(EMAIL, SECRET)
-  const s2 = await passwordSalt(EMAIL, SECRET + '-changed')
+  const s1 = await placeholderPasswordSalt(EMAIL, SECRET)
+  const s2 = await placeholderPasswordSalt(EMAIL, SECRET + '-changed')
   assert.notEqual(h1, h2)
   assert.notEqual(s1, s2)
+})
+
+test('🔴 随机盐不受 SALT_SECRET 影响（它与密钥体系无关）', async () => {
+  /*
+   * 这一点以前不成立（盐是 HMAC(SALT_SECRET, ...) 派生的），现在必须成立：
+   * 随机盐由客户端 CSPRNG 生成、随注册请求提交，服务端只校验形状并存下。
+   * 若它仍随 SALT_SECRET 变化，说明"随机生成"没真正生效、又回到了派生。
+   */
+  const s = generatePasswordSalt()
+  const fakeSecretA = await placeholderPasswordSalt(EMAIL, 'a')
+  const fakeSecretB = await placeholderPasswordSalt(EMAIL, 'b')
+  assert.notEqual(fakeSecretA, fakeSecretB, '占位盐应当随 secret 变（它是派生的）')
+  assert.notEqual(s, fakeSecretA, '随机盐不应等于任何派生值')
 })
 
 // ============================================================
 // 三、邮箱规范化与格式校验
 // ============================================================
+
+test('同一邮箱大小写/空格不同，得到的 email_hash 相同（规范化生效）', async () => {
+  const variants = ['Player@Example.COM', '  player@example.com  ', 'PLAYER@EXAMPLE.COM']
+  const hashes = await Promise.all(variants.map((e) => emailLookupHash(e, SECRET)))
+  assert.equal(new Set(hashes).size, 1)
+})
+
+test('不同邮箱得到不同 email_hash', async () => {
+  const a = await emailLookupHash('a@x.com', SECRET)
+  const b = await emailLookupHash('b@x.com', SECRET)
+  assert.notEqual(a, b)
+})
 
 test('normalizeEmail 只做小写与去空格，不做服务商特有规则', () => {
   assert.equal(normalizeEmail('  A@B.COM '), 'a@b.com')
