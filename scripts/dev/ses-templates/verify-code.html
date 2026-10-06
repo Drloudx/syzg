@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>深渊大书院 验证码</title>
+</head>
+<!--
+  腾讯云 SES 验证码模板（上传到 控制台 → 发信模板 → 新建 → 模板类型选「HTML 富文本」）
+
+  三条硬约束，改这个文件时别破坏：
+    1. **只能用内联 style**，不能引外部 CSS、不能引外链图片
+       （官方原文："如果 HTML 不要包含外部文件的 CSS"；外链图片还会被邮箱默认拦截、拖累送达率）
+    2. 变量必须写成 {{变量名}} 形式，与发送时的 TemplateData JSON key 一一对应
+       —— 这里用了 {{code}} 与 {{minutes}}
+    3. **不能出现微信 / QQ / 二维码 / 群号**（官方「允许发送的邮件类型」明确禁止社交类信息），
+       所以本模板刻意不放任何图片和联系方式
+-->
+<body style="margin:0;padding:0;background-color:#f6f3eb;-webkit-font-smoothing:antialiased;">
+  <!-- 最外层包裹表格：温润羊皮浅米底色，在主流邮箱（QQ/163/Gmail）下过渡自然不暗沉 -->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f6f3eb;padding:36px 16px;">
+    <tr>
+      <td align="center">
+        <!-- 主卡片：严格复刻项目 UiModal 规范（外框描边 + 圆角 + 深色木质标题条 + 羊皮纸阅读区） -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:480px;background-color:#fbf7ee;border:2px solid #8f7351;border-radius:8px;overflow:hidden;box-shadow:0 6px 20px rgba(43,31,21,0.12);">
+          
+          <!-- ① 原木顶栏（复刻 UiModal.vue 的木质标题条，压住整体视觉重心） -->
+          <tr>
+            <td style="padding:14px 20px;background:linear-gradient(180deg, #463424, #2b1f15);background-color:#2b1f15;border-bottom:3px solid #8f7351;text-align:center;">
+              <span style="font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial,sans-serif;font-size:17px;font-weight:bold;color:#dfceb3;letter-spacing:2px;text-shadow:0 1px 2px rgba(0,0,0,0.6);">
+                深渊大书院
+              </span>
+            </td>
+          </tr>
+
+          <!-- ② 羊皮纸正文区 -->
+          <tr>
+            <td style="padding:28px 28px 16px;font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.7;color:#3e2a14;">
+              你正在进行邮箱验证，验证码是：
+            </td>
+          </tr>
+
+          <!-- ③ 验证码核心框（复刻项目 --input-bg: #f3ead5 与等宽大字距） -->
+          <tr>
+            <td align="center" style="padding:4px 28px 24px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background-color:#f3ead5;border:1px solid #8f7351;border-radius:6px;">
+                <tr>
+                  <td style="padding:14px 32px;font-family:'SF Mono',Consolas,'Roboto Mono','Courier New',monospace,'PingFang SC','Microsoft YaHei';font-size:32px;font-weight:bold;letter-spacing:10px;color:#2b1f15;text-align:center;">
+                    {{code}}
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ④ 提示与有效期（复刻项目 --text-muted: #6b5134 与弱化实线分界） -->
+          <tr>
+            <td style="padding:16px 28px 28px;border-top:1px solid rgba(143,115,81,0.25);font-family:'PingFang SC','Microsoft YaHei','Hiragino Sans GB',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.8;color:#6b5134;">
+              验证码 {{minutes}} 分钟内有效，请勿转发给他人。<br>
+              如非本人操作请忽略。
+            </td>
+          </tr>
+
+        </table>
+
+        <!-- 外部注脚：弱化文本（--text-faint: #8a6d4d） -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:480px;">
+          <tr>
+            <td style="padding:14px 8px 0;font-family:'PingFang SC','Microsoft YaHei',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#8a6d4d;text-align:center;">
+              本邮件由系统自动发送，请勿直接回复。
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

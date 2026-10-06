@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { enableDarkMode } from '../helpers/theme.mjs'
 
 test('game mail skin loads and selection, filters and narrow reading remain usable', async ({ page }, testInfo) => {
   const errors = []
@@ -65,7 +66,7 @@ test('game mail skin loads and selection, filters and narrow reading remain usab
   expect(body.width).toBeGreaterThan(170)
   expect(body.height).toBeGreaterThan(150)
   await reader.screenshot({ path: testInfo.outputPath('mail-game-light.png') })
-  await page.getByTitle('切换暗色模式', { exact: true }).click()
+  await enableDarkMode(page)
   await page.mouse.move(0, 0)
   const darkInk = await subject.evaluate(el => getComputedStyle(el).color)
   await page.locator('.mail-title.active').hover()

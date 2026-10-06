@@ -44,7 +44,13 @@ test('appraisal shows real currency cost and probabilities without a separate pa
   await expect(cost.getByText('×100', { exact: true })).toBeVisible()
   const groups = modal.locator('.acquisition-group')
   await expect(groups.locator('.ui-reward-card')).toHaveCount(12)
-  await expect(groups.getByText('单次抽取 23.50%', { exact: true })).toHaveCount(4)
+  /*
+   * ⚠️ 文案是「概率 23.50%」，不是「单次抽取 23.50%」——
+   * 后者是旧写法，页面上已经改掉（实测从渲染出的 DOM 里抄的是「概率 23.50%」）。
+   * 第一版照抄旧文案，于是计数恒为 0，看起来像"概率没渲染出来"，
+   * 其实只是字符串对不上。
+   */
+  await expect(groups.getByText('概率 23.50%', { exact: true })).toHaveCount(4)
   await cost.scrollIntoViewIfNeeded()
   await page.screenshot({ path: testInfo.outputPath('appraisal.png') })
   const layout = await modal.evaluate(element => ({ width: element.clientWidth, content: element.scrollWidth }))

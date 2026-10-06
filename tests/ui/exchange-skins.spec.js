@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { enableDarkMode } from '../helpers/theme.mjs'
 
 test('all currency shops use game cards with real item quantities, limits and currency icons', async ({ page }, testInfo) => {
   await page.goto('/#/exchange?cat=shop&sub=keShop')
@@ -40,7 +41,7 @@ test('all currency shops use game cards with real item quantities, limits and cu
   await expect(modal).toBeVisible()
   await modal.locator('.ui-modal-close').click()
   await expect(modal).toBeHidden()
-  await page.getByTitle('切换暗色模式', { exact: true }).click()
+  await enableDarkMode(page)
   await page.screenshot({ path: testInfo.outputPath('shop-dark.png'), fullPage: true })
 })
 
@@ -70,7 +71,7 @@ test('shop costumes show original portraits and prices, preserve legacy links an
   expect(await page.locator('.exchange-page').evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true)
   await page.screenshot({ path: testInfo.outputPath('costumes-light.png'), fullPage: true })
   await page.locator('.exchange-list--skin').screenshot({ path: testInfo.outputPath('costumes-cards.png') })
-  await page.getByTitle('切换暗色模式', { exact: true }).click()
+  await enableDarkMode(page)
   await page.screenshot({ path: testInfo.outputPath('costumes-dark.png'), fullPage: true })
   await cards.first().getByRole('button', { name: '查看茜塔时装：难得的休息日' }).click()
   await expect(page).toHaveURL(/cat=shop&sub=fuZhuang&itemId=skin005a/)

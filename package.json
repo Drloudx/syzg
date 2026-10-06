@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:api": "wrangler pages dev functions --d1 DB=5f0d4c37-107f-4811-bc5e-768f73c51a3a --port 8788 --ip 127.0.0.1",
+    "dev:api": "node scripts/dev/check-port.mjs 8788 && wrangler pages dev functions --d1 DB=5f0d4c37-107f-4811-bc5e-768f73c51a3a --port 8788 --ip 127.0.0.1",
     "skins:export": "node scripts/dev/export-skin-models.mjs",
     "fonts:subset": "node scripts/dev/subset-fonts.mjs",
     "cdn:check": "node scripts/dev/check-cdn-cache-headers.mjs",
@@ -14,9 +14,12 @@
     "data:monsters:tower": "node scripts/dev/update-monster-tower-usage.mjs",
     "build": "npm run data:build && vite build",
     "search:update": "node scripts/parse/search.mjs",
+    "test:unit": "node --test \"tests/unit/**/*.test.mjs\"",
     "test:ui": "playwright test",
     "verify": "node scripts/dev/verify.mjs",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:api": "node --no-warnings tests/api/auth-flow.mjs && node --no-warnings tests/api/comments-auth.mjs",
+    "test:migration": "node --no-warnings tests/migration/rehearse.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.4.2",

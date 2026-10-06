@@ -29,6 +29,19 @@
 
 import { matchReview } from '../../src/config/commentBlocklist.js'
 import { MAX_BODY_DISPLAY, MAX_BODY_RAW, countEmoticonDisplayChars } from '../../src/config/emoticons.js'
+import {
+  CAPTCHA_TTL_MS, CODE_COOLDOWN_SEC, CODE_DIGITS, CODE_EMAIL_DAILY_MAX,
+  CODE_IP_DAILY_MAX, CODE_IP_HOURLY_MAX, CODE_MAX_ACTIVE, CODE_MAX_ATTEMPTS,
+  CODE_TTL_MS, DEFAULT_AVATAR, LOGIN_MAX_FAILS, NICK_MAX, NICK_MIN,
+  PASSWORD_MIN, PBKDF2_ITERS, SESSION_TTL_MS
+} from '../../src/config/auth.js'
+import { BLOCKED_EMAIL_DOMAINS } from '../../src/config/disposableEmails.js'
+import { buildCaptcha } from '../../src/utils/authCaptcha.js'
+import {
+  emailLookupHash, generateNumericCode, generateSessionToken, isDisposableEmail,
+  isPlausibleEmail, normalizeEmail, passwordSalt, pepperHash, sha256Hex, timingSafeEqualHex
+} from '../../src/utils/authCrypto.js'
+import { sendVerifyCode } from '../../src/utils/authMail.js'
 
 /**
  * 正文上限 = **显示字数** 200（原为 1000，用户明确要求）。
@@ -43,7 +56,6 @@ import { MAX_BODY_DISPLAY, MAX_BODY_RAW, countEmoticonDisplayChars } from '../..
  * 前端 `CommentComposer.vue` 的计数器与 `canSubmit` 必须与此一致。
  */
 const MAX_BODY = MAX_BODY_DISPLAY
-const MAX_NICK = 24
 const MAX_LIMIT = 50
 
 /**
@@ -86,12 +98,11 @@ const PAGE_KEY_RE =
  */
 const AVATAR_ID_RE = /^[A-Za-z0-9_]{1,40}$/
 
-/**
- * 自删令牌的形状：`randomToken()` 生成的 32 字节十六进制。
- * 用于 `/api/my-comments` 的入参预筛——不校验形状的话，
- * 攻击者可以用超长/异常字符串批量试探（虽然最终仍要过哈希比对）。
+/*
+ * `DELETE_TOKEN_RE` 与 `randomToken()` 已随**浏览器自删令牌**机制一并删除
+ * （2026-10-05 账号体系）：评论归属改看 `comments.user_id`，
+ * 不再需要"没账号时怎么证明这条是你发的"那套手法。
  */
-const DELETE_TOKEN_RE = /^[a-f0-9]{64}$/
 
 /**
  * 对外错误文案契约。**这里是给普通用户看的字，不是给开发者看的日志。**
@@ -137,11 +148,11 @@ function bad(message, status = 400) {
   return json({ ok: false, error: message }, status)
 }
 
-/** 全部使用 WebCrypto（原生、毫秒级）。不可用 bcrypt —— 免费版 CPU 只有 10ms */
-async function sha256Hex(text) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
-  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('')
-}
+/*
+ * `sha256Hex` 现在从 `src/utils/authCrypto.js` 统一导入 —— 那里有一份**与 Node 的
+ * OpenSSL 逐字节比对过**的实现和单测。原先这里也有一份本地副本，
+ * 两份相同实现并存是"改了一处忘另一处"的经典来源，所以合并掉了。
+ */
 
 /** 恒定时间比较：避免用 === 比较令牌时泄漏前缀匹配长度 */
 function safeEqual(a, b) {
@@ -149,12 +160,6 @@ function safeEqual(a, b) {
   let diff = 0
   for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i)
   return diff === 0
-}
-
-function randomToken() {
-  const bytes = new Uint8Array(32)
-  crypto.getRandomValues(bytes)
-  return [...bytes].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
 function nowSec() {
@@ -252,7 +257,19 @@ async function isAdmin(env, request) {
   return safeEqual(provided, expected)
 }
 
-function toPublic(row) {
+/**
+ * 单条评论的对外形状。
+ *
+ * @param {object} row
+ * @param {number|null} myUserId
+ *   当前登录用户的**内部 id**（未登录传 null）。
+ *
+ *   🔴 **只暴露"是不是我发的"这个布尔，不暴露 `user_id` 本身。**
+ *   前端要判断"这条能不能删"就必须知道归属，但把所有人的内部自增 id
+ *   铺在公开列表里没有任何必要 —— 那等于给出了用户注册顺序与活跃度。
+ *   所以在这里就地折成一个 `mine` 布尔。
+ */
+function toPublic(row, myUserId = null) {
   return {
     id: row.id,
     nick: row.nick,
@@ -261,6 +278,8 @@ function toPublic(row) {
     body: row.body,
     createdAt: row.created_at,
     status: row.status,
+    // 是不是当前登录用户发的（决定界面上显不显示「删除」）
+    mine: Boolean(myUserId && row.user_id === myUserId),
     pageKey: row.page_key,
     // 评论所在页面的人话名字（如「银币」）。由发表方连同评论一起存下来，
     // 这样管理端/账号弹窗不必为每条评论反查物品表，也不会因为缺产物而显示不出名字。
@@ -298,7 +317,7 @@ function toPublic(row) {
  * 为什么楼中楼要在服务端分页：平铺分页的一页里会有"父评论不在这页"的回复，
  * 客户端拼不出完整的楼；只按顶层评论分页，才能保证每层楼都是完整的。
  */
-async function listComments(env, url) {
+async function listComments(env, url, myUserId = null) {
   const pageKey = url.searchParams.get('page') || ''
   if (!PAGE_KEY_RE.test(pageKey)) return bad(ERR.badRequest)
 
@@ -307,10 +326,14 @@ async function listComments(env, url) {
   const cursor = Number.parseInt(url.searchParams.get('cursor') || '', 10)
   const hasCursor = Number.isFinite(cursor)
 
-  if (url.searchParams.get('nested') === '1') return listNestedComments(env, pageKey, { limit, cursor, hasCursor })
+  if (url.searchParams.get('nested') === '1') {
+    return listNestedComments(env, pageKey, { limit, cursor, hasCursor }, myUserId)
+  }
 
   const threadId = Number.parseInt(url.searchParams.get('parent') || '', 10)
-  if (Number.isFinite(threadId) && threadId > 0) return listThreadReplies(env, pageKey, threadId, limit)
+  if (Number.isFinite(threadId) && threadId > 0) {
+    return listThreadReplies(env, pageKey, threadId, limit, myUserId)
+  }
 
   /*
    * 多取 1 条判断 hasMore，避免 COUNT(*)（全表扫描，D1 按行计费）。
@@ -320,11 +343,11 @@ async function listComments(env, url) {
    * 在免费额度内可接受；`AND p.status = 1` 保证**已隐藏/已删除的父评论不会从这里泄漏内容**。
    */
   const sql = hasCursor
-    ? `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+    ? `SELECT c.id, c.user_id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
               c.parent_id, p.nick AS parent_nick, p.body AS parent_body
        FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
        WHERE c.page_key = ?1 AND c.status = 1 AND c.id < ?2 ORDER BY c.id DESC LIMIT ?3`
-    : `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+    : `SELECT c.id, c.user_id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
               c.parent_id, p.nick AS parent_nick, p.body AS parent_body
        FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
        WHERE c.page_key = ?1 AND c.status = 1 ORDER BY c.id DESC LIMIT ?2`
@@ -340,7 +363,7 @@ async function listComments(env, url) {
 
   return json({
     ok: true,
-    comments: page.map(toPublic),
+    comments: page.map((r) => toPublic(r, myUserId)),
     nextCursor: hasMore ? page[page.length - 1].id : null,
     hasMore
   })
@@ -361,16 +384,16 @@ const NESTED_PREVIEW_REPLIES = 3
  * （不只是要显示的 3 条）。本站评论量小，用读行换往返划算；真到量大时改成
  * `ROW_NUMBER() OVER (PARTITION BY ...)` 限定每楼 3 条即可，API 形状不用变。
  */
-async function listNestedComments(env, pageKey, { limit, cursor, hasCursor }) {
+async function listNestedComments(env, pageKey, { limit, cursor, hasCursor }, myUserId = null) {
   const rootSql = hasCursor
-    ? `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+    ? `SELECT c.id, c.user_id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
               c.parent_id, p.nick AS parent_nick, p.body AS parent_body
        FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
        WHERE c.page_key = ?1 AND c.status = 1
          AND (c.parent_id IS NULL OR NOT EXISTS (SELECT 1 FROM comments q WHERE q.id = c.parent_id AND q.status = 1))
          AND c.id < ?2
        ORDER BY c.id DESC LIMIT ?3`
-    : `SELECT c.id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
+    : `SELECT c.id, c.user_id, c.nick, c.avatar, c.body, c.created_at, c.status, c.page_key, c.page_label,
               c.parent_id, p.nick AS parent_nick, p.body AS parent_body
        FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
        WHERE c.page_key = ?1 AND c.status = 1
@@ -385,7 +408,7 @@ async function listNestedComments(env, pageKey, { limit, cursor, hasCursor }) {
   const hasMore = rows.length > limit
   const page = hasMore ? rows.slice(0, limit) : rows
 
-  const comments = page.map(toPublic)
+  const comments = page.map((r) => toPublic(r, myUserId))
   if (!comments.length) return json({ ok: true, comments, nextCursor: null, hasMore: false })
 
   const placeholders = comments.map((_, i) => `?${i + 1}`).join(', ')
@@ -404,7 +427,7 @@ async function listNestedComments(env, pageKey, { limit, cursor, hasCursor }) {
   const byRoot = new Map()
   for (const row of replyRows || []) {
     const list = byRoot.get(row.root_id) || []
-    list.push(toPublic(row))
+    list.push(toPublic(row, myUserId))
     byRoot.set(row.root_id, list)
   }
 
@@ -425,7 +448,7 @@ async function listNestedComments(env, pageKey, { limit, cursor, hasCursor }) {
 }
 
 /** 展开一串回复：某个顶层评论下的全部回复（旧的在前，与楼中楼里的顺序一致） */
-async function listThreadReplies(env, pageKey, threadId, limit) {
+async function listThreadReplies(env, pageKey, threadId, limit, myUserId = null) {
   const { results } = await env.DB.prepare(
     `SELECT r.id, r.nick, r.avatar, r.body, r.created_at, r.status, r.page_key, r.page_label,
             r.parent_id, COALESCE(p.parent_id, r.parent_id) AS root_id,
@@ -445,7 +468,18 @@ async function listThreadReplies(env, pageKey, threadId, limit) {
 }
 
 /** POST /api/comments —— 发评论，返回一次性自删令牌 */
-async function createComment(env, request) {
+async function createComment(env, request, ts) {
+  /*
+   * 🔴 **发表评论必须登录**（已定决策：「读不要求登录，写要求」）。
+   *
+   * 从 Bearer 令牌解析出账号，**昵称与头像一律由服务端接管** ——
+   * 不再接受客户端传来的 `nick` / `avatar`。这不是洁癖：
+   * 本机身份时代任何人都能把昵称设成别人的名字，那是当时最大的问题；
+   * 现在昵称全站唯一且经过邮箱验证，发言身份才真正可信。
+   */
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
   let payload
   try {
     payload = await request.json()
@@ -459,7 +493,15 @@ async function createComment(env, request) {
   const pageKey = String(payload?.page || '')
   if (!PAGE_KEY_RE.test(pageKey)) return bad(ERR.badRequest)
 
-  const nick = sanitize(payload?.nick, MAX_NICK)
+  /*
+   * 昵称与头像**取自账号，不看客户端传的是什么**。
+   *
+   * 评论表里存的仍是**快照**（发表当时的昵称/头像），不是每次读都 JOIN 用户表：
+   * 用户后来改名，历史评论保持原样 —— 这与 B 站/微博的观感一致，
+   * 也避免给每次列表查询都加一次关联。
+   */
+  const nick = session.row.nick
+  const avatar = session.row.avatar || null
   /*
    * 原始长度闸门放在 sanitize **之前**：`sanitize()` 结尾是 `.slice(0, maxLen)`，
    * 超长会被**静默砍掉**——若先截断再校验，被砍断的可能正好是一个表情 token
@@ -472,7 +514,6 @@ async function createComment(env, request) {
     return bad(`评论最多 ${MAX_BODY} 字，请精简后再发`)
   }
   const body = sanitize(payload?.body, MAX_BODY_RAW)
-  if (!nick) return bad(ERR.needNick)
   if (!body) return bad(ERR.emptyBody)
 
   /*
@@ -484,10 +525,6 @@ async function createComment(env, request) {
     return bad(`评论最多 ${MAX_BODY} 字，请精简后再发`)
   }
 
-  // 头像 ID：格式不合法就当没设置（回退昵称首字），不因此拒绝整条评论
-  const rawAvatar = String(payload?.avatar || '')
-  const avatar = AVATAR_ID_RE.test(rawAvatar) ? rawAvatar : null
-
   // 评论所在页面的人话名字（如「银币」）。由前端用它手上已有的业务数据传上来——
   // 服务端读不到物品表，事后反查还得依赖产物存在。只做长度与去控制字符处理。
   const pageLabel = sanitize(payload?.pageLabel, 40)
@@ -495,7 +532,6 @@ async function createComment(env, request) {
   const ip = clientIp(request)
   const salt = env.IP_HASH_SALT || 'myrzg-default-salt'
   const ipHash = await sha256Hex(`${ip}|${salt}`)
-  const ts = nowSec()
 
   // 2) 限流（放在人机校验前：先挡高频，省一次外部 fetch）
   const limited = await checkRateLimit(env, ipHash, ts)
@@ -535,20 +571,23 @@ async function createComment(env, request) {
     if (!parent) parentId = null
   }
 
-  // 6) 自删令牌：只把哈希入库，明文只在此次响应里给浏览器一次
-  const deleteToken = randomToken()
-  const tokenHash = await sha256Hex(deleteToken)
-
   const uaHash = await sha256Hex(String(request.headers.get('user-agent') || '').slice(0, 200))
 
+  /*
+   * 写入。两处相对旧版的改动：
+   *   - 新增 `user_id`：评论从此挂在账号上，「我的评论」「谁回复了我」都靠它；
+   *   - **不再写 `token_hash`**：浏览器自删令牌机制随本机身份一起退役
+   *     （列保留不用，SQLite 删列代价高且留着无害）。
+   */
   const inserted = await env.DB.prepare(
-    `INSERT INTO comments (page_key, parent_id, nick, avatar, body, status, created_at, ip_hash, ua_hash, token_hash, review_reason, page_label)
+    `INSERT INTO comments (page_key, parent_id, user_id, nick, avatar, body, status, created_at, ip_hash, ua_hash, review_reason, page_label)
      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)
      RETURNING id, created_at`
   )
     .bind(
       pageKey,
       parentId,
+      session.row.id,
       nick,
       avatar,
       body,
@@ -556,7 +595,6 @@ async function createComment(env, request) {
       ts,
       ipHash,
       uaHash,
-      tokenHash,
       needsReview ? reviewHits.join(',') : null,
       pageLabel || null
     )
@@ -578,6 +616,8 @@ async function createComment(env, request) {
         body,
         createdAt: inserted.created_at,
         status,
+        // 自己刚发的，当然是自己的
+        mine: true,
         pageKey,
         pageLabel: pageLabel || null,
         /*
@@ -587,8 +627,6 @@ async function createComment(env, request) {
         parentId,
         replyTo: parent ? { id: parent.id, nick: parent.nick, body: parent.body } : null
       },
-      // 前端存 localStorage，用于"删除我的评论"。明文只出现这一次
-      deleteToken,
       pending: status === 0,
       notice: status === 0 ? '评论已提交，将尽快审核后显示' : ''
     },
@@ -596,8 +634,18 @@ async function createComment(env, request) {
   )
 }
 
-/** DELETE /api/comments —— 凭浏览器令牌删自己的评论 */
-async function deleteOwnComment(env, request) {
+/**
+ * DELETE /api/comments —— 删自己发的评论。
+ *
+ * 归属判据从"浏览器自删令牌"换成了 **`comments.user_id`**：
+ * 令牌机制随本机身份退役（它解决的是"没账号时怎么证明这条是你发的"，
+ * 而那个问题在有了账号之后就不存在了），而且令牌只能删**同一台浏览器**发的评论 ——
+ * 换设备就删不掉，这正是用户当初抱怨的点。
+ */
+async function deleteOwnComment(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
   let payload
   try {
     payload = await request.json()
@@ -606,23 +654,17 @@ async function deleteOwnComment(env, request) {
   }
 
   const id = Number.parseInt(payload?.id, 10)
-  const token = String(payload?.token || '')
-  if (!Number.isFinite(id) || !token) return bad(ERR.badRequest)
+  if (!Number.isFinite(id)) return bad(ERR.badRequest)
 
-  const row = await env.DB.prepare(`SELECT id, token_hash, status FROM comments WHERE id = ?1`)
-    .bind(id)
-    .first()
+  const row = await env.DB.prepare(`SELECT id, user_id FROM comments WHERE id = ?1`).bind(id).first()
 
   // 已经不在库里就算成功——**幂等**。否则重复点击、多个标签页、或列表是旧快照时
   // 会报"评论不存在"，用户看到"明明还在却说不存在"，比直接消失更困惑。
   if (!row) return json({ ok: true, alreadyGone: true })
 
-  // status=0（待审）也允许作者删除：那是"别人看不到但作者自己发的"，
-  // 前端待审时不入列表，但令牌已发，用户可能通过其它入口进来删。
-  if (!row.token_hash) return bad(ERR.rejected, 403)
-
-  const provided = await sha256Hex(token)
-  if (!safeEqual(provided, row.token_hash)) return bad(ERR.rejected, 403)
+  // 不是自己的：一律 403。**不区分"不存在"与"不是你的"**，
+  // 否则这个接口就成了"某个 id 是否存在的探测器"。
+  if (row.user_id !== session.row.id) return bad(ERR.rejected, 403)
 
   /*
    * **真删除，不是软删除**（用户明确要求："删评论都要彻底删了，别留记录"）。
@@ -657,6 +699,16 @@ async function adminList(env, url) {
   const hasStatus = statusParam === '0' || statusParam === '1' || statusParam === '2'
   const status = hasStatus ? Number.parseInt(statusParam, 10) : null
 
+  /*
+   * `?userId=` —— 只看某个账号的评论（管理端"用户详情 → 他的评论"用它）。
+   *
+   * 这里收的是**内部自增 id**（不是对外的 `public_no`）：管理端列表要把
+   * `comments.user_id` 与 `users.id` 对上，用内部 id 少一次映射。
+   * 管理端本来就看得到内部 id，不构成额外暴露。
+   */
+  const userIdParam = Number.parseInt(url.searchParams.get('userId') || '', 10)
+  const hasUserId = Number.isFinite(userIdParam)
+
   // 关键词：`%`/`_`/`\` 用 ESCAPE 子句按**字面量**匹配。
   // 不能简单删掉这些字符：删了会变成空条件 → 静默返回全部评论，
   // 用户搜 `%` 却看到"全部"是最容易误判的行为。转义后搜的是字面量本身。
@@ -679,9 +731,13 @@ async function adminList(env, url) {
     binds.push(cursor)
     where.push(`id < ?${binds.length}`)
   }
+  if (hasUserId) {
+    binds.push(userIdParam)
+    where.push(`user_id = ?${binds.length}`)
+  }
   binds.push(limit + 1)
 
-  const sql = `SELECT id, page_key, page_label, nick, avatar, body, created_at, status, review_reason FROM comments
+  const sql = `SELECT id, page_key, page_label, nick, avatar, body, created_at, status, review_reason, user_id FROM comments
     ${where.length ? 'WHERE ' + where.join(' AND ') : ''}
     ORDER BY id DESC LIMIT ?${binds.length}`
 
@@ -701,82 +757,13 @@ async function adminList(env, url) {
 
   return json({
     ok: true,
-    comments: page.map(toPublic),
+    comments: page.map(toAdminComment),
     nextCursor: hasMore ? page[page.length - 1].id : null,
     hasMore,
     pendingCount
   })
 }
 
-/**
- * GET /api/my-comments?ids=12,15,20 —— 「我在这台设备上发过的评论」
- *
- * 用途：账号弹窗里回看自己的评论与状态。
- *
- * 安全模型：**必须逐条提供该评论的删除令牌**，只返回令牌匹配的那些。
- * 因此这不是"按 id 列举评论"的公开接口——不知道令牌就什么都拿不到，
- * 也不会泄漏"某个 id 是否存在"（不匹配的条目直接不出现在结果里）。
- *
- * 为什么用 POST 而不是 GET：令牌要放在请求体里。
- * 放 URL 会被浏览器历史、Referer、代理日志记录下来。
- */
-async function listMyComments(env, request) {
-  let payload
-  try {
-    payload = await request.json()
-  } catch {
-    return bad(ERR.badRequest)
-  }
-
-  // items: [{ id: 12, token: '...' }, ...]，最多 50 条（与列表页上限一致）
-  const items = Array.isArray(payload?.items) ? payload.items.slice(0, 50) : []
-  if (!items.length) return json({ ok: true, comments: [] })
-
-  const wanted = []
-  for (const it of items) {
-    const id = Number.parseInt(it?.id, 10)
-    const token = String(it?.token || '')
-    if (Number.isFinite(id) && DELETE_TOKEN_RE.test(token)) wanted.push({ id, token })
-  }
-  if (!wanted.length) return json({ ok: true, comments: [] })
-
-  const placeholders = wanted.map((_, i) => `?${i + 1}`).join(', ')
-  // 同样带上被回复那条（列表、账号弹窗都按同一套字段渲染，引用行不会只在某一处出现）
-  const { results } = await env.DB.prepare(
-    `SELECT c.id, c.page_key, c.page_label, c.nick, c.avatar, c.body, c.created_at, c.status, c.token_hash,
-            c.parent_id, p.nick AS parent_nick, p.body AS parent_body
-     FROM comments c LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
-     WHERE c.id IN (${placeholders})`
-  )
-    .bind(...wanted.map((w) => w.id))
-    .all()
-
-  // 令牌校验：只回传令牌对得上的那些；hash 比对用恒定时间比较
-  const tokenById = new Map(wanted.map((w) => [w.id, w.token]))
-  const verified = []
-  for (const row of results || []) {
-    const token = tokenById.get(row.id)
-    if (!token || !row.token_hash) continue
-    const provided = await sha256Hex(token)
-    if (!safeEqual(provided, row.token_hash)) continue
-    verified.push({
-      id: row.id,
-      nick: row.nick,
-      avatar: row.avatar || null,
-      body: row.body,
-      createdAt: row.created_at,
-      status: row.status,
-      pageKey: row.page_key,
-      pageLabel: row.page_label || null,
-      parentId: row.parent_id ?? null,
-      replyTo: row.parent_nick
-        ? { id: row.parent_id, nick: row.parent_nick, body: row.parent_body }
-        : null
-    })
-  }
-  verified.sort((a, b) => b.id - a.id)
-  return json({ ok: true, comments: verified })
-}
 
 /**
  * GET /api/recent —— **站内讨论区**的最新讨论（右栏预览用）
@@ -865,6 +852,1084 @@ async function adminDelete(env, request) {
   return json({ ok: true })
 }
 
+// ============================================================
+// 管理端：概览 / 用户（2026-10-05）
+//
+// 设计依据：docs/technical/ACCOUNT_SYSTEM.md §九、§17.9
+// 认证：沿用既有的 `x-admin-token`（见 isAdmin）+ 未配 ADMIN_TOKEN 时整段 404。
+// ============================================================
+
+/**
+ * 管理端看的评论形状 = 公开形状 + **内部 `userId`**。
+ *
+ * 🔴 为什么不直接把这个字段加进 `toPublic`：`toPublic` 同时供**公开**的
+ * `/api/comments` 使用，而账号体系对外只暴露 `public_no`，不暴露内部自增 id。
+ * 所以单独包一层，只在管理端加。
+ */
+function toAdminComment(row) {
+  return { ...toPublic(row), userId: row.user_id ?? null }
+}
+
+/** 把 `status → count` 的行集合折成固定键的对象，缺的补 0。 */
+function countsByStatus(rows, keys) {
+  const out = {}
+  for (const k of keys) out[k] = 0
+  for (const r of rows || []) out[r.status] = r.n
+  return out
+}
+
+/** 最近 N 天（含今天）按 UTC 日界线的逐日计数，缺失的日子补 0。 */
+function dailySeries(rows, days, dayStart) {
+  const map = new Map((rows || []).map((r) => [r.d, r.n]))
+  const out = []
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date((dayStart - i * 86400) * 1000).toISOString().slice(0, 10)
+    out.push({ day: d, n: map.get(d) || 0 })
+  }
+  return out
+}
+
+/**
+ * `GET /api/admin/stats` —— 后台概览。
+ *
+ * 刻意**只用几条聚合查询**：管理端低频，但仍然避免"每个数字一条查询"
+ * （那样一屏要点十几次 D1，免费额度是有限的）。
+ */
+async function adminStats(env) {
+  const ts = nowSec()
+  // UTC 日界线，与限流的 `dayBucket()` 口径一致 —— 否则"今天的数"与
+  // "今天的限额"会对不上，排查时容易怀疑人生
+  const dayStart = ts - (ts % 86400)
+  const weekStart = dayStart - 6 * 86400
+
+  const [cmtTotals, cmtByStatus, cmtDaily, usrByStatus, usrToday, usrDaily, sessionCount] =
+    await Promise.all([
+      env.DB.prepare(
+        `SELECT COUNT(*) AS total,
+                SUM(CASE WHEN created_at >= ?1 THEN 1 ELSE 0 END) AS today,
+                SUM(CASE WHEN parent_id IS NOT NULL THEN 1 ELSE 0 END) AS replies
+         FROM comments`
+      ).bind(dayStart).first(),
+      env.DB.prepare(`SELECT status, COUNT(*) AS n FROM comments GROUP BY status`).all(),
+      env.DB.prepare(
+        `SELECT date(created_at, 'unixepoch') AS d, COUNT(*) AS n
+         FROM comments WHERE created_at >= ?1 GROUP BY d`
+      ).bind(weekStart).all(),
+      env.DB.prepare(`SELECT status, COUNT(*) AS n FROM users GROUP BY status`).all(),
+      env.DB.prepare(`SELECT COUNT(*) AS n FROM users WHERE created_at >= ?1`).bind(dayStart).first(),
+      env.DB.prepare(
+        `SELECT date(created_at, 'unixepoch') AS d, COUNT(*) AS n
+         FROM users WHERE created_at >= ?1 GROUP BY d`
+      ).bind(weekStart).all(),
+      env.DB.prepare(`SELECT COUNT(*) AS n FROM sessions WHERE expires_at > ?1`).bind(ts * 1000).first()
+    ])
+
+  const cmt = countsByStatus(cmtByStatus.results, [0, 1, 2])
+  const usr = countsByStatus(usrByStatus.results, [1, 2, 3])
+
+  return json({
+    ok: true,
+    ts,
+    comments: {
+      total: cmtTotals?.total ?? 0,
+      today: cmtTotals?.today ?? 0,
+      replies: cmtTotals?.replies ?? 0,
+      pending: cmt[0],
+      visible: cmt[1],
+      hidden: cmt[2],
+      last7d: dailySeries(cmtDaily.results, 7, dayStart)
+    },
+    users: {
+      total: usr[1] + usr[2] + usr[3],
+      active: usr[1],
+      banned: usr[2],
+      deleted: usr[3],
+      today: usrToday?.n ?? 0,
+      last7d: dailySeries(usrDaily.results, 7, dayStart)
+    },
+    sessions: { active: sessionCount?.n ?? 0 }
+  })
+}
+
+/** `GET /api/admin/users` —— 用户列表（可按状态筛、按编号/昵称/邮箱搜）。 */
+async function adminUsers(env, url) {
+  const rawLimit = Number.parseInt(url.searchParams.get('limit') || '50', 10)
+  const limit = Math.min(Math.max(Number.isFinite(rawLimit) ? rawLimit : 50, 1), MAX_LIMIT)
+  const cursor = Number.parseInt(url.searchParams.get('cursor') || '', 10)
+  const hasCursor = Number.isFinite(cursor)
+
+  const statusParam = url.searchParams.get('status')
+  const hasStatus = ['1', '2', '3'].includes(statusParam)
+  const status = hasStatus ? Number.parseInt(statusParam, 10) : null
+
+  const q = sanitize(url.searchParams.get('q') || '', 60)
+  const hasQ = q.length > 0
+  const likeParam = hasQ ? `%${q.replace(/[\\%_]/g, (ch) => `\\${ch}`)}%` : ''
+
+  const where = []
+  const binds = []
+  if (hasStatus) {
+    binds.push(status)
+    where.push(`u.status = ?${binds.length}`)
+  }
+  if (hasQ) {
+    binds.push(likeParam)
+    const likeIdx = binds.length
+    const parts = [
+      `u.nick LIKE ?${likeIdx} ESCAPE '\\'`,
+      `u.email LIKE ?${likeIdx} ESCAPE '\\'`
+    ]
+    // 纯数字时也按**对外编号**精确匹配 —— 用户来反馈时通常报的是那 5 位编号
+    if (/^\d{4,6}$/.test(q)) {
+      binds.push(Number.parseInt(q, 10))
+      parts.push(`u.public_no = ?${binds.length}`)
+    }
+    where.push('(' + parts.join(' OR ') + ')')
+  }
+  if (hasCursor) {
+    binds.push(cursor)
+    where.push(`u.id < ?${binds.length}`)
+  }
+  binds.push(limit + 1)
+
+  const sql = `SELECT u.id, u.public_no, u.nick, u.email, u.avatar, u.status,
+                      u.created_at, u.last_login_at,
+                      (SELECT COUNT(*) FROM comments c WHERE c.user_id = u.id) AS comment_count
+    FROM users u
+    ${where.length ? 'WHERE ' + where.join(' AND ') : ''}
+    ORDER BY u.id DESC LIMIT ?${binds.length}`
+
+  const { results } = await env.DB.prepare(sql).bind(...binds).all()
+  const rows = results || []
+  const hasMore = rows.length > limit
+  const page = hasMore ? rows.slice(0, limit) : rows
+
+  return json({
+    ok: true,
+    users: page.map((r) => ({
+      id: r.id,
+      publicNo: r.public_no,
+      nick: r.nick,
+      email: r.email,
+      avatar: r.avatar || null,
+      status: r.status,
+      createdAt: r.created_at,
+      lastLoginAt: r.last_login_at,
+      commentCount: r.comment_count ?? 0
+    })),
+    nextCursor: hasMore ? page[page.length - 1].id : null,
+    hasMore
+  })
+}
+
+/**
+ * `PATCH /api/admin/users` —— 封禁 / 解封（只允许在 1 与 2 之间切）。
+ *
+ * 🔴 **封禁必须立即作废该用户的全部会话**，否则他手上那个 30 天的令牌
+ * 还能继续用 —— "封了但没封住"是最糟的失败方式。
+ *
+ * 刻意**不允许改成 3（已注销）**：注销是用户自己的动作，且要连带改写评论昵称；
+ * 管理端要清账号请用 DELETE（那是明确的"彻底删除"语义）。
+ */
+async function adminUserPatch(env, request) {
+  const payload = await request.json().catch(() => null)
+  const id = Number.parseInt(payload?.id, 10)
+  const status = Number.parseInt(payload?.status, 10)
+  if (!Number.isFinite(id) || ![1, 2].includes(status)) return bad(ERR.badRequest)
+
+  const res = await env.DB.prepare(`UPDATE users SET status = ?1 WHERE id = ?2`)
+    .bind(status, id)
+    .run()
+  if (!res.meta?.changes) return bad(ERR.notFound, 404)
+
+  if (status === 2) {
+    await env.DB.prepare(`DELETE FROM sessions WHERE user_id = ?1`).bind(id).run()
+  }
+  return json({ ok: true })
+}
+
+/**
+ * `DELETE /api/admin/users` —— **彻底删除**账号（隐私删除请求用）。
+ *
+ * 与用户自助注销（软删除，`status=3`）的区别：
+ * - 软删除**保留** `email_hash` 占位，该邮箱**不可再注册**（防冒用历史评论）；
+ * - 彻底删除**释放**该邮箱，且**摘掉评论上的 `user_id`**（评论内容保留、
+ *   昵称改写为「账号已注销」）—— 因为用户行没了，留着悬空外键只会让后续查询困惑。
+ */
+async function adminUserDelete(env, request) {
+  const payload = await request.json().catch(() => null)
+  const id = Number.parseInt(payload?.id, 10)
+  if (!Number.isFinite(id)) return bad(ERR.badRequest)
+
+  const row = await env.DB.prepare(`SELECT id, email_hash FROM users WHERE id = ?1`).bind(id).first()
+  if (!row) return bad(ERR.notFound, 404)
+
+  await Promise.all([
+    env.DB.prepare(
+      `UPDATE comments SET nick = '账号已注销', avatar = NULL, user_id = NULL WHERE user_id = ?1`
+    ).bind(id).run(),
+    env.DB.prepare(`DELETE FROM sessions WHERE user_id = ?1`).bind(id).run(),
+    env.DB.prepare(`DELETE FROM auth_codes WHERE email_hash = ?1`).bind(row.email_hash).run()
+  ])
+  await env.DB.prepare(`DELETE FROM users WHERE id = ?1`).bind(id).run()
+
+  return json({ ok: true })
+}
+
+// ============================================================
+// 账号体系（2026-10-05）
+//
+// 设计依据：docs/technical/ACCOUNT_SYSTEM.md
+//   · 22 项决策 —— §14.1
+//   · 接口契约与安全约定 —— §九
+//   · 全部对外文案 —— §十七（下面的 AERR 就是 §17.8 那张表的代码化）
+// ============================================================
+
+/**
+ * 账号接口的对外文案。**只在方案 §17.8 那张表里选，不要临时造句子。**
+ *
+ * 与评论的 `ERR` 同一条规矩：给普通用户看的字，不出现技术名词、字段名、英文。
+ * 技术原因写进 `console.error`。
+ */
+const AERR = {
+  // 输入类
+  emailFormat: '邮箱格式看起来不对，检查一下',
+  disposableEmail: '请用常用邮箱，临时邮箱收不到验证码',
+  passwordShort: `密码至少 ${PASSWORD_MIN} 位`,
+  nickShort: `昵称至少 ${NICK_MIN} 个字符`,
+  nickLong: `昵称最多 ${NICK_MAX} 个字符`,
+  badRequest: '提交的内容有误，请检查后重试',
+  // 人机验证
+  captchaUnavailable: '验证码暂时出不来，请稍后再试',
+  captchaFailed: '人机验证没通过，请重新点击',
+  // 限流
+  tooFrequent: '发得太频繁了，请稍后再试',
+  codeVoid: '验证码已作废，请重新获取',
+  // 邮箱验证码
+  codeWrong: '验证码不对，或者已经过期了',
+  mailFailed: '邮件暂时发不出去，请稍后再试',
+  // 账号
+  emailTaken: '这个邮箱已经注册过了，直接登录吧',
+  nickTaken: '这个名字已经有人用了，换一个吧',
+  loginFailed: '邮箱或密码不对',       // 🔴 邮箱不存在与密码错**必须同一句**
+  banned: '该账号已被停用',
+  emailInUse: '这个邮箱已经被其他账号使用了',
+  emailSame: '新邮箱和当前邮箱一样，不用改',
+  sessionExpired: '登录状态已过期，请重新登录',
+  // 兜底
+  unavailable: '功能暂时不可用，请稍后再试',
+  fallback: '操作失败，请稍后再试'
+}
+
+/** 冷却提示要带上秒数，所以做成函数（前端按钮倒计时也用同一个数） */
+function cooldownMessage(retryAfter) {
+  return `请 ${Math.max(1, Math.ceil(retryAfter))} 秒后再试`
+}
+
+/** 用户对外形状。🔴 **不暴露内部自增 id**，对外只用公开编号。 */
+function toPublicUser(row) {
+  return {
+    id: row.public_no,
+    nick: row.nick,
+    avatar: row.avatar || null,
+    email: row.email,
+    status: row.status,
+    createdAt: row.created_at,
+    lastLoginAt: row.last_login_at
+  }
+}
+
+function readBearer(request) {
+  const h = request.headers.get('authorization') || ''
+  const m = /^Bearer\s+([A-Za-z0-9_-]{16,200})$/i.exec(h.trim())
+  return m ? m[1] : null
+}
+
+// ---------- rate_limits 的两种用法 ----------
+//
+// `bump()` 是自增（用于"每小时几次"）；下面两个是"存一个值/读一个值"
+// （用于"上次发送是第几秒"）。刻意分开，别混用 —— 混用会让冷却逻辑变成计数器。
+
+async function readBucket(env, bucket) {
+  const row = await env.DB.prepare(`SELECT counter FROM rate_limits WHERE bucket = ?1`)
+    .bind(bucket)
+    .first()
+  return row?.counter ?? null
+}
+
+async function writeBucket(env, bucket, value) {
+  await env.DB.prepare(
+    `INSERT INTO rate_limits (bucket, counter) VALUES (?1, ?2)
+     ON CONFLICT(bucket) DO UPDATE SET counter = excluded.counter`
+  )
+    .bind(bucket, value)
+    .run()
+}
+
+/**
+ * 发码冷却秒数。可用**环境变量** `AUTH_CODE_COOLDOWN_SEC` 覆盖。
+ *
+ * 为什么做成可注入（与评论的 `RATE_LIMIT_PER_HOUR` 同一理由）：
+ * 端到端测试要在**同一个邮箱**上连发好几个码（注册码 → 改密码码 → 换邮箱码），
+ * 生产用的 60 秒会让测试每次都干等一分钟。本地把它设成 0 即可稳定重复运行，
+ * **不必在生产代码里塞"测试专用旁路"**。
+ *
+ * 🔴 **生产不要设置这一项**，用默认 60 秒。
+ */
+function codeCooldownSeconds(env) {
+  if (env.AUTH_CODE_COOLDOWN_SEC === undefined) return CODE_COOLDOWN_SEC
+  const n = Number(env.AUTH_CODE_COOLDOWN_SEC)
+  return Number.isFinite(n) && n >= 0 ? n : CODE_COOLDOWN_SEC
+}
+
+/** 发码冷却：同一邮箱默认 60 秒 1 次。返回 `{ retryAfter }` 或 null。 */
+async function checkSendCooldown(env, emailHash, ts) {
+  const cooldown = codeCooldownSeconds(env)
+  if (cooldown <= 0) return null
+  const last = await readBucket(env, `authcd:${emailHash}`)
+  if (last != null && ts - last < cooldown) {
+    return { retryAfter: cooldown - (ts - last) }
+  }
+  return null
+}
+
+/**
+ * 发码限流：**主防线是同邮箱，IP 只做兜底**。
+ *
+ * 注意阈值不能照搬评论的 5 条/小时 —— 评论是"一个人发内容"，
+ * 而注册是**多人共用一个出口**（宿舍/公司/学校的 NAT）。
+ * 5 次/小时会让第 6 个真实用户被误伤；被刷只是浪费额度，误伤是真人注册不了。
+ *
+ * 三个阈值都可用环境变量覆盖（与 `AUTH_CODE_COOLDOWN_SEC` 同一理由：
+ * 端到端测试要连跑多轮，必然撞上生产阈值）。**生产不要设置这些项。**
+ */
+async function checkSendQuota(env, emailHash, ipHash, ts) {
+  const emailMax = envLimit(env.AUTH_EMAIL_DAILY_MAX, CODE_EMAIL_DAILY_MAX)
+  const ipHourMax = envLimit(env.AUTH_IP_HOURLY_MAX, CODE_IP_HOURLY_MAX)
+  const ipDayMax = envLimit(env.AUTH_IP_DAILY_MAX, CODE_IP_DAILY_MAX)
+
+  const emailDay = await bump(env, `authd:${emailHash}:${dayBucket(ts)}`)
+  if (emailDay > emailMax) return { message: AERR.tooFrequent, status: 429 }
+
+  if (ipHash) {
+    const ipHour = await bump(env, `authh:${ipHash}:${hourBucket(ts)}`)
+    if (ipHour > ipHourMax) return { message: AERR.tooFrequent, status: 429 }
+    const ipDay = await bump(env, `authd:ip:${ipHash}:${dayBucket(ts)}`)
+    if (ipDay > ipDayMax) return { message: AERR.tooFrequent, status: 429 }
+  }
+  return null
+}
+
+/** 读一个"正整数上限"环境变量覆盖值；未设或不合法则用代码里的默认值。 */
+function envLimit(raw, fallback) {
+  if (raw === undefined) return fallback
+  const n = Number(raw)
+  return Number.isFinite(n) && n > 0 ? Math.floor(n) : fallback
+}
+
+// ---------- 会话 ----------
+
+async function issueSession(env, userId, request, ts, ipHash) {
+  const token = generateSessionToken()
+  await env.DB.prepare(
+    `INSERT INTO sessions (token_hash, user_id, expires_at, created_at, last_seen_at, ua_hash, ip_hash)
+     VALUES (?1, ?2, ?3, ?4, ?4, ?5, ?6)`
+  )
+    .bind(
+      await sha256Hex(token),
+      userId,
+      ts * 1000 + SESSION_TTL_MS,
+      ts,
+      await sha256Hex(request.headers.get('user-agent') || ''),
+      ipHash || null
+    )
+    .run()
+  return token
+}
+
+/**
+ * 用 Bearer 令牌换用户行。
+ *
+ * **滑动过期**：每次使用把有效期往后推 30 天，所以"只要还在用就不会被踢"。
+ * 但 `last_seen_at` 的写入**最多每小时一次** —— 每次请求都写会让 D1 写入量
+ * 随访问量线性上涨（免费版 10 万行/天），而"最后活跃时间"精确到小时足够用。
+ */
+async function loadSession(env, request, ts) {
+  const token = readBearer(request)
+  if (!token) return null
+  const tokenHash = await sha256Hex(token)
+
+  const row = await env.DB.prepare(
+    `SELECT s.token_hash, s.expires_at, s.last_seen_at, u.*
+     FROM sessions s JOIN users u ON u.id = s.user_id
+     WHERE s.token_hash = ?1 AND s.expires_at > ?2`
+  )
+    .bind(tokenHash, ts * 1000)
+    .first()
+
+  if (!row) return null
+  if (row.status === 3) return null // 已注销：令牌立即失效
+
+  const newExpiry = ts * 1000 + SESSION_TTL_MS
+  const stale = !row.last_seen_at || ts - row.last_seen_at >= 3600
+  if (stale) {
+    await env.DB.prepare(
+      `UPDATE sessions SET expires_at = ?1, last_seen_at = ?2 WHERE token_hash = ?3`
+    )
+      .bind(newExpiry, ts, tokenHash)
+      .run()
+  }
+  return { tokenHash, row }
+}
+
+/** 作废某用户的会话。`keepTokenHash` 为 null 表示全部作废。 */
+async function revokeSessions(env, userId, keepTokenHash = null) {
+  if (keepTokenHash) {
+    return env.DB.prepare(`DELETE FROM sessions WHERE user_id = ?1 AND token_hash <> ?2`)
+      .bind(userId, keepTokenHash)
+      .run()
+  }
+  return env.DB.prepare(`DELETE FROM sessions WHERE user_id = ?1`).bind(userId).run()
+}
+
+// ---------- 邮箱验证码 ----------
+
+/**
+ * 生成并入库一个验证码，返回明文（**明文只在这一刻存在**）。
+ *
+ * 入库的是 `HMAC(AUTH_PEPPER, code)`，不是明文：6 位数字只有 100 万种可能，
+ * 裸哈希在毫秒内就能被穷举，等于没哈希。
+ *
+ * 同时做两件清理：
+ *  1. 删掉该 (邮箱, 用途) 的**过期**行；
+ *  2. 只保留**最新 `CODE_MAX_ACTIVE` 条**（应对"重发导致乱序到达"）。
+ */
+async function storeCode(env, emailHash, purpose, ts) {
+  const code = generateNumericCode(CODE_DIGITS)
+  await env.DB.prepare(
+    `INSERT INTO auth_codes (email_hash, purpose, code_hash, expires_at, created_at)
+     VALUES (?1, ?2, ?3, ?4, ?5)`
+  )
+    .bind(emailHash, purpose, await pepperHash(code, env.AUTH_PEPPER), ts + Math.floor(CODE_TTL_MS / 1000), ts)
+    .run()
+
+  await env.DB.prepare(`DELETE FROM auth_codes WHERE email_hash = ?1 AND purpose = ?2 AND expires_at <= ?3`)
+    .bind(emailHash, purpose, ts)
+    .run()
+  await env.DB.prepare(
+    `DELETE FROM auth_codes
+     WHERE email_hash = ?1 AND purpose = ?2
+       AND id NOT IN (SELECT id FROM auth_codes WHERE email_hash = ?1 AND purpose = ?2
+                      ORDER BY created_at DESC, id DESC LIMIT ?3)`
+  )
+    .bind(emailHash, purpose, CODE_MAX_ACTIVE)
+    .run()
+
+  return code
+}
+
+/**
+ * 校验验证码。**命中即删除该 (邮箱, 用途) 的全部记录**（一次性）。
+ *
+ * 为什么删"全部"而不是只删命中的那条：同一邮箱可能并存最多 3 个有效码。
+ * 若只删一条，**更早那两封邮件里的码仍然有效** —— 于是"改密码已经完成，
+ * 但旧邮件里的码还能再改一次密码"。
+ */
+async function consumeCode(env, emailHash, purpose, code, ts) {
+  const failBucket = `authfail:${emailHash}:${purpose}`
+  const fails = await bump(env, failBucket)
+  if (fails > CODE_MAX_ATTEMPTS) {
+    await env.DB.prepare(`DELETE FROM auth_codes WHERE email_hash = ?1 AND purpose = ?2`)
+      .bind(emailHash, purpose)
+      .run()
+    return { ok: false, error: AERR.codeVoid }
+  }
+
+  const rows = await env.DB.prepare(
+    `SELECT id, code_hash FROM auth_codes
+     WHERE email_hash = ?1 AND purpose = ?2 AND expires_at > ?3
+     ORDER BY created_at DESC, id DESC LIMIT ?4`
+  )
+    .bind(emailHash, purpose, ts, CODE_MAX_ACTIVE)
+    .all()
+
+  const provided = await pepperHash(String(code || ''), env.AUTH_PEPPER)
+  const hit = (rows.results || []).some((r) => timingSafeEqualHex(r.code_hash, provided))
+
+  if (!hit) return { ok: false, error: AERR.codeWrong }
+
+  await env.DB.prepare(`DELETE FROM auth_codes WHERE email_hash = ?1 AND purpose = ?2`)
+    .bind(emailHash, purpose)
+    .run()
+  // 顺手清掉失败计数，避免下次同邮箱发码时被历史失败拖累
+  await env.DB.prepare(`DELETE FROM rate_limits WHERE bucket = ?1`).bind(failBucket).run()
+  return { ok: true }
+}
+
+// ---------- 人机验证（蛋点选） ----------
+
+/** 出题：入库答案（带 pepper 哈希）并把 SVG 返回前端。 */
+async function createCaptcha(env, ts) {
+  const { svg, answer } = buildCaptcha()
+  const id = generateSessionToken() // 复用：32 字节随机 hex
+  await env.DB.prepare(
+    `INSERT INTO captchas (id, answer, expires_at, created_at) VALUES (?1, ?2, ?3, ?4)`
+  )
+    .bind(id, await pepperHash(answer, env.AUTH_PEPPER), ts + Math.floor(CAPTCHA_TTL_MS / 1000), ts)
+    .run()
+  // 顺手清过期题（答题量很小，这里不需要更复杂的清理策略）
+  await env.DB.prepare(`DELETE FROM captchas WHERE expires_at <= ?1`).bind(ts).run()
+  return { id, svg }
+}
+
+/**
+ * 校验人机验证。**无论对错都立即删行**（一次性）。
+ *
+ * 「错 1 次即整题作废」是刻意的：`picks` 只有 5×4×3 = 60 种可能，
+ * 若允许同题内重试，脚本几十次就能撞对。
+ */
+async function consumeCaptcha(env, captchaId, picks, ts) {
+  if (!captchaId || !Array.isArray(picks)) return false
+  const row = await env.DB.prepare(`SELECT answer, expires_at FROM captchas WHERE id = ?1`)
+    .bind(String(captchaId))
+    .first()
+  if (!row) return false
+
+  // 先删再判：避免校验过程中出现异常导致"可重试"
+  await env.DB.prepare(`DELETE FROM captchas WHERE id = ?1`).bind(String(captchaId)).run()
+  if (row.expires_at <= ts) return false
+
+  const provided = await pepperHash(picks.map((n) => Number(n)).join(','), env.AUTH_PEPPER)
+  return timingSafeEqualHex(row.answer, provided)
+}
+
+// ---------- 各接口 ----------
+
+/** `GET /api/auth/captcha` —— 只回 `{ captchaId, svg }`，**绝不回答案**。 */
+async function authCaptcha(env, ts) {
+  const { id, svg } = await createCaptcha(env, ts)
+  return json({ ok: true, captchaId: id, svg })
+}
+
+/**
+ * `POST /api/auth/code` —— 发验证码。
+ *
+ * 🔴 **防枚举的关键**：对"已注册"与"未注册"邮箱**返回完全相同的响应**，
+ * 且用 `ctx.waitUntil()` **把真发信挪到响应之后** —— 否则"已注册"那条会慢几百毫秒，
+ * 攻击者靠计时就能反推哪些邮箱注册过。
+ *
+ * 真正"该不该发"的判断也是安全的：`purpose='register'` 时两种邮箱都发
+ * （反正注册要验码）；`purpose='password'` 时只给已注册的发信 ——
+ * 但响应一模一样，所以**试了也白试**。
+ */
+async function authRequestCode(env, request, context) {
+  const ts = nowSec()
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') return bad(AERR.badRequest, 400)
+
+  const email = normalizeEmail(body.email)
+  const purpose = String(body.purpose || '')
+  const ALLOWED = ['register', 'password', 'email_change']
+  if (!ALLOWED.includes(purpose)) return bad(AERR.badRequest, 400)
+  if (!isPlausibleEmail(email)) return bad(AERR.emailFormat, 400)
+  if (isDisposableEmail(email, BLOCKED_EMAIL_DOMAINS)) return bad(AERR.disposableEmail, 400)
+
+  const ip = clientIp(request)
+  const ipHash = await sha256Hex(ip + (env.IP_HASH_SALT || ''))
+  const emailHash = await emailLookupHash(email, env.SALT_SECRET)
+
+  // 1) 人机验证（最前面：它挡的是"连题目都不做"的脚本，且不消耗任何额度）
+  const captchaOk = await consumeCaptcha(env, body.captchaId, body.picks, ts)
+  if (!captchaOk) return bad(AERR.captchaFailed, 403)
+
+  // 2) 同邮箱冷却
+  const cool = await checkSendCooldown(env, emailHash, ts)
+  if (cool) return json({ ok: false, error: cooldownMessage(cool.retryAfter), retryAfter: cool.retryAfter }, 429)
+
+  // 3) 同邮箱日额 + 同 IP 兜底
+  const quota = await checkSendQuota(env, emailHash, ipHash, ts)
+  if (quota) return bad(quota.message, quota.status)
+
+  // 4) 决定是否真的发信（**这个分支不影响响应内容**）
+  const user = await env.DB.prepare(`SELECT id, status FROM users WHERE email_hash = ?1`)
+    .bind(emailHash)
+    .first()
+
+  /*
+   * 只有 `password` 是"非注册用户就不发"：
+   *   · `register`     —— 本来就可能是新邮箱，**必须发**；
+   *   · `email_change` —— 🔴 **也必须发**：换邮箱是给"旧邮箱 + 新邮箱"各发一个码，
+   *                       而**新邮箱通常还没注册过**。按 `password` 那条规则走会把
+   *                       新邮箱那半个流程直接掐死，整个"换邮箱"功能不可用。
+   *                       （这个 bug 是端到端测试跑出来的，见开发日志。）
+   *   · `password`     —— 改密码必然是已登录用户，邮箱一定在库里；
+   *                       对不存在的邮箱不发信，少给别人发垃圾邮件。
+   */
+  const shouldSend = purpose !== 'password' || Boolean(user)
+  let sent = false
+  if (shouldSend) {
+    const code = await storeCode(env, emailHash, purpose, ts)
+    await writeBucket(env, `authcd:${emailHash}`, ts)
+    // ⚠️ 真发信必须异步：否则"发没发"会体现在响应耗时上，等于给了枚举计时器
+    context.waitUntil(
+      sendVerifyCode(env, { to: email, code, minutes: CODE_TTL_MS / 60000 }).then((r) => {
+        if (!r.ok) console.error('[auth] 发信失败:', r.error)
+      })
+    )
+    sent = true
+  } else {
+    // 未注册 + 非注册用途：什么都不发，但**冷却照样写入**（否则这个分支能被无限试）
+    await writeBucket(env, `authcd:${emailHash}`, ts)
+  }
+
+  return json({ ok: true, cooldown: codeCooldownSeconds(env), sent })
+}
+
+/**
+ * `GET /api/auth/salt` —— 取密码盐。
+ *
+ * 🔴 **已注册用户返回库里存的 `pw_salt`，未注册才现算** —— 这一点是必须的：
+ * 盐本来是"按邮箱派生"的，而换邮箱会换掉邮箱，现算就会得到与注册时不同的盐，
+ * 用户**换完邮箱再也登不上**。
+ *
+ * 对外**不泄漏是否注册过**：注册时存的就是那个现算值，所以两种情况返回的完全一样；
+ * 只有"换过邮箱"的账号才与现算值不同，而那种差异攻击者无从判断。
+ */
+async function authSalt(env, url) {
+  const email = normalizeEmail(url.searchParams.get('email'))
+  if (!isPlausibleEmail(email)) return bad(AERR.emailFormat, 400)
+
+  const emailHash = await emailLookupHash(email, env.SALT_SECRET)
+  const row = await env.DB.prepare(`SELECT pw_salt FROM users WHERE email_hash = ?1`)
+    .bind(emailHash)
+    .first()
+  const salt = row?.pw_salt || (await passwordSalt(email, env.SALT_SECRET))
+
+  return json({ ok: true, salt, iters: PBKDF2_ITERS, algo: 'client-pbkdf2-sha256' })
+}
+
+/** `POST /api/auth/register` */
+async function authRegister(env, request, ts) {
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') return bad(AERR.badRequest, 400)
+
+  const email = normalizeEmail(body.email)
+  const nick = sanitize(body.nick, NICK_MAX)
+  const avatar = AVATAR_ID_RE.test(String(body.avatar || '')) ? String(body.avatar) : DEFAULT_AVATAR
+  const verifier = String(body.verifier || '')
+
+  if (!isPlausibleEmail(email)) return bad(AERR.emailFormat, 400)
+  if (nick.length < NICK_MIN) return bad(AERR.nickShort, 400)
+  if (!/^[a-f0-9]{64}$/.test(verifier)) return bad(AERR.badRequest, 400)
+
+  const emailHash = await emailLookupHash(email, env.SALT_SECRET)
+
+  // 🔴 先验码：这一步之后才允许出现"该邮箱已注册"这类提示，
+  //    否则注册接口本身就成了账号枚举器（验证码只有邮箱主人拿得到）。
+  const codeOk = await consumeCode(env, emailHash, 'register', body.code, ts)
+  if (!codeOk.ok) return bad(codeOk.error, 400)
+
+  const existing = await env.DB.prepare(`SELECT id FROM users WHERE email_hash = ?1`)
+    .bind(emailHash)
+    .first()
+  if (existing) return bad(AERR.emailTaken, 409)
+
+  const nickTaken = await env.DB.prepare(`SELECT id FROM users WHERE nick = ?1`).bind(nick).first()
+  if (nickTaken) return bad(AERR.nickTaken, 409)
+
+  const verifierHash = await pepperHash(verifier, env.AUTH_PEPPER)
+  // 存下客户端**实际用的那个盐**（未注册时 /api/auth/salt 现算出来的值）。
+  // 存下来之后，将来换邮箱就不会让密码失效 —— 见 authSalt 的说明。
+  const pwSalt = await passwordSalt(email, env.SALT_SECRET)
+  try {
+    // public_no = 9999 + id 的等价写法：MAX+1，起始 10000。UNIQUE 兜住并发撞号。
+    await env.DB.prepare(
+      `INSERT INTO users (public_no, email, email_hash, nick, avatar, verifier_hash,
+                          pw_salt, pw_algo, pw_iters, status, created_at, last_login_at)
+       VALUES ((SELECT COALESCE(MAX(public_no), 9999) + 1 FROM users), ?1, ?2, ?3, ?4, ?5,
+               ?6, 'client-pbkdf2-sha256', ?7, 1, ?8, ?8)`
+    )
+      .bind(email, emailHash, nick, avatar, verifierHash, pwSalt, PBKDF2_ITERS, ts)
+      .run()
+  } catch (err) {
+    // 并发下可能撞 UNIQUE（public_no / nick / email_hash），给出对应的友好文案
+    const msg = String(err?.message || '')
+    if (msg.includes('users.nick')) return bad(AERR.nickTaken, 409)
+    if (msg.includes('users.email_hash')) return bad(AERR.emailTaken, 409)
+    throw err
+  }
+
+  const row = await env.DB.prepare(`SELECT * FROM users WHERE email_hash = ?1`).bind(emailHash).first()
+  const token = await issueSession(env, row.id, request, ts, await sha256Hex(clientIp(request) + (env.IP_HASH_SALT || '')))
+  return json({ ok: true, token, user: toPublicUser(row) })
+}
+
+/** `POST /api/auth/login` */
+async function authLogin(env, request, ts) {
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') return bad(AERR.badRequest, 400)
+
+  const email = normalizeEmail(body.email)
+  const verifier = String(body.verifier || '')
+  if (!isPlausibleEmail(email)) return bad(AERR.loginFailed, 400)
+
+  const ip = clientIp(request)
+  const ipHash = await sha256Hex(ip + (env.IP_HASH_SALT || ''))
+  const failBucket = `loginfail:${await emailLookupHash(email, env.SALT_SECRET)}:${hourBucket(ts)}`
+  const ipFailBucket = `loginfail:ip:${ipHash}:${hourBucket(ts)}`
+  const [emailFails, ipFails] = await Promise.all([readBucket(env, failBucket), readBucket(env, ipFailBucket)])
+
+  /*
+   * 阈值可用 `AUTH_LOGIN_MAX_FAILS` 覆盖 —— 与其它限流（`RATE_LIMIT_PER_HOUR` 等）
+   * 同样的理由：**端到端测试要反复跑负向用例**（错密码 / 未注册邮箱 / 已封禁），
+   * 同 IP 每小时 20 次失败一会儿就打满，之后所有登录都变成 429 假失败。
+   *
+   * 🔴 这个覆盖是补上的：当初只有这一处没做成环境变量，结果整套账号端到端
+   * 跑第二遍就开始大面积 429，而报错文案（"发得太频繁了"）又不像限流
+   * （另一处是"请求太频繁"），排查时先怀疑了半天别的地方。
+   *
+   * 生产环境**不要**设这个变量，用默认值（5 次失败 / 邮箱，20 次 / IP）。
+   */
+  const loginMaxFails = positiveInt(env.AUTH_LOGIN_MAX_FAILS, LOGIN_MAX_FAILS)
+  if ((emailFails ?? 0) >= loginMaxFails || (ipFails ?? 0) >= loginMaxFails * 4) {
+    return bad(AERR.tooFrequent, 429)
+  }
+
+  const emailHash = await emailLookupHash(email, env.SALT_SECRET)
+  const row = await env.DB.prepare(`SELECT * FROM users WHERE email_hash = ?1`).bind(emailHash).first()
+
+  // 🔴 三种失败（邮箱不存在 / 已注销 / 密码错）必须是**同一句话、同一个状态码**，
+  //    否则响应差异就是账号枚举器。
+  const provided = await pepperHash(verifier, env.AUTH_PEPPER)
+  const ok = row && row.status !== 3 && timingSafeEqualHex(row.verifier_hash, provided)
+
+  if (!ok) {
+    await Promise.all([
+      bump(env, failBucket),
+      bump(env, ipFailBucket)
+    ])
+    return bad(AERR.loginFailed, 401)
+  }
+
+  if (row.status === 2) return bad(AERR.banned, 403)
+
+  await Promise.all([
+    env.DB.prepare(`DELETE FROM rate_limits WHERE bucket = ?1`).bind(failBucket).run(),
+    env.DB.prepare(`UPDATE users SET last_login_at = ?1 WHERE id = ?2`).bind(ts, row.id).run()
+  ])
+
+  const token = await issueSession(env, row.id, request, ts, ipHash)
+  return json({ ok: true, token, user: toPublicUser(row) })
+}
+
+/** `GET /api/auth/me` */
+async function authMe(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+  return json({ ok: true, user: toPublicUser(session.row) })
+}
+
+/** `PATCH /api/auth/me` —— 只允许改昵称与头像。 */
+async function authUpdateMe(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') return bad(AERR.badRequest, 400)
+
+  const sets = []
+  const binds = []
+  if (body.nick !== undefined) {
+    const nick = sanitize(body.nick, NICK_MAX)
+    if (nick.length < NICK_MIN) return bad(AERR.nickShort, 400)
+    const taken = await env.DB.prepare(`SELECT id FROM users WHERE nick = ?1 AND id <> ?2`)
+      .bind(nick, session.row.id)
+      .first()
+    if (taken) return bad(AERR.nickTaken, 409)
+    sets.push(`nick = ?${binds.length + 1}`)
+    binds.push(nick)
+  }
+  if (body.avatar !== undefined) {
+    const avatar = AVATAR_ID_RE.test(String(body.avatar)) ? String(body.avatar) : DEFAULT_AVATAR
+    sets.push(`avatar = ?${binds.length + 1}`)
+    binds.push(avatar)
+  }
+  if (!sets.length) return bad(AERR.badRequest, 400)
+
+  binds.push(session.row.id)
+  await env.DB.prepare(`UPDATE users SET ${sets.join(', ')} WHERE id = ?${binds.length}`)
+    .bind(...binds)
+    .run()
+
+  const row = await env.DB.prepare(`SELECT * FROM users WHERE id = ?1`).bind(session.row.id).first()
+  return json({ ok: true, user: toPublicUser(row) })
+}
+
+/** `POST /api/auth/password` —— 只用邮箱验证码授权，**不校验旧密码**（已定决策）。 */
+async function authChangePassword(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') return bad(AERR.badRequest, 400)
+  const verifier = String(body.verifier || '')
+  if (!/^[a-f0-9]{64}$/.test(verifier)) return bad(AERR.badRequest, 400)
+
+  const emailHash = await emailLookupHash(session.row.email, env.SALT_SECRET)
+  const codeOk = await consumeCode(env, emailHash, 'password', body.code, ts)
+  if (!codeOk.ok) return bad(codeOk.error, 400)
+
+  await env.DB.prepare(
+    `UPDATE users SET verifier_hash = ?1, pw_algo = 'client-pbkdf2-sha256', pw_iters = ?2, pw_changed_at = ?3
+     WHERE id = ?4`
+  )
+    .bind(await pepperHash(verifier, env.AUTH_PEPPER), PBKDF2_ITERS, ts, session.row.id)
+    .run()
+
+  // 改密码后作废**其余**会话（保留当前这台），把可能被盗的登录态踢下线
+  await revokeSessions(env, session.row.id, session.tokenHash)
+  return json({ ok: true })
+}
+
+/**
+ * `POST /api/auth/email` —— 换邮箱，**旧 + 新双验证**（已定决策）。
+ *
+ * 前端分两步收集两个码，**最终一次提交**，服务端一次把两个都验掉 ——
+ * 这样不会出现"第一步已通过、第二步半途而废"的中间态。
+ *
+ * 🔴 "新邮箱是否被占用"的检查放在**验证通过之后**：
+ *    否则一个已注册用户能拿这个接口枚举"某邮箱是否注册"。
+ */
+async function authChangeEmail(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') return bad(AERR.badRequest, 400)
+
+  const newEmail = normalizeEmail(body.newEmail)
+  if (!isPlausibleEmail(newEmail)) return bad(AERR.emailFormat, 400)
+  if (isDisposableEmail(newEmail, BLOCKED_EMAIL_DOMAINS)) return bad(AERR.disposableEmail, 400)
+  if (newEmail === normalizeEmail(session.row.email)) return bad(AERR.emailSame, 400)
+
+  const newHash = await emailLookupHash(newEmail, env.SALT_SECRET)
+  const oldEmail = normalizeEmail(session.row.email)
+  if (newHash === (await emailLookupHash(oldEmail, env.SALT_SECRET))) return bad(AERR.emailSame, 400)
+
+  // 两个码归属不同邮箱 → 天然是两行，用途都用 email_change
+  const oldOk = await consumeCode(env, await emailLookupHash(oldEmail, env.SALT_SECRET), 'email_change', body.oldCode, ts)
+  if (!oldOk.ok) return bad(oldOk.error, 400)
+  const newOk = await consumeCode(env, newHash, 'email_change', body.newCode, ts)
+  if (!newOk.ok) return bad(newOk.error, 400)
+
+  // 验证通过后才检查占用
+  const taken = await env.DB.prepare(`SELECT id FROM users WHERE email_hash = ?1 AND id <> ?2`)
+    .bind(newHash, session.row.id)
+    .first()
+  if (taken) return bad(AERR.emailInUse, 409)
+
+  await env.DB.prepare(`UPDATE users SET email = ?1, email_hash = ?2 WHERE id = ?3`)
+    .bind(newEmail, newHash, session.row.id)
+    .run()
+
+  const row = await env.DB.prepare(`SELECT * FROM users WHERE id = ?1`).bind(session.row.id).first()
+  return json({ ok: true, user: toPublicUser(row) })
+}
+
+/** `GET /api/auth/comments` —— 「我的评论」跨设备列表（只按 `user_id` 查，不再用浏览器令牌）。 */
+async function authMyComments(env, request, url, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
+  const limit = Math.min(positiveInt(url.searchParams.get('limit'), 20), MAX_LIMIT)
+  const cursor = positiveInt(url.searchParams.get('cursor'), 0)
+  const rows = await env.DB.prepare(
+    `SELECT id, page_key, page_label, body, status, created_at, parent_id
+     FROM comments
+     WHERE user_id = ?1 AND id < ?2
+     ORDER BY id DESC LIMIT ?3`
+  )
+    .bind(session.row.id, cursor || Number.MAX_SAFE_INTEGER, limit + 1)
+    .all()
+
+  const list = rows.results || []
+  const hasMore = list.length > limit
+  const page = hasMore ? list.slice(0, limit) : list
+  return json({
+    ok: true,
+    comments: page.map((r) => ({
+      id: r.id,
+      pageKey: r.page_key,
+      pageLabel: r.page_label || null,
+      body: r.body,
+      status: r.status,
+      createdAt: r.created_at,
+      parentId: r.parent_id || null
+    })),
+    nextCursor: hasMore ? page[page.length - 1].id : null
+  })
+}
+
+/**
+ * `GET /api/auth/replies` —— 「谁回复了我」。
+ *
+ * 未读数**不建已读表**：只用 `users.replies_read_at` 当基准，
+ * 一条 SQL 同时给出列表与未读数，省一张表也省写入。
+ */
+async function authMyReplies(env, request, url, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
+  const limit = Math.min(positiveInt(url.searchParams.get('limit'), 20), MAX_LIMIT)
+  const cursor = positiveInt(url.searchParams.get('cursor'), 0)
+  const readAt = session.row.replies_read_at || 0
+
+  const rows = await env.DB.prepare(
+    /*
+     * 「谁回复了我」＝ **别人**在我发的评论下面留的话。两个条件缺一不可：
+     *
+     *   1. `p.user_id = ?1` —— 被回复的那条是我的；
+     *   2. `c.user_id <> ?1` —— 回复本身**不是我发的**。
+     *
+     * 🔴 第 2 条一开始漏了：只判"父评论是我的"，于是**自己回复自己**
+     * 也会出现在"谁回复了我"里 —— 用户看到自己给自己留的话被当成"有人回复你"，
+     * 既莫名其妙、又会把未读数顶起来。这条是端到端测试抓出来的。
+     *
+     * `c.user_id IS NULL` 要保留：那是**账号体系之前**的老评论（没有归属），
+     * 它们不可能是"我"发的（我有 id），所以该照常算作别人的回复。
+     */
+    `SELECT c.id, c.page_key, c.page_label, c.body, c.nick, c.avatar, c.created_at, c.parent_id
+     FROM comments c
+     JOIN comments p ON p.id = c.parent_id
+     WHERE p.user_id = ?1
+       AND (c.user_id IS NULL OR c.user_id <> ?1)
+       AND c.status = 1 AND c.id < ?2
+     ORDER BY c.id DESC LIMIT ?3`
+  )
+    .bind(session.row.id, cursor || Number.MAX_SAFE_INTEGER, limit + 1)
+    .all()
+
+  const unreadRow = await env.DB.prepare(
+    // 未读数的条件必须与列表**逐字一致**，否则会出现"红点显示 3、点进去只有 1 条"
+    `SELECT COUNT(*) AS n FROM comments c
+     JOIN comments p ON p.id = c.parent_id
+     WHERE p.user_id = ?1
+       AND (c.user_id IS NULL OR c.user_id <> ?1)
+       AND c.status = 1 AND c.created_at > ?2`
+  )
+    .bind(session.row.id, readAt)
+    .first()
+
+  const list = rows.results || []
+  const hasMore = list.length > limit
+  const page = hasMore ? list.slice(0, limit) : list
+  return json({
+    ok: true,
+    unread: unreadRow?.n || 0,
+    replies: page.map((r) => ({
+      id: r.id,
+      pageKey: r.page_key,
+      pageLabel: r.page_label || null,
+      body: r.body,
+      nick: r.nick,
+      avatar: r.avatar || null,
+      createdAt: r.created_at,
+      parentId: r.parent_id
+    })),
+    nextCursor: hasMore ? page[page.length - 1].id : null
+  })
+}
+
+/** `POST /api/auth/replies/read` —— 把未读基准推到当前时刻。 */
+async function authMarkRepliesRead(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+  await env.DB.prepare(`UPDATE users SET replies_read_at = ?1 WHERE id = ?2`)
+    .bind(ts, session.row.id)
+    .run()
+  return json({ ok: true })
+}
+
+/** `POST /api/auth/logout` —— 只退当前会话（幂等）。 */
+async function authLogout(env, request, ts) {
+  const token = readBearer(request)
+  if (token) {
+    await env.DB.prepare(`DELETE FROM sessions WHERE token_hash = ?1`).bind(await sha256Hex(token)).run()
+  }
+  return json({ ok: true })
+}
+
+/**
+ * `DELETE /api/auth/me` —— **软删除**（已定决策）。
+ *
+ * 三件事一起做：
+ * 1. `status = 3` 并**清空个人数据**（邮箱、密码哈希）—— 满足隐私诉求；
+ * 2. 把其评论的昵称快照改写成「账号已注销」—— 读评论时**不用 JOIN** 就能显示；
+ * 3. **邮箱不可再注册**（`email_hash` 保留占位）—— 防止有人抢注该邮箱冒用历史评论。
+ */
+async function authDeleteAccount(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+
+  const uid = session.row.id
+  // 清空个人数据，但**保留 email_hash 占位**（见下面第 3 条）
+  await env.DB.prepare(
+    `UPDATE users SET status = 3, email = '', verifier_hash = '', pw_algo = 'retired',
+                      pw_changed_at = ?1 WHERE id = ?2`
+  )
+    .bind(ts, uid)
+    .run()
+
+  await env.DB.prepare(`UPDATE comments SET nick = '账号已注销', avatar = NULL WHERE user_id = ?1`)
+    .bind(uid)
+    .run()
+  await revokeSessions(env, uid)
+  await env.DB.prepare(`DELETE FROM auth_codes WHERE email_hash = ?1`).bind(session.row.email_hash).run()
+
+  return json({ ok: true })
+}
+
+// ============================================================
+// 账号路由分发
+// ============================================================
+
+/** 账号接口统一入口。返回 null 表示"不是账号路由"。 */
+async function handleAuthRoutes(path, context) {
+  if (!path.startsWith('/api/auth/')) return null
+  const { request, env } = context
+  const url = new URL(request.url)
+  const ts = nowSec()
+
+  // 缺关键密钥时**整体拒绝**，而不是"降级放行" —— 见 authCrypto 的 fail-closed 说明
+  if (!env.SALT_SECRET || !env.AUTH_PEPPER) {
+    console.error('[auth] 缺少 SALT_SECRET 或 AUTH_PEPPER，账号接口不可用')
+    return bad(AERR.unavailable, 503)
+  }
+
+  const post = request.method === 'POST'
+  const get = request.method === 'GET'
+
+  if (path === '/api/auth/captcha' && get) return authCaptcha(env, ts)
+  if (path === '/api/auth/code' && post) return authRequestCode(env, request, context)
+  if (path === '/api/auth/salt' && get) return authSalt(env, url)
+  if (path === '/api/auth/register' && post) return authRegister(env, request, ts)
+  if (path === '/api/auth/login' && post) return authLogin(env, request, ts)
+  if (path === '/api/auth/me') {
+    if (get) return authMe(env, request, ts)
+    if (request.method === 'PATCH') return authUpdateMe(env, request, ts)
+    if (request.method === 'DELETE') return authDeleteAccount(env, request, ts)
+    return bad(AERR.fallback, 405)
+  }
+  if (path === '/api/auth/password' && post) return authChangePassword(env, request, ts)
+  if (path === '/api/auth/email' && post) return authChangeEmail(env, request, ts)
+  if (path === '/api/auth/comments' && get) return authMyComments(env, request, url, ts)
+  if (path === '/api/auth/replies' && get) return authMyReplies(env, request, url, ts)
+  if (path === '/api/auth/replies/read' && post) return authMarkRepliesRead(env, request, ts)
+  if (path === '/api/auth/logout' && post) return authLogout(env, request, ts)
+
+  return bad(AERR.fallback, 404)
+}
+
 export async function onRequest(context) {
   const { request, env } = context
   const url = new URL(request.url)
@@ -885,7 +1950,8 @@ export async function onRequest(context) {
   if (!env.DB) return bad(ERR.server, 500)
 
   // 管理端未配置令牌时，连路由都不暴露（对外表现为"接口不存在"）
-  const isAdminPath = path === '/api/admin/comments'
+  // 用**前缀**匹配：新增管理端接口时不必再改这一行
+  const isAdminPath = path.startsWith('/api/admin/')
   if (isAdminPath && !env.ADMIN_TOKEN) return bad(ERR.fallback, 404)
 
   try {
@@ -893,18 +1959,31 @@ export async function onRequest(context) {
       return json({ ok: true, ts: nowSec() })
     }
 
+    // 账号体系（2026-10-05）：整段路由集中在 handleAuthRoutes 里，返回 null 表示不是账号路径
+    const authRes = await handleAuthRoutes(path, context)
+    if (authRes) return authRes
+
     if (path === '/api/comments') {
-      if (request.method === 'GET') return await listComments(env, url)
-      if (request.method === 'POST') return await createComment(env, request)
-      if (request.method === 'DELETE') return await deleteOwnComment(env, request)
+      /*
+       * 登录状态是**可选**的：读评论不需要登录，但登录了就要标出"哪条是我的"
+       * （界面据此决定显不显示「删除」）。所以这里解析一次会话，
+       * 解析不到就按未登录处理，**不报错**。
+       */
+      const viewer = await loadSession(env, request, nowSec())
+      const myUserId = viewer?.row?.id ?? null
+
+      if (request.method === 'GET') return await listComments(env, url, myUserId)
+      if (request.method === 'POST') return await createComment(env, request, nowSec())
+      if (request.method === 'DELETE') return await deleteOwnComment(env, request, nowSec())
       return bad(ERR.fallback, 405)
     }
 
-    // 「我发过的评论」：令牌放请求体（不放 URL，避免被历史/Referer/代理日志记录）
-    if (path === '/api/my-comments') {
-      if (request.method !== 'POST') return bad(ERR.fallback, 405)
-      return await listMyComments(env, request)
-    }
+    /*
+     * `/api/my-comments` 与 `listMyComments()` **已随本机身份一并退役**。
+     * 它靠"逐条出示浏览器自删令牌"来证明归属，而那个机制在有了账号之后
+     * 既无必要（归属看 `user_id`）、又有硬伤（换设备就查不到）。
+     * 「我的评论」现在走 `GET /api/auth/comments`（凭会话令牌，跨设备可用）。
+     */
 
     // 站内讨论区最新（右栏预览）：带边缘共享缓存；?fresh=1 跳过缓存，见 listRecent
     if (path === '/api/recent') {
@@ -915,10 +1994,28 @@ export async function onRequest(context) {
 
     if (isAdminPath) {
       if (!(await isAdmin(env, request))) return bad(ERR.rejected, 401)
-      if (request.method === 'GET') return await adminList(env, url)
-      if (request.method === 'PATCH') return await adminPatch(env, request)
-      if (request.method === 'DELETE') return await adminDelete(env, request)
-      return bad(ERR.fallback, 405)
+
+      if (path === '/api/admin/comments') {
+        if (request.method === 'GET') return await adminList(env, url)
+        if (request.method === 'PATCH') return await adminPatch(env, request)
+        if (request.method === 'DELETE') return await adminDelete(env, request)
+        return bad(ERR.fallback, 405)
+      }
+
+      if (path === '/api/admin/stats') {
+        if (request.method !== 'GET') return bad(ERR.fallback, 405)
+        return await adminStats(env)
+      }
+
+      // 用户管理：GET 列表 / PATCH 封禁解封 / DELETE 彻底删除
+      if (path === '/api/admin/users') {
+        if (request.method === 'GET') return await adminUsers(env, url)
+        if (request.method === 'PATCH') return await adminUserPatch(env, request)
+        if (request.method === 'DELETE') return await adminUserDelete(env, request)
+        return bad(ERR.fallback, 405)
+      }
+
+      return bad(ERR.fallback, 404)
     }
 
     return bad(ERR.fallback, 404)

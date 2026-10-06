@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { enableDarkMode } from '../helpers/theme.mjs'
 
 // 本用例逐张比对 4 个分类下的全部卡片几何与图标解码结果，累计耗时稳定超过默认 45s 预算
 // （失败点在最后一步而不是任何断言），因此单独放宽超时，不改断言强度。
@@ -69,7 +70,7 @@ test('ordinary exchanges keep uniform frames with single-line titles and balance
   expect(await cards.first().locator('.ui-exchange-trade__item--reward').evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgba(0, 0, 0, 0)')
   expect(await page.locator('.exchange-page').evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true)
   await page.screenshot({ path: testInfo.outputPath('ordinary-uniform.png'), fullPage: true })
-  await page.getByTitle('切换暗色模式', { exact: true }).click()
+  await enableDarkMode(page)
   await page.screenshot({ path: testInfo.outputPath('ordinary-dark.png'), fullPage: true })
 
   await cards.first().locator('.ui-exchange-trade__item--reward').click()
@@ -136,7 +137,7 @@ test('refresh rules move out of seed and rabbit cards and preserve share links a
   await expect(panel).toBeVisible()
   await expect(rulesButton).toHaveClass(/is-active/)
   await page.screenshot({ path: testInfo.outputPath('rabbit-rules-tab.png'), fullPage: true })
-  await page.getByTitle('切换暗色模式', { exact: true }).click()
+  await enableDarkMode(page)
   await page.screenshot({ path: testInfo.outputPath('rabbit-rules-dark.png'), fullPage: true })
   await page.getByRole('button', { name: '白', exact: true }).click()
   await expect(panel).toHaveCount(0)

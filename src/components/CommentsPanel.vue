@@ -82,7 +82,10 @@
               -->
               <div v-if="nestedView && c.replyCount > 0" class="comment-thread">
                 <div v-for="r in c.replies" :key="r.id" class="comment-nested" :data-comment-id="r.id">
-                  <p class="comment-nested-head">
+                  <!-- ⚠️ 这一行必须是 `div` 不能是 `p`：里面放了 `<div class="comment-actions">`，
+                       而 `<p>` 只能装行内内容——浏览器遇到 div 会**提前闭合 p**，
+                       操作区被甩出头部（Vue 编译期也会警告 "div cannot be child of p"）。 -->
+                  <div class="comment-nested-head">
                     <span class="comment-nested-nick">{{ r.nick }}</span>
                     <!-- 只有"回复的是楼内的另一条回复"才带这个前缀（回复楼主本身不用重复说） -->
                     <span v-if="r.parentId !== c.id" class="comment-nested-to">
@@ -102,7 +105,7 @@
                         {{ deletingId === r.id ? '删除中' : '删除' }}
                       </button>
                     </div>
-                  </p>
+                  </div>
                   <p class="comment-nested-body"><EmoticonText :text="r.body" /></p>
                 </div>
                 <button
@@ -164,14 +167,8 @@ import { UiButton, UiEmptyState, UiSection } from './ui/index.js'
 import CommentComposer from './CommentComposer.vue'
 import EmoticonText from './EmoticonText.vue'
 import { getImageUrl } from '../utils/env.js'
-import {
-  deleteOwnComment,
-  fetchCommentReplies,
-  fetchComments,
-  getDeleteToken,
-  removeDeleteToken
-} from '../utils/commentApi.js'
-import { avatarCatalogState, avatarPath, loadAvatarCatalog } from '../utils/identity.js'
+import { deleteOwnComment, fetchCommentReplies, fetchComments } from '../utils/commentApi.js'
+import { avatarCatalogState, avatarPath, loadAvatarCatalog } from '../utils/avatarCatalog.js'
 
 const props = defineProps({
   /**
@@ -371,22 +368,34 @@ defineExpose({
   addPostedComment,
   /** 轮询刷新：只并新增，不替换列表、不动滚动位置、不显示加载态 */
   mergeNewComments,
+  /**
+   * 滚到某条评论并闪一下（找不到就什么都不做）。
+   *
+   * 供「谁回复了我 / 我的评论」的「去看看」用：跳进讨论区后要定位到那一条，
+   * 否则用户落在一屏评论里还得自己找。**找不到是正常情况** ——
+   * 那一条可能在还没加载的分页里，这时只到页面为止，不要报错。
+   */
+  scrollToComment,
   commentsLength,
   hasMore,
   loading
 })
 
 /**
- * 认领"本机发过的评论"：凡是本地存着删除令牌的 id，才显示「删除」。
+ * 认领"我发过的评论"：服务端在每条评论上给了 `mine` 布尔（由 `comments.user_id`
+ * 与当前会话比对得出），客户端只负责把它收集成一个 id 集合。
  *
  * ⚠️ **必须连楼中楼里的回复一起扫**：嵌套回复的「删除」按钮同样看 `ownedIds`，
  * 只扫顶层的话自己刚发的回复会没有删除入口（实测被指出："回复怎么没有删除"）。
  * `allReplies` 是展开过的全量缓存，也要一起扫，否则收起状态下删不了。
+ *
+ * 🔴 **换成 `mine` 之后解决了一个老问题**：以前归属靠"本机存的删除令牌"，
+ * 于是**换个设备就删不掉自己发的评论**。现在归属在服务端，跨设备一致。
  */
 function syncOwned() {
   const set = new Set()
   const consider = (c) => {
-    if (c?.id && getDeleteToken(c.id)) set.add(c.id)
+    if (c?.id && c.mine) set.add(c.id)
   }
   for (const c of comments.value) {
     consider(c)
@@ -659,33 +668,28 @@ onBeforeUnmount(() => {
  * 删除自己的评论。
  *
  * 三条稳健性要求（都来自实际使用反馈）：
- *   1. **没有令牌时必须给出提示**。原先直接 `return` 什么都不做，
+ *   1. **没有登录/不是自己的必须给出提示**。原先直接 `return` 什么都不做，
  *      表现就是"点删除只闪一下、没任何反应"——最难排查的一种失败。
- *   2. **把 404 当成删除成功**。服务端的删除是幂等的：当评论已经不可见时返回成功。
- *      但客户端仍要容忍旧的 404 响应（例如列表明明是旧快照），
- *      否则用户会看到"评论明明还在，却说不存在"。
+ *   2. **把 403/404 当成"已经不在"**。服务端的删除是幂等的：评论已不可见时返回成功。
+ *      客户端仍要容忍旧快照带来的 404，否则用户会看到"评论明明还在，却说不存在"。
  *   3. 无论服务端怎么回，删完都做一次列表刷新，让界面与真实状态对齐。
  */
 async function handleDelete(comment) {
   if (deletingId.value) return
-  const token = getDeleteToken(comment.id)
-  if (!token) {
-    actionError.value = '这条评论的删除凭据已失效，请联系站长处理'
+  if (!comment?.mine) {
+    actionError.value = '只能删除自己发表的评论'
     return
   }
 
   deletingId.value = comment.id
   actionError.value = ''
-  actionError.value = ''
   try {
-    await deleteOwnComment(comment.id, token)
-    removeDeleteToken(comment.id)
+    await deleteOwnComment(comment.id)
     comments.value = comments.value.filter((c) => c.id !== comment.id)
     syncOwned()
   } catch (err) {
     if (err?.status === 404) {
       // 服务端认为它已经不在了：删除的目标状态已达成，按成功处理
-      removeDeleteToken(comment.id)
       comments.value = comments.value.filter((c) => c.id !== comment.id)
       syncOwned()
     } else {

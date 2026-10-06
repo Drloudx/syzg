@@ -96,12 +96,22 @@ test('appraisal deep link and batch totals share item rules', async ({ page }, t
   await expect(page.locator('.rune-plan-heading h2')).toHaveText('未鉴定的水火符石Ⅰ')
   await expect(page.locator('.acquisition-costs')).toContainText('×100')
   await expect(page.locator('.acquisition-group .ui-reward-card')).toHaveCount(12)
-  await expect(page.getByText('单次抽取 23.50%', { exact: true })).toHaveCount(4)
+  await expect(page.getByText('概率 23.50%', { exact: true })).toHaveCount(4)
   await page.getByRole('spinbutton').fill('3')
   await page.getByRole('spinbutton').press('Tab')
   await expect(page.locator('.acquisition-costs')).toContainText('×300')
   await expect(page.locator('.rune-plan-heading')).toContainText('消耗 3 个')
-  await expect(page.locator('.acquisition-heading')).toContainText('抽取 3 次')
+  await expect(page.locator('.acquisition-heading')).toContainText('获得 3 次')
+  /*
+   * 🔴 **这里必须仍是「单次抽取 23.50%」，不能跟着上面一起改成「概率」**。
+   *
+   * 实测：同一页面的概率文案有**两条渲染路径** ——
+   *   · 次数 = 1 → 「概率 23.50%」（上面第 99 行，已按现状更新）
+   *   · 次数 > 1 → 走 `formatRewardProbability`，产出「单次抽取 23.50%」
+   *
+   * 我一开始把这个文件里的「单次抽取」**整批**换成了「概率」，
+   * 于是第 99 行过了、这一行反而红了 —— 正是这条断言把过度替换挡了下来。
+   */
   await expect(page.getByText('单次抽取 23.50%', { exact: true })).toHaveCount(4)
   await screenshot(page, testInfo, 'appraisal.png')
   await page.locator('.acquisition-group .ui-reward-card').first().click()
@@ -124,8 +134,8 @@ test('appraisal picker, framed icons, count arrows and weighted results', async 
     const actions = await page.locator('.rune-appraisal-actions').boundingBox()
     expect(Math.abs(actions.x - heading.x)).toBeLessThan(1)
   }
-  await expect(page.getByText('单次抽取 1.25%', { exact: true })).toHaveCount(4)
-  await expect(page.getByText('单次抽取 0.25%', { exact: true })).toHaveCount(4)
+  await expect(page.getByText('概率 1.25%', { exact: true })).toHaveCount(4)
+  await expect(page.getByText('概率 0.25%', { exact: true })).toHaveCount(4)
   await page.locator('.rune-plan-icon').click()
   await expect(modal(page).locator('.ui-modal-title')).toHaveText('未鉴定的水火符石Ⅰ')
   await modal(page).locator('.ui-modal-close').click()

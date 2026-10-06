@@ -1,7 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">深歌小助手</string>
-    <string name="title_activity_main">深歌小助手</string>
+    <!--
+        ⚠️ 只改**显示名**。
+        `package_name` 与 `custom_url_scheme` 是 Android 包名，**绝不能动** ——
+        改了等于换包名，已安装用户无法增量升级、本地数据会丢。
+        （`capacitor.config.json` 里的 `appId` 同理。）
+    -->
+    <string name="app_name">深渊大书院</string>
+    <string name="title_activity_main">深渊大书院</string>
     <string name="package_name">com.myrzg.assistant</string>
     <string name="custom_url_scheme">com.myrzg.assistant</string>
 </resources>

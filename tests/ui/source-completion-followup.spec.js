@@ -51,7 +51,15 @@ test('daily, tower and dismantling sources stay concise with no dead navigation'
       await expect(section).toContainText('通关结算奖励')
       await expect(section).not.toContainText('通关《')
       await expect(section).not.toContainText('消耗：')
+      /*
+       * 这条原本只断言 `not.toContainText('单次抽取')` —— 但**界面早就不用这个词了**
+       * （改成「概率 X%」），所以它已经变成恒真，等于没测。
+       *
+       * 意图是"日常计划里不该出现抽取概率那套文案"，所以新旧两种写法一起挡，
+       * 这样界面无论回到哪种措辞都仍然有效。
+       */
       await expect(section).not.toContainText('单次抽取')
+      await expect(section).not.toContainText('概率 ')
       await page.screenshot({ path: testInfo.outputPath(`daily-source-${id}.png`) })
     }
   }

@@ -1,19 +1,28 @@
 <template>
   <form class="comment-form" @submit.prevent="submit">
+    <!--
+      身份条：**评论必须登录**（读不需要）。未登录时这里就是登录引导 ——
+      按钮点了直接开账号弹窗，不跳页。
+    -->
     <div class="comment-identity">
-      <img v-if="myAvatarPath" class="comment-avatar" :src="myAvatarPath" alt="" />
-      <div v-else class="comment-avatar comment-avatar-fallback" aria-hidden="true">
-        {{ identity.nick.trim().slice(0, 1) || '?' }}
-      </div>
-      <span class="comment-identity-text">
-        <template v-if="identity.nick.trim()">
-          以 <strong>{{ identity.nick }}</strong> 的身份发表
-        </template>
-        <template v-else>还没设置昵称</template>
-      </span>
-      <button type="button" class="comment-identity-edit" @click="openAccountModal()">
-        {{ identity.nick.trim() ? '修改' : '去设置' }}
-      </button>
+      <template v-if="isLoggedIn">
+        <img v-if="myAvatarPath" class="comment-avatar" :src="myAvatarPath" alt="" />
+        <div v-else class="comment-avatar comment-avatar-fallback" aria-hidden="true">
+          {{ (currentUser?.nick || '?').slice(0, 1) }}
+        </div>
+        <span class="comment-identity-text">
+          以 <strong>{{ currentUser?.nick }}</strong> 的身份发表
+          <span class="comment-identity-no">编号 {{ currentUser?.id }}</span>
+        </span>
+        <button type="button" class="comment-identity-edit" @click="openAccountModal()">修改</button>
+      </template>
+      <template v-else>
+        <div class="comment-avatar comment-avatar-fallback" aria-hidden="true">?</div>
+        <span class="comment-identity-text">登录后才能发表评论</span>
+        <button type="button" class="comment-identity-edit" @click="openAccountModal()">
+          登录 / 注册
+        </button>
+      </template>
     </div>
 
     <!--
@@ -185,9 +194,11 @@ import {
   findEmoticon
 } from '../config/emoticons.js'
 import { getImageUrl } from '../utils/env.js'
-import { postComment, saveDeleteToken } from '../utils/commentApi.js'
+import { postComment } from '../utils/commentApi.js'
 import { notifyCommentPosted } from '../utils/commentEvents.js'
-import { avatarPath, identity, openAccountModal } from '../utils/identity.js'
+import { avatarPath } from '../utils/avatarCatalog.js'
+import { openAccountModal } from '../utils/accountModal.js'
+import { currentUser, isLoggedIn } from '../utils/authSession.js'
 
 const props = defineProps({
   /** 评论归属键（`item:xxx` / `site:general`） */
@@ -238,7 +249,7 @@ const replyExcerpt = computed(() => {
 })
 
 const myAvatarPath = computed(() => {
-  const path = avatarPath(identity.value.avatar)
+  const path = avatarPath(currentUser.value?.avatar || '')
   return path ? getImageUrl(path) : ''
 })
 
@@ -544,11 +555,13 @@ function onCopy(event) {
 async function submit() {
   if (submitting.value || !canSubmit.value) return
 
-  // 未设昵称：先把账号弹窗打开让用户设好，回来再点发布。
-  // 不自动用"匿名"顶替，否则用户会以为设置已生效。
-  if (!identity.value.nick.trim()) {
+  /*
+   * 未登录：把账号弹窗打开让用户登录，回来再点发布。
+   * 不自动用"匿名"顶替 —— 服务端也会拒绝（401），本地先拦一下省一次往返。
+   */
+  if (!isLoggedIn.value) {
     error.value = ''
-    notice.value = '请先设置昵称，保存后再点「发布」'
+    notice.value = '请先登录，登录后再点「发布」'
     openAccountModal()
     return
   }
@@ -557,18 +570,18 @@ async function submit() {
   error.value = ''
   notice.value = ''
   try {
+    /*
+     * 昵称与头像**不再传** —— 服务端从会话令牌解析账号，一律用账号上的值。
+     * （传了也会被忽略，见 `functions/api/[[path]].js` 的 `createComment`。）
+     */
     const data = await postComment({
       pageKey: props.pageKey,
       pageLabel: props.pageLabel,
-      nick: identity.value.nick.trim(),
-      avatar: identity.value.avatar || '',
       body: form.body.trim(),
       hp: form.hp,
       // 回复目标（没有引用时为 null，服务端会忽略）
       parentId: form.replyTo?.id ?? null
     })
-    // 令牌只在这次响应里给一次，立刻落本地（用于作者自删）
-    if (data.deleteToken) saveDeleteToken(data.comment.id, data.deleteToken)
 
     if (data.pending) {
       // 进待审：不直接插进列表，避免"看得见但别人看不见"的误导
@@ -700,6 +713,15 @@ onMounted(() => {
   font-size: 13px;
   line-height: 1.6;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 对外编号：比昵称低一级的视觉层级，不抢眼但能对上号 */
+.comment-identity-no {
+  font-family: ui-monospace, monospace;
+  font-size: 11px;
+  opacity: 0.7;
 }
 
 .comment-identity-text strong {

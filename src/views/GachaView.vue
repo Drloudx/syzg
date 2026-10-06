@@ -197,7 +197,7 @@ const petSettlementItems = computed(() => {
 async function copyShareText() {
   const text = revealItems.value.map(item => `${item.rank ?? item.quality}星 ${item.name}`).join('\n')
   try {
-    await navigator.clipboard.writeText(`深歌小助手 · 模拟招募\n${text}`)
+    await navigator.clipboard.writeText(`深渊大书院 · 模拟招募\n${text}`)
   } catch {}
 }
 

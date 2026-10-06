@@ -13,6 +13,7 @@
  * 相关设计：docs/technical/COMMENTS_BACKEND.md
  */
 import { CLOUD_URL, isNative } from './env.js'
+import { getToken, whenSessionReady } from './authSession.js'
 
 const TIMEOUT_MS = 15000
 
@@ -77,9 +78,6 @@ export function buildPageKey(prefix, entityId) {
   return `${prefix}:${String(entityId)}`
 }
 
-/** 自删令牌的本地存储键：`myrzg:comment-token:<id>` */
-const TOKEN_PREFIX = 'myrzg:comment-token:'
-
 function apiBase() {
   if (isNative) {
     // 原生端：断网时访问云端无意义，直接给出可读错误
@@ -99,12 +97,28 @@ export class CommentApiError extends Error {
   }
 }
 
-async function request(path, { method = 'GET', body, adminToken } = {}) {
+async function request(path, { method = 'GET', body, token } = {}) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
   const headers = {}
   if (body !== undefined) headers['Content-Type'] = 'application/json; charset=utf-8'
-  if (adminToken) headers['x-admin-token'] = adminToken
+
+  /*
+   * 🔴 **先等会话恢复完成，再取令牌**。
+   *
+   * `restoreSession()` 刻意不 await（不阻塞首屏），但评论列表加载得比它快 ——
+   * 直接 `getToken()` 会拿到空串，请求就不带令牌，服务端算出的 `mine` 全是 false，
+   * **登录用户永远看不到自己评论的「删除」按钮**（刷新也一样）。
+   *
+   * 所以这里统一 `await whenSessionReady()`；调用方**不要**自己传
+   * `token: getToken()`（那正好绕开这个等待）。需要显式指定时才传 `token`。
+   */
+  let authToken = token
+  if (authToken === undefined) {
+    await whenSessionReady()
+    authToken = getToken()
+  }
+  if (authToken) headers.Authorization = `Bearer ${authToken}`
 
   let response
   try {
@@ -156,6 +170,17 @@ export function fetchComments(pageKey, { cursor, limit = 20, nested = false } = 
   const params = new URLSearchParams({ page: pageKey, limit: String(limit) })
   if (cursor) params.set('cursor', String(cursor))
   if (nested) params.set('nested', '1')
+  /*
+   * 🔴 **读评论也要带令牌**。
+   *
+   * 读本身不需要登录，但**登录了就必须带上**：服务端要按会话算出每条评论的
+   * `mine`（"这条是不是你的"），界面据此决定显不显示「删除」。
+   *
+   * 这个漏了整整一轮：`postComment` / `deleteOwnComment` 都带了，
+   * 偏偏三个读函数没带 —— 于是**登录用户永远看不到删除按钮**。
+   * API 端到端没发现（它是直接用带 header 的请求测的），
+   * **真机全流程才暴露**（"自己刚发的评论没有删除入口"）。
+   */
   return request(`/api/comments?${params.toString()}`)
 }
 
@@ -167,6 +192,7 @@ export function fetchComments(pageKey, { cursor, limit = 20, nested = false } = 
  */
 export function fetchCommentReplies(pageKey, parentId, { limit = 50 } = {}) {
   const params = new URLSearchParams({ page: pageKey, parent: String(parentId), limit: String(limit) })
+  // 令牌交给 request 自己处理（它会先等会话恢复，见上面的说明）
   return request(`/api/comments?${params.toString()}`)
 }
 
@@ -181,16 +207,24 @@ export function fetchCommentReplies(pageKey, parentId, { limit = 50 } = {}) {
  *   （CDN 默认忽略 query 的缓存策略不保证，显式不同 URL 才可靠）。
  */
 export function fetchRecentComments({ fresh = false } = {}) {
+  /*
+   * 这条**也带令牌**：右栏那条列表要能标出"哪条是你发的"。
+   * 服务端对 `/api/recent` 做了边缘共享缓存，而带 Authorization 的请求
+   * 本来就不会命中共享缓存 —— 这是**可接受的代价**：右栏本来就有 30 秒轮询，
+   * 少一层共享缓存不影响体感，但"自己那条显示不出来"会影响。
+   * （`mine` 是逐请求算的，不缓存反而是对的。）
+   */
   if (!fresh) return request('/api/recent')
   return request(`/api/recent?fresh=1&t=${Date.now()}`)
 }
 
 /**
- * 发表评论。返回体含 `deleteToken`，调用方需 `saveDeleteToken` 保存。
+ * 发表评论。
  *
- * 昵称与头像来自本机身份（`utils/identity.js`），不在这里要求用户重填。
- * 注意：`avatar` 是**头像 ID**（如 `avatar_pet_006`），服务端只做格式校验，
- * 路径由客户端查 `avatarCatalog.json` 得到。
+ * 🔴 **昵称与头像不再由客户端传** —— 服务端从会话令牌解析出账号，一律用账号上的值。
+ * 所以这里的 `body` 里没有 `nick` / `avatar`，传了也会被忽略。
+ *
+ * 令牌从 `authSession` 自动取，**调用方不可能忘记带**（带了才发得出去）。
  *
  * `pageLabel` 是评论所在页面的人话名字（如「银币」）。由调用方用它手上已有的
  * 业务数据传上来并存进这条评论——这样管理端与账号弹窗不必为每条评论反查物品表
@@ -200,98 +234,46 @@ export function fetchRecentComments({ fresh = false } = {}) {
  * 服务端校验"存在 + 同一 page_key + 仍公开"，任一不满足就**静默降级成普通评论**，
  * 客户端不必为"对方刚好把那条删了"写特殊分支。
  */
-export function postComment({ pageKey, pageLabel, nick, avatar, body, token, hp, parentId }) {
+export function postComment({ pageKey, pageLabel, body, hp, parentId, turnstileToken }) {
   return request('/api/comments', {
     method: 'POST',
-    body: { page: pageKey, pageLabel, nick, avatar, body, token, hp, parentId }
+    body: {
+      page: pageKey,
+      pageLabel,
+      body,
+      hp,
+      parentId,
+      /*
+       * ⚠️ 请求体里的 `token` 是 **Turnstile 人机令牌**，与上面 `headers` 里的
+       * **账号令牌**是两回事，别混。服务端读的是 `payload.token`（`verifyTurnstile`），
+       * 未配 `TURNSTILE_SECRET` 时该函数直接放行，所以现在传不传都行 ——
+       * 但接入点必须留着，否则将来一开开关所有人就发不出评论。
+       */
+      token: turnstileToken
+    }
   })
 }
 
-/** 凭令牌删除自己的评论 */
-export function deleteOwnComment(id, token) {
-  return request('/api/comments', { method: 'DELETE', body: { id, token } })
-}
-
 /**
- * 取回本机发表过的评论（含待审/已隐藏的状态）。
+ * 删自己发的评论。
  *
- * 令牌放**请求体**而不是 URL：放 URL 会被浏览器历史、Referer 与代理日志记录。
- * 服务端逐条比对令牌，只返回对得上的那些——所以这等价于"用凭据取自己的评论"，
- * 不是"按 id 列举评论"的公开读接口。
+ * 归属由服务端按 `comments.user_id` 判定，客户端只说"删哪一条"。
+ * 因此**换设备也能删**（这是浏览器令牌时代做不到的）。
+ */
+export function deleteOwnComment(id) {
+  return request('/api/comments', { method: 'DELETE', body: { id } })
+}
+
+/*
+ * 管理端那三个接口（列评论 / 改状态 / 彻底删除）在后台改版时**整块搬到了
+ * `utils/adminApi.js`**。搬的理由不是"文件太长"，而是两者的契约不一样：
  *
- * @param {Array<{id: number, token: string}>} items
+ *   · 鉴权：管理端用 `x-admin-token`（不过期、单人用），
+ *     访客接口用 `Authorization: Bearer`（30 天滑动、可轮换）；
+ *   · 错误语义：管理端的 404 意味着"服务端没配 ADMIN_TOKEN"，
+ *     访客接口的 404 就是"没有这条"；
+ *   · 调用方：一个只有后台页面用，一个全站评论区用。
+ *
+ * 留在这里会让每个读它的人都要先想一下"这个 request 到底带哪种令牌"。
  */
-export function fetchMyComments(items) {
-  if (!Array.isArray(items) || !items.length) return Promise.resolve({ ok: true, comments: [] })
-  return request('/api/my-comments', { method: 'POST', body: { items: items.slice(0, 50) } })
-}
 
-/** 列出本机保存过自删令牌的评论 id（按数值倒序，新的在前） */
-export function listOwnedCommentIds() {
-  const ids = []
-  try {
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i)
-      if (!key || !key.startsWith(TOKEN_PREFIX)) continue
-      const id = Number.parseInt(key.slice(TOKEN_PREFIX.length), 10)
-      if (Number.isFinite(id)) ids.push(id)
-    }
-  } catch {
-    return []
-  }
-  return ids.sort((a, b) => b - a)
-}
-
-// ── 自删令牌的本地存储 ──────────────────────────────────────────────
-// 令牌只发给发表者本人（明文仅一次），存 localStorage 是为了让用户
-// 无需记任何东西就能删自己的评论。换设备/清浏览器数据后删不了，需联系管理员。
-
-export function saveDeleteToken(id, token) {
-  try {
-    localStorage.setItem(`${TOKEN_PREFIX}${id}`, token)
-  } catch {
-    /* 隐私模式下 localStorage 可能不可用；删除功能降级为不可用，不影响发表 */
-  }
-}
-
-export function getDeleteToken(id) {
-  try {
-    return localStorage.getItem(`${TOKEN_PREFIX}${id}`)
-  } catch {
-    return null
-  }
-}
-
-export function removeDeleteToken(id) {
-  try {
-    localStorage.removeItem(`${TOKEN_PREFIX}${id}`)
-  } catch {
-    /* 同上 */
-  }
-}
-
-// ── 管理端 ────────────────────────────────────────────────────────
-
-/**
- * 管理端列表。
- * @param {string} adminToken 管理凭据
- * @param {{status?: string|number, q?: string, cursor?: number, limit?: number}} options
- *   `q` 是关键词，服务端在正文/昵称/页面标识里匹配（不在前端过滤，评论会持续增长）
- */
-export function fetchAdminComments(adminToken, { status, q, cursor, limit = 50 } = {}) {
-  const params = new URLSearchParams({ limit: String(limit) })
-  if (status !== undefined && status !== null && status !== '') params.set('status', String(status))
-  if (q) params.set('q', String(q))
-  if (cursor) params.set('cursor', String(cursor))
-  return request(`/api/admin/comments?${params.toString()}`, { adminToken })
-}
-
-/** 改状态：0 待审 / 1 显示（放行）/ 2 隐藏 */
-export function setCommentStatus(adminToken, id, status) {
-  return request('/api/admin/comments', { method: 'PATCH', body: { id, status }, adminToken })
-}
-
-/** 彻底删除（隐私删除请求用；只想下架请用 setCommentStatus(id, 2)） */
-export function deleteCommentPermanently(adminToken, id) {
-  return request('/api/admin/comments', { method: 'DELETE', body: { id }, adminToken })
-}

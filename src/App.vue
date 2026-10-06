@@ -271,7 +271,9 @@ import NoticeModal from './components/NoticeModal.vue'
 import VersionCheckModal from './components/VersionCheckModal.vue'
 import AboutModal from './components/AboutModal.vue'
 import AccountModal from './components/AccountModal.vue'
-import { loadIdentity, registerAccountModal, avatarPath, avatarCatalogState, loadAvatarCatalog } from './utils/identity.js'
+import { avatarPath, avatarCatalogState, loadAvatarCatalog } from './utils/avatarCatalog.js'
+import { registerAccountModal } from './utils/accountModal.js'
+import { restoreSession } from './utils/authSession.js'
 import { SITE_PAGE_KEY, fetchRecentComments } from './utils/commentApi.js'
 import { lastPostedComment, commentPostedAt } from './utils/commentEvents.js'
 import { UiButton, UiEmptyState, UiModal, EdgeFloatingWidget } from './components/ui/index.js'
@@ -328,7 +330,8 @@ const PAGE_TITLES = {
   '/chapters': '关卡图鉴',
   '/glossary': '词条',
   '/gacha': '模拟招募',
-  '/admin': '评论管理',
+  '/admin': '后台',
+  '/privacy': '隐私说明',
   '/discussions': '讨论区'
 }
 
@@ -492,15 +495,30 @@ watch(
 )
 
 /**
- * 本机身份（昵称 + 头像）与账号弹窗的接线：
- *   - 启动时读一次 localStorage，评论面板与账号弹窗共用同一份响应式状态；
- *   - 把"打开账号弹窗"注册给 identity 模块，评论面板在未设昵称时调用它，
- *     从而不必让子组件各自维护一份弹窗开关（页面上只有一个账号弹窗）。
+ * 账号体系的接线：
+ *   - 恢复会话（下面那个 `restoreSession`）；
+ *   - 把"打开账号弹窗"注册出去 —— 评论组装器在未登录时要用它，
+ *     这样不必让子组件各自维护一份弹窗开关（页面上只有一个账号弹窗）。
+ *
+ * ⚠️ **本机身份（`myrzg:identity`）已随 M4 彻底退役**：
+ * 昵称与头像不再存本地，一律以账号为准。旧版遗留的那个 localStorage 键
+ * 不再读取也不再写入 —— 留着不清理，因为清它需要跑一次迁移脚本，
+ * 而它最多占用几百字节、且不含任何敏感信息。
  */
-loadIdentity()
 registerAccountModal(() => {
   isAccountOpen.value = true
 })
+
+/**
+ * 恢复账号会话：把 localStorage 里的令牌拿去问服务端"这还算数吗"。
+ *
+ * **不 await**：它会打一次网络，没必要卡住首屏。界面在 `sessionState` 变化后
+ * 自行更新（未登录/已登录）。
+ */
+restoreSession().catch((err) => {
+  console.warn('[auth] 恢复会话异常:', err?.message)
+})
+
 // 右栏的"最新讨论"：首屏就绪后拉一次（服务端有 30 秒边缘缓存，成本可控）
 loadRecentDiscussions()
 

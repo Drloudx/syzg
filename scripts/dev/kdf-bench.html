@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>KDF 真机测量（开发用，不进构建）</title>
+<!--
+  ⚠️ 这是**开发诊断页**，不属于产品。它不会被 vite build 打包
+  （构建入口只有根目录的 index.html），只在 npm run dev 下按需打开。
+
+  用途：**低端安卓手机上实测 PBKDF2-SHA256 600000 轮的真实耗时**。
+  桌面 Chrome 实测约 480~650ms，但低端手机可能慢 5~10 倍 ——
+  如果超过 3 秒，用户点"登录"后会明显卡住，那时要决定是否降低轮数。
+
+  打开方式（手机与电脑连同一个 Wi-Fi）：
+    npm run dev -- --host
+    手机浏览器访问  http://<电脑局域网IP>:5173/scripts/dev/kdf-bench.html
+-->
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 20px 16px 40px;
+    font: 16px/1.6 system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #1c1410; color: #f0e6d6;
+  }
+  h1 { font-size: 19px; margin: 0 0 4px; }
+  .sub { font-size: 13px; opacity: .65; margin-bottom: 18px; }
+  .big {
+    font-size: 46px; font-weight: 700; line-height: 1.1;
+    font-variant-numeric: tabular-nums; margin: 6px 0 2px;
+  }
+  .big .unit { font-size: 22px; font-weight: 500; opacity: .7; }
+  .verdict { font-size: 15px; font-weight: 600; margin-bottom: 18px; }
+  .ok { color: #6ee7a8; }
+  .warn { color: #ffd166; }
+  .bad { color: #ff8f8f; }
+  .card {
+    background: #2a2019; border: 1px solid #4a3a2c; border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 12px;
+  }
+  .card h2 { font-size: 14px; margin: 0 0 8px; opacity: .75; font-weight: 600; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td { padding: 5px 0; vertical-align: top; }
+  td:first-child { opacity: .6; width: 42%; }
+  td:last-child { font-variant-numeric: tabular-nums; word-break: break-all; }
+  button {
+    width: 100%; padding: 14px; font-size: 16px; font-weight: 600;
+    border: 0; border-radius: 10px; background: #c8a06a; color: #241a12;
+  }
+  button:disabled { opacity: .45; }
+  .spin { display: inline-block; width: 14px; height: 14px; margin-right: 6px;
+    border: 2px solid #f0e6d6; border-top-color: transparent; border-radius: 50%;
+    animation: r .8s linear infinite; vertical-align: -2px; }
+  @keyframes r { to { transform: rotate(360deg); } }
+  code { font-size: 12px; word-break: break-all; opacity: .8; }
+</style>
+</head>
+<body>
+
+<h1>KDF 真机测量</h1>
+<div class="sub">PBKDF2-SHA256 · 600000 轮 · 开发诊断页，不进构建</div>
+
+<div class="big" id="ms">—<span class="unit"> ms</span></div>
+<div class="verdict" id="verdict">正在测量…</div>
+
+<div class="card" id="hintCard" style="display:none">
+  <h2>怎么让它跑起来</h2>
+  <p style="font-size:14px;margin:0 0 10px;opacity:.85">
+    任选一种，让页面落到<b>安全上下文</b>里：
+  </p>
+  <ol style="font-size:14px;margin:0;padding-left:20px;line-height:1.9">
+    <li><b>模拟器里用 <code>http://localhost:5173</code></b> —— localhost 被浏览器特批为安全上下文。</li>
+    <li><b>手机 Chrome 加白名单</b>：地址栏进
+      <code>chrome://flags/#unsafely-treat-insecure-origin-as-secure</code>，
+      填入本页地址（形如 <code>http://192.168.31.248:5173</code>），
+      下拉选 <b>Enabled</b>，点 Relaunch 重启浏览器。<br>
+      <span style="opacity:.7">注意：要用 <b>Chrome</b>，微信内置浏览器不行（它是另一套 WebView）。</span>
+    </li>
+    <li><b>USB 端口转发</b>：电脑 Chrome 打开 <code>chrome://inspect</code> →
+      Port forwarding → 手机把 <code>localhost:5173</code> 转到电脑的 5173。</li>
+  </ol>
+  <p style="font-size:13px;margin:10px 0 0;opacity:.7">
+    生产环境不受此限制：网页是 <code>https://syzg.yxzmy.top</code>，
+    安卓 App 的 origin 是 <code>https://localhost</code>，两者都是安全上下文。
+  </p>
+</div>
+
+<div class="card" id="detailCard" style="display:none">
+  <h2>三次实测</h2>
+  <table>
+    <tr><td>第 1 次</td><td id="t1">—</td></tr>
+    <tr><td>第 2 次</td><td id="t2">—</td></tr>
+    <tr><td>第 3 次</td><td id="t3">—</td></tr>
+    <tr><td>结果正确性</td><td id="correct">—</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>设备信息</h2>
+  <table>
+    <tr><td>逻辑核心数</td><td id="cores">—</td></tr>
+    <tr><td>设备内存（约）</td><td id="mem">—</td></tr>
+    <tr><td>安全上下文</td><td id="secure">—</td></tr>
+    <tr><td>UA</td><td><code id="ua">—</code></td></tr>
+  </table>
+</div>
+
+<button id="again" disabled>再测一次</button>
+
+<script type="module">
+import { deriveVerifier, isKdfAvailable } from '/src/utils/passwordKdf.js'
+import { PBKDF2_ITERS } from '/src/config/auth.js'
+
+// 与 tests/unit/password-kdf.test.mjs 同一个金标准输入 —— 顺便验证真机算得对
+const PW = 'correct horse battery staple'
+const SALT = 'a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90'
+const EXPECT = '842507c5a7e19223eac863e592c9e1d54b585c9d340cc67acdae583b2f366c98'
+
+const $ = (id) => document.getElementById(id)
+
+$('cores').textContent = navigator.hardwareConcurrency || '未知'
+$('mem').textContent = navigator.deviceMemory ? navigator.deviceMemory + ' GB' : '浏览器未提供'
+$('secure').textContent = window.isSecureContext ? '是 ✅' : '否（crypto.subtle 不可用）⚠️'
+$('ua').textContent = navigator.userAgent
+
+function verdictFor(ms) {
+  if (ms < 1000) return ['ok', '很快，用户基本无感']
+  if (ms < 2000) return ['ok', '可以接受，配加载态文案即可']
+  if (ms < 3000) return ['warn', '偏慢，必须给明确的加载态；可考虑降到 300k 轮']
+  return ['bad', '太慢，用户会觉得卡；建议降到 300k 轮（仍高于平台封顶的 100k）']
+}
+
+async function run() {
+  const btn = $('again')
+  btn.disabled = true
+  $('verdict').className = 'verdict'
+  $('verdict').innerHTML = '<span class="spin"></span>正在测量…'
+
+  if (!isKdfAvailable()) {
+    // ⚠️ 最常见的失败原因**不是设备不行，而是页面不是"安全上下文"**：
+    // 浏览器只在 https / localhost 下暴露 crypto.subtle。用
+    // http://<局域网IP>:5173 打开就会命中这个坑（2026-10-05 踩过）。
+    const insecure = !window.isSecureContext
+    $('verdict').className = 'verdict bad'
+    $('verdict').innerHTML = insecure
+      ? '⚠️ 页面<b>不是安全上下文</b> —— 浏览器只在 <code>https://</code> 或 <code>localhost</code> 下提供 <code>crypto.subtle</code>。<br>'
+        + '<b>这不是设备问题。</b>换个打开方式即可（见下方说明）。'
+      : '⚠️ 这台设备的浏览器不支持 <code>crypto.subtle</code>（极老的浏览器）。'
+    $('hintCard').style.display = ''
+    btn.disabled = false
+    return
+  }
+
+  const times = []
+  let last = ''
+  try {
+    for (let i = 0; i < 3; i++) {
+      const t0 = performance.now()
+      last = await deriveVerifier(PW, SALT)
+      times.push(Math.round(performance.now() - t0))
+      $('t' + (i + 1)).textContent = times[i] + ' ms'
+      // 让 UI 有机会刷新（否则三次连算看不到中间态）
+      await new Promise((r) => setTimeout(r, 30))
+    }
+  } catch (err) {
+    $('verdict').className = 'verdict bad'
+    $('verdict').textContent = '出错：' + err.message
+    btn.disabled = false
+    return
+  }
+
+  const sorted = [...times].sort((a, b) => a - b)
+  const median = sorted[1]
+  const [cls, text] = verdictFor(median)
+
+  $('ms').innerHTML = median + '<span class="unit"> ms</span>'
+  $('verdict').className = 'verdict ' + cls
+  $('verdict').textContent = text
+  $('correct').innerHTML = last === EXPECT
+    ? '<span class="ok">✅ 与金标准向量一致</span>'
+    : '<span class="bad">❌ 不一致！这台设备的 WebCrypto 与 Node 不一致</span>'
+  $('detailCard').style.display = ''
+
+  console.log('[kdf-bench] ' + JSON.stringify({
+    iterations: PBKDF2_ITERS, times, median, correct: last === EXPECT, ua: navigator.userAgent
+  }))
+  btn.disabled = false
+}
+
+$('again').addEventListener('click', run)
+run()
+</script>
+</body>
+</html>

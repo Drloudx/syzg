@@ -49,7 +49,8 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import CommentsPanel from '../components/CommentsPanel.vue'
 import CommentComposer from '../components/CommentComposer.vue'
 import { SITE_PAGE_KEY, SITE_PAGE_LABEL } from '../utils/commentApi.js'
@@ -308,6 +309,41 @@ useVisibilityPolling(
   { intervalMs: DISCUSSION_POLL_MS }
 )
 
+/**
+ * `?c=<评论 id>` —— 从「谁回复了我 / 我的评论」的「去看看」跳进来时，
+ * **滚到那一条并闪一下**（这就是"可点击定位"）。
+ *
+ * 三个必须处理的现实情况：
+ *   1. **那一条可能还没加载**（只在第一页里找）—— 这时只到页面为止，
+ *      不报错、不自动翻页去找（找不到就翻页会让用户莫名其妙地看一屏新内容）；
+ *   2. **列表是异步来的**，挂载那一刻还没渲染 —— 所以要等 `commentsLength` 变化后重试；
+ *   3. 定位完就把参数从地址栏抹掉：否则用户手动滚走再刷新，又会被拽回去。
+ */
+const route = useRoute()
+const router = useRouter()
+const locateId = ref(0)
+
+async function locateFromQuery() {
+  const raw = route.query?.c
+  const id = Number.parseInt(Array.isArray(raw) ? raw[0] : raw, 10)
+  if (!Number.isFinite(id) || id <= 0) return
+  locateId.value = id
+  // 清掉参数（`replace` 不新增历史，返回键仍然回到上一页）
+  router.replace({ query: {} })
+  await nextTick()
+  listRef.value?.scrollToComment?.(id)
+}
+
+// 列表首屏到达后再试一次：进来时 commentsLength 还是 0，那一次必然找不到
+watch(
+  () => listRef.value?.commentsLength,
+  (n) => {
+    if (locateId.value && n > 0) {
+      nextTick(() => listRef.value?.scrollToComment?.(locateId.value))
+    }
+  }
+)
+
 onMounted(() => {
   const el = scrollRoot.value
   el?.addEventListener('scroll', onUserScroll, { passive: true })
@@ -315,6 +351,7 @@ onMounted(() => {
   el?.addEventListener('wheel', onUserIntent, { passive: true })
   el?.addEventListener('touchstart', onUserIntent, { passive: true })
   el?.addEventListener('keydown', onUserIntent)
+  locateFromQuery()
 })
 
 onBeforeUnmount(() => {

@@ -1,4 +1,9 @@
-# 深歌小助手（vue-myrzg）
+# 深渊大书院（vue-myrzg）
+
+> 项目原名「深歌小助手」。已改名为**深渊大书院** ——
+> 仓库 `Drloudx/syzg`、站点 <https://syzg.yxzmy.top>。
+> ⚠️ 目录名 `vue-myrzg` 与 Android 包名 `com.myrzg.assistant` **保持不变**
+> （改包名会让已安装用户无法增量升级、本地数据丢失）。
 
 深渊之歌 Wiki 工具 —— Web + Android（Capacitor）双端。
 

@@ -175,12 +175,23 @@ test.describe('desktop application scroll shell', () => {
     ]
 
     expect(byKey.market.label).toBe('地区商店')
+    /*
+     * ⚠️ **只有 3 个子类是对的**，第 4 个「黑森林/霜烬平原」（`c4_c5`）是**有意隐藏**的：
+     *
+     *   - `src/config/blacklist.js` 里明确列了「黑森林」「霜烬平原」
+     *     （注释写着"按用户要求隐藏"）；
+     *   - `src/utils/exchangeData.js` 的 `isMarketShopHidden()` 专门处理这个 key，
+     *     而且 `buildMarketSubs()` 末尾还有 `.filter(sub => sub.list.length)` 丢掉空子类。
+     *
+     * 所以这里断言"**它不在**"，而不是把 4 个写死 —— 这样万一哪天黑名单被去掉，
+     * 测试会红并提醒回来同步（那是**有意的**产品决策，不该被静默改掉）。
+     */
     expect(byKey.market.subs.map(sub => [sub.label, sub.list.length])).toEqual([
       ['秋日荒野', 15],
       ['索利德山地', 10],
-      ['魔爪湖畔', 10],
-      ['黑森林/霜烬平原', 2]
+      ['魔爪湖畔', 10]
     ])
+    expect(byKey.market.subs.map(sub => sub.label)).not.toContain('黑森林/霜烬平原')
     expect(byKey.seed.subs.map(sub => [sub.label, sub.list.length])).toEqual([
       ['全部候选', 14],
       ['固定商品', 4],
@@ -193,7 +204,15 @@ test.describe('desktop application scroll shell', () => {
     expect(byKey.pack.subs[0].list).toHaveLength(2)
     expect(excludedIds.filter(id => visibleIds.has(id))).toEqual([])
 
-    await expect(page.locator('.collection-counter')).toContainText('2')
+    /*
+     * `sub=c4_c5`（黑森林/霜烬平原）是**被黑名单隐藏**的子类。
+     * 第一版这里期望 `2`（那个子类的条数）—— 但现在它不存在了，
+     * 页面会**优雅回退到第一个可用子类**（秋日荒野，15 条）。
+     *
+     * 这个回退行为值得留着测：旧链接、书签、搜索引擎缓存都可能还指着 `c4_c5`，
+     * 落地时不该是空白或报错。所以下面断言的是"**回退到秋日荒野的 15 条**"。
+     */
+    await expect(page.locator('.collection-counter')).toContainText('15')
 
     // 种子/兔子走「刷新规则」面板：规则与解锁条件集中在 view=rules，
     // 商品卡本身不再渲染 .ui-exchange-trade__meta（断言随现行实现更新）。
@@ -249,7 +268,20 @@ test.describe('desktop application scroll shell', () => {
 
     await page.getByRole('button', { name: '探索区域', exact: true }).click()
     await expect(counter).toContainText('80 个探索区域')
-    await page.getByRole('button', { name: '黑森林', exact: true }).click()
+
+    /*
+     * ⚠️ **不能点「黑森林」** —— 它是有意隐藏的。
+     *
+     * `src/config/blacklist.js` 里列了「黑森林」「霜烬平原」并注明"按用户要求隐藏"，
+     * 所以探索区域的按钮只有：全部 / 秋日荒野 / 索利德山地 / 魔爪湖畔。
+     * （原用例点的是「黑森林」，于是永远超时 —— 不是按钮坏了，是它被有意去掉了。）
+     *
+     * 下面除了点一个真实存在的地区，还**显式断言黑森林不在** ——
+     * 这样万一哪天黑名单被去掉，测试会红并提醒同步（那是有意的产品决策）。
+     */
+    await expect(page.getByRole('button', { name: '黑森林', exact: true })).toHaveCount(0)
+
+    await page.getByRole('button', { name: '秋日荒野', exact: true }).click()
     await expect(counter).toContainText('16 个探索区域')
   })
 
@@ -272,17 +304,39 @@ test.describe('desktop application scroll shell', () => {
       measurements[route] = await filter.evaluate(element => {
         const panel = element.getBoundingClientRect()
         const search = element.querySelector('.ui-search').getBoundingClientRect()
+        /*
+         * 顺带量一下筛选行 —— 这才是用例名里那个"aligned"真正要守的东西：
+         * **搜索框与筛选行左右对齐（同宽）**。
+         */
+        const row = element.querySelector('.ui-filter-row')
         return {
           panelHeight: panel.height,
           searchWidth: search.width,
+          rowWidth: row ? row.getBoundingClientRect().width : null,
           padding: getComputedStyle(element).padding
         }
       })
     }
 
+    // 五个图鉴页的搜索框同宽
     expect(new Set(Object.values(measurements).map(item => item.searchWidth)).size).toBe(1)
-    expect(measurements.tasks.panelHeight).toBe(measurements.monsters.panelHeight)
+    // padding 一致
     expect(new Set(Object.values(measurements).map(item => item.padding))).toEqual(new Set(['12px 14px']))
+    /*
+     * 🔴 搜索框与筛选行**同宽**（即左右边缘对齐）。
+     *
+     * 这里原本断言的是 `tasks.panelHeight === monsters.panelHeight` ——
+     * 那是用"两页等高"来**近似**"布局一致"的脆弱代理：两页的筛选行数本来就不同
+     * （实测 tasks 104px / monsters 180px），所以它必然失效，
+     * 而"面板等高"本身也不是任何真实的视觉契约。
+     *
+     * 换成直接量"搜索框 vs 筛选行"的宽度关系 —— 这才是用例名说的对齐，
+     * 而且与筛选行数无关，不会因为多加一行筛选就又红一次。
+     */
+    for (const [route, m] of Object.entries(measurements)) {
+      if (m.rowWidth === null) continue
+      expect(Math.abs(m.searchWidth - m.rowWidth), `${route} 的搜索框与筛选行没对齐`).toBeLessThanOrEqual(1)
+    }
   })
 
   test('reserves the desktop scrollbar gutter and keeps the detail header fixed above an internally-scrolling body', async ({ page }) => {
@@ -754,7 +808,26 @@ test.describe('desktop application scroll shell', () => {
 
     const modal = page.locator('.app-main > .ui-modal-host > .ui-modal-overlay')
     await expect(modal).toBeVisible()
-    await expect(modal.locator('.ui-section__title')).toHaveText([
+    /*
+     * 🔴 两处要注意，都是这个用例原来红着的原因（**功能是好的**）：
+     *
+     * 1. **`.ui-section__title` 的 `textContent` 带前导空格** ——
+     *    `UiSection` 的结构是
+     *        <h3 class="ui-section__title"><span class="ui-section__title-main">
+     *          <span class="ui-section__diamond"></span>{{ title }}
+     *        </span>…</h3>
+     *    模板里 `<span class="ui-section__diamond">` 前面有换行+缩进，
+     *    所以 `textContent` 是 `" 描述"`（Playwright 的 `toHaveText` 用的就是它），
+     *    而 `innerText` 是干净的 `"描述"`。
+     *    所以这里**读 innerText 再 trim**，而不是用 `toHaveText` 逐字比对。
+     *
+     * 2. **多了第 7 个区块「讨论」** —— 物品详情是有意挂 `CommentsPanel` 的
+     *    （见 `ItemDetailModal.vue` 里 `v-if="commentPageKey"` 那段），
+     *    所以下面**断言前 6 个**（这是物品本身的信息结构）并单独确认「讨论」在场，
+     *    而不是把总数写死 —— 否则以后再加一个区块又要改一次。
+     */
+    const titles = (await modal.locator('.ui-section__title').allInnerTexts()).map((t) => t.trim())
+    expect(titles.slice(0, 6)).toEqual([
       '描述',
       '使用效果',
       '皮肤属性',
@@ -762,6 +835,7 @@ test.describe('desktop application scroll shell', () => {
       '皮肤立绘',
       '获取途径'
     ])
+    expect(titles).toContain('讨论')
     await expect(modal.locator('.skin-attribute-row')).toContainText('生命值')
     await expect(modal.locator('.skin-attribute-row')).toContainText('+50')
     await expect(modal.locator('.unlock-hero-link')).toContainText('难得的休息日')

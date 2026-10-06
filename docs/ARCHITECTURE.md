@@ -1,11 +1,11 @@
-# 项目架构说明（深歌小助手 / vue-myrzg）
+# 项目架构说明（深渊大书院 / vue-myrzg）
 
 > 本文档描述 `vue-myrzg` 项目的整体架构、目录职责、数据流与 UI 设计体系。
 > UI 组件库使用规则见 [docs/UI_COMPONENT_LIBRARY.md](./UI_COMPONENT_LIBRARY.md)。
 
 ## 1. 项目概览
 
-- **项目名称**：深歌小助手（深渊之歌 Wiki 工具）
+- **项目名称**：深渊大书院（原名「深歌小助手」，《深渊之歌》Wiki 工具）
 - **技术栈**：Vue 3（Composition API + `<script setup>`）、Vite、Pinia（persistedstate）、Vue Router（hash 模式）、Capacitor（Android 原生壳）
 - **形态**：Web 单页应用 + Android App（Capacitor 打包）
 - **数据来源**：仓库根 `raw/` 下的构建期原始表，由 `scripts/parse/index.mjs`（一键数据入口）生成 `public/data/parsed/` 运行时派生数据；`public/data/` 根目录只保留公告等少数 App 内容

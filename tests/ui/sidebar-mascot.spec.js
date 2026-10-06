@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { enableDarkMode } from '../helpers/theme.mjs'
 
 const screenshotDir = process.env.MASCOT_SCREENSHOT_DIR || 'test-results/mascot-roster'
 
@@ -43,7 +44,7 @@ test.describe('desktop sidebar mascot', () => {
     expect(Object.values(bounds).every(Boolean)).toBe(true)
     await page.screenshot({ path: `${screenshotDir}/desktop-light.png` })
     await mascot.locator('svg').screenshot({ path: `${screenshotDir}/001-in-page.png`, scale: 'css' })
-    await page.getByTitle('切换暗色模式').click()
+    await enableDarkMode(page)
     await expect(page.locator('html')).toHaveClass(/dark-mode/)
     await page.screenshot({ path: `${screenshotDir}/desktop-dark.png` })
     await page.locator('.app-main').hover()
@@ -219,7 +220,7 @@ test.describe('desktop sidebar mascot', () => {
     await button.click()
     await page.locator('.info-note').click()
     await expect(picker).toHaveCount(0)
-    await page.getByTitle('切换暗色模式').click()
+    await enableDarkMode(page)
     await button.click()
     await expect(picker).toBeVisible()
     await expect(picker.locator('[aria-pressed="true"]')).toBeFocused()

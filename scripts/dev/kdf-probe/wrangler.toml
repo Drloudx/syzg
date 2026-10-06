@@ -1,0 +1,5 @@
+# KDF 平台上限探针（诊断用，不参与构建/发布）
+# compatibility_date ≥ 2026-08-04 → nodejs_compat 默认开启，探针才能 import 'node:crypto' 的 scrypt
+name = "kdf-probe"
+main = "index.js"
+compatibility_date = "2026-09-01"

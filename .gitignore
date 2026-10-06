@@ -39,6 +39,8 @@ venv/
 # Playwright 测试产物
 test-results/
 playwright-report/
+# Playwright 用的 Vite 端口缓存（每次跑测试现挑，见 scripts/dev/pick-port.mjs）
+.playwright-vite-port
 
 # 测试工具（一次性资源提取脚本，不进应用/构建）
 测试工具/

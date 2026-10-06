@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { enableDarkMode } from '../helpers/theme.mjs'
 
 test('only the protagonist has paired desktop portraits and a mobile gender switch', async ({ page }, testInfo) => {
   const errors = []
@@ -51,7 +52,7 @@ test('only the protagonist has paired desktop portraits and a mobile gender swit
     await portrait.screenshot({ path: testInfo.outputPath('protagonist-pair.png') })
   }
   expect(await portrait.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true)
-  await page.getByTitle('切换暗色模式', { exact: true }).click()
+  await enableDarkMode(page)
   await portrait.screenshot({ path: testInfo.outputPath('protagonist-dark.png') })
 
   await page.goto('/#/heroes?id=hero_005')

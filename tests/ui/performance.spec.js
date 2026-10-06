@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { enableDarkMode } from '../helpers/theme.mjs'
 
 test.beforeEach(async ({ page }) => {
   await page.route('**/notice.json*', route => route.fulfill({ json: { notices: [] } }))
@@ -100,7 +101,7 @@ test('loads dungeon covers near the viewport and uses theme-aware active tabs', 
 
   const tab = page.locator('.dungeon-filter-panel .ui-filter-pill.is-active')
   const lightBackground = await tab.evaluate(element => getComputedStyle(element).backgroundColor)
-  await page.getByTitle('切换暗色模式').click()
+  await enableDarkMode(page)
   await expect.poll(() => tab.evaluate(element => getComputedStyle(element).backgroundColor)).not.toBe(lightBackground)
   await expect(page.locator('.dungeon-card__heading h2').first()).toHaveCSS('color', 'rgb(255, 245, 225)')
   const owner = page.locator(isMobile ? '#dungeonGrid' : '.app-container')

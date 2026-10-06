@@ -1,6 +1,7 @@
 # 项目交接说明文档 (HANDOFF)
 
-> 更新时间：2026-10-03（最近一次：发布闪烁修复 + **仓库/域名改名 myrzg → syzg** + 域名迁移落地）
+> 更新时间：2026-10-03（最近一次：发布闪烁修复 + **仓库/域名改名 myrzg → syzg** + 域名迁移落地；
+> 2026-10-05 勘误：评论模块与移动端悬浮拉手**已提交、尚未推送**，此前"尚未提交"的说法已过时）
 > 项目路径：`E:\Desktop\html\myrzg\vue-myrzg`（**目录名仍是 myrzg，这是刻意保留的**，见〇·0.0）
 > 远端仓库：`https://github.com/Drloudx/syzg` ｜ 线上域名：`https://syzg.yxzmy.top`
 > 技术栈：Vue 3 + Vite 8 + Pinia + Capacitor Android
@@ -15,27 +16,261 @@
 
 ---
 
-## 〇、最新状态（2026-10-04）：评论模块补齐（表情 · 富文本 · 回复 · 楼中楼）
+## 〇、最新状态（2026-10-06）：账号体系**已上线并跑在生产上**
 
 > 这一节是给接手者的**入口**。改名过程见 [改名落地文档](rename-myrzg-to-syzg.md)，
 > 闪烁修复见下文 0.5，评论模块的全部改动见
 > [开发日志 2026-10-04](dev-logs/2026-10/2026-10-04.md) 与
-> [评论后端方案](technical/COMMENTS_BACKEND.md)。
+> [评论后端方案](technical/COMMENTS_BACKEND.md)；
+> **账号体系的方案见 [ACCOUNT_SYSTEM.md](technical/ACCOUNT_SYSTEM.md)**
+> （§一~§十七是动手前的设计，**§十八是实现记录与偏差**）；
+> **逐轮的完整过程（含踩坑与排查）见
+> [开发日志 2026-10-05](dev-logs/2026-10/2026-10-05.md) 的 §18 之后**。
 
-**2026-10-04 一天里评论模块发生了什么（细节见 §二·9）**：
+### 一句话现状
+
+**账号体系做完并上线了。** 生产库已迁移、代码已部署、
+[线上验证 18/18](technical/GO_LIVE_ACCOUNT_SYSTEM.md)、
+[真机全流程 38/38](../tests/phone/flow.mjs)。
+
+**唯一未清的是 Playwright 全套里若干条既有失败** —— 与账号体系无关，
+属于别的功能面，详见下面「🔴 接手第一件事」。
+
+```
+单测        260 / 0
+迁移演练     29 / 0
+端到端      100 + 42 / 0
+真机         38 / 0
+生产验证     18 / 0
+Playwright   本轮修掉 20 条里的绝大部分；仍有若干条既有失败（见下）
+```
+
+---
+
+## 🔴 接手第一件事：把 Playwright 全套跑一遍，清掉剩余的既有失败
+
+### 为什么单列一节
+
+我在这上面**栽过一次**：起初说"7 条既有失败"，而那份清单来自
+**只跑了 3 个 spec 的基线对照**，全量其实是 274 条、失败约 20 条。
+**别信任何二手清单，自己跑一遍。**
+
+```bash
+# ⚠️ 必须限并发（原因见下面「🔴 跑全量必须限并发」）
+npx playwright test --project=desktop --reporter=line
+```
+
+### 本轮已经修掉的（都已提交，别重复修）
+
+| 根因 | 影响 | 修法 |
+| --- | --- | --- |
+| **暗色切换按钮被有意隐藏**（`App.vue` 里 `showThemeToggle = false`） | 6 个 spec、9 处点击超时 | 新增 [`tests/helpers/theme.mjs`](../tests/helpers/theme.mjs) 的 `enableDarkMode()`，走 `localStorage.theme` + `html.dark-mode` |
+| **旧战斗规则页并进了词条百科** | `combat-rules.spec.js` 整个文件在测一个已不存在的界面 | 重写为测「旧地址跳词条百科」+ 内容可达 |
+| **旧地址重定向被覆盖**（真 bug） | 用户点 `?tab=combat_rules` 落到不相干页面 | 改到 `/rewards` 的 `beforeEnter` 守卫，并保留 `?q=` |
+| 「黑森林/霜烬平原」**被黑名单隐藏** | `app-shell` 两条 | 改成断言"**它不在**" |
+| 物品详情**有意多了「讨论」区块** | `app-shell:751` | 断言前 6 个 + 单独确认「讨论」在场 |
+| `.ui-section__title` 的 `textContent` 带前导空格 | 同上 | 改用 `innerText` 再 trim |
+| 文案改名（「单次抽取」→「概率」、「抽取 3 次」→「获得 3 次」等） | `acquisition-rules`、`runes` | 按实测 DOM 更新 |
+
+### ⚠️ 其中有一个坑，别再踩
+
+`runes.spec.js` 里**同一页面的概率有两条渲染路径**：
+
+```
+次数 = 1  →  「概率 23.50%」
+次数 > 1  →  「单次抽取 23.50%」（走 formatRewardProbability）
+```
+
+我一度把整个文件里的「单次抽取」批量换成「概率」，结果第 99 行过了、
+第 105 行反而红了。**批量替换文案之前先确认它有几条渲染路径。**
+
+### 已知**尚未处理**的（我上下文用尽了，交给接手的人）
+
+| spec | 现象 | 我的判断 |
+| --- | --- | --- |
+| `furniture.spec.js:81` | 期望 `活动 / 通行证14级`，实际渲染 `活动 / 未知14级` | 🔴 **最可疑的一条** —— 给用户显示"未知"像是真的数据/映射问题，建议优先查 |
+| `facilities.spec.js:63` | 7 级列表里找不到「熔火护盾」 | 数据 or 文案 |
+| `partner-mails.spec.js:156` | 邮件标题"字号收缩"断言 `largestFits` 为 false | 布局 or 数据依赖（该用例假设 3 封邮件标题都长到需要缩字号） |
+| `sidebar-mascot.spec.js` ×2 | 视口裁剪后动画应 `paused` 却仍 `running`；另一处选择器 | IntersectionObserver 时序 or 真的没暂停 |
+| `hero-material-links.spec.js:7`、`smithing.spec.js:38` | 还没查 | — |
+
+**判断"改测试还是改产品"的办法**（这轮反复用到）：
+
+1. 先看**元素/文案是否真的不存在**（探针打 DOM，别只看报错）；
+2. 再去 `src/` 里 `git grep` 那个类名/文案 —— 如果**只在测试文件里出现**，
+   说明界面早就改掉了，是测试过期；
+3. 如果产品里**有意隐藏/隐藏名单**（如 `blacklist.js`、`showThemeToggle`），
+   那是产品决策 → 改测试，但**要断言"它被有意去掉"**而不是删掉断言，
+   这样将来决策变了测试会红并提醒。
+
+---
+
+## 🔴 跑全量测试时**必须限制并发**
+
+`playwright.config.js` 现在默认 `workers: 2`。**不要改成按 CPU 核数自动**：
+
+这台机器 `cpus/2` = 8，8 个浏览器会同时打**同一个单进程 `wrangler dev`**，
+而本地 D1 是**一个 SQLite 文件** → 大面积 `Test timeout` / `ECONNRESET` /
+`/api/recent` 请求失败，**失败的是互不相干的一堆 spec**，
+看起来像"到处都坏了"，实际只是把 dev 服务压死了。
+
+要更快就显式覆盖（并自己承担代价）：`PLAYWRIGHT_WORKERS=4 npx playwright test`。
+
+---
+
+## 🔴 这一条对将来仍然有效：`git push` 就是上线
+
+这个仓库用 **Cloudflare Pages 的 GitHub 集成**部署（见 `wrangler.toml` 开头注释）
+—— 推送即上线，**没有"再点一下发布"**。
+
+**已经迁过了**（`comments.user_id` 与账号四表都在生产库上），所以**这次不用再迁**。
+但只要以后再动表结构，顺序仍是**先迁移、后推送**：
+新代码一旦先上线而库里没有对应的列/表，**整个讨论区会对所有人挂掉**
+（未登录访客读评论也走同一条 SQL）。
+
+迁移脚本按依赖链拆成三步（**顺序不能换**，每步的失败模式不同）：
+
+```bash
+# 1) 先备份
+npx wrangler d1 export myrzg-comments --remote --output backup-before.sql
+# 2) 建表 + 不依赖新列的索引（幂等）
+npx wrangler d1 execute myrzg-comments --remote --file=./scripts/sql/2026-10-05-auth-schema.sql
+# 3) 加列（非幂等，SQLite 没有 ADD COLUMN IF NOT EXISTS）
+npx wrangler d1 execute myrzg-comments --remote --file=./scripts/sql/2026-10-05-auth-columns.sql
+# 4) 建依赖新列的索引（幂等）
+npx wrangler d1 execute myrzg-comments --remote --file=./scripts/sql/2026-10-05-auth-indexes.sql
+```
+
+> **改任何迁移脚本后都要跑** [`tests/migration/rehearse.mjs`](../tests/migration/rehearse.mjs)
+> （`npm run test:migration`）。它从 git 取**迁移前那一版 `schema.sql`**、造临时库、
+> 灌真实形状的数据，把三步**真跑一遍**。
+>
+> 这套演练不是形式：第一次跑就抓出三个**只会在生产上炸**的问题
+> （建表顺序写反 → 账号功能整体不可用；索引建在加列之前；`schema.sql` 初始化全新库也是坏的）。
+
+完整手册：[**账号体系上线运维手册**](technical/GO_LIVE_ACCOUNT_SYSTEM.md)
+（环境变量、"上线前必须换掉的三件东西"、按现象查因的排查表）。
+
+---
+
+## 🔴 本机环境的坑（不知道这些会白花几小时）
+
+| 坑 | 表现 | 解法 |
+| --- | --- | --- |
+| **git 连不上 GitHub** | `Could not connect to server`，但 `curl github.com` 是 **200**（极具迷惑性 —— 本机有 FlClash，curl 走系统代理、**git 默认不走**） | `git -c http.sslBackend=openssl -c https.proxy=http://127.0.0.1:7890 push`。⚠️ 只配 `http.proxy` 会 `schannel handshake failed`，**必须同时换 openssl 后端** |
+| **wrangler 远程操作** | 非交互环境要求 `CLOUDFLARE_API_TOKEN` | `npx wrangler login`（浏览器授权一次即可，令牌落到 `~/.wrangler`）；并给进程带上 `HTTPS_PROXY` |
+| **PowerShell 吃引号** | `node -e "..."` 里的 `[[path]]`、`\\$`、`JSON.stringify` 会被解析坏 | 写成临时 `.mjs` 文件执行；`cmd.exe /c "..."` 里用**单引号**做 SQL 字符串 |
+| **`Get-Content` 按 GBK 读** | 中文显示成乱码（文件其实是 UTF-8） | 用 `read` 工具看；或 `Get-Content -Encoding UTF8` |
+| **PowerShell 不认 `&&`** | `git check-ignore -q x && echo ok` 报语法错 | 分两条写 |
+| **手机调试** | CDP 连得上但 `Page.navigate` 永远超时 | Chrome **冻结后台标签**。`am start` 打开 Chrome + `<Cdp>.bringToFront()`（`tests/phone/flow.mjs` 已内置）；另外选择器要认 `127.0.0.1` 与 `localhost` 两种写法 |
+| **手机息屏** | 页面主线程冻结，CDP eval 超时 | 先 `adb shell input keyevent KEYCODE_WAKEUP`；MIUI 上 `svc power stayon true` 不生效 |
+
+开发服务（两个都要起）：
+```bash
+npm run dev        # Vite 5173
+npm run dev:api    # wrangler pages dev 8788 —— 不起的话评论/账号接口全 502
+```
+
+---
+
+## 账号体系做了什么
 
 | 能力 | 一句话 |
 | --- | --- |
-| 聊天表情 | 黄豆 emoji（85 张）+ 深渊之歌第1弹（8 张）；正文存 `[e:包:名]` token，**没有新列** |
-| 富文本输入 | 发表区换成 `contenteditable`，表情**直接显示成图片**；`form.body` 始终是 token 文本 |
-| 发送方式 | 「发布 ⌄」组合钮，默认 **Enter 发送**，可切 Ctrl+Enter（存本机） |
-| 回复 | **两种形态**：站内讨论区平铺 + 引用行；**详情页楼中楼**（前 3 条 + 「全部 N 条回复」） |
-| 分页 | 去掉「加载更多」按钮，改成**滚到底/翻到顶自动加载**（详情页按顶层评论分页） |
-| 长度上限 | 改成**显示字数**：一个表情算 1 字，200 字照旧；服务端两道闸门 |
-| 回归卫生 | 测试脚本清库前**自动备份、跑完自动还原**本地评论（`lib/comment-fixture.mjs`） |
+| 注册 / 登录 | 邮箱验证码注册；密码**只在本机** PBKDF2-SHA256 60 万次，服务端只存 `HMAC(pepper, verifier)` |
+| 改密码 | 走邮箱验证码（不验旧密码） |
+| 换邮箱 | **旧、新邮箱各收一个码**，两个都对才生效 |
+| 人机验证 | 自制**蛋点选**：提示 3 个 → 画布 5 个里按序点 3 个，点错整题作废。**不用 Turnstile** |
+| 个人中心 | 我的评论（可删）、谁回复了我（未读红点、点击定位）、改昵称头像 |
+| 发评论 | **需要登录**；读评论不需要 |
+| 后台 | `/admin` 独立外壳：概览 / 评论 / 用户（封禁、彻底删除）。入口不放进导航，靠令牌保护 |
+| 隐私说明 | `/#/privacy`（注册页那个必勾项的链接） |
 
-⚠️ **回复不需要 D1 迁移**：用的是建表时就预留的 `comments.parent_id`，
-所以远端库不用跑任何 SQL，代码推上去就能用。
+**几条改之前必须先读的硬约束**（详见 §0.9）：
+
+- 🔴 `AUTH_PEPPER` / `SALT_SECRET` **上线后不能再改**：前者变了所有人登不上，
+  后者变了所有人"不存在"（且是静默的 —— 登录只说"邮箱或密码不对"）；
+- 🔴 `users.pw_salt` **必须存**：盐是邮箱派生的，换邮箱会让盐变化 → 不存就再也登不上；
+- 🔴 `email_hash` 与 `salt` 做了**域分隔**（`'lookup:'` / `'salt:'` 前缀），
+  否则公开的 `/api/auth/salt` 会顺手泄漏 `email_hash`，可拿去和泄露库对撞；
+- `.dev.vars` 里是**本地**值（`ADMIN_TOKEN=yxzm` 等），线上是控制台里另配的随机串
+  —— **已确认线上不是本地值**（用 `yxzm` 打线上管理接口返回 401）。
+
+---
+
+## 红线（别越）
+
+1. **绝不对生产库执行破坏性 SQL。** `DELETE FROM comments` 只在
+   [`scripts/sql/reset-test-comments.sql`](../scripts/sql/reset-test-comments.sql) 里，
+   默认整段注释、**必须经用户确认**才跑。
+2. **不碰另一条线（任务/剧情）的改动。** 工作区里常年有它们的未提交改动：
+   `src/utils/taskParser.js`、`src/views/TasksView.vue`、`public/data/parsed/tasks.json`、
+   `public/data/parsed/dialogSegments.json`、`public/fonts/*`、
+   `scripts/dev/check-task-data.mjs` —— **别 stage、别提交、别改**。
+   （`public/fonts/*` 有时会出现在提交里，那是历史提交带来的，不是你该动的。）
+3. **`capacitor.config.json` 的 `appId` 与 `android/.../strings.xml` 的
+   `package_name` / `custom_url_scheme` 绝不能改** —— 改了等于换 Android 包名，
+   已安装用户无法增量升级、本地数据会丢。`tests/unit/site-name.test.mjs` 守着这条。
+
+---
+
+## 常用命令
+
+```bash
+npm run dev / dev:api        # 开发服务（5173 / 8788）
+npm run test:unit            # 单测 260 条
+npm run test:api             # 端到端 100 + 42 条（需要 API 在 8788 跑着）
+npm run test:migration       # 迁移演练 29 条（改迁移脚本后必跑）
+npx playwright test --project=desktop --reporter=line   # UI（已限 workers=2）
+node --no-warnings tests/phone/flow.mjs                 # 真机 38 条（需 USB + adb 转发）
+node --no-warnings tests/api/production-smoke.mjs        # 线上验证 18 条（只读，不产生数据）
+npm run verify               # 数据/构建产物校验
+```
+
+真机准备：
+
+```bash
+adb -s IBKZIRHQJBOF7PUS shell input keyevent KEYCODE_WAKEUP
+adb -s IBKZIRHQJBOF7PUS shell settings put system screen_off_timeout 1800000   # 完事改回 600000
+adb -s IBKZIRHQJBOF7PUS reverse tcp:5173 tcp:5173
+adb -s IBKZIRHQJBOF7PUS forward tcp:9222 localabstract:chrome_devtools_remote
+# Chrome 必须在前台跑着，那条 localabstract 才存在
+```
+
+---
+
+### 0.9 账号体系（**已实现并上线**，2026-10-05）
+
+用户要的是"注册用邮箱验证码 + 密码登录 + 改密码也要邮箱验证"。
+
+**方案**：[账号体系方案](technical/ACCOUNT_SYSTEM.md)（§十四有 22 项已定决策，
+§十八是实现记录与与设计的偏差）；
+早期评估稿 [ACCOUNT_SYSTEM_EVALUATION.md](technical/ACCOUNT_SYSTEM_EVALUATION.md)
+只保留"不要随便在 Workers 上存密码"的实测证据与邮件额度核实记录。
+
+**已实现**：后端 `/api/auth/*` 14 个接口 + 管理端 3 个；前端
+`AccountModal`（登录/注册/个人中心/改密码/换邮箱/我的评论/谁回复了我）、
+`CaptchaEgg`（蛋点选）、`/admin` 后台三块、`/#/privacy` 隐私说明。
+
+**关键的几条硬约束**（改之前先读，否则会踩）：
+
+- ⚠️ **旧版那条"PBKDF2 600k 轮实测 104ms"是 Node 的数**。在真实 workerd 里是 **279ms**（慢 2.7 倍），
+  而且生产对 KDF 是**入口封顶**：PBKDF2 ≤ **100,000 轮**、scrypt `N×r×p ≤ 1,048,576`
+  ——**超了直接报错，不是跑慢**。Cloudflare 源码注释自己承认这"远低于推荐值"。
+- 因此**服务端存密码**这条路：免费版（10ms）不可行；付费版也被顶在 10 万轮。
+- **路线：客户端 KDF** ——浏览器/手机跑 PBKDF2-SHA256 600k，服务端只存
+  `HMAC(pepper, verifier)`（约 0.02ms）→ 免费、强度达标、且 **D1 单独泄露不可爆破**。
+- Workers **封禁 25 端口**；国内邮箱对"异地登录"会反复拦截 → **不要走 SMTP 直连**。
+- **Cloudflare Email Service 用不了**（需 Paid，且发信域名必须是 CF 托管的 zone）。
+  **发信走腾讯云 SES**，模板见 `scripts/dev/ses-templates/`，`TemplateID = 62671`。
+- 🔴 `AUTH_PEPPER` / `SALT_SECRET` **一旦上线就不能再改**：前者变了所有人登不上，
+  后者变了所有人"不存在"（且是静默的）。要轮换得写数据迁移。
+- 🔴 `users.pw_salt` **必须存**：盐是邮箱派生的，换邮箱会让盐变化 → 不存用户就再也登不上。
+  这个是端到端测试跑出来的，套件里留了回归断言。
+- 🔴 `email_hash` 与 `salt` 做了**域分隔**（`'lookup:'` / `'salt:'` 前缀），
+  否则公开的 `/api/auth/salt` 会顺手泄漏 `email_hash`，可拿去和泄露库对撞。
+
+---
 
 ### 0.0 现在的仓库与域名（**先看这个**）
 
@@ -70,8 +305,10 @@
 
 **2026-10-04 追加**：评论模块补齐表情 / 富文本输入 / 回复（平铺 + 楼中楼）/ 滚动自动加载，
 并把"测试脚本吃掉本地数据"这类开发体验问题一并修掉（见 §二·9）。
-当天的改动**尚未提交**（本地 `git status` 有一批已跟踪改动 + 新文件，
-`public/images/emoticons/`、`public/ui/emoticon.svg` 等新文件要记得 `git add`）。
+该改动**已提交**（`0c745272`）：`public/images/emoticons/`（93 张）、`public/ui/emoticon.svg`、
+`src/config/emoticons.js`、`EmoticonPicker/EmoticonText/UiSplitButton`、单测与开发日志**都已入库**。
+但**尚未推送**——截至 2026-10-05，本地 `main` 领先 `origin/main` 3 个提交
+（另两个是当天的移动端贴边悬浮拉手 `b8aaf946`、`a3729989`）。
 
 ### 0.2 这块是什么：全站唯一需要后端的部分
 
@@ -207,8 +444,9 @@ npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM rate_limit
 
 ### 0.8 上线清单（**2026-10-03 已执行并实测通过**）
 
-> **2026-10-04 的评论模块改动还没推**：推之前先确认第 1~4 条仍然成立，
-> 并按 §七·0 把新文件（表情素材 / 新组件 / 单测 / 开发日志）一起 `git add`。
+> **2026-10-04/05 的改动已提交、但还没推**（本地领先 `origin/main` 3 个提交）：
+> 推之前先确认第 1~4 条仍然成立。新文件（表情素材 / 新组件 / 单测 / 开发日志）
+> **早已入库**，直接 `git push` 即可，不再需要补 `git add`。
 > 回复用的是预留列，**不需要跑任何 D1 迁移**；但要多一次前端构建（素材 + 字体子集已重生成）。
 
 1. ✅ Cloudflare Pages 项目 → Settings → Environment variables：`ADMIN_TOKEN`、`IP_HASH_SALT` 已配。
@@ -241,21 +479,12 @@ npx wrangler d1 execute myrzg-comments --local --command "DELETE FROM rate_limit
 > 想造演示数据可对远程执行 `wrangler d1 execute myrzg-comments --remote --file=...`，
 > 或直接在线上发几条。
 
-### 0.9 账号体系（方案已落地成文档，未实施）
+### 0.9 账号体系（**已实现**，2026-10-05）—— 详见开头 §〇
 
-用户提过"邮箱注册 + 改密码"。**落地版方案见 [账号体系落地方案](technical/ACCOUNT_SYSTEM.md)**
-（早期评估稿 [ACCOUNT_SYSTEM_EVALUATION.md](technical/ACCOUNT_SYSTEM_EVALUATION.md) 已被取代，
-只保留"不要自己存密码"的实测证据与邮件额度核实记录）。要点：
-
-- Workers 免费版 **10ms CPU 硬限**，PBKDF2 600k 轮实测 104ms → 自己存密码必然要做安全妥协。
-- Workers **封禁 25 端口**；且国内邮箱对"异地登录"会反复拦截（出口 IP 每次都可能不同）→
-  **不要走"个人邮箱 SMTP 直连"**。
-- 推荐路线：**邮箱验证码（无密码）** > 托管认证 > 自己实现。
-- 发信必须走云厂商邮件推送（腾讯云 SES / 阿里云 DirectMail），需为域名加 SPF/DKIM 解析记录。
-- ⚠️ **开工前有两个前置阻塞项**（详见落地方案〇节）：① 账号依赖后端，而线上 Functions
-  直到 2026-10-03 才真正生效；② 发信必须先做 ≤20 行最小验证。
-- ⚠️ **发信域名要跟着改名走**：现在应绑 `syzg.yxzmy.top` 或 `yxzmy.top` 的子域，
-  不要再去绑 `myrzg`。
+> 上面 §〇 的"账号体系做了什么"表格与硬约束清单就是这一节的内容，
+> 不再重复。**要看方案与全部 22 项决策** →
+> [technical/ACCOUNT_SYSTEM.md](technical/ACCOUNT_SYSTEM.md)；
+> **要上线** → [technical/GO_LIVE_ACCOUNT_SYSTEM.md](technical/GO_LIVE_ACCOUNT_SYSTEM.md)。
 
 ---
 
@@ -319,7 +548,9 @@ EdgeOne 的价值只在"大陆可达性"。
 
 1. **分支状态**：
    - 处于 `main` 分支，远端 `origin` = **`https://github.com/Drloudx/syzg.git`**（2026-10-03 由 `Drloudx/myrzg` 迁入）。
-   - **已全部推送**，工作区干净、领先 0（历史上那次"本地领先 27 个提交未推送"已于 2026-10-03 推完）。
+   - 工作区干净；**本地领先 `origin/main` 3 个提交（未推送）**——`0c745272`（评论模块）、
+     `b8aaf946` / `a3729989`（移动端贴边悬浮拉手，2026-10-05）。历史上那次
+     "本地领先 27 个提交未推送"已于 2026-10-03 推完。
 2. **开发服务器（两个都要起）**：
    - 前端 `npm run dev` → `5173`；
    - **评论 API `npm run dev:api` → `8788`**（不起这个，评论/讨论会报"无法连接评论服务器"）。
@@ -619,10 +850,12 @@ const SPECIAL_TRANSFORM_CONFIGS = {
 
 ## 七、后续可关注优化方向
 
-0. **[最优先] 提交并推送 2026-10-04 的评论模块改动**（见 §0.1 末尾与 §9）。
-   推送前记得：`public/images/emoticons/`（93 张）、`public/ui/emoticon.svg`、
+0. **[最优先] 推送已提交的 3 个提交**（见 §0.1 末尾与 §9）。
+   `0c745272`（评论模块：`public/images/emoticons/` 93 张、`public/ui/emoticon.svg`、
    `src/config/emoticons.js`、`EmoticonPicker/EmoticonText/UiSplitButton`、
-   `tests/unit/emoticons.test.mjs`、`docs/dev-logs/2026-10/2026-10-04.md` 都是**新文件**要 `git add`。
+   `tests/unit/emoticons.test.mjs`、`docs/dev-logs/2026-10/2026-10-04.md`）与
+   `b8aaf946`、`a3729989`（移动端贴边悬浮拉手 + 长列表快滑图片防排队）
+   **全都已入库**，直接 `git push`；不再需要补 `git add`。
    **回复不需要 D1 迁移**（用预留的 `parent_id`），推上去即可用。
 1. **评论模块还没做的功能**：见 §9.6 的优先级表（P1：新消息提示 / 草稿与重试 / 表情"最近使用"）。
 2. 讨论区面板高度仍是 `calc(--vh100 - … - 190px)` 的**推算魔数**（〇·0.5 末尾），
