@@ -58,6 +58,9 @@ scratch/
 .html
 .tools/
 
+# 根目录录屏/探针残留（只锚定根层；public/images/gacha/audio/*.mp4 是游戏音频，不受影响）
+/*.mp4
+
 # 未使用的重复地图资源
 /map_w1_bg.png
 /public/ui/test_map_w1_bg.png
