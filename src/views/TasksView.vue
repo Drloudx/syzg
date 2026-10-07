@@ -388,7 +388,22 @@ let dialogSearchPending = null
  * 冷链接（`?task=...&q=...`）正好命中这个时序：watch 先发起加载，
  * `openDetail` 随后调用本函数，被早退挡住 → 详情打开了但**没有定位**。
  * 现在把在途 Promise 存下来复用，语义是"等到加载完成"而不是"别重复加载"。
+ *
+ * ## 失败会**自动重试一次**（2026-10-07）
+ *
+ * 索引走 CDN 取（失败才回退包内文件），而 CDN 侧的失败**多半是瞬时的**：
+ * 内容刚更新时新旧副本交替、网络抖动、边缘节点切换。实测遇到过
+ * 「剧情搜索暂时不可用」，刷新一下就好了 —— 正是这种情况。
+ *
+ * 所以这里**替用户刷新**：失败后隔一小会儿重试一次。
+ * 重试成功用户**什么都不会看到**；两次都失败才显示提示。
+ *
+ * ⚠️ 只自动重试一次：`fetchWithFallback` 失败时会**清掉缓存条目**，
+ * 所以第二次调用是**真的重新发请求**（不是拿同一个失败结果）。
+ * 但也不能无限重试 —— 真挂了的话，反复请求只是白烧用户流量与 CDN 额度。
  */
+const DIALOG_SEARCH_RETRY_DELAY_MS = 600
+
 const ensureDialogSearch = () => {
   if (dialogSearch.value) return Promise.resolve()
   if (dialogSearchPending) return dialogSearchPending
@@ -396,12 +411,26 @@ const ensureDialogSearch = () => {
   dialogSearchError.value = ''
   dialogSearchPending = (async () => {
     try {
-      const data = await fetchWithFallback('data/parsed/dialog-search.json')
+      let data
+      try {
+        data = await fetchWithFallback('data/parsed/dialog-search.json')
+      } catch (firstErr) {
+        console.warn('剧情索引首次加载失败，自动重试一次：', firstErr)
+        await new Promise((r) => setTimeout(r, DIALOG_SEARCH_RETRY_DELAY_MS))
+        data = await fetchWithFallback('data/parsed/dialog-search.json')
+      }
       dialogSearch.value = data?.tasks || {}
     } catch (err) {
       console.error('加载剧情搜索索引失败:', err)
-      dialogSearchError.value = '剧情搜索暂时不可用'
-      dialogSearch.value = {}
+      /*
+       * 文案要说清**怎么办**。早先写的是「剧情搜索暂时不可用」——
+       * "暂时"听起来像服务器挂了，而实际上刷新一下多半就好（实测如此），
+       * 但提示里没有"刷新"两个字，用户只能干看着、还会怀疑是站点出故障。
+       */
+      dialogSearchError.value = '剧情搜索加载失败，刷新页面重试'
+      // 保持 null（**不是** {}）：{} 是真值，会让下次调用在入口直接返回，
+      // 于是"重新搜索"也拿不到数据 —— 只有刷新整页才行（而文案正是这么说的）
+      dialogSearch.value = null
     } finally {
       dialogSearchLoading.value = false
       dialogSearchPending = null
