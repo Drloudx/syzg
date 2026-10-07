@@ -2,14 +2,18 @@
 
 《深渊之歌》Wiki 工具 —— Web + Android（Capacitor）双端。
 
-覆盖物品、装备、符石、角色、魔物、怪物、家具、设施、菜谱、任务剧情、地图掉落、
-成就与本地招募模拟；除评论/账号外全部为静态图鉴，不连接游戏账号。
+覆盖物品、装备、符石、角色、魔物、怪物、家具、设施、菜谱、任务剧情、地图掉落、成就与本地招募模拟；除评论/账号外全部为静态图鉴，**不连接游戏账号**。
+
+> **何时读**：了解或使用本项目时。
+> **何时更新**：实际能力或使用方式变化时（新增页面、改命令、改依赖）。
 
 | | |
 | --- | --- |
 | 线上站点 | <https://syzg.yxzmy.top> |
 | 技术栈 | Vue 3 + Vite + Vue Router（Hash）+ Pinia + Capacitor |
 | 后端 | Cloudflare Pages Functions + D1（仅评论与账号，其余纯静态） |
+
+---
 
 ## 快速开始
 
@@ -18,8 +22,7 @@ npm install
 npm run dev            # 开发服务，http://localhost:5173
 ```
 
-评论与账号功能需要另开一个终端（Vite 不认识 `functions/` 目录，
-Pages Functions 只在 wrangler 里跑）：
+评论与账号功能需要另开一个终端（Vite 不认识 `functions/` 目录，Pages Functions 只在 wrangler 里跑）：
 
 ```bash
 npm run dev:api        # 评论 / 账号 API，http://127.0.0.1:8788
@@ -40,8 +43,7 @@ npm run preview        # 预览构建产物
 npx cap sync android   # 同步 Android 原生壳
 ```
 
-完整命令与本地开发注意事项见 [docs/HANDOFF.md](docs/HANDOFF.md) 与
-[docs/HANDOFF_FULL.md](docs/HANDOFF_FULL.md)。
+完整命令、前置条件与发布流程见 [RUNBOOK](docs/context/RUNBOOK.md)。
 
 ## 设计主题
 
@@ -66,21 +68,38 @@ public/
   images/  ui/    游戏图片资源
 functions/        Pages Functions（评论 / 账号 API）
 tests/            单元、端到端、迁移演练与真机套件
-docs/             规范与交接文档
+docs/
+  context/        当前有效的规范与契约（含 specs/ technical/）
+  history/        历史归档（含 dev-logs/）
 ```
 
-## 文档
+> `docs/` 是**两分法**：`context/` = 现在该看的，`history/` = 追溯才看的。详见 [MAP](docs/context/MAP.md)。
+
+---
+
+## 文档入口
+
+> **接手项目请先读 [AGENTS.md](AGENTS.md)** —— 它规定该读什么、能改什么。
+> 它同时包含**读取纪律**：本仓库 `docs/` 约 1.2 MB，**不要通读**，按索引定位章节。
 
 | 文档 | 内容 |
 | --- | --- |
-| [docs/SPEC.md](docs/SPEC.md) | 前端总规范：路由、页面契约、共享边界、资源与验收 |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 目录职责、分层、数据流、构建与发布机制 |
-| [docs/UI_COMPONENT_LIBRARY.md](docs/UI_COMPONENT_LIBRARY.md) | UI 组件库 API、主题、布局与强制规则 |
-| [docs/HANDOFF.md](docs/HANDOFF.md) | 项目交接（功能视角，〇节是最新状态） |
-| [docs/HANDOFF_FULL.md](docs/HANDOFF_FULL.md) | 完整交接：部署拓扑、凭据、验证命令、待办 |
-| [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) | 贡献与提交规范 |
-| [docs/dev-logs/README.md](docs/dev-logs/README.md) | 开发日志规范 |
-| [docs/README.md](docs/README.md) | 文档导航（专题、技术、审计资料） |
+| [AGENTS.md](AGENTS.md) | **长期规则**：读取/写入纪律、工作树授权、项目红线、本机坑 |
+| [PROJECT_INDEX.md](PROJECT_INDEX.md) | **任务 → 权威章节**路由（条件路由，不是必读清单） |
+| [docs/context/NOW.md](docs/context/NOW.md) | 当前状态、阻塞与下一步（接续工作先读） |
+| [docs/context/MAP.md](docs/context/MAP.md) | 目录、源资源、部署位置、配置位置映射 |
+| [docs/context/RUNBOOK.md](docs/context/RUNBOOK.md) | 运行、构建、验收、发布、运维 |
+| [docs/context/ARCHITECTURE.md](./docs/context/ARCHITECTURE.md) | 分层、数据流、构建机制 |
+| [docs/context/DOMAIN.md](docs/context/DOMAIN.md) | 业务契约总览：领域索引、共享模块、奖励语义、URL |
+| [docs/context/specs/](docs/context/specs/) | 7 个领域规范（物品装备 / 角色战斗 / 副本关卡 / 任务事件 / 营地生活 / 招募 / UI） |
+| [docs/context/DECISIONS.md](docs/context/DECISIONS.md) | 已确认决策与理由 |
+| [docs/context/RISKS.md](docs/context/RISKS.md) | 风险、已知故障、验证缺口 |
+| [docs/context/UI_COMPONENT_LIBRARY.md](./docs/context/UI_COMPONENT_LIBRARY.md) | UI 组件库 API、主题、强制规则 |
+| [docs/context/CONTRIBUTING.md](./docs/context/CONTRIBUTING.md) | 提交信息格式与写作要求 |
+| [docs/context/technical/](./docs/context/technical) | 跨功能接口（奖励/公式/账号/评论等） |
+| [docs/history/README.md](docs/history/README.md) | 历史归档索引（**先搜索再读**） |
+
+---
 
 ## 维护须知
 
@@ -89,5 +108,6 @@ docs/             规范与交接文档
   与 `android/.../strings.xml` 的 `package_name` / `custom_url_scheme` 均有单测守着。
 - **完整数据再生成需要本机原表**（游戏配置、剧情、源码），这些资源不入库；
   新环境缺原表时构建会沿用已有产物，此时只能验收「前端可构建」，
-  不等于「能从完整输入再生成」。细节见 [docs/SPEC.md](docs/SPEC.md#六资源维护)。
+  **不等于**「能从完整输入再生成」。
 - **`raw/` 与 `dist/` 不入库**；`public/data/parsed/*.json` 是随包发布的运行时数据，需要入库。
+- **`git push` 就是上线**（Cloudflare Pages GitHub 集成），没有二次发布步骤。

@@ -51,9 +51,11 @@ test(`用户可见的位置没有把旧名「${OLD_NAME}」当成现名用`, () 
     'src/views/GachaView.vue',
     'src/components/gacha/GachaResultPanel.vue',
     'README.md',
-    'docs/ARCHITECTURE.md',
-    'docs/SPEC.md',
-    'docs/HANDOFF_FULL.md'
+    // 2026-10-07 文档重构：SPEC / ARCHITECTURE / HANDOFF_FULL 已废弃，
+    // 内容分别落在 DOMAIN（+ specs）/ ARCHITECTURE / MAP+DECISIONS。
+    'docs/context/ARCHITECTURE.md',
+    'docs/context/DOMAIN.md',
+    'docs/context/MAP.md'
   ]
 
   /** 「历史说明」语境：同一行里出现这些词之一，就算在讲改名这件事，不算当现名用 */
