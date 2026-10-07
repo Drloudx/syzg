@@ -335,7 +335,7 @@ import {
   UiAccordion
 } from '../components/ui/index.js'
 import { loadTaskData } from '../utils/taskParser'
-import { TASK_TYPE_LABELS, cleanDialogueLine } from '../utils/gameMappings'
+import { TASK_TYPE_LABELS, cleanDialogueLine, resolveRegionName } from '../utils/gameMappings'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { fetchWithFallback, prefetchResourceManifest } from '../utils/request.js'
 import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
@@ -511,8 +511,40 @@ const npcText = (npc) => {
 
 const filteredTasks = computed(() => {
   return tasks.value.filter((item) => {
-    // 黑名单：任务名/描述里命中关键字即隐藏（本页原先完全没过黑名单）
-    if (isBlacklisted({ id: item.id, name: item.name, desc: item.des, tip: item.typeLabel, label: item.subLabel })) return false
+    /*
+     * 黑名单：命中关键字即隐藏。
+     *
+     * 🔴 `region` 这一项**不能少**（2026-10-07 修）：
+     * 黑名单里存的是**地区名**（「黑森林」「霜烬平原」），而主线任务的
+     * `subLabel` 是**章节序号**（「第五章」），两者字面上永远匹配不上 ——
+     * 于是被隐藏的地区**整章漏出**（实测 42 条）。任务页搜**剧情正文**时最明显，
+     * 因为对话里会直接出现「黑森林」这类词。
+     *
+     * 现在把 `subLabel` 过一遍 `resolveRegionName()`（第五→c5→霜烬平原），
+     * 主线与委托两种写法就都归到地区名上了。
+     */
+    if (
+      isBlacklisted({
+        id: item.id,
+        name: item.name,
+        desc: item.des,
+        tip: item.typeLabel,
+        label: item.subLabel,
+        /*
+         * 把**地区名**送进黑名单。
+         *
+         * 用 `place` 而不是新造一个 `region` 字段：`place` 是 `isBlacklisted`
+         * **确实会读**的字段（见 blacklist.js 里 `parts` 的拼装清单）。
+         * 自造字段会被静默忽略 —— 代码看着改了、行为没变，最难查。
+         *
+         * ⚠️ `place` 必须是**数组**：blacklist 里写的是 `...item.place`，
+         * 直接传字符串会被按字符展开（"霜烬平原" → "霜 烬 平 原"），反而匹配不上。
+         */
+        place: [resolveRegionName(item.subLabel)].filter(Boolean)
+      })
+    ) {
+      return false
+    }
     if (filterType.value !== 'all' && String(item.type) !== filterType.value) return false
     if (filterSub.value && item.subKey !== filterSub.value) return false
     if (searchQuery.value.trim()) {

@@ -336,6 +336,57 @@ export const MAP_NAMES = {
   c4: '黑森林',
   c5: '霜烬平原'
 }
+
+/**
+ * 「第 N 章」→ 地区代号。
+ *
+ * ## 为什么需要它（2026-10-07）
+ *
+ * **同一地区在数据里有两种写法**，而黑名单只认地区名：
+ *
+ * | 任务类型 | `subLabel` 长什么样 | 例子 |
+ * | --- | --- | --- |
+ * | 主线 | **章节序号** | `第五章` |
+ * | 委托 / 支线 | **地区名** | `霜烬平原` |
+ *
+ * 于是主线任务**永远匹配不上**黑名单里的「黑森林 / 霜烬平原」——
+ * 隐藏地区整章漏出（实测 42 条，任务页搜剧情正文时最明显）。
+ * 把序号映射成代号、再过 `getMapName()`，两种写法就统一了。
+ *
+ * ## 序章为什么映射到 c0
+ *
+ * 序章剧情从求生者草原开始，且**不属于任何被隐藏的地区**。给它一个具体代号
+ * 只是为了"有映射可用"，不表示序章只发生在 c0 —— 隐藏判定只关心
+ * **映射结果是否命中黑名单**，序章落在 c0（求生者草原）不会被隐藏，这是对的。
+ */
+export const CHAPTER_TO_MAP = {
+  序章: 'c0',
+  第一章: 'c1',
+  第二章: 'c2',
+  第三章: 'c3',
+  第四章: 'c4',
+  第五章: 'c5'
+}
+
+/**
+ * 把任务的 `subLabel`（可能是章节序号，也可能是地区名）统一成**地区名**。
+ *
+ * @returns 地区名（如「霜烬平原」）；无法识别时返回空串。
+ *
+ * 两种输入都要能处理，因为主线给的是「第五章」、委托给的是「霜烬平原」：
+ *   · 命中 `CHAPTER_TO_MAP` → `getMapName('c5')` → `霜烬平原`；
+ *   · 本身就是地区名 → 原样返回（先按 `MAP_NAMES` 反查一次，大小写不敏感）。
+ */
+export function resolveRegionName(subLabel) {
+  const raw = String(subLabel || '').trim()
+  if (!raw) return ''
+  const code = CHAPTER_TO_MAP[raw]
+  if (code) return getMapName(code)
+  // 已经是地区名：反查 cN 代号再取标准写法（避免「黑森林 」「黑森林」这类空格差异）
+  const hit = Object.entries(MAP_NAMES).find(([, name]) => name === raw)
+  return hit ? hit[1] : ''
+}
+
 // 章节代码（c1/c2 或 C1/C2 或 c1_map）→ 地图名，兜底返回原值
 export function getMapName(key) {
   if (!key) return ''

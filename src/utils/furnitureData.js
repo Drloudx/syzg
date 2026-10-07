@@ -1,5 +1,5 @@
 import { isBlacklisted } from '../config/blacklist.js'
-import { BASE_REWARD_ICONS, BASE_REWARD_NAMES, getMapName, getSourceTagName } from './gameMappings.js'
+import { BASE_REWARD_ICONS, BASE_REWARD_NAMES, CHAPTER_TO_MAP, getMapName, getSourceTagName } from './gameMappings.js'
 import { fetchWithFallback } from './request.js'
 import { createCachedLoader } from './resourceClient.js'
 
@@ -237,9 +237,11 @@ function countBy(entries, keyOf) {
  * - `weituo_item_NNN` → 去掉前缀取 `item_NNN` 的名称（制作图）
  * - `s_*` / `m_*`（任务）→ `task.json` 的 name + category（支线/主线）+ 章节对应的地区
  * - `c1`..`c5` → 地区名（与 `gameMappings.js` 的 MAP_NAMES 一致）
+ *
+ * ⚠️ 章节→地区的映射（`CHAPTER_TO_MAP`）已**移到 `gameMappings.js`**：
+ * 任务页的黑名单判定也要用它（主线任务的 `subLabel` 是「第五章」这类序号，
+ * 不映射就匹配不上「霜烬平原」），两处各存一份必然走散。
  */
-const CHAPTER_TO_MAP = { 序章: 'c0', 第一章: 'c1', 第二章: 'c2', 第三章: 'c3', 第四章: 'c4', 第五章: 'c5' }
-
 /**
  * 「获取方式 / 来源标记」的**展示层伪装**（按用户要求）。
  *
