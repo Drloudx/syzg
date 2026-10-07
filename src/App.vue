@@ -607,12 +607,46 @@ const setClipTop = (element, boundary) => {
   element.style.setProperty('--sticky-clip-top', `${clipTop}px`)
 }
 
+/*
+ * 桌面端页面级吸顶裁切。
+ *
+ * 机制：桌面端滚动发生在整个 `.app-container`（见本文件 @media ≥1025px 的
+ * `overflow-y: auto`），而 `[data-main-scroll]` 被强制 `overflow-y: visible`。
+ * 于是正文上滑时会经过吸顶筛选框所在区域——必须把它裁掉，否则内容会盖到筛选框上方。
+ * 裁切量 = 筛选框底边 − 内容容器顶边，写进 `--sticky-clip-top`，
+ * 由 `clip-path: inset(var(--sticky-clip-top) 0 0)` 消费。
+ *
+ * 🔴 两条**不许省**的约定（省掉就静默失效：不报错，只是内容滚到筛选框上面去）：
+ *   1. 筛选框必须是 `UiFilterPanel`（它带 `data-sticky-filter` 标记）——
+ *      不要再按 class 名（`filter-panel` / `-filter-panel`）猜，改名就会漏。
+ *   2. 内容滚动容器必须带 `data-main-scroll`。`UiCardGrid` / `UiVirtualGrid` 已自带；
+ *      自建滚动容器（如 `.dungeon-scroll`）必须自己加。
+ *
+ * 回归入口：`tests/ui/sticky-clip.spec.js`（逐路由实测裁切真的生效）。
+ */
+const warnStickyClipping = () => {
+  if (window.innerWidth < 1025) return
+  document.querySelectorAll('.page-view-container').forEach(page => {
+    const scrollers = page.querySelectorAll('[data-main-scroll]')
+    if (!scrollers.length) return
+    const filter = page.querySelector(':scope > [data-sticky-filter]')
+    if (filter) return
+    const name = page.className || page.parentElement?.className || '(未知页面)'
+    console.warn(
+      `[sticky-clip] 页面「${name}」有内容滚动容器但没有直接子级的 UiFilterPanel，` +
+      '页面级吸顶裁切不会生效（内容会滚到筛选框上方）。' +
+      '修法：把筛选框放回 .page-view-container 直接子级，或用 UiFilterPanel。'
+    )
+  })
+}
+
 const updateStickyClipping = () => {
   stickyClipFrame = 0
   if (window.innerWidth < 1025) return
 
   document.querySelectorAll('.page-view-container').forEach(page => {
-    const filter = page.querySelector(':scope > .filter-panel, :scope > .filter-sticky-bar, :scope > [class*="-filter-panel"]')
+    // 只认约定标记；class 名可由页面自由追加（如 dungeon-filter-panel），不再参与匹配
+    const filter = page.querySelector(':scope > [data-sticky-filter]')
     if (!filter) return
     const boundary = filter.getBoundingClientRect().bottom
     page.querySelectorAll('[data-main-scroll]').forEach(content => setClipTop(content, boundary))
@@ -768,7 +802,11 @@ watch(() => route.path, (newPath, oldPath) => {
   resetModalScrollCoordinator()
   if (appScrollRoot.value) appScrollRoot.value.scrollTop = 0
   setRoutePending()
-  nextTick(scheduleStickyClipping)
+  nextTick(() => {
+    scheduleStickyClipping()
+    // 每次换页体检一次「内容容器 + 筛选框」配对；只在开发期提示，生产静默
+    if (import.meta.env.DEV) warnStickyClipping()
+  })
 
   // 移动端/单窗口环境下，注册表单点击「隐私说明」跳到 /#/privacy 时，
   // 账号弹窗不能继续挡在正上方（否则隐私协议会被盖在弹窗底下）。

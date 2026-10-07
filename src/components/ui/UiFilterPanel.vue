@@ -1,5 +1,10 @@
 <template>
-  <div class="filter-panel paper-panel" :class="{ 'is-filter-collapsed': !expanded }">
+  <!--
+    `data-sticky-filter` 是**约定标记**，不是样式钩子：桌面端由 App.vue 的 updateStickyClipping()
+    取它的底边作为裁切基线（--sticky-clip-top），让正文从筛选框下沿整齐消失、不盖到筛选框上方。
+    ⚠️ 不要删掉或改名 —— 删了页面级裁切会**静默失效**（不报错，内容直接滚到筛选框上方）。
+  -->
+  <div class="filter-panel paper-panel" data-sticky-filter :class="{ 'is-filter-collapsed': !expanded }">
     <slot name="search" />
     <div :id="contentId" v-show="expanded" class="ui-filter-content">
       <slot />
