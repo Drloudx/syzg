@@ -28,11 +28,21 @@ import { parseArgs } from 'node:util'
 const { values } = parseArgs({ options: { url: { type: 'string' } } })
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '../..')
 
-/** 默认域名从 `src/utils/env.js` 的 CLOUD_URL 读，避免两处各写一份。 */
+/**
+ * 默认域名从 `src/utils/env.js` 的 **`DEFAULT_CLOUD_URL`** 读，避免两处各写一份。
+ *
+ * ⚠️ 2026-10-07 起 `CLOUD_URL` 变成 `injectedCloudUrl() || DEFAULT_CLOUD_URL`，
+ * 所以必须匹配**默认值那个常量**。匹配 `CLOUD_URL` 会撞上 `DEFAULT_CLOUD_URL`
+ * （子串），虽然结果碰巧一样，但那是巧合而不是意图 —— 写明确更稳。
+ *
+ * 环境变量 `VITE_CLOUD_URL` 优先（与构建时的覆盖口径一致），
+ * 这样迁域名后可以直接 `VITE_CLOUD_URL=... npm run cdn:check` 验新域名。
+ */
 function cloudUrl() {
+  if (process.env.VITE_CLOUD_URL) return process.env.VITE_CLOUD_URL
   const env = readFileSync(join(repoRoot, 'src/utils/env.js'), 'utf8')
-  const match = env.match(/CLOUD_URL\s*=\s*'([^']+)'/)
-  if (!match) throw new Error('未能在 src/utils/env.js 里找到 CLOUD_URL')
+  const match = env.match(/DEFAULT_CLOUD_URL\s*=\s*'([^']+)'/)
+  if (!match) throw new Error('未能在 src/utils/env.js 里找到 DEFAULT_CLOUD_URL')
   return match[1]
 }
 

@@ -29,6 +29,26 @@
       </button>
     </div>
 
+    <!--
+      页面类型筛选：**横排按钮，不用下拉**。
+      后台是电脑端专用，横排能一眼看全、一次点击到位；下拉要多两次交互。
+      移动端才需要下拉（窄屏横排会换行挤成一团），这里不必迁就。
+    -->
+    <div class="admin-toolbar admin-toolbar--kinds">
+      <div class="admin-filters">
+        <button
+          v-for="k in PAGE_KINDS"
+          :key="k.value"
+          type="button"
+          class="admin-chip admin-chip--sm"
+          :class="{ 'is-on': pageKind === k.value }"
+          @click="setPageKind(k.value)"
+        >
+          {{ k.label }}
+        </button>
+      </div>
+    </div>
+
     <p v-if="errorMessage" class="admin-error">{{ errorMessage }}</p>
     <p v-if="loading && !comments.length" class="admin-hint">正在加载…</p>
     <p v-else-if="!comments.length && !errorMessage" class="admin-hint">
@@ -129,6 +149,28 @@ const comments = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
 const statusFilter = ref('0')
+/**
+ * 页面类型筛选。`''` = 全部。
+ *
+ * ⚠️ 这份清单必须与**服务端 `ADMIN_PAGE_KINDS`** 和 `commentApi.js` 的
+ * `COMMENT_PAGE_PREFIX` 三处保持一致：新增评论页面时都要改，否则这里筛不到那一类。
+ * 服务端对未知键按"不筛"处理，所以即使这里多写一个也不会报错（只是筛不出东西）。
+ */
+const PAGE_KINDS = [
+  { value: '', label: '全部页面' },
+  { value: 'site', label: '站内讨论区' },
+  { value: 'item', label: '物品' },
+  { value: 'hero', label: '角色' },
+  { value: 'pet', label: '魔物' },
+  { value: 'monster', label: '怪物' },
+  { value: 'furniture', label: '家具' },
+  { value: 'task', label: '任务' },
+  { value: 'event', label: '活动' },
+  { value: 'explore', label: '探索' },
+  { value: 'battle', label: '副本' },
+  { value: 'stage', label: '关卡' }
+]
+const pageKind = ref('')
 const cursor = ref(null)
 const hasMore = ref(false)
 const pendingCount = ref(0)
@@ -165,6 +207,12 @@ function setFilter(value) {
   safeLoad()
 }
 
+function setPageKind(value) {
+  if (pageKind.value === value) return
+  pageKind.value = value
+  safeLoad()
+}
+
 async function load({ append = false } = {}) {
   loading.value = true
   errorMessage.value = ''
@@ -172,6 +220,7 @@ async function load({ append = false } = {}) {
     const data = await fetchAdminComments({
       status: statusFilter.value,
       q: searchQuery.value,
+      pageKind: pageKind.value,
       cursor: append ? cursor.value : undefined
     })
     const page = data.comments || []
@@ -201,7 +250,26 @@ function loadMore() {
   safeLoad({ append: true })
 }
 
+/**
+ * 改状态：放行 / 隐藏 / 打回待审。
+ *
+ * 🔴 **必须确认**（2026-10-07 补）。此前这里**没有确认框** —— 一键生效，
+ * 误点就把用户的评论下架了（虽然可恢复，但用户那边会看到评论消失）。
+ * 与"彻底删除"不同，这里都是**可恢复**操作，所以用轻量确认而不是红色警告。
+ *
+ * 文案按方向区分：**隐藏**是"下架用户内容"，比放行更该让人停一下；
+ * 放行是恢复公开，提示会重新可见即可。
+ */
 async function changeStatus(comment, status) {
+  const preview = String(comment.body || '').slice(0, 40)
+  const CONFIRM_TEXT = {
+    1: `放行这条评论？\n\n正文：${preview}\n\n放行后**所有人可见**。`,
+    2: `隐藏这条评论？\n\n正文：${preview}\n\n隐藏后**只有你能看到**，用户那边这条评论会消失。随时可以再放行。`,
+    0: `打回待审？\n\n正文：${preview}\n\n打回后**不公开显示**，留在「待审」里等你再处理。`
+  }
+  const ok = window.confirm(CONFIRM_TEXT[status] || `把这条评论的状态改为 ${status}？`)
+  if (!ok) return
+
   errorMessage.value = ''
   try {
     await setCommentStatus(comment.id, status)

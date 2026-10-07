@@ -911,19 +911,35 @@ DELETE FROM rate_limits;
 | POST | `/api/auth/logout` | Bearer | `{ ok }` | —（幂等，**只退当前会话**） |
 | DELETE | `/api/auth/me` | Bearer | `{ ok }` | —（**软删除**：`status=3`、清个人数据、把其评论的昵称快照改写为「账号已注销」） |
 
-**管理端**（全部在 `ADMIN_TOKEN` 保护下；**不是攻击面**——没令牌在 `isAdmin()` 就返回 401）：
+**管理端**（**2026-10-07 起改为看登录账号的 `role`**；未登录或非管理员一律 401）：
 
 | 方法 | 路径 | 用途 |
 | --- | --- | --- |
 | GET | `/api/admin/stats` | 概览指标：评论（总数/今日/回复数/待审/显示/隐藏 + 近 7 天逐日）、用户（总数/正常/封禁/已注销/今日 + 近 7 天逐日）、活跃会话数 |
-| GET | `/api/admin/users` | 用户列表（分页 + 按编号 / 昵称 / 邮箱搜索 + 按状态筛；每行带 `commentCount`） |
-| PATCH | `/api/admin/users` | 封禁 / 解封（**封禁时同时作废该用户全部 session，立即踢下线**）。只允许在 1↔2 之间切，**不允许改成 3** —— 注销是用户自己的动作 |
-| DELETE | `/api/admin/users` | **彻底删除**（删 `users` + `sessions` + `auth_codes`；评论保留、昵称改写为「账号已注销」且 `user_id` 置空）。与用户自助软删除的关键区别：**释放邮箱，可重新注册** |
-| GET | `/api/admin/comments` | **已有**，新增 `?userId=` 参数用于"按用户查评论"；返回行新增 `userId` 字段（**只在管理端加**，公开的 `/api/comments` 不含它） |
+| GET | `/api/admin/users` | 用户列表（分页 + 按编号 / 昵称 / 邮箱搜索 + 按状态筛；每行带 `commentCount` 与 **`role`**） |
+| PATCH | `/api/admin/users` | 封禁 / 解封（**封禁时同时作废该用户全部 session，立即踢下线**）。只允许在 1↔2 之间切，**不允许改成 3** —— 注销是用户自己的动作。**受层级校验**（只能动角色低于自己的账号） |
+| DELETE | `/api/admin/users` | **彻底删除**（删 `users` + `sessions` + `auth_codes`；评论保留、昵称改写为「账号已注销」且 `user_id` 置空）。与用户自助软删除的关键区别：**释放邮箱，可重新注册**。**受层级校验** |
+| PATCH | `/api/admin/users/role` | **设/撤管理员**（`role` 只收 `0`/`1`）。🔴 **仅超管**可调，且**接口无法产生超管**（`role=2` 被拒）—— 超管只能由手工 SQL 产生 |
+| GET | `/api/admin/comments` | 支持 `?userId=`（按用户查评论）与 **`?pageKind=`**（按页面类型筛：`site`/`item`/`hero`/…）；返回行含 `userId`（**只在管理端加**，公开的 `/api/comments` 不含它） |
+| GET | `/api/admin/audit` | **管理操作审计**（分页倒序）。🔴 **仅超管**可读 —— 记录含其他管理员的痕迹，追责是超管的职责 |
 
-> **管理端认证**：沿用既有的 `x-admin-token` 头（比对 SHA-256 哈希、恒定时间比较）。
-> `ADMIN_TOKEN` 未配置时**整段 `/api/admin/*` 一律 404**（对外表现为"接口不存在"），
-> 这条从原来的"仅 `/api/admin/comments`"扩成了**前缀匹配**，新增管理接口不必再改路由判断。
+### 管理端鉴权与角色（2026-10-07 改）
+
+`role`：`0` 普通 / `1` 管理员 / `2` 超管。鉴权由 `adminSession()` 完成 ——
+它先 `loadSession()` 拿会话，再要求 `role >= 1` 且 `status === 1`。
+
+> **为什么删掉环境变量令牌**：旧实现的三个硬伤 —— ① **永不过期**（泄露即长期有效，
+> 改密码也没用）；② **明文存 localStorage**（任何 XSS 可直接读走）；
+> ③ **无法追溯身份**（谁都能用同一个令牌）。改用会话后有 30 天滑动过期、
+> 可随时吊销，且每个操作能落到具体账号（配合 `admin_audit`）。
+
+> 🔴 **层级规则**（`canActOn`）：只能操作**角色严格低于自己**的账号，且**谁都不能操作自己**。
+> 没有这条，管理员可以封禁甚至**彻底删除超管**（不可恢复）—— 给某人管理员
+> 就等于把后台交出去。另加"超管不能通过接口设超管"，避免"你给了他超管、他把你降级"。
+
+> 🔴 **进不去后台时的后路是数据库**（删掉令牌通路时已确认接受这个代价）：
+> `UPDATE users SET role = 2, status = 1 WHERE email = '...'`
+> （同一条 SQL 也写在 `scripts/sql/2026-10-07-admin-role.sql` 末尾）。
 
 > 🔴 **封禁必须连带清 session**：否则用户手上那个 30 天的令牌还能继续用 ——
 > "封了但没封住"是最糟的失败方式。端到端套件里有一条专门守它
@@ -1159,7 +1175,7 @@ DELETE FROM rate_limits;
 | --- | --- |
 | 本文第二节的耗时与封顶数字 | [`scripts/dev/kdf-probe/`](../../scripts/dev/kdf-probe/README.md)（本地 `wrangler dev`，只读） |
 | **发信通道：进不进收件箱** | 第七节步骤 6 —— **这才是真正的开工前置** |
-| **生产环境变量到底配没配** | `GET /api/admin/comments` 带**假令牌**：**401 = 生产已配 `ADMIN_TOKEN`**；**404 = 未配**（依据 `[[path]].js` 889 / 917 行）。2026-10-05 实测线上 = **401**，据此确认 Cloudflare「变量和密钥」页签下的那套就是**生产**环境，新增的 `TENCENT_SECRET_*` 同样在生产可用。**只读、用假令牌、不碰真数据** |
+| **生产环境变量到底配没配** | `GET /api/admin/comments` **不带凭证**：**401 = 管理路由已生效**。⚠️ 2026-10-07 起这条**不再能区分"令牌配没配"**（令牌已删），只能说明 Functions 在跑。当初用它确认了 Cloudflare「变量和密钥」页签下的那套就是**生产**环境（那时 `ADMIN_TOKEN` 未配会 404）。**只读、不碰真数据** |
 | 接口契约 / 限流 / 不泄漏（含账号不枚举） | `npm run dev:api` + 新增 `tests/unit/auth*.test.mjs` |
 | KDF 与 Node 参考实现一致（同一 `password/salt/iters` 得同一 verifier） | ✅ **已实施并全绿**：`npm run test:unit`（190 全过）+ `npx playwright test tests/ui/password-kdf.spec.js`（5 passed）。三方闭环 = 浏览器 WebCrypto === Node OpenSSL === 硬编码金标准向量 |
 | ~~真机 KDF 耗时~~（已测） | ✅ **2026-10-05 实测完成**：Redmi 22041211AC（天玑 8100 / Android 14 / Chrome，`/proc/cpuinfo` 含 `sha2` 硬件加速）→ **中位数 404ms**（三次 404 / 382 / 412），且**结果与金标准向量一致**。对比：Node 桌面 ≈100ms、桌面 Chrome ≈114~154ms。🔴 **`PBKDF2_ITERS = 600000` 保持不变**，加载态文案按「通常小于 0.5 秒」写即可 |

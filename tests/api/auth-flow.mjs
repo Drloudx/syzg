@@ -101,9 +101,18 @@ async function api(method, p, body, token) {
   return { status: res.status, json, text }
 }
 
-/** 管理端走 `x-admin-token`（与用户令牌是不同的认证头）。 */
-async function adminApi(method, p, body, token = devVars.ADMIN_TOKEN) {
-  const init = { method, headers: { 'x-admin-token': token } }
+/**
+ * 管理端请求。
+ *
+ * 2026-10-07 起**不再有独立的管理令牌** —— 后台与普通接口一样走用户会话
+ * （`Authorization: Bearer <会话令牌>`），服务端查该账号的 `users.role`。
+ * 所以这里收的是**某个管理员的会话令牌**。
+ *
+ * `token` 默认 `null` 表示"不带任何凭证" —— 用来断言未登录一律 401。
+ */
+async function adminApi(method, p, body, token = null) {
+  const init = { method, headers: {} }
+  if (token) init.headers.authorization = 'Bearer ' + token
   if (body !== undefined) {
     init.headers['content-type'] = 'application/json'
     init.body = JSON.stringify(body)
@@ -117,6 +126,27 @@ async function adminApi(method, p, body, token = devVars.ADMIN_TOKEN) {
     /* 非 JSON */
   }
   return { status: res.status, json, text }
+}
+
+/**
+ * 把某个账号的角色直接写进库。
+ *
+ * 为什么测试要这么做：**生产上超管只能由手工 SQL 产生**（接口明确拒绝 role=2，
+ * 见 `adminUserSetRole`）。测试要验超管能力，就必须走同一条"数据库是唯一来源"的路。
+ *
+ * ⚠️ 这里另开一个**可写**连接：上面那个 `db` 是只读的（专门用来反解验证码等），
+ * 复用它写会直接抛错。
+ */
+function setRoleDirect(email, role) {
+  const w = new DatabaseSync(path.join(d1Dir, d1File))
+  try {
+    const row = w.prepare(`SELECT id FROM users WHERE email = ?`).get(email)
+    if (!row) throw new Error(`找不到账号 ${email}`)
+    w.prepare(`UPDATE users SET role = ? WHERE id = ?`).run(role, row.id)
+    return row.id
+  } finally {
+    w.close()
+  }
 }
 
 // ============================================================
@@ -472,20 +502,62 @@ console.log('\n【11】注销账号（软删除）')
 // ---- 12. 管理端：概览 / 用户 / 封禁踢下线 ----
 console.log('\n【12】管理端接口')
 {
+  /*
+   * 🔴 管理端鉴权已改为**看登录账号的 role**（2026-10-07），不再有独立令牌。
+   *
+   * ⚠️ 不能用前面那个主账号：第 11 步把它**注销了**（软删除 status=3），
+   * `adminSession` 会因 `status !== 1` 拒绝它。所以这里**新建一个专职超管**。
+   *
+   * 走"直接改库"是**刻意的**：生产上超管也只能这样产生
+   * （接口明确拒绝 role=2，见 admin-roles.mjs 的用例）。
+   */
+  const superEmail = `e2e-super-${stamp}@example.com`
+  const { code: superCode } = await sendCode(superEmail, 'register')
+  const superSalt = generatePasswordSalt()
+  const superReg = await api('POST', '/api/auth/register', {
+    email: superEmail, code: superCode,
+    verifier: await deriveVerifier(PASSWORD, superSalt), salt: superSalt,
+    nick: `超管${stamp.slice(-4)}`, avatar: 'at001_0'
+  })
+  check('为管理端测试建了专职超管', superReg.status === 200, `实际 ${superReg.status} ${superReg.text.slice(0, 60)}`)
+  const ADMIN = superReg.json?.token
+  const superUserId = setRoleDirect(superEmail, 2)
+  check('该账号已设为超管（直接改库，与生产同一路径）', Boolean(superUserId && ADMIN))
+
   // 12.1 认证边界
+  /*
+   * 先造一个**普通用户**用来验"登录了但不是管理员也进不去"。
+   * 这是比"未登录 401"更容易漏的一条：鉴权写成"有会话就放行"时，
+   * 未登录仍然 401，看起来是对的，但任何登录用户都能进后台。
+   */
+  const plainEmail = `e2e-plain-${stamp}@example.com`
+  const { code: plainCode } = await sendCode(plainEmail, 'register')
+  const plainSalt = generatePasswordSalt()
+  const plainReg = await api('POST', '/api/auth/register', {
+    email: plainEmail, code: plainCode,
+    verifier: await deriveVerifier(PASSWORD, plainSalt), salt: plainSalt,
+    nick: `普通${stamp.slice(-4)}`, avatar: 'at001_0'
+  })
+  const PLAIN = plainReg.json?.token
+  check('为权限测试建了一个普通用户', plainReg.status === 200 && Boolean(PLAIN), `实际 ${plainReg.status}`)
+
   for (const p of ['/api/admin/stats', '/api/admin/users', '/api/admin/comments']) {
-    const r = await adminApi('GET', p, undefined, '')
-    check(`无令牌 GET ${p} → 401`, r.status === 401, `实际 ${r.status}`)
+    const r = await adminApi('GET', p, undefined, null)
+    check(`未登录 GET ${p} → 401`, r.status === 401, `实际 ${r.status}`)
+    const asUser = await adminApi('GET', p, undefined, PLAIN)
+    check(`🔴 普通登录用户 GET ${p} → 401（有会话≠有权限）`, asUser.status === 401, `实际 ${asUser.status}`)
   }
   const wrong = await adminApi('GET', '/api/admin/stats', undefined, 'definitely-wrong-token')
-  check('错令牌 → 401（不发 200）', wrong.status === 401, `实际 ${wrong.status}`)
-  const unknown = await adminApi('GET', '/api/admin/definitely-not-a-route')
+  check('无效令牌 → 401（不发 200）', wrong.status === 401, `实际 ${wrong.status}`)
+
+  // 这两条要**带着合法管理员身份**才能测到"路由/方法"这一层
+  const unknown = await adminApi('GET', '/api/admin/definitely-not-a-route', undefined, ADMIN)
   check('未知管理路径 → 404', unknown.status === 404, `实际 ${unknown.status}`)
-  const wrongMethod = await adminApi('POST', '/api/admin/stats', {})
+  const wrongMethod = await adminApi('POST', '/api/admin/stats', {}, ADMIN)
   check('管理端错方法 → 405', wrongMethod.status === 405, `实际 ${wrongMethod.status}`)
 
   // 12.2 概览
-  const stats = await adminApi('GET', '/api/admin/stats')
+  const stats = await adminApi('GET', '/api/admin/stats', undefined, ADMIN)
   check('GET /api/admin/stats → 200', stats.status === 200, `实际 ${stats.status}`)
   check('概览含 comments/users/sessions 三块', Boolean(stats.json?.comments && stats.json?.users && stats.json?.sessions))
   check('评论分状态计数齐全', ['total', 'today', 'replies', 'pending', 'visible', 'hidden'].every((k) => typeof stats.json?.comments?.[k] === 'number'))
@@ -510,19 +582,19 @@ console.log('\n【12】管理端接口')
   const banUserId = q(`SELECT id FROM users WHERE public_no = ?`, banPublicNo)[0]?.id
 
   // 12.4 列表 / 搜索 / 筛选
-  const list = await adminApi('GET', '/api/admin/users?limit=50')
+  const list = await adminApi('GET', '/api/admin/users?limit=50', undefined, ADMIN)
   check('GET /api/admin/users → 200', list.status === 200, `实际 ${list.status}`)
   check('列表里能找到刚建的号', (list.json?.users || []).some((u) => u.publicNo === banPublicNo))
-  const byNo = await adminApi('GET', `/api/admin/users?q=${banPublicNo}`)
+  const byNo = await adminApi('GET', `/api/admin/users?q=${banPublicNo}`, undefined, ADMIN)
   check('按对外编号搜得到', (byNo.json?.users || []).some((u) => u.publicNo === banPublicNo), `搜到 ${byNo.json?.users?.length} 条`)
-  const byNick = await adminApi('GET', `/api/admin/users?q=${encodeURIComponent(banNick)}`)
+  const byNick = await adminApi('GET', `/api/admin/users?q=${encodeURIComponent(banNick)}`, undefined, ADMIN)
   check('按昵称搜得到', (byNick.json?.users || []).some((u) => u.nick === banNick))
-  const byStatus = await adminApi('GET', '/api/admin/users?status=2')
+  const byStatus = await adminApi('GET', '/api/admin/users?status=2', undefined, ADMIN)
   check('按状态筛（封禁=2）→ 全是 2', (byStatus.json?.users || []).every((u) => u.status === 2))
   check('管理端用户行含 commentCount', typeof list.json?.users?.[0]?.commentCount === 'number')
 
   // 12.5 按 userId 查评论
-  const byUser = await adminApi('GET', `/api/admin/comments?userId=${banUserId}`)
+  const byUser = await adminApi('GET', `/api/admin/comments?userId=${banUserId}`, undefined, ADMIN)
   check('GET /api/admin/comments?userId= → 200', byUser.status === 200, `实际 ${byUser.status}`)
   check('管理端评论行带 userId 字段', (byUser.json?.comments || []).every((c) => 'userId' in c))
   check('新账号还没有评论 → 0 条', byUser.json?.comments?.length === 0)
@@ -531,7 +603,7 @@ console.log('\n【12】管理端接口')
   const before = await api('GET', '/api/auth/me', undefined, banToken)
   check('封禁前该账号能访问 /api/auth/me', before.status === 200, `实际 ${before.status}`)
 
-  const ban = await adminApi('PATCH', '/api/admin/users', { id: banUserId, status: 2 })
+  const ban = await adminApi('PATCH', '/api/admin/users', { id: banUserId, status: 2 }, ADMIN)
   check('PATCH 封禁 → 200', ban.status === 200, `实际 ${ban.status} ${ban.text.slice(0, 60)}`)
 
   const after = await api('GET', '/api/auth/me', undefined, banToken)
@@ -544,19 +616,19 @@ console.log('\n【12】管理端接口')
   check('库里该用户会话已清空', sessLeft === 0, `剩余 ${sessLeft}`)
 
   // 12.7 解封
-  const unban = await adminApi('PATCH', '/api/admin/users', { id: banUserId, status: 1 })
+  const unban = await adminApi('PATCH', '/api/admin/users', { id: banUserId, status: 1 }, ADMIN)
   check('PATCH 解封 → 200', unban.status === 200, `实际 ${unban.status}`)
   const relogin = await api('POST', '/api/auth/login', { email: banEmail, verifier: banVerifier })
   check('解封后可以正常登录', relogin.status === 200, `实际 ${relogin.status}`)
 
   // 12.8 参数校验
-  const badStatus = await adminApi('PATCH', '/api/admin/users', { id: banUserId, status: 3 })
+  const badStatus = await adminApi('PATCH', '/api/admin/users', { id: banUserId, status: 3 }, ADMIN)
   check('不允许把状态改成 3（注销是用户自己的动作）→ 400', badStatus.status === 400, `实际 ${badStatus.status}`)
-  const notFound = await adminApi('PATCH', '/api/admin/users', { id: 99999999, status: 2 })
+  const notFound = await adminApi('PATCH', '/api/admin/users', { id: 99999999, status: 2 }, ADMIN)
   check('改不存在的用户 → 404', notFound.status === 404, `实际 ${notFound.status}`)
 
   // 12.9 彻底删除
-  const delUser = await adminApi('DELETE', '/api/admin/users', { id: banUserId })
+  const delUser = await adminApi('DELETE', '/api/admin/users', { id: banUserId }, ADMIN)
   check('DELETE 彻底删除 → 200', delUser.status === 200, `实际 ${delUser.status} ${delUser.text.slice(0, 60)}`)
   check('库里用户行已消失', q(`SELECT id FROM users WHERE id = ?`, banUserId).length === 0)
   const gone = await api('POST', '/api/auth/login', { email: banEmail, verifier: banVerifier })

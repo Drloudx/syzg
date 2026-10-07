@@ -44,13 +44,44 @@ const rel = (f) => f.replace(/\\/g, '/')
 function collectRoutes() {
   const text = readFileSync(path.join(ROOT, 'src/router/index.js'), 'utf8')
   const out = new Set()
+
+  /*
+   * 顶层路由：`path: '/xxx'`。嵌套子路由写的是**相对路径**（`path: 'comments'`），
+   * 所以这里只收以 `/` 开头的。
+   */
   for (const m of text.matchAll(/path:\s*'([^']*)'/g)) {
     const p = m[1]
     if (p.startsWith('/:')) continue // 兜底路由，任何路径都能命中，不算"存在的页面"
     if (p.startsWith('/')) out.add(p)
   }
-  // 嵌套子路由：`/admin` 下挂了 ''、'comments'、'users'
-  for (const c of ['', '/comments', '/users']) out.add('/admin' + c)
+
+  /*
+   * 嵌套子路由：把**父路径 + 子路径**拼出来。
+   *
+   * ⚠️ 早先这里写死成 `['', '/comments', '/users']` —— 新增 `/admin/audit` 时
+   * 它就漏了，于是"路由不存在"的断言误报（真实路由是有的）。
+   * 写死的清单会随路由增长而失效，所以改成**从源码里推**。
+   *
+   * 推法：先定位每个 `children: [`，再**向前**找最近的 `path: '/...'` 作为父路径。
+   * （不能用 `path: '/x'[\s\S]*?children:` 那种写法 —— 非贪婪跨度会从**更早的**
+   *   某个顶层路由一路吃到这里的 `children:`，把父路径认错成别的页面。）
+   */
+  for (const cm of text.matchAll(/children:\s*\[/g)) {
+    const before = text.slice(0, cm.index)
+    const parents = [...before.matchAll(/path:\s*'(\/[^']*)'/g)]
+    if (!parents.length) continue
+    const parent = parents[parents.length - 1][1].replace(/\/$/, '')
+
+    // 取这一段 children 数组的正文（到与之配对的 `]` 为止，按缩进判断）
+    const after = text.slice(cm.index)
+    const body = after.slice(0, after.search(/\n\s*\]/))
+
+    for (const child of body.matchAll(/path:\s*'([^']*)'/g)) {
+      const c = child[1]
+      if (c.startsWith('/')) continue // 子路由里的绝对路径自己就是完整路径
+      out.add(c ? `${parent}/${c}` : parent)
+    }
+  }
   return out
 }
 

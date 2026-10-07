@@ -92,12 +92,41 @@ CREATE TABLE IF NOT EXISTS users (
   pw_iters       INTEGER NOT NULL,            -- 600000，如实记录，便于将来判断是否需要迁移
   pepper_ver     INTEGER NOT NULL DEFAULT 1,  -- AUTH_PEPPER 轮换预留
   status         INTEGER NOT NULL DEFAULT 1,  -- 1 正常 / 2 封禁 / 3 已注销（软删除）
+  -- 后台角色。0 普通 / 1 管理员 / 2 超级管理员。
+  -- 🔴 默认 0：新库里**没有任何管理员**，超管由手工 SQL 设出（见
+  --    scripts/sql/2026-10-07-admin-role.sql 末尾）。绝不做"第一个注册的自动当管理员"
+  --    —— 那是竞态漏洞，谁先注册谁当。
+  role           INTEGER NOT NULL DEFAULT 0,
   replies_read_at INTEGER DEFAULT NULL,       -- 「回复我的」未读数基准（免去另建已读表）
   created_at     INTEGER NOT NULL,
   last_login_at  INTEGER DEFAULT NULL,
   pw_changed_at  INTEGER DEFAULT NULL
 );
 -- email_hash / nick / public_no 上的 UNIQUE 已隐含索引，不再另建。
+CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
+
+-- 管理操作审计
+--
+-- 🔴 为什么必须记：引入"多个管理员"之后没有账本就无法追责 —— 谁能封号、
+--    谁能彻底删用户、谁能改角色，出问题时必须能查出"是谁做的"。
+--    只记**管理动作**，普通用户发评论等不进这张表。
+--
+-- `actor_nick` / `actor_role` 是**快照**：操作者事后改名或降级，
+-- 历史记录仍应显示"当时是谁、以什么身份做的"。
+CREATE TABLE IF NOT EXISTS admin_audit (
+  id          INTEGER PRIMARY KEY AUTOINCREMENT,
+  actor_id    INTEGER NOT NULL,           -- 操作者的 users.id（内部 id，不外露）
+  actor_nick  TEXT    NOT NULL,
+  actor_role  INTEGER NOT NULL,
+  action      TEXT    NOT NULL,           -- ban | unban | user_delete | comment_hide
+                                          -- | comment_show | comment_delete | role_set
+  target_type TEXT    NOT NULL,           -- user | comment
+  target_id   INTEGER NOT NULL,
+  detail      TEXT    DEFAULT NULL,       -- 如角色变更 "1 -> 2"、评论正文摘要
+  created_at  INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_admin_audit_time  ON admin_audit(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_admin_audit_actor ON admin_audit(actor_id, created_at DESC);
 
 -- 邮箱验证码（短命、可重发）
 --

@@ -47,8 +47,9 @@
             <th>邮箱</th>
             <th style="width: 70px">评论</th>
             <th style="width: 82px">状态</th>
+            <th style="width: 96px">角色</th>
             <th style="width: 150px">注册 / 最近登录</th>
-            <th style="width: 170px">操作</th>
+            <th style="width: 250px">操作</th>
           </tr>
         </thead>
         <tbody>
@@ -61,17 +62,48 @@
             <td class="admin-cell-wrap">{{ u.email || '（已清空）' }}</td>
             <td class="admin-num">{{ u.commentCount }}</td>
             <td>{{ statusLabel(u.status) }}</td>
+            <!-- 角色列：**所有人都能看到**（知道谁是管理员是公开信息），但只有超管能改 -->
+            <td :class="{ 'admin-role-super': u.role >= 2, 'admin-role-admin': u.role === 1 }">
+              {{ roleLabel(u.role) }}
+            </td>
             <td class="admin-num">
               {{ formatDate(u.createdAt) }}<br />
               <span class="admin-dim">{{ u.lastLoginAt ? formatDate(u.lastLoginAt) : '从未' }}</span>
             </td>
             <td>
               <div class="admin-row-actions">
+                <!--
+                  🔴 角色按钮**仅超管可见**（`canSetRole`）：
+                  管理员根本看不到这两个按钮，而不是看到禁用态。
+                  后端同样会 403 —— 前端隐藏只是体验，不是防线。
+                -->
+                <template v-if="canSetRole(u)">
+                  <button
+                    v-if="u.role === 0"
+                    type="button"
+                    class="admin-btn admin-btn--ghost admin-btn--sm"
+                    :disabled="busyId === u.id"
+                    @click="changeRole(u, 1)"
+                  >
+                    设为管理员
+                  </button>
+                  <button
+                    v-else-if="u.role === 1"
+                    type="button"
+                    class="admin-btn admin-btn--ghost admin-btn--sm"
+                    :disabled="busyId === u.id"
+                    @click="changeRole(u, 0)"
+                  >
+                    撤销管理员
+                  </button>
+                </template>
+
                 <template v-if="u.status === 1">
                   <button
                     type="button"
                     class="admin-btn admin-btn--ghost admin-btn--sm"
-                    :disabled="busyId === u.id"
+                    :disabled="busyId === u.id || !canModerate(u)"
+                    :title="canModerate(u) ? '' : '不能操作同级或更高级的账号'"
                     @click="toggleBan(u)"
                   >
                     {{ busyId === u.id ? '处理中' : '封禁' }}
@@ -81,7 +113,8 @@
                   <button
                     type="button"
                     class="admin-btn admin-btn--sm"
-                    :disabled="busyId === u.id"
+                    :disabled="busyId === u.id || !canModerate(u)"
+                    :title="canModerate(u) ? '' : '不能操作同级或更高级的账号'"
                     @click="toggleBan(u)"
                   >
                     {{ busyId === u.id ? '处理中' : '解封' }}
@@ -93,7 +126,8 @@
                 <button
                   type="button"
                   class="admin-btn admin-btn--danger admin-btn--sm"
-                  :disabled="busyId === u.id"
+                  :disabled="busyId === u.id || !canModerate(u)"
+                  :title="canModerate(u) ? '' : '不能操作同级或更高级的账号'"
                   @click="hardDelete(u)"
                 >
                   彻底删除
@@ -133,16 +167,31 @@
  *
  * 那是**用户自己注销**留下的标记，管理员既不该替他"解封"
  * （他本人没要求回来），也不该把别人改成 3（服务端也只允许 1↔2）。
+ *
+ * ## 角色与层级（2026-10-07 新增）
+ *
+ * | 角色 | 能做什么 |
+ * | --- | --- |
+ * | 2 超级管理员 | 全部 + **设/撤管理员** |
+ * | 1 管理员 | 评论与用户管理，但**只能动普通用户** |
+ * | 0 普通用户 | 进不来后台 |
+ *
+ * 🔴 前端做两件事，**但都不是防线**：
+ *   1. `canSetRole()` —— 角色按钮**仅超管可见**（不是禁用，是不渲染）；
+ *   2. `canModerate()` —— 动不了同级/更高级时把按钮置灰并给出原因提示。
+ * 真正的准入在服务端（`canActOn`），伪造请求会拿到 403。
  */
 
-import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { avatarPath } from '../../utils/avatarCatalog.js'
 import { getImageUrl } from '../../utils/env.js'
+import { currentUser } from '../../utils/authSession.js'
 import {
   AdminApiError,
   deleteUserPermanently,
   fetchAdminUsers,
+  setUserRole,
   setUserStatus
 } from '../../utils/adminApi.js'
 
@@ -271,6 +320,77 @@ async function hardDelete(user) {
   }
 }
 
+async function changeRole(user, role) {
+  const toAdmin = role === 1
+  const ok = window.confirm(
+    toAdmin
+      ? `把「${user.nick}」（编号 ${user.publicNo}）设为管理员？\n\n` +
+        '· 他能进入后台，管理评论、封禁/删除**普通用户**；\n' +
+        '· 他**不能**操作其他管理员或超级管理员；\n' +
+        '· 他的每一步操作都会记进审计日志。'
+      : `撤销「${user.nick}」（编号 ${user.publicNo}）的管理员身份？\n\n` +
+        '· 他将**无法再进入后台**（已登录的会话仍在，但后台接口会拒绝）；\n' +
+        '· 他作为普通用户的一切都不受影响；\n' +
+        '· 这个操作会记进审计日志。'
+  )
+  if (!ok) return
+  busyId.value = user.id
+  errorMessage.value = ''
+  try {
+    await setUserRole(user.id, role)
+    safeLoad()
+  } catch (err) {
+    errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
+  } finally {
+    busyId.value = null
+  }
+}
+
+/**
+ * 当前登录者的角色。
+ *
+ * ⚠️ 这是**登录时的快照**，账号被降级后本地仍是旧值。所以它只用于
+ * "按钮显不显示"，**不构成准入** —— 真正的判定在服务端。
+ * 若快照过期（本地以为自己是超管、实际已被降级），按钮会出现但点击拿到 403，
+ * 那时会显示错误文案，不会静默失败。
+ */
+const myRole = computed(() => Number(currentUser.value?.role) || 0)
+
+/**
+ * 判断某一行是不是**我自己**。
+ *
+ * 🔴 **必须用 `publicNo` 比，不能用 `id` 比** —— 两个 `id` 不是一回事：
+ *   · 管理端列表的 `u.id`      = **内部自增 id**（服务端 `adminUsers` 的 `id: r.id`）
+ *   · `currentUser.value.id`  = **对外编号**（`toPublicUser()` 把 `public_no` 映射成了 `id`）
+ *
+ * 早先这里写成 `Number(user.id) === Number(currentUser.value?.id)`，两个不同量纲的数
+ * 永远不会相等 —— 于是"不能操作自己"这条**在界面上完全失效**：
+ * 超管会看到自己那一行也有「封禁」「彻底删除」按钮，点了才被服务端 403 拦下。
+ * 后端是稳的（所以没有安全问题），但界面在骗人。
+ */
+function isSelf(user) {
+  return Number(user.publicNo) === Number(currentUser.value?.id)
+}
+
+/** 角色按钮：**仅超管可见**，且不能改自己（超管也不能改超管，服务端同样拒绝） */
+function canSetRole(user) {
+  if (myRole.value < 2) return false
+  if (isSelf(user)) return false
+  return Number(user.role) < 2
+}
+
+/** 能否封禁/删除该用户：只能动角色**严格低于**自己、且不是自己的账号 */
+function canModerate(user) {
+  if (isSelf(user)) return false
+  return myRole.value > Number(user.role)
+}
+
+function roleLabel(role) {
+  if (role >= 2) return '超级管理员'
+  if (role === 1) return '管理员'
+  return '普通用户'
+}
+
 function statusLabel(status) {
   if (status === 1) return '正常'
   if (status === 2) return '已停用'
@@ -304,5 +424,20 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
 .admin-more {
   display: flex;
   justify-content: center;
+}
+
+/*
+ * 角色列配色：管理员/超管用不同权重标出。
+ * 只是**视觉提示**（扫一眼知道谁是管理员），不承担权限语义 —— 权限由
+ * 服务端的 canActOn 决定，前端改样式不会带来任何越权。
+ */
+.admin-role-admin {
+  color: #8a6d1f;
+  font-weight: 600;
+}
+
+.admin-role-super {
+  color: #b3261e;
+  font-weight: 700;
 }
 </style>

@@ -190,6 +190,13 @@ const routes = [
         name: 'admin-users',
         component: () => import('../components/admin/AdminUsersPanel.vue'),
         meta: { title: '后台 · 用户' }
+      },
+      {
+        // 审计：服务端**仅超管**可读（普通管理员拿到 403），页签也只在超管登录时显示
+        path: 'audit',
+        name: 'admin-audit',
+        component: () => import('../components/admin/AdminAuditPanel.vue'),
+        meta: { title: '后台 · 审计' }
       }
     ]
   },

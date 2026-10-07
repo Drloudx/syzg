@@ -1,10 +1,47 @@
 import { Capacitor } from '@capacitor/core';
 
-// 云端 CDN 域名
-// 2026-10-03 由 myrzg.yxzmy.top 迁移到 syzg.yxzmy.top（仓库/域名改名）。
-// ⚠️ 这个常量**会被编译进产物**，也就意味着**已发布到用户手机上的 Android 包仍指向旧域名**
-//    （见 docs/rename-myrzg-to-syzg.md 第六节）——所以旧域名在热更包铺开前不能停。
-export const CLOUD_URL = 'https://syzg.yxzmy.top';
+/*
+ * 云端 CDN 域名。
+ *
+ * 2026-10-03 由 myrzg.yxzmy.top 迁移到 syzg.yxzmy.top（仓库/域名改名）。
+ * ⚠️ 这个常量**会被编译进产物**，也就意味着**已发布到用户手机上的 Android 包仍指向旧域名**
+ *    （见 docs/rename-myrzg-to-syzg.md 第六节）——所以旧域名在热更包铺开前不能停。
+ *
+ * ## 为什么拆成"默认值 + 可注入"（2026-10-07）
+ *
+ * 因为上面那条性质，**迁域名不是改一行代码就完事**：还要重新构建、发热更包，
+ * 并且旧域名必须继续保留一段时间。把它做成"构建时可覆盖"后，迁域名只需
+ *
+ *     VITE_CLOUD_URL=https://新域名 npm run build
+ *
+ * 不必再翻源码找常量。**默认值保持现状**，所以不传环境变量时行为与改动前完全一致。
+ */
+const DEFAULT_CLOUD_URL = 'https://syzg.yxzmy.top';
+
+/**
+ * 读构建时注入的域名；没注入就返回空串（由调用处回退到默认值）。
+ *
+ * ⚠️ `import.meta.env` 只在 Vite 构建产物里存在。本模块**也被 Node 脚本与单测
+ * import**（如 `tests/unit/resource-client.test.mjs`、`scripts/dev/check-cdn-cache-headers.mjs`），
+ * 那里 `import.meta.env` 是 `undefined` —— 所以必须用可选链兜住，不能直接取属性。
+ *
+ * 🔴 **必须 `trim()`**：Windows 下 `set VITE_CLOUD_URL=... && npm run build`
+ * 会把 `&&` 前的空格一起写进变量值（实测得到 `"https://x.example "`），
+ * 而带尾空格的 URL 拼出来是 `https://x.example /images/...` —— 请求必然失败。
+ * 这类"配置里多一个看不见的字符"最难排查，所以在入口处一次性清掉。
+ */
+function injectedCloudUrl() {
+  try {
+    const v = import.meta.env?.VITE_CLOUD_URL;
+    if (typeof v !== 'string') return '';
+    const trimmed = v.trim().replace(/\/+$/, '');
+    return trimmed;
+  } catch {
+    return '';
+  }
+}
+
+export const CLOUD_URL = injectedCloudUrl() || DEFAULT_CLOUD_URL;
 export const RESOURCE_BUILD_ID = typeof __RESOURCE_BUILD_ID__ !== 'undefined' ? __RESOURCE_BUILD_ID__ : ''
 export const DATA_RESOURCE_MANIFESTS = typeof __DATA_RESOURCE_MANIFESTS__ !== 'undefined' ? __DATA_RESOURCE_MANIFESTS__ : {}
 /**

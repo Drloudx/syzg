@@ -19,7 +19,7 @@
     "verify": "node scripts/dev/verify.mjs",
     "csp:check": "node scripts/dev/check-csp.mjs",
     "preview": "vite preview",
-    "test:api": "node --no-warnings tests/api/auth-flow.mjs && node --no-warnings tests/api/comments-auth.mjs",
+    "test:api": "node --no-warnings tests/api/auth-flow.mjs && node --no-warnings tests/api/comments-auth.mjs && node --no-warnings tests/api/admin-roles.mjs",
     "test:migration": "node --no-warnings tests/migration/rehearse.mjs"
   },
   "dependencies": {

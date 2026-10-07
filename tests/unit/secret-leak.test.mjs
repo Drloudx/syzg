@@ -91,7 +91,7 @@ test('.dev.vars 没有被 git 跟踪', () => {
   assert.equal(
     tracked,
     false,
-    '.dev.vars 被 git 跟踪了 —— 里面有 AUTH_PEPPER / SALT_SECRET / ADMIN_TOKEN。' +
+    '.dev.vars 被 git 跟踪了 —— 里面有 AUTH_PEPPER / SALT_SECRET / 腾讯云密钥。' +
       '执行 `git rm --cached .dev.vars` 并确认 .gitignore 生效，然后**轮换这些密钥**' +
       '（一旦推上去就必须视为已泄漏）。'
   )

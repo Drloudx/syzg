@@ -22,6 +22,8 @@
         <RouterLink to="/admin" class="admin-tab" exact-active-class="is-on">概览</RouterLink>
         <RouterLink to="/admin/comments" class="admin-tab" active-class="is-on">评论</RouterLink>
         <RouterLink to="/admin/users" class="admin-tab" active-class="is-on">用户</RouterLink>
+        <!-- 审计只给超管看：记录里含其他管理员的操作痕迹，追责是超管的职责 -->
+        <RouterLink v-if="isSuper" to="/admin/audit" class="admin-tab" active-class="is-on">审计</RouterLink>
       </nav>
 
       <div class="admin-head-right">
@@ -30,25 +32,22 @@
       </div>
     </header>
 
-    <!-- 令牌闸门：没令牌就只显示这一个表单，连页签都不给看 -->
+    <!--
+      权限闸门（2026-10-07 改）：不再有"填令牌"这一步，改为看**登录账号的角色**。
+      三种情况各有明确文案，不混成一句"无权限"：
+        · 没登录        → 引导去登录
+        · 登录了但非管理员 → 说明权限不足（不是让他反复试）
+        · 网络/服务端异常 → 提示重试
+    -->
     <div v-if="!authed" class="admin-gate">
-      <h1 class="admin-gate-title">需要管理令牌</h1>
-      <p class="admin-gate-hint">
-        在 Cloudflare Pages 的环境变量里配置 <code>ADMIN_TOKEN</code>，
-        然后把它填在下面。令牌只存在这台浏览器里，不会发给任何第三方。
-      </p>
+      <h1 class="admin-gate-title">{{ gateTitle }}</h1>
+      <p class="admin-gate-hint">{{ gateHint }}</p>
       <div class="admin-gate-row">
-        <input
-          v-model="tokenInput"
-          class="admin-input"
-          type="password"
-          autocomplete="off"
-          placeholder="管理令牌"
-          @keydown.enter="onSubmitToken"
-        />
-        <button type="button" class="admin-btn" :disabled="checking" @click="onSubmitToken">
-          {{ checking ? '校验中…' : '进入' }}
+        <button v-if="!loggedIn" type="button" class="admin-btn" @click="onGoLogin">去登录</button>
+        <button v-else type="button" class="admin-btn admin-btn--ghost" :disabled="checking" @click="recheck">
+          {{ checking ? '检查中…' : '重新检查' }}
         </button>
+        <a class="admin-btn admin-btn--ghost" href="#/">返回前台</a>
       </div>
       <p v-if="gateError" class="admin-error">{{ gateError }}</p>
     </div>
@@ -61,65 +60,82 @@
 
 <script setup>
 /**
- * 后台外壳：令牌闸门 + 顶部页签 + 内容区。
+ * 后台外壳：权限闸门 + 顶部页签 + 内容区。
  *
- * 三块内容（概览 / 评论 / 用户）是 `/admin` 下的**子路由**，
+ * 三块内容（概览 / 评论 / 用户 / 审计）是 `/admin` 下的**子路由**，
  * 这样刷新、分享链接、浏览器前进后退都正常，而不必在外壳里维护一个 `tab` 状态。
+ *
+ * ## 鉴权（2026-10-07 改）
+ *
+ * 旧实现是"填管理令牌 → 存 localStorage → 带 `x-admin-token`"。已删除，
+ * 原因见 `adminApi.js` 顶部注释（永不过期、明文存 localStorage、无法追溯身份）。
+ * 现在直接看**登录账号的 `users.role`**：
+ *
+ *   · 用一次真实请求（`/api/admin/stats`）确认权限，而不是只看本地 role ——
+ *     本地那份是**上次登录时的快照**，账号可能已经被降级或封禁；
+ *   · 所以 `authed` 由"请求成功"决定，不由 `currentUser.role` 决定。
+ *     后者只用来决定**显不显示"审计"页签**（少一次请求的乐观渲染）。
  */
-
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 
-import { AdminApiError, fetchAdminStats, getAdminToken, setAdminToken } from '../utils/adminApi.js'
+import { AdminApiError, fetchAdminStats } from '../utils/adminApi.js'
+import { openAccountModal } from '../utils/accountModal.js'
+import { currentUser, isLoggedIn } from '../utils/authSession.js'
 
 const router = useRouter()
 
-const token = ref(getAdminToken())
-const tokenInput = ref('')
-const gateError = ref('')
+const authed = ref(false)
 const checking = ref(false)
+const gateError = ref('')
+const gateTitle = ref('需要管理员权限')
+const gateHint = ref('')
 
-const authed = computed(() => Boolean(token.value))
+const loggedIn = computed(() => isLoggedIn.value)
+/** 仅用于页签显隐的乐观判断；真正的准入由服务端请求决定 */
+const isSuper = computed(() => Number(currentUser.value?.role) >= 2)
 
 /**
- * 用**一次真实请求**校验令牌，而不是"填了就信"。
+ * 用**一次真实请求**确认权限。
  *
- * 为什么：令牌填错时，如果直接放行，用户会看到三个页签、点进去每个都报错，
- * 得逐个试才知道是令牌的问题。这里当场打一次 `/api/admin/stats`，
- * 401/404 就停在闸门页并说清楚原因。
+ * 为什么不能只看 `currentUser.role`：那是登录时的快照，
+ * 账号被降级/封禁后本地仍是旧值，会让人看到"三个页签、点进去全报错"。
  */
-async function onSubmitToken() {
-  const value = tokenInput.value.trim()
-  if (!value) {
-    gateError.value = '请填写管理令牌'
-    return
-  }
+async function recheck() {
   checking.value = true
   gateError.value = ''
-  const previous = getAdminToken()
-  setAdminToken(value)
   try {
     await fetchAdminStats()
-    token.value = value
-    tokenInput.value = ''
-    // 校验通过后回到概览（可能是从 /admin/users 刷新进来的，那条子路由已经能用了）
+    authed.value = true
     if (router.currentRoute.value.path === '/admin') router.replace('/admin')
   } catch (err) {
-    setAdminToken(previous)
-    gateError.value =
-      err instanceof AdminApiError && err.isUnauthorized
-        ? '令牌不对，或服务端没有配置 ADMIN_TOKEN'
-        : err?.message || '校验失败，请重试'
+    authed.value = false
+    if (err instanceof AdminApiError && err.isUnauthorized) {
+      gateTitle.value = loggedIn.value ? '这个账号不是管理员' : '需要先登录'
+      gateHint.value = loggedIn.value
+        ? '当前账号没有后台权限。若应由你管理，请在数据库里把该账号的 role 设为 1 或 2。'
+        : '后台需要管理员账号。请先用管理员账号登录，再回到这里。'
+    } else {
+      gateTitle.value = '无法确认权限'
+      gateHint.value = '服务端暂时没有响应，请稍后重试。'
+      gateError.value = err?.message || '请求失败'
+    }
   } finally {
     checking.value = false
   }
 }
 
+/** 会话变化（登录/登出）后重新确认 —— 否则登录完还得手动刷新 */
+watch(isLoggedIn, () => { recheck() }, { immediate: true })
+
+function onGoLogin() {
+  openAccountModal()
+}
+
 function onLogout() {
-  setAdminToken('')
-  token.value = ''
-  tokenInput.value = ''
-  gateError.value = ''
+  // 只退出后台视图，不动用户会话 —— "退出后台"与"退出登录"是两件事
+  authed.value = false
+  router.replace('/')
 }
 </script>
 
@@ -354,6 +370,21 @@ function onLogout() {
   background: var(--paper-solid, #d9c6a6);
   color: var(--text-main);
   font-weight: 600;
+}
+
+/*
+ * 页面类型那一排 chip 的紧凑版（评论页用）。
+ * 为什么要小一号：状态筛选只有 4 个，页面类型有 12 个 —— 同尺寸会占掉两行，
+ * 把评论表格挤下去。缩一号后能在一行放下。
+ */
+.admin-chip--sm {
+  padding: 3px 9px;
+  font-size: 12px;
+}
+
+/* 页面类型那一行与上面的搜索行贴紧，避免两组筛选之间出现大空隙 */
+.admin-toolbar--kinds {
+  margin-top: -2px;
 }
 
 .admin-search {

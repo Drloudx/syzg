@@ -42,6 +42,21 @@ export function readDevVars() {
 
 /** 打开本地 D1（只读）。找不到文件时给出可操作的报错。 */
 export function openLocalD1() {
+  return openD1File({ readOnly: true })
+}
+
+/**
+ * 打开本地 D1（**可写**）。
+ *
+ * ⚠️ 只在**测试准备阶段**用（如把某个账号设成管理员 —— 生产上那是手工 SQL，
+ * 没有接口能造出超管）。测试结束后不要指望它清理：本地 D1 是测试的共享状态，
+ * 各 spec 自己负责用唯一邮箱/昵称避免互相干扰。
+ */
+export function openLocalD1Writable() {
+  return openD1File({ readOnly: false })
+}
+
+function openD1File({ readOnly }) {
   const dir = path.join(ROOT, '.wrangler/state/v3/d1/miniflare-D1DatabaseObject')
   let file
   try {
@@ -50,7 +65,7 @@ export function openLocalD1() {
     throw new Error(`找不到本地 D1 目录：${dir}\n先跑一次 npm run dev:api 让它建库。`)
   }
   if (!file) throw new Error(`本地 D1 目录里没有 .sqlite 文件：${dir}`)
-  return new DatabaseSync(path.join(dir, file), { readOnly: true })
+  return new DatabaseSync(path.join(dir, file), { readOnly })
 }
 
 export function createCodeReader() {

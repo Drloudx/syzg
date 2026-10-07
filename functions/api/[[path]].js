@@ -22,9 +22,16 @@
  *
  * 环境变量（Cloudflare Pages 项目配置，不入仓库）：
  *   DB                D1 绑定（wrangler.toml）
- *   ADMIN_TOKEN       可选。管理端令牌；未配置则管理接口一律 404
  *   TURNSTILE_SECRET  可选。未配置则跳过人机校验
  *   IP_HASH_SALT      可选但强烈建议。IP/邮箱哈希加盐
+ *
+ * 管理端鉴权（2026-10-07 改）：**不再用环境变量令牌**，改为看登录账号的 `users.role`。
+ *   0 普通 / 1 管理员 / 2 超级管理员。超管由手工 SQL 设出
+ *   （scripts/sql/2026-10-07-admin-role.sql 末尾）。
+ *   旧域名时代的 `ADMIN_TOKEN` 通路已删除 —— 它永不过期、明文存 localStorage，
+ *   泄露即长期有效；账号会话有 30 天滑动过期且可随时吊销。
+ *   🔴 忘了角色时的紧急恢复：`UPDATE users SET role = 2 WHERE email = '...'`
+ *      （那条 SQL 也写在迁移文件末尾）。
  */
 
 import { matchReview } from '../../src/config/commentBlocklist.js'
@@ -152,15 +159,12 @@ function bad(message, status = 400) {
  * `sha256Hex` 现在从 `src/utils/authCrypto.js` 统一导入 —— 那里有一份**与 Node 的
  * OpenSSL 逐字节比对过**的实现和单测。原先这里也有一份本地副本，
  * 两份相同实现并存是"改了一处忘另一处"的经典来源，所以合并掉了。
+ *
+ * 原先这里还有一个 `safeEqual()`（恒定时间比较），是给环境变量令牌用的。
+ * 2026-10-07 令牌通路删除后它没有调用方，一并移除 —— 留着会让人以为
+ * "还有别处在比令牌"。账号体系里的恒定时间比较在 `timingSafeEqualHex`
+ * （`authCrypto.js`，用于验证码与 verifier 比对）。
  */
-
-/** 恒定时间比较：避免用 === 比较令牌时泄漏前缀匹配长度 */
-function safeEqual(a, b) {
-  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false
-  let diff = 0
-  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i)
-  return diff === 0
-}
 
 function nowSec() {
   return Math.floor(Date.now() / 1000)
@@ -239,22 +243,104 @@ async function verifyTurnstile(env, token, ip) {
 }
 
 /**
- * 管理员令牌校验：只比对哈希，恒定时间比较。
+ * 角色常量。数字便于 `role >= ?` 比较，将来加档位不用改类型。
  *
- * 本地与线上走**同一条路径**（不存在"本地免验证"的旁路）：
- * 本地用 `.dev.vars` 里的 `ADMIN_TOKEN`（短令牌便于开发），
- * 线上用 Cloudflare Pages 环境变量里的长随机串。
- * 这样本地验证到的行为就是线上行为，不会出现"本地能进、线上进不去"的错觉。
+ * ⚠️ 改这里的数值前先看 `canActOn()`：层级规则建立在"数字越大权限越高"之上。
  */
-async function isAdmin(env, request) {
-  if (!env.ADMIN_TOKEN) return false
-  const token = request.headers.get('x-admin-token') || ''
-  if (!token) return false
-  const [provided, expected] = await Promise.all([
-    sha256Hex(token),
-    sha256Hex(String(env.ADMIN_TOKEN).trim())
-  ])
-  return safeEqual(provided, expected)
+const ROLE_USER = 0
+const ROLE_ADMIN = 1
+const ROLE_SUPER = 2
+
+/** 角色对外文案（审计与界面共用）。 */
+const ROLE_LABELS = { 0: '普通用户', 1: '管理员', 2: '超级管理员' }
+
+/**
+ * 管理端鉴权：**看登录账号的 `role`**（2026-10-07 起）。
+ *
+ * ## 为什么删掉环境变量令牌
+ *
+ * 旧实现是 `x-admin-token` 与环境变量 `ADMIN_TOKEN` 比对。它的三个硬伤：
+ *   1. **永不过期**：泄露即长期有效，改密码也没用，只能去控制台换环境变量；
+ *   2. **明文存 localStorage**：任何 XSS 可直接读走；
+ *   3. **无法追溯身份**：谁都能用同一个令牌，日志看不出"是谁做的"。
+ *
+ * 改用会话后：有 30 天滑动过期、可随时吊销（改密码/封号即失效）、
+ * 每个操作都能落到具体账号（配合 `admin_audit`）。
+ *
+ * 🔴 **进不去后台时的后路**是数据库，不是这个函数：
+ *    `UPDATE users SET role = 2, status = 1 WHERE email = '...'`
+ *    （迁移文件末尾有这条；删令牌通路时已确认接受这个代价。）
+ *
+ * @returns {Promise<{row: object}|null>} 管理员会话行（含 `role`），非管理员返回 null
+ */
+async function adminSession(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return null
+  const role = Number(session.row?.role) || 0
+  if (role < ROLE_ADMIN) return null
+  // 封禁/注销的账号即便 role 还在也不能进（loadSession 已挡 status=3，这里补 status=2）
+  if (session.row?.status !== 1) return null
+  return session
+}
+
+/**
+ * 层级规则：**只能操作角色严格低于自己的账号**。
+ *
+ * ```
+ *          目标 普通0   目标 管理员1   目标 超管2
+ * 超管2       ✅           ✅            ❌
+ * 管理员1     ✅           ❌            ❌
+ * ```
+ *
+ * 🔴 为什么必须有这条：没有它，**管理员可以封禁/彻底删除超管** ——
+ *    而"彻底删除"不可恢复。给某人管理员就等于把后台交出去了。
+ *
+ * 另加一条：**谁都不能操作自己**（防手滑把自己封了或降级，那是自杀式操作）。
+ */
+function canActOn(actorRole, targetRole, isSelf) {
+  if (isSelf) return false
+  return Number(actorRole) > Number(targetRole)
+}
+
+/**
+ * 写一条管理操作审计。
+ *
+ * 🔴 为什么必须有：引入"多个管理员"之后**没有账本就无法追责** ——
+ * 谁能封号、谁能删用户、谁能改角色，出问题时必须能查出是谁做的。
+ *
+ * **不阻断主流程**：审计写入失败只记日志、不让操作失败。
+ * 理由：把审计做成强一致会让"数据库抖动"变成"管理操作不可用"，
+ * 而漏记一条审计的代价远小于后台瘫掉。（若将来需要强一致再改。）
+ */
+async function writeAudit(env, actor, { action, targetType, targetId, detail = null }, ts) {
+  try {
+    await env.DB.prepare(
+      `INSERT INTO admin_audit (actor_id, actor_nick, actor_role, action, target_type, target_id, detail, created_at)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)`
+    )
+      .bind(actor.id, String(actor.nick || ''), Number(actor.role) || 0, action, targetType, targetId, detail, ts)
+      .run()
+  } catch (err) {
+    console.error('audit write failed:', err)
+  }
+}
+
+/**
+ * 清理**已过期**的会话。
+ *
+ * 🔴 为什么需要：`auth_codes` 与 `captchas` 都有过期清理，**`sessions` 漏了** ——
+ * 过期行只被查询时的 `WHERE expires_at > ?` 过滤掉，**永远留在表里**。
+ * 单用户时无感，但每次登录都插一行、从不清，长期会累积成垃圾。
+ *
+ * 挂在登录时顺手跑（那时本来就要写 sessions，多一条 DELETE 成本可忽略），
+ * 不额外引入定时任务。
+ */
+async function pruneExpiredSessions(env, ts) {
+  try {
+    await env.DB.prepare(`DELETE FROM sessions WHERE expires_at <= ?1`).bind(ts * 1000).run()
+  } catch (err) {
+    console.error('session prune failed:', err)
+  }
 }
 
 /**
@@ -682,12 +768,39 @@ async function deleteOwnComment(env, request, ts) {
 }
 
 /**
- * GET /api/admin/comments?status=&q=&cursor=&limit= —— 管理端列表
+ * 管理端可按「页面类型」筛选的档位。
+ *
+ * 键是查询参数值，值是 `page_key` 前缀。`site` 特殊：站内讨论区的 key 是
+ * 固定的 `site:general`（无实体 ID），所以按**等值**匹配而不是前缀匹配。
+ *
+ * ⚠️ 这份清单必须与 `src/utils/commentApi.js` 的 `COMMENT_PAGE_PREFIX` 保持一致：
+ * 新增评论页面时**两处都要改**，否则管理端筛不到那一类。
+ */
+const ADMIN_PAGE_KINDS = {
+  site: { label: '站内讨论区', prefix: 'site:' },
+  item: { label: '物品', prefix: 'item:' },
+  hero: { label: '角色', prefix: 'hero:' },
+  pet: { label: '魔物', prefix: 'pet:' },
+  monster: { label: '怪物', prefix: 'monster:' },
+  furniture: { label: '家具', prefix: 'furniture:' },
+  task: { label: '任务', prefix: 'task:' },
+  event: { label: '活动', prefix: 'event:' },
+  explore: { label: '探索', prefix: 'explore:' },
+  battle: { label: '副本', prefix: 'battle:' },
+  stage: { label: '关卡', prefix: 'stage:' }
+}
+
+/**
+ * GET /api/admin/comments?status=&q=&cursor=&limit=&pageKind= —— 管理端列表
  *
  * `q` 为关键词搜索，匹配**正文 / 昵称 / 页面标识**（大小写不敏感）。
  * 在服务端搜而不是前端过滤：评论会持续增长，管理端不该把全部数据拉到浏览器再筛。
  * 用 LIKE 而非 FTS：D1 免费版读便宜（500 万行/天），而 FTS 要额外索引（写入按行计费），
  * 管理端查询低频，没必要为它增加写入成本。
+ *
+ * `pageKind` 按**页面类型**筛选（站内讨论区 / 物品 / 角色 …）。
+ * 为什么需要：不筛的话"讨论区有没有人吵架"与"某物品页的垃圾评论"混在一张表里，
+ * 只能靠关键词猜；而 `page_key` 是 `item:30047` 这种内部标识，用户报的编号对不上。
  */
 async function adminList(env, url) {
   const rawLimit = Number.parseInt(url.searchParams.get('limit') || '50', 10)
@@ -698,6 +811,12 @@ async function adminList(env, url) {
   const statusParam = url.searchParams.get('status')
   const hasStatus = statusParam === '0' || statusParam === '1' || statusParam === '2'
   const status = hasStatus ? Number.parseInt(statusParam, 10) : null
+
+  // 页面类型：只认白名单里的键，非法值按"不筛"处理（与 status 同样宽容）
+  const pageKindParam = url.searchParams.get('pageKind') || ''
+  const pageKind = Object.prototype.hasOwnProperty.call(ADMIN_PAGE_KINDS, pageKindParam)
+    ? pageKindParam
+    : null
 
   /*
    * `?userId=` —— 只看某个账号的评论（管理端"用户详情 → 他的评论"用它）。
@@ -734,6 +853,20 @@ async function adminList(env, url) {
   if (hasUserId) {
     binds.push(userIdParam)
     where.push(`user_id = ?${binds.length}`)
+  }
+  if (pageKind) {
+    /*
+     * 站内讨论区是固定 key（`site:general`），用等值更精确；
+     * 其余是 `<前缀>:<实体ID>`，用 `前缀:%` 匹配。
+     * `ESCAPE '\'` 与关键词搜索保持同一套转义规则（前缀里不会有 % _，但一致更稳）。
+     */
+    const { prefix } = ADMIN_PAGE_KINDS[pageKind]
+    binds.push(pageKind === 'site' ? 'site:general' : `${prefix}%`)
+    where.push(
+      pageKind === 'site'
+        ? `page_key = ?${binds.length}`
+        : `page_key LIKE ?${binds.length} ESCAPE '\\'`
+    )
   }
   binds.push(limit + 1)
 
@@ -818,7 +951,7 @@ async function listRecent(env, { fresh = false } = {}) {
 }
 
 /** PATCH /api/admin/comments —— 改状态（放行 / 隐藏 / 打回待审） */
-async function adminPatch(env, request) {
+async function adminPatch(env, request, actor, ts) {
   let payload
   try {
     payload = await request.json()
@@ -829,15 +962,31 @@ async function adminPatch(env, request) {
   const status = Number.parseInt(payload?.status, 10)
   if (!Number.isFinite(id) || ![0, 1, 2].includes(status)) return bad(ERR.badRequest)
 
+  /*
+   * 先读原文再改：审计里要留下**评论正文摘要**。
+   * 只记 id 的话，事后看到"隐藏了 #42"也不知道当时隐藏了什么。
+   */
+  const row = await env.DB.prepare(`SELECT id, body, nick FROM comments WHERE id = ?1`).bind(id).first()
+  if (!row) return bad(ERR.notFound, 404)
+
   const res = await env.DB.prepare(`UPDATE comments SET status = ?1 WHERE id = ?2`)
     .bind(status, id)
     .run()
   if (!res.meta?.changes) return bad(ERR.notFound, 404)
+
+  const ACTION_BY_STATUS = { 0: 'comment_pending', 1: 'comment_show', 2: 'comment_hide' }
+  await writeAudit(env, actor, {
+    action: ACTION_BY_STATUS[status],
+    targetType: 'comment',
+    targetId: id,
+    detail: `${row.nick}：${String(row.body || '').slice(0, 40)}`
+  }, ts)
+
   return json({ ok: true })
 }
 
 /** DELETE /api/admin/comments —— 彻底删除（隐私删除请求用；软删除请用 PATCH status=2） */
-async function adminDelete(env, request) {
+async function adminDelete(env, request, actor, ts) {
   let payload
   try {
     payload = await request.json()
@@ -847,8 +996,20 @@ async function adminDelete(env, request) {
   const id = Number.parseInt(payload?.id, 10)
   if (!Number.isFinite(id)) return bad(ERR.badRequest)
 
+  // 同 adminPatch：删之前先取正文摘要，供审计留痕
+  const row = await env.DB.prepare(`SELECT id, body, nick FROM comments WHERE id = ?1`).bind(id).first()
+  if (!row) return bad(ERR.notFound, 404)
+
   const res = await env.DB.prepare(`DELETE FROM comments WHERE id = ?1`).bind(id).run()
   if (!res.meta?.changes) return bad(ERR.notFound, 404)
+
+  await writeAudit(env, actor, {
+    action: 'comment_delete',
+    targetType: 'comment',
+    targetId: id,
+    detail: `${row.nick}：${String(row.body || '').slice(0, 40)}`
+  }, ts)
+
   return json({ ok: true })
 }
 
@@ -992,7 +1153,7 @@ async function adminUsers(env, url) {
   }
   binds.push(limit + 1)
 
-  const sql = `SELECT u.id, u.public_no, u.nick, u.email, u.avatar, u.status,
+  const sql = `SELECT u.id, u.public_no, u.nick, u.email, u.avatar, u.status, u.role,
                       u.created_at, u.last_login_at,
                       (SELECT COUNT(*) FROM comments c WHERE c.user_id = u.id) AS comment_count
     FROM users u
@@ -1013,6 +1174,8 @@ async function adminUsers(env, url) {
       email: r.email,
       avatar: r.avatar || null,
       status: r.status,
+      // 角色：管理端要据此渲染「设为/撤销管理员」，并判断"这个人我能不能动"
+      role: Number(r.role) || 0,
       createdAt: r.created_at,
       lastLoginAt: r.last_login_at,
       commentCount: r.comment_count ?? 0
@@ -1031,11 +1194,24 @@ async function adminUsers(env, url) {
  * 刻意**不允许改成 3（已注销）**：注销是用户自己的动作，且要连带改写评论昵称；
  * 管理端要清账号请用 DELETE（那是明确的"彻底删除"语义）。
  */
-async function adminUserPatch(env, request) {
+/**
+ * `PATCH /api/admin/users` —— 封禁 / 解封。
+ *
+ * 🔴 **层级校验**：只能操作角色严格低于自己的账号。
+ * 没有这条，管理员可以封掉超管 —— 而超管被自己授权的人封掉后
+ * **进不去后台**（令牌通路已删），只能改数据库。
+ */
+async function adminUserPatch(env, request, actor, ts) {
   const payload = await request.json().catch(() => null)
   const id = Number.parseInt(payload?.id, 10)
   const status = Number.parseInt(payload?.status, 10)
   if (!Number.isFinite(id) || ![1, 2].includes(status)) return bad(ERR.badRequest)
+
+  const target = await env.DB.prepare(`SELECT id, nick, role FROM users WHERE id = ?1`).bind(id).first()
+  if (!target) return bad(ERR.notFound, 404)
+
+  const isSelf = Number(target.id) === Number(actor.id)
+  if (!canActOn(actor.role, target.role, isSelf)) return bad(ERR.rejected, 403)
 
   const res = await env.DB.prepare(`UPDATE users SET status = ?1 WHERE id = ?2`)
     .bind(status, id)
@@ -1045,6 +1221,14 @@ async function adminUserPatch(env, request) {
   if (status === 2) {
     await env.DB.prepare(`DELETE FROM sessions WHERE user_id = ?1`).bind(id).run()
   }
+
+  await writeAudit(env, actor, {
+    action: status === 2 ? 'ban' : 'unban',
+    targetType: 'user',
+    targetId: id,
+    detail: `${target.nick}（角色 ${ROLE_LABELS[target.role] ?? target.role}）`
+  }, ts)
+
   return json({ ok: true })
 }
 
@@ -1056,13 +1240,20 @@ async function adminUserPatch(env, request) {
  * - 彻底删除**释放**该邮箱，且**摘掉评论上的 `user_id`**（评论内容保留、
  *   昵称改写为「账号已注销」）—— 因为用户行没了，留着悬空外键只会让后续查询困惑。
  */
-async function adminUserDelete(env, request) {
+async function adminUserDelete(env, request, actor, ts) {
   const payload = await request.json().catch(() => null)
   const id = Number.parseInt(payload?.id, 10)
   if (!Number.isFinite(id)) return bad(ERR.badRequest)
 
-  const row = await env.DB.prepare(`SELECT id, email_hash FROM users WHERE id = ?1`).bind(id).first()
+  const row = await env.DB.prepare(`SELECT id, nick, role, email_hash FROM users WHERE id = ?1`).bind(id).first()
   if (!row) return bad(ERR.notFound, 404)
+
+  /*
+   * 🔴 这一条尤其重要：**彻底删除不可恢复**。
+   * 没有层级校验，管理员能把超管连账号带评论归属一起抹掉。
+   */
+  const isSelf = Number(row.id) === Number(actor.id)
+  if (!canActOn(actor.role, row.role, isSelf)) return bad(ERR.rejected, 403)
 
   await Promise.all([
     env.DB.prepare(
@@ -1073,7 +1264,99 @@ async function adminUserDelete(env, request) {
   ])
   await env.DB.prepare(`DELETE FROM users WHERE id = ?1`).bind(id).run()
 
+  /*
+   * 审计里的 `target_id` 指向一个**已经不存在的用户** —— 这是刻意的：
+   * 记录必须留下，否则"谁删了谁"就查不到了。昵称快照存在 detail 里，
+   * 因为用户行没了、`actor_nick` 那套快照逻辑对目标不适用。
+   */
+  await writeAudit(env, actor, {
+    action: 'user_delete',
+    targetType: 'user',
+    targetId: id,
+    detail: `已彻底删除：${row.nick}（角色 ${ROLE_LABELS[row.role] ?? row.role}）`
+  }, ts)
+
   return json({ ok: true })
+}
+
+/**
+ * `PATCH /api/admin/users/role` —— 设为 / 撤销管理员。**仅超管可用**。
+ *
+ * 规则（三条，缺一不可）：
+ *   1. 调用者必须是**超管**（管理员不能给自己人提权，否则等于绕过超管授权）；
+ *   2. 目标角色必须**严格低于**调用者 —— 所以超管改不了超管；
+ *   3. 不能改**自己** —— 防手滑把自己降级后进不去后台。
+ *
+ * 🔴 为什么"超管不能设超管"：只有一个超管，避免"你给了某人超管、他把你降级"
+ * 这种内斗。要转移超管身份请直接改数据库（迁移文件末尾有 SQL）。
+ */
+async function adminUserSetRole(env, request, actor, ts) {
+  if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+
+  const payload = await request.json().catch(() => null)
+  const id = Number.parseInt(payload?.id, 10)
+  const role = Number.parseInt(payload?.role, 10)
+  // 只允许在「普通」与「管理员」之间切换；超管档位不能通过接口产生
+  if (!Number.isFinite(id) || ![ROLE_USER, ROLE_ADMIN].includes(role)) return bad(ERR.badRequest)
+
+  const target = await env.DB.prepare(`SELECT id, nick, role FROM users WHERE id = ?1`).bind(id).first()
+  if (!target) return bad(ERR.notFound, 404)
+
+  const isSelf = Number(target.id) === Number(actor.id)
+  if (!canActOn(actor.role, target.role, isSelf)) return bad(ERR.rejected, 403)
+
+  if (Number(target.role) === role) return json({ ok: true, unchanged: true })
+
+  await env.DB.prepare(`UPDATE users SET role = ?1 WHERE id = ?2`).bind(role, id).run()
+
+  await writeAudit(env, actor, {
+    action: 'role_set',
+    targetType: 'user',
+    targetId: id,
+    detail: `${target.nick}：${ROLE_LABELS[target.role] ?? target.role} → ${ROLE_LABELS[role]}`
+  }, ts)
+
+  return json({ ok: true })
+}
+
+/**
+ * `GET /api/admin/audit` —— 管理操作审计列表（仅超管）。
+ *
+ * 按时间倒序游标分页，形状与评论列表一致（`cursor` + `hasMore`）。
+ */
+async function adminAuditList(env, url) {
+  const rawLimit = Number.parseInt(url.searchParams.get('limit') || '50', 10)
+  const limit = Math.min(Math.max(Number.isFinite(rawLimit) ? rawLimit : 50, 1), MAX_LIMIT)
+  const cursor = Number.parseInt(url.searchParams.get('cursor') || '', 10)
+  const hasCursor = Number.isFinite(cursor)
+
+  const sql = hasCursor
+    ? `SELECT id, actor_id, actor_nick, actor_role, action, target_type, target_id, detail, created_at
+       FROM admin_audit WHERE id < ?1 ORDER BY id DESC LIMIT ?2`
+    : `SELECT id, actor_id, actor_nick, actor_role, action, target_type, target_id, detail, created_at
+       FROM admin_audit ORDER BY id DESC LIMIT ?1`
+
+  const stmt = hasCursor ? env.DB.prepare(sql).bind(cursor, limit + 1) : env.DB.prepare(sql).bind(limit + 1)
+  const { results } = await stmt.all()
+  const rows = results || []
+  const hasMore = rows.length > limit
+  const page = hasMore ? rows.slice(0, limit) : rows
+
+  return json({
+    ok: true,
+    entries: page.map((r) => ({
+      id: r.id,
+      actorNick: r.actor_nick,
+      actorRole: r.actor_role,
+      action: r.action,
+      targetType: r.target_type,
+      targetId: r.target_id,
+      detail: r.detail || '',
+      createdAt: r.created_at
+    })),
+    nextCursor: hasMore ? page[page.length - 1].id : null,
+    hasMore
+  })
 }
 
 // ============================================================
@@ -1126,7 +1409,15 @@ function cooldownMessage(retryAfter) {
   return `请 ${Math.max(1, Math.ceil(retryAfter))} 秒后再试`
 }
 
-/** 用户对外形状。🔴 **不暴露内部自增 id**，对外只用公开编号。 */
+/**
+ * 用户对外形状。🔴 **不暴露内部自增 id**，对外只用公开编号。
+ *
+ * `role` 会一并返回 —— 这是**安全的**，因为本函数的 5 个调用点
+ * （注册 / 登录 / me / 改资料 / 改密码）**全都是"返回请求者本人"**，
+ * 不存在"把别人的角色发给某人"的路径。前端据此决定顶栏显不显示后台入口。
+ *
+ * ⚠️ 若将来有人用本函数序列化**他人**信息，必须先把 `role` 摘掉。
+ */
 function toPublicUser(row) {
   return {
     id: row.public_no,
@@ -1134,6 +1425,7 @@ function toPublicUser(row) {
     avatar: row.avatar || null,
     email: row.email,
     status: row.status,
+    role: Number(row.role) || 0,
     createdAt: row.created_at,
     lastLoginAt: row.last_login_at
   }
@@ -1230,6 +1522,13 @@ function envLimit(raw, fallback) {
 // ---------- 会话 ----------
 
 async function issueSession(env, userId, request, ts, ipHash) {
+  /*
+   * 顺手清理过期会话（见 pruneExpiredSessions 的说明）。
+   * 挂在这里而不是定时任务：登录时本来就要写 sessions，多一条 DELETE 成本可忽略，
+   * 且不引入额外的调度依赖。
+   */
+  await pruneExpiredSessions(env, ts)
+
   const token = generateSessionToken()
   await env.DB.prepare(
     `INSERT INTO sessions (token_hash, user_id, expires_at, created_at, last_seen_at, ua_hash, ip_hash)
@@ -1954,7 +2253,7 @@ export async function onRequest(context) {
       headers: {
         'access-control-allow-origin': '*',
         'access-control-allow-methods': 'GET, POST, PATCH, DELETE, OPTIONS',
-        'access-control-allow-headers': 'content-type, x-admin-token',
+        'access-control-allow-headers': 'content-type, authorization',
         'access-control-max-age': '86400'
       }
     })
@@ -1962,10 +2261,8 @@ export async function onRequest(context) {
 
   if (!env.DB) return bad(ERR.server, 500)
 
-  // 管理端未配置令牌时，连路由都不暴露（对外表现为"接口不存在"）
-  // 用**前缀**匹配：新增管理端接口时不必再改这一行
+  // 管理端用**前缀**匹配：新增管理端接口时不必再改这一行
   const isAdminPath = path.startsWith('/api/admin/')
-  if (isAdminPath && !env.ADMIN_TOKEN) return bad(ERR.fallback, 404)
 
   try {
     if (path === '/api/health') {
@@ -2006,12 +2303,19 @@ export async function onRequest(context) {
     }
 
     if (isAdminPath) {
-      if (!(await isAdmin(env, request))) return bad(ERR.rejected, 401)
+      /*
+       * 鉴权：必须是**已登录且 role >= 1** 的账号（见 adminSession）。
+       * 未登录/非管理员一律 401 —— 与旧令牌实现同样"不区分原因"，
+       * 避免把"这个账号是管理员吗"透给探测者。
+       */
+      const admin = await adminSession(env, request, nowSec())
+      if (!admin) return bad(ERR.rejected, 401)
+      const actor = admin.row
 
       if (path === '/api/admin/comments') {
         if (request.method === 'GET') return await adminList(env, url)
-        if (request.method === 'PATCH') return await adminPatch(env, request)
-        if (request.method === 'DELETE') return await adminDelete(env, request)
+        if (request.method === 'PATCH') return await adminPatch(env, request, actor, nowSec())
+        if (request.method === 'DELETE') return await adminDelete(env, request, actor, nowSec())
         return bad(ERR.fallback, 405)
       }
 
@@ -2020,12 +2324,31 @@ export async function onRequest(context) {
         return await adminStats(env)
       }
 
+      /*
+       * 审计日志（仅超管可见）。
+       *
+       * 为什么只给超管：审计记录里含**其他管理员的操作痕迹**。
+       * 普通管理员能看到同级在做什么，容易变成互相盯梢甚至报复；
+       * 追责是超管的职责，不是管理员之间的。
+       */
+      if (path === '/api/admin/audit') {
+        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+        if (request.method !== 'GET') return bad(ERR.fallback, 405)
+        return await adminAuditList(env, url)
+      }
+
       // 用户管理：GET 列表 / PATCH 封禁解封 / DELETE 彻底删除
       if (path === '/api/admin/users') {
         if (request.method === 'GET') return await adminUsers(env, url)
-        if (request.method === 'PATCH') return await adminUserPatch(env, request)
-        if (request.method === 'DELETE') return await adminUserDelete(env, request)
+        if (request.method === 'PATCH') return await adminUserPatch(env, request, actor, nowSec())
+        if (request.method === 'DELETE') return await adminUserDelete(env, request, actor, nowSec())
         return bad(ERR.fallback, 405)
+      }
+
+      // 角色管理：**仅超管**，且只能改角色严格低于自己的账号
+      if (path === '/api/admin/users/role') {
+        if (request.method !== 'PATCH') return bad(ERR.fallback, 405)
+        return await adminUserSetRole(env, request, actor, nowSec())
       }
 
       return bad(ERR.fallback, 404)

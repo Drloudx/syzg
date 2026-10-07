@@ -98,6 +98,12 @@ Cloudflare Pages。
 
 ### ② 确认生产的 `ADMIN_TOKEN` 不是本地那个 `yxzm`
 
+> 🔴 **本节已作废（2026-10-07）**：`ADMIN_TOKEN` 通路**已删除**，后台改为看登录账号的
+> `users.role`。所以下面这条检查**不再适用** —— 现在带任何 `x-admin-token` 都不会被识别，
+> 未登录一律 401。保留下文只为记录当时的判断依据与运维历史。
+> 现在对应的动作见 [COMMENTS_BACKEND.md](COMMENTS_BACKEND.md) 第十二节「上线清单」第 1 项
+> （迁移后手工设超管）。
+
 > ⚠️ **先说清楚：线上大概率已经是对的，这**不是**"发现的风险"。**
 > `docs/HANDOFF.md` L165 写着"本地令牌 `yxzm`，**线上换随机串**"，
 > L293 记着"Cloudflare Pages → Environment variables：`ADMIN_TOKEN` 已配"。

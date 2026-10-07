@@ -1083,16 +1083,12 @@ npm run dev:api
   前端提示「无法连接评论服务器」，指向解决办法。
 - 只改前端、不碰评论时**不需要**开 `dev:api`，其它页面不受影响。
 - 本地变量放 `.dev.vars`（`wrangler pages dev` 自动读取，**已在 .gitignore 中**）：
-  `ADMIN_TOKEN`、`IP_HASH_SALT`，以及把限流阈值放大的 `RATE_LIMIT_PER_HOUR` / `RATE_LIMIT_PER_DAY`
+  `IP_HASH_SALT`，以及把限流阈值放大的 `RATE_LIMIT_PER_HOUR` / `RATE_LIMIT_PER_DAY`
   （端到端测试的 POST 数量超过默认 5 条/小时，不放大会被 429 挡成假失败；**生产不要设这两项**）。
-- **站长认证本地与线上走同一条路径，没有"免验证旁路"**：本地 `.dev.vars` 的
-  `ADMIN_TOKEN` 用短令牌 `yxzm` 方便敲，线上换成足够长的随机串。
-  这样本地验到的行为就是线上行为，不会出现"本地能进、线上进不去"的错觉。
-  访问 `/#/admin` 需在登录框输入令牌；凭据存本机 localStorage，
-  点「退出」清凭据并回到登录框。
-  > 曾经做过 `ADMIN_AUTH_DISABLED=1` 的本地免验证开关，已按用户要求移除：
-  > 它会让"退出"失去效果（服务端永远放行，客户端无法判断已退出），
-  > 而且多一套只服务本地的分支，反而掩盖真实行为。
+- **后台鉴权（2026-10-07 改）**：不再有 `ADMIN_TOKEN`，改为看登录账号的 `users.role`
+  （`0` 普通 / `1` 管理员 / `2` 超管）。本地与线上走**同一条路径**，没有"免验证旁路"。
+  超管由手工 SQL 设出（见下条），**接口明确拒绝产生超管**。
+  访问 `/#/admin` 需先登录管理员账号；不再有"填令牌"这一步。
 - 本地 D1 是独立副本，**建表要单独跑一次**（`--local`，去掉 `--remote`）：
   ```bash
   npx wrangler d1 execute myrzg-comments --file=./schema.sql --local
@@ -1187,14 +1183,17 @@ Pages 的 **Fail open / closed**（Settings → Runtime）**必须设为 Fail op
 
 | # | 动作 | 说明 |
 | --- | --- | --- |
-| 1 | 配 `ADMIN_TOKEN` | Cloudflare Pages 项目 → Settings → Environment variables。**未配置时管理接口直接 404**，管理页会提示「当前未开放评论管理」。⚠️ 必须用足够长的随机串；本地开发用的是短令牌 `yxzm`，**不要照搬上线** |
-| 2 | 配 `IP_HASH_SALT` | 同上。用于 IP/邮箱哈希加盐。⚠️ 换盐等于重置全部限流计数 |
+| 1 | **迁移后设超管** | 跑完 `scripts/sql/2026-10-07-admin-role.sql` 后，手工执行 `UPDATE users SET role = 2 WHERE email = '你的邮箱';`。**没有任何接口能产生超管**（刻意设计，避免内斗）。忘了角色时的紧急恢复也是这条 SQL |
+| 2 | 配 `IP_HASH_SALT` | Cloudflare Pages 项目 → Settings → Environment variables。用于 IP/邮箱哈希加盐。⚠️ 换盐等于重置全部限流计数 |
 | 3 | 推送到 `main` | `origin` 是 `github.com/Drloudx/syzg`（2026-10-03 由 `Drloudx/myrzg` 改名），Pages 由 GitHub 自动部署，push 即上线 |
 | 4 | **实测 `/api/health` 返回 JSON** | `curl.exe -i https://syzg.yxzmy.top/api/health`，断言 `Content-Type: application/json` 而**不是 `text/html`**。被 SPA 兜底吃掉就说明 Functions 没生效 |
 | 5 | **实测不被缓存** | 连打两次 `/api/health`，断言 `EO-Cache-Status` 均非 HIT、`Age` 不增长 |
 | 6 | 加 EdgeOne 规则 | 见上表第 4 项 |
 | 7 | 配 Turnstile（可延后） | 未配 `TURNSTILE_SECRET` 时接口跳过人机校验，功能可用。注册 Widget 后补 secret，代码不用改 |
 | 8 | 扩展 `npm run cdn:check` | 建议加一组 `/api/health` 断言（`no-store` + `EO-Cache-Status` 非 HIT），让评论的缓存回归进现有验收流程 |
+
+> ⚠️ **迁移顺序**：第 1 项的 `ALTER TABLE` **必须先于推送**。新代码的 `adminSession`
+> 会读 `users.role`，列不存在时**所有管理接口都会 500**（后台直接不可用）。
 
 ### 关于 `wrangler` 依赖
 

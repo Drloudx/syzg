@@ -84,7 +84,8 @@ function query(fn) {
 const STEPS = [
   ['第 1 步 schema', 'scripts/sql/2026-10-05-auth-schema.sql'],
   ['第 2 步 columns', 'scripts/sql/2026-10-05-auth-columns.sql'],
-  ['第 3 步 indexes', 'scripts/sql/2026-10-05-auth-indexes.sql']
+  ['第 3 步 indexes', 'scripts/sql/2026-10-05-auth-indexes.sql'],
+  ['第 4 步 后台角色', 'scripts/sql/2026-10-07-admin-role.sql']
 ].map(([label, file]) => [label, readFileSync(file, 'utf8')])
 
 const colsOf = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name).sort().join(',')
@@ -140,6 +141,23 @@ try {
     }
     check('🔴 comments 新增了 user_id 列', colsOf(db, 'comments').split(',').includes('user_id'))
     check('🔴 users 建出来就自带 pw_salt', colsOf(db, 'users').split(',').includes('pw_salt'))
+    check('🔴 users 新增了 role 列（第 4 步）', colsOf(db, 'users').split(',').includes('role'))
+    check('🔴 admin_audit 表已建（第 4 步）', tables.includes('admin_audit'))
+  })
+
+  // ---- 3b. 角色列必须有默认值 0，且老用户不会被误升为管理员 ----
+  query((db) => {
+    /*
+     * 🔴 这条守的是"迁移把所有人变成管理员"这种灾难。
+     * `ADD COLUMN ... DEFAULT 0` 对**已存在的行**也要生效（SQLite 会回填默认值），
+     * 所以迁移完不该有任何 role > 0 的行。
+     */
+    db.prepare(
+      `INSERT INTO users (public_no, email, email_hash, nick, verifier_hash, pw_salt, pw_algo, pw_iters, created_at)
+       VALUES (99001, 'migrated@example.com', 'mh', '迁移前的老用户', 'vh', 'sh', 'client-pbkdf2-sha256', 600000, 1)`
+    ).run()
+    const row = db.prepare(`SELECT role FROM users WHERE public_no = 99001`).get()
+    check('🔴 迁移后新插入的用户 role 默认是 0（普通）', row?.role === 0, String(row?.role))
   })
 
   // ---- 4. 数据不许丢 ----
@@ -171,6 +189,19 @@ try {
 
   const rerun3 = exec(STEPS[2][1])
   check('🔴 第 3 步重复执行成功（声称幂等）', rerun3.ok, rerun3.error)
+
+  const rerun4 = exec(STEPS[3][1])
+  /*
+   * ⚠️ 与第 2 步同理：`ALTER TABLE ... ADD COLUMN` 不幂等，重跑必然报
+   * `duplicate column name: role`。这是**既定行为**，锁进测试以免有人误以为"迁移炸了"。
+   * （文件里的 `CREATE TABLE IF NOT EXISTS` / `CREATE INDEX IF NOT EXISTS` 是幂等的，
+   *   但整份文件因为那条 ALTER 而整体不幂等。）
+   */
+  check(
+    '🔴 第 4 步重复执行报 duplicate column（既定行为，不是意外）',
+    !rerun4.ok && /duplicate column/i.test(rerun4.error || ''),
+    rerun4.error
+  )
 
   query((db) => {
     check('重跑之后数据仍完整', db.prepare('SELECT COUNT(*) AS n FROM comments').get().n === before.comments)
