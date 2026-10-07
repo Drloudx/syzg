@@ -508,6 +508,64 @@ test('谁回复了我：「去看看」跳到讨论区并把那条带上', async
   await expect(page).not.toHaveURL(/[?&]c=/)
 })
 
+test('🔴 「去看看」定位到不在首屏的评论时显示定位卡片', async ({ page }) => {
+  /*
+   * 讨论区只加载第一页（50 条）。当那条回复已经是几百条之前时，
+   * 列表里根本没有它 —— 早先的实现**静默什么都不做**：页面跳过来了、
+   * 但没定位、也没提示，用户以为坏了。
+   *
+   * 现在的处理：不逐页往回翻（代价随"多老"增长，最坏几十次请求），
+   * 而是调 `/api/comments/context` 取「被回复的那条 + 回复本身」，
+   * 在列表上方显示一张卡片。**恒定 1 次请求。**
+   *
+   * 这里造 60 条填充把回复挤出首屏，然后直接带 `?c=` 进讨论区。
+   */
+  /*
+   * ⚠️ `tag` 里必须带**每次运行都不同**的部分：昵称是全站唯一的，
+   * 而 `stamp` 是模块级常量（同一次运行内不变）—— 只用它会让
+   * **重跑时撞上上一轮留下的账号**，报 409「这个名字已经有人用了」。
+   * 那个失败看起来像功能坏了，其实是测试自己的数据没隔离。
+   */
+  const tag = `${stamp}-${Math.random().toString(36).slice(2, 6)}`
+  const alice = await createAccount(API_BASE, reader, { nick: `卡${tag.slice(-3)}` })
+  const bob = await createAccount(API_BASE, reader, { nick: `片${tag.slice(-3)}` })
+
+  const parent = await postComment(API_BASE, alice.token, { body: `父评论 ${tag}` })
+  const reply = await postComment(API_BASE, bob.token, { body: `回复 ${tag}`, parentId: parent.id })
+
+  // 挤出首屏（首页 50 条）
+  for (let i = 0; i < 58; i++) {
+    await postComment(API_BASE, alice.token, { body: `填充 ${tag} #${i}` })
+  }
+
+  await page.goto(`/#/discussions?c=${reply.id}`)
+  await expect(page.locator('.discussions-page')).toBeVisible({ timeout: 25_000 })
+
+  // 卡片出现，且**在视野内**（不能只是渲染了却被滚到下面去）
+  const card = page.locator('.discussion-pinned')
+  await expect(card).toBeVisible({ timeout: 25_000 })
+  await expect(card).toContainText(`父评论 ${tag}`)
+  await expect(card).toContainText(`回复 ${tag}`)
+
+  /*
+   * 🔴 关键：卡片必须**真的可见**。
+   *
+   * 踩过的坑：卡片曾放在 `.discussion-scroll` **里面**、位于列表上方，
+   * 而首屏默认"滚到最新"（最下方）→ 卡片被顶出视野，用户看到的还是列表底部，
+   * **与修复前观感完全一样**（东西渲染了，但看不见）。
+   * 现在卡片移到了滚动容器**之外**，天然常驻可见 —— 这条断言就是守它。
+   */
+  const visibleBox = await card.boundingBox()
+  expect(visibleBox, '卡片应当有实际可见区域').not.toBeNull()
+  const viewport = page.viewportSize()
+  expect(visibleBox.y, '卡片顶部要在视口内').toBeGreaterThanOrEqual(0)
+  expect(visibleBox.y + visibleBox.height, '卡片底部也要落在视口内').toBeLessThanOrEqual(viewport.height)
+
+  // 关掉卡片后应该消失
+  await page.locator('.discussion-pinned-close').click()
+  await expect(page.locator('.discussion-pinned')).toHaveCount(0)
+})
+
 // ---------- M5：我的评论 ----------
 
 /** 用页面自己的会话令牌调接口（模拟"在别处发过评论"） */

@@ -43,6 +43,7 @@ import {
   PASSWORD_MIN, PBKDF2_ITERS, SESSION_TTL_MS
 } from '../../src/config/auth.js'
 import { BLOCKED_EMAIL_DOMAINS } from '../../src/config/disposableEmails.js'
+import { COMMENT_PAGE_SIZE } from '../../src/config/discussions.js'
 import { buildCaptcha } from '../../src/utils/authCaptcha.js'
 import {
   emailLookupHash, generateNumericCode, generateSessionToken, isDisposableEmail,
@@ -457,6 +458,107 @@ async function listComments(env, url, myUserId = null) {
 
 /** 楼中楼里每条楼主默认带出几条回复（再多要点「全部 N 条回复」） */
 const NESTED_PREVIEW_REPLIES = 3
+
+/**
+ * `GET /api/comments/context?page=<pageKey>&id=<评论 id>` —— 取**一条评论及其上下文**。
+ *
+ * ## 为什么需要它（2026-10-07）
+ *
+ * 「谁回复了我 / 我的评论」里的「去看看」会跳到 `#/discussions?c=<id>` 并滚到那一条。
+ * 但**讨论区只加载第一页**（50 条），而那条回复可能已经是几百条之前 ——
+ * 于是 `scrollToComment` 找不到目标，**静默什么都不做**（用户以为坏了）。
+ *
+ * 三种解法对比：
+ *   · **逐页往上翻** —— 请求数随"多老"增长，最坏几十次；越老越慢；
+ *   · **只显示那两条**（本接口）—— **恒定 1 次请求**，与多老无关；
+ *   · 限制讨论区历史条数 —— 省不了额度（首屏照样 50 行），还丢历史。
+ *
+ * 所以采用第二种：不把那条塞进正常列表（会打乱游标分页），
+ * 而是**单独取出来**，由前端在列表上方插一张「定位卡片」显示
+ * **被回复的那条 + 回复本身**，并说明它不在当前页。
+ *
+ * ## 返回形状
+ *
+ * ```
+ * { ok, found: true, comment: <那条回复>, parent: <被回复的>, inFirstPage: bool }
+ * { ok, found: false }                    // 不存在 / 已隐藏 / 不属于该页面
+ * ```
+ *
+ * `parent` 可能为 null（顶层评论，或父评论已被隐藏/删除）。
+ */
+async function commentContext(env, url, myUserId = null) {
+  const pageKey = url.searchParams.get('page') || ''
+  if (!PAGE_KEY_RE.test(pageKey)) return bad(ERR.badRequest)
+
+  const id = Number.parseInt(url.searchParams.get('id') || '', 10)
+  if (!Number.isFinite(id) || id <= 0) return bad(ERR.badRequest)
+
+  /*
+   * 🔴 必须**同时限定 `page_key` 与 `status = 1`**：
+   *   · 限定 page_key：否则任何人拿一个 id 就能读到**任意页面**的评论（含未公开页面的讨论）；
+   *   · 限定 status：隐藏/待审的评论不能被这样"捞"出来 —— 那会绕过管理员的隐藏操作。
+   * 条件不满足时统一返回 `found: false`，不区分"不存在"与"被隐藏"（避免探测）。
+   */
+  const row = await env.DB.prepare(
+    `SELECT c.id, c.user_id, c.nick, c.avatar, c.body, c.created_at, c.status,
+            c.page_key, c.page_label, c.parent_id, c.review_reason,
+            p.id AS p_id, p.user_id AS p_user_id, p.nick AS p_nick, p.avatar AS p_avatar,
+            p.body AS p_body, p.created_at AS p_created_at, p.status AS p_status
+       FROM comments c
+       LEFT JOIN comments p ON p.id = c.parent_id AND p.status = 1
+      WHERE c.id = ?1 AND c.page_key = ?2 AND c.status = 1`
+  )
+    .bind(id, pageKey)
+    .first()
+
+  if (!row) return json({ ok: true, found: false })
+
+  /*
+   * `inFirstPage` 用**最省的方式**判断：该页面里是否存在比它更新的评论多于首页容量。
+   * 直接 `COUNT(*)` 是全表扫（D1 按行计费），而这里只需要知道"它是否在前 N 条里"，
+   * 所以取首页边界（第 N+1 条新评论的 id）比较即可 —— 一次索引范围查。
+   *
+   * 🔴 这个 N **必须与前端实际请求的页大小一致**。
+   * 起初这里写死 50，而 `fetchComments` 的默认 `limit` 是 **20** ——
+   * 于是第 21~50 条会被错判成"在首页里"，界面不显示定位卡片，
+   * 用户又回到"点了没反应"（因为列表里确实没有它）。
+   * 统一从下面的 `COMMENT_PAGE_SIZE` 取，别再各写一份。
+   *
+   * 🔴 比较必须用**严格大于**：`OFFSET N` 取到的正是**第 N+1 条**，
+   * 它本身就是"页外第一条"。用 `>=` 会把它算进页内 —— 边界差一条，
+   * 症状是"第 21 条点不动"（只有那一条错，最难发现）。
+   */
+  const boundary = await env.DB.prepare(
+    `SELECT id FROM comments
+      WHERE page_key = ?1 AND status = 1
+      ORDER BY id DESC LIMIT 1 OFFSET ?2`
+  )
+    .bind(pageKey, COMMENT_PAGE_SIZE)
+    .first()
+  const inFirstPage = !boundary || id > boundary.id
+
+  const comment = toPublic(row, myUserId)
+  // 父评论只在其仍公开时带出（JOIN 已限定 status = 1）
+  const parent = row.p_id
+    ? toPublic(
+        {
+          id: row.p_id,
+          user_id: row.p_user_id,
+          nick: row.p_nick,
+          avatar: row.p_avatar,
+          body: row.p_body,
+          created_at: row.p_created_at,
+          status: row.p_status,
+          page_key: row.page_key,
+          page_label: row.page_label
+        },
+        myUserId
+      )
+    : null
+
+  return json({ ok: true, found: true, comment, parent, inFirstPage })
+}
+
 
 /**
  * 楼中楼：**只按顶层评论分页**，每条附前几条回复与总回复数。
@@ -2286,6 +2388,21 @@ export async function onRequest(context) {
       if (request.method === 'POST') return await createComment(env, request, nowSec())
       if (request.method === 'DELETE') return await deleteOwnComment(env, request, nowSec())
       return bad(ERR.fallback, 405)
+    }
+
+    /*
+     * 单条评论 + 上下文（「去看看」定位到很早的评论时用）。
+     *
+     * ⚠️ 放在 `/api/comments` **之后**匹配（那一段是等值比较，不会吞掉本路径）。
+     * 这里用 `request.method === 'GET'` 而**不是** `get` 变量：`get` 是
+     * `handleAuthRoutes` 里的局部变量，在 `onRequest` 作用域里**不存在** ——
+     * 引用它会抛 `ReferenceError: get is not defined`，表现为整个接口 500。
+     * （这个错是端到端测试抓出来的：单看代码很像是可用的。）
+     */
+    if (path === '/api/comments/context') {
+      if (request.method !== 'GET') return bad(ERR.fallback, 405)
+      const viewer = await loadSession(env, request, nowSec())
+      return await commentContext(env, url, viewer?.row?.id ?? null)
     }
 
     /*

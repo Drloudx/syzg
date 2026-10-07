@@ -14,6 +14,7 @@
  */
 import { CLOUD_URL, isNative } from './env.js'
 import { getToken, whenSessionReady } from './authSession.js'
+import { COMMENT_PAGE_SIZE } from '../config/discussions.js'
 
 const TIMEOUT_MS = 15000
 
@@ -166,7 +167,7 @@ async function request(path, { method = 'GET', body, token } = {}) {
  * （`replies`）与总回复数（`replyCount`）——详情页用。默认（平铺）返回这一页的全部评论，
  * 站内讨论区的聊天式列表用；两种取法的形状差异见 [方案第五章「回复」]。
  */
-export function fetchComments(pageKey, { cursor, limit = 20, nested = false } = {}) {
+export function fetchComments(pageKey, { cursor, limit = COMMENT_PAGE_SIZE, nested = false } = {}) {
   const params = new URLSearchParams({ page: pageKey, limit: String(limit) })
   if (cursor) params.set('cursor', String(cursor))
   if (nested) params.set('nested', '1')
@@ -194,6 +195,23 @@ export function fetchCommentReplies(pageKey, parentId, { limit = 50 } = {}) {
   const params = new URLSearchParams({ page: pageKey, parent: String(parentId), limit: String(limit) })
   // 令牌交给 request 自己处理（它会先等会话恢复，见上面的说明）
   return request(`/api/comments?${params.toString()}`)
+}
+
+/**
+ * 取**一条评论及其上下文**（「去看看」定位到很早的评论时用）。
+ *
+ * 为什么需要：讨论区只加载第一页（50 条），而「谁回复了我」里那条回复
+ * 可能已是几百条之前 —— 那时列表里根本没有它，`scrollToComment` 找不到目标、
+ * **静默什么都不做**。逐页往前翻的代价随"多老"增长；这个接口**恒定 1 次请求**，
+ * 直接返回"被回复的那条 + 回复本身"，由界面单独展示。
+ *
+ * @returns `{ found: true, comment, parent, inFirstPage }` 或 `{ found: false }`
+ *   `parent` 为 null 表示顶层评论、或父评论已被隐藏/删除。
+ *   `inFirstPage` 为 false 时说明它不在首屏列表里（界面据此给一句说明）。
+ */
+export function fetchCommentContext(pageKey, id) {
+  const params = new URLSearchParams({ page: pageKey, id: String(id) })
+  return request(`/api/comments/context?${params.toString()}`)
 }
 
 /**

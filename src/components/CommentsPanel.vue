@@ -248,11 +248,16 @@ function requestReply(comment) {
  * ⚠️ **只滚我们自己的滚动容器，不用 `scrollIntoView`**：后者会把**所有**可滚祖先
  * 一起滚动，包括页面本身——详情弹窗里表现为"一操作整个页面往上挤"（用户反馈）。
  * 这里自己算偏移，并把目标放在视口上方 1/3 处（比居中更稳，不会被底部的发表区挡住）。
+ *
+ * @returns {boolean} **是否找到了目标**。调用方据此决定"要不要另想办法"
+ *   （如讨论区的「去看看」在找不到时改显示定位卡片）。
+ *   早先这个函数返回 `undefined`，调用方无从判断"是滚过去了还是压根没这条" ——
+ *   于是"定位不到"表现为**静默无事发生**。
  */
 let flashTimer = 0
 function scrollToComment(id) {
   const target = listRoot.value?.$el?.querySelector?.(`[data-comment-id="${id}"]`)
-  if (!target) return
+  if (!target) return false
   const scroller = resolveScroller()
   if (scroller) {
     const offset = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top
@@ -262,6 +267,7 @@ function scrollToComment(id) {
   target.classList.add('is-quote-flash')
   clearTimeout(flashTimer)
   flashTimer = setTimeout(() => target.classList.remove('is-quote-flash'), 1200)
+  return true
 }
 
 onBeforeUnmount(() => clearTimeout(flashTimer))

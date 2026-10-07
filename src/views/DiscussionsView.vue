@@ -14,11 +14,58 @@
       </header>
 
       <!--
-        正文区：**只有列表在这里滚**。
-        `overflow-y: auto` + `min-height: 0` 让它受父级高度约束，消息再多也不会把整页撑长。
-        `reverse` = 聊天式排序（最新在最后，紧挨下方输入框）；
-        首次载入停在最新一条、发表后跟到最新，均由下方的 watch 统一负责。
+        定位卡片：从「谁回复了我 / 我的评论」点「去看看」跳进来，而那条评论
+        **不在首屏里**时显示。只展示「被回复的那条 + 回复本身」，
+        而不是把那条硬塞进列表（那会打乱游标分页），也不逐页往回翻
+        （代价随"多老"增长，最坏几十次请求）。**恒定 1 次请求**，见
+        `fetchCommentContext` 与后端 `commentContext` 的说明。
+
+        🔴 **必须放在滚动容器之外**（与下方发表区同理）。
+        放进 `.discussion-scroll` 里踩过一个坑：卡片在列表上方，而首屏默认滚到最新
+        （最下方）→ 卡片被顶出视野，用户看到的还是列表底部，**与修复前观感一样**。
+        而"把容器滚到顶部"又会触发「滚到顶部 80px 内就加载更早的历史」——
+        于是它**自动一页页往前翻**，直到真把那条翻出来、卡片随即消失
+        （正是本文想避免的"逐页翻"）。放在容器外两个问题一起消失：
+        不占滚动位置、也绝不触发加载。
       -->
+      <div v-if="pinned" class="discussion-pinned paper-panel">
+        <div class="discussion-pinned-head">
+          <span class="discussion-pinned-title">你查看的这条消息不在当前页</span>
+          <button type="button" class="discussion-pinned-close" title="关闭" @click="pinned = null">✕</button>
+        </div>
+
+        <!-- 被回复的那条（父评论可能已被隐藏/删除，或这条本身就是顶层评论） -->
+        <div v-if="pinned.parent" class="discussion-pinned-item is-parent">
+          <span class="discussion-pinned-tag">被回复</span>
+          <span class="comment-nick">{{ pinned.parent.nick }}</span>
+          <p class="discussion-pinned-body"><EmoticonText :text="pinned.parent.body" /></p>
+        </div>
+        <p v-else-if="pinned.comment.parentId" class="discussion-pinned-gone">
+          被回复的那条消息已不可见
+        </p>
+
+        <!-- 回复本身 -->
+        <div class="discussion-pinned-item">
+          <span class="discussion-pinned-tag">回复</span>
+          <span class="comment-nick">{{ pinned.comment.nick }}</span>
+          <p class="discussion-pinned-body"><EmoticonText :text="pinned.comment.body" /></p>
+        </div>
+
+        <p class="discussion-pinned-hint">
+          往上滚动可以查看它前后的完整对话。
+        </p>
+      </div>
+
+      <!--
+        「没找到那一条」的提示（与卡片互斥）。
+        为什么要有：早先找不到就**静默什么都不做**，用户点了「去看看」跳到页面后
+        毫无反应，分不清是坏了还是自己看漏了。明确说一句，用户就知道该怎么办。
+      -->
+      <div v-else-if="notFound" class="discussion-pinned discussion-pinned--gone">
+        <span>没找到这条消息，可能已被删除或隐藏。</span>
+        <button type="button" class="discussion-pinned-close" title="关闭" @click="notFound = false">✕</button>
+      </div>
+
       <div ref="scrollRoot" class="discussion-scroll">
         <CommentsPanel
           ref="listRef"
@@ -53,7 +100,8 @@ import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import CommentsPanel from '../components/CommentsPanel.vue'
 import CommentComposer from '../components/CommentComposer.vue'
-import { SITE_PAGE_KEY, SITE_PAGE_LABEL } from '../utils/commentApi.js'
+import EmoticonText from '../components/EmoticonText.vue'
+import { SITE_PAGE_KEY, SITE_PAGE_LABEL, fetchCommentContext } from '../utils/commentApi.js'
 import { useVisibilityPolling } from '../composables/useVisibilityPolling.js'
 import { DISCUSSION_POLL_MS } from '../config/discussions.js'
 
@@ -314,24 +362,81 @@ useVisibilityPolling(
  * **滚到那一条并闪一下**（这就是"可点击定位"）。
  *
  * 三个必须处理的现实情况：
- *   1. **那一条可能还没加载**（只在第一页里找）—— 这时只到页面为止，
- *      不报错、不自动翻页去找（找不到就翻页会让用户莫名其妙地看一屏新内容）；
+ *   1. **那一条可能还没加载**（只在第一页里找）—— 这时改走"定位卡片"（见下）；
  *   2. **列表是异步来的**，挂载那一刻还没渲染 —— 所以要等 `commentsLength` 变化后重试；
  *   3. 定位完就把参数从地址栏抹掉：否则用户手动滚走再刷新，又会被拽回去。
+ *
+ * ## 找不到时怎么办（2026-10-07 改）
+ *
+ * 早先这里**什么都不做** —— 用户点了「去看看」，页面跳过来了却没定位、也没提示，
+ * 看起来就是坏了。现在的处理：
+ *
+ *   1. 先在已加载的列表里找（常见情况：回复就在最近 50 条里）→ 找到就滚过去；
+ *   2. 找不到 → 调 `/api/comments/context` 取**那一条 + 被回复的那条**，
+ *      在列表上方显示一张卡片。**不逐页往回翻**：那代价随"多老"增长
+ *      （最坏几十次请求），而卡片是**恒定 1 次**。
  */
 const route = useRoute()
 const router = useRouter()
 const locateId = ref(0)
+/** 定位卡片数据：`null` = 不显示。形状见 `fetchCommentContext` */
+const pinned = ref(null)
+
+/**
+ * 先试列表内定位；没找到就去取上下文。
+ *
+ * @returns 是否在已加载的列表里找到（找到就不显示卡片）
+ */
+async function locateOrPin(id) {
+  const found = listRef.value?.scrollToComment?.(id)
+  if (found) {
+    pinned.value = null
+    return true
+  }
+  try {
+    const data = await fetchCommentContext(SITE_PAGE_KEY, id)
+    /*
+     * `found: false` = 不存在 / 已隐藏 / 不属于这个页面。
+     * 服务端刻意**不区分**这几种（避免被拿来探测"某条评论是否被隐藏"），
+     * 所以这里也只给一句中性提示。
+     */
+    pinned.value = data?.found ? { comment: data.comment, parent: data.parent || null } : null
+    if (!data?.found) {
+      // 找不到就别留着旧卡片；同时把"没找到"这件事明确说出来
+      pinned.value = null
+      notFound.value = true
+    }
+  } catch {
+    // 网络失败不该静默：给一句可理解的提示，而不是让用户以为点坏了
+    notFound.value = true
+  }
+  return false
+}
+
+/** 「没找到那一条」的提示（与卡片互斥） */
+const notFound = ref(false)
+
+/*
+ * ⚠️ 这里**不要**再加"卡片出现就把容器滚到顶部"的 watcher（曾经加过，已删）。
+ *
+ * 它引发了两个连锁问题：
+ *   1. 滚到顶部 80px 内会触发「加载更早的历史」→ **自动一页页往前翻**，
+ *      正好是本文想避免的行为；翻到那条时卡片又消失，用户看到的是列表在乱跳；
+ *   2. 卡片本身**不需要滚动** —— 它现在放在 `.discussion-scroll` **之外**，
+ *      天然就在列表上方、始终可见。既然不需要滚，就别去动滚动位置。
+ */
 
 async function locateFromQuery() {
   const raw = route.query?.c
   const id = Number.parseInt(Array.isArray(raw) ? raw[0] : raw, 10)
   if (!Number.isFinite(id) || id <= 0) return
   locateId.value = id
+  pinned.value = null
+  notFound.value = false
   // 清掉参数（`replace` 不新增历史，返回键仍然回到上一页）
   router.replace({ query: {} })
   await nextTick()
-  listRef.value?.scrollToComment?.(id)
+  await locateOrPin(id)
 }
 
 // 列表首屏到达后再试一次：进来时 commentsLength 还是 0，那一次必然找不到
@@ -339,7 +444,7 @@ watch(
   () => listRef.value?.commentsLength,
   (n) => {
     if (locateId.value && n > 0) {
-      nextTick(() => listRef.value?.scrollToComment?.(locateId.value))
+      nextTick(() => locateOrPin(locateId.value))
     }
   }
 )
@@ -440,6 +545,89 @@ onBeforeUnmount(() => {
 /* 列表最后一条之后也不再留外边距：滚动区内容的底边＝最后一张卡片的下沿 */
 .discussion-scroll :deep(.comments-list) {
   margin-bottom: 0;
+}
+
+/* ── 定位卡片（「去看看」那条不在首屏时显示） ── */
+
+.discussion-pinned {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent-color, #a8722c);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.discussion-pinned-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.discussion-pinned-title {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.discussion-pinned-close {
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+}
+
+.discussion-pinned-item {
+  padding: 6px 0;
+}
+
+/* 被回复的那条与回复本身之间给一条细线，视觉上分开"上下文"与"目标" */
+.discussion-pinned-item.is-parent {
+  border-bottom: 1px dashed var(--border-color, #c9b48e);
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+  opacity: 0.85;
+}
+
+.discussion-pinned-tag {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--paper-solid, #d9c6a6);
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.discussion-pinned-body {
+  margin: 4px 0 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.discussion-pinned-gone {
+  margin: 0 0 4px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.discussion-pinned-hint {
+  margin: 8px 0 0;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+/* 「没找到」态：与卡片同宽，但不需要左边那条强调色 */
+.discussion-pinned--gone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-left-color: var(--text-muted);
+  color: var(--text-muted);
 }
 
 /*

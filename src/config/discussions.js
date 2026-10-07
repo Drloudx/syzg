@@ -15,3 +15,17 @@
  *   - `scripts/dev/scratch/measure-poll-cadence.mjs`（实测真实间隔的脚本）。
  */
 export const DISCUSSION_POLL_MS = 60000
+
+/**
+ * 评论列表**一页多少条**（也是讨论区首屏显示多少条）。
+ *
+ * 🔴 **这个值有两个消费者，必须一致**：
+ *   1. 前端 `CommentsPanel` 拉列表时用的 `limit`；
+ *   2. 服务端 `commentContext` 判断"这条评论是否在首屏里"（`inFirstPage`）——
+ *      它用 `OFFSET COMMENT_PAGE_SIZE` 取首页边界来比较，避免 `COUNT(*)` 全表扫。
+ *
+ * 不一致的后果是**静默的**：服务端以为某条在首页里（不返回定位卡片），
+ * 而列表里其实没有它 —— 用户点了「去看看」又变成"没反应"。
+ * （2026-10-07 实际踩过：服务端写死 50、前端默认 20，第 21~50 条全被误判。）
+ */
+export const COMMENT_PAGE_SIZE = 20

@@ -227,6 +227,47 @@ CREATE TABLE rate_limits (
 }
 ```
 
+### `GET /api/comments/context?page=<page_key>&id=<评论 id>`
+
+取**一条评论及其上下文**（那条评论 + 被它回复的父评论 + `inFirstPage`）。
+
+**为什么需要**：「谁回复了我 / 我的评论」的「去看看」会跳到 `#/discussions?c=<id>`
+并滚到那一条，而讨论区只加载第一页 —— 那条可能已是几百条之前。
+早先 `scrollToComment` 找不到就静默返回，**用户点了没反应**。
+
+**三种解法对比**：
+
+| 做法 | 请求数 |
+| --- | --- |
+| 逐页往回翻 | 随"多老"增长（最坏几十次） |
+| **本接口（只取那两条）** | **恒定 1 次** |
+| 限制讨论区历史条数 | 省不了首屏额度，还丢回看功能 → **不做** |
+
+🔴 **越权防线**：同时限定 `page_key` 与 `status = 1`。否则拿一个 id 就能读到
+**任意页面**、或**被隐藏**的评论。条件不满足统一返回 `found: false`，
+**不区分"不存在"与"被隐藏"**（避免被拿来探测某条是否被隐藏）。
+
+```json
+{
+  "ok": true,
+  "found": true,
+  "comment": { "id": 99, "nick": "乙", "body": "回复内容", "parentId": 12, "…": "…" },
+  "parent": { "id": 12, "nick": "甲", "body": "被回复的内容", "…": "…" },
+  "inFirstPage": false
+}
+```
+
+- `parent` 为 `null`：顶层评论，或其父评论已被隐藏/删除。
+- `found: false`：不存在 / 已隐藏 / 不属于该页面（三者**刻意不区分**）。
+- `inFirstPage`：是否落在首页里，界面据此决定要不要显示定位卡片。
+  判定用 `OFFSET COMMENT_PAGE_SIZE` 取边界 id 比较（**避免 `COUNT(*)` 全表扫**），
+  且必须用**严格大于** —— `OFFSET N` 取到的正是第 N+1 条（页外第一条）。
+
+> 🔴 **`COMMENT_PAGE_SIZE` 必须前后端一致**（`src/config/discussions.js` 一处维护）。
+> 踩过：服务端写死 50、前端默认 20 → 第 21~50 条被误判成"在首页里"，
+> 界面不显示卡片，用户又回到"点了没反应"。症状**只在某一段范围**，
+> 由 `tests/api/comment-page-boundary.mjs` 守着。
+
 ### `POST /api/comments`
 
 请求体：
