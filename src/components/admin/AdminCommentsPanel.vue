@@ -65,7 +65,7 @@
             <th style="width: 130px">页面</th>
             <th style="width: 92px">状态</th>
             <th style="width: 140px">时间</th>
-            <th style="width: 190px">操作</th>
+            <th style="width: 250px">操作</th>
           </tr>
         </thead>
         <tbody>
@@ -91,6 +91,20 @@
                 </button>
                 <button v-if="c.status !== 2" type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="changeStatus(c, 2)">
                   隐藏
+                </button>
+                <!--
+                  「转待审」：把一条**已处理过**的评论放回待办队列。
+                  `status = 0` 只在那边表示"不公开 + 计入待办"，与「已隐藏」的
+                  唯一区别就是**算不算在待处理里**（概览页那张卡片据此描红）。
+                  所以这个按钮的价值是"挂起待定"，而不是改变可见性。
+                -->
+                <button
+                  v-if="c.status !== 0"
+                  type="button"
+                  class="admin-btn admin-btn--ghost admin-btn--sm"
+                  @click="changeStatus(c, 0)"
+                >
+                  转待审
                 </button>
                 <button
                   type="button"
@@ -251,21 +265,28 @@ function loadMore() {
 }
 
 /**
- * 改状态：放行 / 隐藏 / 打回待审。
+ * 改状态：放行 / 隐藏 / 转待审。
  *
  * 🔴 **必须确认**（2026-10-07 补）。此前这里**没有确认框** —— 一键生效，
  * 误点就把用户的评论下架了（虽然可恢复，但用户那边会看到评论消失）。
  * 与"彻底删除"不同，这里都是**可恢复**操作，所以用轻量确认而不是红色警告。
  *
- * 文案按方向区分：**隐藏**是"下架用户内容"，比放行更该让人停一下；
- * 放行是恢复公开，提示会重新可见即可。
+ * ## 三个状态的**实际**区别（别被名字误导）
+ *
+ * 「待审」与「已隐藏」**对外都是不可见**（服务端一律只放行 `status = 1`），
+ * 差别只有两处：
+ *   · 作者在「我的评论」里看到的标签：`待审核` / `已隐藏`；
+ *   · **算不算进待办** —— 概览页的 `pending > 0` 会描红提示"去处理"。
+ *
+ * 所以「转待审」的语义是**挂起待定**（放回待办队列），不是"改变可见性"；
+ * 而「隐藏」是**已有定论**。文案按这个语义区分，避免把两者说成同一件事。
  */
 async function changeStatus(comment, status) {
   const preview = String(comment.body || '').slice(0, 40)
   const CONFIRM_TEXT = {
     1: `放行这条评论？\n\n正文：${preview}\n\n放行后**所有人可见**。`,
-    2: `隐藏这条评论？\n\n正文：${preview}\n\n隐藏后**只有你能看到**，用户那边这条评论会消失。随时可以再放行。`,
-    0: `打回待审？\n\n正文：${preview}\n\n打回后**不公开显示**，留在「待审」里等你再处理。`
+    2: `隐藏这条评论？\n\n正文：${preview}\n\n隐藏后对外不可见（作者自己仍能看到并显示为「已隐藏」）。随时可以再放行。`,
+    0: `把这条评论转为待审？\n\n正文：${preview}\n\n转待审后**同样对外不可见**，但会回到「待审」队列——概览页的待处理计数会 +1，便于你或其他人稍后处理。`
   }
   const ok = window.confirm(CONFIRM_TEXT[status] || `把这条评论的状态改为 ${status}？`)
   if (!ok) return

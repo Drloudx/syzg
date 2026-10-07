@@ -410,6 +410,80 @@ test('评论页：能按页面类型筛选', async ({ page }) => {
   await expect(page.locator('.admin-card')).toContainText(`讨论区筛选 ${tag}`, { timeout: 20_000 })
 })
 
+test('🔴 「转待审」把已处理的评论放回待办队列', async ({ page }) => {
+  /*
+   * 为什么要有这个按钮：「待审」与「已隐藏」**对外都是不可见**，唯一区别是
+   * **算不算进待办**（概览页 `pending > 0` 会描红）。而手动发的评论
+   * 之前**没有任何办法进入待审** —— 只有词表命中的会自动进。
+   * 于是"这条我拿不准，先挂起"这个动作做不到。
+   *
+   * 这条测试要验的是**双向**：
+   *   1. 已显示的评论能「转待审」；
+   *   2. 转过去之后，它**出现在「待审」档**、且**不再出现在「已显示」档**；
+   *   3. 概览页的待处理计数**真的 +1**（这是这个状态唯一的实际作用）。
+   */
+  const who = await createAccount(API_BASE, reader)
+  const tag = nextTag()
+  await postComment(API_BASE, who.token, { body: `转待审测试 ${tag}` })
+
+  const admin = await makeAdmin()
+  await openAdminAs(page, admin, '/#/admin/comments')
+
+  // 先记下当前的待处理数（概览页）
+  await page.goto('/#/admin')
+  await expect(page.locator('.stat-card').first()).toBeVisible({ timeout: 20_000 })
+  const pendingBefore = Number(
+    (await page.locator('.stat-card', { hasText: '待审核' }).locator('.stat-value').innerText()).trim()
+  )
+  expect(Number.isFinite(pendingBefore)).toBe(true)
+
+  // 到「已显示」档找到刚发的那条
+  await page.goto('/#/admin/comments')
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  const row = page.locator('.admin-table tbody tr').first()
+  await expect(row).toBeVisible({ timeout: 20_000 })
+  await expect(row).toContainText(`转待审测试 ${tag}`)
+  await expect(row).toContainText('已显示')
+
+  // 点「转待审」（确认框自动接受）
+  page.once('dialog', (d) => d.accept())
+  await row.locator('.admin-btn', { hasText: '转待审' }).click()
+
+  /*
+   * ⚠️ 断言"它不在这一档了"不能写成 `.admin-card` 不含文本：
+   * 列表为空时 `.admin-card` **整个不存在**（页面渲染的是「没有匹配的评论。」），
+   * 于是 `not.toContainText` 会因为"找不到元素"而失败 —— 明明行为是对的。
+   * 改成**数行**：不该有任何一行含这个标记。
+   */
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  await expect
+    .poll(async () => page.locator('.admin-table tbody tr', { hasText: `转待审测试 ${tag}` }).count(), {
+      timeout: 20_000
+    })
+    .toBe(0)
+
+  // 在「待审」档里能找到它，状态显示为待审
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '待审' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  const pendingRow = page.locator('.admin-table tbody tr').first()
+  await expect(pendingRow).toBeVisible({ timeout: 20_000 })
+  await expect(pendingRow).toContainText(`转待审测试 ${tag}`)
+  await expect(pendingRow).toContainText('待审')
+
+  // 🔴 概览的待处理计数应 +1（这是「待审」唯一的实际作用）
+  await page.goto('/#/admin')
+  await expect(page.locator('.stat-card').first()).toBeVisible({ timeout: 20_000 })
+  const pendingAfter = Number(
+    (await page.locator('.stat-card', { hasText: '待审核' }).locator('.stat-value').innerText()).trim()
+  )
+  expect(pendingAfter, '转待审后待处理计数应 +1').toBe(pendingBefore + 1)
+})
+
 test('三个页签是子路由：刷新与直达都正常', async ({ page }) => {
   const adminX = await makeAdmin()
   await openAdminAs(page, adminX)
