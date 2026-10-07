@@ -268,7 +268,8 @@ try {
   // ---- 4. 发评论 ----
   console.log('\n【4】以登录身份发评论')
   const identity = await ev(`document.querySelector('.comment-identity-text')?.textContent?.trim() || ''`)
-  check('身份条变成"以 XXX 的身份发表"', identity.includes(NICK), identity)
+  // 2026-10-07 起身份条**只显示昵称**（去掉了「以…的身份发表」与其下的编号）
+  check('身份条显示当前昵称', identity.includes(NICK), identity)
 
   const bodyText = `手机端测试评论 ${stamp}`
   await ev(`(() => {

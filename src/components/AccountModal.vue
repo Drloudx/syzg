@@ -39,6 +39,7 @@
             inputmode="email"
             autocomplete="email"
             placeholder="注册时用的邮箱"
+            @blur="onLoginEmailBlur"
           />
         </label>
         <label class="acct-field">
@@ -611,6 +612,7 @@ import {
   loadMyReplies,
   loginWithPassword,
   markMyRepliesRead,
+  prefetchPasswordSalt,
   publicNo,
   registerAccount,
   sessionState,
@@ -1002,6 +1004,22 @@ watch(isLoggedIn, (logged) => {
 
 function close() {
   emit('update:modelValue', false)
+}
+
+/**
+ * 邮箱填完、光标离开时**预取密码盐**。
+ *
+ * 为什么值得：登录本来要两次串行往返（取盐 → 登录），而生产实测
+ * **每次回源往返中位 1.3 秒**（`/api/*` 走不到边缘缓存），于是手机上
+ * 点登录要等两三秒 —— 其中 PBKDF2 只占 0.1 秒。趁用户还在敲密码的这几秒
+ * 把盐取回来，点登录时就只剩一次往返。
+ *
+ * 盐本来由公开接口返回、不是秘密，**缓存不降低安全性**。
+ * 这里是"顺手做"：失败也不提示（它只是优化，真需要时会再取一次）。
+ */
+function onLoginEmailBlur() {
+  const email = validateEmailInput(loginForm.email) ? '' : loginForm.email
+  if (email) prefetchPasswordSalt(email)
 }
 
 async function doLogin() {

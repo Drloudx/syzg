@@ -225,7 +225,7 @@ function onLogout() {
   cursor: pointer;
 }
 
-/* ---------- 令牌闸门 ---------- */
+/* ---------- 权限闸门 ---------- */
 
 .admin-gate {
   flex: 1;
@@ -262,6 +262,16 @@ function onLogout() {
   display: flex;
   gap: 8px;
   width: min(420px, 100%);
+  /*
+   * 🔴 **必须显式居中**：这一行是固定 420px 宽的盒子，而 flex 默认
+   * `justify-content: flex-start` —— 内容会贴着盒子左边。
+   *
+   * 旧设计里这里是「输入框 + 按钮」，输入框占满 420px 所以看不出来；
+   * 删掉令牌闸门后只剩两个小按钮，就露出"标题居中、按钮偏左"的错位
+   * （用户截图指出）。保留固定宽度是为了让窄屏下也不至于撑满，
+   * 所以不是去掉宽度，而是把内容居中。
+   */
+  justify-content: center;
 }
 
 .admin-body {

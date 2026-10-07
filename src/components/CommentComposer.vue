@@ -11,8 +11,7 @@
           {{ (currentUser?.nick || '?').slice(0, 1) }}
         </div>
         <span class="comment-identity-text">
-          以 <strong>{{ currentUser?.nick }}</strong> 的身份发表
-          <span class="comment-identity-no">编号 {{ currentUser?.id }}</span>
+          {{ currentUser?.nick }}
         </span>
         <button type="button" class="comment-identity-edit" @click="openAccountModal()">修改</button>
       </template>
@@ -708,24 +707,22 @@ onMounted(() => {
   font-weight: 700;
 }
 
+/*
+ * 身份条现在只显示**昵称**（用户要求去掉「以…的身份发表」与其下的编号）。
+ *
+ * 因为文案从"以 X 的身份发表"缩成一个名字，原来那套"灰色小字 + 竖排"
+ * 不再合适 —— 单看一个灰名字会像是占位符。所以这里改成：
+ * **正文字号、正常颜色**，让它读起来就是"这条是你发的"。
+ */
 .comment-identity-text {
-  color: var(--text-muted);
-  font-size: 13px;
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 600;
   line-height: 1.6;
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 对外编号：比昵称低一级的视觉层级，不抢眼但能对上号 */
-.comment-identity-no {
-  font-family: ui-monospace, monospace;
-  font-size: 11px;
-  opacity: 0.7;
-}
-
-.comment-identity-text strong {
-  color: var(--text-main);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .comment-identity-edit {

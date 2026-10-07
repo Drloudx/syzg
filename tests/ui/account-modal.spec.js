@@ -665,3 +665,39 @@ test('我的评论：待审核的也要列出来（否则作者以为发丢了�
   })
   expect(inPublic).toBe(false)
 })
+
+test('🔴 登录前预取密码盐：点登录时只剩一次往返', async ({ page }) => {
+  /*
+   * 为什么要有这条：登录原本是**两次串行往返**（取盐 → 登录），
+   * 而生产实测每次回源往返**中位 1.3 秒、最坏 6 秒**（`/api/*` 走不到边缘缓存），
+   * 于是手机上点登录要等两三秒 —— 其中 PBKDF2 只占 0.1 秒，剩下全是网络。
+   *
+   * 现在趁用户敲密码时就把盐取好，点登录时只剩一次往返。
+   * 这条测试数的是**请求次数**，而不是耗时 —— 耗时受网络波动影响，不可靠。
+   */
+  const acc = await createAccount(API_BASE, reader)
+
+  const calls = []
+  page.on('request', (r) => {
+    const u = r.url()
+    if (u.includes('/api/auth/salt')) calls.push('salt')
+    if (u.includes('/api/auth/login')) calls.push('login')
+  })
+
+  await openAccountModal(page)
+
+  // 填邮箱后把焦点移开 —— 这一步应触发预取
+  await page.locator('.acct-input[autocomplete="email"]').fill(acc.email)
+  await page.locator('.acct-input[type="password"]').first().click()
+  await expect.poll(() => calls.filter((c) => c === 'salt').length, { timeout: 15_000 }).toBeGreaterThan(0)
+
+  // 记下"点登录之前"的状态，再看登录期间**有没有再取盐**
+  const before = calls.length
+  await page.locator('.acct-input[type="password"]').first().fill(PASSWORD)
+  await page.locator('button[type="submit"]', { hasText: '登录' }).click()
+  await expect(page.locator('.acct-id-card')).toBeVisible({ timeout: 25_000 })
+
+  const during = calls.slice(before)
+  expect(during, '登录期间不该再取盐（应复用预取结果）').not.toContain('salt')
+  expect(during, '登录请求应当发出').toContain('login')
+})
