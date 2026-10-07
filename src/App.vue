@@ -96,6 +96,18 @@
                   <img :src="getImageUrl('/ui/output.svg')" class="item-icon" />
                   <span>导入数据</span>
                 </div>
+                <!--
+                  后台入口：**只对管理员显示**（`role >= 1`）。
+                  此前没有任何界面入口，进后台必须手输 `#/admin` —— 现在有了角色概念，
+                  就该让管理员点得到；普通用户根本不该看到这一项。
+
+                  ⚠️ 这只是**入口可见性**，不是权限：真正的准入在服务端
+                  （`adminSession` 查 `users.role`），伪造导航也进不去。
+                -->
+                <div v-if="isAdmin" class="dropdown-item" @click="goAdmin">
+                  <img :src="getImageUrl('/ui/setting.svg')" class="item-icon" />
+                  <span>后台管理</span>
+                </div>
               </div>
             </div>
           </div>
@@ -273,7 +285,7 @@ import AboutModal from './components/AboutModal.vue'
 import AccountModal from './components/AccountModal.vue'
 import { avatarPath, avatarCatalogState, loadAvatarCatalog } from './utils/avatarCatalog.js'
 import { registerAccountModal } from './utils/accountModal.js'
-import { restoreSession } from './utils/authSession.js'
+import { currentUser, restoreSession } from './utils/authSession.js'
 import { SITE_PAGE_KEY, fetchRecentComments } from './utils/commentApi.js'
 import { lastPostedComment, commentPostedAt } from './utils/commentEvents.js'
 import { UiButton, UiEmptyState, UiModal, EdgeFloatingWidget } from './components/ui/index.js'
@@ -357,6 +369,22 @@ const showThemeToggle = false
 const isAccountOpen = ref(false)
 /** 移动端跳到隐私页时暂存：离开隐私页返回时恢复账号弹窗 */
 const wasRegisteringBeforePrivacy = ref(false)
+
+/**
+ * 当前账号是不是管理员（`role >= 1`）。**只用来决定"后台管理"入口显不显示**。
+ *
+ * ⚠️ 这是**登录时的快照**：账号被降级后本地仍是旧值，入口会多显示一会儿。
+ * 真正的准入在服务端（`adminSession` 查 `users.role`），点进去会被闸门挡下并
+ * 显示「这个账号不是管理员」。所以这里宁可乐观一点 —— 少一次请求，
+ * 而判断错了也不会造成越权。
+ */
+const isAdmin = computed(() => Number(currentUser.value?.role) >= 1)
+
+/** 从设置菜单进后台（关掉菜单，避免回来后它还开着） */
+function goAdmin() {
+  isSettingsOpen.value = false
+  router.push('/admin')
+}
 
 /**
  * 打开/离开讨论区。

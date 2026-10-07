@@ -100,6 +100,37 @@ async function openAdminAnon(page, path = '/#/admin') {
   await expect(page.locator('.admin-shell')).toBeVisible({ timeout: 30_000 })
 }
 
+test('🔴 设置菜单里的「后台管理」只对管理员显示', async ({ page }) => {
+  /*
+   * 此前进后台**必须手输 `#/admin`** —— 没有任何界面入口。
+   * 有了角色概念后就该让管理员点得到，而普通用户根本不该看到这一项。
+   *
+   * ⚠️ 这只是入口可见性，不是权限：真正的准入在服务端（`adminSession`）。
+   */
+  const plain = await createAccount(API_BASE, reader)
+  await page.addInitScript(
+    ({ token, user }) => localStorage.setItem('myrzg:auth', JSON.stringify({ token, user })),
+    { token: plain.token, user: plain.user }
+  )
+  await page.goto('/#/items')
+  await page.locator('button[title="设置"]').click()
+  await expect(page.locator('.settings-dropdown')).toBeVisible({ timeout: 15_000 })
+  await expect(page.locator('.dropdown-item', { hasText: '后台管理' })).toHaveCount(0)
+
+  // 换管理员：入口应出现，且点得进后台
+  const admin = await makeAdmin(1)
+  await page.addInitScript(
+    ({ token, user }) => localStorage.setItem('myrzg:auth', JSON.stringify({ token, user })),
+    { token: admin.token, user: admin.user }
+  )
+  await page.reload()
+  await page.locator('button[title="设置"]').click()
+  const entry = page.locator('.dropdown-item', { hasText: '后台管理' })
+  await expect(entry).toBeVisible({ timeout: 15_000 })
+  await entry.click()
+  await expect(page.locator('.admin-tabs')).toBeVisible({ timeout: 20_000 })
+})
+
 test('后台是独立外壳：盖住站点头部与侧栏', async ({ page }) => {
   const admin = await makeAdmin()
   await openAdminAs(page, admin)
