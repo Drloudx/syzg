@@ -6,7 +6,7 @@
 > **何时读**：需要理解分层、依赖方向、数据流、构建机制时。
 > **何时更新**：分层、目录职责或构建机制变化时。**位置映射改 [MAP.md](MAP.md)，不写这里。**
 
-**核对时间**：2026-10-07
+**核对时间**：2026-10-08
 
 ---
 
@@ -154,6 +154,18 @@ vue-myrzg/
 - 各页面详情用各自的参数（`id` / `task` / `event` / `battle`…），打开/关闭只清理自身参数，不覆盖其他筛选。
 - 根路径 `/` 重定向 `/items`。未匹配的 hash **统一回首页**（不留白屏）。
 
+**跨领域路由**（不走领域划分，见 [DOMAIN.md](DOMAIN.md) 第一节末尾）：
+
+| 路由 | 视图 | 说明 |
+| --- | --- | --- |
+| `/discussions` | `DiscussionsView` | 站内讨论区。归属键固定 `site:general`，与各图鉴页面的讨论**完全分开**；`?c=<评论 id>` 定位评论 |
+| `/privacy` | `PrivacyView` | 隐私说明。注册表单的必勾项链接指向这里；移动端跳转时会**暂存并恢复账号弹窗** |
+| `/admin` | `AdminView` | 后台外壳（`position: fixed` 覆盖层，`z-index: 11000`，卡在站点顶栏 10000 与全局弹窗 12000 之间） |
+| `/admin/comments`、`/admin/users`、`/admin/audit` | `AdminView` 的子路由 | 概览 / 评论 / 用户 / 审计。**审计仅超管可见** |
+
+> 后台的鉴权、角色分级与审计见 [technical/ACCOUNT_SYSTEM.md](./technical/ACCOUNT_SYSTEM.md) §九；
+> 评论接口与定位卡片见 [technical/COMMENTS_BACKEND.md](./technical/COMMENTS_BACKEND.md)。
+
 ### 5.2 弹窗栈与滚动协调
 
 - `utils/itemModalState.js` 维护物品详情栈（`pushItemDetail`/`popItemDetail`），支持详情里点详情层层打开。
@@ -226,6 +238,9 @@ vue-myrzg/
 | `PartnerMailsView` | 筛选与选择 | 阅读器归 `PartnerMailReader` |
 | `FurnitureView` | 筛选、详情、`id`/`itemId` 联动 | `FurnitureCard` 只负责视觉 |
 | `GlossaryView` | 板块筛选、搜索与词条详情 | 词条模型与聚合归 `glossaryData`，原「名词解释」页签已移除 |
+| `DiscussionsView` | 讨论区容器：滚动位置、自动跟随、`?c=` 定位 | 列表与发表归 `CommentsPanel` / `CommentComposer`；定位卡片只展示、不改分页 |
+| `AdminView` | 后台外壳：权限闸门、页签、子路由出口 | 各面板归 `components/admin/*`；**准入判定在服务端**，前端只决定显隐 |
+| `PrivacyView` | 隐私政策正文 | 不承载表单逻辑（注册勾选项只是链接到这里） |
 
 ---
 

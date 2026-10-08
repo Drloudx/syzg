@@ -16,13 +16,17 @@
 
 | 领域文件 | 覆盖页面 | 体积 | 主要数据源 |
 | --- | --- | --- | --- |
-| [specs/ITEMS_AND_EQUIPMENT.md](specs/ITEMS_AND_EQUIPMENT.md) | 物品图鉴、装备图鉴、符石图鉴、兑换、其他奖励 | ~13 KB | `items.json`、`runes.json`、`parsed-exchange.json` |
-| [specs/HEROES_AND_COMBAT.md](specs/HEROES_AND_COMBAT.md) | 角色图鉴、伙伴邮件、魔物图鉴、怪物图鉴、词条 | ~20 KB | `heroes.json`、`pets.json`、`monsters.json`、`glossary.json` |
-| [specs/DUNGEONS_AND_CHAPTERS.md](specs/DUNGEONS_AND_CHAPTERS.md) | 副本图鉴、关卡图鉴、章节地图 | ~16 KB | `dungeons.json`、`chapters.json`、`stages/{stageId}.json` |
+| [specs/ITEMS_AND_EQUIPMENT.md](specs/ITEMS_AND_EQUIPMENT.md) | 物品图鉴、装备图鉴、符石图鉴、兑换、其他奖励 | ~11 KB | `items.json`、`runes.json`、`parsed-exchange.json` |
+| [specs/HEROES_AND_COMBAT.md](specs/HEROES_AND_COMBAT.md) | 角色图鉴、伙伴邮件、魔物图鉴、怪物图鉴、词条 | ~25 KB | `heroes.json`、`pets.json`、`monsters.json`、`glossary.json` |
+| [specs/DUNGEONS_AND_CHAPTERS.md](specs/DUNGEONS_AND_CHAPTERS.md) | 副本图鉴、关卡图鉴、章节地图 | ~21 KB | `dungeons.json`、`chapters.json`、`stages/{stageId}.json` |
 | [specs/QUESTS_AND_EVENTS.md](specs/QUESTS_AND_EVENTS.md) | 任务图鉴、事件图鉴、其他奖励 | ~5 KB | `tasks.json`、`events.json`、`parsed-pvp.json` |
-| [specs/CAMP_AND_LIFE.md](specs/CAMP_AND_LIFE.md) | 设施功能（含营地）、家具图鉴、菜谱查询、魔物收益、成就查询 | ~8 KB | `facilities.json`、`furniture.json`、`recipes.json`、`pet-eggs.json`、`achievements.json` |
-| [specs/GACHA_SIMULATOR.md](specs/GACHA_SIMULATOR.md) | 模拟招募 | ~2 KB | `gacha.json`、`gacha-presentation.json` |
-| [specs/UI_DESIGN_SYSTEM.md](specs/UI_DESIGN_SYSTEM.md) | 主题、组件引用规则、长列表、右栏吉祥物 | ~3 KB | `src/assets/theme.css`、`src/components/ui/` |
+| [specs/CAMP_AND_LIFE.md](specs/CAMP_AND_LIFE.md) | 设施功能（含营地）、家具图鉴、菜谱查询、魔物收益、成就查询 | ~16 KB | `facilities.json`、`furniture.json`、`recipes.json`、`pet-eggs.json`、`achievements.json` |
+| [specs/GACHA_SIMULATOR.md](specs/GACHA_SIMULATOR.md) | 模拟招募 | ~11 KB | `gacha.json`、`gacha-presentation.json` |
+| [specs/UI_DESIGN_SYSTEM.md](specs/UI_DESIGN_SYSTEM.md) | 主题、组件引用规则、长列表、右栏吉祥物 | ~8 KB | `src/assets/theme.css`、`src/components/ui/` |
+
+> 体积按 **2026-10-08 实测**标注（字节数 ÷ 1024 取整）。
+> ⚠️ 这一列只是给"要不要整份读"做参考，**会随文档增长而漂**；
+> 引用具体规则时以 `grep` 定位为准，别按体积判断内容多少。
 
 **跨领域页面**（讨论区、账号、隐私、后台）的规则归 [ARCHITECTURE.md](./ARCHITECTURE.md) 与 [technical/](./technical)；它们不是静态图鉴，不走上述领域划分。
 
@@ -84,7 +88,7 @@
 | 食材、通用材料与菜谱预览 | `utils/recipeUtils.js`，材料组装用 `buildRecipeIngredients` |
 | 角色、魔物、怪物、任务 | `heroParser`、`petParser`、`monsterParser`、`taskParser`；等级边界共用 `levelConfig` |
 | 家具、设施、符石 | `furnitureData`、`facilityData`/`campFacilityData`、`runeData` |
-| 隐藏策略 | `config/blacklist.js` 的 `isBlacklisted`；按地区名匹配必须传 `mapName`（`黑森林`）而不是 `chapter` 代号（`c4`）——代号匹配不到，会出现「筛选按钮隐藏了、来源或卡片还在」 |
+| 隐藏策略 | `config/blacklist.js` 的 `isBlacklisted`。🔴 **它只读固定一组字段名**：`name` / `desc` / `tip` / `source` / `label` / `keywords`，以及数组型的 `category` / `categories` / `place` / `mark`。**传其它字段名会被静默忽略**（`mapName` / `region` / `chapter` 都不生效 —— 代码看着改了、行为没变）。传值时要注意区分**字段名**与**值来源**：现有代码写的是 `label: d.mapName`（把 `mapName` 这个**值**塞进 `label` 这个**被读的字段**），不是 `mapName: ...`。按地区匹配要传**地区名**（`黑森林`）而非章节代号（`c4`）或章节序号（`第四章`）；后两者用 `gameMappings.resolveRegionName()` 转成地区名。数组字段必须传**数组**：传字符串会被 `...item.place` 按字符展开而匹配不到 |
 | 图片与静态 JSON | `utils/env.js` 的 `getImageUrl`、`utils/request.js` 的 `fetchWithFallback` |
 | 页面与详情滚动 | `scrollTarget`、`modalScrollCoordinator` |
 | 覆盖层与原生返回 | `globalModalLock`、`overlayStack`/`useOverlay`、`nativeBackHandler` |
@@ -115,7 +119,8 @@
 
 ## 六、资源访问与容错
 
-- `env.js` 的 `CLOUD_URL` 为 `https://syzg.yxzmy.top`（2026-10-03 由 `myrzg.yxzmy.top` 迁入，见 [改名迁移](../history/rename-myrzg-to-syzg.md)）。Web 使用同域路径，Android 在线优先 CDN，离线使用包内资源。
+- `env.js` 的 `CLOUD_URL` **默认**为 `https://syzg.yxzmy.top`（2026-10-03 由 `myrzg.yxzmy.top` 迁入，见 [改名迁移](../history/rename-myrzg-to-syzg.md)）；构建时可用 **`VITE_CLOUD_URL` 覆盖**（2026-10-07 加），迁域名不必改源码。Web 使用同域路径，Android 在线优先 CDN，离线使用包内资源。
+  > ⚠️ 它**会被编译进产物**，所以已安装的 Android 包仍指向构建时的域名 —— 迁域名必须**发热更包**并保留旧域名一段时间（见 [RISKS.md](RISKS.md) 与 [DECISIONS.md](DECISIONS.md) §二）。
 - `getImageUrl` 对 `/ui/` 保持本地路径，对其他图片补齐 `/images/`；图片附 `RESOURCE_BUILD_ID` 版本参数。失败回退由共享工具限次处理，**不能无限重试或猜另一张相似图片**。
 - 运行时静态游戏 JSON 统一通过 `fetchWithFallback`，同路径请求合并、成功结果复用、失败可重试。
 - CDN 失败或 hash 不匹配只回退同版本包内数据；两边都不合法时显示错误态，**不在浏览器重建原表**。
@@ -139,9 +144,11 @@
 | `id` | 家具、角色、魔物、怪物、魔物蛋详情；在成就/菜谱/其他页是定位，不统一当成弹窗 |
 | `task` | 任务详情 |
 | `event` / `explore` | 事件 / 探索详情 |
-| `battle` | 副本详情，掉落定位参数见 [DUNGEONS.md](./specs/DUNGEONS_AND_CHAPTERS.md) |
+| `battle` | 副本详情，掉落定位参数见 [DUNGEONS_AND_CHAPTERS.md](./specs/DUNGEONS_AND_CHAPTERS.md) |
 | `chapter` / `stage` / `diff` / `view` | 关卡图鉴：章节筛选、关卡详情、难度选择、地图/列表视图（`view=list` 用于无章节时的列表视图） |
 | `buff` | 词条页状态词条详情，值为归并后的词条名（如 `buff=燃烧`） |
+| `q` | 任务图鉴的搜索词。**可分享/可刷新**（`/#/tasks?q=记忆`），也用于深链定位 |
+| `c` | 讨论区的**评论定位**：`/#/discussions?c=<评论 id>` 滚到那一条并闪一下；那一条不在首屏时改为显示**上下文卡片**（被回复的那条 + 回复本身）。定位完即从地址栏抹掉，避免用户滚走后刷新又被拽回 |
 
 - 列表点击通过 query 打开详情，**保留当前路由和其他筛选**；全局物品入口不强跳 `/items`。关闭仅清理自身参数，父详情和筛选保持。
 - `openItemDetail(item, categoryTree, savedScrollTop=null)` 全新打开时清空历史；详情内 `pushItemDetail(item, bodyScrollTop)` / `popItemDetail()` 保存上一件物品与正文位置，新物品置顶，返回恢复。
