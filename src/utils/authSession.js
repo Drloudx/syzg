@@ -316,6 +316,22 @@ export async function changePasswordWithCode({ code, newPassword }) {
   await withSession((t) => changePassword(t, { code, verifier }))
 }
 
+/** 未登录找回密码：凭借邮箱验证码重置密码 */
+export async function resetPasswordWithCode({ email, code, newPassword }) {
+  const normEmail = String(email || '').trim().toLowerCase()
+  const verifier = await deriveFor(normEmail, newPassword)
+  const res = await fetch('/api/auth/reset-password', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ email: normEmail, code: String(code || '').trim(), verifier })
+  })
+  const data = await res.json().catch(() => null)
+  if (!res.ok || !data?.ok) {
+    throw new AuthApiError(data?.error || '密码重置失败，请稍后重试', res.status)
+  }
+  return true
+}
+
 export async function changeEmailWithCodes({ newEmail, oldCode, newCode }) {
   const data = await withSession((t) => changeEmail(t, { newEmail, oldCode, newCode }))
   if (data?.user) {

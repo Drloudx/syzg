@@ -306,7 +306,7 @@ async function onPosted(data) {
 watch(
   () => listRef.value?.commentsLength,
   (n, old) => {
-    if (!n || suppressAutoScroll) return
+    if (!n || suppressAutoScroll || locateId.value) return
     if (!hadData) {
       hadData = true
       scrollToLatest()
@@ -388,9 +388,14 @@ const pinned = ref(null)
  * @returns 是否在已加载的列表里找到（找到就不显示卡片）
  */
 async function locateOrPin(id) {
+  cancelScrollToLatest()
+  suppressAutoScroll = true
+  await nextTick()
   const found = listRef.value?.scrollToComment?.(id)
   if (found) {
     pinned.value = null
+    notFound.value = false
+    setTimeout(() => { suppressAutoScroll = false }, 1200)
     return true
   }
   try {
@@ -409,6 +414,8 @@ async function locateOrPin(id) {
   } catch {
     // 网络失败不该静默：给一句可理解的提示，而不是让用户以为点坏了
     notFound.value = true
+  } finally {
+    setTimeout(() => { suppressAutoScroll = false }, 1200)
   }
   return false
 }
@@ -439,12 +446,39 @@ async function locateFromQuery() {
   await locateOrPin(id)
 }
 
+watch(
+  () => route.query.c,
+  (c) => {
+    if (c) locateFromQuery()
+  }
+)
+
+function onLocateEvent(e) {
+  const id = Number.parseInt(e?.detail?.commentId, 10)
+  if (Number.isFinite(id) && id > 0) {
+    locateId.value = id
+    pinned.value = null
+    notFound.value = false
+    nextTick(async () => {
+      const ok = await locateOrPin(id)
+      if (ok) {
+        setTimeout(() => { locateId.value = 0 }, 1500)
+      }
+    })
+  }
+}
+
 // 列表首屏到达后再试一次：进来时 commentsLength 还是 0，那一次必然找不到
 watch(
   () => listRef.value?.commentsLength,
   (n) => {
     if (locateId.value && n > 0) {
-      nextTick(() => locateOrPin(locateId.value))
+      nextTick(async () => {
+        const ok = await locateOrPin(locateId.value)
+        if (ok) {
+          setTimeout(() => { locateId.value = 0 }, 1500)
+        }
+      })
     }
   }
 )
@@ -456,6 +490,7 @@ onMounted(() => {
   el?.addEventListener('wheel', onUserIntent, { passive: true })
   el?.addEventListener('touchstart', onUserIntent, { passive: true })
   el?.addEventListener('keydown', onUserIntent)
+  window.addEventListener('locate-comment', onLocateEvent)
   locateFromQuery()
 })
 
@@ -465,6 +500,7 @@ onBeforeUnmount(() => {
   el?.removeEventListener('wheel', onUserIntent)
   el?.removeEventListener('touchstart', onUserIntent)
   el?.removeEventListener('keydown', onUserIntent)
+  window.removeEventListener('locate-comment', onLocateEvent)
   cancelScrollToLatest()
 })
 </script>

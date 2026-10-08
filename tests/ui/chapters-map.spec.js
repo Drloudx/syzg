@@ -20,7 +20,18 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/data/notice.json*', route => route.fulfill({ json: { notices: [] } }))
 })
 
-/** 打开地区路线图并等节点装配完。 */
+/**
+ * 打开地区路线图并等节点装配完（**含节点图解码**）。
+ *
+ * 🔴 必须等图解码，否则读几何的断言会偶发失败：节点图是 `width:172px; height:auto`，
+ * 高度由图片固有比例决定，**未解码时高度塌成 0**，`getBoundingClientRect()` 退化成
+ * 一条零高度线（实测 artTop=274 / artH=0），而 label 按 `bottom` 定位在 243 →
+ * `labelTop >= artTop` 为假。单跑时图早就解码完了，全量并发时才暴露，表现为
+ * 「单跑 6/6 绿、全量偶红」。
+ *
+ * 等 `complete` 而不是等 `naturalWidth > 0`：图**坏了**也要尽快落地，
+ * 交给第一个用例的坏图断言报出真实原因，而不是在这里挂到超时。
+ */
 async function openRegionMap(page) {
   const errors = []
   const failed = []
@@ -29,6 +40,11 @@ async function openRegionMap(page) {
   await page.goto(`/#/chapters?chapter=${CHAPTER}`)
   await expect(page.locator('.region-map__viewport')).toBeVisible()
   await expect(page.locator('.region-map__node.is-stage').first()).toBeVisible()
+  await page.waitForFunction(() => {
+    const imgs = Array.from(document.querySelectorAll('.region-map__node-art'))
+    // `length > 0` 防止节点尚未渲染时 `every` 空数组恒真而空转通过
+    return imgs.length > 0 && imgs.every(img => img.complete)
+  })
   return { errors, failed }
 }
 

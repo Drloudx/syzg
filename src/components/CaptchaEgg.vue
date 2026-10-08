@@ -1,11 +1,22 @@
 <template>
   <div v-if="visible" class="captcha">
-    <div class="captcha-head" :class="{ 'is-embedded': embedded }">
-      <!-- 放进弹窗时标题由弹窗给（`CaptchaDialog`），这里再来一个就重复了 -->
-      <span v-if="!embedded" class="captcha-title">人机验证</span>
-      <span class="captcha-progress">{{ picked.length }} / {{ expected }}</span>
+    <div v-if="!embedded" class="captcha-head">
+      <span class="captcha-title">安全验证</span>
     </div>
-    <p class="captcha-tip">请依次点击下面相同的 {{ expected }} 个蛋</p>
+
+    <div class="captcha-prompt-row">
+      <span class="captcha-tip">请在图中依次点击：</span>
+      <div v-if="promptImages.length" class="captcha-prompt-targets">
+        <span
+          v-for="(src, idx) in promptImages"
+          :key="idx"
+          class="captcha-target-card"
+        >
+          <img :src="src" alt="" class="captcha-target-img" />
+          <span class="captcha-target-num">{{ idx + 1 }}</span>
+        </span>
+      </div>
+    </div>
 
     <!--
       ⚠️ 占位态**不能**复用 `.captcha-stage` 这个类：
@@ -63,7 +74,7 @@
  * （见 `src/utils/authCaptcha.js` 的说明），`<img data:>` 里加载不出来。
  */
 
-import { nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 
 import { CAPTCHA_PROMPT_COUNT } from '../config/auth.js'
 import { fetchCaptcha } from '../utils/authApi.js'
@@ -74,9 +85,7 @@ const props = defineProps({
   /**
    * 放进弹窗（`CaptchaDialog`）里渲染。
    *
-   * 只改一件事：**不再自己画标题**（弹窗标题已经是「人机验证」）。
-   * 进度 `0 / 3` 与提示文字都保留 —— 那是题目本身的一部分，
-   * 去掉用户就不知道要点几个、点了几个。
+   * 只改一件事：**不再自己画标题**（弹窗标题已经是「安全验证」）。
    */
   embedded: { type: Boolean, default: false }
 })
@@ -91,6 +100,15 @@ const errorText = ref('')
 const stageEl = ref(null)
 
 const expected = CAPTCHA_PROMPT_COUNT
+
+/** 从 SVG 中提取前 3 个提示蛋的 base64 图片，渲染到顶部提示栏 */
+const promptImages = computed(() => {
+  if (!svg.value) return []
+  const matches = [...svg.value.matchAll(/<image href="([^"]+)"/g)]
+    .map((m) => m[1])
+    .filter((h) => h.startsWith('data:'))
+  return matches.slice(0, expected)
+})
 
 /** 出题（也用于「换一批」与父组件在失败后调用的 reset） */
 async function load() {
@@ -195,13 +213,8 @@ defineExpose({ load, reset, unpick })
 .captcha-head {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 4px;
-}
-
-/* 弹窗模式：标题由弹窗给，这一行只剩进度，靠右对齐 */
-.captcha-head.is-embedded {
-  justify-content: flex-end;
+  justify-content: flex-start;
+  margin-bottom: 8px;
 }
 
 .captcha-title {
@@ -209,16 +222,64 @@ defineExpose({ load, reset, unpick })
   font-weight: 700;
 }
 
-.captcha-progress {
-  font-family: ui-monospace, monospace;
-  font-size: 14px;
-  color: #f0c987;
+.captcha-prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  min-height: 36px;
 }
 
 .captcha-tip {
-  margin: 0 0 8px;
+  margin: 0;
   font-size: 13px;
-  opacity: 0.8;
+  color: var(--text-color, #dfcfb4);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.captcha-prompt-targets {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.captcha-target-card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(240, 201, 135, 0.45);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  padding: 2px;
+}
+
+.captcha-target-img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.captcha-target-num {
+  position: absolute;
+  top: -4px;
+  right: -5px;
+  min-width: 14px;
+  height: 14px;
+  line-height: 14px;
+  border-radius: 7px;
+  padding: 0 3px;
+  background: #f0c987;
+  color: #2a2118;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .captcha-stage {

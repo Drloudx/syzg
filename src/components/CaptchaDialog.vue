@@ -9,7 +9,7 @@
   -->
   <UiModal
     :visible="visible"
-    title="人机验证"
+    title="安全验证"
     max-width="440px"
     :z-index="13000"
     teleport-to="body"
@@ -21,9 +21,6 @@
       :visible="visible"
       @complete="(payload) => emit('complete', payload)"
     />
-    <p class="captcha-dialog-hint">
-      防机器人用的，点对了才会给你发验证码。
-    </p>
   </UiModal>
 </template>
 
@@ -69,10 +66,4 @@ defineExpose({
 </script>
 
 <style scoped>
-.captcha-dialog-hint {
-  margin: 10px 0 0;
-  font-size: 12px;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
 </style>

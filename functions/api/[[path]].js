@@ -2106,6 +2106,63 @@ async function authChangePassword(env, request, ts) {
 }
 
 /**
+ * `POST /api/auth/reset-password` —— 未登录用户找回密码（用邮箱验证码重置密码）。
+ *
+ * 流程：
+ *   1. 客户端提交 email, code, verifier, [salt]；
+ *   2. 验证 email 格式及 verifier 格式；
+ *   3. 验证邮箱验证码（purpose = 'password'）；
+ *   4. 查找对应账号，若不存在或被禁用返回对应错误；
+ *   5. 更新密码哈希（及新盐，若有），重设 pw_changed_at；
+ *   6. 吊销该用户所有活跃登录态（踢下线旧会话）。
+ */
+async function authResetPassword(env, request, ts) {
+  const body = await request.json().catch(() => null)
+  if (!body || typeof body !== 'object') return bad(AERR.badRequest, 400)
+
+  const email = normalizeEmail(body.email)
+  if (!isPlausibleEmail(email)) return bad(AERR.emailFormat, 400)
+
+  const verifier = String(body.verifier || '')
+  if (!/^[a-f0-9]{64}$/.test(verifier)) return bad(AERR.badRequest, 400)
+
+  const pwSalt = body.salt ? String(body.salt) : ''
+  if (pwSalt && !/^[a-f0-9]{64}$/.test(pwSalt)) return bad(AERR.badRequest, 400)
+
+  const emailHash = await emailLookupHash(email, env.SALT_SECRET)
+  // 必须先验码，防枚举
+  const codeOk = await consumeCode(env, emailHash, 'password', body.code, ts)
+  if (!codeOk.ok) return bad(codeOk.error, 400)
+
+  const user = await env.DB.prepare(`SELECT id, status FROM users WHERE email_hash = ?1`)
+    .bind(emailHash)
+    .first()
+  if (!user) return bad('该邮箱未注册账号', 404)
+  if (user.status !== 1) return bad(AERR.accountDisabled, 403)
+
+  const verifierHash = await pepperHash(verifier, env.AUTH_PEPPER)
+  if (pwSalt) {
+    await env.DB.prepare(
+      `UPDATE users SET verifier_hash = ?1, pw_salt = ?2, pw_algo = 'client-pbkdf2-sha256', pw_iters = ?3, pw_changed_at = ?4
+       WHERE id = ?5`
+    )
+      .bind(verifierHash, pwSalt, PBKDF2_ITERS, ts, user.id)
+      .run()
+  } else {
+    await env.DB.prepare(
+      `UPDATE users SET verifier_hash = ?1, pw_algo = 'client-pbkdf2-sha256', pw_iters = ?2, pw_changed_at = ?3
+       WHERE id = ?4`
+    )
+      .bind(verifierHash, PBKDF2_ITERS, ts, user.id)
+      .run()
+  }
+
+  // 重置密码后作废所有设备的既有会话
+  await revokeSessions(env, user.id, '')
+  return json({ ok: true })
+}
+
+/**
  * `POST /api/auth/email` —— 换邮箱，**旧 + 新双验证**（已定决策）。
  *
  * 前端分两步收集两个码，**最终一次提交**，服务端一次把两个都验掉 ——
@@ -2335,6 +2392,7 @@ async function handleAuthRoutes(path, context) {
     return bad(AERR.fallback, 405)
   }
   if (path === '/api/auth/password' && post) return authChangePassword(env, request, ts)
+  if (path === '/api/auth/reset-password' && post) return authResetPassword(env, request, ts)
   if (path === '/api/auth/email' && post) return authChangeEmail(env, request, ts)
   if (path === '/api/auth/comments' && get) return authMyComments(env, request, url, ts)
   if (path === '/api/auth/replies' && get) return authMyReplies(env, request, url, ts)

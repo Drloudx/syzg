@@ -2,7 +2,7 @@
   <UiModal
     :visible="modelValue"
     :title="modalTitle"
-    max-width="560px"
+    :max-width="modalMaxWidth"
     max-height="min(93vh, 840px)"
     teleport-to="body"
     @update:visible="close"
@@ -29,7 +29,7 @@
       </div>
 
       <!-- ---------- 登录 ---------- -->
-      <form v-if="view === 'login'" class="acct-form" @submit.prevent="doLogin">
+      <form v-if="view === 'login'" class="acct-form" novalidate @submit.prevent="doLogin">
         <label class="acct-field">
           <span class="acct-label">邮箱</span>
           <input
@@ -42,8 +42,11 @@
             @blur="onLoginEmailBlur"
           />
         </label>
-        <label class="acct-field">
-          <span class="acct-label">密码</span>
+        <div class="acct-field">
+          <div class="acct-field-head">
+            <span class="acct-label">密码</span>
+            <button type="button" class="acct-forgot-link" @click="openForgotPassword">忘记密码？</button>
+          </div>
           <input
             v-model="loginForm.password"
             class="acct-input"
@@ -51,7 +54,7 @@
             autocomplete="current-password"
             placeholder="密码"
           />
-        </label>
+        </div>
 
         <p v-if="loginForm.error" class="acct-error">{{ loginForm.error }}</p>
 
@@ -60,13 +63,88 @@
         </UiButton>
       </form>
 
+      <!-- ---------- 找回密码（未登录） ---------- -->
+      <form v-else-if="view === 'forgot'" class="acct-form" novalidate @submit.prevent="doResetPassword">
+        <p class="acct-hint">
+          输入注册时的邮箱，我们将发送验证码用于重置密码。
+        </p>
+
+        <label class="acct-field">
+          <span class="acct-label">邮箱</span>
+          <input
+            v-model="forgotForm.email"
+            class="acct-input"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            placeholder="注册时用的邮箱"
+          />
+        </label>
+
+        <div class="acct-field">
+          <span class="acct-label">邮箱验证码</span>
+          <div class="acct-code-row">
+            <input
+              v-model="forgotForm.code"
+              class="acct-input acct-input--code"
+              type="text"
+              inputmode="numeric"
+              :maxlength="CODE_DIGITS"
+              autocomplete="one-time-code"
+              :placeholder="`${CODE_DIGITS} 位数字`"
+            />
+            <UiButton variant="secondary" :disabled="!forgotCode.canSend.value || forgotForm.busy" @click="startForgotCode">
+              {{ forgotCode.buttonText.value }}
+            </UiButton>
+          </div>
+          <p v-if="forgotCode.error.value" class="acct-error acct-error--tight">{{ forgotCode.error.value }}</p>
+          <p v-else-if="forgotCode.sent.value" class="acct-hint">验证码已发出，收不到的话看一眼垃圾邮件。</p>
+        </div>
+
+        <label class="acct-field">
+          <span class="acct-label">新密码</span>
+          <input
+            v-model="forgotForm.password"
+            class="acct-input"
+            type="password"
+            autocomplete="new-password"
+            :placeholder="`至少 ${PASSWORD_MIN} 位`"
+          />
+          <span v-if="forgotForm.password" class="acct-strength" :data-level="forgotStrengthLevel">
+            <i></i><i></i><i></i>
+            <em>{{ forgotStrengthText }}</em>
+          </span>
+        </label>
+
+        <label class="acct-field">
+          <span class="acct-label">确认新密码</span>
+          <input
+            v-model="forgotForm.confirm"
+            class="acct-input"
+            type="password"
+            autocomplete="new-password"
+            placeholder="再输一遍"
+          />
+        </label>
+
+        <p v-if="forgotForm.error" class="acct-error">{{ forgotForm.error }}</p>
+        <p v-else-if="forgotForm.done" class="acct-ok">密码重置成功，正在返回登录…</p>
+
+        <div class="acct-confirm-row">
+          <UiButton variant="ghost" type="button" @click="go('login')">返回登录</UiButton>
+          <UiButton type="submit" :disabled="forgotForm.busy">
+            {{ forgotForm.busy ? '重置中…' : '重置密码' }}
+          </UiButton>
+        </div>
+      </form>
+
       <!-- ---------- 注册 ---------- -->
       <!--
         字段顺序是用户明确要求的：昵称 → 头像 → 密码 → 确认密码 → 邮箱 → 邮箱验证码。
         把邮箱放在靠后，是因为"发验证码"会插入一块人机验证，
         若它在中间会把后面的字段挤下去、视线来回跳。
       -->
-      <form v-else class="acct-form" @submit.prevent="doRegister">
+      <form v-else class="acct-form" novalidate @submit.prevent="doRegister">
         <label class="acct-field">
           <span class="acct-label">昵称</span>
           <input
@@ -78,6 +156,7 @@
             placeholder="评论时会显示这个名字"
           />
           <span class="acct-hint">{{ regForm.nick.trim().length }}/{{ NICK_MAX }} · 注册后也能改</span>
+          <p v-if="regErrors.nick" class="acct-error acct-error--tight">{{ regErrors.nick }}</p>
         </label>
 
         <!--
@@ -86,13 +165,13 @@
           注册页变成"先看一堆头像"，用户反馈太占地方。
         -->
         <div class="acct-field">
-          <span class="acct-label">头像<span class="acct-optional">（可选）</span></span>
+          <span class="acct-label">头像</span>
           <button type="button" class="acct-avatar-row" @click="avatarPickerOpen = true">
             <img v-if="selectedPath" :src="getImageUrl(selectedPath)" alt="" class="acct-avatar-thumb" />
             <span v-else class="acct-avatar-thumb acct-avatar-thumb--empty" aria-hidden="true">
               {{ regForm.nick.trim().slice(0, 1) || '?' }}
             </span>
-            <span class="acct-avatar-row-title">{{ selectedName || '未选择头像' }}</span>
+            <span class="acct-avatar-row-title">{{ selectedName || '希尔（女主）' }}</span>
             <span class="acct-row-arrow">›</span>
           </button>
         </div>
@@ -110,6 +189,7 @@
             <i></i><i></i><i></i>
             <em>{{ strengthText }}</em>
           </span>
+          <p v-if="regErrors.password" class="acct-error acct-error--tight">{{ regErrors.password }}</p>
         </label>
 
         <label class="acct-field">
@@ -121,9 +201,9 @@
             autocomplete="new-password"
             placeholder="再输一遍"
           />
-          <span v-if="regForm.confirm && regForm.confirm !== regForm.password" class="acct-hint acct-hint--warn">
-            两次输入的密码不一样
-          </span>
+          <p v-if="regErrors.confirm || (regForm.confirm && regForm.confirm !== regForm.password)" class="acct-error acct-error--tight">
+            {{ regErrors.confirm || '两次输入的密码不一样' }}
+          </p>
         </label>
 
         <label class="acct-field">
@@ -136,6 +216,7 @@
             autocomplete="email"
             placeholder="用来收验证码，也是以后的登录账号"
           />
+          <p v-if="regErrors.email" class="acct-error acct-error--tight">{{ regErrors.email }}</p>
         </label>
 
         <!-- 邮箱验证码；人机验证在弹窗里（见文件末尾的 CaptchaDialog） -->
@@ -160,7 +241,7 @@
             </UiButton>
           </div>
 
-          <p v-if="regCode.error.value" class="acct-error acct-error--tight">{{ regCode.error.value }}</p>
+          <p v-if="regErrors.code || regCode.error.value" class="acct-error acct-error--tight">{{ regErrors.code || regCode.error.value }}</p>
           <p v-else-if="regCode.sent.value" class="acct-hint">
             验证码已发出。收不到的话看一眼垃圾邮件。
           </p>
@@ -174,7 +255,7 @@
 
         <label class="acct-agree">
           <input v-model="regForm.agreed" type="checkbox" />
-          <span>我已阅读并同意<a href="#/privacy" target="_blank" rel="noopener">隐私说明</a></span>
+          <span>我已阅读并同意<a href="#/privacy" target="_blank" rel="noopener">隐私协议</a></span>
         </label>
       </form>
     </template>
@@ -189,7 +270,11 @@
 
           <div class="acct-id-text">
             <!-- 用户要求：编号显示在名称**上面** -->
-            <span class="acct-no">编号 {{ publicNo }}</span>
+            <div class="acct-id-meta">
+              <span class="acct-no">编号 {{ publicNo }}</span>
+              <span v-if="currentUser?.role === 2" class="acct-role-tag acct-role-tag--super">超级管理员</span>
+              <span v-else-if="currentUser?.role === 1" class="acct-role-tag acct-role-tag--admin">管理员</span>
+            </div>
             <span class="acct-nick">{{ currentUser?.nick }}</span>
             <span class="acct-mail">{{ currentUser?.email }}</span>
           </div>
@@ -221,13 +306,13 @@
           </button>
         </div>
 
-        <p class="acct-hint acct-hint--quiet">
+        <p class="acct-hint acct-hint--quiet acct-hint--center">
           注册于 {{ formatDate(currentUser?.createdAt) }}<template v-if="currentUser?.lastLoginAt"> · 上次登录 {{ formatDate(currentUser.lastLoginAt) }}</template>
         </p>
 
         <div class="acct-actions">
           <UiButton variant="secondary" block @click="doSignOut">退出登录</UiButton>
-          <UiButton variant="danger" block @click="askDelete">注销账号</UiButton>
+          <button type="button" class="acct-btn-delete" @click="askDelete">注销账号</button>
         </div>
 
         <div v-if="pendingDelete" class="acct-confirm">
@@ -258,7 +343,9 @@
           「我的评论」，发现个人中心那一列 `.acct-row` 已经不在页面上了。）
           放在**顶部**而不是底部：列表可能很长，底部要滚到底才够得着。
         -->
-        <button type="button" class="acct-back" @click="go('center')">‹ 返回个人中心</button>
+        <div class="acct-back-bar">
+          <button type="button" class="acct-back" @click="go('center')">‹ 返回个人中心</button>
+        </div>
 
         <p v-if="replyState === 'loading' && !replyList.length" class="acct-hint">正在加载…</p>
 
@@ -310,7 +397,9 @@
       -->
       <div v-else-if="view === 'comments'" class="acct-mine">
         <!-- 同「谁回复了我」：没有它就回不到个人中心（见那边的说明） -->
-        <button type="button" class="acct-back" @click="go('center')">‹ 返回个人中心</button>
+        <div class="acct-back-bar">
+          <button type="button" class="acct-back" @click="go('center')">‹ 返回个人中心</button>
+        </div>
 
         <p v-if="mineState === 'loading' && !mineList.length" class="acct-hint">正在加载…</p>
 
@@ -344,14 +433,35 @@
                 >
                   去看看
                 </button>
-                <button
-                  type="button"
-                  class="acct-mine-del"
-                  :disabled="mineDeletingId === c.id"
-                  @click="removeMine(c)"
-                >
-                  {{ mineDeletingId === c.id ? '删除中…' : '删除' }}
-                </button>
+                <div class="acct-del-box">
+                  <template v-if="deletingConfirmId === c.id">
+                    <span class="acct-del-prompt">确定删除？</span>
+                    <button
+                      type="button"
+                      class="acct-del-btn is-yes"
+                      :disabled="mineDeletingId === c.id"
+                      @click="removeMine(c)"
+                    >
+                      {{ mineDeletingId === c.id ? '…' : '确认' }}
+                    </button>
+                    <button
+                      type="button"
+                      class="acct-del-btn is-no"
+                      @click="deletingConfirmId = null"
+                    >
+                      取消
+                    </button>
+                  </template>
+                  <button
+                    v-else
+                    type="button"
+                    class="acct-mine-del"
+                    :disabled="mineDeletingId === c.id"
+                    @click="deletingConfirmId = c.id"
+                  >
+                    删除
+                  </button>
+                </div>
               </div>
             </li>
           </ul>
@@ -371,7 +481,7 @@
       </div>
 
       <!-- ---------- 修改昵称与头像 ---------- -->
-      <form v-else-if="view === 'profile'" class="acct-form" @submit.prevent="doUpdateProfile">
+      <form v-else-if="view === 'profile'" class="acct-form" novalidate @submit.prevent="doUpdateProfile">
         <label class="acct-field">
           <span class="acct-label">昵称</span>
           <input v-model="profileForm.nick" class="acct-input" type="text" :maxlength="NICK_MAX" />
@@ -384,7 +494,7 @@
             <span v-else class="acct-avatar-thumb acct-avatar-thumb--empty" aria-hidden="true">
               {{ profileForm.nick.trim().slice(0, 1) || '?' }}
             </span>
-            <span class="acct-avatar-row-title">{{ selectedName || '未选择头像' }}</span>
+            <span class="acct-avatar-row-title">{{ selectedName || '希尔（女主）' }}</span>
             <span class="acct-row-arrow">›</span>
           </button>
         </div>
@@ -399,7 +509,7 @@
       </form>
 
       <!-- ---------- 修改密码（只用邮箱验证码授权，不校验旧密码） ---------- -->
-      <form v-else-if="view === 'password'" class="acct-form" @submit.prevent="doChangePassword">
+      <form v-else-if="view === 'password'" class="acct-form" novalidate @submit.prevent="doChangePassword">
         <p class="acct-hint">
           改密码需要邮箱验证码。我们会发到你注册时用的
           <strong>{{ currentUser?.email }}</strong>。
@@ -453,7 +563,7 @@
       </form>
 
       <!-- ---------- 换绑邮箱（旧 + 新双验证） ---------- -->
-      <form v-else-if="view === 'email'" class="acct-form" @submit.prevent="doChangeEmail">
+      <form v-else-if="view === 'email'" class="acct-form" novalidate @submit.prevent="doChangeEmail">
         <label class="acct-field">
           <span class="acct-label">新邮箱</span>
           <input
@@ -558,6 +668,12 @@
       @update:visible="(v) => !v && oldMailCode.cancel()"
       @complete="oldMailCode.submit"
     />
+    <CaptchaDialog
+      :ref="(el) => (forgotCode.captchaRef.value = el)"
+      :visible="forgotCode.captchaVisible.value"
+      @update:visible="(v) => !v && forgotCode.cancel()"
+      @complete="forgotCode.submit"
+    />
 
     <!-- 头像选择：注册与「修改资料」共用，写回当前视图对应的那份表单 -->
     <AvatarPickerDialog
@@ -615,11 +731,19 @@ import {
   prefetchPasswordSalt,
   publicNo,
   registerAccount,
+  resetPasswordWithCode,
   sessionState,
   signOut,
   updateProfile
 } from '../utils/authSession.js'
 import { deleteOwnComment } from '../utils/commentApi.js'
+import {
+  commentDeletedAt,
+  commentDeletedId,
+  commentPostedAt,
+  lastPostedComment,
+  notifyCommentDeleted
+} from '../utils/commentEvents.js'
 import EmoticonText from './EmoticonText.vue'
 import { useCodeSender, validateEmailInput } from '../utils/useCodeSender.js'
 
@@ -629,17 +753,25 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-/** 'login' | 'register' | 'center' | 'profile' | 'password' | 'email' | 'comments' | 'replies' */
+/** 'login' | 'register' | 'forgot' | 'center' | 'profile' | 'password' | 'email' | 'comments' | 'replies' */
 const view = ref('login')
 
 const modalTitle = computed(() => {
-  if (!isLoggedIn.value) return '账号'
+  if (!isLoggedIn.value) {
+    if (view.value === 'forgot') return '找回密码'
+    return '账号'
+  }
   if (view.value === 'password') return '修改密码'
   if (view.value === 'email') return '换绑邮箱'
   if (view.value === 'profile') return '修改资料'
   if (view.value === 'comments') return '我的评论'
   if (view.value === 'replies') return '谁回复了我'
   return '个人中心'
+})
+
+const modalMaxWidth = computed(() => {
+  if (['comments', 'replies'].includes(view.value)) return '560px'
+  return '420px'
 })
 
 // ---------- 表单状态 ----------
@@ -663,30 +795,99 @@ const regForm = reactive({
   busy: false,
   error: ''
 })
-const profileForm = reactive({ nick: '', avatar: '', busy: false, error: '' })
+
+const regErrors = reactive({
+  nick: '',
+  password: '',
+  confirm: '',
+  email: '',
+  code: ''
+})
+
+function clearRegErrors() {
+  regErrors.nick = ''
+  regErrors.password = ''
+  regErrors.confirm = ''
+  regErrors.email = ''
+  regErrors.code = ''
+}
+
+watch(() => regForm.nick, () => { regErrors.nick = '' })
+watch(() => regForm.password, () => { regErrors.password = '' })
+watch(() => regForm.confirm, () => { regErrors.confirm = '' })
+watch(() => regForm.email, () => { regErrors.email = '' })
+watch(() => regForm.code, () => { regErrors.code = '' })
+
+const profileForm = reactive({ nick: '', avatar: DEFAULT_AVATAR, busy: false, error: '' })
 const pwdForm = reactive({ code: '', password: '', confirm: '', busy: false, error: '', done: false })
 const mailForm = reactive({ newEmail: '', newCode: '', oldCode: '', busy: false, error: '', done: false })
+const forgotForm = reactive({
+  email: '',
+  code: '',
+  password: '',
+  confirm: '',
+  busy: false,
+  error: '',
+  done: false
+})
 
 const pendingDelete = ref(false)
 const deleting = ref(false)
 
-// ---------- 发码（4 处共用同一套逻辑） ----------
+// ---------- 发码（共用同一套逻辑） ----------
 
 const regCode = useCodeSender({ purpose: 'register', getEmail: () => regForm.email })
 const pwdCode = useCodeSender({ purpose: 'password', getEmail: () => currentUser.value?.email || '' })
 const newMailCode = useCodeSender({ purpose: 'email_change', getEmail: () => mailForm.newEmail })
 const oldMailCode = useCodeSender({ purpose: 'email_change', getEmail: () => currentUser.value?.email || '' })
+const forgotCode = useCodeSender({ purpose: 'password', getEmail: () => forgotForm.email })
+
+const forgotStrengthLevel = computed(() => passwordStrengthLevel(forgotForm.password))
+const forgotStrengthText = computed(() => ['太弱', '偏弱', '不错', '很强'][forgotStrengthLevel.value] || '')
+
+function openForgotPassword() {
+  if (loginForm.email) {
+    forgotForm.email = loginForm.email.trim()
+  }
+  forgotForm.code = ''
+  forgotForm.password = ''
+  forgotForm.confirm = ''
+  forgotForm.error = ''
+  forgotForm.done = false
+  go('forgot')
+}
+
+function startForgotCode() {
+  forgotForm.error = ''
+  const emailErr = validateEmailInput(forgotForm.email)
+  if (emailErr) {
+    forgotForm.error = emailErr
+    return
+  }
+  forgotCode.request()
+}
 
 /** 注册的"发送验证码"：先把邮箱与其它必填项问题挡在前面，再展开人机验证 */
 function startRegisterCode() {
+  clearRegErrors()
   regForm.error = ''
-  const code = checkPasswordStrength(regForm.password, { email: regForm.email, nick: regForm.nick.trim() })
+  const emailErr = validateEmailInput(regForm.email)
+  if (emailErr) {
+    regErrors.email = emailErr
+    return
+  }
+  const nick = regForm.nick.trim()
+  if (nick.length < NICK_MIN) {
+    regErrors.nick = `昵称至少 ${NICK_MIN} 个字符`
+    return
+  }
+  const code = checkPasswordStrength(regForm.password, { email: regForm.email, nick })
   if (!code.ok) {
-    regForm.error = code.reason
+    regErrors.password = code.reason
     return
   }
   if (regForm.password !== regForm.confirm) {
-    regForm.error = '两次输入的密码不一样'
+    regErrors.confirm = '两次输入的密码不一样'
     return
   }
   regCode.request()
@@ -723,9 +924,9 @@ const activeNick = computed(() =>
   isLoggedIn.value && view.value !== 'register' ? profileForm.nick : regForm.nick
 )
 
-const selectedPath = computed(() => avatarPath(activeAvatar.value))
-const selectedName = computed(() => avatarEntry(activeAvatar.value)?.name || '')
-const myAvatarPath = computed(() => avatarPath(currentUser.value?.avatar || ''))
+const selectedPath = computed(() => avatarPath(activeAvatar.value || DEFAULT_AVATAR))
+const selectedName = computed(() => avatarEntry(activeAvatar.value || DEFAULT_AVATAR)?.name || '希尔（女主）')
+const myAvatarPath = computed(() => avatarPath(currentUser.value?.avatar || DEFAULT_AVATAR))
 
 const strengthLevel = computed(() => passwordStrengthLevel(regForm.password))
 const strengthText = computed(() => ['太弱', '偏弱', '不错', '很强'][strengthLevel.value] || '')
@@ -734,8 +935,14 @@ const strengthText = computed(() => ['太弱', '偏弱', '不错', '很强'][str
 
 function go(next) {
   view.value = next
+  deletingConfirmId.value = null
+  if (next === 'profile') {
+    profileForm.nick = currentUser.value?.nick || ''
+    profileForm.avatar = currentUser.value?.avatar || DEFAULT_AVATAR
+  }
   loginForm.error = ''
   regForm.error = ''
+  clearRegErrors()
   pwdForm.error = ''
   pwdForm.done = false
   mailForm.error = ''
@@ -760,6 +967,7 @@ const mineState = ref('idle') // 'idle' | 'loading' | 'ready'
 const mineError = ref('')
 const mineCursor = ref(null)
 const mineDeletingId = ref(null)
+const deletingConfirmId = ref(null)
 
 /** 页面归属键 → 可跳转的路由。映射不到就返回空串（界面据此不显示「去看看」） */
 const PAGE_ROUTES = {
@@ -793,10 +1001,34 @@ function pageNameOf(pageKey) {
 
 async function openMyComments() {
   go('comments')
-  // 已经拉过就不重复请求（回来看到的是同一份，用户改不了别人的评论）
-  if (mineList.value.length || mineState.value === 'loading') return
-  await loadMine()
+  // 每次进入「我的评论」都重置游标并重新拉取第一页，确保刚发/刚删的最新状态实时呈现
+  mineCursor.value = null
+  await loadMine({ append: false })
 }
+
+// 广播联动：在讨论区或其他页面发了新消息时，即使不刷新页面，「我的评论」列表也立刻在头部增量补齐
+watch(commentPostedAt, () => {
+  const c = lastPostedComment.value
+  if (!c || !c.id || !isLoggedIn.value) return
+  if (mineList.value.some((x) => x.id === c.id)) return
+  const item = {
+    id: c.id,
+    pageKey: c.pageKey,
+    pageLabel: c.pageLabel,
+    body: c.body,
+    createdAt: c.createdAt || Math.floor(Date.now() / 1000),
+    status: c.status !== undefined ? c.status : 1,
+    parentId: c.parentId || null
+  }
+  mineList.value = [item, ...mineList.value]
+})
+
+// 广播联动：在讨论区或其他页面删了某条评论时，「我的评论」列表同步移除
+watch(commentDeletedAt, () => {
+  if (commentDeletedId.value) {
+    mineList.value = mineList.value.filter((x) => x.id !== commentDeletedId.value)
+  }
+})
 
 async function loadMine({ append = false } = {}) {
   if (mineState.value === 'loading') return
@@ -822,16 +1054,19 @@ async function loadMine({ append = false } = {}) {
  * 用户可能已经「加载更多」翻了好几页，重拉会把它们丢掉。
  */
 async function removeMine(c) {
+  deletingConfirmId.value = null
   if (mineDeletingId.value) return
   mineDeletingId.value = c.id
   mineError.value = ''
   try {
     await deleteOwnComment(c.id)
     mineList.value = mineList.value.filter((x) => x.id !== c.id)
+    notifyCommentDeleted(c.id)
   } catch (err) {
     // 404 等价于"已经不在了"：目标状态已达成
     if (err?.status === 404) {
       mineList.value = mineList.value.filter((x) => x.id !== c.id)
+      notifyCommentDeleted(c.id)
     } else {
       mineError.value = err?.message || '删除失败，请稍后重试'
     }
@@ -856,6 +1091,9 @@ function gotoPage(pageKey, commentId = null) {
   emit('update:modelValue', false)
   const anchor = route === '/discussions' && commentId ? `?c=${encodeURIComponent(commentId)}` : ''
   window.location.hash = '#' + route + anchor
+  if (commentId) {
+    window.dispatchEvent(new CustomEvent('locate-comment', { detail: { commentId: Number(commentId) } }))
+  }
 }
 
 // ---------- 谁回复了我 ----------
@@ -945,13 +1183,16 @@ function resetAll() {
   })
   Object.assign(pwdForm, { code: '', password: '', confirm: '', busy: false, error: '', done: false })
   Object.assign(mailForm, { newEmail: '', newCode: '', oldCode: '', busy: false, error: '', done: false })
-  Object.assign(profileForm, { nick: '', avatar: '', busy: false, error: '' })
+  Object.assign(profileForm, { nick: '', avatar: DEFAULT_AVATAR, busy: false, error: '' })
+  Object.assign(forgotForm, { email: '', code: '', password: '', confirm: '', busy: false, error: '', done: false })
   pendingDelete.value = false
   deleting.value = false
+  deletingConfirmId.value = null
   regCode.reset()
   pwdCode.reset()
   newMailCode.reset()
   oldMailCode.reset()
+  forgotCode.reset()
   // 退出登录/注销后，上一账号的评论与回复列表不能留给下一个账号看到
   mineList.value = []
   mineCursor.value = null
@@ -971,6 +1212,8 @@ watch(
     if (!open) return
     if (isLoggedIn.value) {
       view.value = 'center'
+      profileForm.nick = currentUser.value?.nick || ''
+      profileForm.avatar = currentUser.value?.avatar || DEFAULT_AVATAR
     } else if (view.value !== 'register') {
       view.value = 'login'
     }
@@ -991,7 +1234,7 @@ watch(isLoggedIn, (logged) => {
     view.value = 'center'
     // 进入个人中心时把资料表单初始化成当前值，省得再点一次"修改资料"才填
     profileForm.nick = currentUser.value?.nick || ''
-    profileForm.avatar = currentUser.value?.avatar || ''
+    profileForm.avatar = currentUser.value?.avatar || DEFAULT_AVATAR
     // 刚登录也要把未读数取回来（否则红点要等下次开弹窗才出现）
     loadUnreadReplies().catch(() => {})
   } else {
@@ -1044,33 +1287,77 @@ async function doLogin() {
   }
 }
 
+async function doResetPassword() {
+  forgotForm.error = ''
+  const emailErr = validateEmailInput(forgotForm.email)
+  if (emailErr) {
+    forgotForm.error = emailErr
+    return
+  }
+  if (!forgotForm.code) {
+    forgotForm.error = '请填写邮箱验证码'
+    return
+  }
+  const pwd = checkPasswordStrength(forgotForm.password, { email: forgotForm.email })
+  if (!pwd.ok) {
+    forgotForm.error = pwd.reason
+    return
+  }
+  if (forgotForm.password !== forgotForm.confirm) {
+    forgotForm.error = '两次输入的密码不一样'
+    return
+  }
+
+  forgotForm.busy = true
+  try {
+    await resetPasswordWithCode({
+      email: forgotForm.email.trim(),
+      code: forgotForm.code.trim(),
+      newPassword: forgotForm.password
+    })
+    forgotForm.done = true
+    setTimeout(() => {
+      loginForm.email = forgotForm.email.trim()
+      loginForm.password = ''
+      loginForm.error = ''
+      go('login')
+      forgotForm.done = false
+    }, 1200)
+  } catch (err) {
+    forgotForm.error = err?.message || '重置失败，请稍后重试'
+  } finally {
+    forgotForm.busy = false
+  }
+}
+
 async function doRegister() {
+  clearRegErrors()
   regForm.error = ''
   const nick = regForm.nick.trim()
   if (nick.length < NICK_MIN) {
-    regForm.error = `昵称至少 ${NICK_MIN} 个字符`
+    regErrors.nick = `昵称至少 ${NICK_MIN} 个字符`
     return
   }
   const pwd = checkPasswordStrength(regForm.password, { email: regForm.email, nick })
   if (!pwd.ok) {
-    regForm.error = pwd.reason
+    regErrors.password = pwd.reason
     return
   }
   if (regForm.password !== regForm.confirm) {
-    regForm.error = '两次输入的密码不一样'
+    regErrors.confirm = '两次输入的密码不一样'
     return
   }
   const emailErr = validateEmailInput(regForm.email)
   if (emailErr) {
-    regForm.error = emailErr
+    regErrors.email = emailErr
     return
   }
   if (!new RegExp(`^\\d{${CODE_DIGITS}}$`).test(regForm.code.trim())) {
-    regForm.error = `请填写 ${CODE_DIGITS} 位邮箱验证码`
+    regErrors.code = `请填写 ${CODE_DIGITS} 位邮箱验证码`
     return
   }
   if (!regForm.agreed) {
-    regForm.error = '请先阅读并同意隐私说明'
+    regForm.error = '请先阅读并同意隐私协议'
     return
   }
 
@@ -1249,6 +1536,28 @@ function formatDate(unixSec) {
   gap: 5px;
 }
 
+.acct-field-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.acct-forgot-link {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 12px;
+  color: var(--text-faint, #7a6652);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.acct-forgot-link:hover {
+  color: var(--accent-ink, #946830);
+  text-decoration: underline;
+}
+
 .acct-label {
   font-size: 13px;
   font-weight: 700;
@@ -1300,35 +1609,48 @@ function formatDate(unixSec) {
 
 /* ---------- 提示文字 ---------- */
 .acct-hint {
-  font-size: 12px;
-  opacity: 0.7;
-  line-height: 1.5;
+  font-size: 13px;
+  color: var(--text-secondary, #523b20);
+  line-height: 1.55;
+}
+
+.acct-hint strong {
+  color: var(--text-main, #241407);
+  font-weight: 700;
+  background: rgba(143, 115, 81, 0.12);
+  padding: 1px 6px;
+  border-radius: 4px;
 }
 
 .acct-hint--quiet {
-  opacity: 0.55;
+  font-size: 12.5px;
+  color: #6d5032;
+  opacity: 0.9;
 }
 
 .acct-hint--warn {
-  color: #e8a0a0;
+  color: #a32222;
+  font-weight: 600;
   opacity: 1;
 }
 
 .acct-error {
   margin: 0;
   font-size: 13px;
-  color: #e8a0a0;
+  color: #a32222;
+  font-weight: 600;
   line-height: 1.5;
 }
 
 .acct-error--tight {
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .acct-ok {
   margin: 0;
   font-size: 13px;
-  color: #9fd08a;
+  color: #2e8b44;
+  font-weight: 600;
 }
 
 /* ---------- 密码强度 ---------- */
@@ -1337,49 +1659,107 @@ function formatDate(unixSec) {
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  opacity: 0.8;
+  margin-top: 2px;
 }
 
 .acct-strength i {
   width: 26px;
-  height: 4px;
+  height: 5px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.16);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18);
+  transition: background 0.2s ease;
 }
 
 .acct-strength em {
   font-style: normal;
   margin-left: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
+.acct-strength[data-level='0'] em,
+.acct-strength[data-level='1'] em {
+  color: #b52a1a;
+}
 .acct-strength[data-level='1'] i:nth-child(1) {
-  background: #d08a6a;
+  background: #c93b2b;
 }
 
+.acct-strength[data-level='2'] em {
+  color: #9e6409;
+}
 .acct-strength[data-level='2'] i:nth-child(-n + 2) {
-  background: #d8c06a;
+  background: #c88a1e;
 }
 
+.acct-strength[data-level='3'] em {
+  color: #1e6b32;
+}
 .acct-strength[data-level='3'] i {
-  background: #9fd08a;
+  background: #2e8b44;
+}
+
+:global(.dark-mode) .acct-hint {
+  color: #dfc8a2;
+}
+
+:global(.dark-mode) .acct-hint strong {
+  color: #faebd7;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+:global(.dark-mode) .acct-hint--quiet {
+  color: #c4aa82;
+  opacity: 0.95;
+}
+
+:global(.dark-mode) .acct-hint--warn,
+:global(.dark-mode) .acct-error {
+  color: #f87171;
+}
+
+:global(.dark-mode) .acct-strength i {
+  background: rgba(255, 255, 255, 0.18);
+}
+:global(.dark-mode) .acct-strength[data-level='0'] em,
+:global(.dark-mode) .acct-strength[data-level='1'] em {
+  color: #f87171;
+}
+:global(.dark-mode) .acct-strength[data-level='2'] em {
+  color: #fbbf24;
+}
+:global(.dark-mode) .acct-strength[data-level='3'] em {
+  color: #4ade80;
 }
 
 /* ---------- 同意条款 ---------- */
 .acct-agree {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   font-size: 13px;
   line-height: 1.5;
-  opacity: 0.85;
+  color: var(--text-main, #2c1d11);
+  cursor: pointer;
+  user-select: none;
 }
 
 .acct-agree input {
-  margin-top: 3px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #5c4327;
 }
 
 .acct-agree a {
-  color: #f0c987;
+  color: var(--accent-ink, #2f4a49);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.acct-agree a:hover {
+  color: var(--accent, #557574);
 }
 
 /* ---------- 个人中心 ---------- */
@@ -1422,12 +1802,47 @@ function formatDate(unixSec) {
   min-width: 0;
 }
 
+.acct-id-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
 /* 用户要求：**编号显示在名称上面** */
 .acct-no {
-  font-family: ui-monospace, monospace;
-  font-size: 12px;
-  color: #f0c987;
-  letter-spacing: 1px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: #7a4e1d;
+  background: rgba(122, 78, 29, 0.12);
+  border: 1px solid rgba(122, 78, 29, 0.25);
+  padding: 1px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  display: inline-flex;
+  align-items: center;
+}
+
+.acct-role-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+.acct-role-tag--super {
+  color: #8f2020;
+  background: rgba(143, 32, 32, 0.12);
+  border: 1px solid rgba(143, 32, 32, 0.28);
+}
+
+.acct-role-tag--admin {
+  color: #2f4a49;
+  background: rgba(47, 74, 73, 0.12);
+  border: 1px solid rgba(47, 74, 73, 0.25);
 }
 
 .acct-nick {
@@ -1440,7 +1855,8 @@ function formatDate(unixSec) {
 
 .acct-mail {
   font-size: 12px;
-  opacity: 0.6;
+  color: var(--text-secondary, #6b4c2a);
+  opacity: 0.85;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1467,6 +1883,11 @@ function formatDate(unixSec) {
   font-size: 15px;
   text-align: left;
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.acct-row:hover {
+  background: rgba(143, 115, 81, 0.08);
 }
 
 .acct-row:last-child {
@@ -1500,16 +1921,68 @@ function formatDate(unixSec) {
 
 /* ---------- 我的评论 / 谁回复了我 ---------- */
 
+.acct-back-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
 .acct-back {
-  display: inline-block;
-  margin-bottom: 10px;
-  padding: 0;
-  border: none;
-  background: none;
-  color: var(--accent-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px 14px;
+  border: 1px solid var(--border-color, #8f7351);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--accent-ink, #2f4a49);
   font: inherit;
   font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.acct-back:hover {
+  background: rgba(143, 115, 81, 0.12);
+  border-color: #c8a06a;
+}
+
+:global(.dark-mode) .acct-back {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #e5be83;
+}
+
+:global(.dark-mode) .acct-back:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #f0c987;
+}
+
+.acct-mine > .acct-hint {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main, #2c1d11);
+  margin: 12px 0 4px;
+}
+
+.acct-mine > .acct-hint--quiet {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary, #654728);
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+:global(.dark-mode) .acct-mine > .acct-hint {
+  color: #f5eedf;
+}
+
+:global(.dark-mode) .acct-mine > .acct-hint--quiet {
+  color: #c4aa82;
 }
 
 .acct-mine-list {
@@ -1540,13 +2013,24 @@ function formatDate(unixSec) {
 }
 
 .acct-mine-page {
-  color: var(--accent-ink);
+  color: var(--accent-ink, #2f4a49);
   font-weight: 600;
+  font-size: 11px;
+  background: rgba(47, 74, 73, 0.08);
+  border: 1px solid rgba(47, 74, 73, 0.22);
+  padding: 1px 6px;
+  border-radius: 4px;
   /* 页面名可能很长（如物品全名），别把时间挤掉 */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 46%;
+  max-width: 48%;
+}
+
+:global(.dark-mode) .acct-mine-page {
+  color: #a8c6c5;
+  background: rgba(168, 198, 197, 0.12);
+  border-color: rgba(168, 198, 197, 0.3);
 }
 
 /* 「谁回复了我」：回复者的头像 + 昵称，比"我的评论"多一个说话人 */
@@ -1618,39 +2102,174 @@ function formatDate(unixSec) {
 .acct-mine-actions {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   font-size: 12px;
+  margin-top: 4px;
 }
 
-.acct-mine-link,
-.acct-mine-del {
+.acct-mine-link {
   padding: 0;
   border: none;
   background: none;
   font: inherit;
   font-size: 12px;
   cursor: pointer;
+  color: var(--accent-ink, #2f4a49);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.15s ease;
 }
 
-.acct-mine-link {
-  color: var(--accent-ink);
+.acct-mine-link:hover {
+  color: var(--accent, #557574);
+  text-decoration: underline;
+}
+
+.acct-mine-link::after {
+  content: ' ›';
+  opacity: 0.8;
+}
+
+.acct-del-box {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.acct-del-prompt {
+  font-size: 12px;
+  color: #a32222;
+  font-weight: 600;
 }
 
 .acct-mine-del {
-  margin-left: auto;
-  color: #e8a0a0;
+  padding: 2px 8px;
+  border: 1px solid rgba(163, 34, 34, 0.35);
+  border-radius: 4px;
+  background: rgba(163, 34, 34, 0.06);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: #a32222;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.acct-mine-del:hover:not(:disabled) {
+  background: rgba(163, 34, 34, 0.15);
+  border-color: #a32222;
+}
+
+.acct-del-btn {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.acct-del-btn.is-yes {
+  background: #a32222;
+  color: #fff;
+  border: 1px solid #851c1c;
+}
+
+.acct-del-btn.is-yes:hover {
+  background: #851c1c;
+}
+
+.acct-del-btn.is-no {
+  background: transparent;
+  color: var(--text-secondary, #6b4c2a);
+  border: 1px solid var(--border-color, #8f7351);
+}
+
+.acct-del-btn.is-no:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .acct-mine-link:disabled,
-.acct-mine-del:disabled {
+.acct-mine-del:disabled,
+.acct-del-btn:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+:global(.dark-mode) .acct-mine-del {
+  color: #fca5a5;
+  border-color: rgba(252, 165, 165, 0.35);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+:global(.dark-mode) .acct-del-prompt {
+  color: #fca5a5;
+}
+
+:global(.dark-mode) .acct-del-btn.is-yes {
+  background: #dc2626;
+  border-color: #ef4444;
+}
+
+:global(.dark-mode) .acct-del-btn.is-no {
+  color: #d1b894;
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .acct-actions {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.acct-btn-delete {
+  background: none;
+  border: none;
+  color: #a32222;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.75;
+  transition: opacity 0.15s ease;
+  align-self: center;
+}
+
+.acct-btn-delete:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.acct-hint--center {
+  text-align: center;
+  margin: 2px 0;
+  opacity: 0.75;
+}
+
+:global(.dark-mode) .acct-no {
+  color: #e5be83;
+  background: rgba(229, 190, 131, 0.16);
+  border-color: rgba(229, 190, 131, 0.35);
+}
+
+:global(.dark-mode) .acct-role-tag--super {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+:global(.dark-mode) .acct-role-tag--admin {
+  color: #a8c6c5;
+  background: rgba(168, 198, 197, 0.18);
+  border-color: rgba(168, 198, 197, 0.4);
+}
+
+:global(.dark-mode) .acct-btn-delete {
+  color: #f87171;
 }
 
 .acct-confirm {
@@ -1662,8 +2281,14 @@ function formatDate(unixSec) {
 
 .acct-confirm-row {
   display: flex;
-  gap: 8px;
-  justify-content: flex-end;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.acct-confirm-row > * {
+  min-width: 96px;
 }
 
 /* ---------- 头像：主表单里的一行（点开才是选择器） ---------- */

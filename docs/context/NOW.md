@@ -25,7 +25,7 @@
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
 | 最近代码提交 | `4e9089ee`（非文档提交；本文件写 HEAD 会自我过期，见上） |
 | 未推送提交 | **0**（已同步） |
-| 工作区 | 干净，只有 `public/data/parsed/dialog-search.json` 的 `generatedAt` 时间戳变化（构建产物，内容相同）与 `backups/docs-before-*` 快照目录（未跟踪，4 个） |
+| 工作区 | 干净，只有 `public/data/parsed/dialog-search.json` 的 `generatedAt` 时间戳变化（构建产物，内容相同）与 `backups/docs-before-*` 快照目录（未跟踪，3 个） |
 
 ### 最近完成的
 
@@ -99,6 +99,7 @@
 | 怪物 Buff / 异常状态数值 | `raw/buff.json` 含完整定义，可落地为独立模块 |
 | **黑名单对"提到地名"的误伤** | 序章 2 条任务（`main_0_04` / `main_0_04_q`「前往驿站」）因**描述里含「黑森林」**被隐藏，而它实际发生在求生者草原。**属旧逻辑，非回归**；用户 2026-10-07 决定**先不动**（改 `desc` 参与匹配会影响全站所有页面） |
 | 剧情台词提到隐藏地区 | 搜剧情时能看到「黑森林」等词（如伙伴好感度任务 `fav_hero_025_1`）。**刻意不处理**：数据里**没有**"该剧情属于哪个地区"的字段（`unlockTasks` / `condition` / `startLocation` 全空），按文本匹配必然误伤。判据是**任务归属**，不是"台词提到" |
+| `hil-sequence.spec.js:119` 偶发 | 2026-10-08 多次全量红绿交替，单跑全绿。**根因未定位** —— 已排除布局位移、渲染未提交、几何余量不足，以及右栏 reflow（详见 [RISKS.md](RISKS.md) 第四节与当日开发日志） |
 
 ---
 

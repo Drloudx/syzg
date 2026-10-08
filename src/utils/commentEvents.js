@@ -17,8 +17,17 @@ import { ref } from 'vue'
 export const commentPostedAt = ref(0)
 export const lastPostedComment = ref(null)
 
+export const commentDeletedId = ref(null)
+export const commentDeletedAt = ref(0)
+
 /** 发表成功后调用，通知关心评论列表的地方去更新 */
 export function notifyCommentPosted(comment = null) {
   lastPostedComment.value = comment
   commentPostedAt.value += 1
+}
+
+/** 删除成功后调用，通知关心评论列表的地方同步移除对应项 */
+export function notifyCommentDeleted(commentId) {
+  commentDeletedId.value = commentId
+  commentDeletedAt.value += 1
 }

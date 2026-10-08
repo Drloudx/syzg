@@ -74,6 +74,15 @@
 | 19 | 设施页某些等级按钮点进去是空列表 | 黑名单把某级整级滤空，而等级按钮照抄了 `mode.levels` | 等级按钮必须从**实际可见配方反推**；统一用 `isFacilityRecipeHidden`（三处共用） |
 | 20 | 物品详情的「查看锻造台 / 查看设施」跳到空列表（37 条死链） | 同一条业务规则在**两个页面各写了一份**，只有一处跟着改 | 收敛为 `config/blacklist.js` 的 `isFacilityRecipeHidden`；`tests/unit/facility-recipe-links.test.mjs` 直接对随包产物断言 |
 | 21 | 新建的图鉴页里，正文滚动时**内容盖到吸顶筛选框上方**（老页面都正常） | 桌面端靠 `--sticky-clip-top` + `clip-path` 裁掉滚过筛选框的部分，它需要「`.page-view-container` 直接子级的 `UiFilterPanel`」+「内容容器带 `data-main-scroll`」**成对出现**。少任一条就静默失效（不报错） | 用 `UiFilterPanel`（带 `data-sticky-filter`）并放回直接子级；自建滚动容器补 `data-main-scroll`。开发期 `App.vue` 会 `console.warn('[sticky-clip] …')`；回归 `tests/ui/sticky-clip.spec.js`。规则见 [UI 组件库 §3 第 9 条](./UI_COMPONENT_LIBRARY.md#3-使用规则强制) |
+| 22 | 读节点几何的用例**单跑绿、全量偶红**（`chapters-map.spec.js:107`，2026-10-06 曾误判为「同 worker 滚动状态」） | 节点图是 `width:172px; height:auto`，高度由**图片固有比例**决定；**未解码时高度塌成 0**，`getBoundingClientRect()` 退化成零高度线（实测 `artTop=274 / artH=0`），而 label 按 `bottom:26px` 定位在 243 → `labelTop >= artTop` 为假。全量并发时图解码慢才暴露 | 读几何前等图解码：`waitForFunction` 断言所有 `.region-map__node-art` 的 `complete`。等 `complete` 而非 `naturalWidth > 0`（坏图要尽快落地交给坏图断言，不在此挂到超时）；带 `imgs.length > 0` 守卫防空数组恒真空转 | `tests/ui/chapters-map.spec.js` |
+| 23 | 断言右栏 `.info-note` 矩形恒定的用例**单跑绿、全量偶红**（`hil-actions.spec.js`） | 该断言用 `document.querySelector('.info-note')` 取交流群行，而它的 `y` 取决于**上方**评论列表高度；列表由 `/api/recent` 异步填充、每 `DISCUSSION_POLL_MS`（60 秒）轮询。① `.recent-body` 有 `-webkit-line-clamp: 2`，正文长短不同的评论让列表总高不同（实测 5 条从 1 行变 2 行 → 列表 291 → 388px，该行**下移 97px**）；② 评论未到时该选择器命中的是**空态**（`App.vue` 166 行「还没有讨论。」），到达后元素消失、改为命中交流群行（202 行）——**两个不同元素互相顶替** | 用例内用 `page.route` **冻结 `/api/recent`** 成固定内容，使断言只测「切动作不改布局」这一件事 | `tests/ui/hil-actions.spec.js` |
+
+> **「滚动状态」不可能是故障 22 的原因**：断言比的是同一子树内两个元素的相对位置，
+> 滚动偏移对两者同时生效，**差值恒定**。判据是「有没有读图片尺寸」，不是「页面滚到哪」。
+>
+> **故障 23 的判定方法可复用**：这类「单跑绿、全量红」的偶发，**先列候选变量、再逐个用探针排除**，
+> 而不是靠读代码推断。本例用 `page.route` 延迟 `/api/recent` 4 秒即**精确复现**了同一行断言失败
+> （`expect(frame.note).toEqual(baseline.note)`），从而确认根因与修复对应。
 
 ---
 
@@ -110,6 +119,7 @@
 | CSP 是否误伤线上 | **已验证通过（2026-10-07）**：本地 `check-csp.mjs` 9 个场景零违规（含 8 张 `data:` 蛋图确实渲染）；生产强制模式下 4 个页面 398 张图零坏图、零违规。**回归入口**：`npm run build` 后 `node scripts/dev/check-csp.mjs` |
 | 任务黑名单的「提到地名」误伤 | 序章 2 条（`main_0_04` / `main_0_04_q`「前往驿站」）因 `desc` 含「黑森林」被隐藏，实际发生在求生者草原。**属旧逻辑，非回归**；修它要动 `desc` 是否参与匹配，**会影响全站所有页面**，用户 2026-10-07 决定**先不动** |
 | 剧情台词提到隐藏地区 | 搜剧情能看到「黑森林」等词（如 `fav_hero_025_1`）。**刻意不处理** —— 数据里没有"剧情属于哪个地区"的字段，按文本匹配必然误伤 |
+| `hil-sequence.spec.js:119` 偶发 | 2026-10-08 多次全量结果**不稳定**（红/绿交替，且同一轮里失败项会在吉祥物用例间**换位**），单跑 `--repeat-each=3` **126 passed**。已用探针逐一排除：布局/滚动位移、渲染未提交、几何余量不足（详见当日[开发日志](../history/dev-logs/2026-10/2026-10-08.md)）。**根因未定位** —— 且已实测证明**不是**故障 23 的右栏 reflow（列表撑高 97px 后吉祥物坐标 `diff` 恒为 `[0,0]`，因 `SidebarMascot` 带 `margin-top: auto` 被钉在底部） |
 
 ---
 

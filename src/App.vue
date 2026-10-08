@@ -343,7 +343,7 @@ const PAGE_TITLES = {
   '/glossary': '词条',
   '/gacha': '模拟招募',
   '/admin': '后台',
-  '/privacy': '隐私说明',
+  '/privacy': '隐私协议',
   '/discussions': '讨论区'
 }
 

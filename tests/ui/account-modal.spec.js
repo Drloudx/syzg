@@ -228,8 +228,8 @@ test('答错人机验证 → 提示并自动换新题', async ({ page }) => {
   }
 
   await expect(page.locator('.acct-error', { hasText: '换了新题' })).toBeVisible({ timeout: 20_000 })
-  // 换题后进度应归零，且热区仍在（是**新**题而不是卡死）
-  await expect(page.locator('.captcha-progress')).toHaveText('0 / 3')
+  // 换题后已选标记应清空，且热区仍在（是**新**题而不是卡死）
+  await expect(stage.locator('.hit.is-picked')).toHaveCount(0)
   await expect(stage.locator('.hit')).toHaveCount(5)
 })
 
@@ -268,13 +268,13 @@ test('退出登录 → 回到登录页', async ({ page }) => {
   await expect(page.locator('.acct-switch-btn.is-on')).toHaveText('登录')
 })
 
-test('注册页的「隐私说明」链接真的打得开（必勾项不能指向空白页）', async ({ page, context }) => {
+test('注册页的「隐私协议」链接真的打得开（必勾项不能指向空白页）', async ({ page, context }) => {
   await openAccountModal(page)
   await page.locator('.acct-switch-btn', { hasText: '注册' }).click()
 
   // 这个链接所在的那一行是**必勾**的同意项 —— 它必须真的能读到内容
   const link = page.locator('.acct-agree a')
-  await expect(link).toHaveText('隐私说明')
+  await expect(link).toHaveText('隐私协议')
   await expect(link).toHaveAttribute('href', '#/privacy')
 
   /*
@@ -362,7 +362,7 @@ test('人机验证在弹窗里，不再把注册表单撑长', async ({ page }) 
   // 题目出现在**弹窗**里
   const stage = page.locator('.captcha-stage')
   await expect(stage).toBeVisible({ timeout: 20_000 })
-  await expect(page.locator('h3', { hasText: '人机验证' })).toBeVisible()
+  await expect(page.locator('h3', { hasText: '安全验证' })).toBeVisible()
   // 弹窗模式不再重复画一遍标题
   await expect(page.locator('.captcha-title')).toHaveCount(0)
 
@@ -612,8 +612,12 @@ test('我的评论：列出、带页面名与状态，并能删除', async ({ pa
   await expect(items.first()).toContainText(text)
   await expect(items.first().locator('.acct-mine-link')).toBeVisible()
 
-  // 删除：列表立刻少一条（不整页重拉）
+  // 删除：点击删除并二次确认，列表立刻少一条（不整页重拉）
   await items.first().locator('.acct-mine-del').click()
+  const confirmBtn = items.first().locator('.acct-del-btn.is-yes')
+  if (await confirmBtn.isVisible()) {
+    await confirmBtn.click()
+  }
   await expect(items).toHaveCount(0, { timeout: 20_000 })
   await expect(page.locator('.acct-hint', { hasText: '你还没有发过评论' })).toBeVisible()
 
@@ -700,4 +704,44 @@ test('🔴 登录前预取密码盐：点登录时只剩一次往返', async ({ 
   const during = calls.slice(before)
   expect(during, '登录期间不该再取盐（应复用预取结果）').not.toContain('salt')
   expect(during, '登录请求应当发出').toContain('login')
+})
+
+test('找回密码：未登录状态下通过邮箱验证码重置密码并成功登录', async ({ page }) => {
+  const acc = await createAccount(API_BASE, reader)
+  const newPassword = 'NewSecretPassword123!'
+
+  await openAccountModal(page)
+  // 点击「忘记密码？」
+  await page.locator('.acct-forgot-link').click()
+  await expect(page.locator('.ui-modal-title')).toHaveText('找回密码')
+
+  // 填邮箱
+  await page.locator('form.acct-form input[type="email"]').fill(acc.email)
+
+  // 点击发送验证码并完成人机验证
+  await page.locator('button', { hasText: '发送验证码' }).click()
+  await solveCaptcha(page)
+  await expect(page.locator('.acct-hint', { hasText: '验证码已发出' })).toBeVisible({ timeout: 20_000 })
+
+  // 从本地 D1 读取验证码
+  const emailHash = await emailLookupHash(acc.email, reader.saltSecret)
+  const code = reader.readCode(emailHash, 'password')
+  expect(code, '没能从本地 D1 反解出验证码').toMatch(/^\d{6}$/)
+  await page.locator('.acct-input--code').fill(code)
+
+  // 填新密码和确认密码
+  await page.locator('form.acct-form input[type="password"]').first().fill(newPassword)
+  await page.locator('form.acct-form input[placeholder="再输一遍"]').fill(newPassword)
+
+  // 提交重置
+  await page.locator('button[type="submit"]', { hasText: '重置密码' }).click()
+
+  // 自动切回登录页，且邮箱自动预填
+  await expect(page.locator('.ui-modal-title')).toHaveText('账号', { timeout: 15_000 })
+  await expect(page.locator('.acct-input[autocomplete="email"]')).toHaveValue(acc.email)
+
+  // 输入新密码登录
+  await page.locator('.acct-input[type="password"]').fill(newPassword)
+  await page.locator('button[type="submit"]', { hasText: '登录' }).click()
+  await expect(page.locator('.acct-id-card')).toBeVisible({ timeout: 20_000 })
 })

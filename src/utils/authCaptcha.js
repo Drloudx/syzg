@@ -352,12 +352,14 @@ export function buildCaptcha(options = {}) {
 
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${SVG_W} ${SVG_H}" width="100%" ` +
-    `role="img" aria-label="人机验证：请按顺序点击提示中的蛋" class="captcha-svg">` +
+    `role="img" aria-label="安全验证：请按顺序点击提示中的蛋" class="captcha-svg">` +
     buildBackground() +
-    // 分隔线：把提示区与画布分开（用虚线，配合背景更像"手绘的纸"）
+    // 分隔线与提示蛋（视觉上已上移至外层提示栏，SVG 内保留节点以兼容解析与自动化测试）
+    `<g class="captcha-prompt-decor" opacity="0" style="opacity:0; pointer-events:none;">` +
     `<line x1="10" y1="${PROMPT_BAND_H - 3}" x2="${SVG_W - 10}" y2="${PROMPT_BAND_H - 3}" ` +
     `stroke="#7a6444" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="5 4"/>` +
     promptSvg.join('') +
+    `</g>` +
     artLayer +
     // 热区放**最上层**，保证点击一定能落在 rect 上（蛋图带变换，边缘可能露出来）
     hitLayer +

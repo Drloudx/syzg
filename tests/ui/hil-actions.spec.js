@@ -7,6 +7,25 @@ test.describe(character.name + ' model adaptation', () => {
 test.skip(({ isMobile }) => isMobile, 'Desktop mascot only')
 test.beforeEach(async ({ page }) => {
   await page.route('**/data/notice.json*', route => route.fulfill({ json: { notices: [] } }))
+  /*
+   * 🔴 冻结右栏「最新讨论」，否则读几何的断言会偶发失败。
+   *
+   * 本条用例断言 `.info-note`（右栏交流群行）的矩形在多次采样间**完全一致**，
+   * 用来证明「切换吉祥物动作不会让右栏布局抖动」。但该行的 y 取决于它**上方**的
+   * 评论列表高度，而列表由 `/api/recent` 异步填充、每 `DISCUSSION_POLL_MS`（60 秒）轮询：
+   *
+   *   ① `.recent-body` 有 `-webkit-line-clamp: 2`，正文长短不同的评论让列表总高不同。
+   *      实测 5 条从 1 行变 2 行 → 列表 291 → 388px，`.info-note` **下移 97px**。
+   *   ② 评论未到时 `.info-note` 命中的是空态（`App.vue` 166 行「还没有讨论。」），
+   *      到达后该元素消失，改为命中交流群行（202 行）—— `querySelector` 取首个，
+   *      两者互相顶替，是**两个不同元素**。
+   *
+   * 全量并发时 `/api/recent` 变慢且别的用例在发评论，采样窗口就会跨过这两个变化点，
+   * 表现为「单跑绿、全量红」。冻结成固定内容，本条只测它真正关心的事。
+   */
+  await page.route('**/api/recent*', route => route.fulfill({
+    json: { ok: true, comments: [{ id: 1, nick: '测试', avatar: 'at001_0', createdAt: 1791433000, pageKey: 'site:general', pageLabel: '站内讨论区', body: '固定内容' }] }
+  }))
   await page.addInitScript(id => localStorage.setItem('sidebar-mascot-character', id), character.id)
   await page.goto('/#/runes')
   await page.getByRole('button', { name: `暂停${character.name}待机动画` }).click()

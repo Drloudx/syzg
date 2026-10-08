@@ -42,15 +42,35 @@
                      那样「回复」会被推到中间、与「删除」之间空出一大截（实测被指出） -->
                 <div class="comment-actions">
                   <button v-if="replyable" type="button" class="comment-reply" @click="requestReply(c)">回复</button>
-                  <button
-                    v-if="!readOnly && ownedIds.has(c.id)"
-                    type="button"
-                    class="comment-delete"
-                    :disabled="deletingId === c.id"
-                    @click="handleDelete(c)"
-                  >
-                    {{ deletingId === c.id ? '删除中' : '删除' }}
-                  </button>
+                  <template v-if="props.deletable && ownedIds.has(c.id)">
+                    <span v-if="deletingConfirmId === c.id" class="comment-del-confirm-group">
+                      <span class="comment-del-prompt">确定删除？</span>
+                      <button
+                        type="button"
+                        class="comment-delete comment-del-btn is-yes"
+                        :disabled="deletingId === c.id"
+                        @click="handleDelete(c)"
+                      >
+                        {{ deletingId === c.id ? '…' : '确认' }}
+                      </button>
+                      <button
+                        type="button"
+                        class="comment-delete comment-del-btn is-no"
+                        @click="deletingConfirmId = null"
+                      >
+                        取消
+                      </button>
+                    </span>
+                    <button
+                      v-else
+                      type="button"
+                      class="comment-delete"
+                      :disabled="deletingId === c.id"
+                      @click="deletingConfirmId = c.id"
+                    >
+                      删除
+                    </button>
+                  </template>
                 </div>
               </div>
               <!--
@@ -95,15 +115,35 @@
                     <time class="comment-time" :datetime="isoTime(r.createdAt)">{{ formatTime(r.createdAt) }}</time>
                     <div class="comment-actions">
                       <button v-if="replyable" type="button" class="comment-reply" @click="requestReply(r)">回复</button>
-                      <button
-                        v-if="!readOnly && ownedIds.has(r.id)"
-                        type="button"
-                        class="comment-delete"
-                        :disabled="deletingId === r.id"
-                        @click="handleDelete(r)"
-                      >
-                        {{ deletingId === r.id ? '删除中' : '删除' }}
-                      </button>
+                      <template v-if="props.deletable && ownedIds.has(r.id)">
+                        <span v-if="deletingConfirmId === r.id" class="comment-del-confirm-group">
+                          <span class="comment-del-prompt">确定删除？</span>
+                          <button
+                            type="button"
+                            class="comment-delete comment-del-btn is-yes"
+                            :disabled="deletingId === r.id"
+                            @click="handleDelete(r)"
+                          >
+                            {{ deletingId === r.id ? '…' : '确认' }}
+                          </button>
+                          <button
+                            type="button"
+                            class="comment-delete comment-del-btn is-no"
+                            @click="deletingConfirmId = null"
+                          >
+                            取消
+                          </button>
+                        </span>
+                        <button
+                          v-else
+                          type="button"
+                          class="comment-delete"
+                          :disabled="deletingId === r.id"
+                          @click="deletingConfirmId = r.id"
+                        >
+                          删除
+                        </button>
+                      </template>
                     </div>
                   </div>
                   <p class="comment-nested-body"><EmoticonText :text="r.body" /></p>
@@ -168,6 +208,7 @@ import CommentComposer from './CommentComposer.vue'
 import EmoticonText from './EmoticonText.vue'
 import { getImageUrl } from '../utils/env.js'
 import { deleteOwnComment, fetchCommentReplies, fetchComments } from '../utils/commentApi.js'
+import { commentDeletedAt, commentDeletedId, notifyCommentDeleted } from '../utils/commentEvents.js'
 import { avatarCatalogState, avatarPath, loadAvatarCatalog } from '../utils/avatarCatalog.js'
 
 const props = defineProps({
@@ -184,8 +225,14 @@ const props = defineProps({
   pageLabel: { type: String, default: '' },
   /** 区块标题（右栏预览等处可改） */
   title: { type: String, default: '讨论' },
-  /** 只读：不显示发表区与删除按钮（右栏预览用） */
+  /** 只读：不显示内置发表区（讨论区页面或外部挂载用） */
   readOnly: { type: Boolean, default: false },
+  /**
+   * 是否允许删除自己的评论（默认 true）。
+   * 与 readOnly 解耦：讨论区页面虽然外挂发表区（传了 readOnly 隐藏自带发表框），
+   * 但用户对自己发表的消息必须拥有删除权限。
+   */
+  deletable: { type: Boolean, default: true },
   /**
    * 显示每条消息的「回复」按钮。
    *
@@ -291,6 +338,7 @@ const actionError = ref('')
 const cursor = ref(null)
 const hasMore = ref(false)
 const deletingId = ref(null)
+const deletingConfirmId = ref(null)
 
 /** 本机发表过的评论 id，用于显示"删除"按钮 */
 const ownedIds = ref(new Set())
@@ -680,7 +728,24 @@ onBeforeUnmount(() => {
  *      客户端仍要容忍旧快照带来的 404，否则用户会看到"评论明明还在，却说不存在"。
  *   3. 无论服务端怎么回，删完都做一次列表刷新，让界面与真实状态对齐。
  */
+function removeCommentFromState(id) {
+  comments.value = comments.value.filter((c) => c.id !== id)
+  for (const c of comments.value) {
+    if (c.replies) c.replies = c.replies.filter((r) => r.id !== id)
+    if (c.allReplies) c.allReplies = c.allReplies.filter((r) => r.id !== id)
+    if (c.preview) c.preview = c.preview.filter((r) => r.id !== id)
+  }
+  syncOwned()
+}
+
+watch(commentDeletedAt, () => {
+  if (commentDeletedId.value) {
+    removeCommentFromState(commentDeletedId.value)
+  }
+})
+
 async function handleDelete(comment) {
+  deletingConfirmId.value = null
   if (deletingId.value) return
   if (!comment?.mine) {
     actionError.value = '只能删除自己发表的评论'
@@ -691,13 +756,13 @@ async function handleDelete(comment) {
   actionError.value = ''
   try {
     await deleteOwnComment(comment.id)
-    comments.value = comments.value.filter((c) => c.id !== comment.id)
-    syncOwned()
+    removeCommentFromState(comment.id)
+    notifyCommentDeleted(comment.id)
   } catch (err) {
     if (err?.status === 404) {
       // 服务端认为它已经不在了：删除的目标状态已达成，按成功处理
-      comments.value = comments.value.filter((c) => c.id !== comment.id)
-      syncOwned()
+      removeCommentFromState(comment.id)
+      notifyCommentDeleted(comment.id)
     } else {
       actionError.value = err?.message || '删除失败，请稍后重试'
       // 失败时刷新一次列表，让用户看到真实状态（可能已在别处被删）
@@ -827,18 +892,52 @@ watch(
 }
 
 .comment-delete {
-  padding: 0;
-  border: none;
-  background: none;
-  color: var(--danger);
-  font-size: 12px;
+  padding: 1px 6px;
+  border: 1px solid rgba(192, 57, 43, 0.35);
+  border-radius: 4px;
+  background: rgba(192, 57, 43, 0.08);
+  color: var(--danger, #b33927);
+  font-size: 11.5px;
   font-family: inherit;
+  line-height: 1.4;
+  text-decoration: none;
   cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.comment-delete:hover:not(:disabled) {
+  border-color: rgba(192, 57, 43, 0.7);
+  background: rgba(192, 57, 43, 0.16);
+  text-decoration: none;
 }
 
 .comment-delete:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.comment-del-confirm-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.comment-del-prompt {
+  font-size: 11px;
+  color: var(--danger, #b33927);
+  font-weight: 600;
+}
+
+.comment-del-btn.is-yes {
+  border-color: rgba(192, 57, 43, 0.8);
+  background: rgba(192, 57, 43, 0.2);
+  font-weight: 700;
+}
+
+.comment-del-btn.is-no {
+  border-color: var(--border-faint, rgba(143, 115, 81, 0.4));
+  background: transparent;
+  color: var(--text-faint, #7a6652);
 }
 
 /* 操作区（回复 / 删除）整块贴行尾；间距由容器给，不给按钮各自 margin */
@@ -921,7 +1020,8 @@ watch(
 }
 
 /* 从引用跳过去时闪一下，否则用户看不出滚到了哪条 */
-.comment-item.is-quote-flash {
+.comment-item.is-quote-flash,
+.comment-nested.is-quote-flash {
   animation: comment-quote-flash 1.2s ease-out;
 }
 
@@ -1016,14 +1116,11 @@ watch(
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .comment-item.is-quote-flash {
+  .comment-item.is-quote-flash,
+  .comment-nested.is-quote-flash {
     animation: none;
     outline: 2px solid var(--accent-bright);
   }
-}
-
-.comment-delete:hover:not(:disabled) {
-  text-decoration: underline;
 }
 
 /* 正文 ≥13px、行高 ≥1.6（UI 组件库 1.3 可读性红线）；长词强制换行 */

@@ -13,17 +13,11 @@
   >
     <!-- 当前选择：放最上面，选完不用回头找自己选了哪个 -->
     <div class="picker-current">
-      <img v-if="currentPath" :src="getImageUrl(currentPath)" alt="" class="picker-current-img" />
-      <div v-else class="picker-current-img picker-current-empty" aria-hidden="true">
-        {{ (nick || '?').slice(0, 1) }}
-      </div>
+      <img v-if="currentPath" :src="getImageUrl(currentPath)" :alt="currentName" class="picker-current-img" />
       <div class="picker-current-text">
-        <span class="picker-current-title">{{ currentName || '不设置头像' }}</span>
-        <span class="picker-current-hint">
-          {{ currentPath ? '就是现在选中的这个' : '不设置的话，评论里显示昵称首字' }}
-        </span>
+        <span class="picker-current-title">{{ currentName }}</span>
+        <span class="picker-current-hint">当前选中的头像</span>
       </div>
-      <button v-if="currentPath" type="button" class="picker-clear" @click="pick('')">清除</button>
     </div>
 
     <UiEmptyState v-if="avatarCatalogState === 'loading'" type="loading" text="头像加载中…" />
@@ -45,7 +39,7 @@
             :key="item.id"
             type="button"
             class="avatar-cell"
-            :class="{ active: modelValue === item.id }"
+            :class="{ active: (modelValue || DEFAULT_AVATAR) === item.id }"
             :title="item.name"
             @click="pick(item.id)"
           >
@@ -56,7 +50,6 @@
     </template>
 
     <template #footer>
-      <UiButton variant="ghost" @click="pick('')">不设置</UiButton>
       <UiButton @click="onClose">完成</UiButton>
     </template>
   </UiModal>
@@ -83,6 +76,7 @@
 
 import { computed, ref, watch } from 'vue'
 
+import { DEFAULT_AVATAR } from '../config/auth.js'
 import {
   avatarCatalogState,
   avatarEntry,
@@ -94,9 +88,9 @@ import { UiAccordion, UiButton, UiEmptyState, UiModal } from './ui/index.js'
 
 const props = defineProps({
   visible: { type: Boolean, default: false },
-  /** 选中的头像 ID（空串 = 不设置） */
+  /** 选中的头像 ID（空串回退默认女主） */
   modelValue: { type: String, default: '' },
-  /** 只用来做"没选头像"时的首字占位 */
+  /** 备用昵称 */
   nick: { type: String, default: '' }
 })
 
@@ -108,8 +102,9 @@ const emit = defineEmits(['update:visible', 'update:modelValue'])
  */
 const expanded = ref(new Set())
 
-const currentPath = computed(() => avatarEntry(props.modelValue)?.path || '')
-const currentName = computed(() => avatarEntry(props.modelValue)?.name || '')
+const activeId = computed(() => props.modelValue || DEFAULT_AVATAR)
+const currentPath = computed(() => avatarEntry(activeId.value)?.path || '')
+const currentName = computed(() => avatarEntry(activeId.value)?.name || '希尔（女主）')
 
 function toggle(key, on) {
   const next = new Set(expanded.value)
@@ -119,18 +114,23 @@ function toggle(key, on) {
 }
 
 function pick(id) {
-  emit('update:modelValue', id)
+  emit('update:modelValue', id || DEFAULT_AVATAR)
 }
 
 function onClose() {
   emit('update:visible', false)
 }
 
-// 每次打开都确保清单已加载（幂等，loadAvatarCatalog 自己会去重）
+// 每次打开都确保清单已加载；未选头像时默认女主
 watch(
   () => props.visible,
   (open) => {
-    if (open) loadAvatarCatalog()
+    if (open) {
+      loadAvatarCatalog()
+      if (!props.modelValue) {
+        emit('update:modelValue', DEFAULT_AVATAR)
+      }
+    }
   },
   { immediate: true }
 )
@@ -156,15 +156,6 @@ watch(
   flex: none;
 }
 
-.picker-current-empty {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: var(--text-muted);
-  background: rgba(0, 0, 0, 0.12);
-}
-
 .picker-current-text {
   display: flex;
   flex-direction: column;
@@ -173,6 +164,7 @@ watch(
 
 .picker-current-title {
   font-size: 14px;
+  font-weight: 700;
   color: var(--text-main);
 }
 
@@ -180,18 +172,6 @@ watch(
   font-size: 12px;
   color: var(--text-muted);
   line-height: 1.5;
-}
-
-.picker-clear {
-  margin-left: auto;
-  flex: none;
-  padding: 0;
-  border: none;
-  background: none;
-  color: var(--accent-ink);
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
 }
 
 .picker-hint {
