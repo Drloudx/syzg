@@ -7,7 +7,11 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-10-08 ｜ **HEAD**：`4e9089ee` ｜ **分支**：`main`（与 `origin/main` 同步）
+**核对时间**：2026-10-08 ｜ **最近代码提交**：`4e9089ee` ｜ **分支**：`main`（与 `origin/main` 同步）
+
+> 为什么写「**最近代码提交**」而不是「HEAD」：本文件自身也会被提交，
+> 写 HEAD 的话每次同步文档都会把它变成过期值（改了 → 提交 → HEAD 又变了）。
+> 而"最近一笔**非文档**提交"是稳定可核对的：`git log --oneline -1 -- . ':(exclude)docs'`。
 
 ---
 
@@ -19,7 +23,7 @@
 | 仓库 | `Drloudx/syzg`（`main`） |
 | 部署 | Cloudflare Pages 项目 `syzg`，推送即上线 |
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
-| HEAD | `4e9089ee` |
+| 最近代码提交 | `4e9089ee`（非文档提交；本文件写 HEAD 会自我过期，见上） |
 | 未推送提交 | **0**（已同步） |
 | 工作区 | 干净，只有 `public/data/parsed/dialog-search.json` 的 `generatedAt` 时间戳变化（构建产物，内容相同）与 `backups/docs-before-*` 快照目录（未跟踪，4 个） |
 
@@ -105,6 +109,7 @@
 | 工作区实际改动 | `git status --short`、`git diff` |
 | 是否与远端同步 | `git status -sb`、`git log origin/main..HEAD --oneline` |
 | 当前 HEAD 内容 | `git show --stat HEAD` |
+| 最近一笔**代码**提交 | `git log --oneline -1 -- . ':(exclude)docs'`（`NOW.md` 记的就是它）。⚠️ `-1` 必须在 pathspec **之前**，写在最后会退化成列出全部 |
 | 全量验收 | `cmd.exe /c "npm run verify"`（**含构建**，不是只读检查） |
 | CSP 是否误伤 | `npm run build` 后 `node scripts/dev/check-csp.mjs`（或 `npm run csp:check`） |
 | 线上缓存头 | `npm run cdn:check`（只读、需网络，**不进 verify**） |
