@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-10-07 ｜ **HEAD**：`263ac070` ｜ **分支**：`main`（与 `origin/main` 同步）
+**核对时间**：2026-10-08 ｜ **HEAD**：`4e9089ee` ｜ **分支**：`main`（与 `origin/main` 同步）
 
 ---
 
@@ -19,12 +19,15 @@
 | 仓库 | `Drloudx/syzg`（`main`） |
 | 部署 | Cloudflare Pages 项目 `syzg`，推送即上线 |
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
-| HEAD | `263ac070` |
+| HEAD | `4e9089ee` |
 | 未推送提交 | **0**（已同步） |
-| 工作区 | **文档体系重构尚未提交**（48 个旧文档删除 + 4 个文件修改 + 未跟踪新目录），见下 |
+| 工作区 | 干净，只有 `public/data/parsed/dialog-search.json` 的 `generatedAt` 时间戳变化（构建产物，内容相同）与 `backups/docs-before-*` 快照目录（未跟踪，4 个） |
 
 ### 最近完成的
 
+- `4e9089ee` 清理根目录残留并加防复发规则
+- `d39aa009` 吸顶裁切改用显式标记，失败不再静默，并加回归护栏
+- `bbe5f7ee` **文档体系重构为 `context/` + `history/` 两分法**，并加状态字段纪律
 - `263ac070` 修正隐藏地区的主线任务漏出（章节序号未映射成地区名）
 - `f8e16929` 剧情索引加载失败时自动重试，提示改为可操作文案
 - **后台权限体系改造**（2026-10-07，6 个提交）
@@ -36,32 +39,22 @@
   - 关键决策见 [DECISIONS.md](DECISIONS.md) §六
 - `5f8083ec` 加 CSP 与 HSTS 响应头；密码盐改为每用户独立随机
 
-### 工作区未提交改动（**文档体系重构**）
-
-`docs/` 从「平铺 + features/ technical/」迁到「`context/` + `history/` 两分法」，`AGENTS.md` / `PROJECT_INDEX.md` 提到仓库根。
-
-| 项 | 数量 | 说明 |
-| --- | --- | --- |
-| 已跟踪删除 | 48 | 旧 `docs/ARCHITECTURE.md`、`docs/SPEC.md`、`docs/HANDOFF*.md`、`docs/technical/**`、`docs/features/**`、`docs/dev-logs/**` |
-| 已跟踪修改 | 4 | `README.md`（换文档入口）、`public/data/parsed/dialog-search.json`、`tests/unit/{secret-leak,site-name}.test.mjs`（跟随新路径） |
-| 未跟踪新增 | 6 项 | `AGENTS.md`、`PROJECT_INDEX.md`、`docs/context/`、`docs/history/`、4 个 `backups/docs-before-*` 快照 |
-
-**这批改动随后续任务一起收口**（用户 2026-10-07 确认）。收口前不要再新建平行文档入口。
-
 ---
 
 ## 二、下一步（按优先级）
 
 | 优先级 | 事项 | 前置 / 原因 |
 | --- | --- | --- |
-| **P0** | 收口文档体系重构（48 删 + 4 改 + 6 新增） | 已确认「随后续任务提交」；未提交改动长期驻留会让后续任务反复撞到 |
-| **P1** | 跑 `check-csp.mjs` 验证线上 CSP 未误伤 | CSP 的失效是**静默的**（图不显示、音不播、样式错位）。脚本已就绪，需先 `npm run build` |
 | **P1** | 发 Android 热更包 | 旧 APK 的 `CLOUD_URL` 写死旧域名 → 这是下掉旧域名的唯一前置。**备包可做，签名与真机安装需用户执行** |
 | **P2** | 账号体系 M8 真机复测 | M7 已覆盖；`/#/privacy` 与兜底路由**没有真机用例**（只有桌面 Playwright） |
 | **P2** | 收尾旧域名 | 热更包铺开后：移除 `myrzg.yxzmy.top` 的 Pages 自定义域名 + EdgeOne 加速域名。建议先保留 301 一段时间 |
 | **P2** | D1 库名统一为 `syzg-comments` | 纯装饰（绑定走 `database_id`）。当前令牌**没有 D1 Edit 权限**，需用户在控制台改或换令牌 |
 | **P3** | 首页 HTML 边缘缓存 | 配 EdgeOne 节点缓存 TTL（如 10 分钟）可把大陆首页从 ~1.9s 压到 ~0.5s，代价是发版后手刷缓存 |
 | **P3** | 探索区域卡片观感 | 风景图（440×280）塞进正方形 slot 只占中间 68%，四周露出品质框。**已定位，未改** |
+
+> **已不再需要**（2026-10-07 完成，保留一行便于追溯）：
+> · 收口文档体系重构 —— `bbe5f7ee` 已提交
+> · 跑 `check-csp.mjs` 验证线上 CSP —— 本地 9 场景零违规，生产实测 398 张图零坏图、零违规
 
 ### 评论 / 讨论模块未做的功能
 
@@ -71,11 +64,23 @@
 | P1 | 草稿保留 + 失败重试 | 刷新/切页会丢掉打的字；失败后无重试入口 |
 | P1 | 表情「最近使用」 | 纯前端 `localStorage` 即可 |
 | P2 | 回复提醒全局化 | 需按 `parent_id` 反查，**没索引 → 全表扫**，先决定要不要加索引 |
-| P2 | 点引用行跳到未加载的父评论 | 父评论更早、未加载时现在什么都不做 |
 | P2 | 链接自动识别 | 需 `rel="noopener"` |
 | P2 | 举报入口 | 用户侧没有，只能等管理员看到 |
 | P3 | 连续同一人消息合并、未读分隔线 | 纯观感 |
 | P3 | 楼中楼长列表虚拟化、消息搜索 | 现在 20 条/页 + 自动加载，几百条以内没问题 |
+
+> **已不再需要**（2026-10-07 完成）：点引用行跳到未加载的父评论 ——
+> 「去看看」定位不到首屏时已改为显示**上下文卡片**（被回复的那条 + 回复本身，
+> 恒定 1 次请求），见 `c4adc7f1`。
+
+### 后台 / 权限模块未做的功能
+
+| 优先级 | 事项 | 触发条件 |
+| --- | --- | --- |
+| P2 | 概览页计数缓存 | `comments` 过万时 —— `COUNT(*)` 是全表扫，索引救不了 |
+| P2 | 后台接口限流 | 防滥用（会话泄露后可无限次打管理接口）。**不是**防额度 |
+| P3 | 会话管理面板（列出/踢下线） | 有第二个用户后才有意义；成本很低（走 `idx_sessions_user`） |
+| P3 | 评论按页面类型筛选的**二级筛选** | 现在有 `pageKind` 横排按钮；页面多起来后可加二级 |
 
 ---
 
@@ -88,6 +93,8 @@
 | 讨论区面板高度魔数 | `calc(--vh100 - … - 190px)` 是推算值，在 1025 宽时与其他视口差 12px。要动它必须先在 1025 / 1161 / 1440 三视口复核 |
 | 移动端极端小屏（< 360px） | 复杂概率文本的字号与排版待微调 |
 | 怪物 Buff / 异常状态数值 | `raw/buff.json` 含完整定义，可落地为独立模块 |
+| **黑名单对"提到地名"的误伤** | 序章 2 条任务（`main_0_04` / `main_0_04_q`「前往驿站」）因**描述里含「黑森林」**被隐藏，而它实际发生在求生者草原。**属旧逻辑，非回归**；用户 2026-10-07 决定**先不动**（改 `desc` 参与匹配会影响全站所有页面） |
+| 剧情台词提到隐藏地区 | 搜剧情时能看到「黑森林」等词（如伙伴好感度任务 `fav_hero_025_1`）。**刻意不处理**：数据里**没有**"该剧情属于哪个地区"的字段（`unlockTasks` / `condition` / `startLocation` 全空），按文本匹配必然误伤。判据是**任务归属**，不是"台词提到" |
 
 ---
 
@@ -99,10 +106,12 @@
 | 是否与远端同步 | `git status -sb`、`git log origin/main..HEAD --oneline` |
 | 当前 HEAD 内容 | `git show --stat HEAD` |
 | 全量验收 | `cmd.exe /c "npm run verify"`（**含构建**，不是只读检查） |
-| CSP 是否误伤 | `npm run build` 后 `node scripts/dev/check-csp.mjs` |
+| CSP 是否误伤 | `npm run build` 后 `node scripts/dev/check-csp.mjs`（或 `npm run csp:check`） |
 | 线上缓存头 | `npm run cdn:check`（只读、需网络，**不进 verify**） |
 | 线上两域名是否都活着 | `node scripts/dev/scratch/probe-domain.mjs` |
 | 生产接口健康 | `node --no-warnings tests/api/production-smoke.mjs`（18 条，只读） |
+| 后台权限矩阵 | `node --no-warnings tests/api/admin-roles.mjs`（44 条，需 `npm run dev:api`） |
+| 剧情上下文接口 | `node --no-warnings tests/api/comment-context.mjs`（21 条） |
 
 ---
 
