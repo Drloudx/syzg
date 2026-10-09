@@ -121,7 +121,7 @@
       <UiEmptyState v-if="filteredHeroes.length === 0" text="未找到匹配的角色数据" />
     </UiCardGrid>
 
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="initData" />
     <UiEmptyState v-else type="loading" text="正在装配角色图鉴数据..." />
 
     <!-- 角色详情全屏弹窗 -->
@@ -955,7 +955,9 @@ const getHeroSearchText = hero => {
   return text
 }
 
-onMounted(async () => {
+const initData = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     const parsedData = await fetchHeroData()
     allHeroes.value = parsedData.heroes
@@ -974,8 +976,12 @@ onMounted(async () => {
     }
   } catch (err) {
     console.error('Error initializing HeroesView:', err)
-    errorMessage.value = '数据初始化失败: ' + err.message
+    errorMessage.value = '角色图鉴加载失败，请重试'
   }
+}
+
+onMounted(() => {
+  initData()
 })
 
 // Listen to URL query to trigger modal

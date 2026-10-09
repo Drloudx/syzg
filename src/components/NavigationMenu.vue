@@ -4,7 +4,7 @@
     <template v-if="menuMode === 'side'">
       <div v-if="isOpen && !isDesktop" class="nav-mask" @click="handleClose"></div>
       <Transition :name="isDesktop ? '' : 'slide-side'">
-        <div v-if="isOpen || isDesktop" class="side-panel" :class="{ 'desktop-panel': isDesktop, 'corner-nails': isDesktop }">
+        <div v-if="isOpen || isDesktop" class="side-panel" :class="{ 'desktop-panel': isDesktop }">
           <div v-if="!isDesktop" class="side-header">
             <div class="side-header-title">
               <h2>功能导航</h2>
@@ -14,11 +14,13 @@
           </div>
           <div
             ref="sideBodyRef"
-            class="side-body paper-panel"
-            :class="{ 'is-mobile': !isDesktop, 'corner-nails': !isDesktop }"
+            class="side-body"
+            :class="{ 'is-mobile': !isDesktop, 'paper-panel': !isDesktop, 'corner-nails': !isDesktop }"
             @scroll="syncSideScrollState"
           >
-            <div class="side-category-title">导航目录</div>
+            <div class="side-category-title">
+              <span>导航目录</span>
+            </div>
 
             <!-- 使用 v-for 统一渲染侧边栏列表 -->
             <div
@@ -30,7 +32,7 @@
             >
               <img :src="getImageUrl(item.icon)" class="icon-img game-sprite" />
               <span class="item-name">{{ item.name }}</span>
-              <span class="arrow">›</span>
+              <span v-if="!isDesktop" class="arrow">›</span>
             </div>
           </div>
           <span v-if="isDesktop && canScrollUp" class="side-scroll-cue side-scroll-cue--up" aria-hidden="true"></span>
@@ -278,6 +280,21 @@ onBeforeUnmount(() => {
   flex: 1;
   display: flex;
   flex-direction: column;
+
+  /* 边框 4：手造皮质缝线与内衬层 (无铆钉) */
+  border: 2px solid #7a5c3d;
+  box-shadow: inset 0 0 0 4px rgba(223, 206, 179, 0.9), inset 0 0 0 5.5px rgba(143, 115, 81, 0.55), 2px 4px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 6px;
+  background: #e0cfb4;
+  padding: 6px;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.dark-mode .side-panel.desktop-panel {
+  border-color: #5c4327;
+  box-shadow: inset 0 0 0 4px rgba(46, 34, 23, 0.95), inset 0 0 0 5.5px rgba(110, 85, 55, 0.55), 2px 4px 12px rgba(0, 0, 0, 0.4);
+  background: #2b1f15;
 }
 
 .side-header {
@@ -341,29 +358,34 @@ onBeforeUnmount(() => {
 .side-panel.desktop-panel .side-body {
   flex: 1;
   height: 100%;
-  border: 2px solid var(--border-color, #8f7351);
-  border-radius: 4px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(135, 107, 72, 0.12);
+  border: none;
+  padding: 10px;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
   box-sizing: border-box;
   overflow-y: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
 .side-panel.desktop-panel .side-body::-webkit-scrollbar { display: none; }
+
+/* 屏蔽默认铜钉，保持定制暗金边框与挂件纯净质感 */
 .side-panel.desktop-panel.corner-nails::before,
 .side-panel.desktop-panel.corner-nails::after {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #5c4327;
-  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.3);
-  z-index: 4;
-  pointer-events: none;
+  display: none !important;
 }
-.side-panel.desktop-panel.corner-nails::before { top: 8px; left: 8px; }
-.side-panel.desktop-panel.corner-nails::after { right: 8px; bottom: 8px; }
+
+.side-panel.desktop-panel .side-scroll-cue {
+  background: linear-gradient(to bottom, transparent, rgba(224, 207, 180, 0.95) 82%);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.side-panel.desktop-panel .side-scroll-cue--up {
+  background: linear-gradient(to top, transparent, rgba(224, 207, 180, 0.95) 82%);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
 
 .side-scroll-cue {
   position: absolute;
@@ -469,6 +491,111 @@ onBeforeUnmount(() => {
   transform: translateY(-50%);
   color: var(--accent-bright, #7a9a99);
   font-size: 14px;
+}
+
+/* 桌面端专属：PA 风格（深棕烫金压纹徽章） */
+.side-panel.desktop-panel .side-category-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #4a3419;
+  padding: 6px 4px 10px;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid rgba(143, 115, 81, 0.45);
+}
+.side-panel.desktop-panel .side-category-title::after {
+  content: '◆';
+  font-size: 10px;
+  color: #a88452;
+}
+.dark-mode .side-panel.desktop-panel .side-category-title {
+  color: #dfceb3;
+  border-bottom-color: rgba(143, 115, 81, 0.3);
+}
+
+.side-panel.desktop-panel .side-item {
+  display: flex;
+  align-items: center;
+  padding: 9px 12px;
+  margin-bottom: 4px;
+  color: #4a341d;
+  cursor: pointer;
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  background-image: linear-gradient(to right, transparent, rgba(143, 115, 81, 0.18) 20%, rgba(143, 115, 81, 0.18) 80%, transparent);
+  background-position: bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  border-bottom: none;
+}
+
+.side-panel.desktop-panel .side-item:hover {
+  background-color: rgba(245, 237, 222, 0.6);
+  transform: translateX(3px);
+  color: #2b1f15;
+}
+
+.side-panel.desktop-panel .side-item.active {
+  background: linear-gradient(135deg, #3e2613, #2b1a0d);
+  color: #f7e6c4;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(43, 31, 21, 0.35), inset 0 1px 1px rgba(255, 215, 140, 0.3);
+  border-color: rgba(212, 163, 89, 0.7);
+  transform: translateX(3px);
+}
+
+.side-panel.desktop-panel .side-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #ffd78c, #c5913e);
+  box-shadow: 0 0 6px rgba(255, 215, 140, 0.7);
+  transform: none; /* 关键：重置从通用 .side-item.active::before 继承的 translateY(-50%) */
+}
+
+.side-panel.desktop-panel .side-item .icon-img {
+  width: 34px;
+  height: 34px;
+  margin-right: 12px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+  transition: transform 0.2s ease;
+}
+
+.side-panel.desktop-panel .side-item:hover .icon-img {
+  transform: scale(1.08);
+}
+
+.side-panel.desktop-panel .side-item.active .icon-img {
+  filter: drop-shadow(0 2px 5px rgba(255, 215, 140, 0.45));
+}
+
+.side-panel.desktop-panel .side-item .item-name {
+  font-size: 14.5px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.side-panel.desktop-panel .side-item.active .item-name {
+  color: #f7e6c4;
+}
+
+.dark-mode .side-panel.desktop-panel .side-item {
+  color: #dfceb3;
+  background-image: linear-gradient(to right, transparent, rgba(143, 115, 81, 0.12) 20%, rgba(143, 115, 81, 0.12) 80%, transparent);
+}
+.dark-mode .side-panel.desktop-panel .side-item:hover {
+  background-color: rgba(60, 45, 30, 0.6);
+  color: #f7e6c4;
 }
 
 /* --- 2. 底部抽屉样式 --- */

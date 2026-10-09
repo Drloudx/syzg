@@ -19,7 +19,7 @@
     </UiFilterPanel>
 
     <UiEmptyState v-if="loading" type="loading" text="正在读取伙伴邮件..." />
-    <UiEmptyState v-else-if="error" type="error" :text="error" />
+    <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadPartnerMails" />
     <div v-else class="partner-mails-scroll">
       <PartnerMailReader :heroes="filteredHeroes" :selected-hero="selectedHero"
         :mails="selectedMails" :selected-mail="selectedMail"
@@ -79,16 +79,22 @@ watch(selectedHero, () => {
 })
 watch(() => [route.query.hero, route.query.mail], applyRouteSelection)
 
-onMounted(async () => {
+const loadPartnerMails = async () => {
+  loading.value = true
+  error.value = ''
   try {
     const data = await fetchHeroData()
     heroes.value = data.mailboxes || []
     applyRouteSelection()
   } catch (e) {
-    error.value = '伙伴邮件数据加载失败'
+    error.value = '伙伴邮件数据加载失败，请重试'
   } finally {
     loading.value = false
   }
+}
+
+onMounted(() => {
+  loadPartnerMails()
 })
 </script>
 

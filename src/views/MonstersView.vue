@@ -53,7 +53,7 @@
       />
       <UiEmptyState v-if="filteredMonsters.length === 0" text="无匹配怪物" />
     </UiCardGrid>
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadMonstersData" />
     <UiEmptyState v-else type="loading" text="数据加载中..." />
 
     <!-- Monster Detail Modal -->
@@ -96,7 +96,9 @@ const searchQuery = ref('')
 const selectedLabel = ref(null)
 const selectedPlace = ref(null)
 const selectedElement = ref(null)
-onMounted(async () => {
+const loadMonstersData = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     const data = await fetchMonsterData()
     allMonsters.value = data
@@ -134,9 +136,13 @@ onMounted(async () => {
 
     isDataReady.value = true
   } catch (err) {
-    errorMessage.value = '加载失败: ' + err.message
+    errorMessage.value = '怪物图鉴加载失败，请重试'
     console.error(err)
   }
+}
+
+onMounted(() => {
+  loadMonstersData()
 })
 
 const filteredMonsters = computed(() => {

@@ -169,7 +169,7 @@ const getQualityFrame = (q) => {
 /* 名称底板复用游戏图鉴资源 colect_list_mx.png，避免网页自定义纯色与游戏视觉不一致。 */
 .ui-item-card__name {
   margin: 3px auto 0;
-  width: calc(100% - 10px);
+  width: calc(100% - 8px);
   box-sizing: border-box;
   background: transparent;
   color: var(--text-main, #382410);
@@ -177,12 +177,12 @@ const getQualityFrame = (q) => {
   font-weight: 600;
   line-height: 1.3;
   text-align: center;
-  padding: 1px 0;
+  padding: 1px 2px;
   min-height: 21px;
   border: 4px solid transparent;
-  border-image-source: url('/images/PicHandBookPanel_Atlas/colect_list_mx.webp');
-  border-image-slice: 20 32 fill;
-  border-image-width: 4px 8px;
+  border-image-source: url('/images/Common_Atlas/com_txt_box.webp');
+  border-image-slice: 16 fill;
+  border-image-width: 4px;
   border-image-outset: 0;
   border-image-repeat: stretch;
   box-shadow: none;
@@ -201,7 +201,7 @@ const getQualityFrame = (q) => {
 
 .dark-mode .ui-item-card__name {
   background: transparent;
-  border-image-source: url('/images/PicHandBookPanel_Atlas/colect_list_mx.webp');
+  border-image-source: url('/images/Common_Atlas/com_txt_box.webp');
   color: #eaddc2;
 }
 

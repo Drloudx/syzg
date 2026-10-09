@@ -1,7 +1,7 @@
 # UI 设计系统与长列表
 
 > 本文件是主题、公共组件引用规则与长列表行为的业务契约。
-> 组件完整 API、调色板与页面骨架见 [UI_COMPONENT_LIBRARY.md](../UI_COMPONENT_LIBRARY.md)；右栏吉祥物的装配细节见本文件[第七节](#七右栏吉祥物装配)。
+> 组件完整 API、调色板与页面骨架见 [UI_COMPONENT_LIBRARY.md](../UI_COMPONENT_LIBRARY.md)；导航栏与布局交接见 [UI_HANDOVER.md](../technical/UI_HANDOVER.md)；右栏吉祥物的装配细节见本文件[第七节](#七右栏吉祥物装配)。
 >
 > **何时读**：改动主题变量、引用公共组件、或调整长列表与滚动行为时。
 > **何时更新**：该领域规则变化时。**只改这一个领域文件，不要把别的领域内容搬进来。**
@@ -57,9 +57,9 @@
 | 场景 | 组件 |
 | --- | --- |
 | 搜索、筛选、页签 | `UiSearchInput`、`UiFilterRow/UiFilterPill`、`UiTabs/UiSegmentedTabs` |
-| 普通列表、图鉴卡、奖励与信息区 | `UiCardGrid`、`UiItemCard`、`UiRewardCard`、`UiSection`、`UiInfoRow` |
+| 普通列表、图鉴卡、奖励与信息区 | `UiCardGrid`、`UiItemCard`（名称底板用 `com_txt_box.webp` 皮纸框）、`UiRewardCard`、`UiSection`、`UiInfoRow` |
 | 加载、错误、空态 | `UiEmptyState` —— **不能把请求失败当作正常零条目** |
-| 收集与返回顶部 | `UiCollectionToggle`、`UiBackToTop` —— 操作指向实际列表状态/滚动根 |
+| 收集与返回顶部 | `UiCollectionToggle`、`UiBackToTop`（桌面端 `bottom: 38px` 避让外框）—— 操作指向实际列表状态/滚动根 |
 | 通用详情与全局提示 | `UiModal` —— 统一覆盖层登记、返回与滚动锁 |
 | 重型长列表 | 按需直接导入 `UiVirtualGrid.vue`，不经首屏 UI 出口加载虚拟引擎 |
 | 原素材业务皮肤 | 招募、邮件等按 [UI 组件库](../UI_COMPONENT_LIBRARY.md) 与专题处理；仍复用共享数据与资源工具 |

@@ -66,8 +66,9 @@
       </template>
     </UiFilterPanel>
 
-    <!-- 加载态 -->
+    <!-- 加载态 / 错误态 -->
     <UiEmptyState v-if="!isDataReady" type="loading" text="正在拉取并解析魔物蛋数据..." />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadPetEggs" />
 
     <!-- 表格主体（懒加载每批 60 项） -->
     <div v-else class="pet-table-scroll" id="petTableGrid" data-main-scroll>
@@ -305,6 +306,7 @@ const sortState = ref({ field: 'star', dir: 'desc' })
 
 const pets = ref([])
 const isDataReady = ref(false)
+const errorMessage = ref('')
 const detailModal = ref({ visible: false, pet: {} })
 
 const getFieldLabel = (key) => {
@@ -338,7 +340,9 @@ const handleImgError = (e) => {
   e.target.style.display = 'none'
 }
 
-onMounted(async () => {
+const loadPetEggs = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     let processed = null
 
@@ -355,16 +359,21 @@ onMounted(async () => {
       processed = buildPetEggsData({ petJson: res }).pets
     }
 
-    pets.value = processed
+    pets.value = processed || []
   } catch (err) {
-    console.error('Fetch /data/parsed/pet.json error:', err)
+    console.error('Fetch pet eggs data error:', err)
+    errorMessage.value = '魔物蛋数据加载失败，请重试'
   } finally {
     isDataReady.value = true
-    if (route.query.id) {
+    if (route.query.id && pets.value.length) {
       const match = pets.value.find(p => p.id === String(route.query.id))
       if (match) openDetail(match)
     }
   }
+}
+
+onMounted(() => {
+  loadPetEggs()
 })
 
 // Bidirectional URL Query State Sync

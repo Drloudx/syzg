@@ -1,54 +1,29 @@
 <template>
   <div ref="host" class="sidebar-mascot" :data-character="active.id" :data-rigged="hasMascotRig(active.id) ? 'true' : null" :aria-busy="loading" :style="{ '--mascot-play-state': playing ? 'running' : 'paused' }">
     <!-- Trusted, repository-owned SVG; no runtime markup or original PNG download. -->
-    <div class="mascot-art" :data-action="action" :data-hero="active.id" :data-rigged="hasMascotRig(active.id) ? 'true' : null" aria-hidden="true">
-      <div v-if="hasMascotRig(active.id) && artwork" class="mascot-drawing"><MascotScene :key="active.id" :character="active.id" :action="action" :playing="playing" :paused="paused" :reduced-motion="reducedMotion" @state="hilState = $event" /></div>
+    <div class="mascot-art" :data-action="currentAction" :data-hero="active.id" :data-rigged="hasMascotRig(active.id) ? 'true' : null" aria-hidden="true">
+      <div v-if="hasMascotRig(active.id) && artwork" class="mascot-drawing"><MascotScene :key="active.id" :character="active.id" :action="currentAction" :playing="playing" :paused="paused" :reduced-motion="reducedMotion" @state="hilState = $event" /></div>
       <div v-else class="mascot-drawing" v-html="artwork"></div>
-      <span v-if="action === 'think' && !reducedMotion && (!hasMascotRig(active.id) || (hilState.action === 'think' && hilState.stage === 'loop'))" class="mascot-thought-bubble">?</span>
+      <span v-if="currentAction === 'think' && !reducedMotion && (!hasMascotRig(active.id) || (hilState.action === 'think' && hilState.stage === 'loop'))" class="mascot-thought-bubble">?</span>
     </div>
     <div class="mascot-controls">
-      <UiButton
-        v-if="!reducedMotion"
-        class="mascot-control mascot-motion-toggle"
-        variant="ghost" size="sm" type="button"
-        :aria-label="`${paused ? '播放' : '暂停'}${active.name}${actionName}动画`"
-        :aria-pressed="paused"
-        @click="togglePaused"
-      >{{ paused ? '播放' : '暂停' }}</UiButton>
-      <UiButton
-        v-if="!reducedMotion"
-        ref="actionButton"
-        class="mascot-control mascot-action-toggle"
-        variant="ghost" size="sm" type="button"
-        aria-label="选择吉祥物动作"
-        aria-haspopup="dialog"
-        :aria-expanded="actionPickerOpen"
-        aria-controls="mascot-action-picker"
-        :title="`当前动作：${actionName}`"
-        @click="actionPickerOpen = !actionPickerOpen; pickerOpen = false"
-      >{{ actionName }}</UiButton>
       <UiButton
         ref="switchButton"
         class="mascot-control mascot-switch"
         variant="ghost" size="sm" type="button"
         :disabled="loading"
-        aria-label="切换吉祥物角色"
+        aria-label="选择吉祥物角色与设置"
         aria-haspopup="dialog"
         :aria-expanded="pickerOpen"
         aria-controls="mascot-character-picker"
-        :title="`当前：${active.name}；选择吉祥物`"
+        :title="`当前：${active.name} · ${actionName}；选择吉祥物与动作`"
         @click="pickerOpen = !pickerOpen"
-      >{{ loading ? '加载中' : '切换' }}<i v-if="!loading" class="mascot-chevron" :class="{ 'is-open': pickerOpen }" aria-hidden="true"></i></UiButton>
+      >
+        <span>{{ loading ? '加载中' : '切换角色' }}</span>
+        <i v-if="!loading" class="mascot-chevron" :class="{ 'is-open': pickerOpen }" aria-hidden="true"></i>
+      </UiButton>
     </div>
     <span class="mascot-announcement" role="status">{{ loadFailed ? '角色加载失败，请重试' : `当前吉祥物：${active.name}` }}</span>
-    <UiPopover v-model:visible="actionPickerOpen" id="mascot-action-picker" :anchor="actionButton?.$el" :title="`${active.name}的动作`" :width="340">
-      <div class="mascot-action-options">
-        <UiButton v-for="entry in availableActions" :key="entry.id" :variant="action === entry.id ? 'secondary' : 'ghost'"
-          class="mascot-action-option" :aria-pressed="action === entry.id" :aria-label="`使用${entry.name}动作`" @click="selectAction(entry.id)">
-          <span>{{ entry.name }}</span><small>{{ entry.detail }}</small>
-        </UiButton>
-      </div>
-    </UiPopover>
     <UiPopover
       v-model:visible="pickerOpen"
       id="mascot-character-picker"
@@ -81,6 +56,40 @@
           <span class="mascot-option-name">{{ character.name }}</span>
         </UiButton>
       </div>
+
+      <!-- 弹窗底部整合工具栏：动作切换与动画开关 -->
+      <div v-if="!reducedMotion" class="mascot-footer-settings">
+        <div class="mascot-action-bar">
+          <span class="mascot-setting-label">动作：</span>
+          <div class="mascot-action-chips">
+            <button
+              v-for="entry in availableActions"
+              :key="entry.id"
+              type="button"
+              class="mascot-action-chip"
+              :class="{ 'is-active': selectedAction === entry.id }"
+              :aria-pressed="selectedAction === entry.id"
+              :title="entry.detail"
+              @click="selectAction(entry.id)"
+            >
+              {{ entry.name }}
+            </button>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="mascot-motion-btn"
+          :class="{ 'is-paused': paused }"
+          :aria-pressed="paused"
+          :title="paused ? '播放动画' : '暂停动画'"
+          @click="togglePaused"
+        >
+          <span class="mascot-motion-icon">{{ paused ? '▶' : '⏸' }}</span>
+          <span>{{ paused ? '播放' : '暂停' }}</span>
+        </button>
+      </div>
+
       <div v-if="loadFailed" class="mascot-picker-error" role="alert">
         <span>角色加载失败，请重试</span>
         <UiButton variant="ghost" size="sm" @click="loadCharacter(requested, true)">重试</UiButton>
@@ -113,15 +122,27 @@ const batchCharacters = computed(() => MASCOTS.slice(batch.value * batchSize, (b
 const previews = ref({})
 const previewErrors = ref({})
 const paused = ref(false)
-const action = ref('idle')
+const selectedAction = ref('random')
+const currentAction = ref('idle')
 const hilState = ref({ action: 'idle', stage: 'loop' })
 const actions = [
+  { id: 'random', name: '随机', detail: '轮播切换 · 1~3分钟随机动作' },
   { id: 'idle', name: '待机', detail: '呼吸 · 眨眼' },
   { id: 'think', name: '思考', detail: '抬手托腮 · 偏头' },
   { id: 'swing', name: '秋千', detail: '握绳轻荡 · 晃脚' },
   { id: 'fish', name: '钓鱼', detail: '看漂 · 收线提竿' }
 ]
-const actionName = computed(() => actions.find(entry => entry.id === action.value)?.name || '待机')
+
+// 各动作随机配置（权重与随机持续时间范围/秒，每个动作至少 1 分钟左右）
+const ACTION_RANDOM_CONFIGS = {
+  idle: { minSec: 60, maxSec: 120, weight: 3 },
+  think: { minSec: 50, maxSec: 90, weight: 2 },
+  swing: { minSec: 60, maxSec: 150, weight: 2.5 },
+  fish: { minSec: 75, maxSec: 180, weight: 2.5 }
+}
+
+const actionName = computed(() => actions.find(entry => entry.id === selectedAction.value)?.name || '随机')
+const concreteActionName = computed(() => actions.find(entry => entry.id === currentAction.value)?.name || '待机')
 const reducedMotion = ref(false)
 const inView = ref(false)
 const pageVisible = ref(false)
@@ -132,7 +153,13 @@ const actionKey = 'sidebar-mascot-action'
 const active = ref(MASCOTS[0])
 // Only hand-checked articulated models expose the full choreography. A portrait
 // remains idle until its limbs and props have been individually verified.
-const availableActions = computed(() => hasMascotRig(active.value.id) ? actions : [{ ...actions[0], detail: '轻呼吸' }])
+const availableActions = computed(() => {
+  if (hasMascotRig(active.value.id)) {
+    return actions
+  }
+  const idleEntry = actions.find(a => a.id === 'idle') || { id: 'idle', name: '待机' }
+  return [{ ...idleEntry, detail: '轻呼吸' }]
+})
 const artwork = ref('')
 const loading = ref(false)
 const loadFailed = ref(false)
@@ -142,6 +169,46 @@ let artworkRequest
 let previewRequest
 let observer
 let motionPreference
+let randomTimer = null
+
+function clearRandomTimer() {
+  if (randomTimer) {
+    clearTimeout(randomTimer)
+    randomTimer = null
+  }
+}
+
+function getRandomDuration(actId) {
+  const cfg = ACTION_RANDOM_CONFIGS[actId] || { minSec: 60, maxSec: 120 }
+  const sec = cfg.minSec + Math.random() * (cfg.maxSec - cfg.minSec)
+  return Math.round(sec * 1000)
+}
+
+function pickNextRandomAction(current) {
+  const pool = ['idle', 'think', 'swing', 'fish'].filter(id => id !== current)
+  const totalWeight = pool.reduce((sum, id) => sum + (ACTION_RANDOM_CONFIGS[id]?.weight || 1), 0)
+  let roll = Math.random() * totalWeight
+  for (const id of pool) {
+    const w = ACTION_RANDOM_CONFIGS[id]?.weight || 1
+    if (roll <= w) return id
+    roll -= w
+  }
+  return pool[Math.floor(Math.random() * pool.length)] || 'idle'
+}
+
+function scheduleNextRandomAction() {
+  clearRandomTimer()
+  if (selectedAction.value !== 'random' || !playing.value || !hasMascotRig(active.value.id)) {
+    return
+  }
+  const durationMs = getRandomDuration(currentAction.value)
+  randomTimer = setTimeout(() => {
+    if (selectedAction.value === 'random' && playing.value && hasMascotRig(active.value.id)) {
+      currentAction.value = pickNextRandomAction(currentAction.value)
+      scheduleNextRandomAction()
+    }
+  }, durationMs)
+}
 
 async function loadCharacter(character, closePicker = false) {
   const operation = ++loadOperation
@@ -156,9 +223,17 @@ async function loadCharacter(character, closePicker = false) {
     artwork.value = svg
     previews.value[character.id] = svg
     active.value = character
-    if (!hasMascotRig(character.id) && action.value !== 'idle') {
-      action.value = 'idle'
+    if (!hasMascotRig(character.id) && selectedAction.value !== 'idle') {
+      selectedAction.value = 'idle'
+      currentAction.value = 'idle'
+      clearRandomTimer()
       try { localStorage.setItem(actionKey, 'idle') } catch { /* Session fallback remains available. */ }
+    } else if (hasMascotRig(character.id)) {
+      if (selectedAction.value === 'random') {
+        scheduleNextRandomAction()
+      } else {
+        currentAction.value = selectedAction.value
+      }
     }
     actionPickerOpen.value = false
     if (closePicker) {
@@ -198,6 +273,15 @@ watch([pickerOpen, batch], async ([open]) => {
 })
 watch(() => route.fullPath, () => { pickerOpen.value = false; actionPickerOpen.value = false })
 watch(reducedMotion, reduced => { if (reduced) actionPickerOpen.value = false })
+watch(playing, isPlaying => {
+  if (isPlaying) {
+    if (selectedAction.value === 'random' && hasMascotRig(active.value.id)) {
+      scheduleNextRandomAction()
+    }
+  } else {
+    clearRandomTimer()
+  }
+})
 
 function updateVisibility() { pageVisible.value = !document.hidden }
 function updateMotionPreference() { reducedMotion.value = motionPreference.matches }
@@ -207,9 +291,20 @@ function togglePaused() {
 }
 async function selectAction(id) {
   if (!availableActions.value.some(entry => entry.id === id)) return
-  action.value = id
+  selectedAction.value = id
   actionPickerOpen.value = false
-  try { localStorage.setItem(actionKey, action.value) } catch { /* Keep the session choice. */ }
+  clearRandomTimer()
+  if (id === 'random') {
+    if (hasMascotRig(active.value.id)) {
+      currentAction.value = pickNextRandomAction(currentAction.value)
+      scheduleNextRandomAction()
+    } else {
+      currentAction.value = 'idle'
+    }
+  } else {
+    currentAction.value = id
+  }
+  try { localStorage.setItem(actionKey, selectedAction.value) } catch { /* Keep the session choice. */ }
   await nextTick()
   actionButton.value?.$el?.focus({ preventScroll: true })
 }
@@ -218,8 +313,19 @@ onMounted(() => {
   try { paused.value = localStorage.getItem(preferenceKey) === 'true' } catch { /* Animation controls remain usable without storage. */ }
   try {
     const saved = localStorage.getItem(actionKey)
-    action.value = saved === 'hop' ? 'think' : actions.some(entry => entry.id === saved) ? saved : 'idle'
-  } catch { /* Default to idle. */ }
+    if (saved && actions.some(entry => entry.id === saved)) {
+      selectedAction.value = saved === 'hop' ? 'think' : saved
+    } else {
+      selectedAction.value = 'random'
+    }
+  } catch {
+    selectedAction.value = 'random'
+  }
+  if (selectedAction.value === 'random') {
+    currentAction.value = 'idle'
+  } else {
+    currentAction.value = selectedAction.value
+  }
   let initial = MASCOTS[0]
   try { initial = MASCOTS.find(entry => entry.id === localStorage.getItem(characterKey)) || initial } catch { /* Use the default character. */ }
   loadCharacter(initial)
@@ -233,6 +339,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  clearRandomTimer()
   loadOperation += 1
   artworkRequest?.abort()
   previewRequest?.abort()
@@ -273,16 +380,40 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 2px;
+  gap: 5px;
+  padding-top: 4px;
 }
 .mascot-control {
   pointer-events: auto;
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--text-main);
-  padding-inline: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #5c3b1e;
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(143, 115, 81, 0.35);
+  border-radius: 4px;
+  padding: 3px 8px;
+  min-height: 25px;
+  line-height: 1.35;
+  transition: all 0.18s ease;
+  cursor: pointer;
 }
-.mascot-switch { min-height: 28px; }
+.mascot-control:hover {
+  background: rgba(197, 145, 62, 0.22);
+  border-color: rgba(197, 145, 62, 0.6);
+  color: #2b1a0d;
+  transform: translateY(-1px);
+}
+.dark-mode .mascot-control {
+  color: #ffd78c;
+  background: rgba(143, 115, 81, 0.22);
+  border-color: rgba(143, 115, 81, 0.45);
+}
+.dark-mode .mascot-control:hover {
+  background: rgba(197, 145, 62, 0.35);
+  border-color: #ffd78c;
+  color: #fff;
+}
+.mascot-switch { min-height: 25px; }
 .mascot-chevron {
   display: inline-block;
   width: 6px;
@@ -306,7 +437,7 @@ onBeforeUnmount(() => {
 .mascot-options {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 4px;
+  gap: 6px;
 }
 .mascot-batch-controls { display: flex; align-items: center; gap: 3px; }
 .mascot-batch-controls :deep(.ui-btn) { min-height: 30px; padding: 0 7px; font-size: 13px; color: var(--text-main); gap: 5px; }
@@ -319,10 +450,48 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  padding: 8px 3px;
-  gap: 4px;
-  font-size: 13px;
-  font-weight: 400;
+  padding: 8px 6px 7px;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  background: rgba(247, 240, 227, 0.45);
+  border: 1px solid rgba(143, 115, 81, 0.28);
+  box-shadow: 0 1px 3px rgba(60, 45, 30, 0.05);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.mascot-option:hover {
+  background: rgba(254, 249, 239, 0.88);
+  border-color: rgba(197, 145, 62, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(90, 60, 30, 0.15);
+}
+.mascot-option[aria-pressed="true"] {
+  background: rgba(255, 248, 235, 0.95);
+  border: 1.5px solid #d4a359;
+  box-shadow: 
+    0 2px 8px rgba(197, 145, 62, 0.25),
+    inset 0 0 10px rgba(212, 163, 89, 0.18);
+}
+.dark-mode .mascot-option {
+  background: rgba(43, 31, 21, 0.55);
+  border-color: rgba(143, 115, 81, 0.35);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.dark-mode .mascot-option:hover {
+  background: rgba(60, 42, 27, 0.85);
+  border-color: rgba(212, 163, 89, 0.7);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+.dark-mode .mascot-option[aria-pressed="true"] {
+  background: rgba(58, 40, 24, 0.9);
+  border-color: #ffd78c;
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.5),
+    inset 0 0 10px rgba(212, 163, 89, 0.25);
 }
 .mascot-option-art {
   display: block;
@@ -334,8 +503,129 @@ onBeforeUnmount(() => {
 .mascot-option-art :deep(.idle-motion) { animation: none; }
 .mascot-option-art :deep(.hil-scene *) { animation: none; }
 .mascot-preview-placeholder { display: grid; place-items: center; }
-.mascot-option-name { width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.6; }
+.mascot-option-name {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.5;
+  text-align: center;
+}
+.mascot-option[aria-pressed="true"] .mascot-option-name {
+  font-weight: 700;
+  color: #3e2613;
+}
+.dark-mode .mascot-option[aria-pressed="true"] .mascot-option-name {
+  color: #ffd78c;
+}
 .mascot-picker-error { display: flex; align-items: center; justify-content: flex-end; font-size: 13px; gap: 8px; }
+
+/* 弹窗底部整合控制条 */
+.mascot-footer-settings {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px dashed rgba(143, 115, 81, 0.35);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.mascot-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+.mascot-setting-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #6b5134;
+  flex-shrink: 0;
+}
+.mascot-action-chips {
+  display: flex;
+  gap: 4px;
+}
+.mascot-action-chip {
+  font-size: 11.5px;
+  font-family: inherit;
+  padding: 2.5px 7px;
+  border-radius: 4px;
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(143, 115, 81, 0.3);
+  color: #5c3b1e;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  line-height: 1.35;
+}
+.mascot-action-chip:hover {
+  background: rgba(197, 145, 62, 0.22);
+  border-color: rgba(197, 145, 62, 0.6);
+  color: #2b1a0d;
+}
+.mascot-action-chip.is-active {
+  background: #c5913e;
+  border-color: #ffd78c;
+  color: #2b1a0d;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+.mascot-motion-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  font-family: inherit;
+  padding: 2.5px 8px;
+  border-radius: 4px;
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(143, 115, 81, 0.3);
+  color: #5c3b1e;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1.35;
+  transition: all 0.18s ease;
+}
+.mascot-motion-btn:hover {
+  background: rgba(197, 145, 62, 0.22);
+  border-color: rgba(197, 145, 62, 0.6);
+  color: #2b1a0d;
+}
+.mascot-motion-btn.is-paused {
+  background: rgba(192, 57, 43, 0.12);
+  border-color: rgba(192, 57, 43, 0.45);
+  color: #9c2718;
+  font-weight: 700;
+}
+.mascot-motion-icon {
+  font-size: 10px;
+}
+.dark-mode .mascot-setting-label {
+  color: #c9b482;
+}
+.dark-mode .mascot-action-chip,
+.dark-mode .mascot-motion-btn {
+  background: rgba(143, 115, 81, 0.22);
+  border-color: rgba(143, 115, 81, 0.45);
+  color: #ffd78c;
+}
+.dark-mode .mascot-action-chip:hover,
+.dark-mode .mascot-motion-btn:hover {
+  background: rgba(197, 145, 62, 0.35);
+  border-color: #ffd78c;
+  color: #fff;
+}
+.dark-mode .mascot-action-chip.is-active {
+  background: #c5913e;
+  border-color: #ffe6b0;
+  color: #2b1a0d;
+}
+.dark-mode .mascot-motion-btn.is-paused {
+  background: rgba(192, 57, 43, 0.25);
+  border-color: rgba(231, 76, 60, 0.6);
+  color: #ff8e80;
+}
+
 /* Keep the illustration secondary in short desktop windows; the notes stay above it in normal flow. */
 @media (max-height: 780px) {
   .sidebar-mascot { width: 144px; padding-top: 8px; }

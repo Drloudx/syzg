@@ -787,45 +787,53 @@ input, textarea, select {
 .filter-btn.quality-text-5.active { background: var(--q5); color: #2b1f15 !important; }
 
 /* ====== 8. 滚动条（羊皮纸质感） ====== */
+
+/*
+ * 🔴 **只用标准属性 `scrollbar-color`，不要再写 `::-webkit-scrollbar-*` 伪元素。**
+ *
+ * Chromium 的规则：只要元素上 `scrollbar-color` 的最终值**不是 `auto`**，
+ * 就切换到标准滚动条实现、并**整体忽略所有 `::-webkit-scrollbar-*` 伪元素**。
+ * 两者只能取其一 —— 同时写，必然有一半是死代码。
+ *
+ * 这里选**标准属性**（滑块 = `--border-color`、轨道 = 半透明木色）：跨浏览器一致，
+ * 且不会被上面那条规则反噬。观感即当前线上：**粗细与两端按钮由系统决定**
+ * （标准滚动条自带上下三角，这是它的固有外观，本站不额外去掉）。
+ *
+ * ## 为什么删掉了原来那组伪元素规则（2026-10-09）
+ *
+ * 原文这里还有一组：
+ *   `::-webkit-scrollbar { width: 8px }`、`::-webkit-scrollbar-button { display: none }`、
+ *   轨道/滑块配色、`:hover` 变色。
+ * 它们被上面的 `* { scrollbar-color }` **整体压制，从未生效过** —— 也就是说
+ * **文件写着「8px、无三角」，实际全站一直是系统默认（实测 15px、带三角）**。
+ * 这种「声明与事实不符」比外观本身更危险：下一个人照着 8px 去调，会完全踩空。
+ * 现已删除该组死代码，文件与真实表现一致。
+ *
+ * ⚠️ 将来若要把**全站**改成「更细 / 无三角」：必须**先**去掉这里的 `scrollbar-color`
+ * （或把它限制到不需要伪元素的元素上），**再**写伪元素规则；只加伪元素是无效的。
+ * **单个容器**若确实需要特例（例：表情面板 6px、无三角、悬停才出现），
+ * 在那个组件的样式里把 `scrollbar-color` 压回 `auto` 再写伪元素 ——
+ * 参见 `src/components/EmoticonPicker.vue` 顶部「面板滚动条」小节。
+ */
 * {
   scrollbar-color: var(--border-color) rgba(43, 31, 21, 0.12);
-}
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-button {
-  display: none;
-  width: 0;
-  height: 0;
-}
-::-webkit-scrollbar-track {
-  background: rgba(43, 31, 21, 0.12);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border: 1px solid rgba(43, 31, 21, 0.25);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--wood-soft);
 }
 
 /* ====== 8b. 触屏端隐藏滚动条（保留滚动效果） ======
    移动端本来就用手指滑动，滚动条既占宽度又不好看；这里只隐藏**视觉**，
    滚动行为、惯性、scrollTop 等一概不变。
    用 `pointer: coarse`（主指针为触摸）而非宽度断点：桌面窄窗口仍应保留滚动条，
-   而触屏平板即使很宽也不需要。Firefox 走 scrollbar-width，WebKit 走伪元素。 */
+   而触屏平板即使很宽也不需要。
+
+   ⚠️ 这里**只用标准属性 `scrollbar-width: none`**（Chromium / Firefox 都认）。
+   原文件还配了一条 `::-webkit-scrollbar { display: none }`，但它是**死代码** ——
+   同 §8 的说明：`scrollbar-width` 一旦非 `auto`，Chromium 就整体忽略 webkit 伪元素。
+   而 `scrollbar-width: none` 自己就能真正隐藏，所以删掉那条不影响行为，
+   只让文件与事实一致。（`-ms-overflow-style` 保留：老 Edge/IE 用得上。） */
 @media (pointer: coarse) {
   * {
-    scrollbar-width: none;      /* Firefox / 新版 Chromium */
+    scrollbar-width: none;      /* Chromium / Firefox：这才是真正生效的那条 */
     -ms-overflow-style: none;   /* 旧 Edge / IE */
-  }
-  ::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
   }
 }
 

@@ -18,7 +18,7 @@
         </UiFilterPill>
 
         <template #right>
-          <div class="recipes-counter">
+          <div v-if="isDataReady && !errorMessage" class="recipes-counter">
             数量：<span class="count-num">{{ filteredRecipes.length }}</span> / {{ recipes.length }}
           </div>
         </template>
@@ -27,6 +27,7 @@
 
     <!-- Async Data Loading State -->
     <UiEmptyState v-if="!isDataReady" type="loading" text="正在装配食谱与Buff配方数据..." />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadRecipes" />
 
     <!-- 列表区（双列卡片，懒加载每批 60 项） -->
     <UiCardGrid v-else id="recipeGridScroll" class="recipe-scroll-container">
@@ -165,6 +166,7 @@ const highlightedRecipeId = ref('')
 
 const recipes = ref([])
 const isDataReady = ref(false)
+const errorMessage = ref('')
 let highlightTimer = 0
 
 // Preview Modal State
@@ -269,12 +271,14 @@ const handleLocateRecipe = async (targetId, queryQ) => {
   }
 }
 
-onMounted(async () => {
+const loadRecipes = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     const { recipes: assembledList } = await fetchWithFallback('data/parsed/recipes.json')
 
     // 预解析产物存相对路径，运行时统一过 getImageUrl（原生端会加 CDN 前缀）
-    recipes.value = assembledList
+    recipes.value = (assembledList || [])
       .map(r => ({
         ...r,
         icon: getImageUrl(r.icon),
@@ -288,8 +292,13 @@ onMounted(async () => {
     }
   } catch (err) {
     console.error('Fetch parsed recipes data error:', err)
+    errorMessage.value = '菜谱数据加载失败，请重试'
     isDataReady.value = true
   }
+}
+
+onMounted(() => {
+  loadRecipes()
 })
 
 // Bidirectional URL Query State Sync

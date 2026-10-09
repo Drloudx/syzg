@@ -49,14 +49,14 @@
           </div>
         </div>
 
-        <div class="facility-count">共 <strong>{{ filteredRecipes.length }}</strong> 项</div>
+        <div v-if="isDataReady && !errorMessage" class="facility-count">共 <strong>{{ filteredRecipes.length }}</strong> 项</div>
       </template>
     </UiFilterPanel>
 
     <UiEmptyState v-if="!isDataReady" type="loading" text="正在整理设施数据..." />
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadFacilitiesData" />
 
-    <UiEmptyState v-else-if="isCamp && !camp" type="error" text="营地数据加载失败，请更新数据后重试" />
+    <UiEmptyState v-else-if="isCamp && !camp" type="error" text="营地数据加载失败，请更新数据后重试" @retry="loadFacilitiesData" />
     <UiCardGrid v-else-if="!isCamp" id="facilitiesScroll" class="facilities-grid" wide>
       <article
         v-for="recipe in filteredRecipes"
@@ -220,16 +220,22 @@ watch([isDataReady, () => route.query.facility, () => route.query.mode, targetIt
   document.querySelector('.facility-recipe.is-target')?.scrollIntoView({ block: 'center' })
 })
 
-onMounted(async () => {
+const loadFacilitiesData = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     facilities.value = await fetchWithFallback('data/parsed/facilities.json')
     if (!Array.isArray(facilities.value)) throw new Error('设施数据格式不正确')
   } catch (error) {
     console.error('加载设施功能失败:', error)
-    errorMessage.value = `加载失败：${error?.message || error}`
+    errorMessage.value = '设施数据加载失败，请重试'
   } finally {
     isDataReady.value = true
   }
+}
+
+onMounted(() => {
+  loadFacilitiesData()
 })
 
 const toRewardRule = material => ({

@@ -70,7 +70,7 @@
       </UiItemCard>
       <UiEmptyState v-if="filteredPets.length === 0" text="未找到匹配的魔物数据" />
     </UiCardGrid>
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadPetsData" />
     <UiEmptyState v-else type="loading" text="正在装配魔物图鉴数据..." />
 
     <UiBackToTop scroll-container="#petsGridScroll" />
@@ -569,7 +569,9 @@ const getSpGachaElementSlug = (element) => ELEMENT_SLUGS[element] || 'Water'
 // 兜底的属性中文名
 const getElementName = (element) => ELEMENT_NAMES[element] || '水'
 
-onMounted(async () => {
+const loadPetsData = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     const data = await fetchPetData()
     allPets.value = data.pets
@@ -586,9 +588,13 @@ onMounted(async () => {
       }
     }
   } catch (err) {
-    errorMessage.value = '加载失败: ' + err.message
+    errorMessage.value = '魔物图鉴加载失败，请重试'
     console.error(err)
   }
+}
+
+onMounted(() => {
+  loadPetsData()
 })
 
 watch(() => route.query.id, (newId) => {

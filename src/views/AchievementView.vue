@@ -31,7 +31,7 @@
         </UiFilterPill>
 
         <template #right>
-          <div class="collection-counter">
+          <div v-if="isDataReady && !errorMessage" class="collection-counter">
             已收集 <span class="count-num">{{ collectedCount }}</span> / {{ achievements.length }}
           </div>
         </template>
@@ -40,6 +40,7 @@
 
     <!-- Async Data Loading State -->
     <UiEmptyState v-if="!isDataReady" type="loading" text="正在装配成就与奖励数据..." />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadAchievements" />
 
     <!-- 列表区（懒加载每批 60 项） -->
     <UiCardGrid v-else id="achGridScroll" class="ach-scroll-container">
@@ -215,6 +216,7 @@ const highlightedAchId = ref('')
 
 const achievements = ref([])
 const isDataReady = ref(false)
+const errorMessage = ref('')
 let highlightTimer = 0
 
 // 成就详情弹窗状态（按迁移契约第4条新增：卡面点击打开全屏详情）
@@ -319,12 +321,14 @@ const handleLocateAchievement = async (targetId, queryQ) => {
   }
 }
 
-onMounted(async () => {
+const loadAchievements = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     const { achievements: assembled } = await fetchWithFallback('data/parsed/achievements.json')
 
     // 黑名单过滤（与原组装后行为一致）
-    achievements.value = assembled.filter(a => !isBlacklisted(a))
+    achievements.value = (assembled || []).filter(a => !isBlacklisted(a))
     isDataReady.value = true
 
     // Check if mounted with target ID or query
@@ -333,8 +337,13 @@ onMounted(async () => {
     }
   } catch (err) {
     console.error('Fetch parsed achievements data error:', err)
+    errorMessage.value = '成就数据加载失败，请重试'
     isDataReady.value = true
   }
+}
+
+onMounted(() => {
+  loadAchievements()
 })
 
 // Bidirectional URL Query State Sync

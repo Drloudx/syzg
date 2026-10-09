@@ -3,7 +3,7 @@
   <div class="gacha-page">
     <template v-if="errorMessage">
       <div class="gacha-fallback">
-        <UiEmptyState type="error" :text="errorMessage" />
+        <UiEmptyState type="error" :text="errorMessage" @retry="initData" />
       </div>
     </template>
     <template v-else-if="!ready">
@@ -336,7 +336,8 @@ async function load() {
       }
     }
   } catch (error) {
-    errorMessage.value = `卡池数据加载失败：${error?.message ?? error}`
+    console.error('加载卡池数据失败:', error)
+    errorMessage.value = '卡池数据加载失败，请重试'
   }
 }
 

@@ -76,6 +76,7 @@
 | 21 | 新建的图鉴页里，正文滚动时**内容盖到吸顶筛选框上方**（老页面都正常） | 桌面端靠 `--sticky-clip-top` + `clip-path` 裁掉滚过筛选框的部分，它需要「`.page-view-container` 直接子级的 `UiFilterPanel`」+「内容容器带 `data-main-scroll`」**成对出现**。少任一条就静默失效（不报错） | 用 `UiFilterPanel`（带 `data-sticky-filter`）并放回直接子级；自建滚动容器补 `data-main-scroll`。开发期 `App.vue` 会 `console.warn('[sticky-clip] …')`；回归 `tests/ui/sticky-clip.spec.js`。规则见 [UI 组件库 §3 第 9 条](./UI_COMPONENT_LIBRARY.md#3-使用规则强制) |
 | 22 | 读节点几何的用例**单跑绿、全量偶红**（`chapters-map.spec.js:107`，2026-10-06 曾误判为「同 worker 滚动状态」） | 节点图是 `width:172px; height:auto`，高度由**图片固有比例**决定；**未解码时高度塌成 0**，`getBoundingClientRect()` 退化成零高度线（实测 `artTop=274 / artH=0`），而 label 按 `bottom:26px` 定位在 243 → `labelTop >= artTop` 为假。全量并发时图解码慢才暴露 | 读几何前等图解码：`waitForFunction` 断言所有 `.region-map__node-art` 的 `complete`。等 `complete` 而非 `naturalWidth > 0`（坏图要尽快落地交给坏图断言，不在此挂到超时）；带 `imgs.length > 0` 守卫防空数组恒真空转 | `tests/ui/chapters-map.spec.js` |
 | 23 | 断言右栏 `.info-note` 矩形恒定的用例**单跑绿、全量偶红**（`hil-actions.spec.js`） | 该断言用 `document.querySelector('.info-note')` 取交流群行，而它的 `y` 取决于**上方**评论列表高度；列表由 `/api/recent` 异步填充、每 `DISCUSSION_POLL_MS`（60 秒）轮询。① `.recent-body` 有 `-webkit-line-clamp: 2`，正文长短不同的评论让列表总高不同（实测 5 条从 1 行变 2 行 → 列表 291 → 388px，该行**下移 97px**）；② 评论未到时该选择器命中的是**空态**（`App.vue` 166 行「还没有讨论。」），到达后元素消失、改为命中交流群行（202 行）——**两个不同元素互相顶替** | 用例内用 `page.route` **冻结 `/api/recent`** 成固定内容，使断言只测「切动作不改布局」这一件事 | `tests/ui/hil-actions.spec.js` |
+| 24 | 滚动条样式**写了却完全不生效**（`theme.css` §8 长期是死代码） | Chromium 的两套机制**互斥**：元素上 `scrollbar-color` 的最终值只要**不是 `auto`**，浏览器就走标准滚动条并**整体忽略所有 `::-webkit-scrollbar-*` 伪元素**。§8 同时写了 `* { scrollbar-color }` 和一组伪元素规则 → 后者全废。表现：文件写「8px、无三角」，实际全站是系统默认（实测 **15px、带三角**）。§8b 触屏块同理（`scrollbar-width: none` 压掉了伪元素那条，但标准属性自己就能隐藏，行为不受影响） | 两种机制**只能选一种**。**全站改**：先去掉 `scrollbar-color` 再写伪元素；**单容器特例**：把该容器的 `scrollbar-color` 压回 `auto` 再写伪元素（范例见 `EmoticonPicker.vue` 的「面板滚动条」小节）。§8 已删死代码并在注释里写明这两条路 |
 
 > **「滚动状态」不可能是故障 22 的原因**：断言比的是同一子树内两个元素的相对位置，
 > 滚动偏移对两者同时生效，**差值恒定**。判据是「有没有读图片尺寸」，不是「页面滚到哪」。
@@ -83,6 +84,13 @@
 > **故障 23 的判定方法可复用**：这类「单跑绿、全量红」的偶发，**先列候选变量、再逐个用探针排除**，
 > 而不是靠读代码推断。本例用 `page.route` 延迟 `/api/recent` 4 秒即**精确复现**了同一行断言失败
 > （`expect(frame.note).toEqual(baseline.note)`），从而确认根因与修复对应。
+>
+> **故障 24 的教训**：**「写了样式」不等于「样式生效」**。滚动条这类"看起来大致对"的地方最容易藏死代码
+> —— 颜色恰好接近，宽度/两端按钮却完全不同。判断手段是**读 computed 值**（如 `getComputedStyle(el).scrollbarColor`
+> 与 `offsetWidth - clientWidth`），不是看源码里写没写。
+> ⚠️ 另注：**Playwright headless 截图不渲染滚动条**（用红色 thumb 判别测试证实），
+> 所以滚动条相关问题**不能靠截图判断**，只能靠 computed 值与规则匹配链。
+
 
 ---
 

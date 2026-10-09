@@ -45,7 +45,7 @@
 
     <!-- 加载 / 错误 -->
     <UiEmptyState v-if="!isDataReady" type="loading" text="正在装配兑换数据..." />
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadExchangeData" />
 
     <div v-else-if="showRefreshRules" id="exchangeScroll" class="exchange-rules paper-panel" data-main-scroll>
       <UiSection :title="`${currentCategory.label}刷新规则`">
@@ -155,7 +155,9 @@ const packImage = (exchange) => {
   return getImageUrl(`/images/PackPane/shop_goods_${exchange.id}.webp`)
 }
 
-onMounted(async () => {
+const loadExchangeData = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     if (route.query.cat === 'fashion') {
       await router.replace({ query: { ...route.query, cat: 'shop', sub: subFromQuery(route.query) } })
@@ -171,9 +173,13 @@ onMounted(async () => {
     isDataReady.value = true
   } catch (err) {
     console.error('加载兑换数据失败:', err)
-    errorMessage.value = '加载失败：' + (err && err.message ? err.message : err)
+    errorMessage.value = '兑换数据加载失败，请重试'
     isDataReady.value = true
   }
+}
+
+onMounted(() => {
+  loadExchangeData()
 })
 
 const currentCategory = computed(() => categories.value.find(c => c.key === selectedCat.value) || null)

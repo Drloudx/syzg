@@ -73,7 +73,7 @@ onUnmounted(() => {
 .ui-back-to-top {
   position: fixed;
   right: 20px;
-  bottom: calc(24px + var(--safe-bottom, 0px));
+  bottom: calc(38px + var(--safe-bottom, 0px));
   width: var(--floating-control-size, 44px);
   height: var(--floating-control-size, 44px);
   box-sizing: border-box;

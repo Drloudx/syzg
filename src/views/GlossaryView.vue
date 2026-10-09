@@ -33,10 +33,7 @@
 
     <!-- 词条百科主体内容 -->
     <UiEmptyState v-if="loading" type="loading" text="正在加载游戏机制与状态词条..." />
-    <div v-else-if="error" class="glossary-error">
-      <UiEmptyState type="error" :text="error" />
-      <UiButton @click="loadData">重试</UiButton>
-    </div>
+    <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadData" />
     <UiCardGrid v-else id="glossaryScroll" class="glossary-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
       <div v-if="filteredEntries.length" class="glossary-grid">
         <article v-for="entry in filteredEntries" :key="entry.id || entry.name"

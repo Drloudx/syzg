@@ -19,10 +19,7 @@
     </UiFilterPanel>
 
     <UiEmptyState v-if="loading" type="loading" text="正在加载符石图鉴..." />
-    <div v-else-if="error" class="runes-error">
-      <UiEmptyState type="error" :text="error" />
-      <UiButton @click="loadData">重试</UiButton>
-    </div>
+    <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadData" />
     <UiCardGrid v-else id="runesScroll" class="runes-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
       <template v-if="isCatalog">
         <div v-if="filteredCatalog.length" class="runes-grid">

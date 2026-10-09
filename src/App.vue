@@ -155,9 +155,8 @@
             <button type="button" class="info-title-text info-title-link" @click="openDiscussions">
               最新讨论
             </button>
-            <!-- 进入讨论区：放在标题栏右侧（用户指定位置）。
-                 用文字「进入→」而不是箭头图形符号——后者在这套羊皮纸样式里显得突兀 -->
-            <button type="button" class="info-title-enter" @click="openDiscussions">进入→</button>
+            <!-- 进入讨论区：羊皮纸浅棕微胶囊按钮 -->
+            <button type="button" class="info-title-enter" @click="openDiscussions">进入讨论 ✦</button>
           </div>
           <div class="info-body">
             <!-- 最近几条（只读、不放输入框）：点开进入讨论区 -->
@@ -180,9 +179,10 @@
                       {{ (c.nick || '?').slice(0, 1) }}
                     </span>
                     <span class="recent-main">
-                      <!-- 不显示「站内讨论区」标签：这里本来就只放站内讨论区的内容，
-                           每条都标一遍是冗余（用户要求删掉） -->
-                      <span class="recent-nick">{{ c.nick }}</span>
+                      <span class="recent-header">
+                        <span class="recent-nick">{{ c.nick }}</span>
+                        <time v-if="c.createdAt" class="recent-time" :datetime="isoTime(c.createdAt)">{{ formatTime(c.createdAt) }}</time>
+                      </span>
                       <!--
                         正文里的 `[e:包:名]` 表情 token 也要出图，否则右栏会显示成一串内部标识。
                         **必须套一层普通 inline 容器**：`.recent-body` 是 `display:-webkit-box`
@@ -198,9 +198,12 @@
             </div>
 
             <div class="info-section recent-foot">
-              <!-- 交流群：原信息面板的唯一入口，保留。配色与「进入讨论区」按钮一致 -->
+              <!-- 大书院交流群：附带专属矢量小图标，配色与整体风格呼应 -->
               <p class="info-note recent-group">
-                交流群
+                <span class="recent-group-label">
+                  <img :src="getImageUrl('/ui/icon_group_users.svg')" class="recent-group-icon" alt="" />
+                  <span>大书院交流群</span>
+                </span>
                 <a
                   class="recent-group-link"
                   href="https://qm.qq.com/q/iolDkZyD2E"
@@ -209,6 +212,7 @@
                 >963318625</a>
               </p>
             </div>
+
 
             <SidebarMascot v-if="mascotDesktop" />
           </div>
@@ -344,7 +348,8 @@ const PAGE_TITLES = {
   '/gacha': '模拟招募',
   '/admin': '后台',
   '/privacy': '隐私协议',
-  '/discussions': '讨论区'
+  '/discussions': '讨论区',
+  '/404': '迷航 (404)'
 }
 
 const pageTitle = computed(() => {
@@ -458,6 +463,23 @@ async function loadRecentDiscussions({ fresh = false, allowThrottled = false } =
     recentInFlight = false
     recentLoading.value = false
   }
+}
+
+/** 讨论区同款相对时间格式化（近 7 天相对时间，超出显示日期） */
+function formatTime(unixSec) {
+  if (!unixSec) return ''
+  const diff = Math.floor(Date.now() / 1000) - unixSec
+  if (diff < 60) return '刚刚'
+  if (diff < 3600) return `${Math.floor(diff / 60)} 分钟前`
+  if (diff < 86400) return `${Math.floor(diff / 3600)} 小时前`
+  if (diff < 86400 * 7) return `${Math.floor(diff / 86400)} 天前`
+  const d = new Date(unixSec * 1000)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
+function isoTime(unixSec) {
+  if (!unixSec) return ''
+  return new Date(unixSec * 1000).toISOString()
 }
 
 /**
@@ -1276,7 +1298,7 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   width: 100%;
   height: 100%;
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
 }
@@ -1458,83 +1480,103 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   }
 }
 
-/* 右侧页面信息面板（模板 .infobox 风格）：与左侧导航栏等高（height: 100%） */
+/* 右侧页面信息面板：与左侧导航栏对称，手造皮质缝线与内衬层 */
 .page-info-panel {
   width: 100%;
   height: 100%;
   flex: 1;
   margin: 0;
-  padding: 0;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   overflow: hidden;
-}
-.info-title-bar {
-  position: relative; /* 供右侧「进入讨论区」箭头绝对定位（标题保持居中不动） */
-  background-color: var(--border-color, #8f7351);
-  color: var(--on-wood-text);
-  text-align: center;
-  padding: 10px 34px 10px 14px; /* 右侧留出箭头宽度，长标题也不会压到箭头 */
-  font-family: var(--font-ui);
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: 2px;
-  border-bottom: 2px solid #5c4327;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-}
-.info-title-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: block;
+  border: 2px solid #7a5c3d;
+  box-shadow: inset 0 0 0 4px rgba(223, 206, 179, 0.9),
+              inset 0 0 0 5.5px rgba(143, 115, 81, 0.55),
+              2px 4px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 6px;
+  background: #e0cfb4;
 }
 
-/* 右栏标题做成可点入口（进讨论区），沿用原标题的字号与颜色 */
+.dark-mode .page-info-panel {
+  border-color: #5c4327;
+  box-shadow: inset 0 0 0 4px rgba(46, 34, 23, 0.95),
+              inset 0 0 0 5.5px rgba(110, 85, 55, 0.55),
+              2px 4px 12px rgba(0, 0, 0, 0.4);
+  background: #2b1f15;
+}
+
+/* 屏蔽默认四角铜钉 */
+.page-info-panel.corner-nails::before,
+.page-info-panel.corner-nails::after {
+  display: none !important;
+}
+
+.info-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 4px 10px;
+  margin-bottom: 8px;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(143, 115, 81, 0.45);
+}
+
+.info-title-text {
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #4a3419;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-shadow: none;
+}
+.info-title-text::before {
+  content: '◆';
+  font-size: 9px;
+  color: #a88452;
+}
+.dark-mode .info-title-text {
+  color: #dfceb3;
+}
+
 .info-title-link {
-  width: 100%;
   padding: 0;
   border: none;
   background: none;
   color: inherit;
   font: inherit;
-  text-align: left;
   cursor: pointer;
-}
-.info-title-link:hover {
-  text-decoration: underline;
 }
 
-/* 标题栏右侧的「进入→」：绝对定位在右侧，标题保持居中 */
 .info-title-enter {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  padding: 1px 6px;
-  border: 1px solid rgba(223, 206, 179, 0.5);
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.12);
-  color: var(--on-wood-text, #dfceb3);
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.5;
+  position: static;
+  transform: none;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #5a3e22;
+  background: rgba(143, 115, 81, 0.16);
+  border: 1px solid rgba(143, 115, 81, 0.45);
   cursor: pointer;
+  transition: all 0.18s ease;
+  line-height: 1.5;
 }
 .info-title-enter:hover {
-  background: rgba(0, 0, 0, 0.28);
-  color: #fff;
+  background: rgba(143, 115, 81, 0.3);
+  color: #382411;
+  border-color: #7a5c3d;
+  transform: translateX(1px);
 }
-
-/* 交流群链接配色与「进入讨论区」的强调色一致（用户要求） */
-.recent-group-link {
-  color: var(--accent-ink);
-  text-decoration: none;
-}
-.recent-group-link:hover {
-  text-decoration: underline;
+.dark-mode .info-title-enter {
+  color: #f7e6c4;
+  background: rgba(143, 115, 81, 0.25);
+  border-color: rgba(212, 163, 89, 0.5);
 }
 
 /* 右栏「最新讨论」列表：紧凑、只读、不放输入框（点开进讨论区发言） */
@@ -1564,29 +1606,52 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 .recent-btn {
   display: flex;
   align-items: flex-start;
-  gap: 7px;
+  gap: 8px;
   width: 100%;
-  padding: 6px 8px;
-  border: 1px solid var(--border-soft);
-  border-radius: 4px;
-  background: var(--paper-soft);
+  padding: 8px 10px;
+  border-radius: 5px;
+  background: rgba(247, 240, 227, 0.72);
+  border: 1px solid rgba(143, 115, 81, 0.35);
+  border-left: 3.5px solid #a88452;
+  box-shadow: 0 1px 4px rgba(60, 45, 30, 0.08);
   color: var(--text-main);
   font-family: inherit;
   text-align: left;
   cursor: pointer;
+  transition: all 0.18s ease;
+  position: relative;
 }
 .recent-btn:hover {
-  border-color: var(--accent-bright);
+  background: rgba(254, 249, 240, 0.94);
+  border-color: rgba(197, 145, 62, 0.6);
+  border-left: 3.5px solid #d4a359;
+  transform: translateX(-2.5px);
+  box-shadow: 0 2px 7px rgba(90, 60, 30, 0.14);
+}
+.dark-mode .recent-btn {
+  background: rgba(43, 31, 21, 0.65);
+  border-color: rgba(143, 115, 81, 0.5);
+  border-left-color: #d4a359;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+.dark-mode .recent-btn:hover {
+  background: rgba(60, 42, 27, 0.85);
+  border-color: rgba(212, 163, 89, 0.8);
+  border-left-color: #ffd78c;
 }
 
-/* 缩小的头像（24px）：与讨论区里的头像同源，没有头像时用昵称首字占位 */
+/* 缩小的头像（26px）：与讨论区里的头像同源，没有头像时用昵称首字占位 */
 .recent-avatar {
   flex: 0 0 auto;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  border: 1px solid var(--border-soft);
+  border: 1.5px solid #c5913e;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   object-fit: cover;
+}
+.dark-mode .recent-avatar {
+  border-color: #d4a359;
 }
 .recent-avatar-fallback {
   display: flex;
@@ -1606,6 +1671,13 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   min-width: 0;
   flex: 1 1 auto;
 }
+.recent-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px;
+  min-width: 0;
+}
 .recent-nick {
   font-size: 13px;
   font-weight: 700;
@@ -1613,6 +1685,16 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex: 1 1 auto;
+}
+.recent-time {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-faint, #a88452);
+  white-space: nowrap;
+}
+.dark-mode .recent-time {
+  color: #a88d6c;
 }
 /* 正文最多两行：右栏很窄，长评论会把其余消息挤下去 */
 .recent-body {
@@ -1649,23 +1731,65 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
    * 列表→交流群之间的一大段（用户反馈"为什么空这么多空白"）。
    * 这里让列表与交流群紧跟标题，剩余空白统一留在最下方。
    */
-  margin-top: 12px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-/* 交流群：字号/字重/颜色与上面聊天的昵称保持一致（用户要求） */
+/* 交流群卡片样式：暖金边框微胶囊背景，与上方评论卡片质感呼应 */
 .recent-group {
   display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin: 0;
-  font-size: 13px;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(247, 240, 227, 0.75);
+  border: 1px solid rgba(143, 115, 81, 0.35);
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 12px;
   font-weight: 700;
+  color: #4a3419;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.dark-mode .recent-group {
+  background: rgba(43, 31, 21, 0.65);
+  border-color: rgba(143, 115, 81, 0.5);
+  color: #e6c896;
+}
+.recent-group-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.recent-group-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .recent-group-link {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
+  color: #8c5a24;
+  text-decoration: none;
+  background: rgba(140, 90, 36, 0.12);
+  padding: 2px 7px;
+  border-radius: 3px;
+  border: 1px solid rgba(140, 90, 36, 0.3);
+  transition: all 0.18s ease;
+}
+.recent-group-link:hover {
+  background: rgba(140, 90, 36, 0.22);
+  color: #5c350c;
+  transform: scale(1.02);
+}
+.dark-mode .recent-group-link {
+  color: #ffd78c;
+  background: rgba(212, 163, 89, 0.18);
+  border-color: rgba(212, 163, 89, 0.4);
+}
+.dark-mode .recent-group-link:hover {
+  background: rgba(212, 163, 89, 0.32);
+  color: #fff;
 }
 .info-cover-image {
   width: 100%;
@@ -1676,13 +1800,16 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   border-bottom: 1px solid var(--border-color, #8f7351);
 }
 .info-body {
-  padding: 14px 16px;
+  padding: 10px 10px 14px;
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
 }
+
 .info-body > .info-meta-rows,
 .info-body > .info-section {
   flex-shrink: 0;

@@ -29,15 +29,15 @@
         >{{ option.label }}</UiFilterPill>
       </UiFilterRow>
 
-      <!-- 数量计数 -->
-      <div class="collection-counter">
+      <!-- 数量计数（仅在数据加载成功且无错误时显示） -->
+      <div v-if="isDataReady && !errorMessage" class="collection-counter">
         共 <span class="count-num">{{ listCount }}</span> 个{{ activeTab === 'random' ? '事件' : '探索区域' }}
       </div>
     </UiFilterPanel>
 
     <!-- 加载 / 错误 / 列表 -->
     <UiEmptyState v-if="!isDataReady" type="loading" text="正在装配事件数据..." />
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadEventsData" />
 
     <!-- 列表区（懒加载每批 60 项） -->
     <UiCardGrid v-else id="eventsGridScroll">
@@ -249,7 +249,9 @@ const mapOptions = computed(() => {
 // 消耗文案已由构建期 eventData.js 解析进 selectedItem.consumeText，此处不再复制。
 
 // ---------- 加载 ----------
-onMounted(async () => {
+const loadEventsData = async () => {
+  isDataReady.value = false
+  errorMessage.value = ''
   try {
     const built = await fetchWithFallback('data/parsed/events.json')
 
@@ -257,22 +259,25 @@ onMounted(async () => {
     mapNameMap.value = built.mapNameMap || {}
 
     // 预解析产物存相对路径，运行时统一过 getImageUrl（原生端会加 CDN 前缀）
-    events.value = built.events
+    events.value = (built.events || [])
       .map(ev => ({ ...ev, imgUrl: getImageUrl(ev.imgUrl) }))
       .filter(e => !isBlacklisted({ id: e.id, name: e.name }))
 
-    explores.value = built.explores
+    explores.value = (built.explores || [])
       .map(ev => ({ ...ev, imgUrl: getImageUrl(ev.imgUrl) }))
       .filter(e => !isBlacklisted({ id: e.id, name: e.name }))
 
     isDataReady.value = true
-
     syncDetailFromRoute()
   } catch (err) {
     console.error('加载事件数据失败:', err)
-    errorMessage.value = '加载失败：' + (err && err.message ? err.message : err)
+    errorMessage.value = '事件数据加载失败，请重试'
     isDataReady.value = true
   }
+}
+
+onMounted(() => {
+  loadEventsData()
 })
 
 // ---------- 列表与筛选 ----------

@@ -80,6 +80,25 @@
       </div>
 
       <!--
+        「↓ N 条新消息」浮条：用户**往上翻历史**时来了新消息，不打断他（不自动滚到底），
+        但也必须让他知道有新内容 —— 否则新消息是**静默到达**的，用户以为没人说话。
+
+        为什么是浮条而不是 toast：toast 会自己消失，用户没看到就永久错过；
+        浮条是可点击的待办，点一下就能落到最新。
+        条数是本地减法（`commentsLength` 差值），**不产生任何请求**。
+      -->
+      <Transition name="discussion-new-fade">
+        <button
+          v-if="newMessageCount > 0"
+          type="button"
+          class="discussion-new-badge"
+          @click="jumpToNewMessages"
+        >
+          ↓ {{ newMessageCount }} 条新消息
+        </button>
+      </Transition>
+
+      <!--
         发表区：**放在滚动容器之外**，因此始终固定在面板底部（用户要求"悬浮"）。
         留在容器里就只能跟着列表滚，消息一多会被推出视野——那是"列表底部"不是"容器底部"。
         列表里的「回复」按钮在本组件之外（`CommentsPanel` 里），所以经这里把目标转发给发表区。
@@ -249,6 +268,11 @@ function animateScrollToLatest() {
 function onUserScroll() {
   refreshNearBottom()
   if (!scrollingToLatest) cancelScrollToLatest()
+  /*
+   * 用户**自己滚到底**了 → 他已经在看最新，提示该消失。
+   * 只在这一处清零（而不是每帧判断）：清零点就是"用户贴底"这一刻。
+   */
+  if (newMessageCount.value > 0 && isNearBottom()) newMessageCount.value = 0
 }
 
 /**
@@ -283,11 +307,43 @@ let hadData = false
  */
 async function onPosted(data) {
   suppressAutoScroll = false
+  // 自己发的不算"新消息"（本地插入，用户本来就在看）——置标志让下面的 watcher 跳过计数
+  selfPosting = true
   if (data?.pending) {
     await listRef.value?.reload()
   } else if (data?.comment) {
     listRef.value?.addPostedComment(data.comment)
   }
+  // 计数在 watcher 里同步读完，这里恢复标志要等 watcher 跑过（flush:'post'）
+  await nextTick()
+  selfPosting = false
+}
+
+/**
+ * 「↓ N 条新消息」的条数。**本地减法，零请求**。
+ *
+ * ## 三个必须排除的来源（都不算"新消息"）
+ *
+ * 1. **往上翻历史**（`suppressAutoScroll`）：加载更早的消息也会让 `commentsLength` 变大，
+ *    但那是**旧消息**，提示"N 条新消息"会误导用户以为有人刚说话。
+ * 2. **自己发表**（`selfPosting`）：本地插入，用户正在看，不需要提示。
+ * 3. **定位跳转**（`locateId`）：`?c=` 定位期间列表会变，与"新消息"无关。
+ *
+ * ## 什么时候才清零
+ *
+ * 用户**自己滚到底**（`isNearBottom()` 为真）→ 他已经在看最新了，提示多余。
+ * 注意不能只看"是否贴底就清零"，否则用户手动往下拖到底后提示还在。
+ */
+const newMessageCount = ref(0)
+/** 上一次已知的列表长度（计数基准）。-1 = 还没拿到首批数据 */
+let lastKnownLength = -1
+/** 正在插入自己发的评论：这一跳不计数 */
+let selfPosting = false
+
+/** 底部有新消息时落到底并清零 */
+function jumpToNewMessages() {
+  newMessageCount.value = 0
+  animateScrollToLatest()
 }
 
 /**
@@ -306,7 +362,20 @@ async function onPosted(data) {
 watch(
   () => listRef.value?.commentsLength,
   (n, old) => {
-    if (!n || suppressAutoScroll || locateId.value) return
+    if (!n) return
+    /*
+     * 「新消息」计数：只在**用户不在底部、且这次增长不是翻历史/自己发/定位**时才累加。
+     * 判据与"要不要自动跟随"共用一套，避免两处各写一份而分叉。
+     */
+    if (typeof old === 'number' && old > 0 && lastKnownLength === old) {
+      const isNewMessage = !suppressAutoScroll && !selfPosting && !locateId.value && hadData
+      if (isNewMessage && !nearBottomBeforeInsert) {
+        newMessageCount.value += n - old
+      }
+    }
+    lastKnownLength = n
+
+    if (suppressAutoScroll || locateId.value) return
     if (!hadData) {
       hadData = true
       scrollToLatest()
@@ -581,6 +650,51 @@ onBeforeUnmount(() => {
 /* 列表最后一条之后也不再留外边距：滚动区内容的底边＝最后一张卡片的下沿 */
 .discussion-scroll :deep(.comments-list) {
   margin-bottom: 0;
+}
+
+/* ── 「↓ N 条新消息」浮条 ── */
+
+/*
+ * 用**负上边距**把它上浮到列表底部之上（而不是新增一层定位容器）：
+ * 面板是 flex 纵向布局（[标题][滚动区][浮条][发表区]），负边距让浮条不占布局高度、
+ * 直接叠在滚动区下缘，同时天然紧贴它下方的发表区 —— 发表区高度怎么变都不会错位。
+ * 比"绝对定位 + 算发表区高度"稳，也不会在手机上被虚拟键盘顶歪。
+ */
+.discussion-new-badge {
+  flex: 0 0 auto;
+  align-self: center;
+  margin-top: -44px;
+  margin-bottom: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--accent-ink);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--accent-ink);
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+  /* 压在列表上方，且要盖得住滚动条 */
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(43, 31, 21, 0.28);
+}
+
+.discussion-new-badge:hover {
+  background: var(--paper-soft);
+}
+
+/* 出现/消失不要"啪"地跳出来 */
+.discussion-new-fade-enter-active,
+.discussion-new-fade-leave-active {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.discussion-new-fade-enter-from,
+.discussion-new-fade-leave-to {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 /* ── 定位卡片（「去看看」那条不在首屏时显示） ── */
