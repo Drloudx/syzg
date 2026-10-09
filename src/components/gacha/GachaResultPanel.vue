@@ -1,6 +1,6 @@
 <template>
   <!-- 结果一览由共享舞台自适应：宽屏延展背景，窄窗口完整缩小蜂窝网格与操作区。 -->
-  <GachaStage :backdrop="getImageUrl('/images/uipanel/herogachashowpanel/bg.webp')" fit="height">
+  <GachaStage ref="stageRef" :backdrop="getImageUrl('/images/uipanel/herogachashowpanel/bg.webp')" fit="height">
     <!-- 背板：整屏层用 inset:0，且**不能挂 g-abs**（它的 translate(-50%,-50%) 会把
          inset 盒子推出左上，只剩部分覆盖——画面出现半屏明暗矩形接缝）；
          bg.png 铺满整个画布。注意**不放 Rconer/Rconer2**：那是 1700×1220 的浅色圆角框贴图，
@@ -150,13 +150,14 @@
       </div>
     </div>
 
-    <!-- Share (-560,-310)：gacha_btn_share 96×96，本页用于复制结果摘要 -->
+    <!-- Share (-560,-310)：gacha_btn_share 96×96，与游戏一致=分享本次结果截图 -->
     <button
       class="g-abs g-layer-interactive g-hit g-focusable result-share"
       :style="gachaPos(-560, -310)"
       type="button"
-      title="复制本次结果摘要"
-      @click="copySummary"
+      title="分享本次结果截图"
+      :disabled="sharing"
+      @click="shareResult"
     >
       <img :src="getImageUrl('/images/HeroGachaShowPanel_Atlas/gacha_btn_share.webp')" alt="分享" />
     </button>
@@ -171,8 +172,8 @@
       <img :src="getImageUrl('/images/Common_Atlas/com_btn_close.webp')" alt="关闭" />
     </button>
 
-    <div v-if="copied" class="g-abs g-layer-ui g-text g-text--sm g-text--gold result-toast" :style="gachaPos(-560, -240)">
-      已复制结果摘要
+    <div v-if="toast" class="g-abs g-layer-ui g-text g-text--sm g-text--gold result-toast" :style="gachaPos(-560, -240)">
+      {{ toast }}
     </div>
   </GachaStage>
 </template>
@@ -186,7 +187,8 @@
  * 底部按钮沿用 `com_btn_N_sp` / `com_btn_Y_sp`（292×72，9 宫格切片）。
  *
  * 差异：游戏在 `HeroShowUI` 里用 ExtentionTweenPlay 逐张入场并支持左右分屏立绘背景，
- * 这里改为静态网格；分享按钮在游戏里是截图分享，本页改为复制文本摘要。
+ * 这里改为静态网格；分享按钮与游戏一致——**把本次结果合成为一张 PNG 再调起分享**
+ * （合成逻辑见 `utils/gachaShareImage.js`，浏览器不支持分享时退回下载）。
  */
 import { computed, onMounted, ref } from 'vue'
 import GachaStage from './GachaStage.vue'
@@ -194,6 +196,7 @@ import { gachaPos } from '../../utils/gachaLayout'
 import { getImageUrl } from '../../utils/env'
 import { buildCurrencySlots, buildDrawOptions } from '../../utils/gachaCurrency'
 import { playSfx } from '../../utils/gachaAudio'
+import { renderGachaResultImage, shareOrSaveImage } from '../../utils/gachaShareImage.js'
 
 const props = defineProps({
   /** 本次结果列表。 */
@@ -208,7 +211,10 @@ const props = defineProps({
 
 const emit = defineEmits(['again', 'close', 'topup'])
 
-const copied = ref(false)
+/** 舞台根元素：分享时要读它的实测几何来合成截图 */
+const stageRef = ref(null)
+/** 分享中的瞬时提示（复用原「已复制结果摘要」那个位置） */
+const toast = ref('')
 
 /**
  * 结果面板的抽取按钮：源码 `HeroShowUI.CheckHeroExcit` 单抽只亮 onceButton、十连只亮
@@ -281,14 +287,31 @@ function schedulePopupSounds() {
   })
 }
 
-/** 复制结果摘要（替代游戏的截图分享，避免伪造分享图）。 */
-async function copySummary() {
-  const text = props.items.map(item => `${item.rank ?? item.quality}星 ${item.name}`).join('\n')
+/** 分享本次结果截图（合成 PNG → 调起分享；不支持分享的浏览器直接下载）。 */
+const sharing = ref(false)
+async function shareResult() {
+  if (sharing.value) return
+  sharing.value = true
   try {
-    await navigator.clipboard.writeText(`深渊大书院 · 模拟招募\n${text}`)
-    copied.value = true
-    setTimeout(() => { copied.value = false }, 1600)
-  } catch {}
+    const canvas = await renderGachaResultImage(stageRef.value?.$el || stageRef.value)
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob(b => (b ? resolve(b) : reject(new Error('导出图片失败'))), 'image/png')
+    })
+    const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-')
+    const result = await shareOrSaveImage(blob, `模拟招募-${stamp}.png`, {
+      title: '深渊大书院 · 模拟招募',
+      dialogTitle: '保存或分享招募结果'
+    })
+    toast.value = result === 'shared' ? '已调起分享' : '已保存图片'
+  } catch (err) {
+    // 用户主动取消系统分享面板不是错误，不打扰他
+    if (err?.name === 'AbortError') return
+    console.error('分享结果失败:', err)
+    toast.value = '分享失败，请重试'
+  } finally {
+    sharing.value = false
+    setTimeout(() => { toast.value = '' }, 1800)
+  }
 }
 
 onMounted(schedulePopupSounds)

@@ -136,6 +136,11 @@
 - 揭晓小人按自身 CSS 画布尺寸建立 DPR 缓冲区，脚点以台座设计坐标锚定；翻卡背景按有效不透明区域裁切，宽屏两侧不显示透明黑边。
 - 翻卡过程中比例变化**只更新相机和桌面宽度，不重播动画**。
 - 分享、跳过等贴屏边缘控件使用舞台 `hud` 槽。整屏遮罩使用 `position:absolute; inset:0`，不再叠加居中定位；并列覆盖面板脱离文档流，避免被排到视口外。
+- 结果页「分享」= **把本次结果合成为一张 PNG 再调起分享**（与游戏一致），合成入口 `utils/gachaShareImage.js`。
+  - 逐图层按 DOM **实测矩形**取位（不重抄 CSS 常量），样式改动截图自动跟随。
+  - 原生端写 Cache 目录后 `Share.share({ url })`；网页端优先 `navigator.share({ files })`，不支持或失败则退回下载。
+  - 用户主动取消（`AbortError`）**不**退回下载；`navigator.share` 挂起时由超时兜底（实测无 UI 环境会永久挂起）。
+  - 传入的舞台必须含 `.result-diamond`，否则报错——页面上同时存在多个 `.gacha-stage`，误传会**静默合成空气图**。
 - 按原 prefab 的 Transform、`mPivot` 和 `mDepth` 校对定位与遮挡。`BottomRight` 以右下角为锚点，内容向左上展开。视觉居中与 transform 动画分层，避免关键帧覆盖居中基准。
 - 原图来自项目同级 `UI_Atlases`、`4.24路资源包/assets/res`，源码行为参考 `源码/源码/Assembly-CSharp`。图集精灵按原图集归档，独立纹理保留必要目录层级；导入由 `scripts/dev/import-gacha-assets.mjs` 及其清单维护。
 - 九宫格边界从图集 `mSprites[].border*` 读取。现有固定尺寸按钮、页签使用 `public/images/sliced_buttons` 的预渲染纹理；需变尺寸的切片按实际样式与元数据处理，不要对已预渲染的按钮重复切片。
