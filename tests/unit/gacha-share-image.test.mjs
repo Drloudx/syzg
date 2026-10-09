@@ -12,7 +12,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 
 /** 造一个可控的浏览器环境，再动态导入被测模块。 */
-async function withEnv({ canShare, shareImpl, isNative = false }, run) {
+async function withEnv({ canShare, shareImpl, isNative = false, touch = true }, run) {
   // Node 24 的部分全局（如 navigator）是只读 getter，必须用 defineProperty 覆盖
   const globals = ['window', 'navigator', 'File', 'URL', 'document']
   const saved = new Map(globals.map(k => [k, Object.getOwnPropertyDescriptor(globalThis, k)]))
@@ -23,7 +23,11 @@ async function withEnv({ canShare, shareImpl, isNative = false }, run) {
   const createdUrls = []
   const clicked = []
 
-  set('window', isNative ? { Capacitor: { isNativePlatform: () => true } } : {})
+  // `(pointer: coarse)` 是设备分流判据；这里用 matchMedia 桩控制
+  set('window', {
+    ...(isNative ? { Capacitor: { isNativePlatform: () => true } } : {}),
+    matchMedia: (q) => ({ matches: q.includes('pointer: coarse') ? touch : false })
+  })
   set('navigator', {
     canShare: canShare === undefined ? undefined : () => canShare,
     share: shareImpl
@@ -105,5 +109,37 @@ test('没有 canShare 能力 → 直接下载', async () => {
     const r = await mod.shareOrSaveImage(blob, 'a.png')
     assert.equal(r, 'downloaded')
     assert.equal(spy.clicked.length, 1)
+  })
+})
+
+/*
+ * 以下两条锁的是**设备分流**（用户明确要求：手机调分享、电脑直接下载）。
+ * 改坏了不会报错，只会在电脑上先卡一次超时再下载。
+ */
+
+test('🔴 鼠标设备（电脑）→ 直接下载，**不**尝试分享', async () => {
+  let shareCalled = false
+  await withEnv({
+    touch: false,
+    // 桌面 Chrome 的 canShare 也会返回 true，正是这个组合最容易误判
+    canShare: true,
+    shareImpl: async () => { shareCalled = true }
+  }, async (mod, spy) => {
+    const r = await mod.shareOrSaveImage(blob, 'a.png')
+    assert.equal(r, 'downloaded')
+    assert.equal(shareCalled, false, '电脑上不该调起分享')
+    assert.equal(spy.clicked.length, 1)
+  })
+})
+
+test('🔴 触摸设备（手机）→ 调起分享，不下载', async () => {
+  await withEnv({
+    touch: true,
+    canShare: true,
+    shareImpl: async () => {}
+  }, async (mod, spy) => {
+    const r = await mod.shareOrSaveImage(blob, 'a.png')
+    assert.equal(r, 'shared')
+    assert.equal(spy.clicked.length, 0, '手机分享成功不该下载')
   })
 })

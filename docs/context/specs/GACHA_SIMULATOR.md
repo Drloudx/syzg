@@ -137,10 +137,17 @@
 - 翻卡过程中比例变化**只更新相机和桌面宽度，不重播动画**。
 - 分享、跳过等贴屏边缘控件使用舞台 `hud` 槽。整屏遮罩使用 `position:absolute; inset:0`，不再叠加居中定位；并列覆盖面板脱离文档流，避免被排到视口外。
 - 结果页「分享」= **把本次结果合成为一张 PNG 再调起分享**（与游戏一致），合成入口 `utils/gachaShareImage.js`。
-  - 逐图层按 DOM **实测矩形**取位（不重抄 CSS 常量），样式改动截图自动跟随。
+  - **两个卡池都支持**：角色池用 `renderGachaResultImage`（结果一览的卡片阵列）；
+    蛋池用 `renderGachaPetImage`（**揭晓演出中当前这一只**：背景 + 蛋袋 + 蛋框 + 名牌 + 星级）。
+  - **设备分流**：触摸设备调起分享，鼠标设备直接下载（桌面 `canShare` 也返回 true，
+    但实际调不起可用面板，先试会白等一次超时）。
   - 原生端写 Cache 目录后 `Share.share({ url })`；网页端优先 `navigator.share({ files })`，不支持或失败则退回下载。
-  - 用户主动取消（`AbortError`）**不**退回下载；`navigator.share` 挂起时由超时兜底（实测无 UI 环境会永久挂起）。
-  - 传入的舞台必须含 `.result-diamond`，否则报错——页面上同时存在多个 `.gacha-stage`，误传会**静默合成空气图**。
+  - 用户主动取消（`AbortError`）**不**退回下载；`navigator.share` 挂起时由 20 秒超时兜底。
+  - 逐图层按 DOM **实测矩形**取位（不重抄 CSS 常量），样式改动截图自动跟随。
+  - 输出尺寸取**画布可见区**而非内容包围盒：背景/桌面故意溢出画布，按包围盒输出会在四周留白。
+  - 蛋袋是 Spine WebGL canvas，需 `renderSharedSceneNow()` **同步重画**后再抓（未开 `preserveDrawingBuffer`）。
+  - 传入的舞台必须含对应标志元素（`.result-diamond` / `.pet-diamond-wrap`），否则报错
+    ——页面上同时存在多个 `.gacha-stage`，误传会**静默合成空气图**。
 - 按原 prefab 的 Transform、`mPivot` 和 `mDepth` 校对定位与遮挡。`BottomRight` 以右下角为锚点，内容向左上展开。视觉居中与 transform 动画分层，避免关键帧覆盖居中基准。
 - 原图来自项目同级 `UI_Atlases`、`4.24路资源包/assets/res`，源码行为参考 `源码/源码/Assembly-CSharp`。图集精灵按原图集归档，独立纹理保留必要目录层级；导入由 `scripts/dev/import-gacha-assets.mjs` 及其清单维护。
 - 九宫格边界从图集 `mSprites[].border*` 读取。现有固定尺寸按钮、页签使用 `public/images/sliced_buttons` 的预渲染纹理；需变尺寸的切片按实际样式与元数据处理，不要对已预渲染的按钮重复切片。

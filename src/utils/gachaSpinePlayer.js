@@ -168,6 +168,8 @@ export function createSpineScene(canvas, layers, options = {}) {
   let paused = false
   /** 渲染循环函数（init 内定义）；pause/resume 在外层 api 上，需要跨作用域引用。 */
   let frameRunner = null
+  /** 同步渲染一帧（init 内定义）；截图取像素时用，见 `api.renderNow`。 */
+  let renderFrame = null
   let last = performance.now()
   let rafId = 0
   const actors = []
@@ -348,8 +350,21 @@ export function createSpineScene(canvas, layers, options = {}) {
       // 修改 canvas 缓冲区不会自动更新 WebGL viewport；共享画布重挂载也会改尺寸。
       // 必须与当前缓冲区同步，否则场景只绘制在旧宽度内，角色偏左、桌面出现竖缝。
       renderer.setViewport()
-      let delta = Math.min((now - last) / 1000, 0.1)
+      const delta = Math.min((now - last) / 1000, 0.1)
       last = now
+      drawScene(delta)
+      rafId = requestAnimationFrame(frame)
+    }
+
+    /**
+     * 渲染一帧到当前 WebGL 缓冲。
+     *
+     * 抽出来单独成函数，是为了让 `renderNow()` 能在**同一个任务里**先画再抓：
+     * 本上下文没有开 `preserveDrawingBuffer`（那会带来持续的 GPU 开销），
+     * 浏览器在合成后会**清空绘制缓冲**，所以隔帧 `drawImage(canvas)` 只会得到空白。
+     * 唯一可靠的时机是"刚画完、还没让出主线程"。
+     */
+    function drawScene(delta) {
       for (const actor of actors) {
         actor.state.update(delta)
         actor.state.apply(actor.skeleton)
@@ -362,7 +377,12 @@ export function createSpineScene(canvas, layers, options = {}) {
       renderer.begin()
       for (const actor of actors) renderer.drawSkeleton(actor.skeleton)
       renderer.end()
-      rafId = requestAnimationFrame(frame)
+    }
+    /** 供 `renderNow()` 调用：同步画一帧（不推进 rAF）。 */
+    renderFrame = () => {
+      if (disposed) return
+      renderer.setViewport()
+      drawScene(0)
     }
     frameRunner = frame
     rafId = requestAnimationFrame(frame)
@@ -393,6 +413,19 @@ export function createSpineScene(canvas, layers, options = {}) {
       paused = false
       last = performance.now()
       rafId = requestAnimationFrame(frameRunner)
+    },
+    /**
+     * **同步渲染一帧**，让调用方能在同一任务里立刻读像素（截图）。
+     *
+     * 🔴 为什么需要它：本 WebGL 上下文**没有开 `preserveDrawingBuffer`**
+     * （开着会有持续的 GPU 开销）。浏览器在合成后会清空绘制缓冲，
+     * 所以隔帧 `drawImage(canvas)` 抓到的**永远是空白**（实测采样点全 0）。
+     * 唯一可靠的时机是"刚画完、尚未让出主线程"——这正是本函数做的事。
+     *
+     * 注意：不推进动画时间（delta=0），只按当前姿势重画一次，所以截图不会改变画面。
+     */
+    renderNow() {
+      renderFrame?.()
     },
     dispose() {
       disposed = true
@@ -581,6 +614,26 @@ export function disposeSharedSpineScenes() {
     entry.canvas.remove()
   }
   sharedScenes.clear()
+}
+
+/**
+ * 让某个共享场景**同步渲染一帧**，供截图立即读像素。
+ *
+ * 为什么要按画布元素找：截图方只拿得到 DOM（`<canvas>`），而场景实例在共享注册表里。
+ * 不这样做的话，截图方就得自己持有场景引用，把播放器的生命周期漏到业务层。
+ *
+ * @param {HTMLCanvasElement} canvas 目标画布
+ * @returns {boolean} 是否真的渲染了（场景不存在/未就绪时为 false）
+ */
+export function renderSharedSceneNow(canvas) {
+  if (!canvas) return false
+  for (const entry of sharedScenes.values()) {
+    if (entry.canvas === canvas && entry.scene) {
+      entry.scene.renderNow?.()
+      return true
+    }
+  }
+  return false
 }
 
 /**

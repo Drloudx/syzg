@@ -45,7 +45,6 @@
           v-if="kind === 'pet'"
           :items="petShowItems"
           @done="stage = 'result'"
-          @share="copyShareText"
         />
         <GachaCardPanel
           v-else
@@ -192,14 +191,6 @@ const petSettlementItems = computed(() => {
   }))
   return [...revealItems.value, ...extras]
 })
-
-/** 复制抽蛋结果摘要（PetGachaAniPanel 的分享按钮，同结果一览口径）。 */
-async function copyShareText() {
-  const text = revealItems.value.map(item => `${item.rank ?? item.quality}星 ${item.name}`).join('\n')
-  try {
-    await navigator.clipboard.writeText(`深渊大书院 · 模拟招募\n${text}`)
-  } catch {}
-}
 
 /**
  * 模拟额度：静态图鉴没有账号余额，钱包以**原表初始配置量**（`playerInit.json`）起算，

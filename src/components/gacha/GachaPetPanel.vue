@@ -3,7 +3,7 @@
        场景 = 卡背栈（BG_main 2048×1024 d0 / BG_main_blured 1024×512 d1 / HL 1680×1000 d4）
        + 蛋池桌面 gacah_pet_desk_foreground（d3，开场自下方上升 100 归位）
        + perform_bag 蛋袋 Spine（皮肤 def）+ 出蛋与逐蛋揭晓 UI（petShowUI 24 段）。 -->
-  <GachaStage :backdrop="BG_BLUR" fit="height">
+  <GachaStage ref="stageRef" :backdrop="BG_BLUR" fit="height">
     <!-- 全景统一相机容器：背景 + 蛋池桌面 + 蛋袋 Spine 骨架一同包含在此容器内，
          由近及远统一缩放（scale 1.834 → 1.0，聚焦中心 50% 51%），
          使桌面左侧书本与右侧相框/药水瓶随镜头拉远自然同步自两侧收拢入画，杜绝割裂横移。 -->
@@ -158,17 +158,24 @@
 
     <!-- 分享（本站新增；prefab 有 share 节点但 `PetGachaAniPanel.cs` 无分享逻辑）与
          跳过（`gacha_btn_skip` 128×60 @(548,-302) → `OnSkip`）。位置按 prefab 设计坐标，
-         挂在画布内随画布缩放（不放进 HUD——HUD 是视口坐标，会与游戏构图错位）。 -->
+         挂在画布内随画布缩放（不放进 HUD——HUD 是视口坐标，会与游戏构图错位）。
+
+         分享 = 把**当前这一只**（蛋框 + 名牌 + 星级）合成为 PNG 再调起分享，与游戏一致。
+         只在 `show` 阶段可用：此前还没揭晓，没有可分享的内容。 -->
     <button
-      v-if="phase !== 'bag' && phase !== 'loading'"
+      v-if="phase === 'show'"
       class="g-abs g-layer-interactive g-hit g-focusable pet-share"
       :style="gachaPos(-560, -302)"
       type="button"
-      title="分享"
-      @click.stop="emit('share', { items })"
+      title="分享本次结果截图"
+      :disabled="sharing"
+      @click.stop="shareCurrentPet"
     >
       <img :src="getImageUrl('/images/HeroGachaShowPanel_Atlas/gacha_btn_share.webp')" alt="分享" />
     </button>
+    <div v-if="shareToast" class="g-abs g-layer-ui g-text g-text--sm g-text--gold pet-share-toast" :style="gachaPos(-560, -230)">
+      {{ shareToast }}
+    </div>
     <button
       v-if="phase !== 'loading'"
       class="g-abs g-layer-interactive g-hit g-focusable pet-skip"
@@ -204,6 +211,7 @@ import { getImageUrl } from '../../utils/env'
 import { mountSharedSpineScene, releaseSharedSpineScene } from '../../utils/gachaSpinePlayer'
 import { playBgm, playSfx } from '../../utils/gachaAudio'
 import { PET_SPINE_ASSETS } from './gachaSpineAssets'
+import { renderGachaPetImage, shareOrSaveImage } from '../../utils/gachaShareImage.js'
 
 const props = defineProps({
   /** 本次抽取结果列表（顺序即出蛋顺序）。 */
@@ -236,6 +244,42 @@ const camSettled = ref(false)
 const canvasHost = ref(null)
 let scene = null
 const timers = []
+
+/** 舞台根元素：分享时要读它的实测几何来合成截图 */
+const stageRef = ref(null)
+const sharing = ref(false)
+const shareToast = ref('')
+
+/**
+ * 分享**当前揭晓的这一只**（蛋框 + 名牌 + 星级），与游戏内行为一致。
+ *
+ * 只截当前屏幕：蛋池的分享按钮就在演出里，游戏分享的也是刚揭晓的这只，
+ * 而不是结算列表（结算面板 `GachaPetResult` 另有自己的链路）。
+ */
+async function shareCurrentPet() {
+  if (sharing.value) return
+  sharing.value = true
+  try {
+    const canvas = await renderGachaPetImage(stageRef.value?.$el || stageRef.value)
+    const blob = await new Promise((resolve, reject) => {
+      canvas.toBlob(b => (b ? resolve(b) : reject(new Error('导出图片失败'))), 'image/png')
+    })
+    const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-')
+    const result = await shareOrSaveImage(blob, `模拟招募-${stamp}.png`, {
+      title: '深渊大书院 · 模拟招募',
+      dialogTitle: '保存或分享招募结果'
+    })
+    shareToast.value = result === 'shared' ? '已调起分享' : '已保存图片'
+  } catch (err) {
+    // 用户主动取消系统分享面板不是错误，不打扰他
+    if (err?.name === 'AbortError') return
+    console.error('分享蛋池结果失败:', err)
+    shareToast.value = '分享失败，请重试'
+  } finally {
+    sharing.value = false
+    setTimeout(() => { shareToast.value = '' }, 1800)
+  }
+}
 
 const currentItem = computed(() => props.items[cursor.value] ?? {})
 /** 蛋图星级 = `quality`（原表里蛋的 quality 即 star+2：3/4/5）。 */
@@ -772,6 +816,12 @@ onBeforeUnmount(() => {
 .pet-share img { width: 96px; height: 96px; }
 .pet-skip img { width: 128px; height: 60px; }
 .pet-skip:active img { content: url('/images/HeroGachaShowPanel_Atlas/gacha_btn_skip_press.webp'); }
+
+/* 分享结果提示：复用结果一览那一处的观感（金色小字），位置在分享按钮上方 */
+.pet-share-toast {
+  white-space: nowrap;
+  pointer-events: none;
+}
 
 /* 点击推进层 */
 .pet-catcher {
