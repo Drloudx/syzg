@@ -184,6 +184,15 @@ export function markRepliesRead(token) {
   return request('/api/auth/replies/read', { method: 'POST', token, body: {} })
 }
 
+/**
+ * 把「评论被处理」的未读基准推到当前时刻。
+ *
+ * 与 `markRepliesRead` 完全对称 —— 打开「我的评论」看一眼就等于读过了。
+ */
+export function markModerationRead(token) {
+  return request('/api/auth/comments/read', { method: 'POST', token, body: {} })
+}
+
 export function logout(token) {
   return request('/api/auth/logout', { method: 'POST', token, body: {} })
 }

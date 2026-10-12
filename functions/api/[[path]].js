@@ -34,7 +34,14 @@
  *      （那条 SQL 也写在迁移文件末尾）。
  */
 
-import { matchReview } from '../../src/config/commentBlocklist.js'
+import {
+  BLOCKLIST_CATEGORY_NAMES,
+  buildMatcher,
+  getReviewMatcher,
+  invalidateReviewMatcher,
+  listBaselineWords,
+  matchReview
+} from '../../src/config/commentBlocklist.js'
 import { MAX_BODY_DISPLAY, MAX_BODY_RAW, countEmoticonDisplayChars } from '../../src/config/emoticons.js'
 import {
   CAPTCHA_TTL_MS, CODE_COOLDOWN_SEC, CODE_DIGITS, CODE_EMAIL_DAILY_MAX,
@@ -130,6 +137,41 @@ const AVATAR_ID_RE = /^[A-Za-z0-9_]{1,40}$/
  * | 提交失败，请刷新页面后重试 | 人机校验、蜜罐拦截、无删除权限 | 403 |
  * | 操作失败，请稍后再试 | 没有更贴切的归类时兜底 | 4xx/5xx |
  */
+/**
+ * 「转待审原因」的长度上限（字符数）。
+ *
+ * 它是**一行短备注**（给同事看的"为什么打回"），不是第二段正文；
+ * 80 字足够写清"重复发帖 / 与主题无关 / 待确认外链"这类说明。
+ *
+ * 🔴 必须声明在 `ERR` **之前**：`ERR.reviewNoteTooLong` 在对象字面量里就用了它，
+ *    放后面会踩 `const` 的暂时性死区（TDZ），**模块加载即抛错** ——
+ *    整个 API 会 500（实测踩过一次）。
+ */
+const REVIEW_NOTE_MAX = 80
+
+/**
+ * 一次批量改状态最多几条评论。
+ *
+ * 上限的理由不是"数据库扛不住"，而是**防手滑**：全选几百条一次性放行/隐藏
+ * 很难复盘，出问题时也没法一条条看回来。100 条 ≈ 两页（每页 50），
+ * 日常"扫一遍待审队列"足够用。
+ */
+const BATCH_MAX = 100
+
+/**
+ * 审核词表：单条关键词上限（字符数）与总数上限。
+ *
+ * 🔴 **必须声明在 `ERR` 之前** —— `ERR.keywordTooLong` / `keywordTooMany` 在
+ *    对象字面量里就用了它们，放后面会踩 `const` 的暂时性死区（TDZ），
+ *    模块加载即抛 `ReferenceError`，**整个 API 起不来**。
+ *    （同一个坑本项目已踩过两次，见 ADR 122 与当日日志。）
+ *
+ * 总数上限的理由：这些词会拼进**每一条评论**提交路径的正则里，
+ * 无节制增长会让单次匹配变慢（免费版只有 10ms CPU）。300 条足够用。
+ */
+const KEYWORD_MAX = 30
+const KEYWORD_COUNT_MAX = 300
+
 const ERR = {
   notFound: '评论不存在',
   server: '无法连接评论服务器',
@@ -139,6 +181,12 @@ const ERR = {
   needNick: '请填写昵称',
   badRequest: '评论内容有误，请检查后重试',
   rejected: '提交失败，请刷新页面后重试',
+  reviewNoteTooLong: `待审原因不能超过 ${REVIEW_NOTE_MAX} 个字`,
+  presetTooLong: `常用选项每一条不能超过 ${REVIEW_NOTE_MAX} 个字`,
+  presetTooMany: '常用选项最多 20 条',
+  batchTooMany: `一次最多处理 ${BATCH_MAX} 条，请分批操作`,
+  keywordTooLong: `关键词不能超过 ${KEYWORD_MAX} 个字`,
+  keywordTooMany: `自定义关键词最多 ${KEYWORD_COUNT_MAX} 条`,
   fallback: '操作失败，请稍后再试'
 }
 
@@ -731,7 +779,10 @@ async function createComment(env, request, ts) {
   }
 
   // 4) 审核词表命中 → 待审（不拒绝，避免误伤丢内容；管理员可一键放行）
-  const reviewHits = matchReview(body)
+  //
+  // 匹配器来自**内存缓存**（见 `getReviewMatcher`）：每 30 秒最多读一次库，
+  // 绝大多数请求零额外查询。读库失败会**回落代码基线**，不会变成"不审核"。
+  const reviewHits = matchReview(body, await getReviewMatcher(() => loadReviewOverlay(env)))
   const needsReview = reviewHits.length > 0
   const status = needsReview ? 0 : 1
 
@@ -956,6 +1007,35 @@ async function adminList(env, url) {
     binds.push(userIdParam)
     where.push(`user_id = ?${binds.length}`)
   }
+  /*
+   * 按**命中原因**筛（`review_reason`）。
+   *
+   * 用途：词表某个词收得太宽时（某类词批量误伤），把命中的那批一次性捞出来
+   * 批量放行 —— 逐条翻列表在这种场景下不现实。
+   *
+   * `review_reason` 存的是**逗号分隔的多个类别**（写入时 `reviewHits.join(',')`），
+   * 所以用 LIKE 做子串匹配而非等值：一条评论可能同时命中「赌博,引流」。
+   * 特殊值 `any` = "命中过任何词"（捞出所有自动进待审的）。
+   */
+  const reasonParam = sanitize(url.searchParams.get('reason') || '', 40)
+  if (reasonParam === 'any') {
+    where.push(`review_reason IS NOT NULL AND review_reason <> ''`)
+  } else if (reasonParam) {
+    binds.push(`%${reasonParam.replace(/[\\%_]/g, (ch) => `\\${ch}`)}%`)
+    where.push(`review_reason LIKE ?${binds.length} ESCAPE '\\'`)
+  }
+  /*
+   * 按**有没有人工待审原因**筛。
+   *
+   * 用途：找出"同事打回却没写原因"的那些，回头补说明。
+   * `1` = 只看有备注的；`0` = 只看没备注的。
+   */
+  const hasNoteParam = url.searchParams.get('hasNote')
+  if (hasNoteParam === '1') {
+    where.push(`review_note IS NOT NULL AND review_note <> ''`)
+  } else if (hasNoteParam === '0') {
+    where.push(`(review_note IS NULL OR review_note = '')`)
+  }
   if (pageKind) {
     /*
      * 站内讨论区是固定 key（`site:general`），用等值更精确；
@@ -972,7 +1052,7 @@ async function adminList(env, url) {
   }
   binds.push(limit + 1)
 
-  const sql = `SELECT id, page_key, page_label, nick, avatar, body, created_at, status, review_reason, user_id FROM comments
+  const sql = `SELECT id, page_key, page_label, nick, avatar, body, created_at, status, review_reason, review_note, user_id FROM comments
     ${where.length ? 'WHERE ' + where.join(' AND ') : ''}
     ORDER BY id DESC LIMIT ?${binds.length}`
 
@@ -1052,7 +1132,12 @@ async function listRecent(env, { fresh = false } = {}) {
   })
 }
 
-/** PATCH /api/admin/comments —— 改状态（放行 / 隐藏 / 打回待审） */
+/** PATCH /api/admin/comments —— 改状态（放行 / 隐藏 / 打回待审）
+ *
+ * 支持**单条**（传 `id`）与**批量**（传 `ids` 数组）两种形态，语义完全相同：
+ * 批量只是把同一件事对多条一起做，所以刻意不另开一个接口 ——
+ * 分开会让人以为两者的规则不一样（其实锚点、备注、审计口径都一致）。
+ */
 async function adminPatch(env, request, actor, ts) {
   let payload
   try {
@@ -1060,31 +1145,144 @@ async function adminPatch(env, request, actor, ts) {
   } catch {
     return bad(ERR.badRequest)
   }
-  const id = Number.parseInt(payload?.id, 10)
   const status = Number.parseInt(payload?.status, 10)
-  if (!Number.isFinite(id) || ![0, 1, 2].includes(status)) return bad(ERR.badRequest)
+  if (![0, 1, 2].includes(status)) return bad(ERR.badRequest)
+
+  // 收集目标 id：`ids` 优先（批量），否则退回单条 `id`
+  const rawIds = Array.isArray(payload?.ids) ? payload.ids : [payload?.id]
+  const ids = []
+  for (const raw of rawIds) {
+    const n = Number.parseInt(raw, 10)
+    if (Number.isFinite(n) && !ids.includes(n)) ids.push(n)
+  }
+  if (!ids.length) return bad(ERR.badRequest)
+  /*
+   * 批量上限：一次几百条的 UPDATE + 同样多的审计插入会在一次请求里做完，
+   * 既有超时风险，也容易让"手滑全选"造成难以复盘的大范围改动。
+   * 100 条足够日常使用（一页 50 条，选两页）。
+   */
+  if (ids.length > BATCH_MAX) return bad(ERR.batchTooMany)
+
+  /*
+   * 「转待审原因」：只在 `status = 0` 时有意义，由管理员手填、可空。
+   *
+   * 🔴 与 `review_reason`（系统自动命中的类别）**是两列**，不要合并：
+   *    一条评论可能"自动命中赌博词 + 人工备注需要再确认"，两者都要留。
+   *
+   * 放行 / 隐藏时**一律清空**：备注描述的是"当前为什么在待审队列里"，
+   * 状态已定论还留着旧备注会误导后来接手的人。历史另有 `admin_audit` 记录。
+   */
+  const note = status === 0 ? normalizeReviewNote(payload?.note) : null
+  if (status === 0 && payload?.note !== undefined && note === null && String(payload.note).trim()) {
+    return bad(ERR.reviewNoteTooLong)
+  }
 
   /*
    * 先读原文再改：审计里要留下**评论正文摘要**。
    * 只记 id 的话，事后看到"隐藏了 #42"也不知道当时隐藏了什么。
+   *
+   * 批量时一并查出**哪些 id 真的存在** —— 不存在的直接跳过，
+   * 而不是让整个批次失败：管理员选了 10 条、其中 2 条已被别人删掉，
+   * 剩下 8 条照样该处理。
    */
-  const row = await env.DB.prepare(`SELECT id, body, nick FROM comments WHERE id = ?1`).bind(id).first()
-  if (!row) return bad(ERR.notFound, 404)
+  const placeholders = ids.map((_, i) => `?${i + 1}`).join(', ')
+  const { results } = await env.DB.prepare(
+    // 一并取 `status` 与 `user_id`：前者判断"状态是否真的变了"（决定要不要通知作者），
+    // 后者是作者（`user_id` 为空的老评论没有归属，无处通知）
+    `SELECT id, body, nick, status, user_id FROM comments WHERE id IN (${placeholders})`
+  ).bind(...ids).all()
+  const found = results || []
+  if (!found.length) return bad(ERR.notFound, 404)
 
-  const res = await env.DB.prepare(`UPDATE comments SET status = ?1 WHERE id = ?2`)
-    .bind(status, id)
-    .run()
-  if (!res.meta?.changes) return bad(ERR.notFound, 404)
+  const foundIds = found.map((r) => r.id)
+  const missing = ids.filter((id) => !foundIds.includes(id))
+
+  /*
+   * 🔴 只有**状态真的变了**才算"处理过一次"。
+   *
+   * 若每次提交都写 `moderated_at`，管理员重复点"隐藏"会把时间一直往后推，
+   * 作者就会**反复收到同一条评论的通知**（红点清了又来）。
+   * 所以先比较新旧状态，只把变了的那些挑出来。
+   *
+   * 注意这里**不记录"要通知谁"** —— 未读数是读取时算的
+   * （`COUNT(我的评论 WHERE moderated_at > 我上次读的时间)`），
+   * 写的时候不需要知道收件人（与「谁回复了我」同一套机制）。
+   */
+  const changedIds = found.filter((r) => Number(r.status) !== status).map((r) => r.id)
+
+  /*
+   * 一次性提交：`batch` 在**一个事务**里执行，所以"改状态"与"写审计"不会只成一半。
+   * 单条时这条路径与原来完全等价（一个 UPDATE + 一条审计）。
+   */
+  const statements = [
+    env.DB.prepare(
+      `UPDATE comments SET status = ?1, review_note = ?2 WHERE id IN (${
+        foundIds.map((_, i) => `?${i + 3}`).join(', ')
+      })`
+    ).bind(status, note, ...foundIds)
+  ]
+
+  /*
+   * 给**状态真变了**的那些打上处理时间（作者据此收到通知）。
+   * 单独一条语句：只更新 changedIds，不动没变的那些。
+   *
+   * 🔴 用**毫秒**（`Date.now()`），不是这个函数的 `ts`（那是秒）——
+   *    未读判定要与 `users.moderation_read_at` 比大小，两边必须同一精度。
+   *    用秒会让"同一秒内标已读 + 又被处理"不可区分（详见 `authMarkModerationRead`）。
+   */
+  if (changedIds.length) {
+    statements.push(
+      env.DB.prepare(
+        `UPDATE comments SET moderated_at = ?1 WHERE id IN (${changedIds.map((_, i) => `?${i + 2}`).join(', ')})`
+      ).bind(Date.now(), ...changedIds)
+    )
+  }
 
   const ACTION_BY_STATUS = { 0: 'comment_pending', 1: 'comment_show', 2: 'comment_hide' }
-  await writeAudit(env, actor, {
-    action: ACTION_BY_STATUS[status],
-    targetType: 'comment',
-    targetId: id,
-    detail: `${row.nick}：${String(row.body || '').slice(0, 40)}`
-  }, ts)
+  for (const row of found) {
+    /*
+     * 逐条写审计（而不是"批量操作一条摘要"）：这样才能在账本里按**单条评论**
+     * 追出"这条是谁、什么时候处理的" —— 评论行本身没有记录操作者的列。
+     */
+    statements.push(
+      env.DB.prepare(
+        `INSERT INTO admin_audit (actor_id, actor_nick, actor_role, action, target_type, target_id, detail, created_at)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)`
+      ).bind(
+        actor.id,
+        String(actor.nick || ''),
+        Number(actor.role) || 0,
+        ACTION_BY_STATUS[status],
+        'comment',
+        row.id,
+        // 备注一并进审计：日后翻账本时能看到"当时为什么打回"
+        `${row.nick}：${String(row.body || '').slice(0, 40)}${note ? `（待审原因：${note}）` : ''}`,
+        ts
+      )
+    )
+  }
+  await env.DB.batch(statements)
 
-  return json({ ok: true })
+  return json({ ok: true, changed: foundIds.length, missing })
+}
+
+/**
+ * 规范化「备注」—— 评论的**转待审原因**与用户的**封禁理由**共用。
+ *
+ * 两者语义完全一致（都是"当前为什么被处理"、都由管理员手填、都可空、
+ * 都在状态反转时清空），所以共用一份实现，避免两处规则漂移。
+ *
+ * - 空白 / 缺失 → `null`（本来就可空，不强制填）
+ * - 去首尾空白、内部换行折成空格（它是**一行短备注**，不是正文）
+ * - 超长 → `null`（由调用方按"超长"回 400，而不是悄悄截断：
+ *   截断会让人以为自己写全了）
+ */
+function normalizeReviewNote(raw) {
+  if (raw === undefined || raw === null) return null
+  const text = String(raw).replace(/\s+/g, ' ').trim()
+  if (!text) return null
+  if (text.length > REVIEW_NOTE_MAX) return null
+  return text
 }
 
 /** DELETE /api/admin/comments —— 彻底删除（隐私删除请求用；软删除请用 PATCH status=2） */
@@ -1130,7 +1328,17 @@ async function adminDelete(env, request, actor, ts) {
  * 所以单独包一层，只在管理端加。
  */
 function toAdminComment(row) {
-  return { ...toPublic(row), userId: row.user_id ?? null }
+  return {
+    ...toPublic(row),
+    userId: row.user_id ?? null,
+    /*
+     * 「转待审原因」：管理员手填的备注。
+     *
+     * 🔴 **只加在管理端**，绝不进 `toPublic` —— 它是给同事看的内部说明，
+     * 泄漏给访客等于把审核标准暴露出去（作者还会看到"为什么被扣下"的细节）。
+     */
+    reviewNote: row.review_note || null
+  }
 }
 
 /** 把 `status → count` 的行集合折成固定键的对象，缺的补 0。 */
@@ -1225,6 +1433,19 @@ async function adminUsers(env, url) {
   const hasStatus = ['1', '2', '3'].includes(statusParam)
   const status = hasStatus ? Number.parseInt(statusParam, 10) : null
 
+  /*
+   * 角色筛选：`admin` = 管理员及以上（role >= 1）。
+   *
+   * 刻意**只提供"看管理员"这一个方向**，不做 `role=0/1/2` 的逐档筛：
+   * 管理端的实际需求是"我有哪些同事、权限对不对"，而普通用户是绝大多数，
+   * 按普通用户筛等于没筛（那才是默认视图）。
+   *
+   * 服务端这里**不校验调用者角色**：谁能看用户列表谁就能看这份名单
+   * （普通管理员本来就该知道有哪些同事）。改角色才是超管专属。
+   */
+  const roleParam = url.searchParams.get('role')
+  const adminOnly = roleParam === 'admin'
+
   const q = sanitize(url.searchParams.get('q') || '', 60)
   const hasQ = q.length > 0
   const likeParam = hasQ ? `%${q.replace(/[\\%_]/g, (ch) => `\\${ch}`)}%` : ''
@@ -1234,6 +1455,9 @@ async function adminUsers(env, url) {
   if (hasStatus) {
     binds.push(status)
     where.push(`u.status = ?${binds.length}`)
+  }
+  if (adminOnly) {
+    where.push(`u.role >= 1`)
   }
   if (hasQ) {
     binds.push(likeParam)
@@ -1256,7 +1480,7 @@ async function adminUsers(env, url) {
   binds.push(limit + 1)
 
   const sql = `SELECT u.id, u.public_no, u.nick, u.email, u.avatar, u.status, u.role,
-                      u.created_at, u.last_login_at,
+                      u.created_at, u.last_login_at, u.ban_note,
                       (SELECT COUNT(*) FROM comments c WHERE c.user_id = u.id) AS comment_count
     FROM users u
     ${where.length ? 'WHERE ' + where.join(' AND ') : ''}
@@ -1280,7 +1504,12 @@ async function adminUsers(env, url) {
       role: Number(r.role) || 0,
       createdAt: r.created_at,
       lastLoginAt: r.last_login_at,
-      commentCount: r.comment_count ?? 0
+      commentCount: r.comment_count ?? 0,
+      /*
+       * 封禁理由：**只加在管理端**，绝不进 `toPublicUser`。
+       * 它是给同事看的内部说明；透给用户等于把审核标准公开出去。
+       */
+      banNote: r.ban_note || null
     })),
     nextCursor: hasMore ? page[page.length - 1].id : null,
     hasMore
@@ -1315,8 +1544,20 @@ async function adminUserPatch(env, request, actor, ts) {
   const isSelf = Number(target.id) === Number(actor.id)
   if (!canActOn(actor.role, target.role, isSelf)) return bad(ERR.rejected, 403)
 
-  const res = await env.DB.prepare(`UPDATE users SET status = ?1 WHERE id = ?2`)
-    .bind(status, id)
+  /*
+   * 封禁理由：**只在停用（status=2）时有意义**，管理员手填、可空。
+   *
+   * 🔴 解封（status=1）时**一律清空**：理由描述的是"当前为什么被停用"，
+   *    状态已定论还留着旧理由会误导后来人（与评论的 `review_note` 同一条规矩）。
+   *    历史另有 `admin_audit`，每次封禁都会写一条。
+   */
+  const note = status === 2 ? normalizeReviewNote(payload?.note) : null
+  if (status === 2 && payload?.note !== undefined && note === null && String(payload.note).trim()) {
+    return bad(ERR.reviewNoteTooLong)
+  }
+
+  const res = await env.DB.prepare(`UPDATE users SET status = ?1, ban_note = ?2 WHERE id = ?3`)
+    .bind(status, note, id)
     .run()
   if (!res.meta?.changes) return bad(ERR.notFound, 404)
 
@@ -1328,7 +1569,10 @@ async function adminUserPatch(env, request, actor, ts) {
     action: status === 2 ? 'ban' : 'unban',
     targetType: 'user',
     targetId: id,
-    detail: `${target.nick}（角色 ${ROLE_LABELS[target.role] ?? target.role}）`
+    // 理由一并进审计：日后翻账本能看到"当时为什么封"
+    detail: `${target.nick}（角色 ${ROLE_LABELS[target.role] ?? target.role}）${
+      note ? `（封禁理由：${note}）` : ''
+    }`
   }, ts)
 
   return json({ ok: true })
@@ -1459,6 +1703,244 @@ async function adminAuditList(env, url) {
     nextCursor: hasMore ? page[page.length - 1].id : null,
     hasMore
   })
+}
+
+/**
+ * 读超管维护的词表叠加层（`review_keywords` + `review_category_flags`）。
+ *
+ * 只在缓存过期时被调用（见 `getReviewMatcher`），所以两次查询的成本可以接受。
+ * 表不存在时会让 `getReviewMatcher` 回落基线，不会把发评论打挂。
+ */
+async function loadReviewOverlay(env) {
+  const [kw, flags] = await Promise.all([
+    env.DB.prepare(`SELECT text, category FROM review_keywords`).all(),
+    env.DB.prepare(`SELECT category FROM review_category_flags`).all()
+  ])
+  return {
+    keywords: kw.results || [],
+    disabled: (flags.results || []).map((r) => r.category)
+  }
+}
+
+/**
+ * `GET /api/admin/review-keywords` —— 生效中的审核词表总览。
+ *
+ * 返回**合并后的视图**（代码基线 + 库叠加），而不是原始表内容：
+ * 管理员要判断"这条评论为什么进待审"，就得看到真正生效的那份。
+ */
+async function adminReviewKeywordsGet(env) {
+  const [kw, flags] = await Promise.all([
+    env.DB.prepare(`SELECT id, text, category FROM review_keywords ORDER BY category ASC, text ASC`).all(),
+    env.DB.prepare(`SELECT category FROM review_category_flags`).all()
+  ])
+  const keywords = (kw.results || []).map((r) => ({ id: r.id, text: r.text, category: r.category }))
+  const disabled = (flags.results || []).map((r) => r.category)
+
+  // 各类别下的**自定义词**条数（内置词另算，见下面 baselineWords）
+  const customCount = new Map()
+  for (const row of keywords) customCount.set(row.category, (customCount.get(row.category) || 0) + 1)
+
+  /*
+   * 基线类别（含"启用 / 停用"、内置词数量与**词列表**）。
+   *
+   * 🔴 必须把内置词**列出来**：只显示"自定义 N 条"会让管理员以为类别是空的
+   *    （用户实际就这么反馈过 —— 看到"自定义 0 条"以为没词、必须自己加）。
+   *    内置词是真正生效的那部分，不看它就判断不了"这个词表到底拦什么"。
+   */
+  const categories = BLOCKLIST_CATEGORY_NAMES.map((name) => ({
+    name,
+    baseline: true,
+    disabled: disabled.includes(name),
+    custom: customCount.get(name) || 0,
+    baselineWords: listBaselineWords(name)
+  }))
+  // 超管新建的类别（基线里没有，所以只有自定义词）
+  for (const [name, count] of customCount) {
+    if (BLOCKLIST_CATEGORY_NAMES.includes(name)) continue
+    categories.push({ name, baseline: false, disabled: disabled.includes(name), custom: count, baselineWords: [] })
+  }
+
+  return json({
+    ok: true,
+    categories,
+    keywords,
+    max: { keyword: KEYWORD_MAX, count: KEYWORD_COUNT_MAX },
+    // 结构性规则（外链 / HTML 标签）**不让改**：它们是防注入的底线
+    structural: BLOCKLIST_STRUCTURAL_HINT
+  })
+}
+
+/** 给后台展示用的结构性规则说明（只读，不给编辑入口） */
+const BLOCKLIST_STRUCTURAL_HINT = [
+  { name: '外链', note: '图鉴讨论不需要外链，广告的主要形态' },
+  { name: 'HTML 标签', note: '本站一律按纯文本渲染，出现标签基本是攻击或粘贴垃圾' }
+]
+
+/**
+ * `PUT /api/admin/review-keywords` —— **整表替换**自定义词 + 类别停用标记（仅超管）。
+ *
+ * 与「常用选项」同一套理由：界面上一串改动 + 一次保存 = 一个整体动作，
+ * 逐条增删会产生"删了旧的还没加新的"的中间态。
+ * `batch` 在一个事务里执行，读者看不到半截状态。
+ *
+ * @param {{keywords: {text: string, category: string}[], disabled: string[]}} payload
+ */
+async function adminReviewKeywordsPut(env, request, actor, ts) {
+  let payload
+  try {
+    payload = await request.json()
+  } catch {
+    return bad(ERR.badRequest)
+  }
+  if (!Array.isArray(payload?.keywords) || !Array.isArray(payload?.disabled)) return bad(ERR.badRequest)
+  if (payload.keywords.length > KEYWORD_COUNT_MAX) return bad(ERR.keywordTooMany)
+
+  /*
+   * 规范化：trim、丢空串、按 (类别, 词) 去重。
+   * 唯一索引会报错，但那是个 500 级错误 —— 不如在这里静默去重（手滑写两遍同样的词，
+   * 按一次意思处理即可）。
+   */
+  const seen = new Set()
+  const rows = []
+  for (const raw of payload.keywords) {
+    const text = String(raw?.text ?? '').trim()
+    const category = String(raw?.category ?? '').trim()
+    if (!text || !category) continue
+    if (text.length > KEYWORD_MAX) return bad(ERR.keywordTooLong)
+    if (category.length > KEYWORD_MAX) return bad(ERR.keywordTooLong)
+    const key = `${category}\u0000${text}`
+    if (seen.has(key)) continue
+    seen.add(key)
+    rows.push({ text, category })
+  }
+
+  /*
+   * `disabled` 与 `keywords` **同等校验**。
+   *
+   * 🔴 原先这里只过滤空串、不限长也不限量 —— 而 `keywords` 是校验的（上面几行）。
+   *    代码审查时发现的：能塞进 5000 字的类别名、或几万条停用项。
+   *    后果不是注入（值都走 bind），而是**仓库里存垃圾**：
+   *    `review_category_flags` 会攒下永远匹配不到任何类别的行，
+   *    而且会在每次 `loadReviewOverlay` 时被读出来、白占内存与匹配开销。
+   */
+  if (payload.disabled.length > KEYWORD_COUNT_MAX) return bad(ERR.keywordTooMany)
+  const disabled = []
+  for (const raw of payload.disabled) {
+    const name = String(raw ?? '').trim()
+    if (!name) continue
+    if (name.length > KEYWORD_MAX) return bad(ERR.keywordTooLong)
+    if (!disabled.includes(name)) disabled.push(name)
+  }
+
+  const statements = [
+    env.DB.prepare(`DELETE FROM review_keywords`),
+    env.DB.prepare(`DELETE FROM review_category_flags`)
+  ]
+  for (const row of rows) {
+    statements.push(
+      env.DB.prepare(`INSERT INTO review_keywords (text, category, created_at) VALUES (?1, ?2, ?3)`)
+        .bind(row.text, row.category, ts)
+    )
+  }
+  for (const name of disabled) {
+    statements.push(
+      env.DB.prepare(`INSERT INTO review_category_flags (category, created_at) VALUES (?1, ?2)`).bind(name, ts)
+    )
+  }
+  await env.DB.batch(statements)
+
+  /*
+   * 清本实例的匹配器缓存：让**改的人自己立刻生效**。
+   * 其它实例最长 30 秒后到期（见 `CACHE_TTL_MS`），这对审核词表完全可接受。
+   */
+  invalidateReviewMatcher()
+
+  await writeAudit(env, actor, {
+    action: 'review_keywords_set',
+    targetType: 'keyword',
+    targetId: 0,
+    detail: `自定义词 ${rows.length} 条；停用类别 ${
+      disabled.length ? disabled.join('、') : '无'
+    }；含 ${[...new Set(rows.map((r) => r.category))].join('、') || '无'}`
+  }, ts)
+
+  return json({ ok: true, keywords: rows, disabled })
+}
+/** 常用选项单条文案上限（字符数），与 `REVIEW_NOTE_MAX` 保持一致。 */
+const PRESET_TEXT_MAX = REVIEW_NOTE_MAX
+/** 常用选项条数上限。够用即可，防止被塞成一本字典把界面撑爆。 */
+const PRESET_COUNT_MAX = 20
+
+/**
+ * `GET /api/admin/review-presets` —— 转待审「常用选项」列表。
+ *
+ * 所有管理员都能读（他们要用来填原因），只有超管能改（见 PUT）。
+ */
+async function adminReviewPresetsGet(env) {
+  const { results } = await env.DB.prepare(
+    `SELECT id, text, sort_order FROM review_note_presets ORDER BY sort_order ASC, id ASC`
+  ).all()
+  return json({
+    ok: true,
+    presets: (results || []).map((r) => ({ id: r.id, text: r.text }))
+  })
+}
+
+/**
+ * `PUT /api/admin/review-presets` —— **整表替换**（仅超管）。
+ *
+ * 为什么是整表替换而不是逐条 POST / DELETE：
+ *   超管在界面上是"改一串文案 → 保存"的整体动作。逐条增删会产生**中间态**
+ *   （删了旧的还没加新的），别的管理员此刻正好打开界面就会读到半截列表。
+ *   整表替换是原子的：要么全旧、要么全新。
+ *
+ * 传 `[]` 合法 —— 表示"不要常用选项，只留自由输入"。
+ */
+async function adminReviewPresetsPut(env, request, actor, ts) {
+  let payload
+  try {
+    payload = await request.json()
+  } catch {
+    return bad(ERR.badRequest)
+  }
+  if (!Array.isArray(payload?.presets)) return bad(ERR.badRequest)
+  if (payload.presets.length > PRESET_COUNT_MAX) return bad(ERR.presetTooMany)
+
+  /*
+   * 规范化：逐条 trim、丢掉空串、**去重**（唯一索引会报错，但那是个 500 级错误，
+   * 不如在这里静默去重 —— 超管手滑写了两遍同样的文案，按一次意思处理即可）。
+   */
+  const seen = new Set()
+  const texts = []
+  for (const raw of payload.presets) {
+    const text = String(raw ?? '').replace(/\s+/g, ' ').trim()
+    if (!text) continue
+    if (text.length > PRESET_TEXT_MAX) return bad(ERR.presetTooLong)
+    if (seen.has(text)) continue
+    seen.add(text)
+    texts.push(text)
+  }
+
+  // 先删后插。D1 的 `batch` 在**一个事务**里执行，不会让读者看到空表中间态。
+  const statements = [env.DB.prepare(`DELETE FROM review_note_presets`)]
+  texts.forEach((text, index) => {
+    statements.push(
+      env.DB.prepare(
+        `INSERT INTO review_note_presets (text, sort_order, created_at) VALUES (?1, ?2, ?3)`
+      ).bind(text, index, ts)
+    )
+  })
+  await env.DB.batch(statements)
+
+  await writeAudit(env, actor, {
+    action: 'review_presets_set',
+    targetType: 'preset',
+    // 这张表没有"单条目标"，用 0 占位（列是 NOT NULL）
+    targetId: 0,
+    detail: texts.length ? texts.join(' / ') : '（清空）'
+  }, ts)
+
+  return json({ ok: true, presets: texts.map((text, i) => ({ id: i + 1, text })) })
 }
 
 // ============================================================
@@ -2207,7 +2689,13 @@ async function authChangeEmail(env, request, ts) {
   return json({ ok: true, user: toPublicUser(row) })
 }
 
-/** `GET /api/auth/comments` —— 「我的评论」跨设备列表（只按 `user_id` 查，不再用浏览器令牌）。 */
+/**
+ * `GET /api/auth/comments` —— 「我的评论」跨设备列表（只按 `user_id` 查，不再用浏览器令牌）。
+ *
+ * 顺带返回 `moderatedUnread`：**有多少条评论被管理员处理后作者还没看过**。
+ * 机制与「谁回复了我」完全对称 —— 只用一个时间戳当基准（`users.moderation_read_at`），
+ * 不建通知表；两个 COUNT 合成一条 SQL。
+ */
 async function authMyComments(env, request, url, ts) {
   const session = await loadSession(env, request, ts)
   if (!session) return bad(AERR.sessionExpired, 401)
@@ -2226,6 +2714,26 @@ async function authMyComments(env, request, url, ts) {
   const list = rows.results || []
   const hasMore = list.length > limit
   const page = hasMore ? list.slice(0, limit) : list
+
+  /*
+   * 未读数：被处理后还没看过的条数。
+   *
+   * ⚠️ 只在**第一页**算（`!cursor`）—— 翻页时不必重算，省一次查询。
+   *    `moderated_at IS NOT NULL` 不能少：`NULL > x` 在 SQL 里是 NULL（不为真），
+   *    但显式写出来意图更清楚，也避免将来换实现时踩空。
+   */
+  let moderatedUnread = 0
+  if (!cursor) {
+    const readAt = session.row.moderation_read_at || 0
+    const row = await env.DB.prepare(
+      `SELECT COUNT(*) AS n FROM comments
+       WHERE user_id = ?1 AND moderated_at IS NOT NULL AND moderated_at > ?2`
+    )
+      .bind(session.row.id, readAt)
+      .first()
+    moderatedUnread = row?.n ?? 0
+  }
+
   return json({
     ok: true,
     comments: page.map((r) => ({
@@ -2237,15 +2745,45 @@ async function authMyComments(env, request, url, ts) {
       createdAt: r.created_at,
       parentId: r.parent_id || null
     })),
-    nextCursor: hasMore ? page[page.length - 1].id : null
+    nextCursor: hasMore ? page[page.length - 1].id : null,
+    moderatedUnread
   })
+}
+
+/**
+ * `POST /api/auth/comments/read` —— 把「评论被处理」的未读基准推到当前时刻。
+ *
+ * 🔴 用**毫秒**（`Date.now()`）而不是秒，与 `comments.moderated_at` 配对。
+ *
+ * 为什么不能用秒：未读判定是 `moderated_at > moderation_read_at`。
+ * 秒级时间戳下，"同一秒内先标已读、又被处理"会落到 `S > S`（假）——
+ * **通知被静默吞掉**（实测确认：差值 0 → 未读数 0）。
+ * 而若为了避开它把基准退 1 秒（`S-1`），又会变成 `S > S-1` 恒真 →
+ * **红点清不掉**，用户第二次点进来才发现已经读过了。
+ * 两个方向各错一半，根因都是**秒级精度不足以区分先后**。
+ *
+ * 毫秒把冲突窗口从 1 秒压到 1 毫秒 —— 两次请求相隔不到 1 毫秒几乎不可能，
+ * 于是两个方向的错都不再出现。
+ */
+async function authMarkModerationRead(env, request, ts) {
+  const session = await loadSession(env, request, ts)
+  if (!session) return bad(AERR.sessionExpired, 401)
+  await env.DB.prepare(`UPDATE users SET moderation_read_at = ?1 WHERE id = ?2`)
+    .bind(Date.now(), session.row.id)
+    .run()
+  return json({ ok: true })
 }
 
 /**
  * `GET /api/auth/replies` —— 「谁回复了我」。
  *
- * 未读数**不建已读表**：只用 `users.replies_read_at` 当基准，
- * 一条 SQL 同时给出列表与未读数，省一张表也省写入。
+ * 未读数**不建已读表**：只用一个基准，一条 SQL 同时给出列表与未读数，
+ * 省一张表也省写入。
+ *
+ * 基准是 `users.replies_read_id`（**评论 id**，不是时间戳）—— 理由见
+ * `authMarkRepliesRead` 的注释：`comments.created_at` 只有秒级精度，
+ * 同一秒内的"标已读 / 收到回复"无法区分先后，会**静默吞掉提醒**。
+ * `comments.id` 是 AUTOINCREMENT、严格单调，用它当基准没有这个问题。
  */
 async function authMyReplies(env, request, url, ts) {
   const session = await loadSession(env, request, ts)
@@ -2253,7 +2791,7 @@ async function authMyReplies(env, request, url, ts) {
 
   const limit = Math.min(positiveInt(url.searchParams.get('limit'), 20), MAX_LIMIT)
   const cursor = positiveInt(url.searchParams.get('cursor'), 0)
-  const readAt = session.row.replies_read_at || 0
+  const readId = session.row.replies_read_id || 0
 
   const rows = await env.DB.prepare(
     /*
@@ -2281,14 +2819,21 @@ async function authMyReplies(env, request, url, ts) {
     .all()
 
   const unreadRow = await env.DB.prepare(
-    // 未读数的条件必须与列表**逐字一致**，否则会出现"红点显示 3、点进去只有 1 条"
+    /*
+     * 未读数的条件必须与列表**逐字一致**，否则会出现"红点显示 3、点进去只有 1 条"。
+     *
+     * 🔴 比较的是 `c.id > ?2`（**评论 id**），与列表的 `c.id < ?2` 游标是同一个键。
+     *    早先用的是 `c.created_at > 时间戳`，两个键不是一回事 ——
+     *    除了丢通知（同秒无法区分先后），还让"未读口径"与"分页口径"不一致。
+     *    现在两者都按 id 走，"未读"＝"id 比基准大的那些"，语义精确且可核对。
+     */
     `SELECT COUNT(*) AS n FROM comments c
      JOIN comments p ON p.id = c.parent_id
      WHERE p.user_id = ?1
        AND (c.user_id IS NULL OR c.user_id <> ?1)
-       AND c.status = 1 AND c.created_at > ?2`
+       AND c.status = 1 AND c.id > ?2`
   )
-    .bind(session.row.id, readAt)
+    .bind(session.row.id, readId)
     .first()
 
   const list = rows.results || []
@@ -2311,12 +2856,46 @@ async function authMyReplies(env, request, url, ts) {
   })
 }
 
-/** `POST /api/auth/replies/read` —— 把未读基准推到当前时刻。 */
+/**
+ * `POST /api/auth/replies/read` —— 把未读基准推到"我此刻能看到的最新回复"。
+ *
+ * 🔴 基准是 `users.replies_read_id`（**评论 id**），不是时间戳。
+ *
+ * 原实现存的是时间（`replies_read_at = ts`，秒），未读判定 `created_at > read_at`。
+ * 两边都只有**秒**精度 → "标已读"与"收到回复"落在**同一秒**时，
+ * 那条回复满足 `S > S`（假）→ **提醒被静默吞掉**，用户永远不知道有人回复了他。
+ *
+ * 为什么不用毫秒（那是「评论被处理通知」的做法）：
+ *   · 那边 `moderated_at` / `moderation_read_at` 都是新列、都由本文件控制，可直接用毫秒；
+ *   · 这边 `comments.created_at` 是既有的**秒**列，全站都在用（列表排序、时间显示、
+ *     限流……）。改它会波及全站；而**只把基准改成毫秒更糟** ——
+ *     `S > S_000` 恒真 → **红点永远清不掉**。两个方向各错一半。
+ *
+ * 改用 `comments.id` 后两个问题同时消失：
+ *   · `id` 是 `INTEGER PRIMARY KEY AUTOINCREMENT`，**严格单调递增**，
+ *     整数比较没有精度、没有时钟回拨问题；
+ *   · 语义也更准 —— 表达的是"这些回复我看过了"，而不是"某个时刻之前的都算看过"。
+ *
+ * 写入值是**当前可见回复的最大 id**，不是"现在"：`ts` 无法表达"哪些回复"，
+ * 而"推到当前时刻"在 id 语义下就是"把所有已存在的回复都算读过"。
+ * 取 MAX 而不是 `last_insert_rowid()`：后者是**全库**最后插入的 id，
+ * 包含别人的评论与我自己发的评论，会把基准顶到超出我的回复范围。
+ * 子查询带 `p.user_id = ?1` 等全套过滤，与列表/未读数的口径一致。
+ */
 async function authMarkRepliesRead(env, request, ts) {
   const session = await loadSession(env, request, ts)
   if (!session) return bad(AERR.sessionExpired, 401)
-  await env.DB.prepare(`UPDATE users SET replies_read_at = ?1 WHERE id = ?2`)
-    .bind(ts, session.row.id)
+  await env.DB.prepare(
+    `UPDATE users SET replies_read_id = COALESCE((
+       SELECT MAX(c.id) FROM comments c
+       JOIN comments p ON p.id = c.parent_id
+       WHERE p.user_id = ?1
+         AND (c.user_id IS NULL OR c.user_id <> ?1)
+         AND c.status = 1
+     ), 0)
+     WHERE id = ?1`
+  )
+    .bind(session.row.id)
     .run()
   return json({ ok: true })
 }
@@ -2395,6 +2974,7 @@ async function handleAuthRoutes(path, context) {
   if (path === '/api/auth/reset-password' && post) return authResetPassword(env, request, ts)
   if (path === '/api/auth/email' && post) return authChangeEmail(env, request, ts)
   if (path === '/api/auth/comments' && get) return authMyComments(env, request, url, ts)
+  if (path === '/api/auth/comments/read' && post) return authMarkModerationRead(env, request, ts)
   if (path === '/api/auth/replies' && get) return authMyReplies(env, request, url, ts)
   if (path === '/api/auth/replies/read' && post) return authMarkRepliesRead(env, request, ts)
   if (path === '/api/auth/logout' && post) return authLogout(env, request, ts)
@@ -2524,6 +3104,37 @@ export async function onRequest(context) {
       if (path === '/api/admin/users/role') {
         if (request.method !== 'PATCH') return bad(ERR.fallback, 405)
         return await adminUserSetRole(env, request, actor, nowSec())
+      }
+
+      /*
+       * 转待审「常用选项」。
+       *
+       * GET  **所有管理员**都能读（他们要用来填原因）；
+       * PUT  **仅超管**能改 —— 这些文案会出现在所有管理员的转待审界面里，
+       *      属于"审核口径"的一部分，不该让每个管理员各改一套。
+       */
+      if (path === '/api/admin/review-presets') {
+        if (request.method === 'GET') return await adminReviewPresetsGet(env)
+        if (request.method === 'PUT') {
+          if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+          return await adminReviewPresetsPut(env, request, actor, nowSec())
+        }
+        return bad(ERR.fallback, 405)
+      }
+
+      /*
+       * 审核词表（超管维护）。
+       *
+       * GET  所有管理员都能读 —— 他们要在评论页判断"为什么这条进待审"；
+       * PUT  仅超管 —— 它决定**什么内容会被拦**，是审核口径的根，不该各改一套。
+       */
+      if (path === '/api/admin/review-keywords') {
+        if (request.method === 'GET') return await adminReviewKeywordsGet(env)
+        if (request.method === 'PUT') {
+          if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+          return await adminReviewKeywordsPut(env, request, actor, nowSec())
+        }
+        return bad(ERR.fallback, 405)
       }
 
       return bad(ERR.fallback, 404)

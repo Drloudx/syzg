@@ -293,7 +293,15 @@
             <span class="acct-row-arrow">›</span>
           </button>
           <button type="button" class="acct-row" @click="openMyComments">
-            <span>我的评论</span><span class="acct-row-arrow">›</span>
+            <span>
+              我的评论
+              <!--
+                「被处理后未读」红点：作者的评论被隐藏/打回待审后，他原本无从得知。
+                点进来即视为已读（列表里已有「待审核 / 已隐藏」标签说明状况）。
+              -->
+              <span v-if="moderatedUnread > 0" class="acct-badge">{{ moderatedUnread > 99 ? '99+' : moderatedUnread }}</span>
+            </span>
+            <span class="acct-row-arrow">›</span>
           </button>
           <button type="button" class="acct-row" @click="go('password')">
             <span>修改密码</span><span class="acct-row-arrow">›</span>
@@ -728,6 +736,7 @@ import {
   loadMyReplies,
   loginWithPassword,
   markMyRepliesRead,
+  markModerationReadSafe,
   prefetchPasswordSalt,
   publicNo,
   registerAccount,
@@ -969,6 +978,14 @@ const mineCursor = ref(null)
 const mineDeletingId = ref(null)
 const deletingConfirmId = ref(null)
 
+/**
+ * 「评论被处理」未读数（个人中心那行上的红点）。
+ *
+ * 服务端用 `users.moderation_read_at` 当基准算出来 —— 与「谁回复了我」
+ * **同一套机制**，不建通知表。点进「我的评论」即视为已读。
+ */
+const moderatedUnread = ref(0)
+
 /** 页面归属键 → 可跳转的路由。映射不到就返回空串（界面据此不显示「去看看」） */
 const PAGE_ROUTES = {
   'site:general': '/discussions',
@@ -1004,6 +1021,36 @@ async function openMyComments() {
   // 每次进入「我的评论」都重置游标并重新拉取第一页，确保刚发/刚删的最新状态实时呈现
   mineCursor.value = null
   await loadMine({ append: false })
+  /*
+   * 进页面即标已读 —— 与「谁回复了我」同一套时机：
+   * 由**用户主动点进来**这一刻算起，不在"打开账号弹窗"就标
+   * （那会让用户还没看就把红点清了）。
+   */
+  if (moderatedUnread.value > 0) {
+    moderatedUnread.value = 0
+    try {
+      await markModerationReadSafe()
+    } catch {
+      // 标记失败下次进来还会显示红点，比"丢了未读"好
+    }
+  }
+}
+
+/**
+ * 只取「评论被处理」的未读数（个人中心那行的红点）。
+ *
+ * `limit=1` 是有意的：只需要那个数字，没必要把一整页评论拉到浏览器里。
+ * 与 `loadUnreadReplies` 完全对称。
+ */
+async function loadModeratedUnread() {
+  if (!isLoggedIn.value) return
+  try {
+    const data = await loadMyComments({ limit: 1 })
+    moderatedUnread.value = data?.moderatedUnread || 0
+  } catch {
+    // 拿不到就不显示红点，不影响任何主路径
+    moderatedUnread.value = 0
+  }
 }
 
 // 广播联动：在讨论区或其他页面发了新消息时，即使不刷新页面，「我的评论」列表也立刻在头部增量补齐
@@ -1039,6 +1086,10 @@ async function loadMine({ append = false } = {}) {
     const page = Array.isArray(data?.comments) ? data.comments : []
     mineList.value = append ? [...mineList.value, ...page] : page
     mineCursor.value = data?.nextCursor ?? null
+    // 首次加载顺带同步服务端给的未读数（可能别处已读过）
+    if (!append && typeof data?.moderatedUnread === 'number') {
+      moderatedUnread.value = data.moderatedUnread
+    }
   } catch (err) {
     mineError.value = err?.message || '加载失败，请稍后重试'
   } finally {
@@ -1100,8 +1151,11 @@ function gotoPage(pageKey, commentId = null) {
 
 /*
  * 数据来源：别人在我发的评论下面点的「回复」（`comments.parent_id` 指向我的评论）。
- * 未读数由服务端用 `users.replies_read_at` 当基准算出来 —— **不建已读表**，
+ * 未读数由服务端用 `users.replies_read_id` 当基准算出来 —— **不建已读表**，
  * 一条 SQL 同时给出列表与未读数（少一张表、少一次写入）。
+ *
+ * 🔴 基准是**评论 id**，不是时间戳（`comments.created_at` 只有秒级精度，
+ * 同秒内标已读会吞掉通知）。标已读后前端只需把本地未读清零。
  */
 const replyList = ref([])
 const replyState = ref('idle')
@@ -1225,6 +1279,7 @@ watch(
      * **不 await**：它是一次网络请求，不该卡住弹窗打开。
      */
     loadUnreadReplies().catch(() => {})
+    loadModeratedUnread().catch(() => {})
   },
   { immediate: true }
 )
@@ -1237,6 +1292,7 @@ watch(isLoggedIn, (logged) => {
     profileForm.avatar = currentUser.value?.avatar || DEFAULT_AVATAR
     // 刚登录也要把未读数取回来（否则红点要等下次开弹窗才出现）
     loadUnreadReplies().catch(() => {})
+    loadModeratedUnread().catch(() => {})
   } else {
     view.value = 'login'
     resetAll()

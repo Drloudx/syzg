@@ -197,6 +197,13 @@ const routes = [
         name: 'admin-audit',
         component: () => import('../components/admin/AdminAuditPanel.vue'),
         meta: { title: '后台 · 审计' }
+      },
+      {
+        // 设置：同样是**仅超管**（服务端对写操作强校验，不只是前端隐藏）
+        path: 'settings',
+        name: 'admin-settings',
+        component: () => import('../components/admin/AdminSettingsPanel.vue'),
+        meta: { title: '后台 · 设置' }
       }
     ]
   },

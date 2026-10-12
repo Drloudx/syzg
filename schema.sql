@@ -20,6 +20,11 @@ CREATE TABLE IF NOT EXISTS comments (
   ua_hash    TEXT    DEFAULT NULL,
   token_hash TEXT    DEFAULT NULL,        -- 浏览器自删令牌的 SHA-256；明文只回给浏览器一次
   review_reason TEXT DEFAULT NULL,        -- 命中的审核词表类别（'外链'/'赌博'…），干净为 NULL
+  -- 🔴 与上一列**不是一回事**：`review_reason` 是系统**自动**判定的命中类别，
+  --    这一列是管理员**手动**填写的"为什么把它转回待审"（可空）。
+  --    两者可同时存在，所以是两列而不是复用一列。
+  --    语义是"当前为什么在待审队列里"：放行/隐藏后由服务端清空，历史另有 admin_audit。
+  review_note   TEXT DEFAULT NULL,
   avatar     TEXT    DEFAULT NULL,        -- 头像 ID（如 avatar_pet_006），路径由 avatarCatalog.json 查
   page_label TEXT    DEFAULT NULL,        -- 评论所在页面的人话名字（如「银币」），发表时随评论存下
   -- 🔴 账号体系（2026-10-05）：评论挂在 users 上。
@@ -29,13 +34,22 @@ CREATE TABLE IF NOT EXISTS comments (
   --    全新库上那一列若不存在，索引会直接报 `no such column: user_id`，
   --    整个文件从这里断掉（D1 执行文件时一条失败就中止后续）。
   --    这个是"迁移演练"在旧 schema 副本上跑时顺带发现的。
-  user_id    INTEGER DEFAULT NULL
+  user_id    INTEGER DEFAULT NULL,
+  -- 最后一次被管理员处理的时间（2026-10-09）。作者据此收到"你的评论被处理了"通知。
+  --
+  -- 未读数与「谁回复了我」**同一套机制**：只用一个时间戳当基准
+  -- （`users.moderation_read_at`），不建通知表。
+  --
+  -- ⚠️ 只在 `status` **真的变化**时写，不是每次提交都写 ——
+  --    否则重复点"隐藏"会把时间一直往后推，作者会反复收到通知。
+  moderated_at INTEGER DEFAULT NULL
 );
 
 -- 增量迁移（建库时已含上面字段则可忽略；D1 不支持 ADD COLUMN IF NOT EXISTS，
 -- 重复执行会报 "duplicate column name"，属预期，不影响已有数据）：
 --   ALTER TABLE comments ADD COLUMN token_hash TEXT DEFAULT NULL;
 --   ALTER TABLE comments ADD COLUMN review_reason TEXT DEFAULT NULL;
+--   ALTER TABLE comments ADD COLUMN review_note TEXT DEFAULT NULL;
 --   ALTER TABLE comments ADD COLUMN avatar TEXT DEFAULT NULL;
 --   ALTER TABLE comments ADD COLUMN page_label TEXT DEFAULT NULL;
 --   ALTER TABLE comments ADD COLUMN user_id INTEGER DEFAULT NULL;   -- 账号体系，见下
@@ -97,10 +111,20 @@ CREATE TABLE IF NOT EXISTS users (
   --    scripts/sql/2026-10-07-admin-role.sql 末尾）。绝不做"第一个注册的自动当管理员"
   --    —— 那是竞态漏洞，谁先注册谁当。
   role           INTEGER NOT NULL DEFAULT 0,
-  replies_read_at INTEGER DEFAULT NULL,       -- 「回复我的」未读数基准（免去另建已读表）
+  -- 「回复我的」未读基准。🔴 存**评论 id**，不存时间：`comments.created_at` 只有秒级
+  --    精度，"标已读"与"收到回复"同秒时 `S > S` 为假 → 提醒被静默吞掉。id 严格单调，无此问题。
+  --    `replies_read_at` 是旧的时间基准，已废弃，仅作回填来源保留（见
+  --    scripts/sql/2026-10-09-replies-read-id.sql），代码不再读写。
+  replies_read_at INTEGER DEFAULT NULL,       -- ⚠️ 已废弃（2026-10-09），代码不再读写
+  replies_read_id INTEGER DEFAULT NULL,       -- 读到的最大评论 id（NULL/0 = 全未读）
+  moderation_read_at INTEGER DEFAULT NULL,    -- 「评论被处理」未读基准（**毫秒**时间戳，另一套方案）
   created_at     INTEGER NOT NULL,
   last_login_at  INTEGER DEFAULT NULL,
-  pw_changed_at  INTEGER DEFAULT NULL
+  pw_changed_at  INTEGER DEFAULT NULL,
+  -- 封禁理由（2026-10-09）：管理员手填、可空，**仅管理端可见**。
+  -- 语义是"这个账号**当前**为什么被停用"：封禁时写入，解封时由服务端清空。
+  -- 历史由 admin_audit 留存，不靠这一列。
+  ban_note       TEXT    DEFAULT NULL
 );
 -- email_hash / nick / public_no 上的 UNIQUE 已隐含索引，不再另建。
 CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
@@ -127,6 +151,54 @@ CREATE TABLE IF NOT EXISTS admin_audit (
 );
 CREATE INDEX IF NOT EXISTS idx_admin_audit_time  ON admin_audit(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_admin_audit_actor ON admin_audit(actor_id, created_at DESC);
+
+-- 转待审「常用选项」（2026-10-09）
+--
+-- 后台「转待审」时给管理员几个**点一下就填**的常用原因，由**超管**维护
+-- （普通管理员只读）；自由输入仍然保留。
+--
+-- 为什么独立成表而不是塞进 KV 设置表：这是**有序列表**且要逐条增删。
+-- 塞 KV 就得"读出来改再写回去"，两个管理员同时编辑会互相覆盖；
+-- 独立表天然按行存、按 `sort_order` 排序，没有读改写竞态。
+CREATE TABLE IF NOT EXISTS review_note_presets (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  text       TEXT    NOT NULL,
+  sort_order INTEGER NOT NULL DEFAULT 0,   -- 小的排前面（界面按此顺序出 chip）
+  created_at INTEGER NOT NULL
+);
+
+-- 同一句文案不该出现两次；由数据库兜底，不指望调用方每次去重
+CREATE UNIQUE INDEX IF NOT EXISTS idx_review_note_presets_text ON review_note_presets(text);
+
+-- ---------------------------------------------------------------
+-- 审核词表：超管可维护的自定义关键词（2026-10-09）
+--
+-- 采用「**代码基线 + 数据库叠加**」：`src/config/commentBlocklist.js` 里的类别正则
+-- 永远在代码里兜底，这里只存**超管额外加的关键词**（普通词，非正则）。
+--
+-- 🔴 为什么不让超管在网页里编辑正则：
+--   1. 写错一个字符 → `new RegExp` 抛错 → `POST /api/comments` 全站 500；
+--   2. 回溯爆炸 → Workers CPU 超限，评论发不出去。
+--   库里存普通关键词，运行时**转义**后拼进正则，这两类事故都不可能出现。
+--
+-- 🔴 为什么不把基线整表搬进库：库读不到 / 迁移没跑时，
+--   基线在代码里 → 基础防护照旧生效；全搬进库则等于**库一有问题就不审核**。
+-- ---------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS review_keywords (
+  id         INTEGER PRIMARY KEY AUTOINCREMENT,
+  text       TEXT    NOT NULL,            -- 普通关键词（非正则）；匹配时会被转义
+  category   TEXT    NOT NULL,            -- 命中原因（如「赌博」）；可为基线没有的新类别
+  created_at INTEGER NOT NULL
+);
+
+CREATE UNIQUE INDEX IF NOT EXISTS idx_review_keywords_text ON review_keywords(category, text);
+CREATE INDEX IF NOT EXISTS idx_review_keywords_category ON review_keywords(category);
+
+-- 只存**被显式停用**的类别，没记录 = 启用（避免"读出来改再写回"的并发覆盖）
+CREATE TABLE IF NOT EXISTS review_category_flags (
+  category   TEXT    PRIMARY KEY,
+  created_at INTEGER NOT NULL
+);
 
 -- 邮箱验证码（短命、可重发）
 --

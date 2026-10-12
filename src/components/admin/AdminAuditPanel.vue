@@ -83,7 +83,8 @@ const ACTION_LABELS = {
   comment_hide: '隐藏评论',
   comment_pending: '打回待审',
   comment_delete: '彻底删除评论',
-  role_set: '变更角色'
+  role_set: '变更角色',
+  review_presets_set: '改待审常用选项'
 }
 
 /** 不可恢复的动作 —— 在列表里用危险色标出 */

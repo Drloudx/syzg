@@ -21,7 +21,7 @@
 
 import { expect, test } from '@playwright/test'
 
-import { createAccount, postComment } from '../helpers/accountApi.mjs'
+import { api, createAccount, postComment } from '../helpers/accountApi.mjs'
 import { createCodeReader, openLocalD1Writable } from '../helpers/localD1.mjs'
 
 const API_BASE = process.env.API_BASE || 'http://127.0.0.1:8788'
@@ -448,9 +448,12 @@ test('🔴 「转待审」把已处理的评论放回待办队列', async ({ pag
   await expect(row).toContainText(`转待审测试 ${tag}`)
   await expect(row).toContainText('已显示')
 
-  // 点「转待审」（确认框自动接受）
-  page.once('dialog', (d) => d.accept())
+  // 点「转待审」→ 弹出原因输入框（不再是 window.confirm）
   await row.locator('.admin-btn', { hasText: '转待审' }).click()
+  const noteModal = page.locator('.ui-modal-window', { hasText: '转为待审' })
+  await expect(noteModal).toBeVisible({ timeout: 10_000 })
+  await noteModal.locator('.admin-btn', { hasText: '确认转待审' }).click()
+  await expect(noteModal).toBeHidden({ timeout: 10_000 })
 
   /*
    * ⚠️ 断言"它不在这一档了"不能写成 `.admin-card` 不含文本：
@@ -482,6 +485,653 @@ test('🔴 「转待审」把已处理的评论放回待办队列', async ({ pag
     (await page.locator('.stat-card', { hasText: '待审核' }).locator('.stat-value').innerText()).trim()
   )
   expect(pendingAfter, '转待审后待处理计数应 +1').toBe(pendingBefore + 1)
+})
+
+test('🔴 「转待审」可填原因，其他管理员能看到', async ({ page }) => {
+  /*
+   * 这个功能的目的就是**让接手的人不必重新判断一遍**：
+   * 甲把一条挂起并写"重复发帖"，乙打开待审档时能直接看到这句话。
+   *
+   * 所以这里验的是一条完整链路（写进去 → 另一个管理员读出来），
+   * 而不只是"弹窗能打开"。
+   */
+  const who = await createAccount(API_BASE, reader)
+  const tag = nextTag()
+  const note = `重复发帖，等作者确认 ${tag}`
+  await postComment(API_BASE, who.token, { body: `带原因转待审 ${tag}` })
+
+  // 甲：转待审并填原因
+  const adminA = await makeAdmin()
+  await openAdminAs(page, adminA, '/#/admin/comments')
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  const row = page.locator('.admin-table tbody tr').first()
+  await expect(row).toBeVisible({ timeout: 20_000 })
+  await row.locator('.admin-btn', { hasText: '转待审' }).click()
+
+  const modal = page.locator('.ui-modal-window', { hasText: '转为待审' })
+  await expect(modal).toBeVisible({ timeout: 10_000 })
+  // 弹窗里要能看到正文，管理员需要对着原文写原因
+  await expect(modal).toContainText(`带原因转待审 ${tag}`)
+  await modal.locator('#pending-note').fill(note)
+  await modal.locator('.admin-btn', { hasText: '确认转待审' }).click()
+  await expect(modal).toBeHidden({ timeout: 10_000 })
+
+  /*
+   * 乙：**另一个管理员**打开待审档，应当看到这条 + 原因。
+   * 用不同的账号是为了确认"原因存在服务端、不是本地状态"。
+   */
+  const adminB = await makeAdmin()
+  const pageB = await page.context().newPage()
+  await openAdminAs(pageB, adminB, '/#/admin/comments')
+  await pageB.locator('.admin-search').fill(tag)
+  await pageB.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  const rowB = pageB.locator('.admin-table tbody tr').first()
+  await expect(rowB).toBeVisible({ timeout: 20_000 })
+  await expect(rowB).toContainText(`带原因转待审 ${tag}`)
+  await expect(rowB).toContainText(`待审原因：${note}`)
+  await pageB.close()
+
+  // 原因可留空 & 放行后清空
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '待审' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  const rowAgain = page.locator('.admin-table tbody tr').first()
+  await expect(rowAgain).toBeVisible({ timeout: 20_000 })
+  // ⚠️ 放行走的是 window.confirm：**必须先挂上 dialog 处理器再点**，否则会卡住
+  page.once('dialog', (d) => d.accept())
+  await rowAgain.locator('.admin-btn', { hasText: '放行' }).click()
+
+  // 放行后原因应被清空（状态已定论，留着旧备注会误导后来人）
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  const rowShown = page.locator('.admin-table tbody tr').first()
+  await expect(rowShown).toBeVisible({ timeout: 20_000 })
+  await expect(rowShown).not.toContainText('待审原因：')
+})
+
+test('🔴 超管可在设置里维护常用选项，管理员转待审时点一下就填', async ({ page }) => {
+  /*
+   * 完整链路：超管在「设置」里配好常用选项 → **另一个管理员**打开转待审弹窗时
+   * 就能看到这些选项、点一下填进输入框。
+   *
+   * 用两个不同账号是为了确认配置**存在服务端**（不是超管本地的状态）。
+   */
+  const tag = nextTag()
+  const optionA = `重复发帖${tag}`
+  const optionB = `外链待确认${tag}`
+
+  // 超管：改常用选项
+  //
+  // ⚠️ 设置页现在有**两个** `.admin-section-title`（常用选项 + 评论审核词表），
+  //    所以这里必须锁定具体那一个，否则 strict mode 会因为匹配到 2 个元素而失败。
+  const superA = await makeAdmin(2)
+  await openAdminAs(page, superA, '/#/admin/settings')
+  await expect(page.locator('.admin-section-title', { hasText: '常用选项' })).toBeVisible({ timeout: 20_000 })
+
+  // 清掉现有行，换成我们这两条
+  await page.locator('.admin-preset-line .admin-btn', { hasText: '删除' }).first().click()
+  await page.waitForTimeout(200)
+  // 逐行删光
+  for (let i = 0; i < 25; i++) {
+    const del = page.locator('.admin-preset-line .admin-btn', { hasText: '删除' })
+    if ((await del.count()) === 0) break
+    await del.first().click()
+    await page.waitForTimeout(120)
+  }
+  await page.locator('.admin-btn', { hasText: '添加一项' }).click()
+  await page.locator('.admin-preset-line input').first().fill(optionA)
+  await page.locator('.admin-btn', { hasText: '添加一项' }).click()
+  await page.locator('.admin-preset-line input').nth(1).fill(optionB)
+  // ⚠️ 必须用 exact：设置页还有个「保存词表」，子串匹配会命中 2 个按钮
+  await page.getByRole('button', { name: '保存', exact: true }).click()
+  await expect(page.locator('.admin-saved')).toContainText('已保存', { timeout: 20_000 })
+
+  // 管理员（role=1）：打开转待审弹窗，应看到这两条常用选项
+  const who = await createAccount(API_BASE, reader)
+  const commentTag = nextTag()
+  await postComment(API_BASE, who.token, { body: `常用选项测试 ${commentTag}` })
+
+  const plainAdmin = await makeAdmin(1)
+  const page2 = await page.context().newPage()
+  await openAdminAs(page2, plainAdmin, '/#/admin/comments')
+  await page2.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await page2.locator('.admin-search').fill(commentTag)
+  await page2.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  const row = page2.locator('.admin-table tbody tr').first()
+  await expect(row).toBeVisible({ timeout: 20_000 })
+  await row.locator('.admin-btn', { hasText: '转待审' }).click()
+
+  const modal = page2.locator('.ui-modal-window', { hasText: '转为待审' })
+  await expect(modal).toBeVisible({ timeout: 10_000 })
+  // 超管配的两条应当出现
+  await expect(modal.locator('.admin-preset-row')).toContainText(optionA)
+  await expect(modal.locator('.admin-preset-row')).toContainText(optionB)
+
+  // 点一下 → 填进输入框（仍可自由编辑）
+  await modal.locator('.admin-preset-row .admin-chip', { hasText: optionA }).click()
+  await expect(modal.locator('#pending-note')).toHaveValue(optionA)
+
+  await modal.locator('.admin-btn', { hasText: '确认转待审' }).click()
+  await expect(modal).toBeHidden({ timeout: 10_000 })
+  await page2.close()
+})
+
+test('🔴 普通管理员看不到「设置」页签', async ({ page }) => {
+  // 服务端对写操作强校验（见 tests/api/admin-roles.mjs），前端隐藏只是体验
+  const plainAdmin = await makeAdmin(1)
+  await openAdminAs(page, plainAdmin)
+  await expect(page.locator('.admin-tab', { hasText: '审计' })).toHaveCount(0)
+  await expect(page.locator('.admin-tab', { hasText: '设置' })).toHaveCount(0)
+
+  const superAdmin = await makeAdmin(2)
+  const page2 = await page.context().newPage()
+  await openAdminAs(page2, superAdmin)
+  await expect(page2.locator('.admin-tab', { hasText: '设置' })).toHaveCount(1)
+  await page2.close()
+})
+
+test('🔴 超管可按「只看管理员」筛选用户', async ({ page }) => {
+  /*
+   * 需求：超管要能一眼看出"我有哪些同事、权限对不对"。
+   *
+   * 断言用**点名核对**而不是比总数：本地库里用户上千，列表被 limit 截断，
+   * 比总数会得到一个与功能无关的结论。
+   */
+  const admin = await makeAdmin(2)
+  await openAdminAs(page, admin, '/#/admin/users')
+
+  // 超管能看到这一排筛选
+  const roleChips = page.locator('.admin-toolbar--kinds .admin-chip')
+  await expect(roleChips.first()).toHaveText('全部角色', { timeout: 20_000 })
+
+  // 切到「只看管理员」
+  await page.locator('.admin-toolbar--kinds .admin-chip', { hasText: '只看管理员' }).click()
+  await page.waitForTimeout(1200)
+
+  // 列表里每一行的「角色」列都不该是"普通"
+  const rows = page.locator('.admin-table tbody tr')
+  await expect(rows.first()).toBeVisible({ timeout: 20_000 })
+  const count = await rows.count()
+  expect(count, '应当至少列出几个管理员（测试自己就建了账号）').toBeGreaterThan(0)
+  for (let i = 0; i < Math.min(count, 8); i++) {
+    const roleText = (await rows.nth(i).locator('td').nth(5).innerText()).trim()
+    expect(roleText, `第 ${i + 1} 行的角色不该是普通`).not.toBe('普通')
+  }
+})
+
+test('普通管理员看不到「只看管理员」筛选', async ({ page }) => {
+  // 看同事名单本身不需要超管（接口也允许），但普通管理员没有可做的操作，
+  // 给一个点了没用的筛选只会让人困惑 —— 所以对他隐藏
+  const plainAdmin = await makeAdmin(1)
+  await openAdminAs(page, plainAdmin, '/#/admin/users')
+  await expect(page.locator('.admin-table tbody tr').first()).toBeVisible({ timeout: 20_000 })
+  await expect(page.locator('.admin-toolbar--kinds')).toHaveCount(0)
+})
+
+test('🔴 评论列表多选批量隐藏/放行', async ({ page }) => {
+  /*
+   * 需求：误伤批量命中时，一条条点太慢。
+   *
+   * 验的是"多选真的贯通到后端"：选 3 条 → 批量隐藏 → 三条**都**变隐藏。
+   * 只验"按钮出现"是不够的 —— 那连不上后端也能过。
+   */
+  const who = await createAccount(API_BASE, reader)
+  const tag = nextTag()
+  for (let i = 0; i < 3; i++) {
+    await postComment(API_BASE, who.token, { body: `批量多选 ${tag}-${i}` })
+  }
+
+  const admin = await makeAdmin()
+  await openAdminAs(page, admin, '/#/admin/comments')
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  const rows = page.locator('.admin-table tbody tr')
+  await expect(rows.first()).toBeVisible({ timeout: 20_000 })
+  const total = await rows.count()
+  expect(total, '应当列出刚发的 3 条').toBe(3)
+
+  // 批量栏初始不存在（没选东西时不占空间）
+  await expect(page.locator('.admin-batch-bar')).toHaveCount(0)
+
+  // 全选本页
+  await page.locator('.admin-table thead .admin-check').check()
+  await expect(page.locator('.admin-batch-bar')).toContainText('已选 3 条', { timeout: 10_000 })
+
+  // 批量隐藏（确认框接受）
+  page.once('dialog', (d) => d.accept())
+  await page.locator('.admin-batch-bar .admin-btn', { hasText: '批量隐藏' }).click()
+
+  // 选完就清空选择
+  await expect(page.locator('.admin-batch-bar')).toHaveCount(0, { timeout: 20_000 })
+
+  // 🔴 三条都该从「已显示」档消失
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  await expect
+    .poll(async () => page.locator('.admin-table tbody tr').count(), { timeout: 20_000 })
+    .toBe(0)
+
+  // 在「已隐藏」档能找到这 3 条
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已隐藏' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  await expect
+    .poll(async () => page.locator('.admin-table tbody tr').count(), { timeout: 20_000 })
+    .toBe(3)
+})
+
+test('🔴 批量转待审：原因对整批生效', async ({ page }) => {
+  const who = await createAccount(API_BASE, reader)
+  const tag = nextTag()
+  for (let i = 0; i < 2; i++) {
+    await postComment(API_BASE, who.token, { body: `批量待审 ${tag}-${i}` })
+  }
+
+  const admin = await makeAdmin()
+  await openAdminAs(page, admin, '/#/admin/comments')
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  await expect(page.locator('.admin-table tbody tr').first()).toBeVisible({ timeout: 20_000 })
+  await page.locator('.admin-table thead .admin-check').check()
+  await expect(page.locator('.admin-batch-bar')).toContainText('已选 2 条', { timeout: 10_000 })
+
+  const note = `批量打回${tag}`
+  await page.locator('.admin-batch-bar .admin-btn', { hasText: '批量转待审' }).click()
+
+  const modal = page.locator('.ui-modal-window', { hasText: '转为待审' })
+  await expect(modal).toBeVisible({ timeout: 10_000 })
+  // 批量时不该显示单条正文，而该说明原因对整批生效
+  await expect(modal).toContainText('全部选中的评论')
+  await modal.locator('#pending-note').fill(note)
+  await modal.locator('.admin-btn', { hasText: '确认转待审' }).click()
+  await expect(modal).toBeHidden({ timeout: 10_000 })
+
+  // 两条都进待审档，且都带同一条原因
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '待审' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  const pendingRows = page.locator('.admin-table tbody tr')
+  await expect(pendingRows.first()).toBeVisible({ timeout: 20_000 })
+  expect(await pendingRows.count(), '两条都该在待审档').toBe(2)
+  const body = await page.locator('.admin-card').innerText()
+  // 两条各显示一次原因
+  expect(body.split(`待审原因：${note}`).length - 1, '两条都该显示这条原因').toBe(2)
+})
+
+test('多选「取消选择」清空选中', async ({ page }) => {
+  const admin = await makeAdmin()
+  await openAdminAs(page, admin, '/#/admin/comments')
+  await expect(page.locator('.admin-table tbody tr').first()).toBeVisible({ timeout: 20_000 })
+
+  await page.locator('.admin-table tbody tr').first().locator('.admin-check').check()
+  await expect(page.locator('.admin-batch-bar')).toContainText('已选 1 条', { timeout: 10_000 })
+
+  await page.locator('.admin-batch-bar .admin-btn', { hasText: '取消选择' }).click()
+  await expect(page.locator('.admin-batch-bar')).toHaveCount(0)
+})
+
+test('🔴 超管可维护审核词表，自定义词真的会拦评论', async ({ page }) => {
+  /*
+   * 完整链路：超管在设置里加一个词 → 有人发含该词的评论 → **立刻进待审**。
+   * 这是这个功能存在的意义，只验"界面能保存"是不够的。
+   */
+  const stamp2 = nextTag()
+  const word = `拦测词${stamp2}`
+
+  const admin = await makeAdmin(2)
+  await openAdminAs(page, admin, '/#/admin/settings')
+  await expect(page.locator('.admin-section-title', { hasText: '评论审核词表' })).toBeVisible({ timeout: 20_000 })
+
+  // 内置类别应当列出来（赌博是基线里的）
+  const gamblingRow = page.locator('.admin-kw-cat', { hasText: '赌博' }).first()
+  await expect(gamblingRow).toBeVisible()
+
+  // 往「赌博」里加一个词
+  await gamblingRow.locator('.admin-kw-input').fill(word)
+  await gamblingRow.locator('.admin-kw-input').press('Enter')
+  await expect(gamblingRow).toContainText(word)
+
+  await page.locator('.admin-btn', { hasText: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+
+  // 🔴 发一条含该词的评论 → 应当进待审
+  //
+  // ⚠️ `postComment` 助手的返回值是 `r.json.comment`（评论对象），
+  //    **`pending` 在响应顶层**，不在这里面 —— 要判断是否进待审得直接打接口。
+  const who = await createAccount(API_BASE, reader)
+  const posted = await api(API_BASE, 'POST', '/api/comments', {
+    token: who.token,
+    body: { page: 'site:general', pageLabel: '站内讨论区', body: `这里出现${word}的字样`, hp: '' }
+  })
+  expect(posted.status, `发评论应当成功（201），实际 ${posted.status} ${posted.text.slice(0, 80)}`).toBe(201)
+  expect(posted.json?.pending, '自定义词命中后应当进待审').toBe(true)
+
+  // 管理端能看到它、并显示命中原因
+  const page2 = await page.context().newPage()
+  await openAdminAs(page2, admin, '/#/admin/comments')
+  await page2.locator('.admin-search').fill(word)
+  await page2.locator('.admin-btn', { hasText: '搜索' }).click()
+  const row = page2.locator('.admin-table tbody tr').first()
+  await expect(row).toBeVisible({ timeout: 20_000 })
+  await expect(row).toContainText('命中：')
+  await page2.close()
+
+  // 收拾干净：把这个词删掉并保存（别污染其它测试）
+  await gamblingRow.locator('.admin-kw-chip', { hasText: word }).locator('.admin-kw-del').click()
+  await page.locator('.admin-btn', { hasText: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+})
+
+test('🔴 停用整个类别后该类别的词不再拦', async ({ page }) => {
+  const admin = await makeAdmin(2)
+  await openAdminAs(page, admin, '/#/admin/settings')
+  await expect(page.locator('.admin-section-title', { hasText: '评论审核词表' })).toBeVisible({ timeout: 20_000 })
+
+  // 停用「引流」（基线里有「加微信」这类词）
+  const row = page.locator('.admin-kw-cat', { hasText: '引流' }).first()
+  await row.locator('input[type="checkbox"]').uncheck()
+  await expect(row).toContainText('已停用')
+
+  await page.locator('.admin-btn', { hasText: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+
+  // 停用后，「加微信」不该再让评论进待审
+  const who = await createAccount(API_BASE, reader)
+  const posted = await api(API_BASE, 'POST', '/api/comments', {
+    token: who.token,
+    body: { page: 'site:general', pageLabel: '站内讨论区', body: `加微信${nextTag()} 找我`, hp: '' }
+  })
+  expect(posted.status, `发评论应当成功（201），实际 ${posted.status} ${posted.text.slice(0, 80)}`).toBe(201)
+  expect(posted.json?.pending, '停用类别后不该再命中').toBe(false)
+
+  // 复原，别让其它测试受影响
+  await row.locator('input[type="checkbox"]').check()
+  await page.locator('.admin-btn', { hasText: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+})
+
+test('🔴 词表导出 / 导入（导入只填界面、不直接写库）', async ({ page }) => {
+  /*
+   * 用途：本地配好一套词搬到线上，不必手敲两遍。
+   *
+   * 关键行为：**导入不直接写库** —— 必须再点「保存词表」才生效。
+   * 选错文件直接覆盖线上词表是最坏后果，所以这条必须守。
+   */
+  const stamp3 = nextTag()
+  const wordA = `导入词A${stamp3}`
+  const wordB = `导入词B${stamp3}`
+
+  const admin = await makeAdmin(2)
+
+  /*
+   * 🔴 先清空服务端的自定义词表。
+   *
+   * 为什么必须做：这条断言"导入后未保存时服务端不该有变化"，
+   * 而上一轮若在清理前失败中断，库里会残留上次的词 ——
+   * 断言就会因为**前置污染**而失败（实际踩过一次，收到 3 组历史残留）。
+   * 自己把前置状态摆正，不依赖上一轮跑干净。
+   */
+  await api(API_BASE, 'PUT', '/api/admin/review-keywords', {
+    token: admin.token,
+    body: { keywords: [], disabled: [] }
+  })
+
+  await openAdminAs(page, admin, '/#/admin/settings')
+  await expect(page.locator('.admin-section-title', { hasText: '评论审核词表' })).toBeVisible({ timeout: 20_000 })
+
+  // 先放两个词进「赌博」并保存，作为导出源
+  const gamblingRow = page.locator('.admin-kw-cat', { hasText: '赌博' }).first()
+  for (const w of [wordA, wordB]) {
+    await gamblingRow.locator('.admin-kw-input').fill(w)
+    await gamblingRow.locator('.admin-kw-input').press('Enter')
+  }
+  await page.getByRole('button', { name: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+
+  // 导出 → 应触发下载且文件名可辨
+  const dl = page.waitForEvent('download', { timeout: 20_000 })
+  await page.getByRole('button', { name: '导出 JSON' }).click()
+  const download = await dl
+  expect(download.suggestedFilename()).toMatch(/审核词表.*\.json$/)
+
+  // 读回导出的内容，确认包含刚才那两个词
+  const path = await download.path()
+  const fs = await import('node:fs')
+  const exported = JSON.parse(fs.readFileSync(path, 'utf8'))
+  expect(exported.format).toBe('myrzg-review-keywords')
+  const texts = exported.keywords.map((k) => k.text)
+  expect(texts).toContain(wordA)
+  expect(texts).toContain(wordB)
+
+  // 从界面删掉 wordA **并保存** → 服务端此时确实没有它了
+  await gamblingRow.locator('.admin-kw-chip', { hasText: wordA }).locator('.admin-kw-del').click()
+  await expect(gamblingRow).not.toContainText(wordA)
+  await page.getByRole('button', { name: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+
+  // 前置确认：服务端此刻**确实**没有 wordA（否则下面的断言没有意义）
+  const beforeImport = await api(API_BASE, 'GET', '/api/admin/review-keywords', { token: admin.token })
+  expect(
+    (beforeImport.json?.keywords || []).map((k) => k.text),
+    '前置：删掉并保存后，服务端不该还有 wordA'
+  ).not.toContain(wordA)
+
+  // 导入导出的文件 → 只填进界面
+  await page.locator('input.admin-sr-only[type="file"]').setInputFiles(path)
+  await expect(page.locator('.admin-import-hint')).toContainText('确认无误后点「保存词表」', { timeout: 20_000 })
+  await expect(gamblingRow).toContainText(wordA, { timeout: 10_000 })
+
+  /*
+   * 🔴 核心断言：导入后**还没保存**，服务端必须仍然没有 wordA。
+   *
+   * ⚠️ 这里必须先"删掉并保存"再导入，否则断言的前提就不成立 ——
+   *    最初漏了那次保存，服务端本来就有 wordA，断言必然失败（实际踩过）。
+   */
+  const beforeSave = await api(API_BASE, 'GET', '/api/admin/review-keywords', { token: admin.token })
+  const kwTexts = (beforeSave.json?.keywords || []).map((k) => k.text)
+  expect(kwTexts, '导入后未保存时服务端不该有变化').not.toContain(wordA)
+
+  // 保存后才真正写库
+  await page.getByRole('button', { name: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+  const afterSave = await api(API_BASE, 'GET', '/api/admin/review-keywords', { token: admin.token })
+  const savedTexts = (afterSave.json?.keywords || []).map((k) => k.text)
+  expect(savedTexts, '保存后应当写入').toContain(wordA)
+
+  // 导入别处的 JSON → 应当拒绝（否则会静默清空线上配置）
+  const bogus = path.replace(/\.json$/, '') + '-bogus.json'
+  fs.writeFileSync(bogus, JSON.stringify({ hello: 'world' }))
+  await page.locator('input.admin-sr-only[type="file"]').setInputFiles(bogus)
+  await expect(page.locator('.admin-error')).toContainText('不是本页导出的词表文件', { timeout: 10_000 })
+
+  // 收拾：清空自定义词
+  for (const w of [wordA, wordB]) {
+    const chip = gamblingRow.locator('.admin-kw-chip', { hasText: w })
+    if (await chip.count()) await chip.locator('.admin-kw-del').click()
+  }
+  await page.getByRole('button', { name: '保存词表' }).click()
+  await expect(page.locator('.admin-saved')).toContainText('词表已保存', { timeout: 20_000 })
+})
+
+test('🔴 封禁可填理由，其他管理员能看到；解封后清空', async ({ page }) => {
+  /*
+   * 与评论的「转待审原因」同一套交互：处理某人时说明为什么，
+   * 让接手的人不必重新判断一遍。
+   *
+   * 结构上照抄那条测试：甲封禁 → 乙读出来 → 解封后应清空。
+   */
+  const who = await createAccount(API_BASE, reader, { nick: `待封${nextTag().slice(-5)}` })
+  const note = `连续发广告，已警告过一次 ${nextTag()}`
+
+  // 甲：带理由封禁
+  const adminA = await makeAdmin(2)
+  await openAdminAs(page, adminA, '/#/admin/users')
+  await page.locator('.admin-search').fill(who.nick)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+
+  const row = page.locator('.admin-table tbody tr').first()
+  await expect(row).toBeVisible({ timeout: 20_000 })
+  await expect(row).toContainText(who.nick)
+  await row.locator('.admin-btn', { hasText: '封禁' }).click()
+
+  const modal = page.locator('.ui-modal-window', { hasText: '封禁账号' })
+  await expect(modal).toBeVisible({ timeout: 10_000 })
+  // 弹窗里要说清"理由只有管理员能看到"
+  await expect(modal).toContainText('只有管理员能看到')
+  await modal.locator('#ban-note').fill(note)
+  await modal.locator('.admin-btn', { hasText: '确认封禁' }).click()
+  await expect(modal).toBeHidden({ timeout: 10_000 })
+
+  /*
+   * ⚠️ 封禁后该行会从「正常」档**消失**（用户页默认筛「正常」）——
+   *    这是正确行为，所以要去「已停用」档找他，而不是原地断言。
+   */
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已停用' }).click()
+  await page.locator('.admin-search').fill(who.nick)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  const rowBanned = page.locator('.admin-table tbody tr').first()
+  await expect(rowBanned).toContainText('已停用', { timeout: 20_000 })
+  await expect(rowBanned).toContainText(`封禁理由：${note}`)
+
+  // 乙：**另一个管理员**也能看到（理由存在服务端，不是本地状态）
+  const adminB = await makeAdmin(2)
+  const page2 = await page.context().newPage()
+  await openAdminAs(page2, adminB, '/#/admin/users')
+  await page2.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已停用' }).click()
+  await page2.locator('.admin-search').fill(who.nick)
+  await page2.locator('.admin-btn', { hasText: '搜索' }).click()
+  const rowB = page2.locator('.admin-table tbody tr').first()
+  await expect(rowB).toContainText(`封禁理由：${note}`, { timeout: 20_000 })
+  await page2.close()
+
+  // 解封（走 window.confirm）→ 理由应清空
+  page.once('dialog', (d) => d.accept())
+  await rowBanned.locator('.admin-btn', { hasText: '解封' }).click()
+
+  // 解封后回到「正常」档，且不该再有理由行
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '正常' }).click()
+  await page.locator('.admin-search').fill(who.nick)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  const rowUnbanned = page.locator('.admin-table tbody tr').first()
+  await expect(rowUnbanned).toContainText('正常', { timeout: 20_000 })
+  await expect(rowUnbanned).not.toContainText('封禁理由：')
+})
+
+test('🔴 评论被处理后，作者在「我的评论」看到红点', async ({ page }) => {
+  /*
+   * 要解决的问题：作者的评论被隐藏/打回待审后**他并不知道** ——
+   * 「我的评论」里其实一直有「待审核 / 已隐藏」标签，但他没有理由主动去看。
+   *
+   * 这里验的是完整链路：管理员隐藏 → 作者打开账号弹窗看到红点 →
+   * 点进「我的评论」→ 红点消失。
+   */
+  const who = await createAccount(API_BASE, reader, { nick: `被处理${nextTag().slice(-5)}` })
+  const posted = await postComment(API_BASE, who.token, { body: `会被隐藏的评论 ${nextTag()}` })
+
+  // 作者先登录并打开账号弹窗 —— 此时不该有红点
+  await page.addInitScript(
+    ({ token, user }) => {
+      try {
+        localStorage.setItem('myrzg:auth', JSON.stringify({ token, user }))
+      } catch { /* 隐私模式 */ }
+    },
+    { token: who.token, user: who.user }
+  )
+  await page.goto('/')
+  await page.waitForTimeout(1500)
+
+  // 管理员隐藏那条评论
+  const admin = await makeAdmin(2)
+  const hideRes = await api(API_BASE, 'PATCH', '/api/admin/comments', {
+    token: admin.token,
+    body: { id: posted.id, status: 2 }
+  })
+  expect(hideRes.status, `隐藏应当成功，实际 ${hideRes.status}`).toBe(200)
+
+  // 作者重新打开页面 → 账号入口应带红点
+  await page.reload()
+  await page.waitForTimeout(2000)
+  // 与 account-modal.spec.js 用同一个入口选择器
+  await page.locator('button[title="账号"]').first().click()
+  await page.waitForTimeout(2500)
+
+  const mineRow = page.locator('.acct-row', { hasText: '我的评论' })
+  await expect(mineRow).toBeVisible({ timeout: 20_000 })
+  // 🔴 红点应当出现
+  await expect(mineRow.locator('.acct-badge')).toBeVisible({ timeout: 20_000 })
+  await expect(mineRow.locator('.acct-badge')).toHaveText('1')
+
+  // 点进去 → 列表里能看到那条「已隐藏」标签
+  await mineRow.click()
+  await expect(page.locator('.acct-mine-tag--hidden').first()).toBeVisible({ timeout: 20_000 })
+
+  // 返回中心：红点应当已被标记为已读
+  await page.locator('.acct-back').click()
+  await page.waitForTimeout(1500)
+  const badgeAfter = page.locator('.acct-row', { hasText: '我的评论' }).locator('.acct-badge')
+  await expect(badgeAfter).toHaveCount(0, { timeout: 20_000 })
+})
+
+test('🔴 用户列表点评论数 → 只看该用户的评论（改名后仍找得到）', async ({ page }) => {
+  /*
+   * 这个入口比"手打昵称去搜"准在哪：`comments.nick` 是**发表时的快照**。
+   *
+   * ⚠️ 注意别把它说成"防重名"：`users.nick` 是 UNIQUE，当前不存在重名
+   *    （实测确认过）。真正的价值是**不受改名影响** —— 用户改名后，
+   *    按旧昵称搜会找不到自己的评论，按内部 id 筛不会。
+   */
+  const oldNick = `曾用名${nextTag().slice(-5)}`
+  const who = await createAccount(API_BASE, reader, { nick: oldNick })
+  const tag = `改名前后${nextTag()}`
+  await postComment(API_BASE, who.token, { body: `${tag} 的评论` })
+
+  // 用户改昵称 —— 评论里的 `nick` 保持发表时的快照
+  const newNick = `新名${nextTag().slice(-5)}`
+  const renamed = await api(API_BASE, 'PATCH', '/api/auth/me', {
+    token: who.token,
+    body: { nick: newNick }
+  })
+  expect(renamed.status, `改昵称应当成功，实际 ${renamed.status} ${renamed.text.slice(0, 80)}`).toBe(200)
+
+  const admin = await makeAdmin(2)
+  await openAdminAs(page, admin, '/#/admin/users')
+
+  // 用**新**昵称搜到该账号
+  await page.locator('.admin-search').fill(newNick)
+  await page.locator('.admin-btn', { hasText: '搜索' }).click()
+  const row = page.locator('.admin-table tbody tr').first()
+  await expect(row).toBeVisible({ timeout: 20_000 })
+  await expect(row).toContainText(newNick)
+
+  // 点评论数 → 应当能看到他**改名之前**发的那条（按昵称搜是搜不到的）
+  const link = row.locator('.admin-link')
+  await expect(link).toBeVisible({ timeout: 10_000 })
+  await link.click()
+  await expect(page).toHaveURL(/#\/admin\/comments\?.*userId=/, { timeout: 20_000 })
+  await expect(page.locator('.admin-user-filter')).toContainText('只看', { timeout: 20_000 })
+
+  /*
+   * ⚠️ 评论页默认停在「待审」档，而刚发的评论是 status=1（已显示）——
+   *    必须先切到「已显示」才看得到它（这是既定默认，不是 bug）。
+   */
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await expect(page.locator('.admin-card')).toContainText(`${tag} 的评论`, { timeout: 20_000 })
+
+  // 取消筛选 → 回到全部
+  await page.locator('.admin-user-filter .admin-btn', { hasText: '取消' }).click()
+  await expect(page.locator('.admin-user-filter')).toHaveCount(0, { timeout: 20_000 })
+  await expect(page).not.toHaveURL(/userId=/)
 })
 
 test('三个页签是子路由：刷新与直达都正常', async ({ page }) => {

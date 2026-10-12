@@ -33,6 +33,7 @@ import {
   login,
   logout,
   markRepliesRead,
+  markModerationRead,
   register,
   updateMe
 } from './authApi.js'
@@ -389,6 +390,9 @@ export async function deleteMyAccount() {
  * 与公开列表接口的区别：**这里能看到别人看不到的那些**
  * （待审 status=0、管理端隐藏 status=2），因为返回的是自己发的东西。
  *
+ * 返回体里带 `moderatedUnread`：有多少条被管理员处理后作者还没看过
+ * （机制与「谁回复了我」的 `unread` 完全对称）。
+ *
  * @param {{cursor?: number, limit?: number}} options
  */
 export async function loadMyComments({ cursor, limit = 20 } = {}) {
@@ -398,14 +402,23 @@ export async function loadMyComments({ cursor, limit = 20 } = {}) {
 /**
  * 取回"谁回复了我"。
  *
- * 返回体里带 `unread`：服务端用 `users.replies_read_at` 当基准算出来的条数，
+ * 返回体里带 `unread`：服务端用 `users.replies_read_id` 当基准算出来的条数，
  * 不建已读表（少一张表、少一次写入）。
+ *
+ * 🔴 基准存的是**评论 id**，不是时间戳。原因：`comments.created_at` 只有秒级精度，
+ * "标已读"与"收到回复"同秒时 `S > S` 为假 → 提醒被静默吞掉。见
+ * `functions/api/[[path]].js` 的 `authMyReplies`。
  */
 export async function loadMyReplies({ cursor, limit = 20 } = {}) {
   return withSession((t) => fetchMyReplies(t, { cursor, limit }))
 }
 
-/** 把"谁回复了我"标为已读（把基准时间推到此刻） */
+/** 把"谁回复了我"标为已读（把基准推到当前读到的最大评论 id） */
 export async function markMyRepliesRead() {
   return withSession((t) => markRepliesRead(t))
+}
+
+/** 把「评论被处理」标为已读（与 `markMyRepliesRead` 完全对称） */
+export async function markModerationReadSafe() {
+  return withSession((t) => markModerationRead(t))
 }

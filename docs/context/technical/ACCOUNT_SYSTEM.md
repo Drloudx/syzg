@@ -13,7 +13,7 @@
 > [完整交接文档](../MAP.md)（部署拓扑与凭据）、
 > [复现入口](../../../scripts/dev/kdf-probe/README.md)（本文第二节数字的重测方式）。
 
-**核对时间**：2026-10-08
+**核对时间**：2026-10-09
 >
 > **何时读**：改动账号协议、密码学参数、D1 表结构或发信通道时（**先读 §十四 决策与 §十八 偏差**）。
 > **何时更新**：账号方案被确认或被替代时。设计过程留在本文件，结论同步到 [DECISIONS.md](../DECISIONS.md)。
@@ -771,7 +771,9 @@ CREATE TABLE IF NOT EXISTS users (
   pw_iters       INTEGER NOT NULL,            -- 600000，如实记录，便于将来判断是否需要升级
   pepper_ver     INTEGER NOT NULL DEFAULT 1,  -- AUTH_PEPPER 轮换用（见 4.4 第 7 条）
   status         INTEGER NOT NULL DEFAULT 1,  -- 1 正常 / 2 封禁 / **3 已注销**
-  replies_read_at INTEGER DEFAULT NULL,       -- 「回复我的」未读数基准（免去另建已读表）
+  replies_read_at INTEGER DEFAULT NULL,       -- ⚠️ 已废弃（2026-10-09），仅作回填来源，代码不再读写
+  replies_read_id INTEGER DEFAULT NULL,       -- 「回复我的」未读基准 = 读到的最大**评论 id**（见 134）
+  moderation_read_at INTEGER DEFAULT NULL,    -- 「评论被处理」未读基准（**毫秒**，另一套方案，见 132）
   created_at     INTEGER NOT NULL,
   last_login_at  INTEGER DEFAULT NULL,
   pw_changed_at  INTEGER DEFAULT NULL
@@ -915,7 +917,7 @@ DELETE FROM rate_limits;
 | POST | `/api/auth/email` | Bearer + `{ newEmail, oldCode, newCode }` | `{ ok, user }` | 验证码不对，或者已经过期了 / 这个邮箱已经被其他账号使用了 / 新邮箱和当前邮箱一样，不用改 |
 | GET | `/api/auth/comments` | Bearer + `?cursor=&limit=` | `{ ok, comments, nextCursor }` | 暂时取不到，可能是网络问题。 |
 | GET | `/api/auth/replies` | Bearer + `?cursor=` | `{ ok, replies, unread, nextCursor }` | 暂时取不到，可能是网络问题。 |
-| POST | `/api/auth/replies/read` | Bearer | `{ ok }` | —（把 `replies_read_at` 推到当前） |
+| POST | `/api/auth/replies/read` | Bearer | `{ ok }` | —（把 `replies_read_id` 推到当前读到的最大评论 id） |
 | POST | `/api/auth/logout` | Bearer | `{ ok }` | —（幂等，**只退当前会话**） |
 | DELETE | `/api/auth/me` | Bearer | `{ ok }` | —（**软删除**：`status=3`、清个人数据、把其评论的昵称快照改写为「账号已注销」） |
 

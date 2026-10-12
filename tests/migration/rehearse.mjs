@@ -85,7 +85,13 @@ const STEPS = [
   ['第 1 步 schema', 'scripts/sql/2026-10-05-auth-schema.sql'],
   ['第 2 步 columns', 'scripts/sql/2026-10-05-auth-columns.sql'],
   ['第 3 步 indexes', 'scripts/sql/2026-10-05-auth-indexes.sql'],
-  ['第 4 步 后台角色', 'scripts/sql/2026-10-07-admin-role.sql']
+  ['第 4 步 后台角色', 'scripts/sql/2026-10-07-admin-role.sql'],
+  ['第 5 步 待审原因', 'scripts/sql/2026-10-09-comment-review-note.sql'],
+  ['第 6 步 常用选项', 'scripts/sql/2026-10-09-review-presets.sql'],
+  ['第 7 步 审核词表', 'scripts/sql/2026-10-09-review-keywords.sql'],
+  ['第 8 步 封禁理由', 'scripts/sql/2026-10-09-user-ban-note.sql'],
+  ['第 9 步 处理通知', 'scripts/sql/2026-10-09-comment-moderation-notice.sql'],
+  ['第 10 步 回复未读改 id 基准', 'scripts/sql/2026-10-09-replies-read-id.sql']
 ].map(([label, file]) => [label, readFileSync(file, 'utf8')])
 
 const colsOf = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name).sort().join(',')
@@ -143,6 +149,142 @@ try {
     check('🔴 users 建出来就自带 pw_salt', colsOf(db, 'users').split(',').includes('pw_salt'))
     check('🔴 users 新增了 role 列（第 4 步）', colsOf(db, 'users').split(',').includes('role'))
     check('🔴 admin_audit 表已建（第 4 步）', tables.includes('admin_audit'))
+    check('🔴 comments 新增了 review_note 列（第 5 步）', colsOf(db, 'comments').split(',').includes('review_note'))
+    check('🔴 review_note_presets 表已建（第 6 步）', tables.includes('review_note_presets'))
+    /*
+     * 🔴 第 6 步要**播种默认项**：超管没配之前，界面上就该有几个能用的常用原因。
+     *    播种语句带 `NOT EXISTS` 守卫，所以"跑完有 4 条"同时证明了它没重复插入。
+     */
+    check(
+      '🔴 常用选项播种了 4 条默认项（第 6 步）',
+      db.prepare('SELECT COUNT(*) AS n FROM review_note_presets').get().n === 4,
+      String(db.prepare('SELECT COUNT(*) AS n FROM review_note_presets').get().n)
+    )
+    check('🔴 review_keywords 表已建（第 7 步）', tables.includes('review_keywords'))
+    check('🔴 review_category_flags 表已建（第 7 步）', tables.includes('review_category_flags'))
+    /*
+     * 🔴 第 7 步**不播种任何词**：基线词表在代码里（`commentBlocklist.js`），
+     *    库里只放超管额外加的。若这里播了词，就等于把基线复制了一份 ——
+     *    以后改代码基线会被库里的旧副本盖住，是"两份真相"的经典坑。
+     */
+    check(
+      '🔴 词表不播种（基线在代码里）',
+      db.prepare('SELECT COUNT(*) AS n FROM review_keywords').get().n === 0,
+      String(db.prepare('SELECT COUNT(*) AS n FROM review_keywords').get().n)
+    )
+    check('🔴 users 新增了 ban_note 列（第 8 步）', colsOf(db, 'users').split(',').includes('ban_note'))
+    check(
+      '🔴 迁移不回填封禁理由（旧停用账号的 ban_note 应为 NULL）',
+      db.prepare('SELECT COUNT(*) AS n FROM users WHERE ban_note IS NOT NULL').get().n === 0,
+      String(db.prepare('SELECT COUNT(*) AS n FROM users WHERE ban_note IS NOT NULL').get().n)
+    )
+    check('🔴 comments 新增了 moderated_at 列（第 9 步）', colsOf(db, 'comments').split(',').includes('moderated_at'))
+    check('🔴 users 新增了 moderation_read_at 列（第 9 步）', colsOf(db, 'users').split(',').includes('moderation_read_at'))
+    check(
+      '🔴 迁移不回填处理时间（旧评论 moderated_at 应为 NULL）',
+      db.prepare('SELECT COUNT(*) AS n FROM comments WHERE moderated_at IS NOT NULL').get().n === 0,
+      String(db.prepare('SELECT COUNT(*) AS n FROM comments WHERE moderated_at IS NOT NULL').get().n)
+    )
+    check(
+      '🔴 未读基准索引已建（第 9 步）',
+      db.prepare("SELECT COUNT(*) AS n FROM sqlite_master WHERE type='index' AND name='idx_comments_user_moderated'").get().n === 1
+    )
+    /*
+     * 🔴 第 10 步：把「谁回复了我」的未读基准从**时间**换成**评论 id**。
+     *
+     * 为什么不改 `comments.created_at` 成毫秒：那是既有的**秒**列，全站都在用；
+     * 而只把基准换成毫秒会让 `S > S_000` 恒真 → 红点永远清不掉。
+     * `comments.id` 是 AUTOINCREMENT、严格单调，换过去两个方向的错同时消失。
+     */
+    check('🔴 users 新增了 replies_read_id 列（第 10 步）', colsOf(db, 'users').split(',').includes('replies_read_id'))
+    check(
+      '🔴 旧列 replies_read_at 保留不删（第 10 步的回填来源，删了就无法换算）',
+      colsOf(db, 'users').split(',').includes('replies_read_at')
+    )
+    check(
+      '🔴 迁移不改写 replies_read_at（第 10 步只读它做换算）',
+      db.prepare('SELECT COUNT(*) AS n FROM users WHERE replies_read_at IS NOT NULL').get().n === 0,
+      String(db.prepare('SELECT COUNT(*) AS n FROM users WHERE replies_read_at IS NOT NULL').get().n)
+    )
+  })
+
+  // ---- 3c. 第 10 步的回填语义：时间基准 → id 基准，且不该凭空造出未读 ----
+  query((db) => {
+    /*
+     * 造一个"迁移前就有未读历史"的用户，核对换算是否等价。
+     *
+     * 夹具里评论 2 是评论 1 的回复（`parent_id = 1`），而评论 1 的 `user_id` 是 NULL
+     * （账号体系之前的数据）。所以这里另造一条**归属于新用户**的评论当父评论，
+     * 再挂一条回复上去，才能测到"别人回复了我"这条路径。
+     *
+     * 🔴 本段自带清理：它插的行会污染后面"数据一条不少"的断言，
+     *    所以结尾必须删干净（含 id 80001/80002 与两个测试用户）。
+     */
+    const uid = 99002
+    const untouchedUid = 99003
+    const now = Math.floor(Date.now() / 1000)
+    db.prepare(
+      `INSERT INTO users (id, public_no, email, email_hash, nick, verifier_hash, pw_salt, pw_algo, pw_iters, created_at, replies_read_at)
+       VALUES (?, 99002, 'replies@example.com', 'rh', '有回复的老用户', 'vh', 'sh', 'client-pbkdf2-sha256', 600000, ?, ?)`
+    ).run(uid, now - 90000, now - 1000)
+    // 对照组：从未标过已读（`replies_read_at` 为 NULL）→ 回填语句的 WHERE 应把他跳过
+    db.prepare(
+      `INSERT INTO users (id, public_no, email, email_hash, nick, verifier_hash, pw_salt, pw_algo, pw_iters, created_at, replies_read_at)
+       VALUES (?, 99003, 'neverread@example.com', 'nh', '从没标过已读的用户', 'vh', 'sh', 'client-pbkdf2-sha256', 600000, ?, NULL)`
+    ).run(untouchedUid, now - 90000)
+    db.prepare(
+      `INSERT INTO comments (id, page_key, parent_id, user_id, nick, avatar, body, status, created_at, ip_hash, ua_hash, review_reason, page_label)
+       VALUES (80001, 'site:general', NULL, ?, '有回复的老用户', NULL, '我的评论', 1, ?, 'iph', 'uah', NULL, '站内讨论区')`
+    ).run(uid, now - 90000)
+    // 一条**在基准之前**的回复（旧语义：已读过）
+    db.prepare(
+      `INSERT INTO comments (id, page_key, parent_id, user_id, nick, avatar, body, status, created_at, ip_hash, ua_hash, review_reason, page_label)
+       VALUES (80002, 'site:general', 80001, NULL, '老访客', NULL, '早先的回复', 1, ?, 'iph', 'uah', NULL, '站内讨论区')`
+    ).run(now - 5000)
+
+    // 重跑一次第 10 步的**回填语句**（迁移时这一步是在列刚加、还没有数据时跑的，
+    // 所以这里要手工再触发一次，才能验证换算规则本身对不对）
+    db.exec(`
+      UPDATE users
+      SET replies_read_id = COALESCE((
+        SELECT MAX(c.id) FROM comments c
+        JOIN comments p ON p.id = c.parent_id
+        WHERE p.user_id = users.id
+          AND (c.user_id IS NULL OR c.user_id <> users.id)
+          AND c.status = 1
+          AND c.created_at <= users.replies_read_at
+      ), 0)
+      WHERE replies_read_at IS NOT NULL;
+    `)
+
+    const row = db.prepare('SELECT replies_read_id FROM users WHERE id = ?').get(uid)
+    check('🔴 时间基准换算成了 id 基准（读过 80002）', row?.replies_read_id === 80002, String(row?.replies_read_id))
+
+    /*
+     * 🔴 换算必须**等价于旧语义** —— 回填完不该有人"凭空多出未读"。
+     *    这是这条迁移最容易出的错：换算偏小 → 所有人红点从 0 跳到几十，是明显故障。
+     */
+    const unreadNow = db
+      .prepare(
+        `SELECT COUNT(*) AS n FROM comments c JOIN comments p ON p.id = c.parent_id
+         WHERE p.user_id = ? AND (c.user_id IS NULL OR c.user_id <> ?) AND c.status = 1 AND c.id > ?`
+      )
+      .get(uid, uid, row?.replies_read_id).n
+    check('🔴 回填后没有凭空多出的未读（旧语义下应为 0）', unreadNow === 0, String(unreadNow))
+
+    // 回填**不**覆盖未标过已读的用户：他们该保持"全未读"（与旧代码把 NULL 当 0 一致）
+    const untouched = db.prepare('SELECT replies_read_id FROM users WHERE id = ?').get(untouchedUid)
+    check('🔴 未标过已读的用户不被回填（保持 NULL = 全未读）', untouched?.replies_read_id === null, String(untouched?.replies_read_id))
+
+    // 清理：本段的夹具行不能留给后面的"数据一条不少"断言
+    db.prepare('DELETE FROM comments WHERE id IN (80001, 80002)').run()
+    db.prepare('DELETE FROM users WHERE id IN (?, ?)').run(uid, untouchedUid)
+    check(
+      '🔴 第 10 步夹具已自清理（评论数与用户数复原）',
+      db.prepare('SELECT COUNT(*) AS n FROM comments').get().n === 2 &&
+        db.prepare('SELECT COUNT(*) AS n FROM users').get().n === 0,
+      `comments=${db.prepare('SELECT COUNT(*) AS n FROM comments').get().n} users=${db.prepare('SELECT COUNT(*) AS n FROM users').get().n}`
+    )
   })
 
   // ---- 3b. 角色列必须有默认值 0，且老用户不会被误升为管理员 ----
@@ -169,6 +311,15 @@ try {
       db.prepare('SELECT user_id FROM comments WHERE id = 1').get().user_id === null
     )
     check('旧评论正文没被改写', db.prepare('SELECT body FROM comments WHERE id = 1').get().body === '迁移前就存在的评论')
+    /*
+     * 🔴 第 5 步只加列，**不该回填任何历史数据**：
+     *    `review_note` 的语义是"当前为什么在待审队列里"，给老评论补一个空备注
+     *    毫无意义，还会让人以为"这条被人工打回过"。
+     */
+    check(
+      '🔴 旧评论的 review_note 是 NULL（迁移不回填历史）',
+      db.prepare('SELECT review_note FROM comments WHERE id = 1').get().review_note === null
+    )
   })
 
   // ---- 5. 幂等性：1、3 步能重跑；第 2 步不能 ----
@@ -201,6 +352,45 @@ try {
     '🔴 第 4 步重复执行报 duplicate column（既定行为，不是意外）',
     !rerun4.ok && /duplicate column/i.test(rerun4.error || ''),
     rerun4.error
+  )
+
+  const rerun5 = exec(STEPS[4][1])
+  // 与第 2/4 步同理：那条 `ALTER TABLE ... ADD COLUMN` 不幂等
+  check(
+    '🔴 第 5 步重复执行报 duplicate column（既定行为，不是意外）',
+    !rerun5.ok && /duplicate column/i.test(rerun5.error || ''),
+    rerun5.error
+  )
+
+  /*
+   * 🔴 第 6 步与第 2/4/5 步**不同：它是幂等的**（`CREATE TABLE IF NOT EXISTS`
+   *    + 播种带 `NOT EXISTS` 守卫）。这条锁住"重复执行既不报错、也不重复播种"。
+   */
+  const rerun6 = exec(STEPS[5][1])
+  check('🔴 第 6 步重复执行成功（幂等，与第 2/4/5 步不同）', rerun6.ok, rerun6.error)
+  query((db) => {
+    const n = db.prepare('SELECT COUNT(*) AS n FROM review_note_presets').get().n
+    check('🔴 第 6 步重跑后仍是 4 条（没有重复播种）', n === 4, String(n))
+  })
+
+  // 第 7 步同样是幂等的（只建表建索引）
+  const rerun7 = exec(STEPS[6][1])
+  check('🔴 第 7 步重复执行成功（幂等）', rerun7.ok, rerun7.error)
+
+  const rerun8 = exec(STEPS[7][1])
+  // 与第 2/4/5 步同理：`ALTER TABLE ... ADD COLUMN` 不幂等
+  check(
+    '🔴 第 8 步重复执行报 duplicate column（既定行为，不是意外）',
+    !rerun8.ok && /duplicate column/i.test(rerun8.error || ''),
+    rerun8.error
+  )
+
+  const rerun9 = exec(STEPS[8][1])
+  // 第 9 步含两条 ALTER：重复执行会报第一条 duplicate column
+  check(
+    '🔴 第 9 步重复执行报 duplicate column（既定行为，不是意外）',
+    !rerun9.ok && /duplicate column/i.test(rerun9.error || ''),
+    rerun9.error
   )
 
   query((db) => {

@@ -32,10 +32,30 @@
       搜<strong>纯数字</strong>会按对外编号精确匹配 —— 用户来反馈时通常报的就是那 5 位编号，不是内部 id。
     </p>
 
+    <!--
+      角色筛选：**仅超管可见**。
+      普通管理员看到这份名单也没什么可做的（改角色是超管专属），
+      给他一个点了没用的筛选项只会让人困惑。
+    -->
+    <div v-if="isSuper" class="admin-toolbar admin-toolbar--kinds">
+      <div class="admin-filters">
+        <button
+          v-for="f in ROLE_FILTERS"
+          :key="f.value"
+          type="button"
+          class="admin-chip admin-chip--sm"
+          :class="{ 'is-on': roleFilter === f.value }"
+          @click="setRoleFilter(f.value)"
+        >
+          {{ f.label }}
+        </button>
+      </div>
+    </div>
+
     <p v-if="errorMessage" class="admin-error">{{ errorMessage }}</p>
     <p v-if="loading && !users.length" class="admin-hint">正在加载…</p>
     <p v-else-if="!users.length && !errorMessage" class="admin-hint">
-      {{ searchQuery ? '没有匹配的用户。' : '这一档没有用户。' }}
+      {{ searchQuery ? '没有匹配的用户。' : roleFilter === 'admin' ? '没有管理员账号。' : '这一档没有用户。' }}
     </p>
 
     <div v-else class="admin-card">
@@ -59,8 +79,27 @@
               <img v-if="avatarUrl(u.avatar)" :src="avatarUrl(u.avatar)" alt="" class="admin-avatar" />
               {{ u.nick }}
             </td>
-            <td class="admin-cell-wrap">{{ u.email || '（已清空）' }}</td>
-            <td class="admin-num">{{ u.commentCount }}</td>
+            <td class="admin-cell-wrap">
+              {{ u.email || '（已清空）' }}
+              <!-- 封禁理由：管理员手填，仅管理端可见（用户只看到「该账号已被停用」） -->
+              <div v-if="u.banNote" class="admin-quote admin-quote--note">封禁理由：{{ u.banNote }}</div>
+            </td>
+            <!--
+              评论数可点：跳去评论页并只看这个人。
+              比"手打昵称去搜"准 —— 评论里的昵称是**发表时的快照**，
+              用户改名后按旧昵称就搜不到了；按内部 id 筛不受影响。
+            -->
+            <td class="admin-num">
+              <RouterLink
+                v-if="u.commentCount > 0"
+                class="admin-link"
+                :to="{ path: '/admin/comments', query: { userId: u.id, nick: u.nick } }"
+                :title="`只看「${u.nick}」的评论`"
+              >
+                {{ u.commentCount }}
+              </RouterLink>
+              <span v-else class="admin-dim">0</span>
+            </td>
             <td>{{ statusLabel(u.status) }}</td>
             <!-- 角色列：**所有人都能看到**（知道谁是管理员是公开信息），但只有超管能改 -->
             <td :class="{ 'admin-role-super': u.role >= 2, 'admin-role-admin': u.role === 1 }">
@@ -144,6 +183,46 @@
         {{ loading ? '加载中…' : '加载更多' }}
       </button>
     </div>
+
+    <!--
+      封禁理由输入。与评论的「转待审原因」同一套交互 ——
+      两处都是"处理某人/某内容时说明为什么"，口径一致才不会让人困惑。
+    -->
+    <UiModal
+      :visible="banTarget !== null"
+      teleport-to="body"
+      title="封禁账号"
+      max-width="520px"
+      @update:visible="(v) => { if (!v) cancelBan() }"
+    >
+      <p class="admin-modal-lead">
+        停用 <strong>{{ banTarget?.nick }}</strong>（编号 {{ banTarget?.publicNo }}）。
+      </p>
+      <p class="admin-modal-quote">
+        停用后该账号立即无法登录（现有会话同时作废）。理由只有管理员能看到，用户只会看到「该账号已被停用」。
+      </p>
+
+      <label class="admin-modal-label" for="ban-note">
+        封禁理由<span class="admin-modal-optional">（可留空）</span>
+      </label>
+      <input
+        id="ban-note"
+        v-model="banNote"
+        class="admin-input"
+        type="text"
+        :maxlength="BAN_NOTE_MAX"
+        placeholder="如：连续发广告 / 冒用他人身份 / 多次违规"
+        @keydown.enter="confirmBan"
+      />
+      <p class="admin-modal-count">{{ banNote.length }} / {{ BAN_NOTE_MAX }}</p>
+
+      <template #footer>
+        <button type="button" class="admin-btn admin-btn--ghost" @click="cancelBan">取消</button>
+        <button type="button" class="admin-btn admin-btn--danger" :disabled="savingBan" @click="confirmBan">
+          {{ savingBan ? '处理中…' : '确认封禁' }}
+        </button>
+      </template>
+    </UiModal>
   </section>
 </template>
 
@@ -183,10 +262,12 @@
  */
 
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
 import { avatarPath } from '../../utils/avatarCatalog.js'
 import { getImageUrl } from '../../utils/env.js'
 import { currentUser } from '../../utils/authSession.js'
+import UiModal from '../ui/UiModal.vue'
 import {
   AdminApiError,
   deleteUserPermanently,
@@ -202,6 +283,20 @@ const FILTERS = [
   { value: '', label: '全部' }
 ]
 
+/**
+ * 角色筛选（**仅超管**）。
+ *
+ * 刻意只给"看管理员"一个方向，不做普通/管理员/超管的逐档筛：
+ * 管理端的实际需求是"我有哪些同事、权限对不对"；普通用户是绝大多数，
+ * 按他们筛等于没筛（那本来就是默认视图）。
+ */
+const ROLE_FILTERS = [
+  { value: '', label: '全部角色' },
+  { value: 'admin', label: '只看管理员' }
+]
+
+const roleFilter = ref('')
+
 const users = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
@@ -210,6 +305,14 @@ const statusFilter = ref('1')
 const cursor = ref(null)
 const hasMore = ref(false)
 const busyId = ref(null)
+
+/** 封禁理由长度上限，必须与后端 `REVIEW_NOTE_MAX` 一致（服务端超长会回 400） */
+const BAN_NOTE_MAX = 80
+
+/** 「封禁 + 理由」弹窗：目标用户 + 输入内容 + 提交中标志 */
+const banTarget = ref(null)
+const banNote = ref('')
+const savingBan = ref(false)
 
 const searchInput = ref('')
 const searchQuery = ref('')
@@ -246,6 +349,12 @@ function setFilter(value) {
   safeLoad()
 }
 
+function setRoleFilter(value) {
+  if (roleFilter.value === value) return
+  roleFilter.value = value
+  safeLoad()
+}
+
 async function load({ append = false } = {}) {
   loading.value = true
   errorMessage.value = ''
@@ -253,6 +362,7 @@ async function load({ append = false } = {}) {
     const data = await fetchAdminUsers({
       status: statusFilter.value,
       q: searchQuery.value,
+      role: roleFilter.value,
       cursor: append ? cursor.value : undefined
     })
     const page = data.users || []
@@ -280,22 +390,52 @@ function loadMore() {
 }
 
 async function toggleBan(user) {
-  const banning = user.status === 1
-  const ok = window.confirm(
-    banning
-      ? `封禁「${user.nick}」（编号 ${user.publicNo}）？\n\n他会立刻掉线，且无法再登录。评论保留，随时可以解封。`
-      : `解封「${user.nick}」（编号 ${user.publicNo}）？\n\n他可以重新登录。`
-  )
+  /*
+   * 封禁要走**理由弹窗**（说明"为什么封"，让接手的人不必重新判断）；
+   * 解封仍用轻量确认 —— 它没有需要填的信息，弹窗只是多余一步。
+   */
+  if (user.status === 1) {
+    banTarget.value = user
+    banNote.value = ''
+    return
+  }
+
+  const ok = window.confirm(`解封「${user.nick}」（编号 ${user.publicNo}）？\n\n他可以重新登录。`)
   if (!ok) return
   busyId.value = user.id
   errorMessage.value = ''
   try {
-    await setUserStatus(user.id, banning ? 2 : 1)
+    // 解封时服务端会清空封禁理由，这里不传
+    await setUserStatus(user.id, 1)
     safeLoad()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
   } finally {
     busyId.value = null
+  }
+}
+
+/** 关掉理由弹窗并丢弃输入 */
+function cancelBan() {
+  banTarget.value = null
+  banNote.value = ''
+}
+
+/** 提交「封禁 + 理由」。理由留空也允许（服务端会存 NULL）。 */
+async function confirmBan() {
+  if (savingBan.value || !banTarget.value) return
+  const target = banTarget.value
+  const note = banNote.value.trim()
+  savingBan.value = true
+  errorMessage.value = ''
+  try {
+    await setUserStatus(target.id, 2, note)
+    cancelBan()
+    safeLoad()
+  } catch (err) {
+    errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
+  } finally {
+    savingBan.value = false
   }
 }
 
@@ -355,6 +495,9 @@ async function changeRole(user, role) {
  * 那时会显示错误文案，不会静默失败。
  */
 const myRole = computed(() => Number(currentUser.value?.role) || 0)
+
+/** 是否超管（同样只是快照，仅用于"显不显示"；准入在服务端） */
+const isSuper = computed(() => myRole.value >= 2)
 
 /**
  * 判断某一行是不是**我自己**。
@@ -421,9 +564,67 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   color: var(--text-muted);
 }
 
+/* 可点的评论数：让它看起来像链接（否则没人会想到能点） */
+.admin-link {
+  color: #5b7fa6;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.admin-link:hover {
+  color: #3f5f80;
+}
+
 .admin-more {
   display: flex;
   justify-content: center;
+}
+
+/* ── 封禁理由 ──
+   这几个类名与 `AdminCommentsPanel` 的「转待审原因」保持一致，
+   但样式必须各自声明：scoped 样式带 data 属性、穿不过组件边界。 */
+.admin-quote {
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.admin-quote--note {
+  color: #5b7fa6;
+}
+
+.admin-modal-lead {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.admin-modal-quote {
+  margin: 0 0 14px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--border-color, #d8cdb8);
+  background: rgba(0, 0, 0, 0.04);
+  font-size: 13px;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+.admin-modal-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.admin-modal-optional {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.admin-modal-count {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
 }
 
 /*

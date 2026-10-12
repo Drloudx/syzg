@@ -241,6 +241,83 @@ console.log('\n【7】谁回复了我')
     !(afterDel.json.replies || []).some((r) => r.id === reply.json.comment.id))
 }
 
+// ---- 7b. 🔴 秒级边界：同一秒内「标已读 + 收到回复」不能丢通知 ----
+console.log('\n【7b】🔴 秒级边界：同一秒内标已读又被回复，仍要收到未读')
+{
+  /*
+   * 这是**唯一**能证明「未读基准从时间换成评论 id」确实修好了的场景。
+   *
+   * 旧实现：未读判定 `c.created_at > users.replies_read_at`，两边都是**秒**。
+   *        若回复与"标已读"落在同一秒 → `S > S` 为假 → 提醒被**静默吞掉**，
+   *        用户永远不知道有人回复了他。
+   * 新实现：基准是 `replies_read_id`（评论 id，AUTOINCREMENT 严格单调）→ 无此问题。
+   *
+   * 为什么要循环：能不能落进"同一秒"取决于请求耗时，是真实竞态。
+   * 这里最多试若干轮，**只在真正撞进同一秒时断言**；撞不进就说明这轮没覆盖到边界。
+   * （本地 wrangler 单次请求约几十毫秒，撞上的概率很高，但**不假设**必然撞上。）
+   */
+  let hitBoundary = false
+  /*
+   * 自己造一条"我的评论"当靶子：`rootId` 是【7】里的块级变量，这里拿不到，
+   * 也不该跨块引用（【7】结尾已经把那条回复删掉了）。
+   */
+  const mine7b = await api(
+    'POST',
+    '/api/comments',
+    { page: 'site:general', pageLabel: '站内讨论区', body: '7b 原评论（同秒边界用）', hp: '' },
+    alice.token
+  )
+  const target7b = mine7b.json?.comment?.id
+  check('7b 前置：Alice 发原评论 → 201', mine7b.status === 201 && Boolean(target7b), `实际 ${mine7b.status}`)
+
+  /*
+   * 为什么要循环：能不能落进"同一秒"取决于请求耗时，是真实竞态。
+   * 这里最多试若干轮，**只在确证撞进同一秒时断言**；撞不进就说明这轮没覆盖到边界。
+   * （本地 wrangler 单次请求约几十毫秒，撞上的概率很高，但**不假设**必然撞上。）
+   *
+   * 🔴 两道守卫缺一不可，否则会**假通过**：
+   *    只验"回复落在第二 S 秒"是不够的 —— 若"标已读"落在 S-1 秒，
+   *    旧实现 `S > S-1` 为真 → 未读数照样是 1 → 旧代码也能过，等于没测到边界。
+   *    所以还要验"标已读**整段请求**都在 S 秒内"：
+   *    `t0 === t1`（前后两次采样取整相同）意味着整个请求都落在 [S, S+1) 内，
+   *    于是服务端取到的 `ts` 必然是 S。两条合起来才确证
+   *    `replies_read_at === created_at === S` —— 正是旧实现失效的那个输入。
+   */
+  for (let i = 0; i < 12 && !hitBoundary; i++) {
+    // 前置：先把未读清零，否则"标已读没生效"会被误判成"边界修好了"
+    const t0 = Math.floor(Date.now() / 1000)
+    await api('POST', '/api/auth/replies/read', {}, alice.token)
+    const t1 = Math.floor(Date.now() / 1000)
+    if (t0 !== t1) continue // 标已读跨了秒边界 → 这一轮无法确证，重来
+
+    const before = await api('GET', '/api/auth/replies', undefined, alice.token)
+    if (before.json.unread !== 0) break
+
+    const r = await api(
+      'POST',
+      '/api/comments',
+      { page: 'site:general', pageLabel: '站内讨论区', body: `同秒回复 ${i}`, hp: '', parentId: target7b },
+      bob.token
+    )
+    if (r.status !== 201) break
+
+    const newId = r.json.comment.id
+    const after = await api('GET', '/api/auth/replies', undefined, alice.token)
+    const row = (after.json.replies || []).find((x) => x.id === newId)
+    // 用列表里的 createdAt 判定回复是否也落在同一秒（不依赖 POST 响应体的字段）
+    if (!row || row.createdAt !== t0) continue
+
+    hitBoundary = true
+    check(
+      '🔴 同一秒内「标已读 → 收到回复」仍算未读（旧实现会静默吞掉这条通知）',
+      after.json.unread >= 1,
+      `实际 ${after.json.unread}`
+    )
+    check('🔴 那条同秒回复确实出现在列表里（不是只把计数顶起来）', Boolean(row))
+  }
+  check('🔴 覆盖到了"同一秒"这个边界（若干轮内至少撞上 1 次）', hitBoundary)
+}
+
 // ---- 8. 未登录一律 401 ----
 console.log('\n【8】「谁回复了我」必须登录')
 {

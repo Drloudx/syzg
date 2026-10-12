@@ -24,6 +24,8 @@
         <RouterLink to="/admin/users" class="admin-tab" active-class="is-on">用户</RouterLink>
         <!-- 审计只给超管看：记录里含其他管理员的操作痕迹，追责是超管的职责 -->
         <RouterLink v-if="isSuper" to="/admin/audit" class="admin-tab" active-class="is-on">审计</RouterLink>
+        <!-- 设置只给超管：里面是"审核口径"一类影响所有管理员的配置 -->
+        <RouterLink v-if="isSuper" to="/admin/settings" class="admin-tab" active-class="is-on">设置</RouterLink>
       </nav>
 
       <div class="admin-head-right">

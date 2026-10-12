@@ -106,6 +106,13 @@ console.log(`\n正常评论误伤自检：${falsePositives.length}/${NORMAL_SAMP
 for (const fp of falsePositives) console.log(`  ⚠️ [${fp.hits.join(',')}] ← ${fp.s}`)
 
 // 自检：垃圾样本必须被判为待审
+/*
+ * 自检：垃圾样本必须被判为待审。
+ *
+ * ⚠️ "出售壮阳药"这条守的是**原「违禁药」的词现在仍生效**：
+ *    2026-10-09 把那个类别并进了「违禁品」（而不是删掉），所以它应当继续被拦。
+ *    若哪天有人误删了合并后的那批词，这条会立刻翻红。
+ */
 const SPAM_SAMPLES = [
   '加微信 xxxxx 代刷好评',
   '澳门赌场上线啦，点 https://spam.example.com',
