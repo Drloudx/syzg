@@ -145,6 +145,25 @@
   - 用户主动取消（`AbortError`）**不**退回下载；`navigator.share` 挂起时由 20 秒超时兜底。
   - 逐图层按 DOM **实测矩形**取位（不重抄 CSS 常量），样式改动截图自动跟随。
   - 输出尺寸取**画布可见区**而非内容包围盒：背景/桌面故意溢出画布，按包围盒输出会在四周留白。
+  - 输出画布按**视觉像素**开（`getBoundingClientRect() × 2`），图层矩形按**设计像素**取位（`toDesign` 除以画布 `scale`）。
+  - 上下文变换必须是 `OUT_SCALE × scale`：漏乘 `scale` 时 `scale > 1` 右下留透明带、`scale < 1` 裁掉溢出内容。两者都只在非默认视口出现。
+  - 图片按元素自身的 computed `object-fit` 铺图，**取值必须逐个实现**：`fill` 拉伸、`contain` 取 `min`、`cover` 取 `max` 后按矩形裁切。
+    `cover` 若被当成 `contain`，结果页背板（`.result-backdrop__bg`）会缩窄居中，**分享图左右两侧露出未着墨空带**（页面本身走浏览器原生 `cover`，页面级断言看不到）。
+  - 采集图层时**枚举舞台全部后代元素**，不按标签白名单过滤；每个元素按 CSS 绘制顺序可产出多个图层：`background-image` → `border-image` → 内容文字。
+    标签白名单漏一个标签就**静默丢一层**：抽取按钮是 `<button>`，旧白名单不含 `button`，分享图里「招募十次」只剩文字、底板丢失。
+  - `border-image` 与 `background-image` 是**两个独立绘制源**，可同时存在，各判各画。
+    只读 `background-image` 会漏掉资源槽底牌（`.g-slice--top-item` 仅挂 `border-image`），该元素又无文本，结果什么都没画。
+  - `background-size` 按 computed 值逐项复现，**不得硬编码 `cover`**：按钮底板用 `/ 100% 100%`（整图拉伸），按 `cover` 画会等比放大后居中裁切，底板四边被切掉。
+  - `border-image` 按九宫格合成而非整图拉伸：切片、宽度、`fill` 均取自 computed，非均匀切片（如 `0 20 0 20`）必须逐格绘制。
+  - computed 里的绝对长度是 **CSS 视觉像素**，图层矩形是**设计像素**，两者相差画布 `scale`，长度类取值须按 `scale` 折算（百分比、倍数无量纲，不折算）。
+  - `background-image` 按**值类型分派**，只认 `url()` 会静默丢掉渐变层：蛋池星级辉光（`.pet-diamond__glow`）是 `radial-gradient`，页面正常、分享图缺一层。
+    已实现 `linear-gradient` / `radial-gradient`（含 `repeating-` 前缀）；`conic-gradient` 未实现且全仓无使用者。
+  - 多层 `background-image` 与 `background-color` 都要画：`background-color` 在**所有**背景图之下；多层背景**先列的画在上面**，故倒序绘制。
+  - 图层收集判据不能只看 `background-image`：纯 `background-color` 元素（圆角标签、纯色底）没有背景图，只判背景图会把底色一起漏掉。
+  - 收集器遍历的是舞台**后代**元素，舞台根自身的背景**结构性**不参与合成（`.gacha-stage` 的 `#0b0703` 靠 `backdrop` 铺底遮蔽）。
+  - 圆角按 `border-radius` **四角八值**裁切，重叠时按 CSS 规则同比收敛；computed 圆角长度是视觉像素，须按 `scale` 折算。
+    `border-radius` 只裁 `background-color` / `background-image`，**不裁** `border-image`，故九宫格支路仍走矩形裁切。
+  - 合成器**不感知旋转**：触摸竖屏下 `GachaViewport` 的 `rotate(90deg)` 使 `getBoundingClientRect()` 返回宽高互换的包围盒，须按内容自身（未旋转）坐标系换算，输出保持**横版构图**。
   - 蛋袋是 Spine WebGL canvas，需 `renderSharedSceneNow()` **同步重画**后再抓（未开 `preserveDrawingBuffer`）。
   - 传入的舞台必须含对应标志元素（`.result-diamond` / `.pet-diamond-wrap`），否则报错
     ——页面上同时存在多个 `.gacha-stage`，误传会**静默合成空气图**。

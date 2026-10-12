@@ -437,3 +437,503 @@ test('魔物蛋卡池可切换且贴图正确', async ({ page }, testInfo) => {
   await expect(page.locator('.pet-name__text').first()).toBeVisible()
   await page.screenshot({ path: shotPath(testInfo, '09-pet-reveal.png') })
 })
+
+/**
+ * 🔴 分享图必须**满幅**，不能有没画上的透明带。
+ *
+ * 为什么单独立一条、并且**强制 1920×1080**：
+ * 合成器 `gachaShareImage.js` 按「画布可见区 × OUT_SCALE」开输出画布，而图层矩形是
+ * **设计像素**（`toDesign()` 除以了画布 scale）。少乘 scale 时：
+ *   - `scale > 1`（窗口宽于 1534 CSS px，如 1920×1080 → 1.2516）→ 内容只铺到
+ *     1534×2 = 3068 px，右边与下边各留一条透明带（**用户报的就是这个**）；
+ *   - `scale < 1`（1440×900 → 0.9387）→ 内容溢出把整张盖满，**看不出问题**。
+ * desktop 项目默认视口恰好是 1440×900，所以这个缺陷在所有既有用例里都是隐形的，
+ * 必须显式改视口才能守住。
+ */
+test('魔物蛋分享图在放大视口下仍满幅（无透明带）', async ({ page }) => {
+  // 1440×900 是 desktop 项目默认视口，此处刻意选 scale > 1 的尺寸
+  await page.setViewportSize({ width: 1920, height: 1080 })
+  await openGacha(page)
+
+  await page.locator('.kind-toggle').nth(1).click()
+  await expect(page).toHaveURL(/kind=pet/)
+  await page.locator('.draw-btn').first().click()
+  await expect(page.locator('.pet-catcher')).toBeVisible()
+  const diamond = page.locator('.pet-diamond')
+  for (let attempt = 0; attempt < 10 && !(await diamond.isVisible().catch(() => false)); attempt += 1) {
+    await page.locator('.pet-catcher').click()
+    await page.waitForTimeout(600)
+  }
+  await expect(page.locator('.pet-share')).toBeVisible()
+
+  // 直接驱动**真实合成器**，量输出画布的 alpha 包围盒。
+  // 走 `import('/src/...')` 是因为 dev server 直接供源码模块（Vite 特性）。
+  const result = await page.evaluate(async () => {
+    const mod = await import('/src/utils/gachaShareImage.js')
+    // 页面上有多个 `.gacha-stage`（卡池面板也在），必须挑**含分享按钮**的那个
+    const stage = Array.from(document.querySelectorAll('.gacha-stage'))
+      .find(el => el.querySelector('.pet-share'))
+    const canvas = await mod.renderGachaPetImage(stage)
+    const { data } = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height)
+    let minX = canvas.width
+    let minY = canvas.height
+    let maxX = -1
+    let maxY = -1
+    for (let y = 0; y < canvas.height; y += 1) {
+      for (let x = 0; x < canvas.width; x += 1) {
+        if (data[(y * canvas.width + x) * 4 + 3] > 8) {
+          if (x < minX) minX = x
+          if (x > maxX) maxX = x
+          if (y < minY) minY = y
+          if (y > maxY) maxY = y
+        }
+      }
+    }
+    const canvasEl = stage.querySelector('.gacha-canvas') || stage
+    return {
+      width: canvas.width,
+      height: canvas.height,
+      bbox: { minX, minY, maxX, maxY },
+      scale: Number.parseFloat(
+        (getComputedStyle(canvasEl).transform.match(/matrix\(([^,]+),/) || [0, 1])[1]
+      )
+    }
+  })
+
+  // 前置条件自检：没真的处于放大视口，这条用例就失去意义（避免以后被改成静默通过）
+  expect(result.scale, '本用例只在画布被放大（scale > 1）时才有鉴别力').toBeGreaterThan(1)
+  expect(
+    result.bbox,
+    `分享图应满幅（输出 ${result.width}×${result.height}，scale ${result.scale.toFixed(4)}）`
+  ).toEqual({ minX: 0, minY: 0, maxX: result.width - 1, maxY: result.height - 1 })
+})
+
+/**
+ * 🔴 触摸设备竖屏时，`GachaViewport` 会把整页内容 `rotate(90deg)`。
+ *
+ * 此时 `getBoundingClientRect()` 返回**旋转后的轴对齐包围盒**（宽高互换），合成器若照搬
+ * 就会产出**竖版乱图**：实测 393×851 竖屏下输出 786×1702（横版场景塞进竖版画布，
+ * 图层宽高也全错位）。这是与「透明带」不同的另一个缺陷，只有触摸+竖屏才出现。
+ *
+ * 判据：**同一场景在竖屏与横屏下必须合成出尺寸完全相同的横版图**。
+ * 这条比"看输出是不是横的"更严——它同时锁住取景与图层取位。
+ *
+ * 只在触摸项目跑：非触摸设备 `pointer: coarse` 为 false，不会触发旋转，用例无鉴别力。
+ */
+test('触摸竖屏分享图与横屏一致（不产出竖版乱图）', async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.use.hasTouch, '只在触摸项目下有鉴别力（旋转仅在 pointer: coarse 生效）')
+
+  const shoot = async () => {
+    await page.setViewportSize(
+      page.viewportSize().width > page.viewportSize().height
+        ? { width: 851, height: 393 }
+        : { width: 393, height: 851 }
+    )
+    await page.waitForTimeout(1200)
+    return page.evaluate(async () => {
+      const mod = await import('/src/utils/gachaShareImage.js')
+      const stage = Array.from(document.querySelectorAll('.gacha-stage'))
+        .find(el => el.querySelector('.pet-share'))
+      const canvasEl = stage.querySelector('.gacha-canvas') || stage
+      const out = await mod.renderGachaPetImage(stage)
+      const { data } = out.getContext('2d').getImageData(0, 0, out.width, out.height)
+      let minX = out.width
+      let minY = out.height
+      let maxX = -1
+      let maxY = -1
+      for (let y = 0; y < out.height; y += 1) {
+        for (let x = 0; x < out.width; x += 1) {
+          if (data[(y * out.width + x) * 4 + 3] > 8) {
+            if (x < minX) minX = x
+            if (x > maxX) maxX = x
+            if (y < minY) minY = y
+            if (y > maxY) maxY = y
+          }
+        }
+      }
+      const content = stage.closest('.gacha-viewport__content')
+      return {
+        width: out.width,
+        height: out.height,
+        bbox: { minX, minY, maxX, maxY },
+        contentTransform: content ? getComputedStyle(content).transform : 'none'
+      }
+    })
+  }
+
+  await page.setViewportSize({ width: 393, height: 851 })
+  await openGacha(page)
+  await page.locator('.kind-toggle').nth(1).click()
+  await page.locator('.draw-btn').first().click()
+  await expect(page.locator('.pet-catcher')).toBeVisible()
+  const diamond = page.locator('.pet-diamond')
+  for (let attempt = 0; attempt < 10 && !(await diamond.isVisible().catch(() => false)); attempt += 1) {
+    await page.locator('.pet-catcher').click()
+    await page.waitForTimeout(600)
+  }
+  await expect(page.locator('.pet-share')).toBeVisible()
+
+  const portrait = await shoot()
+  // 前置条件自检：内容层确实被旋转了，否则这条用例守不到东西
+  expect(
+    portrait.contentTransform,
+    '竖屏下内容层应带 rotate(90deg)（矩阵 a=0），否则本用例失去鉴别力'
+  ).toMatch(/^matrix\(0,/)
+
+  const landscape = await shoot()
+
+  expect(portrait.width, `竖屏输出应是横版（实测 ${portrait.width}×${portrait.height}）`)
+    .toBeGreaterThan(portrait.height)
+  expect(
+    { w: portrait.width, h: portrait.height },
+    '竖屏与横屏应合成出同一张横版图'
+  ).toEqual({ w: landscape.width, h: landscape.height })
+  expect(portrait.bbox).toEqual({ minX: 0, minY: 0, maxX: portrait.width - 1, maxY: portrait.height - 1 })
+})
+
+/**
+ * 🔴 合成器必须**逐值复现** `object-fit`，不能把 `cover` 当成 `contain`。
+ *
+ * 早先 `drawImageFit()` 只判 `fill`，其余取值一律走 `min` 等比居中（= `contain`）。
+ * 结果页背板是 `.result-backdrop__bg { object-fit: cover }`，于是它在分享图里被缩到 `min`
+ * 比例居中，**左右两侧留出未着墨的空带**；实时页面走浏览器原生 `cover` 铺满，
+ * 所以任何页面级断言（含上面两条 alpha 包围盒用例）都看不到这个缺陷——
+ * 那两条守的是「有像素的地方有没有漏」，而这条缺陷的特征恰恰是**两侧被多画了东西**。
+ *
+ * 用合成夹具而非真实美术：100×100 的「红框蓝心」图放进 400×200 的盒子，
+ * `cover` 取 `max`=4 → 铺满 400 宽，最左/最右列必为源图最外圈（红）；
+ * `contain` 取 `min`=2 → 只画 200 宽居中，最左列**没有任何像素**（alpha 0）。
+ * 两个盒子的对照把「cover 被缩成 contain」钉死，且不依赖游戏素材与视口尺寸。
+ */
+test('分享图合成器按 object-fit 取值铺图（cover 不缩成 contain）', async ({ page }) => {
+  await page.goto('/')
+  const result = await page.evaluate(async () => {
+    const mod = await import('/src/utils/gachaShareImage.js')
+
+    const src = document.createElement('canvas')
+    src.width = 100
+    src.height = 100
+    const sctx = src.getContext('2d')
+    sctx.fillStyle = '#ff0000'
+    sctx.fillRect(0, 0, 100, 100)
+    sctx.fillStyle = '#0000ff'
+    sctx.fillRect(20, 20, 60, 60)
+    const url = src.toDataURL('image/png')
+
+    const build = fit => {
+      const stage = document.createElement('div')
+      stage.style.cssText = 'position:fixed;left:-9999px;top:0;width:400px;height:200px'
+      // 合成器要求舞台内含招募结果，否则按空舞台拒绝
+      const marker = document.createElement('div')
+      marker.className = 'result-diamond'
+      marker.style.cssText = 'position:absolute;left:0;top:0;width:10px;height:10px'
+      const img = document.createElement('img')
+      img.style.cssText = `position:absolute;left:0;top:0;width:400px;height:200px;object-fit:${fit}`
+      img.src = url
+      stage.append(marker, img)
+      document.body.append(stage)
+      return stage
+    }
+
+    const readEdges = async stage => {
+      const out = await mod.renderGachaResultImage(stage)
+      const ctx = out.getContext('2d')
+      const mid = Math.floor(out.height / 2)
+      const left = ctx.getImageData(0, mid, 1, 1).data
+      const right = ctx.getImageData(out.width - 1, mid, 1, 1).data
+      return {
+        width: out.width,
+        height: out.height,
+        left: [left[0], left[1], left[2], left[3]],
+        right: [right[0], right[1], right[2], right[3]]
+      }
+    }
+
+    const coverStage = build('cover')
+    const containStage = build('contain')
+    try {
+      return { cover: await readEdges(coverStage), contain: await readEdges(containStage) }
+    } finally {
+      coverStage.remove()
+      containStage.remove()
+    }
+  })
+
+  // 前置条件自检：夹具几何没变，下面两条判据才成立
+  expect(result.cover.width, '夹具输出宽应为 400×2 倍率').toBe(800)
+  expect(result.cover.height).toBe(400)
+  expect(result.contain.width).toBe(800)
+
+  // cover：左右两侧都必须着墨，且落在源图最外圈的红框上
+  expect(result.cover.left[3], `cover 左边缘应已着墨，实测 ${JSON.stringify(result.cover.left)}`)
+    .toBeGreaterThan(200)
+  expect(result.cover.right[3], `cover 右边缘应已着墨，实测 ${JSON.stringify(result.cover.right)}`)
+    .toBeGreaterThan(200)
+  expect(result.cover.left[0], 'cover 左边缘应取源图最左列（红）').toBeGreaterThan(200)
+  expect(result.cover.left[2], 'cover 左边缘不应是蓝心').toBeLessThan(60)
+
+  // 负向对照：同一盒子改用 contain 就应左右留白——证明本用例能区分两种取值
+  expect(result.contain.left[3], 'contain 左边缘应留白（未着墨），否则本用例失去鉴别力')
+    .toBeLessThan(10)
+})
+
+/**
+ * 🔴 分享图合成器必须画 `border-image` 与「非白名单标签」的 `background-image`。
+ *
+ * 缺陷现象：结果页的「招募十次」按钮**只剩文字、底板丢失**；右上角资源槽的底牌也消失。
+ *
+ * 两个独立根因，都是合成器的「这一层要不要画」判断错了：
+ * 1. 收集器只读 `background-image`，**没读 `border-image`**。资源槽底牌
+ *    `.g-slice--top-item` 只挂 `border-image`（`com_top_item.webp`），于是被判成
+ *    「无背景 → 当文字画」，该 div 无文本 → 什么都没画。
+ * 2. 收集器的选择器是标签白名单 `img, canvas, p, span, em, div`，**`<button>` 不在其中**。
+ *    抽取按钮是 `button.g-slice.result-btn`，背景图挂在其 `.g-slice--btn-y` 上，
+ *    整个元素没被枚举 → 底板丢失。
+ *
+ * 为什么既有用例守不住：三条既有分享用例量的都是**输出 alpha 包围盒**。
+ * 这两处缺陷发生在画面**内部**，背板仍铺满全幅，包围盒一直是满的 → 测不出来。
+ * 所以本用例断言的是**具体位置的像素内容**，而不是包围盒。
+ *
+ * 夹具（不依赖游戏素材）：`border-image` 底板用纯绿源图，按钮背景用纯品红源图，
+ * 再取一处空白对照。空白对照必须透明——否则说明采样本身有问题，判据不成立。
+ */
+test('分享图合成器画 border-image 底板与 button 背景图', async ({ page }) => {
+  await page.goto('/')
+  const result = await page.evaluate(async () => {
+    const mod = await import('/src/utils/gachaShareImage.js')
+
+    // 造一张纯色源图（尺寸取真实切片的量级：底牌 64×28）
+    const solid = (color, w, h) => {
+      const c = document.createElement('canvas')
+      c.width = w
+      c.height = h
+      const x = c.getContext('2d')
+      x.fillStyle = color
+      x.fillRect(0, 0, w, h)
+      return c.toDataURL('image/png')
+    }
+    const plateSrc = solid('#00ff00', 64, 28)
+    const btnSrc = solid('#ff00ff', 292, 72)
+
+    const stage = document.createElement('div')
+    stage.style.cssText = 'position:fixed;left:-9999px;top:0;width:400px;height:200px'
+    // 合成器要求舞台内含招募结果，否则按空舞台拒绝
+    const marker = document.createElement('div')
+    marker.className = 'result-diamond'
+    marker.style.cssText = 'position:absolute;left:0;top:0;width:10px;height:10px'
+
+    // ① 只挂 border-image 的底牌（与 .g-slice--top-item 同形：0 20 0 20 fill / 0 20px stretch）
+    const plate = document.createElement('div')
+    plate.className = 'currency-slot__bg'
+    plate.style.cssText = [
+      'position:absolute', 'left:0', 'top:0', 'width:300px', 'height:28px',
+      'border-style:solid', 'border-width:0', 'border-color:transparent',
+      `border-image:url("${plateSrc}") 0 20 0 20 fill / 0 20px stretch`
+    ].join(';')
+
+    // ② 背景图挂在 <button> 上（旧白名单不含 button）
+    const btn = document.createElement('button')
+    btn.className = 'g-slice result-btn'
+    btn.style.cssText = [
+      'position:absolute', 'left:0', 'top:40px', 'width:292px', 'height:72px',
+      'border:0', 'padding:0',
+      `background:url("${btnSrc}") no-repeat center / 100% 100%`
+    ].join(';')
+
+    stage.append(marker, plate, btn)
+    document.body.append(stage)
+
+    const readRect = (el) => {
+      const r = el.getBoundingClientRect()
+      return { x: r.x, y: r.y, w: r.width, h: r.height }
+    }
+    const box = { plate: readRect(plate), btn: readRect(btn) }
+
+    try {
+      const out = await mod.renderGachaResultImage(stage)
+      const ctx = out.getContext('2d')
+      const stageRect = stage.getBoundingClientRect()
+      // 无缩放无旋转：输出像素 = (视觉像素 − 舞台原点) × OUT_SCALE(2)
+      const sample = (b) => {
+        const pts = [[0.5, 0.5], [0.25, 0.5], [0.75, 0.5], [0.5, 0.25], [0.5, 0.75]]
+        return pts.map(([fx, fy]) => {
+          const px = Math.round((b.x - stageRect.left + b.w * fx) * 2)
+          const py = Math.round((b.y - stageRect.top + b.h * fy) * 2)
+          const d = ctx.getImageData(px, py, 1, 1).data
+          return [d[0], d[1], d[2], d[3]]
+        })
+      }
+      // 空白对照：舞台右下角，没有任何元素覆盖
+      const blank = (() => {
+        const px = Math.round(out.width - 8)
+        const py = Math.round(out.height - 8)
+        const d = ctx.getImageData(px, py, 1, 1).data
+        return [d[0], d[1], d[2], d[3]]
+      })()
+      return {
+        size: [out.width, out.height],
+        plate: sample(box.plate),
+        btn: sample(box.btn),
+        blank
+      }
+    } finally {
+      stage.remove()
+    }
+  })
+
+  // 前置条件自检：夹具几何没变，下面的判据才成立
+  expect(result.size, '夹具输出尺寸应为舞台 400×200 的 2 倍率').toEqual([800, 400])
+
+  // 空白对照必须先自证：采样点确实没被任何东西覆盖，否则后面的「有像素」判据无鉴别力
+  expect(result.blank[3], `空白对照应透明，实测 ${JSON.stringify(result.blank)}`).toBeLessThan(10)
+
+  // ① border-image 底牌：整条都要着绿（含 fill 的中心切片）
+  for (const [i, px] of result.plate.entries()) {
+    expect(px[3], `底牌采样点 ${i} 应已着墨（border-image 未被采集），实测 ${JSON.stringify(px)}`)
+      .toBeGreaterThan(200)
+    expect(px[1], `底牌采样点 ${i} 应取绿色源图，实测 ${JSON.stringify(px)}`).toBeGreaterThan(200)
+    expect(px[0], `底牌采样点 ${i} 不应偏红，实测 ${JSON.stringify(px)}`).toBeLessThan(60)
+  }
+
+  // ② button 背景图：整块都要着品红
+  for (const [i, px] of result.btn.entries()) {
+    expect(px[3], `按钮采样点 ${i} 应已着墨（button 未被枚举），实测 ${JSON.stringify(px)}`)
+      .toBeGreaterThan(200)
+    expect(px[0], `按钮采样点 ${i} 应取品红源图，实测 ${JSON.stringify(px)}`).toBeGreaterThan(200)
+    expect(px[1], `按钮采样点 ${i} 不应偏绿，实测 ${JSON.stringify(px)}`).toBeLessThan(60)
+  }
+})
+
+/*
+ * 为什么既有用例守不住「渐变 / background-color / border-radius」：
+ *
+ * 分享图用例此前只断言**整幅 alpha 包围盒**。背板已把画面铺满，包围盒必然满幅，
+ * 中间少画几层它照样通过——本项目已三次出现同类漏画（`object-fit` 只认 `fill`、
+ * `border-image` 未采集、`button` 未枚举）。故本用例改为**在元素所在位置采样像素**，
+ * 并用「空白对照必须透明」自证采样点确有鉴别力。
+ *
+ * 夹具全部是合成元素，不依赖任何游戏素材：素材被替换不该让本用例变红，
+ * 只有合成器漏画渐变 / 底色 / 圆角裁切才该变红。
+ */
+test('分享图合成器画 background-color、渐变与圆角裁切', async ({ page }) => {
+  await page.goto('/')
+  const result = await page.evaluate(async () => {
+    const mod = await import('/src/utils/gachaShareImage.js')
+
+    const stage = document.createElement('div')
+    stage.style.cssText = 'position:fixed;left:-9999px;top:0;width:400px;height:200px'
+    // 合成器要求舞台内含招募结果，否则按空舞台拒绝
+    const marker = document.createElement('div')
+    marker.className = 'result-diamond'
+    marker.style.cssText = 'position:absolute;left:0;top:0;width:10px;height:10px'
+
+    const make = (cls, css) => {
+      const el = document.createElement('div')
+      el.className = cls
+      el.style.cssText = css
+      return el
+    }
+    // ① 只有 background-color，完全没有 background-image
+    const flat = make(
+      'fx-flat',
+      'position:absolute;left:0;top:0;width:100px;height:100px;background-color:#0000ff'
+    )
+    // ② 径向渐变（蛋池星光辉光 .pet-diamond__glow 同形）
+    const radial = make(
+      'fx-radial',
+      'position:absolute;left:100px;top:0;width:100px;height:100px;' +
+        'background-image:radial-gradient(circle, #ff0000 0%, #0000ff 100%)'
+    )
+    // ③ 线向渐变：左绿右黑，方向错了也守得住
+    const linear = make(
+      'fx-linear',
+      'position:absolute;left:200px;top:0;width:100px;height:100px;' +
+        'background-image:linear-gradient(to right, #00ff00 0%, #000000 100%)'
+    )
+    // ④ 圆角裁切：圆心有着墨、圆外四角必须透明
+    const round = make(
+      'fx-round',
+      'position:absolute;left:300px;top:0;width:100px;height:100px;' +
+        'background-color:#ffff00;border-radius:50%'
+    )
+
+    stage.append(marker, flat, radial, linear, round)
+    document.body.append(stage)
+
+    const readRect = (el) => {
+      const r = el.getBoundingClientRect()
+      return { x: r.x, y: r.y, w: r.width, h: r.height }
+    }
+    const box = {
+      flat: readRect(flat),
+      radial: readRect(radial),
+      linear: readRect(linear),
+      round: readRect(round)
+    }
+
+    try {
+      const out = await mod.renderGachaResultImage(stage)
+      const ctx = out.getContext('2d')
+      const stageRect = stage.getBoundingClientRect()
+      // 无缩放无旋转：输出像素 = (视觉像素 − 舞台原点) × OUT_SCALE(2)
+      const at = (b, fx, fy) => {
+        const px = Math.round((b.x - stageRect.left + b.w * fx) * 2)
+        const py = Math.round((b.y - stageRect.top + b.h * fy) * 2)
+        const d = ctx.getImageData(px, py, 1, 1).data
+        return [d[0], d[1], d[2], d[3]]
+      }
+      // 空白对照：舞台右下角，四个夹具都没覆盖
+      const blank = (() => {
+        const d = ctx.getImageData(out.width - 8, out.height - 8, 1, 1).data
+        return [d[0], d[1], d[2], d[3]]
+      })()
+      return {
+        size: [out.width, out.height],
+        flat: at(box.flat, 0.5, 0.5),
+        radialCore: at(box.radial, 0.5, 0.5),
+        radialEdge: at(box.radial, 0.9, 0.9),
+        linearLeft: at(box.linear, 0.1, 0.5),
+        linearRight: at(box.linear, 0.9, 0.5),
+        roundCore: at(box.round, 0.5, 0.5),
+        roundCorner: at(box.round, 0.03, 0.03),
+        blank
+      }
+    } finally {
+      stage.remove()
+    }
+  })
+
+  // 前置条件自检：夹具几何没变，下面的判据才成立
+  expect(result.size, '夹具输出尺寸应为舞台 400×200 的 2 倍率').toEqual([800, 400])
+  expect(result.blank[3], `空白对照应透明，实测 ${JSON.stringify(result.blank)}`).toBeLessThan(10)
+
+  // ① 只有 background-color 的元素也要铺底（收集器此前只认 background-image）
+  expect(result.flat[3], `纯 background-color 未绘制，实测 ${JSON.stringify(result.flat)}`)
+    .toBeGreaterThan(200)
+  expect(result.flat[2], `底色应为蓝，实测 ${JSON.stringify(result.flat)}`).toBeGreaterThan(200)
+  expect(result.flat[0], `底色不应偏红，实测 ${JSON.stringify(result.flat)}`).toBeLessThan(60)
+
+  // ② 径向渐变：既要有像素，也要有中心→外缘的色变（只判「有像素」守不住画成纯色）
+  expect(result.radialCore[3], `径向渐变未绘制，实测 ${JSON.stringify(result.radialCore)}`)
+    .toBeGreaterThan(200)
+  expect(result.radialCore[0], `渐变中心应偏红，实测 ${JSON.stringify(result.radialCore)}`)
+    .toBeGreaterThan(180)
+  expect(result.radialEdge[2], `渐变外缘应偏蓝，实测 ${JSON.stringify(result.radialEdge)}`)
+    .toBeGreaterThan(150)
+  expect(result.radialEdge[0], `渐变外缘不应偏红，实测 ${JSON.stringify(result.radialEdge)}`)
+    .toBeLessThan(110)
+
+  // ③ 线向渐变：方向也要对（左绿 → 右黑）
+  expect(result.linearLeft[1], `线向渐变左侧应偏绿，实测 ${JSON.stringify(result.linearLeft)}`)
+    .toBeGreaterThan(200)
+  expect(result.linearRight[1], `线向渐变右侧应为黑，实测 ${JSON.stringify(result.linearRight)}`)
+    .toBeLessThan(60)
+
+  // ④ border-radius：圆角只裁背景，圆心有着墨、圆外必须透明
+  expect(result.roundCore[3], `圆角元素中心应已着墨，实测 ${JSON.stringify(result.roundCore)}`)
+    .toBeGreaterThan(200)
+  expect(result.roundCore[1], `圆角元素应取黄色底，实测 ${JSON.stringify(result.roundCore)}`)
+    .toBeGreaterThan(200)
+  expect(result.roundCorner[3], `border-radius 外的四角应透明，实测 ${JSON.stringify(result.roundCorner)}`)
+    .toBeLessThan(10)
+})
