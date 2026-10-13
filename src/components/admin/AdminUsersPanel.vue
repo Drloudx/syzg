@@ -67,42 +67,45 @@
       <!-- 搜索与操作过滤条（与后端接口参数严格对应：q / status / role） -->
       <div style="display: flex; flex-direction: column; gap: 8px;">
         <div class="workshop-toolbar">
-          <div class="search-input-wrap">
-            <svg class="search-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input
-              type="text"
-              class="search-input"
-              placeholder="搜对外编号 / 昵称 / 邮箱..."
-              :value="searchInput"
-              @input="onSearchInput($event.target.value)"
-              @keydown.enter="applySearch"
-            />
+          <div class="toolbar-search-row">
+            <div class="search-input-wrap">
+              <svg class="search-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="text"
+                class="search-input"
+                placeholder="搜对外编号 / 昵称 / 邮箱..."
+                :value="searchInput"
+                @input="onSearchInput($event.target.value)"
+                @keydown.enter="applySearch"
+              />
+            </div>
+            <button type="button" class="btn-search" @click="applySearch">搜索</button>
+            <button type="button" class="btn-refresh" title="刷新用户列表与统计" @click="refreshList">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 4v6h-6"></path>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+              <span>刷新</span>
+            </button>
           </div>
 
-          <select v-model="statusFilter" class="select-dropdown" @change="resetAndLoad">
-            <option value="">全部状态</option>
-            <option value="1">正常</option>
-            <option value="2">已停用</option>
-            <option value="3">已注销</option>
-          </select>
+          <div class="toolbar-filter-row">
+            <select v-model="statusFilter" class="select-dropdown" @change="resetAndLoad">
+              <option value="">全部状态</option>
+              <option value="1">正常</option>
+              <option value="2">已停用</option>
+              <option value="3">已注销</option>
+            </select>
 
-          <select v-if="isSuper" v-model="roleFilter" class="select-dropdown" @change="resetAndLoad">
-            <option value="">全部角色</option>
-            <option value="admin">仅管理员 (超管/管理)</option>
-            <option value="user">普通用户</option>
-          </select>
-
-          <button type="button" class="btn-search" @click="applySearch">搜索</button>
-          <button type="button" class="btn-refresh" title="刷新用户列表与统计" @click="refreshList">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M23 4v6h-6"></path>
-              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
-            </svg>
-            <span>刷新</span>
-          </button>
+            <select v-if="isSuper" v-model="roleFilter" class="select-dropdown" @change="resetAndLoad">
+              <option value="">全部角色</option>
+              <option value="admin">仅管理员 (超管/管理)</option>
+              <option value="user">普通用户</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -1119,6 +1122,16 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   flex-wrap: wrap;
 }
 
+.toolbar-search-row,
+.toolbar-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.toolbar-search-row {
+  flex: 1;
+}
+
 .search-input-wrap {
   flex: 1;
   min-width: 260px;
@@ -1949,13 +1962,30 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
     font-size: 17px;
   }
 
-  /* 搜索与工具条排版 */
+  /* 图 2 优化：搜索与过滤工具栏两行整齐自适应排版 */
   .workshop-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .toolbar-search-row {
+    width: 100%;
+    display: flex;
     gap: 6px;
   }
+  .toolbar-filter-row {
+    width: 100%;
+    display: flex;
+    gap: 6px;
+  }
+  .toolbar-filter-row .select-dropdown {
+    flex: 1;
+    min-width: 0;
+  }
+
   .search-input-wrap {
     min-width: 0;
-    flex: 1 1 100%;
+    flex: 1;
   }
   .search-input {
     height: 34px;
@@ -1965,27 +1995,75 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
     height: 34px;
     font-size: 12px;
     padding: 0 24px 0 8px;
-    flex: 1;
   }
   .btn-search,
   .btn-refresh {
     height: 34px;
     font-size: 12px;
     padding: 0 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
-  /* 翻页栏优化：隐藏冗余的跳页输入框 */
+  /* 图 2 核心修复：表格支持向右平滑滚动，所有单元格及操作按钮横放，禁止竖排折叠 */
+  .table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+  }
+  .admin-table {
+    min-width: 580px !important;
+    width: 100% !important;
+  }
+  .admin-table th,
+  .admin-table td {
+    white-space: nowrap !important;
+  }
+  .user-cell {
+    white-space: nowrap !important;
+  }
+  .role-badge {
+    white-space: nowrap !important;
+    display: inline-block !important;
+  }
+  .status-badge {
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+  }
+  .actions-chain {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 10px !important;
+    white-space: nowrap !important;
+  }
+  .action-link {
+    white-space: nowrap !important;
+    display: inline-block !important;
+    padding: 2px 5px !important;
+  }
+
+  /* 翻页栏优化：隐藏冗余的跳页输入框，按钮不折行 */
   .page-jumper {
-    display: none;
+    display: none !important;
   }
   .page-btn {
-    padding: 4px 10px;
-    font-size: 11.5px;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    height: 32px !important;
   }
   .page-number {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+    flex-shrink: 0 !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 12px !important;
   }
 }
 </style>

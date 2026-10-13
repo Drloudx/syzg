@@ -91,7 +91,7 @@
       </div>
 
       <!-- 今日 vs 昨日环比对比：双环饼图面板 -->
-      <div class="table-container chart-card-box donut-cards-grid">
+      <div class="chart-card-box donut-cards-grid">
         <!-- 评论对比环 -->
         <div class="donut-card">
           <div class="donut-card-head">
@@ -198,7 +198,7 @@
       </div>
 
       <!-- 近 7 天趋势：羊皮纸画卷卡片 -->
-      <div class="table-container chart-card-box">
+      <div class="chart-card-box">
         <div class="chart-head">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="color: #c5913e; font-size: 14px;">✦</span>
@@ -589,9 +589,6 @@ onMounted(load)
 /* 图表容器 */
 .chart-card-box {
   padding: 14px 18px 12px;
-}
-
-.table-container {
   border: 1.5px solid rgba(143, 115, 81, 0.4);
   border-radius: 6px;
   background: var(--paper-card);
@@ -1093,6 +1090,29 @@ onMounted(load)
   .chart-legend {
     font-size: 11px;
     gap: 10px;
+  }
+
+  /* 图 1 优化：底部刷新工具栏与状态文本，禁止按钮文字被挤压折行 */
+  .overview-footer-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    padding-top: 10px !important;
+    flex-wrap: nowrap !important;
+  }
+  .search-hint-text {
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+  .btn-refresh {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    height: 34px !important;
+    padding: 0 12px !important;
+    font-size: 12.5px !important;
   }
 }
 </style>

@@ -1538,13 +1538,17 @@ function onLogout() {
   .table-container {
     -webkit-overflow-scrolling: touch;
     overflow-x: auto;
+    width: 100%;
   }
   .admin-table {
     font-size: 12px;
+    min-width: 580px;
+    width: 100%;
   }
   .admin-table th,
   .admin-table td {
     padding: 6px 8px;
+    white-space: nowrap;
   }
 }
 </style>

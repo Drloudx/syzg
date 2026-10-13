@@ -1434,34 +1434,98 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
     color: var(--text-muted);
     line-height: 1.3;
   }
-  .admin-toolbar--kinds .admin-filters {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
-    max-width: 100%;
+
+  /* 图 3 优化：胶囊分类与命中原因横排整齐滑块，高度统一固定，禁止垂直拉伸 */
+  .admin-toolbar--kinds {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
   }
+  .admin-toolbar--kinds .admin-filters,
   .admin-filters {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    max-width: 100%;
-    padding-bottom: 2px;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 3px 0 !important;
+    gap: 6px !important;
+    scrollbar-width: none !important;
+  }
+  .admin-filters::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .admin-chip,
+  .admin-chip--sm {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    padding: 0 12px !important;
+    line-height: 1 !important;
+    border-radius: 999px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 评论表格支持向右平滑滚动，操作按钮水平横放 */
+  .admin-table {
+    min-width: 580px !important;
+    width: 100% !important;
+  }
+  .admin-table th,
+  .admin-table td {
+    white-space: nowrap !important;
+  }
+  .admin-cell-wrap {
+    white-space: normal !important;
+    min-width: 180px;
+    max-width: 280px;
   }
   .admin-row-actions {
-    flex-wrap: wrap;
-    gap: 4px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
   }
   .admin-row-actions .admin-btn {
-    padding: 3px 6px;
-    font-size: 11.5px;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding: 4px 8px !important;
+    font-size: 12px !important;
   }
+
   .admin-toolbar {
     gap: 6px;
   }
   .admin-search {
     min-width: 0;
     flex: 1 1 100%;
+  }
+
+  /* 分页栏隐藏冗余跳转框，按钮不折行 */
+  .page-jumper {
+    display: none !important;
+  }
+  .page-btn {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    padding: 6px 12px !important;
+    height: 32px !important;
+  }
+  .page-number {
+    flex-shrink: 0 !important;
+    width: 30px !important;
+    height: 30px !important;
   }
 }
 </style>
