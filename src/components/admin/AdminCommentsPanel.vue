@@ -235,6 +235,15 @@
 
     <!-- 翻页控制栏（主流分页：[上一页] [1] ... [7] [8] [9] [10] [11] ... [28] [下一页] + 跳转） -->
     <div v-if="totalPages > 1 || comments.length" class="pagination-bar">
+      <!--
+        总条数（2026-10-14 加）。
+        🔴 **零额外成本**：`totalCount` 来自分页接口本来就要算的 `total`
+        （页码器必须知道"共几页"），这里只是把它显示出来。
+        与被删掉的「档位条数」不同 —— 那个是 `GROUP BY status`（全表分组，
+        一次算 4 个数）；这个是 `COUNT(*)`，且**本来就在算**。
+      -->
+      <span v-if="totalCount > 0" class="pagination-total">共 {{ totalCount.toLocaleString() }} 条</span>
+
       <button
         type="button"
         class="page-btn"
@@ -1207,6 +1216,25 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   align-items: center;
   justify-content: center;
   gap: 8px;
+  /* 总条数绝对定位到左侧，页码保持视觉居中（见 `.pagination-total` 注释） */
+  position: relative;
+}
+
+/*
+ * 「共 N 条」放分页栏左侧。
+ *
+ * 🔴 用 `position: absolute` 而不是普通的 flex 子项：分页栏是
+ * `justify-content: center`，若把总条数当普通子项参与布局，页码会被整体
+ * 挤偏（在不同位数下偏移量还不一样）。绝对定位让它**不参与居中计算**，
+ * 页码永远居中，总数贴左。
+ */
+.pagination-total {
+  position: absolute;
+  left: 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .page-btn {

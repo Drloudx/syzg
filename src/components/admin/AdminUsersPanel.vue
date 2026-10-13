@@ -234,6 +234,9 @@
 
       <!-- 翻页控制栏（主流分页：[上一页] [1] ... [7] [8] [9] [10] [11] ... [28] [下一页] + 跳转） -->
       <div v-if="totalPages > 1 || users.length" class="pagination-bar">
+        <!-- 总条数：复用分页接口本来就要算的 `total`，零额外查询（2026-10-14 加） -->
+        <span v-if="totalCount > 0" class="pagination-total">共 {{ totalCount.toLocaleString() }} 条</span>
+
         <button
           type="button"
           class="page-btn"
@@ -1503,6 +1506,21 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   align-items: center;
   justify-content: center;
   gap: 8px;
+  position: relative;
+}
+
+/*
+ * 「共 N 条」贴分页栏左侧。
+ * 用绝对定位让它**不参与** `justify-content: center` 的居中计算 ——
+ * 否则页码会被总条数挤偏，而且位数变化（"9 条" vs "1,234 条"）偏移量还会变。
+ */
+.pagination-total {
+  position: absolute;
+  left: 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  pointer-events: none;
 }
 
 .page-btn {
@@ -1915,14 +1933,37 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   background: rgba(143, 115, 81, 0.15);
 }
 
+/*
+ * 移动端档案抽屉的遮罩。
+ *
+ * 🔴 **必须在窄屏之外彻底不参与布局**（2026-10-14 两轮修）。
+ *
+ * 第一轮只把它的样式（背景 / fixed 定位）用媒体查询排除了，以为够了 ——
+ * 结果用户反馈「不灰屏了，但点用户后中间区域变窄了」。
+ *
+ * 根因：这个 `<div>` 是 `.admin-users-view`（`display: flex; gap: 16px`）
+ * 的**第二个子项**。媒体查询排除的只是它的**样式**，元素本身仍在 flex 流里
+ * —— 于是它按自身（`inset: 0` 失效后为 0 宽，但 `gap` 仍生效）占一个槽位，
+ * 中间的 `.admin-workshop` 被挤窄。
+ *
+ * 所以正确修法是**让元素在窄屏之外完全不参与布局**：`display: none`。
+ * 桌面端它既不渲染、也不占位、也不产生 gap。
+ */
 .mobile-drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  z-index: 12050;
-  animation: fadeIn 0.2s ease-out;
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-drawer-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index: 12050;
+    animation: fadeIn 0.2s ease-out;
+  }
 }
 
 @media (max-width: 1280px) {
