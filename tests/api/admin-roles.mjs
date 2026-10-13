@@ -106,6 +106,32 @@ try {
   const adminStats = await api(BASE, 'GET', '/api/admin/stats', { token: adminAcc.token })
   check('管理员 GET /api/admin/stats → 200', adminStats.status === 200, `实际 ${adminStats.status}`)
 
+  /*
+   * 【权限探活】`/api/admin/ping` —— 闸门专用，服务端**零额外查询**。
+   *
+   * 背景：后台权限闸门原先靠调 `stats` 判断"能不能进后台"，而 stats 为渲染
+   * 概览要跑 9 条聚合查询（含多次全表扫，实测约 2.4 万行读/次）。
+   * D1 按 rows read 计费 —— 每次进后台都用整屏指标换一个布尔值是纯浪费。
+   *
+   * 这里守两件事：
+   *   ① 鉴权口径与其它管理接口**一致**（未登录/普通用户 401，管理员 200）；
+   *   ② 返回体**只有 ok 与 role**，不带任何统计数字（它是验伪，不是数据接口）。
+   *      —— 防止后来有人图省事把 stats 的内容塞进去，把"省额度"改回去。
+   */
+  const pingAnon = await api(BASE, 'GET', '/api/admin/ping')
+  check('未登录 GET /api/admin/ping → 401', pingAnon.status === 401, `实际 ${pingAnon.status}`)
+  const pingAsUser = await api(BASE, 'GET', '/api/admin/ping', { token: userAcc.token })
+  check('普通用户 GET /api/admin/ping → 401', pingAsUser.status === 401, `实际 ${pingAsUser.status}`)
+  const pingAsAdmin = await api(BASE, 'GET', '/api/admin/ping', { token: adminAcc.token })
+  check('管理员 GET /api/admin/ping → 200', pingAsAdmin.status === 200, `实际 ${pingAsAdmin.status}`)
+  check('ping 返回 ok=true', pingAsAdmin.json?.ok === true, JSON.stringify(pingAsAdmin.json))
+  check(
+    '🔴 ping 只回 role，不带任何统计字段（否则等于把 stats 的额度浪费捡回来）',
+    pingAsAdmin.json && Object.keys(pingAsAdmin.json).sort().join(',') === 'ok,role',
+    `实际字段 ${JSON.stringify(Object.keys(pingAsAdmin.json || {}))}`
+  )
+  console.log(`  · ping 成功响应体：${JSON.stringify(pingAsAdmin.json)}`)
+
   const adminUsers = await api(BASE, 'GET', '/api/admin/users', { token: adminAcc.token })
   check('管理员 GET /api/admin/users → 200', adminUsers.status === 200, `实际 ${adminUsers.status}`)
 

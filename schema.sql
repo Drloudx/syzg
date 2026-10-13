@@ -73,6 +73,15 @@ CREATE TABLE IF NOT EXISTS comments (
 CREATE INDEX IF NOT EXISTS idx_comments_page
   ON comments(page_key, status, created_at DESC);
 
+-- 后台分页与管理聚合用（2026-10-13）。
+-- 后台新增的「按状态分页」与「状态计数」都按 status 过滤，此前只有
+-- idx_comments_page(page_key, status, …) 可借路，但**首列是 page_key**，
+-- 不带 page_key 的查询用不上它 → 退化为全表扫。
+-- 实测（本地库 ~3.2k 行 comments）：加索引后 status 分页从 SCAN 变 SEARCH，
+-- 状态计数也从全表扫变覆盖索引扫。评论量上来后这条差距会线性放大。
+CREATE INDEX IF NOT EXISTS idx_comments_status_id
+  ON comments(status, id DESC);
+
 -- 限流按小时桶 UPSERT，避免每次留言新增一行
 CREATE TABLE IF NOT EXISTS rate_limits (
   bucket  TEXT    NOT NULL,               -- 'ip:<sha256>:<YYYYMMDDHH>'
@@ -245,6 +254,17 @@ CREATE TABLE IF NOT EXISTS sessions (
   ip_hash      TEXT    DEFAULT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
+
+-- 「已登录活跃用户（DAU）」按时间区间统计（2026-10-13）。
+-- 后台概览的双环饼图要算「今日/昨日活跃账号数」，条件是
+-- `last_seen_at >= ?` 或 `created_at >= ?`。此前 sessions 上只有
+-- idx_sessions_user，两个时间列都没有索引 → 走 `SCAN sessions USING INDEX idx_sessions_user`
+-- 即**扫全部会话**（索引全扫，不是定位）。
+-- 🔴 这个代价随**累计会话数**增长，而 sessions 只增不减（30 天过期由查询条件过滤，
+-- 行不会立刻消失）—— 属于会慢慢变贵的典型。
+-- 实测（本地库 ~2.3k 行 sessions）：加索引后扫描行数从「全部会话」降到「区间内命中的会话」。
+CREATE INDEX IF NOT EXISTS idx_sessions_last_seen ON sessions(last_seen_at);
+CREATE INDEX IF NOT EXISTS idx_sessions_created  ON sessions(created_at);
 
 -- 评论挂账号
 -- `user_id` 已经在**上面的建表语句里**（不能只留注释形式的 ALTER，理由见那一处）。

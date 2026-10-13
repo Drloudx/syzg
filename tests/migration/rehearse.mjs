@@ -91,7 +91,8 @@ const STEPS = [
   ['第 7 步 审核词表', 'scripts/sql/2026-10-09-review-keywords.sql'],
   ['第 8 步 封禁理由', 'scripts/sql/2026-10-09-user-ban-note.sql'],
   ['第 9 步 处理通知', 'scripts/sql/2026-10-09-comment-moderation-notice.sql'],
-  ['第 10 步 回复未读改 id 基准', 'scripts/sql/2026-10-09-replies-read-id.sql']
+  ['第 10 步 回复未读改 id 基准', 'scripts/sql/2026-10-09-replies-read-id.sql'],
+  ['第 11 步 后台分页索引', 'scripts/sql/2026-10-13-admin-paging-indexes.sql']
 ].map(([label, file]) => [label, readFileSync(file, 'utf8')])
 
 const colsOf = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name).sort().join(',')

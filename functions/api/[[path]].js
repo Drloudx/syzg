@@ -1426,6 +1426,7 @@ async function adminStats(env) {
   // UTC 日界线，与限流的 `dayBucket()` 口径一致 —— 否则"今天的数"与
   // "今天的限额"会对不上，排查时容易怀疑人生
   const dayStart = ts - (ts % 86400)
+  const dayEnd = dayStart + 86400
   const yesterdayStart = dayStart - 86400
   const weekStart = dayStart - 6 * 86400
 
@@ -1449,9 +1450,20 @@ async function adminStats(env) {
          FROM users WHERE created_at >= ?1 GROUP BY d`
       ).bind(weekStart).all(),
       env.DB.prepare(`SELECT COUNT(*) AS n FROM sessions WHERE expires_at > ?1`).bind(ts * 1000).first(),
+      /*
+       * 今日 DAU。
+       *
+       * 🔴 必须写成**双边区间** `>= dayStart AND < 次日`，不能只写 `>= dayStart`。
+       * 原因：SQLite 只有在 OR 两侧**都带上界**时才能用 `MULTI-INDEX OR` 各自定位；
+       * 单边 `>=` 会让它退回 `SCAN sessions`（扫全部会话）。
+       * 实测（本地 ~3.1k sessions）：单边 → `SCAN sessions USING INDEX idx_sessions_user`；
+       * 双边 → `MULTI-INDEX OR` + 两个 `SEARCH ... idx_sessions_last_seen / idx_sessions_created`。
+       * 语义完全等价（未来时间的 last_seen_at / created_at 不存在），但读行数差一个量级。
+       */
       env.DB.prepare(
-        `SELECT COUNT(DISTINCT user_id) AS n FROM sessions WHERE last_seen_at >= ?1 OR created_at >= ?1`
-      ).bind(dayStart).first(),
+        `SELECT COUNT(DISTINCT user_id) AS n FROM sessions
+         WHERE (last_seen_at >= ?1 AND last_seen_at < ?2) OR (created_at >= ?1 AND created_at < ?2)`
+      ).bind(dayStart, dayEnd).first(),
       env.DB.prepare(
         `SELECT COUNT(DISTINCT user_id) AS n FROM sessions
          WHERE (last_seen_at >= ?1 AND last_seen_at < ?2) OR (created_at >= ?1 AND created_at < ?2)`
@@ -3241,6 +3253,30 @@ export async function onRequest(context) {
       if (path === '/api/admin/stats') {
         if (request.method !== 'GET') return bad(ERR.fallback, 405)
         return await adminStats(env)
+      }
+
+      /*
+       * `GET /api/admin/ping` —— **权限探活**（2026-10-13 加）。
+       *
+       * 为什么需要它：后台的权限闸门（`AdminView.vue` 的 `recheck()`）原本靠
+       * 调 `/api/admin/stats` 来判断"这个账号能不能进后台"。而 stats 为了渲染
+       * 概览要跑 **9 条聚合查询**（含多次全表扫）——
+       * 实测约 **2.4 万行 / 次**（本地 ~3.2k 评论、~2.3k 会话的规模）。
+       *
+       * 而闸门只关心一件事：**401 还是 200**。用整屏指标去换一个布尔值，
+       * 在 D1 按 rows read 计费的额度下是纯浪费：每次进后台、每次权限重查
+       * 都白烧一遍概览的聚合。
+       *
+       * 这条端点不做任何查询 —— `adminSession()` 已经把该查的会话与角色查完了，
+       * 能走到这里就说明鉴权已通过（上方 `if (!admin) return 401`）。
+       * 于是成本从「9 条查询 + 多次全表扫」降到 **0 条额外查询**。
+       *
+       * ⚠️ 返回体**刻意只给角色，不给任何统计数字**：它是权杖的验伪，不是数据接口。
+       *    `role` 是调用者自己的角色，本就随登录态可见，不算泄漏。
+       */
+      if (path === '/api/admin/ping') {
+        if (request.method !== 'GET') return bad(ERR.fallback, 405)
+        return json({ ok: true, role: Number(actor.role) || 0 })
       }
 
       /*

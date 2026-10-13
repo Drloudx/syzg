@@ -106,6 +106,18 @@ export function fetchAdminStats() {
   return request('/api/admin/stats')
 }
 
+/**
+ * 权限探活：确认当前会话**能不能进后台**，不取任何统计数字。
+ *
+ * 🔴 用它代替 `fetchAdminStats()` 做闸门判定（2026-10-13）。
+ * `stats` 要跑 9 条聚合查询（含多次全表扫，实测约 2.4 万行读/次），
+ * 而闸门只需要一个"401 还是 200"。D1 按 rows read 计费，
+ * 用整屏指标换一个布尔值是纯浪费 —— 这条端点服务端零额外查询。
+ */
+export function pingAdmin() {
+  return request('/api/admin/ping')
+}
+
 // ── 评论 ─────────────────────────────────────────────────────────
 
 /**
