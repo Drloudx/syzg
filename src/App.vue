@@ -9,7 +9,22 @@
     <header class="app-header">
       <div class="header-content">
         <div class="header-top-row">
-          <div class="header-left">
+          <!--
+            标题区整块可点 → 回首页（2026-10-14）。
+            首页是 `path: '/'`（重定向到 `/items`）。此前没有"回首页"的入口，
+            用户只能靠侧栏或浏览器后退 —— 头部标题是所有人第一个会去点的地方。
+            用 div + role=link 而不是 `<a href="#/">`：避免与 router 的 hash
+            处理双触发，统一走 `router.push`。
+          -->
+          <div
+            class="header-left header-left--home"
+            role="link"
+            tabindex="0"
+            :title="`回到首页`"
+            @click="goHome"
+            @keydown.enter.prevent="goHome"
+            @keydown.space.prevent="goHome"
+          >
             <img :src="getImageUrl('/ui/logo.webp')" class="app-logo" alt="深渊之歌" />
             <div class="header-title-wrap">
               <h1 class="header-title">{{ pageTitle }}</h1>
@@ -389,6 +404,18 @@ const isAdmin = computed(() => Number(currentUser.value?.role) >= 1)
 function goAdmin() {
   isSettingsOpen.value = false
   router.push('/admin')
+}
+
+/**
+ * 回到首页（标题区点击）。
+ *
+ * 首页是 `path: '/'`（路由表里重定向到 `/items`）。
+ * 🔴 已经在首页时**不重复 push**：`router.push('/')` 会再走一次
+ * 重定向、把滚动位置重置，而用户此时只是随手点了一下标题。
+ */
+function goHome() {
+  if (route.path === '/items') return
+  router.push('/')
 }
 
 /**
@@ -948,6 +975,27 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   gap: 10px;
   min-width: 0;
   width: 100%;
+}
+
+/*
+ * 标题区整块可点 → 回首页，故给"可点"的视觉与键盘可达性。
+ * 用 `width: fit-content` 让高亮只包住内容本身，不横跨整条顶栏
+ * （`.header-left` 本来是 `width: 100%`，直接加 hover 会点亮一大片）。
+ */
+.header-left--home {
+  width: fit-content;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 2px 6px;
+  margin-left: -6px;
+  transition: background 0.18s;
+}
+.header-left--home:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.header-left--home:focus-visible {
+  outline: 2px solid #ffd78c;
+  outline-offset: 2px;
 }
 
 .app-logo {

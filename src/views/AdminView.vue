@@ -16,7 +16,21 @@
   -->
   <div class="admin-shell">
     <header class="admin-head">
-      <div class="brand-group">
+      <!--
+        品牌区整块可点 → 回首页（2026-10-14）。
+        原先「回首页」只能靠右侧那个「前台」文字链；后来发现它与「退出」同效
+        （都是 `router.replace('/')`），两个入口重复，故删掉「前台」，
+        把「回首页」语义搬到用户更自然会点的地方 —— 标题区。
+      -->
+      <div
+        class="brand-group brand-group--home"
+        role="link"
+        tabindex="0"
+        title="回到首页"
+        @click="goHome"
+        @keydown.enter.prevent="goHome"
+        @keydown.space.prevent="goHome"
+      >
         <button
           v-if="authed"
           type="button"
@@ -24,7 +38,7 @@
           :class="{ 'is-active': mobileNavOpen }"
           title="切换管理目录"
           aria-label="切换管理目录"
-          @click="mobileNavOpen = !mobileNavOpen"
+          @click.stop="mobileNavOpen = !mobileNavOpen"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
             <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -47,12 +61,10 @@
           <span class="admin-role-pill">{{ adminRoleText }}</span>
         </div>
 
-        <a class="admin-head-link" href="#/" title="回到前台 Wiki">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-          <span>前台</span>
-        </a>
+        <!--
+          「前台」入口已删除（2026-10-14）：与「退出」完全同效（都回首页），
+          重复入口反而让人犹豫该点哪个。回首页改由左侧品牌区承担。
+        -->
         <button v-if="authed" type="button" class="admin-exit-btn" @click="onLogout">退出</button>
       </div>
     </header>
@@ -105,7 +117,18 @@
       ></div>
 
       <!-- 左栏：管理目录（边框 4：手造皮质缝线与内衬层） -->
-      <aside class="admin-side-nav leather-panel-container" :class="{ 'is-mobile-open': mobileNavOpen }">
+      <!--
+        🔴 `data-admin-nav` 是**给测试用的稳定钩子**（2026-10-13）。
+        此前测试断言的是页签条 `.admin-tabs`；顶部页签重构成左侧栏后类名变成
+        `.admin-side-nav`，于是**所有**后台用例在 `openAdminAs` 里一起翻红。
+        测试关心的语义是「后台导航已就位、权限闸门已通过」，与放顶部还是放左侧无关，
+        故改用与外观解耦的属性钩子：以后再把导航挪到别处也不必改测试。
+      -->
+      <aside
+        class="admin-side-nav leather-panel-container"
+        data-admin-nav
+        :class="{ 'is-mobile-open': mobileNavOpen }"
+      >
         <div class="mobile-nav-top-wrap">
           <div class="panel-header-title">
             <span>✦ 管理目录 ✦</span>
@@ -140,12 +163,11 @@
         </div>
 
         <div class="side-footer-actions">
-          <a class="side-footer-link" href="#/" title="跳转前台首页">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-            <span>前往首页</span>
-          </a>
+          <!--
+            「前往首页」已删除（2026-10-14）：顶部品牌区现在也回首页，
+            两个入口指向同一处，留一个即可 —— 底部只留差异化动作「前往讨论区」。
+            这是与顶部「前台」一起收掉的第二处重复入口。
+          -->
           <a class="side-footer-link" href="#/discussions" title="前往讨论区">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="15 18 9 12 15 6"></polyline>
@@ -170,7 +192,7 @@
 import { computed, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 
-import { AdminApiError, fetchAdminStats } from '../utils/adminApi.js'
+import { AdminApiError, pingAdmin } from '../utils/adminApi.js'
 import { openAccountModal } from '../utils/accountModal.js'
 import { currentUser, isLoggedIn } from '../utils/authSession.js'
 import { avatarPath } from '../utils/avatarCatalog.js'
@@ -202,12 +224,18 @@ const adminAvatarUrl = computed(() => {
 
 /**
  * 用**一次真实请求**确认权限。
+ *
+ * 🔴 打的是 `/api/admin/ping` 而不是 `/api/admin/stats`（2026-10-13 改）。
+ * 闸门只关心"401 还是 200"，而 stats 为渲染概览要跑 9 条聚合查询
+ * （含多次全表扫，实测约 2.4 万行读/次）。D1 按 rows read 计费 ——
+ * 每次进后台都用整屏指标去换一个布尔值是纯浪费。
+ * ping 在服务端**零额外查询**（鉴权时该查的已查完）。
  */
 async function recheck() {
   checking.value = true
   gateError.value = ''
   try {
-    await fetchAdminStats()
+    await pingAdmin()
     authed.value = true
     if (router.currentRoute.value.path === '/admin') router.replace('/admin')
   } catch (err) {
@@ -235,6 +263,12 @@ function onGoLogin() {
 }
 
 function onLogout() {
+  authed.value = false
+  router.replace('/')
+}
+
+/** 回到首页（品牌区点击）。与 `onLogout` 同目的地，但语义是"离开后台去看图鉴"。 */
+function goHome() {
   authed.value = false
   router.replace('/')
 }
@@ -350,20 +384,24 @@ function onLogout() {
   font-weight: 600;
 }
 
-.admin-head-link {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #dfceb3;
-  font-size: 13px;
-  text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: all 0.18s;
+/*
+ * 品牌区：整块可点回首页，故给"可点"的视觉与键盘可达性。
+ *
+ * 用 `cursor: pointer` + hover 高亮（而不是做成 `<a>`）：
+ * 这块里还嵌着移动端汉堡按钮，`<a>` 会与按钮的点击语义冲突
+ * （点汉堡变成跳首页）。用 div + role=link 最稳。
+ */
+.brand-group--home {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.18s;
 }
-.admin-head-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+.brand-group--home:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.brand-group--home:focus-visible {
+  outline: 2px solid #ffd78c;
+  outline-offset: 2px;
 }
 
 .admin-exit-btn {
@@ -770,10 +808,6 @@ function onLogout() {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-  .admin-head-link {
-    font-size: 12px;
-    padding: 3px 6px;
   }
   .admin-exit-btn {
     font-size: 12px;

@@ -144,3 +144,23 @@ test('long updates keep actions visible, block Back while active, and permit ret
   await expect(modal).toBeHidden()
   await expect.poll(() => page.locator('.app-container').evaluate(element => element.inert)).toBe(false)
 })
+
+test('前台顶部标题区可点击回首页', async ({ page }) => {
+  /*
+   * 2026-10-14 加：此前前台没有"回首页"入口，只能靠侧栏或浏览器后退。
+   * 顶部标题区（logo + 页名 + 副标题）是用户第一个会去点的地方。
+   *
+   * 用 `role="link"` + `tabindex="0"` 而不是 `<a href="#/">`：
+   * 避免与 router 的 hash 处理双触发，统一走 `router.push('/')`。
+   */
+  await ready(page, '/#/glossary', '.glossary-page')
+
+  const home = page.locator('.header-left--home')
+  await expect(home).toBeAttached()
+  await expect(home).toHaveAttribute('role', 'link')
+  await expect(home).toHaveAttribute('tabindex', '0')
+
+  await home.click()
+  // 首页是 `/`，路由表里重定向到 `/items`
+  await expect(page).toHaveURL(/#\/items/)
+})

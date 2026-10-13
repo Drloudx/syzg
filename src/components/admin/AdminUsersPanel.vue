@@ -75,7 +75,7 @@
               </svg>
               <input
                 type="text"
-                class="search-input"
+                class="search-input admin-search"
                 placeholder="搜对外编号 / 昵称 / 邮箱..."
                 :value="searchInput"
                 @input="onSearchInput($event.target.value)"
@@ -122,13 +122,22 @@
           <thead>
             <tr>
               <th style="width: 70px;">编号</th>
-              <th style="width: 140px;">用户</th>
-              <th class="col-hide-mobile" style="width: 160px;">邮箱</th>
-              <th class="col-hide-mobile" style="width: 70px; text-align: center;">评论</th>
-              <th style="width: 90px;">角色</th>
-              <th style="width: 85px; text-align: center;">状态</th>
-              <th class="col-hide-mobile" style="width: 140px;">注册 / 最近登录</th>
-              <th style="width: 150px; text-align: right;">操作</th>
+              <th style="width: 130px;">用户</th>
+              <th class="col-hide-mobile" style="width: 150px;">邮箱</th>
+              <th class="col-hide-mobile" style="width: 60px; text-align: center;">评论</th>
+              <!-- 「超级管理员」五个字要横排放下，列宽按最长角色名给 -->
+              <th style="width: 105px;">角色</th>
+              <th style="width: 80px; text-align: center;">状态</th>
+              <!--
+                只留「最近登录」（2026-10-14）。
+                注册时间与右侧档案里的「注册时间」重复 —— 表格再列一遍是冗余，还占宽度。
+              -->
+              <th class="col-hide-mobile" style="width: 115px;">最近登录</th>
+              <!--
+                操作列要放得下「封禁 / 设为管理员 / 删除」三个文字链（不换行），
+                超管那档最长，故按内容给足宽度（2026-10-14）。
+              -->
+              <th style="width: 185px; text-align: right;">操作</th>
             </tr>
           </thead>
           <tbody>
@@ -171,8 +180,7 @@
                 <span :class="['status-badge', statusBadgeClass(u.status)]">{{ statusLabel(u.status) }}</span>
               </td>
               <td class="col-hide-mobile mono-cell">
-                <div>{{ formatDate(u.createdAt) }}</div>
-                <div style="font-size: 11px; opacity: 0.7;">{{ u.lastLoginAt ? formatDate(u.lastLoginAt) : '从未' }}</div>
+                <div>{{ u.lastLoginAt ? formatDate(u.lastLoginAt) : '从未' }}</div>
               </td>
               <td style="text-align: right;">
                 <div class="actions-chain" style="justify-content: flex-end;" @click.stop>
@@ -1395,9 +1403,17 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   color: var(--text-main);
 }
 
+/*
+ * 角色徽标（普通用户 / 管理员 / 超级管理员）。
+ *
+ * 🔴 `white-space: nowrap` 是必需的（2026-10-14 补）：这类短标签是 `<span>`，
+ * 中文可在任意处断行，角色列一窄就折成「超级管理/员」。
+ * 英文单词默认不断行、中文才会，所以这类缺陷只在中文字段上冒出来。
+ */
 .role-badge {
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 .role-badge--super {
   color: #c5913e;
@@ -1438,9 +1454,20 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   border-color: var(--status-del-border);
 }
 
+/*
+ * 行内操作链（封禁 / 设为管理员 / 删除）。
+ *
+ * 🔴 必须显式 `nowrap` + `flex-shrink: 0`（2026-10-14 补）。
+ * 这两条原先**只写在手机端 `@media` 里**，桌面端没有，于是列一窄就
+ * **逐字换行**（「封/禁」「删/除」各占一行）—— 因为这几个 `.action-link`
+ * 是 `<span>`，默认 `white-space: normal`，中文可以任意处断行。
+ * 这类缺陷只在桌面宽度不足以放下整列时出现，靠改窗口大小才发现。
+ */
 .actions-chain {
   display: flex;
+  flex-wrap: nowrap;
   gap: 10px;
+  white-space: nowrap;
 }
 
 .action-link {
@@ -1450,6 +1477,9 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   font-size: 12px;
   cursor: pointer;
   transition: color 0.15s;
+  /* 不允许在按钮内部换行，也不允许被 flex 压缩到换行 */
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .action-link:hover {
   color: #c5913e;

@@ -141,11 +141,17 @@
             </th>
             <th class="col-hide-mobile" style="width: 56px">#</th>
             <th style="width: 110px">作者</th>
+            <!--
+              🔴 正文列**不设 width**，让它在剩余空间里自然伸缩；
+              上限由 `.admin-comment-body` 的 `max-width` 收（2026-10-14）。
+              原先它吃掉全部余量，操作列被挤到换行（「放行/隐藏」一行、「彻底删除」另起一行）。
+            -->
             <th>正文</th>
             <th class="col-hide-mobile" style="width: 130px">页面</th>
             <th style="width: 82px; text-align: center;">状态</th>
             <th class="col-hide-mobile" style="width: 140px">时间</th>
-            <th style="width: 140px">操作</th>
+            <!-- 操作列要放得下三个按钮横排，宽度按内容定 -->
+            <th style="width: 210px">操作</th>
           </tr>
         </thead>
         <tbody>
@@ -165,7 +171,7 @@
               <!-- 账号体系之后的新评论带 userId；老的（账号之前）为空 -->
               <span v-if="c.userId" class="admin-num admin-userid">#{{ c.userId }}</span>
             </td>
-            <td class="admin-cell-wrap">
+            <td class="admin-cell-wrap admin-comment-body">
               <EmoticonText :text="c.body" />
               <div v-if="c.parentId" class="admin-quote">回复 #{{ c.parentId }}</div>
               <div v-if="c.reviewReason" class="admin-quote admin-quote--warn">命中：{{ c.reviewReason }}</div>
@@ -1122,6 +1128,39 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   transition: background 0.15s;
 }
 
+/*
+ * 正文列：**限宽**，把余量让给操作列（2026-10-14）。
+ *
+ * 🔴 起因：正文是唯一不设 `width` 的列，于是吃掉全部剩余宽度，
+ * 操作列被压到装不下三个按钮 → 「放行/隐藏」一行、「彻底删除」换到第二行。
+ * 这里给正文一个上限，多余空间自然回流给操作列。
+ *
+ * `max-width` 而不是固定 `width`：窄屏时仍能收缩，不会把表格顶出容器。
+ */
+.admin-comment-body {
+  max-width: 420px;
+}
+
+/*
+ * 行内操作：三个按钮**必须横排不换行**。
+ *
+ * `flex-wrap: nowrap` 是硬要求（换行就是本次要修的缺陷）；
+ * `white-space: nowrap` 防止「彻底删除」四个字在按钮内部折成两行。
+ */
+.admin-row-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.admin-row-actions .admin-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .admin-table tbody tr:last-child td {
   border-bottom: none;
 }
@@ -1506,6 +1545,10 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
     white-space: normal !important;
     min-width: 180px;
     max-width: 280px;
+  }
+  /* 手机端正文列已由上面的 `.admin-cell-wrap` 收窄，桌面端的上限在此失效 */
+  .admin-comment-body {
+    max-width: 280px !important;
   }
   .admin-row-actions {
     display: flex !important;

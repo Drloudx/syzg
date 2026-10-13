@@ -495,7 +495,7 @@ try {
     check('🔴 后台是独立外壳（盖住站点头部）', await ev(`!!document.querySelector('.admin-shell')`))
 
     // 闸门：没令牌时不该露出页签
-    check('未填令牌时不露页签', (await ev(`document.querySelectorAll('.admin-tabs').length`)) === 0)
+    check('未填令牌时不露页签', (await ev(`document.querySelectorAll('[data-admin-nav]').length`)) === 0)
 
     await ev(`(() => {
       const el = document.querySelector('.admin-gate input')
@@ -507,7 +507,7 @@ try {
     })()`)
     await sleep(300)
     await tapSelector('.admin-gate .admin-btn')
-    await waitFor(`!!document.querySelector('.admin-tabs')`, { timeout: 30_000, label: '进入后台' })
+    await waitFor(`!!document.querySelector('[data-admin-nav]')`, { timeout: 30_000, label: '进入后台' })
     check('🔴 令牌校验通过、页签出现', true)
 
     await waitFor(`document.querySelectorAll('.stat-card').length === 4`, { timeout: 30_000, label: '概览数字' })
@@ -515,10 +515,9 @@ try {
     check('近 7 天有 7 根柱子', (await ev(`document.querySelectorAll('.chart-col').length`)) === 7)
 
     // 切到评论页
-    await ev(`(() => {
-      const t = [...document.querySelectorAll('.admin-tab')].find(x => x.textContent.includes('评论'))
-      t?.click(); return 'ok'
-    })()`)
+    // 🔴 手机端导航是**抽屉**（`.admin-side-nav` 默认移出视口），
+    //    点链接前得先展开菜单；直接用 hash 跳转更稳，也不依赖抽屉状态。
+    await ev(`location.hash = '#/admin/comments'`)
     await waitFor(`location.hash === '#/admin/comments'`, { timeout: 20_000, label: '评论页' })
     await waitFor(`document.querySelectorAll('.admin-table tbody tr').length > 0`, {
       timeout: 30_000,
@@ -527,10 +526,8 @@ try {
     check('🔴 评论页在手机上列出了真实数据', true)
 
     // 切到用户页，并按对外编号搜
-    await ev(`(() => {
-      const t = [...document.querySelectorAll('.admin-tab')].find(x => x.textContent.includes('用户'))
-      t?.click(); return 'ok'
-    })()`)
+    // 同上：手机端导航在抽屉里，用 hash 直达，不依赖抽屉展开状态
+    await ev(`location.hash = '#/admin/users'`)
     await waitFor(`location.hash === '#/admin/users'`, { timeout: 20_000, label: '用户页' })
     await waitFor(`document.querySelectorAll('.admin-table tbody tr').length > 0`, {
       timeout: 30_000,
