@@ -776,4 +776,19 @@ async function onImportFile(event) {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+@media (max-width: 900px) {
+  .admin-preset-line {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .admin-preset-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .admin-kw-head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
 </style>

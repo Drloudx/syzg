@@ -1015,4 +1015,84 @@ onMounted(load)
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 900px) {
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .stat-card {
+    padding: 8px 10px;
+    gap: 8px;
+    border-radius: 6px;
+  }
+  .stat-icon-wrap {
+    width: 34px;
+    height: 34px;
+  }
+  .stat-icon-wrap svg {
+    width: 18px;
+    height: 18px;
+  }
+  .stat-label {
+    font-size: 11px;
+  }
+  .stat-value {
+    font-size: 17px;
+  }
+  .stat-sub {
+    display: none;
+  }
+  .stat-card-arrow {
+    display: none;
+  }
+
+  .donut-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .donut-card {
+    padding: 10px 12px;
+  }
+  .donut-card-head {
+    margin-bottom: 8px;
+  }
+  .donut-title {
+    font-size: 13.5px;
+  }
+  .donut-card-body {
+    gap: 12px;
+  }
+  .donut-svg-wrap {
+    width: 92px;
+    height: 92px;
+  }
+  .donut-center-val {
+    font-size: 15px;
+  }
+  .donut-center-sub {
+    font-size: 9.5px;
+  }
+  .donut-legend-row {
+    font-size: 11.5px;
+    gap: 6px;
+  }
+  .donut-legend-val {
+    font-size: 12px;
+  }
+
+  .chart-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+  .chart-title {
+    font-size: 13.5px;
+  }
+  .chart-legend {
+    font-size: 11px;
+    gap: 10px;
+  }
+}
 </style>

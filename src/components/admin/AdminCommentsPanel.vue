@@ -137,13 +137,13 @@
                 @change="toggleAllVisible($event.target.checked)"
               />
             </th>
-            <th style="width: 56px">#</th>
-            <th style="width: 120px">作者</th>
+            <th class="col-hide-mobile" style="width: 56px">#</th>
+            <th style="width: 110px">作者</th>
             <th>正文</th>
-            <th style="width: 130px">页面</th>
-            <th style="width: 92px; text-align: center;">状态</th>
-            <th style="width: 140px">时间</th>
-            <th style="width: 250px">操作</th>
+            <th class="col-hide-mobile" style="width: 130px">页面</th>
+            <th style="width: 82px; text-align: center;">状态</th>
+            <th class="col-hide-mobile" style="width: 140px">时间</th>
+            <th style="width: 140px">操作</th>
           </tr>
         </thead>
         <tbody>
@@ -157,7 +157,7 @@
                 @change="toggleOne(c.id, $event.target.checked)"
               />
             </td>
-            <td class="admin-num">{{ c.id }}</td>
+            <td class="admin-num col-hide-mobile">{{ c.id }}</td>
             <td class="admin-cell-wrap">
               {{ c.nick }}
               <!-- 账号体系之后的新评论带 userId；老的（账号之前）为空 -->
@@ -169,14 +169,18 @@
               <div v-if="c.reviewReason" class="admin-quote admin-quote--warn">命中：{{ c.reviewReason }}</div>
               <!-- 管理员手填的转待审原因：只有「待审」档才可能有值（放行/隐藏后服务端会清空） -->
               <div v-if="c.reviewNote" class="admin-quote admin-quote--note">待审原因：{{ c.reviewNote }}</div>
+              <!-- 移动端将页面标识与发表时间整合在正文底部 -->
+              <div class="col-show-mobile admin-mobile-subinfo">
+                {{ c.pageLabel || c.pageKey }} · {{ formatTime(c.createdAt) }}
+              </div>
             </td>
-            <td class="admin-cell-wrap">{{ c.pageLabel || c.pageKey }}</td>
+            <td class="admin-cell-wrap col-hide-mobile">{{ c.pageLabel || c.pageKey }}</td>
             <td style="text-align: center;">
               <span :class="['status-badge', commentStatusBadgeClass(c.status)]">
                 {{ statusLabel(c.status) }}
               </span>
             </td>
-            <td class="admin-num">{{ formatTime(c.createdAt) }}</td>
+            <td class="admin-num col-hide-mobile">{{ formatTime(c.createdAt) }}</td>
             <td>
               <div class="admin-row-actions">
                 <button v-if="c.status !== 1" type="button" class="admin-btn admin-btn--sm" @click="changeStatus(c, 1)">
@@ -1413,5 +1417,51 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   font-size: 12px;
   color: var(--text-muted);
   text-align: right;
+}
+
+.col-show-mobile {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .col-hide-mobile {
+    display: none !important;
+  }
+  .col-show-mobile {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.3;
+  }
+  .admin-toolbar--kinds .admin-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    max-width: 100%;
+  }
+  .admin-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+    padding-bottom: 2px;
+  }
+  .admin-row-actions {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .admin-row-actions .admin-btn {
+    padding: 3px 6px;
+    font-size: 11.5px;
+  }
+  .admin-toolbar {
+    gap: 6px;
+  }
+  .admin-search {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
 }
 </style>

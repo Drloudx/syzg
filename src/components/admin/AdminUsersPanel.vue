@@ -118,14 +118,14 @@
         <table class="admin-table">
           <thead>
             <tr>
-              <th style="width: 80px;">编号</th>
+              <th style="width: 70px;">编号</th>
               <th style="width: 140px;">用户</th>
-              <th style="width: 160px;">邮箱</th>
-              <th style="width: 70px; text-align: center;">评论</th>
+              <th class="col-hide-mobile" style="width: 160px;">邮箱</th>
+              <th class="col-hide-mobile" style="width: 70px; text-align: center;">评论</th>
               <th style="width: 90px;">角色</th>
               <th style="width: 85px; text-align: center;">状态</th>
-              <th style="width: 140px;">注册 / 最近登录</th>
-              <th style="width: 160px; text-align: right;">操作</th>
+              <th class="col-hide-mobile" style="width: 140px;">注册 / 最近登录</th>
+              <th style="width: 150px; text-align: right;">操作</th>
             </tr>
           </thead>
           <tbody>
@@ -143,11 +143,11 @@
                   <span class="user-name-text">{{ u.nick }}</span>
                 </div>
               </td>
-              <td>
+              <td class="col-hide-mobile">
                 <div class="email-cell">{{ u.email || '（已清空）' }}</div>
                 <div v-if="u.banNote" class="ban-note-badge">封禁：{{ u.banNote }}</div>
               </td>
-              <td style="text-align: center;">
+              <td class="col-hide-mobile" style="text-align: center;">
                 <RouterLink
                   v-if="u.commentCount > 0"
                   class="comment-count-link"
@@ -167,7 +167,7 @@
               <td style="text-align: center;">
                 <span :class="['status-badge', statusBadgeClass(u.status)]">{{ statusLabel(u.status) }}</span>
               </td>
-              <td class="mono-cell">
+              <td class="col-hide-mobile mono-cell">
                 <div>{{ formatDate(u.createdAt) }}</div>
                 <div style="font-size: 11px; opacity: 0.7;">{{ u.lastLoginAt ? formatDate(u.lastLoginAt) : '从未' }}</div>
               </td>
@@ -279,9 +279,19 @@
       </div>
     </section>
 
+    <!-- 移动端档案浮层背景蒙版 -->
+    <div
+      v-if="showMobileDrawer"
+      class="mobile-drawer-backdrop"
+      @click="closeMobileDrawer"
+    ></div>
+
     <!-- 3. 右栏：真实用户概览与活动足迹（边框 4：手造皮质缝线与内衬层） -->
-    <aside class="admin-detail-side leather-panel-container">
-      <div class="panel-header-title">✦ 用户档案与足迹 ✦</div>
+    <aside class="admin-detail-side leather-panel-container" :class="{ 'is-mobile-open': showMobileDrawer }">
+      <div class="panel-header-title">
+        <span>✦ 用户档案与足迹 ✦</span>
+        <button type="button" class="drawer-close-btn" @click="closeMobileDrawer" aria-label="关闭档案">✕</button>
+      </div>
 
       <template v-if="selectedUser">
         <!-- 用户名片 -->
@@ -618,6 +628,8 @@ const searchInput = ref('')
 const searchQuery = ref('')
 let searchTimer = 0
 
+const showMobileDrawer = ref(false)
+
 function avatarUrl(id) {
   const p = avatarPath(id || '')
   return p ? getImageUrl(p) : ''
@@ -625,6 +637,11 @@ function avatarUrl(id) {
 
 function selectUser(user) {
   selectedUser.value = user
+  showMobileDrawer.value = true
+}
+
+function closeMobileDrawer() {
+  showMobileDrawer.value = false
 }
 
 function statusBadgeClass(status) {
@@ -1840,12 +1857,135 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   text-align: right;
 }
 
+.drawer-close-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #8f7351;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.drawer-close-btn:hover {
+  color: var(--text-main);
+  background: rgba(143, 115, 81, 0.15);
+}
+
+.mobile-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 12050;
+  animation: fadeIn 0.2s ease-out;
+}
+
 @media (max-width: 1280px) {
   .admin-detail-side {
     width: 260px;
   }
   .stat-cards-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .drawer-close-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .col-hide-mobile {
+    display: none !important;
+  }
+
+  .admin-users-view {
+    gap: 0;
+  }
+
+  /* 移动端详情档案转为右侧滑出抽屉，不再常驻挤压中间内容 */
+  .admin-detail-side {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(340px, 86vw);
+    z-index: 12100;
+    transform: translateX(105%);
+    transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 0 0 8px;
+    background: var(--paper, #e0cfb4);
+  }
+  .admin-detail-side.is-mobile-open {
+    transform: translateX(0);
+  }
+
+  /* 顶部 4 联指标卡在移动端压缩为紧凑 2x2 网格 */
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .stat-card {
+    padding: 8px 10px;
+    gap: 10px;
+    border-radius: 6px;
+  }
+  .stat-icon-wrap {
+    width: 34px;
+    height: 34px;
+  }
+  .stat-icon-wrap svg {
+    width: 18px;
+    height: 18px;
+  }
+  .stat-label {
+    font-size: 11px;
+  }
+  .stat-value {
+    font-size: 17px;
+  }
+
+  /* 搜索与工具条排版 */
+  .workshop-toolbar {
+    gap: 6px;
+  }
+  .search-input-wrap {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+  .search-input {
+    height: 34px;
+    font-size: 12.5px;
+  }
+  .select-dropdown {
+    height: 34px;
+    font-size: 12px;
+    padding: 0 24px 0 8px;
+    flex: 1;
+  }
+  .btn-search,
+  .btn-refresh {
+    height: 34px;
+    font-size: 12px;
+    padding: 0 10px;
+  }
+
+  /* 翻页栏优化：隐藏冗余的跳页输入框 */
+  .page-jumper {
+    display: none;
+  }
+  .page-btn {
+    padding: 4px 10px;
+    font-size: 11.5px;
+  }
+  .page-number {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
   }
 }
 </style>

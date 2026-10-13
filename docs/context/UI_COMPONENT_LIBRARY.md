@@ -246,7 +246,7 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
 | `UiProgressBar` | 木轨进度条 | `value`(0~100)、`label` |
 | `UiEmptyState` | 空/加载/错误态 | `text`、`type`(empty/loading/error) |
 | `UiPageHeader` | 页面大标题（装饰线） | `title`、`subtitle` |
-| `UiBackToTop` | 回到顶部木钮（桌面端显示；移动端统一由 EdgeFloatingWidget 接管） | `scrollContainer`(选择器) |
+| `UiBackToTop` | 回到顶部木钮（桌面端显示，底部偏移 38px 避让主面板外框；移动端统一由 EdgeFloatingWidget 接管） | `scrollContainer`(选择器) |
 | `EdgeFloatingWidget` | 移动端贴边二合一悬浮拉手（收起为极简原木半圆把手，支持垂直拖拽与跨屏磁吸换边；展开为一体化原木胶囊，包含「顶部」与「导航」；全场景智能寻迹置顶） | `hidden`、`@toggle-nav` |
 | `UiListRow` | 通栏列表行 | `id`、`clickable`、`right` 插槽 |
 | `UiStatGrid` | 属性数值网格 | `items`(`[{label,value,tone?}]`)、`doubleCol` |
@@ -272,7 +272,7 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
 图片经过 `getImageUrl`，点击统一发 `item-click`；图标保持比例，透明留白调整只作用于展示，不修改原图。多材料不能被隐藏，数量不能挤偏图标。限购显示配置上限，不模拟账号“剩余/已售罄/已拥有”。种子和兔子的刷新规则在页面集中展示，其他变体仍保留必要规则文案。
 ### 2.2 长列表与图片加载
 
-- `UiItemCard.showName` 默认 `true`；邮件奖励使用 `false` 隐藏名称底板，数量复用 `extra` 插槽，品质背景框和 68% 图标比例与物品图鉴保持一致。邮件列表按钮局部固定悬停文字颜色，不改变公共 `UiButton` 行为。
+- `UiItemCard.showName` 默认 `true`；名称底板复用游戏素材 `com_txt_box.webp`（皮纸方框九宫格），邮件奖励使用 `false` 隐藏底板，数量复用 `extra` 插槽，品质背景框和 68% 图标比例与物品图鉴保持一致。邮件列表按钮局部固定悬停文字颜色，不改变公共 `UiButton` 行为。
 
 - 角色皮肤由 `HeroSkinsPanel` 展示。桌面有模型时采用 **42:27:31** 的立绘/信息/模型三栏，来源标签独占皮肤名下一行；手机上方为立绘/模型两栏，下方展示名称、来源和属性。
 - 物品皮肤预览用**等宽两栏**（立绘与小人各半），图片保持 contain 完整展示；手机仍维持左右各半并降低高度。

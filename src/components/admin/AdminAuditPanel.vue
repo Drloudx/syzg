@@ -616,4 +616,24 @@ onMounted(() => {
   color: var(--text-muted);
   font-size: 13.5px;
 }
+
+@media (max-width: 900px) {
+  .audit-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .page-jumper {
+    display: none;
+  }
+  .page-btn {
+    padding: 4px 10px;
+    font-size: 11.5px;
+  }
+  .page-number {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
 </style>

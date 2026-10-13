@@ -17,6 +17,21 @@
   <div class="admin-shell">
     <header class="admin-head">
       <div class="brand-group">
+        <button
+          v-if="authed"
+          type="button"
+          class="admin-menu-toggle-btn"
+          :class="{ 'is-active': mobileNavOpen }"
+          title="切换管理目录"
+          aria-label="切换管理目录"
+          @click="mobileNavOpen = !mobileNavOpen"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
         <svg class="brand-symbol" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
         </svg>
@@ -82,11 +97,21 @@
 
     <!-- 已登录：三栏大工作台 -->
     <div v-else class="admin-main-stage">
+      <!-- 移动端侧栏遮罩 -->
+      <div
+        v-if="mobileNavOpen"
+        class="admin-nav-backdrop"
+        @click="mobileNavOpen = false"
+      ></div>
+
       <!-- 左栏：管理目录（边框 4：手造皮质缝线与内衬层） -->
-      <aside class="admin-side-nav leather-panel-container">
-        <div>
-          <div class="panel-header-title">✦ 管理目录 ✦</div>
-          <nav class="nav-list">
+      <aside class="admin-side-nav leather-panel-container" :class="{ 'is-mobile-open': mobileNavOpen }">
+        <div class="mobile-nav-top-wrap">
+          <div class="panel-header-title">
+            <span>✦ 管理目录 ✦</span>
+            <button type="button" class="mobile-nav-close-btn" @click="mobileNavOpen = false" aria-label="关闭目录">✕</button>
+          </div>
+          <nav class="nav-list" @click="mobileNavOpen = false">
             <RouterLink to="/admin" class="nav-item" exact-active-class="active">
               <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
               <span>控制台概览</span>
@@ -158,6 +183,11 @@ const checking = ref(false)
 const gateError = ref('')
 const gateTitle = ref('需要管理员权限')
 const gateHint = ref('')
+
+const mobileNavOpen = ref(false)
+watch(() => router.currentRoute.value.path, () => {
+  mobileNavOpen.value = false
+})
 
 const loggedIn = computed(() => isLoggedIn.value)
 /** 仅用于页签显隐的乐观判断；真正的准入由服务端请求决定 */
@@ -632,6 +662,158 @@ function onLogout() {
   background: rgba(184, 50, 50, 0.22);
   border-color: rgba(240, 127, 127, 0.4);
   color: #f07f7f;
+}
+
+/* ---------- 移动端专属控制 ---------- */
+.admin-menu-toggle-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 215, 140, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffd78c;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+.admin-menu-toggle-btn:hover {
+  background: rgba(255, 215, 140, 0.2);
+  border-color: #ffd78c;
+}
+.admin-menu-toggle-btn.is-active {
+  background: #c5913e;
+  color: #2b1f15;
+}
+
+.mobile-nav-top-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-close-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: #8f7351;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.mobile-nav-close-btn:hover {
+  color: var(--text-main);
+  background: rgba(143, 115, 81, 0.15);
+}
+
+.admin-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 12050;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .admin-menu-toggle-btn {
+    display: inline-flex;
+  }
+  .mobile-nav-close-btn {
+    display: inline-flex;
+  }
+  .admin-head {
+    height: 48px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+  .brand-group {
+    gap: 6px;
+  }
+  .brand-title {
+    display: none;
+  }
+  .brand-symbol {
+    width: 20px;
+    height: 20px;
+  }
+  .brand-badge {
+    font-size: 10px;
+    padding: 1px 5px;
+  }
+  .admin-head-right {
+    gap: 6px;
+  }
+  .admin-profile {
+    padding: 2px 6px 2px 2px;
+    gap: 4px;
+  }
+  .admin-role-pill {
+    display: none;
+  }
+  .admin-avatar-mini {
+    width: 24px;
+    height: 24px;
+  }
+  .admin-name {
+    font-size: 12px;
+    max-width: 68px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .admin-head-link {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+  .admin-exit-btn {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .admin-main-stage {
+    padding: 6px;
+    gap: 0;
+  }
+
+  .admin-side-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    max-width: 80vw;
+    z-index: 12100;
+    transform: translateX(-105%);
+    transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+    background: var(--paper, #e0cfb4);
+    border-radius: 0 8px 8px 0;
+  }
+  .admin-side-nav.is-mobile-open {
+    transform: translateX(0);
+  }
+
+  .admin-body {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-name {
+    display: none;
+  }
 }
 </style>
 
@@ -1337,5 +1519,32 @@ function onLogout() {
 }
 :global(.dark-mode .admin-shell ::-webkit-scrollbar-thumb:hover) {
   background: #e5b060;
+}
+
+@media (max-width: 900px) {
+  .admin-workshop {
+    padding: 10px 10px 8px !important;
+    gap: 8px !important;
+  }
+  .workshop-header {
+    padding-bottom: 8px !important;
+  }
+  .workshop-title {
+    font-size: 17px !important;
+  }
+  .workshop-subtitle {
+    display: none !important;
+  }
+  .table-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+  }
+  .admin-table {
+    font-size: 12px;
+  }
+  .admin-table th,
+  .admin-table td {
+    padding: 6px 8px;
+  }
 }
 </style>
