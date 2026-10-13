@@ -10,8 +10,8 @@
       </p>
     </div>
 
-    <div class="admin-toolbar">
-      <div class="admin-filters">
+    <div class="admin-toolbar admin-toolbar--main">
+      <div class="admin-filters admin-filters--status">
         <button
           v-for="f in FILTERS"
           :key="f.value"
@@ -25,18 +25,20 @@
         </button>
       </div>
 
-      <input
-        :value="searchInput"
-        class="admin-input admin-search"
-        type="search"
-        placeholder="搜正文 / 昵称 / 页面标识"
-        @input="onSearchInput($event.target.value)"
-        @keydown.enter="applySearch"
-      />
-      <button type="button" class="admin-btn admin-btn--sm" @click="applySearch">搜索</button>
-      <button v-if="searchQuery" type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="clearSearch">
-        清除
-      </button>
+      <div class="search-input-group">
+        <input
+          :value="searchInput"
+          class="admin-input admin-search"
+          type="search"
+          placeholder="搜正文 / 昵称 / 页面标识"
+          @input="onSearchInput($event.target.value)"
+          @keydown.enter="applySearch"
+        />
+        <button type="button" class="admin-btn admin-btn--search" @click="applySearch">搜索</button>
+        <button v-if="searchQuery" type="button" class="admin-btn admin-btn--ghost admin-btn--search" @click="clearSearch">
+          清除
+        </button>
+      </div>
     </div>
 
     <!--
@@ -1419,6 +1421,22 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   text-align: right;
 }
 
+.search-input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 260px;
+}
+.search-input-group .admin-search {
+  flex: 1;
+  min-width: 0;
+}
+.search-input-group .admin-btn--search {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 .col-show-mobile {
   display: none;
 }
@@ -1507,9 +1525,28 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   .admin-toolbar {
     gap: 6px;
   }
-  .admin-search {
-    min-width: 0;
-    flex: 1 1 100%;
+  .admin-toolbar--main {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .search-input-group {
+    width: 100% !important;
+    min-width: 0 !important;
+    display: flex !important;
+    gap: 6px !important;
+  }
+  .search-input-group .admin-search {
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 34px !important;
+  }
+  .search-input-group .admin-btn--search {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    height: 34px !important;
+    padding: 0 14px !important;
+    font-size: 13px !important;
   }
 
   /* 分页栏隐藏冗余跳转框，按钮不折行 */
