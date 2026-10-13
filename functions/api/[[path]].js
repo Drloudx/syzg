@@ -43,6 +43,7 @@ import {
   matchReview
 } from '../../src/config/commentBlocklist.js'
 import { MAX_BODY_DISPLAY, MAX_BODY_RAW, countEmoticonDisplayChars } from '../../src/config/emoticons.js'
+import { getAdminStats, invalidateAdminStatsCache } from '../../src/config/adminStatsCache.js'
 import {
   CAPTCHA_TTL_MS, CODE_COOLDOWN_SEC, CODE_DIGITS, CODE_EMAIL_DAILY_MAX,
   CODE_IP_DAILY_MAX, CODE_IP_HOURLY_MAX, CODE_MAX_ACTIVE, CODE_MAX_ATTEMPTS,
@@ -839,6 +840,13 @@ async function createComment(env, request, ts) {
     )
     .first()
 
+  /*
+   * 概览缓存失效：新评论会改变总数；若命中词表进待审（`status = 0`），
+   * 「待审」计数也变。概览是只读仪表盘，滞后 30 秒本身可接受，
+   * 但"刚发完就去后台看数字没动"是**可复现的困惑**，故主动失效。
+   */
+  invalidateAdminStatsCache()
+
   return json(
     {
       ok: true,
@@ -872,7 +880,6 @@ async function createComment(env, request, ts) {
     201
   )
 }
-
 /**
  * DELETE /api/comments —— 删自己发的评论。
  *
@@ -917,6 +924,8 @@ async function deleteOwnComment(env, request, ts) {
    * 仍是软删除，用于审核下架，两者职责不同。
    */
   await env.DB.prepare(`DELETE FROM comments WHERE id = ?1`).bind(id).run()
+  // 自删也是"评论少了一条" → 失效概览缓存
+  invalidateAdminStatsCache()
   return json({ ok: true })
 }
 
@@ -1318,6 +1327,12 @@ async function adminPatch(env, request, actor, ts) {
   }
   await env.DB.batch(statements)
 
+  /*
+   * 概览缓存失效：改了评论状态 = 待审/已显示/已隐藏三个计数都变，
+   * 不失效的话管理员处理完回概览还是旧数字，会以为没生效。
+   */
+  if (foundIds.length) invalidateAdminStatsCache()
+
   return json({ ok: true, changed: foundIds.length, missing })
 }
 
@@ -1364,6 +1379,9 @@ async function adminDelete(env, request, actor, ts) {
     targetId: id,
     detail: `${row.nick}：${String(row.body || '').slice(0, 40)}`
   }, ts)
+
+  // 彻底删除会同时改变总量与各状态计数 → 失效概览缓存
+  invalidateAdminStatsCache()
 
   return json({ ok: true })
 }
@@ -1416,12 +1434,16 @@ function dailySeries(rows, days, dayStart) {
 }
 
 /**
- * `GET /api/admin/stats` —— 后台概览。
+ * 真算一次概览（**不做缓存**，只被 `getAdminStats` 调用）。
  *
  * 刻意**只用几条聚合查询**：管理端低频，但仍然避免"每个数字一条查询"
  * （那样一屏要点十几次 D1，免费额度是有限的）。
+ *
+ * ⚠️ 这 9 条里 7 条是"计数一遍"（`COUNT(*)` / `GROUP BY` / `SUM(CASE …)`），
+ * **索引无法优化** —— 数一遍就得把相关行读一遍。这就是它必须走缓存的原因
+ * （见 `src/config/adminStatsCache.js`）。
  */
-async function adminStats(env) {
+async function computeAdminStats(env) {
   const ts = nowSec()
   // UTC 日界线，与限流的 `dayBucket()` 口径一致 —— 否则"今天的数"与
   // "今天的限额"会对不上，排查时容易怀疑人生
@@ -1475,7 +1497,15 @@ async function adminStats(env) {
   const cmt7d = dailySeries(cmtDaily.results, 7, dayStart)
   const cmtYesterday = cmt7d.length >= 2 ? cmt7d[cmt7d.length - 2].n : 0
 
-  return json({
+  /*
+   * 🔴 返回**纯数据对象**，不返回 `json(...)` 的 Response。
+   *
+   * 这个函数的结果会被模块级缓存复用多次，而 Response 的 body **只能读一次**：
+   * 缓存 Response 后第二次返回会抛
+   * `TypeError: Can't read from request stream after it has been used`（实测 500）。
+   * 序列化交给路由层的 `json()` —— 每次现序列化，成本可忽略。
+   */
+  return {
     ok: true,
     ts,
     comments: {
@@ -1499,7 +1529,25 @@ async function adminStats(env) {
       last7d: dailySeries(usrDaily.results, 7, dayStart)
     },
     sessions: { active: sessionCount?.n ?? 0 }
-  })
+  }
+}
+
+/**
+ * `GET /api/admin/stats` —— 后台概览（**带 30 秒模块级缓存**）。
+ *
+ * 🔴 缓存是必需的，不是优化项：`computeAdminStats` 要跑 9 条聚合，
+ * 其中 7 条是"计数一遍"，**索引无法优化**（实测加索引后仍约 2.2 万行读/次）。
+ * D1 免费额度按 rows read 计（5M/天），不缓存则 229 次/天打满。
+ *
+ * 滞后可接受（用户已确认）：概览是只读仪表盘，看的是量级与趋势。
+ * 但**写侧主动失效**，所以"处理完待审 → 回概览"不会看到旧数字。
+ *
+ * 缓存的是**纯数据对象**（不是 Response）：Response body 只能读一次，
+ * 缓存 Response 就得每次 `clone()`，徒增复杂度。序列化交给路由层的 `json()`。
+ * 载荷里的 `ts` 是**算出来的时刻**，正好用来显示"数据统计于 …"。
+ */
+async function adminStats(env) {
+  return json(await getAdminStats(() => computeAdminStats(env)))
 }
 
 /** `GET /api/admin/users` —— 用户列表（可按状态筛、按编号/昵称/邮箱搜）。 */
@@ -1711,6 +1759,9 @@ async function adminUserPatch(env, request, actor, ts) {
     }`
   }, ts)
 
+  // 封禁/解封改变「正常 / 已封禁」计数，且封禁会踢掉会话（活跃数也变）
+  invalidateAdminStatsCache()
+
   return json({ ok: true })
 }
 
@@ -1758,6 +1809,9 @@ async function adminUserDelete(env, request, actor, ts) {
     detail: `已彻底删除：${row.nick}（角色 ${ROLE_LABELS[row.role] ?? row.role}）`
   }, ts)
 
+  // 彻底删除用户会改变用户总数/各状态计数，其评论的 user_id 也被清空
+  invalidateAdminStatsCache()
+
   return json({ ok: true })
 }
 
@@ -1797,6 +1851,9 @@ async function adminUserSetRole(env, request, actor, ts) {
     targetId: id,
     detail: `${target.nick}：${ROLE_LABELS[target.role] ?? target.role} → ${ROLE_LABELS[role]}`
   }, ts)
+
+  // 角色变更影响「普通用户 / 管理员」构成（概览显示停用与活跃构成）
+  invalidateAdminStatsCache()
 
   return json({ ok: true })
 }
@@ -2633,6 +2690,8 @@ async function authRegister(env, request, ts) {
 
   const row = await env.DB.prepare(`SELECT * FROM users WHERE email_hash = ?1`).bind(emailHash).first()
   const token = await issueSession(env, row.id, request, ts, await sha256Hex(clientIp(request) + (env.IP_HASH_SALT || '')))
+  // 新用户改变「注册用户 / 今日新增」计数 → 失效概览缓存
+  invalidateAdminStatsCache()
   return json({ ok: true, token, user: toPublicUser(row) })
 }
 
@@ -3111,6 +3170,9 @@ async function authDeleteAccount(env, request, ts) {
     .run()
   await revokeSessions(env, uid)
   await env.DB.prepare(`DELETE FROM auth_codes WHERE email_hash = ?1`).bind(session.row.email_hash).run()
+
+  // 注销把用户计入「已注销」并清空会话 → 用户构成与活跃数都变
+  invalidateAdminStatsCache()
 
   return json({ ok: true })
 }
