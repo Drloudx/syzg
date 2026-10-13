@@ -12,6 +12,14 @@
 
     <div class="admin-toolbar admin-toolbar--main">
       <div class="admin-filters admin-filters--status">
+        <!--
+          档位按钮**只显示名字，不显示条数**（2026-10-14 去掉了）。
+          原因：那是唯一一处「每翻一页都要全表数一遍」的开销。
+          四个数字来自 `SELECT status, COUNT(*) … GROUP BY status`，
+          实测它占单页成本的 91%~99%（分页本身只读 50 行，而这个要读全表）。
+          且它随评论量线性增长 —— 评论到 2.5 万条时，每天翻 200 页就能吃满
+          D1 免费额度。而"总数"对筛选没有帮助：点进去自然就看到有多少条了。
+        -->
         <button
           v-for="f in FILTERS"
           :key="f.value"
@@ -21,7 +29,6 @@
           @click="setFilter(f.value)"
         >
           {{ f.label }}
-          <template v-if="statusCounts[f.value] !== undefined">（{{ statusCounts[f.value] }}）</template>
         </button>
       </div>
 
@@ -473,8 +480,7 @@ const NOTE_FILTERS = [
 const noteFilter = ref('')
 const cursor = ref(null)
 const hasMore = ref(false)
-const pendingCount = ref(0)
-const statusCounts = ref({})
+// 档位条数已随胶囊数字一起去掉（见模板注释）：这两个 ref 不再有消费者
 const deletingId = ref(null)
 
 // 分页控制
@@ -799,15 +805,6 @@ async function load({ page: reqPage } = {}) {
     totalPages.value = data.totalPages ?? 1
     totalCount.value = data.total ?? page.length
     hasMore.value = Boolean(data.hasMore)
-    if (data.statusCounts) {
-      statusCounts.value = { ...statusCounts.value, ...data.statusCounts }
-      if (typeof statusCounts.value['0'] === 'number') {
-        pendingCount.value = statusCounts.value['0']
-      }
-    } else if (typeof data.pendingCount === 'number') {
-      pendingCount.value = data.pendingCount
-      statusCounts.value['0'] = data.pendingCount
-    }
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '加载失败，请重试'
   } finally {

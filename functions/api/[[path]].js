@@ -1082,21 +1082,25 @@ async function adminList(env, url) {
     const { results } = await env.DB.prepare(sql).bind(...queryBinds).all()
     const rows = results || []
 
-    const groupRes = await env.DB.prepare(`SELECT status, COUNT(*) AS n FROM comments GROUP BY status`).all()
-    const scMap = { 0: 0, 1: 0, 2: 0 }
-    let totalAll = 0
-    for (const r of groupRes?.results || []) {
-      scMap[r.status] = r.n
-      totalAll += r.n
-    }
-    const pendingCount = scMap[0] || 0
-    const statusCounts = {
-      '0': scMap[0] || 0,
-      '1': scMap[1] || 0,
-      '2': scMap[2] || 0,
-      '': totalAll
-    }
-
+    /*
+     * 🔴 这里原先还有一条 `SELECT status, COUNT(*) … GROUP BY status`，
+     * 供前台四个档位胶囊显示条数（待审(310) / 已显示(3051) / …）。
+     * 2026-10-14 **已删除**，原因：
+     *
+     *   1. 它是"必须数一遍"的查询 —— SQLite 要数出每组行数，就得逐行扫过
+     *      所有匹配行，借覆盖索引也只是扫得窄些，**行数一个都少不了**。
+     *      实测放大 10 倍表后耗时增长 **8.38x**（对照：分页 `LIMIT 50` 是 0.50x，
+     *      因为它能提前停止）。即它**随评论量线性变贵**。
+     *   2. 它占单页成本的 **91%~99%**：分页本身只读 50 行，而这条要读全表
+     *      （当前 3.6k 条评论 ≈ 3,648 行/页）。
+     *   3. 它在 `isPageMode` 块内**无条件执行**，每翻一页都跑一遍 —— 而
+     *      各组行数在翻页时根本不会变。旁边的 `total` 有"只在第 1 页算"的
+     *      优化，这条却绕过了它。
+     *   4. 收益极低：筛选档位不需要预先知道条数，点进去自然就看到有多少条。
+     *
+     * 保留 `total`：分页（`totalPages`）需要它，且它只在第 1 页算一次，
+     * 走 `idx_comments_status_id` 定位，成本随**命中行数**而非全表。
+     */
     return json({
       ok: true,
       comments: rows.map(toAdminComment),
@@ -1104,9 +1108,7 @@ async function adminList(env, url) {
       totalPages,
       page: pageNum,
       limit,
-      hasMore: pageNum < totalPages,
-      pendingCount,
-      statusCounts
+      hasMore: pageNum < totalPages
     })
   }
 
@@ -1127,19 +1129,16 @@ async function adminList(env, url) {
   const hasMore = rows.length > limit
   const page = hasMore ? rows.slice(0, limit) : rows
 
-  // 待审总数：只在第一页算；管理端低频，COUNT(*) 的成本可接受
-  let pendingCount = 0
-  if (!hasCursor) {
-    const c = await env.DB.prepare(`SELECT COUNT(*) AS n FROM comments WHERE status = 0`).first()
-    pendingCount = c?.n ?? 0
-  }
-
+  /*
+   * 游标模式（旧路径）：`pendingCount` 也一并去掉 —— 它唯一的消费者是
+   * 前台的档位胶囊数字，而那四个数字已于 2026-10-14 移除（见分页模式处的说明）。
+   * 留着不删会让"每页多一条 COUNT"的成本原地复活。
+   */
   return json({
     ok: true,
     comments: page.map(toAdminComment),
     nextCursor: hasMore ? page[page.length - 1].id : null,
-    hasMore,
-    pendingCount
+    hasMore
   })
 }
 
@@ -2750,6 +2749,12 @@ async function authLogin(env, request, ts) {
   ])
 
   const token = await issueSession(env, row.id, request, ts, ipHash)
+  /*
+   * 登录会**新建会话** → 改变「活跃会话数」与「今日活跃用户（DAU）」。
+   * 这是原先漏掉的一处失效（2026-10-14 补）：30 秒 TTL 时几乎看不见，
+   * 但 TTL 提到 5 分钟后，登录后概览的活跃数会滞后到最多 5 分钟。
+   */
+  invalidateAdminStatsCache()
   return json({ ok: true, token, user: toPublicUser(row) })
 }
 

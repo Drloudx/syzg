@@ -15,7 +15,8 @@ import { test } from 'node:test'
 import {
   getAdminStats,
   invalidateAdminStatsCache,
-  setStatsCachedAtForTest
+  setStatsCachedAtForTest,
+  setStatsCachedDayForTest
 } from '../../src/config/adminStatsCache.js'
 
 /** 每个用例先清干净，避免模块级状态跨用例串味 */
@@ -62,12 +63,64 @@ test('TTL 过期后自动重算（把时间戳往前拨来模拟）', async () =
   await getAdminStats(compute)
   assert.equal(calls, 1)
 
-  // 拨到 1 小时前 → 远超 TTL(30s)
+  // 拨到 1 小时前 → 远超 TTL(5 分钟)
   setStatsCachedAtForTest(Date.now() - 3_600_000)
 
   const after = await getAdminStats(compute)
   assert.equal(calls, 2, 'TTL 过期后应当重算')
   assert.equal(after.n, 2)
+})
+
+test('🔴 跨 UTC 日界线强制重算（长 TTL 的前提）', async () => {
+  /*
+   * 概览的「今日 / 昨日 / 今日新增 / 7 日趋势」都基于
+   * `dayStart = 秒 - 秒 % 86400`，即 UTC 日界线（= 北京时间 08:00）。
+   * 若跨过这条线还用旧缓存，「今日」会显示成昨天的数 ——
+   * TTL 越长错得越久（30 秒时无感，5 分钟时就明显了）。
+   *
+   * 有了这条跨日判定，跨日**零滞后**，于是长 TTL 不再有可感知代价。
+   */
+  reset()
+  let calls = 0
+  const compute = async () => ({ ok: true, n: ++calls })
+
+  await getAdminStats(compute)
+  assert.equal(calls, 1)
+
+  // 同一天内、TTL 内 → 命中，不该被跨日判定误伤
+  await getAdminStats(compute)
+  assert.equal(calls, 1, '同一天且 TTL 内应命中缓存')
+
+  // 🔴 把「缓存是哪天算的」改成昨天 → 即使 TTL 还没到，也必须重算
+  const nowSec = Math.floor(Date.now() / 1000)
+  const todayStart = nowSec - (nowSec % 86400)
+  setStatsCachedDayForTest(todayStart - 86400)
+
+  await getAdminStats(compute)
+  assert.equal(calls, 2, '跨日后必须强制重算（否则「今日」显示昨天的数）')
+})
+
+test('TTL 是 5 分钟（改值后旧断言会立刻发现）', async () => {
+  /*
+   * 这条守的是「TTL 的具体数值」这个决策本身。
+   * 它容易被无意改小：改回 30 秒会让缓存几乎失效（见 adminStatsCache.js 的说明），
+   * 而那是个**性能上静默退化**、功能上看不出来的问题。
+   */
+  reset()
+  let calls = 0
+  const compute = async () => ({ ok: true, n: ++calls })
+
+  await getAdminStats(compute)
+
+  // 4 分钟前 → 仍在 5 分钟窗口内 → 命中
+  setStatsCachedAtForTest(Date.now() - 4 * 60 * 1000)
+  await getAdminStats(compute)
+  assert.equal(calls, 1, '4 分钟前算的应当仍在 TTL 内（TTL 至少 4 分钟）')
+
+  // 6 分钟前 → 超出 → 重算
+  setStatsCachedAtForTest(Date.now() - 6 * 60 * 1000)
+  await getAdminStats(compute)
+  assert.equal(calls, 2, '6 分钟前算的应已过期（TTL 不超过 6 分钟）')
 })
 
 test('并发请求只算一次（in-flight 合并）', async () => {
