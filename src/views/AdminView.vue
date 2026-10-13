@@ -16,21 +16,29 @@
   -->
   <div class="admin-shell">
     <header class="admin-head">
-      <span class="admin-brand">深渊大书院 · 后台</span>
-
-      <nav v-if="authed" class="admin-tabs">
-        <RouterLink to="/admin" class="admin-tab" exact-active-class="is-on">概览</RouterLink>
-        <RouterLink to="/admin/comments" class="admin-tab" active-class="is-on">评论</RouterLink>
-        <RouterLink to="/admin/users" class="admin-tab" active-class="is-on">用户</RouterLink>
-        <!-- 审计只给超管看：记录里含其他管理员的操作痕迹，追责是超管的职责 -->
-        <RouterLink v-if="isSuper" to="/admin/audit" class="admin-tab" active-class="is-on">审计</RouterLink>
-        <!-- 设置只给超管：里面是"审核口径"一类影响所有管理员的配置 -->
-        <RouterLink v-if="isSuper" to="/admin/settings" class="admin-tab" active-class="is-on">设置</RouterLink>
-      </nav>
+      <div class="brand-group">
+        <svg class="brand-symbol" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+        </svg>
+        <span class="brand-title">Tragoudi tou Abel · Wiki · Admin</span>
+        <span class="brand-badge">深渊大书院</span>
+      </div>
 
       <div class="admin-head-right">
-        <a class="admin-link" href="#/" title="回到前台">← 前台</a>
-        <button v-if="authed" type="button" class="admin-quiet-btn" @click="onLogout">退出</button>
+        <div v-if="authed" class="admin-profile" title="当前管理员会话">
+          <img v-if="adminAvatarUrl" :src="adminAvatarUrl" class="admin-avatar-mini" alt="" />
+          <div v-else class="admin-avatar-mini admin-avatar-mini--fallback">{{ (adminNick || '管')[0] }}</div>
+          <span class="admin-name">{{ adminNick }}</span>
+          <span class="admin-role-pill">{{ adminRoleText }}</span>
+        </div>
+
+        <a class="admin-head-link" href="#/" title="回到前台 Wiki">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          <span>前台</span>
+        </a>
+        <button v-if="authed" type="button" class="admin-exit-btn" @click="onLogout">退出</button>
       </div>
     </header>
 
@@ -42,41 +50,97 @@
         · 网络/服务端异常 → 提示重试
     -->
     <div v-if="!authed" class="admin-gate">
-      <h1 class="admin-gate-title">{{ gateTitle }}</h1>
-      <p class="admin-gate-hint">{{ gateHint }}</p>
-      <div class="admin-gate-row">
-        <button v-if="!loggedIn" type="button" class="admin-btn" @click="onGoLogin">去登录</button>
-        <button v-else type="button" class="admin-btn admin-btn--ghost" :disabled="checking" @click="recheck">
-          {{ checking ? '检查中…' : '重新检查' }}
-        </button>
-        <a class="admin-btn admin-btn--ghost" href="#/">返回前台</a>
+      <div class="admin-gate-card leather-panel-container">
+        <div class="panel-header-title">✦ 权限验证 ✦</div>
+        <div class="admin-gate-body">
+          <div class="admin-gate-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <h1 class="admin-gate-title">{{ gateTitle }}</h1>
+          <p class="admin-gate-hint">{{ gateHint }}</p>
+          <div class="admin-gate-row">
+            <button v-if="!loggedIn" type="button" class="admin-btn admin-btn--gold" @click="onGoLogin">去登录</button>
+            <button v-else type="button" class="admin-btn admin-btn--gold" :disabled="checking" @click="recheck">
+              {{ checking ? '检查中…' : '重新检查' }}
+            </button>
+            <a class="admin-btn admin-btn--ghost" href="#/">返回前台</a>
+          </div>
+          <div v-if="gateError" class="admin-gate-error-banner">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <span>{{ gateError }}</span>
+          </div>
+        </div>
       </div>
-      <p v-if="gateError" class="admin-error">{{ gateError }}</p>
     </div>
 
-    <main v-else class="admin-body">
-      <RouterView />
-    </main>
+    <!-- 已登录：三栏大工作台 -->
+    <div v-else class="admin-main-stage">
+      <!-- 左栏：管理目录（边框 4：手造皮质缝线与内衬层） -->
+      <aside class="admin-side-nav leather-panel-container">
+        <div>
+          <div class="panel-header-title">✦ 管理目录 ✦</div>
+          <nav class="nav-list">
+            <RouterLink to="/admin" class="nav-item" exact-active-class="active">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+              <span>控制台概览</span>
+            </RouterLink>
+            <RouterLink to="/admin/users" class="nav-item" active-class="active">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M16 5c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm-8 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 8c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              <span>用户管理</span>
+            </RouterLink>
+            <RouterLink to="/admin/comments" class="nav-item" active-class="active">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+              <span>评论审核</span>
+            </RouterLink>
+            <!-- 审计只给超管看：记录里含其他管理员的操作痕迹，追责是超管的职责 -->
+            <RouterLink v-if="isSuper" to="/admin/audit" class="nav-item" active-class="active">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+              <span>审计日志</span>
+              <span class="nav-tag-super">超管</span>
+            </RouterLink>
+            <!-- 设置只给超管：里面是"审核口径"一类影响所有管理员的配置 -->
+            <RouterLink v-if="isSuper" to="/admin/settings" class="nav-item" active-class="active">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+              <span>系统设置</span>
+              <span class="nav-tag-super">超管</span>
+            </RouterLink>
+          </nav>
+        </div>
+
+        <div class="side-footer-actions">
+          <a class="side-footer-link" href="#/" title="跳转前台首页">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>前往首页</span>
+          </a>
+          <a class="side-footer-link" href="#/discussions" title="前往讨论区">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>前往讨论区</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- 中间内容区 -->
+      <main class="admin-body">
+        <RouterView />
+      </main>
+    </div>
   </div>
 </template>
 
 <script setup>
 /**
- * 后台外壳：权限闸门 + 顶部页签 + 内容区。
- *
- * 三块内容（概览 / 评论 / 用户 / 审计）是 `/admin` 下的**子路由**，
- * 这样刷新、分享链接、浏览器前进后退都正常，而不必在外壳里维护一个 `tab` 状态。
- *
- * ## 鉴权（2026-10-07 改）
- *
- * 旧实现是"填管理令牌 → 存 localStorage → 带 `x-admin-token`"。已删除，
- * 原因见 `adminApi.js` 顶部注释（永不过期、明文存 localStorage、无法追溯身份）。
- * 现在直接看**登录账号的 `users.role`**：
- *
- *   · 用一次真实请求（`/api/admin/stats`）确认权限，而不是只看本地 role ——
- *     本地那份是**上次登录时的快照**，账号可能已经被降级或封禁；
- *   · 所以 `authed` 由"请求成功"决定，不由 `currentUser.role` 决定。
- *     后者只用来决定**显不显示"审计"页签**（少一次请求的乐观渲染）。
+ * 后台外壳：权限闸门 + 顶部栏 + 左侧手造皮质缝线管理目录 + 内容区。
  */
 import { computed, ref, watch } from 'vue'
 import { RouterLink, RouterView, useRouter } from 'vue-router'
@@ -84,6 +148,8 @@ import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { AdminApiError, fetchAdminStats } from '../utils/adminApi.js'
 import { openAccountModal } from '../utils/accountModal.js'
 import { currentUser, isLoggedIn } from '../utils/authSession.js'
+import { avatarPath } from '../utils/avatarCatalog.js'
+import { getImageUrl } from '../utils/env.js'
 
 const router = useRouter()
 
@@ -97,11 +163,15 @@ const loggedIn = computed(() => isLoggedIn.value)
 /** 仅用于页签显隐的乐观判断；真正的准入由服务端请求决定 */
 const isSuper = computed(() => Number(currentUser.value?.role) >= 2)
 
+const adminNick = computed(() => currentUser.value?.nick || '管理员')
+const adminRoleText = computed(() => isSuper.value ? '超级管理员' : '管理员')
+const adminAvatarUrl = computed(() => {
+  const p = avatarPath(currentUser.value?.avatar || '')
+  return p ? getImageUrl(p) : ''
+})
+
 /**
  * 用**一次真实请求**确认权限。
- *
- * 为什么不能只看 `currentUser.role`：那是登录时的快照，
- * 账号被降级/封禁后本地仍是旧值，会让人看到"三个页签、点进去全报错"。
  */
 async function recheck() {
   checking.value = true
@@ -135,7 +205,6 @@ function onGoLogin() {
 }
 
 function onLogout() {
-  // 只退出后台视图，不动用户会话 —— "退出后台"与"退出登录"是两件事
   authed.value = false
   router.replace('/')
 }
@@ -145,14 +214,6 @@ function onLogout() {
 .admin-shell {
   position: fixed;
   inset: 0;
-  /*
-   * z-index **必须是 11000**，不是随手一个 900：
-   *   · 站点的 `.app-header` 是 10000 —— 低于它就盖不住顶栏；
-   *   · 全局弹窗（`UiModal` 的 teleport 模式）是 12000 ——
-   *     高于它就会把账号弹窗之类的压到我们下面（那些是站点级的，
-   *     该在最上面）。
-   * 11000 正好卡在两者之间。
-   */
   z-index: 11000;
   display: flex;
   flex-direction: column;
@@ -167,64 +228,319 @@ function onLogout() {
   flex: none;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 0 14px;
-  height: 48px;
-  border-bottom: 1px solid var(--border-color, #8f7351);
-  background: var(--paper-soft, #e9dcc3);
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 54px;
+  background: linear-gradient(180deg, #2c1d11, #1a1109);
+  border-bottom: 2px solid #85653e;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+  color: #f7e6c4;
 }
 
-.admin-brand {
-  font-size: 14px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.admin-tabs {
-  display: flex;
-  gap: 4px;
-  min-width: 0;
-  overflow-x: auto;
-}
-
-.admin-tab {
-  padding: 5px 12px;
-  border-radius: 6px;
-  color: var(--text-muted);
-  font-size: 13px;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.admin-tab.is-on {
-  background: var(--paper-solid, #d9c6a6);
-  color: var(--text-main);
-  font-weight: 600;
-}
-
-.admin-head-right {
-  margin-left: auto;
+.brand-group {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex: none;
 }
 
-.admin-link {
-  color: var(--accent-ink);
+.brand-symbol {
+  width: 22px;
+  height: 22px;
+  color: #ffd78c;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 140, 0.6));
+}
+
+.brand-title {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #f7e6c4;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  font-family: var(--font-ui, "Cinzel", "Times New Roman", "Microsoft YaHei", serif);
+}
+
+.brand-badge {
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #7a5c3d, #4d331a);
+  color: #ffd78c;
+  border: 1px solid rgba(255, 215, 140, 0.4);
+  font-weight: 700;
+}
+
+.admin-head-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 10px 3px 4px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 163, 89, 0.35);
+}
+
+.admin-avatar-mini {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #ffd78c;
+  object-fit: cover;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.admin-avatar-mini--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7a5c3d;
+  color: #ffd78c;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.admin-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f7e6c4;
+}
+
+.admin-role-pill {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: #7a5c3d;
+  color: #ffd78c;
+  font-weight: 600;
+}
+
+.admin-head-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #dfceb3;
   font-size: 13px;
   text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.18s;
+}
+.admin-head-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
-.admin-quiet-btn {
-  padding: 4px 10px;
-  border: 1px solid var(--border-color, #8f7351);
-  border-radius: 6px;
-  background: none;
-  color: var(--text-muted);
+.admin-exit-btn {
+  padding: 5px 12px;
+  border: 1px solid #8f7351;
+  border-radius: 5px;
+  background: linear-gradient(180deg, #463424, #2b1f15);
+  color: #f7e6c4;
   font: inherit;
   font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.18s;
+}
+.admin-exit-btn:hover {
+  background: linear-gradient(180deg, #5c4327, #3b2818);
+  border-color: #ffd78c;
+  color: #fff;
+}
+
+/* ---------- 主工作台架构 ---------- */
+
+.admin-main-stage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-width: 1720px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 左侧边栏：手造皮质缝线与内衬层 */
+.admin-side-nav {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.leather-panel-container {
+  border: 2px solid var(--wood-border, #7a5c3d);
+  box-shadow: inset 0 0 0 4px rgba(223, 206, 179, 0.9),
+              inset 0 0 0 5.5px rgba(143, 115, 81, 0.55),
+              2px 4px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 6px;
+  background: var(--paper, #e0cfb4);
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+:deep(.dark-mode) .leather-panel-container,
+.dark-mode .leather-panel-container {
+  border-color: #5c4327;
+  box-shadow: inset 0 0 0 4px rgba(46, 34, 23, 0.95),
+              inset 0 0 0 5.5px rgba(110, 85, 55, 0.55),
+              2px 4px 12px rgba(0, 0, 0, 0.4);
+  background: #2b1f15;
+}
+
+.panel-header-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-main, #3e2a14);
+  padding: 6px 6px 10px;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--gold-border, rgba(143, 115, 81, 0.45));
+}
+.panel-header-title::after {
+  content: '◆';
+  font-size: 10px;
+  color: #a88452;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* PA 风格菜单项（深棕烫金压纹徽章） */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid transparent;
+  color: var(--text-main, #4a341d);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  background-image: linear-gradient(to right, transparent, rgba(143, 115, 81, 0.18) 20%, rgba(143, 115, 81, 0.18) 80%, transparent);
+  background-position: bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+}
+.nav-item:hover {
+  background-color: rgba(245, 237, 222, 0.6);
+  transform: translateX(3px);
+  color: #2b1f15;
+}
+:deep(.dark-mode) .nav-item:hover,
+.dark-mode .nav-item:hover {
+  background-color: rgba(60, 45, 30, 0.6);
+  color: #f7e6c4;
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, #3e2613, #2b1a0d);
+  color: #f7e6c4;
+  font-weight: 700;
+  box-shadow: 0 3px 8px rgba(43, 31, 21, 0.35), inset 0 1px 1px rgba(255, 215, 140, 0.3);
+  border-color: rgba(212, 163, 89, 0.7);
+  transform: translateX(3px);
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 4px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(180deg, #ffd78c, #c5913e);
+  box-shadow: 0 0 6px rgba(255, 215, 140, 0.7);
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.85;
+  fill: currentColor;
+}
+.nav-item.active .nav-icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 140, 0.5));
+}
+
+.nav-tag-super {
+  margin-left: auto;
+  font-size: 10px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(197, 145, 62, 0.25);
+  color: #a88452;
+  border: 1px solid rgba(197, 145, 62, 0.4);
+}
+
+.side-footer-actions {
+  border-top: 1.5px solid var(--gold-border, rgba(143, 115, 81, 0.45));
+  padding-top: 10px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.side-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 5px;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.18s;
+  cursor: pointer;
+}
+.side-footer-link:hover {
+  background: rgba(143, 115, 81, 0.18);
+  color: var(--text-main);
+}
+.side-footer-link svg {
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+.side-footer-link:hover svg {
+  transform: translateX(-2px);
+}
+
+.admin-body {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.admin-body > * {
+  flex: 1;
+  height: 100%;
+  min-height: 0;
 }
 
 /* ---------- 权限闸门 ---------- */
@@ -232,57 +548,90 @@ function onLogout() {
 .admin-gate {
   flex: 1;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   padding: 24px;
+  box-sizing: border-box;
+}
+
+.admin-gate-card {
+  width: min(460px, 100%);
+  background: var(--paper-card, #f9f5eb);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.admin-gate-body {
+  padding: 16px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  gap: 12px;
+}
+
+.admin-gate-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(143, 115, 81, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c5913e;
+  margin-bottom: 4px;
 }
 
 .admin-gate-title {
   margin: 0;
-  font-size: 18px;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-main, #3e2a14);
 }
 
 .admin-gate-hint {
   margin: 0;
-  max-width: 420px;
-  font-size: 13px;
-  line-height: 1.7;
-  color: var(--text-muted);
-}
-
-.admin-gate-hint code {
-  padding: 1px 5px;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.12);
-  font-size: 12px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text-muted, #755c3f);
 }
 
 .admin-gate-row {
   display: flex;
-  gap: 8px;
-  width: min(420px, 100%);
-  /*
-   * 🔴 **必须显式居中**：这一行是固定 420px 宽的盒子，而 flex 默认
-   * `justify-content: flex-start` —— 内容会贴着盒子左边。
-   *
-   * 旧设计里这里是「输入框 + 按钮」，输入框占满 420px 所以看不出来；
-   * 删掉令牌闸门后只剩两个小按钮，就露出"标题居中、按钮偏左"的错位
-   * （用户截图指出）。保留固定宽度是为了让窄屏下也不至于撑满，
-   * 所以不是去掉宽度，而是把内容居中。
-   */
+  gap: 10px;
+  width: 100%;
   justify-content: center;
+  margin-top: 4px;
 }
 
-.admin-body {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  padding: 14px;
-  /* 桌面端的滚动条槽：这里没有整页布局的顾虑，用 stable 避免表格宽度跳一下 */
-  scrollbar-gutter: stable;
+.admin-gate-error-banner {
+  margin-top: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #fae8e8;
+  border: 1px solid #e8a7a7;
+  color: #b83232;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+:deep(.dark-mode) .admin-gate-card,
+.dark-mode .admin-gate-card {
+  background: #271d13;
+}
+
+:deep(.dark-mode) .admin-gate-error-banner,
+.dark-mode .admin-gate-error-banner {
+  background: rgba(184, 50, 50, 0.22);
+  border-color: rgba(240, 127, 127, 0.4);
+  color: #f07f7f;
 }
 </style>
 
@@ -298,13 +647,42 @@ function onLogout() {
 .admin-input {
   flex: 1;
   min-width: 0;
-  padding: 7px 10px;
-  border: 1px solid var(--border-color, #8f7351);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border: 1.5px solid rgba(143, 115, 81, 0.45);
   border-radius: 6px;
-  background: var(--paper-solid, #d9c6a6);
-  color: var(--text-main);
+  background: #fdfbf7;
+  color: var(--text-main, #3e2a14);
   font: inherit;
-  font-size: 14px;
+  font-size: 13.5px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.18s ease;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: #c5913e;
+  background: #ffffff;
+  box-shadow: 0 0 0 2.5px rgba(197, 145, 62, 0.22), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.admin-input::placeholder {
+  color: var(--text-muted, #755c3f);
+  opacity: 0.65;
+}
+
+.dark-mode .admin-input {
+  background: #251b12;
+  border-color: rgba(143, 115, 81, 0.45);
+  color: #e8dbc3;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.dark-mode .admin-input:focus {
+  background: #1c140d;
+  border-color: #ffd78c;
+  box-shadow: 0 0 0 2.5px rgba(255, 215, 140, 0.2);
 }
 
 .admin-btn {
@@ -341,10 +719,29 @@ function onLogout() {
   font-size: 12px;
 }
 
+.admin-btn--gold {
+  background: linear-gradient(135deg, #463424, #2b1f15);
+  border: 1px solid #c5913e;
+  color: #f7e6c4;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.15s;
+}
+.admin-btn--gold:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5c4327, #3b2818);
+  border-color: #ffd78c;
+  color: #fff;
+}
+
 .admin-error {
   margin: 0;
   font-size: 13px;
-  color: #e8a0a0;
+  font-weight: 600;
+  color: #b83232;
+}
+
+.dark-mode .admin-error {
+  color: #f07f7f;
 }
 
 /* ---------- 分节 ---------- */
@@ -362,26 +759,101 @@ function onLogout() {
   gap: 8px;
 }
 
+.admin-toolbar .admin-btn {
+  height: 34px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #4d331a, #2f1d0d);
+  border: 1px solid #c5913e;
+  color: #f7e6c4;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+  transition: all 0.15s;
+}
+
+.admin-toolbar .admin-btn:hover {
+  background: linear-gradient(180deg, #5c3e21, #3b2513);
+  border-color: #ffd78c;
+  color: #fff;
+}
+
+.admin-toolbar .admin-btn--ghost {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(143, 115, 81, 0.45);
+  color: var(--text-main);
+  box-shadow: none;
+}
+.admin-toolbar .admin-btn--ghost:hover {
+  background: #fff;
+  border-color: #a88452;
+  color: var(--text-main);
+}
+
 .admin-filters {
   display: flex;
   gap: 4px;
 }
 
 .admin-chip {
-  padding: 5px 11px;
-  border: 1px solid var(--border-color, #8f7351);
+  padding: 5px 12px;
+  border: 1px solid rgba(143, 115, 81, 0.38);
   border-radius: 999px;
-  background: none;
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--text-muted, #755c3f);
   font: inherit;
   font-size: 13px;
   cursor: pointer;
+  transition: all 0.16s ease;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.admin-chip:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #c5913e;
+  color: var(--text-main, #3e2a14);
 }
 
 .admin-chip.is-on {
-  background: var(--paper-solid, #d9c6a6);
-  color: var(--text-main);
-  font-weight: 600;
+  background: linear-gradient(135deg, #443222, #2c1f14);
+  border-color: #c5913e;
+  color: #ffd78c;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.admin-chip.is-on:hover {
+  background: linear-gradient(135deg, #543c26, #362518);
+  border-color: #ffd78c;
+  color: #fff2d1;
+}
+
+.dark-mode .admin-chip {
+  background: rgba(0, 0, 0, 0.28);
+  border-color: rgba(143, 115, 81, 0.35);
+  color: var(--text-muted, #ab9274);
+}
+
+.dark-mode .admin-chip:hover {
+  background: rgba(0, 0, 0, 0.45);
+  border-color: #d4a359;
+  color: var(--text-main, #e8dbc3);
+}
+
+.dark-mode .admin-chip.is-on {
+  background: linear-gradient(135deg, #5c4228, #3b2816);
+  border-color: #ffd78c;
+  color: #ffd78c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /*
@@ -401,7 +873,8 @@ function onLogout() {
 
 .admin-search {
   flex: 1;
-  min-width: 180px;
+  min-width: 200px;
+  height: 34px;
 }
 
 .admin-hint {
@@ -461,5 +934,408 @@ function onLogout() {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
+}
+
+/* ---------- 羊皮纸主工坊面板 ---------- */
+
+.admin-workshop {
+  border: 2px solid var(--wood-border, #7a5c3d);
+  border-radius: 8px;
+  background: var(--paper-soft, #f4ecdc);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.dark-mode .admin-workshop {
+  background: var(--paper, #2b1f15);
+  border-color: #5c4327;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.admin-workshop-header {
+  border-bottom: 1.5px solid var(--gold-border, rgba(143, 115, 81, 0.45));
+  padding-bottom: 12px;
+}
+
+.admin-workshop-title {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.admin-workshop-star {
+  color: #c5913e;
+  font-size: 18px;
+}
+
+.admin-workshop-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- 指标统计卡片 ---------- */
+
+.stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-card-item {
+  border: 1.5px solid rgba(143, 115, 81, 0.35);
+  border-radius: 8px;
+  background: var(--paper-card, #f9f5eb);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.12);
+}
+.stat-card-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, #c5913e 40%, transparent);
+  opacity: 0.6;
+}
+
+.dark-mode .stat-card-item {
+  background: #271d13;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05), 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.stat-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(143, 115, 81, 0.25);
+}
+.stat-icon-badge--total { color: #5a422a; background: rgba(122, 92, 61, 0.15); }
+.stat-icon-badge--ok { color: #287a4c; background: rgba(40, 122, 76, 0.15); border-color: rgba(40, 122, 76, 0.3); }
+.stat-icon-badge--today { color: #b37318; background: rgba(179, 115, 24, 0.15); border-color: rgba(179, 115, 24, 0.3); }
+.stat-icon-badge--ban { color: #b83232; background: rgba(184, 50, 50, 0.15); border-color: rgba(184, 50, 50, 0.3); }
+
+.dark-mode .stat-icon-badge--total { color: #d4a359; background: rgba(212, 163, 89, 0.15); }
+.dark-mode .stat-icon-badge--ok { color: #6ad197; }
+.dark-mode .stat-icon-badge--today { color: #f0b760; }
+.dark-mode .stat-icon-badge--ban { color: #f07f7f; }
+
+.stat-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stat-item-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.stat-item-val {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", monospace;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+}
+
+/* 状态微胶囊 */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 9px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid;
+}
+.status-badge--ok {
+  background: var(--status-ok-bg, #e5f4eb);
+  color: var(--status-ok-text, #287a4c);
+  border-color: var(--status-ok-border, #a3d9b8);
+}
+.status-badge--ban {
+  background: var(--status-ban-bg, #fae8e8);
+  color: var(--status-ban-text, #b83232);
+  border-color: var(--status-ban-border, #e8a7a7);
+}
+.status-badge--del {
+  background: var(--status-del-bg, #eae6df);
+  color: var(--status-del-text, #8c765c);
+  border-color: var(--status-del-border, #c4b6a5);
+}
+
+.dark-mode .status-badge--ok {
+  background: rgba(40, 122, 76, 0.22);
+  color: #6ad197;
+  border-color: rgba(106, 209, 151, 0.4);
+}
+.dark-mode .status-badge--ban {
+  background: rgba(184, 50, 50, 0.22);
+  color: #f07f7f;
+  border-color: rgba(240, 127, 127, 0.4);
+}
+.dark-mode .status-badge--del {
+  background: rgba(140, 118, 92, 0.22);
+  color: #b09a82;
+  border-color: rgba(176, 154, 130, 0.4);
+}
+
+/* ---------- 联动详情右栏 ---------- */
+
+.admin-detail-side {
+  width: 290px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 4px 14px;
+  border-bottom: 1px dashed rgba(143, 115, 81, 0.35);
+}
+
+.profile-avatar-big {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid #ffd78c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 0 1px #a88452;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-avatar-big--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7a5c3d;
+  color: #ffd78c;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.profile-name {
+  font-size: 16.5px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.profile-quick-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+.quick-act-btn {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid rgba(143, 115, 81, 0.5);
+  background: rgba(245, 237, 222, 0.7);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quick-act-btn:hover {
+  background: var(--wood, #2b1f15);
+  color: #ffd78c;
+  border-color: #ffd78c;
+}
+.quick-act-btn--danger:hover {
+  background: #7a2828;
+  color: #fff;
+  border-color: #e8a0a0;
+}
+
+.dark-mode .quick-act-btn {
+  background: rgba(43, 31, 21, 0.7);
+  color: #e8dbc3;
+  border-color: rgba(143, 115, 81, 0.35);
+}
+
+/* 属性条目列表 */
+.prop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 4px;
+}
+
+.prop-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+}
+
+.prop-label {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.prop-val {
+  font-weight: 700;
+  color: var(--text-main);
+}
+.prop-val.mono {
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", monospace;
+}
+
+.prop-ban-note {
+  background: rgba(184, 50, 50, 0.1);
+  border: 1px solid rgba(184, 50, 50, 0.3);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  color: #b83232;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+.dark-mode .prop-ban-note {
+  background: rgba(184, 50, 50, 0.2);
+  color: #f07f7f;
+}
+
+/* 时间线 */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 18px;
+  margin-top: 6px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1.5px;
+  background: rgba(143, 115, 81, 0.35);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -18px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c5913e;
+  font-size: 11px;
+}
+
+.timeline-tag {
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(143, 115, 81, 0.2);
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+.timeline-tag--comment { background: rgba(85, 117, 116, 0.2); color: #557574; }
+.timeline-tag--audit { background: rgba(197, 145, 62, 0.2); color: #a88452; }
+.dark-mode .timeline-tag--comment { color: #7a9a99; }
+.dark-mode .timeline-tag--audit { color: #ffd78c; }
+
+.timeline-time {
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  color: var(--text-muted);
+}
+
+.timeline-desc {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* ====== 后台专属定制复古滚动条（无系统三角、6px 精致金棕滑块） ====== */
+:global(.admin-shell *) {
+  scrollbar-color: auto;
+  scrollbar-width: auto;
+}
+
+:global(.admin-shell ::-webkit-scrollbar) {
+  width: 6px;
+  height: 6px;
+}
+:global(.admin-shell ::-webkit-scrollbar-button) {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+:global(.admin-shell ::-webkit-scrollbar-track) {
+  background: rgba(143, 115, 81, 0.08);
+  border-radius: 4px;
+}
+:global(.admin-shell ::-webkit-scrollbar-thumb) {
+  background: rgba(143, 115, 81, 0.38);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+:global(.admin-shell ::-webkit-scrollbar-thumb:hover) {
+  background: #a88452;
+}
+
+:global(.dark-mode .admin-shell ::-webkit-scrollbar-track) {
+  background: rgba(30, 22, 14, 0.4);
+}
+:global(.dark-mode .admin-shell ::-webkit-scrollbar-thumb) {
+  background: rgba(220, 180, 120, 0.3);
+}
+:global(.dark-mode .admin-shell ::-webkit-scrollbar-thumb:hover) {
+  background: #e5b060;
 }
 </style>

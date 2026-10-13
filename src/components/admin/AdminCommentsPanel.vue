@@ -1,5 +1,15 @@
 <template>
-  <section class="admin-panel">
+  <section class="admin-workshop">
+    <div class="workshop-header">
+      <h1 class="workshop-title">
+        <span class="workshop-title-star">✦</span>
+        <span>评论审核</span>
+      </h1>
+      <p class="workshop-subtitle">
+        ✦ 管理 Wiki 评论流、敏感词命中判定与批量放行/隐藏处置
+      </p>
+    </div>
+
     <div class="admin-toolbar">
       <div class="admin-filters">
         <button
@@ -11,7 +21,7 @@
           @click="setFilter(f.value)"
         >
           {{ f.label }}
-          <template v-if="f.value === '0' && pendingCount > 0">（{{ pendingCount }}）</template>
+          <template v-if="statusCounts[f.value] !== undefined">（{{ statusCounts[f.value] }}）</template>
         </button>
       </div>
 
@@ -113,7 +123,7 @@
       {{ searchQuery ? '没有匹配的评论。' : '这一档没有评论。' }}
     </p>
 
-    <div v-else class="admin-card">
+    <div v-else class="table-container" ref="tableContainerRef">
       <table class="admin-table">
         <thead>
           <tr>
@@ -131,7 +141,7 @@
             <th style="width: 120px">作者</th>
             <th>正文</th>
             <th style="width: 130px">页面</th>
-            <th style="width: 92px">状态</th>
+            <th style="width: 92px; text-align: center;">状态</th>
             <th style="width: 140px">时间</th>
             <th style="width: 250px">操作</th>
           </tr>
@@ -161,7 +171,11 @@
               <div v-if="c.reviewNote" class="admin-quote admin-quote--note">待审原因：{{ c.reviewNote }}</div>
             </td>
             <td class="admin-cell-wrap">{{ c.pageLabel || c.pageKey }}</td>
-            <td>{{ statusLabel(c.status) }}</td>
+            <td style="text-align: center;">
+              <span :class="['status-badge', commentStatusBadgeClass(c.status)]">
+                {{ statusLabel(c.status) }}
+              </span>
+            </td>
             <td class="admin-num">{{ formatTime(c.createdAt) }}</td>
             <td>
               <div class="admin-row-actions">
@@ -200,10 +214,61 @@
       </table>
     </div>
 
-    <div v-if="hasMore" class="admin-more">
-      <button type="button" class="admin-btn admin-btn--ghost" :disabled="loading" @click="loadMore">
-        {{ loading ? '加载中…' : '加载更多' }}
+    <!-- 翻页控制栏（主流分页：[上一页] [1] ... [7] [8] [9] [10] [11] ... [28] [下一页] + 跳转） -->
+    <div v-if="totalPages > 1 || comments.length" class="pagination-bar">
+      <button
+        type="button"
+        class="page-btn"
+        :disabled="currentPage <= 1 || loading"
+        @click="goToPage(currentPage - 1)"
+      >
+        上一页
       </button>
+
+      <template v-for="(item, idx) in displayedPageItems" :key="idx">
+        <span v-if="item === '...'" class="page-ellipsis">…</span>
+        <button
+          v-else
+          type="button"
+          class="page-number"
+          :class="{ active: item === currentPage }"
+          :disabled="loading"
+          @click="goToPage(item)"
+        >
+          {{ item }}
+        </button>
+      </template>
+
+      <button
+        type="button"
+        class="page-btn"
+        :disabled="currentPage >= totalPages || loading"
+        @click="goToPage(currentPage + 1)"
+      >
+        下一页
+      </button>
+
+      <div v-if="totalPages > 1" class="page-jumper">
+        <span>跳至</span>
+        <input
+          type="number"
+          v-model.number="jumpPageInput"
+          :min="1"
+          :max="totalPages"
+          class="page-jumper-input"
+          placeholder=""
+          @keydown.enter="handleJump"
+        />
+        <span>页</span>
+        <button
+          type="button"
+          class="page-jumper-btn"
+          :disabled="loading || !jumpPageInput"
+          @click="handleJump"
+        >
+          确定
+        </button>
+      </div>
     </div>
 
     <!--
@@ -263,6 +328,34 @@
         </button>
       </template>
     </UiModal>
+
+    <!-- 通用确认弹窗（替代原生 window.confirm） -->
+    <UiModal
+      :visible="confirmModal.visible"
+      teleport-to="body"
+      :title="confirmModal.title"
+      max-width="480px"
+      @update:visible="(v) => { if (!v) onConfirmCancel() }"
+    >
+      <p v-if="confirmModal.lead" class="admin-modal-lead">{{ confirmModal.lead }}</p>
+      <div v-if="confirmModal.content" class="admin-modal-quote" style="white-space: pre-line; line-height: 1.6;">
+        {{ confirmModal.content }}
+      </div>
+
+      <template #footer>
+        <button type="button" class="admin-btn admin-btn--ghost" @click="onConfirmCancel">
+          {{ confirmModal.cancelText || '取消' }}
+        </button>
+        <button
+          type="button"
+          class="admin-btn"
+          :class="{ 'admin-btn--danger': confirmModal.isDanger }"
+          @click="onConfirmAccept"
+        >
+          {{ confirmModal.confirmText || '确定' }}
+        </button>
+      </template>
+    </UiModal>
   </section>
 </template>
 
@@ -278,7 +371,7 @@
  * 与「隐藏」（可恢复）在视觉上区分开。想下架请用隐藏。
  */
 
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 import EmoticonText from '../EmoticonText.vue'
@@ -305,7 +398,22 @@ const FILTERS = [
 const comments = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
-const statusFilter = ref('0')
+const route = useRoute()
+const router = useRouter()
+
+// 如果 URL 显式指定了 status（如 ?status=0 或 ?status=all 或 ?status=），按 URL 优先；
+// 如果带有 userId 参数跳转过来查某人评论，默认看该用户的「全部」评论；
+// 否则常规进入面板默认看待审（'0'）
+const initialStatus = (() => {
+  if (route.query.status !== undefined) {
+    return route.query.status === 'all' ? '' : String(route.query.status)
+  }
+  if (route.query.userId) {
+    return '' // 点用户进来看他的评论，看全部
+  }
+  return '0' // 默认看待审
+})()
+const statusFilter = ref(initialStatus)
 /**
  * 页面类型筛选。`''` = 全部。
  *
@@ -354,7 +462,92 @@ const noteFilter = ref('')
 const cursor = ref(null)
 const hasMore = ref(false)
 const pendingCount = ref(0)
+const statusCounts = ref({})
 const deletingId = ref(null)
+
+// 分页控制
+const currentPage = ref(1)
+const totalPages = ref(1)
+const totalCount = ref(0)
+const jumpPageInput = ref('')
+
+const displayedPageItems = computed(() => {
+  return getPaginationItems(currentPage.value, totalPages.value, 2)
+})
+
+function getPaginationItems(current, total, delta = 2) {
+  if (total <= 1) return [1]
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1)
+  }
+
+  let left = current - delta
+  let right = current + delta
+
+  if (left <= 2) {
+    left = 2
+    right = 2 + delta * 2
+  }
+  if (right >= total - 1) {
+    right = total - 1
+    left = (total - 1) - delta * 2
+  }
+
+  left = Math.max(2, left)
+  right = Math.min(total - 1, right)
+
+  const items = [1]
+  if (left > 2) {
+    items.push('...')
+  }
+  for (let i = left; i <= right; i++) {
+    items.push(i)
+  }
+  if (right < total - 1) {
+    items.push('...')
+  }
+  items.push(total)
+  return items
+}
+
+// 通用确认弹窗
+const confirmModal = ref({
+  visible: false,
+  title: '',
+  lead: '',
+  content: '',
+  confirmText: '确定',
+  cancelText: '取消',
+  isDanger: false,
+  resolve: null
+})
+
+function askConfirm({ title, lead = '', content = '', confirmText = '确定', cancelText = '取消', isDanger = false }) {
+  return new Promise((resolve) => {
+    confirmModal.value = {
+      visible: true,
+      title,
+      lead,
+      content,
+      confirmText,
+      cancelText,
+      isDanger,
+      resolve
+    }
+  })
+}
+
+function onConfirmAccept() {
+  const cb = confirmModal.value.resolve
+  confirmModal.value.visible = false
+  cb?.(true)
+}
+
+function onConfirmCancel() {
+  const cb = confirmModal.value.resolve
+  confirmModal.value.visible = false
+  cb?.(false)
+}
 
 /** 「转待审」原因弹窗：目标评论 + 输入内容 + 提交中标志 */
 const pendingTarget = ref(null)
@@ -384,8 +577,6 @@ let searchTimer = 0
  *
  * `nick` 只在界面上显示提示用（服务端不需要它）。
  */
-const route = useRoute()
-const router = useRouter()
 const userFilter = ref(null)
 {
   const raw = Number.parseInt(String(route.query.userId ?? ''), 10)
@@ -445,7 +636,12 @@ async function batchChangeStatus(status) {
   const extra = status === 1
     ? '放行后所有人可见。'
     : '隐藏后对外不可见（作者自己仍能看到并显示为「已隐藏」）。随时可以再放行。'
-  const ok = window.confirm(`批量${verb}这 ${ids.length} 条评论？\n\n${extra}`)
+  const ok = await askConfirm({
+    title: `批量${verb}评论`,
+    lead: `批量${verb}这 ${ids.length} 条评论？`,
+    content: extra,
+    confirmText: `确认批量${verb}`
+  })
   if (!ok) return
 
   batchBusy.value = true
@@ -457,7 +653,7 @@ async function batchChangeStatus(status) {
       // 有评论在打开页面后被别人删掉了 —— 说清楚，而不是假装全都成功
       errorMessage.value = `已处理 ${data.changed} 条；另有 ${data.missing.length} 条已不存在（可能被他人删除）。`
     }
-    safeLoad()
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '批量操作失败，请重试'
   } finally {
@@ -485,37 +681,37 @@ function applySearch() {
   const next = searchInput.value.trim()
   if (next === searchQuery.value) return
   searchQuery.value = next
-  safeLoad()
+  resetAndLoad()
 }
 
 function clearSearch() {
   searchInput.value = ''
   searchQuery.value = ''
-  safeLoad()
+  resetAndLoad()
 }
 
 function setFilter(value) {
   if (statusFilter.value === value) return
   statusFilter.value = value
-  safeLoad()
+  resetAndLoad()
 }
 
 function setPageKind(value) {
   if (pageKind.value === value) return
   pageKind.value = value
-  safeLoad()
+  resetAndLoad()
 }
 
 function setReasonFilter(value) {
   if (reasonFilter.value === value) return
   reasonFilter.value = value
-  safeLoad()
+  resetAndLoad()
 }
 
 function setNoteFilter(value) {
   if (noteFilter.value === value) return
   noteFilter.value = value
-  safeLoad()
+  resetAndLoad()
 }
 
 /**
@@ -527,12 +723,53 @@ function setNoteFilter(value) {
 function clearUserFilter() {
   userFilter.value = null
   router.replace({ path: '/admin/comments' })
-  safeLoad()
+  resetAndLoad()
 }
 
-async function load({ append = false } = {}) {
+const tableContainerRef = ref(null)
+
+function scrollToTableTop() {
+  if (tableContainerRef.value) {
+    tableContainerRef.value.scrollTop = 0
+  }
+  const el = document.querySelector('.admin-workshop .table-container')
+  if (el) el.scrollTop = 0
+}
+
+function resetAndLoad() {
+  currentPage.value = 1
+  totalCount.value = 0
+  scrollToTableTop()
+  safeLoad({ page: 1 }).then(() => {
+    scrollToTableTop()
+  })
+}
+
+function reloadCurrentPage() {
+  return safeLoad({ page: currentPage.value })
+}
+
+function goToPage(p) {
+  if (p < 1 || p === currentPage.value || loading.value) return
+  if (p > totalPages.value) return
+  scrollToTableTop()
+  safeLoad({ page: p }).then(() => {
+    scrollToTableTop()
+  })
+}
+
+function handleJump() {
+  const p = Number.parseInt(jumpPageInput.value, 10)
+  if (!Number.isFinite(p) || p < 1) return
+  const validPage = Math.min(Math.max(p, 1), totalPages.value)
+  jumpPageInput.value = ''
+  goToPage(validPage)
+}
+
+async function load({ page: reqPage } = {}) {
   loading.value = true
   errorMessage.value = ''
+  const targetPage = reqPage !== undefined ? reqPage : currentPage.value
   try {
     const data = await fetchAdminComments({
       status: statusFilter.value,
@@ -541,13 +778,24 @@ async function load({ append = false } = {}) {
       reason: reasonFilter.value,
       hasNote: noteFilter.value,
       userId: userFilter.value?.id,
-      cursor: append ? cursor.value : undefined
+      page: targetPage,
+      total: totalCount.value > 0 && targetPage !== 1 ? totalCount.value : undefined
     })
     const page = data.comments || []
-    comments.value = append ? [...comments.value, ...page] : page
-    cursor.value = data.nextCursor ?? null
+    comments.value = page
+    currentPage.value = data.page ?? targetPage
+    totalPages.value = data.totalPages ?? 1
+    totalCount.value = data.total ?? page.length
     hasMore.value = Boolean(data.hasMore)
-    if (typeof data.pendingCount === 'number') pendingCount.value = data.pendingCount
+    if (data.statusCounts) {
+      statusCounts.value = { ...statusCounts.value, ...data.statusCounts }
+      if (typeof statusCounts.value['0'] === 'number') {
+        pendingCount.value = statusCounts.value['0']
+      }
+    } else if (typeof data.pendingCount === 'number') {
+      pendingCount.value = data.pendingCount
+      statusCounts.value['0'] = data.pendingCount
+    }
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '加载失败，请重试'
   } finally {
@@ -563,11 +811,6 @@ function safeLoad(options = {}) {
     // 旧请求后到就别管了（它写的是过期结果）
     if (mine !== seq) return
   })
-}
-
-function loadMore() {
-  if (loading.value || !hasMore.value) return
-  safeLoad({ append: true })
 }
 
 /**
@@ -599,19 +842,24 @@ async function changeStatus(comment, status) {
   }
 
   const preview = String(comment.body || '').slice(0, 40)
-  const CONFIRM_TEXT = {
-    1: `放行这条评论？\n\n正文：${preview}\n\n放行后**所有人可见**。`,
-    2: `隐藏这条评论？\n\n正文：${preview}\n\n隐藏后对外不可见（作者自己仍能看到并显示为「已隐藏」）。随时可以再放行。`
-  }
-  const ok = window.confirm(CONFIRM_TEXT[status] || `把这条评论的状态改为 ${status}？`)
+  const isApprove = status === 1
+  const ok = await askConfirm({
+    title: isApprove ? '放行评论' : '隐藏评论',
+    lead: isApprove ? '放行这条评论？' : '隐藏这条评论？',
+    content: `正文：${preview}\n\n${
+      isApprove
+        ? '放行后所有人可见。'
+        : '隐藏后对外不可见（作者本人仍能看到并显示为已隐藏），随时可以再次放行。'
+    }`,
+    confirmText: isApprove ? '确认放行' : '确认隐藏'
+  })
   if (!ok) return
 
   errorMessage.value = ''
   try {
     await setCommentStatus(comment.id, status)
-    // 改完**重拉当前筛选**：这条可能已经不满足筛选条件了（如"待审"里放行一条），
-    // 就地改状态会让它留在不该在的列表里
-    safeLoad()
+    // 改完重拉当前页：保持用户在当前分页视界
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
   }
@@ -651,7 +899,7 @@ async function confirmPending() {
       errorMessage.value = `已处理 ${data.changed} 条；另有 ${data.missing.length} 条已不存在（可能被他人删除）。`
     }
     cancelPending()
-    safeLoad()
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
   } finally {
@@ -661,16 +909,19 @@ async function confirmPending() {
 
 async function hardDelete(comment) {
   if (deletingId.value) return
-  const ok = window.confirm(
-    `彻底删除 #${comment.id}？\n\n正文：${String(comment.body || '').slice(0, 60)}\n\n` +
-      '这一步**不可恢复**。只想下架（可以再放行回来）请用「隐藏」。'
-  )
+  const ok = await askConfirm({
+    title: '彻底删除评论',
+    lead: `彻底删除评论 #${comment.id}？`,
+    content: `正文：${String(comment.body || '').slice(0, 60)}\n\n此操作不可恢复！只想下架（可随时恢复）请使用「隐藏」。`,
+    confirmText: '彻底删除',
+    isDanger: true
+  })
   if (!ok) return
   deletingId.value = comment.id
   errorMessage.value = ''
   try {
     await deleteCommentPermanently(comment.id)
-    safeLoad()
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '删除失败，请重试'
   } finally {
@@ -683,6 +934,12 @@ function statusLabel(status) {
   if (status === 1) return '已显示'
   if (status === 2) return '已隐藏'
   return String(status)
+}
+
+function commentStatusBadgeClass(status) {
+  if (status === 0) return 'status-badge--wait'
+  if (status === 1) return 'status-badge--ok'
+  return 'status-badge--ban'
 }
 
 function formatTime(unixSec) {
@@ -703,36 +960,421 @@ onMounted(() => {
     .then((data) => { presets.value = Array.isArray(data?.presets) ? data.presets : [] })
     .catch(() => {})
 })
+
+// 监听路由参数变化（例如从用户管理点某人评论，或控制台点待审/全部评论）
+watch(
+  () => [route.query.status, route.query.userId],
+  ([newStatus, newUserId], [oldStatus, oldUserId]) => {
+    if (newStatus === oldStatus && newUserId === oldUserId) return
+    let targetStatus = '0'
+    if (newStatus !== undefined) {
+      targetStatus = newStatus === 'all' ? '' : String(newStatus)
+    } else if (newUserId) {
+      targetStatus = '' // 查看特定用户评论时看全部
+    }
+    statusFilter.value = targetStatus
+
+    const rawUid = Number.parseInt(String(newUserId ?? ''), 10)
+    userFilter.value = Number.isFinite(rawUid) ? { id: rawUid, nick: String(route.query.nick || '') } : null
+
+    resetAndLoad()
+  }
+)
+
 onBeforeUnmount(() => clearTimeout(searchTimer))
 </script>
 
 <style scoped>
+.admin-workshop {
+  --wood-border: #7a5c3d;
+  --gold-border: rgba(143, 115, 81, 0.45);
+  --gold-accent: #c5913e;
+  --gold-bright: #ffd78c;
+  --text-main: #3e2a14;
+  --text-muted: #755c3f;
+  --paper-soft: #f4ecdc;
+  --paper-card: #f9f5eb;
+  --status-ok-bg: #e5f4eb;
+  --status-ok-text: #287a4c;
+  --status-ok-border: #a3d9b8;
+  --status-wait-bg: #fcf4e3;
+  --status-wait-text: #b37318;
+  --status-wait-border: #f0d092;
+  --status-ban-bg: #fae8e8;
+  --status-ban-text: #b83232;
+  --status-ban-border: #e8a7a7;
+
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  border: 2px solid var(--wood-border);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  padding: 18px 24px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+:deep(.dark-mode) .admin-workshop,
+.dark-mode .admin-workshop {
+  --wood-border: #5c4327;
+  --gold-border: rgba(143, 115, 81, 0.3);
+  --gold-accent: #d4a359;
+  --text-main: #e8dbc3;
+  --text-muted: #ab9274;
+  --paper-soft: #33261a;
+  --paper-card: #271d13;
+  --status-ok-bg: rgba(40, 122, 76, 0.22);
+  --status-ok-text: #6ad197;
+  --status-ok-border: rgba(106, 209, 151, 0.4);
+  --status-wait-bg: rgba(179, 115, 24, 0.22);
+  --status-wait-text: #f0b760;
+  --status-wait-border: rgba(240, 183, 96, 0.4);
+  --status-ban-bg: rgba(184, 50, 50, 0.22);
+  --status-ban-text: #f07f7f;
+  --status-ban-border: rgba(240, 127, 127, 0.4);
+}
+
+.workshop-header {
+  flex-shrink: 0;
+  border-bottom: 1.5px solid var(--gold-border);
+  padding-bottom: 12px;
+}
+.workshop-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.workshop-title-star {
+  color: #c5913e;
+  font-size: 19px;
+}
+.workshop-subtitle {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+  letter-spacing: 0.5px;
+}
+
+.admin-toolbar {
+  flex-shrink: 0;
+}
+
+.table-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+  position: relative;
+  border: 1.5px solid rgba(143, 115, 81, 0.4);
+  border-radius: 6px;
+  background: var(--paper-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.admin-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 12px 12px;
+  background: #ebe0ce;
+  color: var(--text-muted);
+  font-weight: 700;
+  border-bottom: 1.5px solid rgba(143, 115, 81, 0.35);
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 0 rgba(143, 115, 81, 0.35);
+}
+
+:deep(.dark-mode) .admin-table thead th,
+.dark-mode .admin-table thead th {
+  background: #251b11;
+}
+
+.admin-table td {
+  padding: 10px 12px;
+  border-bottom: 1px dashed rgba(143, 115, 81, 0.25);
+  color: var(--text-main);
+  vertical-align: middle;
+  transition: background 0.15s;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover td {
+  background-color: rgba(245, 237, 222, 0.85);
+}
+:deep(.dark-mode) .admin-table tbody tr:hover td,
+.dark-mode .admin-table tbody tr:hover td {
+  background-color: rgba(60, 45, 30, 0.5);
+}
+
+/* 状态微胶囊标签 */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid;
+}
+
+.status-badge--ok {
+  background: var(--status-ok-bg);
+  color: var(--status-ok-text);
+  border-color: var(--status-ok-border);
+}
+.status-badge--wait {
+  background: var(--status-wait-bg);
+  color: var(--status-wait-text);
+  border-color: var(--status-wait-border);
+}
+.status-badge--ban {
+  background: var(--status-ban-bg);
+  color: var(--status-ban-text);
+  border-color: var(--status-ban-border);
+}
+
+.pagination-bar {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.page-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+}
+.page-btn:hover:not(:disabled) {
+  background: rgba(245, 237, 222, 0.9);
+  border-color: #a88452;
+}
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(143, 115, 81, 0.35);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.page-number:hover:not(:disabled) {
+  border-color: #a88452;
+}
+.page-number.active {
+  background: linear-gradient(135deg, #3e2613, #2b1a0d);
+  color: #f7e6c4;
+  border-color: #c5913e;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.page-number:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:deep(.dark-mode) .page-number.active,
+.dark-mode .page-number.active {
+  background: linear-gradient(135deg, #52341b, #38210f);
+  color: #ffd78c;
+  border-color: #e5b060;
+}
+
+.page-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 32px;
+  color: var(--text-muted);
+  font-size: 14px;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+.page-jumper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.page-jumper-input {
+  width: 44px;
+  height: 28px;
+  padding: 0 4px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 12.5px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.page-jumper-input:focus {
+  border-color: #a88452;
+  box-shadow: 0 0 0 2px rgba(168, 132, 82, 0.2);
+}
+
+.page-jumper-btn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.page-jumper-btn:hover:not(:disabled) {
+  background: rgba(245, 237, 222, 0.95);
+  border-color: #a88452;
+}
+
+.page-jumper-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .admin-userid {
   margin-left: 4px;
   opacity: 0.6;
+  font-family: ui-monospace, monospace;
+  font-size: 11.5px;
 }
 
 .admin-quote {
-  margin-top: 3px;
+  margin-top: 4px;
   font-size: 12px;
   color: var(--text-muted);
 }
 
 .admin-quote--warn {
   color: #c98a3a;
+  background: rgba(201, 138, 58, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
 }
 
-/* 待审原因：与「命中」（自动判定）区分开，用中性偏蓝的提示色 */
 .admin-quote--note {
-  color: #5b7fa6;
+  color: #557574;
+  background: rgba(85, 117, 116, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+  display: inline-block;
 }
 
-.admin-more {
+/* 批量操作栏 */
+.admin-batch-bar {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1.5px solid rgba(197, 145, 62, 0.5);
+  border-radius: 6px;
+  background: var(--paper-card);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-/* ── 转待审原因弹窗 ── */
+.admin-batch-count {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--text-main);
+}
+
+.admin-batch-warn {
+  color: #b83232;
+  font-size: 12.5px;
+}
+
+.admin-check {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  accent-color: #7a5c3d;
+}
+
+.admin-filter-sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 0 4px;
+  background: var(--gold-border);
+}
+
+.admin-user-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid rgba(85, 117, 116, 0.4);
+  border-radius: 6px;
+  background: rgba(85, 117, 116, 0.1);
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+.is-selected {
+  background: rgba(212, 163, 89, 0.18) !important;
+}
+
+/* 弹窗样式 */
 .admin-modal-lead {
   margin: 0 0 6px;
   font-size: 14px;
@@ -759,66 +1401,11 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   font-size: 12px;
 }
 
-/* 常用选项：一排 chip，点一下填进输入框 */
 .admin-preset-row {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 8px;
-}
-
-/* ── 批量操作栏 ── */
-.admin-batch-bar {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px 12px;
-  border: 1px solid var(--border-color, #d8cdb8);
-  border-radius: 6px;
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.admin-batch-count {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* 超上限时的提示：用告警色，因为它会让按钮点了没反应 */
-.admin-batch-warn {
-  color: #c98a3a;
-  font-size: 13px;
-}
-
-.admin-check {
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-}
-
-/* 命中原因 / 人工备注两组筛选之间的一道浅分隔线 */
-.admin-filter-sep {
-  width: 1px;
-  align-self: stretch;
-  margin: 0 4px;
-  background: var(--border-color, #d8cdb8);
-}
-
-/* 「只看某人」提示条：带取消按钮，让它看起来是"可撤销的临时筛选" */
-.admin-user-filter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border: 1px solid var(--border-color, #d8cdb8);
-  border-radius: 6px;
-  background: rgba(91, 127, 166, 0.08);
-  font-size: 14px;
-}
-
-/* 选中行底色，便于分辨"我选了哪几条" */
-.is-selected {
-  background: rgba(91, 127, 166, 0.08);
 }
 
 .admin-modal-count {

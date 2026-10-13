@@ -109,14 +109,15 @@ export function fetchAdminStats() {
 // ── 评论 ─────────────────────────────────────────────────────────
 
 /**
- * @param {{status?: string|number, q?: string, pageKind?: string, reason?: string, hasNote?: string, userId?: number, cursor?: number, limit?: number}} options
+ * @param {{status?: string|number, q?: string, pageKind?: string, reason?: string, hasNote?: string, userId?: number, cursor?: number, page?: number, limit?: number}} options
  *   `q` 在服务端匹配正文/昵称/页面标识（评论会持续增长，不该拉到前端再筛）
  *   `pageKind` 按页面类型筛（`site` / `item` / `hero` …），空串或未知值 = 不筛
  *   `reason` 按**命中原因**筛（类别名子串）；特殊值 `'any'` = 命中过任何词
  *   `hasNote` `'1'` 只看有人工待审原因的、`'0'` 只看没有的
  *   `userId` 只看某个账号的评论（用户列表点进来看他发过什么）
+ *   `page` 页码（1 起始，优先使用数值页码模式）
  */
-export function fetchAdminComments({ status, q, pageKind, reason, hasNote, userId, cursor, limit = 50 } = {}) {
+export function fetchAdminComments({ status, q, pageKind, reason, hasNote, userId, cursor, page, total, limit = 50 } = {}) {
   const params = new URLSearchParams({ limit: String(limit) })
   if (status !== undefined && status !== null && status !== '') params.set('status', String(status))
   if (q) params.set('q', String(q))
@@ -124,6 +125,8 @@ export function fetchAdminComments({ status, q, pageKind, reason, hasNote, userI
   if (reason) params.set('reason', String(reason))
   if (hasNote) params.set('hasNote', String(hasNote))
   if (userId) params.set('userId', String(userId))
+  if (page !== undefined && page !== null && page !== '') params.set('page', String(page))
+  if (total !== undefined && total !== null && total !== '') params.set('total', String(total))
   if (cursor) params.set('cursor', String(cursor))
   return request(`/api/admin/comments?${params.toString()}`)
 }
@@ -153,16 +156,19 @@ export function deleteCommentPermanently(id) {
 // ── 用户 ─────────────────────────────────────────────────────────
 
 /**
- * @param {{status?: string|number, q?: string, role?: string, cursor?: number, limit?: number}} options
+ * @param {{status?: string|number, q?: string, role?: string, cursor?: number, page?: number, total?: number, limit?: number}} options
  *   `q` 匹配昵称/邮箱；**纯数字**时还按对外编号精确匹配
  *   （用户来反馈时通常报的是那 5 位编号）
- *   `role` 传 `'admin'` 只看管理员及以上（`role >= 1`）；不传/其它值 = 不筛
+ *   `role` 传 `'admin'` 只看管理员及以上（`role >= 1`）；传 `'user'` 只看普通用户（`role = 0`）；不传/其它值 = 不筛
+ *   `page` 页码（1 起始，优先使用数值页码模式）
  */
-export function fetchAdminUsers({ status, q, role, cursor, limit = 50 } = {}) {
+export function fetchAdminUsers({ status, q, role, cursor, page, total, limit = 50 } = {}) {
   const params = new URLSearchParams({ limit: String(limit) })
   if (status !== undefined && status !== null && status !== '') params.set('status', String(status))
   if (q) params.set('q', String(q))
   if (role) params.set('role', String(role))
+  if (page !== undefined && page !== null && page !== '') params.set('page', String(page))
+  if (total !== undefined && total !== null && total !== '') params.set('total', String(total))
   if (cursor) params.set('cursor', String(cursor))
   return request(`/api/admin/users?${params.toString()}`)
 }
@@ -262,10 +268,13 @@ export function saveReviewKeywords(payload) {
 /**
  * 管理操作审计列表（**仅超管**）。
  *
- * @param {{cursor?: number, limit?: number}} options
+ * @param {{cursor?: number, page?: number, total?: number, limit?: number}} options
  */
-export function fetchAdminAudit({ cursor, limit = 50 } = {}) {
+export function fetchAdminAudit({ cursor, page, total, limit = 50 } = {}) {
   const params = new URLSearchParams({ limit: String(limit) })
   if (cursor) params.set('cursor', String(cursor))
+  if (page !== undefined && page !== null && page !== '') params.set('page', String(page))
+  if (total !== undefined && total !== null && total !== '') params.set('total', String(total))
   return request(`/api/admin/audit?${params.toString()}`)
 }
+

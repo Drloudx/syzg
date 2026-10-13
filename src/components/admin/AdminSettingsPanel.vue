@@ -1,13 +1,21 @@
 <template>
-  <section class="admin-panel">
+  <section class="admin-workshop">
+    <div class="workshop-header">
+      <h1 class="workshop-title">
+        <span class="workshop-title-star">✦</span>
+        <span>系统设置</span>
+      </h1>
+      <p class="workshop-subtitle">
+        ✦ 维护全站审核口径、转待审快捷预设原因与敏感词黑名单库（仅超管）
+      </p>
+    </div>
+
     <h2 class="admin-section-title">转待审 · 常用选项</h2>
     <p class="admin-hint">
       管理员在评论列表点「转待审」时，这些文案会作为点一下就填的快捷选项出现（仍可自由编辑）。
       顺序即显示顺序，留空的行会被忽略。删光就只保留自由输入。
     </p>
 
-    <p v-if="errorMessage" class="admin-error">{{ errorMessage }}</p>
-    <p v-if="savedMessage" class="admin-saved">{{ savedMessage }}</p>
     <p v-if="loading" class="admin-hint">正在加载…</p>
 
     <template v-else>
@@ -42,6 +50,8 @@
           {{ saving ? '保存中…' : '保存' }}
         </button>
         <span class="admin-preset-count">{{ rows.length }} / {{ COUNT_MAX }}</span>
+        <span v-if="savedMessage" class="admin-saved">✓ {{ savedMessage }}</span>
+        <span v-if="errorMessage" class="admin-error">⚠ {{ errorMessage }}</span>
       </div>
     </template>
 
@@ -54,8 +64,7 @@
       你可以停用整个类别，或另加自己的关键词。
     </p>
 
-    <p v-if="kwError" class="admin-error">{{ kwError }}</p>
-    <p v-if="kwSaved" class="admin-saved">{{ kwSaved }}</p>
+
 
     <!-- 只读提示：结构性规则是防注入底线，不给编辑入口 -->
     <p class="admin-hint admin-hint--tight">
@@ -125,8 +134,38 @@
         {{ kwSaving ? '保存中…' : '保存词表' }}
       </button>
       <span class="admin-preset-count">自定义词 {{ customKeywordCount }} / {{ KW_COUNT_MAX }}</span>
+      <span v-if="kwSaved" class="admin-saved">✓ {{ kwSaved }}</span>
+      <span v-if="kwError" class="admin-error">⚠ {{ kwError }}</span>
     </div>
     <p v-if="importHint" class="admin-hint admin-hint--tight admin-import-hint">{{ importHint }}</p>
+
+    <!-- 新建类别弹窗（替代原生 window.prompt） -->
+    <UiModal
+      :visible="newCategoryModal"
+      teleport-to="body"
+      title="新建敏感词类别"
+      max-width="480px"
+      @update:visible="(v) => { if (!v) closeNewCategory() }"
+    >
+      <p class="admin-modal-lead">新类别名（会作为「命中原因」显示在评论列表中）：</p>
+      <input
+        v-model="newCategoryInput"
+        type="text"
+        class="admin-input admin-modal-input"
+        placeholder="例如：广告引流 / 涉政 / 违规外链"
+        :maxlength="KW_MAX"
+        @keydown.enter.prevent="confirmNewCategory"
+      />
+      <div class="admin-modal-count">{{ newCategoryInput.length }} / {{ KW_MAX }}</div>
+      <p v-if="newCategoryError" style="margin-top: 8px; color: #b83232; font-size: 13px;">
+        {{ newCategoryError }}
+      </p>
+
+      <template #footer>
+        <button type="button" class="admin-btn admin-btn--ghost" @click="closeNewCategory">取消</button>
+        <button type="button" class="admin-btn" @click="confirmNewCategory">确认创建</button>
+      </template>
+    </UiModal>
   </section>
 </template>
 
@@ -148,6 +187,7 @@
 
 import { computed, onMounted, ref } from 'vue'
 
+import UiModal from '../ui/UiModal.vue'
 import {
   AdminApiError,
   fetchReviewKeywords,
@@ -286,21 +326,40 @@ function removeWord(category, index) {
   if (cat) cat.custom = list.length
 }
 
+const newCategoryModal = ref(false)
+const newCategoryInput = ref('')
+const newCategoryError = ref('')
+
 function openNewCategory() {
-  const name = window.prompt('新类别名（会作为「命中原因」显示在评论列表里）')
-  const trimmed = String(name || '').trim()
-  if (!trimmed) return
+  newCategoryInput.value = ''
+  newCategoryError.value = ''
+  newCategoryModal.value = true
+}
+
+function closeNewCategory() {
+  newCategoryModal.value = false
+  newCategoryInput.value = ''
+  newCategoryError.value = ''
+}
+
+function confirmNewCategory() {
+  const trimmed = newCategoryInput.value.trim()
+  if (!trimmed) {
+    newCategoryError.value = '类别名不能为空'
+    return
+  }
   if (trimmed.length > KW_MAX) {
-    kwError.value = `类别名不能超过 ${KW_MAX} 个字`
+    newCategoryError.value = `类别名不能超过 ${KW_MAX} 个字`
     return
   }
   if (kwCategories.value.some((c) => c.name === trimmed)) {
-    kwError.value = '这个类别已经存在'
+    newCategoryError.value = '这个类别已经存在'
     return
   }
-  kwError.value = ''
+  newCategoryError.value = ''
   kwCategories.value.push({ name: trimmed, baseline: false, disabled: false, custom: 0 })
   kwWords.value[trimmed] = []
+  closeNewCategory()
 }
 
 async function loadKeywords() {
@@ -456,10 +515,77 @@ async function onImportFile(event) {
 </script>
 
 <style scoped>
+.admin-workshop {
+  --wood-border: #7a5c3d;
+  --gold-border: rgba(143, 115, 81, 0.45);
+  --gold-accent: #c5913e;
+  --gold-bright: #ffd78c;
+  --text-main: #3e2a14;
+  --text-muted: #755c3f;
+  --paper-soft: #f4ecdc;
+  --paper-card: #f9f5eb;
+
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  border: 2px solid var(--wood-border);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+:deep(.dark-mode) .admin-workshop,
+.dark-mode .admin-workshop {
+  --wood-border: #5c4327;
+  --gold-border: rgba(143, 115, 81, 0.3);
+  --gold-accent: #d4a359;
+  --text-main: #e8dbc3;
+  --text-muted: #ab9274;
+  --paper-soft: #33261a;
+  --paper-card: #271d13;
+}
+
+.workshop-header {
+  border-bottom: 1.5px solid var(--gold-border);
+  padding-bottom: 14px;
+}
+.workshop-title {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.workshop-title-star {
+  color: #c5913e;
+  font-size: 19px;
+}
+.workshop-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+  letter-spacing: 0.5px;
+}
+
 .admin-preset-editor {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 14px;
+  border: 1.5px solid rgba(143, 115, 81, 0.35);
+  border-radius: 6px;
+  background: var(--paper-card);
 }
 
 .admin-preset-line {
@@ -474,30 +600,33 @@ async function onImportFile(event) {
   color: var(--text-muted);
   font-size: 13px;
   text-align: right;
+  font-family: ui-monospace, monospace;
 }
 
 .admin-preset-actions {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 16px;
+  margin-top: 10px;
 }
 
 .admin-preset-count {
   color: var(--text-muted);
   font-size: 13px;
+  font-family: ui-monospace, monospace;
 }
 
 .admin-saved {
-  color: #3f7d4e;
-  font-size: 14px;
+  color: #287a4c;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 /* ── 审核词表 ── */
 .admin-divider {
-  margin: 28px 0 20px;
+  margin: 20px 0 14px;
   border: 0;
-  border-top: 1px solid var(--border-color, #d8cdb8);
+  border-top: 1.5px dashed var(--gold-border);
 }
 
 .admin-hint--tight {
@@ -511,9 +640,10 @@ async function onImportFile(event) {
 }
 
 .admin-kw-cat {
-  padding: 10px 12px;
-  border: 1px solid var(--border-color, #d8cdb8);
+  padding: 12px 14px;
+  border: 1.5px solid rgba(143, 115, 81, 0.35);
   border-radius: 6px;
+  background: var(--paper-card);
 }
 
 .admin-kw-head {
@@ -544,20 +674,36 @@ async function onImportFile(event) {
 .admin-kw-chip {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 6px 3px 8px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.06);
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(143, 115, 81, 0.3);
+  color: var(--text-main);
   font-size: 13px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all 0.15s ease;
 }
 
 /* 内置词：灰底、无删除按钮 —— 视觉上就要和"自己加的"区分开 */
 .admin-kw-chip--builtin {
-  padding: 3px 8px;
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px dashed rgba(0, 0, 0, 0.15);
+  padding: 4px 10px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px dashed rgba(143, 115, 81, 0.35);
   color: var(--text-muted);
   cursor: default;
+}
+
+.dark-mode .admin-kw-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(143, 115, 81, 0.35);
+  color: #e8dbc3;
+}
+
+.dark-mode .admin-kw-chip--builtin {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(143, 115, 81, 0.25);
+  color: #ab9274;
 }
 
 .admin-kw-strong {
@@ -571,15 +717,52 @@ async function onImportFile(event) {
   cursor: pointer;
   color: var(--text-muted);
   font-size: 12px;
+  line-height: 1;
 }
 
 .admin-kw-del:hover {
-  color: #a33;
+  color: #b83232;
 }
 
 .admin-kw-input {
-  width: 150px;
+  width: 140px;
   flex: 0 0 auto;
+  height: 28px;
+  padding: 0 12px;
+  font-size: 12.5px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1.5px dashed rgba(143, 115, 81, 0.55);
+  color: var(--text-main);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all 0.18s ease;
+}
+
+.admin-kw-input:focus {
+  width: 175px;
+  border-style: solid;
+  border-color: #c5913e;
+  box-shadow: 0 0 0 2px rgba(197, 145, 62, 0.22);
+}
+
+.dark-mode .admin-kw-input {
+  background: #251b12;
+  border-color: rgba(143, 115, 81, 0.5);
+  color: #e8dbc3;
+}
+
+.dark-mode .admin-kw-input:focus {
+  background: #1c140d;
+  border-color: #ffd78c;
+  box-shadow: 0 0 0 2px rgba(255, 215, 140, 0.2);
+}
+
+.admin-modal-input {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: block;
+  height: 40px;
+  font-size: 14px;
 }
 
 /* 视觉上隐藏但仍可被脚本点击（导入用的 file input） */

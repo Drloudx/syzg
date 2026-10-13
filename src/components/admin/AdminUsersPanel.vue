@@ -1,193 +1,470 @@
 <template>
-  <section class="admin-panel">
-    <div class="admin-toolbar">
-      <div class="admin-filters">
-        <button
-          v-for="f in FILTERS"
-          :key="f.value"
-          type="button"
-          class="admin-chip"
-          :class="{ 'is-on': statusFilter === f.value }"
-          @click="setFilter(f.value)"
-        >
-          {{ f.label }}
-        </button>
+  <div class="admin-users-view">
+    <!-- 2. 中间主工坊面板 -->
+    <section class="admin-workshop admin-users-main">
+      <!-- 页面大标题 -->
+      <div class="workshop-header">
+        <h1 class="workshop-title">
+          <span class="workshop-title-star">✦</span>
+          <span>用户管理</span>
+        </h1>
+        <p class="workshop-subtitle">
+          ✦ 管理深渊之歌 (Tragoudi tou Abel) 注册用户状态、角色权限与违规封禁
+        </p>
       </div>
 
-      <input
-        :value="searchInput"
-        class="admin-input admin-search"
-        type="search"
-        placeholder="搜编号 / 昵称 / 邮箱"
-        @input="onSearchInput($event.target.value)"
-        @keydown.enter="applySearch"
-      />
-      <button type="button" class="admin-btn admin-btn--sm" @click="applySearch">搜索</button>
-      <button v-if="searchQuery" type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="clearSearch">
-        清除
-      </button>
-    </div>
+      <!-- 4 联数据指标卡片（基于真实后端 /api/admin/stats 映射） -->
+      <div v-if="stats?.users" class="stat-cards-grid">
+        <div class="stat-card stat-card--total">
+          <div class="stat-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 5c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm-8 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 8c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">用户总数</span>
+            <span class="stat-value">{{ Number(stats.users.total).toLocaleString() }}</span>
+          </div>
+        </div>
 
-    <p class="admin-hint">
-      搜<strong>纯数字</strong>会按对外编号精确匹配 —— 用户来反馈时通常报的就是那 5 位编号，不是内部 id。
-    </p>
+        <div class="stat-card stat-card--ok">
+          <div class="stat-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">正常用户</span>
+            <span class="stat-value">{{ Number(stats.users.active).toLocaleString() }}</span>
+          </div>
+        </div>
 
-    <!--
-      角色筛选：**仅超管可见**。
-      普通管理员看到这份名单也没什么可做的（改角色是超管专属），
-      给他一个点了没用的筛选项只会让人困惑。
-    -->
-    <div v-if="isSuper" class="admin-toolbar admin-toolbar--kinds">
-      <div class="admin-filters">
-        <button
-          v-for="f in ROLE_FILTERS"
-          :key="f.value"
-          type="button"
-          class="admin-chip admin-chip--sm"
-          :class="{ 'is-on': roleFilter === f.value }"
-          @click="setRoleFilter(f.value)"
-        >
-          {{ f.label }}
-        </button>
+        <div class="stat-card stat-card--today">
+          <div class="stat-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">今日新增</span>
+            <span class="stat-value">+{{ stats.users.today }}</span>
+          </div>
+        </div>
+
+        <div class="stat-card stat-card--ban">
+          <div class="stat-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">已封禁停用</span>
+            <span class="stat-value">{{ stats.users.banned || 0 }}</span>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <p v-if="errorMessage" class="admin-error">{{ errorMessage }}</p>
-    <p v-if="loading && !users.length" class="admin-hint">正在加载…</p>
-    <p v-else-if="!users.length && !errorMessage" class="admin-hint">
-      {{ searchQuery ? '没有匹配的用户。' : roleFilter === 'admin' ? '没有管理员账号。' : '这一档没有用户。' }}
-    </p>
+      <!-- 搜索与操作过滤条（与后端接口参数严格对应：q / status / role） -->
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="workshop-toolbar">
+          <div class="search-input-wrap">
+            <svg class="search-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="text"
+              class="search-input"
+              placeholder="搜对外编号 / 昵称 / 邮箱..."
+              :value="searchInput"
+              @input="onSearchInput($event.target.value)"
+              @keydown.enter="applySearch"
+            />
+          </div>
 
-    <div v-else class="admin-card">
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th style="width: 74px">编号</th>
-            <th style="width: 150px">昵称</th>
-            <th>邮箱</th>
-            <th style="width: 70px">评论</th>
-            <th style="width: 82px">状态</th>
-            <th style="width: 96px">角色</th>
-            <th style="width: 150px">注册 / 最近登录</th>
-            <th style="width: 250px">操作</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="u in users" :key="u.id">
-            <td class="admin-num">{{ u.publicNo }}</td>
-            <td class="admin-cell-wrap">
-              <img v-if="avatarUrl(u.avatar)" :src="avatarUrl(u.avatar)" alt="" class="admin-avatar" />
-              {{ u.nick }}
-            </td>
-            <td class="admin-cell-wrap">
-              {{ u.email || '（已清空）' }}
-              <!-- 封禁理由：管理员手填，仅管理端可见（用户只看到「该账号已被停用」） -->
-              <div v-if="u.banNote" class="admin-quote admin-quote--note">封禁理由：{{ u.banNote }}</div>
-            </td>
-            <!--
-              评论数可点：跳去评论页并只看这个人。
-              比"手打昵称去搜"准 —— 评论里的昵称是**发表时的快照**，
-              用户改名后按旧昵称就搜不到了；按内部 id 筛不受影响。
-            -->
-            <td class="admin-num">
-              <RouterLink
-                v-if="u.commentCount > 0"
-                class="admin-link"
-                :to="{ path: '/admin/comments', query: { userId: u.id, nick: u.nick } }"
-                :title="`只看「${u.nick}」的评论`"
-              >
-                {{ u.commentCount }}
-              </RouterLink>
-              <span v-else class="admin-dim">0</span>
-            </td>
-            <td>{{ statusLabel(u.status) }}</td>
-            <!-- 角色列：**所有人都能看到**（知道谁是管理员是公开信息），但只有超管能改 -->
-            <td :class="{ 'admin-role-super': u.role >= 2, 'admin-role-admin': u.role === 1 }">
-              {{ roleLabel(u.role) }}
-            </td>
-            <td class="admin-num">
-              {{ formatDate(u.createdAt) }}<br />
-              <span class="admin-dim">{{ u.lastLoginAt ? formatDate(u.lastLoginAt) : '从未' }}</span>
-            </td>
-            <td>
-              <div class="admin-row-actions">
-                <!--
-                  🔴 角色按钮**仅超管可见**（`canSetRole`）：
-                  管理员根本看不到这两个按钮，而不是看到禁用态。
-                  后端同样会 403 —— 前端隐藏只是体验，不是防线。
-                -->
-                <template v-if="canSetRole(u)">
-                  <button
-                    v-if="u.role === 0"
-                    type="button"
-                    class="admin-btn admin-btn--ghost admin-btn--sm"
-                    :disabled="busyId === u.id"
-                    @click="changeRole(u, 1)"
-                  >
-                    设为管理员
-                  </button>
-                  <button
-                    v-else-if="u.role === 1"
-                    type="button"
-                    class="admin-btn admin-btn--ghost admin-btn--sm"
-                    :disabled="busyId === u.id"
-                    @click="changeRole(u, 0)"
-                  >
-                    撤销管理员
-                  </button>
-                </template>
+          <select v-model="statusFilter" class="select-dropdown" @change="resetAndLoad">
+            <option value="">全部状态</option>
+            <option value="1">正常</option>
+            <option value="2">已停用</option>
+            <option value="3">已注销</option>
+          </select>
 
-                <template v-if="u.status === 1">
-                  <button
-                    type="button"
-                    class="admin-btn admin-btn--ghost admin-btn--sm"
-                    :disabled="busyId === u.id || !canModerate(u)"
-                    :title="canModerate(u) ? '' : '不能操作同级或更高级的账号'"
-                    @click="toggleBan(u)"
-                  >
-                    {{ busyId === u.id ? '处理中' : '封禁' }}
-                  </button>
-                </template>
-                <template v-else-if="u.status === 2">
-                  <button
-                    type="button"
-                    class="admin-btn admin-btn--sm"
-                    :disabled="busyId === u.id || !canModerate(u)"
-                    :title="canModerate(u) ? '' : '不能操作同级或更高级的账号'"
-                    @click="toggleBan(u)"
-                  >
-                    {{ busyId === u.id ? '处理中' : '解封' }}
-                  </button>
-                </template>
-                <!-- status=3 是用户自己注销的：管理员既不该"解封"，也不该伪造这个状态 -->
-                <span v-else class="admin-dim">已自行注销</span>
+          <select v-if="isSuper" v-model="roleFilter" class="select-dropdown" @change="resetAndLoad">
+            <option value="">全部角色</option>
+            <option value="admin">仅管理员 (超管/管理)</option>
+            <option value="user">普通用户</option>
+          </select>
 
-                <button
-                  type="button"
-                  class="admin-btn admin-btn--danger admin-btn--sm"
-                  :disabled="busyId === u.id || !canModerate(u)"
-                  :title="canModerate(u) ? '' : '不能操作同级或更高级的账号'"
-                  @click="hardDelete(u)"
+          <button type="button" class="btn-search" @click="applySearch">搜索</button>
+          <button type="button" class="btn-refresh" title="刷新用户列表与统计" @click="refreshList">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 4v6h-6"></path>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            <span>刷新</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 错误与空状态 -->
+      <p v-if="errorMessage" class="admin-error-banner">{{ errorMessage }}</p>
+      <div v-if="loading && !users.length" class="empty-hint-box">正在加载用户数据…</div>
+      <div v-else-if="!users.length && !errorMessage" class="empty-hint-box">
+        {{ searchQuery ? '没有匹配的用户。' : roleFilter === 'admin' ? '没有管理员账号。' : '这一档没有用户。' }}
+      </div>
+
+      <!-- 羊皮纸精细数据表格（完全依照生产 UsersPanel 字段） -->
+      <div v-else class="table-container" ref="tableContainerRef">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">编号</th>
+              <th style="width: 140px;">用户</th>
+              <th style="width: 160px;">邮箱</th>
+              <th style="width: 70px; text-align: center;">评论</th>
+              <th style="width: 90px;">角色</th>
+              <th style="width: 85px; text-align: center;">状态</th>
+              <th style="width: 140px;">注册 / 最近登录</th>
+              <th style="width: 160px; text-align: right;">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="u in users"
+              :key="u.id"
+              :class="{ 'is-selected': selectedUser?.id === u.id }"
+              @click="selectUser(u)"
+            >
+              <td class="mono-cell">#{{ u.publicNo }}</td>
+              <td>
+                <div class="user-cell">
+                  <img v-if="avatarUrl(u.avatar)" :src="avatarUrl(u.avatar)" class="table-avatar" alt="" />
+                  <div v-else class="table-avatar table-avatar--fallback">{{ (u.nick || '用')[0] }}</div>
+                  <span class="user-name-text">{{ u.nick }}</span>
+                </div>
+              </td>
+              <td>
+                <div class="email-cell">{{ u.email || '（已清空）' }}</div>
+                <div v-if="u.banNote" class="ban-note-badge">封禁：{{ u.banNote }}</div>
+              </td>
+              <td style="text-align: center;">
+                <RouterLink
+                  v-if="u.commentCount > 0"
+                  class="comment-count-link"
+                  :to="{ path: '/admin/comments', query: { userId: u.id, nick: u.nick } }"
+                  :title="`只看「${u.nick}」的评论`"
+                  @click.stop
                 >
-                  彻底删除
-                </button>
+                  {{ u.commentCount }}
+                </RouterLink>
+                <span v-else class="mono-cell" style="opacity: 0.6;">0</span>
+              </td>
+              <td>
+                <span class="role-badge" :class="{ 'role-badge--super': u.role >= 2, 'role-badge--admin': u.role === 1 }">
+                  {{ roleLabel(u.role) }}
+                </span>
+              </td>
+              <td style="text-align: center;">
+                <span :class="['status-badge', statusBadgeClass(u.status)]">{{ statusLabel(u.status) }}</span>
+              </td>
+              <td class="mono-cell">
+                <div>{{ formatDate(u.createdAt) }}</div>
+                <div style="font-size: 11px; opacity: 0.7;">{{ u.lastLoginAt ? formatDate(u.lastLoginAt) : '从未' }}</div>
+              </td>
+              <td style="text-align: right;">
+                <div class="actions-chain" style="justify-content: flex-end;" @click.stop>
+                  <template v-if="u.status === 1">
+                    <span
+                      class="action-link"
+                      :class="{ 'action-link--disabled': busyId === u.id || !canModerate(u) }"
+                      :title="canModerate(u) ? '' : '不能操作同级或更高级账号'"
+                      @click="canModerate(u) && toggleBan(u)"
+                    >
+                      {{ busyId === u.id ? '处理中' : '封禁' }}
+                    </span>
+                  </template>
+                  <template v-else-if="u.status === 2">
+                    <span
+                      class="action-link"
+                      style="color: #287a4c;"
+                      :class="{ 'action-link--disabled': busyId === u.id || !canModerate(u) }"
+                      :title="canModerate(u) ? '' : '不能操作同级或更高级账号'"
+                      @click="canModerate(u) && toggleBan(u)"
+                    >
+                      {{ busyId === u.id ? '处理中' : '解封' }}
+                    </span>
+                  </template>
+                  <span v-else class="mono-cell" style="font-size: 11px;">已注销</span>
+
+                  <template v-if="canSetRole(u)">
+                    <span
+                      class="action-link"
+                      :class="{ 'action-link--disabled': busyId === u.id }"
+                      @click="changeRole(u, u.role === 0 ? 1 : 0)"
+                    >
+                      {{ u.role === 0 ? '设为管理员' : '撤销管理' }}
+                    </span>
+                  </template>
+
+                  <span
+                    class="action-link action-link--danger"
+                    :class="{ 'action-link--disabled': busyId === u.id || !canModerate(u) }"
+                    :title="canModerate(u) ? '' : '不能操作同级或更高级账号'"
+                    @click="canModerate(u) && hardDelete(u)"
+                  >
+                    删除
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 翻页控制栏（主流分页：[上一页] [1] ... [7] [8] [9] [10] [11] ... [28] [下一页] + 跳转） -->
+      <div v-if="totalPages > 1 || users.length" class="pagination-bar">
+        <button
+          type="button"
+          class="page-btn"
+          :disabled="currentPage <= 1 || loading"
+          @click="goToPage(currentPage - 1)"
+        >
+          上一页
+        </button>
+
+        <template v-for="(item, idx) in displayedPageItems" :key="idx">
+          <span v-if="item === '...'" class="page-ellipsis">…</span>
+          <button
+            v-else
+            type="button"
+            class="page-number"
+            :class="{ active: item === currentPage }"
+            :disabled="loading"
+            @click="goToPage(item)"
+          >
+            {{ item }}
+          </button>
+        </template>
+
+        <button
+          type="button"
+          class="page-btn"
+          :disabled="currentPage >= totalPages || loading"
+          @click="goToPage(currentPage + 1)"
+        >
+          下一页
+        </button>
+
+        <div v-if="totalPages > 1" class="page-jumper">
+          <span>跳至</span>
+          <input
+            type="number"
+            v-model.number="jumpPageInput"
+            :min="1"
+            :max="totalPages"
+            class="page-jumper-input"
+            placeholder=""
+            @keydown.enter="handleJump"
+          />
+          <span>页</span>
+          <button
+            type="button"
+            class="page-jumper-btn"
+            :disabled="loading || !jumpPageInput"
+            @click="handleJump"
+          >
+            确定
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 右栏：真实用户概览与活动足迹（边框 4：手造皮质缝线与内衬层） -->
+    <aside class="admin-detail-side leather-panel-container">
+      <div class="panel-header-title">✦ 用户档案与足迹 ✦</div>
+
+      <template v-if="selectedUser">
+        <!-- 用户名片 -->
+        <div class="profile-card">
+          <img v-if="avatarUrl(selectedUser.avatar)" :src="avatarUrl(selectedUser.avatar)" class="profile-avatar-big" alt="用户头像" />
+          <div v-else class="profile-avatar-big profile-avatar-big--fallback">{{ (selectedUser.nick || '用')[0] }}</div>
+          <div class="profile-name-row">
+            <span class="profile-name">{{ selectedUser.nick }}</span>
+            <span :class="['status-badge', statusBadgeClass(selectedUser.status)]">{{ statusLabel(selectedUser.status) }}</span>
+          </div>
+          <div style="font-size: 11px; color: var(--text-muted); font-family: ui-monospace, monospace;">
+            对外编号：#{{ selectedUser.publicNo }}
+          </div>
+
+          <!-- 针对该用户的快捷管理操作（提权、封号、查评论） -->
+          <div class="profile-quick-actions">
+            <button
+              v-if="selectedUser.status === 1"
+              type="button"
+              class="quick-act-btn quick-act-btn--danger"
+              :disabled="busyId === selectedUser.id || !canModerate(selectedUser)"
+              @click="toggleBan(selectedUser)"
+            >
+              封禁账号
+            </button>
+            <button
+              v-else-if="selectedUser.status === 2"
+              type="button"
+              class="quick-act-btn"
+              :disabled="busyId === selectedUser.id || !canModerate(selectedUser)"
+              @click="toggleBan(selectedUser)"
+            >
+              解除封禁
+            </button>
+            <button
+              v-else
+              type="button"
+              class="quick-act-btn"
+              disabled
+            >
+              已注销
+            </button>
+
+            <button
+              v-if="canSetRole(selectedUser)"
+              type="button"
+              class="quick-act-btn"
+              :disabled="busyId === selectedUser.id"
+              @click="changeRole(selectedUser, selectedUser.role === 0 ? 1 : 0)"
+            >
+              {{ selectedUser.role === 0 ? '设为管理员' : '撤销管理' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- 属性列表（100% 对应项目数据库 users 表字段） -->
+        <div class="prop-list">
+          <div class="prop-row">
+            <span class="prop-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+              <span>用户类别</span>
+            </span>
+            <span class="prop-val" :class="{ 'role-badge--super': selectedUser.role >= 2, 'role-badge--admin': selectedUser.role === 1 }">
+              {{ roleLabel(selectedUser.role) }}
+            </span>
+          </div>
+
+          <div class="prop-row">
+            <span class="prop-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              <span>绑定邮箱</span>
+            </span>
+            <span class="prop-val mono">{{ selectedUser.email || '（已清空）' }}</span>
+          </div>
+
+          <div class="prop-row">
+            <span class="prop-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
+              <span>累计评论</span>
+            </span>
+            <RouterLink
+              v-if="selectedUser.commentCount > 0"
+              class="prop-val mono comment-count-link"
+              :to="{ path: '/admin/comments', query: { userId: selectedUser.id, nick: selectedUser.nick } }"
+            >
+              {{ selectedUser.commentCount }} 条 →
+            </RouterLink>
+            <span v-else class="prop-val mono" style="opacity: 0.6;">0 条</span>
+          </div>
+
+          <div class="prop-row">
+            <span class="prop-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+              <span>注册时间</span>
+            </span>
+            <span class="prop-val mono">{{ formatDate(selectedUser.createdAt) }}</span>
+          </div>
+
+          <div class="prop-row">
+            <span class="prop-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
+              <span>最近登录</span>
+            </span>
+            <span class="prop-val mono">{{ selectedUser.lastLoginAt ? formatDate(selectedUser.lastLoginAt) : '从未' }}</span>
+          </div>
+
+          <!-- 封禁理由 -->
+          <div v-if="selectedUser.banNote" class="prop-ban-note">
+            <strong>封禁理由：</strong>{{ selectedUser.banNote }}
+          </div>
+        </div>
+
+        <!-- 最近动态与足迹（结合真实评论与审计日志生命周期） -->
+        <div class="activity-section">
+          <div class="panel-header-title" style="margin-bottom: 0; padding-bottom: 6px;">✦ 近期动态与足迹 ✦</div>
+          <div class="timeline">
+            <!-- 节点 1：登录动态 -->
+            <div class="timeline-item">
+              <span class="timeline-node">◇</span>
+              <div style="display: flex; align-items: center;">
+                <span class="timeline-tag">登录</span>
+                <span class="timeline-time">{{ selectedUser.lastLoginAt ? formatDate(selectedUser.lastLoginAt) : '—' }}</span>
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              <span class="timeline-desc">
+                {{ selectedUser.lastLoginAt ? '最近一次活跃登录会话' : '注册后尚无登录会话' }}
+              </span>
+            </div>
 
-    <div v-if="hasMore" class="admin-more">
-      <button type="button" class="admin-btn admin-btn--ghost" :disabled="loading" @click="loadMore">
-        {{ loading ? '加载中…' : '加载更多' }}
-      </button>
-    </div>
+            <!-- 节点 2：评论记录（若有评论） -->
+            <div v-if="selectedUser.commentCount > 0" class="timeline-item">
+              <span class="timeline-node">◇</span>
+              <div style="display: flex; align-items: center;">
+                <span class="timeline-tag timeline-tag--comment">评论</span>
+                <span class="timeline-time">累计 {{ selectedUser.commentCount }} 条</span>
+              </div>
+              <span class="timeline-desc">
+                在 Wiki 词条或讨论区发表过交流留言
+              </span>
+            </div>
 
-    <!--
-      封禁理由输入。与评论的「转待审原因」同一套交互 ——
-      两处都是"处理某人/某内容时说明为什么"，口径一致才不会让人困惑。
-    -->
+            <!-- 节点 3：封禁或角色审计留痕 -->
+            <div v-if="selectedUser.banNote" class="timeline-item">
+              <span class="timeline-node">◇</span>
+              <div style="display: flex; align-items: center;">
+                <span class="timeline-tag timeline-tag--audit">封禁</span>
+                <span class="timeline-time">状态受限</span>
+              </div>
+              <span class="timeline-desc">
+                被管理员封禁停用：{{ selectedUser.banNote }}
+              </span>
+            </div>
+
+            <!-- 节点 4：注销留痕（若 status === 3） -->
+            <div v-if="selectedUser.status === 3" class="timeline-item">
+              <span class="timeline-node">◇</span>
+              <div style="display: flex; align-items: center;">
+                <span class="timeline-tag timeline-tag--audit">注销</span>
+                <span class="timeline-time">{{ formatDate(selectedUser.lastLoginAt || selectedUser.createdAt) }}</span>
+              </div>
+              <span class="timeline-desc">
+                用户在前台自行申请注销账号，邮箱已安全释放
+              </span>
+            </div>
+
+            <!-- 节点 5：注册生命周期 -->
+            <div class="timeline-item">
+              <span class="timeline-node">◇</span>
+              <div style="display: flex; align-items: center;">
+                <span class="timeline-tag">入驻</span>
+                <span class="timeline-time">{{ formatDate(selectedUser.createdAt) }}</span>
+              </div>
+              <span class="timeline-desc">完成注册，正式加入深渊之歌大书院</span>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <div v-else style="padding: 24px 10px; text-align: center; color: var(--text-muted); font-size: 13px;">
+        在左侧表格中点击任意用户，查看详细档案与动态足迹。
+      </div>
+    </aside>
+
+    <!-- 封禁理由输入弹窗 -->
     <UiModal
       :visible="banTarget !== null"
       teleport-to="body"
@@ -202,19 +479,20 @@
         停用后该账号立即无法登录（现有会话同时作废）。理由只有管理员能看到，用户只会看到「该账号已被停用」。
       </p>
 
-      <label class="admin-modal-label" for="ban-note">
-        封禁理由<span class="admin-modal-optional">（可留空）</span>
+      <label class="admin-modal-label" for="ban-note-input">
+        封禁理由
+        <span class="admin-modal-optional">（选填，最多 {{ BAN_NOTE_MAX }} 字）</span>
       </label>
       <input
-        id="ban-note"
+        id="ban-note-input"
         v-model="banNote"
         class="admin-input"
         type="text"
         :maxlength="BAN_NOTE_MAX"
-        placeholder="如：连续发广告 / 冒用他人身份 / 多次违规"
-        @keydown.enter="confirmBan"
+        placeholder="例如：在评论区多次发布违规广告"
+        @keydown.enter.prevent="confirmBan"
       />
-      <p class="admin-modal-count">{{ banNote.length }} / {{ BAN_NOTE_MAX }}</p>
+      <div class="admin-modal-count">{{ banNote.length }} / {{ BAN_NOTE_MAX }}</div>
 
       <template #footer>
         <button type="button" class="admin-btn admin-btn--ghost" @click="cancelBan">取消</button>
@@ -223,44 +501,41 @@
         </button>
       </template>
     </UiModal>
-  </section>
+
+    <!-- 通用确认弹窗（替代原生 window.confirm） -->
+    <UiModal
+      :visible="confirmModal.visible"
+      teleport-to="body"
+      :title="confirmModal.title"
+      max-width="480px"
+      @update:visible="(v) => { if (!v) onConfirmCancel() }"
+    >
+      <p v-if="confirmModal.lead" class="admin-modal-lead">{{ confirmModal.lead }}</p>
+      <div v-if="confirmModal.content" class="admin-modal-quote" style="white-space: pre-line; line-height: 1.6;">
+        {{ confirmModal.content }}
+      </div>
+
+      <template #footer>
+        <button type="button" class="admin-btn admin-btn--ghost" @click="onConfirmCancel">
+          {{ confirmModal.cancelText || '取消' }}
+        </button>
+        <button
+          type="button"
+          class="admin-btn"
+          :class="{ 'admin-btn--danger': confirmModal.isDanger }"
+          @click="onConfirmAccept"
+        >
+          {{ confirmModal.confirmText || '确定' }}
+        </button>
+      </template>
+    </UiModal>
+  </div>
 </template>
 
 <script setup>
 /**
  * 后台 · 用户管理。
- *
- * ## 封禁与彻底删除的区别（按钮文案与确认框都要说清）
- *
- * | | 封禁（status 1↔2） | 彻底删除 |
- * | --- | --- | --- |
- * | 能否登录 | 不能 | 不能（已经没了） |
- * | 会话 | **立即失效** | 立即失效 |
- * | 邮箱 | 仍占用 | **释放**（可以重新注册） |
- * | 他的评论 | 保留 | 保留，但 `user_id` 置空（不再挂在账号上） |
- * | 可恢复 | 可以解封 | **不可恢复** |
- *
- * 所以"想让人闭嘴"用封禁，"用户要求删除数据"才用彻底删除。
- *
- * ## status=3 不给操作
- *
- * 那是**用户自己注销**留下的标记，管理员既不该替他"解封"
- * （他本人没要求回来），也不该把别人改成 3（服务端也只允许 1↔2）。
- *
- * ## 角色与层级（2026-10-07 新增）
- *
- * | 角色 | 能做什么 |
- * | --- | --- |
- * | 2 超级管理员 | 全部 + **设/撤管理员** |
- * | 1 管理员 | 评论与用户管理，但**只能动普通用户** |
- * | 0 普通用户 | 进不来后台 |
- *
- * 🔴 前端做两件事，**但都不是防线**：
- *   1. `canSetRole()` —— 角色按钮**仅超管可见**（不是禁用，是不渲染）；
- *   2. `canModerate()` —— 动不了同级/更高级时把按钮置灰并给出原因提示。
- * 真正的准入在服务端（`canActOn`），伪造请求会拿到 403。
  */
-
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
@@ -271,45 +546,70 @@ import UiModal from '../ui/UiModal.vue'
 import {
   AdminApiError,
   deleteUserPermanently,
+  fetchAdminStats,
   fetchAdminUsers,
   setUserRole,
   setUserStatus
 } from '../../utils/adminApi.js'
 
-const FILTERS = [
-  { value: '1', label: '正常' },
-  { value: '2', label: '已停用' },
-  { value: '3', label: '已注销' },
-  { value: '', label: '全部' }
-]
-
-/**
- * 角色筛选（**仅超管**）。
- *
- * 刻意只给"看管理员"一个方向，不做普通/管理员/超管的逐档筛：
- * 管理端的实际需求是"我有哪些同事、权限对不对"；普通用户是绝大多数，
- * 按他们筛等于没筛（那本来就是默认视图）。
- */
-const ROLE_FILTERS = [
-  { value: '', label: '全部角色' },
-  { value: 'admin', label: '只看管理员' }
-]
-
-const roleFilter = ref('')
+const stats = ref(null)
+const selectedUser = ref(null)
 
 const users = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
-/** 默认看"正常"：日常主要是查人，不是看一堆注销记录 */
-const statusFilter = ref('1')
+const statusFilter = ref('') // 默认全部状态，与预览页保持一致
+const roleFilter = ref('')
 const cursor = ref(null)
 const hasMore = ref(false)
 const busyId = ref(null)
 
-/** 封禁理由长度上限，必须与后端 `REVIEW_NOTE_MAX` 一致（服务端超长会回 400） */
-const BAN_NOTE_MAX = 80
+// 分页控制
+const currentPage = ref(1)
+const totalPages = ref(1)
+const totalCount = ref(0)
+const jumpPageInput = ref('')
 
-/** 「封禁 + 理由」弹窗：目标用户 + 输入内容 + 提交中标志 */
+const displayedPageItems = computed(() => {
+  return getPaginationItems(currentPage.value, totalPages.value, 2)
+})
+
+function getPaginationItems(current, total, delta = 2) {
+  if (total <= 1) return [1]
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1)
+  }
+
+  let left = current - delta
+  let right = current + delta
+
+  if (left <= 2) {
+    left = 2
+    right = 2 + delta * 2
+  }
+  if (right >= total - 1) {
+    right = total - 1
+    left = (total - 1) - delta * 2
+  }
+
+  left = Math.max(2, left)
+  right = Math.min(total - 1, right)
+
+  const items = [1]
+  if (left > 2) {
+    items.push('...')
+  }
+  for (let i = left; i <= right; i++) {
+    items.push(i)
+  }
+  if (right < total - 1) {
+    items.push('...')
+  }
+  items.push(total)
+  return items
+}
+
+const BAN_NOTE_MAX = 80
 const banTarget = ref(null)
 const banNote = ref('')
 const savingBan = ref(false)
@@ -323,6 +623,16 @@ function avatarUrl(id) {
   return p ? getImageUrl(p) : ''
 }
 
+function selectUser(user) {
+  selectedUser.value = user
+}
+
+function statusBadgeClass(status) {
+  if (status === 1) return 'status-badge--ok'
+  if (status === 2) return 'status-badge--ban'
+  return 'status-badge--del'
+}
+
 function onSearchInput(value) {
   searchInput.value = value
   clearTimeout(searchTimer)
@@ -332,43 +642,51 @@ function onSearchInput(value) {
 function applySearch() {
   clearTimeout(searchTimer)
   const next = searchInput.value.trim()
-  if (next === searchQuery.value) return
   searchQuery.value = next
-  safeLoad()
+  resetAndLoad()
 }
 
-function clearSearch() {
+function resetAndLoad() {
+  currentPage.value = 1
+  totalCount.value = 0
+  safeLoad({ page: 1 })
+}
+
+function refreshList() {
   searchInput.value = ''
   searchQuery.value = ''
-  safeLoad()
+  statusFilter.value = ''
+  roleFilter.value = ''
+  totalCount.value = 0
+  resetAndLoad()
+  loadStats()
 }
 
-function setFilter(value) {
-  if (statusFilter.value === value) return
-  statusFilter.value = value
-  safeLoad()
-}
-
-function setRoleFilter(value) {
-  if (roleFilter.value === value) return
-  roleFilter.value = value
-  safeLoad()
-}
-
-async function load({ append = false } = {}) {
+async function load({ page: reqPage } = {}) {
   loading.value = true
   errorMessage.value = ''
+  const targetPage = reqPage !== undefined ? reqPage : currentPage.value
   try {
     const data = await fetchAdminUsers({
       status: statusFilter.value,
       q: searchQuery.value,
       role: roleFilter.value,
-      cursor: append ? cursor.value : undefined
+      page: targetPage,
+      total: totalCount.value > 0 && targetPage !== 1 ? totalCount.value : undefined
     })
     const page = data.users || []
-    users.value = append ? [...users.value, ...page] : page
-    cursor.value = data.nextCursor ?? null
+    users.value = page
+    currentPage.value = data.page ?? targetPage
+    totalPages.value = data.totalPages ?? 1
+    totalCount.value = data.total ?? page.length
     hasMore.value = Boolean(data.hasMore)
+
+    if (!selectedUser.value && users.value.length) {
+      selectedUser.value = users.value[0]
+    } else if (selectedUser.value) {
+      const found = users.value.find((u) => u.id === selectedUser.value.id)
+      if (found) selectedUser.value = found
+    }
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '加载失败，请重试'
   } finally {
@@ -384,30 +702,94 @@ function safeLoad(options = {}) {
   })
 }
 
-function loadMore() {
-  if (loading.value || !hasMore.value) return
-  safeLoad({ append: true })
+function reloadCurrentPage() {
+  return safeLoad({ page: currentPage.value })
+}
+
+const tableContainerRef = ref(null)
+
+function scrollToTableTop() {
+  if (tableContainerRef.value) {
+    tableContainerRef.value.scrollTop = 0
+  }
+  const el = document.querySelector('.admin-users-view .table-container')
+  if (el) el.scrollTop = 0
+}
+
+function goToPage(p) {
+  if (p < 1 || p === currentPage.value || loading.value) return
+  if (p > totalPages.value) return
+  scrollToTableTop()
+  safeLoad({ page: p }).then(() => {
+    scrollToTableTop()
+  })
+}
+
+function handleJump() {
+  const p = Number.parseInt(jumpPageInput.value, 10)
+  if (!Number.isFinite(p) || p < 1) return
+  const validPage = Math.min(Math.max(p, 1), totalPages.value)
+  jumpPageInput.value = ''
+  goToPage(validPage)
+}
+
+const confirmModal = ref({
+  visible: false,
+  title: '',
+  lead: '',
+  content: '',
+  confirmText: '确定',
+  cancelText: '取消',
+  isDanger: false,
+  resolve: null
+})
+
+function askConfirm({ title, lead = '', content = '', confirmText = '确定', cancelText = '取消', isDanger = false }) {
+  return new Promise((resolve) => {
+    confirmModal.value = {
+      visible: true,
+      title,
+      lead,
+      content,
+      confirmText,
+      cancelText,
+      isDanger,
+      resolve
+    }
+  })
+}
+
+function onConfirmAccept() {
+  const cb = confirmModal.value.resolve
+  confirmModal.value.visible = false
+  cb?.(true)
+}
+
+function onConfirmCancel() {
+  const cb = confirmModal.value.resolve
+  confirmModal.value.visible = false
+  cb?.(false)
 }
 
 async function toggleBan(user) {
-  /*
-   * 封禁要走**理由弹窗**（说明"为什么封"，让接手的人不必重新判断）；
-   * 解封仍用轻量确认 —— 它没有需要填的信息，弹窗只是多余一步。
-   */
   if (user.status === 1) {
     banTarget.value = user
     banNote.value = ''
     return
   }
 
-  const ok = window.confirm(`解封「${user.nick}」（编号 ${user.publicNo}）？\n\n他可以重新登录。`)
+  const ok = await askConfirm({
+    title: '解封账号',
+    lead: `解封「${user.nick}」（编号 ${user.publicNo}）？`,
+    content: '该用户将可以重新正常登录前台讨论区与个人中心。',
+    confirmText: '确认解封'
+  })
   if (!ok) return
   busyId.value = user.id
   errorMessage.value = ''
   try {
-    // 解封时服务端会清空封禁理由，这里不传
     await setUserStatus(user.id, 1)
-    safeLoad()
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
   } finally {
@@ -415,13 +797,11 @@ async function toggleBan(user) {
   }
 }
 
-/** 关掉理由弹窗并丢弃输入 */
 function cancelBan() {
   banTarget.value = null
   banNote.value = ''
 }
 
-/** 提交「封禁 + 理由」。理由留空也允许（服务端会存 NULL）。 */
 async function confirmBan() {
   if (savingBan.value || !banTarget.value) return
   const target = banTarget.value
@@ -431,7 +811,7 @@ async function confirmBan() {
   try {
     await setUserStatus(target.id, 2, note)
     cancelBan()
-    safeLoad()
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
   } finally {
@@ -440,19 +820,22 @@ async function confirmBan() {
 }
 
 async function hardDelete(user) {
-  const ok = window.confirm(
-    `彻底删除「${user.nick}」（编号 ${user.publicNo}）？\n\n` +
-      `· 这个邮箱会**被释放**，那个人可以重新注册；\n` +
-      `· 他的 ${user.commentCount} 条评论**会保留**，但不再挂在账号上；\n` +
-      `· **不可恢复**。\n\n` +
-      '只是不想让他登录的话，请用「封禁」。'
-  )
+  const ok = await askConfirm({
+    title: '彻底删除用户',
+    lead: `彻底删除「${user.nick}」（编号 ${user.publicNo}）？`,
+    content:
+      '· 这个邮箱会被释放，用户可以重新注册\n' +
+      `· 他的 ${user.commentCount} 条评论会保留，但不再挂在账号上\n` +
+      '· 此操作不可恢复！若只想禁止登录请用「封禁」',
+    confirmText: '彻底删除',
+    isDanger: true
+  })
   if (!ok) return
   busyId.value = user.id
   errorMessage.value = ''
   try {
     await deleteUserPermanently(user.id)
-    safeLoad()
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '删除失败，请重试'
   } finally {
@@ -462,23 +845,21 @@ async function hardDelete(user) {
 
 async function changeRole(user, role) {
   const toAdmin = role === 1
-  const ok = window.confirm(
-    toAdmin
-      ? `把「${user.nick}」（编号 ${user.publicNo}）设为管理员？\n\n` +
-        '· 他能进入后台，管理评论、封禁/删除**普通用户**；\n' +
-        '· 他**不能**操作其他管理员或超级管理员；\n' +
-        '· 他的每一步操作都会记进审计日志。'
-      : `撤销「${user.nick}」（编号 ${user.publicNo}）的管理员身份？\n\n` +
-        '· 他将**无法再进入后台**（已登录的会话仍在，但后台接口会拒绝）；\n' +
-        '· 他作为普通用户的一切都不受影响；\n' +
-        '· 这个操作会记进审计日志。'
-  )
+  const ok = await askConfirm({
+    title: toAdmin ? '设为管理员' : '撤销管理权限',
+    lead: toAdmin ? `把「${user.nick}」（编号 ${user.publicNo}）设为管理员？` : `撤销「${user.nick}」（编号 ${user.publicNo}）的管理员身份？`,
+    content: toAdmin
+      ? '· 他能进入后台，管理评论、封禁/删除普通用户\n· 他不能操作其他管理员或超级管理员\n· 他的每一步操作都会记进审计日志'
+      : '· 他将无法再进入后台（已登录会话仍在，但后台接口会拒绝）\n· 他作为普通用户的一切都不受影响\n· 这个操作会记进审计日志',
+    confirmText: toAdmin ? '设为管理员' : '撤销权限',
+    isDanger: !toAdmin
+  })
   if (!ok) return
   busyId.value = user.id
   errorMessage.value = ''
   try {
     await setUserRole(user.id, role)
-    safeLoad()
+    reloadCurrentPage()
   } catch (err) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '操作失败，请重试'
   } finally {
@@ -486,43 +867,19 @@ async function changeRole(user, role) {
   }
 }
 
-/**
- * 当前登录者的角色。
- *
- * ⚠️ 这是**登录时的快照**，账号被降级后本地仍是旧值。所以它只用于
- * "按钮显不显示"，**不构成准入** —— 真正的判定在服务端。
- * 若快照过期（本地以为自己是超管、实际已被降级），按钮会出现但点击拿到 403，
- * 那时会显示错误文案，不会静默失败。
- */
 const myRole = computed(() => Number(currentUser.value?.role) || 0)
-
-/** 是否超管（同样只是快照，仅用于"显不显示"；准入在服务端） */
 const isSuper = computed(() => myRole.value >= 2)
 
-/**
- * 判断某一行是不是**我自己**。
- *
- * 🔴 **必须用 `publicNo` 比，不能用 `id` 比** —— 两个 `id` 不是一回事：
- *   · 管理端列表的 `u.id`      = **内部自增 id**（服务端 `adminUsers` 的 `id: r.id`）
- *   · `currentUser.value.id`  = **对外编号**（`toPublicUser()` 把 `public_no` 映射成了 `id`）
- *
- * 早先这里写成 `Number(user.id) === Number(currentUser.value?.id)`，两个不同量纲的数
- * 永远不会相等 —— 于是"不能操作自己"这条**在界面上完全失效**：
- * 超管会看到自己那一行也有「封禁」「彻底删除」按钮，点了才被服务端 403 拦下。
- * 后端是稳的（所以没有安全问题），但界面在骗人。
- */
 function isSelf(user) {
   return Number(user.publicNo) === Number(currentUser.value?.id)
 }
 
-/** 角色按钮：**仅超管可见**，且不能改自己（超管也不能改超管，服务端同样拒绝） */
 function canSetRole(user) {
   if (myRole.value < 2) return false
   if (isSelf(user)) return false
   return Number(user.role) < 2
 }
 
-/** 能否封禁/删除该用户：只能动角色**严格低于**自己、且不是自己的账号 */
 function canModerate(user) {
   if (isSelf(user)) return false
   return myRole.value > Number(user.role)
@@ -543,62 +900,921 @@ function statusLabel(status) {
 
 function formatDate(unixSec) {
   if (!unixSec) return '—'
-  return new Date(unixSec * 1000).toLocaleDateString('zh-CN')
+  const d = new Date(unixSec * 1000)
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const date = String(d.getDate()).padStart(2, '0')
+  const hh = String(d.getHours()).padStart(2, '0')
+  const mm = String(d.getMinutes()).padStart(2, '0')
+  return `${y}-${m}-${date} ${hh}:${mm}`
 }
 
-onMounted(() => safeLoad())
+async function loadStats() {
+  try {
+    const res = await fetchAdminStats()
+    stats.value = res
+  } catch {
+    /* 允许统计指标静默失败 */
+  }
+}
+
+onMounted(() => {
+  safeLoad()
+  loadStats()
+})
 onBeforeUnmount(() => clearTimeout(searchTimer))
 </script>
 
 <style scoped>
-.admin-avatar {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  object-fit: cover;
-  vertical-align: -5px;
-  margin-right: 4px;
+.admin-users-view {
+  --wood-border: #7a5c3d;
+  --gold-border: rgba(143, 115, 81, 0.45);
+  --gold-accent: #c5913e;
+  --gold-bright: #ffd78c;
+  --text-main: #3e2a14;
+  --text-muted: #755c3f;
+  --text-light: #f7e6c4;
+  --paper-soft: #f4ecdc;
+  --paper-card: #f9f5eb;
+  --status-ok-bg: #e5f4eb;
+  --status-ok-text: #287a4c;
+  --status-ok-border: #a3d9b8;
+  --status-wait-bg: #fcf4e3;
+  --status-wait-text: #b37318;
+  --status-wait-border: #f0d092;
+  --status-ban-bg: #fae8e8;
+  --status-ban-text: #b83232;
+  --status-ban-border: #e8a7a7;
+  --status-del-bg: #eae6df;
+  --status-del-text: #8c765c;
+  --status-del-border: #c4b6a5;
+
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-.admin-dim {
+:deep(.dark-mode) .admin-users-view,
+.dark-mode .admin-users-view {
+  --wood-border: #5c4327;
+  --gold-border: rgba(143, 115, 81, 0.3);
+  --gold-accent: #d4a359;
+  --text-main: #e8dbc3;
+  --text-muted: #ab9274;
+  --paper-soft: #33261a;
+  --paper-card: #271d13;
+  --status-ok-bg: rgba(40, 122, 76, 0.22);
+  --status-ok-text: #6ad197;
+  --status-ok-border: rgba(106, 209, 151, 0.4);
+  --status-ban-bg: rgba(184, 50, 50, 0.22);
+  --status-ban-text: #f07f7f;
+  --status-ban-border: rgba(240, 127, 127, 0.4);
+  --status-del-bg: rgba(140, 118, 92, 0.22);
+  --status-del-text: #b09a82;
+  --status-del-border: rgba(176, 154, 130, 0.4);
+}
+
+/* 2. 中间主工作坊面板 */
+.admin-workshop {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  max-height: 100%;
+  overflow: hidden;
+  border: 2px solid var(--wood-border);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  padding: 18px 24px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.workshop-header {
+  flex-shrink: 0;
+  border-bottom: 1.5px solid var(--gold-border);
+  padding-bottom: 12px;
+}
+.workshop-title {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+.workshop-title-star {
+  color: #c5913e;
+  font-size: 19px;
+}
+.workshop-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+  letter-spacing: 0.5px;
+}
+
+/* 4 联数据指标卡片 */
+.stat-cards-grid {
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.stat-card {
+  border: 1.5px solid rgba(143, 115, 81, 0.35);
+  border-radius: 8px;
+  background: var(--paper-card);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.12);
+}
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, #c5913e 40%, transparent);
+  opacity: 0.6;
+}
+
+.stat-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(143, 115, 81, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #7a5c3d;
+  border: 1px solid rgba(143, 115, 81, 0.25);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card--total .stat-icon-wrap { color: #7d4d1d; background: rgba(125, 77, 29, 0.12); border-color: rgba(125, 77, 29, 0.3); }
+.stat-card--ok .stat-icon-wrap { color: #246d43; background: rgba(36, 109, 67, 0.12); border-color: rgba(36, 109, 67, 0.3); }
+.stat-card--today .stat-icon-wrap { color: #a87222; background: rgba(168, 114, 34, 0.12); border-color: rgba(168, 114, 34, 0.3); }
+.stat-card--ban .stat-icon-wrap { color: #a82e2e; background: rgba(168, 46, 46, 0.12); border-color: rgba(168, 46, 46, 0.35); }
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.stat-label {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--text-muted);
 }
+.stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", monospace;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+}
 
-/* 可点的评论数：让它看起来像链接（否则没人会想到能点） */
-.admin-link {
-  color: #5b7fa6;
+/* 搜索与工具条 */
+.workshop-toolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.search-input-wrap {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  height: 38px;
+  padding: 0 14px 0 38px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 13.5px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+.search-input:focus {
+  border-color: #a88452;
+  box-shadow: 0 0 0 3px rgba(168, 132, 82, 0.2);
+}
+.search-input-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.select-dropdown {
+  height: 38px;
+  padding: 0 28px 0 14px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a5c3d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat calc(100% - 10px) center;
+  color: var(--text-main);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+.select-dropdown:focus {
+  border-color: #a88452;
+}
+
+.btn-search {
+  height: 38px;
+  padding: 0 20px;
+  background: linear-gradient(180deg, #4d331a, #2f1d0d);
+  border: 1px solid #c5913e;
+  color: #f7e6c4;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.18s;
+}
+.btn-search:hover {
+  background: linear-gradient(180deg, #5c3e21, #3b2513);
+  border-color: #ffd78c;
+  color: #fff;
+}
+
+.btn-refresh {
+  height: 38px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(143, 115, 81, 0.5);
+  color: var(--text-main);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.btn-refresh:hover {
+  background: rgba(143, 115, 81, 0.18);
+  border-color: #a88452;
+}
+
+.search-hint-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: -6px;
+}
+.search-hint-text strong {
+  color: var(--text-main);
+}
+
+.admin-error-banner {
+  padding: 10px 14px;
+  background: rgba(184, 50, 50, 0.12);
+  border: 1px solid rgba(184, 50, 50, 0.3);
+  border-radius: 6px;
+  color: #b83232;
+  font-size: 13px;
+}
+
+.empty-hint-box {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13.5px;
+}
+
+/* 羊皮纸精细数据表格 */
+.table-container {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+  position: relative;
+  border: 1.5px solid rgba(143, 115, 81, 0.4);
+  border-radius: 6px;
+  background: var(--paper-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.admin-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 12px 12px;
+  background: #ebe0ce;
+  color: var(--text-muted);
+  font-weight: 700;
+  border-bottom: 1.5px solid rgba(143, 115, 81, 0.35);
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 0 rgba(143, 115, 81, 0.35);
+}
+
+:deep(.dark-mode) .admin-table thead th,
+.dark-mode .admin-table thead th {
+  background: #251b11;
+}
+
+.admin-table td {
+  padding: 10px 12px;
+  border-bottom: 1px dashed rgba(143, 115, 81, 0.25);
+  color: var(--text-main);
+  vertical-align: middle;
+  transition: background 0.15s;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr {
+  cursor: pointer;
+  position: relative;
+}
+
+.admin-table tbody tr:hover td {
+  background-color: rgba(245, 237, 222, 0.85);
+}
+:deep(.dark-mode) .admin-table tbody tr:hover td,
+.dark-mode .admin-table tbody tr:hover td {
+  background-color: rgba(60, 45, 30, 0.5);
+}
+
+.admin-table tbody tr.is-selected td {
+  background-color: rgba(212, 163, 89, 0.18) !important;
+}
+.admin-table tbody tr.is-selected td:first-child {
+  position: relative;
+}
+.admin-table tbody tr.is-selected td:first-child::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 0 2px 2px 0;
+  background: #c5913e;
+}
+
+/* 表格内字段样式 */
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #c5913e;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  flex-shrink: 0;
+}
+.table-avatar--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7a5c3d;
+  color: #ffd78c;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.user-name-text {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.mono-cell {
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", monospace;
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.email-cell {
+  max-width: 170px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
+.ban-note-badge {
+  display: inline-block;
+  font-size: 11px;
+  color: #b83232;
+  background: rgba(184, 50, 50, 0.12);
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+.comment-count-link {
+  color: #557574;
+  font-weight: 700;
+  font-family: ui-monospace, monospace;
   text-decoration: underline;
-  text-underline-offset: 2px;
   cursor: pointer;
 }
-
-.admin-link:hover {
-  color: #3f5f80;
+.comment-count-link:hover {
+  color: var(--text-main);
 }
 
-.admin-more {
-  display: flex;
+.role-badge {
+  font-size: 12px;
+  font-weight: 600;
+}
+.role-badge--super {
+  color: #c5913e;
+  font-weight: 800;
+  text-shadow: 0 0 1px rgba(197, 145, 62, 0.5);
+}
+.role-badge--admin {
+  color: #557574;
+  font-weight: 700;
+}
+
+/* 状态微胶囊标签 */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid;
 }
 
-/* ── 封禁理由 ──
-   这几个类名与 `AdminCommentsPanel` 的「转待审原因」保持一致，
-   但样式必须各自声明：scoped 样式带 data 属性、穿不过组件边界。 */
-.admin-quote {
-  margin-top: 3px;
+.status-badge--ok {
+  background: var(--status-ok-bg);
+  color: var(--status-ok-text);
+  border-color: var(--status-ok-border);
+}
+.status-badge--ban {
+  background: var(--status-ban-bg);
+  color: var(--status-ban-text);
+  border-color: var(--status-ban-border);
+}
+.status-badge--del {
+  background: var(--status-del-bg);
+  color: var(--status-del-text);
+  border-color: var(--status-del-border);
+}
+
+.actions-chain {
+  display: flex;
+  gap: 10px;
+}
+
+.action-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.action-link:hover {
+  color: #c5913e;
+  text-decoration: underline;
+}
+.action-link--danger:hover {
+  color: #b83232;
+}
+.action-link--disabled {
+  opacity: 0.4;
+  cursor: not-allowed !important;
+  text-decoration: none !important;
+}
+
+/* 复古翻页栏 */
+.pagination-bar {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.page-btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.15s;
+}
+.page-btn:hover:not(:disabled) {
+  background: rgba(245, 237, 222, 0.9);
+  border-color: #a88452;
+}
+.page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(143, 115, 81, 0.35);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.page-number:hover:not(:disabled) {
+  border-color: #a88452;
+}
+.page-number.active {
+  background: linear-gradient(135deg, #3e2613, #2b1a0d);
+  color: #f7e6c4;
+  border-color: #c5913e;
+  font-weight: 800;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.page-number:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+:deep(.dark-mode) .page-number.active,
+.dark-mode .page-number.active {
+  background: linear-gradient(135deg, #52341b, #38210f);
+  color: #ffd78c;
+  border-color: #e5b060;
+}
+
+.page-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 32px;
+  color: var(--text-muted);
+  font-size: 14px;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+.page-jumper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
   font-size: 12px;
   color: var(--text-muted);
 }
 
-.admin-quote--note {
-  color: #5b7fa6;
+.page-jumper-input {
+  width: 44px;
+  height: 28px;
+  padding: 0 4px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 12.5px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
 }
 
+.page-jumper-input:focus {
+  border-color: #a88452;
+  box-shadow: 0 0 0 2px rgba(168, 132, 82, 0.2);
+}
+
+.page-jumper-btn {
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(143, 115, 81, 0.45);
+  background: var(--paper-card);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.page-jumper-btn:hover:not(:disabled) {
+  background: rgba(245, 237, 222, 0.95);
+  border-color: #a88452;
+}
+
+.page-jumper-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 3. 右侧信息概览与活动栏（手造皮质缝线与内衬层容器） */
+.admin-detail-side {
+  width: 300px;
+  flex-shrink: 0;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.leather-panel-container {
+  border: 2px solid var(--wood-border);
+  box-shadow: inset 0 0 0 4px rgba(223, 206, 179, 0.9),
+              inset 0 0 0 5.5px rgba(143, 115, 81, 0.55),
+              2px 4px 12px rgba(0, 0, 0, 0.22);
+  border-radius: 6px;
+  background: #e0cfb4;
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+:deep(.dark-mode) .leather-panel-container,
+.dark-mode .leather-panel-container {
+  border-color: #5c4327;
+  box-shadow: inset 0 0 0 4px rgba(46, 34, 23, 0.95),
+              inset 0 0 0 5.5px rgba(110, 85, 55, 0.55),
+              2px 4px 12px rgba(0, 0, 0, 0.4);
+  background: #2b1f15;
+}
+
+.panel-header-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  padding: 6px 6px 10px;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1.5px solid var(--gold-border);
+}
+.panel-header-title::after {
+  content: '◆';
+  font-size: 10px;
+  color: #a88452;
+}
+
+/* 用户名片卡 */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 4px 14px;
+  border-bottom: 1px dashed rgba(143, 115, 81, 0.35);
+}
+
+.profile-avatar-big {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 3px solid #ffd78c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35), 0 0 0 1px #a88452;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.profile-avatar-big--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #7a5c3d;
+  color: #ffd78c;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.profile-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.profile-quick-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  width: 100%;
+}
+.quick-act-btn {
+  flex: 1;
+  padding: 6px 0;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid rgba(143, 115, 81, 0.5);
+  background: rgba(245, 237, 222, 0.7);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quick-act-btn:hover:not(:disabled) {
+  background: #4d331a;
+  color: #ffd78c;
+  border-color: #ffd78c;
+}
+.quick-act-btn--danger:hover:not(:disabled) {
+  background: #7a2828;
+  color: #fff;
+  border-color: #e8a0a0;
+}
+.quick-act-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 属性条目列表 */
+.prop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 4px;
+}
+
+.prop-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+}
+
+.prop-label {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.prop-label svg {
+  color: #c5913e;
+}
+
+.prop-val {
+  font-weight: 700;
+  color: var(--text-main);
+}
+.prop-val.mono {
+  font-family: ui-monospace, "Cascadia Code", "Roboto Mono", monospace;
+}
+
+.prop-ban-note {
+  background: rgba(184, 50, 50, 0.1);
+  border: 1px solid rgba(184, 50, 50, 0.3);
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  color: #b83232;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+/* 最近动态与足迹时间线 */
+.activity-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  padding-left: 18px;
+  margin-top: 6px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1.5px;
+  background: rgba(143, 115, 81, 0.35);
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -18px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c5913e;
+  font-size: 11px;
+}
+
+.timeline-tag {
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(143, 115, 81, 0.2);
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+.timeline-tag--comment { background: rgba(85, 117, 116, 0.2); color: #557574; }
+.timeline-tag--audit { background: rgba(197, 145, 62, 0.2); color: #a88452; }
+
+.timeline-time {
+  font-size: 11px;
+  font-family: ui-monospace, monospace;
+  color: var(--text-muted);
+}
+
+.timeline-desc {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* 封禁理由弹窗辅助样式 */
 .admin-modal-lead {
   margin: 0 0 6px;
   font-size: 14px;
 }
-
 .admin-modal-quote {
   margin: 0 0 14px;
   padding: 8px 10px;
@@ -608,18 +1824,15 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   color: var(--text-muted);
   word-break: break-word;
 }
-
 .admin-modal-label {
   display: block;
   margin-bottom: 6px;
   font-size: 14px;
 }
-
 .admin-modal-optional {
   color: var(--text-muted);
   font-size: 12px;
 }
-
 .admin-modal-count {
   margin: 6px 0 0;
   font-size: 12px;
@@ -627,18 +1840,12 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   text-align: right;
 }
 
-/*
- * 角色列配色：管理员/超管用不同权重标出。
- * 只是**视觉提示**（扫一眼知道谁是管理员），不承担权限语义 —— 权限由
- * 服务端的 canActOn 决定，前端改样式不会带来任何越权。
- */
-.admin-role-admin {
-  color: #8a6d1f;
-  font-weight: 600;
-}
-
-.admin-role-super {
-  color: #b3261e;
-  font-weight: 700;
+@media (max-width: 1280px) {
+  .admin-detail-side {
+    width: 260px;
+  }
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>

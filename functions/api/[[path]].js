@@ -958,8 +958,12 @@ const ADMIN_PAGE_KINDS = {
 async function adminList(env, url) {
   const rawLimit = Number.parseInt(url.searchParams.get('limit') || '50', 10)
   const limit = Math.min(Math.max(Number.isFinite(rawLimit) ? rawLimit : 50, 1), MAX_LIMIT)
+  const rawPage = Number.parseInt(url.searchParams.get('page') || '', 10)
+  const isPageMode = Number.isFinite(rawPage) && rawPage >= 1
+  const pageNum = isPageMode ? rawPage : 1
+
   const cursor = Number.parseInt(url.searchParams.get('cursor') || '', 10)
-  const hasCursor = Number.isFinite(cursor)
+  const hasCursor = !isPageMode && Number.isFinite(cursor)
 
   const statusParam = url.searchParams.get('status')
   const hasStatus = statusParam === '0' || statusParam === '1' || statusParam === '2'
@@ -998,10 +1002,6 @@ async function adminList(env, url) {
     binds.push(likeParam)
     const i = binds.length
     where.push(`(body LIKE ?${i} ESCAPE '\\' OR nick LIKE ?${i} ESCAPE '\\' OR page_key LIKE ?${i} ESCAPE '\\')`)
-  }
-  if (hasCursor) {
-    binds.push(cursor)
-    where.push(`id < ?${binds.length}`)
   }
   if (hasUserId) {
     binds.push(userIdParam)
@@ -1049,6 +1049,61 @@ async function adminList(env, url) {
         ? `page_key = ?${binds.length}`
         : `page_key LIKE ?${binds.length} ESCAPE '\\'`
     )
+  }
+
+  if (isPageMode) {
+    const whereClause = where.length ? 'WHERE ' + where.join(' AND ') : ''
+    const passedTotal = Number.parseInt(url.searchParams.get('total') || '', 10)
+    let total = Number.isFinite(passedTotal) && passedTotal >= 0 ? passedTotal : null
+
+    if (total === null || pageNum === 1) {
+      const countSql = `SELECT COUNT(*) AS total FROM comments ${whereClause}`
+      const stmt = binds.length ? env.DB.prepare(countSql).bind(...binds) : env.DB.prepare(countSql)
+      const countRes = await stmt.first()
+      total = countRes?.total ?? 0
+    }
+    const totalPages = Math.max(1, Math.ceil(total / limit))
+
+    const offset = (pageNum - 1) * limit
+    const queryBinds = [...binds, limit, offset]
+    const sql = `SELECT id, page_key, page_label, nick, avatar, body, created_at, status, review_reason, review_note, user_id FROM comments
+      ${whereClause}
+      ORDER BY id DESC LIMIT ?${queryBinds.length - 1} OFFSET ?${queryBinds.length}`
+
+    const { results } = await env.DB.prepare(sql).bind(...queryBinds).all()
+    const rows = results || []
+
+    const groupRes = await env.DB.prepare(`SELECT status, COUNT(*) AS n FROM comments GROUP BY status`).all()
+    const scMap = { 0: 0, 1: 0, 2: 0 }
+    let totalAll = 0
+    for (const r of groupRes?.results || []) {
+      scMap[r.status] = r.n
+      totalAll += r.n
+    }
+    const pendingCount = scMap[0] || 0
+    const statusCounts = {
+      '0': scMap[0] || 0,
+      '1': scMap[1] || 0,
+      '2': scMap[2] || 0,
+      '': totalAll
+    }
+
+    return json({
+      ok: true,
+      comments: rows.map(toAdminComment),
+      total,
+      totalPages,
+      page: pageNum,
+      limit,
+      hasMore: pageNum < totalPages,
+      pendingCount,
+      statusCounts
+    })
+  }
+
+  if (hasCursor) {
+    binds.push(cursor)
+    where.push(`id < ?${binds.length}`)
   }
   binds.push(limit + 1)
 
@@ -1371,9 +1426,10 @@ async function adminStats(env) {
   // UTC 日界线，与限流的 `dayBucket()` 口径一致 —— 否则"今天的数"与
   // "今天的限额"会对不上，排查时容易怀疑人生
   const dayStart = ts - (ts % 86400)
+  const yesterdayStart = dayStart - 86400
   const weekStart = dayStart - 6 * 86400
 
-  const [cmtTotals, cmtByStatus, cmtDaily, usrByStatus, usrToday, usrDaily, sessionCount] =
+  const [cmtTotals, cmtByStatus, cmtDaily, usrByStatus, usrToday, usrDaily, sessionCount, usrActiveToday, usrActiveYesterday] =
     await Promise.all([
       env.DB.prepare(
         `SELECT COUNT(*) AS total,
@@ -1392,11 +1448,20 @@ async function adminStats(env) {
         `SELECT date(created_at, 'unixepoch') AS d, COUNT(*) AS n
          FROM users WHERE created_at >= ?1 GROUP BY d`
       ).bind(weekStart).all(),
-      env.DB.prepare(`SELECT COUNT(*) AS n FROM sessions WHERE expires_at > ?1`).bind(ts * 1000).first()
+      env.DB.prepare(`SELECT COUNT(*) AS n FROM sessions WHERE expires_at > ?1`).bind(ts * 1000).first(),
+      env.DB.prepare(
+        `SELECT COUNT(DISTINCT user_id) AS n FROM sessions WHERE last_seen_at >= ?1 OR created_at >= ?1`
+      ).bind(dayStart).first(),
+      env.DB.prepare(
+        `SELECT COUNT(DISTINCT user_id) AS n FROM sessions
+         WHERE (last_seen_at >= ?1 AND last_seen_at < ?2) OR (created_at >= ?1 AND created_at < ?2)`
+      ).bind(yesterdayStart, dayStart).first()
     ])
 
   const cmt = countsByStatus(cmtByStatus.results, [0, 1, 2])
   const usr = countsByStatus(usrByStatus.results, [1, 2, 3])
+  const cmt7d = dailySeries(cmtDaily.results, 7, dayStart)
+  const cmtYesterday = cmt7d.length >= 2 ? cmt7d[cmt7d.length - 2].n : 0
 
   return json({
     ok: true,
@@ -1404,11 +1469,12 @@ async function adminStats(env) {
     comments: {
       total: cmtTotals?.total ?? 0,
       today: cmtTotals?.today ?? 0,
+      yesterday: cmtYesterday,
       replies: cmtTotals?.replies ?? 0,
       pending: cmt[0],
       visible: cmt[1],
       hidden: cmt[2],
-      last7d: dailySeries(cmtDaily.results, 7, dayStart)
+      last7d: cmt7d
     },
     users: {
       total: usr[1] + usr[2] + usr[3],
@@ -1416,6 +1482,8 @@ async function adminStats(env) {
       banned: usr[2],
       deleted: usr[3],
       today: usrToday?.n ?? 0,
+      activeToday: usrActiveToday?.n ?? 0,
+      activeYesterday: usrActiveYesterday?.n ?? 0,
       last7d: dailySeries(usrDaily.results, 7, dayStart)
     },
     sessions: { active: sessionCount?.n ?? 0 }
@@ -1426,8 +1494,12 @@ async function adminStats(env) {
 async function adminUsers(env, url) {
   const rawLimit = Number.parseInt(url.searchParams.get('limit') || '50', 10)
   const limit = Math.min(Math.max(Number.isFinite(rawLimit) ? rawLimit : 50, 1), MAX_LIMIT)
+  const rawPage = Number.parseInt(url.searchParams.get('page') || '', 10)
+  const isPageMode = Number.isFinite(rawPage) && rawPage >= 1
+  const pageNum = isPageMode ? rawPage : 1
+
   const cursor = Number.parseInt(url.searchParams.get('cursor') || '', 10)
-  const hasCursor = Number.isFinite(cursor)
+  const hasCursor = !isPageMode && Number.isFinite(cursor)
 
   const statusParam = url.searchParams.get('status')
   const hasStatus = ['1', '2', '3'].includes(statusParam)
@@ -1445,6 +1517,7 @@ async function adminUsers(env, url) {
    */
   const roleParam = url.searchParams.get('role')
   const adminOnly = roleParam === 'admin'
+  const userOnly = roleParam === 'user'
 
   const q = sanitize(url.searchParams.get('q') || '', 60)
   const hasQ = q.length > 0
@@ -1458,6 +1531,8 @@ async function adminUsers(env, url) {
   }
   if (adminOnly) {
     where.push(`u.role >= 1`)
+  } else if (userOnly) {
+    where.push(`u.role = 0`)
   }
   if (hasQ) {
     binds.push(likeParam)
@@ -1473,6 +1548,55 @@ async function adminUsers(env, url) {
     }
     where.push('(' + parts.join(' OR ') + ')')
   }
+
+  if (isPageMode) {
+    const whereClause = where.length ? 'WHERE ' + where.join(' AND ') : ''
+    const passedTotal = Number.parseInt(url.searchParams.get('total') || '', 10)
+    let total = Number.isFinite(passedTotal) && passedTotal >= 0 ? passedTotal : null
+
+    if (total === null || pageNum === 1) {
+      const countSql = `SELECT COUNT(*) AS total FROM users u ${whereClause}`
+      const stmt = binds.length ? env.DB.prepare(countSql).bind(...binds) : env.DB.prepare(countSql)
+      const countRes = await stmt.first()
+      total = countRes?.total ?? 0
+    }
+    const totalPages = Math.max(1, Math.ceil(total / limit))
+
+    const offset = (pageNum - 1) * limit
+    const queryBinds = [...binds, limit, offset]
+    const sql = `SELECT u.id, u.public_no, u.nick, u.email, u.avatar, u.status, u.role,
+                        u.created_at, u.last_login_at, u.ban_note,
+                        (SELECT COUNT(*) FROM comments c WHERE c.user_id = u.id) AS comment_count
+      FROM users u
+      ${whereClause}
+      ORDER BY u.id DESC LIMIT ?${queryBinds.length - 1} OFFSET ?${queryBinds.length}`
+
+    const { results } = await env.DB.prepare(sql).bind(...queryBinds).all()
+    const rows = results || []
+
+    return json({
+      ok: true,
+      users: rows.map((r) => ({
+        id: r.id,
+        publicNo: r.public_no,
+        nick: r.nick,
+        email: r.email,
+        avatar: r.avatar || null,
+        status: r.status,
+        role: Number(r.role) || 0,
+        createdAt: r.created_at,
+        lastLoginAt: r.last_login_at,
+        commentCount: r.comment_count ?? 0,
+        banNote: r.ban_note || null
+      })),
+      total,
+      totalPages,
+      page: pageNum,
+      limit,
+      hasMore: pageNum < totalPages
+    })
+  }
+
   if (hasCursor) {
     binds.push(cursor)
     where.push(`u.id < ?${binds.length}`)
@@ -1673,8 +1797,48 @@ async function adminUserSetRole(env, request, actor, ts) {
 async function adminAuditList(env, url) {
   const rawLimit = Number.parseInt(url.searchParams.get('limit') || '50', 10)
   const limit = Math.min(Math.max(Number.isFinite(rawLimit) ? rawLimit : 50, 1), MAX_LIMIT)
+  const rawPage = Number.parseInt(url.searchParams.get('page') || '', 10)
+  const isPageMode = Number.isFinite(rawPage) && rawPage >= 1
+  const pageNum = isPageMode ? rawPage : 1
+
   const cursor = Number.parseInt(url.searchParams.get('cursor') || '', 10)
-  const hasCursor = Number.isFinite(cursor)
+  const hasCursor = !isPageMode && Number.isFinite(cursor)
+
+  if (isPageMode) {
+    const passedTotal = Number.parseInt(url.searchParams.get('total') || '', 10)
+    let total = Number.isFinite(passedTotal) && passedTotal >= 0 ? passedTotal : null
+
+    if (total === null || pageNum === 1) {
+      const countRes = await env.DB.prepare(`SELECT COUNT(*) AS total FROM admin_audit`).first()
+      total = countRes?.total ?? 0
+    }
+    const totalPages = Math.max(1, Math.ceil(total / limit))
+
+    const offset = (pageNum - 1) * limit
+    const sql = `SELECT id, actor_id, actor_nick, actor_role, action, target_type, target_id, detail, created_at
+                 FROM admin_audit ORDER BY id DESC LIMIT ?1 OFFSET ?2`
+    const { results } = await env.DB.prepare(sql).bind(limit, offset).all()
+    const rows = results || []
+
+    return json({
+      ok: true,
+      entries: rows.map((r) => ({
+        id: r.id,
+        actorNick: r.actor_nick,
+        actorRole: r.actor_role,
+        action: r.action,
+        targetType: r.target_type,
+        targetId: r.target_id,
+        detail: r.detail || '',
+        createdAt: r.created_at
+      })),
+      total,
+      totalPages,
+      page: pageNum,
+      limit,
+      hasMore: pageNum < totalPages
+    })
+  }
 
   const sql = hasCursor
     ? `SELECT id, actor_id, actor_nick, actor_role, action, target_type, target_id, detail, created_at
