@@ -822,6 +822,71 @@ test('🔴 评论列表多选批量隐藏/放行', async ({ page }) => {
     .toBe(3)
 })
 
+test('🔴 评论列表批量彻底删除（与「批量隐藏」可区分）', async ({ page }) => {
+  /*
+   * 2026-10-14 补：批量栏原先只有放行/隐藏/转待审，**没有删除** ——
+   * 要清一批垃圾评论只能一条条点，而这是最需要批量的场景。
+   *
+   * 🔴 本用例守三件事，缺一不可：
+   *   1. 按钮存在且是**危险样式**（`--danger`）—— 与「批量隐藏」区分开。
+   *      `隐藏` 是软删除（可放行回来），`删除` 是真删（不可恢复），
+   *      视觉上不区分就会出现"以为只是下架、结果永久没了"。
+   *   2. 确认框**写明不可恢复**并提示可用「批量隐藏」替代。
+   *   3. 确认后**真的删掉**（接口层面复查），且**逐条写审计**（不是一条摘要）——
+   *      评论行没有记录操作者的列，只有逐条记才能按单条评论追责。
+   */
+  const who = await createAccount(API_BASE, reader)
+  const tag = nextTag()
+  const ids = []
+  for (let i = 0; i < 3; i++) {
+    const c = await postComment(API_BASE, who.token, { body: `批量删除 ${tag}-${i}` })
+    if (c?.id) ids.push(c.id)
+  }
+  expect(ids.length, '应成功造出 3 条评论').toBe(3)
+
+  const admin = await makeAdmin()
+  await openAdminAs(page, admin, '/#/admin/comments')
+  await page.locator('.admin-toolbar:not(.admin-toolbar--kinds) .admin-chip', { hasText: '已显示' }).click()
+  await page.locator('.admin-search').fill(tag)
+  await page.locator('.admin-btn--search', { hasText: '搜索' }).click()
+  await expect
+    .poll(async () => page.locator('.admin-table tbody tr').count(), { timeout: 20_000 })
+    .toBe(3)
+
+  await page.locator('.admin-table thead .admin-check').check()
+  await expect(page.locator('.admin-batch-bar')).toContainText('已选 3 条', { timeout: 10_000 })
+
+  // ① 按钮存在 + 是危险样式
+  const delBtn = page.locator('.admin-batch-bar button', { hasText: '批量删除' })
+  await expect(delBtn).toBeVisible()
+  await expect(delBtn, '批量删除必须是危险样式（与「批量隐藏」区分）').toHaveClass(/admin-btn--danger/)
+
+  // ② 确认框写明不可恢复、并给出软删除替代
+  await delBtn.click()
+  const modal = page.locator('.ui-modal-window', { hasText: '批量彻底删除评论' })
+  await expect(modal).toBeVisible({ timeout: 10_000 })
+  await expect(modal, '确认框要写明不可恢复').toContainText('不可恢复')
+  await expect(modal, '确认框要提示可用「批量隐藏」替代').toContainText('批量隐藏')
+  await modal.locator('.admin-btn', { hasText: '确认删除' }).click()
+
+  // ③ 真删掉（接口复查，而不是只看 UI）
+  await expect
+    .poll(async () => {
+      const r = await api(API_BASE, 'GET', `/api/admin/comments?status=&q=${tag}&limit=50`, {
+        token: admin.token
+      })
+      return (r.json?.comments || []).filter((c) => String(c.body || '').includes(tag)).length
+    }, { timeout: 20_000, message: '三条都应被彻底删除' })
+    .toBe(0)
+
+  // ④ 逐条写审计
+  const audit = await api(API_BASE, 'GET', '/api/admin/audit?limit=100', { token: admin.token })
+  const dels = (audit.json?.entries || []).filter(
+    (e) => e.action === 'comment_delete' && ids.includes(e.targetId)
+  )
+  expect(dels.length, '🔴 批量删除要逐条写审计（不是一条摘要）').toBe(3)
+})
+
 test('🔴 批量转待审：原因对整批生效', async ({ page }) => {
   const who = await createAccount(API_BASE, reader)
   const tag = nextTag()

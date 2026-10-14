@@ -160,9 +160,17 @@ export function setCommentStatus(target, status, note) {
   return request('/api/admin/comments', { method: 'PATCH', body })
 }
 
-/** 彻底删除（隐私删除请求用；只想下架请用 setCommentStatus(id, 2)） */
-export function deleteCommentPermanently(id) {
-  return request('/api/admin/comments', { method: 'DELETE', body: { id } })
+/**
+ * 彻底删除（隐私删除请求用；只想下架请用 `setCommentStatus(id, 2)` —— 那是软删除、可恢复）。
+ *
+ * 支持**单条**（传 id）与**批量**（传 id 数组）—— 与 `setCommentStatus` 同构
+ * （2026-10-14 补批量）。服务端同一上限 100 条。
+ *
+ * 🔴 与改状态不同，这里**不可恢复**：调用方必须用红色确认框写明后果。
+ */
+export function deleteCommentPermanently(target) {
+  const body = Array.isArray(target) ? { ids: target } : { id: target }
+  return request('/api/admin/comments', { method: 'DELETE', body })
 }
 
 // ── 用户 ─────────────────────────────────────────────────────────

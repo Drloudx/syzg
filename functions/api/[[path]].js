@@ -1354,7 +1354,17 @@ function normalizeReviewNote(raw) {
   return text
 }
 
-/** DELETE /api/admin/comments —— 彻底删除（隐私删除请求用；软删除请用 PATCH status=2） */
+/**
+ * `DELETE /api/admin/comments` —— **彻底删除**（隐私删除请求用；软删除请用 PATCH status=2）。
+ *
+ * 支持**单条**（传 `id`）与**批量**（传 `ids` 数组）两种形态，与 `adminPatch`
+ * 完全同构（2026-10-14 补批量）。批量刻意不另开接口 —— 分开会让人以为两者
+ * 规则不同，而实际只有"改状态"与"删掉"这一点差别（锚点、上限、审计口径一致）。
+ *
+ * 🔴 与 `adminPatch` 的**关键区别：这里不可恢复**。`PATCH status=2` 是软删除
+ *    （可放行回来），而本接口是 `DELETE`（软删除请走 PATCH）。所以前端必须
+ *    用红色确认框，且文案要写明"不可恢复"。
+ */
 async function adminDelete(env, request, actor, ts) {
   let payload
   try {
@@ -1362,27 +1372,67 @@ async function adminDelete(env, request, actor, ts) {
   } catch {
     return bad(ERR.badRequest)
   }
-  const id = Number.parseInt(payload?.id, 10)
-  if (!Number.isFinite(id)) return bad(ERR.badRequest)
 
-  // 同 adminPatch：删之前先取正文摘要，供审计留痕
-  const row = await env.DB.prepare(`SELECT id, body, nick FROM comments WHERE id = ?1`).bind(id).first()
-  if (!row) return bad(ERR.notFound, 404)
+  // 收集目标 id：`ids` 优先（批量），否则退回单条 `id`（与 adminPatch 同规则）
+  const rawIds = Array.isArray(payload?.ids) ? payload.ids : [payload?.id]
+  const ids = []
+  for (const raw of rawIds) {
+    const n = Number.parseInt(raw, 10)
+    if (Number.isFinite(n) && !ids.includes(n)) ids.push(n)
+  }
+  if (!ids.length) return bad(ERR.badRequest)
+  // 与 adminPatch 同一上限：防"手滑全选"，也让一次请求的耗时可控
+  if (ids.length > BATCH_MAX) return bad(ERR.batchTooMany)
 
-  const res = await env.DB.prepare(`DELETE FROM comments WHERE id = ?1`).bind(id).run()
-  if (!res.meta?.changes) return bad(ERR.notFound, 404)
+  /*
+   * 删之前先取正文摘要（供审计留痕），并**一并查出哪些 id 真的存在**。
+   * 不存在的跳过而不是整批失败：管理员选了 10 条、其中 2 条已被别人删掉，
+   * 剩下 8 条照样该删（与 adminPatch 的行为一致）。
+   */
+  const placeholders = ids.map((_, i) => `?${i + 1}`).join(', ')
+  const { results } = await env.DB.prepare(
+    `SELECT id, body, nick FROM comments WHERE id IN (${placeholders})`
+  )
+    .bind(...ids)
+    .all()
+  const found = results || []
+  const foundIds = found.map((r) => r.id)
+  const missing = ids.filter((id) => !foundIds.includes(id))
 
-  await writeAudit(env, actor, {
-    action: 'comment_delete',
-    targetType: 'comment',
-    targetId: id,
-    detail: `${row.nick}：${String(row.body || '').slice(0, 40)}`
-  }, ts)
+  if (!foundIds.length) return bad(ERR.notFound, 404)
+
+  /*
+   * 用 `batch` 把「删除 + 逐条审计」放进**一次事务**：要么都成，要么都不成。
+   * 逐条写审计（而非一条摘要）的理由同 adminPatch —— 评论行没有记录操作者的列，
+   * 只有逐条记才能在账本里按单条评论追出"谁删的"。
+   */
+  const statements = [
+    env.DB.prepare(`DELETE FROM comments WHERE id IN (${foundIds.map((_, i) => `?${i + 1}`).join(', ')})`)
+      .bind(...foundIds)
+  ]
+  for (const row of found) {
+    statements.push(
+      env.DB.prepare(
+        `INSERT INTO admin_audit (actor_id, actor_nick, actor_role, action, target_type, target_id, detail, created_at)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)`
+      ).bind(
+        actor.id,
+        String(actor.nick || ''),
+        Number(actor.role) || 0,
+        'comment_delete',
+        'comment',
+        row.id,
+        `${row.nick}：${String(row.body || '').slice(0, 40)}`,
+        ts
+      )
+    )
+  }
+  await env.DB.batch(statements)
 
   // 彻底删除会同时改变总量与各状态计数 → 失效概览缓存
   invalidateAdminStatsCache()
 
-  return json({ ok: true })
+  return json({ ok: true, deleted: foundIds.length, missing })
 }
 
 // ============================================================

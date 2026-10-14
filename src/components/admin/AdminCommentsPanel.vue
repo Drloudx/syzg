@@ -77,6 +77,13 @@
       <button type="button" class="admin-btn admin-btn--sm" @click="batchChangeStatus(1)">批量放行</button>
       <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="batchChangeStatus(2)">批量隐藏</button>
       <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="openBatchPending">批量转待审</button>
+      <!--
+        批量彻底删除（2026-10-14 补）。
+        🔴 与「批量隐藏」**不是一回事**：隐藏是软删除（可放行回来），
+           这个是真的删掉、不可恢复。所以按钮用 `--danger` 红色，
+           确认框也走 `isDanger`。
+      -->
+      <button type="button" class="admin-btn admin-btn--danger admin-btn--sm" @click="batchHardDelete">批量删除</button>
       <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="clearSelection">取消选择</button>
       <span v-if="selectedIds.length > BATCH_MAX" class="admin-batch-warn">
         一次最多 {{ BATCH_MAX }} 条，请分批
@@ -944,6 +951,48 @@ async function hardDelete(comment) {
     errorMessage.value = err instanceof AdminApiError ? err.message : '删除失败，请重试'
   } finally {
     deletingId.value = null
+  }
+}
+
+/**
+ * 批量彻底删除（2026-10-14 补）。
+ *
+ * 🔴 走**红色**确认框并显式对比「隐藏」：两者最容易混 ——
+ *    `隐藏` 是软删除（`PATCH status=2`，随时放行回来），
+ *    `删除` 是真删（`DELETE`，不可恢复）。文案不写清就会出现
+ *    "以为只是下架、结果永久没了"。
+ *
+ * 与 `batchChangeStatus` 同样处理 `missing`：有评论在打开页面后被
+ * 别人删掉了，就说清楚处理了几条、几条已不存在，而不是假装全成功。
+ */
+async function batchHardDelete() {
+  const ids = selectedIds.value
+  if (!ids.length || batchBusy.value || ids.length > BATCH_MAX) return
+  const ok = await askConfirm({
+    title: '批量彻底删除评论',
+    lead: `彻底删除这 ${ids.length} 条评论？`,
+    content:
+      '此操作不可恢复！\n\n' +
+      '如果只是想先下架、之后还能放回来，请改用「批量隐藏」——那是软删除。\n' +
+      '每条删除都会单独记进审计日志。',
+    confirmText: `确认删除 ${ids.length} 条`,
+    isDanger: true
+  })
+  if (!ok) return
+
+  batchBusy.value = true
+  errorMessage.value = ''
+  try {
+    const data = await deleteCommentPermanently(ids)
+    clearSelection()
+    if (data?.missing?.length) {
+      errorMessage.value = `已删除 ${data.deleted} 条；另有 ${data.missing.length} 条已不存在（可能被他人删除）。`
+    }
+    reloadCurrentPage()
+  } catch (err) {
+    errorMessage.value = err instanceof AdminApiError ? err.message : '批量删除失败，请重试'
+  } finally {
+    batchBusy.value = false
   }
 }
 
