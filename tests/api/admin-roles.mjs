@@ -251,13 +251,32 @@ try {
   // 复原，避免影响后续断言
   await api(BASE, 'PATCH', '/api/admin/users/role', { token: superAcc.token, body: { id: adminId, role: 1 } })
 
-  // ---------- 7. 审计：只给超管看，且动作被记下 ----------
+  // ---------- 7. 审计：**所有管理员可读**，且动作被记下 ----------
   console.log('\n【7】审计日志')
+  /*
+   * 2026-10-14 变更：审计从「仅超管」放开给**所有管理员**。
+   * 原设计顾虑「同级互相可见会变成盯梢」，用户评估后决定放开 ——
+   * 管理动作本就该可追溯。所以这条断言从"普通管理员 403"改为"200"。
+   */
   const auditAsAdmin = await api(BASE, 'GET', '/api/admin/audit', { token: adminAcc.token })
-  check('🔴 普通管理员读审计 → 403（不让他盯同级）', auditAsAdmin.status === 403, `实际 ${auditAsAdmin.status}`)
+  check('🔴 普通管理员读审计 → 200（2026-10-14 放开）', auditAsAdmin.status === 200, `实际 ${auditAsAdmin.status}`)
 
   const auditAsSuper = await api(BASE, 'GET', '/api/admin/audit', { token: superAcc.token })
   check('超管读审计 → 200', auditAsSuper.status === 200, `实际 ${auditAsSuper.status}`)
+
+  // 🔴 放开读，但**不能写/删**：审计的价值就在于不可删
+  const auditWriteAsAdmin = await api(BASE, 'POST', '/api/admin/audit', { token: adminAcc.token, body: {} })
+  check(
+    '🔴 审计只读：管理员 POST → 405（没有删除/写入入口）',
+    auditWriteAsAdmin.status === 405,
+    `实际 ${auditWriteAsAdmin.status}`
+  )
+  const auditDeleteAsSuper = await api(BASE, 'DELETE', '/api/admin/audit', { token: superAcc.token })
+  check(
+    '🔴 超管也不能删审计 → 405（能删就不是审计了）',
+    auditDeleteAsSuper.status === 405,
+    `实际 ${auditDeleteAsSuper.status}`
+  )
 
   const entries = auditAsSuper.json?.entries || []
   const actions = entries.map((e) => e.action)

@@ -3347,14 +3347,17 @@ export async function onRequest(context) {
       }
 
       /*
-       * 审计日志（仅超管可见）。
+       * 审计日志：**所有管理员都可读**（2026-10-14 从"仅超管"放开）。
        *
-       * 为什么只给超管：审计记录里含**其他管理员的操作痕迹**。
-       * 普通管理员能看到同级在做什么，容易变成互相盯梢甚至报复；
-       * 追责是超管的职责，不是管理员之间的。
+       * 原先只给超管，理由在旧注释里：「记录含其他管理员的操作痕迹，
+       * 同级互相可见容易变成盯梢甚至报复」。用户评估后决定放开 ——
+       * 管理动作本就该可追溯，透明优先于那点顾虑。
+       *
+       * 🔴 仍然**只读**：没有删除入口（非 GET → 405）。
+       *    审计的价值就在于不可删；能删的话"谁删了记录"本身成了新缺口。
+       *    要清理测试数据请走 SQL 脚本，不提供界面入口。
        */
       if (path === '/api/admin/audit') {
-        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
         if (request.method !== 'GET') return bad(ERR.fallback, 405)
         return await adminAuditList(env, url)
       }

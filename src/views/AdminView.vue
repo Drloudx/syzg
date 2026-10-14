@@ -147,11 +147,15 @@
               <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
               <span>评论审核</span>
             </RouterLink>
-            <!-- 审计只给超管看：记录里含其他管理员的操作痕迹，追责是超管的职责 -->
-            <RouterLink v-if="isSuper" to="/admin/audit" class="nav-item" active-class="active">
+            <!--
+              审计日志：**所有管理员可见**（2026-10-14 从"仅超管"放开）。
+              原设计顾虑"同级互相可见会变成盯梢"，用户评估后决定放开 ——
+              管理动作本就该可追溯。去掉 `isSuper` 判断与服务端的 403 是同一个改动，
+              两边必须一致（只改前端等于隐藏入口而接口仍 403）。
+            -->
+            <RouterLink to="/admin/audit" class="nav-item" active-class="active">
               <svg class="nav-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
               <span>审计日志</span>
-              <span class="nav-tag-super">超管</span>
             </RouterLink>
             <!-- 设置只给超管：里面是"审核口径"一类影响所有管理员的配置 -->
             <RouterLink v-if="isSuper" to="/admin/settings" class="nav-item" active-class="active">

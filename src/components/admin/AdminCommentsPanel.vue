@@ -146,7 +146,7 @@
                 @change="toggleAllVisible($event.target.checked)"
               />
             </th>
-            <th class="col-hide-mobile" style="width: 56px">#</th>
+            <th class="col-hide-mobile" style="width: 74px">评论 ID</th>
             <th style="width: 110px">作者</th>
             <!--
               🔴 正文列**不设 width**，让它在剩余空间里自然伸缩；
@@ -175,8 +175,8 @@
             <td class="admin-num col-hide-mobile">{{ c.id }}</td>
             <td class="admin-cell-wrap">
               {{ c.nick }}
-              <!-- 账号体系之后的新评论带 userId；老的（账号之前）为空 -->
-              <span v-if="c.userId" class="admin-num admin-userid">#{{ c.userId }}</span>
+              <!-- 账号体系之后的新评论带 userId；老的（账号之前）为空。显示内部 ID，供与用户管理页对照 -->
+              <span v-if="c.userId" class="admin-num admin-userid" title="用户 ID（内部，对照用户管理同名列）">ID:{{ c.userId }}</span>
             </td>
             <td class="admin-cell-wrap admin-comment-body">
               <EmoticonText :text="c.body" />
@@ -1361,11 +1361,24 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   cursor: not-allowed;
 }
 
+/*
+ * 作者后的「用户 ID」（内部 `user_id`）。
+ *
+ * 🔴 原先 `opacity: 0.6` + `11.5px` + muted 灰 —— 用户反馈**看不清**。
+ *    既然它的用途是"与用户管理页对照同一个人"，看不清等于白放，
+ *    故提高对比度与字号（2026-10-14）。
+ *
+ * ⚠️ 它显示的是**内部 id**（`comments.user_id`），不是对外「用户编号」
+ *    （`users.public_no`）—— 两者不同（实测 id=711 的编号是 10690）。
+ *    所以前面标注「ID」而非「编号」，避免再混。
+ */
 .admin-userid {
-  margin-left: 4px;
-  opacity: 0.6;
+  margin-left: 5px;
+  opacity: 0.85;
   font-family: ui-monospace, monospace;
-  font-size: 11.5px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gold-accent, #c5913e);
 }
 
 .admin-quote {

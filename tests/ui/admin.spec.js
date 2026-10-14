@@ -375,8 +375,12 @@ test('🔴 角色按钮只有超管看得见（管理员看不到，不是禁用
   // 但常规管理按钮要在（否则说明是整行没渲染，而不是"角色按钮被藏了"）
   await expect(row.locator('.action-link', { hasText: '封禁' })).toBeVisible()
 
-  // 审计页签也只给超管
-  await expect(page.locator('.nav-item', { hasText: '审计' })).toHaveCount(0)
+  /*
+   * 审计页签**对普通管理员也可见**（2026-10-14 放开）。
+   * 与之同时服务端也去掉了 403（见 tests/api/admin-roles.mjs）——
+   * 前后端必须一致：只改前端等于"有入口但打不开"。
+   */
+  await expect(page.locator('.nav-item', { hasText: '审计' })).toHaveCount(1)
 })
 
 test('🔴 自己那一行不给操作按钮（防手滑自锁）', async ({ page }) => {
@@ -698,11 +702,12 @@ test('🔴 超管可在设置里维护常用选项，管理员转待审时点一
   await page2.close()
 })
 
-test('🔴 普通管理员看不到「设置」页签', async ({ page }) => {
+test('🔴 普通管理员看不到「设置」页签（但能看到审计）', async ({ page }) => {
   // 服务端对写操作强校验（见 tests/api/admin-roles.mjs），前端隐藏只是体验
   const plainAdmin = await makeAdmin(1)
   await openAdminAs(page, plainAdmin)
-  await expect(page.locator('.nav-item', { hasText: '审计' })).toHaveCount(0)
+  // 审计已放开（2026-10-14）；设置仍仅超管 —— 那里是"审核口径"类配置
+  await expect(page.locator('.nav-item', { hasText: '审计' })).toHaveCount(1)
   await expect(page.locator('.nav-item', { hasText: '设置' })).toHaveCount(0)
 
   const superAdmin = await makeAdmin(2)

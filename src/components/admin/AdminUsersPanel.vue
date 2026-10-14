@@ -121,13 +121,22 @@
         <table class="admin-table">
           <thead>
             <tr>
-              <th style="width: 70px;">编号</th>
+              <!--
+                两套编号（2026-10-14 明确命名，消除混淆）：
+                  · 「用户编号」= `users.public_no`，**对外**，从 10000 起，用户来反馈时报的就是它；
+                  · 「用户 ID」  = `users.id`（SQLite 自增主键），**对内**，`comments.user_id` 指向它。
+                🔴 两者**不同**（实测差 9975：id=711 的用户其编号是 10690）。
+                两列都显示，便于核对；内部 ID 用等宽字体 + 加粗提高可读性（原先太淡看不清）。
+              -->
+              <th style="width: 84px;">用户编号</th>
+              <th class="col-hide-mobile" style="width: 74px;">用户 ID</th>
               <th style="width: 130px;">用户</th>
               <th class="col-hide-mobile" style="width: 150px;">邮箱</th>
               <th class="col-hide-mobile" style="width: 60px; text-align: center;">评论</th>
               <!-- 「超级管理员」五个字要横排放下，列宽按最长角色名给 -->
               <th style="width: 105px;">角色</th>
-              <th style="width: 80px; text-align: center;">状态</th>
+              <!-- 「已停用」三个字要横排（原先 80px 会折行，见 .status-badge 注释） -->
+              <th style="width: 92px; text-align: center;">状态</th>
               <!--
                 只留「最近登录」（2026-10-14）。
                 注册时间与右侧档案里的「注册时间」重复 —— 表格再列一遍是冗余，还占宽度。
@@ -148,6 +157,7 @@
               @click="selectUser(u)"
             >
               <td class="mono-cell">#{{ u.publicNo }}</td>
+              <td class="mono-cell col-hide-mobile admin-inner-id">#{{ u.id }}</td>
               <td>
                 <div class="user-cell">
                   <img v-if="avatarUrl(u.avatar)" :src="avatarUrl(u.avatar)" class="table-avatar" alt="" />
@@ -316,8 +326,11 @@
             <span class="profile-name">{{ selectedUser.nick }}</span>
             <span :class="['status-badge', statusBadgeClass(selectedUser.status)]">{{ statusLabel(selectedUser.status) }}</span>
           </div>
-          <div style="font-size: 11px; color: var(--text-muted); font-family: ui-monospace, monospace;">
-            对外编号：#{{ selectedUser.publicNo }}
+          <!-- 两套编号并列（2026-10-14）：对外编号给用户报，用户 ID 供内部对照 -->
+          <div class="profile-ids">
+            <span>用户编号 <strong class="profile-id-val">#{{ selectedUser.publicNo }}</strong></span>
+            <span class="profile-ids-sep">·</span>
+            <span>用户 ID <strong class="profile-id-val profile-id-val--inner">#{{ selectedUser.id }}</strong></span>
           </div>
 
           <!-- 针对该用户的快捷管理操作（提权、封号、查评论） -->
@@ -1376,6 +1389,22 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   white-space: nowrap;
 }
 
+/*
+ * 「用户 ID」列（内部自增 id）。
+ *
+ * 🔴 必须比普通 `.mono-cell` 更醒目：用户反馈原先**看不清**。
+ *    原样式是 `--text-muted`（灰）+ 12px，在一堆信息里几乎看不见。
+ *    既然这一列存在的意义就是"内部对照"，看不清等于没有，故：
+ *      · 字号提到 12.5px
+ *      · 颜色改用正文色（而不是 muted）
+ *      · 加 600 字重
+ */
+.admin-inner-id {
+  font-size: 12.5px;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
 .email-cell {
   max-width: 170px;
   overflow: hidden;
@@ -1429,6 +1458,14 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
 }
 
 /* 状态微胶囊标签 */
+/*
+ * 状态徽标（正常 / 已停用 / 已注销）。
+ *
+ * 🔴 `white-space: nowrap` 是必需的（2026-10-14 补）。
+ *    同 `.role-badge` 那一处：这些标签是 `<span>`，**中文可在任意处断行**，
+ *    列一窄就折成「正/常」两行（新增「用户 ID」列后实测出现）。
+ *    英文单词默认不断行、中文才会 —— 所以这类缺陷只在中文字段上冒出来。
+ */
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -1439,6 +1476,7 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   font-weight: 700;
   letter-spacing: 0.5px;
   border: 1px solid;
+  white-space: nowrap;
 }
 
 .status-badge--ok {
@@ -1733,6 +1771,35 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   align-items: center;
   gap: 8px;
   margin-bottom: 4px;
+}
+
+/*
+ * 右栏顶部两套编号并列（2026-10-14）。
+ *
+ * 原先只显示「对外编号」，用户反馈"想同时看到内部 ID 好对照"。
+ * 两者信息密度不同（编号 5 位、ID 可能 4 位），用 `·` 分隔并允许换行，
+ * 避免窄屏（右栏 260px）时挤成一行溢出。
+ */
+.profile-ids {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: ui-monospace, monospace;
+  line-height: 1.5;
+}
+.profile-ids-sep {
+  opacity: 0.5;
+}
+/* 数值加粗提亮 —— 这两串是"要抄下来用"的，必须一眼看清 */
+.profile-id-val {
+  font-weight: 700;
+  color: var(--text-main);
+}
+.profile-id-val--inner {
+  color: var(--gold-accent, #c5913e);
 }
 
 .profile-name {
