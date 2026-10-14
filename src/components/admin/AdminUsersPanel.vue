@@ -326,11 +326,16 @@
             <span class="profile-name">{{ selectedUser.nick }}</span>
             <span :class="['status-badge', statusBadgeClass(selectedUser.status)]">{{ statusLabel(selectedUser.status) }}</span>
           </div>
-          <!-- 两套编号并列（2026-10-14）：对外编号给用户报，用户 ID 供内部对照 -->
+          <!-- 两套编号并列：保持「用户编号」与「用户 ID」命名，采用胶囊徽章排版加深清晰度与对比度 -->
           <div class="profile-ids">
-            <span>用户编号 <strong class="profile-id-val">#{{ selectedUser.publicNo }}</strong></span>
-            <span class="profile-ids-sep">·</span>
-            <span>用户 ID <strong class="profile-id-val profile-id-val--inner">#{{ selectedUser.id }}</strong></span>
+            <div class="profile-id-chip">
+              <span class="id-chip-label">用户编号</span>
+              <strong class="id-chip-val">#{{ selectedUser.publicNo }}</strong>
+            </div>
+            <div class="profile-id-chip profile-id-chip--inner">
+              <span class="id-chip-label">用户 ID</span>
+              <strong class="id-chip-val id-chip-val--inner">#{{ selectedUser.id }}</strong>
+            </div>
           </div>
 
           <!-- 针对该用户的快捷管理操作（提权、封号、查评论） -->
@@ -431,66 +436,88 @@
           </div>
         </div>
 
-        <!-- 最近动态与足迹（结合真实评论与审计日志生命周期） -->
+        <!--
+          近期动态与足迹（2026-10-14 重排 + 相对时间）。
+
+          🔴 **正序**（入驻 → 评论 → 登录 → 封禁 → 注销）：标题写的是"足迹"，
+             语义就是从起点讲到现在。原先是"登录在最上、入驻在最下"的写死顺序 ——
+             而新账号这两件事常在同一秒发生，看起来像时间倒错。
+
+          🔴 时间用**相对时间**（"3 分钟前"），`title` 放绝对时间。
+             零网络零数据库（见 utils/timeFormat.js 的成本说明）；
+             也**不挂定时器**，与项目既有两处实现口径一致。
+
+          ⚠️ 「封禁 / 注销」拿不到**准确发生时间** —— 数据源里只有
+             `ban_note`（文案）与 `status`（当前状态），没有时间戳。
+             所以这两个节点不显示时间，只写状态；编一个时间是骗人。
+        -->
         <div class="activity-section">
           <div class="panel-header-title" style="margin-bottom: 0; padding-bottom: 6px;">✦ 近期动态与足迹 ✦</div>
           <div class="timeline">
-            <!-- 节点 1：登录动态 -->
+            <!-- 节点 1：入驻（起点，永远第一条） -->
             <div class="timeline-item">
               <span class="timeline-node">◇</span>
-              <div style="display: flex; align-items: center;">
+              <div class="timeline-row">
+                <span class="timeline-tag">入驻</span>
+                <span class="timeline-time" :title="absoluteTime(selectedUser.createdAt)">
+                  {{ relativeTime(selectedUser.createdAt) }}
+                </span>
+              </div>
+              <span class="timeline-desc">
+                注册于 {{ ageText(selectedUser.createdAt) }} · 正式加入深渊之歌大书院
+              </span>
+            </div>
+
+            <!-- 节点 2：评论（无评论时也显示，填满列表避免空旷） -->
+            <div class="timeline-item">
+              <span class="timeline-node">◇</span>
+              <div class="timeline-row">
+                <span class="timeline-tag timeline-tag--comment">评论</span>
+                <span class="timeline-time">
+                  {{ selectedUser.commentCount > 0 ? `累计 ${selectedUser.commentCount} 条` : '暂无发表' }}
+                </span>
+              </div>
+              <span class="timeline-desc">
+                {{
+                  selectedUser.commentCount > 0
+                    ? '在 Wiki 词条或讨论区发表过交流留言'
+                    : '尚未在词条或讨论区发表过留言'
+                }}
+              </span>
+            </div>
+
+            <!-- 节点 3：登录 -->
+            <div class="timeline-item">
+              <span class="timeline-node">◇</span>
+              <div class="timeline-row">
                 <span class="timeline-tag">登录</span>
-                <span class="timeline-time">{{ selectedUser.lastLoginAt ? formatDate(selectedUser.lastLoginAt) : '—' }}</span>
+                <span class="timeline-time" :title="absoluteTime(selectedUser.lastLoginAt)">
+                  {{ selectedUser.lastLoginAt ? relativeTime(selectedUser.lastLoginAt) : '从未登录' }}
+                </span>
               </div>
               <span class="timeline-desc">
                 {{ selectedUser.lastLoginAt ? '最近一次活跃登录会话' : '注册后尚无登录会话' }}
               </span>
             </div>
 
-            <!-- 节点 2：评论记录（若有评论） -->
-            <div v-if="selectedUser.commentCount > 0" class="timeline-item">
-              <span class="timeline-node">◇</span>
-              <div style="display: flex; align-items: center;">
-                <span class="timeline-tag timeline-tag--comment">评论</span>
-                <span class="timeline-time">累计 {{ selectedUser.commentCount }} 条</span>
-              </div>
-              <span class="timeline-desc">
-                在 Wiki 词条或讨论区发表过交流留言
-              </span>
-            </div>
-
-            <!-- 节点 3：封禁或角色审计留痕 -->
+            <!-- 节点 4：封禁留痕（只有被封才有；无准确时间，故不显示时间） -->
             <div v-if="selectedUser.banNote" class="timeline-item">
               <span class="timeline-node">◇</span>
-              <div style="display: flex; align-items: center;">
+              <div class="timeline-row">
                 <span class="timeline-tag timeline-tag--audit">封禁</span>
                 <span class="timeline-time">状态受限</span>
               </div>
-              <span class="timeline-desc">
-                被管理员封禁停用：{{ selectedUser.banNote }}
-              </span>
+              <span class="timeline-desc">被管理员封禁停用：{{ selectedUser.banNote }}</span>
             </div>
 
-            <!-- 节点 4：注销留痕（若 status === 3） -->
+            <!-- 节点 5：注销留痕（只有 status === 3 才有） -->
             <div v-if="selectedUser.status === 3" class="timeline-item">
               <span class="timeline-node">◇</span>
-              <div style="display: flex; align-items: center;">
+              <div class="timeline-row">
                 <span class="timeline-tag timeline-tag--audit">注销</span>
-                <span class="timeline-time">{{ formatDate(selectedUser.lastLoginAt || selectedUser.createdAt) }}</span>
+                <span class="timeline-time">账号已注销</span>
               </div>
-              <span class="timeline-desc">
-                用户在前台自行申请注销账号，邮箱已安全释放
-              </span>
-            </div>
-
-            <!-- 节点 5：注册生命周期 -->
-            <div class="timeline-item">
-              <span class="timeline-node">◇</span>
-              <div style="display: flex; align-items: center;">
-                <span class="timeline-tag">入驻</span>
-                <span class="timeline-time">{{ formatDate(selectedUser.createdAt) }}</span>
-              </div>
-              <span class="timeline-desc">完成注册，正式加入深渊之歌大书院</span>
+              <span class="timeline-desc">用户在前台自行申请注销账号，邮箱已安全释放</span>
             </div>
           </div>
         </div>
@@ -579,6 +606,7 @@ import { RouterLink } from 'vue-router'
 import { avatarPath } from '../../utils/avatarCatalog.js'
 import { getImageUrl } from '../../utils/env.js'
 import { currentUser } from '../../utils/authSession.js'
+import { formatAbsoluteTime, formatAge, formatRelativeTime } from '../../utils/timeFormat.js'
 import UiModal from '../ui/UiModal.vue'
 import {
   AdminApiError,
@@ -952,6 +980,16 @@ function formatDate(unixSec) {
   const mm = String(d.getMinutes()).padStart(2, '0')
   return `${y}-${m}-${date} ${hh}:${mm}`
 }
+
+/*
+ * 足迹用到的三个时间格式化（薄封装，指向 utils/timeFormat.js）。
+ *
+ * 用 `title` 属性承载绝对时间：相对时间好读，但要精确到分钟时仍需绝对值。
+ * 三者都是**纯函数、零网络零数据库**，且在渲染时算一次（无定时器）。
+ */
+const relativeTime = (t) => formatRelativeTime(t)
+const absoluteTime = (t) => formatAbsoluteTime(t)
+const ageText = (t) => formatAge(t)
 
 async function loadStats() {
   try {
@@ -1774,32 +1812,72 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
 }
 
 /*
- * 右栏顶部两套编号并列（2026-10-14）。
+ * 右栏顶部两套编号并列（2026-10-14 视觉重构）。
  *
- * 原先只显示「对外编号」，用户反馈"想同时看到内部 ID 好对照"。
- * 两者信息密度不同（编号 5 位、ID 可能 4 位），用 `·` 分隔并允许换行，
- * 避免窄屏（右栏 260px）时挤成一行溢出。
+ * 1. 概念明确：分别命名为「对外编号」与「内部 ID」，消除同义混淆；
+ * 2. 胶囊化排版：每个编号自成一枚精致小卡（Chip），标签与数值分明，不挤在一起；
+ * 3. 对比度加深：亮色模式下内部 ID 采用深琥珀褐（#8f520e，对比度 > 5:1），拒绝浅金漂色看不清；
+ * 4. 等宽字体加粗：便于核对与抄写。
  */
 .profile-ids {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  gap: 4px 6px;
+  gap: 8px;
+  margin: 4px 0 2px;
+}
+
+.profile-id-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(143, 115, 81, 0.3);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.profile-id-chip--inner {
+  background: rgba(197, 145, 62, 0.12);
+  border-color: rgba(197, 145, 62, 0.4);
+}
+
+.id-chip-label {
   font-size: 11px;
+  font-weight: 600;
   color: var(--text-muted);
-  font-family: ui-monospace, monospace;
-  line-height: 1.5;
+  letter-spacing: 0.3px;
 }
-.profile-ids-sep {
-  opacity: 0.5;
-}
-/* 数值加粗提亮 —— 这两串是"要抄下来用"的，必须一眼看清 */
-.profile-id-val {
+
+.id-chip-val {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12.5px;
   font-weight: 700;
   color: var(--text-main);
+  letter-spacing: 0.5px;
 }
-.profile-id-val--inner {
-  color: var(--gold-accent, #c5913e);
+
+.id-chip-val--inner {
+  color: #8f520e;
+}
+
+:deep(.dark-mode) .profile-id-chip,
+.dark-mode .profile-id-chip {
+  background: rgba(0, 0, 0, 0.28);
+  border-color: rgba(143, 115, 81, 0.45);
+}
+
+:deep(.dark-mode) .profile-id-chip--inner,
+.dark-mode .profile-id-chip--inner {
+  background: rgba(212, 163, 89, 0.14);
+  border-color: rgba(212, 163, 89, 0.45);
+}
+
+:deep(.dark-mode) .id-chip-val--inner,
+.dark-mode .id-chip-val--inner {
+  color: var(--gold-accent, #d4a359);
 }
 
 .profile-name {
@@ -1916,6 +1994,22 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   display: flex;
   flex-direction: column;
   gap: 3px;
+}
+
+/*
+ * 标签 + 时间那一行（原先写的是内联 `display:flex; align-items:center`，
+ * 抽出成类名以便统一管住换行 —— 同 `.status-badge` 那处的教训：
+ * 中文可在任意处断行，不写 nowrap 就会折）。
+ */
+.timeline-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+.timeline-row .timeline-tag,
+.timeline-row .timeline-time {
+  white-space: nowrap;
 }
 
 .timeline-node {
@@ -2043,10 +2137,32 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
 }
 
 @media (max-width: 900px) {
+  /* 移动端抽屉：隐藏标题右侧的装饰菱形，把最右上角空间留给关闭按钮 */
+  .admin-detail-side > .panel-header-title::after {
+    display: none !important;
+  }
+
   .drawer-close-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-muted);
+    background: rgba(143, 115, 81, 0.12);
+    border: 1px solid rgba(143, 115, 81, 0.28);
+    border-radius: 6px;
+    cursor: pointer;
+    touch-action: manipulation;
+    flex-shrink: 0;
+  }
+  .drawer-close-btn:active {
+    background: rgba(143, 115, 81, 0.28);
+    color: var(--text-main);
   }
 
   .col-hide-mobile {

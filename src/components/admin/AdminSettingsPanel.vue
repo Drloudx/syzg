@@ -90,6 +90,22 @@
             <template v-if="cat.custom"> · 另加 {{ cat.custom }} 条</template>
           </span>
           <span v-if="cat.disabled" class="admin-kw-off">已停用</span>
+          <!--
+            删除自建类别（2026-10-14 补）。
+            🔴 **只对自建类别显示**：内置类别的词在代码基线里，删掉条目也会
+               在下一次保存时"复活"（服务端按基线重建），所以删除对它们无意义 ——
+               要让内置类别失效只能**停用**（`v-else` 那个分支没有这个按钮）。
+            ⚠️ 删除是**改内存 + 需点保存才落库**（与导入一致），不是立即生效。
+          -->
+          <button
+            v-if="!cat.baseline"
+            type="button"
+            class="admin-kw-cat-del"
+            :title="`删除自建类别「${cat.name}」`"
+            @click.prevent.stop="askRemoveCategory(cat.name)"
+          >
+            ✕
+          </button>
         </label>
 
         <div v-if="!cat.disabled" class="admin-kw-words">
@@ -164,6 +180,32 @@
       <template #footer>
         <button type="button" class="admin-btn admin-btn--ghost" @click="closeNewCategory">取消</button>
         <button type="button" class="admin-btn" @click="confirmNewCategory">确认创建</button>
+      </template>
+    </UiModal>
+
+    <!-- 删除自建类别的确认弹窗（2026-10-14 补） -->
+    <UiModal
+      :visible="removeTarget !== null"
+      teleport-to="body"
+      title="删除自建类别"
+      max-width="480px"
+      @update:visible="(v) => { if (!v) cancelRemoveCategory() }"
+    >
+      <p class="admin-modal-lead">
+        删除类别 <strong>{{ removeTarget }}</strong>？
+      </p>
+      <p class="admin-modal-quote">
+        {{
+          (kwWords[removeTarget] || []).length > 0
+            ? `该类别下的 ${(kwWords[removeTarget] || []).length} 条自定义词会一并删除。`
+            : '该类别下没有自定义词。'
+        }}
+        删除后需点「保存词表」才真正生效，之前可以取消。
+      </p>
+
+      <template #footer>
+        <button type="button" class="admin-btn admin-btn--ghost" @click="cancelRemoveCategory">取消</button>
+        <button type="button" class="admin-btn admin-btn--danger" @click="confirmRemoveCategory">确认删除</button>
       </template>
     </UiModal>
   </section>
@@ -340,6 +382,45 @@ function closeNewCategory() {
   newCategoryModal.value = false
   newCategoryInput.value = ''
   newCategoryError.value = ''
+}
+
+/* ── 删除自建类别（2026-10-14 补）────────────────────────────
+ *
+ * 原先只有「新建类别」，没有删除 —— 建错了只能停用（停用会保留条目，
+ * 且仍占着自定义词计数上限）。这里补上删除。
+ *
+ * 🔴 三条约束：
+ *   1. **只对自建类别可用**：内置类别的词在代码基线里，删掉条目也会在下次
+ *      保存时被服务端按基线重建（等于"删了又回来"），故按钮只对 `!baseline` 渲染。
+ *   2. **必须确认**：会连带删掉该类别的所有自定义词。
+ *   3. **只改内存，不直接落库**：与「导入」的口径一致 —— 点「保存词表」才生效。
+ *      这样误删还能靠"不保存"挽回（选错文件覆盖线上词表是最坏后果，
+ *      同理这里也不让一次点击就不可逆）。
+ */
+const removeTarget = ref(null)
+
+function askRemoveCategory(name) {
+  removeTarget.value = name
+}
+
+function cancelRemoveCategory() {
+  removeTarget.value = null
+}
+
+function confirmRemoveCategory() {
+  const name = removeTarget.value
+  if (!name) return
+  const cat = kwCategories.value.find((c) => c.name === name)
+  // 二次兜底：即使 UI 被绕过，也不许删内置类别
+  if (cat && cat.baseline) {
+    kwError.value = '内置类别不能删除，请改用「停用」'
+    removeTarget.value = null
+    return
+  }
+  kwCategories.value = kwCategories.value.filter((c) => c.name !== name)
+  delete kwWords.value[name]
+  kwError.value = ''
+  removeTarget.value = null
 }
 
 function confirmNewCategory() {
@@ -661,6 +742,34 @@ async function onImportFile(event) {
 .admin-kw-off {
   color: #c98a3a;
   font-size: 12px;
+}
+
+/*
+ * 删除自建类别的按钮（2026-10-14）。
+ * 用 `margin-left: auto` 推到行尾，避免与类别名/计数挤在一起；
+ * 悬停才显红，平时低调 —— 它是破坏性操作，不该抢视觉焦点。
+ */
+.admin-kw-cat-del {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.admin-kw-cat-del:hover {
+  color: #b83232;
+  border-color: rgba(184, 50, 50, 0.4);
+  background: rgba(184, 50, 50, 0.08);
 }
 
 .admin-kw-words {
