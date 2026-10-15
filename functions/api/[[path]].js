@@ -247,8 +247,76 @@ function clientIp(request) {
   )
 }
 
+/**
+ * 清理**过期**的限流桶。
+ *
+ * 🔴 为什么需要（2026-10-15 补）：`auth_codes` / `captchas` / `sessions` 都有
+ * 过期清理，**`rate_limits` 漏了** —— 它是同一类缺陷的第三处。
+ * 只靠 `WHERE bucket = ?` 精确读取，旧桶**永远留在表里**。
+ *
+ * 🔴 **两类桶要分开判**（第一版合并判断是错的，被单测抓出来）：
+ *   · 小时桶：末尾 **10** 位 `YYYYMMDDHH`（`h:` / `authh:` / `loginfail:`）
+ *   · 日桶：  末尾 **8** 位 `YYYYMMDD`（`d:` / `authd:`）
+ *
+ *   不能用同一个 `substr(bucket, -10)` 比：日桶只截到 8 位数字，
+ *   比较时长短不同 → 字典序失效（实测 `'20261013' < '2026101412'` 为真看着对，
+ *   但跨月份时 `'20261101' < '2026103112'` 为**假**，会漏清）。
+ *
+ * ⚠️ **不碰 `authcd:`**（发码冷却）：它末尾存的是"上次发码的秒数"，不是时间戳，
+ *    按时间比会误删。它由发码流程覆盖写，不需要清理。
+ *
+ * 🔴 **节流**：不能每次 `bump()` 都跑一次 DELETE（评论提交是关键路径，
+ *    那会变成"每发一条评论多一次全表扫"，正是本项目一直在避免的模式）。
+ *    改为**每进程每 10 分钟最多一次**，用模块级时间戳记着。
+ */
+const RATE_PRUNE_INTERVAL_MS = 10 * 60 * 1000
+let ratePrunedAt = 0
+
+/** 仅供测试：重置节流（否则同一进程内第二次调用不会真的清理） */
+export function resetRatePruneThrottleForTest() {
+  ratePrunedAt = 0
+}
+
+async function pruneExpiredRateLimits(env, ts) {
+  const now = ts * 1000
+  if (now - ratePrunedAt < RATE_PRUNE_INTERVAL_MS) return
+  ratePrunedAt = now
+  const curHour = hourBucket(ts) // YYYYMMDDHH，10 位
+  const curDay = dayBucket(ts) // YYYYMMDD，8 位
+  try {
+    /* 小时桶：末尾 10 位是 YYYYMMDDHH，同长度比较，字典序 == 数值序 */
+    await env.DB.prepare(
+      `DELETE FROM rate_limits
+        WHERE (bucket LIKE 'h:%' OR bucket LIKE 'authh:%' OR bucket LIKE 'loginfail:%')
+          AND length(bucket) >= 10
+          AND substr(bucket, -10) < ?1`
+    )
+      .bind(curHour)
+      .run()
+
+    /* 日桶：末尾 8 位是 YYYYMMDD；只清**严格早于今天**的（今天还要用） */
+    await env.DB.prepare(
+      `DELETE FROM rate_limits
+        WHERE (bucket LIKE 'd:%' OR bucket LIKE 'authd:%')
+          AND length(bucket) >= 8
+          AND substr(bucket, -8) < ?1`
+    )
+      .bind(curDay)
+      .run()
+  } catch (err) {
+    // 清理失败不该影响限流本身（与 pruneExpiredSessions 同样容错）
+    console.error('rate_limits prune failed:', err)
+  }
+}
+
 /** UPSERT 计数并返回自增后的值（1 行读 + 1~2 行写） */
-async function bump(env, bucket) {
+async function bump(env, bucket, ts) {
+  /*
+   * 顺手清过期桶（见 pruneExpiredRateLimits 的说明）。
+   * 这里只对**小时/日桶**（`bump` 的全部调用点）触发，且内部有 10 分钟节流，
+   * 所以绝大多数请求不会多这一次 DELETE。
+   */
+  await pruneExpiredRateLimits(env, ts)
   const row = await env.DB.prepare(
     `INSERT INTO rate_limits (bucket, counter) VALUES (?, 1)
      ON CONFLICT(bucket) DO UPDATE SET counter = counter + 1
@@ -264,10 +332,10 @@ async function checkRateLimit(env, ipHash, ts) {
   const perHour = positiveInt(env.RATE_LIMIT_PER_HOUR, RATE_DEFAULTS.perHour)
   const perDay = positiveInt(env.RATE_LIMIT_PER_DAY, RATE_DEFAULTS.perDay)
 
-  const hourCount = await bump(env, `h:${ipHash}:${hourBucket(ts)}`)
+  const hourCount = await bump(env, `h:${ipHash}:${hourBucket(ts)}`, ts)
   if (hourCount > perHour) return { message: ERR.rateLimited, status: 429 }
 
-  const dayCount = await bump(env, `d:${ipHash}:${dayBucket(ts)}`)
+  const dayCount = await bump(env, `d:${ipHash}:${dayBucket(ts)}`, ts)
   if (dayCount > perDay) return { message: ERR.rateLimitedDay, status: 429 }
 
   return null
@@ -2366,13 +2434,13 @@ async function checkSendQuota(env, emailHash, ipHash, ts) {
   const ipHourMax = envLimit(env.AUTH_IP_HOURLY_MAX, CODE_IP_HOURLY_MAX)
   const ipDayMax = envLimit(env.AUTH_IP_DAILY_MAX, CODE_IP_DAILY_MAX)
 
-  const emailDay = await bump(env, `authd:${emailHash}:${dayBucket(ts)}`)
+  const emailDay = await bump(env, `authd:${emailHash}:${dayBucket(ts)}`, ts)
   if (emailDay > emailMax) return { message: AERR.tooFrequent, status: 429 }
 
   if (ipHash) {
-    const ipHour = await bump(env, `authh:${ipHash}:${hourBucket(ts)}`)
+    const ipHour = await bump(env, `authh:${ipHash}:${hourBucket(ts)}`, ts)
     if (ipHour > ipHourMax) return { message: AERR.tooFrequent, status: 429 }
-    const ipDay = await bump(env, `authd:ip:${ipHash}:${dayBucket(ts)}`)
+    const ipDay = await bump(env, `authd:ip:${ipHash}:${dayBucket(ts)}`, ts)
     if (ipDay > ipDayMax) return { message: AERR.tooFrequent, status: 429 }
   }
   return null
@@ -2502,7 +2570,7 @@ async function storeCode(env, emailHash, purpose, ts) {
  */
 async function consumeCode(env, emailHash, purpose, code, ts) {
   const failBucket = `authfail:${emailHash}:${purpose}`
-  const fails = await bump(env, failBucket)
+  const fails = await bump(env, failBucket, ts)
   if (fails > CODE_MAX_ATTEMPTS) {
     await env.DB.prepare(`DELETE FROM auth_codes WHERE email_hash = ?1 AND purpose = ?2`)
       .bind(emailHash, purpose)
@@ -2785,8 +2853,8 @@ async function authLogin(env, request, ts) {
 
   if (!ok) {
     await Promise.all([
-      bump(env, failBucket),
-      bump(env, ipFailBucket)
+      bump(env, failBucket, ts),
+      bump(env, ipFailBucket, ts)
     ])
     return bad(AERR.loginFailed, 401)
   }
