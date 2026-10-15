@@ -8,7 +8,7 @@
 > ⚠️ **本文件中的步骤不构成执行授权。** 命令已配置 ≠ 执行成功；历史结果 ≠ 当前证据。
 > 标注「未执行」的步骤表示**在本文件核对时未实际运行过**。
 
-**核对时间**：2026-10-07 ｜ **环境**：Windows / PowerShell
+**核对时间**：2026-10-15 ｜ **环境**：Windows / PowerShell
 
 ---
 
@@ -108,7 +108,7 @@ cmd.exe /c "npm run verify"
 | --- | --- | --- |
 | `npm run test:unit` | 单测（40 个测试文件） | — |
 | `npm run test:api` | 端到端（账号 + 评论） | **API 必须在 8788 跑着** |
-| `npm run test:migration` | 迁移演练（34 条） | — |
+| `npm run test:migration` | 迁移演练（**67** 条） | — |
 | `npm run test:ui` | Playwright 交互回归（32 个 spec） | — |
 | `node --no-warnings tests/phone/flow.mjs` | 真机（38 条） | USB + adb 转发，见 4.4 |
 | `node --no-warnings tests/api/production-smoke.mjs` | 线上验证（18 条，**只读**） | 网络 |
@@ -200,7 +200,7 @@ node scripts/dev/scratch/clean-test-comments.mjs --apply  # 真删
 | 自己那一行 | **谁都不能操作自己**（界面也不给按钮） |
 | 设为/撤销管理员 | **仅超管**（`PATCH /api/admin/users/role`） |
 | 产生超管 | **接口不能**（`role=2` 被服务端拒绝） |
-| 审计 | `admin_audit` 表 + `GET /api/admin/audit`（**仅超管**可读）；越权被拒**不写审计** |
+| 审计 | `admin_audit` 表 + `GET /api/admin/audit`（**所有管理员可读**，2026-10-14 起；**只读**，无删除入口）；越权被拒**不写审计** |
 
 #### 把自己锁在后台外了怎么恢复
 

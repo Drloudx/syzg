@@ -6,7 +6,7 @@
 > **何时读**：需要理解分层、依赖方向、数据流、构建机制时。
 > **何时更新**：分层、目录职责或构建机制变化时。**位置映射改 [MAP.md](MAP.md)，不写这里。**
 
-**核对时间**：2026-10-08
+**核对时间**：2026-10-15
 
 ---
 
@@ -161,7 +161,7 @@ vue-myrzg/
 | `/discussions` | `DiscussionsView` | 站内讨论区。归属键固定 `site:general`，与各图鉴页面的讨论**完全分开**；`?c=<评论 id>` 定位评论 |
 | `/privacy` | `PrivacyView` | 隐私说明。注册表单的必勾项链接指向这里；移动端跳转时会**暂存并恢复账号弹窗** |
 | `/admin` | `AdminView` | 后台外壳（`position: fixed` 覆盖层，`z-index: 11000`，卡在站点顶栏 10000 与全局弹窗 12000 之间） |
-| `/admin/comments`、`/admin/users`、`/admin/audit` | `AdminView` 的子路由 | 概览 / 评论 / 用户 / 审计。**审计仅超管可见** |
+| `/admin/comments`、`/admin/users`、`/admin/audit`、`/admin/settings` | `AdminView` 的子路由 | 概览 / 评论 / 用户 / 审计 / 设置。**审计对所有管理员可见**（2026-10-14 起）；**设置仅超管** |
 
 > 后台的鉴权、角色分级与审计见 [technical/ACCOUNT_SYSTEM.md](./technical/ACCOUNT_SYSTEM.md) §九；
 > 评论接口与定位卡片见 [technical/COMMENTS_BACKEND.md](./technical/COMMENTS_BACKEND.md)。
@@ -219,9 +219,20 @@ vue-myrzg/
 
 ### 5.8 主题
 
-亮色 = 羊皮纸；暗色 = 暗木羊皮卷。`document.documentElement.classList.toggle('dark-mode')`，所有颜色走 `theme.css` 变量，组件无需感知。
+亮色 = 羊皮纸；暗色 = 暗木羊皮卷。`useNativeShell.js` 执行
+`document.documentElement.classList.toggle('dark-mode')` 并把选择写入 `localStorage`，
+`App.vue` 同时给 `.app-container` 加 `dark-mode` / `dark-theme`。所有颜色走 `theme.css`
+变量，组件无需感知。
 
-> ⚠️ 深色模式自身仍有已知问题；当前只隐藏了切换按钮（`showThemeToggle = false`），**代码保留**。见 [RISKS.md](RISKS.md) 第四节。
+> 🔴 **两个 `dark-mode` 挂点**（`html` 与 `.app-container`）是踩过坑的地方：
+> 组件的 `<style scoped>` 里**不能**写 `:global(.dark-mode) X` —— 它会被编译成
+> 裸 `.dark-mode` + `!important`，命中这两个元素并套上 border/padding →
+> **整页右下位移**。写普通的 `.dark-mode X` 即可。同理深色规则**不得改
+> `border-width` / `padding`**（会造成布局位移）。详见 [DECISIONS.md](DECISIONS.md) 136/137，
+> 回归用例 `tests/ui/dark-mode-layout.spec.js`。
+>
+> ⚠️ 各页面深色的**配色观感**未系统复核（切换不位移与盒模型不变已守住）。
+> 见 [RISKS.md](RISKS.md) 第四节「验证缺口」。
 
 ---
 
