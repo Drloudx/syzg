@@ -79,11 +79,11 @@ function loadImage(src) {
 /**
  * 按元素的 `object-fit` 把图画进给定矩形，**逐值复现 CSS 行为**。
  *
- * 🔴 早先这里只判了 `fill`，其余一律走 `contain`（`Math.min` 等比居中）——
- * 于是 `object-fit: cover` 的背板被**当成 contain** 画进分享图：图缩到 `min` 比例居中，
- * 左右（或上下）留出未着墨的空带，而实时页面是 `cover` 铺满。
- * 症状就是「分享图左右两侧没显示全」——背板被缩窄，两侧露出底色。
- * 判据是元素自身的 computed `objectFit`，不要在这里按元素名硬编码。
+ * 🔴 必须按 `fill` / `contain` / `cover` 三个取值分别处理：只判 `fill`、其余一律走
+ * `contain`（`Math.min` 等比居中）会把 `object-fit: cover` 的背板缩窄居中，
+ * 左右（或上下）留出未着墨的空带，而实时页面是 `cover` 铺满 ——
+ * 症状就是「分享图左右两侧没显示全」。
+ * 取值的来源是元素自身的 computed `objectFit`，不按元素名硬编码。
  *
  * 三种比例关系：`fill` 拉伸；`contain` 取 `min`（整图可见，留白）；
  * `cover` 取 `max`（铺满矩形，超出部分裁掉）。
@@ -164,7 +164,7 @@ function drawCenteredText(ctx, el, rect) {
  *
  * 支持 `cover` / `contain` / 百分比 / 长度 / `auto`（`auto` 保持原图宽高比）。
  *
- * 🔴 这里**不能**像早先那样硬编码 `cover`：`.g-slice--btn-y` 等按钮底板用的是
+ * 🔴 这里**不能**硬编码 `cover`：`.g-slice--btn-y` 等按钮底板用的是
  * `background: … / 100% 100%`（整图拉伸），按 `cover` 画等于等比放大后再居中裁切，
  * 底板四边会被切掉。同理 `.gacha-bleed` 确实是 `cover`，两者必须按 computed 值分别走。
  *
@@ -623,11 +623,11 @@ async function drawBackgroundLayerImage(ctx, value, rect, scale, index, cs) {
 /**
  * 画元素的所有背景绘制层：`background-color` + 每一层 `background-image`。
  *
- * 🔴 早先这一支只识别 `url(...)`，于是**渐变背景直接 return 掉**：收集器已按
- * `cs.backgroundImage !== 'none'` 把图层入栈，画的时候却什么都没画——页面正常，
- * 只有分享图少一层（蛋池星光辉光 `.pet-diamond__glow` 就是 `radial-gradient`）。
- * 现在按 computed 值分派：`url()` 走图片支，`linear-gradient` / `radial-gradient`
+ * 🔴 必须按 computed 值分派：`url()` 走图片支，`linear-gradient` / `radial-gradient`
  * 走渐变支，`background-color` 先铺底。
+ * 只识别 `url(...)` 会让**渐变背景**这一支什么都不画（收集器已按
+ * `cs.backgroundImage !== 'none'` 把图层入栈）—— 页面正常，只有分享图少一层
+ * （蛋池星光辉光 `.pet-diamond__glow` 就是 `radial-gradient`）。
  *
  * 🔴 CSS 绘制顺序：`background-color` 在**所有** `background-image` 层之下；
  * 多层 `background-image` 里**先列的画在上面**，故倒序遍历。
@@ -666,9 +666,9 @@ async function drawBackgroundImage(ctx, el, rect, scale) {
 /**
  * 画元素的 CSS 九宫格边框（`border-image`）。
  *
- * 🔴 这是与 `background-image` **并列**的独立绘制源：`.g-slice--top-item`（资源槽底牌）
- * 只有 `border-image`，没有 `background-image`。早先收集器只读 `backgroundImage`，
- * 于是资源槽底板在分享图里整块消失（页面上正常，因为浏览器原生支持 `border-image`）。
+ * 🔴 这是与 `background-image` **并列**的独立绘制源，收集器必须两个都读：
+ * `.g-slice--top-item`（资源槽底牌）只有 `border-image`，没有 `background-image`，
+ * 只读 `backgroundImage` 会让它在分享图里整块消失（页面上正常，浏览器原生支持）。
  *
  * 复现 `slice` / `width` / `fill` / `stretch` 语义：把源图按 `slice` 切成九块，
  * 四角与四边按 `width` 给出的边框盒**各自拉伸**（`stretch`），中间块仅在 `fill` 时画。
@@ -866,10 +866,10 @@ export async function renderGachaShareImage(stageEl, config) {
 
   // ── 收集要画的图层 ──
   // 遍历**所有后代元素**（`*`），不按标签白名单过滤：
-  // 早先用 `'img, canvas, p, span, em, div'` 列举，`<button>` 不在其中 →
-  // 结果页的抽取按钮（`button.g-slice.result-btn`，背景图挂在 `.g-slice--btn-y` 上）
-  // 整个没被枚举到，分享图里「招募十次」只剩文字、**底板丢失**。
-  // 白名单漏一个标签就静默丢一层，所以改为全量枚举 + 逐元素判"这个元素画什么"。
+  // 白名单漏一个标签就静默丢一层 —— 例如只列 `'img, canvas, p, span, em, div'` 会漏掉
+  // `<button>`，结果页的抽取按钮（`button.g-slice.result-btn`，背景图挂在
+  // `.g-slice--btn-y` 上）整个没被枚举到，分享图里「招募十次」只剩文字、**底板丢失**。
+  // 因此改为全量枚举 + 逐元素判"这个元素画什么"。
   //
   // 每个元素按 CSS 的绘制顺序可产出多个图层：
   //   `background-image`（背景）→ `border-image`（边框九宫格）→ 文字（内容）

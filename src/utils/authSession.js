@@ -16,7 +16,7 @@
  * 账号体系只有这一个后端（Cloudflare Pages Functions + D1），没有独立的会话服务，
  * 存 localStorage 意味着 XSS 能偷走令牌 —— 但本站没有用户可控的 HTML 注入面
  * （评论一律按纯文本渲染），所以这个风险可以接受。
- * 详见 `docs/technical/ACCOUNT_SYSTEM.md` §九。
+ * 详见 `docs/context/technical/ACCOUNT_SYSTEM.md` §九。
  */
 
 import { computed, ref } from 'vue'

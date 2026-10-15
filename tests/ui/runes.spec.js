@@ -105,12 +105,12 @@ test('appraisal deep link and batch totals share item rules', async ({ page }, t
   /*
    * 🔴 **这里必须仍是「单次抽取 23.50%」，不能跟着上面一起改成「概率」**。
    *
-   * 实测：同一页面的概率文案有**两条渲染路径** ——
-   *   · 次数 = 1 → 「概率 23.50%」（上面第 99 行，已按现状更新）
+   * 同一页面的概率文案有**两条渲染路径** ——
+   *   · 次数 = 1 → 「概率 23.50%」（上面第 99 行）
    *   · 次数 > 1 → 走 `formatRewardProbability`，产出「单次抽取 23.50%」
    *
-   * 我一开始把这个文件里的「单次抽取」**整批**换成了「概率」，
-   * 于是第 99 行过了、这一行反而红了 —— 正是这条断言把过度替换挡了下来。
+   * 把「单次抽取」**整批**替换成「概率」会让第 99 行过、这一行红 ——
+   * 这条断言正是用来挡过度替换的。
    */
   await expect(page.getByText('单次抽取 23.50%', { exact: true })).toHaveCount(4)
   await screenshot(page, testInfo, 'appraisal.png')

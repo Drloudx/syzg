@@ -209,7 +209,7 @@ try {
 
 // ---------- 3. 源码/配置无旧脚本残留引用 ----------
 console.log('── 3/3 旧脚本残留检查 ──')
-// 2a. 旧文件必须已删除（存在即失败）
+// 2a. 名单里的文件必须不存在（存在即失败）
 const goneFiles = [
   'scripts/clean-data.js', 'scripts/parse-rewards.js', 'scripts/parse-exchange.js',
   'scripts/generate-affixes.js', 'scripts/parse-hidden-rewards.js',
@@ -220,7 +220,7 @@ let staleFound = []
 for (const rel of goneFiles) {
   if (existsSync(join(root, rel))) staleFound.push(`${rel} 仍存在`)
 }
-// 2b. 无对已删除模块的 import / 脚本引用（注释不算：只扫 import 与 package.json scripts）
+// 2b. 无对已移除模块的 import 引用（只扫 import 与 package.json scripts，注释不算）
 const importRe = /from\s+['"][^'"]*(common\.css|BackToTop|MonstersView\.bak|monsterParser\.bak|UI_REFACTOR_GUIDE)['"]/
 const scanImportDirs = ['src']
 for (const d of scanImportDirs) {

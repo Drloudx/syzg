@@ -594,7 +594,7 @@ test('触摸竖屏分享图与横屏一致（不产出竖版乱图）', async ({
 /**
  * 🔴 合成器必须**逐值复现** `object-fit`，不能把 `cover` 当成 `contain`。
  *
- * 早先 `drawImageFit()` 只判 `fill`，其余取值一律走 `min` 等比居中（= `contain`）。
+ * `drawImageFit()` 只判 `fill`、其余走 `min` 等比居中（= `contain`）的话：
  * 结果页背板是 `.result-backdrop__bg { object-fit: cover }`，于是它在分享图里被缩到 `min`
  * 比例居中，**左右两侧留出未着墨的空带**；实时页面走浏览器原生 `cover` 铺满，
  * 所以任何页面级断言（含上面两条 alpha 包围盒用例）都看不到这个缺陷——
@@ -807,7 +807,7 @@ test('分享图合成器画 border-image 底板与 button 背景图', async ({ p
 /*
  * 为什么既有用例守不住「渐变 / background-color / border-radius」：
  *
- * 分享图用例此前只断言**整幅 alpha 包围盒**。背板已把画面铺满，包围盒必然满幅，
+ * 只断言**整幅 alpha 包围盒**是不够的：背板已把画面铺满，包围盒必然满幅，
  * 中间少画几层它照样通过——本项目已三次出现同类漏画（`object-fit` 只认 `fill`、
  * `border-image` 未采集、`button` 未枚举）。故本用例改为**在元素所在位置采样像素**，
  * 并用「空白对照必须透明」自证采样点确有鉴别力。
@@ -907,7 +907,7 @@ test('分享图合成器画 background-color、渐变与圆角裁切', async ({ 
   expect(result.size, '夹具输出尺寸应为舞台 400×200 的 2 倍率').toEqual([800, 400])
   expect(result.blank[3], `空白对照应透明，实测 ${JSON.stringify(result.blank)}`).toBeLessThan(10)
 
-  // ① 只有 background-color 的元素也要铺底（收集器此前只认 background-image）
+  // ① 只有 background-color 的元素也要铺底（收集器必须同时认 background-color 与 background-image）
   expect(result.flat[3], `纯 background-color 未绘制，实测 ${JSON.stringify(result.flat)}`)
     .toBeGreaterThan(200)
   expect(result.flat[2], `底色应为蓝，实测 ${JSON.stringify(result.flat)}`).toBeGreaterThan(200)

@@ -308,9 +308,9 @@ test('special portrait candidates preserve CDN then local order without cycles',
 })
 
 // `/ui` 必须进版本表：网页端 `getImageUrl` 靠它给 /ui/ 资源补 `?v=` 做缓存失效。
-// 曾经 /ui/ 直接返回裸路径（为原生端"图标随热更包内置、最先可用"设计），但网页端走了同一条
-// 分支，于是换 /ui/ 素材后浏览器与 CDN 继续发旧图，得手动刷 EdgeOne 缓存才生效。
-// 这条断言就是为了防止 `/ui` 再被漏掉。
+// 🔴 不能让 /ui/ 直接返回裸路径 —— 那样网页端换 /ui/ 素材后浏览器与 CDN 会继续发旧图，
+// 得手动刷 EdgeOne 缓存才生效。（原生端返回裸路径是有意的，见 `getImageUrl`。）
+// 这条断言就是为了防止 `/ui` 被漏掉。
 test('image version map covers both /images and /ui, keyed by full directory path', () => {
   const publicDir = fileURLToPath(new URL('../../public/', import.meta.url))
   const versions = collectImageVersions(publicDir)

@@ -325,7 +325,6 @@ const Q_BG_FALLBACK = {
   4: 'rgba(238,98,241,0.19)',
   5: 'rgba(255,182,77,0.24)'
 }
-// getQualityColors 已删除：品质色渲染统一走 theme.css 的 .quality-text-N / 变量，此函数无调用方（死代码）。
 
 // ---------- 大地图名（c0~c5_map -> 地图名；也支持 c0~c5 / C0~C5 归一化） ----------
 export const MAP_NAMES = {

@@ -200,9 +200,10 @@ onMounted(async () => {
       phase.value = 'wait'
       cameraDone.value = true
       // 等待阶段播 `startopen_waitclick`（趴到桌子底下、只露头发的姿态，4s 循环）——
-      // 与 Timeline 的 startopen_waitclick 段一致：**这才是等待点击的状态**（2026-09-14
-      // 实机视频逐帧：开场坐姿 2.67s 后自动趴下，触摸继续显示在趴桌阶段；点击后端着
-      // 卡牌从桌下起身直接翻卡）。此前误用坐姿 idle，导致点击后「先趴下再起身」的错序。
+      // 与 Timeline 的 startopen_waitclick 段一致：**这才是等待点击的状态**
+      // （开场坐姿 2.67s 后自动趴下，触摸继续显示在趴桌阶段；点击后端着
+      // 卡牌从桌下起身直接翻卡）。
+      // 🔴 不要用坐姿 idle，那会导致点击后「先趴下再起身」的错序。
       scene.play('elsa', 'startopen_waitclick', { loop: true })
       scheduleTailTipSound()
     }

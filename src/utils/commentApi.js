@@ -10,7 +10,7 @@
  *     相对路径会打到 WebView 本地壳上，请求不到服务端。
  *     原生端优先云端（`CLOUD_URL`）；断网时明确报错，而不是静默失败。
  *
- * 相关设计：docs/technical/COMMENTS_BACKEND.md
+ * 相关设计：docs/context/technical/COMMENTS_BACKEND.md
  */
 import { CLOUD_URL, isNative } from './env.js'
 import { getToken, whenSessionReady } from './authSession.js'

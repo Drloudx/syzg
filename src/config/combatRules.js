@@ -1,4 +1,4 @@
-// 面向玩家的完整中文公式；技术依据与版本边界见 docs/technical/COMBAT_FORMULAS.md。
+// 面向玩家的完整中文公式；技术依据与版本边界见 docs/context/technical/COMBAT_FORMULAS.md。
 // 百分数、小数比例与取整位置均保留原结算语义；本文件只负责规则展示。
 export const combatRuleSections = [
   {

@@ -9,12 +9,11 @@
  *   - 评论列表要真的列出刚造的那条；
  *   - 用户列表要能按编号搜到刚造的那个人（用户反馈时报的就是编号）。
  *
- * ## 鉴权（2026-10-07 改）
+ * ## 鉴权
  *
- * 旧实现是"填管理令牌 → localStorage"。现在是**看登录账号的 `users.role`**，
- * 所以测试不再"填令牌"，而是**注入一个管理员会话**到 `localStorage`：
- * 先经 API 建号 → 直接把库里 role 改成超管 → 把 `{token, user}` 写进
- * `myrzg:auth`（与 `authSession.persist()` 同一形状）。
+ * 后台**看登录账号的 `users.role`**，所以测试不"填令牌"，而是**注入一个管理员会话**
+ * 到 `localStorage`：先经 API 建号 → 直接把库里 role 改成超管 → 把 `{token, user}`
+ * 写进 `myrzg:auth`（与 `authSession.persist()` 同一形状）。
  *
  * 前置：Playwright 的 webServer 会起 Vite 与 API（见 `playwright.config.js`）。
  */
@@ -131,8 +130,7 @@ async function openAdminAnon(page, path = '/#/admin') {
 
 test('🔴 设置菜单里的「后台管理」只对管理员显示', async ({ page }) => {
   /*
-   * 此前进后台**必须手输 `#/admin`** —— 没有任何界面入口。
-   * 有了角色概念后就该让管理员点得到，而普通用户根本不该看到这一项。
+   * 管理员必须能从设置菜单点进后台，而普通用户根本不该看到这一项。
    *
    * ⚠️ 这只是入口可见性，不是权限：真正的准入在服务端（`adminSession`）。
    */
@@ -434,9 +432,9 @@ test('超管能把普通用户设为管理员，并记入审计', async ({ page 
   await expect(row).toContainText('普通用户')
 
   /*
-   * 🔴 角色变更现在走 UiModal 自定义确认（2026-10-13 起不再用原生 window.confirm）。
-   * 原先挂 `page.once('dialog')` 是不够的 —— 没有原生弹窗，点击后
-   * 只是打开了确认框，`onConfirmAccept` 从未触发，列表也不会重拉。
+   * 🔴 角色变更走 UiModal 自定义确认（不是原生 `window.confirm`）。
+   * 挂 `page.once('dialog')` 是不行的 —— 没有原生弹窗，点击后只是打开了确认框，
+   * `onConfirmAccept` 从未触发，列表也不会重拉。
    * 确认按钮文案来自 `confirmText`：设为管理员时为「设为管理员」。
    */
   await row.locator('.action-link', { hasText: '设为管理员' }).click()
@@ -784,9 +782,8 @@ test('🔴 评论列表多选批量隐藏/放行', async ({ page }) => {
   /*
    * 🔴 必须**等到搜索结果回来**再数行数。
    *
-   * 改版后表格在请求期间**保留上一页内容**（原先的加载遮罩被移除了），
-   * 于是「点搜索 → 立刻数」会数到上一档的 50 行（实测 50 而不是 3）。
-   * 用 `expect.poll` 等到稳定值，避免把"还没加载完"当成"搜错了"。
+   * 表格在请求期间**保留上一页内容**（没有加载遮罩），于是「点搜索 → 立刻数」
+   * 会数到上一档的 50 行。用 `expect.poll` 等到稳定值，避免把"还没加载完"当成"搜错了"。
    */
   await expect
     .poll(async () => rows.count(), { timeout: 20_000, message: '搜索结果应当只剩这 3 条' })
@@ -824,8 +821,7 @@ test('🔴 评论列表多选批量隐藏/放行', async ({ page }) => {
 
 test('🔴 评论列表批量彻底删除（与「批量隐藏」可区分）', async ({ page }) => {
   /*
-   * 2026-10-14 补：批量栏原先只有放行/隐藏/转待审，**没有删除** ——
-   * 要清一批垃圾评论只能一条条点，而这是最需要批量的场景。
+   * 批量栏必须有删除：清一批垃圾评论只能一条条点的话，而这是最需要批量的场景。
    *
    * 🔴 本用例守三件事，缺一不可：
    *   1. 按钮存在且是**危险样式**（`--danger`）—— 与「批量隐藏」区分开。
@@ -1095,7 +1091,7 @@ test('🔴 词表导出 / 导入（导入只填界面、不直接写库）', asy
    * 🔴 核心断言：导入后**还没保存**，服务端必须仍然没有 wordA。
    *
    * ⚠️ 这里必须先"删掉并保存"再导入，否则断言的前提就不成立 ——
-   *    最初漏了那次保存，服务端本来就有 wordA，断言必然失败（实际踩过）。
+   *    漏了那次保存的话，服务端本来就有 wordA，断言必然失败。
    */
   const beforeSave = await api(API_BASE, 'GET', '/api/admin/review-keywords', { token: admin.token })
   const kwTexts = (beforeSave.json?.keywords || []).map((k) => k.text)

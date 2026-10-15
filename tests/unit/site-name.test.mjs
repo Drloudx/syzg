@@ -5,9 +5,7 @@
  *
  * 项目从「深歌小助手」改名为「深渊大书院」（仓库 `Drloudx/syzg`、站点
  * `syzg.yxzmy.top`）。改名时**邮件模板先改了，站点自己的 `<title>` 漏了** ——
- * 上线后线上浏览器标签页还挂着旧名。
- *
- * 这个是**上线后拿 curl 打生产首页**才发现的（`<title>深歌小助手</title>`）。
+ * 那个漏项是**上线后拿 curl 打生产首页**才发现的（`<title>深歌小助手</title>`）。
  * 本地测试全绿，因为没人断言过"标签页上写的是什么"。
  *
  * ## 刻意不查的地方
@@ -51,8 +49,7 @@ test(`用户可见的位置没有把旧名「${OLD_NAME}」当成现名用`, () 
     'src/views/GachaView.vue',
     'src/components/gacha/GachaResultPanel.vue',
     'README.md',
-    // 2026-10-07 文档重构：SPEC / ARCHITECTURE / HANDOFF_FULL 已废弃，
-    // 内容分别落在 DOMAIN（+ specs）/ ARCHITECTURE / MAP+DECISIONS。
+    // 文档体系为 context/history 两分法，这三份是改名相关内容的现行归属。
     'docs/context/ARCHITECTURE.md',
     'docs/context/DOMAIN.md',
     'docs/context/MAP.md'

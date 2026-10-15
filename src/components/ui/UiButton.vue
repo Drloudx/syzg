@@ -17,10 +17,9 @@
  * size: sm | md | lg
  * type: button(默认) | submit | reset
  *
- * ⚠️ `type` **必须绑定到模板上**（`:type="type"`）。原先只声明了 prop 却没用它，
- * 于是所有 UiButton 渲染出来的 `<button>` 都没有 `type` 属性——**放在 `<form>` 里就是隐式
- * `submit`**。评论发表区新增「插入表情」按钮时踩到过：点一下图标就把表单提交了
- * （正文被清空、还多发了一条评论），而按钮自己的 `@click` 看上去完全正常。
+ * ⚠️ `type` **必须绑定到模板上**（`:type="type"`）。只声明 prop 而不绑定的话，
+ * 渲染出来的 `<button>` 都没有 `type` 属性——**放在 `<form>` 里就是隐式 `submit`**，
+ * 点一下按钮就把表单提交了，而按钮自己的 `@click` 看上去完全正常。
  */
 defineProps({
   variant: { type: String, default: 'primary' }, // primary | secondary | ghost | danger | link

@@ -945,9 +945,8 @@ function processForm(m, skillData, buffData, rewards, items, lanDict, equipGroup
       addBuffs: mappedAddBuffs,
       linkedEffects,
       // 完整数值说明：与词条页共用 buffParser 的渲染器，覆盖属性/伤害/护盾/回复/范围/时间层数。
-      // 原先手写的 damageReduction/speedChange/triggerInterval/triggerType/stackable/maxStacks/
-      // triggerLabel/rectRange/muPower/baseDamage/repel* 已全部由 values.status 与 values.groups 覆盖，
-      // 故不再重复输出（SPEC：只保留展示与定位实际消费的字段）。
+      // 不再单独输出 damageReduction/speedChange/triggerInterval 等字段 —— 它们
+      // 已由 values.status 与 values.groups 覆盖，重复输出会让消费方拿不准以哪个为准。
       values: describeBuff(b, { buffData })
     }
   }).filter(Boolean)

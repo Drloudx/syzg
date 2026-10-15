@@ -325,12 +325,11 @@ test.describe('desktop application scroll shell', () => {
     /*
      * 🔴 搜索框与筛选行**同宽**（即左右边缘对齐）。
      *
-     * 这里原本断言的是 `tasks.panelHeight === monsters.panelHeight` ——
-     * 那是用"两页等高"来**近似**"布局一致"的脆弱代理：两页的筛选行数本来就不同
-     * （实测 tasks 104px / monsters 180px），所以它必然失效，
+     * **不要**用 `tasks.panelHeight === monsters.panelHeight` 这种写法近似"布局一致"：
+     * 两页的筛选行数本来就不同（实测 tasks 104px / monsters 180px），它必然失效，
      * 而"面板等高"本身也不是任何真实的视觉契约。
      *
-     * 换成直接量"搜索框 vs 筛选行"的宽度关系 —— 这才是用例名说的对齐，
+     * 直接量"搜索框 vs 筛选行"的宽度关系 —— 这才是用例名说的对齐，
      * 而且与筛选行数无关，不会因为多加一行筛选就又红一次。
      */
     for (const [route, m] of Object.entries(measurements)) {

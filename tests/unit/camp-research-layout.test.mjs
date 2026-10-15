@@ -22,9 +22,8 @@ test('every configured prerequisite has one forward edge, with distinct in-bound
       assert.equal(child.prerequisite.id, parent.id)
       // 只断言「向前」= 左→右：`layoutCampResearch` 的契约就是 "from left to right"，
       // 深度递增必然让子节点在更右的一列（严格保证）。
-      // 原先这里断言 child.y > parent.y（纵向也单调向下）——那不是布局的保证：每一列按
-      // `build_tree_botm` 美术各自垂直居中，列之间没有纵向约束，实测 35 条边里 25 条不满足。
-      // 但把树画出来看，连线全是干净的直角折线、无交叉（dy=0 即笔直水平线），可读性没问题；
+      // 🔴 **不要**断言 `child.y > parent.y`（纵向也单调向下）—— 那不是布局的保证：
+      // 每一列按 `build_tree_botm` 美术各自垂直居中，列之间没有纵向约束。
       // 强行要求纵向单调会让画布高度随深度累加，在面板里长得离谱。
       assert.ok(child.x > parent.x, `边 ${edge.from} → ${edge.to} 必须向右`)
     }

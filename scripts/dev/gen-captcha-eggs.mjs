@@ -22,7 +22,7 @@
  *
  * 这不是本方案独有的问题 —— **任何"用户能看懂"的图片验证码都防不住能写图像处理的脚本**。
  * 真正的防线是**限流**（同邮箱冷却 + 同 IP 限流 + 一次性邮箱黑名单 + SES 日限额 500 的硬熔断）。
- * 详见 `docs/technical/ACCOUNT_SYSTEM.md` §17.2。
+ * 详见 `docs/context/technical/ACCOUNT_SYSTEM.md` §17.2。
  *
  * ## 蛋池范围
  *

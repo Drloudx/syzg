@@ -35,9 +35,9 @@ import { DatabaseSync } from 'node:sqlite'
 /**
  * 迁移前那一版 schema 的**冻结夹具**。
  *
- * 原先这里是 `git show 0c745272:schema.sql` —— 依赖一个具体的提交哈希。
- * 2026-10-07 整理历史（按天合并 221 → 24 条）后那个哈希在**新克隆里不存在**，
- * 演练会在任何干净检出上直接失败。夹具文件不依赖提交，历史怎么整理都不受影响。
+ * 🔴 不要改回 `git show <哈希>:schema.sql` —— 那依赖一个具体提交，而历史按天合并后
+ * 旧哈希在**新克隆里不存在**，演练会在任何干净检出上直接失败。
+ * 夹具文件不依赖提交，历史怎么整理都不受影响。
  *
  * 夹具内容 = 加账号体系之前那一版 schema.sql（仅 comments / rate_limits 两表）。
  */
@@ -125,11 +125,10 @@ try {
   /*
    * 🔴 三条都**必须干净成功** —— 这是刻意的要求，不是"乐观假设"。
    *
-   * 早先第 2 步里还有一条 `ALTER TABLE users ADD COLUMN pw_salt`，而 `users`
-   * 是第 1 步刚建的、自带该列 → 生产上会冒一条 `duplicate column name: pw_salt`。
+   * 第 2 步里不能再出现 `ALTER TABLE users ADD COLUMN pw_salt`：`users` 是第 1 步刚建的、
+   * 自带该列 → 生产上会冒一条 `duplicate column name: pw_salt`。
    * 迁移脚本"报错但其实成功了"是最坏的形态：操作者分不清
-   * "预期内的重复"和"真的炸了"。所以那条已经挪成注释，
-   * 生产路径现在应当**零报错**。这条断言就是守着它。
+   * "预期内的重复"和"真的炸了"。生产路径应当**零报错**，这条断言就是守着它。
    */
   for (const [label, sql] of STEPS) {
     const r = exec(sql)

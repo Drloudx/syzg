@@ -151,8 +151,8 @@ onBeforeUnmount(() => {
 /**
  * 邮件 sprite 名 → URL。
  *
- * 全站图片已统一为 `.webp`（内容为 WebP，无损；见 `scripts/dev/convert-remaining-to-webp.mjs`），
- * 故这里可以直接拼 `.webp`，不再需要按名查扩展名的例外表。
+ * 全站图片统一为 `.webp`（内容为 WebP，无损；见 `scripts/dev/convert-remaining-to-webp.mjs`），
+ * 因此直接拼 `.webp` 即可。
  */
 const skin = name => {
   const folder = name === 'mail_botm' ? 'uipanel/emailpanel'

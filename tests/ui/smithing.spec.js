@@ -39,9 +39,9 @@ test('smithing material opens its item detail and facility link opens the blacks
   /*
    * 用 **3 阶** 装备（治安队手套）走正向路径。
    *
-   * 原先这里用 4 阶的「魔花头盔」，断言「查看锻造台」跳到 `level=4` 后能看到魔花头盔 ——
-   * 而 `HIDDEN_EQUIP_TIERS = [4, 5]` 之后设施页不再渲染 4/5 阶，那个断言变成了
-   * 「点过去是空列表」这个 bug 的**固化**。现在按可见品阶验证真实可达路径。
+   * 🔴 不要用 4 阶装备 + 断言「跳到 `level=4` 后能看到它」：`HIDDEN_EQUIP_TIERS = [4, 5]`
+   * 之后设施页不再渲染 4/5 阶，那种断言会把「点过去是空列表」这个 bug **固化**下来。
+   * 按可见品阶验证真实可达路径。
    */
   await page.goto('/#/equip?itemId=item_422012')
   await dismissGlobalModals(page)

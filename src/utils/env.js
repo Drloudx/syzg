@@ -5,7 +5,7 @@ import { Capacitor } from '@capacitor/core';
  *
  * 2026-10-03 由 myrzg.yxzmy.top 迁移到 syzg.yxzmy.top（仓库/域名改名）。
  * ⚠️ 这个常量**会被编译进产物**，也就意味着**已发布到用户手机上的 Android 包仍指向旧域名**
- *    （见 docs/rename-myrzg-to-syzg.md 第六节）——所以旧域名在热更包铺开前不能停。
+ *    （见 docs/history/rename-myrzg-to-syzg.md 第六节）——所以旧域名在热更包铺开前不能停。
  *
  * ## 为什么拆成"默认值 + 可注入"（2026-10-07）
  *
@@ -47,8 +47,8 @@ export const DATA_RESOURCE_MANIFESTS = typeof __DATA_RESOURCE_MANIFESTS__ !== 'u
 /**
  * 内联的逐文件 SHA-256（`data/parsed/`、`data/parsed/dungeons/`、`data/parsed/stages/`）。
  *
- * 为什么内联：`resourceClient` 原先必须先读 `assets/data-manifests/<目录>-*.json` 才知道
- * 该文件的 sha256，于是关键路径多了一个串行 RTT（manifest → 数据）。这三组是首屏与最常
+ * 为什么内联：不内联时 `resourceClient` 必须先读 `assets/data-manifests/<目录>-*.json`
+ * 才知道该文件的 sha256，关键路径多一个串行 RTT（manifest → 数据）。这三组是首屏与最常
  * 打开的详情，内联后数据请求可以立刻发出。其余目录仍走 manifest，避免为它们增大首屏体积。
  * 具体白名单与体积见 vite.config.js 的 INLINE_HASH_DIRECTORIES。
  */
@@ -113,9 +113,9 @@ export function getImageUrl(path) {
   if (!path || typeof path !== 'string') return '';
   if (/^(?:https?:|data:|blob:)/i.test(path)) return path;
   // `/ui/` 图标：**原生端保持裸本地路径**——它们随热更包内置，走本地文件、最先可用、不碰 CDN。
-  // 但网页端也是同一条分支，原先因此没有任何缓存失效手段：换一张 /ui/ 素材后浏览器与 CDN
-  // 会继续发旧图，必须手动刷 EdgeOne 缓存才生效（2026-09-27 就为此刷过一次）。
-  // 所以网页端补上内容哈希做缓存失效；原生端不加（本地文件没有缓存问题，也不该多出查询串）。
+  // 🔴 网页端必须补内容哈希做缓存失效：不补的话换 /ui/ 素材后浏览器与 CDN 会继续发旧图，
+  // 只能手动刷 EdgeOne 缓存才生效。
+  // 原生端不加（本地文件没有缓存问题，也不该多出查询串）。
   if (path.startsWith('/ui/') || path.startsWith('ui/')) {
     const uiPath = path.startsWith('/') ? path : `/${path}`;
     if (isNative) return uiPath;

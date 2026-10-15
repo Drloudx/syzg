@@ -15,7 +15,7 @@
  * 服务端直接 import 它，**不要**在这里引入任何 `utils/env.js`、Vue、浏览器 API。
  * 它是一个纯常量模块，Node / workerd / 浏览器三处都能直接加载。
  *
- * 完整设计依据见 `docs/technical/ACCOUNT_SYSTEM.md`。
+ * 完整设计依据见 `docs/context/technical/ACCOUNT_SYSTEM.md`。
  */
 
 // ============================================================

@@ -93,11 +93,8 @@ console.log('\n【4】前端页面')
 
   /*
    * ⚠️ 查 `<title>`，**不要**查 body 里有没有站名 —— 这是 SPA，
-   * 页面内容是 JS 渲染的，拿 curl 看到的只有 index.html 那个空壳。
-   *
-   * 第一版就是这么写错的（查 `text.includes('深渊大书院')` → 假失败），
-   * 而正是这次误判让人去看了原始 HTML，才发现线上标题还挂着旧项目名
-   * 「深歌小助手」—— 这个真问题比那条假失败有价值得多。
+   * 页面内容是 JS 渲染的，拿 curl 看到的只有 index.html 那个空壳，
+   * 所以 `text.includes('深渊大书院')` 是假失败。
    */
   const title = (home.text.match(/<title>([^<]*)<\/title>/) || [])[1]
   check('站点标题是「深渊大书院」', title === '深渊大书院', '实际 title = ' + title)

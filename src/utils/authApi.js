@@ -11,7 +11,7 @@
  * 这个模块**只发 `verifier`，不发密码**。密码 → `verifier` 的推导在
  * `src/utils/passwordKdf.js`（PBKDF2-SHA256 60 万轮，跑在用户设备上），
  * 服务端只收到推导结果，再由 `HMAC(AUTH_PEPPER, verifier)` 入库。
- * 详见 `docs/technical/ACCOUNT_SYSTEM.md` §四。
+ * 详见 `docs/context/technical/ACCOUNT_SYSTEM.md` §四。
  */
 
 import { CLOUD_URL, isNative } from './env.js'

@@ -14,12 +14,11 @@ test('opens an item detail from a hero skill upgrade material', async ({ page })
   await expect(heroDetail.locator('.skill-meta-tags')).toContainText('消耗:')
 
   /*
-   * 技能等级控件在 2026-09-25（`dafd3e94`）从「双滑块 + 两个数字输入」重做成
-   * 「单滑块 + ＋/－ 步进按钮」（`.calc-range-slider.skill-level-range-input`）。
+   * 技能等级控件是「单滑块 + ＋/－ 步进按钮」（`.calc-range-slider.skill-level-range-input`）。
    *
-   * 本用例此前仍在找 `.dual-level-slider` / `.dual-slider-input--target` ——
-   * 那两个类在 `src/` 里**已经不存在**，所以 `click` 永远超时。
-   * 这里按现行控件改：点「提升一级」把等级推离 1，再验证材料入口。
+   * 🔴 不要找 `.dual-level-slider` / `.dual-slider-input--target` —— 那两个类在 `src/`
+   * 里**不存在**，`click` 会永远超时。
+   * 这里按现行控件操作：点「提升一级」把等级推离 1，再验证材料入口。
    * （Lv.1 的消耗里还有「火之结晶」，升到 Lv.2 只剩「火之碎片」，正好证明等级真的变了。）
    */
   const levelValue = heroDetail.locator('.skill-slider-current')

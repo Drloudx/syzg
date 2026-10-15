@@ -11,11 +11,7 @@
  * 做法：`App.vue` 启动时把开弹窗的函数注册进来，任何地方 `openAccountModal()` 即可。
  * 这是**刻意的全局单例** —— 弹窗本来就只该有一个。
  *
- * ## 从哪来的
- *
- * 原先挤在 `utils/identity.js` 里。本机身份退役后，那个模块改名成了
- * `avatarCatalog.js`（只剩头像清单），这个注册表与头像毫无关系，
- * 所以单独拆到这里。
+ * 与 `avatarCatalog.js`（头像清单）是两个互不相关的模块，不要合并。
  */
 
 let opener = null

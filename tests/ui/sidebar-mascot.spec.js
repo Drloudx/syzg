@@ -347,10 +347,10 @@ test.describe('desktop sidebar mascot', () => {
     /*
      * 用**真正裁掉**的滚动视口验证 IntersectionObserver。
      *
-     * 原先这里把 `.info-body` 压到 `maxHeight: 120px`，但吉祥物高 286px、
-     * 压完后仍有约 109px（38%）落在可视区内 —— `intersectionRatio > 0`，
+     * 🔴 压缩高度要到"可视 0px"才算真裁掉：把 `.info-body` 压到 `maxHeight: 120px`
+     * 时吉祥物高 286px、压完仍有约 109px 落在可视区内 —— `intersectionRatio > 0`，
      * 观察者判定"还在视口里"，动画继续 running 是**正确行为**。
-     * 实测只有压到约 10px（可视 0px、ratio 0）才会暂停，这里按真实阈值改。
+     * 压到约 10px（可视 0px、ratio 0）才会暂停。
      */
     await page.locator('.info-body').evaluate(el => { el.style.maxHeight = '10px'; el.scrollTop = 0 })
     await expect(body).toHaveCSS('animation-play-state', 'paused')

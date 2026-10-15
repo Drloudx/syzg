@@ -1,4 +1,4 @@
-/** Export static skin previews from original Spine packages; see docs/SKIN_MODEL_EXPORT.md. */
+/** Export static skin previews from original Spine packages; see docs/context/technical/SKIN_MODEL_EXPORT.md. */
 import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'

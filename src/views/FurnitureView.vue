@@ -399,7 +399,8 @@ const furnitureSearchText = furniture => [
 const filteredFurniture = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
   return allFurniture.value.filter(furniture => {
-    // 黑名单：家具名/地区命中即隐藏（本页原先完全没过黑名单）
+    // 黑名单：家具名/地区命中即隐藏。字段名必须是 isBlacklisted 会读的那几个
+    // （name / place），传 mapName、region 之类会被静默忽略。
     if (isBlacklisted({ id: furniture.id, name: furniture.name, place: furniture.place })) return false
     if (selectedMain.value !== null && !sameValue(furniture.mainType, selectedMain.value)) return false
     if (selectedSub.value !== null && !sameValue(furniture.subType, selectedSub.value)) return false

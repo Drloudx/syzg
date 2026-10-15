@@ -10,7 +10,7 @@
  *   - 昵称与头像**由服务端从账号接管**，客户端传什么都不算；
  *   - `mine` 只反映"是不是你自己的"，不泄漏别人的归属；
  *   - 只能删自己的，且删除是幂等的真删除；
- *   - `/api/my-comments` 已退役，「我的评论」改走 `/api/auth/comments`（跨设备可用）。
+ *   - 「我的评论」走 `/api/auth/comments`（跨设备可用）；`/api/my-comments` 返回 404。
  */
 
 import { CAPTCHA_EGGS } from '../../src/config/captchaEggs.js'
@@ -161,7 +161,7 @@ console.log('\n【4】只能删自己的')
   check('重复删 → 幂等返回 200', again.status === 200 && again.json?.alreadyGone === true, `实际 ${again.status} ${again.text.slice(0, 60)}`)
 }
 
-// ---- 5. 旧接口已退役 ----
+// ---- 5. 已移除的接口必须 404 ----
 console.log('\n【5】/api/my-comments 已退役')
 {
   const old = await api('POST', '/api/my-comments', { items: [] })
@@ -247,10 +247,9 @@ console.log('\n【7b】🔴 秒级边界：同一秒内标已读又被回复，�
   /*
    * 这是**唯一**能证明「未读基准从时间换成评论 id」确实修好了的场景。
    *
-   * 旧实现：未读判定 `c.created_at > users.replies_read_at`，两边都是**秒**。
-   *        若回复与"标已读"落在同一秒 → `S > S` 为假 → 提醒被**静默吞掉**，
-   *        用户永远不知道有人回复了他。
-   * 新实现：基准是 `replies_read_id`（评论 id，AUTOINCREMENT 严格单调）→ 无此问题。
+   * ❌ 时间基线不行：未读判定 `c.created_at > users.replies_read_at`，两边都是**秒**。
+   *    回复与"标已读"落在同一秒时 `S > S` 为假 → 提醒被**静默吞掉**。
+   * ✅ 基准是 `replies_read_id`（评论 id，AUTOINCREMENT 严格单调）→ 无此问题。
    *
    * 为什么要循环：能不能落进"同一秒"取决于请求耗时，是真实竞态。
    * 这里最多试若干轮，**只在真正撞进同一秒时断言**；撞不进就说明这轮没覆盖到边界。
@@ -271,17 +270,13 @@ console.log('\n【7b】🔴 秒级边界：同一秒内标已读又被回复，�
   check('7b 前置：Alice 发原评论 → 201', mine7b.status === 201 && Boolean(target7b), `实际 ${mine7b.status}`)
 
   /*
-   * 为什么要循环：能不能落进"同一秒"取决于请求耗时，是真实竞态。
-   * 这里最多试若干轮，**只在确证撞进同一秒时断言**；撞不进就说明这轮没覆盖到边界。
-   * （本地 wrangler 单次请求约几十毫秒，撞上的概率很高，但**不假设**必然撞上。）
-   *
    * 🔴 两道守卫缺一不可，否则会**假通过**：
    *    只验"回复落在第二 S 秒"是不够的 —— 若"标已读"落在 S-1 秒，
-   *    旧实现 `S > S-1` 为真 → 未读数照样是 1 → 旧代码也能过，等于没测到边界。
+   *    `S > S-1` 为真 → 未读数照样是 1 → 时间基线也能过，等于没测到边界。
    *    所以还要验"标已读**整段请求**都在 S 秒内"：
    *    `t0 === t1`（前后两次采样取整相同）意味着整个请求都落在 [S, S+1) 内，
    *    于是服务端取到的 `ts` 必然是 S。两条合起来才确证
-   *    `replies_read_at === created_at === S` —— 正是旧实现失效的那个输入。
+   *    `replies_read_at === created_at === S` —— 正是时间基线失效的那个输入。
    */
   for (let i = 0; i < 12 && !hitBoundary; i++) {
     // 前置：先把未读清零，否则"标已读没生效"会被误判成"边界修好了"

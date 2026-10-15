@@ -11,7 +11,7 @@
  *   - 额度更宽松：1 人停留 1 小时 ≈ 120 次请求（两个接口各 60 次）。
  *
  * 调整这个值时请一起核对：
- *   - `docs/technical/COMMENTS_BACKEND.md` 的「讨论区中间的自动刷新」一节；
+ *   - `docs/context/technical/COMMENTS_BACKEND.md` 的「讨论区中间的自动刷新」一节；
  *   - `scripts/dev/scratch/measure-poll-cadence.mjs`（实测真实间隔的脚本）。
  */
 export const DISCUSSION_POLL_MS = 60000

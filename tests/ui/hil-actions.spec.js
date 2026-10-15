@@ -155,7 +155,7 @@ test('fishing line follows the bending rod and float through a bite and lift', a
   await page.getByRole('button', { name: '切换吉祥物角色' }).click()
   // 批次按钮只在 `batchCount > 1` 时渲染（SidebarMascot 的 `v-if="batchCount > 1"`）。
   // 吉祥物精简到 7 名、batchSize 也是 7，故 batchCount 恒为 1，批次按钮**不存在**——
-  // 原先无条件点它会让 `next.isEnabled()` 永久等待并超时。改为按存在与否决定：
+  // 无条件点它会让 `next.isEnabled()` 永久等待并超时。按存在与否决定：
   // 有批次按钮就翻一批，没有就直接选另一个角色，验证意图（换角色后动作仍生效）不变。
   const next = page.getByRole('button', { name: '下一批角色' })
   if (await next.count()) {

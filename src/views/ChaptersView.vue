@@ -644,8 +644,8 @@ watch(() => route.query.stage, (value) => {
 
 /**
  * 浏览器前进/后退或粘贴 URL 时同步其余筛选状态。
- * 这些值原先只在初始化时读一次，从 ?chapter=c0 后退到 ?chapter=c1 视图不会跟着变
- * （地图层级现在也由 chapterId 决定，不跟随就会停在上一章的地图上）。
+ * 🔴 必须在 route.query 变化时重新读，不能只在初始化时读一次 —— 否则
+ * 从 ?chapter=c0 后退到 ?chapter=c1 时地图层级不会跟着变，会停在上一章的地图上。
  * 自身 router.replace 写入的是同样的值，所以这里比较后再赋值，不会来回打架。
  */
 watch(() => route.query, (query) => {

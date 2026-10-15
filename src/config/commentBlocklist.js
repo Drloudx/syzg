@@ -5,7 +5,7 @@
  * 按类别从游戏聊天风控词库筛选：`../Config_decrypted/words.json`
  * （约 14,078 条，逗号分隔的单个字符串）
  *
- * ## 为什么不整表同步（2026-10-01 实测，依据 docs/technical/COMMENTS_BACKEND.md）
+ * ## 为什么不整表同步（2026-10-01 实测，依据 docs/context/technical/COMMENTS_BACKEND.md）
  * 1. **误伤**：游戏表含大量日常词——比例、真实、购买、买菜、我爸、炸鸡、善良、香港、港口…
  *    整表导入会让正常图鉴讨论全部进待审。
  * 2. **性能**：Workers 免费版只有 10ms CPU/次调用。本地实测每条评论：

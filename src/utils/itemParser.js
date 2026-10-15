@@ -592,10 +592,10 @@ export const fetchItemData = createCachedLoader(async () => {
 })
 
 /**
- * 将职业索引数组转换为中文名
- * @param {number[]} jobIndices 
+ * 将职业索引数组转换为中文名数组。
+ * @param {number[]} jobIndices
+ * @returns {string[]}
  */
-// translateJob 已删除：统一使用 translateJobArray（字符串返回版无调用方，死代码）。
 export function translateJobArray(jobIndices) {
   if (!jobIndices || jobIndices.length === 0) return []
   const jobString = lanDict?.['hero_job']

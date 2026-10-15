@@ -135,7 +135,7 @@
               <th class="col-hide-mobile" style="width: 60px; text-align: center;">评论</th>
               <!-- 「超级管理员」五个字要横排放下，列宽按最长角色名给 -->
               <th style="width: 105px;">角色</th>
-              <!-- 「已停用」三个字要横排（原先 80px 会折行，见 .status-badge 注释） -->
+              <!-- 「已停用」三个字要横排放下，列宽按最长状态名给（见 .status-badge 注释） -->
               <th style="width: 92px; text-align: center;">状态</th>
               <!--
                 只留「最近登录」（2026-10-14）。
@@ -244,7 +244,7 @@
 
       <!-- 翻页控制栏（主流分页：[上一页] [1] ... [7] [8] [9] [10] [11] ... [28] [下一页] + 跳转） -->
       <div v-if="totalPages > 1 || users.length" class="pagination-bar">
-        <!-- 总条数：复用分页接口本来就要算的 `total`，零额外查询（2026-10-14 加） -->
+        <!-- 总条数：复用分页接口本来就要算的 `total`，零额外查询 -->
         <span v-if="totalCount > 0" class="pagination-total">共 {{ totalCount.toLocaleString() }} 条</span>
 
         <button
@@ -1430,8 +1430,7 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
 /*
  * 「用户 ID」列（内部自增 id）。
  *
- * 🔴 必须比普通 `.mono-cell` 更醒目：用户反馈原先**看不清**。
- *    原样式是 `--text-muted`（灰）+ 12px，在一堆信息里几乎看不见。
+ * 🔴 必须比普通 `.mono-cell` 更醒目：`--text-muted`（灰）+ 12px 在一堆信息里几乎看不见。
  *    既然这一列存在的意义就是"内部对照"，看不清等于没有，故：
  *      · 字号提到 12.5px
  *      · 颜色改用正文色（而不是 muted）
@@ -1495,13 +1494,12 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
   font-weight: 700;
 }
 
-/* 状态微胶囊标签 */
 /*
  * 状态徽标（正常 / 已停用 / 已注销）。
  *
- * 🔴 `white-space: nowrap` 是必需的（2026-10-14 补）。
+ * 🔴 `white-space: nowrap` 是必需的。
  *    同 `.role-badge` 那一处：这些标签是 `<span>`，**中文可在任意处断行**，
- *    列一窄就折成「正/常」两行（新增「用户 ID」列后实测出现）。
+ *    列一窄就折成「正/常」两行。
  *    英文单词默认不断行、中文才会 —— 所以这类缺陷只在中文字段上冒出来。
  */
 .status-badge {
@@ -1536,11 +1534,9 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
 /*
  * 行内操作链（封禁 / 设为管理员 / 删除）。
  *
- * 🔴 必须显式 `nowrap` + `flex-shrink: 0`（2026-10-14 补）。
- * 这两条原先**只写在手机端 `@media` 里**，桌面端没有，于是列一窄就
- * **逐字换行**（「封/禁」「删/除」各占一行）—— 因为这几个 `.action-link`
- * 是 `<span>`，默认 `white-space: normal`，中文可以任意处断行。
- * 这类缺陷只在桌面宽度不足以放下整列时出现，靠改窗口大小才发现。
+ * 🔴 必须显式 `nowrap` + `flex-shrink: 0`，且**手机端与桌面端都要写**。
+ * 只写在 `@media` 里会让桌面端列一窄就**逐字换行**（「封/禁」「删/除」各占一行）——
+ * 因为这几个 `.action-link` 是 `<span>`，默认 `white-space: normal`，中文可任意处断行。
  */
 .actions-chain {
   display: flex;
@@ -1997,9 +1993,8 @@ onBeforeUnmount(() => clearTimeout(searchTimer))
 }
 
 /*
- * 标签 + 时间那一行（原先写的是内联 `display:flex; align-items:center`，
- * 抽出成类名以便统一管住换行 —— 同 `.status-badge` 那处的教训：
- * 中文可在任意处断行，不写 nowrap 就会折）。
+ * 标签 + 时间那一行。抽成类名以便统一管住换行 —— 同 `.status-badge` 那处的教训：
+ * 中文可在任意处断行，不写 nowrap 就会折。
  */
 .timeline-row {
   display: flex;

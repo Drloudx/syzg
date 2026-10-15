@@ -407,8 +407,8 @@ function openCandidate(candidate) {
  * 「兑换商店」按钮 → 兑换页。
  *
  * `packDisplay` 是**兑换子类的 key**（如 `heroJifen` / `petJifen`），不是自由搜索词。
- * 此前只传 `q=<packDisplay>`，而 ExchangeView 不读 `q`，且分类停在默认的「委托兑换」，
- * 结果跳过去是**空列表**。这里直接映射到对应分类与子类（与兑换页自己的 key 一致）。
+ * 🔴 不能只传 `q=<packDisplay>`：ExchangeView 不读 `q`，且分类会停在默认的
+ * 「委托兑换」，结果跳过去是**空列表**。这里直接映射到对应分类与子类。
  */
 const EXCHANGE_PACK_TARGETS = {
   heroJifen: { cat: 'shop', sub: 'heroJifen' },   // 星型徽印
@@ -574,8 +574,8 @@ function handleResultClose() {
 
 onMounted(load)
 onBeforeUnmount(() => {
-  // 只有离开招募页才停 BGM：演出面板之间必须连续（此前每个面板各自播放/停止，
-  // 导致同一首 BGM 在切面板时被从头重启）。
+  // 🔴 只有离开招募页才停 BGM：演出面板之间必须连续，各面板自行播放/停止会让
+  // 同一首 BGM 在切面板时被从头重启。
   stopBgm()
   // 离开 /gacha 才统一销毁共享演出场景（画布/上下文/纹理）；抽卡过程中面板卸载
   // 只解除引用（releaseSharedSpineScene），避免反复建/丢 WebGL 上下文累积显存挂死

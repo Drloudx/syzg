@@ -4,18 +4,18 @@
  * 路由：
  *   GET    /api/health           探活（同时用于线上缓存头断言）
  *   GET    /api/comments         列表（分页）
- *   POST   /api/comments         发表
- *   DELETE /api/comments         自己删除（凭浏览器令牌）
- *   GET    /api/admin/comments   管理端列表（需管理员令牌）
+ *   POST   /api/comments         发表（需登录）
+ *   DELETE /api/comments         删除自己的评论（需登录）
+ *   GET    /api/admin/comments   管理端列表（需 role >= 1）
  *   PATCH  /api/admin/comments   管理端改状态：0 待审 / 1 显示 / 2 隐藏
  *   DELETE /api/admin/comments   管理端彻底删除
  *
- * 设计依据：docs/technical/COMMENTS_BACKEND.md
+ * 设计依据：docs/context/technical/COMMENTS_BACKEND.md
  *
  * 三条必须遵守的约束（免费版）：
  *   1. CPU 10ms/次——只用 WebCrypto 做 SHA-256。**禁止 bcrypt/argon2**，
  *      实测 PBKDF2 600k 次要 104ms，必然触发 Error 1102。
- *      管理员与评论者都用「随机令牌 + 恒定时间比较」，不做密码哈希，正好绕开。
+ *      密码派生跑在客户端，服务端只做 HMAC 与恒定时间比较，正好绕开。
  *   2. D1 写入按「行」计费（索引也算行），一次发评论约 6 行，上限约 1.5 万条/天。
  *   3. 响应必须是 application/json + no-store；本站 EdgeOne 按文件类型缓存，
  *      JSON 当前不被缓存（2026-10-01 实测），no-store 是第二道防线。
@@ -25,11 +25,9 @@
  *   TURNSTILE_SECRET  可选。未配置则跳过人机校验
  *   IP_HASH_SALT      可选但强烈建议。IP/邮箱哈希加盐
  *
- * 管理端鉴权（2026-10-07 改）：**不再用环境变量令牌**，改为看登录账号的 `users.role`。
+ * 管理端鉴权：看登录账号的 `users.role`。
  *   0 普通 / 1 管理员 / 2 超级管理员。超管由手工 SQL 设出
  *   （scripts/sql/2026-10-07-admin-role.sql 末尾）。
- *   旧域名时代的 `ADMIN_TOKEN` 通路已删除 —— 它永不过期、明文存 localStorage，
- *   泄露即长期有效；账号会话有 30 天滑动过期且可随时吊销。
  *   🔴 忘了角色时的紧急恢复：`UPDATE users SET role = 2 WHERE email = '...'`
  *      （那条 SQL 也写在迁移文件末尾）。
  */
@@ -113,12 +111,6 @@ const PAGE_KEY_RE =
  * 不硬编码清单的原因：Worker 读不到 `public/` 下的文件，硬编码会与素材脱节。
  */
 const AVATAR_ID_RE = /^[A-Za-z0-9_]{1,40}$/
-
-/*
- * `DELETE_TOKEN_RE` 与 `randomToken()` 已随**浏览器自删令牌**机制一并删除
- * （2026-10-05 账号体系）：评论归属改看 `comments.user_id`，
- * 不再需要"没账号时怎么证明这条是你发的"那套手法。
- */
 
 /**
  * 对外错误文案契约。**这里是给普通用户看的字，不是给开发者看的日志。**
@@ -206,14 +198,11 @@ function bad(message, status = 400) {
 }
 
 /*
- * `sha256Hex` 现在从 `src/utils/authCrypto.js` 统一导入 —— 那里有一份**与 Node 的
- * OpenSSL 逐字节比对过**的实现和单测。原先这里也有一份本地副本，
- * 两份相同实现并存是"改了一处忘另一处"的经典来源，所以合并掉了。
+ * `sha256Hex` 从 `src/utils/authCrypto.js` 统一导入 —— 那里有一份**与 Node 的
+ * OpenSSL 逐字节比对过**的实现和单测。服务端只此一处，不另留本地副本。
  *
- * 原先这里还有一个 `safeEqual()`（恒定时间比较），是给环境变量令牌用的。
- * 2026-10-07 令牌通路删除后它没有调用方，一并移除 —— 留着会让人以为
- * "还有别处在比令牌"。账号体系里的恒定时间比较在 `timingSafeEqualHex`
- * （`authCrypto.js`，用于验证码与 verifier 比对）。
+ * 恒定时间比较同样只在 `authCrypto.js` 的 `timingSafeEqualHex`
+ * （用于验证码与 verifier 比对）。
  */
 
 function nowSec() {
@@ -373,16 +362,12 @@ const ROLE_SUPER = 2
 const ROLE_LABELS = { 0: '普通用户', 1: '管理员', 2: '超级管理员' }
 
 /**
- * 管理端鉴权：**看登录账号的 `role`**（2026-10-07 起）。
+ * 管理端鉴权：**看登录账号的 `role`**。
  *
- * ## 为什么删掉环境变量令牌
+ * 为什么不用环境变量令牌：令牌永不过期（泄露即长期有效，只能去控制台换）、
+ * 需明文存 localStorage（任何 XSS 可直接读走）、无法追溯身份（日志看不出是谁做的）。
  *
- * 旧实现是 `x-admin-token` 与环境变量 `ADMIN_TOKEN` 比对。它的三个硬伤：
- *   1. **永不过期**：泄露即长期有效，改密码也没用，只能去控制台换环境变量；
- *   2. **明文存 localStorage**：任何 XSS 可直接读走；
- *   3. **无法追溯身份**：谁都能用同一个令牌，日志看不出"是谁做的"。
- *
- * 改用会话后：有 30 天滑动过期、可随时吊销（改密码/封号即失效）、
+ * 会话方案：30 天滑动过期、可随时吊销（改密码/封号即失效）、
  * 每个操作都能落到具体账号（配合 `admin_audit`）。
  *
  * 🔴 **进不去后台时的后路**是数据库，不是这个函数：
@@ -450,7 +435,7 @@ async function writeAudit(env, actor, { action, targetType, targetId, detail = n
  * 过期行只被查询时的 `WHERE expires_at > ?` 过滤掉，**永远留在表里**。
  * 单用户时无感，但每次登录都插一行、从不清，长期会累积成垃圾。
  *
- * 挂在登录时顺手跑（那时本来就要写 sessions，多一条 DELETE 成本可忽略），
+ * 挂在登录时顺手跑（登录也要写 sessions，多一条 DELETE 成本可忽略），
  * 不额外引入定时任务。
  */
 async function pruneExpiredSessions(env, ts) {
@@ -635,15 +620,12 @@ async function commentContext(env, url, myUserId = null) {
    * 直接 `COUNT(*)` 是全表扫（D1 按行计费），而这里只需要知道"它是否在前 N 条里"，
    * 所以取首页边界（第 N+1 条新评论的 id）比较即可 —— 一次索引范围查。
    *
-   * 🔴 这个 N **必须与前端实际请求的页大小一致**。
-   * 起初这里写死 50，而 `fetchComments` 的默认 `limit` 是 **20** ——
-   * 于是第 21~50 条会被错判成"在首页里"，界面不显示定位卡片，
-   * 用户又回到"点了没反应"（因为列表里确实没有它）。
-   * 统一从下面的 `COMMENT_PAGE_SIZE` 取，别再各写一份。
+   * 🔴 这个 N **必须与前端实际请求的页大小一致**（统一从 `COMMENT_PAGE_SIZE` 取）。
+   * 写成与 `fetchComments` 默认 `limit` 不同的值时，超出页大小的评论会被错判成
+   * "在首页里"，界面不显示定位卡片，用户看到的是"点了没反应"。
    *
    * 🔴 比较必须用**严格大于**：`OFFSET N` 取到的正是**第 N+1 条**，
-   * 它本身就是"页外第一条"。用 `>=` 会把它算进页内 —— 边界差一条，
-   * 症状是"第 21 条点不动"（只有那一条错，最难发现）。
+   * 它本身就是"页外第一条"。用 `>=` 会把它算进页内，症状是"第 N+1 条点不动"。
    */
   const boundary = await env.DB.prepare(
     `SELECT id FROM comments
@@ -882,10 +864,9 @@ async function createComment(env, request, ts) {
   const uaHash = await sha256Hex(String(request.headers.get('user-agent') || '').slice(0, 200))
 
   /*
-   * 写入。两处相对旧版的改动：
-   *   - 新增 `user_id`：评论从此挂在账号上，「我的评论」「谁回复了我」都靠它；
-   *   - **不再写 `token_hash`**：浏览器自删令牌机制随本机身份一起退役
-   *     （列保留不用，SQLite 删列代价高且留着无害）。
+   * 写入的列：
+   *   - `user_id`：评论挂在账号上，「我的评论」「谁回复了我」都靠它；
+   *   - **不写 `token_hash`**（列保留不用，SQLite 删列代价高且留着无害）。
    */
   const inserted = await env.DB.prepare(
     `INSERT INTO comments (page_key, parent_id, user_id, nick, avatar, body, status, created_at, ip_hash, ua_hash, review_reason, page_label)
@@ -951,10 +932,8 @@ async function createComment(env, request, ts) {
 /**
  * DELETE /api/comments —— 删自己发的评论。
  *
- * 归属判据从"浏览器自删令牌"换成了 **`comments.user_id`**：
- * 令牌机制随本机身份退役（它解决的是"没账号时怎么证明这条是你发的"，
- * 而那个问题在有了账号之后就不存在了），而且令牌只能删**同一台浏览器**发的评论 ——
- * 换设备就删不掉，这正是用户当初抱怨的点。
+ * 归属判据是 **`comments.user_id`**（登录账号），不是浏览器端凭证：
+ * 按浏览器判归属只能删**同一台设备**发的评论，换设备就删不掉。
  */
 async function deleteOwnComment(env, request, ts) {
   const session = await loadSession(env, request, ts)
@@ -983,11 +962,10 @@ async function deleteOwnComment(env, request, ts) {
   /*
    * **真删除，不是软删除**（用户明确要求："删评论都要彻底删了，别留记录"）。
    *
-   * 原先写的是 `UPDATE ... SET status = 2`（软删除）。后果是库里持续堆积
-   * status=2 的用户记录——用户本机令牌也一直累积（实测攒到 37 条），
-   * 而管理页默认只看待审，所以他"在管理页也看不到、却一直有记录"。
+   * 写成 `UPDATE ... SET status = 2` 会让库里持续堆积用户已删的记录，
+   * 而管理页默认只看待审 —— 用户"在管理页也看不到、却一直有记录"。
    *
-   * 代价说明：软删除能保留证据供追溯、也便于误删恢复。改成硬删除后这两点没有了，
+   * 代价：软删除保留证据供追溯、便于误删恢复，硬删除后两点没有了，
    * 但"用户要求删除"在隐私意义上本就该是真删除。管理端的「隐藏」（status=2）
    * 仍是软删除，用于审核下架，两者职责不同。
    */
@@ -1151,22 +1129,11 @@ async function adminList(env, url) {
     const rows = results || []
 
     /*
-     * 🔴 这里原先还有一条 `SELECT status, COUNT(*) … GROUP BY status`，
-     * 供前台四个档位胶囊显示条数（待审(310) / 已显示(3051) / …）。
-     * 2026-10-14 **已删除**，原因：
+     * 这里**不要**加 `SELECT status, COUNT(*) … GROUP BY status` 来给筛选项显示条数：
+     * 它必须逐行扫过全部匹配行（覆盖索引只减少列宽，行数一个都少不了），
+     * 实测占单页成本 91%~99%，且随评论量线性变贵。筛选档位不需要预先知道条数。
      *
-     *   1. 它是"必须数一遍"的查询 —— SQLite 要数出每组行数，就得逐行扫过
-     *      所有匹配行，借覆盖索引也只是扫得窄些，**行数一个都少不了**。
-     *      实测放大 10 倍表后耗时增长 **8.38x**（对照：分页 `LIMIT 50` 是 0.50x，
-     *      因为它能提前停止）。即它**随评论量线性变贵**。
-     *   2. 它占单页成本的 **91%~99%**：分页本身只读 50 行，而这条要读全表
-     *      （当前 3.6k 条评论 ≈ 3,648 行/页）。
-     *   3. 它在 `isPageMode` 块内**无条件执行**，每翻一页都跑一遍 —— 而
-     *      各组行数在翻页时根本不会变。旁边的 `total` 有"只在第 1 页算"的
-     *      优化，这条却绕过了它。
-     *   4. 收益极低：筛选档位不需要预先知道条数，点进去自然就看到有多少条。
-     *
-     * 保留 `total`：分页（`totalPages`）需要它，且它只在第 1 页算一次，
+     * `total` 是唯一保留的聚合：分页需要它，且只在第 1 页算一次，
      * 走 `idx_comments_status_id` 定位，成本随**命中行数**而非全表。
      */
     return json({
@@ -1504,10 +1471,10 @@ async function adminDelete(env, request, actor, ts) {
 }
 
 // ============================================================
-// 管理端：概览 / 用户（2026-10-05）
+// 管理端：概览 / 用户
 //
-// 设计依据：docs/technical/ACCOUNT_SYSTEM.md §九、§17.9
-// 认证：沿用既有的 `x-admin-token`（见 isAdmin）+ 未配 ADMIN_TOKEN 时整段 404。
+// 设计依据：docs/context/technical/ACCOUNT_SYSTEM.md §九、§17.9
+// 认证：登录账号的 `users.role`（见 adminSession），后台入口仅 role >= 1 可见。
 // ============================================================
 
 /**
@@ -1831,7 +1798,7 @@ async function adminUsers(env, url) {
  *
  * 🔴 **层级校验**：只能操作角色严格低于自己的账号。
  * 没有这条，管理员可以封掉超管 —— 而超管被自己授权的人封掉后
- * **进不去后台**（令牌通路已删），只能改数据库。
+ * **进不去后台**，只能改数据库。
  */
 async function adminUserPatch(env, request, actor, ts) {
   const payload = await request.json().catch(() => null)
@@ -2165,10 +2132,9 @@ async function adminReviewKeywordsPut(env, request, actor, ts) {
   }
 
   /*
-   * `disabled` 与 `keywords` **同等校验**。
+   * `disabled` 与 `keywords` **同等校验** —— 两者都进库、都会被读出来拼进匹配。
    *
-   * 🔴 原先这里只过滤空串、不限长也不限量 —— 而 `keywords` 是校验的（上面几行）。
-   *    代码审查时发现的：能塞进 5000 字的类别名、或几万条停用项。
+   * 🔴 只过滤空串是不够的：不限长能塞进超长类别名、不限量能塞进几万条停用项。
    *    后果不是注入（值都走 bind），而是**仓库里存垃圾**：
    *    `review_category_flags` 会攒下永远匹配不到任何类别的行，
    *    而且会在每次 `loadReviewOverlay` 时被读出来、白占内存与匹配开销。
@@ -2294,9 +2260,9 @@ async function adminReviewPresetsPut(env, request, actor, ts) {
 }
 
 // ============================================================
-// 账号体系（2026-10-05）
+// 账号体系
 //
-// 设计依据：docs/technical/ACCOUNT_SYSTEM.md
+// 设计依据：docs/context/technical/ACCOUNT_SYSTEM.md
 //   · 22 项决策 —— §14.1
 //   · 接口契约与安全约定 —— §九
 //   · 全部对外文案 —— §十七（下面的 AERR 就是 §17.8 那张表的代码化）
@@ -2832,10 +2798,6 @@ async function authLogin(env, request, ts) {
    * 同样的理由：**端到端测试要反复跑负向用例**（错密码 / 未注册邮箱 / 已封禁），
    * 同 IP 每小时 20 次失败一会儿就打满，之后所有登录都变成 429 假失败。
    *
-   * 🔴 这个覆盖是补上的：当初只有这一处没做成环境变量，结果整套账号端到端
-   * 跑第二遍就开始大面积 429，而报错文案（"发得太频繁了"）又不像限流
-   * （另一处是"请求太频繁"），排查时先怀疑了半天别的地方。
-   *
    * 生产环境**不要**设这个变量，用默认值（5 次失败 / 邮箱，20 次 / IP）。
    */
   const loginMaxFails = positiveInt(env.AUTH_LOGIN_MAX_FAILS, LOGIN_MAX_FAILS)
@@ -2868,9 +2830,8 @@ async function authLogin(env, request, ts) {
 
   const token = await issueSession(env, row.id, request, ts, ipHash)
   /*
-   * 登录会**新建会话** → 改变「活跃会话数」与「今日活跃用户（DAU）」。
-   * 这是原先漏掉的一处失效（2026-10-14 补）：30 秒 TTL 时几乎看不见，
-   * 但 TTL 提到 5 分钟后，登录后概览的活跃数会滞后到最多 5 分钟。
+   * 登录会**新建会话** → 改变「活跃会话数」与「今日活跃用户（DAU）」，
+   * 因此必须失效概览缓存；漏掉这处会让登录后概览的活跃数滞后到最多一个 TTL。
    */
   invalidateAdminStatsCache()
   return json({ ok: true, token, user: toPublicUser(row) })
@@ -3113,15 +3074,12 @@ async function authMyComments(env, request, url, ts) {
  *
  * 🔴 用**毫秒**（`Date.now()`）而不是秒，与 `comments.moderated_at` 配对。
  *
- * 为什么不能用秒：未读判定是 `moderated_at > moderation_read_at`。
- * 秒级时间戳下，"同一秒内先标已读、又被处理"会落到 `S > S`（假）——
- * **通知被静默吞掉**（实测确认：差值 0 → 未读数 0）。
- * 而若为了避开它把基准退 1 秒（`S-1`），又会变成 `S > S-1` 恒真 →
- * **红点清不掉**，用户第二次点进来才发现已经读过了。
+ * 未读判定是 `moderated_at > moderation_read_at`。秒级时间戳下，"同一秒内先标已读、
+ * 又被处理"会落到 `S > S`（假）→ **通知被静默吞掉**；
+ * 而若把基准退 1 秒（`S-1`）来避开，又会变成 `S > S-1` 恒真 → **红点清不掉**。
  * 两个方向各错一半，根因都是**秒级精度不足以区分先后**。
  *
- * 毫秒把冲突窗口从 1 秒压到 1 毫秒 —— 两次请求相隔不到 1 毫秒几乎不可能，
- * 于是两个方向的错都不再出现。
+ * 毫秒把冲突窗口从 1 秒压到 1 毫秒 —— 两次请求相隔不到 1 毫秒几乎不可能。
  */
 async function authMarkModerationRead(env, request, ts) {
   const session = await loadSession(env, request, ts)
@@ -3158,9 +3116,8 @@ async function authMyReplies(env, request, url, ts) {
      *   1. `p.user_id = ?1` —— 被回复的那条是我的；
      *   2. `c.user_id <> ?1` —— 回复本身**不是我发的**。
      *
-     * 🔴 第 2 条一开始漏了：只判"父评论是我的"，于是**自己回复自己**
-     * 也会出现在"谁回复了我"里 —— 用户看到自己给自己留的话被当成"有人回复你"，
-     * 既莫名其妙、又会把未读数顶起来。这条是端到端测试抓出来的。
+     * 🔴 第 2 条不能省：只判"父评论是我的"会让**自己回复自己**也出现在
+     * "谁回复了我"里，既莫名其妙、又会把未读数顶起来。
      *
      * `c.user_id IS NULL` 要保留：那是**账号体系之前**的老评论（没有归属），
      * 它们不可能是"我"发的（我有 id），所以该照常算作别人的回复。
@@ -3181,9 +3138,8 @@ async function authMyReplies(env, request, url, ts) {
      * 未读数的条件必须与列表**逐字一致**，否则会出现"红点显示 3、点进去只有 1 条"。
      *
      * 🔴 比较的是 `c.id > ?2`（**评论 id**），与列表的 `c.id < ?2` 游标是同一个键。
-     *    早先用的是 `c.created_at > 时间戳`，两个键不是一回事 ——
-     *    除了丢通知（同秒无法区分先后），还让"未读口径"与"分页口径"不一致。
-     *    现在两者都按 id 走，"未读"＝"id 比基准大的那些"，语义精确且可核对。
+     *    用 `c.created_at > 时间戳` 会同时踩两个问题：同秒无法区分先后（丢通知），
+     *    以及"未读口径"与"分页口径"不一致。
      */
     `SELECT COUNT(*) AS n FROM comments c
      JOIN comments p ON p.id = c.parent_id
@@ -3219,9 +3175,8 @@ async function authMyReplies(env, request, url, ts) {
  *
  * 🔴 基准是 `users.replies_read_id`（**评论 id**），不是时间戳。
  *
- * 原实现存的是时间（`replies_read_at = ts`，秒），未读判定 `created_at > read_at`。
- * 两边都只有**秒**精度 → "标已读"与"收到回复"落在**同一秒**时，
- * 那条回复满足 `S > S`（假）→ **提醒被静默吞掉**，用户永远不知道有人回复了他。
+ * 用时间戳（`replies_read_at = ts`）配合 `created_at > read_at` 不行：两边都只有
+ * **秒**精度，「标已读」与「收到回复」落在同一秒时 `S > S` 为假 → **提醒被静默吞掉**。
  *
  * 为什么不用毫秒（那是「评论被处理通知」的做法）：
  *   · 那边 `moderated_at` / `moderation_read_at` 都是新列、都由本文件控制，可直接用毫秒；
@@ -3229,7 +3184,7 @@ async function authMyReplies(env, request, url, ts) {
  *     限流……）。改它会波及全站；而**只把基准改成毫秒更糟** ——
  *     `S > S_000` 恒真 → **红点永远清不掉**。两个方向各错一半。
  *
- * 改用 `comments.id` 后两个问题同时消失：
+ * 用 `comments.id` 则两个问题同时消失：
  *   · `id` 是 `INTEGER PRIMARY KEY AUTOINCREMENT`，**严格单调递增**，
  *     整数比较没有精度、没有时钟回拨问题；
  *   · 语义也更准 —— 表达的是"这些回复我看过了"，而不是"某个时刻之前的都算看过"。
@@ -3441,22 +3396,17 @@ export async function onRequest(context) {
       }
 
       /*
-       * `GET /api/admin/ping` —— **权限探活**（2026-10-13 加）。
+       * `GET /api/admin/ping` —— **权限探活**。
        *
-       * 为什么需要它：后台的权限闸门（`AdminView.vue` 的 `recheck()`）原本靠
-       * 调 `/api/admin/stats` 来判断"这个账号能不能进后台"。而 stats 为了渲染
-       * 概览要跑 **9 条聚合查询**（含多次全表扫）——
-       * 实测约 **2.4 万行 / 次**（本地 ~3.2k 评论、~2.3k 会话的规模）。
-       *
-       * 而闸门只关心一件事：**401 还是 200**。用整屏指标去换一个布尔值，
-       * 在 D1 按 rows read 计费的额度下是纯浪费：每次进后台、每次权限重查
-       * 都白烧一遍概览的聚合。
+       * 为什么不用 `/api/admin/stats` 判权限：stats 为渲染概览要跑 **9 条聚合查询**
+       * （含多次全表扫，实测约 **2.4 万行 / 次**），而闸门只关心 **401 还是 200**。
+       * 用整屏指标换一个布尔值，在 D1 按 rows read 计费的额度下是纯浪费。
        *
        * 这条端点不做任何查询 —— `adminSession()` 已经把该查的会话与角色查完了，
        * 能走到这里就说明鉴权已通过（上方 `if (!admin) return 401`）。
        * 于是成本从「9 条查询 + 多次全表扫」降到 **0 条额外查询**。
        *
-       * ⚠️ 返回体**刻意只给角色，不给任何统计数字**：它是权杖的验伪，不是数据接口。
+       * ⚠️ 返回体**刻意只给角色，不给任何统计数字**：它是权限验伪，不是数据接口。
        *    `role` 是调用者自己的角色，本就随登录态可见，不算泄漏。
        */
       if (path === '/api/admin/ping') {
@@ -3465,11 +3415,10 @@ export async function onRequest(context) {
       }
 
       /*
-       * 审计日志：**所有管理员都可读**（2026-10-14 从"仅超管"放开）。
+       * 审计日志：**所有管理员都可读**。
        *
-       * 原先只给超管，理由在旧注释里：「记录含其他管理员的操作痕迹，
-       * 同级互相可见容易变成盯梢甚至报复」。用户评估后决定放开 ——
-       * 管理动作本就该可追溯，透明优先于那点顾虑。
+       * 只给超管会让「管理动作可追溯」变成半截 —— 同级互相可见的那点顾虑
+       * （盯梢、报复）优先度低于透明。
        *
        * 🔴 仍然**只读**：没有删除入口（非 GET → 405）。
        *    审计的价值就在于不可删；能删的话"谁删了记录"本身成了新缺口。

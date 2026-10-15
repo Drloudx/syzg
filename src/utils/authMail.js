@@ -18,7 +18,7 @@
  *
  * ## 与文档的对应
  *
- * 接口契约见 `docs/technical/ACCOUNT_SYSTEM.md` §7.4；
+ * 接口契约见 `docs/context/technical/ACCOUNT_SYSTEM.md` §7.4；
  * 模板与变量见 `scripts/dev/ses-templates/README.md`。
  */
 

@@ -147,7 +147,7 @@ test('long updates keep actions visible, block Back while active, and permit ret
 
 test('前台顶部标题区可点击回首页', async ({ page }) => {
   /*
-   * 2026-10-14 加：此前前台没有"回首页"入口，只能靠侧栏或浏览器后退。
+   * 前台必须有"回首页"入口（不能只靠侧栏或浏览器后退），
    * 顶部标题区（logo + 页名 + 副标题）是用户第一个会去点的地方。
    *
    * 用 `role="link"` + `tabindex="0"` 而不是 `<a href="#/">`：
