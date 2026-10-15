@@ -73,6 +73,37 @@ CREATE TABLE IF NOT EXISTS comments (
 CREATE INDEX IF NOT EXISTS idx_comments_page
   ON comments(page_key, status, created_at DESC);
 
+-- 列表查询：按 page_key + status 过滤、**id 倒序**（2026-10-15）。
+--
+-- 🔴 为什么必须有这一条（而不是只用上面那条）：
+--    所有评论列表查询都是 `WHERE page_key = ? AND status = 1 ORDER BY id DESC LIMIT 21`。
+--    上面那条索引的尾列是 `created_at`，**与 `ORDER BY id DESC` 不匹配** ——
+--    它虽能定位"该页的行"，却无法用来满足排序。
+--
+--    而本地库（与生产同构）**从未跑过 ANALYZE**、没有 `sqlite_stat1`；
+--    在缺少统计信息时规划器改选
+--      `SEARCH comments USING INDEX idx_comments_status_id (status=?)`
+--    沿 (status, id DESC) 从最大 id 往下逐行扫、用 page_key 过滤，凑够 21 条才停。
+--
+-- 后果：打开一个**一条评论都没有**的页面时永远凑不够 21 条 →
+--      必须扫完整张 status=1 索引 = **全站评论数**。
+--
+-- 实测（30,000 条评论的实验库，按真实 EXPLAIN QUERY PLAN 计数）：
+--      打开热点页（有评论）  33 行 ｜ 打开空页（无评论）27,000 行
+--      新增本索引后：热点页 21 行 ｜ 空页 **0** 行（其余查询全部持平，回退项 0）
+--
+-- 🔴 严重性不在"评论多少"，而在它与**页面数量**相乘：
+--    `CommentsPanel` 挂在 9 处图鉴页且**挂载即请求**（`if (props.pageKey) load()`），
+--    而全站页面键是**千级**（物品 816 / 任务 315 / 家具 141 / 怪物 52 / 角色 34 …），
+--    绝大多数页面零评论。日消耗 ≈ 日浏览量 × 全站评论数。
+--    D1 免费版读额度 5,000,000 行/天，超限直接报错（非限速）→ 讨论区全员挂掉。
+--
+-- 为什么不直接改上面那条：`created_at` 正被概览「7 日趋势」借道当覆盖索引
+--    （带 skip-scan）。改成 id 会让那条查询退化成 `SCAN comments`。
+--    新增则两条查询各自走对的索引。
+CREATE INDEX IF NOT EXISTS idx_comments_page_id
+  ON comments(page_key, status, id DESC);
+
 -- 后台分页与管理聚合用（2026-10-13）。
 -- 后台新增的「按状态分页」与「状态计数」都按 status 过滤，此前只有
 -- idx_comments_page(page_key, status, …) 可借路，但**首列是 page_key**，
