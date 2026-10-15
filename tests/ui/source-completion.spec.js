@@ -55,7 +55,7 @@ test('plant source opens its seed and returns to the crop detail', async ({ page
   await expect(modal.locator('.ui-modal-title')).toHaveText('绿榛菇')
 })
 
-test('equipment detail shares first-clear and guide sources', async ({ page }) => {
+test('equipment detail shares stage and guide sources', async ({ page }) => {
   await page.goto('/#/equip?itemId=item_411000')
   await expect(page.locator('.app-container')).not.toHaveClass(/is-boot-loading/)
   for (let attempt = 0; attempt < 10; attempt += 1) {
@@ -64,6 +64,7 @@ test('equipment detail shares first-clear and guide sources', async ({ page }) =
     await close.click()
   }
   const modal = page.locator('.app-main > .ui-modal-host .ui-modal-overlay')
-  await expect(modal.getByRole('button', { name: '关卡首通', exact: true })).toBeVisible()
+  // 关卡来源归并为「关卡掉落」（三难度合成一条、名字只写 `x-x 关卡名`）
+  await expect(modal.getByRole('button', { name: '关卡掉落', exact: true })).toBeVisible()
   await expect(modal.getByRole('button', { name: '新手引导', exact: true })).toBeVisible()
 })

@@ -1056,6 +1056,7 @@ const groupedSources = computed(() => {
     runeAppraisal: { name: '符石鉴定', sources: [] },
     runeSynthesis: { name: '符石合成', sources: [] },
     dungeon: { name: '副本掉落', sources: [] },
+    stage: { name: '关卡掉落', sources: [] },
     smithing: { name: '锻造台制作', sources: [] },
     facility: { name: '设施制作', sources: [] },
     hidden: { name: '被隐藏的物品', sources: [] },
@@ -1111,7 +1112,7 @@ const canNavigateToSource = (src) => {
     const recipe = facilityCraftingRecipes.value.find(r => r.facility === src.facility && Number(r.level) === Number(src.level))
     if (recipe && !canOpenFacilityRecipe(recipe)) return false
   }
-  return ['monster', 'achievement', 'recipe', 'pvp', 'hidden', 'task', 'exchange', 'dungeon', 'smithing', 'facility', 'event', 'explore', 'plant', 'camp', 'container', 'gacha'].includes(src.type)
+  return ['monster', 'achievement', 'recipe', 'pvp', 'hidden', 'task', 'exchange', 'dungeon', 'stage', 'smithing', 'facility', 'event', 'explore', 'plant', 'camp', 'container', 'gacha'].includes(src.type)
 }
 
 const handleSourceClick = (src) => {
@@ -1174,6 +1175,11 @@ const handleSourceClick = (src) => {
       dropTab: src.dropTab || 'chest',
       dropEntry: src.dropEntry || ''
     }
+  }
+  else if (src.type === 'stage') {
+    // 关卡来源：按 `stage` 定位到关卡图鉴的关卡详情（契约见 ChaptersView 的 route.query.stage）。
+    targetPath = '/chapters'
+    targetQuery = { stage: src.id || '' }
   }
   else if (src.type === 'smithing') {
     targetPath = '/facilities'

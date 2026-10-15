@@ -488,82 +488,170 @@ export function buildDungeonData({ instanceJson, battleJson, battleRoomsJson, ba
 // 将副本中实际会给到玩家的具体物品/固定装备回写到全局来源索引。
 // equipGroup 展开的是随机池，不代表某件装备必然作为固定奖励出现，因此不在
 // 物品详情的“来源”里伪造具体装备来源；普通物品、魔物蛋和货币也要回写。
-export function buildDungeonItemSources(dungeons = []) {
+/**
+ * 副本掉落来源。
+ *
+ * ## 两条口径，按**物品是不是装备**分
+ *
+ * | 物品 | 口径 | 理由 |
+ * | --- | --- | --- |
+ * | **材料/消耗品**（`category` 不含 4） | **每个副本一行**，`des` 统一「副本掉落」 | 一件常见素材在十几个关卡出处时会把「获取途径」淹没 |
+ * | **装备**（`category` 含 4） | **保持逐条**：结算 / 首通 / 金·银·铜宝箱 / 房间掉落 各一条 | 「哪一档、哪个宝箱出这件装备」是装备图鉴的核心信息，合并会丢失 |
+ *
+ * 判据用 `category` 含 `'4'`（与 `isEquipTierHidden` 同一口径），不看品质 ——
+ * 低阶装备同样是装备，压缩它一样会丢信息。
+ *
+ * ## 材料的「前往」定位到哪一场
+ *
+ * 指向 **噩梦的前一个难度**：`battles[0]` 是噩梦（id 带 `_d` 后缀），
+ * `battles[1]` 就是它的前一档（id 恰好是去掉 `_d`）。实测 10/10 个副本都符合这个规律。
+ * 选它而不是噩梦的理由：前一难度同样能拿到这些掉落，且不必先通关噩梦即可进入。
+ * 规律不成立则回退 `battles[0]`，不产生死链。
+ *
+ * ## 装备仍按原样展开
+ *
+ * `dropTab` / `dropEntry` 逐条给出（`settlement` / `first` / `chest-N` / `房间:怪物:掉落`），
+ * 跳转后能定位到关卡里对应的奖励区 —— 这是改造前的既有行为，装备类不改。
+ */
+export function buildDungeonItemSources(dungeons = [], itemJson = {}) {
   const sources = {}
   const seen = new Set()
   const formatProbability = value => `${(Number(value || 0) * 100).toFixed(1)}%`
+  /** 物品表：判「是不是装备」用（`category` 含 `4`）。 */
+  const itemIndex = (() => {
+    const raw = itemJson?.datas || itemJson || {}
+    return raw instanceof Map ? raw : new Map(Object.entries(raw))
+  })()
+
+  /** 恶心梦档位（id 带 `_d`）的前一个难度；规律不成立时回退首项。 */
+  const targetBattle = dungeon => {
+    const battles = dungeon?.battles || []
+    if (!battles.length) return null
+    if (battles[0]?.id?.endsWith('_d')) {
+      const stripped = battles[0].id.slice(0, -2)
+      const previous = battles.find(battle => battle.id === stripped)
+      if (previous) return previous
+    }
+    return battles[0]
+  }
+
+  const isEquipment = typeId => {
+    const item = itemIndex.get(String(typeId))
+    const cats = item?.category || item?.categories || []
+    return cats.map(String).includes('4')
+  }
+
+  /**
+   * 写入一条来源。
+   *
+   * 材料：按**副本**去重（`typeId|dungeonId`），一个副本最多一条。
+   * 装备：按**具体来源位置**去重（`typeId|battleId|des`），保留逐条明细。
+   */
   const add = (entry, context) => {
     const typeId = String(entry?.typeId || '')
     if (!/^(item_|pet_)/.test(typeId) || entry.ruleMode === 'equipGroup' || isBlacklisted(entry)
       || !(entry.max > 0) || !(entry.actualProb > 0)) return
-    const sourceKey = `${typeId}|${context.id}|${context.des}`
+    const equip = isEquipment(typeId)
     const probability = Number(entry?.cumulativeProb ?? entry?.actualProb ?? 0)
+    /*
+     * 说明文案：
+     *   · 装备 → 保留具体区块与「箱内综合概率」（逐条明细的意义就在于能比较哪档概率高）；
+     *   · 材料 → **统一「副本掉落」**（一行代表整个副本，逐条区分结算/宝箱/房间没有意义）。
+     */
+    const des = equip
+      ? (context.dropTab === 'chest' && probability > 0
+        ? `${context.des} · 箱内综合概率 ${formatProbability(probability)}`
+        : context.des)
+      : '副本掉落'
+    /*
+     * 去重键与 id：
+     *   · 材料 → 按**副本**去重，id 统一挂「恶心梦前一难度」（一行代表整个副本）；
+     *   · 装备 → 按**本场战斗 + 区块**去重，id 是本场（每一档都要能单独定位）。
+     */
+    const sourceKey = equip
+      ? `${typeId}|${context.battleId}|${context.dropTab}|${des}`
+      : `${typeId}|${context.dungeonId}`
     if (seen.has(sourceKey)) return
     seen.add(sourceKey)
     if (!sources[typeId]) sources[typeId] = []
-    const source = {
+    sources[typeId].push({
       type: 'dungeon',
-      id: context.id,
-      name: context.name,
-      des: context.dropTab === 'chest' && probability > 0
-        ? `${context.des} · 箱内综合概率 ${formatProbability(probability)}`
-        : context.des,
-      dropTab: context.dropTab || '',
-      dropEntry: context.dropEntry || ''
-    }
-    sources[typeId].push(source)
+      id: equip ? context.battleId : context.targetId,
+      // 装备保留「副本名 · 难度」（逐条明细需要区分是哪一档）；材料只写副本名
+      name: equip ? context.equipName : context.dungeonName,
+      des,
+      dropTab: equip ? (context.dropTab || '') : 'settlement',
+      dropEntry: equip ? (context.dropEntry || '') : 'settlement'
+    })
   }
   const addReward = (entries, context) => {
     for (const entry of entries || []) add(entry, context)
   }
 
-  for (const dungeon of dungeons || []) {
-    // 被黑名单隐藏的地区不进入物品来源。副本名本身不含地区名（「垂死菌林」属于黑森林、
-    // 「伊菲卡温泉谷」属于霜烬平原），所以必须按 mapName 判断；否则副本图鉴列表已经隐藏了，
-    // 物品详情的「掉落来源」却仍把该地区列出来。
-    if (isBlacklisted({ id: dungeon.id, name: dungeon.name, label: dungeon.mapName })) continue
-    const battles = [...(dungeon.battles || []), ...(dungeon.storyBattles || [])]
-    for (const battle of battles) {
-      const base = {
-        id: battle.id,
-        name: `${dungeon.name} · ${battle.name}`
-      }
-      addReward(battle.reward, { ...base, des: '通关结算奖励', dropTab: 'settlement', dropEntry: 'settlement' })
-      addReward(battle.firstReward, { ...base, des: '首次通关奖励', dropTab: 'first', dropEntry: 'first' })
-
-      for (const room of battle.rooms || []) {
-        for (const variant of room.variants || []) {
-          const variantName = variant.name || variant.kind || '房间'
-          for (const monster of variant.monsters || []) {
-            for (const drop of monster.drops || []) {
-              addReward(drop.reward, {
-                ...base,
-                des: `${variant.source?.candidate ? '随机候选房间 · ' : ''}${variantName} · ${monster.name || '怪物'}掉落`,
-                dropTab: 'rooms', dropEntry: `${variant.typeId}:${monster.typeId}:${drop.collectTypeId}`
-              })
-            }
-          }
-          for (const collection of variant.collections || []) {
-            const collectionName = collection.name || '房间奖励'
-            const sourceName = /宝箱/.test(collectionName)
-              ? collectionName
-              : variantName === collectionName ? collectionName : `${variantName} · ${collectionName}`
-            const tier = collectionName.includes('金')
-              ? 3
-              : collectionName.includes('银')
-                ? 2
-                : collectionName.includes('铜')
-                  ? 1
-                  : 0
-            addReward(collection.reward, {
-              ...base,
-              des: sourceName,
-              dropTab: tier ? 'chest' : 'rooms',
-              dropEntry: tier ? `chest-${tier}` : `${variant.typeId}:${collection.collectTypeId}`
+  /**
+   * 一场战斗的全部奖励表，按来源区块分别回调。
+   *
+   * `context.battleId` 是**本场**战斗 id（装备逐条要按难度区分，不能都用目标那一场）；
+   * `context.targetId` 是材料统一挂靠的「恶心梦前一难度」；
+   * `context.dungeonName` / `context.equipName` 分别是材料名与装备名。
+   */
+  const walkBattle = (battle, context) => {
+    const spread = {
+      ...context,
+      id: context.battleId,
+      equipName: `${context.dungeonName} · ${battle.name}`
+    }
+    addReward(battle.reward, { ...spread, des: '通关结算奖励', dropTab: 'settlement', dropEntry: 'settlement' })
+    addReward(battle.firstReward, { ...spread, des: '首次通关奖励', dropTab: 'first', dropEntry: 'first' })
+    for (const room of battle.rooms || []) {
+      for (const variant of room.variants || []) {
+        const variantName = variant.name || variant.kind || '房间'
+        for (const monster of variant.monsters || []) {
+          for (const drop of monster.drops || []) {
+            addReward(drop.reward, {
+              ...spread,
+              des: `${variant.source?.candidate ? '随机候选房间 · ' : ''}${variantName} · ${monster.name || '怪物'}掉落`,
+              dropTab: 'rooms',
+              dropEntry: `${variant.typeId}:${monster.typeId}:${drop.collectTypeId}`
             })
           }
         }
+        for (const collection of variant.collections || []) {
+          const collectionName = collection.name || '房间奖励'
+          const sourceName = /宝箱/.test(collectionName)
+            ? collectionName
+            : variantName === collectionName ? collectionName : `${variantName} · ${collectionName}`
+          const tier = collectionName.includes('金') ? 3 : collectionName.includes('银') ? 2 : collectionName.includes('铜') ? 1 : 0
+          addReward(collection.reward, {
+            ...spread,
+            des: sourceName,
+            dropTab: tier ? 'chest' : 'rooms',
+            dropEntry: tier ? `chest-${tier}` : `${variant.typeId}:${collection.collectTypeId}`
+          })
+        }
       }
+    }
+  }
+
+  for (const dungeon of dungeons || []) {
+    // 被黑名单隐藏的地区不进入物品来源。副本名本身不含地区名（「垂死菌林」属于黑森林、
+    // 「伊菲卡温泉谷」属于霜烬平原），所以必须按 mapName 判断。
+    if (isBlacklisted({ id: dungeon.id, name: dungeon.name, label: dungeon.mapName })) continue
+    const target = targetBattle(dungeon)
+    if (!target) continue
+
+    /*
+     * 扫**全部难度**：
+     *   · 材料要扫是因为「一行」代表整个副本，只扫目标那场会漏掉"只在噩梦/溶洞部产出"的；
+     *   · 装备要扫是因为每一档的每个奖励区都是**独立的一行**（噩梦的银箱 ≠ 深层的银箱）。
+     */
+    for (const battle of dungeon.battles || []) {
+      walkBattle(battle, {
+        battleId: battle.id,
+        targetId: target.id,
+        dungeonId: dungeon.id,
+        dungeonName: dungeon.name
+      })
     }
   }
   return sources

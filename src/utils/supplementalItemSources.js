@@ -1,5 +1,5 @@
 import { isBlacklisted } from '../config/blacklist.js'
-import { DIFFICULTY, getMapName } from './gameMappings.js'
+import { getMapName } from './gameMappings.js'
 import { parseRewardGroups, getObtainableRewardRules } from './acquisitionRules.js'
 
 const table = value => value?.datas || value || {}
@@ -22,15 +22,20 @@ export function buildSupplementalItemSources(maps) {
   const sources = {}
   const seen = new Map()
   const rewardIds = new Map()
+  /** 装备判据：`category` 含 `4`（与 `isEquipTierHidden` 同一口径，不看品质）。 */
+  const isEquipment = item => (item?.category || item?.categories || []).map(String).includes('4')
   const addReward = (rewardId, source) => {
     if (!rewardIds.has(rewardId)) rewardIds.set(rewardId, getSourceRewardItemIds(rewards[rewardId], items))
     for (const itemId of rewardIds.get(rewardId)) {
       if (!usable(items[itemId], itemId) || isBlacklisted(items[itemId])) continue
-      const key = JSON.stringify(source)
+      // `equipmentOnly` 的来源只写给装备（如关卡首通：对材料是噪音，对装备是核心信息）
+      if (source.equipmentOnly && !isEquipment(items[itemId])) continue
+      const { equipmentOnly, ...clean } = source
+      const key = JSON.stringify(clean)
       if (!seen.has(itemId)) seen.set(itemId, new Set())
       if (seen.get(itemId).has(key)) continue
       seen.get(itemId).add(key)
-      ;(sources[itemId] ||= []).push(source)
+      ;(sources[itemId] ||= []).push(clean)
     }
   }
 
@@ -140,12 +145,39 @@ export function buildSupplementalItemSources(maps) {
   const battles = table(maps.battleJson)
   for (const stage of Object.values(table(maps.levelStageJson))) {
     if (!stage.name || internal(stage.name) || !/^c\d+_/.test(stage.typeId || '')) continue
-    for (const difficulty of [1, 2, 3]) {
-      const id = stage[`battle${difficulty}`]
-      const battle = battles[id]
-      if (!usable(battle, id)) continue
-      addReward(battle.firstReward, { type: 'firstReward', id, name: `${stage.shortName} ${stage.name}`,
-        des: `${DIFFICULTY[difficulty]} · 首次通关奖励` })
+    /*
+     * 关卡掉落的归并口径：**同一关卡三个难度合成一条**，名字只写 `x-x 关卡名`。
+     *
+     * 🔴 不带难度、不带房间：三难度的 `battle1/2/3` 是同一关卡的简单/普通/困难，
+     * 逐个列出会让一件常见素材堆出十几条几乎相同的来源（副本掉落就是这么膨胀的）。
+     * `id` 用 `stageId`（如 `c0_2`），跳转时按关卡定位，与 `/chapters?stage=` 契约一致。
+     *
+     * 取「首次出现的那场战斗」的 reward 作代表：三难度的普通掉落表是同一套配置，
+     * `addReward` 内部按 rewardId 缓存物品集合、并按 source 去重，不会重复堆叠。
+     *
+     * ⚠️ `firstReward`（首通）**只对装备保留**：它对材料意义不大（首通是一次性、
+     * 且「氪金」这类通用货币会在每个关卡各列一条，实测 152 条），
+     * 但装备的"首次通关送什么"是图鉴的核心信息（如新手引导的「角布林的矛」）。
+     */
+    const firstUsable = [1, 2, 3]
+      .map(difficulty => ({ difficulty, id: stage[`battle${difficulty}`] }))
+      .find(({ id }) => usable(battles[id], id))
+    if (firstUsable) {
+      const battle = battles[firstUsable.id]
+      const stageName = `${stage.shortName} ${stage.name}`
+      addReward(battle.reward, {
+        type: 'stage',
+        id: stage.typeId,
+        name: stageName,
+        des: '关卡掉落'
+      })
+      addReward(battle.firstReward, {
+        type: 'stage',
+        id: stage.typeId,
+        name: stageName,
+        des: '关卡首通奖励',
+        equipmentOnly: true
+      })
     }
   }
   for (const field of ['initBattleId', 'initBattleId2']) {

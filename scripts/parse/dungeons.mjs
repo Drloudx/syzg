@@ -120,7 +120,7 @@ export function buildDungeonsFiles() {
     }
   })
 
-  const dungeonSources = buildDungeonItemSources(fullData.dungeons)
+  const dungeonSources = buildDungeonItemSources(fullData.dungeons, readJson('item.json'))
   files.unshift({ file: 'parsed/dungeons.json', data: { dungeons, mapNames: fullData.mapNames } })
   files.push({ file: 'parsed/parsed-dungeon-sources.json', data: dungeonSources })
   return { files, deps: { dungeonSources } }

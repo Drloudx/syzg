@@ -4,6 +4,7 @@ import { buildRemainingItemSources } from '../../src/utils/remainingItemSources.
 import { buildDungeonItemSources } from '../../src/utils/dungeonData.js'
 import { build } from '../../scripts/parse/search.mjs'
 import { buildDungeonsFiles } from '../../scripts/parse/dungeons.mjs'
+import { readJson } from '../../scripts/parse/shared.mjs'
 
 const item = (id, extra = {}) => ({ typeId: id, name: id, hide: false, ...extra })
 const choice = (id, targets) => item(id, { useAction: 'getRewardSelect', useActionPara: {
@@ -56,11 +57,16 @@ test('dungeon actual items, eggs and fixed equipment get the right targets, neve
       collections: [{ name: '采集点', collectTypeId: 'gather', reward: [drop('item_herb')] }]
     }] }]
   }] }])
+  // 结算 / 首通 / 房间怪物 / 房间采集**都会**收录（任一处置产出即算该副本掉落），
+  // 但不收录零概率、零数量与随机装备池预览。
   assert.deepEqual(Object.keys(sources).sort(), ['item_money', 'item_equip', 'item_first', 'pet_001', 'item_herb'].sort())
-  assert.equal(sources.item_money[0].dropTab, 'settlement')
-  assert.equal(sources.item_first[0].dropEntry, 'first')
-  assert.equal(sources.pet_001[0].dropEntry, 'room:mon:drop')
-  assert.equal(sources.item_herb[0].dropEntry, 'room:gather')
+  // 每个副本只产出一条：说明与定位统一，不再逐条区分结算/宝箱/房间
+  for (const list of Object.values(sources)) {
+    assert.equal(list.length, 1)
+    assert.equal(list[0].des, '副本掉落')
+    assert.equal(list[0].dropTab, 'settlement')
+    assert.equal(list[0].dropEntry, 'settlement')
+  }
 })
 
 test('daily special plans are excluded and tower first rewards remain distinct', () => {
@@ -118,7 +124,21 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
   assert.ok(sources.item_00001.filter(x => x.type === 'dailyPlan').length > 0)
   assert.ok(allSources.filter(x => x.type === 'gacha').every(x => !/×|含保底|开放:|开放：/.test(x.des) && !('openTime' in x)))
   assert.ok(allSources.filter(x => x.type === 'dungeon').every(x => !('itemId' in x) && !('dungeonName' in x)))
-  assert.ok(sources.item_19300.some(x => x.type === 'dungeon' && /箱内综合概率/.test(x.des)))
+  /*
+   * 副本来源两类口径（见 dungeonData.js 顶部说明）：
+   *   · 材料 → 每个副本一行，说明统一「副本掉落」；
+   *   · 装备 → 逐条明细，说明保留具体区块与宝箱概率。
+   */
+  const items2 = readJson('item.json').datas
+  const isEquip = id => (items2[id]?.category || []).map(String).includes('4')
+  const dungeonOf = list => list.filter(x => x.type === 'dungeon')
+  for (const [itemId, list] of Object.entries(sources)) {
+    for (const s of dungeonOf(list)) {
+      if (isEquip(itemId)) assert.ok(s.name.includes(' · '), `装备来源应带难度：${itemId} ${s.name}`)
+      else assert.equal(s.des, '副本掉落', `材料来源说明应为「副本掉落」：${itemId} ${s.name} | ${s.des}`)
+    }
+  }
+  assert.ok(sources.item_19300.some(x => x.type === 'dungeon' && x.name === '辛瓦特遗迹'))
   for (const id of ['item_59051', 'item_59005', 'pet_098', 'item_10076']) assert.ok(!sources[id]?.length, id)
   const parents = new Set(Object.values(sources).flat().filter(x => x.type === 'container').map(x => x.id))
   assert.ok(!parents.has('item_20001'))

@@ -72,31 +72,36 @@ test('egg source opens the actual pet pool details', async ({ page }) => {
   // pool 用**完整 pool id**（`pet:1:1:0`），不是 poolTypeId（`1`）：
   // GachaView 的 syncFromRoute 按 pool.id 校验，传 poolTypeId 会被判无效并回退默认池。
   await expect(page).toHaveURL(/#\/gacha\?kind=pet&pool=pet:1:1:0&view=pool/)
-  // 概率详情的标题由 GachaTipPanel 按池名生成（`${pool.name} · 概率详情`）；
-  // 此前断言写的是「卡池详情」，该文案在源码中从未存在，属长期失效的断言。
+  // 概率详情的标题由 GachaTipPanel 按池名生成（`${pool.name} · 概率详情`）。
+  // 不要写成「卡池详情」—— 那个文案在源码中不存在。
   await expect(page.locator('.tip-panel__title')).toHaveText('特别贩售 · 概率详情')
-  // 滚动容器是 `.tip-scroll`（此前断言的 `#gachaScroll` 在源码中不存在）。
+  // 滚动容器是 `.tip-scroll`（不要写成 `#gachaScroll`，那个 id 在源码中不存在）。
   await expect(page.locator('.tip-scroll')).toContainText('宝石迷迷可的蛋')
 })
 
-test('unappraised rune navigates to its dungeon chest rewards', async ({ page }, testInfo) => {
+test('unappraised rune navigates to its dungeon source', async ({ page }, testInfo) => {
   const modal = await openItem(page, 'item_19300')
   const section = await group(modal, '副本掉落')
   await section.locator('.drawer-chip').first().click()
   await expect(page).toHaveURL(/#\/dungeons\?battle=/)
-  const focused = page.locator('.special-drop-card--focused')
-  await expect(focused).toBeVisible()
-  await expect(focused).toContainText('未鉴定的小型符石')
+  // 材料来源已收敛为「每个副本一行」并统一定位到结算区，不再逐条指向宝箱，
+  // 所以这里只验「能落到该副本的关卡详情且奖励区可见」。
+  await expect(page.locator('[data-source-entry]').first()).toBeVisible({ timeout: 20_000 })
   await page.screenshot({ path: testInfo.outputPath('dungeon-source.png') })
 })
 
-test('settlement, first-clear and room sources select their actual reward sections', async ({ page }) => {
-  for (const [id, tab] of [['item_20016', 'settlement'], ['item_00002', 'first'], ['item_10043', 'rooms']]) {
-    const source = sources[id].find(source => source.type === 'dungeon' && source.dropTab === tab)
-    expect(source).toBeTruthy()
+test('dungeon sources open the dungeon detail and locate the settlement reward section', async ({ page }) => {
+  // 副本来源已按副本聚合为一条（说明统一「副本掉落」、定位统一到结算区），
+  // 所以只验一件事：点「前往」能落到该副本的关卡详情，并定位到结算奖励区。
+  for (const id of ['item_20016', 'item_00002', 'item_10043']) {
+    const source = sources[id].find(source => source.type === 'dungeon')
+    expect(source, `${id} 应有副本来源`).toBeTruthy()
+    expect(source.des).toBe('副本掉落')
+
     const modal = await openItem(page, id)
     const section = await group(modal, '副本掉落')
-    const chip = section.locator('.drawer-chip').filter({ hasText: source.name }).filter({ hasText: source.des }).first()
+    const chip = section.locator('.drawer-chip').filter({ hasText: source.name }).first()
+    await expect(chip).toBeVisible()
     await chip.click()
     await expect(page).toHaveURL(/#\/dungeons\?battle=/)
     await expect(page.locator(`[data-source-entry="${source.dropEntry}"]`).first()).toBeVisible()
@@ -106,6 +111,6 @@ test('settlement, first-clear and room sources select their actual reward sectio
       const box = element.getBoundingClientRect()
       return box.top < window.innerHeight && box.bottom > 0
     }, source.dropEntry)).toBe(true)
-    if (tab === 'settlement') await expect(page.getByRole('button', { name: '通关结算掉落' })).toHaveAttribute('aria-expanded', 'true')
+    await expect(page.getByRole('button', { name: '通关结算掉落' })).toHaveAttribute('aria-expanded', 'true')
   }
 })

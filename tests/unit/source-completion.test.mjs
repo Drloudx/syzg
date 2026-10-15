@@ -71,13 +71,16 @@ test('camp rewards belong to the transition from current to next level, not term
   assert.equal(sources.b, undefined)
 })
 
-test('only chapter-referenced first rewards and player-init guide battles are admitted', () => {
+test('only chapter-referenced stage drops and player-init guide battles are admitted', () => {
   const maps = base()
   maps.levelStageJson = { datas: { c0_1: { typeId: 'c0_1', shortName: '0-1', name: '相遇', hide: true, battle1: 'live' } } }
-  maps.battleJson = { datas: { live: { name: '相遇', firstReward: 'a' }, orphan: { name: '孤立战役', firstReward: 'b' }, guide: { name: '引导', reward: 'a' }, guide_bak: { name: '备份', reward: 'b' } } }
+  maps.battleJson = { datas: { live: { name: '相遇', reward: 'a', firstReward: 'a' }, orphan: { name: '孤立战役', reward: 'b', firstReward: 'b' }, guide: { name: '引导', reward: 'a' }, guide_bak: { name: '备份', reward: 'b' } } }
   maps.playerInitJson = { initBattleId: 'guide', initBattleId2: 'guide_bak' }
   const sources = buildSupplementalItemSources(maps)
-  assert.deepEqual(sources.a.map(x => x.type), ['firstReward', 'guide'])
+  // 章节关卡只产出 `stage` 一条（普通掉落；首通已去掉），名字是 `0-1 相遇`；引导战斗另算。
+  assert.deepEqual(sources.a.map(x => x.type), ['stage', 'guide'])
+  assert.equal(sources.a[0].name, '0-1 相遇')
+  assert.equal(sources.a[0].des, '关卡掉落')
   assert.equal(sources.b, undefined)
 })
 
@@ -100,7 +103,19 @@ test('real source build preserves existing dungeon sources and links target real
   const sources = result.files.find(x => x.file === 'parsed/item-sources.json').data
   assert.ok(sources.item_411000.some(x => x.id === sentinel.id))
   assert.ok(sources.item_411000.some(x => x.type === 'guide' && x.id === 'c00_1'))
-  assert.ok(sources.item_411000.some(x => x.type === 'firstReward' && x.id === 'c0_4_a'))
+  /*
+   * 关卡来源按 **stage id** 归属，不是 battle id：battle `c0_4_a` 属于 stage `c0_3`
+   * （0-3 狂乱），两者相差一位，不要照 battle id 写断言。
+   *
+   * ⚠️ 这里**不再**用 `item_411000` 验关卡来源：它在关卡里只出在**首次通关**奖励中，
+   * 而首通来源已按用户要求去掉（噪音大、且是一次性奖励）。改用一件有常规关卡掉落的物品。
+   */
+  const stageItem = Object.entries(sources)
+    .find(([, list]) => list.some(x => x.type === 'stage'))
+  assert.ok(stageItem, '应存在带关卡掉落的物品')
+  const stageSource = stageItem[1].find(x => x.type === 'stage')
+  assert.match(stageSource.id, /^c\d+_\d+$/, `关卡来源 id 应是 stage id：${stageSource.id}`)
+  assert.equal(stageSource.des, '关卡掉落')
   assert.ok(sources.item_50004.some(x => x.type === 'camp' && x.level === 1 && x.targetLevel === 2))
   assert.ok(sources.item_50087.some(x => x.type === 'activity' && x.name === '世界探险挑战'))
   assert.ok(sources.item_10036.some(x => x.type === 'plant' && x.seedId === 'item_15009'))
