@@ -78,8 +78,8 @@ const showComplete = ref(false)
 let timers = []
 
 /** 品质（3/4/5）→ 品质框与连体星条档位。
- *  **必须取 quality**：蛋池的 `rank` 是保底档位 rare1/2/3（1~3），不是显示星级；
- *  `quality` 才是 3/4/5（蛋=star+2，额外道具=物品品质）。此前 rank 优先导致全蓝框。 */
+ *  🔴 **必须取 quality**：蛋池的 `rank` 是保底档位 rare1/2/3（1~3），不是显示星级；
+ *  `quality` 才是 3/4/5（蛋=star+2，额外道具=物品品质）。用 rank 优先会导致全蓝框。 */
 function cellQuality(item) {
   const value = Number(item.quality ?? item.rank ?? 3)
   return [3, 4, 5].includes(value) ? value : 3
@@ -140,7 +140,8 @@ onBeforeUnmount(() => { timers.forEach(id => window.clearTimeout(id)) })
 <style scoped>
 /* mask：prefab `GetRewardTip.mask`（UISprite #70307，PathID 与脚本字段一致）：
    sprite 名叫 "white" 但染色 mColor=rgba(0,0,0,0.502) —— **黑 50% 压暗**卡池页
-   （实机截图：背景变暗、底板与结算格凸显），不是白冲洗。此前按 sprite 名误改成白色。
+   （实机截图：背景变暗、底板与结算格凸显）。
+   🔴 不要按 sprite 名当成白色。
    舞台用 `clear`：卡池页仍在背后可见。 */
 .tip-mask {
   position: absolute;

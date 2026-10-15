@@ -285,8 +285,8 @@ const currentItem = computed(() => props.items[cursor.value] ?? {})
 /** 蛋图星级 = `quality`（原表里蛋的 quality 即 star+2：3/4/5）。 */
 const starCount = computed(() => Number(currentItem.value.quality ?? currentItem.value.rank ?? 3))
 /** 亮起的星数 = star+2（与 `CheckPetEggItem` 的 `com_stars_{star+2}` 一致）。
- *  **按数量生成槽位**（只渲染亮起的星，整组再居中）——此前生成 5 个布尔槽位、
- *  模板又没有按值过滤，导致 3★ 也画出 5 颗星。 */
+ *  🔴 **按数量生成槽位**（只渲染亮起的星，整组再居中）：生成固定 5 个布尔槽位、
+ *  模板又不按值过滤的话，3★ 也会画出 5 颗星。 */
 const starSlots = computed(() => Array.from({ length: starCount.value }, (_, index) => index))
 const starGlow = computed(() => STAR_COLORS[starCount.value] ?? STAR_COLORS[3])
 const starGlowStyle = computed(() => ({
@@ -600,7 +600,7 @@ onBeforeUnmount(() => {
 
 /* fall：高点 (0,+280) 落进菱形框 (0,+10)（ty 0 → 270），带一次轻弹——
    源码在 rise onFinished 里把蛋回挂 outbag；落点按用户对照截图逐像素实测：
-   蛋心在菱形中心（+20）略下方 ≈ +10（此前 +40 偏高 24 设计像素）。 */
+   蛋心在菱形中心（+20）略下方 ≈ +10。 */
 .pet-egg__inner--fall {
   animation: pet-egg-fall 0.35s cubic-bezier(0.5, 0, 0.5, 1) both;
 }
@@ -739,9 +739,8 @@ onBeforeUnmount(() => {
   animation: pet-star-pop 0.3s ease-out var(--pet-star-delay, 0s) both;
 }
 
-/* 闪光星：延迟期间必须**不可见**（opacity:0 + forwards；此前用 both 会把 from 的
-   opacity:1 反向填充到延迟期——星星还没轮到就整颗亮着，等动画再「消失」，
-   观感即用户指的「星级先出来、然后才播出现动画」）。 */
+/* 闪光星：延迟期间必须**不可见**（opacity:0 + forwards）。用 both 会把 from 的
+   opacity:1 反向填充到延迟期——星星还没轮到就整颗亮着，等动画再「消失」。 */
 .pet-star__shine {
   opacity: 0;
   animation: pet-star-flash 0.5s ease-in var(--pet-star-delay, 0s) forwards;

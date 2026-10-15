@@ -728,7 +728,7 @@ function upAvatar(candidate) {
 }
 
 /* 层级按 prefab 的 mDepth：`icon` 是 6、外框 `at_f_*` 是 7、角标 `com_up` 是 8
-   → **外框必须压在头像之上**（此前我把头像写在后面，头像盖住了外框）。
+   → **外框必须压在头像之上**（头像写在后面会盖住外框）。
    另外外框的开窗偏下，头像要往下挪一点才落在框内（游戏里头顶上方留出一圈金边）。*/
 .up-slot__frame {
   position: absolute;

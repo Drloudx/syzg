@@ -18,8 +18,8 @@
 -- 三处都改成 `LIMIT ? OFFSET ?` 的页码模式。随之而来的两个热点：
 --
 --   ① 评论按状态分页 + 每次请求的状态计数聚合
---      此前 comments 上只有 idx_comments_page(page_key, status, created_at DESC)，
---      **首列是 page_key**，而新查询不带 page_key → 该索引用不上 → SCAN comments 全表扫。
+--      `idx_comments_page(page_key, status, created_at DESC)` 的**首列是 page_key**，
+--      而新查询不带 page_key → 该索引用不上 → SCAN comments 全表扫。
 --      每次翻页要扫全表（分页本身 + COUNT + GROUP BY status 各一次）。
 --
 --   ② 概览页的「今日/昨日活跃账号」（DAU）

@@ -1,7 +1,7 @@
 # KDF 平台上限探针（诊断用，不参与构建）
 
 > 这不是项目产物，也不进 `npm run verify`。它的唯一用途是**在真实 `workerd` 运行时里
-> 复现 `docs/technical/ACCOUNT_SYSTEM.md` 第二节那张表的数字**——
+> 复现 `docs/context/technical/ACCOUNT_SYSTEM.md` 第二节那张表的数字**——
 > 那些数字决定了「账号 + 密码」能不能落到 Cloudflare Workers 上，不能靠猜。
 
 ## 为什么需要它

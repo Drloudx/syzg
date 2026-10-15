@@ -9,7 +9,7 @@
  *   - A double-encoded file returns its ORIGINAL readable text (many CJK characters).
  *   - A healthy file returns garbage, because GBK byte pairs are almost never valid UTF-8.
  * Thresholds are calibrated against this repository: healthy files stay <= 0.014,
- * damaged files land around 0.31 (see docs/dev-logs/2026-09/2026-09-12.md).
+ * damaged files land around 0.31 (see docs/history/dev-logs/2026-09/2026-09-12.md).
  *
  * Usage:
  *   node scripts/dev/audit-text-encoding.mjs          # report; exit 1 when anything is found
@@ -162,7 +162,7 @@ if (process.argv.includes('--json')) {
       if (finding.sample) console.log(`       还原样例: ${finding.sample.replace(/\n/g, ' ⏎ ')}`)
     }
     console.log('\n  修复线索：若文件本应含中文，用 GBK 反解（本脚本的还原样例即原文前缀）后按 UTF-8 重新保存；')
-    console.log('  丢失的字（原解码器吞掉的字节）需人工补齐。详见 docs/dev-logs/2026-09/2026-09-12.md。')
+    console.log('  丢失的字（原解码器吞掉的字节）需人工补齐。详见 docs/history/dev-logs/2026-09/2026-09-12.md。')
   }
 }
 

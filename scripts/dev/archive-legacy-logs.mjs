@@ -6,7 +6,8 @@ import { parseArgs } from 'node:util'
 import { projectRoot, resolveChild } from './maintenance-paths.mjs'
 
 const { values } = parseArgs({ options: { apply: { type: 'boolean' } } })
-const sourceRoot = join(projectRoot, 'docs/dev-logs')
+/** 日志目录在 docs/history/ 下（文档体系 context/history 两分法）。 */
+const sourceRoot = join(projectRoot, 'docs/history/dev-logs')
 const backupRoot = join(projectRoot, '../backups/dev-logs')
 const files = []
 const directories = []

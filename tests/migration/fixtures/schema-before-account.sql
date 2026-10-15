@@ -3,17 +3,17 @@
 -- 用途：`tests/migration/rehearse.mjs` 造一个「旧生产库」，验证
 -- `scripts/sql/2026-10-05-auth-*.sql` 三步迁移能把它升级成当前 `schema.sql`。
 --
--- 为什么把它冻成文件，而不是 `git show <hash>:schema.sql`：
--- 迁移演练必须能在**任何一次 clone** 上跑。原先脚本硬编码提交 `0c745272`，
--- 而 2026-10-07 的历史整理把它并进了按天提交 —— 新克隆里那个 hash 不存在，
--- 演练会直接失败。夹具文件不依赖任何提交，历史怎么整理都不受影响。
+-- 🔴 为什么冻结成文件，而不是 `git show <hash>:schema.sql`：
+-- 迁移演练必须能在**任何一次 clone** 上跑。硬编码提交哈希的话，一旦历史整理
+-- （按天合并提交）把那个 hash 并掉，新克隆里它就不存在，演练会直接失败。
+-- 夹具文件不依赖任何提交，历史怎么整理都不受影响。
 --
 -- 内容 = 加账号体系**之前**那一版的 schema.sql（仅 comments / rate_limits 两表），
 -- 已用 `git show 0c745272:schema.sql` 逐字节核对。
 
 -- 评论功能 D1 表结构
 -- 应用：wrangler d1 execute myrzg-comments --file=./schema.sql --remote
--- 设计依据见 docs/technical/COMMENTS_BACKEND.md 第四节。
+-- 设计依据见 docs/context/technical/COMMENTS_BACKEND.md 第四节。
 --
 -- 全部使用 IF NOT EXISTS，可重复执行（幂等）。
 

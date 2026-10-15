@@ -276,7 +276,7 @@ function formatTime(timestamp) {
   transform: translate(-50%, -50%);
   /* 拦截面板范围内的点击（面板空白不关闭），但不带关闭行为，故不显示手型 */
   /* 游戏截图采样：面板为**平的米黄纸底** (205,197,178)，四角/边缘略有做旧暗角，
-     无边框无纹理。此前误做成近黑深底（用户指认）。 */
+     🔴 无边框无纹理，不要做成深底。 */
   background: #cdc5b2;
   box-shadow:
     inset 0 0 46px rgba(83, 62, 38, 0.28),
@@ -451,7 +451,7 @@ function formatTime(timestamp) {
   word-break: break-word;
   /* 源码 `HeroPoolTips.OpenHeroPoolRace` 调 `ReplaceDescValue(percTip, 10, 15)`：
      正文整体 = Const.ColorString[10]（#533e26 深棕），{值}/<值> = ColorString[15]
-     （#a36f0a 金棕）。此前误用米白正文 + 主题金高亮（用户指认），此处按游戏改。 */
+     （#a36f0a 金棕）。🔴 不要用米白正文 + 主题金高亮。 */
   color: #533e26;
 }
 
@@ -491,8 +491,8 @@ function formatTime(timestamp) {
   position: relative;
   box-sizing: border-box;
   height: 36px;
-  /* 通栏 800（与面板同宽、贴边无空隙），直角色块——此前用 item_info_color 贴图
-     0 8 0 8 切片，两端留 12px 空隙且带圆角，与游戏不符（用户指认） */
+  /* 通栏 800（与面板同宽、贴边无空隙），直角色块 —— 🔴 不要用 item_info_color 贴图
+     做 0 8 0 8 切片，那样两端会留 12px 空隙且带圆角，与游戏不符 */
   width: 800px;
   /* 行间分隔线：游戏里每行之间有一条细线（实测约 1px，粗了发闷） */
   border-bottom: 1px solid rgba(83, 62, 38, 0.32);

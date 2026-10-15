@@ -849,15 +849,12 @@ input, textarea, select {
  * 且不会被上面那条规则反噬。观感即当前线上：**粗细与两端按钮由系统决定**
  * （标准滚动条自带上下三角，这是它的固有外观，本站不额外去掉）。
  *
- * ## 为什么删掉了原来那组伪元素规则（2026-10-09）
+ * ## 禁止再写 `::-webkit-scrollbar-*`
  *
- * 原文这里还有一组：
- *   `::-webkit-scrollbar { width: 8px }`、`::-webkit-scrollbar-button { display: none }`、
- *   轨道/滑块配色、`:hover` 变色。
- * 它们被上面的 `* { scrollbar-color }` **整体压制，从未生效过** —— 也就是说
- * **文件写着「8px、无三角」，实际全站一直是系统默认（实测 15px、带三角）**。
- * 这种「声明与事实不符」比外观本身更危险：下一个人照着 8px 去调，会完全踩空。
- * 现已删除该组死代码，文件与真实表现一致。
+ * 一组 `::-webkit-scrollbar { width: 8px }` + `button { display: none }` + 配色 + `:hover`
+ * 会被上面的 `* { scrollbar-color }` **整体压制，不生效**：文件写着「8px、无三角」，
+ * 实际全站是系统默认（15px、带三角）。这种「声明与事实不符」比外观本身更危险 ——
+ * 下一个人照着 8px 去调会完全踩空。
  *
  * ⚠️ 将来若要把**全站**改成「更细 / 无三角」：必须**先**去掉这里的 `scrollbar-color`
  * （或把它限制到不需要伪元素的元素上），**再**写伪元素规则；只加伪元素是无效的。
@@ -875,11 +872,10 @@ input, textarea, select {
    用 `pointer: coarse`（主指针为触摸）而非宽度断点：桌面窄窗口仍应保留滚动条，
    而触屏平板即使很宽也不需要。
 
-   ⚠️ 这里**只用标准属性 `scrollbar-width: none`**（Chromium / Firefox 都认）。
-   原文件还配了一条 `::-webkit-scrollbar { display: none }`，但它是**死代码** ——
-   同 §8 的说明：`scrollbar-width` 一旦非 `auto`，Chromium 就整体忽略 webkit 伪元素。
-   而 `scrollbar-width: none` 自己就能真正隐藏，所以删掉那条不影响行为，
-   只让文件与事实一致。（`-ms-overflow-style` 保留：老 Edge/IE 用得上。） */
+   ⚠️ 这里**只用标准属性 `scrollbar-width: none`**（Chromium / Firefox 都认），
+   不要配 `::-webkit-scrollbar { display: none }` —— 同 §8 的规则：`scrollbar-width`
+   一旦非 `auto`，Chromium 就整体忽略 webkit 伪元素，那条是无效的。
+   （`-ms-overflow-style` 保留：老 Edge/IE 用得上。） */
 @media (pointer: coarse) {
   * {
     scrollbar-width: none;      /* Chromium / Firefox：这才是真正生效的那条 */
