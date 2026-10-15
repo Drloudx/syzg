@@ -58,7 +58,7 @@ const emit = defineEmits(['toggle'])
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-:global(.dark-mode) .ui-collection-toggle.is-active .ui-collection-toggle__track {
+.dark-mode .ui-collection-toggle.is-active .ui-collection-toggle__track {
   background: #876241;
   border-color: #4a3522;
 }

@@ -585,7 +585,7 @@ const openPetAtlas = () => {
 
 .field-checkbox-item.checked .checkbox-box::after {
   content: '✓';
-  color: var(--paper);
+  color: #ffffff;
   font-size: 10px;
   font-weight: bold;
 }

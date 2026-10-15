@@ -1473,7 +1473,7 @@ const handleGiftClick = (giftId) => {
   margin: 0;
   font-size: 17px;
   font-weight: 700;
-  color: var(--paper, #dfceb3);
+  color: var(--on-wood-text, #ebdcc3);
   letter-spacing: 1.5px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }

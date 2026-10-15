@@ -64,6 +64,11 @@ const emit = defineEmits(['update:open'])
   padding-bottom: 7px;
   letter-spacing: 1px;
 }
+/* 深色下分隔线更淡。边框宽度与浅色相同（都是 1px），只换颜色 —— 不动盒模型 */
+.dark-mode .ui-section__title,
+.dark-theme .ui-section__title {
+  border-bottom: 1px solid rgba(143, 115, 81, 0.16);
+}
 .ui-section__diamond {
   display: inline-block;
   width: 11px;

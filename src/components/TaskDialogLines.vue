@@ -112,7 +112,17 @@ defineProps({
   color: var(--accent-ink, #557574);
   flex-shrink: 0;
 }
-.dark-mode .option-num {
+:deep(.dark-mode) .option-bubble,
+:deep(.dark-theme) .option-bubble,
+.dark-mode .option-bubble,
+.dark-theme .option-bubble {
+  background: rgba(43, 31, 21, 0.85);
+  border-color: rgba(143, 115, 81, 0.35);
+  color: var(--text-main);
+}
+
+.dark-mode .option-num,
+:deep(.dark-mode) .option-num {
   color: var(--accent-bright, #93b3b2);
 }
 

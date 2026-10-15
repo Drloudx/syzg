@@ -129,4 +129,20 @@ const emit = defineEmits(['item-click'])
 .room-collection__heading { justify-content: space-between; color: var(--text-main); font-size: 12px; font-weight: 700; margin-bottom: 9px; }
 .room-collection__heading > span { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
 .room-collection__heading small { color: var(--text-muted); font-weight: 600; }
+
+.dark-mode .room-card,
+.dark-theme .room-card,
+.dark-mode .room-card,
+.dark-theme .room-card {
+  border-color: rgba(143, 115, 81, 0.28);
+  background: rgba(38, 28, 19, 0.72);
+}
+
+.dark-mode .room-collection,
+.dark-theme .room-collection,
+.dark-mode .room-collection,
+.dark-theme .room-collection {
+  background: rgba(28, 20, 13, 0.65);
+  border-color: rgba(143, 115, 81, 0.22);
+}
 </style>

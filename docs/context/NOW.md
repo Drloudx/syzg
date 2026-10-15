@@ -105,6 +105,8 @@
 | 剧情台词提到隐藏地区 | 搜剧情时能看到「黑森林」等词（如伙伴好感度任务 `fav_hero_025_1`）。**刻意不处理**：数据里**没有**"该剧情属于哪个地区"的字段（`unlockTasks` / `condition` / `startLocation` 全空），按文本匹配必然误伤。判据是**任务归属**，不是"台词提到" |
 | `hil-sequence.spec.js:119` 偶发 | 2026-10-08 多次全量红绿交替，单跑全绿。**根因未定位** —— 已排除布局位移、渲染未提交、几何余量不足，以及右栏 reflow（详见 [RISKS.md](RISKS.md) 第四节与当日开发日志） |
 | `app-shell.spec.js:82` 稳定失败 | 2026-10-14 发现：断言 `.side-panel` 带 `corner-nails`，但源码里那个类只施加于 `.side-body`（`NavigationMenu.vue` L18 `'corner-nails': !isDesktop`），`.side-panel` 从来没有过。**要么测试断言写错了元素，要么当初就该给面板加角钉** —— 需人判定意图。已用 `git stash` 复跑证明与前述改动无关 |
+| `sidebar-mascot.spec.js` 9 条失败 | 2026-10-14 发现：`.sidebar-mascot` 内的按钮（「切换吉祥物角色」「暂停希尔待机动画」）点击超时。已用 `git stash` 把相关改动全部移出后复跑，**失败数不变（9）** —— 证明与深色模式修复无关，属既有问题。**根因未定位** |
+| `runes.spec.js` `invalid payload shows retry and recovers` 失败 | 2026-10-14 发现：等不到「重试」按钮。同样用 `git stash` 复跑证明与深色修复无关。**根因未定位** |
 
 ---
 

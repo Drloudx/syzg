@@ -77,6 +77,21 @@ const emit = defineEmits(['click'])
   border-color: var(--accent-bright, #7a9a99);
 }
 
+.dark-mode .ui-btn--primary,
+.dark-theme .ui-btn--primary,
+.dark-mode .ui-btn--primary {
+  background: linear-gradient(180deg, #573f27, #3d2a19) !important;
+  color: #fff2db !important;
+  border-color: #ba8c46 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 215, 140, 0.35) !important;
+}
+.dark-mode .ui-btn--primary:hover:not(.is-disabled),
+.dark-theme .ui-btn--primary:hover:not(.is-disabled),
+.dark-mode .ui-btn--primary:hover:not(.is-disabled) {
+  background: linear-gradient(180deg, #684d30, #4a3420) !important;
+  border-color: var(--accent-bright) !important;
+}
+
 /* 次按钮：羊皮纸描边 */
 .ui-btn--secondary {
   background: var(--paper-soft, #e9dcc3);
@@ -88,6 +103,21 @@ const emit = defineEmits(['click'])
   border-color: var(--accent-bright, #7a9a99);
   color: var(--accent-ink, #557574);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
+}
+
+.dark-mode .ui-btn--secondary,
+.dark-theme .ui-btn--secondary,
+.dark-mode .ui-btn--secondary {
+  background: rgba(45, 33, 22, 0.85);
+  color: var(--text-main);
+  border-color: rgba(168, 132, 82, 0.45);
+}
+.dark-mode .ui-btn--secondary:hover:not(.is-disabled),
+.dark-theme .ui-btn--secondary:hover:not(.is-disabled),
+.dark-mode .ui-btn--secondary:hover:not(.is-disabled) {
+  background: rgba(60, 44, 30, 0.95);
+  border-color: var(--accent-bright);
+  color: var(--accent-bright);
 }
 
 /* 幽灵按钮 */

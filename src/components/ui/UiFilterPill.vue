@@ -53,15 +53,29 @@ const emit = defineEmits(['click'])
   font-weight: 700;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
-.dark-mode .ui-filter-pill {
-  background: rgba(63, 48, 32, 0.6);
+.dark-mode .ui-filter-pill,
+.dark-theme .ui-filter-pill {
+  background: rgba(45, 33, 22, 0.7);
+  color: var(--text-muted);
+  border-color: rgba(143, 115, 81, 0.32);
 }
-.dark-mode .ui-filter-pill.is-active {
-  background: var(--wood-soft, #3a2c1d);
-  color: var(--paper, #eaddc2);
+.dark-mode .ui-filter-pill:hover:not(.is-disabled):not(.is-active),
+.dark-theme .ui-filter-pill:hover:not(.is-disabled):not(.is-active) {
+  background: rgba(58, 42, 28, 0.85);
+  color: var(--text-main);
+  border-color: rgba(180, 145, 100, 0.45);
+}
+/* 普通激活胶囊（无品质）：暖木金边与高对比象牙暖白文字 */
+.dark-mode .ui-filter-pill.is-active:not([class*="quality-text-"]),
+.dark-theme .ui-filter-pill.is-active:not([class*="quality-text-"]) {
+  background: linear-gradient(180deg, #573f27, #3d2a19) !important;
+  color: #fff2db !important;
+  border-color: #ba8c46 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 215, 140, 0.35) !important;
+  font-weight: 700;
 }
 
-/* 品质色激活态：对应品质色底 + 羊皮纸文字 */
+/* 浅色模式品质激活态 */
 .ui-filter-pill.quality-text-1.is-active { background: var(--q1); }
 .ui-filter-pill.quality-text-2.is-active { background: var(--q2); }
 .ui-filter-pill.quality-text-3.is-active { background: var(--q3); }
@@ -74,6 +88,52 @@ const emit = defineEmits(['click'])
 .ui-filter-pill.quality-text-5.is-active {
   color: #2b1f15 !important;
   border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* 暗色模式品质激活态：鲜亮实体品质胶囊芯片 + 清晰深黑粗体文字，告别灰暗与不可读 */
+.dark-mode .ui-filter-pill.quality-text-1.is-active,
+.dark-theme .ui-filter-pill.quality-text-1.is-active {
+  background: #cbb898 !important;
+  color: #18110a !important;
+  border-color: #dfceb3 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark-mode .ui-filter-pill.quality-text-2.is-active,
+.dark-theme .ui-filter-pill.quality-text-2.is-active {
+  background: #9ebb28 !important;
+  color: #121c05 !important;
+  border-color: #c4e43d !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark-mode .ui-filter-pill.quality-text-3.is-active,
+.dark-theme .ui-filter-pill.quality-text-3.is-active {
+  background: #429eed !important;
+  color: #06182c !important;
+  border-color: #7cc0fc !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark-mode .ui-filter-pill.quality-text-4.is-active,
+.dark-theme .ui-filter-pill.quality-text-4.is-active {
+  background: #d85ee0 !important;
+  color: #210524 !important;
+  border-color: #f79aff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark-mode .ui-filter-pill.quality-text-5.is-active,
+.dark-theme .ui-filter-pill.quality-text-5.is-active {
+  background: #f7a028 !important;
+  color: #281200 !important;
+  border-color: #ffd072 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }
 
 .ui-filter-pill.is-disabled {

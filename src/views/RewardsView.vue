@@ -899,7 +899,7 @@ const closePrevImg = () => {
   box-shadow: 0 2px 8px rgba(62, 42, 20, 0.16);
 }
 
-:global(.dark-mode) .pvp-rules-container {
+.dark-mode .pvp-rules-container {
   background: rgba(46, 34, 23, 0.9);
 }
 
@@ -990,7 +990,7 @@ const closePrevImg = () => {
   line-height: 1.65;
 }
 
-:global(.dark-mode) .pvp-area-rule {
+.dark-mode .pvp-area-rule {
   background: rgba(35, 26, 17, 0.62);
 }
 
@@ -1148,7 +1148,7 @@ const closePrevImg = () => {
   background-color: rgba(223, 206, 179, 0.96);
 }
 
-:global(.dark-mode) .hidden-list-row.is-collected {
+.dark-mode .hidden-list-row.is-collected {
   border-color: rgba(122, 154, 153, 0.45);
   background-color: rgba(56, 44, 32, 0.85);
 }

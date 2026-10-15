@@ -291,7 +291,10 @@ onBeforeUnmount(() => {
   box-sizing: border-box;
 }
 
-.dark-mode .side-panel.desktop-panel {
+.dark-mode .side-panel.desktop-panel,
+.dark-theme .side-panel.desktop-panel,
+.dark-mode .side-panel.desktop-panel,
+.dark-theme .side-panel.desktop-panel {
   border-color: #5c4327;
   box-shadow: inset 0 0 0 4px rgba(46, 34, 23, 0.95), inset 0 0 0 5.5px rgba(110, 85, 55, 0.55), 2px 4px 12px rgba(0, 0, 0, 0.4);
   background: #2b1f15;
@@ -352,7 +355,10 @@ onBeforeUnmount(() => {
   border-left: 2px solid var(--border-color, #8f7351);
   background-color: rgba(223, 206, 179, 0.94);
 }
-.dark-mode .side-body {
+.dark-mode .side-body,
+.dark-theme .side-body,
+.dark-mode .side-body,
+.dark-theme .side-body {
   background-color: rgba(46, 34, 23, 0.95);
 }
 .side-panel.desktop-panel .side-body {
@@ -385,6 +391,36 @@ onBeforeUnmount(() => {
   background: linear-gradient(to top, transparent, rgba(224, 207, 180, 0.95) 82%);
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+}
+
+.dark-mode .side-panel.desktop-panel .side-scroll-cue,
+.dark-theme .side-panel.desktop-panel .side-scroll-cue,
+.dark-mode .side-panel.desktop-panel .side-scroll-cue,
+.dark-theme .side-panel.desktop-panel .side-scroll-cue,
+.dark-mode .side-scroll-cue,
+.dark-theme .side-scroll-cue,
+.dark-mode .side-scroll-cue,
+.dark-theme .side-scroll-cue {
+  background: linear-gradient(to bottom, transparent, rgba(43, 31, 21, 0.96) 82%) !important;
+}
+
+.dark-mode .side-panel.desktop-panel .side-scroll-cue--up,
+.dark-theme .side-panel.desktop-panel .side-scroll-cue--up,
+.dark-mode .side-panel.desktop-panel .side-scroll-cue--up,
+.dark-theme .side-panel.desktop-panel .side-scroll-cue--up,
+.dark-mode .side-scroll-cue--up,
+.dark-theme .side-scroll-cue--up,
+.dark-mode .side-scroll-cue--up,
+.dark-theme .side-scroll-cue--up {
+  background: linear-gradient(to top, transparent, rgba(43, 31, 21, 0.96) 82%) !important;
+}
+
+.dark-mode .side-scroll-cue::after,
+.dark-theme .side-scroll-cue::after,
+.dark-mode .side-scroll-cue::after,
+.dark-theme .side-scroll-cue::after {
+  border-right-color: var(--accent, #7faea9) !important;
+  border-bottom-color: var(--accent, #7faea9) !important;
 }
 
 .side-scroll-cue {
@@ -616,6 +652,22 @@ onBeforeUnmount(() => {
   box-sizing: border-box;
 }
 
+.dark-mode .bottom-sheet,
+.dark-mode .bottom-sheet {
+  background: #251b13;
+  border-color: rgba(168, 132, 82, 0.4);
+  box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.7);
+}
+.dark-mode .sheet-header,
+.dark-mode .sheet-header {
+  border-bottom-color: rgba(168, 132, 82, 0.35);
+}
+.dark-mode .top-panel,
+.dark-mode .top-panel {
+  background: #251b13;
+  border-color: rgba(168, 132, 82, 0.4);
+}
+
 .sheet-handle {
   width: 40px;
   height: 5px;
@@ -684,13 +736,21 @@ onBeforeUnmount(() => {
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
 }
+.dark-mode .grid-item,
 .dark-mode .grid-item {
-  background: rgba(63, 48, 32, 0.6);
+  background: rgba(48, 35, 23, 0.85);
+  border-color: rgba(143, 115, 81, 0.35);
 }
 
 .grid-item:hover {
   background: rgba(233, 220, 195, 1);
   border-color: var(--accent-bright, #7a9a99);
+}
+
+.dark-mode .grid-item:hover,
+.dark-mode .grid-item:hover {
+  background: rgba(68, 50, 33, 0.95);
+  border-color: var(--accent-bright);
 }
 
 .grid-item .icon-img {

@@ -249,7 +249,7 @@ const DialogueContent = defineComponent({
 .mail-body-inline-box { background: var(--paper-solid); box-shadow: inset 0 2px 5px rgba(43,31,21,.12); }
 .mail-inline-header { margin-bottom: 6px; font-size: 13px; font-weight: 700; color: var(--text-main); }
 .reward-items-flex :deep(.ui-reward-card) { min-width: 150px; }
-.toggle-dialogue-btn { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; background: var(--wood); color: var(--paper); border: 1px solid #17100a; border-radius: 4px; padding: 8px 12px; cursor: pointer; font: 700 13px 'HarmonyOS','Microsoft YaHei',sans-serif; box-shadow: 0 2px 4px rgba(0,0,0,.3); }
+.toggle-dialogue-btn { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; background: var(--wood); color: var(--on-wood-text, #ebdcc3); border: 1px solid #17100a; border-radius: 4px; padding: 8px 12px; cursor: pointer; font: 700 13px 'HarmonyOS','Microsoft YaHei',sans-serif; box-shadow: 0 2px 4px rgba(0,0,0,.3); }
 .toggle-dialogue-btn:hover { background: var(--wood-soft); }
 .toggle-dialogue-btn.seg-mid { margin-top: 6px; }
 .btn-left { display: inline-flex; align-items: center; gap: 6px; }

@@ -199,10 +199,67 @@ const getQualityFrame = (q) => {
   text-shadow: none !important;
 }
 
-.dark-mode .ui-item-card__name {
-  background: transparent;
-  border-image-source: url('/images/Common_Atlas/com_txt_box.webp');
-  color: #eaddc2;
+/*
+ * 物品卡名 · 深色态。
+ *
+ * 🔴 **两条硬约束：选择器写法 + 盒模型必须与浅色一致。**
+ *
+ * ── 一、选择器：不能用 `:global(.dark-mode) X` ──
+ * 症状：切深色后**整个页面右下位移**（`html` 被加 padding 2px 4px + border 1px，
+ * 宽 +10、高 +6）。
+ * 原因：`dark-mode` 类加在 **`html`** 上（`useNativeShell.js` 的
+ * `document.documentElement.classList.toggle('dark-mode')`），**不在本组件元素上**。
+ * `:global(.dark-mode) .ui-item-card__name` 会被编译成两条并列选择器：
+ *
+ *   .dark-mode, .dark-theme, .dark-mode .ui-item-card__name[data-v-7058cf59] { … }
+ *   ↑↑↑ 凭空多出的**裸 `.dark-mode`**，配 `!important` 命中任何带该类的元素
+ *       （`html` 与 `.app-container` 都带）→ 页面整体右下移。
+ *
+ * 正确写法是普通的 `.dark-mode X`（`<style scoped>` 会编译成带 `[data-v-*]` 的
+ * 后代选择器，`.dark-mode` 那截保持裸选择器用于匹配祖先 —— 这正是想要的）。
+ *
+ * ── 二、盒模型：边框宽度与内边距**必须与浅色相同** ──
+ * 浅色基线是 `border: 4px solid transparent` + `border-image`（九宫格木框）
+ * 与 `padding: 1px 2px`。深色若改成 `border: 1px` + `padding: 2px 4px`，
+ * 净高少 4px（−6 边框 +4 内边距）→ 卡片 115px 变 111px →
+ * **整片网格上移 4px**（实测第二行 y: 372 → 368）。
+ *
+ * 所以这里保持 **4px 边框 + 1px 2px 内边距**，只把木框图换成深色底 —— 几何不动。
+ *
+ * ⚠️ 试过用 `box-shadow: inset 0 0 0 1px` 代替边框做"细描边"，**已撤回**：
+ *    `inset` 阴影在圆角元素上会画出一圈生硬的方框，紧贴文字显得多余（用户反馈
+ *    「怎么多一个边框」）。深色下**不需要额外描边** —— 深底 + 暖白字本身对比度
+ *    就够了，加上去反而是噪声。
+ */
+.dark-mode .ui-item-card__name,
+.dark-theme .ui-item-card__name {
+  /* 4px 透明边框 = 浅色同宽（几何不动） */
+  border: 4px solid transparent !important;
+  border-image: none !important;
+  border-radius: 4px !important;
+  /* 不加 inset 描边（见上）—— 只保留一层微弱投影让底板与深底分离 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45) !important;
+  background: rgba(26, 18, 11, 0.88) !important;
+  color: var(--text-main) !important;
+  /* 内边距与浅色一致（1px 2px）—— 改成 2px 4px 会让盒高变，网格上移 */
+  padding: 1px 2px !important;
+}
+
+.dark-mode .ui-item-card__name.quality-text-5,
+.dark-theme .ui-item-card__name.quality-text-5 {
+  color: var(--q5, #ffbe5e) !important;
+}
+.dark-mode .ui-item-card__name.quality-text-4,
+.dark-theme .ui-item-card__name.quality-text-4 {
+  color: var(--q4, #f377f6) !important;
+}
+.dark-mode .ui-item-card__name.quality-text-3,
+.dark-theme .ui-item-card__name.quality-text-3 {
+  color: var(--q3, #56b0ff) !important;
+}
+.dark-mode .ui-item-card__name.quality-text-2,
+.dark-theme .ui-item-card__name.quality-text-2 {
+  color: var(--q2, #b5ce44) !important;
 }
 
 .ui-item-card__badge {

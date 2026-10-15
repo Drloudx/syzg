@@ -30,7 +30,7 @@ defineProps({
 }
 .ui-info-panel__title-bar {
   background: linear-gradient(180deg, var(--wood-soft, #463424), var(--wood, #2b1f15));
-  color: var(--paper, #dfceb3);
+  color: var(--on-wood-text, #ebdcc3);
   text-align: center;
   padding: 9px 14px;
   font-family: var(--font-ui);

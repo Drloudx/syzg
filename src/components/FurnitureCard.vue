@@ -253,4 +253,30 @@ const decorationText = computed(() => {
   }
 }
 
+/* 暗色模式下卡片与预览区：去除大面积浓绿浓色，转为沉静典雅暗木底，由名称与边框表达品质 */
+.dark-mode .furniture-card,
+.dark-theme .furniture-card,
+.dark-mode .furniture-card,
+.dark-theme .furniture-card {
+  background: var(--paper-soft);
+  border-color: rgba(143, 115, 81, 0.35);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .furniture-card__preview,
+.dark-theme .furniture-card__preview,
+.dark-mode .furniture-card__preview,
+.dark-theme .furniture-card__preview {
+  background: rgba(28, 19, 12, 0.75) !important;
+  border-bottom-color: rgba(143, 115, 81, 0.25);
+}
+
+.dark-mode .furniture-card__blueprint,
+.dark-theme .furniture-card__blueprint,
+.dark-mode .furniture-card__blueprint,
+.dark-theme .furniture-card__blueprint {
+  background: rgba(45, 33, 21, 0.92);
+  color: var(--gold-bright, #ffd78c);
+  border-color: rgba(212, 163, 89, 0.4);
+}
 </style>

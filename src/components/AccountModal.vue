@@ -1756,36 +1756,36 @@ function formatDate(unixSec) {
   background: #2e8b44;
 }
 
-:global(.dark-mode) .acct-hint {
+.dark-mode .acct-hint {
   color: #dfc8a2;
 }
 
-:global(.dark-mode) .acct-hint strong {
+.dark-mode .acct-hint strong {
   color: #faebd7;
   background: rgba(255, 255, 255, 0.12);
 }
 
-:global(.dark-mode) .acct-hint--quiet {
+.dark-mode .acct-hint--quiet {
   color: #c4aa82;
   opacity: 0.95;
 }
 
-:global(.dark-mode) .acct-hint--warn,
-:global(.dark-mode) .acct-error {
+.dark-mode .acct-hint--warn,
+.dark-mode .acct-error {
   color: #f87171;
 }
 
-:global(.dark-mode) .acct-strength i {
+.dark-mode .acct-strength i {
   background: rgba(255, 255, 255, 0.18);
 }
-:global(.dark-mode) .acct-strength[data-level='0'] em,
-:global(.dark-mode) .acct-strength[data-level='1'] em {
+.dark-mode .acct-strength[data-level='0'] em,
+.dark-mode .acct-strength[data-level='1'] em {
   color: #f87171;
 }
-:global(.dark-mode) .acct-strength[data-level='2'] em {
+.dark-mode .acct-strength[data-level='2'] em {
   color: #fbbf24;
 }
-:global(.dark-mode) .acct-strength[data-level='3'] em {
+.dark-mode .acct-strength[data-level='3'] em {
   color: #4ade80;
 }
 
@@ -2005,13 +2005,13 @@ function formatDate(unixSec) {
   border-color: #c8a06a;
 }
 
-:global(.dark-mode) .acct-back {
+.dark-mode .acct-back {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.18);
   color: #e5be83;
 }
 
-:global(.dark-mode) .acct-back:hover {
+.dark-mode .acct-back:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: #f0c987;
 }
@@ -2033,11 +2033,11 @@ function formatDate(unixSec) {
   opacity: 0.9;
 }
 
-:global(.dark-mode) .acct-mine > .acct-hint {
+.dark-mode .acct-mine > .acct-hint {
   color: #f5eedf;
 }
 
-:global(.dark-mode) .acct-mine > .acct-hint--quiet {
+.dark-mode .acct-mine > .acct-hint--quiet {
   color: #c4aa82;
 }
 
@@ -2083,7 +2083,7 @@ function formatDate(unixSec) {
   max-width: 48%;
 }
 
-:global(.dark-mode) .acct-mine-page {
+.dark-mode .acct-mine-page {
   color: #a8c6c5;
   background: rgba(168, 198, 197, 0.12);
   border-color: rgba(168, 198, 197, 0.3);
@@ -2257,22 +2257,22 @@ function formatDate(unixSec) {
   cursor: default;
 }
 
-:global(.dark-mode) .acct-mine-del {
+.dark-mode .acct-mine-del {
   color: #fca5a5;
   border-color: rgba(252, 165, 165, 0.35);
   background: rgba(239, 68, 68, 0.12);
 }
 
-:global(.dark-mode) .acct-del-prompt {
+.dark-mode .acct-del-prompt {
   color: #fca5a5;
 }
 
-:global(.dark-mode) .acct-del-btn.is-yes {
+.dark-mode .acct-del-btn.is-yes {
   background: #dc2626;
   border-color: #ef4444;
 }
 
-:global(.dark-mode) .acct-del-btn.is-no {
+.dark-mode .acct-del-btn.is-no {
   color: #d1b894;
   border-color: rgba(255, 255, 255, 0.2);
 }
@@ -2306,25 +2306,25 @@ function formatDate(unixSec) {
   opacity: 0.75;
 }
 
-:global(.dark-mode) .acct-no {
+.dark-mode .acct-no {
   color: #e5be83;
   background: rgba(229, 190, 131, 0.16);
   border-color: rgba(229, 190, 131, 0.35);
 }
 
-:global(.dark-mode) .acct-role-tag--super {
+.dark-mode .acct-role-tag--super {
   color: #fca5a5;
   background: rgba(239, 68, 68, 0.18);
   border-color: rgba(239, 68, 68, 0.4);
 }
 
-:global(.dark-mode) .acct-role-tag--admin {
+.dark-mode .acct-role-tag--admin {
   color: #a8c6c5;
   background: rgba(168, 198, 197, 0.18);
   border-color: rgba(168, 198, 197, 0.4);
 }
 
-:global(.dark-mode) .acct-btn-delete {
+.dark-mode .acct-btn-delete {
   color: #f87171;
 }
 

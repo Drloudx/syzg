@@ -141,8 +141,12 @@ const clear = () => emit('update:modelValue', '')
   background: #f8f1df;
   box-shadow: inset 0 2px 4px rgba(43, 31, 21, 0.12), 0 0 0 2px rgba(122, 154, 153, 0.25);
 }
-.dark-mode .ui-search__input:focus {
-  background: #473a28;
+:deep(.dark-mode) .ui-search__input:focus,
+:deep(.dark-theme) .ui-search__input:focus,
+.dark-mode .ui-search__input:focus,
+.dark-theme .ui-search__input:focus {
+  background: #38291c;
+  color: var(--text-main);
 }
 .ui-search__clear {
   position: absolute;

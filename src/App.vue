@@ -2,7 +2,7 @@
   <div
     ref="appScrollRoot"
     class="app-container"
-    :class="{ 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy' }"
+    :class="{ 'dark-mode': isDarkMode, 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy' }"
     @scroll.passive="scheduleStickyClipping"
   >
     <!-- 顶部木质导航条 -->
@@ -379,11 +379,9 @@ const { globalQuery, isSearchOpen, filteredSearchIndex, handleSearchFocus, handl
 const { isDarkMode, toggleDarkMode } = useNativeShell()
 
 /**
- * 深色模式切换按钮是否显示。
- * 暂时关闭：按钮位置改成了账号入口，而深色模式自身还有问题待修。
- * 代码与 `html.dark-mode` 样式、localStorage 持久化都完整保留，改回 true 即恢复。
+ * 深色模式切换按钮是否显示（位于讨论区图标左侧）。
  */
-const showThemeToggle = false
+const showThemeToggle = true
 
 /** 账号弹窗可见性 */
 const isAccountOpen = ref(false)
@@ -912,6 +910,8 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 <style scoped>
 /* ====== 顶部木质导航条（模板 header 风格） ====== */
 .app-container {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   height: var(--vh100);

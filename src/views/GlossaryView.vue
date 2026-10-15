@@ -1227,47 +1227,47 @@ img.detail-header__icon {
   background: #c0392b;
 }
 
-:global(.dark-theme) .math-pill--add {
+.dark-theme .math-pill--add {
   background: rgba(52, 152, 219, 0.15);
   border-color: rgba(52, 152, 219, 0.45);
   color: #70bbf0;
 }
-:global(.dark-theme) .math-pill--key {
+.dark-theme .math-pill--key {
   background: rgba(230, 126, 34, 0.15);
   border-color: rgba(230, 126, 34, 0.45);
   color: #f39c12;
 }
-:global(.dark-theme) .math-pill--res {
+.dark-theme .math-pill--res {
   background: rgba(231, 76, 60, 0.15);
   border-color: rgba(231, 76, 60, 0.45);
   color: #f1948a;
 }
-:global(.dark-theme) .math-pill--k {
+.dark-theme .math-pill--k {
   background: rgba(46, 204, 113, 0.15);
   border-color: rgba(46, 204, 113, 0.45);
   color: #58d68d;
 }
-:global(.dark-theme) .math-pill--def {
+.dark-theme .math-pill--def {
   background: rgba(155, 89, 182, 0.15);
   border-color: rgba(155, 89, 182, 0.45);
   color: #bb8fce;
 }
-:global(.dark-theme) .math-pill--crit {
+.dark-theme .math-pill--crit {
   background: rgba(243, 156, 18, 0.15);
   border-color: rgba(243, 156, 18, 0.45);
   color: #f8c471;
 }
-:global(.dark-theme) .math-pill--crit-dam {
+.dark-theme .math-pill--crit-dam {
   background: rgba(231, 76, 60, 0.15);
   border-color: rgba(231, 76, 60, 0.45);
   color: #f1948a;
 }
-:global(.dark-theme) .math-pill--suppress {
+.dark-theme .math-pill--suppress {
   background: rgba(231, 76, 60, 0.15);
   border-color: rgba(231, 76, 60, 0.45);
   color: #f1948a;
 }
-:global(.dark-theme) .math-pill__code {
+.dark-theme .math-pill__code {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.06);
 }

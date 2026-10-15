@@ -148,6 +148,11 @@
   --q3: #3fa2ff;
   --q4: #ee62f1;
   --q5: #ffb64d;
+  --q1-border: var(--q1);
+  --q2-border: var(--q2);
+  --q3-border: var(--q3);
+  --q4-border: var(--q4);
+  --q5-border: var(--q5);
 
   /* 浅色羊皮纸上的可读文字色；不替代游戏原色，仅用于文字。 */
   --q1-text: #6f5b3c;
@@ -181,74 +186,102 @@ html:has(.app-container.is-native-shell) {
   --safe-top: max(env(safe-area-inset-top), 0px);
 }
 
-/* —— 暗色模式：暗木羊皮卷 —— */
-.dark-mode {
-  --paper-dark: #211710;
-  --paper: #2e2217;
-  --paper-soft: #362a1d;
-  --paper-solid: #3f3020;
-  --text-main: #eaddc2;
-  --text-muted: #bca983;
-  --text-faint: #9c8a6c;
-  --border-color: #8f7351;
-  --border-soft: rgba(143, 115, 81, 0.55);
-  --border-faint: rgba(143, 115, 81, 0.3);
-  --accent: #7a9a99;
-  --accent-bright: #93b3b2;
-  --accent-ink: #a8c6c5;
-  --wood: #17100a;
-  --wood-soft: #3a2c1d;
-  --wood-deep: #0f0a06;
-  --danger: #d24545;
-  --danger-soft: rgba(210, 69, 69, 0.16);
-  --gold: #c9a24b;
-  --panel-list-background: rgba(63, 48, 32, 0.84);
-  --segmented-active-bg: linear-gradient(180deg, #5a4a33, #473a28);
-  --segmented-active-color: #f2e6cc;
-  --segmented-text: #bca983;
-  --segmented-text-hover: #eaddc2;
+/* —— 暗色模式：暗木羊皮卷（Dark Parchment & Ebony Wood） ——
+   遵循主流多表面层次（Surface-0 Canvas, Surface-1 Container, Surface-2 Elevated）：
+   1. 背景暗夜古卷：避免纯黑与刺眼纯白，采用沉稳典雅的暖暗木深褐；
+   2. 卡片温润浮起：Surface-1/2 逐级微亮，微弱暗金微光描边提神；
+   3. 文本自然分级：主文本象牙暖白（#ebdcc3）、次文本暖棕灰（#bfa988）、强调湖水青碧（#7faea9）；
+   4. 双类名兼容：同时作用于 .dark-mode 与 .dark-theme。 */
+.dark-mode,
+.dark-theme {
+  --paper-dark: #19120b;
+  --paper: #261c13;
+  --paper-soft: #32251a;
+  --paper-solid: #3d2d1f;
+  --text-main: #ebdcc3;
+  --text-muted: #bfa988;
+  --text-faint: #928068;
+  --border-color: #7d6040;
+  --border-soft: rgba(143, 115, 81, 0.45);
+  --border-faint: rgba(143, 115, 81, 0.25);
+  --accent: #7faea9;
+  --accent-bright: #9ec9c5;
+  --accent-ink: #bde4e0;
+  --wood: #18110a;
+  --wood-soft: #2d1f14;
+  --wood-deep: #0e0905;
+  --danger: #e25a5a;
+  --danger-soft: rgba(226, 90, 90, 0.18);
+  --gold: #d8af56;
+  --panel-list-background: rgba(43, 31, 21, 0.92);
+  --segmented-active-bg: linear-gradient(180deg, #4d3824, #3a2a1b);
+  --segmented-active-color: #f7ebd7;
+  --segmented-text: #bfa988;
+  --segmented-text-hover: #ebdcc3;
+  --on-wood-text: #ebdcc3;
+  --on-image-text: #f7ebd7;
+  --on-image-text-muted: rgba(247, 235, 215, 0.82);
 
   --bg: var(--paper-dark);
   --bg-color: var(--paper-dark);
   --bg-card: var(--paper-soft);
   --card-bg: var(--paper-soft);
-  --hover-bg: rgba(122, 154, 153, 0.16);
+  --hover-bg: rgba(127, 174, 169, 0.14);
   --primary: var(--accent);
-  --primary-hover: var(--accent-ink);
+  --primary-hover: var(--accent-bright);
   --text-sub: var(--text-muted);
   --text-color: var(--text-main);
 
-  --input-bg: #3f3020;
-  --input-border: var(--border-soft);
+  --input-bg: #291e14;
+  --input-border: rgba(143, 115, 81, 0.45);
   --input-border-focus: var(--accent-bright);
   --input-text: var(--text-main);
 
-  --modal-bg: #332619;
+  --modal-bg: #261b12;
   --modal-text: var(--text-main);
-  --modal-header-border: var(--border-faint);
+  --modal-header-border: rgba(143, 115, 81, 0.35);
   --modal-close-color: var(--text-muted);
-  --modal-overlay: rgba(8, 5, 2, 0.7);
+  --modal-overlay: rgba(6, 4, 2, 0.78);
 
-  --icon-filter: none;
-  --icon-filter1: invert(1);
+  --scrollbar-track: rgba(0, 0, 0, 0.28);
+  --icon-filter: brightness(0) invert(0.88) sepia(0.18);
+  --icon-filter1: none;
 
-  /* 暗色模式仍保持游戏原色，避免同一品质在不同主题下语义漂移。 */
-  --q1: #cfba96;
-  --q2: #a7c037;
-  --q3: #3fa2ff;
-  --q4: #ee62f1;
-  --q5: #ffb64d;
-  --q1-text: #cfba96;
-  --q2-text: #a7c037;
-  --q3-text: #3fa2ff;
-  --q4-text: #ee62f1;
-  --q5-text: #ffb64d;
-  --q1-bg: rgba(207, 186, 150, 0.24);
-  --q2-bg: rgba(167, 192, 55, 0.24);
-  --q3-bg: rgba(63, 162, 255, 0.23);
-  --q4-bg: rgba(238, 98, 241, 0.22);
-  --q5-bg: rgba(255, 182, 77, 0.25);
-  --quality-label-bg: rgba(54, 42, 29, 0.94);
+  /* 暗色模式下品质原色与文字对比度优化 */
+  --q1: #cbb898;
+  --q2: #b5ce44;
+  --q3: #56b0ff;
+  --q4: #f377f6;
+  --q5: #ffbe5e;
+  --q1-text: #cbb898;
+  --q2-text: #b5ce44;
+  --q3-text: #56b0ff;
+  --q4-text: #f377f6;
+  --q5-text: #ffbe5e;
+  --q1-border: rgba(180, 160, 130, 0.45);
+  --q2-border: rgba(125, 165, 55, 0.65);
+  --q3-border: rgba(55, 130, 195, 0.65);
+  --q4-border: rgba(165, 75, 175, 0.65);
+  --q5-border: rgba(215, 145, 45, 0.75);
+  --q1-bg: rgba(203, 184, 152, 0.06);
+  --q2-bg: rgba(181, 206, 68, 0.08);
+  --q3-bg: rgba(86, 176, 255, 0.08);
+  --q4-bg: rgba(243, 119, 246, 0.08);
+  --q5-bg: rgba(255, 190, 94, 0.09);
+  --quality-label-bg: rgba(43, 31, 21, 0.94);
+}
+
+/* 暗色模式下全局暗夜古卷遮罩：
+   保持 body.background-image 单图层完全不变，消除 Chromium 多图层 fixed 背景原点计算偏差引发的右下位移 */
+html.dark-mode body::after,
+body.dark-mode::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  top: calc(var(--header-height, 60px) + var(--safe-top, 0px));
+  background: rgba(17, 12, 8, 0.85);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ====== 2. 全局基础 ====== */
@@ -419,11 +452,11 @@ input, textarea, select {
 .quality-bg-4 { background-color: var(--q4-bg) !important; }
 .quality-bg-5 { background-color: var(--q5-bg) !important; }
 
-.quality-border-1 { border-color: var(--q1) !important; }
-.quality-border-2 { border-color: var(--q2) !important; }
-.quality-border-3 { border-color: var(--q3) !important; }
-.quality-border-4 { border-color: var(--q4) !important; }
-.quality-border-5 { border-color: var(--q5) !important; }
+.quality-border-1 { border-color: var(--q1-border, var(--q1)) !important; }
+.quality-border-2 { border-color: var(--q2-border, var(--q2)) !important; }
+.quality-border-3 { border-color: var(--q3-border, var(--q3)) !important; }
+.quality-border-4 { border-color: var(--q4-border, var(--q4)) !important; }
+.quality-border-5 { border-color: var(--q5-border, var(--q5)) !important; }
 
 .rarity-badge {
   display: inline-block;
@@ -550,7 +583,7 @@ input, textarea, select {
 .modal-header {
   padding: 12px 18px;
   background: var(--wood);
-  color: var(--paper);
+  color: var(--on-wood-text, #ebdcc3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -570,7 +603,7 @@ input, textarea, select {
   transform: translateY(-50%);
   background: transparent;
   border: 1px solid rgba(223, 206, 179, 0.35);
-  color: var(--paper);
+  color: var(--on-wood-text, #ebdcc3);
   font-size: 14px;
   cursor: pointer;
   width: 26px;
@@ -583,7 +616,7 @@ input, textarea, select {
 }
 .modal-close-btn:hover {
   background: rgba(223, 206, 179, 0.15);
-  border-color: var(--paper);
+  border-color: var(--on-wood-text, #ebdcc3);
 }
 .modal-body {
   padding: 18px;
@@ -605,7 +638,7 @@ input, textarea, select {
 }
 .modal-btn-confirm {
   background-color: var(--wood);
-  color: var(--paper);
+  color: var(--on-wood-text, #ebdcc3);
   border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 9px 26px;
@@ -776,15 +809,32 @@ input, textarea, select {
 }
 .filter-btn.active {
   background: var(--wood);
-  color: var(--paper);
+  color: var(--on-wood-text, #f7ebd7);
   border-color: #17100a;
   font-weight: 700;
+}
+.dark-mode .filter-btn.active:not([class*="quality-text-"]),
+.dark-theme .filter-btn.active:not([class*="quality-text-"]) {
+  background: linear-gradient(180deg, #573f27, #3d2a19) !important;
+  color: #fff2db !important;
+  border-color: #ba8c46 !important;
 }
 .filter-btn.quality-text-1.active { background: var(--q1); color: #2b1f15 !important; }
 .filter-btn.quality-text-2.active { background: var(--q2); color: #2b1f15 !important; }
 .filter-btn.quality-text-3.active { background: var(--q3); color: #17231f !important; }
 .filter-btn.quality-text-4.active { background: var(--q4); color: #2b1f15 !important; }
 .filter-btn.quality-text-5.active { background: var(--q5); color: #2b1f15 !important; }
+
+.dark-mode .filter-btn.quality-text-1.active,
+.dark-theme .filter-btn.quality-text-1.active { background: #cbb898 !important; color: #18110a !important; }
+.dark-mode .filter-btn.quality-text-2.active,
+.dark-theme .filter-btn.quality-text-2.active { background: #9ebb28 !important; color: #121c05 !important; }
+.dark-mode .filter-btn.quality-text-3.active,
+.dark-theme .filter-btn.quality-text-3.active { background: #429eed !important; color: #06182c !important; }
+.dark-mode .filter-btn.quality-text-4.active,
+.dark-theme .filter-btn.quality-text-4.active { background: #d85ee0 !important; color: #210524 !important; }
+.dark-mode .filter-btn.quality-text-5.active,
+.dark-theme .filter-btn.quality-text-5.active { background: #f7a028 !important; color: #281200 !important; }
 
 /* ====== 8. 滚动条（羊皮纸质感） ====== */
 
@@ -863,5 +913,98 @@ input, textarea, select {
 }
 .prob-detail-btn:active {
   transform: scale(0.97);
+}
+
+/* ====== 10. 全局暗色模式组件自适应规范 (Dark Mode Global Overrides) ======
+   集中兜底各业务组件中的羊皮纸、卡片、输入框与下拉浮层，确保视觉和谐无盲区。 */
+.dark-mode .paper-panel,
+.dark-theme .paper-panel {
+  background-color: rgba(36, 26, 18, 0.94);
+  border-color: rgba(168, 132, 82, 0.42);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(212, 163, 89, 0.12);
+}
+
+.dark-mode .paper-panel.corner-nails::before,
+.dark-mode .paper-panel.corner-nails::after,
+.dark-theme .paper-panel.corner-nails::before,
+.dark-theme .paper-panel.corner-nails::after {
+  background: #7a5c3d;
+  box-shadow: inset 1px 1px 2px rgba(255, 215, 140, 0.25);
+}
+
+.dark-mode .paper-panel-solid,
+.dark-theme .paper-panel-solid {
+  background-color: var(--paper-soft);
+  border-color: var(--border-soft);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.dark-mode .ui-list-row,
+.dark-theme .ui-list-row {
+  background-color: rgba(45, 33, 22, 0.88);
+  border-color: var(--border-soft);
+  color: var(--text-main);
+}
+
+.dark-mode .ui-list-row.clickable:hover,
+.dark-theme .ui-list-row.clickable:hover {
+  background-color: rgba(58, 43, 29, 0.96);
+  border-color: var(--accent-bright);
+}
+
+/* 顶部与通用设置下拉层 */
+.dark-mode .settings-dropdown,
+.dark-theme .settings-dropdown {
+  background-color: #271c13;
+  border: 1px solid rgba(168, 132, 82, 0.45);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(212, 163, 89, 0.15);
+}
+
+.dark-mode .dropdown-item:hover,
+.dark-theme .dropdown-item:hover {
+  background-color: rgba(127, 174, 169, 0.16);
+  color: var(--accent-bright);
+}
+
+/* 弹窗窗体与内衬 */
+.dark-mode .ui-modal-window,
+.dark-theme .ui-modal-window {
+  background-color: var(--modal-bg, #261b12);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(168, 132, 82, 0.35);
+}
+
+.dark-mode .ui-modal-body,
+.dark-theme .ui-modal-body {
+  background-color: var(--modal-bg, #261b12);
+  color: var(--text-main);
+}
+
+@media (min-width: 1025px) {
+  .dark-mode .ui-modal-overlay:not(.is-teleported) .ui-modal-body,
+  .dark-theme .ui-modal-overlay:not(.is-teleported) .ui-modal-body {
+    background-color: var(--modal-bg, #261b12);
+  }
+}
+
+/* 通用输入框、文本域与选择框 */
+.dark-mode input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.dark-mode textarea,
+.dark-mode select,
+.dark-theme input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+.dark-theme textarea,
+.dark-theme select {
+  background-color: var(--input-bg);
+  color: var(--text-main);
+  border-color: var(--input-border);
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus,
+.dark-theme input:focus,
+.dark-theme textarea:focus,
+.dark-theme select:focus {
+  border-color: var(--accent-bright);
+  outline: none;
 }
 

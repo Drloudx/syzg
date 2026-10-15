@@ -911,4 +911,37 @@ const formatKeyTag = tag => (tag === 'boss' ? '首领' : tag)
   .phase-action-bar { flex-direction: column; align-items: stretch; gap: 8px; }
   .phase-switch-button { width: 100%; justify-content: center; padding: 8px 12px; font-size: 13px; }
 }
+
+/* 暗色模式专属自适应 */
+:deep(.dark-mode) .phase-condition-bubble,
+.dark-mode .phase-condition-bubble {
+  background: #2b1f14;
+  border-color: rgba(168, 132, 82, 0.45);
+  color: var(--accent-bright);
+}
+:deep(.dark-mode) .summon-jump-chip,
+.dark-mode .summon-jump-chip {
+  background: #2b1f14;
+  border-color: rgba(212, 158, 53, 0.5);
+  color: #e5b060;
+}
+:deep(.dark-mode) .summon-jump-bar,
+.dark-mode .summon-jump-bar {
+  background: rgba(212, 158, 53, 0.08);
+}
+:deep(.dark-mode) .variant-context,
+.dark-mode .variant-context {
+  background: rgba(43, 31, 21, 0.85);
+  border-color: var(--border-soft);
+}
+:deep(.dark-mode) .mechanic-card,
+.dark-mode .mechanic-card {
+  background: rgba(43, 31, 21, 0.65);
+  border-color: var(--border-soft);
+}
+:deep(.dark-mode) .phase-node,
+.dark-mode .phase-node {
+  background: rgba(43, 31, 21, 0.6);
+  border-color: var(--border-soft);
+}
 </style>

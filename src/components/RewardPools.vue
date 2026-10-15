@@ -503,6 +503,42 @@ const breakdownCountText = (min, max) => {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
+/*
+ * 深色下的奖励格。
+ * 🔴 `border-width` **不动**（2026-10-14 修）。
+ *    基线是 `2px solid var(--border-soft)`；原深色规则写 `1.5px` 比它少 0.5px，
+ *    盒子变小 → 整行位移。**改回 2px**，只换颜色。
+ * ⚠️ 不要用 `inset` 阴影补"内描边"：会在圆角上画出生硬方框，紧贴内容显得多余。
+ */
+.dark-mode .reward-slot__box,
+.dark-theme .reward-slot__box {
+  background: rgba(22, 16, 10, 0.94) !important;
+  border-width: 2px;
+  border-color: rgba(143, 115, 81, 0.55);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+}
+
+.dark-mode .reward-slot__box.quality-bg-1,
+.dark-theme .reward-slot__box.quality-bg-1 {
+  background-color: rgba(180, 160, 130, 0.05) !important;
+}
+.dark-mode .reward-slot__box.quality-bg-2,
+.dark-theme .reward-slot__box.quality-bg-2 {
+  background-color: rgba(125, 165, 55, 0.07) !important;
+}
+.dark-mode .reward-slot__box.quality-bg-3,
+.dark-theme .reward-slot__box.quality-bg-3 {
+  background-color: rgba(55, 130, 195, 0.07) !important;
+}
+.dark-mode .reward-slot__box.quality-bg-4,
+.dark-theme .reward-slot__box.quality-bg-4 {
+  background-color: rgba(165, 75, 175, 0.07) !important;
+}
+.dark-mode .reward-slot__box.quality-bg-5,
+.dark-theme .reward-slot__box.quality-bg-5 {
+  background-color: rgba(215, 145, 45, 0.08) !important;
+}
+
 .reward-slot__icon {
   width: 82%;
   height: 82%;
@@ -592,7 +628,7 @@ const breakdownCountText = (min, max) => {
   color: #9c5700;
   font-weight: 600;
 }
-:global(.dark-mode) .reward-slot__breakdown-prob.is-composite {
+.dark-mode .reward-slot__breakdown-prob.is-composite {
   color: var(--gold, #c9a24b);
 }
 .reward-slot__breakdown-prob.is-count {
@@ -689,7 +725,7 @@ const breakdownCountText = (min, max) => {
   color: #9c5700;
   font-weight: 700;
 }
-:global(.dark-mode) .reward-slot__tooltip-highlight {
+.dark-mode .reward-slot__tooltip-highlight {
   color: var(--gold, #c9a24b);
 }
 .reward-slot__tooltip-muted {

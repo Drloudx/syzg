@@ -124,7 +124,7 @@ const subTagLabel = (item) => {
   left: 12px;
   width: 16px;
   height: 16px;
-  color: var(--paper, #dfceb3);
+  color: var(--on-wood-text, #ebdcc3);
   pointer-events: none;
   flex-shrink: 0;
   opacity: 0.95;
@@ -138,7 +138,7 @@ const subTagLabel = (item) => {
   border-radius: 4px;
   font-size: 13px;
   background: var(--wood-soft, #463424);
-  color: var(--paper, #dfceb3);
+  color: var(--on-wood-text, #ebdcc3);
   box-sizing: border-box;
   transition: all 0.2s ease;
   font-family: var(--font-ui);
@@ -159,7 +159,7 @@ const subTagLabel = (item) => {
   right: 10px;
   background: transparent;
   border: none;
-  color: var(--paper, #dfceb3);
+  color: var(--on-wood-text, #ebdcc3);
   opacity: 0.85;
   cursor: pointer;
   font-size: 12px;
@@ -273,5 +273,81 @@ const subTagLabel = (item) => {
   align-items: center;
   gap: 4px;
   flex-shrink: 0;
+}
+
+/* 暗色模式下拉弹层与徽章高对比度适配 */
+:deep(.dark-mode) .global-search-dropdown,
+.dark-mode .global-search-dropdown {
+  background: #251b13;
+  border: 1px solid rgba(168, 132, 82, 0.45);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+}
+
+:deep(.dark-mode) .search-result-item:hover,
+.dark-mode .search-result-item:hover {
+  background: rgba(127, 174, 169, 0.16);
+}
+
+:deep(.dark-mode) .item-type-badge,
+.dark-mode .item-type-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+}
+
+:deep(.dark-mode) .item-type-badge.role,
+.dark-mode .item-type-badge.role { background: rgba(86, 176, 255, 0.18); color: #7ac0f8; }
+
+:deep(.dark-mode) .item-type-badge.equip,
+:deep(.dark-mode) .item-type-badge.exchange,
+.dark-mode .item-type-badge.equip,
+.dark-mode .item-type-badge.exchange { background: rgba(243, 119, 246, 0.18); color: #e79ff8; }
+
+:deep(.dark-mode) .item-type-badge.item,
+:deep(.dark-mode) .item-type-badge.event,
+:deep(.dark-mode) .item-type-badge.explore,
+.dark-mode .item-type-badge.item,
+.dark-mode .item-type-badge.event,
+.dark-mode .item-type-badge.explore { background: rgba(127, 174, 169, 0.2); color: #9ec9c5; }
+
+:deep(.dark-mode) .item-type-badge.furniture,
+:deep(.dark-mode) .item-type-badge.pet,
+:deep(.dark-mode) .item-type-badge.pet_egg,
+:deep(.dark-mode) .item-type-badge.recipe,
+.dark-mode .item-type-badge.furniture,
+.dark-mode .item-type-badge.pet,
+.dark-mode .item-type-badge.pet_egg,
+.dark-mode .item-type-badge.recipe { background: rgba(255, 190, 94, 0.18); color: #ffbe5e; }
+
+:deep(.dark-mode) .item-type-badge.achievement,
+:deep(.dark-mode) .item-type-badge.task,
+:deep(.dark-mode) .item-type-badge.research,
+.dark-mode .item-type-badge.achievement,
+.dark-mode .item-type-badge.task,
+.dark-mode .item-type-badge.research { background: rgba(80, 180, 90, 0.2); color: #85e090; }
+
+:deep(.dark-mode) .item-type-badge.monster,
+.dark-mode .item-type-badge.monster { background: rgba(226, 90, 90, 0.2); color: #f28b8b; }
+
+:deep(.dark-mode) .item-type-badge.camp_building,
+:deep(.dark-mode) .item-type-badge.partner_mail,
+.dark-mode .item-type-badge.camp_building,
+.dark-mode .item-type-badge.partner_mail { background: rgba(212, 140, 70, 0.2); color: #f5b068; }
+
+:deep(.dark-mode) .item-type-badge.dungeon,
+.dark-mode .item-type-badge.dungeon { background: rgba(180, 100, 220, 0.2); color: #cf9cf0; }
+
+:deep(.dark-mode) .item-type-badge.chapter,
+.dark-mode .item-type-badge.chapter { background: rgba(70, 140, 210, 0.2); color: #89c0f5; }
+
+:deep(.dark-mode) .item-type-badge.glossary,
+.dark-mode .item-type-badge.glossary { background: rgba(60, 180, 170, 0.2); color: #7de0d5; }
+
+:deep(.dark-mode) .category-tag-pill,
+:deep(.dark-mode) .item-tag,
+.dark-mode .category-tag-pill,
+.dark-mode .item-tag {
+  color: var(--accent-bright);
+  background: rgba(127, 174, 169, 0.15);
+  border-color: rgba(127, 174, 169, 0.35);
 }
 </style>
