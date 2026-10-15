@@ -154,6 +154,8 @@ export function buildPvpData(maps) {
         name: tier.name,
         score: Number(tier.score) || 0,
         typeOrder: parseInt(tier.type) || 0,
+        img: tier.img ? String(tier.img) : '',
+        img2: tier.img2 ? String(tier.img2) : '',
         rewardItems: normalizeItems(rewardData)
       })
       const allItems = normalizeItems(rewardData)

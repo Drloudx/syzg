@@ -6,7 +6,7 @@
 > **何时读**：改动页面样式、引用或新增公共组件、调整主题变量与滚动行为时。
 > **何时更新**：组件 API、页面骨架、主题变量或强制规则变化时。**新增组件要同步第 2 节表格。**
 
-**核对时间**：2026-10-08（对代码逐项核对：组件表 28 项与 `src/components/ui/` 数量一致、`index.js` 27 项导出、主题变量与品质类齐全、字体与背景图实测值）
+**核对时间**：2026-10-15（组件表 28 项与已提交的 `src/components/ui/` 一致、`index.js` 28 项导出；新增 §3 第 10 条「禁用 `background` 简写」；主题变量与品质类沿用 2026-10-08 核对结果）
 
 ## 1. 设计系统（theme.css）
 
@@ -385,6 +385,18 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
    - **失败是静默的**：不报错、不抛异常，只是内容跑到筛选框上面。因此**不要按 class 名（`filter-panel` / `*-filter-panel`）判断是否接入** —— 认 `data-sticky-filter` 标记。
    - 有意豁免：邮件阅读器（`is-mail-reader`，`.app-container` 设 `overflow: hidden`，没有页面级滚动）不需要裁切。新增豁免必须在 `tests/ui/sticky-clip.spec.js` 的 `EXEMPT` 里登记并写明理由。
    - 三层防护：① `App.vue` 开发期对违规结构 `console.warn('[sticky-clip] …')`；② 本节约定；③ 回归 `tests/ui/sticky-clip.spec.js`（逐路由实测「实际写入值 == 期望值」）。
+
+10. **🔴 覆盖 `.ui-item-card__slot` 时禁用 `background` 简写**：该槽的背景图是 **76×76 的单格品质框**（`/images/ItemBagPanel/item_f_N.webp`），由 `UiItemCard.vue` 设 `background-size: 100% 100%` + `no-repeat` 拉伸铺满。
+
+    | 写法 | 后果 |
+    | --- | --- |
+    | `background: var(--paper-soft)` ❌ | 简写**重置**未列出的子属性 → `size: auto` + `repeat: repeat` |
+    | `background-color: var(--paper-soft)` ✅ | 只改颜色，尺寸与重复规则保持 |
+
+    - 违反后果：76×76 贴图按原尺寸平铺，在 16:9 大卡（约 246×138）里排成 **3 列 × 2 行 = 6 格**。
+    - **图片加载完成后 `<img>` 会遮住背景**，所以只在"没加载出来"时可见 —— 不能靠截图判断，要读 computed 值。
+    - 同理适用于任何"只换底色"的覆盖：**只用 `background-color`，不要用 `background`**。
+    - 回归：`tests/ui/events-blacklist.spec.js` 断言 `background-size === '100% 100%'` 且 `background-repeat === 'no-repeat'`。
 
 ## 4. 页面骨架模板
 

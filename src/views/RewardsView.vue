@@ -77,7 +77,7 @@
     <UiEmptyState v-if="loading" type="loading" text="正在装配奖励数据..." />
 
     <!-- 主内容区 -->
-    <div v-else-if="pvpRewards" class="rewards-content" id="rewardsScroll" data-main-scroll>
+    <div v-else-if="pvpRewards" class="rewards-content" :class="{ 'paper-panel': currentSubCat !== 'exchange', 'is-rank-tab': ['rank', 'tier', 'battle'].includes(currentSubCat) }" id="rewardsScroll" data-main-scroll>
 
       <template v-if="currentMainCat === 'pvp'">
 
@@ -113,9 +113,9 @@
         </div>
         <UiEmptyState v-if="currentSubCat === 'rules' && !matchesRewardQuery(pvpRewards.rules, '挑战赛 赛事 赛区 规则 追加挑战')" text="未找到匹配的赛事规则" />
 
-        <!-- 兑换奖励 -->
+        <!-- 兑换奖励（与 /exchange 页面完全统一的紧凑卡片网格规范） -->
         <div v-if="currentSubCat === 'exchange'" class="reward-list-container">
-          <div v-if="filteredPvpExchanges.length" class="exchange-trade-list">
+          <div v-if="filteredPvpExchanges.length" class="exchange-list">
             <UiExchangeTrade
               v-for="ex in filteredPvpExchanges"
               :key="ex.id"
@@ -124,143 +124,189 @@
               :reward-items="flattenPvpItems(ex.rewardItems)"
               :consume-items="flattenPvpItems(ex.consumeItems)"
               :limit-text="pvpLimitText(ex.limitCondition)"
+              compact
               @item-click="openItem"
             />
           </div>
           <UiEmptyState v-else text="未找到匹配的兑换奖励" />
         </div>
 
-        <!-- 段位奖励 -->
+        <!-- 段位奖励（组件库 UiListPanel + UiListRow flush 模式） -->
         <div v-if="currentSubCat === 'tier'" class="reward-list-container">
-          <UiListRow v-for="tier in filteredPvpTiers" :key="tier.id" :id="`tier-${tier.id}`">
-            <div class="row-left">
-              <div class="tier-heading">
-                <span class="row-title">{{ tier.name }}</span>
-                <span class="tier-score">所需积分 {{ tier.score }}</span>
-              </div>
-            </div>
-            <template #right>
-              <div class="row-right flex-start">
-                <div class="items-flex">
-                  <div v-for="group in tier.rewardItems" :key="group.typeId || Math.random()" class="item-group">
-                    <UiRewardCard
-                      v-for="rule in group.rules"
-                      :key="rule.typeId"
-                      :rule="{
-                        targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
-                        targetImg: getIcon(rule.typeId),
-                        targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
-                        min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
-                        max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
-                        num: rule.num,
-                        typeId: rule.typeId
-                      }"
-                      @click="openItem(rule.typeId)"
-                    />
+          <UiListPanel v-if="filteredPvpTiers.length" flat>
+            <template #header>
+              <div class="th-rank">段位</div>
+              <div class="th-reward">奖励</div>
+            </template>
+            <UiListRow
+              v-for="tier in filteredPvpTiers"
+              :key="tier.id"
+              :id="`tier-${tier.id}`"
+              flush
+            >
+              <div class="row-left">
+                <div class="tier-cell">
+                  <img
+                    :src="getTierIcon(tier)"
+                    :alt="tier.name"
+                    class="tier-icon"
+                    loading="lazy"
+                  />
+                  <div class="tier-info">
+                    <span class="row-title tier-title">{{ tier.name }}</span>
+                    <span class="tier-score-pill">{{ tier.score }} 分</span>
                   </div>
                 </div>
               </div>
-            </template>
-          </UiListRow>
-          <UiEmptyState v-if="!filteredPvpTiers.length" text="未找到匹配的段位奖励" />
+              <template #right>
+                <div class="row-right flex-start">
+                  <div class="items-flex">
+                    <div v-for="group in tier.rewardItems" :key="group.typeId || Math.random()" class="item-group">
+                      <UiRewardCard
+                        v-for="rule in group.rules"
+                        :key="rule.typeId"
+                        :rule="{
+                          targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
+                          targetImg: getIcon(rule.typeId),
+                          targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
+                          min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
+                          max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
+                          num: rule.num,
+                          typeId: rule.typeId
+                        }"
+                        @click="openItem(rule.typeId)"
+                      />
+                    </div>
+                    <span v-if="!tier.rewardItems || !tier.rewardItems.length" class="empty-reward-text">无奖励</span>
+                  </div>
+                </div>
+              </template>
+            </UiListRow>
+          </UiListPanel>
+          <UiEmptyState v-else text="未找到匹配的段位奖励" />
         </div>
 
-        <!-- 排名奖励 -->
+        <!-- 排名奖励（组件库 UiListPanel + UiListRow flush 模式） -->
         <div v-if="currentSubCat === 'rank'" class="reward-list-container">
-          <UiListRow v-for="rank in filteredPvpRanks" :key="rank.start" :id="`rank-${rank.start}`">
-            <div class="row-left">
-              <span class="row-title">{{ rank.end === -1 ? `${rank.start}名以后` : `${rank.start}-${rank.end}名` }}</span>
-            </div>
-            <template #right>
-              <div class="row-right flex-start">
-                <div class="items-flex">
-                  <div v-for="group in rank.rewardItems" :key="group.typeId || Math.random()" class="item-group">
-                    <UiRewardCard
-                      v-for="rule in group.rules"
-                      :key="rule.typeId"
-                      :rule="{
-                        targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
-                        targetImg: getIcon(rule.typeId),
-                        targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
-                        min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
-                        max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
-                        num: rule.num,
-                        typeId: rule.typeId
-                      }"
-                      @click="openItem(rule.typeId)"
-                    />
+          <UiListPanel v-if="filteredPvpRanks.length" flat>
+            <template #header>
+              <div class="th-rank">排名</div>
+              <div class="th-reward">奖励</div>
+            </template>
+            <UiListRow
+              v-for="rank in filteredPvpRanks"
+              :key="rank.start"
+              :id="`rank-${rank.start}`"
+              flush
+            >
+              <div class="row-left">
+                <span class="row-title">{{ rank.end === -1 ? `${rank.start}名以后` : `${rank.start} ~ ${rank.end}名` }}</span>
+              </div>
+              <template #right>
+                <div class="row-right flex-start">
+                  <div class="items-flex">
+                    <div v-for="group in rank.rewardItems" :key="group.typeId || Math.random()" class="item-group">
+                      <UiRewardCard
+                        v-for="rule in group.rules"
+                        :key="rule.typeId"
+                        :rule="{
+                          targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
+                          targetImg: getIcon(rule.typeId),
+                          targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
+                          min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
+                          max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
+                          num: rule.num,
+                          typeId: rule.typeId
+                        }"
+                        @click="openItem(rule.typeId)"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </template>
-          </UiListRow>
-          <UiEmptyState v-if="!filteredPvpRanks.length" text="未找到匹配的排名奖励" />
+              </template>
+            </UiListRow>
+          </UiListPanel>
+          <UiEmptyState v-else text="未找到匹配的排名奖励" />
         </div>
 
-        <!-- 战斗结算 -->
+        <!-- 战斗结算（组件库 UiListPanel + UiListRow flush 模式） -->
         <div v-if="currentSubCat === 'battle'" class="reward-list-container">
-          <UiListRow v-if="pvpRewards.battle.win && matchesRewardQuery(pvpRewards.battle.win, '战斗胜利')" id="battle-win">
-            <div class="row-left">
-              <div class="tier-heading">
-                <span class="row-title win-title">战斗胜利</span>
-                <span class="tier-score battle-score battle-score--win">积分 +{{ pvpRewards.battle.win.score }}</span>
-              </div>
-            </div>
-            <template #right>
-              <div class="row-right flex-start">
-                <div class="items-flex">
-                  <div v-for="group in pvpRewards.battle.win.rewardItems" :key="group.typeId || Math.random()" class="item-group">
-                    <UiRewardCard
-                      v-for="rule in group.rules"
-                      :key="rule.typeId"
-                      :rule="{
-                        targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
-                        targetImg: getIcon(rule.typeId),
-                        targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
-                        min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
-                        max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
-                        num: rule.num,
-                        typeId: rule.typeId
-                      }"
-                      @click="openItem(rule.typeId)"
-                    />
-                  </div>
+          <UiListPanel v-if="hasFilteredBattleRewards" flat>
+            <template #header>
+              <div class="th-rank">结算</div>
+              <div class="th-reward">奖励</div>
+            </template>
+            <UiListRow
+              v-if="pvpRewards.battle?.win && matchesRewardQuery(pvpRewards.battle.win, '战斗胜利')"
+              id="battle-win"
+              flush
+            >
+              <div class="row-left">
+                <div class="battle-cell">
+                  <span class="row-title win-title">战斗胜利</span>
+                  <span class="battle-score-pill battle-score--win">积分 +{{ pvpRewards.battle.win.score }}</span>
                 </div>
               </div>
-            </template>
-          </UiListRow>
+              <template #right>
+                <div class="row-right flex-start">
+                  <div class="items-flex">
+                    <div v-for="group in pvpRewards.battle.win.rewardItems" :key="group.typeId || Math.random()" class="item-group">
+                      <UiRewardCard
+                        v-for="rule in group.rules"
+                        :key="rule.typeId"
+                        :rule="{
+                          targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
+                          targetImg: getIcon(rule.typeId),
+                          targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
+                          min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
+                          max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
+                          num: rule.num,
+                          typeId: rule.typeId
+                        }"
+                        @click="openItem(rule.typeId)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </UiListRow>
 
-          <UiListRow v-if="pvpRewards.battle.fail && matchesRewardQuery(pvpRewards.battle.fail, '战斗失败 不获得积分')" id="battle-fail">
-            <div class="row-left">
-              <div class="tier-heading">
-                <span class="row-title fail-title">战斗失败</span>
-                <span class="tier-score battle-score battle-score--fail">不获得积分</span>
-              </div>
-            </div>
-            <template #right>
-              <div class="row-right flex-start">
-                <div class="items-flex">
-                  <div v-for="group in pvpRewards.battle.fail.rewardItems" :key="group.typeId || Math.random()" class="item-group">
-                    <UiRewardCard
-                      v-for="rule in group.rules"
-                      :key="rule.typeId"
-                      :rule="{
-                        targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
-                        targetImg: getIcon(rule.typeId),
-                        targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
-                        min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
-                        max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
-                        num: rule.num,
-                        typeId: rule.typeId
-                      }"
-                      @click="openItem(rule.typeId)"
-                    />
-                  </div>
+            <UiListRow
+              v-if="pvpRewards.battle?.fail && matchesRewardQuery(pvpRewards.battle.fail, '战斗失败 不获得积分')"
+              id="battle-fail"
+              flush
+            >
+              <div class="row-left">
+                <div class="battle-cell">
+                  <span class="row-title fail-title">战斗失败</span>
+                  <span class="battle-score-pill battle-score--fail">不获得积分</span>
                 </div>
               </div>
-            </template>
-          </UiListRow>
-          <UiEmptyState v-if="!hasFilteredBattleRewards" text="未找到匹配的战斗奖励" />
+              <template #right>
+                <div class="row-right flex-start">
+                  <div class="items-flex">
+                    <div v-for="group in pvpRewards.battle.fail.rewardItems" :key="group.typeId || Math.random()" class="item-group">
+                      <UiRewardCard
+                        v-for="rule in group.rules"
+                        :key="rule.typeId"
+                        :rule="{
+                          targetName: (getCachedItem(rule.typeId) || {}).name || rule.typeId,
+                          targetImg: getIcon(rule.typeId),
+                          targetQuality: (getCachedItem(rule.typeId) || {}).quality || 1,
+                          min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
+                          max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
+                          num: rule.num,
+                          typeId: rule.typeId
+                        }"
+                        @click="openItem(rule.typeId)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </UiListRow>
+          </UiListPanel>
+          <UiEmptyState v-else text="未找到匹配的战斗奖励" />
         </div>
 
       </template>
@@ -389,6 +435,7 @@ import {
   UiFilterPill,
   UiFilterRow,
   UiListRow,
+  UiListPanel,
   UiExchangeTrade,
   UiRewardCard,
   UiModal,
@@ -789,6 +836,24 @@ const getIcon = (typeId) => {
   return getImageUrl('/ui/visibility-off.svg')
 }
 
+const getTierIcon = (tier) => {
+  let img = tier?.img
+  if (!img) {
+    const name = tier?.name || ''
+    if (name.includes('灰羽')) img = '1'
+    else if (name.includes('黑羽')) img = '2'
+    else if (name.includes('青翎')) img = '3'
+    else if (name.includes('蓝翎')) img = '4'
+    else if (name.includes('赤翎')) img = '5'
+    else if (name.includes('白翼')) img = '6'
+    else {
+      const id = Number(tier?.id || tier?.typeOrder) || 1
+      img = id <= 4 ? '1' : id <= 8 ? '2' : id <= 12 ? '3' : id <= 16 ? '4' : id <= 20 ? '5' : '6'
+    }
+  }
+  return getImageUrl(`/PvpPanel_Atlas/arena_dan_${img}_s.webp`)
+}
+
 const flattenPvpItems = (groups = []) => {
   trackItemData()
   const items = []
@@ -879,6 +944,30 @@ const closePrevImg = () => {
   min-height: 0;
 }
 
+/* 非兑换页签：段位奖励、战斗结算、赛事规则保留 paper-panel 羊皮纸底色与内边距 */
+.rewards-content.paper-panel {
+  background: var(--paper);
+  padding: 12px 14px;
+}
+
+/* 排名/段位/战斗结算奖励：表头和列表无缝贴合外层 paper-panel 边框，消除顶部阴影缝隙与两侧留白 */
+.rewards-content.is-rank-tab {
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media (min-width: 1025px) {
+  .rewards-content.paper-panel {
+    flex: 1 0 auto !important;
+  }
+}
+
+.rewards-content.is-rank-tab .reward-list-container {
+  gap: 0;
+  padding-bottom: 0;
+}
+
 .reward-list-container {
   width: 100%;
   max-width: 100%;
@@ -889,18 +978,46 @@ const closePrevImg = () => {
   padding-bottom: 8px;
 }
 
-.pvp-rules-container {
-  width: 100%;
-  padding: 12px 14px 14px;
-  box-sizing: border-box;
-  background: rgba(223, 206, 179, 0.94);
-  border: 1px solid var(--border-soft);
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(62, 42, 20, 0.16);
+.th-rank {
+  width: 140px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-.dark-mode .pvp-rules-container {
-  background: rgba(46, 34, 23, 0.9);
+.th-reward {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-left: 12px;
+}
+
+@media (max-width: 640px) {
+  .rewards-content {
+    padding-bottom: calc(88px + var(--safe-bottom, 0px));
+  }
+
+  .th-rank {
+    width: 96px;
+  }
+
+  :deep(.ui-list-row.is-flush .ui-list-row__main) {
+    width: 96px;
+  }
+
+  .th-reward {
+    padding-left: 8px;
+  }
+}
+
+.pvp-rules-container {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .pvp-rule-copy {
@@ -994,29 +1111,18 @@ const closePrevImg = () => {
   background: rgba(35, 26, 17, 0.62);
 }
 
-.exchange-trade-list {
+/* 兑换列表：与 /exchange 页面完全统一的紧凑多列网格规范 */
+.exchange-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 12px;
-}
-
-/* PVP 兑换奖励较多，使用紧凑图标避免奖励列过度占高。 */
-.exchange-trade-list :deep(.ui-exchange-trade__item--reward) {
-  width: 82px;
-}
-.exchange-trade-list :deep(.ui-exchange-trade__item--reward img) {
-  width: 42px;
-  height: 42px;
-  flex-basis: 42px;
-}
-.exchange-trade-list :deep(.ui-exchange-trade__reward-stage) {
-  min-height: 74px;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 14px 10px;
+  min-width: 0;
 }
 
 @media (max-width: 640px) {
-  .exchange-trade-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
+  .exchange-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px 6px;
   }
 }
 
@@ -1058,18 +1164,121 @@ const closePrevImg = () => {
   min-width: 80px;
 }
 
-.tier-heading {
+:deep(.ui-list-panel__header) {
+  padding: 6px 18px;
+}
+
+:deep(.ui-list-row.is-flush) {
+  padding: 10px 18px;
+}
+
+:deep(.ui-list-row.is-flush) .items-flex {
+  gap: 10px;
+}
+
+:deep(.ui-list-row.is-flush) .ui-reward-card {
+  padding: 6px 10px;
+  gap: 8px;
+}
+
+:deep(.ui-list-row.is-flush) .ui-reward-card__icon {
+  width: 40px;
+  height: 40px;
+}
+
+:deep(.ui-list-row.is-flush) .ui-reward-card__icon img {
+  width: 32px;
+  height: 32px;
+}
+
+:deep(.ui-list-row.is-flush) .row-left {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+:deep(.ui-list-row.is-flush) .row-title {
+  min-width: 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+:deep(.ui-list-row.is-flush) .ui-reward-card__name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+:deep(.ui-list-row.is-flush) .ui-reward-card__qty {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tier-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.tier-icon {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.28));
+}
+
+.tier-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 3px;
+  min-width: 0;
 }
 
-.tier-score {
-  color: var(--text-muted);
-  font-size: 12px;
-  font-weight: 600;
+.tier-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main);
   white-space: nowrap;
+  line-height: 1.2;
+}
+
+.tier-score-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(43, 31, 21, 0.78);
+  color: #ffd78c;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.3px;
+}
+
+.dark-mode .tier-score-pill {
+  background: rgba(18, 12, 7, 0.88);
+  color: #ffd78c;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+.battle-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.battle-cell .row-title {
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .win-title {
@@ -1080,17 +1289,45 @@ const closePrevImg = () => {
   color: var(--danger);
 }
 
-.battle-score {
-  font-size: 13px;
+.battle-score-pill {
+  display: inline-block;
+  font-size: 11px;
   font-weight: 700;
+  line-height: 1.2;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
 }
 
-.battle-score--win {
+.battle-score-pill.battle-score--win {
+  background: rgba(167, 192, 55, 0.2);
   color: var(--q2-text);
+  border: 1px solid rgba(167, 192, 55, 0.35);
 }
 
-.battle-score--fail {
+.battle-score-pill.battle-score--fail {
+  background: rgba(139, 0, 0, 0.12);
   color: var(--danger);
+  border: 1px solid rgba(139, 0, 0, 0.3);
+}
+
+.dark-mode .battle-score-pill.battle-score--win {
+  background: rgba(167, 192, 55, 0.15);
+  color: #a7c037;
+  border-color: rgba(167, 192, 55, 0.35);
+}
+
+.dark-mode .battle-score-pill.battle-score--fail {
+  background: rgba(210, 69, 69, 0.15);
+  color: var(--danger);
+  border-color: rgba(210, 69, 69, 0.35);
+}
+
+.empty-reward-text {
+  color: var(--text-faint);
+  font-size: 13px;
+  font-style: italic;
+  padding-left: 4px;
 }
 
 .items-flex {
@@ -1122,13 +1359,40 @@ const closePrevImg = () => {
     text-align: left;
   }
 
-  .ui-list-row {
+  .ui-list-row:not(.is-flush) {
     flex-direction: column;
     align-items: stretch;
   }
-  .ui-list-row :deep(.ui-list-row__right) {
+  .ui-list-row:not(.is-flush) :deep(.ui-list-row__right) {
     width: 100%;
     justify-content: flex-start;
+  }
+
+  .tier-cell {
+    gap: 4px;
+  }
+
+  .tier-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .tier-title {
+    font-size: 12px;
+  }
+
+  .tier-score-pill {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  .battle-cell .row-title {
+    font-size: 12px;
+  }
+
+  .battle-score-pill {
+    font-size: 10px;
+    padding: 1px 5px;
   }
 }
 

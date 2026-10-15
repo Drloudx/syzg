@@ -49,15 +49,26 @@
 
     <div v-else-if="showRefreshRules" id="exchangeScroll" class="exchange-rules paper-panel" data-main-scroll>
       <UiSection :title="`${currentCategory.label}刷新规则`">
-        <p class="exchange-rules__summary">{{ currentSummary }}</p>
+        <div class="exchange-rule-copy exchange-rules__summary">
+          <p v-for="(line, index) in ruleLines(currentSummary)" :key="index">
+            {{ line }}
+          </p>
+        </div>
       </UiSection>
       <UiSection title="商品规则与解锁条件">
-        <UiListRow v-for="group in refreshRuleGroups" :key="group.text">
-          <div class="exchange-rules__group">
-            <p class="exchange-rules__text">{{ group.text }}</p>
-            <p class="exchange-rules__names">{{ group.names.join('、') }}</p>
-          </div>
-        </UiListRow>
+        <div class="exchange-area-grid">
+          <article
+            v-for="group in formattedRuleGroups"
+            :key="group.rawText"
+            class="exchange-area-rule exchange-rules__group"
+          >
+            <div class="exchange-area-rule__head">
+              <h4>{{ group.title }}</h4>
+              <span v-if="group.tag">{{ ' · ' }}{{ group.tag }}</span>
+            </div>
+            <p>{{ group.names.join('、') }}</p>
+          </article>
+        </div>
       </UiSection>
     </div>
 
@@ -123,7 +134,7 @@ const errorMessage = ref('')
  * 只有单一子类时（如「神匠之塔兑换」只有塔1、「符石合成」只有 Gem、「PVP兑换」只有 s1、
  * 「通用兑换」只有「无」），筛选行是死按钮、子类名又常是内部代号，没有信息量。
  * `syncSubs` 会自动把 selectedSub 指向唯一子类，故隐藏筛选不影响列表内容。
- * 同时保留原先按分类隐藏的 tuzi / huoyue。
+ * `tuzi` / `huoyue` 两个分类按分类隐藏子类筛选。
  */
 const showSubFilter = computed(() =>
   currentSubs.value.length > 1 && !['tuzi', 'huoyue'].includes(selectedCat.value))
@@ -198,6 +209,9 @@ const rarityOptions = computed(() => {
 const currentSummary = computed(() => currentSub.value?.summary || currentCategory.value?.summary || '')
 const hasRefreshRules = computed(() => ['seed', 'tuzi'].includes(selectedCat.value))
 const showRefreshRules = computed(() => hasRefreshRules.value && selectedView.value === 'rules')
+const ruleLines = (text = '') =>
+  String(text || '').split(/[;\n；]/).map(l => l.trim().replace(/^[·•\s]+/, '')).filter(Boolean)
+
 const refreshRuleGroups = computed(() => {
   if (!hasRefreshRules.value) return []
   // Use the complete candidate list, so selecting a pool never hides its unlock rules.
@@ -209,6 +223,27 @@ const refreshRuleGroups = computed(() => {
     for (const item of entry.rewardItems) groups.get(entry.metaText).add(item.name)
   }
   return [...groups].map(([text, names]) => ({ text, names: [...names] }))
+})
+
+const formattedRuleGroups = computed(() => {
+  return refreshRuleGroups.value.map(group => {
+    const parts = group.text.split('·').map(s => s.trim()).filter(Boolean)
+    let title = group.text
+    let tag = ''
+    if (parts.length === 2) {
+      title = parts[0]
+      tag = parts[1]
+    } else if (parts.length >= 3) {
+      title = `${parts[0]} · ${parts[1]}`
+      tag = parts.slice(2).join(' · ')
+    }
+    return {
+      rawText: group.text,
+      title,
+      tag,
+      names: group.names
+    }
+  })
 })
 
 const syncSubs = () => {
@@ -372,30 +407,105 @@ const goToItem = (typeId) => {
 }
 
 .exchange-rules {
+  flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  min-height: 0;
   padding: 12px 14px;
   box-sizing: border-box;
   overflow-y: auto;
+  width: 100%;
 }
-.exchange-rules :deep(.ui-list-row + .ui-list-row) { margin-top: 8px; }
-.exchange-rules__summary,
-.exchange-rules__text,
-.exchange-rules__names {
+
+@media (min-width: 1025px) {
+  .exchange-rules.paper-panel {
+    flex: 1 0 auto !important;
+  }
+}
+
+.exchange-rule-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.exchange-rule-copy p {
+  position: relative;
+  margin: 0;
+  padding-left: 16px;
+  color: var(--text-main);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.exchange-rule-copy p::before {
+  content: '';
+  position: absolute;
+  top: 0.68em;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-bright);
+  transform: rotate(45deg);
+}
+
+.exchange-area-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.exchange-area-rule {
+  min-width: 0;
+  padding: 12px;
+  background: rgba(217, 198, 166, 0.62);
+  border: 1px solid var(--border-faint);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.exchange-area-rule__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+  border-bottom: 1px dashed var(--border-soft);
+}
+
+.exchange-area-rule__head h4 {
   margin: 0;
   color: var(--text-main);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.exchange-area-rule__head span {
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.exchange-area-rule p {
+  margin: 0;
+  color: var(--text-muted);
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-wrap: anywhere;
 }
-.exchange-rules__text { font-weight: 700; }
-.exchange-rules__names {
-  margin-top: 4px;
-  color: var(--text-muted);
+
+.dark-mode .exchange-area-rule {
+  background: rgba(35, 26, 17, 0.62);
 }
-.exchange-rules__group { min-width: 0; }
+
+@media (max-width: 640px) {
+  .exchange-area-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 .collection-counter {
   font-size: 13px;

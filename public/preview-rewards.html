@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>挑战赛排名奖励 · 效果对比预览</title>
+  <style>
+    /* ====== 主题基础变量（100% 沿用当前项目 theme.css） ====== */
+    :root {
+      --paper-dark: #bba282;
+      --paper: #dfceb3;
+      --paper-soft: #e9dcc3;
+      --paper-solid: #d9c6a6;
+      --text-main: #3e2a14;
+      --text-muted: #6b5134;
+      --text-faint: #8a6d4d;
+      --border-color: #8f7351;
+      --border-soft: rgba(143, 115, 81, 0.45);
+      --border-faint: rgba(143, 115, 81, 0.25);
+      --accent: #557574;
+      --accent-bright: #7a9a99;
+      --accent-ink: #2f4a49;
+      --wood: #2b1f15;
+      --wood-soft: #463424;
+      --wood-deep: #1e150d;
+      --gold: #8a6a1f;
+      --on-wood-text: #dfceb3;
+      --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+
+      --q1-bg: rgba(207, 186, 150, 0.24);
+      --q2-bg: rgba(167, 192, 55, 0.24);
+      --q3-bg: rgba(63, 162, 255, 0.23);
+      --q4-bg: rgba(238, 98, 241, 0.22);
+      --q5-bg: rgba(255, 182, 77, 0.25);
+      --q1-border: rgba(143, 115, 81, 0.45);
+      --q4-border: rgba(186, 75, 195, 0.6);
+      --q5-border: rgba(215, 145, 45, 0.7);
+
+      --panel-bg: rgba(223, 206, 179, 0.94);
+      --panel-shadow: 0 4px 16px rgba(43, 31, 21, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+      --row-hover-bg: rgba(85, 117, 116, 0.08);
+      --row-zebra-bg: rgba(217, 198, 166, 0.25);
+      --rank-gold-text: #8e6210;
+      --rank-gold-bg: rgba(216, 175, 86, 0.18);
+      --rank-silver-text: #37635e;
+      --rank-silver-bg: rgba(122, 154, 153, 0.18);
+      --rank-current-bg: linear-gradient(135deg, #2b6166, #1c4549);
+    }
+
+    /* 深色模式变量 */
+    html.dark-mode {
+      --paper-dark: #201710;
+      --paper: #261c13;
+      --paper-soft: #32251a;
+      --paper-solid: #3d2d1f;
+      --text-main: #ebdcc3;
+      --text-muted: #bfa988;
+      --text-faint: #928068;
+      --border-color: #7d6040;
+      --border-soft: rgba(143, 115, 81, 0.45);
+      --border-faint: rgba(143, 115, 81, 0.25);
+      --accent: #7faea9;
+      --accent-bright: #9ec9c5;
+      --accent-ink: #bde4e0;
+      --wood: #18110a;
+      --wood-soft: #2d1f14;
+      --wood-deep: #0e0905;
+      --gold: #d8af56;
+      --on-wood-text: #ebdcc3;
+
+      --q1-bg: rgba(203, 184, 152, 0.06);
+      --q4-bg: rgba(243, 119, 246, 0.08);
+      --q5-bg: rgba(255, 190, 94, 0.09);
+      --q4-border: rgba(165, 75, 175, 0.65);
+      --q5-border: rgba(215, 145, 45, 0.75);
+
+      --panel-bg: rgba(36, 26, 18, 0.94);
+      --panel-shadow: 0 4px 20px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(212, 163, 89, 0.15);
+      --row-hover-bg: rgba(127, 174, 169, 0.12);
+      --row-zebra-bg: rgba(24, 17, 11, 0.35);
+      --rank-gold-text: #ffd57a;
+      --rank-gold-bg: rgba(216, 175, 86, 0.18);
+      --rank-silver-text: #9ed2cd;
+      --rank-silver-bg: rgba(127, 174, 169, 0.18);
+      --rank-current-bg: linear-gradient(135deg, #1c4e52, #103235);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-ui);
+      color: var(--text-main);
+      background-color: #17100a;
+      background-image: url('ui/map_w1_bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ====== 悬浮交互控制条（用于对比与测试） ====== */
+    .preview-controller {
+      position: sticky;
+      top: 0;
+      z-index: 10000;
+      background: rgba(24, 17, 10, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--border-color);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #dfceb3;
+      font-size: 13px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+    }
+    .ctrl-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ctrl-label {
+      font-weight: 700;
+      color: #ffd78c;
+    }
+    .ctrl-btn {
+      background: #3e2d1d;
+      color: #dfceb3;
+      border: 1px solid #7d6040;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s ease;
+    }
+    .ctrl-btn:hover {
+      background: #5a422b;
+      color: #fff;
+    }
+    .ctrl-btn.active {
+      background: #6e5229;
+      color: #ffd78c;
+      border-color: #ffd78c;
+      font-weight: 700;
+    }
+
+    /* ====== 模拟当前网页顶栏 ====== */
+    .mock-header {
+      background: var(--wood);
+      border-bottom: 2px solid var(--border-color);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--on-wood-text);
+    }
+    .mock-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .mock-search {
+      background: var(--wood-soft);
+      border: 1px solid var(--border-color);
+      color: var(--on-wood-text);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      width: 260px;
+    }
+
+    /* ====== 模拟主工作区 ====== */
+    .mock-viewport {
+      flex: 1;
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 20px 40px;
+      transition: max-width 0.25s ease;
+    }
+    .mock-viewport.mode-tablet {
+      max-width: 768px;
+    }
+    .mock-viewport.mode-mobile {
+      max-width: 420px;
+      padding: 10px;
+    }
+
+    /* ====== 模拟筛选面板（真实还原当前页面） ====== */
+    .mock-filter-panel {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 6px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      box-shadow: var(--panel-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+    .filter-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      min-width: 42px;
+    }
+    .filter-pill {
+      background: var(--wood);
+      color: var(--on-wood-text);
+      border: 1px solid var(--border-faint);
+      border-radius: 12px;
+      padding: 3px 12px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .filter-pill.active {
+      background: #17100a;
+      color: #ffd78c;
+      border-color: #ffd78c;
+      font-weight: 700;
+    }
+
+    /* ====== 核心：优化后的一体化虚线羊皮卷榜单 (方案 A) ====== */
+    .unified-rank-board {
+      background: var(--panel-bg);
+      border: 1px solid var(--border-soft);
+      border-radius: 6px;
+      box-shadow: var(--panel-shadow);
+      overflow: hidden;
+    }
+
+    /* 简洁表头：仅包含【排名区间】与【结算奖励】 */
+    .rank-board-header {
+      display: flex;
+      align-items: center;
+      background: rgba(62, 42, 20, 0.08);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    html.dark-mode .rank-board-header {
+      background: rgba(0, 0, 0, 0.25);
+    }
+    .th-rank {
+      width: 140px;
+      flex-shrink: 0;
+    }
+    .th-reward {
+      flex: 1;
+    }
+
+    /* 数据行主体 */
+    .rank-row-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .rank-row-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 18px;
+      /* 核心虚线分割线：紧贴无缝，还原原版细腻质感 */
+      border-bottom: 1px dashed var(--border-soft);
+      transition: background 0.15s ease;
+    }
+    .rank-row-item:last-child {
+      border-bottom: none;
+    }
+    .rank-row-item:hover {
+      background: var(--row-hover-bg);
+    }
+    /* 奇偶轻微斑马底色提升辨识度 */
+    .rank-row-item:nth-child(even) {
+      background-color: var(--row-zebra-bg);
+    }
+    .rank-row-item:nth-child(even):hover {
+      background: var(--row-hover-bg);
+    }
+
+    /* 左侧排名区间单元格 */
+    .td-rank {
+      width: 140px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rank-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    /* 头部阶梯专属质感（微金 / 银青） */
+    .td-rank.rank-top1 .rank-text {
+      color: var(--rank-gold-text);
+      text-shadow: 0 0 1px rgba(216, 175, 86, 0.3);
+    }
+    .td-rank.rank-top2 .rank-text {
+      color: var(--rank-silver-text);
+    }
+    /* 玩家当前排名高亮标签（可选） */
+    .td-rank.is-current {
+      position: relative;
+    }
+    .current-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      margin-left: 4px;
+    }
+
+    /* 右侧结算奖励单元格 */
+    .td-reward {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    /* ====== 奖励道具卡片（100% 沿用当前 UiRewardCard 结构） ====== */
+    .ui-reward-card {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--paper-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: 4px;
+      padding: 6px 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+    }
+    .ui-reward-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+      border-color: var(--accent-bright);
+    }
+    .ui-reward-card__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      border: 1px solid transparent;
+    }
+    .ui-reward-card__icon.quality-5 {
+      background-color: var(--q5-bg);
+      border-color: var(--q5-border);
+    }
+    .ui-reward-card__icon.quality-4 {
+      background-color: var(--q4-bg);
+      border-color: var(--q4-border);
+    }
+    .ui-reward-card__icon.quality-1 {
+      background-color: var(--q1-bg);
+      border-color: var(--q1-border);
+    }
+    .ui-reward-card__icon img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+    }
+    .ui-reward-card__info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+    .ui-reward-card__name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+    }
+    .ui-reward-card__qty {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ====== 对比模式：当前线上旧版（孤岛悬浮长条） ====== */
+    .legacy-rank-board {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* 原版的孤岛缝隙 */
+    }
+    .legacy-row-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background-color: rgba(223, 206, 179, 0.9);
+      border: 1px solid var(--border-faint);
+      border-bottom-color: var(--border-soft);
+      border-radius: 4px;
+      padding: 10px 14px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.14);
+    }
+    html.dark-mode .legacy-row-item {
+      background-color: rgba(63, 48, 32, 0.82);
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 640px) {
+      .rank-board-header {
+        padding: 8px 12px;
+      }
+      .th-rank, .td-rank {
+        width: 100px;
+      }
+      .rank-text {
+        font-size: 13px;
+      }
+      .rank-row-item {
+        padding: 8px 12px;
+      }
+      .ui-reward-card {
+        padding: 4px 6px;
+        gap: 6px;
+      }
+      .ui-reward-card__icon {
+        width: 32px;
+        height: 32px;
+      }
+      .ui-reward-card__icon img {
+        width: 26px;
+        height: 26px;
+      }
+      .ui-reward-card__name {
+        font-size: 12px;
+      }
+      .ui-reward-card__qty {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 顶部交互控制台 -->
+  <div class="preview-controller">
+    <div class="ctrl-group">
+      <span class="ctrl-label">📐 布局对比：</span>
+      <button class="ctrl-btn active" id="btnPlanNew" onclick="switchPlan('new')">方案 A：一体化虚线卷轴（推荐）</button>
+      <button class="ctrl-btn" id="btnPlanOld" onclick="switchPlan('old')">当前旧版：悬浮孤岛长条</button>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">🌓 模式：</span>
+      <button class="ctrl-btn" id="btnTheme" onclick="toggleTheme()">切换深色模式</button>
+    </div>
+    <div class="ctrl-group">
+      <span class="ctrl-label">📱 模拟视口：</span>
+      <button class="ctrl-btn active" onclick="setViewport('desktop', this)">桌面宽屏</button>
+      <button class="ctrl-btn" onclick="setViewport('tablet', this)">平板 (768px)</button>
+      <button class="ctrl-btn" onclick="setViewport('mobile', this)">手机 (420px)</button>
+    </div>
+  </div>
+
+  <!-- 模拟真实网站 Header -->
+  <header class="mock-header">
+    <div class="mock-logo">
+      <span>深渊大书院</span>
+      <span style="font-size: 12px; opacity: 0.7; font-weight: normal;">其他 · 挑战赛奖励</span>
+    </div>
+    <input type="text" class="mock-search" placeholder="搜索奖励、物品或说明..." readonly value="" />
+  </header>
+
+  <!-- 页面主体区域 -->
+  <main class="mock-viewport" id="viewportContainer">
+
+    <!-- 模拟真实页面的筛选条 -->
+    <section class="mock-filter-panel">
+      <div class="filter-row">
+        <span class="filter-label">板块：</span>
+        <span class="filter-pill active">挑战赛奖励</span>
+        <span class="filter-pill">被隐藏的物品</span>
+        <span class="filter-pill">自室槽位消耗</span>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">类型：</span>
+        <span class="filter-pill">兑换奖励</span>
+        <span class="filter-pill">段位奖励</span>
+        <span class="filter-pill active">排名奖励</span>
+        <span class="filter-pill">战斗结算</span>
+        <span class="filter-pill">赛事规则</span>
+      </div>
+    </section>
+
+    <!-- ====== 1. 方案 A：优化后的一体化虚线羊皮卷榜单 ====== -->
+    <div id="planNewContainer" class="unified-rank-board">
+      <!-- 极简表头：按要求只保留【排名区间】和【结算奖励】 -->
+      <div class="rank-board-header">
+        <div class="th-rank">排名区间</div>
+        <div class="th-reward">结算奖励</div>
+      </div>
+
+      <!-- 列表行主体：无缝贴合 + 虚线分割 -->
+      <div class="rank-row-list">
+        
+        <!-- 1 ~ 10 名 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">1 ~ 10 名</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card" title="氪金">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23d8af56\'><polygon points=\'12 2 2 9 12 22 22 9\'/></svg>'">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×1400</span>
+              </div>
+            </div>
+            <div class="ui-reward-card" title="契约书">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23d8af56\'><rect x=\'4\' y=\'4\' width=\'16\' height=\'16\' rx=\'2\'/></svg>'">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×14</span>
+              </div>
+            </div>
+            <div class="ui-reward-card" title="特别招待券">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'%23d8af56\'><path d=\'M3 5h18v14H3z\'/></svg>'">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×14</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11 ~ 50 名 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">11 ~ 50 名</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×1200</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×10</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 51 ~ 200 名 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">51 ~ 200 名</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×1000</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×8</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 201 ~ 500 名 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">201 ~ 500 名</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×800</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×6</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×6</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 501 ~ 1000 名 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">501 ~ 1000 名</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×800</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×4</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1001 ~ 3000 名 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">1001 ~ 3000 名</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×800</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×2</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3001 ~ 6000 名 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">3001 ~ 6000 名</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×600</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×2</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6001 名以后 -->
+        <div class="rank-row-item">
+          <div class="td-rank">
+            <span class="rank-text">6001 名以后</span>
+          </div>
+          <div class="td-reward">
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_00002.webp" alt="氪金">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">氪金</span>
+                <span class="ui-reward-card__qty">×600</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20004.webp" alt="契约书">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">契约书</span>
+                <span class="ui-reward-card__qty">×1</span>
+              </div>
+            </div>
+            <div class="ui-reward-card">
+              <div class="ui-reward-card__icon quality-5">
+                <img src="images/Common_ItemIcon/item_20023.webp" alt="特别招待券">
+              </div>
+              <div class="ui-reward-card__info">
+                <span class="ui-reward-card__name">特别招待券</span>
+                <span class="ui-reward-card__qty">×1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====== 2. 当前旧版本（孤岛悬浮长条对比） ====== -->
+    <div id="planOldContainer" class="legacy-rank-board" style="display: none;">
+      
+      <div class="legacy-row-item">
+        <span style="font-size: 15px; font-weight: 700; min-width: 100px;">1-10名</span>
+        <div style="display: flex; gap: 8px;">
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_00002.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">氪金</span><span class="ui-reward-card__qty">×1400</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_20004.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">契约书</span><span class="ui-reward-card__qty">×14</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_20023.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">特别招待券</span><span class="ui-reward-card__qty">×14</span></div></div>
+        </div>
+      </div>
+
+      <div class="legacy-row-item">
+        <span style="font-size: 15px; font-weight: 700; min-width: 100px;">11-50名</span>
+        <div style="display: flex; gap: 8px;">
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_00002.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">氪金</span><span class="ui-reward-card__qty">×1200</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_20004.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">契约书</span><span class="ui-reward-card__qty">×10</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_20023.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">特别招待券</span><span class="ui-reward-card__qty">×10</span></div></div>
+        </div>
+      </div>
+
+      <div class="legacy-row-item">
+        <span style="font-size: 15px; font-weight: 700; min-width: 100px;">51-200名</span>
+        <div style="display: flex; gap: 8px;">
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_00002.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">氪金</span><span class="ui-reward-card__qty">×1000</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_20004.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">契约书</span><span class="ui-reward-card__qty">×8</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_20023.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">特别招待券</span><span class="ui-reward-card__qty">×8</span></div></div>
+        </div>
+      </div>
+
+      <div class="legacy-row-item">
+        <span style="font-size: 15px; font-weight: 700; min-width: 100px;">201-500名</span>
+        <div style="display: flex; gap: 8px;">
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_00002.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">氪金</span><span class="ui-reward-card__qty">×800</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-4"><img src="images/Common_ItemIcon/item_20004.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">契约书</span><span class="ui-reward-card__qty">×6</span></div></div>
+          <div class="ui-reward-card"><div class="ui-reward-card__icon quality-5"><img src="images/Common_ItemIcon/item_20023.webp"></div><div class="ui-reward-card__info"><span class="ui-reward-card__name">特别招待券</span><span class="ui-reward-card__qty">×6</span></div></div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    function switchPlan(plan) {
+      const planNew = document.getElementById('planNewContainer');
+      const planOld = document.getElementById('planOldContainer');
+      const btnNew = document.getElementById('btnPlanNew');
+      const btnOld = document.getElementById('btnPlanOld');
+
+      if (plan === 'new') {
+        planNew.style.display = 'block';
+        planOld.style.display = 'none';
+        btnNew.classList.add('active');
+        btnOld.classList.remove('active');
+      } else {
+        planNew.style.display = 'none';
+        planOld.style.display = 'flex';
+        btnNew.classList.remove('active');
+        btnOld.classList.add('active');
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark-mode');
+      const btn = document.getElementById('btnTheme');
+      btn.textContent = isDark ? '切换浅色模式' : '切换深色模式';
+    }
+
+    function setViewport(mode, btnEl) {
+      const vp = document.getElementById('viewportContainer');
+      vp.className = 'mock-viewport';
+      if (mode === 'tablet') vp.classList.add('mode-tablet');
+      if (mode === 'mobile') vp.classList.add('mode-mobile');
+
+      btnEl.parentElement.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
+    }
+  </script>
+</body>
+</html>
