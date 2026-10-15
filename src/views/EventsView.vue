@@ -99,8 +99,8 @@
           <UiInfoRow label="事件描述" :value="selectedItem.des || '（无描述）'" />
           <UiInfoRow v-if="selectedItem.buttonText" label="交互按钮" :value="selectedItem.buttonText" />
           <UiInfoRow label="出现地图">
-            <div v-if="selectedItem.mapNames.length" class="event-map-tags">
-              <UiTag v-for="(m, mi) in selectedItem.mapNames" :key="mi" tone="default">{{ m }}</UiTag>
+            <div v-if="visibleMapNames.length" class="event-map-tags">
+              <UiTag v-for="(m, mi) in visibleMapNames" :key="mi" tone="default">{{ m }}</UiTag>
             </div>
             <template v-else>未知</template>
           </UiInfoRow>
@@ -179,6 +179,7 @@ import {
 import { fetchWithFallback } from '../utils/request.js'
 import { getImageUrl } from '../utils/env'
 import { isBlacklisted } from '../config/blacklist.js'
+import { isHiddenRegionEvent, visibleEventMapNames } from '../utils/eventData.js'
 import { getRarityName } from '../utils/gameMappings'
 import { useLazyList } from '../composables/useLazyList'
 import CommentsPanel from '../components/CommentsPanel.vue'
@@ -217,6 +218,15 @@ const eventCommentPageKey = computed(() => {
   return buildPageKey(prefix, selectedItem.value.id)
 })
 
+/**
+ * 详情「出现地图」只展示**可见**地区。
+ *
+ * 事件可能同时出现在可见与隐藏地区（如「废弃的宝箱」在 c1~c5 都有），
+ * 直接列 `mapNames` 会把黑森林/霜烬平原也显示出来 —— 与筛选栏、列表口径不一致。
+ * 判据实现见 `utils/eventData.js`（与单测共用，不在这里另写一份）。
+ */
+const visibleMapNames = computed(() => visibleEventMapNames(selectedItem.value))
+
 const handleImgError = (e) => {
   e.target.style.opacity = '0.25'
 }
@@ -245,6 +255,13 @@ const mapOptions = computed(() => {
   return opts
 })
 
+/**
+ * 条目是否只出现在被隐藏的地区里 —— 是则应整条隐藏。
+ *
+ * 判据实现见 `utils/eventData.js` 的 `isHiddenRegionEvent`（与单测共用一份）。
+ */
+const isHiddenRegionItem = isHiddenRegionEvent
+
 // ---------- 奖励解析已收敛到 gameMappings.parseRewardEntries（见 eventData.js） ----------
 // 消耗文案已由构建期 eventData.js 解析进 selectedItem.consumeText，此处不再复制。
 
@@ -259,13 +276,15 @@ const loadEventsData = async () => {
     mapNameMap.value = built.mapNameMap || {}
 
     // 预解析产物存相对路径，运行时统一过 getImageUrl（原生端会加 CDN 前缀）
+    // 黑名单用 isHiddenRegionItem：事件名的地区信息在 maps/mapNames（数组），
+    // 只传 id/name 会匹配不到，隐藏地区的事件会照常漏出。
     events.value = (built.events || [])
       .map(ev => ({ ...ev, imgUrl: getImageUrl(ev.imgUrl) }))
-      .filter(e => !isBlacklisted({ id: e.id, name: e.name }))
+      .filter(ev => !isHiddenRegionItem(ev))
 
     explores.value = (built.explores || [])
       .map(ev => ({ ...ev, imgUrl: getImageUrl(ev.imgUrl) }))
-      .filter(e => !isBlacklisted({ id: e.id, name: e.name }))
+      .filter(ev => !isHiddenRegionItem(ev))
 
     isDataReady.value = true
     syncDetailFromRoute()
@@ -482,9 +501,20 @@ watch(
   color: var(--text-main);
   border-color: var(--border-soft);
 }
-/* 事件/探索卡片图槽：不透明羊皮纸底 + 品质色描边，参考实底插画框 */
+/*
+ * 事件/探索卡片图槽：不透明羊皮纸底 + 品质色描边，参考实底插画框。
+ *
+ * 🔴 **必须写 `background-color`，不能用 `background` 简写。**
+ * 简写会把未列出的 `background-size` / `background-repeat` 重置为初始值
+ * （`auto` / `repeat`），从而**覆盖掉** `UiItemCard.vue` 为品质框设的
+ * `background-size: 100% 100%` + `no-repeat`。
+ *
+ * 后果：76×76 的 `item_f_N.webp`（单格品质框）在 16:9 的图槽里以 `auto` 尺寸**平铺**，
+ * 排成 3 列 × 2 行 = **6 个格子**——看起来像"一个区域显示了 6 个格子"的显示 bug
+ * （图片未加载完时最明显，因为此时槽里没有 `<img>` 遮住背景）。
+ */
 .events-page :deep(.ui-item-card__slot) {
-  background: var(--paper-soft, #e9dcc3);
+  background-color: var(--paper-soft, #e9dcc3);
   border: 2px solid;
   border-radius: 4px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 0 14px rgba(135, 107, 72, 0.18);

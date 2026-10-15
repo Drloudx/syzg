@@ -5,6 +5,7 @@
  * 不依赖网络与浏览器，Node 构建脚本（scripts/parse/*.mjs）与浏览器共用。
  */
 import { BASE_REWARD_NAMES, getRarityName, parseRewardEntries } from './gameMappings.js'
+import { isBlacklisted } from '../config/blacklist.js'
 
 const CONSUME_FIELDS = ['money', 'ke', 'payKe', 'ti', 'speed']
 
@@ -123,4 +124,37 @@ export function buildEventData(maps) {
   }
 
   return { events, explores, mapNameMap }
+}
+
+/**
+ * 该事件/探索条目所属的地区名（**唯一实现**，页面与单测共用）。
+ *
+ * 随机事件用 `mapNames`（数组），探索区域用 `mapName`（单值）。
+ */
+export function eventRegionLabels(item) {
+  if (!item) return []
+  return [...(item.mapNames || []), item.mapName].filter(Boolean)
+}
+
+/**
+ * 条目是否应因地区被隐藏。
+ *
+ * 🔴 判据是「**全部**所属地区都命中黑名单」：只命中部分时保留 ——
+ * 该条目在可见地区也能遇到（如「废弃的宝箱」c1~c5 都有），藏掉会连正常内容一起丢。
+ *
+ * 🔴 不能只传 `{ id, name }`：`isBlacklisted` **只读固定一组字段名**，
+ * `maps` / `mapKey` 会被静默忽略；而事件名（「废弃的宝箱」）不含地区名 →
+ * 隐藏地区的事件会照常漏出（筛选按钮没了、卡片还在）。
+ */
+export function isHiddenRegionEvent(item) {
+  if (!item) return false
+  if (isBlacklisted({ id: item.id, name: item.name })) return true
+  const labels = eventRegionLabels(item)
+  if (!labels.length) return false
+  return labels.every(label => isBlacklisted(label))
+}
+
+/** 详情「出现地图」应展示的地区名：与筛选栏、列表口径一致，不列隐藏地区。 */
+export function visibleEventMapNames(item) {
+  return (item?.mapNames || []).filter(name => !isBlacklisted(name))
 }

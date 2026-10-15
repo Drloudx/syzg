@@ -68,6 +68,24 @@
 - 地图名称由预解析映射提供；品质使用全站名称/颜色。
 - 两个页签的计数**分别**取当前地图与搜索过滤后的结果。
 
+### 隐藏地区（黑名单）
+
+地区可见性由 `config/blacklist.js` 的 `isBlacklisted` 统一决定，**三处口径必须一致**：
+
+| # | 位置 | 判据 |
+| --- | --- | --- |
+| 1 | 地图筛选按钮 | `isBlacklisted(label)`，隐藏地区不出现在按钮里 |
+| 2 | 列表条目 | `isHiddenRegionEvent(item)`，所属地区**全部**命中才整条隐藏 |
+| 3 | 详情「出现地图」标签 | `visibleEventMapNames(item)`，不列出隐藏地区名 |
+
+- 地区字段是**数组**：随机事件用 `mapNames`、探索区域用 `mapName`（`eventRegionLabels` 统一取值）。
+- 🔴 **不能只传 `{ id, name }`**：`isBlacklisted` 只读 `name`/`desc`/`tip`/`source`/`label`/`keywords`
+  与数组型 `category`/`categories`/`place`/`mark`，传 `maps`/`mapKey` 会被**静默忽略**；
+  而事件名（如「废弃的宝箱」）不含地区名 → 筛选按钮隐藏了、卡片却还在。
+- 只命中**部分**隐藏地区时保留条目：跨地区事件在可见地区也能遇到，按"提到即隐藏"会误伤（同 ADR 116）。
+- 判据实现是 `utils/eventData.js` 的 `isHiddenRegionEvent` / `visibleEventMapNames`（**唯一实现**，页面与单测共用）。
+- 回归：`tests/unit/event-blacklist.test.mjs`、`tests/ui/events-blacklist.spec.js`。
+
 ### URL
 
 | 参数 | 含义 |
@@ -104,8 +122,9 @@
 
 | 项 | 规则 |
 | --- | --- |
-| 段位 | 保留积分门槛 |
-| 结算 | 保留胜负积分 |
+| 段位 | 保留积分门槛与对应羽翼图标（45px） |
+| 结算 | 保留胜负积分与结果标签 |
+| 呈现规范 | 排名、段位、战斗结算统一采用 `UiListPanel flat` + `UiListRow flush` 一体化羊皮卷列表 |
 | 规则来源 | 正式 `sessionDes/pvpArea[].des` |
 | 排除 | 测试文案、内部模式 ID、可能过期的赛季时间 |
 
