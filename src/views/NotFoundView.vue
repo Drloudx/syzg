@@ -21,10 +21,10 @@
 
       <!-- 核心文案 -->
       <div class="not-found-body">
-        <h2 class="not-found-title">迷航未知海域</h2>
+        <h2 class="not-found-title">迷失在深渊深处</h2>
         <p class="not-found-desc">
           大书院的学者们尚未在此处勘测出任何地图或收录记载。<br class="desktop-only" />
-          你探索的羊皮卷可能已被深渊吞噬，或是链接记录已湮灭于历史迷雾之中。
+          你探寻的历史可能已被深渊吞噬，或是这段记录已湮灭于岁月迷雾之中。
         </p>
       </div>
 
@@ -35,7 +35,7 @@
           size="md"
           @click="goHome"
         >
-          返回藏书馆首页
+          返回大书院首页
         </UiButton>
         <UiButton
           variant="secondary"

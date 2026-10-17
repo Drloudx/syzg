@@ -211,16 +211,16 @@ const routes = [
     path: '/404',
     name: 'notFound',
     component: () => import('../views/NotFoundView.vue'),
-    meta: { title: '迷航 (404)' }
+    meta: { title: '迷失 (404)' }
   },
   {
     /**
-     * 兜底：未匹配到的路由统一渲染 404 迷航页面，融入羊皮纸 Wiki 主题并提供回退与快捷入口。
+     * 兜底：未匹配到的路由统一渲染 404 迷失页面，融入羊皮纸 Wiki 主题并提供回退与快捷入口。
      */
     path: '/:pathMatch(.*)*',
     name: 'catchAllNotFound',
     component: () => import('../views/NotFoundView.vue'),
-    meta: { title: '迷航 (404)' }
+    meta: { title: '迷失 (404)' }
   }
 ]
 

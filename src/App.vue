@@ -2,7 +2,7 @@
   <div
     ref="appScrollRoot"
     class="app-container"
-    :class="{ 'dark-mode': isDarkMode, 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy' }"
+    :class="{ 'dark-mode': isDarkMode, 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy', 'is-not-found-page': isNotFoundPage }"
     @scroll.passive="scheduleStickyClipping"
   >
     <!-- 顶部木质导航条 -->
@@ -364,7 +364,7 @@ const PAGE_TITLES = {
   '/admin': '后台',
   '/privacy': '隐私协议',
   '/discussions': '讨论区',
-  '/404': '迷航 (404)'
+  '/404': '迷失 (404)'
 }
 
 const pageTitle = computed(() => {
@@ -373,6 +373,11 @@ const pageTitle = computed(() => {
 
 /** 模拟招募是整页游戏画面：隐藏 Wiki 顶栏与左右栏，画布独占视口（背板由页面自己提供）。 */
 const isGachaFullscreen = computed(() => route.path === '/gacha')
+
+/** 404 迷失页面：隐藏左右两栏，主视图全宽居中单栏展示 */
+const isNotFoundPage = computed(() => {
+  return route.name === 'notFound' || route.name === 'catchAllNotFound' || route.path === '/404'
+})
 
 const isNavOpen = ref(false)
 const { globalQuery, isSearchOpen, filteredSearchIndex, handleSearchFocus, handleSelectSearchResult } = useGlobalSearch(route, router)
@@ -1503,6 +1508,22 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 }
 
 .is-privacy-page .app-main {
+  width: 100%;
+}
+
+/* 404 迷失页面：隐藏左右两栏，主视图全宽居中单栏展示 */
+.is-not-found-page .desktop-sidebar-container,
+.is-not-found-page .desktop-right-container {
+  display: none !important;
+}
+
+.is-not-found-page .main-layout-row {
+  grid-template-columns: minmax(0, 1fr) !important;
+  max-width: 900px !important;
+  margin: 0 auto;
+}
+
+.is-not-found-page .app-main {
   width: 100%;
 }
 

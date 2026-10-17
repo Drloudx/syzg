@@ -50,7 +50,23 @@
 
 ---
 
-## 四、公共组件引用
+## 四、页面级布局变体
+
+三个页面把 `App.vue` 的 `250px | 1fr | 300px` 三栏改为**单栏居中**，靠 `app-container` 上的一个类切换，样式集中写在 `App.vue` 的 scoped 块内。
+
+| 类 | 触发页 | 判据 | 效果 |
+| --- | --- | --- | --- |
+| `is-privacy-page` | `/privacy` | `route.path === '/privacy'` | 隐藏左右栏，`max-width: 900px` 居中 |
+| `is-gacha-stage` | `/gacha` | `route.path === '/gacha'` | 画布独占视口，顶栏也隐藏 |
+| `is-not-found-page` | `/404` 与兜底路由 | `route.name === 'notFound' \|\| route.name === 'catchAllNotFound'` 或 `route.path === '/404'` | 隐藏左右栏，`max-width: 900px` 居中 |
+
+- 🔴 **必须同时判 `route.name` 与 `route.path`**：兜底路由 `/:pathMatch(.*)*` 的 `path` 是**用户输入的任意值**，只有 `route.name === 'catchAllNotFound'` 能识别它。
+- 🔴 隐藏栏用 `display: none !important`，不是 `visibility` —— 要真正让出网格位置（对比：详情覆盖层用 `visibility` 是为了保布局高度，两者目的相反）。
+- 深色模式不得改变几何：`.is-not-found-page` 的规则不涉及 `border` / `padding`，切换前后包围盒一致。
+
+---
+
+## 五、公共组件引用
 
 页面视觉必须从组件库引用，**不得重复制造基础控件**。
 
@@ -66,7 +82,7 @@
 
 ---
 
-## 五、长列表与滚动
+## 六、长列表与滚动
 
 | 项 | 规则 |
 | --- | --- |
@@ -81,7 +97,7 @@
 
 ---
 
-## 六、右栏吉祥物
+## 七、右栏吉祥物
 
 吉祥物**不是独立页面**，是普通桌面页面按需加载的辅助插画。
 
@@ -96,7 +112,7 @@
 
 ---
 
-## 七、右栏吉祥物装配
+## 八、右栏吉祥物装配
 
 > 本节是[右栏吉祥物装配]的深入规则；主规范见本文件前面的领域小节。
 

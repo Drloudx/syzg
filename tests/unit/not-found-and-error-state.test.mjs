@@ -1,5 +1,5 @@
 /**
- * 404 迷航页面与全站加载错误状态统一规范测试。
+ * 404 迷失页面与全站加载错误状态统一规范测试。
  */
 
 import { existsSync, readFileSync } from 'node:fs'
@@ -16,7 +16,7 @@ test('NotFoundView 页面组件存在且具有羊皮纸设计元素', () => {
   const content = readFileSync(notFoundPath, 'utf8')
   assert.ok(content.includes('paper-panel'), '404 页面应包含羊皮纸面板')
   assert.ok(content.includes('404'), '404 页面应包含 404 标识')
-  assert.ok(content.includes('返回藏书馆首页'), '404 页面应提供返回首页按钮')
+  assert.ok(content.includes('返回大书院首页') || content.includes('返回藏书馆首页'), '404 页面应提供返回首页按钮')
   assert.ok(content.includes('shortcutList') || content.includes('快速传送'), '404 页面应提供快捷推荐')
 })
 

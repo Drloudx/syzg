@@ -306,7 +306,7 @@ test('直接访问 /#/privacy 也能看到内容', async ({ page }) => {
   await expect(page.locator('.privacy-back')).toBeVisible()
 })
 
-test('没匹配上的 hash 落到 404 迷航页，而不是空白页', async ({ page }) => {
+test('没匹配上的 hash 落到 404 迷失页，而不是空白页', async ({ page }) => {
   await page.goto('/#/definitely-not-a-route')
 
   /*
@@ -323,7 +323,7 @@ test('没匹配上的 hash 落到 404 迷航页，而不是空白页', async ({ 
   await expect(page.locator('.app-container')).toBeVisible()
 
   // 有回首页的出口，用户不会卡死在这一页
-  await expect(page.locator('.not-found-actions').getByText('返回藏书馆首页')).toBeVisible()
+  await expect(page.locator('.not-found-actions').getByText('返回大书院首页')).toBeVisible()
 
   // 地址保持原样（不重定向）—— 与 `redirect: '/'` 的旧行为相反，这是刻意的
   await expect(page).toHaveURL(/#\/definitely-not-a-route/)
