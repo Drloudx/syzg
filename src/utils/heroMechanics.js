@@ -674,7 +674,7 @@ export function buildSkillMechanics({ skillId, type, levelValue, buffDatas }) {
  * | --- | --- |
  * | 召唤物只继承 **攻击/双防/生命** 三项 | `Unit.cs:1467-1484` 的 `extendSummoner` 块 |
  * | 攻速/暴击/爆伤取自**怪物配置表**，不读召唤师 | `UnitAttribute.cs:609/613/614` |
- * | 召唤物会进入 `allHeros` | `Unit.cs:1616-1626` |
+ * | 召唤物会进入 `allHeros` | `Unit.cs:1613-1627` |
  * | 全体攻速技能遍历 `GetUnitsByTargetType` 且**不传** `canelSummon` → 含召唤物 | `XiLu_Skill2.SkillPointAction` |
  * | `canelSummon: true` 的用途是选治疗/清 buff 目标，**与攻速加成无关** | 25 处调用点逐处核对，0 处涉及攻速 |
  *
@@ -746,8 +746,13 @@ export function buildSummonMechanics(levelValue, summonMon, summonData = null, b
    */
   const bonusNotes = extendsSummoner
     ? [
-      { key: 'inherited', label: '角色继承', value: '生命 / 攻击 / 防御按上表比例' },
-      { key: 'notInherited', label: '不继承', value: '角色攻速 · 暴击率 · 暴击伤害' },
+      /*
+       * 🔴 **只列「继承什么」，不列「不继承什么」**。
+       * 源码 `Unit.cs:1368-1675` 的 `InitSummonUnitIE` 全程只读召唤师 5 个属性
+       * （`phyAtk`/`magicAtk`/`phyDef`/`magicDef`/`maxHp`，见 L1471-1482），其余一概不读。
+       * 写清这 5 项，读者自然知道别的都没有 —— 比再列一长串「不继承」更准也更短。
+       */
+      { key: 'inherited', label: '继承', value: '只继承物攻、魔攻、物防、魔防、生命（按上述比例）' },
       { key: 'teamBuff', label: '全体加成', value: '生效（召唤物计入友方单位列表）' }
     ]
     : [

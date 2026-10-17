@@ -125,11 +125,29 @@ test('🔴 继承项只有生命/攻击/防御，不含攻速/暴击/爆伤', ()
   }
 })
 
-test('「加成规则」区分「不继承」与「全体加成生效」', () => {
+/**
+ * 🔴 「加成规则」**只列继承什么，不列不继承什么**。
+ *
+ * 源码 `Unit.cs:1368-1675` 的 `InitSummonUnitIE` 全程只读召唤师 5 个属性
+ * （`phyAtk`/`magicAtk`/`phyDef`/`magicDef`/`maxHp`，见 L1471-1482），其余一概不读。
+ * 写清这 5 项，读者自然知道别的都没有 —— 比再列一长串「不继承」更准、更短。
+ */
+test('加成规则只列「继承哪些属性」，不再单列「不继承」', () => {
   const e = summonEntries.find(x => x.summon.monTypeId === '065Summon1')
   const notes = new Map(e.summon.bonusNotes.map(n => [n.key, n]))
-  assert.ok(notes.has('notInherited'), '应说明哪些不继承')
-  assert.match(notes.get('notInherited').value, /攻速|暴击/, '「不继承」应点名攻速/暴击')
+
+  assert.ok(notes.has('inherited'), '应说明继承什么')
+  const v = notes.get('inherited').value
+  for (const kw of ['物攻', '魔攻', '物防', '魔防', '生命']) {
+    assert.ok(v.includes(kw), `「继承」应点名 ${kw}：${v}`)
+  }
+  assert.match(v, /只继承/, `应写明「只继承」：${v}`)
+  // 不写项数（「5 项」是冗余表述，直接列属性名更清楚）
+  assert.ok(!/\d+\s*项/.test(v), `不该出现「N 项」：${v}`)
+
+  // 不再有独立的「不继承」条（与「只继承…」重复表达同一件事）
+  assert.ok(!notes.has('notInherited'), '不该再有单独的「不继承」条目')
+
   assert.ok(notes.has('teamBuff'), '应说明全体加成生效')
   assert.match(notes.get('teamBuff').value, /生效/)
 })
