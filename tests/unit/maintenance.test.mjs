@@ -121,6 +121,36 @@ test('changed source or target after preview prevents every planned write', t =>
   assert.equal(existsSync(f.targetRoot), false)
 })
 
+test('compress preview refuses a missing backup mirror instead of silently skipping', t => {
+  const f = fixture(t)
+  const imageRoot = join(f.directory, 'imgroot')
+  mkdirSync(join(imageRoot, 'sub'), { recursive: true })
+  writeFileSync(join(imageRoot, 'sub', 'a.png'), Buffer.alloc(4096, 7))
+  const run = args => spawnSync(process.execPath, [join(projectRoot, 'scripts/dev/compress-images.mjs'), ...args], {
+    cwd: f.directory, encoding: 'utf8'
+  })
+
+  const missing = run(['--root', imageRoot, '--backup', join(f.directory, 'nobackup')])
+  assert.equal(missing.status, 1)
+  assert.match(missing.stderr, /Backup mirror does not exist/)
+
+  const insideRoot = run(['--root', imageRoot, '--backup', imageRoot])
+  assert.equal(insideRoot.status, 1)
+  assert.match(insideRoot.stderr, /outside the processed image root/)
+
+  const mirror = join(f.directory, 'mirror')
+  const built = run(['--root', imageRoot, '--backup-to', mirror])
+  assert.equal(built.status, 0, built.stderr)
+  assert.equal(fileDigest(join(mirror, 'sub/a.png')), fileDigest(join(imageRoot, 'sub/a.png')))
+  assert.match(built.stdout, /1 candidates; 0 missing/)
+
+  // 预览不写源图；镜像内相对路径以处理根为基准（不是恒以 public/images 为基准）。
+  assert.equal(fileDigest(join(imageRoot, 'sub/a.png')), fileDigest(join(mirror, 'sub/a.png')))
+  const reused = run(['--root', imageRoot, '--backup', mirror])
+  assert.equal(reused.status, 0, reused.stderr)
+  assert.match(reused.stdout, /1 candidates; 0 missing/)
+})
+
 test('task checking from another working directory is read-only and never trims battle', t => {
   const f = fixture(t)
   for (const file of ['battle.json', 'room.json', 'condition.json', 'task.json', 'levelStage.json', 'levelRoom.json', 'area.json', 'instance.json']) {
