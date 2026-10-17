@@ -5,7 +5,7 @@
 > **何时读**：核对伤害链、属性叠加、上限或 Buff 结算时。
 > **何时更新**：公式依据（源码或配置）变化时。
 
-**核对时间**：2026-10-08（公式依据的源码核对日期为 2026-09-16，见下文）
+**核对时间**：2026-10-17（§8.5 触发粒度新增；其余公式依据的源码核对日期为 2026-09-16，见下文）
 
 本文按本地游戏源码的实际调用链整理，覆盖属性生成、普通攻击、技能、增减伤、防御穿透、暴击浮动、等级压制、元素抗性、Buff、护盾、回复及 PvP 差异。
 
@@ -441,6 +441,97 @@ HOT 每次原始回复 = hotBase + 施加者当前魔攻/最大生命 × muPower
 `CombatPanel.Repel` 中结果 ≤0 不击退；这里没有统一上限 setter。负击退抗性可能放大距离。另一路 `Unit.RepelIE` 也调整击退力，应按具体调用核对。
 
 霸体 Buff 会改变 baTi 计数，但本地 `CheckBaTi` 只找到声明，未找到实际调用。不能只因存在该函数就确认所有眩晕/击退添加前都已做霸体过滤。闪避和反击的伤害取消位置见第 4.6 节。
+
+### 8.5 触发粒度：多段伤害到底算几次
+
+`buff.para.detectType` 决定「什么时候判定」，但**同一句话在不同类型下次数可以差 10 倍**。
+判据只有一条：**触发点写在哪个函数里**。
+
+| 粒度 | 触发点 | 典型类型 | 多段技能时的次数 |
+| --- | --- | --- | --- |
+| **动作级** | `Unit.PlaySkill` / `SkillBase.SkillConsume` | `normalAtk`、`doSkill`、`spSkill`、`atkAndDoSkill`、`atkTm`、`skillConsume`、`doSkillCheckFri` | **1 次**（与刀数/段数无关） |
+| **每段伤害级** | `CombatPanel.CalculateMaster` | `normalAtkDam`、`normalAtkAddNewDam`、`skillAtkDam`、`beHit`、`damCrit`、`atkDamElement`、`normalAtkAndSkillDam` 等 | **每段各 1 次** |
+| **周期级** | `BuffControl.Update` | `spTime` | 按时间间隔，与段数无关 |
+| **其它事件** | 死亡 / 换房 / 回复 / 子弹创建 | `dead`、`roomChange`、`everyReply`、`bulletAdd`、`checkJob6` | 按事件 |
+
+#### 三个最容易判错的对照
+
+| 特性 | `detectType` | 为什么 |
+| --- | --- | --- |
+| 角布林「累计 3 次普攻」 | `normalAtk` | 在 `Unit.cs:2452`，一次普攻**动作**只触发一次；扔 2 把刀也只算 1 次 |
+| 源泉猫「每次普攻叠攻速」 | `normalAtk` | 同上，一次普攻动作只叠 1 层 |
+| 元素电荷「普攻充能」 | `normalAtk` | 同上，只充 1 次 |
+| 囊袋恐兽「普攻概率附伤减速」 | `normalAtkDam` | 在 `CombatPanel.cs:5747`，**每段**各判一次；两把刀都命中就判 2 次 |
+| 提灯妖精「20% 当前生命附伤」 | `normalAtkAddNewDam` | 在 `CombatPanel.cs:5994`，**每段结算后**各判一次 |
+| 利齿恐兽「连击技巧」 | `skillAtkDam` | 在 `CombatPanel.cs:5811`，每次技能伤害都叠 1 层，封顶 `maxLayPara` |
+
+#### 关键分界：`normalAtk` 不在伤害函数里
+
+```csharp
+// Unit.cs:2450 —— 一次普攻动作，只走一遍
+if (skills[idx].info.skillType == SkillType.NormolAtk) {
+    CheckDoBuff(BuffDetectType.normalAtk);
+    CheckDoBuff(BuffDetectType.atkAndDoSkill, "atk");
+    CheckDoBuff(BuffDetectType.atkTm);
+}
+```
+
+`normalAtkDam` / `normalAtkAddNewDam` 则在 `CalculateMaster` 内，而 `CalculateMaster` **每把刀、每段伤害各调用一次**（梅莉莉 `Hero027Skill1.cs:178-199` 就是逐刀调）。所以名字里带 `Dam` 的才是按段算。
+
+#### 顺序差异：`normalAtkDam` 在伤害前，`normalAtkAddNewDam` 在结算后
+
+同一函数内两者时机不同，影响「本次伤害是否吃到自身加成」：
+
+| 类型 | 行号 | 时机 |
+| --- | --- | --- |
+| `normalAtkDam` | `CombatPanel.cs:5747` | 原始伤害计算**之前**（`CalculateFinalDamage` 在 L5751） |
+| `normalAtkAddNewDam` | `CombatPanel.cs:5994` | 伤害结算、扣血**之后** |
+
+`normalAtkDam` 还受 `damageInfo.ignoreBuffCheck_normalAtkDam` 门禁；置位时整条跳过。
+
+#### 计数与上限
+
+- 动作级类型的层数 = **普攻次数**，与目标数量、刀数都无关。
+- 每段伤害级类型 = **实际命中的段数**；打多个敌人时分别计数。
+- 伤害衰减（`damDecRate`）**不影响触发次数**，只影响伤害值。
+- 叠层上限由 `maxLayPara` 指定，未给默认 1（`BuffBase.cs:244-255`）。
+
+#### 宠物特性的实际分布（236 条特性 / 16 种 detectType）
+
+| `detectType` | 粒度 | 条数 | 示例 |
+| --- | --- | --- | --- |
+| `normalAtk` | 动作级 | 28 | 角布林 / 源泉猫 / 元素电荷 |
+| `skillConsume` | 动作级 | 21 | 游离灯火 / 魔力护盾 |
+| `doSkillCheckFri` | 动作级 | 14 | 地灵汇聚 |
+| `doSkill` | 动作级 | 7 | 射水杜吉芽 |
+| `atkAndDoSkill` | 动作级 | 7 | 星云史莱姆 |
+| `beHit` | 每段伤害级 | 28 | 石像鬼 / 绿色史莱姆 |
+| `skillAtkDam` | 每段伤害级 | 14 | 利齿恐兽 / 冰雪封印 |
+| `atkDamElement` | 每段伤害级 | 14 | 黑甲龙 |
+| `normalAtkDam` | 每段伤害级 | 7 | 囊袋恐兽 |
+| `normalAtkAddNewDam` | 每段伤害级 | 7 | 提灯妖精 |
+| `damCrit` | 每段伤害级 | 7 | 鱼布林 |
+| `checkPetBuff09504` | 每段伤害级 | 7 | 灵巧蜂刺 |
+| `everyReply` | 其它事件（每次回复 HP） | 14 | 秋风妖精 |
+| `spTime` | 周期级 | 7 | 顽劣灯火 |
+| `checkJob6` | 其它事件 | 7 | 风青龙 |
+| `none` | 其它事件 | 47 | 扬沙芙洛波 / 吵吵蕈 |
+
+条数为 `buff.json` 中 `buffEffect` 以 `pet_` 开头的记录逐条计数（同一特性按宠物等级各有 7 条）。
+`none` 的 47 条靠 `buffEffect` 自身 `StartAction` 生效，不参与事件判定。
+
+#### 一句话判据
+
+**看 `detectType` 名字里有没有 `Dam`，再看它在不在 `CalculateMaster` 里。**
+
+| 名字形态 | 例子 | 结论 |
+| --- | --- | --- |
+| 纯动作名 | `normalAtk`、`doSkill`、`spSkill`、`atkAndDoSkill` | **动作级**，多段算 1 次 |
+| 带 `Dam` | `normalAtkDam`、`skillAtkDam`、`normalAtkAddNewDam` | **每段伤害级** |
+| 带 `beHit` | `beHit`、`beHitByNormalAtk`、`beHitByNorAtk` | **每段伤害级**（被打方视角） |
+| 带 `Crit` | `damCrit`、`normalAtkCrit` | **每段伤害级**，且只在暴击时通过 |
+
+反例提醒：`atk`（`CombatPanel.cs:5758`）虽是短名，却在 `CalculateMaster` 内，属每段伤害级；`skillAtk`（L5963）同样按段。**名字只是线索，必须落到函数位置**。
 
 ## 9. 怪物与宠物生成属性
 
