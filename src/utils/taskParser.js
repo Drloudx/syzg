@@ -51,6 +51,7 @@ export function buildTaskData(maps) {
     roomCollectTypeJson,
     newOrderJson,
     heroJson,
+    eventRecordJson,
     dialogIndexJson,
     dialogSegmentsJson
   } = maps
@@ -98,11 +99,51 @@ export function buildTaskData(maps) {
     }
   }
 
+  /*
+   * 贸易小车 NPC 名：`newOrder.goods[].tip` 的格式是「**名字**，货品1，货品2…」
+   * （个别条目前面还带等级，如「lv1，比绍，木板+石砖」）。
+   *
+   * 🔴 取 `split(',')[0]` 会拿到 `lv1` —— 那不是名字。判据是**跳过等级段**：
+   * 形如 `lv数字` / 纯数字的段不是名字，取其后第一个非货品段。
+   * 名字里可能带引号（如 `“双刃”费萨`），保留原样。
+   */
   const newOrderNpc = {}
   for (const g of Object.values(newOrderGoods)) {
-    if (g && g.charaImg && g.tip) {
-      newOrderNpc[g.charaImg] = String(g.tip).split(/[,，]/)[0].trim()
-    }
+    if (!g || !g.charaImg || !g.tip) continue
+    const segments = String(g.tip).split(/[,，]/).map(s => s.trim()).filter(Boolean)
+    const name = segments.find(s => !/^lv\s*\d+$/i.test(s) && !/^\d+$/.test(s))
+    if (name) newOrderNpc[g.charaImg] = name
+  }
+
+  /*
+   * `tag` 步骤的官方描述：`eventRecord.eventRecords[tag].desc`
+   * （如 `rolelv5` → 「任意角色升到5级」）。官方 `desc` 存在时优先于手写的 `TAG_LABELS`。
+   */
+  const eventRecordDesc = {}
+  for (const [tag, rec] of Object.entries((eventRecordJson?.datas || eventRecordJson || {}).eventRecords || {})) {
+    const desc = (rec && rec.desc) || ''
+    if (tag && desc) eventRecordDesc[tag] = desc
+  }
+
+  /*
+   * 已收录的剧情 id 集合 —— 用来在构建期标出「原表引用了但剧情未收录」的条目。
+   *
+   * 由调用方传入（Node 构建脚本读 `public/data/taskDialogs/` 目录名）。
+   * 为空（浏览器端或未维护该目录的环境）时**不做缺失判断**，条目按正常处理 ——
+   * 宁可显示展开按钮也不要误报缺失。
+   */
+  const dialogIds = maps.dialogIds instanceof Set && maps.dialogIds.size ? maps.dialogIds : null
+
+  /**
+   * 给剧情元数据打「未收录」标记。
+   *
+   * 原表引用了但 `public/data/taskDialogs/` 里没有对应文件时置 `missing: true`
+   * （实测 25 个，如 `wt_c5_01_1`、`fav_hero_046_2_0`）。
+   * `dialogIds` 为空时不做判断 —— 宁可显示展开按钮也不要误报缺失。
+   */
+  const markDialogMissing = meta => {
+    if (meta && !meta.isText && dialogIds && !dialogIds.has(meta.raw)) meta.missing = true
+    return meta
   }
 
   const instBattleIndex = {}
@@ -116,6 +157,25 @@ export function buildTaskData(maps) {
         }
       }
     }
+  }
+
+  /**
+   * 战斗 id → 可读名，**多表回退**。
+   *
+   * `instBattleIndex` 只覆盖 `instance.json` 里登记过的战斗。任务的 `stepPosition`
+   * 还引用了未登记的（实测 4 条：`yzdj_1`/`yzdj_4`/`yzdj_5`，`instanceId` 写的是
+   * 不存在的 `dungeonB`），原先直接显示裸 id。
+   *
+   * 回退到 `battle.json` 的 `name`（如 `yzdj_1` → 「地窖深处一层（弃）」）——
+   * 名称里的「（弃）/（停用）」是原表自带标记，照实显示，玩家能看出这是废弃关卡。
+   */
+  const battleLabel = (battleId) => {
+    if (!battleId) return null
+    const fromInstance = instBattleIndex[battleId]
+    if (fromInstance && fromInstance.battleName) return fromInstance.battleName
+    const fromBattle = battleMap[battleId]
+    if (fromBattle && fromBattle.name) return fromBattle.name
+    return null
   }
 
   const taskNameMap = {}
@@ -203,10 +263,35 @@ export function buildTaskData(maps) {
     return null
   }
 
+  /**
+   * 接取 NPC 的**名字**。
+   *
+   * 两类 `getTask.npc` 的 `title` 语义**不同**（实测 129 条）：
+   *
+   * | 类别 | 条数 | `title` 是 | 例 |
+   * | --- | --- | --- | --- |
+   * | 贸易小车 `cart_at_npc_*` | 57 | **NPC 名字** | `契约官艾尔莎`、`侍者维丝` |
+   * | 场景 NPC（`xxx_areaN_M` 等） | 72 | **搭话台词 / 旁白** | `（蕈人在向你们招手。）`、`请问……` |
+   *
+   * 所以名字按类别取：
+   *   · 小车 → `title` 即名字（源码 `DailyTaskPanel.cs:248` 的 `taskNpcName.text`）；
+   *   · 场景 NPC → `title` 是台词，名字去 `room.npcList[].npcName` 查（`npcUidName`）。
+   *
+   * 台词本身（`title`）不丢：页面的「交互对话」行按同一个判据决定显不显示。
+   */
+  const npcNameOf = (id, title) => {
+    if (!id) return null
+    const t = String(title || '').trim()
+    if (id.startsWith('cart_at_npc_') && t) return { name: t, kind: 'cart' }
+    if (npcUidName[id]) return { name: npcUidName[id], kind: 'scene' }
+    if (t) return { name: t, kind: 'cart' }
+    return null
+  }
+
   const resolveNpc = (id, stepName) => {
     if (!id) return null
-    if (npcUidName[id]) return { name: npcUidName[id], id }
     if (newOrderNpc[id]) return { name: newOrderNpc[id], id }
+    if (npcUidName[id]) return { name: npcUidName[id], id }
     const hn = heroNpcName(id)
     if (hn) return { name: hn, id }
     const extracted = extractNameFromStep(stepName, id)
@@ -323,9 +408,19 @@ export function buildTaskData(maps) {
       if (dName && dName !== raw && dName !== '空') return dName.replace(/\s+/g, ' ').trim()
       return (fallback || s.stepName || '').replace(/\s+/g, ' ').trim()
     }
-    const dlgMeta = (raw, fallback = '') => resolveDialogMeta(raw, cleanName(raw, fallback))
-    // NPC：匹配成功只显示名字；匹配失败显示“未知（id）”
-    const npcText = (npc) => (npc && (npc.name === '未知' ? `${npc.name}（${npc.id}）` : npc.name)) || null
+    const dlgMeta = (raw, fallback = '') => markDialogMissing(resolveDialogMeta(raw, cleanName(raw, fallback)))
+    /*
+     * NPC 文本：**查不到名字就不产出这一行**。
+     *
+     * 实测 25 个 uid（`baduer_yzdq_7`、`ke_sldsd_21`、`NPC031` …）在任何表里都没有名字：
+     * `room.npcList` 无该 uid、其所在房间在 `room.json` 里不存在、`npc.json` 只有立绘字段。
+     * 原先把内部 id 显示成「未知（ke_sldsd_21）」，玩家看不懂且暴露实现细节。
+     *
+     * 依据：游戏任务界面（`TaskPanel.cs:385-386`）只显示 `stepName` + `stepDes`，
+     * **步骤级根本没有「NPC」这一行**，所以查不到时省略与游戏行为一致。
+     * 返回 `null` 后由 `push` 跳过，不产生空行。
+     */
+    const npcText = (npc) => (npc && npc.name && npc.name !== '未知' ? npc.name : null)
 
     const push = (label, value) => {
       if (value !== null && value !== undefined && value !== '' && value !== '—') {
@@ -346,7 +441,7 @@ export function buildTaskData(maps) {
         const inst = instanceMap[pos[1]]
         push('副本', inst ? inst.name : pos[1])
         const ib = instBattleIndex[pos[2]]
-        push('副本关卡', ib ? ib.battleName : pos[2])
+        push('副本关卡', battleLabel(pos[2]))
       }
     }
 
@@ -405,10 +500,15 @@ export function buildTaskData(maps) {
       case 'passInstance': {
         const pos0 = pos[0]
         if (pos0 === 'battle') {
+          // 副本名同样多表回退：`stepPosition[1]` 可能是未登记的实例 id（如 `dungeonB`），
+          // 此时退回该战斗在 `battle.json` 里的 `category` 归属，避免显示裸 id。
           const inst = instanceMap[pos[1]]
-          push('副本', inst ? inst.name : pos[1])
-          const ib = instBattleIndex[pos[2]]
-          push('副本关卡', ib ? ib.battleName : pos[2])
+          const battle = battleMap[pos[2]]
+          const instLabel = inst
+            ? inst.name
+            : (battle && battle.category ? String(battle.category[1] || battle.category[0] || '') : '')
+          push('副本', instLabel || null)
+          push('副本关卡', battleLabel(pos[2]))
         } else if (pos0 === 'stage') {
           const loc = resolveLocation(pos[1])
           push('关卡', loc ? loc.label : pos[1])
@@ -431,7 +531,18 @@ export function buildTaskData(maps) {
         break
       }
       case 'passStage': {
-        // 特殊：只显示名称、类型、剧情与描述，不显示关卡/位置/解锁
+        /*
+         * 与 `gotoStage` **字段相同**（`stageId` + `dialog`），位置走同一条 `pushPos()`。
+         *
+         * 🔴 源码 `TaskPanel.cs:505-521` 的 `ShowCurrentTaskGo` 对**所有** stepType 通用：
+         * `stepData.stepPosition[0]` 是种类（`room`/`stage`/`battle`），`[1]` 是 id，
+         * `case "room"` 分支取 `GetRoomLevelDataById(stepTypeId)` 显示「区域/房间」。
+         * `passStage` 的 `stepPosition` 正是 `["room", "ydzb_5"]` —— 游戏里**显示位置**。
+         *
+         * 旧注释写「不显示关卡/位置」与源码不符，已改为与 `gotoStage` 一致。
+         * 区别只在完成条件（`CheckPassStage` 要通过记录，`gotoStage` 进入即可），展示相同。
+         */
+        pushPos()
         if (p.dialog) dialogs.push({ label: '剧情', meta: dlgMeta(p.dialog) })
         break
       }
@@ -491,8 +602,9 @@ export function buildTaskData(maps) {
         push('NPC', npcText(npc))
         pushPos()
         push('交互对话', p.title)
-        if (p.dialog0) dialogs.push({ label: '不满足条件', meta: resolveDialogMeta(p.dialog0) })
-        if (p.dialog1) dialogs.push({ label: '满足条件', meta: resolveDialogMeta(p.dialog1) })
+        // 用 dlgMeta 而非 resolveDialogMeta：前者会打「未收录」标记（这两条实测各有 5 个缺失）
+        if (p.dialog0) dialogs.push({ label: '不满足条件', meta: dlgMeta(p.dialog0) })
+        if (p.dialog1) dialogs.push({ label: '满足条件', meta: dlgMeta(p.dialog1) })
         break
       }
       case 'getItem': {
@@ -546,7 +658,8 @@ export function buildTaskData(maps) {
         break
       }
       case 'tag': {
-        push('目标', TAG_LABELS[p.tag] ? TAG_LABELS[p.tag] : p.tag)
+        // 官方 desc 优先（`eventRecord.eventRecords[tag].desc`），手写 TAG_LABELS 兜底
+        push('目标', eventRecordDesc[p.tag] || TAG_LABELS[p.tag] || p.tag)
         break
       }
       case 'openAreaShow': {
@@ -613,7 +726,11 @@ export function buildTaskData(maps) {
     const subLabel = type === 3 && subRaw ? formatEntrustLabel(subRaw, areaMap) : subRaw || '其他'
 
     const getTask = t.getTask || {}
-    const getTaskDialog = getTask.dialog ? resolveDialogMeta(getTask.dialog, (dialogIndex[getTask.dialog] || '').replace(/\s+/g, ' ').trim()) : null
+    const getTaskDialog = markDialogMissing(
+      getTask.dialog
+        ? resolveDialogMeta(getTask.dialog, (dialogIndex[getTask.dialog] || '').replace(/\s+/g, ' ').trim())
+        : null
+    )
     const parsedSteps = arr(t.steps).map((s, i) => parseStep(s, i + 1))
 
     let startLocation = null
@@ -627,10 +744,38 @@ export function buildTaskData(maps) {
       else if (battleRow) startLocation = battleRow.value
     }
 
+    /*
+     * 接取 NPC：名字与台词**分开取**。
+     *
+     *   · 名字（`getTask.npc.name`）→ 小车 NPC 用 `title`，场景 NPC 用 room 里的 `npcName`；
+     *   · 台词（`getTask.npc.line`）→ 只有**场景 NPC** 才有（`title` 就是那句搭话/旁白），
+     *     小车 NPC 的 `title` 已经是名字，再当台词显示就会与上一行重复。
+     *
+     * 名字解析不出时（实测 7 个 uid 无任何名字来源）`name` 为 `null` —— 页面据此**不渲染这一行**，
+     * 不显示「未知（内部 id）」。台词与名字相互独立：名字查不到但 `title` 有内容时，
+     * 台词照常显示（它是玩家能看懂的信息）。
+     */
+    const getTaskTitle = getTask.title || ''
+    const npcNameInfo = getTask.npc ? npcNameOf(getTask.npc, getTaskTitle) : null
+    const getTaskNpcName = npcNameInfo
+      ? npcNameInfo.name
+      : (getTask.npc ? resolveNpc(getTask.npc).name : null)
+    const hasGetTaskNpcName = !!getTaskNpcName && getTaskNpcName !== '未知'
+    // 场景 NPC 的 title 才是"交互对话"；小车 NPC 的 title 是名字，不重复显示
+    const getTaskNpcLine = npcNameInfo?.kind === 'scene' ? getTaskTitle : ''
+
+    /*
+     * 起始 NPC：仅当第 1 步有**可读的** NPC 行时才取。
+     *
+     * `getTask.npc` 有名字时用它；否则退回第 1 步的 NPC 行（已由 `npcText` 过滤掉查不到的）。
+     * 两者都没有名字就保持 `null` —— 页面不渲染该行。
+     */
     let startNpc = null
-    if (!getTask.npc && firstStep && firstStep.detail) {
+    if (getTask.npc && hasGetTaskNpcName) {
+      startNpc = { name: getTaskNpcName, id: getTask.npc }
+    } else if (firstStep && firstStep.detail) {
       const npcRow = firstStep.detail.find((d) => d.label === 'NPC')
-      if (npcRow && npcRow.value && npcRow.value !== '未知') {
+      if (npcRow && npcRow.value) {
         startNpc = { name: npcRow.value, id: t.steps?.[0]?.stepPara?.npc || '' }
       }
     }
@@ -651,8 +796,17 @@ export function buildTaskData(maps) {
       startLocation,
       startNpc,
       getTask: {
-        npc: getTask.npc ? resolveNpc(getTask.npc) : null,
-        title: getTask.title || '',
+        // 名字查不到时 `name` 为 `null`（页面据此不渲染「接取 NPC」行）；
+        // `line`（交互对话）独立保留 —— 它是玩家可读的台词，不受名字是否解析成功影响。
+        npc: getTask.npc
+          ? {
+            name: hasGetTaskNpcName ? getTaskNpcName : null,
+            id: getTask.npc,
+            line: getTaskNpcLine,
+            kind: npcNameInfo?.kind || ''
+          }
+          : null,
+        title: getTaskTitle,
         dialog: getTaskDialog,
         condition: parseCondition(getTask.condition)
       },

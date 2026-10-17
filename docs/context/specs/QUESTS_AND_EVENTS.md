@@ -29,6 +29,74 @@
 接取 NPC / 条件 / 对话、后续任务、解锁关系、奖励、逐步目标。
 步骤可展开 NPC、怪物、道具与剧情；**非正式怪物只显示名称/头像，不生成错误怪物详情链接**。
 
+#### 接取 NPC 与交互对话
+
+两类 `getTask.npc` 的 `getTask.title` **语义不同**，两行必须分开取值：
+
+| 类别 | `title` 是 | 名字来源 | 「交互对话」 |
+| --- | --- | --- | --- |
+| 贸易小车 `cart_at_npc_*` | **NPC 名字** | `title` | **不显示**（再显示就与上一行重复） |
+| 场景 NPC | **搭话台词/旁白** | `room.battleData.npcList[].npcName` | `title` |
+
+- 依据源码 `DailyTaskPanel.cs:244-249`：`taskNpcName.text = getTask.title`，而 `getTask.npc` **只用于加载立绘**（`Texture/UIPanel/FreightPanel/<npc>`），**不是数据 id** —— 拿它当 id 去查名字只会得到「未知」。
+- 场景 NPC 的 `title` 多为旁白（如「（蕈人在向你们招手。）」），照实展示。
+- 「交互对话」这个标签在**任务步骤**里也有一处（回报 NPC 时的那句话），两者是不同来源，不要混。
+
+#### 解析不出名字时省略该行
+
+- 查不到名字的 NPC **不产出该行**，不显示「未知（内部 id）」。
+- 判据：`name` 为 `null` 或 `'未知'`；页面 `npcText()` 返回空串，`v-if` 不渲染。
+- 实测 45 处（25 个 uid，如 `baduer_yzdq_7`、`ke_sldsd_21`、`NPC031`）在任何表里都无名字：`room.npcList` 无该 uid、其所在房间不在 `room.json`、`npc.json` 只有立绘字段（无 name）。
+- 成因是**旧版内容引用了已移除的资源**：45 处里 43 处属 `main_*`/`sub_*` 旧系列（39 个 `main_*` 全部 `close=true`，页面不显示），2 处属早期遗留任务 `task_100100`。
+- 依据源码 `TaskPanel.cs:385-386`：任务界面只显示 `stepName` + `stepDes`，**步骤级没有 NPC 行** —— 省略与游戏行为一致。
+- 「交互对话」`line` **独立于名字**：名字解析不出但 `title` 有内容时，台词照常显示。
+- 核查口径：以「在架任务」为准（`close=false`），当前 **0 处缺失**。
+
+回归：`tests/unit/task-display.test.mjs`、`tests/ui/task-npc-name.spec.js`。
+
+#### 步骤类型的中文名
+
+判据取自源码 `TaskData.cs` 各 `CheckTaskStep*` 的**完成条件**，不是字段名（字段名会骗人）。
+
+| stepType | 中文名 | 完成条件（源码） |
+| --- | --- | --- |
+| `talk` | 与NPC对话 | 与指定 npc 对话 |
+| `npcTalkBattle` | 与NPC对话进入副本 | 对话后进入 `battleId` |
+| `passInstance` | **通关战斗** | `battleId == battleId` —— 打通某场战斗 |
+| `passStage` | **通过区域** | `CheckPassStage(stageId)` —— 需有通过记录 |
+| `gotoStage` | 前往指定场景 | `stageId == levelRoomId` —— **进入**房间即完成 |
+| `hunter` | 狩猎怪物 | `monTypeIds` 按怪物**种类**计数 |
+| `hunterUid` | 狩猎指定目标 | `uid` 指向场景里的**特定个体** |
+| `getItemNpc` | 提交道具给NPC | 提交 `items` 给 npc |
+| `getItem` | 获取物品 | 持有 `itemTypeId` 达 `num` |
+| `collect` | 地图采集 | 采集 `collectIds` 达 `num` |
+| `tag` | 完成指定行为 | `eventRecord` 记录键 |
+| `openAreaShow` | 解锁区域 | 解锁 `areaTypeId` |
+| `gotoCamp` | 返回营地 | 回到营地 |
+| `level` | 达到等级 | 达到 `level` |
+| `sellPet` | 卖出魔物 | 卖出 `num` 只 |
+
+- 🔴 `passInstance` **不能叫「通关副本」**：124 个 `battleId` 里 78 个的 `battle.category` 是 `['存档','章节关卡']`（如 `c4_5_a`「4-5 庄园保卫战」），副本只有 42 个。
+- 🔴 `passStage` 与 `gotoStage` **字段完全相同**（`stageId` + `dialog`），区别只在完成条件：前者要「通过记录」，后者「进入即可」。两者都指向 `levelRoom`（场景房间），不是关卡。
+- 🔴 `passStage` **显示位置**（与 `gotoStage` 相同）：源码 `TaskPanel.cs:505-521` 的 `ShowCurrentTaskGo` 对所有 stepType 通用，按 `stepPosition[0]` 分 `room`/`stage`/`battle` 三支。
+- `tag` 的目标文案**官方优先**：`eventRecord.eventRecords[tag].desc`（如 `rolelv5` → 「任意角色升到5级」），`TAG_LABELS` 兜底（22 个在用 tag 里 9 个官方无 desc）。
+
+不展示的原表字段（核实后无展示价值）：
+
+| 字段 | 理由 |
+| --- | --- |
+| `autoFinish` / `autoTrack` | 客户端行为开关，对玩家无意义（303 个 `autoFinish=true`） |
+| `nextTask` / `editTime` | 原表无有效数据（全空 / 全为 0） |
+| `getItem` 的物品名 | 已走 `submitItems` 展示（带图标与数量），不在 `detail` 里重复 |
+
+#### 剧情「未收录」的标记
+
+- 原表引用了但 `public/data/taskDialogs/` 无对应文件时，构建期在 `meta.missing` 打标（实测 25 个 id）。
+- 页面据此显示「（该剧情未收录）」并**不渲染展开按钮**，不暴露内部 id。
+- `dialogIds` 传入为空时**不做判断** —— 宁可显示展开按钮也不要误报。
+
+回归：`tests/unit/task-display.test.mjs`。
+
 ### 两种"后续"必须分开
 
 | 字段 | 含义 |

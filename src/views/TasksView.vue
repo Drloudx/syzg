@@ -132,15 +132,23 @@
 
         <!-- 接取信息与背景 -->
         <UiSection title="接取信息与背景">
-          <UiInfoRow v-if="selectedTask.getTask.npc" label="接取 NPC" :value="npcText(selectedTask.getTask.npc)" />
-          <UiInfoRow v-else-if="selectedTask.startNpc" label="起始 NPC" :value="npcText(selectedTask.startNpc)" />
+          <!--
+            NPC 行只在**解析出名字**时渲染。
+            查不到名字的 uid（实测 25 个）不再显示「未知（内部 id）」—— 游戏任务界面
+            （`TaskPanel.cs:385-386`）只显示步骤名与描述，步骤级本就没有 NPC 行。
+          -->
+          <UiInfoRow v-if="npcText(selectedTask.getTask.npc)" label="接取 NPC" :value="npcText(selectedTask.getTask.npc)" />
+          <UiInfoRow v-else-if="npcText(selectedTask.startNpc)" label="起始 NPC" :value="npcText(selectedTask.startNpc)" />
           <UiInfoRow v-if="selectedTask.startLocation" label="起始地点" :value="selectedTask.startLocation" />
           <UiInfoRow label="接取条件" :value="selectedTask.getTask.condition" />
-          <UiInfoRow v-if="selectedTask.getTask.title" label="交互对话" :value="selectedTask.getTask.title" />
+          <!-- 交互对话：场景 NPC 搭话时的那句话（小车 NPC 的 title 已是名字，不重复显示） -->
+          <UiInfoRow v-if="selectedTask.getTask.npc?.line" label="交互对话" :value="selectedTask.getTask.npc.line" />
           <div v-if="selectedTask.getTask.dialog" class="get-task-dialog-row">
             <div class="step-dialog-header">
               <span class="step-dialog-label">任务目标</span>
-              <div v-if="!selectedTask.getTask.dialog.isText" class="dialog-actions">
+              <!-- 剧情未收录：不渲染展开按钮，也不显示内部 id -->
+              <span v-if="selectedTask.getTask.dialog.missing" class="dialog-missing">（该剧情未收录）</span>
+              <div v-else-if="!selectedTask.getTask.dialog.isText" class="dialog-actions">
                 <UiButton variant="secondary" size="sm" @click="toggleDialog('getTask', selectedTask.getTask.dialog.raw)">
                   {{ dialogOpen['getTask'] ? '▲ 收起剧情文本' : '▼ 展开剧情文本' }}
                 </UiButton>
@@ -277,7 +285,11 @@
                   </span>
                 </UiInfoRow>
 
-                <UiInfoRow v-if="step.des" label="步骤描述" :value="step.des" />
+                <!--
+                  「步骤描述」与标题重复时不显示：实测 25 条委托的 `stepName` 与 `stepDes`
+                  在原表里就是同一句（「向契约官艾尔莎回报。」），标题已显示该内容，再列一遍是噪音。
+                -->
+                <UiInfoRow v-if="step.des && step.des !== step.name" label="步骤描述" :value="step.des" />
 
                 <div
                   v-for="(dg, dgIdx) in step.dialogs"
@@ -287,7 +299,9 @@
                 >
                   <div class="step-dialog-header">
                     <span class="step-dialog-label">{{ dg.label }}</span>
-                    <div v-if="!dg.meta.isText" class="dialog-actions">
+                    <!-- 剧情未收录：不渲染展开按钮，也不显示内部 id -->
+                    <span v-if="dg.meta.missing" class="dialog-missing">（该剧情未收录）</span>
+                    <div v-else-if="!dg.meta.isText" class="dialog-actions">
                       <UiButton variant="secondary" size="sm" @click="toggleDialog(sIdx + ':' + dgIdx, dg.meta.raw)">
                         {{ dialogOpen[sIdx + ':' + dgIdx] ? '▲ 收起剧情文本' : '▼ 展开剧情文本' }}
                       </UiButton>
@@ -502,9 +516,15 @@ const currentSubOptions = computed(() => {
     .filter(opt => !isBlacklisted(opt.label ?? opt.key ?? opt))
 })
 
+/**
+ * NPC 行的显示文本；**查不到名字时返回空串**，调用方据此不渲染该行。
+ *
+ * 不再显示「未知（内部 id）」：那些 uid（`ke_sldsd_21`、`NPC031` …）在任何表里都没有名字，
+ * 展示内部 id 对玩家无意义。游戏任务界面也不显示 NPC 名（`TaskPanel.cs:385-386`）。
+ */
 const npcText = (npc) => {
-  if (!npc) return ''
-  return npc.name === '未知' ? `${npc.name}（${npc.id}）` : npc.name
+  if (!npc || !npc.name || npc.name === '未知') return ''
+  return npc.name
 }
 
 const filteredTasks = computed(() => {
@@ -1055,6 +1075,11 @@ watch(
   word-break: break-word;
 }
 .dialog-loading {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+/* 原表引用了但剧情未收录（实测 25 条）：不显示内部 id，也不给展开按钮 */
+.dialog-missing {
   font-size: 12px;
   color: var(--text-muted);
 }

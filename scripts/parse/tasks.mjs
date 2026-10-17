@@ -32,6 +32,21 @@ function readTaskDialogScripts() {
   return scripts
 }
 
+/**
+ * 已收录的剧情 id 集合（`public/data/taskDialogs/` 下的文件名）。
+ *
+ * 传给解析器用于在构建期标出「原表引用了但剧情未收录」的条目（实测 25 个），
+ * 页面据此显示「（该剧情未收录）」且不渲染展开按钮 —— 避免把内部 id 暴露给玩家。
+ */
+function readDialogIdSet() {
+  const ids = new Set()
+  if (!existsSync(TASK_DIALOG_DIR)) return ids
+  for (const name of readdirSync(TASK_DIALOG_DIR)) {
+    if (name.endsWith('.json')) ids.add(name.slice(0, -'.json'.length))
+  }
+  return ids
+}
+
 export function buildTasksFile() {
   const maps = {
     taskJson: readJson('task.json'),
@@ -50,8 +65,11 @@ export function buildTasksFile() {
     roomCollectTypeJson: readJson('roomCollectType.json'),
     newOrderJson: readJson('newOrder.json'),
     heroJson: readJson('hero/hero.json'),
+    // `tag` 步骤的 `stepPara.tag` 是事件记录键，可读描述在 eventRecord 的 `desc` 里
+    eventRecordJson: readJson('eventRecord.json'),
     dialogIndexJson: readJson('parsed/dialogIndex.json'),
-    dialogSegmentsJson: readJson('parsed/dialogSegments.json')
+    dialogSegmentsJson: readJson('parsed/dialogSegments.json'),
+    dialogIds: readDialogIdSet()
   }
   const data = buildTaskData(maps)
   return { file: 'parsed/tasks.json', data }

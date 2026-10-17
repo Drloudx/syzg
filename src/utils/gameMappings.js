@@ -8,22 +8,36 @@
 export const TASK_TYPE_LABELS = { 1: '主线', 2: '支线', 3: '委托', 4: '伙伴', 5: '活动' }
 export const TASK_TYPE_ORDER = { 1: 0, 2: 1, 3: 2, 4: 3, 5: 4 }
 
-// ---------- 步骤类型 ----------
+/*
+ * ---------- 步骤类型中文名 ----------
+ *
+ * 依据：源码 `TaskData.cs` 各 `CheckTaskStep*` 的**完成条件**（不是字段名，字段名会骗人）：
+ *   · `passStage`     → `CheckPassStage(stageId)`，需有**通过记录**，目标是 `levelRoom`（场景房间）
+ *   · `gotoStage`     → `stageId == levelRoomId`，**进入**房间即完成
+ *   · `passInstance`  → `battleId == battleId`，打通某场战斗（含副本与章节关卡两类）
+ *   · `hunter`        → `monTypeIds`（按怪物**种类**计数，可含 `_elite`/`_boss`）
+ *   · `hunterUid`     → `uid`（场景里的**特定个体**，如 `mon_s_4_6`）
+ *   · `tag`           → `eventRecordConf` 的记录键，`desc` 是该行为的可读描述
+ *
+ * 🔴 `passInstance` 不叫「通关副本」：实测 124 个 battleId 里 78 个的
+ * `battle.category` 是 `['存档','章节关卡']`（如 `c4_5_a`「4-5 庄园保卫战」），只有 42 个是副本。
+ * 统一叫「通关副本」会让 78 条章节关卡被误标。
+ */
 export const STEP_TYPE_NAMES = {
   talk: '与NPC对话',
   npcTalkBattle: '与NPC对话进入副本',
-  passInstance: '通关副本',
-  passStage: '通关关卡',
+  passInstance: '通关战斗',
+  passStage: '通过区域',
   hunter: '狩猎怪物',
-  hunterUid: '狩猎精英/BOSS',
+  hunterUid: '狩猎指定目标',
   getItemNpc: '提交道具给NPC',
   getItem: '获取物品',
   collect: '地图采集',
   gotoStage: '前往指定场景',
   gotoCamp: '返回营地',
-  tag: '系统目标触发',
+  tag: '完成指定行为',
   openAreaShow: '解锁区域',
-  level: '等级',
+  level: '达到等级',
   sellPet: '卖出魔物'
 }
 
@@ -459,7 +473,15 @@ export const formatHighlightedText = (text) => {
   })
 }
 
-// ---------- tag 步骤目标（手动映射，数据/源码无官方名称，依据步骤语义整理） ----------
+/*
+ * ---------- tag 步骤目标 ----------
+ *
+ * 官方名在 `eventRecord.json` 的 `eventRecords[tag].desc`（如 `rolelv5` → 「任意角色升到5级」），
+ * 构建期传入 `eventRecordJson`，解析时**官方优先**。
+ *
+ * 本表是**兜底**：22 个在用 tag 里有 9 个官方无 `desc`（如 `alchemyStartMaking`、`dingDan`），
+ * 需人工整理。改这些条目时要核对 `stepName` 的语义。
+ */
 export const TAG_LABELS = {
   DailyTaskFinish: '完成委托契约',
   alchemyStartMaking: '制药台制作',
