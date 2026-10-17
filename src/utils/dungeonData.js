@@ -398,7 +398,10 @@ function buildBattle(instance, battle, battleConfig, fullBattle, routeBattle, re
   return {
     id: battle.dungeonBattle,
     name: battle.name || config.name || battle.dungeonBattle,
-    level: Number(config.battleLevel || battle.level || 0),
+    // 推荐等级取游戏面板显示值：源码 InstanceBattlePanel.cs:407 显示的是 BattleItemData.level
+    // （即 instance.battles[].level），dungeonBattle.battleLevel 是战斗强度等级，口径不同，
+    // 优先 battle.level 使 Wiki 与游戏内一致。
+    level: Number(battle.level || config.battleLevel || 0),
     des: config.des || battle.des || '',
     consume: config.consume || '',
     consumeCost: consumeCost(consume),

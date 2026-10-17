@@ -78,13 +78,16 @@ export function buildAchievementData(maps) {
   const rewardMap = rewJson.datas || {}
   const itemMap = itemJson.datas || {}
 
-  const publicById = new Map(
-    rawAchList.filter(isPublicAchievement).map(a => [String(a.typeId), a])
+  // 成就链（前置/后续）用「全集」建图，黑名单只在最终卡片展示层隐藏。
+  // 否则黑森林/霜烬平原等黑名单成就被剔除后，穿过它们的链路会断裂
+  // （如 10802→10803、20204→20205→20206 前后置丢失）。
+  const chainById = new Map(
+    rawAchList.filter(a => a && !a.alwaysHide).map(a => [String(a.typeId), a])
   )
   const previousById = new Map()
-  rawAchList.filter(isPublicAchievement).forEach(a => {
+  rawAchList.filter(a => a && !a.alwaysHide).forEach(a => {
     asArray(a.next).forEach(nextId => {
-      const target = publicById.get(String(nextId))
+      const target = chainById.get(String(nextId))
       if (!target) return
       const key = String(target.typeId)
       if (!previousById.has(key)) previousById.set(key, [])
@@ -93,12 +96,13 @@ export function buildAchievementData(maps) {
   })
 
   const assembled = rawAchList.filter(a => !a.alwaysHide).map(a => {
-    const rewardObj = rewardMap[a.reward] || {}
+    // reward 键可能带前导/尾部空格（如 20206 的 " achievementlv2_20201"），需 trim 后再查表
+    const rewardObj = rewardMap[String(a.reward || '').trim()] || {}
     const { rewards, rewardItemNames } = parseRewardObject(rewardObj, itemMap)
     const previousAchievements = (previousById.get(String(a.typeId)) || [])
       .map(item => ({ id: item.typeId, name: item.name }))
     const nextAchievements = asArray(a.next)
-      .map(nextId => publicById.get(String(nextId)))
+      .map(nextId => chainById.get(String(nextId)))
       .filter(Boolean)
       .map(item => ({ id: item.typeId, name: item.name }))
 
