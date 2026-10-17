@@ -123,7 +123,7 @@ const jobs = [
   { name: 'pets', build: () => buildPetsFile(), dependsOnItems: false },
   { name: 'heroes', build: () => buildHeroesFile(itemData), dependsOnItems: true },
   { name: 'monsters', build: () => buildMonstersFile(itemData), dependsOnItems: true },
-  { name: 'glossary', build: () => buildGlossaryFile(monsterData), dependsOnItems: false }
+  { name: 'glossary', build: () => buildGlossaryFile(monsterData, { heroes: heroData?.heroes, pets: petData?.pets }), dependsOnItems: false }
 ]
 
 console.log('\n── [page] 页面级预解析 ──')

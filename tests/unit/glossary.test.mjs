@@ -13,6 +13,9 @@ const readRaw = name => JSON.parse(readFileSync(new URL(`../../raw/${name}`, imp
 const buffJson = readRaw('buff.json')
 const readParsed = name => JSON.parse(readFileSync(new URL(`../../public/data/parsed/${name}`, import.meta.url), 'utf8'))
 const monstersJson = readParsed('monsters.json').monsters
+// 与 `scripts/parse/glossary.mjs` 一致：来源按三张图鉴的可见 id 过滤。
+const heroList = readParsed('heroes.json').heroes
+const petList = readParsed('pets.json').pets
 const glossary = buildGlossaryData({
   buffJson,
   heroJson: readRaw('hero.json'),
@@ -23,7 +26,10 @@ const glossary = buildGlossaryData({
   itemJson: readRaw('item.json'),
   heroSkillUpgradeJson: readRaw('heroSkillUpgrade.json'),
   fileMonJson: readRaw('fileMon.json'),
-  monstersJson
+  monstersJson,
+  visibleHeroIds: new Set(heroList.map(h => h.id).filter(Boolean)),
+  visiblePetIds: new Set(petList.map(p => p.id).filter(Boolean)),
+  visibleMonsterIds: new Set(monstersJson.flatMap(m => [m.id, ...(m.forms || []).map(f => f.id)]).filter(Boolean))
 })
 const buffData = buffJson
 
@@ -117,6 +123,63 @@ test('自动提取施加来源：中毒与眩晕包含角色与怪物跳转数�
   const alexia = shield.sources.heroes.find(h => h.name.includes('阿莱克西娅'))
   assert.ok(alexia, '护盾施加角色应包含阿莱克西娅')
   assert.equal(alexia.skillName, '胜军之加护', '阿莱克西娅施加护盾技能应为「胜军之加护」')
+})
+
+test('来源只保留图鉴里点得开的条目（角色/魔物/怪物）', () => {
+  const heroIds = new Set(heroList.map(h => h.id))
+  const petIds = new Set(petList.map(p => p.id))
+  const monIds = new Set(monstersJson.flatMap(m => [m.id, ...(m.forms || []).map(f => f.id)]).filter(Boolean))
+
+  // 判据：来源 chip 的 id 必须存在于目标图鉴 —— 否则点下去静默无反应。
+  for (const entry of glossary.entries) {
+    for (const h of entry.sources?.heroes || []) {
+      assert.ok(heroIds.has(h.id), `词条「${entry.name}」的角色来源「${h.name}」(${h.id}) 不在角色图鉴`)
+    }
+    for (const p of entry.sources?.pets || []) {
+      assert.ok(petIds.has(p.id), `词条「${entry.name}」的魔物来源「${p.name}」(${p.id}) 不在魔物图鉴`)
+    }
+    for (const m of entry.sources?.monsters || []) {
+      assert.ok(monIds.has(m.id), `词条「${entry.name}」的怪物来源「${m.name}」(${m.id}) 不在怪物图鉴`)
+    }
+  }
+
+  // 原表 hide=true 的角色不进图鉴，因此不应出现在任何来源里。
+  const hiddenNames = ['阿迪拉', '格薇勒', '艾茵', '米托拉（旧）']
+  for (const entry of glossary.entries) {
+    for (const h of entry.sources?.heroes || []) {
+      assert.ok(!hiddenNames.includes(h.name), `词条「${entry.name}」不应把图鉴未收录的「${h.name}」列为来源`)
+    }
+  }
+
+  // 过滤不得**新造**空来源段：原本有来源的词条，过滤后仍须有来源。
+  // （属性与机制类词条本来就没有来源，58 条里 25 条如此，属既有设计。）
+  const before = buildGlossaryData({
+    buffJson,
+    heroJson: readRaw('hero.json'),
+    petJson: readRaw('pet.json'),
+    monJson: readRaw('mon.json'),
+    skillJson: readRaw('skill.json'),
+    skillTriggerJson: readRaw('skillTrigger.json'),
+    itemJson: readRaw('item.json'),
+    heroSkillUpgradeJson: readRaw('heroSkillUpgrade.json'),
+    fileMonJson: readRaw('fileMon.json'),
+    monstersJson
+  })
+  const totalOf = entry => {
+    const s = entry.sources || {}
+    return (s.heroes || []).length + (s.monsters || []).length + (s.pets || []).length + (s.items || []).length
+  }
+  for (const entry of before.entries) {
+    if (totalOf(entry) === 0) continue
+    const after = glossary.entries.find(e => e.id === entry.id)
+    assert.ok(after, `词条「${entry.name}」不应因过滤而消失`)
+    assert.ok(totalOf(after) > 0, `词条「${entry.name}」过滤前有来源，过滤后不应变空`)
+  }
+
+  const stun = glossary.entries.find(e => e.name === '眩晕')
+  assert.ok(stun.sources.heroes.length > 0, '眩晕仍应有可跳转的角色来源')
+  assert.ok(!stun.sources.heroes.some(h => h.name === '艾茵'), '艾茵不在图鉴，不应出现')
+  assert.ok(stun.sources.heroes.some(h => h.name === '米托拉'), '新版米托拉在图鉴，应保留')
 })
 
 test('料理与内部代号不进入词条百科', () => {

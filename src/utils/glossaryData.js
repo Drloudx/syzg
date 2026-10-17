@@ -151,11 +151,14 @@ function aggregateSources(buffs, sourceIndex) {
 }
 
 export function buildGlossaryData({
-  buffJson, heroJson, petJson, monJson, skillJson, skillTriggerJson, itemJson, heroSkillUpgradeJson, fileMonJson, monstersJson
+  buffJson, heroJson, petJson, monJson, skillJson, skillTriggerJson, itemJson, heroSkillUpgradeJson, fileMonJson, monstersJson,
+  // 三张图鉴的可见 id（见 `scripts/parse/glossary.mjs`）。传了就只保留图鉴里点得开的来源。
+  visibleHeroIds, visiblePetIds, visibleMonsterIds
 } = {}) {
   const buffData = buffJson || {}
   const sourceIndex = buildBuffSourceIndex({
-    buffJson: buffData, heroJson, petJson, monJson, skillJson, skillTriggerJson, itemJson, fileMonJson, monstersJson
+    buffJson: buffData, heroJson, petJson, monJson, skillJson, skillTriggerJson, itemJson, fileMonJson, monstersJson,
+    visibleHeroIds, visiblePetIds, visibleMonsterIds
   })
   const levelIndex = buildSkillLevelIndex({ skillJson, buffJson: buffData, heroSkillUpgradeJson })
 

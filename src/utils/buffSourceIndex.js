@@ -232,11 +232,19 @@ function getSkillDisplayName(s, skillId = '') {
 }
 
 export function buildBuffSourceIndex({
-  heroJson, petJson, monJson, skillJson, skillTriggerJson, itemJson, buffJson, fileMonJson, monstersJson
+  heroJson, petJson, monJson, skillJson, skillTriggerJson, itemJson, buffJson, fileMonJson, monstersJson,
+  // 三张图鉴的可见 id 集合（`heroes.json` / `pets.json` / `monsters.json` 产物的口径）。
+  // 给了就按它过滤来源 —— 保证「词条里能点的来源，目标图鉴一定点得开」。
+  visibleHeroIds, visiblePetIds, visibleMonsterIds
 } = {}) {
   const buffData = buffJson || {}
   const index = new Map()
   const { isMonsterHidden, getMonsterPlace } = createMonsterBlacklistChecker(fileMonJson)
+  /**
+   * 图鉴可见性：只有**显式给了集合**才过滤。
+   * 没给（如单元测试只喂原表）时退回原行为，避免调用方漏传导致来源被清空。
+   */
+  const visible = (set, id) => !set || (id != null && set.has(String(id)))
 
   // 技能 ID -> 技能名称映射
   const skillNameMap = new Map()
@@ -268,15 +276,25 @@ export function buildBuffSourceIndex({
 
     if (heroMatch) {
       const h = heroObj(heroMatch[1])
-      if (h?.name && !isBlacklisted(h)) owner = { kind: '角色', name: h.name, id: h.typeId || heroMatch[1], icon: h.icon || '' }
+      if (h?.name && !isBlacklisted(h)) {
+        const hid = h.typeId || heroMatch[1]
+        if (visible(visibleHeroIds, hid)) {
+          owner = { kind: '角色', name: h.name, id: hid, icon: h.icon || '' }
+        }
+      }
     } else if (petMatch) {
       const p = petObj(petMatch[1])
-      if (p?.name && !isBlacklisted(p)) owner = { kind: '魔物', name: p.name, id: p.typeId || petMatch[1], icon: p.icon || '' }
+      if (p?.name && !isBlacklisted(p)) {
+        const pid = p.typeId || petMatch[1]
+        if (visible(visiblePetIds, pid)) {
+          owner = { kind: '魔物', name: p.name, id: pid, icon: p.icon || '' }
+        }
+      }
     } else if (monMatch) {
       const m = monObj(monMatch[1])
       if (m?.name || m?.monDes) {
         const monId = m.typeId || monMatch[1]
-        if (!isMonsterHidden({ ...m, typeId: monId })) {
+        if (!isMonsterHidden({ ...m, typeId: monId }) && visible(visibleMonsterIds, monId)) {
           owner = {
             kind: '怪物',
             name: m.name || m.monDes,
@@ -308,6 +326,7 @@ export function buildBuffSourceIndex({
   for (const hero of Object.values(heroJson?.datas || {})) {
     if (!hero?.name || isBlacklisted(hero)) continue
     const heroId = hero.typeId || ''
+    if (!visible(visibleHeroIds, heroId)) continue
     const heroIcon = hero.icon || ''
     const skillIds = collectSkillIds([
       hero.skillList, hero.normalAttack, hero.talentSkillList, hero.paSkillList
@@ -328,6 +347,7 @@ export function buildBuffSourceIndex({
   for (const pet of Object.values(petJson?.datas || {})) {
     if (!pet?.name || isBlacklisted(pet)) continue
     const petId = pet.typeId || ''
+    if (!visible(visiblePetIds, petId)) continue
     const petIcon = pet.icon || ''
     const skillIds = collectSkillIds([pet.normalAttack, pet.skill1, pet.skill2, pet.skill3, pet.skillList])
     for (const skillId of skillIds) {
@@ -359,6 +379,7 @@ export function buildBuffSourceIndex({
         const formId = form.id || mainId
         const formName = form.name || mainName
         const formIcon = form.icon || m.icon || ''
+        if (!visible(visibleMonsterIds, formId)) continue
 
         // 1. 技能附加的 Buff（含技能树派生 Buff）
         for (const s of (form.skills || [])) {

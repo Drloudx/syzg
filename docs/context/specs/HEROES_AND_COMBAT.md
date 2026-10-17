@@ -383,8 +383,26 @@
 | --- | --- |
 | `summary` / `rules` | 百科骨架（`glossaryEncyclopedia.js`）+ 构建期自动提取 |
 | `rules` 的持续时间 / 结算频率 / 伤害类型 | 由 `extractDurationText` / `extractIntervalText` / `extractDamageTypeText` 从原表聚合 |
-| `sources` | `buildBuffSourceIndex` 在构建期反查角色/魔物/怪物/物品，且**按黑名单过滤** |
+| `sources` | `buildBuffSourceIndex` 在构建期反查角色/魔物/怪物/物品，**按黑名单过滤**，并按三张图鉴的可见 id 过滤 |
 | `buffCount` | 该词条吸收了归并前的多少条 buff（如中毒 12、燃烧 14） |
+
+#### 来源必须能在目标图鉴点开
+
+`sources` 的三类单位来源（角色 / 魔物 / 怪物）**只保留对应图鉴里存在的 id**，否则 chip 点了没有反应。
+
+| 图鉴 | 可见性判据 | 产物 |
+| --- | --- | --- |
+| 角色 | `!isBlacklisted(h)` **且** `h.hide !== true`（`heroParser.js:111`） | `parsed/heroes.json` |
+| 魔物 | `!isBlacklisted(p)` **且** `p.hide !== true`（`petParser.js:25`） | `parsed/pets.json` |
+| 怪物 | `!isBlacklisted(m)` + 怪物黑名单 | `parsed/monsters.json` |
+
+- 🔴 **在构建期过滤，不在运行时过滤**：词条页只加载 `glossary.json`（146 KB）。运行时过滤要额外拉 `heroes.json`（1959 KB）+ `monsters.json`（527 KB）+ `pets.json`（140 KB），约 **2.6 MB**，为几个 chip 付这个代价不成立。
+- 构建期过滤零额外开销：`scripts/parse/index.mjs` 的 jobs 顺序保证 `heroes` / `pets` / `monsters` **先于** `glossary` 产出，可见 id 直接从同一次构建的内存产物取（`buildGlossaryFile(monsterData, { heroes, pets })`）。
+- 可见 id 集合由 `glossary.mjs` 计算后作为 `visibleHeroIds` / `visiblePetIds` / `visibleMonsterIds` 传入 `buildGlossaryData` → `buildBuffSourceIndex`。
+- 🔴 **不传集合时退回原行为**（不过滤）：单元测试只喂原表时不会把来源清空。这是防「漏传导致来源全没」的兜底，不是可选功能。
+- 过滤后**不得新造空来源段**：原本有来源的词条过滤后仍须有来源（`tests/unit/glossary.test.mjs` 守着）。属性与机制类词条本来无来源（58 条里 25 条），不算在内。
+- 当前效果：角色 chip 86 → **76**，魔物 61、怪物 113 无断链；被过滤掉的是 `hero.hide` 的 4 个角色（阿迪拉 4 处、格薇勒 2、艾茵 2、米托拉（旧）2）。`glossary.json` 150 → 146 KB。
+- **不要用前端 `disabled` + 「图鉴未收录」标注来兜底**：那只是把断链改成点了没反应的标签，来源仍然指向不存在的条目。
 
 **不再按 buff 变体归并**：旧实现的「两个池子 + 变体去重 + 数值版本胶囊 + `emptyPayload`」整条链路已随「技能专属」板块一同退役，产物里**没有 `variants` / `levelBased` / `emptyPayload` 字段**。
 `buffParser` 的 `buildGlossaryEntries` / `buildBuffEntries` / `toEntry` 已不在词条路径上。
