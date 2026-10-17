@@ -27,7 +27,9 @@ export function buildHeroesFile(itemData) {
     dialogIndexRes: readJson('parsed/dialogIndex.json'),
     generalRes: readJson('general.json'),
     buffRes: readJson('buff.json'),
-    skinRes: readJson('skin.json')
+    skinRes: readJson('skin.json'),
+    // 召唤物基础属性（技能的 summonData.monTypeId → mon.json 的 unitData）
+    monRes: readJson('mon.json')
   }
   const data = buildHeroData({
     ...rawMaps,

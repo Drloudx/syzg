@@ -665,6 +665,170 @@ export function buildSkillMechanics({ skillId, type, levelValue, buffDatas }) {
   return mergeMechanics(base, HERO_SKILL_MECHANICS_OVERRIDES[skillId])
 }
 
+/**
+ * 从技能配置里找出**召唤物**及其属性口径。
+ *
+ * ## 依据（源码核实，`Assembly-CSharp`）
+ *
+ * | 事实 | 位置 |
+ * | --- | --- |
+ * | 召唤物只继承 **攻击/双防/生命** 三项 | `Unit.cs:1467-1484` 的 `extendSummoner` 块 |
+ * | 攻速/暴击/爆伤取自**怪物配置表**，不读召唤师 | `UnitAttribute.cs:609/613/614` |
+ * | 召唤物会进入 `allHeros` | `Unit.cs:1616-1626` |
+ * | 全体攻速技能遍历 `GetUnitsByTargetType` 且**不传** `canelSummon` → 含召唤物 | `XiLu_Skill2.SkillPointAction` |
+ * | `canelSummon: true` 的用途是选治疗/清 buff 目标，**与攻速加成无关** | 25 处调用点逐处核对，0 处涉及攻速 |
+ *
+ * 所以「吃不吃角色加成」要分项说，合并成一句会误导。
+ *
+ * ## 召唤物的两种来源（`monTypeId` 不同，属性也不同）
+ *
+ * | 来源 | 例 | 召唤物 |
+ * | --- | --- | --- |
+ * | 主动技能 `aniEvents[].arg.summonData` | 乌尔勒「追击指令」`06502` | `065Summon1` 攻速 0.81 / 暴击 12% / 爆伤 150% |
+ * | **被动天赋 buff.para.summonData** | 乌尔勒「驻守指令」`06504` → buff `hero065Talent` | **`065Summon2`** 攻速 1.5 / 暴击 20% / 爆伤 125% |
+ *
+ * @param {object} levelValue 技能的某一级配置（含 `aniEvents` 或 `buffId`）
+ * @param {object} summonMon 召唤物的 `mon.json` 条目（取 `unitData`）
+ * @param {object} [summonData] 已知的 `summonData`；缺省时从 `levelValue`（含 buff）里找
+ * @param {object} [buffDatas] buff 表；被动天赋的召唤配置在这里
+ */
+export function buildSummonMechanics(levelValue, summonMon, summonData = null, buffDatas = null) {
+  const config = summonData || findSummonConfig(levelValue, buffDatas)
+  if (!config || !config.monTypeId) return null
+
+  const unit = summonMon?.unitData || null
+  const extendsSummoner = Boolean(config.extendSummoner)
+  const percent = value => (typeof value === 'number' && value > 0 ? `${Math.round(value * 100)}%` : null)
+
+  /*
+   * 召唤物是否会**主动攻击**。
+   *
+   * 🔴 `noAtk: 1` 时它永远不攻击：源码 `UnitAI.cs:701` 是
+   *   `yield return new WaitUntil(() => self.noAtk <= 0);`
+   * —— AI 会一直停在这里等，`noAtk` 恒为 1 就永不出手。
+   *
+   * 此时配置表里的 `atkSpeed` / `crit` / `cirtDam` 是**该表的默认占位值**
+   * （实测 14 个不攻击的召唤物几乎都是 `0.35 / 35% / 125%`），
+   * 显示它们会让读者以为「反击假人有 35% 暴击」，而它压根不攻击。
+   *
+   * 不攻击的典型：反击假人、蛛网、冰岩、晶石、各类路障/爆桶（靠 `rebDam` 反伤）。
+   */
+  const canAttack = unit ? !unit.noAtk : true
+
+  // 继承项：只有 extendSummoner 为真时这些比例才生效（见 Unit.cs:1467）
+  const inherit = extendsSummoner
+    ? [
+      percent(config.hpPrecent) && { key: 'maxHp', label: '生命', value: percent(config.hpPrecent) },
+      percent(config.atkPercent) && { key: 'atk', label: '攻击', value: percent(config.atkPercent) },
+      percent(config.defPercent) && { key: 'def', label: '防御', value: percent(config.defPercent) }
+    ].filter(Boolean)
+    : []
+
+  // 固定项：来自怪物配置表。**只有会主动攻击时才显示攻速/暴击/爆伤**
+  // ⚠️ 暴击伤害字段：原表拼写是 `cirtDam`，`scripts/parse/shared.mjs` 的 `normalizeMonJson`
+  // 会归一化成 `critDam`。这里两个都读，避免调用方传了未归一化的原始表时静默丢失。
+  const critDam = unit ? (unit.critDam ?? unit.cirtDam) : null
+  const fixed = unit && canAttack
+    ? [
+      unit.atkSpeed != null && { key: 'atkSpeed', label: '基础攻速', value: String(unit.atkSpeed) },
+      unit.crit != null && { key: 'crit', label: '暴击率', value: `${unit.crit}%` },
+      critDam != null && { key: 'critDam', label: '暴击伤害', value: `${critDam}%` }
+    ].filter(Boolean)
+    : []
+
+  /*
+   * 「加成规则」只写**与属性传递有关**的结论，措辞按源码事实。
+   *
+   * 🔴 不要写「排除召唤物」这类泛化表述：`canelSummon: true` 在源码里出现 25 处，
+   * 用途是**选单体治疗目标 / 清除 buff / 按血量判定队友**（如 `Hero007_Skill1` 治疗、
+   * `Hero043Skill1` 查血量、`Hero051_Skill1` 清 buff），**与攻速类加成无关**。
+   * 把它写成「个别技能不生效」会让读者以为攻速 buff 也会被排除 —— 那是错的。
+   */
+  const bonusNotes = extendsSummoner
+    ? [
+      { key: 'inherited', label: '角色继承', value: '生命 / 攻击 / 防御按上表比例' },
+      { key: 'notInherited', label: '不继承', value: '角色攻速 · 暴击率 · 暴击伤害' },
+      { key: 'teamBuff', label: '全体加成', value: '生效（召唤物计入友方单位列表）' }
+    ]
+    : [
+      { key: 'noExtend', label: '独立属性', value: '不继承召唤师属性，全部取自怪物配置' },
+      { key: 'teamBuff', label: '全体加成', value: '生效（召唤物计入友方单位列表）' }
+    ]
+
+  /*
+   * 不主动攻击时的说明：写清「为什么没有攻速/暴击」。
+   * 这类召唤物靠 `rebDam`（反伤）或触发效果起作用，攻速无意义。
+   */
+  const attackNote = canAttack
+    ? null
+    : {
+      noAtk: true,
+      rebDam: unit?.rebDam || 0,
+      text: unit?.rebDam
+        ? `不会主动攻击，靠反击造成伤害（反伤率 ${unit.rebDam}%）`
+        : '不会主动攻击'
+    }
+
+  return {
+    monTypeId: config.monTypeId,
+    name: summonMon?.name || config.monTypeId,
+    icon: summonMon?.icon || '',
+    maxCount: config.maxCount || 0,
+    duration: config.durtime || 0,
+    extendsSummoner,
+    canAttack,
+    attackNote,
+    inherit,
+    fixed,
+    bonusNotes,
+    // 用于排查：原始比例（0.8 → 80%）
+    rawPercents: {
+      hp: config.hpPrecent || 0,
+      atk: config.atkPercent || 0,
+      def: config.defPercent || 0
+    }
+  }
+}
+
+/**
+ * 在技能某一级配置里递归找 `summonData`。
+ *
+ * 位置有三种，都要覆盖：
+ *   1. `levelValue.summonData` —— 直接挂在技能级上
+ *   2. `levelValue.aniEvents[].arg.summonData` —— 主动技能（如乌尔勒「追击指令」）
+ *   3. **`levelValue.buffId` 指向的 buff 的 `para.summonData`** —— 被动天赋
+ *      （如乌尔勒「驻守指令」`06504` → buff `hero065Talent` → `summonData`）
+ *
+ * 第 3 种是 `Hero065Talent.Update()` 里 `CreatSummon(self, summonData, ...)` 的来源，
+ * 与主动技能走同一条召唤路径，所以口径完全一致。
+ *
+ * @param {object} value 技能某一级配置
+ * @param {object} [buffDatas] buff 表；缺省时跳过第 3 种查找
+ */
+function findSummonConfig(value, buffDatas = null) {
+  const object = asObject(value)
+  if (!object) return null
+  if (asObject(object.summonData)) return object.summonData
+  for (const child of Object.values(object)) {
+    const found = findSummonConfig(child, buffDatas)
+    if (found) return found
+  }
+  // 3) 天赋：召唤配置在 buff 里
+  const buffIds = collectBuffIds(value)
+  for (const id of buffIds) {
+    const buff = buffDatas?.[id]
+    if (!buff) continue
+    const para = buff.para || buff
+    if (asObject(para.summonData)) return para.summonData
+  }
+  return null
+}
+
+/** 供解析器判断某级是否带召唤物并拿到 `monTypeId`（需要 buff 表才能覆盖被动天赋）。 */
+export function resolveSummonConfig(levelValue, buffDatas = null) {
+  return findSummonConfig(levelValue, buffDatas)
+}
+
 export function buildTalentMechanics({ skillId, trigger, buffDatas }) {
   const base = buildBaseMechanics({ type: 'talent', levelValue: trigger?.levelData?.['1'] || trigger, buffDatas })
   const override = HERO_SKILL_MECHANICS_OVERRIDES[skillId]

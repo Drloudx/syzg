@@ -446,6 +446,46 @@
                     <span class="mechanics-label">不生效</span>
                     <span class="mechanics-text">{{ currentSkillMechanics.bonuses.excludes.map(mechanicsLabel).join(' · ') }}</span>
                   </div>
+                  <!--
+                    召唤物属性（只有带 summonData 的技能才有）。
+                    口径依据源码 `Unit.cs:1467-1484`：继承只有生命/攻击/防御；
+                    攻速·暴击·爆伤固定取自怪物配置表，不随角色变化。
+                  -->
+                  <template v-if="currentSummon">
+                    <div class="mechanics-row mechanics-summon-row">
+                      <span class="mechanics-label">召唤物</span>
+                      <span class="mechanics-text">
+                        <strong>{{ currentSummon.name }}</strong>
+                        <template v-if="currentSummon.maxCount > 0"> ×{{ currentSummon.maxCount }}</template>
+                        <template v-if="currentSummon.duration > 0"> · 持续 {{ currentSummon.duration }} 秒</template>
+                      </span>
+                    </div>
+                    <div v-if="currentSummon.inherit.length" class="mechanics-row">
+                      <span class="mechanics-label">继承比例</span>
+                      <span class="mechanics-text">{{ currentSummon.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                    </div>
+                    <!--
+                      不主动攻击的召唤物（noAtk=1，如反击假人）不显示攻速/暴击/爆伤 ——
+                      那些是配置表默认占位值，`UnitAI.cs:701` 的 `WaitUntil(noAtk<=0)` 永不满足。
+                    -->
+                    <div v-if="currentSummon.attackNote" class="mechanics-row">
+                      <span class="mechanics-label">攻击方式</span>
+                      <span class="mechanics-text">{{ currentSummon.attackNote.text }}</span>
+                    </div>
+                    <div v-if="currentSummon.fixed.length" class="mechanics-row">
+                      <span class="mechanics-label">固定属性</span>
+                      <span class="mechanics-text">{{ currentSummon.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                    </div>
+                    <div v-if="currentSummon.bonusNotes.length" class="mechanics-row mechanics-summon-bonus-row">
+                      <span class="mechanics-label">加成规则</span>
+                      <span class="mechanics-text">
+                        <span v-for="(note, noteIdx) in currentSummon.bonusNotes" :key="note.key" class="summon-bonus-note">
+                          <template v-if="noteIdx > 0"> · </template>
+                          <em>{{ note.label }}</em>：{{ note.value }}
+                        </span>
+                      </span>
+                    </div>
+                  </template>
                   <div v-if="currentSkillMechanics.conditions?.length" class="mechanics-row mechanics-condition-row">
                     <span class="mechanics-label">机制说明</span>
                     <span class="mechanics-text">{{ currentSkillMechanics.conditions.join('；') }}</span>
@@ -1210,6 +1250,14 @@ const currentSelectedSkillLevelDetail = computed(() => {
 })
 
 const currentSkillMechanics = computed(() => currentSelectedSkillLevelDetail.value?.mechanics || null)
+
+/**
+ * 当前技能等级的召唤物属性（只有带 `summonData` 的技能才有）。
+ *
+ * 数据来自 `heroParser` → `heroMechanics.buildSummonMechanics`，
+ * 口径依据源码：继承只有生命/攻击/防御，攻速·暴击·爆伤固定取自怪物配置表。
+ */
+const currentSummon = computed(() => currentSelectedSkillLevelDetail.value?.summon || null)
 
 // Star skill selected
 const currentSelectedStarSkill = computed(() => {
@@ -2110,6 +2158,17 @@ const handleGiftClick = (giftId) => {
 
 .mechanics-condition-row {
   color: var(--gold, #8a6a1f);
+}
+
+/* 召唤物属性行：与「机制说明」区分开，但仍属同一信息层 */
+.mechanics-summon-row .mechanics-text strong {
+  color: var(--gold, #8a6a1f);
+}
+
+.mechanics-summon-bonus-row .summon-bonus-note em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--text-muted, #6b5134);
 }
 
 .mechanics-note-row {

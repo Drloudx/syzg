@@ -3,7 +3,7 @@ import { createCachedLoader } from './resourceClient.js'
 import { getItemImageUrl, roundToEven } from './itemParser.js'
 import { resolvePlayablePlayerLevelCap } from './levelConfig.js'
 import { JOB_NAMES, ELEMENT_NAMES, BASE_REWARD_ICONS, REWARD_MODE_INFO, getCleanSkillName } from './gameMappings.js'
-import { buildSkillMechanics, buildTalentMechanics } from './heroMechanics.js'
+import { buildSkillMechanics, buildTalentMechanics, buildSummonMechanics, resolveSummonConfig } from './heroMechanics.js'
 import { buildPartnerMailboxes, parseHeroMail } from './partnerMailData.js'
 import { describeBuff } from './buffParser.js'
 
@@ -23,6 +23,7 @@ export function buildHeroData(maps) {
     heroRes, archivesRes, behaviorRes, levelRes, playerLevelRes, mailRes, rankRes,
     skillUpgradeRes, talkRes, starRes, consumeRes, skillRes, skillTriggerRes,
     taskRes, dialogSegmentsRes, dialogIndexRes, generalRes, buffRes,
+    monRes = {}, // 召唤物属性来源：技能的 `summonData.monTypeId` → mon.json 的 `unitData`
     skinRes = {}, items, lanDict, rewards
   } = maps
 
@@ -43,6 +44,8 @@ export function buildHeroData(maps) {
   const generalDatas = generalRes?.datas || generalRes || {}
   const buffDatas = buffRes?.datas || buffRes || {}
   const skinDatas = skinRes?.datas || skinRes || {}
+  // 召唤物基础属性表（`mon.json`）：技能 summonData.monTypeId 指向这里
+  const monDatas = monRes?.datas || monRes || {}
 
   const skinsByHero = {}
   Object.values(skinDatas).forEach(skin => {
@@ -139,7 +142,7 @@ export function buildHeroData(maps) {
         const skillId = h.normalAttack
         const s = skillDatas[skillId]
         if (s) {
-          parsedSkills.push(processSkillInfo(skillId, s, 'normal', rare, element, skillUpgradeDatas.skillOne, consumeDatas, items, buffDatas))
+          parsedSkills.push(processSkillInfo(skillId, s, 'normal', rare, element, skillUpgradeDatas.skillOne, consumeDatas, items, buffDatas, monDatas))
         }
       }
 
@@ -149,7 +152,7 @@ export function buildHeroData(maps) {
           const s = skillDatas[skillId]
           if (s) {
             const upgradeList = idx === 0 ? skillUpgradeDatas.skillOne : skillUpgradeDatas.skillTwo
-            parsedSkills.push(processSkillInfo(skillId, s, 'active', rare, element, upgradeList, consumeDatas, items, buffDatas))
+            parsedSkills.push(processSkillInfo(skillId, s, 'active', rare, element, upgradeList, consumeDatas, items, buffDatas, monDatas))
           }
         })
       }
@@ -196,11 +199,22 @@ export function buildHeroData(maps) {
             const levelData = []
             if (trigger.levelData) {
               Object.entries(trigger.levelData).forEach(([lvlKey, lvlVal]) => {
+                /*
+                 * 天赋也可能是召唤物来源（如乌尔勒「驻守指令」部署浮游炮）。
+                 * 召唤配置**不在 levelVal 里**，而在 `buffId` 指向的 buff 的 `para.summonData`，
+                 * 所以必须传 `buffDatas`；`resolveSummonConfig` 覆盖这两种位置。
+                 */
+                const talentSummonConfig = resolveSummonConfig(lvlVal, buffDatas)
+                const talentSummon = talentSummonConfig
+                  ? buildSummonMechanics(lvlVal, monDatas[talentSummonConfig.monTypeId], talentSummonConfig, buffDatas)
+                  : null
+
                 levelData.push({
                   level: parseInt(lvlKey),
                   name: lvlVal.skillName || trigger.skillName || '被动天赋',
                   des: lvlVal.des || '',
-                  mechanics: buildTalentMechanics({ skillId, trigger: lvlVal, buffDatas })
+                  mechanics: buildTalentMechanics({ skillId, trigger: lvlVal, buffDatas }),
+                  ...(talentSummon ? { summon: talentSummon } : {})
                 })
               })
             }
@@ -381,7 +395,7 @@ export const fetchHeroData = createCachedLoader(async () => {
 })
 
 // Help process active skills and normal attacks
-function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeDatas, items, buffDatas) {
+function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeDatas, items, buffDatas, monDatas = {}) {
   // Extract multiplier and damage type for normal attacks
   let power = 100
   let isPhy = true
@@ -406,13 +420,21 @@ function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeD
       if (type === 'normal' && !customDes) {
         customDes = `造成 {${power}%}${isPhy ? '物理攻击' : '魔法攻击'}加成的${isPhy ? '物理' : '魔法'}伤害。`
       }
+      // 召唤物属性（只有带 summonData 的技能才有）；`monTypeId` 指向 mon.json
+      // 主动技能在 aniEvents 里，被动天赋在 buffId 指向的 buff 里 —— 两处都要覆盖
+      const summonConfig = resolveSummonConfig(lvlVal, buffDatas)
+      const summon = summonConfig
+        ? buildSummonMechanics(lvlVal, monDatas[summonConfig.monTypeId], summonConfig, buffDatas)
+        : null
+
       levelData.push({
         level: parseInt(lvlKey),
         name: lvlVal.skillName || s.skillName || '',
         des: customDes,
         cd: lvlVal.cd !== undefined ? lvlVal.cd : (s.cd || 0),
         cost: lvlVal.cost !== undefined ? lvlVal.cost : (s.cost || 0),
-        mechanics: buildSkillMechanics({ skillId, type, levelValue: lvlVal, buffDatas })
+        mechanics: buildSkillMechanics({ skillId, type, levelValue: lvlVal, buffDatas }),
+        ...(summon ? { summon } : {})
       })
     })
     // Restrict skill level max to 12
