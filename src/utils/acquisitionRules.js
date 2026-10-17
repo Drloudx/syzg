@@ -245,15 +245,37 @@ export function parseRewardObject(reward, items = {}) {
   return { rewards, rewardItemNames }
 }
 
+/**
+ * 奖励条目（任务/副本/成就等共用）。
+ *
+ * 🔴 **数量可能是区间**：委托奖励里存在 `min:3, max:5` 的随机数量（实测 11 条委托），
+ * 只取 `min` 会把「3~5 随机」显示成固定「×3」（任务图鉴 D2）。
+ *
+ * 输出同时给 `count`（= min，兼容既有消费方）与 `countMin` / `countMax`；
+ * 两者不等时由展示层渲染成「3~5」，相等时仍显示「×3」。
+ */
 export function parseRewardEntries(rewards, items, rewardId) {
   const entries = []
   for (const group of parseRewardGroups(rewardId, { rewards, items })) {
     for (const rule of group.rules) {
       if (!rule.typeId || rule.actualProb === 0) continue
+      const min = Number(rule.min ?? 0)
+      const max = Number(rule.max ?? min)
+      /*
+       * 图标兜底：个别物品原表 `img` 是空串（实测 4 条制作图纸，如 `item_50083` 哨塔制作图），
+       * 直接产出 `icon: ''` 会让 `<img src="">` 变成「破图 or 加载当前页面」。
+       * 缺失时用该物品自身的图标路径兜底（与原表 `img` 的命名规则一致）。
+       */
+      const rawIcon = group.kind === 'fixed' ? rule.targetImg : String(rule.targetImg || '').replace(/^\/images\//, '/')
+      const icon = rawIcon && String(rawIcon).trim() ? rawIcon : `/Common_ItemIcon/${rule.typeId}.webp`
       entries.push({
         kind: group.kind === 'fixed' ? rule.mode : 'item', name: rule.targetName,
-        count: rule.min, typeId: rule.typeId,
-        icon: group.kind === 'fixed' ? rule.targetImg : rule.targetImg.replace(/^\/images\//, '/'),
+        count: min,
+        // 区间支持：max > min 表示随机数量，展示层据此渲染「min~max」
+        countMin: min,
+        countMax: Math.max(min, max),
+        typeId: rule.typeId,
+        icon,
         quality: rule.targetQuality
       })
     }

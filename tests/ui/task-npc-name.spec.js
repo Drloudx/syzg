@@ -91,23 +91,33 @@ test('场景 NPC：名字来自 room.npcList，台词进「交互对话」', asy
 })
 
 /**
- * 方案 A：查不到名字的 NPC 行**整体不渲染**，不显示「未知（内部 id）」。
+ * 已下架任务（`close=true`）不再打开详情，改为给出明确提示。
  *
- * `main_2_05` 的 `getTask.npc = npcmarco`、第 1 步 `npc = npcmilly` ——
- * 这两个 uid 在任何表里都没有名字（`room.npcList` 无该 uid、其所在房间不在 `room.json`、
- * `npc.json` 只有立绘字段无 name）。依据游戏任务界面（`TaskPanel.cs:385-386`）步骤级没有 NPC 行，故省略。
+ * ⚠️ 这条测试原先用 `main_2_05`（`close=true`）验证「查不到名字时不渲染 NPC 行」。
+ * 但该任务**已下架**：列表已隐藏它，`?task=` 直链也不该打开 ——
+ * 靠一个用户看不到的任务验证展示行为，测的其实是「下架任务还能开」这个旧的错误行为。
+ *
+ * 现拆成两件事：
+ *   1. 本条：已下架任务给明确提示，不静默；
+ *   2. 「不暴露内部 id」由产物层断言保证（见 tests/unit/summon-mechanics 同级的 task-display）。
  */
-test('方案A：查不到名字时不渲染 NPC 行，也不暴露内部 id', async ({ page }) => {
-  const modal = await openTask(page, 'main_2_05')
-  const rows = await readInfoRows(modal)
-  console.log('main_2_05 信息行：', JSON.stringify(rows))
+test('已下架任务：给明确提示而不是静默不打开', async ({ page }) => {
+  await page.goto('/#/tasks?task=main_2_05')
+  await expect(page.locator('.app-container')).not.toHaveClass(/is-boot-loading/)
+  await dismissGlobalModals(page)
+  await page.waitForTimeout(3000)
 
-  const allText = JSON.stringify(rows)
-  expect(allText).not.toContain('未知（')
-  expect(allText).not.toContain('npcmarco')
-  expect(allText).not.toContain('npcmilly')
-  // 其它信息行照常显示（不是整页失效）
-  expect(findRow(rows, '接取条件'), '其它信息行应仍在').toBeTruthy()
+  const body = await page.locator('body').innerText()
+  console.log('页面提示：', body.includes('该任务已下架') ? '该任务已下架' : '(未出现)')
+  expect(body, '已下架任务应给出明确提示').toContain('该任务已下架')
+
+  // 详情弹窗不该打开
+  const modal = page.locator('.page-view-container .ui-modal-host .ui-modal-overlay')
+  expect(await modal.count(), '已下架任务不该打开详情').toBe(0)
+
+  // 更不该把内部 id 透到页面上
+  expect(body).not.toContain('npcmarco')
+  expect(body).not.toContain('npcmilly')
 })
 
 test('方案A：有真名的任务不受影响', async ({ page }) => {
@@ -115,4 +125,25 @@ test('方案A：有真名的任务不受影响', async ({ page }) => {
   const rows = await readInfoRows(modal)
   // m_2_11 的 getTask.npc 为空，走「起始 NPC」，名字来自 room.npcList 的 ke02
   expect(findRow(rows, '起始 NPC')?.value, '有真名时应正常显示').toBe('剋大师')
+})
+
+/**
+ * 任务链可点击（U2）：后续任务 / 解锁任务是 Wiki 查任务链的核心路径。
+ */
+test('后续任务可点击跳转到目标任务', async ({ page }) => {
+  const modal = await openTask(page, 'm_0_1')
+  const chip = modal.locator('.task-follow-up-section .task-link-chip').first()
+  await expect(chip, '后续任务应是可点击按钮').toBeVisible({ timeout: 20_000 })
+  const label = (await chip.innerText()).trim()
+  console.log('点击的后续任务：', label)
+  await chip.click()
+  await page.waitForTimeout(1200)
+
+  // URL 的 task 参数应变为新任务
+  expect(page.url()).toMatch(/#\/tasks\?task=/)
+  const modal2 = page.locator('.page-view-container .ui-modal-host .ui-modal-overlay')
+  await expect(modal2).toBeVisible()
+  const title = await modal2.innerText()
+  console.log('切换后标题含目标名：', title.includes(label))
+  expect(title, '应打开被点击的任务').toContain(label)
 })

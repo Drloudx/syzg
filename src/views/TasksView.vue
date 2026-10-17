@@ -99,10 +99,10 @@
               v-for="(rw, rIdx) in item.reward.entries.slice(0, 4)"
               :key="rIdx"
               class="task-card-reward"
-              :title="`${rw.name} ×${rw.count}`"
+              :title="`${rw.name} ${countText(rw)}`"
             >
               <img :src="getImageUrl(rw.icon)" :alt="rw.name" class="task-card-reward-icon" loading="lazy" @error="handleImgError" />
-              <span class="task-card-reward-count">×{{ rw.count }}</span>
+              <span class="task-card-reward-count">{{ countText(rw) }}</span>
             </div>
           </div>
           <span class="task-card-arrow">›</span>
@@ -139,7 +139,13 @@
           -->
           <UiInfoRow v-if="npcText(selectedTask.getTask.npc)" label="接取 NPC" :value="npcText(selectedTask.getTask.npc)" />
           <UiInfoRow v-else-if="npcText(selectedTask.startNpc)" label="起始 NPC" :value="npcText(selectedTask.startNpc)" />
-          <UiInfoRow v-if="selectedTask.startLocation" label="起始地点" :value="selectedTask.startLocation" />
+          <!--
+            🔴 标签是「任务地点」而不是「起始地点」。
+            该值取自**第 1 步的 stepPosition**（执行地点），不是接取点 ——
+            如 `wt_yz_02` 接取 NPC 在驿站、首步是狩猎，值是「碎石小径」。
+            叫「起始地点」会让人误以为要去那里接任务。
+          -->
+          <UiInfoRow v-if="selectedTask.startLocation" label="任务地点" :value="selectedTask.startLocation" />
           <UiInfoRow label="接取条件" :value="selectedTask.getTask.condition" />
           <!-- 交互对话：场景 NPC 搭话时的那句话（小车 NPC 的 title 已是名字，不重复显示） -->
           <UiInfoRow v-if="selectedTask.getTask.npc?.line" label="交互对话" :value="selectedTask.getTask.npc.line" />
@@ -168,7 +174,15 @@
         <!-- 完成后直接加入当前任务列表，与仅开放接取资格的 unlockTask 分开。 -->
         <UiSection v-if="selectedTask.addTasks.length" title="后续任务" class="task-follow-up-section">
           <div class="task-follow-up-list chip-group">
-            <UiTag v-for="task in selectedTask.addTasks" :key="task.id">{{ task.name }}</UiTag>
+            <!-- 可点击：任务链导航是 Wiki 查任务的核心路径，原先只能复制名字去搜索 -->
+            <button
+              v-for="task in selectedTask.addTasks"
+              :key="task.id"
+              type="button"
+              class="task-link-chip"
+              :title="`查看《${task.name}》`"
+              @click="openTaskById(task.id)"
+            >{{ task.name }}</button>
           </div>
         </UiSection>
 
@@ -176,7 +190,14 @@
         <UiSection v-if="selectedTask.unlockTasks.length || selectedTask.unlockStages.length" title="解锁信息" class="task-unlock-section">
           <UiInfoRow v-if="selectedTask.unlockTasks.length" label="解锁任务">
             <span class="chip-group">
-              <UiTag v-for="ut in selectedTask.unlockTasks" :key="ut.id">{{ ut.name === ut.id ? ut.id : ut.name }}</UiTag>
+              <button
+                v-for="ut in selectedTask.unlockTasks"
+                :key="ut.id"
+                type="button"
+                class="task-link-chip"
+                :title="`查看《${ut.name}》`"
+                @click="openTaskById(ut.id)"
+              >{{ ut.name === ut.id ? ut.id : ut.name }}</button>
             </span>
           </UiInfoRow>
           <UiInfoRow v-if="selectedTask.unlockStages.length" label="解锁关卡">
@@ -194,7 +215,7 @@
             <UiRewardCard
               v-for="(rw, rIdx) in selectedTask.reward.entries"
               :key="rIdx"
-              :rule="{ targetName: rw.name, targetImg: getImageUrl(rw.icon), targetQuality: rw.quality, min: rw.count, max: rw.count, typeId: rw.typeId }"
+              :rule="{ targetName: rw.name, targetImg: getImageUrl(rw.icon), targetQuality: rw.quality, min: rw.countMin ?? rw.count, max: rw.countMax ?? rw.count, typeId: rw.typeId }"
               @click="goToItem(rw.typeId)"
             />
             <UiTag v-for="(txt, tIdx) in selectedTask.reward.text" :key="'t' + tIdx" class="reward-text-chip">{{ txt }}</UiTag>
@@ -229,7 +250,7 @@
                       @click="goToItem(rw.typeId)"
                     >
                       <img :src="getImageUrl(rw.icon)" class="step-reward-icon" loading="lazy" @error="handleImgError" />
-                      ×{{ rw.count }}
+                      {{ countText(rw) }}
                     </span>
                     <UiTag v-for="(txt, tIdx) in step.reward.text" :key="'t' + tIdx" tone="default">{{ txt }}</UiTag>
                   </span>
@@ -241,9 +262,12 @@
                     <UiTag v-for="us in step.unlockStages" :key="us.id">{{ us.label }}</UiTag>
                   </span>
                 </UiInfoRow>
-                <UiInfoRow label="解锁关卡" v-else-if="step.unlockSuppressed">
-                  <span class="muted-text">（passStage 不显示）</span>
-                </UiInfoRow>
+                <!--
+                  原表 `passStage` 步骤也带 `stepUnlockStage`，但该类型是「通过区域」，
+                  解锁含义不适用，解析层已抑制（`unlockSuppressed`）。
+                  原先这里渲染「（passStage 不显示）」—— 是把内部类型名与实现细节写给玩家看，
+                  且该信息对玩家无价值，改为不渲染这一行。
+                -->
 
                 <UiInfoRow v-for="(d, dIdx) in step.detail" :key="'d' + dIdx" :label="d.label" :value="d.value" />
 
@@ -365,6 +389,14 @@ const router = useRouter()
 const HIDE_CLOSED_TASKS = true
 
 const tasks = shallowRef([])
+/**
+ * **全量**任务（不过滤 `close`）。
+ *
+ * 用途：`?task=` 冷链接与任务链跳转要能定位到已下架任务并给出明确提示，
+ * 而不是「列表里找不到 → 静默不打开」。展示仍走 `tasks`（已按 `HIDE_CLOSED_TASKS` 过滤）。
+ * 原先是 `loadTasks` 用 `data.tasks`、`watch` 用 `tasks.value`，两条路径口径不一（D3/U3）。
+ */
+const allTasks = shallowRef([])
 const subOptions = ref({})
 const isDataReady = ref(false)
 const errorMessage = ref('')
@@ -522,6 +554,19 @@ const currentSubOptions = computed(() => {
  * 不再显示「未知（内部 id）」：那些 uid（`ke_sldsd_21`、`NPC031` …）在任何表里都没有名字，
  * 展示内部 id 对玩家无意义。游戏任务界面也不显示 NPC 名（`TaskPanel.cs:385-386`）。
  */
+/**
+ * 奖励数量文案。
+ *
+ * 委托奖励存在 `min≠max` 的随机数量（实测 11 条，如 3~5 随机），
+ * 只显示最小值会把「3~5」说成固定「×3」。相等时才用「×N」。
+ */
+const countText = (entry) => {
+  const min = Number(entry?.countMin ?? entry?.count ?? 0)
+  const max = Number(entry?.countMax ?? min)
+  if (!max || min === max) return `×${min}`
+  return `${min}~${max}`
+}
+
 const npcText = (npc) => {
   if (!npc || !npc.name || npc.name === '未知') return ''
   return npc.name
@@ -599,6 +644,28 @@ const selectType = (key) => {
 const handleImgError = handleImageFallback
 
 // ---------- 详情 ----------
+/**
+ * 按 id 打开另一个任务的详情（任务链导航）。
+ *
+ * 「后续任务 / 解锁任务」是 Wiki 查任务链的核心路径：原先是纯文本标签，
+ * 用户只能复制名字去搜索框再搜一遍。这里直接切详情并同步 `?task=`。
+ *
+ * 目标可能已被 `close` 过滤（`visibleTasks` 之外）：此时给出提示而不是静默失败。
+ */
+const openTaskById = (id) => {
+  if (!id) return
+  const target = tasks.value.find(t => t.id === id) || allTasks.value.find(t => t.id === id)
+  if (!target) {
+    errorMessage.value = '该任务已下架，无法打开'
+    return
+  }
+  if (target.close) {
+    errorMessage.value = '该任务已下架，无法打开'
+    return
+  }
+  openDetail(target)
+}
+
 const openDetail = (item) => {
   selectedTask.value = item
   openSteps.value = {}
@@ -762,6 +829,7 @@ const loadTasks = async () => {
   try {
     const data = await loadTaskData()
     if (operation !== loadOperation) return
+    allTasks.value = data.tasks
     tasks.value = HIDE_CLOSED_TASKS ? data.tasks.filter((t) => !t.close) : data.tasks
     subOptions.value = data.subOptions
     isDataReady.value = true
@@ -771,11 +839,16 @@ const loadTasks = async () => {
     // 分享链接直达：?task=<任务id> 自动打开详情
     const taskId = route.query.task
     if (taskId) {
-      const item = data.tasks.find((t) => t.id === taskId)
+      // 用**全量**查找：已下架任务也要能给出「已下架」的明确提示，而不是静默不打开
+      const item = allTasks.value.find((t) => t.id === taskId)
       if (item) {
-        await nextTick()
-        await taskGrid.value?.scrollToItem(item.id)
-        if (operation === loadOperation && route.query.task === taskId) openDetail(item)
+        if (item.close) {
+          errorMessage.value = '该任务已下架，无法查看'
+        } else {
+          await nextTick()
+          await taskGrid.value?.scrollToItem(item.id)
+          if (operation === loadOperation && route.query.task === taskId) openDetail(item)
+        }
       }
     }
   } catch (err) {
@@ -789,12 +862,22 @@ const loadTasks = async () => {
 onMounted(loadTasks)
 onBeforeUnmount(() => { loadOperation += 1 })
 
+/**
+ * 筛选变化时同步 URL。
+ *
+ * 🔴 **必须保留本页不管理的 query 键**：`itemId`（嵌套物品详情）、`event` 等是
+ * 与其它页面共享的参数。原实现新建空 `query` 对象只写本页字段，会把这些键丢掉 ——
+ * 表现为「点物品再返回，筛选条件还在 URL 里但 itemId 没了」（U5）。
+ */
 watch([filterType, filterSub, searchQuery], () => {
-  const query = {}
+  const query = { ...route.query }
   if (filterType.value !== 'all') query.type = filterType.value
+  else delete query.type
   if (filterSub.value) query.sub = filterSub.value
+  else delete query.sub
   if (searchQuery.value.trim()) query.q = searchQuery.value.trim()
-  if (route.query.task) query.task = route.query.task
+  else delete query.q
+  // `task` 由 openDetail/关闭逻辑维护，这里只透传，不主动删
   router.replace({ query })
 })
 
@@ -827,8 +910,19 @@ watch(
       return
     }
     if (!isDataReady.value) return
-    const item = tasks.value.find((t) => t.id === val)
-    if (item) openDetail(item)
+    /*
+     * 用**全量**查找（与 `loadTasks` 的冷链接路径同口径）。
+     * 原实现用 `tasks.value`（已按 close 过滤），导致同一个 `?task=` 参数
+     * 「冷链接能开、前进/后退失效」（U3）。
+     * 目标已下架时给明确提示，不静默。
+     */
+    const item = allTasks.value.find((t) => t.id === val)
+    if (!item) return
+    if (item.close) {
+      errorMessage.value = '该任务已下架，无法查看'
+      return
+    }
+    openDetail(item)
   }
 )
 </script>
@@ -1047,6 +1141,29 @@ watch(
   min-height: 30px;
   padding: 1px 2px 7px;
   box-sizing: border-box;
+}
+/* 任务链里的任务名（后续任务 / 解锁任务）：可点击跳转到该任务详情 */
+.task-link-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--line, #c9b894);
+  border-radius: 10px;
+  background: var(--paper-soft, #e9dcc3);
+  color: var(--text-main, #3e2a14);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.task-link-chip:hover {
+  background: var(--paper-hover, #dfd0b2);
+  text-decoration: underline;
+}
+.task-link-chip:focus-visible {
+  outline: 2px solid var(--gold, #8a6a1f);
+  outline-offset: 2px;
 }
 .info-slot {
   display: flex;

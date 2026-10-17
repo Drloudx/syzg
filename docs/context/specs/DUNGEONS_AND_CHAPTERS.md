@@ -18,7 +18,26 @@
 | `parsed/dungeons.json` | 先取摘要 |
 | `parsed/dungeons/{battleId}.json` | 打开关卡再取 |
 
+- 列表在 `<768px` 用**单列**（原为固定两列，移动端卡片被压到无法阅读）；详情内网格早有单列断点。
+
 **不把全部路线和房间放进首屏请求。**
+
+### 推荐等级口径
+
+- 🔴 取 **`instance.battles[].level`**（游戏面板显示值，`InstanceBattlePanel.cs:407` 的 `levelLabel.text = battleItemData.level`）。
+- `dungeonBattle.battleLevel` 是**战斗强度等级**，不是推荐等级；用它会让 29/40 个关卡与游戏内不一致（最大差 3 级）。
+- 实现上优先 `battle.level`，缺失才回退 `config.battleLevel`。
+
+### 详情缓存
+
+- 按战斗 id 缓存，**必须有上限**（当前 LRU 12 条）：41 个关卡详情全部点过会常驻内存。
+- 缓存 key 带构建版本（`RESOURCE_BUILD_ID`），热更或版本切换后不会继续用旧详情。
+
+### 黑名单判定
+
+- 🔴 **唯一入口 `isDungeonHidden(dungeon)`**，对象形式同时带 `id`/`name`/`label: mapName`。
+- 筛选按钮与卡片**必须共用同一个判定**：原实现按钮按地区名字符串、卡片按对象，两套口径会导致「按钮隐藏了、卡片还在」或反之。
+- 筛选按钮的显隐按「该章节的副本是否全被隐藏」反推，与卡片口径一致。
 
 ### 职责分工
 

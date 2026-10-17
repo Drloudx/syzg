@@ -314,7 +314,7 @@ import DungeonRouteMap from '../components/dungeons/DungeonRouteMap.vue'
 import RoomContentList from '../components/RoomContentList.vue'
 import RewardPools from '../components/RewardPools.vue'
 import { openRewardDetail } from '../utils/rewardModalState.js'
-import { getImageUrl, handleImageFallback } from '../utils/env.js'
+import { getImageUrl, handleImageFallback, RESOURCE_BUILD_ID } from '../utils/env.js'
 import { BASE_REWARD_PATHS, MAP_NAMES } from '../utils/gameMappings.js'
 import { resolveScrollTarget } from '../utils/scrollTarget.js'
 import { isBlacklisted } from '../config/blacklist.js'
@@ -384,7 +384,7 @@ const firstDropsOpen = ref(false)
 const specialDropTab = ref('chest')
 let detailRequestId = 0
 let specialDropHighlightTimer = 0
-const battleDetailCache = new Map()
+// battleDetailCache 在 loadBattleDetail 前统一声明（带 LRU 上限与版本 key）
 const SPECIAL_DROP_TABS = [
   { key: 'chest', label: '箱子' },
   { key: 'merchant', label: '黑商人' },
@@ -401,12 +401,35 @@ const specialDropCategory = (room, variant) => {
   return ''
 }
 
+/**
+ * 副本是否被黑名单隐藏（**唯一判定入口**）。
+ *
+ * 🔴 原实现两处各写一套：筛选按钮按 `isBlacklisted(label)`（字符串），
+ * 卡片按 `isBlacklisted({ id, name, label: mapName })`（对象）——
+ * 黑名单配置粒度一变就会出现「按钮隐藏了、卡片还在」或反之（注释里记录过踩坑）。
+ *
+ * 统一为**对象形式**并同时带 id / name / mapName，这样 `name`、`label`、
+ * 数组型 `place`/`category` 等所有字段都能命中；按钮侧用 chapter 对应的
+ * `MAP_NAMES` 标签与真实副本数据反查，口径与卡片一致。
+ */
+const isDungeonHidden = (dungeon) => isBlacklisted({
+  id: dungeon?.id || '',
+  name: dungeon?.name || '',
+  label: dungeon?.mapName || ''
+})
+
+/** 某个章节（c0~c5）下是否所有副本都被隐藏 —— 用于决定筛选按钮是否出现。 */
+const isChapterHidden = (chapter) => {
+  const chapterDungeons = dungeons.value.filter(d => d.chapter === chapter)
+  if (!chapterDungeons.length) return isBlacklisted(MAP_NAMES[chapter] || chapter)
+  return chapterDungeons.every(d => isDungeonHidden(d))
+}
+
 const mapOptions = computed(() => [
   { key: 'all', label: '全部' },
   ...Object.entries(MAP_NAMES)
-    // 黑名单：被隐藏的地区（如黑森林/霜烬平原）不作为筛选按钮出现，
-    // 否则点进去是空列表（条目本身已被 filteredDungeons 过滤）
-    .filter(([, label]) => !isBlacklisted(label))
+    // 与卡片同一口径：该章节的副本全被隐藏时才隐藏按钮，避免「按钮在、点进去空」
+    .filter(([key]) => !isChapterHidden(key))
     .filter(([key]) => dungeons.value.some(dungeon => dungeon.chapter === key && (dungeon.battles?.length || 0) > 0))
     .map(([key, label]) => ({ key, label }))
 ])
@@ -506,10 +529,8 @@ const filteredDungeons = computed(() => {
       return { ...dungeon, battles: dungeon.battles.filter(matches), storyBattles: (dungeon.storyBattles || []).filter(matches) }
     })
     .filter(dungeon => dungeon.battles.length > 0 || dungeon.storyBattles?.length > 0)
-    // 黑名单：副本名/地区命中即隐藏。
-    // 必须用 mapName（「黑森林」）而不是 chapter（「c4」）——黑名单里存的是地区名，用章节代号匹配不到，
-    // 结果是筛选按钮被隐藏、卡片却还在。
-    .filter(dungeon => !isBlacklisted({ id: dungeon.id, name: dungeon.name, label: dungeon.mapName }))
+    // 黑名单：与筛选按钮共用 isDungeonHidden（唯一判定入口），避免两套口径不一致
+    .filter(dungeon => !isDungeonHidden(dungeon))
 })
 
 onMounted(async () => {
@@ -539,13 +560,38 @@ const findBattle = (id) => {
   return null
 }
 
+/**
+ * 副本详情缓存（按战斗 id）。
+ *
+ * 🔴 **必须有上限**：41 个关卡详情若全部点过，普通 Map 会常驻全部 Promise 与解析结果。
+ * 用简单的 FIFO 上限（保留最近 N 个）即可 —— 用户回看上一关的命中率远高于翻几十关。
+ *
+ * 另：缓存 key 带上数据版本（`?v=`），热更/版本切换后不会继续用旧详情。
+ */
+const BATTLE_CACHE_LIMIT = 12
+const battleDetailCache = new Map()
+// 缓存 key 带构建版本：热更/版本切换后不会继续用旧的详情数据
+const battleDetailCacheVersion = String(RESOURCE_BUILD_ID || '')
+
 const loadBattleDetail = (battle) => {
-  if (battleDetailCache.has(battle.id)) return battleDetailCache.get(battle.id)
+  const cacheKey = `${battle.id}@${battleDetailCacheVersion}`
+  if (battleDetailCache.has(cacheKey)) {
+    // 命中即刷新到队尾（LRU 语义：频繁访问的不易被淘汰）
+    const hit = battleDetailCache.get(cacheKey)
+    battleDetailCache.delete(cacheKey)
+    battleDetailCache.set(cacheKey, hit)
+    return hit
+  }
   const request = fetchWithFallback(`data/parsed/${battle.detailFile}`).catch(error => {
-    battleDetailCache.delete(battle.id)
+    battleDetailCache.delete(cacheKey)
     throw error
   })
-  battleDetailCache.set(battle.id, request)
+  battleDetailCache.set(cacheKey, request)
+  // 超限时淘汰最旧一条
+  while (battleDetailCache.size > BATTLE_CACHE_LIMIT) {
+    const oldest = battleDetailCache.keys().next().value
+    battleDetailCache.delete(oldest)
+  }
   return request
 }
 
@@ -848,6 +894,17 @@ watch(() => [route.query.map, route.query.q], ([map, q]) => {
 .dungeon-filter-panel { margin: 0 0 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .dungeon-count { color: var(--text-muted); font-size: 13px; font-weight: 600; }
 .dungeon-scroll { flex: 1; overflow-y: auto; min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; grid-auto-rows: max-content; gap: 14px; padding-bottom: 14px; }
+
+/*
+ * 窄屏单列：原实现固定两列，移动端（<768px）卡片内 18px 标题 + 描述被严重挤压；
+ * 详情内 `.route-room-detail__grid` 早有单列断点，列表页反而缺失。
+ */
+@media (max-width: 768px) {
+  .dungeon-scroll {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
 .dungeon-card { overflow: visible; min-width: 0; align-self: start; }
 .dungeon-card__cover { min-height: 156px; position: relative; background: linear-gradient(135deg, var(--wood-soft), var(--wood)); background-size: cover; background-position: center; color: var(--on-image-text); padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; }
 .dungeon-card__cover-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

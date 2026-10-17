@@ -181,6 +181,26 @@ export function buildTaskData(maps) {
   const taskNameMap = {}
   for (const [id, t] of Object.entries(taskMap)) taskNameMap[id] = t && t.name
 
+  /*
+   * 地点名清洗：剥离原表里混入的策划备注。
+   *
+   * 实测 `area.json` 的 `yz` 区域名是「驿站区域（废弃方案存档」—— 括号没闭合，
+   * 且整段是开发备注。它会一路带到 `task_100100/200100` 等任务的「任务地点」，
+   * 玩家看到「驿站郊外02（驿站区域（废弃方案存档）」。
+   *
+   * 判据：截断到第一个 `（`/`(` 之前（正常地区名不带括号备注），并丢弃明显是
+   * 开发标记的片段（废弃/停用/方案存档/待改/测试/未使用）。
+   * 若截断后为空则保留原名，避免把地点名洗没。
+   */
+  const DEV_MARK = /废弃|停用|方案存档|待改|测试|未使用|备份|暂不使用/
+  const cleanPlaceName = (name) => {
+    const raw = String(name || '').trim()
+    if (!raw) return ''
+    if (!DEV_MARK.test(raw)) return raw
+    const cut = raw.split(/[（(]/)[0].trim()
+    return cut || raw
+  }
+
   // ---------- 位置多表回退 ----------
   const resolveLocation = (id) => {
     if (!id) return null
@@ -193,8 +213,8 @@ export function buildTaskData(maps) {
       const area = areaMap[r.areaId]
       const mapArea = areaMap[`${r.areaId}_map`] || (area && area.chapter ? areaMap[`${area.chapter}_map`] : null)
       const parts = []
-      if (mapArea && mapArea.name) parts.push(mapArea.name)
-      if (area && area.name) parts.push(area.name)
+      if (mapArea && mapArea.name) parts.push(cleanPlaceName(mapArea.name))
+      if (area && area.name) parts.push(cleanPlaceName(area.name))
       /*
        * 去掉与房间名重复的层级。
        *
@@ -216,7 +236,7 @@ export function buildTaskData(maps) {
       return { type: 'room', label: r.name, sub: deduped.join(' > ') || undefined, id }
     }
     if (areaMap[id]) {
-      return { type: 'area', label: areaMap[id].name, id }
+      return { type: 'area', label: cleanPlaceName(areaMap[id].name), id }
     }
     if (instanceMap[id]) {
       return { type: 'instance', label: instanceMap[id].name, id }
@@ -302,18 +322,27 @@ export function buildTaskData(maps) {
   // ---------- 奖励解析（统一走 gameMappings.parseRewardEntries） ----------
 
   // ---------- 条件解析 ----------
+  /**
+   * 接取条件文案。
+   *
+   * 🔴 **优先用 `rules` 生成，`desc` 只作补充**。
+   *
+   * `condition.json` 的 `desc` 常是**策划备注**而非玩家文案，实测 112/760 条形如
+   * 「任务接取步骤条件」「NPC显示条件」「解锁风车平野后接取步骤条件」——
+   * 直接透出会让玩家看到内部占位词（41 条任务命中）。
+   * 真实条件在 `rules` 里（`passTask` → 「完成《暴风般的复仇》第2步」）。
+   *
+   * `desc` 仍作**补充**：它能提供 `rules` 表达不了的信息（如「完成 m_4_6 后可接取」里的
+   * 任务名替换、或「紧急契约：蔓晶采石场」这类前缀）。但备注性片段会被剔除。
+   *
+   * @param {string} condId condition.json 的键
+   */
   const parseCondition = (condId) => {
     if (!condId) return '无'
     const c = conditionMap[condId]
     if (!c) return condId
-    const desc = (c.desc || '').trim()
-    if (desc) {
-      // 描述里可能直接写任务 id（如“完成 m_2_6 步骤1后可接取”），把任务 id 替换成任务名
-      return desc.replace(/[A-Za-z_][A-Za-z0-9_]*/g, (tok) => {
-        if (taskNameMap[tok] && tok !== condId) return `《${taskNameMap[tok]}》`
-        return tok
-      })
-    }
+
+    // 1) 先从 rules 生成结构化条件（这是权威来源）
     const parts = []
     for (const rule of arr(c.rules)) {
       if (rule.type === 'passTask' && rule.para && rule.para.typeId) {
@@ -328,7 +357,33 @@ export function buildTaskData(maps) {
         parts.push(`通关 ${names.join('、')}`)
       }
     }
-    return parts.length ? parts.join('；') : condId
+
+    /*
+     * 2) desc 只在**无法从 rules 得到条件**时使用（见下方 4)。
+     *
+     * 实测 `desc` 混有大量非条件内容：任务自身名（「蛙肉却如此滑嫩……」「我的研究员们去了哪里」）、
+     * 策划备注（「任务接取步骤条件」「NPC显示条件」）、装饰性描述（「珍贵的装饰鸟羽」）。
+     * 把它们拼进条件只会制造噪声 —— 有 rules 时**完全以 rules 为准**。
+     */
+    const rawDesc = String(c.desc || '').trim()
+    const NOTE_ONLY = /^(?:任务接取步骤条件|NPC显示条件|NPC交互项条件|.*?(?:显示|接取|交互项?)?条件)$/
+    const cleanedDesc = rawDesc
+      .replace(/^[^，,。;；]{0,12}?(?:任务)?(?:接取)?(?:步骤)?条件[，,。;；\s]*/, '')
+      .trim()
+    const descUsable = cleanedDesc && !NOTE_ONLY.test(rawDesc)
+
+    // 3) rules 是权威来源
+    if (parts.length) return parts.join('；')
+
+    // 4) rules 为空时才退回 desc（剔除纯备注）
+    if (descUsable) {
+      return cleanedDesc.replace(/[A-Za-z_][A-Za-z0-9_]*/g, (tok) => {
+        if (taskNameMap[tok] && tok !== condId) return `《${taskNameMap[tok]}》`
+        return tok
+      })
+    }
+    if (rawDesc && !NOTE_ONLY.test(rawDesc)) return rawDesc
+    return '无'
   }
 
   // ---------- 条件步骤：解锁关卡 ----------
@@ -813,7 +868,16 @@ export function buildTaskData(maps) {
       addTasks: arr(t.addTask)
         .map((id) => ({ id, name: taskNameMap[id] || id, close: !!taskMap[id]?.close }))
         .filter((task) => task.id && !task.close),
-      unlockTasks: arr(t.unlockTask).map((id) => ({ id, name: taskNameMap[id] || id })).filter(Boolean),
+      /*
+       * 🔴 `unlockTask` 与 `addTask` 口径必须一致：两者都排除 `close=true` 的目标。
+       *
+       * 原表里存在指向已下架任务的引用（实测 6 条，如 `s_1_8`→`s_1_9`、`sub_0_02`→`sub_0_03`，
+       * 目标 `close=true`）。展示层已隐藏已下架任务（`HIDE_CLOSED_TASKS`），
+       * 若这里不过滤会列出**点不进、也搜不到**的任务名。
+       */
+      unlockTasks: arr(t.unlockTask)
+        .map((id) => ({ id, name: taskNameMap[id] || id, close: !!taskMap[id]?.close }))
+        .filter((task) => task.id && !task.close),
       unlockStages: parseUnlockStages(t.unlockStage),
       // 🔴 产物里**不要**塞整条原表配置（如 `raw: t`）：它在 `src/` 无消费方，
       // 却会让 tasks.json 体积翻倍。构建期回查配置时 `t` 在当前作用域内仍然可用。

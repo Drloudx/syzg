@@ -7,8 +7,8 @@
         <UiSearchInput v-model="searchQuery" placeholder="搜索成就名称、描述或道具..." />
       </template>
 
-      <!-- 分类筛选行 -->
-      <UiFilterRow label="分类1：">
+      <!-- 分类筛选行（原 label 是「分类1：」，调试残留，改为正常文案） -->
+      <UiFilterRow label="分类">
         <UiFilterPill
           v-for="cat in categoryOptions"
           :key="cat.key"
@@ -121,6 +121,16 @@
           <p class="ach-condition-text">{{ detailModal.item.requirementText }}</p>
         </UiSection>
 
+        <!--
+          官方 `des`（剧情向文案）。
+          原先只在 requirementText 缺失时才在列表行显示，弹窗里完全没有位置 ——
+          像 20102「向角布林报营地的仇…」这类描述在 requirementText 存在时无处可见。
+          达成条件与官方描述是**两层信息**，都要展示。
+        -->
+        <UiSection v-if="shouldShowDes(detailModal.item)" title="描述">
+          <p class="ach-description-text">{{ detailModal.item.des }}</p>
+        </UiSection>
+
         <UiSection
           v-if="detailModal.item.previousAchievements?.length || detailModal.item.nextAchievements?.length"
           title="成就阶段"
@@ -130,13 +140,31 @@
             v-if="detailModal.item.previousAchievements?.length"
             label="解锁前置"
           >
-            <span class="ach-stage-name">{{ formatAchievementNames(detailModal.item.previousAchievements) }}</span>
+            <span class="chip-group">
+              <button
+                v-for="ach in detailModal.item.previousAchievements"
+                :key="ach.id"
+                type="button"
+                class="ach-link-chip"
+                :title="`查看《${ach.name}》`"
+                @click="openAchievementById(ach.id)"
+              >{{ ach.name }}</button>
+            </span>
           </UiInfoRow>
           <UiInfoRow
             v-if="detailModal.item.nextAchievements?.length"
             label="完成后解锁"
           >
-            <span class="ach-stage-name">{{ formatAchievementNames(detailModal.item.nextAchievements) }}</span>
+            <span class="chip-group">
+              <button
+                v-for="ach in detailModal.item.nextAchievements"
+                :key="ach.id"
+                type="button"
+                class="ach-link-chip"
+                :title="`查看《${ach.name}》`"
+                @click="openAchievementById(ach.id)"
+              >{{ ach.name }}</button>
+            </span>
           </UiInfoRow>
         </UiSection>
 
@@ -215,6 +243,13 @@ const searchQuery = ref(route.query.q || '')
 const highlightedAchId = ref('')
 
 const achievements = ref([])
+/**
+ * **全量**成就（不含黑名单过滤）。
+ *
+ * 用途：成就链跳转与 `?id=` 深链要能识别「被黑名单隐藏的成就」并给出明确提示。
+ * 原实现只查 `achievements`（已过滤），深链静默找不到 —— 用户看到的是「点了没反应」。
+ */
+const allAchievements = ref([])
 const isDataReady = ref(false)
 const errorMessage = ref('')
 let highlightTimer = 0
@@ -226,12 +261,47 @@ const openDetail = (item) => {
   detailModal.value = { visible: true, item }
 }
 
+/**
+ * 按 id 打开另一个成就（成就链导航）。
+ *
+ * 链上的成就可能被黑名单隐藏（黑森林/霜烬平原相关）——
+ * 此时给出提示而不是静默失败。
+ */
+const openAchievementById = (id) => {
+  if (!id) return
+  const visible = achievements.value.find(a => String(a.id) === String(id))
+  if (visible) {
+    openDetail(visible)
+    return
+  }
+  const hidden = allAchievements.value.find(a => String(a.id) === String(id))
+  errorMessage.value = hidden
+    ? `「${hidden.name}」属于隐藏内容（黑森林 / 霜烬平原），暂不展示`
+    : '未找到该成就'
+}
+
 const getCategoryName = (cat) => {
   const found = categoryOptions.find(o => o.key === cat)
   return found ? found.label : (cat || '未知')
 }
 
-const formatAchievementNames = items => items.map(item => item.name).join('、')
+/**
+ * 官方 `des` 是否值得单独展示。
+ *
+ * 实测 86 条里 75 条与 `requirementText` **完全相同**，另有 10 条仅「累积/累计」「5/5名」
+ * 这类措辞差异 —— 单独再列一遍是噪声。
+ *
+ * 只在**实质不同**时展示：归一化（合并同义字、去标点空格）后仍不相等。
+ * 典型差异：10502「厨房老手」`des` 写「累计制作 50 个料理」而 `req` 写「30 个」。
+ */
+const shouldShowDes = (item) => {
+  const des = String(item?.des || '').trim()
+  const req = String(item?.requirementText || '').trim()
+  if (!des) return false
+  if (!req) return true
+  const norm = s => s.replace(/累积|累计/g, '累计').replace(/[。．.，,、\s]/g, '')
+  return norm(des) !== norm(req)
+}
 
 // 奖励卡点击 → 通过全局 itemId 查询打开物品详情
 const handleRewardClick = (rw) => {
@@ -273,6 +343,17 @@ const handleLocateAchievement = async (targetId, queryQ) => {
   let match = null
   if (targetId) {
     match = achievements.value.find(a => String(a.id) === String(targetId))
+    /*
+     * 黑名单冲突：目标成就存在于全量但被黑名单隐藏。
+     * 原实现只查已过滤数组 → 深链静默找不到，用户看到「点了没反应」。
+     */
+    if (!match) {
+      const hidden = allAchievements.value.find(a => String(a.id) === String(targetId))
+      if (hidden) {
+        errorMessage.value = `「${hidden.name}」属于隐藏内容（黑森林 / 霜烬平原），暂不展示`
+        return
+      }
+    }
   }
   if (!match && queryQ) {
     const qLower = queryQ.trim().toLowerCase()
@@ -328,6 +409,7 @@ const loadAchievements = async () => {
     const { achievements: assembled } = await fetchWithFallback('data/parsed/achievements.json')
 
     // 黑名单过滤（与原组装后行为一致）
+    allAchievements.value = assembled || []
     achievements.value = (assembled || []).filter(a => !isBlacklisted(a))
     isDataReady.value = true
 
@@ -625,6 +707,39 @@ const ensureAchievementVisible = matcher => {
 .dark-mode .ach-category-badge,
 .dark-mode .ach-stage-name {
   background: rgba(122, 154, 153, 0.14);
+}
+
+/* 官方 des（剧情向文案）：与「达成条件」并列展示 */
+.ach-description-text {
+  margin: 0;
+  color: var(--text-muted, #6b5134);
+  line-height: 1.65;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* 成就链跳转按钮（解锁前置 / 完成后解锁） */
+.ach-link-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border: 1px solid var(--line, #c9b894);
+  border-radius: 10px;
+  background: var(--paper-soft, #e9dcc3);
+  color: var(--text-main, #3e2a14);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.ach-link-chip:hover {
+  background: var(--paper-hover, #dfd0b2);
+  text-decoration: underline;
+}
+.ach-link-chip:focus-visible {
+  outline: 2px solid var(--gold, #8a6a1f);
+  outline-offset: 2px;
 }
 
 .reward-list {

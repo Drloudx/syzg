@@ -64,7 +64,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { fetchMonsterData } from '../utils/monsterParser'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
@@ -92,10 +92,10 @@ const isDataReady = ref(false)
 const isModalVisible = ref(false)
 const errorMessage = ref('')
 
-const searchQuery = ref('')
-const selectedLabel = ref(null)
-const selectedPlace = ref(null)
-const selectedElement = ref(null)
+const searchQuery = ref(route.query.q || '')
+const selectedLabel = ref(route.query.label || null)
+const selectedPlace = ref(route.query.place || null)
+const selectedElement = ref(route.query.element !== undefined ? route.query.element : null)
 const loadMonstersData = async () => {
   isDataReady.value = false
   errorMessage.value = ''
@@ -143,6 +143,28 @@ const loadMonstersData = async () => {
 
 onMounted(() => {
   loadMonstersData()
+})
+
+/**
+ * 筛选状态同步到 URL。
+ *
+ * 原实现只有详情 `id` 进 query —— 刷新或分享后**地区/种类/属性/搜索词全丢**，
+ * 而成就、副本、任务三页的 URL 契约都完整，怪物页是唯一的缺口。
+ *
+ * 🔴 必须保留本页不管理的键（如 `id` 详情、以及其它页面共享的参数）。
+ */
+watch([searchQuery, selectedLabel, selectedPlace, selectedElement], () => {
+  const query = { ...route.query }
+  const q = String(searchQuery.value || '').trim()
+  if (q) query.q = q
+  else delete query.q
+  if (selectedLabel.value) query.label = selectedLabel.value
+  else delete query.label
+  if (selectedPlace.value) query.place = selectedPlace.value
+  else delete query.place
+  if (selectedElement.value !== null && selectedElement.value !== '') query.element = selectedElement.value
+  else delete query.element
+  router.replace({ query })
 })
 
 const filteredMonsters = computed(() => {
@@ -220,7 +242,9 @@ const handleImgError = (e, mon) => {
 
 @media (max-width: 480px) {
   .monsters-card-grid :deep(.ui-card-grid) {
-    grid-template-columns: repeat(4, 1fr);
+    /* 🔴 原为 repeat(4)，比 768px 断点的 3 列**更多** —— 屏幕越窄列越多的反向笔误。
+       窄屏应收窄列数，否则卡片被压到无法阅读。 */
+    grid-template-columns: repeat(2, 1fr);
     gap: 6px;
   }
 }
