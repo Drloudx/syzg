@@ -21,7 +21,7 @@
 | 完整游戏配置 | `E:\Desktop\html\myrzg\Config_decrypted\` | 构建输入原表（139 个文件） |
 | 剧情文本 | `E:\Desktop\html\myrzg\GAoNano_decrypted\` | 对话与剧情原表（3017 个文件） |
 | 游戏源码 | `E:\Desktop\html\myrzg\源码\` | 核对战斗公式与客户端逻辑 |
-| 原图备份 | `E:\Desktop\html\myrzg\vue-myrzg备份-资源\` | 压缩/替换前的绝对备份源 |
+| 原图备份 | `E:\Desktop\html\myrzg\vue-myrzg备份-资源\` | 压缩/替换前的绝对备份源；`images/` 是 `public/images` 的镜像根（`compress-images.mjs` 默认值，可用 `MYRZG_IMAGE_BACKUP_DIR` 覆盖） |
 
 **环境变量覆盖**：`MYRZG_CONFIG_DIR` / `MYRZG_DIALOG_DIR` / `MYRZG_SOURCE_DIR`。
 

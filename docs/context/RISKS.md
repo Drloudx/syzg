@@ -6,7 +6,7 @@
 > **何时读**：执行高风险操作前、排查故障时、或想知道"这块有没有已知问题"时。
 > **何时更新**：发现新证据、故障被修复、或验证缺口被补齐时。
 
-**核对时间**：2026-10-15
+**核对时间**：2026-10-17
 
 ---
 
@@ -166,6 +166,7 @@ D1 免费版按 **rows read / rows written** 计费（读 5,000,000 行/天、�
 | **EdgeOne 缓存策略优先于 `_headers`** | 文件写对 ≠ 线上生效 | 改完用 `npm run cdn:check` 打真实响应头复测 |
 | **加 EdgeOne 加速域名不配证书** | 整个域名 HTTPS 不可用（`ERR_EMPTY_RESPONSE`） | 选「申请免费证书 + 自动验证」 |
 | **Playwright 并发** | 调高会压死单进程 `wrangler dev` + 单 SQLite 文件，失败的是互不相干的一堆 spec | 保持 `workers: 2` |
+| **图片脚本的「备份镜像根」不存在** | `compress-images.mjs` 默认镜像根为 `../vue-myrzg备份-资源/images`。该目录缺失时旧实现只打印 `N missing or non-matching` 就 `exit 0`，**「有备份才压缩」静默降级成一句提示**，仅到 `--apply` 才失败 | 预览遇镜像根缺失**直接报错并给出建库命令**；`--backup-to` 可先建镜像根（`COPYFILE_EXCL` + 回读 SHA-256）。`tests/unit/maintenance.test.mjs` 守三条判据 |
 | **PowerShell 写中文文件** | `Set-Content`/`Out-File` 会 GBK 乱码或加 BOM | 用编辑工具或 Node `fs.writeFileSync(..., 'utf8')` |
 | **前端直接引用 `raw/`** | 原始大表不该进浏览器 | 运行时只能读 `public/data/parsed/` |
 

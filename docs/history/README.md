@@ -148,6 +148,7 @@ EdgeOne 缓存、Pages 部署、myrzg → syzg 改名。
 
 | 文件 | 内容 |
 | --- | --- |
+| [HANDOFF-2026-10-17.md](HANDOFF-2026-10-17.md) | **召唤物属性 + 四页面审计 · 交接稿**：源码核实结论、6 个召唤物数据、任务/成就/怪物/副本逐项修法与遗留 |
 | [freight-cart-recon.md](freight-cart-recon.md) | **贸易小车 · 侦察稿**：数据表、UI 坐标、图片资源、源码依据 |
 | [freight-cart-handoff.md](freight-cart-handoff.md) | **贸易小车 · 交接稿**：功能说明、文件清单、删除步骤、已知坑、验证清单 |
 | [MIGRATION.md](MIGRATION.md) | **文档重构 · 旧→新映射**：`SPEC.md` 各节去了哪、`HANDOFF` 怎么拆、替换步骤 |
@@ -166,6 +167,7 @@ EdgeOne 缓存、Pages 部署、myrzg → syzg 改名。
 
 | 日期 | 主要内容 |
 | --- | --- |
+| [10-17](./dev-logs/2026-10/2026-10-17.md) | 词汇施加剧照 chip 断链修复（`hide` 角色标注「图鉴未收录」）；图片压缩脚本备份镜像根语义订正（另有专项交接稿 [HANDOFF](./HANDOFF-2026-10-17.md)） |
 | [10-07](./dev-logs/2026-10/2026-10-07.md) | CSP 与 HSTS 响应头；密码盐改随机；任务剧情搜索定位 |
 | [10-06](./dev-logs/2026-10/2026-10-06.md) | Playwright 清零；设施/锻造死链真 bug；邮件发信事故 |
 | [10-05](./dev-logs/2026-10/2026-10-05.md) | 账号体系实现与上线（**112 KB，最大单篇**）；悬浮拉手；快滑调度 |
