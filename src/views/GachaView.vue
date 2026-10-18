@@ -31,6 +31,7 @@
         @rate="openTip('rate')"
         @record="openTip('record')"
         @close="handleBack"
+        @home="handleHome"
         @exchange="handleExchange"
         @open-candidate="openCandidate"
         @toggle-sound="store.toggleSound"
@@ -461,6 +462,21 @@ function handleTopUp(typeId) {
 function handleBack() {
   if (window.history.length > 1) router.back()
   else router.push('/')
+}
+
+/**
+ * 点击标题图回首页。
+ *
+ * 与 `handleBack()` 的区别是**语义确定**：这里永远是「回首页」，不是「回上一页」。
+ * 招募页常从分享链接、书签或 Android 返回栈直接进入，那种情况下 `router.back()`
+ * 的去向取决于来路，可能是站外或空栈；标题图作为明确的「首页」入口不能有这种歧义。
+ */
+function handleHome() {
+  // 根路由 `/` 是 `redirect: '/items'`，所以「已在首页」的实际路径是重定向后的目标。
+  // 判据取根路由的 redirect，不写死 '/items'，改首页落点时这里自动跟随。
+  const homePath = router.getRoutes().find(r => r.path === '/')?.redirect
+  if (typeof homePath === 'string' && router.currentRoute.value.path === homePath) return
+  router.push('/')
 }
 
 /**

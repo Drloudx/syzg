@@ -51,14 +51,24 @@
     <!-- ── 标题：Title (-500,315)，titleHero / titlePetEgg 为 512×152 原画
          （prefab 里两张按角色/魔物蛋切换，此处直接按 kind 取对应图）。
          prefab 另有 `Title/bg`(com_info_botm 217×24) 与 `Title/Label`（「招募来自各地的伙伴」），
-         但源码从不给它们赋值、游戏画面里也不出现，故不渲染。 ── -->
-    <div class="g-abs g-layer-ui" :style="gachaPos(-500, 315)">
+         但源码从不给它们赋值、游戏画面里也不出现，故不渲染。
+
+         **本页新增**：标题图兼作「返回首页」入口（游戏内无此交互）。
+         仍用 `g-abs` + `gachaPos` 定位，尺寸由 `.pool-title-art` 决定，布局与纯图片时一致。 ── -->
+    <button
+      class="g-abs g-layer-interactive g-hit g-focusable pool-title-btn"
+      :style="gachaPos(-500, 315)"
+      type="button"
+      title="返回首页"
+      aria-label="返回首页"
+      @click="emit('home')"
+    >
       <img
         :src="getImageUrl(`/images/HeroPoolPanel_Atlas/${kind === 'hero' ? 'gacha_title_chara' : 'gacha_title_egg'}.webp`)"
         :alt="kind === 'hero' ? '伙伴招募' : '魔物蛋贩售'"
         class="pool-title-art"
       />
-    </div>
+    </button>
 
     <!-- ── 保底提示：RareTip (-609,-283)，icon_info 28×28 + Label（prefab fontSize=20）。
          **左对齐**：图标左边缘与下方「概率详情」按钮左边缘同在 design −631（用户要求这几项左对齐）。 ── -->
@@ -366,7 +376,7 @@ const props = defineProps({
 
 const emit = defineEmits([
   'update:kind', 'select-pool', 'rate', 'record', 'draw',
-  'close', 'exchange', 'open-candidate', 'toggle-sound', 'reset', 'topup'
+  'close', 'exchange', 'open-candidate', 'toggle-sound', 'reset', 'topup', 'home'
 ])
 
 /** 指定伙伴 / 指定魔物蛋：候选里 isUp 的项。 */
@@ -517,6 +527,15 @@ function upAvatar(candidate) {
 .pool-title-art {
   width: 512px;
   height: 152px;
+}
+
+/* 标题图兼作返回首页入口：按钮自身不撑尺寸，由内部 512×152 图决定，
+   与纯图片时盒模型完全一致（深色/窄屏切换不得产生位移）。 */
+.pool-title-btn {
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 0;
 }
 
 .pool-title-plate {
