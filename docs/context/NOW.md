@@ -15,7 +15,7 @@
 
 | 项 | 值 |
 | --- | --- |
-| 线上域名 | `https://syzg.yxzmy.top` |
+| 线上域名 | `https://syzgwiki.top`（**已上线 2026-10-21**；经 EdgeOne → Cloudflare 双层，详见 [DOMAIN_MIGRATION](DOMAIN_MIGRATION.md) §九） |
 | 仓库 | `Drloudx/syzg`（`main`） |
 | 部署 | Cloudflare Pages 项目 `syzg`，推送即上线 |
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
@@ -106,7 +106,7 @@
 | ~~**P0**~~ | ~~生产 D1 执行第 10 步迁移（`users.replies_read_id`）~~ | **2026-10-11 已完成**（先执行迁移、后推送，红线第 6 条）。核对：列已存在、2 个用户 `replies_read_at` 为空保持 NULL、0 条凭空多出未读 |
 | **P1** | 发 Android 热更包 | 旧 APK 的 `CLOUD_URL` 写死旧域名 → 这是下掉旧域名的唯一前置。**备包可做，签名与真机安装需用户执行** |
 | **P2** | 账号体系 M8 真机复测 | M7 已覆盖；`/#/privacy` 与兜底路由**没有真机用例**（只有桌面 Playwright） |
-| **P2** | 收尾旧域名 | 热更包铺开后：移除 `myrzg.yxzmy.top` 的 Pages 自定义域名 + EdgeOne 加速域名。建议先保留 301 一段时间 |
+| **P2** | 收尾旧域名 | 新域名已上线并验证通过（18/0）。可择机移除 `syzg.yxzmy.top` / `myrzg.yxzmy.top` 的 Pages 自定义域名 + EdgeOne 加速域名。建议先保留 301 一段时间。**`mail.yxzmy.top` 的 DNS 永久保留** |
 | **P2** | D1 库名统一为 `syzg-comments` | 纯装饰（绑定走 `database_id`）。当前令牌**没有 D1 Edit 权限**，需用户在控制台改或换令牌 |
 | **P3** | 首页 HTML 边缘缓存 | 配 EdgeOne 节点缓存 TTL（如 10 分钟）可把大陆首页从 ~1.9s 压到 ~0.5s，代价是发版后手刷缓存 |
 | **P3** | 探索区域卡片观感 | 风景图（440×280）塞进正方形 slot 只占中间 68%，四周露出品质框。**已定位，未改** |
@@ -114,7 +114,7 @@
 | **P3** | `:global()` 写法纪律 | 本次踩到的坑：`<style scoped>` 里写 `:global(X) Y` 会编译出**裸 X**，配 `!important` 会污染 `html`。全仓已清零，但**没有 lint 守住**，将来可能重现。可用一条单测扫描 `src/**/*.vue` 源码里的 `:global(...)` 后面是否还有选择器片段 |
 | **P3** | 任务 D4 之外的审计待核实项 | 副本 `c4_d1_2` 名称（两表文案不同，产物取 `instance` 已符合源码，**非缺陷**）、`dungeonmjcsc` 图标复用 `map_fb_aseyj`（原表配错，无可靠替代图）、成就 20303-20310 共用 reward 键（需对照 `Config_decrypted` 确认） |
 | **P3** | 召唤物「加成规则」可再补充 | 当前只写「继承 5 项 + 全体加成生效」。若玩家常问「宠物特性/套装是否生效」，可补一条「宠物被动不作用于召唤物」（依据 `BattleManager.cs:7604` 的 `if (unit.summonUnit) continue`） |
-| **P3** | `Config_decrypted/diary.json` 无法被 `sync-raw` 同步 | 源表含裸控制字符 + 尾随逗号，非合法 JSON。**当前无数据偏差**（与 `raw/` 副本逐字一致），风险在将来。见 [RISKS](RISKS.md) 故障 25 |
+| **P3** | `游戏数据/配置表/diary.json` 无法被 `sync-raw` 同步 | 源表含裸控制字符 + 尾随逗号，非合法 JSON。**当前无数据偏差**（与 `raw/` 副本逐字一致），风险在将来。见 [RISKS](RISKS.md) 故障 25 |
 
 > **已不再需要**（2026-10-07 完成，保留一行便于追溯）：
 > · 收口文档体系重构 —— `bbe5f7ee` 已提交

@@ -83,8 +83,12 @@ cmd.exe /c "npm run search:update"     # 重建搜索 / 来源 / 类型索引
 | `node scripts/parse/extractDungeonRoutes.mjs` | 从完整配置提取副本路线输入 |
 | `npm run data:dungeons:effects` | 维护女神/泉水等房间结构化效果输入 |
 | `npm run data:monsters:tower` | 从完整 tower/battle/room 生成轻量 Boss 塔层索引 |
-| `npm run skins:export` | 离线导出皮肤模型 PNG 与清单 |
+| `npm run skins:export` | 离线导出皮肤模型 PNG 与清单。**需要先另起 `npx vite --port 4187`**（脚本用页面内 WebGL 渲染，靠 Vite 提供 spine-webgl 的预构建产物） |
 | `npm run fonts:subset -- --apply` | 字体子集化（数据更新后字符集变大必须重跑） |
+| `npm run audit:item-sources` | 物品来源缺口审计（只读，输出 JSON） |
+| `npm run audit:images` | 图片资源清单与重复检测（只读） |
+| `npm run quotes:find` / `quotes:find-deep` | 从剧情里检索可引用台词（只读） |
+| `npm run cdn:check` | 线上缓存头核对（只读，需网络） |
 
 ---
 
@@ -281,7 +285,7 @@ cmd.exe /c "npx cap sync android"
 
 ```
 用户（大陆为主）
-  │  DNSPod: syzg.yxzmy.top CNAME → syzg.yxzmy.top.eo.dnse3.com
+  │  DNSPod: syzgwiki.top CNAME → <EdgeOne 分配的加速域名>
   ▼
 腾讯云 EdgeOne 边缘节点   ← 大陆加速在这一层
   │  回源 syzg.pages.dev
@@ -292,6 +296,10 @@ Cloudflare D1（myrzg-comments）
 ```
 
 两层 CDN 的原因：Cloudflare Pages 在大陆没有节点，套 EdgeOne 只对大陆可达性有意义，**不会让静态资源更快**。
+
+> **怎么确认两层都在**：`curl -I https://syzgwiki.top/` 的响应头**同时**出现
+> `EO-LOG-UUID` / `EO-Cache-Status`（EdgeOne）与 `CF-RAY` / `Server: cloudflare`（Cloudflare）。
+> 只看到一组 = 链路少了一环（通常是 CF 侧没绑自定义域，或 DNSPod 没指 EdgeOne）。
 
 ### 7.2 缓存策略
 

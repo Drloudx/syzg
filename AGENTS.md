@@ -143,7 +143,10 @@
 ## 四、项目红线（改了会出事）
 
 1. **`CLOUD_URL` 会被编译进产物**（`src/utils/env.js`）→ 改它等于要求所有 Android 用户更新热更包。
-2. **旧域名 / 旧 Pages 项目是退路** → 热更包铺开前不要动 `myrzg.yxzmy.top`、`myrzg.pages.dev`、`Drloudx/myrzg`。
+   **例外（2026-10-20）**：Android 当时尚未正式发布（`versionCode 1`、热更清单为测试内容），
+   迁到 `syzgwiki.top` 无存量用户，故未做双域名过渡。**发版之后此例外失效**。
+2. **旧域名 / 旧 Pages 项目是退路** → 新域名全链路验证通过前，不要动 `syzg.yxzmy.top`、`myrzg.yxzmy.top`、`myrzg.pages.dev`、`Drloudx/myrzg`。
+   ⚠️ **`mail.yxzmy.top` 是腾讯云 SES 已验证发信域，不随站点迁移**，任何情况下不要删它的 DNS 记录。
 3. **Android 包名 `com.myrzg.assistant` 与目录名 `vue-myrzg` 不能改** → 改了已安装用户无法增量升级、本地数据丢失。`tests/unit/site-name.test.mjs` 守着。
 4. **`wrangler.toml` 的 `name` / `database_name` 保持 `myrzg`** → 本地手动跑 wrangler 时才生效，改名会与旧 Pages 项目冲突。
 5. **绝不对生产库执行破坏性 SQL**。`DELETE FROM comments` 只在 `scripts/sql/reset-test-comments.sql` 里，默认整段注释，**必须用户确认**才跑。
@@ -202,6 +205,8 @@
 | **`npm` 在 Windows 下** | 直接 `npm run` 偶发失败 | 走 `cmd.exe /c "npm run ..."` |
 | **`functions/` 不热加载** | 改了 API 代码不生效 | **必须重启 `npm run dev:api`** |
 | **Playwright 全量必须限并发** | `workers` 调高会同时打同一个单进程 `wrangler dev`，本地 D1 是**一个 SQLite 文件** → 大面积 `Test timeout` / `ECONNRESET`，失败的是互不相干的一堆 spec | 保持 `workers: 2`，不要改成按 CPU 核数自动 |
+| **数据源同名表混放** | `游戏数据/配置表` 顶层若混入 CDN 新版，`sync-raw` 按文件名取值，`data:build` **静默**产出不同结果（`room.json` 少 1 键、`buff.json` 多 98 条） | 顶层单一口径（APK 版）；CDN 版进 `_CDN新版/`，`sync-raw` 已跳过 `_` 前缀 |
+| **junction 用 `rmdir /s` 删** | 会顺着链接把源目录一起删掉 | 断链只用 `rmdir`（不带 `/s`） |
 
 ---
 
@@ -218,6 +223,8 @@
 | 知道当前进展 / 断点 | [docs/context/NOW.md](docs/context/NOW.md) |
 | 跑起来 / 构建 / 验收 / 发布 | [docs/context/RUNBOOK.md](docs/context/RUNBOOK.md) |
 | 目录职责 / 数据流 / 分层 | [docs/context/ARCHITECTURE.md](./docs/context/ARCHITECTURE.md) |
+| **去哪取配置表 / 剧情 / 源码 / 图片** | [docs/context/DATA_SOURCES.md](./docs/context/DATA_SOURCES.md)（含可直接粘贴的提示词） |
+| **迁移域名 / 改 DNS / 动 EdgeOne 或 Cloudflare** | [docs/context/DOMAIN_MIGRATION.md](./docs/context/DOMAIN_MIGRATION.md) |
 | 某页面的业务规则与 URL 契约 | [docs/context/DOMAIN.md](docs/context/DOMAIN.md) |
 | 为什么这么设计 | [docs/context/DECISIONS.md](docs/context/DECISIONS.md) |
 | 已知故障 / 风险 / 验证缺口 | [docs/context/RISKS.md](docs/context/RISKS.md) |

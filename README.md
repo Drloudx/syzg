@@ -1,4 +1,4 @@
-# 深渊大书院
+﻿# 深渊大书院
 
 《深渊之歌》Wiki 工具 —— Web + Android（Capacitor）双端。
 
@@ -9,7 +9,7 @@
 
 | | |
 | --- | --- |
-| 线上站点 | <https://syzg.yxzmy.top> |
+| 线上站点 | <https://syzgwiki.top> |
 | 技术栈 | Vue 3 + Vite + Vue Router（Hash）+ Pinia + Capacitor |
 | 后端 | Cloudflare Pages Functions + D1（仅评论与账号，其余纯静态） |
 

@@ -2,7 +2,7 @@
  * 评论审核词表（唯一来源，被 functions/api/[[path]].js 直接 import）
  *
  * ## 来源
- * 按类别从游戏聊天风控词库筛选：`../Config_decrypted/words.json`
+ * 按类别从游戏聊天风控词库筛选：`游戏数据/配置表/words.json`（原 `../Config_decrypted/words.json`）
  * （约 14,078 条，逗号分隔的单个字符串）
  *
  * ## 为什么不整表同步（2026-10-01 实测，依据 docs/context/technical/COMMENTS_BACKEND.md）

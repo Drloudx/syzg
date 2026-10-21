@@ -6,24 +6,34 @@
 > **何时读**：定位"要改的东西在哪"或确认运行环境时。
 > **何时更新**：映射变化时（新增源目录、改部署位置、加构建脚本）。**不虚构环境**；不确定标注「待核实」。
 
-**核对时间**：2026-10-07
+**核对时间**：2026-10-19
 
 ---
 
 ## 一、外部源资源位置（构建前置，**不入库**）
 
-项目同级目录，缺任一项都无法从零再生成数据：
+统一入口：**`E:\Desktop\html\myrzg\游戏数据\`**（结构见该目录 [README](../../../游戏数据/README.md)）。
+`scripts/dev/maintenance-paths.mjs` 是路径的唯一定义处，下表的"常量"列即该文件的导出名。
 
-| 类型 | 路径 | 用途 |
-| --- | --- | --- |
-| UI 图集与散图 | `E:\Desktop\html\myrzg\UI_Atlases\` | 切图、Sprite 提取来源 |
-| 资源包 | `E:\Desktop\html\myrzg\4.24路资源包\` | 散图、更新包与 UI 资产 |
-| 完整游戏配置 | `E:\Desktop\html\myrzg\Config_decrypted\` | 构建输入原表（139 个文件） |
-| 剧情文本 | `E:\Desktop\html\myrzg\GAoNano_decrypted\` | 对话与剧情原表（3017 个文件） |
-| 游戏源码 | `E:\Desktop\html\myrzg\源码\` | 核对战斗公式与客户端逻辑 |
-| 原图备份 | `E:\Desktop\html\myrzg\vue-myrzg备份-资源\` | 压缩/替换前的绝对备份源；`images/` 是 `public/images` 的镜像根（`compress-images.mjs` 默认值，可用 `MYRZG_IMAGE_BACKUP_DIR` 覆盖） |
+| 类型 | 常量 | 现行路径 | 用途 |
+| --- | --- | --- | --- |
+| 完整游戏配置 | `configRoot` | `游戏数据\配置表\`（143 张） | 构建输入原表 |
+| 剧情文本 | `dialogRoot` | `游戏数据\剧情\`（3221 份） | 对话与剧情原表 |
+| 游戏源码 | `gameSourceRoot` | `游戏数据\源码\`（4907 个 .cs） | 核对战斗公式与客户端逻辑 |
+| UI 图集切图 | `atlasRoot` | `游戏数据\图片资源\图集\`（59 图集） | 面板与图标 |
+| 完整资源包 | `bundleRoot` | `游戏数据\资源包\`（真实目录，原 `4.24路资源包` 已迁入） | 立绘/模型/音效/特效 |
+| APK 解包 | — | `游戏数据\APK解包\`（真实目录，原 `game.taptap.tqpmyrzg` 已迁入） | AssetBundle 原包与热更 DLL |
+| 原图备份 | `imageBackupRoot` | `vue-myrzg备份-资源\images\` | 压缩/替换前的绝对备份源 |
+| 旧目录归档 | — | `游戏数据\_迁入归档\`（409 文件 / 99 MB） | 删旧目录前的独有内容留存 |
 
-**环境变量覆盖**：`MYRZG_CONFIG_DIR` / `MYRZG_DIALOG_DIR` / `MYRZG_SOURCE_DIR`。
+**环境变量覆盖**：`MYRZG_DATA_DIR` / `MYRZG_CONFIG_DIR` / `MYRZG_DIALOG_DIR` / `MYRZG_SOURCE_DIR` /
+`MYRZG_ATLAS_DIR` / `MYRZG_BUNDLE_DIR`。优先级：**环境变量 > `游戏数据/` 子目录**。
+
+> 🔴 **2026-10-20 起不再回退到项目同级旧目录**：`Config_decrypted` / `GAoNano_decrypted` /
+> `UI_Atlases` / `4.24包` 已全部删除（独有内容先归档），脚本不再有第二候选路径。
+>
+> 2026-10-19 结构收敛：移除 `资源包-4.24包` 与 `UI图集源` 两个冗余链接；
+> `资源包` / `APK解包` 由 junction 改为**真实目录**。
 
 > 🔴 **严禁读取**：`E:\Desktop\html\myrzg\令牌agent勿看\`、`_ai-credentials\` —— 真实凭据，任何情况下不读取、不列举。
 
@@ -86,7 +96,7 @@ docs/
 ## 三、数据流转映射
 
 ```
-[外部源: Config_decrypted & GAoNano_decrypted]
+[外部源: 游戏数据/配置表 与 游戏数据/剧情]
         │  node scripts/dev/sync-raw.mjs --apply
         ▼
     [raw/]  完整原表（不入库，144 个文件）
@@ -123,30 +133,45 @@ docs/
 
 ## 四、部署位置与版本关系
 
-### 4.1 拓扑
+### 4.1 拓扑（两层：EdgeOne 加速 → Cloudflare 源站）
 
 ```
 用户（大陆为主）
-  │  DNSPod: syzg.yxzmy.top CNAME → syzg.yxzmy.top.eo.dnse3.com
+  │  DNSPod: syzgwiki.top CNAME → syzgwiki.top.eo.dnse3.com
   ▼
 腾讯云 EdgeOne 边缘节点（大陆加速层，回源 syzg.pages.dev）
+  │  证书：eofreecert（TrustAsia，至 2027-01-17）
   ▼
 Cloudflare Pages 项目 syzg（静态产物 + Pages Functions）
   ▼
 Cloudflare D1  库名 myrzg-comments  id 5f0d4c37-107f-4811-bc5e-768f73c51a3a
 ```
 
-### 4.2 新旧并存（**刻意保留旧名**）
+> **两层都要保留，不是二选一**。Cloudflare 面板里的「自定义域」是**源站绑定** ——
+> 告诉 CF 这个 Host 交给哪个 Pages 项目处理，EdgeOne 回源时按它分发；
+> 而用户实际访问时，DNSPod 把域名指到 EdgeOne，**不经过 CF 的 DNS**。
+>
+> 判据（2026-10-21 实测响应头）：同时存在 `EO-LOG-UUID` / `EO-Cache-Status`（EdgeOne）
+> 与 `CF-RAY` / `Server: cloudflare`（Cloudflare）。只看到其中一组，说明链路少了一环。
+>
+> ⚠️ **不记录延迟数字**：本机出口在美国，测出的延迟不代表大陆用户。评估大陆速度须从大陆网络发起。
 
-| | 现在（新） | 旧（保留作退路） |
+### 4.2 域名与项目名对照
+
+| | 现在 | 历史（保留作退路） |
 | --- | --- | --- |
+| 主域名 | `syzgwiki.top` | `syzg.yxzmy.top`、`myrzg.yxzmy.top` |
 | GitHub 仓库 | `Drloudx/syzg` | `Drloudx/myrzg`（未删） |
 | Pages 项目 | `syzg` → `syzg.pages.dev` | `myrzg` → `myrzg.pages.dev` |
-| 自定义域名 | `syzg.yxzmy.top` | `myrzg.yxzmy.top` |
-| 前端基址 | `CLOUD_URL = https://syzg.yxzmy.top` | — |
+| 前端基址 | `CLOUD_URL = https://syzgwiki.top` | — |
 | D1 数据库 | `myrzg-comments`（**名字未改**，两项目共用） | — |
+| 发信域名 | `mail.yxzmy.top`（腾讯云 SES，**未随站点迁移**） | — |
 
-**三处不能改**：本地目录 `vue-myrzg`、旧仓库/旧 Pages/旧域名、`wrangler.toml` 的 `name`/`database_name`。理由见 [AGENTS.md](../../AGENTS.md) 第四节。
+**三处不能改**：本地目录 `vue-myrzg`、`wrangler.toml` 的 `name`/`database_name`、Android 包名 `com.myrzg.assistant`。理由见 [AGENTS.md](../../AGENTS.md) 第四节。
+
+> **发信域名独立于站点域名**：`noreply@mail.yxzmy.top` 是腾讯云 SES 的**已验证发信域**
+> （四项 DNS 验证 + 模板 `TemplateID = 62671` 均通过）。迁站点域名时**不要动它** ——
+> 换发信域要重走验证并重新审核模板，与站点迁移是两件事。
 
 ### 4.3 版本关系
 

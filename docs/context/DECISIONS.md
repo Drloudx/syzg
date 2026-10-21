@@ -34,6 +34,10 @@
 | 9 | D1 库名**暂不改**（`myrzg-comments`） | 纯装饰，绑定走 `database_id` | 当前令牌**没有 D1 Edit 权限**，改名需用户在控制台操作 |
 | 10 | 阶段顺序：**先修 `/api/health` 返回 JSON，再谈账号** | 2026-10-03 实测线上 Functions 未生效（返回 `text/html`），账号体系依赖一个能用的后端 | 前置阻塞项 |
 | 11 | `backups/**` 与 `docs/history/dev-logs/**` 在域名替换时**不动** | 归档改了反而失真 | — |
+| 142 | 站点再迁 `syzg.yxzmy.top` → **`syzgwiki.top`**，本次**不做双域名过渡**（与 #5 不同） | #5 的双域名并存是为已发布 Android 包；本次迁移时 Android **尚未正式发布**（`versionCode 1`、热更清单为测试内容），无存量用户 | `CLOUD_URL` 默认值直接改新域。红线 1 的例外**仅在发版前成立** |
+| 143 | **保留 EdgeOne + Cloudflare 双层**，不是二选一 | EdgeOne 负责大陆加速；CF Pages 是源站。DNSPod 把域名指到 EdgeOne，CF 的「自定义域」只用于**回源认 Host** | 两层都要配；判据是响应头同时出现 `EO-*` 与 `CF-RAY` |
+| 144 | 迁移顺序：**先在 CF 绑定新域 → 再指 DNS → 最后改代码推送** | 代码先上线而 DNS 未通等于站点全挂；`git push` 即上线，没有"再点一下发布" | 每步都可独立回退 |
+| 145 | 发信域迁到 **`mail.syzgwiki.top`**（**子域**，2026-10-21 修正原「不迁」方案）**已上线，SES 4/4 验证通过** | 根域 `syzgwiki.top` 被 CNAME 指向 EdgeOne，**CNAME 不能与 TXT/MX 共存** → 直接用根域做发信域会让 SPF 与 MX 失效（实测：`_dmarc`/DKIM 子域能解析，根域 TXT 解析不出） | `SES_FROM` 与 `authMail.js` 的 fallback 均改为新子域；旧域 `mail.yxzmy.top` 保留作退路。DMARC 初判失败，靠 `UpdateEmailIdentity` 重验解决 |
 
 ---
 
@@ -130,6 +134,7 @@
 | 71 | 不用 Cloudflare Email Service | 需 Paid，且发信域名必须是 CF 托管的 zone | — |
 | 72 | 触发类邮件用 `TriggerType: 1` + `Unsubscribe: '0'`（**字符串**） | 验证码属触发类，用户不可能"退订"验证码；腾讯云对 `Unsubscribe` 做**严格类型校验**，传数字 0 返回 `InvalidParameter` 并**整封拒收** | 2026-10-06 真实事故的根因 |
 | 73 | 发信域名用**子域** `mail.yxzmy.top`（不用 `syzg.yxzmy.top`） | 保护根域声誉；一个域名只能有一条 SPF 记录；`syzg.` 是网站正在用的域名 | 域名创建成功后**不支持删除** |
+| 73b | ~~站点迁 `syzgwiki.top` 时发信域不跟着迁~~ — **已废弃，见 #145**。实际改为迁到子域 `mail.syzgwiki.top` | 原判据「换域要重走验证」仍成立，但用户决定统一品牌 | 旧域 `mail.yxzmy.top` 保持验证状态作退路 |
 | 74 | 不开通独立 IP | 900 元/个/月、冻结一月费用、需 2~4 周预热；小量发信反而更差（新 IP 声誉从零开始） | 用共享 IP 池 + `TriggerType: 1` |
 | 75 | DKIM 选 **2048 位**那一条；1024 位不勾选 | 1024 位是给不支持超长 TXT 的 DNS 做兼容用 | 广州前缀 `qcloudgz2048`，香港 `qcloudhk2048` |
 | 76 | 凭据用**子账号最小权限**密钥（只授 SES 发信权限），存 Cloudflare 环境变量，**不进仓库** | 不要用主账号密钥 | `TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY` |

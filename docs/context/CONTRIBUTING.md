@@ -87,8 +87,13 @@ fix(auth): 🔴 线上事故：验证码邮件一封都发不出去 —— 我�
 
 完整数据再生成需要本机原表、派生输入与剧情资源，**这些都不入库**，新环境必须另行准备。
 
-- 游戏配置默认位于项目同级 `Config_decrypted`，剧情在 `GAoNano_decrypted`，游戏源码在 `源码`；
-  可用 `MYRZG_CONFIG_DIR` / `MYRZG_DIALOG_DIR` / `MYRZG_SOURCE_DIR` 或维护脚本参数指定。
+- 游戏配置默认位于项目同级 **`游戏数据/配置表`**，剧情在 **`游戏数据/剧情`**，游戏源码在 **`游戏数据/源码`**；
+  `scripts/dev/maintenance-paths.mjs` 是唯一定义处，环境变量 `MYRZG_CONFIG_DIR` / `MYRZG_DIALOG_DIR` /
+  `MYRZG_SOURCE_DIR` / `MYRZG_DATA_DIR` 可覆盖。**旧的 `Config_decrypted` / `GAoNano_decrypted` / `源码`
+  只在 `游戏数据/` 对应子目录缺失时才回退使用**（老工作区兼容，不是现行路径）。
+- `游戏数据/配置表` 的**顶层口径是 APK 首包版**，与旧 `Config_decrypted` 逐字一致；
+  CDN 上较新的表在 `配置表/_CDN新版/`，**不参与构建**。混放会静默改变 `data:build` 产物
+  （实测 `room.json` 少 1 条键、`buff.json` 多 98 条）。
 - `scripts/parse/index.mjs` 若在 `raw/` 与兼容目录 `public/data/` 都找不到 `reward.json`，
   但已有 `parsed/items.json`，会跳过预处理并沿用已有产物。**这个检查只判断文件存在**，
   不证明产物齐全、版本一致或原表完整；沿用产物的前端构建与从原表重新生成数据**必须分别验收**。

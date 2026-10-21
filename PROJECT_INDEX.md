@@ -13,6 +13,8 @@
 | 当前进展 / 断点 / 待办 | [NOW.md](docs/context/NOW.md) |
 | 跑起来 / 构建 / 验收 / 发布 | [RUNBOOK.md](docs/context/RUNBOOK.md) |
 | 目录、资源、部署、配置位置 | [MAP.md](docs/context/MAP.md) |
+| **域名迁移操作清单** | [DOMAIN_MIGRATION.md](docs/context/DOMAIN_MIGRATION.md)（CF / EdgeOne / DNSPod 逐步 + 验收 + 回退） |
+| **去哪取配置表/剧情/源码/图片** | [DATA_SOURCES.md](docs/context/DATA_SOURCES.md)（含可直接粘贴的提示词） |
 | 分层、数据流、构建机制 | [ARCHITECTURE.md](./docs/context/ARCHITECTURE.md) |
 | 某页面业务规则与 URL | [specs/](docs/context/specs/) 选领域 → grep 页名 |
 | 共享模块与跨领域约定 | [DOMAIN.md](docs/context/DOMAIN.md) |

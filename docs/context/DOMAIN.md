@@ -1,4 +1,4 @@
-# DOMAIN —— 业务契约总览与跨领域共享约定
+﻿# DOMAIN —— 业务契约总览与跨领域共享约定
 
 > 本文件是业务契约的**索引与共享层**。各页面的完整规则在 [specs/](specs/) 下的领域文件里，按领域独立成文。
 > **不包含**：构建产物与数据链（见 [ARCHITECTURE.md](./ARCHITECTURE.md)）；运行与发布（见 [RUNBOOK.md](RUNBOOK.md)）；长期行为规则（见 [AGENTS.md](../../AGENTS.md)）。
@@ -119,7 +119,7 @@
 
 ## 六、资源访问与容错
 
-- `env.js` 的 `CLOUD_URL` **默认**为 `https://syzg.yxzmy.top`（2026-10-03 由 `myrzg.yxzmy.top` 迁入，见 [改名迁移](../history/rename-myrzg-to-syzg.md)）；构建时可用 **`VITE_CLOUD_URL` 覆盖**（2026-10-07 加），迁域名不必改源码。Web 使用同域路径，Android 在线优先 CDN，离线使用包内资源。
+- `env.js` 的 `CLOUD_URL` **默认**为 `https://syzgwiki.top`（2026-10-20 由 `syzg.yxzmy.top` 迁入，见 [改名迁移](../history/rename-myrzg-to-syzg.md)）；构建时可用 **`VITE_CLOUD_URL` 覆盖**（2026-10-07 加），迁域名不必改源码。Web 使用同域路径，Android 在线优先 CDN，离线使用包内资源。
   > ⚠️ 它**会被编译进产物**，所以已安装的 Android 包仍指向构建时的域名 —— 迁域名必须**发热更包**并保留旧域名一段时间（见 [RISKS.md](RISKS.md) 与 [DECISIONS.md](DECISIONS.md) §二）。
 - `getImageUrl` 对 `/ui/` 保持本地路径，对其他图片补齐 `/images/`；图片附 `RESOURCE_BUILD_ID` 版本参数。失败回退由共享工具限次处理，**不能无限重试或猜另一张相似图片**。
 - 运行时静态游戏 JSON 统一通过 `fetchWithFallback`，同路径请求合并、成功结果复用、失败可重试。
