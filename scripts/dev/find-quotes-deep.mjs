@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const gaoDir = 'E:/Desktop/html/myrzg/GAoNano_decrypted'
+const gaoDir = (process.env.MYRZG_DATA_DIR || 'E:/Desktop/html/myrzg/游戏数据') + '/剧情'
 const files = fs.readdirSync(gaoDir)
 
 const candidates = []

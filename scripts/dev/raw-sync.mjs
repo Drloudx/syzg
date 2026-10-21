@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto'
+﻿import { createHash } from 'node:crypto'
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative } from 'node:path'
 import { resolveChild } from './maintenance-paths.mjs'
@@ -26,7 +26,7 @@ export const DERIVED_RAW_FILES = new Set([
 /**
  * **已知不是合法 JSON 的源表** —— 同步时跳过，不报 invalid。
  *
- * 这些是策划配置文件，含注释、尾随逗号或裸控制字符（`Config_decrypted` 里就是这样）：
+ * 这些是策划配置文件，含注释、尾随逗号或裸控制字符（源表本来就是这样）：
  *
  * | 文件 | 问题 | 是否被代码读取 |
  * | --- | --- | --- |
@@ -61,8 +61,10 @@ export function createRawSyncPlan({ sourceRoot, targetRoot, replace = false, fil
   const walk = directory => {
     for (const entry of readdirSync(directory, { withFileTypes: true })) {
       const full = join(directory, entry.name)
-      if (entry.isDirectory()) walk(full)
-      else if (entry.isFile() && entry.name.endsWith('.json')) sources.push(full)
+      // `_` 前缀目录是归档层（`_raw` 原始密文、`_CDN新版` 较新版本），不是 raw 的来源。
+      if (entry.isDirectory()) { if (!entry.name.startsWith('_')) walk(full) }
+      // `_manifest.json` / `_state.json` / `_来源.json` 是工具元数据，不是配置表。
+      else if (entry.isFile() && entry.name.endsWith('.json') && !entry.name.startsWith('_')) sources.push(full)
     }
   }
   if (files) sources.push(...files.map(file => resolveChild(sourceRoot, file)))

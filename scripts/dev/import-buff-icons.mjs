@@ -1,7 +1,7 @@
 /**
  * 导入 buff 图标到 public/images/CombatPanel_Atlas。
  *
- * 源：`UI_Atlases/CombatPanel_Atlas/sprites/buff_NNN.png`（图集 `CombatPanel_Atlas.png` 的 28×28 sprite）
+ * 源：`游戏数据/图片资源/图集/CombatPanel_Atlas/buff_NNN.png`（图集 `_atlas.png` 的 28×28 sprite）
  * 目标：`public/images/CombatPanel_Atlas/*.webp`
  *
  * 为什么转 WebP：仓库运行时图片已统一为 `.webp`（见 2026-09-18 日报），新素材按同一口径导入。
@@ -24,12 +24,13 @@ import crypto from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 import { isCommonBuff } from '../../src/utils/buffParser.js'
+import { atlasAtlas } from './maintenance-paths.mjs'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
-const atlasDir = path.resolve(root, '../UI_Atlases/CombatPanel_Atlas')
-const spriteDir = path.join(atlasDir, 'sprites')
-const atlasPng = path.join(atlasDir, 'CombatPanel_Atlas.png')
-const atlasJson = path.join(atlasDir, 'CombatPanel_Atlas.json')
+const DATA_ROOT = process.env.MYRZG_DATA_DIR || path.resolve(root, '../游戏数据')
+const atlas = atlasAtlas('CombatPanel_Atlas')
+const spriteDir = atlas.spriteDir
+const atlasPng = atlas.atlasPng
 const target = path.join(root, 'public/images/CombatPanel_Atlas')
 const apply = process.argv.includes('--apply')
 
@@ -47,9 +48,7 @@ function collectIcons() {
 const icons = collectIcons()
 if (!icons.length) throw new Error('精选 buff 未解析出任何图标，检查 buffParser.isCommonBuff 与 raw/buff.json')
 
-const spriteTable = new Map(
-  (JSON.parse(fs.readFileSync(atlasJson, 'utf8')).mSprites || []).map(sprite => [sprite.name, sprite])
-)
+const spriteTable = new Map(atlas.metas.map(sprite => [sprite.name, sprite]))
 const atlasMeta = await sharp(atlasPng).metadata()
 
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex')

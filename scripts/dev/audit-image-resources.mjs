@@ -6,7 +6,7 @@ import { createHash } from 'node:crypto'
 import sharp from 'sharp'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '../..')
-const parent = dirname(root)
+const DATA_ROOT = process.env.MYRZG_DATA_DIR || join(dirname(root), '游戏数据')
 const imageRoot = join(root, 'public/images')
 const imagePattern = /\.(png|jpe?g|webp|gif|avif|svg)$/i
 const slash = value => value.replaceAll('\\', '/')
@@ -19,8 +19,8 @@ function walk(dir) {
   })
 }
 const sourceIndex = new Map()
-for (const source of ['UI_Atlases', '4.24路资源包']) {
-  for (const file of walk(join(parent, source)).filter(file => imagePattern.test(file))) {
+for (const source of ['图片资源/图集', '资源包']) {
+  for (const file of walk(join(DATA_ROOT, source)).filter(file => imagePattern.test(file))) {
     const key = normalizedName(file)
     if (!sourceIndex.has(key)) sourceIndex.set(key, [])
     sourceIndex.get(key).push(file)
@@ -38,8 +38,8 @@ for (const file of files.filter(file => imagePattern.test(file))) {
   const bytes = readFileSync(file)
   const entry = { path: slash(relative(imageRoot, file)), bytes: bytes.length, hash: hash(bytes) }
   const candidates = sourceIndex.get(normalizedName(file)) || []
-  entry.exactSources = candidates.filter(candidate => sourceHash(candidate) === entry.hash).map(candidate => slash(relative(parent, candidate)))
-  entry.nameSources = candidates.map(candidate => slash(relative(parent, candidate)))
+  entry.exactSources = candidates.filter(candidate => sourceHash(candidate) === entry.hash).map(candidate => slash(relative(DATA_ROOT, candidate)))
+  entry.nameSources = candidates.map(candidate => slash(relative(DATA_ROOT, candidate)))
   if (extname(file).toLowerCase() !== '.svg') {
     try {
       const { data, info } = await sharp(bytes).toColourspace('srgb').ensureAlpha().raw().toBuffer({ resolveWithObject: true })

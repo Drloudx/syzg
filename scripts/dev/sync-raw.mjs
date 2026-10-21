@@ -13,7 +13,8 @@ const { values, positionals } = parseArgs({
   options: { apply: { type: 'boolean' }, replace: { type: 'boolean' }, 'skip-invalid': { type: 'boolean' }, help: { type: 'boolean' } }
 })
 if (values.help) {
-  console.log('Usage: node scripts/dev/sync-raw.mjs [Config_decrypted] [--apply] [--replace] [--skip-invalid]')
+  console.log('Usage: node scripts/dev/sync-raw.mjs [配置表目录] [--apply] [--replace] [--skip-invalid]')
+  console.log('默认源目录是 游戏数据/配置表（可用 MYRZG_CONFIG_DIR 覆盖）。')
   console.log('Default is read-only. --apply fills missing originals and aliases; add --replace to refresh existing originals.')
 } else {
   if (positionals.length > 1) throw new Error('Only one source directory is accepted')

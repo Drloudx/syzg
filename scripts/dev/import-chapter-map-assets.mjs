@@ -23,7 +23,8 @@ import {
 } from '../parse/chapterMapLayout.mjs'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
-const resDir = path.resolve(root, '../4.24路资源包/assets/res')
+const DATA_ROOT = process.env.MYRZG_DATA_DIR || path.resolve(root, '../游戏数据')
+const resDir = path.resolve(DATA_ROOT, '资源包/assets/res')
 const sourceDir = path.join(resDir, 'prefab/uiprefab/chapterpanel')
 const target = path.join(root, 'public/images/chapters')
 const apply = process.argv.includes('--apply')

@@ -1,6 +1,7 @@
 /**
  * 从完整游戏配置提取副本女神房与泉水房效果，写回 raw/ 中的派生房间表。
- * 用法：npm run data:dungeons:effects -- [Config_decrypted 目录]
+ * 用法：npm run data:dungeons:effects -- [配置表目录]
+ * 默认配置目录是 游戏数据/配置表（可用 MYRZG_CONFIG_DIR 覆盖）。
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'

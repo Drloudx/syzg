@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const images = path.join(root, 'public/images')
+const DATA_ROOT = process.env.MYRZG_DATA_DIR || path.resolve(root, '../游戏数据')
 const backup = path.resolve(root, '../vue-myrzg备份-资源/gacha-sharing-2026-09-11')
 const sha = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')
 const inside = (base, relative) => {
@@ -30,9 +31,9 @@ const list = dir => {
 const writes = new Map()
 const remove = new Set()
 const originals = [
-  ['portraits', 'chara', 'chara/l', '../4.24路资源包/assets/res/texture/chara/l'],
-  ['fragments', 'HeroInfoPanel', 'HeroInfoPanel_Atlas', '../UI_Atlases/HeroInfoPanel_Atlas/sprites'],
-  ['eggs', 'eggs', 'eggs', '../4.24路资源包/assets/res/texture/pet/eggs'],
+  ['portraits', 'chara', 'chara/l', DATA_ROOT + '/资源包/assets/res/texture/chara/l'],
+  ['fragments', 'HeroInfoPanel', 'HeroInfoPanel_Atlas', DATA_ROOT + '/图片资源/图集/HeroInfoPanel_Atlas'],
+  ['eggs', 'eggs', 'eggs', DATA_ROOT + '/资源包/assets/res/texture/pet/eggs'],
 ]
 for (const [sub, oldDir, newDir, sourceDir] of originals) {
   if (oldDir !== newDir) for (const name of list(oldDir)) {

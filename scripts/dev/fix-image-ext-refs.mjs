@@ -73,8 +73,11 @@ for (const file of files) {
     const trimmed = line.trim()
     if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*')) return line
     if (isFormatCheck(line)) { return line }
-    // 跳过源资源包路径
-    if (/4\.24路资源包|UI_Atlases/.test(line)) { skipped.push(line.trim().slice(0, 100)); return line }
+    // 跳过源资源包 / 图集路径（那些文件仍是 .png，不能改成 .webp）
+    // 同时匹配旧名与新位置：旧目录已迁入 游戏数据/，但文档与历史引用里仍会出现旧名。
+    if (/4\.24路资源包|UI_Atlases|游戏数据[\\/]资源包|游戏数据[\\/]图片资源/.test(line)) {
+      skipped.push(line.trim().slice(0, 100)); return line
+    }
 
     // 只替换「看起来是图片路径」的扩展名：前面紧跟非空白字符（文件名的一部分）
     // 且该扩展名不在 replace/endsWith 语境（已由 isFormatCheck 排除）

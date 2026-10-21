@@ -1,8 +1,8 @@
-/**
+﻿/**
  * 任务图鉴数据维护脚本
  * - 默认只读校验；--apply 时将缺失的完整 battle/room/condition 原表补入 raw/
  * - 更新已有原表需显式 --apply --replace，不在维护阶段裁剪原始表
- * - 从 GAoNano_decrypted 复制任务剧情到 public/data/taskDialogs（去重）
+ * - 从 游戏数据/剧情 复制任务剧情到 public/data/taskDialogs（去重）
  * - 校验任务引用解析率，输出统计 + unresolved.json
  *
  * 用法：node scripts/dev/check-task-data.mjs [--apply] [--replace] [--config 目录] [--dialogs 目录]
@@ -20,7 +20,28 @@ const { values } = parseArgs({ options: {
 const APPLY = !!values.apply
 const SRC = path.resolve(values.config || configRoot)
 const GAO = path.resolve(values.dialogs || dialogRoot)
-const FILELIST = path.resolve(values.filelist || path.join(gameSourceRoot, 'CDN最新配置/json/GAoNano/GAoNanoFileList.json'))
+/**
+ * 官方登记表 `GAoNanoFileList.json`（4449 条：script 3481 / img 807 / snd 161）。
+ *
+ * 三处都可能有，按可信度取第一个存在的：
+ *   1. `--filelist` 显式指定
+ *   2. `游戏数据/剧情/GAoNanoFileList.json` —— 汇总目录自带，与 CDN 快照逐条等价
+ *   3. `源码/CDN最新配置/json/GAoNano/GAoNanoFileList.json` —— 旧布局
+ *
+ * 取不到时必须**报错**而不是静默跳过：跳过会让剧情名索引（页面标题）整体不生成，
+ * 而脚本仍报「检查完成」，属于最难发现的静默失败。
+ */
+function resolveFileList() {
+  if (values.filelist) return path.resolve(values.filelist)
+  const candidates = [
+    path.join(dialogRoot, 'GAoNanoFileList.json'),
+    path.join(gameSourceRoot, 'CDN最新配置/json/GAoNano/GAoNanoFileList.json'),
+  ]
+  const found = candidates.find((p) => fs.existsSync(p))
+  if (!found) throw new Error(`GAoNanoFileList.json not found. Searched:\n  ${candidates.join('\n  ')}`)
+  return found
+}
+const FILELIST = resolveFileList()
 const DATA = publicDataRoot
 const RAW = rawRoot
 
@@ -42,7 +63,7 @@ const writeJson = (p, obj) => {
  * 实测 169,240 条 exps 里只有 28,696 条是被读取的（`text` 25,980 + `option` 2,716），
  * 其余 83% 是站点永远不会渲染的舞台指令 —— 两个目录合计 20.92 MB → 3.47 MB。
  *
- * **只裁剪进产物的副本**，`GAoNano_decrypted` 源文件不动（与项目「不写回原表」一致）。
+ * **只裁剪进产物的副本**，`游戏数据/剧情` 源文件不动（与项目「不写回原表」一致）。
  */
 const pruneDialogScript = (obj) => {
   if (!obj || !Array.isArray(obj.exps)) return obj

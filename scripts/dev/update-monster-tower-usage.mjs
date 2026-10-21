@@ -1,13 +1,13 @@
-/**
+﻿/**
  * 从完整 tower/battle/room 配置生成怪物实际出现楼层的轻量索引。
- * 默认读取仓库同级 Config_decrypted；也可把配置目录作为第一个参数传入。
+ * 默认读取 游戏数据/配置表；也可把配置目录作为第一个参数传入。
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '../..')
-const configDir = resolve(process.argv[2] || join(repoRoot, '..', 'Config_decrypted'))
+const configDir = resolve(process.argv[2] || join(repoRoot, '..', '游戏数据', '配置表'))
 // 原始表已迁移到 raw/（git-ignored、不进 dist）；monsterTowerUsage 属构建期索引，同样落 raw/。
 const rawDir = join(repoRoot, 'raw')
 const outputFile = join(rawDir, 'monsterTowerUsage.json')

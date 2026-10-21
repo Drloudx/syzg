@@ -29,7 +29,7 @@ import {
 
 const { values } = parseArgs({ options: { list: { type: 'boolean' } } })
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '../..')
-const configDir = process.env.MYRZG_CONFIG_DIR || join(repoRoot, '..', 'Config_decrypted')
+const configDir = process.env.MYRZG_CONFIG_DIR || join(repoRoot, '..', '游戏数据', '配置表')
 const wordsFile = join(configDir, 'words.json')
 
 if (!existsSync(wordsFile)) {

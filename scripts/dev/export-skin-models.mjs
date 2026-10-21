@@ -8,8 +8,9 @@ import { chromium } from '@playwright/test'
 import sharp from 'sharp'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
+const DATA_ROOT = process.env.MYRZG_DATA_DIR || path.resolve(root, '../游戏数据')
 const baseURL = process.env.SKIN_PREVIEW_URL || 'http://127.0.0.1:4187'
-const sourceRoot = path.resolve(root, '../4.24路资源包/assets/res/spine/model/npc')
+const sourceRoot = path.resolve(DATA_ROOT, '资源包/assets/res/spine/model/npc')
 const { values: options } = parseArgs({ options: {
   hero: { type: 'string' },
   'all-heroes': { type: 'boolean', default: false },
@@ -84,7 +85,23 @@ try {
     }))
     await page.goto(`${baseURL}/__skin-preview`)
     const result = await page.evaluate(async ({ name, skinName }) => {
-      const spine = await import('/node_modules/@esotericsoftware/spine-webgl/dist/index.js')
+      // 🔴 在 page.evaluate 里 import 第三方 ESM 有两个坑：
+      //   1. `/node_modules/@esotericsoftware/spine-webgl/dist/index.js` —— Vite 不对
+      //      node_modules 做源码 serve，报 `Failed to fetch dynamically imported module`；
+      //   2. 裸包名 `'@esotericsoftware/spine-webgl'` —— 浏览器不认识裸说明符
+      //      （没有 import map），报 `Failed to resolve module specifier`。
+      // 正确做法：走 Vite 的**预构建产物**，它已被转换成浏览器可用的 ESM 且可静态访问。
+      const CANDIDATES = [
+        '/node_modules/.vite/deps/@esotericsoftware_spine-webgl.js',
+        '/node_modules/@esotericsoftware/spine-webgl/dist/index.js',
+      ]
+      let spine = null
+      const failures = []
+      for (const url of CANDIDATES) {
+        try { spine = await import(url); break }
+        catch (error) { failures.push(`${url}: ${error.message}`) }
+      }
+      if (!spine) throw new Error(`spine-webgl 加载失败（需先启动 vite dev server）\n${failures.join('\n')}`)
       const canvas = document.querySelector('canvas')
       const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: true, preserveDrawingBuffer: true })
       if (!gl) throw new Error('WebGL unavailable')

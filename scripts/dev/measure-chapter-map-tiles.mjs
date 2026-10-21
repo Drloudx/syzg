@@ -9,7 +9,7 @@
  */
 import sharp from 'sharp'
 
-const dir = 'E:/Desktop/html/myrzg/4.24路资源包/assets/res/prefab/uiprefab/chapterpanel/'
+const dir = (process.env.MYRZG_DATA_DIR || 'E:/Desktop/html/myrzg/游戏数据') + '/资源包/assets/res/prefab/uiprefab/chapterpanel/'
 const COARSE = 4
 
 const raw = async (file, w, h, channel) => {

@@ -62,8 +62,11 @@ for (const file of files) {
   const text = readFileSync(file, 'utf8')
   let localCount = 0
   const next = text.replace(PATH_RE, (whole, quote, path) => {
-    // 跳过源资源包 / 图集路径（那些文件仍是 .png）
-    if (/4\.24路资源包|UI_Atlases/.test(path)) { skipped.push({ file, path, why: '源资源包' }); return whole }
+    // 跳过源资源包 / 图集路径（那些文件仍是 .png，不能改成 .webp）
+    // 同时匹配旧名与新位置：旧目录已迁入 游戏数据/。
+    if (/4\.24路资源包|UI_Atlases|游戏数据[\\/]资源包|游戏数据[\\/]图片资源/.test(path)) {
+      skipped.push({ file, path, why: '源资源包' }); return whole
+    }
     // 跳过 CSS url() 里的字体等非图片（本正则已限定图片扩展名，这里只做兜底）
     if (/\.(?:png|jpg|jpeg)$/i.test(path) === false) return whole
     localCount++
