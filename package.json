@@ -12,6 +12,10 @@
     "data:build": "node scripts/parse/index.mjs",
     "data:dungeons:effects": "node scripts/dev/update-dungeon-room-effects.mjs",
     "data:monsters:tower": "node scripts/dev/update-monster-tower-usage.mjs",
+    "audit:item-sources": "node scripts/dev/audit-item-source-gaps.mjs",
+    "audit:images": "node scripts/dev/audit-image-resources.mjs",
+    "quotes:find": "node scripts/dev/find-quotes.mjs",
+    "quotes:find-deep": "node scripts/dev/find-quotes-deep.mjs",
     "build": "npm run data:build && vite build",
     "search:update": "node scripts/parse/search.mjs",
     "test:unit": "node --test \"tests/unit/**/*.test.mjs\"",
@@ -47,5 +51,8 @@
     "sharp": "^0.35.4",
     "vite": "^8.1.5",
     "wrangler": "^4.145.0"
+  },
+  "overrides": {
+    "xcode": "^4.0.0"
   }
 }
