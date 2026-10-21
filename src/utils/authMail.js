@@ -162,7 +162,8 @@ export async function sendVerifyCode(env, { to, code, minutes }) {
     Unsubscribe: '0'     // 触发类不加退订链接，见 ses-templates/README.md
   }
   // undefined 会让 JSON.stringify 直接丢掉该字段，比写空串更干净
-  const from = env.TENCENT_FROM || '深渊大书院 <noreply@mail.yxzmy.top>'
+  // 环境变量 TENCENT_FROM 可覆盖——SES 侧若有异常，用它指回旧域 `noreply@mail.yxzmy.top` 应急
+  const from = env.TENCENT_FROM || '深渊大书院 <noreply@mail.syzgwiki.top>'
   payload.FromEmailAddress = from
   const subject = env.TENCENT_SUBJECT || '【深渊大书院】邮箱验证码'
   payload.Subject = subject

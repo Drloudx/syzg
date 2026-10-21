@@ -193,8 +193,25 @@ export const SES_TEMPLATE_ID = 62671
 /** 地域。广州是为国内收件人选的（QQ / 163 实测进收件箱）。 */
 export const SES_REGION = 'ap-guangzhou'
 
-/** `FromEmailAddress` 的**完整格式**：别名 + 一个空格 + `<邮箱>`。 */
-export const SES_FROM = '深渊大书院 <noreply@mail.yxzmy.top>'
+/**
+ * `FromEmailAddress` 的**完整格式**：别名 + 一个空格 + `<邮箱>`。
+ *
+ * 2026-10-21 随站点迁到 `mail.syzgwiki.top`（子域，不是根域）。
+ *
+ * 🔴 **必须是子域**：根域 `syzgwiki.top` 被 CNAME 指向 EdgeOne，
+ * 而 DNS 规定 CNAME 不能与 TXT/MX 共存 —— 直接用根域做发信域，SPF 与 MX 会被 CNAME 顶掉。
+ * 旧域名 `mail.yxzmy.top` 同样是子域，原因相同。
+ *
+ * ✅ **SES 侧 4/4 全部验证通过**（`VerifiedForSendingStatus = true`）：MX / SPF / DKIM / DMARC。
+ * DMARC 一度显示未通过，靠**再调一次 `UpdateEmailIdentity` 强制 SES 重读 DNS**解决 ——
+ * 这是唯一能触发重验的入口。
+ *
+ * 📧 **2026-10-21 已实测发信成功**：`SendStatus=0` / `DeliverStatus=1`，模板 62671 正常渲染。
+ *
+ * 若日后发信出问题，应急可把 `TENCENT_FROM` 环境变量指回 `noreply@mail.yxzmy.top`
+ * （旧域同样 4/4 全绿，无需改代码重新部署）。
+ */
+export const SES_FROM = '深渊大书院 <noreply@mail.syzgwiki.top>'
 
 /** 邮件主题。 */
 export const SES_SUBJECT = '【深渊大书院】邮箱验证码'

@@ -3,9 +3,12 @@ import { Capacitor } from '@capacitor/core';
 /*
  * 云端 CDN 域名。
  *
- * 2026-10-03 由 myrzg.yxzmy.top 迁移到 syzg.yxzmy.top（仓库/域名改名）。
- * ⚠️ 这个常量**会被编译进产物**，也就意味着**已发布到用户手机上的 Android 包仍指向旧域名**
- *    （见 docs/history/rename-myrzg-to-syzg.md 第六节）——所以旧域名在热更包铺开前不能停。
+ * 迁移史：
+ *   2026-10-03  myrzg.yxzmy.top → syzg.yxzmy.top（仓库/域名改名）
+ *   2026-10-20  syzg.yxzmy.top → syzgwiki.top（换顶级域，见 docs/context/MAP.md §4.2）
+ * ⚠️ 这个常量**会被编译进产物**，也就意味着**已发布到用户手机上的 Android 包仍指向旧域名**。
+ *    本次迁移时 Android **尚未正式发布**（`versionCode 1`、热更清单还是测试内容），
+ *    所以没有存量用户需要照顾，**不做双域名过渡**。日后若已发版再迁，必须保留旧域名到热更铺开为止。
  *
  * ## 为什么拆成"默认值 + 可注入"（2026-10-07）
  *
@@ -16,7 +19,7 @@ import { Capacitor } from '@capacitor/core';
  *
  * 不必再翻源码找常量。**默认值保持现状**，所以不传环境变量时行为与改动前完全一致。
  */
-const DEFAULT_CLOUD_URL = 'https://syzg.yxzmy.top';
+const DEFAULT_CLOUD_URL = 'https://syzgwiki.top';
 
 /**
  * 读构建时注入的域名；没注入就返回空串（由调用处回退到默认值）。

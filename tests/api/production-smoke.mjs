@@ -11,7 +11,22 @@
  * 验证的是"上线就绪"这件事本身：新接口在、旧功能没坏、鉴权边界成立。
  */
 
-const BASE = 'https://syzg.yxzmy.top'
+const BASE = 'https://syzgwiki.top'
+
+/*
+ * 🔴 本机 IPv6 到 Cloudflare 不稳（实测 `curl` 走 IPv6 会 15~30s 超时，
+ * 强制 `-4` 则立刻 200）。Node 的 `fetch`（undici）**不读** `dns.setDefaultResultOrder`，
+ * 仍可能先连 AAAA，于是用例链被超时打断 —— 失败原因与站点无关。
+ *
+ * 兜底：`undici` 的 Agent 支持自定义 `connect.family`，显式走 IPv4。
+ * 拿不到 undici 时退回普通 fetch（换到 IPv6 正常的机器也不影响结果）。
+ */
+let fetchImpl = fetch
+try {
+  const { Agent, setGlobalDispatcher } = await import('undici')
+  setGlobalDispatcher(new Agent({ connect: { family: 4 } }))
+  fetchImpl = fetch
+} catch { /* 没有 undici 就照常 */ }
 
 let pass = 0
 let fail = 0

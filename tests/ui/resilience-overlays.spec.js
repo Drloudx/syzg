@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+﻿import { expect, test } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
   await page.route('**/data/notice.json*', route => route.fulfill({ json: { notices: [] } }))
@@ -88,7 +88,7 @@ test('missing CDN images retry the bundle once and finish on a visible placehold
     img.alt = 'fallback-check'
     img.width = img.height = 40
     document.querySelector('.header-left').append(img)
-    img.src = 'https://syzg.yxzmy.top/images/__review_missing__.webp'
+    img.src = 'https://syzgwiki.top/images/__review_missing__.webp'
   })
   const image = page.locator('#fallback-check')
   await expect(image).toHaveAttribute('src', '/ui/visibility-off.svg')
