@@ -1,7 +1,20 @@
 const DEFAULT_TIMEOUT_MS = 8000
 
+/**
+ * `crypto.subtle` 是否存在。
+ *
+ * 🔴 **只在「安全上下文」可用**：HTTPS 或 localhost。若页面被以 `http://` 打开
+ * （QQ / 微信内置浏览器从 http 链接进入时就是这种），`crypto.subtle` 是 `undefined`。
+ *
+ * 这不是「老浏览器」问题 —— **现代 Chrome 在 http 页面里同样没有 `crypto.subtle`**。
+ * 所以外面必须开强制 HTTPS 跳转（EdgeOne `ForceRedirect`），这里只做兜底。
+ */
+function hasSubtleCrypto() {
+  return typeof globalThis.crypto?.subtle?.digest === 'function'
+}
+
 export async function sha256(bytes) {
-  if (!globalThis.crypto?.subtle) throw new Error('Resource verification requires HTTPS')
+  if (!hasSubtleCrypto()) throw new Error('Resource verification requires HTTPS')
   const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes)
   return Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('')
 }
@@ -27,8 +40,17 @@ export async function fetchJsonWithTimeout(url, {
       const response = await fetchImpl(url, { signal: controller.signal, ...(cache ? { cache } : {}) })
       if (!response.ok) throw new Error(`Resource request failed (${response.status}): ${url}`)
       const bytes = await response.arrayBuffer()
-      if (expectedHash && await digest(bytes) !== expectedHash) {
-        throw new Error(`Resource version mismatch: ${url}`)
+      /*
+       * 没有 `crypto.subtle`（http 页面）时**降级为不校验**，而不是让整个页面挂掉。
+       *
+       * 取舍：哈希校验防的是「CDN 返回了错版本/被篡改」；而缺 subtle 是「页面在 http 下打开」。
+       * 后者若直接抛错，用户看到的是一整页「数据加载失败」——**比少一层校验更糟**。
+       * 正常的 HTTPS 访问仍会走完整校验。
+       */
+      if (expectedHash && hasSubtleCrypto()) {
+        if (await digest(bytes) !== expectedHash) {
+          throw new Error(`Resource version mismatch: ${url}`)
+        }
       }
       const data = JSON.parse(new TextDecoder().decode(bytes))
       if (validate && validate(data) === false) throw new Error(`Invalid resource data: ${url}`)
