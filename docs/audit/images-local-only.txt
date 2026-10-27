@@ -1,0 +1,2 @@
+1.9	-	sliced_buttons/chara_btn_change_128x36.webp
+1.8	-	sliced_buttons/chara_btn_change_press_128x36.webp
