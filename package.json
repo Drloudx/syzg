@@ -26,7 +26,8 @@
     "test:api": "node --no-warnings tests/api/auth-flow.mjs && node --no-warnings tests/api/comments-auth.mjs && node --no-warnings tests/api/admin-roles.mjs",
     "test:migration": "node --no-warnings tests/migration/rehearse.mjs",
     "audit:images:usage": "node scripts/dev/audit-image-usage.mjs",
-    "audit:images:prune": "node scripts/dev/prune-image-usage.mjs"
+    "audit:images:prune": "node scripts/dev/prune-image-usage.mjs",
+    "audit:images:missing": "node scripts/dev/audit-missing-images.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.4.2",
