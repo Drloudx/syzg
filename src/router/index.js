@@ -137,6 +137,15 @@ const routes = [
   },
   {
     /**
+     * 配队模拟器：选 4 名角色，按队伍被动的属性/职业条件推荐魔物。
+     * 纯前端计算，数据来自 heroes.json / pets.json，不新增构建产物。
+     */
+    path: '/team-sim',
+    name: 'team-sim',
+    component: () => import('../views/TeamSimView.vue')
+  },
+  {
+    /**
      * 讨论区。独立路由而不是"就地把内容区换成聊天"：链接可分享可刷新、
      * 滚动天然隔离在容器内，也不必让各视图各自接入聊天模式状态。
      * `?page=<page_key>` 指定讨论归属（从详情进来时带上），缺省为站内总讨论区

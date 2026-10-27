@@ -361,6 +361,7 @@ const PAGE_TITLES = {
   '/chapters': '关卡图鉴',
   '/glossary': '词条',
   '/gacha': '模拟招募',
+  '/team-sim': '配队模拟',
   '/admin': '后台',
   '/privacy': '隐私协议',
   '/discussions': '讨论区',

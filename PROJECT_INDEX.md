@@ -35,6 +35,7 @@
 | 任务/事件 | `/tasks` `/events` | [QUESTS_AND_EVENTS](docs/context/specs/QUESTS_AND_EVENTS.md) |
 | 营地/家具/菜谱/魔物收益/成就 | `/facilities` `/furniture` `/recipes` `/petseggs` `/achievement` | [CAMP_AND_LIFE](docs/context/specs/CAMP_AND_LIFE.md) |
 | 模拟招募 | `/gacha` | [GACHA_SIMULATOR](docs/context/specs/GACHA_SIMULATOR.md) |
+| 配队模拟（选角色→推荐魔物） | `/team-sim` | [2026-10-28 日志](docs/history/dev-logs/2026-10/2026-10-28.md)｜代码 `src/utils/teamSimData.js`、`src/utils/teamSimSolver.js` |
 | 主题/组件/长列表/吉祥物 | 全局 | [UI_DESIGN_SYSTEM](docs/context/specs/UI_DESIGN_SYSTEM.md) |
 | 讨论区/账号/隐私/后台 | `/discussions` `/privacy` `/admin` | [DOMAIN](docs/context/DOMAIN.md) §一 |
 

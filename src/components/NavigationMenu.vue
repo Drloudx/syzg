@@ -168,6 +168,7 @@ const defaultNavList = [
   { name: '关卡图鉴', path: '/chapters', icon: '/ui/stage_crystal.webp' },
   { name: '兑换', path: '/exchange', icon: '/ui/map_r_fb_19.webp' },
   { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
+  { name: '配队模拟', path: '/team-sim', icon: '/ui/colect_mon_072.webp' },
   { name: '词条', path: '/glossary', icon: '/ui/buff_017.webp' },
   { name: '其他', path: '/rewards', icon: '/ui/map_r_fb_12.webp' }
 ]
