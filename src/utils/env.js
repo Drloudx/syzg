@@ -74,9 +74,35 @@ export function getImageVersion(imgPath) {
   return (bucket && bucket[imgPath.slice(cut + 1)]) || ''
 }
 
+/**
+ * 把资源相对路径解析为可请求的 URL。
+ *
+ * 🔴 **两条路径语义不同，不能共用同一个 base**：
+ *
+ * - **Web（http/https）**：资源在**站点根**下的 `/data/**`、`/images/**`。
+ *   base 必须取 `location.origin`，**不能取当前页 URL** ——
+ *   否则在 `/monsters` 页面会解析成 `/monsters/data/parsed/items.json`。
+ *   而 SPA 服务端对未知路径返回的是 `index.html`（200 + text/html），
+ *   于是 `JSON.parse` 拿到 `<!DOCTYPE html>` 而失败，页面显示「数据装配未完成」。
+ *
+ * - **Android 原生（file://）**：资源与页面同在包内，必须**相对于当前 HTML 文件**解析，
+ *   所以保留「当前路径 + 相对路径」的语义。
+ *
+ * 判据用 `location.protocol`，不用 `isNative` —— 判据要贴着「URL 怎么拼」这件事，
+ * 而 `isNative` 还附带网络状态等其它含义，混用会在调试时误导。
+ */
 export function getLocalResourceUrl(path) {
   const cleanPath = String(path || '').replace(/^\/+/, '')
   if (typeof window === 'undefined') return cleanPath
+
+  const current = new URL(window.location.href)
+
+  // Web：锚定站点根，与路由无关
+  if (current.protocol === 'http:' || current.protocol === 'https:') {
+    return new URL(cleanPath, `${current.origin}/`).href
+  }
+
+  // file://（Android 包内资产）：相对当前文档解析
   const base = new URL(window.location.href)
   base.hash = ''
   base.search = ''

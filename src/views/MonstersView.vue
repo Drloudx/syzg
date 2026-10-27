@@ -226,25 +226,42 @@ const handleImgError = (e, mon) => {
   padding: 2.5px 4px;
 }
 
+/*
+ * 列数按「卡片实宽」而非「屏宽档位」来分 —— 卡片是 `max-width: 135px` 的方形立绘，
+ * 一列给到 241px 也只有 135px 被用掉，其余是留白。
+ *
+ * 各档每列实宽（页面内边距按 28px 估）：
+ *   768px  5 列 → 142px（卡片吃满 135，几乎无留白）
+ *   600px  5 列 → 108px（正好）
+ *   481px  5 列 →  84px（太挤，故 600 以下降为 4 列）
+ *   375px  4 列 →  85px（与魔物图鉴 `PetsView` 一致）
+ */
 @media (max-width: 1100px) {
   .monsters-card-grid :deep(.ui-card-grid) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
   }
 }
 
-@media (max-width: 768px) {
+/* 平板竖屏：5 列会压到 108px 以下，退到 4 列 */
+@media (max-width: 600px) {
   .monsters-card-grid :deep(.ui-card-grid) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
   }
 }
 
+/*
+ * 480px 及以下保持 4 列，与同级的魔物图鉴（`PetsView`）一致。
+ *
+ * 曾经的 `repeat(2)` 是按「窄屏应收窄列数」推导出来的，但本页卡片是
+ * `max-width: 135px` 的方形立绘，不是文字卡片 —— 降到 2 列后每列 ~220px 却仍被
+ * 135px 封顶，两侧留白比卡片还宽，一屏只见两张，滚动距离翻倍。
+ * 实测 375px 屏：4 列时每列 (375-28-18)/4 ≈ 82px，仍在可读范围。
+ */
 @media (max-width: 480px) {
   .monsters-card-grid :deep(.ui-card-grid) {
-    /* 🔴 原为 repeat(4)，比 768px 断点的 3 列**更多** —— 屏幕越窄列越多的反向笔误。
-       窄屏应收窄列数，否则卡片被压到无法阅读。 */
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 6px;
   }
 }

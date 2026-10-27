@@ -875,16 +875,18 @@ const handleImgError = (e) => {
   z-index: 1;
 }
 
+/* 列数与 `MonstersView` 保持同一套档位，两页视觉一致 */
 @media (max-width: 1100px) {
   .pets-card-grid :deep(.ui-card-grid) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
   }
 }
 
-@media (max-width: 768px) {
+/* 平板竖屏：5 列会压到 108px 以下，退到 4 列 */
+@media (max-width: 600px) {
   .pets-card-grid :deep(.ui-card-grid) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 8px;
   }
 }
