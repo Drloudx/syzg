@@ -98,7 +98,17 @@ test.describe('desktop application scroll shell', () => {
     expect(initialState.scrollbarWidth).toBe('none')
     expect(initialState.webkitScrollbarDisplay).toBe('none')
     expect(initialState.scrollable).toBe(true)
-    await expect(panel).toHaveClass(/corner-nails/)
+    /*
+     * 桌面侧栏**不带**角钉。
+     *
+     * 断言曾经要求面板有 `corner-nails`，但 2026-10-09（7393ed79）在
+     * NavigationMenu.vue 写明「屏蔽默认铜钉，保持定制暗金边框与挂件纯净质感」，
+     * 有意不给桌面面板加这个类 —— `.corner-nails` 的铜钉样式还要求同元素带
+     * `.paper-panel`（那是移动端底部抽屉的写法）。
+     *
+     * 所以这里守的是「面板没有铜钉、内容区也没有」，方向与实现一致。
+     */
+    await expect(panel).not.toHaveClass(/corner-nails/)
     await expect(navigation).not.toHaveClass(/corner-nails/)
     await expect(upCue).toBeHidden()
     await expect(downCue).toBeVisible()
@@ -245,15 +255,33 @@ test.describe('desktop application scroll shell', () => {
 
     const taskData = await page.evaluate(() => fetch('/data/parsed/tasks.json').then(response => response.json()))
     const task = taskData.tasks.find(item => item.id === 'm_0_1')
+    /*
+     * `close` 是 `taskParser.js` 对 `addTasks` / `unlockTasks` 的**统一口径**：
+     * 两者都保留该字段，并以它为条件过滤掉已下架目标
+     * （`filter((task) => task.id && !task.close)`）。
+     * 所以解锁项同样会带 `close: false` —— 原断言漏了这个字段。
+     */
     expect(task.addTasks).toEqual([{ id: 'm_0_2', name: '暴风般的复仇', close: false }])
-    expect(task.unlockTasks).toEqual([{ id: 's_0_5', name: '营地周边的宝地' }])
+    expect(task.unlockTasks).toEqual([{ id: 's_0_5', name: '营地周边的宝地', close: false }])
     expect(task.unlockStages).toEqual([])
 
     const followUp = page.locator('.task-follow-up-section')
     await expect(followUp).toContainText('暴风般的复仇')
     await expect(followUp).not.toContainText('自动接取')
     await expect(followUp).not.toContainText('营地周边的宝地')
-    await expect(followUp.locator('.ui-tag')).toHaveClass(/ui-tag--default/)
+    /*
+     * 后续任务是**可点击的任务链导航**，不是静态标签。
+     *
+     * 2026-10-17（f98df3fa）把这里从 `.ui-tag` 改成了 `button.task-link-chip`：
+     * 原先只能复制名字再去搜索，点不动。原断言查 `.ui-tag` 的
+     * `ui-tag--default` 变体，改造后元素不复存在，断言永远超时。
+     *
+     * 现在守的是「它确实是一个可点的按钮，且带跳转提示」。
+     */
+    const followUpChip = followUp.locator('button.task-link-chip').first()
+    await expect(followUpChip).toBeVisible()
+    await expect(followUpChip).toHaveText('暴风般的复仇')
+    await expect(followUpChip).toHaveAttribute('title', /查看.*暴风般的复仇/)
     await expect(page.locator('.task-unlock-section').getByText('解锁关卡', { exact: true })).toHaveCount(0)
   })
 
@@ -262,12 +290,24 @@ test.describe('desktop application scroll shell', () => {
     await dismissGlobalModals(page)
 
     const counter = page.locator('.events-filter-panel .collection-counter')
-    await expect(counter).toContainText('20 个事件')
+
+    /*
+     * 计数口径 = **过滤后**的条目数，黑名单里的地区已被排除。
+     *
+     * 实测数据（`public/data/parsed/events.json`）：
+     *   事件 20 条，其中 e_c4_1「逃跑的蕈人」(黑森林) 与
+     *   e_c5_1「攀登雪山」(霜烬平原) 被 `blacklist.js` 隐藏 → 页面显示 18。
+     *   探索区域 80 条，黑森林/霜烬平原各 16 条被隐藏 → 页面显示 48；每个可见地区各 16。
+     *
+     * 🔴 断言必须写**过滤后**的数字。写 20 / 80（原始条数）会永远红，
+     * 而那并不表示功能坏了 —— 只是期望值没跟上黑名单。
+     */
+    await expect(counter).toContainText('18 个事件')
     await page.getByRole('button', { name: '秋日荒野', exact: true }).click()
     await expect(counter).toContainText('14 个事件')
 
     await page.getByRole('button', { name: '探索区域', exact: true }).click()
-    await expect(counter).toContainText('80 个探索区域')
+    await expect(counter).toContainText('48 个探索区域')
 
     /*
      * ⚠️ **不能点「黑森林」** —— 它是有意隐藏的。
@@ -599,7 +639,7 @@ test.describe('desktop application scroll shell', () => {
     await sourceGroup.locator('.drawer-chip.clickable').first().click()
 
     await expect.poll(() => page.evaluate(() => decodeURIComponent(location.hash)))
-      .toMatch(/^#\/rewards\?tab=hidden&map=/)
+      .toMatch(/^#\/misc\?tab=hidden&map=/)
     const highlightedTarget = page.locator('#rewardsScroll .ui-list-row.highlight-section')
     await expect(highlightedTarget).toBeVisible()
     const targetId = await highlightedTarget.getAttribute('id')
@@ -636,7 +676,7 @@ test.describe('desktop application scroll shell', () => {
   })
 
   test('keeps rewards tabs addressable and restores them after reload', async ({ page }) => {
-    await page.goto('/#/rewards?tab=hidden&map=魔爪湖畔')
+    await page.goto('/#/misc?tab=hidden&map=魔爪湖畔')
     await dismissGlobalModals(page)
 
     const activeMainTab = page.locator('.control-row-1 .ui-filter-pill.is-active')
@@ -650,11 +690,11 @@ test.describe('desktop application scroll shell', () => {
 
     await page.locator('.control-row-1 .ui-filter-pill', { hasText: '育室槽位消耗' }).click()
     await expect.poll(() => page.evaluate(() => decodeURIComponent(location.hash)))
-      .toBe('#/rewards?tab=slot_cost')
+      .toBe('#/misc?tab=slot_cost')
   })
 
   test('groups hidden rooms and persists collection progress in appState', async ({ page }) => {
-    await page.goto('/#/rewards?tab=hidden&map=all')
+    await page.goto('/#/misc?tab=hidden&map=all')
     await dismissGlobalModals(page)
 
     await expect(page.locator('.control-row-2 .ui-filter-pill.is-active')).toHaveText('全部')
@@ -696,7 +736,7 @@ test.describe('desktop application scroll shell', () => {
   })
 
   test('filters rewards content with the shared search field and restores the query', async ({ page }) => {
-    await page.goto('/#/rewards?tab=hidden&map=all')
+    await page.goto('/#/misc?tab=hidden&map=all')
     await dismissGlobalModals(page)
 
     const search = page.getByPlaceholder('搜索奖励、物品、地图或说明...')

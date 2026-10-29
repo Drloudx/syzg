@@ -62,7 +62,7 @@ test('Escape dismisses a global overlay before the underlying item detail', asyn
 })
 
 test('hidden reward preview appears above the header and closes without navigation', async ({ page }) => {
-  await ready(page, '/#/rewards?tab=hidden', '.hidden-prev-img')
+  await ready(page, '/#/misc?tab=hidden', '.hidden-prev-img')
   const before = page.url()
   await page.locator('.hidden-prev-img').first().click()
   const preview = page.getByRole('dialog', { name: '点位预览', exact: true })

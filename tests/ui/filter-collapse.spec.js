@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 const routes = [
   '/items', '/furniture', '/equip', '/heroes', '/pets', '/monsters', '/tasks',
   '/events', '/exchange', '/recipes', '/achievement', '/petseggs', '/partner-mails',
-  '/dungeons', '/runes', '/rewards', '/facilities',
+  '/dungeons', '/runes', '/misc', '/facilities',
   '/facilities?facility=camp&mode=building',
   '/facilities?facility=camp&mode=research'
 ]

@@ -14,7 +14,7 @@ import { chromium } from 'playwright'
 const BASE = process.env.AUDIT_BASE || 'http://127.0.0.1:4173'
 const ROUTES = ['#/', '#/items', '#/monsters', '#/pets', '#/heroes', '#/glossary', '#/chapters',
   '#/dungeons', '#/tasks', '#/events', '#/furniture', '#/facilities', '#/equip', '#/runes',
-  '#/recipes', '#/exchange', '#/rewards', '#/achievement', '#/gacha', '#/petseggs',
+  '#/recipes', '#/exchange', '#/misc', '#/achievement', '#/gacha', '#/petseggs',
   '#/partner-mails', '#/discussions']
 
 const browser = await chromium.launch({ channel: 'msedge', headless: true })

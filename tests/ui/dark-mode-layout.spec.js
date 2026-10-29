@@ -133,7 +133,7 @@ for (const [name, path] of [
   ['物品页', '/#/items'],
   ['角色页', '/#/heroes'],
   ['符石页', '/#/runes'],
-  ['怪物收益', '/#/rewards']
+  ['怪物收益', '/#/misc']
 ]) {
   test(`🔴 深色不改元素的 border/padding（${name}）`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })

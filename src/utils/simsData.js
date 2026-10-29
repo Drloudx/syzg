@@ -21,12 +21,27 @@ const ELEMENTS = ['火', '水', '风', '地']
 const JOBS = ['近卫', '守护', '秘术', '射手', '支援', '突袭']
 
 /**
+ * 加成属性归一化映射表：
+ * 将游戏中多套叫法的同义词条统一成规范名词，
+ * 避免筛选标签重复（如「物理攻击」与「物理攻击力」），并防止漏筛。
+ */
+export const STAT_NORMALIZE = {
+  物理攻击力: '物理攻击',
+  魔法攻击力: '魔法攻击',
+  物理防御力: '物理防御',
+  魔法防御力: '魔法防御',
+  最大生命值: '生命值',
+  攻击速度: '攻速',
+  移动速度: '移速',
+}
+
+/**
  * 从队伍被动原文解析出结构化规则。
  *
  * 返回：
  *   elements  限定属性（空数组 = 不限）
  *   jobs      限定职业（空数组 = 不限）
- *   stat      加成属性，如「物理攻击」「暴击率」「魔法防御」「最大生命值」
+ *   stat      加成属性，如「物理攻击」「暴击率」「魔法防御」「生命值」
  *   value     数值（百分数，6 表示 6%）
  *   perCount  是否「每有一个 X 伙伴」的累加型
  *   raw       原文
@@ -64,8 +79,9 @@ export function parseTeamPassive(desc) {
     if (jobSource.includes(alias) && !jobs.includes(job)) jobs.push(job)
   }
 
-  // 加成属性：直接查词表
-  const stat = STAT_WORDS.find(w => text.includes(w)) || ''
+  // 加成属性：查词表并归一化
+  const rawStat = STAT_WORDS.find(w => text.includes(w)) || ''
+  const stat = STAT_NORMALIZE[rawStat] || rawStat
 
   // 数值
   const valMatch = text.match(/([\d.]+)\s*%/)
@@ -91,6 +107,9 @@ export function toHeroRecord(hero) {
     element: hero.element,
     elementName: hero.elementName || '',
     icon: hero.icon || '',
+    // 立绘卡片用：img = "chara019_0"（拼 _ka.webp），rare = 3/4/5（决定卡框底图）
+    img: hero.img || '',
+    rare: hero.rare,
   }
 }
 
@@ -115,7 +134,7 @@ export function toPetRecord(pet) {
     name: pet.name,
     element: pet.element,
     elementName: pet.elementName || '',
-    // 数据里只有文件名，不含目录；拼路径在视图层做（见 TeamSimView 的 petIcon）
+    // 数据里只有文件名，不含目录；拼路径在视图层做（见 SimsView 的 petIcon）
     monImg: pet.monImg || '',
     passive: parseTeamPassive(desc),
   }
@@ -131,6 +150,51 @@ export function matchesPassive(hero, passive) {
   const elementOk = !elements.length || elements.includes(hero.elementName)
   const jobOk = !jobs.length || jobs.includes(hero.jobName)
   return elementOk && jobOk
+}
+
+/**
+ * 是否为「通用」队伍被动 —— 不带任何属性/职业限定。
+ *
+ * 这类被动对**任何**角色都生效（如「队伍伙伴 暴击率 增加 5%」）。
+ * 判定口径只此一处：求解器筛候选、自组查看列表都必须调它，
+ * 不要各自写一份 `elements.length || jobs.length`，否则两处会慢慢不一致。
+ */
+export function isGenericPassive(passive) {
+  if (!passive) return false
+  return !(passive.elements?.length || passive.jobs?.length)
+}
+
+/**
+ * 将魔物队伍被动的原始描述格式化为带高亮样式的 HTML。
+ * 只高亮原始描述中大括号 {xxx} 标记的部分（职业、属性、数值）：
+ * - 数值 / 百分比 -> .pv-val（粗体暖金）
+ * - 属性 -> .pv-elem（按火/水/风/地着色）
+ * - 职业 -> .pv-job（青墨色）
+ * - 其他 -> .pv-tag
+ */
+export function formatPassiveHtml(desc) {
+  if (!desc) return ''
+  const text = String(desc).replace(/\u00a0/g, ' ').trim()
+
+  // 严格只匹配并替换大括号 {xxx} 内的内容，绝不二次递归匹配，避免嵌套
+  return text.replace(/\{([^}]+)\}/g, (_, content) => {
+    const val = content.trim()
+    // 百分比或纯数值（如 5%, 12%, 10%）
+    if (/[\d.]+%/.test(val) || /^[\d.]+$/.test(val)) {
+      return `<span class="pv-val">${val}</span>`
+    }
+    // 属性（如 火属性, 水属性, 地属性, 风属性）
+    if (/属性/.test(val) || /^[火水风地]$/.test(val)) {
+      const elem = ['火', '水', '风', '地'].find(e => val.includes(e)) || ''
+      const elemClass = elem ? `pv-elem pv-elem--${elem}` : 'pv-elem'
+      return `<span class="${elemClass}">${val}</span>`
+    }
+    // 职业（如 突袭、射手, 近卫、守护, 秘术，支援）
+    if (/近卫|守护|秘术|射手|支援|突袭|法师|辅助|术士/.test(val)) {
+      return `<span class="pv-job">${val}</span>`
+    }
+    return `<span class="pv-tag">${val}</span>`
+  })
 }
 
 /** 队伍可吃的全部加成（按魔物聚合） */

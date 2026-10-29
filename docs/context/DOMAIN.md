@@ -55,7 +55,7 @@
 | 兑换 | `/exchange` | `ExchangeView.vue` | `parsed-exchange.json` |
 | 模拟招募 | `/gacha` | `GachaView.vue` | `gacha.json`、`gacha-presentation.json` |
 | 词条 | `/glossary` | `GlossaryView.vue` | `glossary.json`（百科骨架另含静态 `config/glossaryEncyclopedia.js`） |
-| 其他奖励 | `/rewards` | `RewardsView.vue` | `parsed-pvp.json`、`parsed-hidden.json` |
+| 其他奖励 | `/misc` | `RewardsView.vue` | `parsed-pvp.json`、`parsed-hidden.json` |
 
 数据文件均相对 `public/data/parsed/`；这不是原表加载清单。
 

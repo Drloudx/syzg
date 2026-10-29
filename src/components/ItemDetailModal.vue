@@ -1149,11 +1149,11 @@ const handleSourceClick = (src) => {
     targetQuery = { id: src.id || '' }
   }
   else if (src.type === 'pvp') {
-    targetPath = '/rewards'
+    targetPath = '/misc'
     targetQuery = { id: src.id || '' }
   }
   else if (src.type === 'hidden') {
-    targetPath = '/rewards'
+    targetPath = '/misc'
     targetQuery = { id: `hidden-${src.id}` }
   }
   else if (src.type === 'task') {

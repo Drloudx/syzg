@@ -40,11 +40,11 @@ test('旧地址 ?tab=combat_rules 会落到词条百科（不是停在不相干�
   const errors = []
   page.on('pageerror', (error) => errors.push(error.message))
 
-  await page.goto(`/#/rewards?tab=${LEGACY_TAB}`)
+  await page.goto(`/#/misc?tab=${LEGACY_TAB}`)
 
   await expect(page).toHaveURL(/#\/glossary/, { timeout: 15_000 })
   // 🔴 断言它**没有**停在 /rewards —— 这正是修掉的那个 bug 的形态
-  await expect(page).not.toHaveURL(/#\/rewards/)
+  await expect(page).not.toHaveURL(/#\/misc/)
 
   /*
    * 内容用「并进词条百科之后」的**实际措辞**（下面这几句是从渲染出来的 DOM 里
@@ -65,7 +65,7 @@ test('旧地址 ?tab=combat_rules 会落到词条百科（不是停在不相干�
 })
 
 test('旧地址 ?tab=ph3&q=护盾 会落到词条百科，并且**搜索词不丢**', async ({ page }) => {
-  await page.goto('/#/rewards?tab=ph3&q=护盾')
+  await page.goto('/#/misc?tab=ph3&q=护盾')
   await expect(page).toHaveURL(/#\/glossary/, { timeout: 15_000 })
 
   /*
@@ -94,7 +94,7 @@ test('词条百科里能搜到战斗规则，搜不到时有空态', async ({ pa
   await expect(page.locator('body')).toContainText('属性上限', { timeout: 10_000 })
 })
 
-test('战斗规则不再有独立的 /rewards 视图（防止有人把它加回来而测试还绿）', async ({ page }) => {
+test('战斗规则不再有独立的 /misc 视图（防止有人把它加回来而测试还绿）', async ({ page }) => {
   await page.goto('/#/glossary')
   await expect(page.locator('.glossary-page')).toBeVisible({ timeout: 20_000 })
 

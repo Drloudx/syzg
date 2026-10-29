@@ -59,7 +59,7 @@ export function useGlobalSearch(route, router) {
             ...(item.name ? { q: item.name } : {})
           }
         },
-        hidden: { path: '/rewards' },
+        hidden: { path: '/misc' },
         research: { path: '/facilities', query: { facility: 'camp', mode: 'research', research: item.id, level: 1 } },
         camp_building: { path: '/facilities', query: { facility: 'camp', mode: 'building', building: item.id } },
         partner_mail: { path: '/partner-mails', query: { hero: item.heroId || '', mail: item.id } },

@@ -58,8 +58,18 @@ const routes = [
     component: () => import('../views/EquipsView.vue')
   },
   {
-    path: '/rewards',
-    name: 'RewardsView',
+    /*
+     * 杂项汇总页：挑战赛奖励 / 被隐藏的物品 / 育室槽位消耗。
+     *
+     * 路径原名 `/rewards`（当时页面只叫「奖励」）。现在导航与页面标题都是
+     * **「其他」**，路径名与语义已对不上，故改为 `/misc`。
+     * 🔴 未保留 `/rewards` 的兼容重定向 —— 按用户决定直接替换。
+     *
+     * 板块用 `?tab=` 寻址（`?tab=pvp` / `?tab=hidden` / `?tab=slot_cost`），
+     * 可直达、可前进后退。
+     */
+    path: '/misc',
+    name: 'MiscView',
     component: () => import('../views/RewardsView.vue'),
     /*
      * 旧地址兼容：战斗规则页已经并进**词条百科**，`?tab=combat_rules` / `?tab=ph3`
@@ -72,7 +82,7 @@ const routes = [
      * 而组件 `onMounted` 里的 `syncTabsToRoute()` 又会执行
      * `router.replace({ query: { tab: 'pvp', sub: 'exchange', … } })`，
      * **把那次跳转覆盖掉**。实测最终停在
-     * `/#/rewards?tab=pvp&sub=exchange&season=s1`，根本没到词条百科 ——
+     * `/#/misc?tab=pvp&sub=exchange&season=s1`，根本没到词条百科 ——
      * 用户点旧链接会落在一个不相关的页面上。
      *
      * 放进 `beforeEnter` 则在**组件挂载之前**就完成跳转，谁也覆盖不了。
@@ -140,9 +150,9 @@ const routes = [
      * 配队模拟器：选 4 名角色，按队伍被动的属性/职业条件推荐魔物。
      * 纯前端计算，数据来自 heroes.json / pets.json，不新增构建产物。
      */
-    path: '/team-sim',
-    name: 'team-sim',
-    component: () => import('../views/TeamSimView.vue')
+    path: '/sims',
+    name: 'sims',
+    component: () => import('../views/SimsView.vue')
   },
   {
     /**

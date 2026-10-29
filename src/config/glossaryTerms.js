@@ -2,7 +2,7 @@
  * 词条页「名词解释」静态内容。
  *
  * 每条的 `basis` 标注依据来源（源码文件 / 配置字段），不确定的写「未确证」，不编造。
- * 只做**名词定义**；完整公式与结算顺序在战斗规则页（`src/config/combatRules.js` / `/rewards?tab=combat_rules`），
+ * 只做**名词定义**；完整公式与结算顺序在战斗规则页（`src/config/combatRules.js` / `/misc?tab=combat_rules`），
  * 这里不重复维护公式正文，只在需要时指向它。
  *
  * 源码路径均相对 `源码/源码/Assembly-CSharp/`。

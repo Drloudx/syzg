@@ -469,9 +469,9 @@ const resolveMainCategory = value => {
    * 这里原本有一句 `router.replace('/glossary')` —— 但这是个"解析函数"里的副作用，
    * 而组件 `onMounted` 的 `syncTabsToRoute()` 随后又会 `router.replace({query})`，
    * **把它覆盖掉**：实测用户点旧链接会停在
-   * `/#/rewards?tab=pvp&sub=exchange&season=s1`，根本没到词条百科。
+   * `/#/misc?tab=pvp&sub=exchange&season=s1`，根本没到词条百科。
    *
-   * 现在改由 `src/router/index.js` 里 `/rewards` 的 `beforeEnter` 处理
+   * 现在改由 `src/router/index.js` 里 `/misc` 的 `beforeEnter` 处理
    * （在组件挂载前完成，谁也覆盖不了，而且会保留 `?q=` 搜索词）。
    * 这里的 fallback 只是"万一守卫没拦住"时的兜底，不再产生任何跳转。
    */

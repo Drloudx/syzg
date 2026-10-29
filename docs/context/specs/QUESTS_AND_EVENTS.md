@@ -1,6 +1,6 @@
 # 任务、事件与活动奖励
 
-> 本文件是任务图鉴、事件图鉴与其他奖励页（`/rewards`）的业务契约。
+> 本文件是任务图鉴、事件图鉴与其他奖励页（`/misc`）的业务契约。
 > 三者共用地图筛选与奖励展示规则；剧情清洗与奖励解析复用公共模块。
 >
 > **何时读**：改动任务、事件、探索、挑战赛或隐藏点位时。
@@ -206,17 +206,17 @@
 
 ## 三、其他奖励
 
-**入口** `/rewards` · **页面** `RewardsView.vue` · **数据** `parsed/parsed-pvp.json`、`parsed/parsed-hidden.json`
+**入口** `/misc` · **页面** `RewardsView.vue` · **数据** `parsed/parsed-pvp.json`、`parsed/parsed-hidden.json`
 
 含挑战赛奖励、隐藏物品点位和育室槽位。育室槽位消耗取配置。
 
 ### 战斗规则已并入词条百科
 
-`?tab=combat_rules` 与旧的 `tab=ph3` **不再渲染战斗规则视图**，改由 `src/router/index.js` 的 `/rewards` `beforeEnter` 跳转到 `/glossary`，并**保留 `?q=` 搜索词**。
+`?tab=combat_rules` 与旧的 `tab=ph3` **不再渲染战斗规则视图**，改由 `src/router/index.js` 的 `/misc` `beforeEnter` 跳转到 `/glossary`，并**保留 `?q=` 搜索词**。
 
 - 原 `CombatRules.vue` 与 `.combat-rules` 容器、`[data-rule-section]`、专属搜索框**已从 `src/` 移除**。
 - 内容（属性上限、冷却缩减、先扣护盾再扣生命、基础攻速 4 倍）在 [词条](HEROES_AND_COMBAT.md) 页的「核心机制」与「战斗属性」板块可读。
-- 跳转**必须放在路由 `beforeEnter`**：放组件内会被 `onMounted` 的 `syncTabsToRoute()` 覆盖，用户会停在 `/rewards?tab=pvp`。
+- 跳转**必须放在路由 `beforeEnter`**：放组件内会被 `onMounted` 的 `syncTabsToRoute()` 覆盖，用户会停在 `/misc?tab=pvp`。
 - 维护公式依据仍集中在[战斗公式专题](../technical/COMBAT_FORMULAS.md)；**不把源码字段、审计过程或未经确认的装备效果当成玩家规则**。
 - 回归入口 `tests/ui/combat-rules.spec.js`（守着跳转契约与内容可达，不再断言旧视图）。
 

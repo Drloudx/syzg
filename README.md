@@ -85,6 +85,7 @@ docs/
 | 文档 | 内容 |
 | --- | --- |
 | [AGENTS.md](AGENTS.md) | **长期规则**：读取/写入纪律、工作树授权、项目红线、本机坑 |
+| **[docs/context/HANDOVER.md](docs/context/HANDOVER.md)** | **交接总览**：项目定位、目录骨架、上手三步、红线、常见坑（第一次接手读这篇） |
 | [PROJECT_INDEX.md](PROJECT_INDEX.md) | **任务 → 权威章节**路由（条件路由，不是必读清单） |
 | [docs/context/NOW.md](docs/context/NOW.md) | 当前状态、阻塞与下一步（接续工作先读） |
 | [docs/context/MAP.md](docs/context/MAP.md) | 目录、源资源、部署位置、配置位置映射 |

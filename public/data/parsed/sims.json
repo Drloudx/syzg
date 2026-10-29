@@ -1,0 +1,934 @@
+{
+  "_meta": {
+    "source": [
+      "data/parsed/heroes.json",
+      "data/parsed/pets.json"
+    ],
+    "heroCount": 34,
+    "petCount": 32,
+    "note": "配队模拟器专用精简表；由 scripts/dev/build-sims-data.mjs 生成，勿手改"
+  },
+  "heroes": [
+    {
+      "id": "hero_019",
+      "name": "奇瓦",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at019_0",
+      "img": "chara019_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_043",
+      "name": "阿娜洛洁",
+      "job": 6,
+      "jobName": "支援",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at043_0",
+      "img": "chara043_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_049",
+      "name": "菲莉娜",
+      "job": 4,
+      "jobName": "射手",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at049_0",
+      "img": "chara049_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_050",
+      "name": "米拉贝尔",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at050_0",
+      "img": "chara050_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_051",
+      "name": "阿莱克西娅",
+      "job": 6,
+      "jobName": "支援",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at051_0",
+      "img": "chara051_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_053",
+      "name": "艾薇杜尔",
+      "job": 5,
+      "jobName": "突袭",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at053_0",
+      "img": "chara053_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_055",
+      "name": "迦南",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at055_0",
+      "img": "chara055_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_064",
+      "name": "伽拉忒亚",
+      "job": 5,
+      "jobName": "突袭",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at064_0",
+      "img": "chara064_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_065",
+      "name": "乌尔勒",
+      "job": 4,
+      "jobName": "射手",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at065_0",
+      "img": "chara065_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_015",
+      "name": "芭杜尔",
+      "job": 6,
+      "jobName": "支援",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at015_0",
+      "img": "chara015_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_025",
+      "name": "嘉莉缇",
+      "job": 4,
+      "jobName": "射手",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at025_0",
+      "img": "chara025_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_026",
+      "name": "贝拉多娜",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at026_0",
+      "img": "chara026_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_027",
+      "name": "梅莉莉",
+      "job": 4,
+      "jobName": "射手",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at027_0",
+      "img": "chara027_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_029",
+      "name": "安娜",
+      "job": 6,
+      "jobName": "支援",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at029_0",
+      "img": "chara029_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_033",
+      "name": "乌帕·萝特",
+      "job": 2,
+      "jobName": "守护",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at033_0",
+      "img": "chara033_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_034",
+      "name": "露帕·萝特",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at034_0",
+      "img": "chara034_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_036",
+      "name": "贝尔卡",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at036_0",
+      "img": "chara036_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_037",
+      "name": "剋",
+      "job": 2,
+      "jobName": "守护",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at037_0",
+      "img": "chara037_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_045",
+      "name": "艾尔菲帕",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at045_0",
+      "img": "chara045_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_066",
+      "name": "奥格",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at066_0",
+      "img": "chara066_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_001",
+      "name": "希尔",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at001_0",
+      "img": "chara001_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_005",
+      "name": "茜塔",
+      "job": 2,
+      "jobName": "守护",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at005_0",
+      "img": "chara005_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_007",
+      "name": "拉碧丝",
+      "job": 6,
+      "jobName": "支援",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at007_0",
+      "img": "chara007_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_008",
+      "name": "夏库塔拉",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at008_0",
+      "img": "chara008_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_009",
+      "name": "可可娜",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at009_0",
+      "img": "chara009_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_011",
+      "name": "缇莎",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at011_0",
+      "img": "chara011_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_012",
+      "name": "沃夫加",
+      "job": 4,
+      "jobName": "射手",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at012_0",
+      "img": "chara012_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_014",
+      "name": "皮塔",
+      "job": 5,
+      "jobName": "突袭",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at014_0",
+      "img": "chara014_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_023",
+      "name": "卡夫",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at023_0",
+      "img": "chara023_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_031",
+      "name": "波特温",
+      "job": 4,
+      "jobName": "射手",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at031_0",
+      "img": "chara031_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_041",
+      "name": "埃迪蒂",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at041_0",
+      "img": "chara041_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_046",
+      "name": "迈妮娅",
+      "job": 2,
+      "jobName": "守护",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at046_0",
+      "img": "chara046_0",
+      "rare": 3
+    },
+    {
+      "id": "hero_062",
+      "name": "露比特·鲁特",
+      "job": 1,
+      "jobName": "近卫",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at062_0",
+      "img": "chara062_0",
+      "rare": 3
+    },
+    {
+      "id": "new_hero_002",
+      "name": "米托拉",
+      "job": 5,
+      "jobName": "突袭",
+      "element": 2,
+      "elementName": "火",
+      "icon": "at002_1",
+      "img": "chara002_1",
+      "rare": 3
+    }
+  ],
+  "pets": [
+    {
+      "id": "pet_007",
+      "name": "角布林",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_007",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "暴击率",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍伙伴 暴击率 增加 {5%}。"
+      }
+    },
+    {
+      "id": "pet_006",
+      "name": "提灯妖精",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_006",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "射手",
+          "突袭"
+        ],
+        "stat": "魔法防御",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中 {突袭、射手} 职业伙伴的 魔法防御 增加 {6%}。"
+      }
+    },
+    {
+      "id": "pet_016",
+      "name": "吵吵蕈",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_016",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "守护"
+        ],
+        "stat": "生命值",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中 {近卫、守护} 职业伙伴 生命值 增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_017",
+      "name": "臭臭蕈",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_017",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "魔法防御",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中伙伴魔法防御增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_037",
+      "name": "掘地芙洛波",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_037",
+      "passive": {
+        "elements": [
+          "地"
+        ],
+        "jobs": [],
+        "stat": "物理防御",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中 {地属性} 伙伴 物理防御 增加 {6%}。"
+      }
+    },
+    {
+      "id": "pet_038",
+      "name": "扬沙芙洛波",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_038",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "射手",
+          "突袭"
+        ],
+        "stat": "暴击伤害",
+        "value": 12,
+        "perCount": false,
+        "raw": "队伍中 {射手、突袭} 职业伙伴 暴击伤害 增加 {12%}。"
+      }
+    },
+    {
+      "id": "pet_043",
+      "name": "顽劣灯火",
+      "element": 2,
+      "elementName": "火",
+      "monImg": "colect_mon_043",
+      "passive": {
+        "elements": [
+          "火"
+        ],
+        "jobs": [],
+        "stat": "魔法攻击",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中 {火属性} 伙伴 魔法攻击 增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_044",
+      "name": "游离灯火",
+      "element": 2,
+      "elementName": "火",
+      "monImg": "colect_mon_044",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "魔法攻击",
+        "value": 3,
+        "perCount": false,
+        "raw": "队伍中伙伴 魔法攻击 增加 {3%}。"
+      }
+    },
+    {
+      "id": "pet_062",
+      "name": "射水杜吉芽",
+      "element": 1,
+      "elementName": "水",
+      "monImg": "colect_mon_062",
+      "passive": {
+        "elements": [
+          "水"
+        ],
+        "jobs": [
+          "射手",
+          "突袭"
+        ],
+        "stat": "暴击率",
+        "value": 10,
+        "perCount": false,
+        "raw": "队伍中 {水属性} 且职业为 {射手、突袭} 的伙伴，暴击率增加 {10%}。"
+      }
+    },
+    {
+      "id": "pet_063",
+      "name": "繁茂杜吉芽",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_063",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "生命值",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍伙伴 最大生命值 增加 {5%}。"
+      }
+    },
+    {
+      "id": "pet_045",
+      "name": "囊袋恐兽",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_045",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "物理攻击",
+        "value": 3,
+        "perCount": false,
+        "raw": "队伍伙伴 物理攻击 增加 {3%}。"
+      }
+    },
+    {
+      "id": "pet_046",
+      "name": "利齿恐兽",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_046",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "守护"
+        ],
+        "stat": "暴击伤害",
+        "value": 12,
+        "perCount": false,
+        "raw": "队伍中 {近卫、守护} 职业的伙伴暴击伤害增加 {12%}。"
+      }
+    },
+    {
+      "id": "pet_036",
+      "name": "草原黏团",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_036",
+      "passive": {
+        "elements": [
+          "风"
+        ],
+        "jobs": [],
+        "stat": "生命值",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中 {风属性} 伙伴的最大生命值增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_058",
+      "name": "魔水粘团",
+      "element": 1,
+      "elementName": "水",
+      "monImg": "colect_mon_058",
+      "passive": {
+        "elements": [
+          "水"
+        ],
+        "jobs": [],
+        "stat": "魔法防御",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中 {水属性} 伙伴的魔法防御力增加 {6%}。"
+      }
+    },
+    {
+      "id": "pet_065",
+      "name": "鱼布林",
+      "element": 1,
+      "elementName": "水",
+      "monImg": "colect_mon_065",
+      "passive": {
+        "elements": [
+          "水"
+        ],
+        "jobs": [
+          "射手",
+          "突袭"
+        ],
+        "stat": "暴击伤害",
+        "value": 15,
+        "perCount": false,
+        "raw": "队伍中 {水属性} 且职业为 {射手、突袭} 的伙伴，暴击伤害增加 {15%}。"
+      }
+    },
+    {
+      "id": "pet_074",
+      "name": "宝石迷迷可",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_074",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "守护"
+        ],
+        "stat": "物理攻击",
+        "value": 6,
+        "perCount": false,
+        "raw": "使队伍中 {近卫、守护} 职业伙伴的 物理攻击 增加 {6%}。"
+      }
+    },
+    {
+      "id": "pet_073",
+      "name": "源泉猫",
+      "element": 1,
+      "elementName": "水",
+      "monImg": "colect_mon_073",
+      "passive": {
+        "elements": [
+          "水"
+        ],
+        "jobs": [],
+        "stat": "物理攻击",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍中 水属性 伙伴的 物理攻击 增加 {5%}。"
+      }
+    },
+    {
+      "id": "pet_072",
+      "name": "绿色史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_072",
+      "passive": {
+        "elements": [
+          "风"
+        ],
+        "jobs": [],
+        "stat": "物理防御",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中 {风属性} 伙伴的物理防御增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_071",
+      "name": "秋风妖精",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_071",
+      "passive": {
+        "elements": [
+          "风"
+        ],
+        "jobs": [],
+        "stat": "魔法攻击",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍中 {风属性} 伙伴魔法攻击增加 {5%}。"
+      }
+    },
+    {
+      "id": "pet_075",
+      "name": "格莉姆",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_075",
+      "passive": {
+        "elements": [
+          "地"
+        ],
+        "jobs": [],
+        "stat": "生命值",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中地属性伙伴 最大生命值 增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_076",
+      "name": "雷素",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_076",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "支援"
+        ],
+        "stat": "冷却缩减",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中 {秘术，支援} 伙伴 冷却缩减 增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_077",
+      "name": "真护之黑龙",
+      "element": 2,
+      "elementName": "火",
+      "monImg": "colect_mon_077",
+      "passive": {
+        "elements": [
+          "火"
+        ],
+        "jobs": [],
+        "stat": "物理攻击",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中 {火属性} 伙伴物理攻击增加 {6%}。"
+      }
+    },
+    {
+      "id": "pet_078",
+      "name": "星云史莱姆",
+      "element": 2,
+      "elementName": "火",
+      "monImg": "colect_mon_078",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "支援"
+        ],
+        "stat": "魔法攻击",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中 {秘术,支援} 伙伴魔法攻击增加 {6%}。"
+      }
+    },
+    {
+      "id": "pet_079",
+      "name": "东天之青龙",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_079",
+      "passive": {
+        "elements": [
+          "风"
+        ],
+        "jobs": [],
+        "stat": "攻击和移速",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中 {风属性} 伙伴攻击和移速增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_093",
+      "name": "石像鬼",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_093",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "物理防御",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍中物理防御增加 {5%}。"
+      }
+    },
+    {
+      "id": "pet_094",
+      "name": "布丁史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_094",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "生命值",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍中伙伴的最大生命值增加 {5%}。"
+      }
+    },
+    {
+      "id": "pet_095",
+      "name": "蜂刺骑兵",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_095",
+      "passive": {
+        "elements": [
+          "地"
+        ],
+        "jobs": [],
+        "stat": "物理攻击",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中地属性伙伴的物理攻击力增加 {4%}。"
+      }
+    },
+    {
+      "id": "pet_096",
+      "name": "白银迷迷可",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_096",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "守护"
+        ],
+        "stat": "物理攻击",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍中近卫守护物理攻击增加 {5%}。"
+      }
+    },
+    {
+      "id": "pet_097",
+      "name": "格里芬",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_097",
+      "passive": {
+        "elements": [
+          "地"
+        ],
+        "jobs": [],
+        "stat": "攻速",
+        "value": 7,
+        "perCount": false,
+        "raw": "队伍中地属性攻速增加 {7%}。"
+      }
+    },
+    {
+      "id": "pet_083",
+      "name": "冰棱妖精",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_083",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "支援"
+        ],
+        "stat": "魔法防御",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中法师辅助魔法防御 {6%}。"
+      }
+    },
+    {
+      "id": "pet_086",
+      "name": "抛雪芙洛波",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_086",
+      "passive": {
+        "elements": [
+          "水"
+        ],
+        "jobs": [],
+        "stat": "魔法攻击",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中水属性伙伴魔法攻击 {4%}。"
+      }
+    },
+    {
+      "id": "pet_088",
+      "name": "熔火喷炎者",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_088",
+      "passive": {
+        "elements": [
+          "火"
+        ],
+        "jobs": [],
+        "stat": "物理防御",
+        "value": 7,
+        "perCount": false,
+        "raw": "队伍中火属性伙伴物理防御 {7%}。"
+      }
+    }
+  ]
+}
