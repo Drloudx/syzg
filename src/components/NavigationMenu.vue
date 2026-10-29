@@ -22,17 +22,40 @@
               <span>导航目录</span>
             </div>
 
-            <!-- 使用 v-for 统一渲染侧边栏列表 -->
-            <div
-              v-for="item in navList"
-              :key="item.path"
-              class="side-item"
-              :class="{ active: currentRoute === item.path }"
-              @click="handleNavigate(item.path)"
-            >
-              <img :src="getImageUrl(item.icon)" class="icon-img game-sprite" />
-              <span class="item-name">{{ item.name }}</span>
-              <span v-if="!isDesktop" class="arrow">›</span>
+            <!-- 分组导航列表（支持展开/收起） -->
+            <div class="nav-groups-container">
+              <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
+                <div
+                  class="nav-category-header"
+                  :class="{ 'is-collapsed': isCategoryCollapsed(cat.key) }"
+                  @click="toggleCategory(cat.key)"
+                  role="button"
+                  tabindex="0"
+                  :aria-expanded="!isCategoryCollapsed(cat.key)"
+                  @keydown.enter.space.prevent="toggleCategory(cat.key)"
+                >
+                  <span class="nav-category-name">{{ cat.title }}</span>
+                  <span class="nav-category-line"></span>
+                  <span class="nav-category-count">{{ cat.items.length }}</span>
+                  <svg class="nav-category-arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+                    <path d="M2.5 4.5L6 8L9.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+
+                <div v-show="!isCategoryCollapsed(cat.key)" class="nav-category-items">
+                  <div
+                    v-for="item in cat.items"
+                    :key="item.path"
+                    class="side-item"
+                    :class="{ active: currentRoute === item.path }"
+                    @click="handleNavigate(item.path)"
+                  >
+                    <img :src="getImageUrl(item.icon)" class="icon-img game-sprite" />
+                    <span class="item-name">{{ item.name }}</span>
+                    <span v-if="!isDesktop" class="arrow">›</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <span v-if="isDesktop && canScrollUp" class="side-scroll-cue side-scroll-cue--up" aria-hidden="true"></span>
@@ -54,16 +77,30 @@
           <div class="sheet-content">
             <div class="grid-section">
               <div class="grid-category-title">导航目录</div>
-              <div class="tools-grid">
+              <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
                 <div
-                  v-for="item in navList"
-                  :key="item.path"
-                  class="grid-item"
-                  :class="{ active: currentRoute === item.path }"
-                  @click="handleNavigate(item.path)"
+                  class="nav-category-header is-sheet"
+                  :class="{ 'is-collapsed': isCategoryCollapsed(cat.key) }"
+                  @click="toggleCategory(cat.key)"
                 >
-                  <img :src="getImageUrl(item.icon)" class="icon-img game-sprite" />
-                  <span class="grid-item-name">{{ item.name }}</span>
+                  <span class="nav-category-name">{{ cat.title }}</span>
+                  <span class="nav-category-line"></span>
+                  <span class="nav-category-count">{{ cat.items.length }}</span>
+                  <svg class="nav-category-arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+                    <path d="M2.5 4.5L6 8L9.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div v-show="!isCategoryCollapsed(cat.key)" class="tools-grid">
+                  <div
+                    v-for="item in cat.items"
+                    :key="item.path"
+                    class="grid-item"
+                    :class="{ active: currentRoute === item.path }"
+                    @click="handleNavigate(item.path)"
+                  >
+                    <img :src="getImageUrl(item.icon)" class="icon-img game-sprite" />
+                    <span class="grid-item-name">{{ item.name }}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -79,16 +116,30 @@
           <div class="top-panel paper-panel" @click.stop>
             <div class="grid-section">
               <div class="grid-category-title">导航目录</div>
-              <div class="tools-grid">
+              <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
                 <div
-                  v-for="item in navList"
-                  :key="item.path"
-                  class="grid-item"
-                  :class="{ active: currentRoute === item.path }"
-                  @click="handleNavigate(item.path)"
+                  class="nav-category-header is-top"
+                  :class="{ 'is-collapsed': isCategoryCollapsed(cat.key) }"
+                  @click="toggleCategory(cat.key)"
                 >
-                  <img :src="getImageUrl(item.icon)" class="icon-img game-sprite" />
-                  <span class="grid-item-name">{{ item.name }}</span>
+                  <span class="nav-category-name">{{ cat.title }}</span>
+                  <span class="nav-category-line"></span>
+                  <span class="nav-category-count">{{ cat.items.length }}</span>
+                  <svg class="nav-category-arrow" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true">
+                    <path d="M2.5 4.5L6 8L9.5 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div v-show="!isCategoryCollapsed(cat.key)" class="tools-grid">
+                  <div
+                    v-for="item in cat.items"
+                    :key="item.path"
+                    class="grid-item"
+                    :class="{ active: currentRoute === item.path }"
+                    @click="handleNavigate(item.path)"
+                  >
+                    <img :src="getImageUrl(item.icon)" class="icon-img game-sprite" />
+                    <span class="grid-item-name">{{ item.name }}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -174,6 +225,120 @@ const defaultNavList = [
 ]
 
 const navList = computed(() => props.items || defaultNavList)
+
+// --- 分类与可展开收起逻辑 ---
+const CATEGORY_DEFINITIONS = [
+  {
+    key: 'encyclopedia',
+    title: '图鉴资料',
+    paths: [
+      '/items', '/heroes', '/equip', '/runes', '/pets', '/monsters',
+      '/dungeons', '/chapters', '/furniture', '/facilities',
+      '/tasks', '/events', '/recipes', '/achievement'
+    ]
+  },
+  {
+    key: 'tools',
+    title: '实用工具',
+    paths: ['/gacha', '/sims', '/petseggs']
+  },
+  {
+    key: 'misc',
+    title: '其他功能',
+    paths: ['/exchange', '/glossary', '/partner-mails', '/misc']
+  }
+]
+
+const navCategories = computed(() => {
+  const allItems = navList.value
+  const itemMap = new Map(allItems.map(item => [item.path, item]))
+  const result = []
+  const assigned = new Set()
+
+  for (const def of CATEGORY_DEFINITIONS) {
+    const matched = []
+    for (const p of def.paths) {
+      if (itemMap.has(p)) {
+        matched.push(itemMap.get(p))
+        assigned.add(p)
+      }
+    }
+    if (matched.length > 0) {
+      result.push({
+        key: def.key,
+        title: def.title,
+        items: matched
+      })
+    }
+  }
+
+  // 兜底未匹配的其它条目
+  const unassigned = allItems.filter(item => !assigned.has(item.path))
+  if (unassigned.length > 0) {
+    result.push({
+      key: 'unassigned',
+      title: '其它',
+      items: unassigned
+    })
+  }
+
+  return result
+})
+
+const STORAGE_KEY = 'syzg_nav_categories_collapsed'
+const collapsedCategories = ref(new Set())
+
+const initCollapsedState = () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (raw) {
+      const parsed = JSON.parse(raw)
+      if (Array.isArray(parsed)) {
+        collapsedCategories.value = new Set(parsed)
+      }
+    }
+  } catch {}
+}
+
+const saveCollapsedState = () => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...collapsedCategories.value]))
+  } catch {}
+}
+
+const isCategoryCollapsed = (key) => collapsedCategories.value.has(key)
+
+const toggleCategory = (key) => {
+  if (collapsedCategories.value.has(key)) {
+    collapsedCategories.value.delete(key)
+  } else {
+    collapsedCategories.value.add(key)
+  }
+  saveCollapsedState()
+  nextTick(() => {
+    syncSideScrollState()
+  })
+}
+
+// 确保当前所在路由对应的分类始终保持展开
+watch(
+  () => currentRoute.value,
+  (path) => {
+    for (const cat of navCategories.value) {
+      if (cat.items.some(item => item.path === path)) {
+        if (collapsedCategories.value.has(cat.key)) {
+          collapsedCategories.value.delete(cat.key)
+          saveCollapsedState()
+          nextTick(syncSideScrollState)
+        }
+        break
+      }
+    }
+  },
+  { immediate: true }
+)
+
+initCollapsedState()
 
 const handleClose = () => {
   emit('close')
@@ -810,5 +975,104 @@ onBeforeUnmount(() => {
   .top-overlay {
     top: calc(var(--header-height, 60px) + 46px + var(--safe-top, 0px));
   }
+}
+
+/* --- 4. 分类分组与展开收起样式 --- */
+.nav-category-group {
+  margin-bottom: 6px;
+}
+
+.nav-category-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 6px 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b5134;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+
+.nav-category-header:hover {
+  color: #3e2a14;
+}
+
+.nav-category-header:focus-visible {
+  outline: 1px solid rgba(168, 132, 82, 0.6);
+  border-radius: 4px;
+}
+
+.nav-category-name {
+  letter-spacing: 0.5px;
+}
+
+.nav-category-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(143, 115, 81, 0.45), transparent);
+}
+
+.nav-category-count {
+  font-size: 11px;
+  color: #8c7358;
+  font-variant-numeric: tabular-nums;
+  font-weight: normal;
+}
+
+.nav-category-arrow {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  color: #9f7d4d;
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease;
+  transform: rotate(0deg);
+}
+
+.nav-category-header:hover .nav-category-arrow {
+  color: #5c3f1c;
+}
+
+.nav-category-header.is-collapsed .nav-category-arrow {
+  transform: rotate(-90deg);
+}
+
+/* 抽屉与顶部下拉下的分类标题间距微调 */
+.nav-category-header.is-sheet,
+.nav-category-header.is-top {
+  padding: 6px 4px 6px;
+  margin-bottom: 8px;
+}
+
+.dark-mode .nav-category-header,
+.dark-theme .nav-category-header {
+  color: #cbb898;
+}
+
+.dark-mode .nav-category-header:hover,
+.dark-theme .nav-category-header:hover {
+  color: #f7e6c4;
+}
+
+.dark-mode .nav-category-line,
+.dark-theme .nav-category-line {
+  background: linear-gradient(90deg, rgba(168, 132, 82, 0.45), transparent);
+}
+
+.dark-mode .nav-category-count,
+.dark-theme .nav-category-count {
+  color: #a89476;
+}
+
+.dark-mode .nav-category-arrow,
+.dark-theme .nav-category-arrow {
+  color: #c5913e;
+}
+
+.dark-mode .nav-category-header:hover .nav-category-arrow,
+.dark-theme .nav-category-header:hover .nav-category-arrow {
+  color: #f7e6c4;
 }
 </style>
