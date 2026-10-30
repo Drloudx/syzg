@@ -341,6 +341,7 @@ onMounted(() => {
 onBeforeUnmount(() => mascotViewport?.removeEventListener('change', updateMascotViewport))
 
 const PAGE_TITLES = {
+  '/': '书院首页',
   '/items': '物品图鉴',
   '/furniture': '家具图鉴',
   '/facilities': '设施功能',
@@ -418,7 +419,7 @@ function goAdmin() {
  * 重定向、把滚动位置重置，而用户此时只是随手点了一下标题。
  */
 function goHome() {
-  if (route.path === '/items') return
+  if (route.path === '/') return
   router.push('/')
 }
 
@@ -775,9 +776,20 @@ onMounted(() => {
     const started = performance.now()
     let doneFrames = 0
     const reveal = () => {
-      // 必须「页面已挂载 且 无 loading/error 骨架」才算就绪：
-      // router-view 初始解析空窗期页面尚未出现，不能误判为就绪（否则骨架期滚动条就可见了）
-      const page = document.querySelector('.page-view-container')
+      /*
+       * 就绪判据：**router-view 已经渲染出任一页面根节点**，且没有 loading/error 骨架。
+       *
+       * 🔴 不能只认 `.page-view-container`：
+       * `/` 的书院首页（HomeView.vue）根节点是 `.home-view`，不用这个类。
+       * 只认 pvc 会让首页永远判不到「就绪」→ `is-boot-loading` 永不移除 →
+       * 它带的 `overflow: hidden` 一直生效，整页无法滚动，
+       * 表现为「浏览器整页长截图只能截到一屏」。
+       *
+       * 兜底：`.app-main` 下出现任意元素即视为已挂载（路由解析空窗期时它是空的）。
+       */
+      const page =
+        document.querySelector('.page-view-container') ||
+        document.querySelector('.app-main > *:not(.ui-modal-host)')
       const ready = page && !page.querySelector('.ui-empty-state--loading, .ui-empty-state--error')
       if (ready) doneFrames++
       else doneFrames = 0

@@ -8,9 +8,10 @@ const routes = [
     component: () => import('../views/RunesView.vue')
   },
   {
-    // 首页 = 物品图鉴（用户指定）。导航顺序里「物品图鉴」也是第一项，保持一致。
     path: '/',
-    redirect: '/items'
+    name: 'home',
+    component: () => import('../views/HomeView.vue'),
+    meta: { title: '书院首页' }
   },
   {
     path: '/petseggs',

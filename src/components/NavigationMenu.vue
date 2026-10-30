@@ -22,6 +22,17 @@
               <span>导航目录</span>
             </div>
 
+            <!-- 书院首页置顶入口 -->
+            <div
+              class="side-item side-item--home"
+              :class="{ active: currentRoute === '/' }"
+              @click="handleNavigate('/')"
+            >
+              <img :src="getImageUrl('/ui/logo.webp')" class="icon-img game-sprite" alt="首页" />
+              <span class="item-name">书院首页</span>
+              <span class="home-portal-badge">PORTAL</span>
+            </div>
+
             <!-- 分组导航列表（支持展开/收起） -->
             <div class="nav-groups-container">
               <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
@@ -77,6 +88,24 @@
           <div class="sheet-content">
             <div class="grid-section">
               <div class="grid-category-title">导航目录</div>
+              <div
+                class="grid-item grid-item--home"
+                :class="{ active: currentRoute === '/' }"
+                @click="handleNavigate('/')"
+                style="margin-bottom: 12px; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: rgba(143, 115, 81, 0.14); border: 1px solid rgba(168, 132, 82, 0.35); border-radius: 6px; font-weight: 700;"
+              >
+                <img :src="getImageUrl('/ui/logo.webp')" class="icon-img game-sprite" style="width: 24px; height: 24px;" />
+                <span class="grid-item-name" style="font-size: 14px;">书院首页 (Portal)</span>
+              </div>
+              <div
+                class="grid-item grid-item--home"
+                :class="{ active: currentRoute === '/' }"
+                @click="handleNavigate('/')"
+                style="margin-bottom: 12px; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: rgba(143, 115, 81, 0.14); border: 1px solid rgba(168, 132, 82, 0.35); border-radius: 6px; font-weight: 700;"
+              >
+                <img :src="getImageUrl('/ui/logo.webp')" class="icon-img game-sprite" style="width: 24px; height: 24px;" />
+                <span class="grid-item-name" style="font-size: 14px;">书院首页 (Portal)</span>
+              </div>
               <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
                 <div
                   class="nav-category-header is-sheet"
@@ -1074,5 +1103,54 @@ onBeforeUnmount(() => {
 .dark-mode .nav-category-header:hover .nav-category-arrow,
 .dark-theme .nav-category-header:hover .nav-category-arrow {
   color: #f7e6c4;
+}
+
+/* --- 首页入口样式 --- */
+.side-item--home {
+  margin-bottom: 8px;
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(168, 132, 82, 0.35);
+  font-weight: 700;
+}
+
+.side-item--home:hover {
+  background: rgba(143, 115, 81, 0.22);
+  border-color: #a88452;
+}
+
+.side-item--home.active {
+  background: linear-gradient(135deg, rgba(62, 42, 20, 0.95), rgba(43, 29, 14, 0.95)) !important;
+  color: #fff4e0 !important;
+  border-color: #d8af56 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.home-portal-badge {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: #a88452;
+  color: #241607;
+  letter-spacing: 0.5px;
+  margin-left: auto;
+}
+
+.side-item--home.active .home-portal-badge {
+  background: #d8af56;
+  color: #1a0f04;
+}
+
+.dark-mode .side-item--home,
+.dark-theme .side-item--home {
+  background: rgba(143, 115, 81, 0.15);
+  border-color: rgba(168, 132, 82, 0.4);
+}
+
+.dark-mode .side-item--home.active,
+.dark-theme .side-item--home.active {
+  background: linear-gradient(135deg, #4d361c, #362412) !important;
+  color: #fff4e0 !important;
+  border-color: #d8af56 !important;
 }
 </style>
