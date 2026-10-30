@@ -363,8 +363,8 @@ const bannerList = [
     subTag: 'v1.2.0「深境微光」',
     btnText: '查看版本更新详情',
     image: '/images/banners/home-banner-1.jpg',
-    bgColor: '#1a3832', // 微透碧绿与林风深调，呼应奇瓦草地大森林，告别发灰草泥色
-    blendStart: 'rgba(26, 56, 50, 0.95)',
+    bgColor: '#264440', // 微透碧蓝的湖水林风（方案 B：画面主调提亮系）
+    blendStart: 'rgba(38, 68, 64, 0.95)',
     action: 'notice',
     noticeTitle: '官方版本更新：v1.2.0「深境微光」'
   },
@@ -377,8 +377,8 @@ const bannerList = [
     subTag: 'UP 卡池开启',
     btnText: '前往模拟抽卡',
     image: '/images/banners/home-banner-2.jpg',
-    bgColor: '#3a2416', // 暗金暖木檀色，提亮暗部，契约羊皮纸与金光角色辉映
-    blendStart: 'rgba(58, 36, 22, 0.95)',
+    bgColor: '#3c281a', // 暗金微透的华丽卡池色（方案 B：画面主调提亮系）
+    blendStart: 'rgba(60, 40, 26, 0.95)',
     action: 'route',
     path: '/gacha'
   },
@@ -391,8 +391,8 @@ const bannerList = [
     subTag: '配队演算升级',
     btnText: '立即体验模拟工具',
     image: '/images/banners/home-banner-3.jpg',
-    bgColor: '#382216', // 温暖营地木屋红木色，呼应右侧营地树木与帐篷的温馨探险感
-    blendStart: 'rgba(56, 34, 22, 0.95)',
+    bgColor: '#42291b', // 温暖的营地木屋红木色（方案 B：画面主调提亮系）
+    blendStart: 'rgba(66, 41, 27, 0.95)',
     action: 'route',
     path: '/sims'
   }
