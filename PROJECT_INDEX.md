@@ -30,6 +30,7 @@
 
 | 功能 | 路由 | 领域文件 |
 | --- | --- | --- |
+| **书院首页 / 公告 / 海报 / 图鉴入口** | `/` | [HOME_CONTENT](docs/context/technical/HOME_CONTENT.md) |
 | 物品/装备/符石/兑换/其他奖励 | `/items` `/equip` `/runes` `/exchange` `/misc` | [ITEMS_AND_EQUIPMENT](docs/context/specs/ITEMS_AND_EQUIPMENT.md) |
 | 角色/邮件/魔物/怪物/词条 | `/heroes` `/partner-mails` `/pets` `/monsters` `/glossary` | [HEROES_AND_COMBAT](docs/context/specs/HEROES_AND_COMBAT.md) |
 | 副本/关卡/章节地图 | `/dungeons` `/chapters` | [DUNGEONS_AND_CHAPTERS](docs/context/specs/DUNGEONS_AND_CHAPTERS.md) |

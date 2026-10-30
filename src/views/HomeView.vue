@@ -7,16 +7,23 @@
       @mouseleave="resumeCarousel"
     >
       <!-- 左右切换箭头 -->
-      <button class="poster-nav-btn prev" @click="prevSlide" title="上一张" aria-label="上一张">‹</button>
-      <button class="poster-nav-btn next" @click="nextSlide" title="下一张" aria-label="下一张">›</button>
+      <button class="poster-nav-btn prev" @click="prevSlide" title="上一张" aria-label="上一张">
+        <svg width="8" height="23" viewBox="0 0 12 34" fill="none" style="width:8px;height:23px;display:block;"><path fill="currentColor" d="M7.158 2.33a1.5 1.5 0 0 1 2.684 1.34L3.177 17l6.665 13.33a1.5 1.5 0 0 1-2.684 1.34l-7-14a1.5 1.5 0 0 1 0-1.34z"/></svg>
+      </button>
+      <button class="poster-nav-btn next" @click="nextSlide" title="下一张" aria-label="下一张">
+        <svg width="8" height="23" viewBox="0 0 12 34" fill="none" style="width:8px;height:23px;display:block;"><path fill="currentColor" d="M4.842 2.33a1.5 1.5 0 0 0-2.684 1.34L8.823 17 2.158 30.33a1.5 1.5 0 0 0 2.684 1.34l7-14a1.5 1.5 0 0 0 0-1.34z"/></svg>
+      </button>
 
-      <!-- 轮播幻灯片容器 -->
-      <div class="poster-track">
+      <!-- 轮播幻灯片容器 (无缝无限物理滑轨) -->
+      <div
+        class="poster-track"
+        :style="trackStyle"
+        @transitionend="onTrackTransitionEnd"
+      >
         <div
-          v-for="(banner, index) in bannerList"
-          :key="banner.id"
+          v-for="(banner, vIndex) in loopBanners"
+          :key="'v-slide-' + vIndex"
           class="poster-slide"
-          :class="{ active: currentSlide === index }"
           :style="{
             backgroundColor: banner.bgColor
           }"
@@ -62,8 +69,8 @@
           v-for="(banner, index) in bannerList"
           :key="'dot-' + index"
           class="poster-dot"
-          :class="{ active: currentSlide === index }"
-          @click="setSlide(index)"
+          :class="{ active: currentRealIndex === index }"
+          @click="jumpToSlide(index)"
         ></div>
       </div>
     </section>
@@ -131,9 +138,8 @@
 
     <!-- 2. 核心图鉴金刚区 (4大图鉴大卡片) -->
     <section class="home-core-indexes">
-      <div class="section-title">
-        <span>核心图鉴检索</span>
-        <span class="section-title-sub">高频基础资料快速直达</span>
+      <div class="section-title section-title-ribbon">
+        <span>核心图鉴</span>
       </div>
       <div class="core-indexes-grid">
         <div class="core-index-card paper-panel" @click="goTo('/heroes')">
@@ -172,9 +178,8 @@
 
     <!-- 3. 实用模拟与策略工具精选 (2x2 横向卡片) -->
     <section class="home-tools-section">
-      <div class="section-title">
-        <span>实用模拟与策略工具</span>
-        <span class="section-title-sub">深度计算与概率还原</span>
+      <div class="section-title section-title-ribbon">
+        <span>实用工具</span>
       </div>
 
       <div class="tools-grid">
@@ -398,25 +403,70 @@ const bannerList = [
   }
 ]
 
-// 轮播海报逻辑
-const currentSlide = ref(0)
+// 轮播海报逻辑 (TapTap 源码级无缝无限物理滑轨)
+const realTotal = bannerList.length
+const loopBanners = computed(() => [
+  bannerList[realTotal - 1], // index 0: 尾部克隆项
+  ...bannerList,             // index 1, 2, 3: 真实海报
+  bannerList[0]              // index 4: 头部克隆项
+])
+
+const currentVirtualIndex = ref(1) // 初始定位在真实第 1 张 (虚拟索引 1)
+const isAnimated = ref(false)
+const isTransitioning = ref(false)
 let slideTimer = null
 
+const currentRealIndex = computed(() => {
+  return (currentVirtualIndex.value - 1 + realTotal) % realTotal
+})
+
+const trackStyle = computed(() => ({
+  transform: `translate3d(-${currentVirtualIndex.value * 100}%, 0, 0)`,
+  transition: isAnimated.value ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none'
+}))
+
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % bannerList.length
+  if (isTransitioning.value) return
+  isTransitioning.value = true
+  isAnimated.value = true
+  currentVirtualIndex.value++
 }
 
 const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + bannerList.length) % bannerList.length
+  if (isTransitioning.value) return
+  isTransitioning.value = true
+  isAnimated.value = true
+  currentVirtualIndex.value--
 }
 
-const setSlide = (idx) => {
-  currentSlide.value = idx
+const jumpToSlide = (realIdx) => {
+  if (isTransitioning.value) return
+  isTransitioning.value = true
+  isAnimated.value = true
+  currentVirtualIndex.value = realIdx + 1
+  restartCarousel()
+}
+
+const onTrackTransitionEnd = (e) => {
+  if (e.propertyName !== 'transform') return
+  isTransitioning.value = false
+  // 滑到了末尾的首张克隆项 (虚拟索引 4) -> 瞬间无动画跳回真实第 1 张 (虚拟索引 1)
+  if (currentVirtualIndex.value >= realTotal + 1) {
+    isAnimated.value = false
+    currentVirtualIndex.value = 1
+  }
+  // 滑到了开头的末张克隆项 (虚拟索引 0) -> 瞬间无动画跳回真实最后一张 (虚拟索引 3)
+  else if (currentVirtualIndex.value <= 0) {
+    isAnimated.value = false
+    currentVirtualIndex.value = realTotal
+  }
 }
 
 const startCarousel = () => {
   stopCarousel()
-  slideTimer = setInterval(nextSlide, 6000)
+  slideTimer = setInterval(() => {
+    nextSlide()
+  }, 6000)
 }
 
 const stopCarousel = () => {
@@ -424,6 +474,11 @@ const stopCarousel = () => {
     clearInterval(slideTimer)
     slideTimer = null
   }
+}
+
+const restartCarousel = () => {
+  stopCarousel()
+  startCarousel()
 }
 
 const pauseCarousel = () => stopCarousel()
@@ -607,27 +662,20 @@ onBeforeUnmount(() => {
 }
 
 .poster-track {
-  position: relative;
+  display: flex;
   width: 100%;
   height: 100%;
+  will-change: transform;
 }
 
 .poster-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: scale(1.015);
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   overflow: hidden;
-}
-
-.poster-slide.active {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
 }
 
 /* 左侧文字排版区域 */
@@ -704,35 +752,74 @@ onBeforeUnmount(() => {
 }
 
 .poster-btn-wrap {
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
+/* 前往按钮 (方案 7：无框微光流线文本链 - 纯净排印与动态引线) */
 .poster-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
-  background: linear-gradient(180deg, #c69234, #91681b);
-  color: #1a1005;
-  font-size: 12.5px;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 4px 0;
+  box-shadow: none;
+  color: #f7ebd7;
+  font-size: 13.5px;
   font-weight: 700;
-  border-radius: 4px;
-  border: 1px solid #e2be74;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  position: relative;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.25s ease;
   text-decoration: none;
+  user-select: none;
 }
 
-.poster-btn:hover {
-  background: linear-gradient(180deg, #ddaa44, #a47720);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(198, 146, 52, 0.4);
+.poster-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, #d4a74a 0%, rgba(212, 167, 74, 0.25) 75%, transparent 100%);
+  transition: all 0.25s ease;
 }
 
 .poster-btn .btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(198, 146, 52, 0.22);
+  border: 1px solid rgba(198, 146, 52, 0.5);
+  color: #f7ebd7;
+  font-size: 10px;
   font-family: monospace;
   font-weight: 800;
+  transition: all 0.25s ease;
+}
+
+.poster-btn:hover {
+  transform: none;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(212, 167, 74, 0.6);
+}
+
+.poster-btn:hover::after {
+  background: linear-gradient(90deg, #ffd782 0%, rgba(255, 215, 130, 0.45) 85%, transparent 100%);
+  height: 2px;
+  box-shadow: 0 0 6px rgba(212, 167, 74, 0.6);
+}
+
+.poster-btn:hover .btn-arrow {
+  transform: translateX(4px);
+  background: rgba(198, 146, 52, 0.5);
+  border-color: #ffd782;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(212, 167, 74, 0.5);
 }
 
 /* 右侧海报图容器与平滑渐变融合蒙层 */
@@ -762,68 +849,113 @@ onBeforeUnmount(() => {
   pointer-events: none;
 }
 
-/* 左右翻页箭头 */
+/* 左右翻页箭头 (TapTap 官方源码级 1:1 精确复刻) */
 .poster-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 32px;
-  height: 40px;
-  background: rgba(20, 13, 7, 0.65);
-  border: 1px solid rgba(198, 146, 52, 0.5);
-  color: #f7ebd7;
+  width: 28px;
+  height: 64px;
+  background: rgba(0, 0, 0, 0.58);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
   cursor: pointer;
   z-index: 10;
-  border-radius: 4px;
-  transition: all 0.15s ease;
-  opacity: 0.45;
+  border-radius: 8px;
+  /* 鼠标移出海报时延时 0.7s 优雅淡出，避免闪烁；移入时 0s 立即淡入 */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s cubic-bezier(0.2, 0, 0, 1) 0.7s, background-color 0.2s ease;
+  padding: 0;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* 内部箭头图标：固定 8px x 23px，独立承载缩放与高光动效 */
+.poster-nav-btn svg {
+  width: 8px !important;
+  height: 23px !important;
+  display: block !important;
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1), color 0.2s ease;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+/* 鼠标悬停在海报上：胶囊丝滑显现 */
 .home-poster-banner:hover .poster-nav-btn {
   opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.2s cubic-bezier(0.2, 0, 0, 1) 0s, background-color 0.2s ease;
 }
 
+/* 鼠标悬停在按钮上：
+   1. 黑色胶囊底托与阴影颜色绝对不变 (不放大、不加深、不跳动)
+   2. 仅内部箭头放大 1.18 倍，同时色彩变为高亮纯白
+*/
 .poster-nav-btn:hover {
-  background: rgba(198, 146, 52, 0.85);
-  color: #1a1005;
-  border-color: #f7ebd7;
+  color: #ffffff;
+}
+
+.poster-nav-btn:hover svg {
+  transform: scale(1.18) !important;
+}
+
+/* 点击按压状态：仅内部箭头轻微回弹 */
+.poster-nav-btn:active svg {
+  transform: scale(1.05) !important;
 }
 
 .poster-nav-btn.prev {
-  left: 10px;
+  left: 6px;
 }
 
 .poster-nav-btn.next {
-  right: 10px;
+  right: 6px;
 }
 
-/* 底部指示圆点 */
+/* 轮播指示器 (方案 E：深渊符石晶菱 - 黄金微光透亮精修版) */
 .poster-dots {
   position: absolute;
-  bottom: 10px;
+  bottom: 12px;
   left: 32px;
   z-index: 10;
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 0;
 }
 
 .poster-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.35);
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  transform: rotate(45deg);
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  margin: 0 5px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+}
+
+.poster-dot:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.75);
+  transform: rotate(45deg) scale(1.08);
 }
 
 .poster-dot.active {
-  width: 22px;
-  background: #c69234;
-  box-shadow: 0 0 6px rgba(198, 146, 52, 0.8);
+  width: 6.5px;
+  height: 6.5px;
+  transform: rotate(45deg) scale(1.08);
+  background: linear-gradient(135deg, #74deda 0%, #4ea8a4 100%);
+  border-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 6px rgba(110, 218, 214, 0.65), 0 1px 3px rgba(0, 0, 0, 0.45);
 }
 
 /* ==========================================================================
@@ -1048,6 +1180,38 @@ onBeforeUnmount(() => {
 /* ==========================================================================
    2. 核心图鉴金刚区 (4大图鉴大卡片)
    ========================================================================== */
+
+/* 专门针对核心图鉴与实用工具：方案 4 古典卷轴羽化刻度线样式 */
+.section-title.section-title-ribbon {
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* 适度拉长至 220px（越过第一张卡片右缘约 25px 进入间隙与第二张卡片左侧过渡带），比例最协调 */
+  background: linear-gradient(90deg, rgba(250, 243, 230, 0.96) 0%, rgba(246, 236, 218, 0.78) 48%, rgba(246, 236, 218, 0.28) 80%, rgba(246, 236, 218, 0) 100%);
+  border-left: 3.5px solid #b88628;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid transparent;
+  border-image: linear-gradient(90deg, rgba(184, 134, 40, 0.7) 0%, rgba(184, 134, 40, 0.25) 65%, transparent 96%) 1;
+  border-radius: 0 4px 0 0;
+  padding: 5px 14px 5px 12px;
+  margin-bottom: 9px;
+  width: 220px;
+  box-sizing: border-box;
+  box-shadow: -1px 0 4px rgba(184, 134, 40, 0.2);
+}
+
+.section-title.section-title-ribbon::before {
+  display: none;
+}
+
+.section-title.section-title-ribbon > span:first-child {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #2b1f15;
+  letter-spacing: 0.5px;
+}
+
 .section-title {
   display: flex;
   align-items: center;
@@ -1099,23 +1263,35 @@ onBeforeUnmount(() => {
 }
 
 .core-index-icon-wrap {
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: rgba(62, 42, 20, 0.08);
-  border: 1.5px solid var(--border-soft);
+  background: radial-gradient(circle, rgba(198, 146, 52, 0.18) 0%, rgba(198, 146, 52, 0.03) 55%, transparent 72%);
+  border: none;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 8px;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.22s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .core-index-icon-wrap img {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 6px rgba(43, 31, 21, 0.35));
+  transition: all 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.core-index-card:hover .core-index-icon-wrap {
+  background: radial-gradient(circle, rgba(198, 146, 52, 0.30) 0%, rgba(198, 146, 52, 0.06) 60%, transparent 75%);
+  border: none;
+}
+
+.core-index-card:hover .core-index-icon-wrap img {
+  transform: translateY(-3px) scale(1.12);
+  filter: drop-shadow(0 6px 10px rgba(43, 31, 21, 0.45));
 }
 
 .core-index-name {
@@ -1158,23 +1334,36 @@ onBeforeUnmount(() => {
   border-color: #c69234;
 }
 
+/* 实用工具图标容器 (方案 5：微光透气圆座 + 42px 大图标) */
 .tool-icon-box {
-  width: 44px;
-  height: 44px;
-  border-radius: 6px;
-  background: linear-gradient(180deg, #44301d, #2b1d11);
-  border: 1px solid #725638;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 146, 52, 0.22) 0%, rgba(198, 146, 52, 0.04) 58%, transparent 74%);
+  border: none;
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.22s cubic-bezier(0.2, 0, 0, 1);
 }
 
 .tool-icon-box img {
-  width: 28px;
-  height: 28px;
+  width: 42px;
+  height: 42px;
   object-fit: contain;
+  filter: drop-shadow(0 3px 6px rgba(43, 31, 21, 0.35));
+  transition: all 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.tool-banner-card:hover .tool-icon-box {
+  background: radial-gradient(circle, rgba(198, 146, 52, 0.34) 0%, rgba(198, 146, 52, 0.08) 62%, transparent 76%);
+}
+
+.tool-banner-card:hover .tool-icon-box img {
+  transform: translateY(-2px) scale(1.08);
+  filter: drop-shadow(0 5px 9px rgba(43, 31, 21, 0.45));
 }
 
 .tool-info {
@@ -1647,8 +1836,8 @@ onBeforeUnmount(() => {
   }
 
   .poster-btn {
-    font-size: 11px;
-    padding: 4px 10px;
+    font-size: 11.5px;
+    padding: 2px 0;
   }
 
   .poster-image-wrap {
@@ -1657,7 +1846,7 @@ onBeforeUnmount(() => {
 
   .poster-dots {
     left: 20px;
-    bottom: 6px;
+    bottom: 8px;
   }
 
   .notices-body-layout {
