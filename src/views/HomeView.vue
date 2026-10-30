@@ -352,7 +352,7 @@ const updateDesktopState = () => {
   }
 }
 
-// 洛克王国 Wiki 风格的海报列表：图片放右侧，左侧根据图片边缘提取的主色调平滑向左扩展
+// 洛克王国 Wiki 风格的海报列表：图片放右侧，左侧根据图片边缘与画面主调平滑向左扩展（方案 B：画面主调提亮系）
 const bannerList = [
   {
     id: 1,
@@ -363,8 +363,8 @@ const bannerList = [
     subTag: 'v1.2.0「深境微光」',
     btnText: '查看版本更新详情',
     image: '/images/banners/home-banner-1.jpg',
-    bgColor: '#314237', // 提取自 1.jpg 左侧边缘暗青绿
-    blendStart: 'rgba(49, 66, 55, 0.95)',
+    bgColor: '#1a3832', // 微透碧绿与林风深调，呼应奇瓦草地大森林，告别发灰草泥色
+    blendStart: 'rgba(26, 56, 50, 0.95)',
     action: 'notice',
     noticeTitle: '官方版本更新：v1.2.0「深境微光」'
   },
@@ -377,8 +377,8 @@ const bannerList = [
     subTag: 'UP 卡池开启',
     btnText: '前往模拟抽卡',
     image: '/images/banners/home-banner-2.jpg',
-    bgColor: '#2b231c', // 提取自 2.jpg 左侧边缘暗棕
-    blendStart: 'rgba(43, 35, 28, 0.95)',
+    bgColor: '#3a2416', // 暗金暖木檀色，提亮暗部，契约羊皮纸与金光角色辉映
+    blendStart: 'rgba(58, 36, 22, 0.95)',
     action: 'route',
     path: '/gacha'
   },
@@ -391,8 +391,8 @@ const bannerList = [
     subTag: '配队演算升级',
     btnText: '立即体验模拟工具',
     image: '/images/banners/home-banner-3.jpg',
-    bgColor: '#2e1f18', // 提取自 3.jpg 左侧边缘暗褐红
-    blendStart: 'rgba(46, 31, 24, 0.95)',
+    bgColor: '#382216', // 温暖营地木屋红木色，呼应右侧营地树木与帐篷的温馨探险感
+    blendStart: 'rgba(56, 34, 22, 0.95)',
     action: 'route',
     path: '/sims'
   }
