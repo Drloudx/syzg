@@ -1200,28 +1200,29 @@ onBeforeUnmount(() => {
   margin-top: 1px;
 }
 
+/* 公告跳转按钮 (方案 T1：纯文字居中浮印·彻底无框无底·通透轻盈) */
 .patch-view-full-btn {
-  margin-top: 10px;
-  padding: 7px 0;
+  margin-top: 8px;
+  padding: 8px 0 2px;
   text-align: center;
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #38210d;
-  background: linear-gradient(180deg, #f5e2bf 0%, #dbb370 100%);
-  border: 1.5px solid #997135;
-  border-radius: 4px;
+  letter-spacing: 0.6px;
+  color: #4a301a;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(45, 28, 12, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.75);
+  width: 100%;
+  display: block;
   transition: all 0.2s ease;
 }
 
 .patch-view-full-btn:hover {
-  background: linear-gradient(180deg, #faebd2 0%, #e5c182 100%);
-  border-color: #c69234;
+  background: transparent;
+  color: #b87c14;
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(45, 28, 12, 0.22), inset 0 1px 1px #ffffff;
-  color: #241405;
 }
 
 /* ==========================================================================
@@ -1977,15 +1978,16 @@ onBeforeUnmount(() => {
 
 .dark-mode .patch-view-full-btn,
 .dark-theme .patch-view-full-btn {
-  background: #4a341e;
-  border-color: #8c6a3d;
-  color: #ebdcc3;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #d8ba88;
 }
 
 .dark-mode .patch-view-full-btn:hover,
 .dark-theme .patch-view-full-btn:hover {
-  background: #5d4227;
-  color: #fff2db;
+  background: transparent;
+  color: #ffd285;
 }
 
 .dark-mode .hero-card,
