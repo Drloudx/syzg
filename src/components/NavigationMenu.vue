@@ -82,20 +82,22 @@
           <div class="sheet-handle" @click="handleClose"></div>
           <div class="sheet-header">
             <h3>功能导航</h3>
-            <button class="close-btn" @click="handleClose">✕</button>
+            <div class="sheet-header-actions">
+              <div
+                class="header-home-btn"
+                :class="{ active: currentRoute === '/' }"
+                @click="handleNavigate('/')"
+                title="返回首页"
+              >
+                <img :src="getImageUrl('/ui/item_00004.webp')" class="home-btn-icon" alt="" />
+                <span class="home-btn-text">首页</span>
+              </div>
+              <button class="close-btn" @click="handleClose">✕</button>
+            </div>
           </div>
           <div class="sheet-content">
             <div class="grid-section">
               <div class="grid-category-title">导航目录</div>
-              <div
-                class="grid-item grid-item--home"
-                :class="{ active: currentRoute === '/' }"
-                @click="handleNavigate('/')"
-                style="margin-bottom: 12px; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: rgba(143, 115, 81, 0.14); border: 1px solid rgba(168, 132, 82, 0.35); border-radius: 6px; font-weight: 700;"
-              >
-                <img :src="getImageUrl('/ui/item_00004.webp')" class="icon-img game-sprite" style="width: 24px; height: 24px;" alt="首页" />
-                <span class="grid-item-name" style="font-size: 14px;">首页</span>
-              </div>
               <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
                 <div
                   class="nav-category-header is-sheet"
@@ -134,7 +136,18 @@
         <div v-if="isOpen" class="top-overlay" @click="handleClose">
           <div class="top-panel paper-panel" @click.stop>
             <div class="grid-section">
-              <div class="grid-category-title">导航目录</div>
+              <div class="grid-category-title-row">
+                <div class="grid-category-title">导航目录</div>
+                <div
+                  class="header-home-btn"
+                  :class="{ active: currentRoute === '/' }"
+                  @click="handleNavigate('/')"
+                  title="返回首页"
+                >
+                  <img :src="getImageUrl('/ui/item_00004.webp')" class="home-btn-icon" alt="" />
+                  <span class="home-btn-text">首页</span>
+                </div>
+              </div>
               <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
                 <div
                   class="nav-category-header is-top"
@@ -870,6 +883,86 @@ onBeforeUnmount(() => {
   border-bottom: 2px solid var(--border-color, #8f7351);
 }
 
+.sheet-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px 4px 8px;
+  background: rgba(143, 115, 81, 0.14);
+  border: 1px solid rgba(143, 115, 81, 0.4);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+.header-home-btn:hover {
+  background: rgba(143, 115, 81, 0.24);
+  border-color: rgba(168, 132, 82, 0.7);
+}
+.header-home-btn:active {
+  transform: scale(0.96);
+}
+.header-home-btn.active {
+  background: rgba(143, 115, 81, 0.28);
+  border-color: #8f7351;
+}
+.home-btn-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: block;
+}
+.home-btn-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main, #3e2a14);
+  line-height: 1;
+}
+
+.sheet-header .close-btn {
+  color: var(--text-main, #3e2a14);
+  border-color: rgba(143, 115, 81, 0.4);
+}
+.sheet-header .close-btn:hover {
+  background: rgba(143, 115, 81, 0.15);
+}
+
+.dark-mode .header-home-btn {
+  background: rgba(223, 206, 179, 0.08);
+  border-color: rgba(168, 132, 82, 0.35);
+}
+.dark-mode .header-home-btn:hover {
+  background: rgba(223, 206, 179, 0.18);
+  border-color: rgba(168, 132, 82, 0.6);
+}
+.dark-mode .header-home-btn.active {
+  background: rgba(168, 132, 82, 0.3);
+  border-color: rgba(223, 206, 179, 0.5);
+}
+.dark-mode .home-btn-text {
+  color: #e6d3b3;
+}
+.dark-mode .sheet-header .close-btn {
+  color: #dfceb3;
+  border-color: rgba(223, 206, 179, 0.35);
+}
+
+.grid-category-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 6px 4px 10px;
+}
+.grid-category-title-row .grid-category-title {
+  margin: 0;
+}
+
 .sheet-header h3 {
   margin: 0;
   font-size: 15px;
@@ -942,12 +1035,13 @@ onBeforeUnmount(() => {
   width: 36px;
   height: 36px;
   flex-shrink: 0;
-  background: rgba(43, 31, 21, 0.08);
-  border-radius: 5px;
-  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   object-fit: contain;
   box-sizing: border-box;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 4px rgba(43, 31, 21, 0.22));
 }
 
 .grid-item-name {
