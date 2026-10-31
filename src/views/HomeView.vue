@@ -689,12 +689,17 @@ onBeforeUnmount(() => {
   min-width: 0;
 }
 
+.home-view > * {
+  flex-shrink: 0;
+}
+
 /* ==========================================================================
    1. 首页焦点海报轮播 (洛克王国 Wiki 风格：右图扩展色融合成背景)
    ========================================================================== */
 .home-poster-banner {
   position: relative;
   height: 240px;
+  flex-shrink: 0;
   border-radius: 6px;
   overflow: hidden;
   border: 2px solid var(--border-color);
@@ -2091,6 +2096,7 @@ onBeforeUnmount(() => {
 
   .home-poster-banner {
     height: 180px;
+    flex-shrink: 0;
     width: 100%;
     box-sizing: border-box;
   }
