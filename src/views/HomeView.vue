@@ -5,6 +5,10 @@
       class="home-poster-banner corner-nails"
       @mouseenter="pauseCarousel"
       @mouseleave="resumeCarousel"
+      @touchstart="onTouchStart"
+      @touchmove="onTouchMove"
+      @touchend="onTouchEnd"
+      @touchcancel="onTouchEnd"
     >
       <!-- 左右切换箭头 -->
       <button class="poster-nav-btn prev" @click="prevSlide" title="上一张" aria-label="上一张">
@@ -433,7 +437,7 @@ const bannerList = [
   }
 ]
 
-// 轮播海报逻辑 (TapTap 源码级无缝无限物理滑轨)
+// 轮播海报逻辑 (TapTap 源码级无缝无限物理滑轨 + 移动端丝滑触摸手势)
 const realTotal = bannerList.length
 const loopBanners = computed(() => [
   bannerList[realTotal - 1], // index 0: 尾部克隆项
@@ -446,14 +450,30 @@ const isAnimated = ref(false)
 const isTransitioning = ref(false)
 let slideTimer = null
 
+// 移动端触摸拖拽状态
+const dragOffset = ref(0)
+const isDragging = ref(false)
+let touchStartX = 0
+let touchStartY = 0
+let isHorizontalGesture = null
+let hasSwiped = false
+
 const currentRealIndex = computed(() => {
   return (currentVirtualIndex.value - 1 + realTotal) % realTotal
 })
 
-const trackStyle = computed(() => ({
-  transform: `translate3d(-${currentVirtualIndex.value * 100}%, 0, 0)`,
-  transition: isAnimated.value ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none'
-}))
+const trackStyle = computed(() => {
+  if (isDragging.value && dragOffset.value !== 0) {
+    return {
+      transform: `translate3d(calc(-${currentVirtualIndex.value * 100}% + ${dragOffset.value}px), 0, 0)`,
+      transition: 'none'
+    }
+  }
+  return {
+    transform: `translate3d(-${currentVirtualIndex.value * 100}%, 0, 0)`,
+    transition: isAnimated.value ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none'
+  }
+})
 
 const nextSlide = () => {
   if (isTransitioning.value) return
@@ -474,6 +494,63 @@ const jumpToSlide = (realIdx) => {
   isTransitioning.value = true
   isAnimated.value = true
   currentVirtualIndex.value = realIdx + 1
+  restartCarousel()
+}
+
+// 触摸手势处理
+const onTouchStart = (e) => {
+  if (isTransitioning.value || !e.touches || e.touches.length === 0) return
+  touchStartX = e.touches[0].clientX
+  touchStartY = e.touches[0].clientY
+  isHorizontalGesture = null
+  isDragging.value = false
+  dragOffset.value = 0
+  hasSwiped = false
+  stopCarousel()
+}
+
+const onTouchMove = (e) => {
+  if (isTransitioning.value || !e.touches || e.touches.length === 0) return
+  const currentX = e.touches[0].clientX
+  const currentY = e.touches[0].clientY
+  const diffX = currentX - touchStartX
+  const diffY = currentY - touchStartY
+
+  // 判定是否为横向滑动手势
+  if (isHorizontalGesture === null) {
+    if (Math.abs(diffX) > 6 || Math.abs(diffY) > 6) {
+      isHorizontalGesture = Math.abs(diffX) >= Math.abs(diffY)
+    }
+  }
+
+  if (isHorizontalGesture) {
+    if (e.cancelable) e.preventDefault()
+    isDragging.value = true
+    hasSwiped = true
+    const bannerEl = document.querySelector('.home-poster-banner')
+    const bannerWidth = bannerEl?.offsetWidth || 350
+    dragOffset.value = Math.max(-bannerWidth, Math.min(bannerWidth, diffX))
+  }
+}
+
+const onTouchEnd = () => {
+  if (isDragging.value) {
+    const bannerEl = document.querySelector('.home-poster-banner')
+    const bannerWidth = bannerEl?.offsetWidth || 350
+    const threshold = bannerWidth * 0.15 // 划过 15% 宽度即判定翻页
+    if (dragOffset.value < -threshold) {
+      nextSlide()
+    } else if (dragOffset.value > threshold) {
+      prevSlide()
+    } else {
+      isAnimated.value = true
+    }
+  }
+  dragOffset.value = 0
+  isDragging.value = false
+  setTimeout(() => {
+    hasSwiped = false
+  }, 120)
   restartCarousel()
 }
 
@@ -515,6 +592,7 @@ const pauseCarousel = () => stopCarousel()
 const resumeCarousel = () => startCarousel()
 
 const handleBannerAction = (banner) => {
+  if (hasSwiped) return // 刚滑动切换过海报，不触发链接跳转
   if (banner.action === 'route' && banner.path) {
     router.push(banner.path)
   } else if (banner.action === 'notice') {
@@ -2099,6 +2177,7 @@ onBeforeUnmount(() => {
     flex-shrink: 0;
     width: 100%;
     box-sizing: border-box;
+    touch-action: pan-y;
   }
 
   .poster-content {
@@ -2127,7 +2206,8 @@ onBeforeUnmount(() => {
   }
 
   .poster-dots {
-    left: 16px;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 8px;
   }
 
