@@ -250,7 +250,12 @@
         >
           <!-- 星级角标 (固定左上角，对齐图鉴品质颜色) -->
           <span class="hero-star-badge" :class="`star-${hero.rare}`">
-            <span class="star-icon">★</span>{{ hero.rare }}星
+            <img
+              :src="getImageUrl('/images/HeroGachaPanel_Atlas/gacha_star.webp')"
+              class="star-icon-img"
+              alt=""
+            />
+            {{ hero.rare }}星
           </span>
 
           <!-- Q版模型立绘容器 -->
@@ -1529,6 +1534,15 @@ onBeforeUnmount(() => {
   line-height: 1;
 }
 
+.hero-star-badge .star-icon-img {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: -1px;
+  flex-shrink: 0;
+}
+
 /* Q版小人立绘容器与地台投影 */
 .chibi-img-wrap {
   position: relative;
@@ -1615,31 +1629,32 @@ onBeforeUnmount(() => {
   vertical-align: middle;
 }
 
-/* 特色定位胶囊标签 */
+/* 特色定位标签 (方案 1：纯净无框浮印字·透气典雅) */
 .hero-card-tip-pill {
-  font-size: 11px;
-  color: #382412;
+  font-size: 11.5px;
+  color: #5c4024;
   font-weight: 600;
-  margin-top: 8px;
+  letter-spacing: 0.3px;
+  margin-top: 6px;
   text-align: center;
-  background: #dfcdb0;
-  padding: 3px 8px;
-  border-radius: 12px;
-  border: 1px solid #b28a55;
-  box-shadow: inset 0 1px 2px rgba(50, 32, 14, 0.08);
+  background: transparent;
+  padding: 4px 4px 2px;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
   width: 100%;
   box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .hero-chibi-card:hover .hero-card-tip-pill {
-  background: #efe2cb;
-  border-color: #c69234;
-  color: #2b1f15;
-  box-shadow: 0 2px 6px rgba(184, 134, 40, 0.2);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #9e6b12;
 }
 
 /* ==========================================================================
@@ -1841,9 +1856,18 @@ onBeforeUnmount(() => {
 
 .dark-mode .hero-card-tip-pill,
 .dark-theme .hero-card-tip-pill {
-  background: rgba(43, 31, 21, 0.65);
-  border-color: rgba(143, 115, 81, 0.35);
-  color: #ebdcc7;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #d4b483;
+}
+
+.dark-mode .hero-chibi-card:hover .hero-card-tip-pill,
+.dark-theme .hero-chibi-card:hover .hero-card-tip-pill {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #ffd285;
 }
 
 .dark-mode .daily-item,
