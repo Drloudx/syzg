@@ -306,7 +306,7 @@
               <span class="daily-item-badge">交流</span>
               大书院讨论区
             </span>
-            <span class="daily-item-status">全站学者自由发帖，交流配队心得</span>
+            <span class="daily-item-status">全站自由发言，交流玩法心得</span>
           </div>
           <div class="daily-item">
             <span class="daily-item-name">
@@ -320,7 +320,7 @@
               <span class="daily-item-badge">群号</span>
               大书院群
             </span>
-            <span class="daily-item-status">交流群 963318625，探索深渊秘境</span>
+            <span class="daily-item-status">交流群 963318625，一起探索深渊</span>
           </div>
         </div>
       </div>
