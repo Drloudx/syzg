@@ -1,5 +1,5 @@
 <template>
-  <div class="home-view" :class="{ 'is-mobile': !isDesktop }">
+  <div class="home-view" :class="{ 'is-mobile': !isDesktop }" data-main-scroll>
     <!-- 1. 顶部焦点海报轮播 (Hero Poster Banner: 洛克王国 Wiki 风格扩展色融合设计) -->
     <section
       class="home-poster-banner corner-nails"
@@ -1085,6 +1085,9 @@ onBeforeUnmount(() => {
   cursor: pointer;
   transition: all 0.15s ease;
   text-decoration: none;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
 }
 
 .notice-list-item:hover {
@@ -1148,6 +1151,9 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
 }
 
 .patch-highlight-head {
@@ -2056,21 +2062,43 @@ onBeforeUnmount(() => {
 }
 
 /* ==========================================================================
-   8. 移动端响应式 (≤768px)
+   8. 移动端响应式 (≤1024px / ≤768px)
    ========================================================================== */
+@media (max-width: 1024px) {
+  .home-view.is-mobile {
+    flex: 1 1 auto;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    padding-bottom: calc(28px + var(--safe-bottom, 0px));
+    scrollbar-width: none;
+  }
+  .home-view.is-mobile::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .home-view {
     gap: 14px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .home-poster-banner {
     height: 180px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .poster-content {
     width: 65%;
     min-width: 0;
-    padding-left: 20px;
+    padding-left: 16px;
   }
 
   .poster-title {
@@ -2093,17 +2121,64 @@ onBeforeUnmount(() => {
   }
 
   .poster-dots {
-    left: 20px;
+    left: 16px;
     bottom: 8px;
   }
 
+  .notices-section {
+    padding: 12px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+
   .notices-body-layout {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .patch-highlight-box {
     order: -1;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .patch-ver-title {
+    font-size: 13px;
+    flex-wrap: wrap;
+  }
+
+  .patch-feature-item {
+    font-size: 11.5px;
+    word-break: break-word;
+  }
+
+  .notice-list-column {
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .notice-list-item {
+    padding: 7px 8px;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .notice-item-title {
+    font-size: 12.5px;
+    min-width: 0;
+  }
+
+  .notice-item-date {
+    font-size: 10.5px;
   }
 
   .core-indexes-grid {
