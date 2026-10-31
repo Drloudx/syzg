@@ -22,15 +22,14 @@
               <span>导航目录</span>
             </div>
 
-            <!-- 书院首页置顶入口 -->
+            <!-- 首页置顶入口 -->
             <div
               class="side-item side-item--home"
               :class="{ active: currentRoute === '/' }"
               @click="handleNavigate('/')"
             >
-              <img :src="getImageUrl('/ui/logo.webp')" class="icon-img game-sprite" alt="首页" />
-              <span class="item-name">书院首页</span>
-              <span class="home-portal-badge">PORTAL</span>
+              <img :src="getImageUrl('/ui/item_00004.webp')" class="icon-img game-sprite" alt="首页" />
+              <span class="item-name">首页</span>
             </div>
 
             <!-- 分组导航列表（支持展开/收起） -->
@@ -94,17 +93,8 @@
                 @click="handleNavigate('/')"
                 style="margin-bottom: 12px; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: rgba(143, 115, 81, 0.14); border: 1px solid rgba(168, 132, 82, 0.35); border-radius: 6px; font-weight: 700;"
               >
-                <img :src="getImageUrl('/ui/logo.webp')" class="icon-img game-sprite" style="width: 24px; height: 24px;" />
-                <span class="grid-item-name" style="font-size: 14px;">书院首页 (Portal)</span>
-              </div>
-              <div
-                class="grid-item grid-item--home"
-                :class="{ active: currentRoute === '/' }"
-                @click="handleNavigate('/')"
-                style="margin-bottom: 12px; grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; background: rgba(143, 115, 81, 0.14); border: 1px solid rgba(168, 132, 82, 0.35); border-radius: 6px; font-weight: 700;"
-              >
-                <img :src="getImageUrl('/ui/logo.webp')" class="icon-img game-sprite" style="width: 24px; height: 24px;" />
-                <span class="grid-item-name" style="font-size: 14px;">书院首页 (Portal)</span>
+                <img :src="getImageUrl('/ui/item_00004.webp')" class="icon-img game-sprite" style="width: 24px; height: 24px;" alt="首页" />
+                <span class="grid-item-name" style="font-size: 14px;">首页</span>
               </div>
               <div v-for="cat in navCategories" :key="cat.key" class="nav-category-group">
                 <div
