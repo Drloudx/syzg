@@ -94,10 +94,6 @@
             官方更新公告
           </button>
         </div>
-        <a class="notices-more-link" @click="openAllNotices">
-          <span>查看完整卷轴</span>
-          <span>&gt;</span>
-        </a>
       </div>
 
       <div class="notices-body-layout">
@@ -130,7 +126,7 @@
             <li class="patch-feature-item">修复部分装备洗练暴击词条显示异常问题</li>
           </ul>
           <button class="patch-view-full-btn" @click="openNoticeDetail(officialPatchNotice)">
-            查看官方完整更新日志 &gt;
+            查看完整公告 &gt;
           </button>
         </div>
       </div>
@@ -1206,20 +1202,26 @@ onBeforeUnmount(() => {
 
 .patch-view-full-btn {
   margin-top: 10px;
-  padding: 6px 0;
+  padding: 7px 0;
   text-align: center;
   font-size: 12px;
-  font-weight: 600;
-  color: #2b1f15;
-  background: rgba(198, 146, 52, 0.25);
-  border: 1px solid #c69234;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #38210d;
+  background: linear-gradient(180deg, #f5e2bf 0%, #dbb370 100%);
+  border: 1.5px solid #997135;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.15s;
+  box-shadow: 0 2px 5px rgba(45, 28, 12, 0.16), inset 0 1px 1px rgba(255, 255, 255, 0.75);
+  transition: all 0.2s ease;
 }
 
 .patch-view-full-btn:hover {
-  background: rgba(198, 146, 52, 0.45);
+  background: linear-gradient(180deg, #faebd2 0%, #e5c182 100%);
+  border-color: #c69234;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(45, 28, 12, 0.22), inset 0 1px 1px #ffffff;
+  color: #241405;
 }
 
 /* ==========================================================================
