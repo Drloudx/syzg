@@ -1292,14 +1292,16 @@ onBeforeUnmount(() => {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.18s ease;
-  border: 2px solid var(--border-color);
-  background: linear-gradient(180deg, rgba(250, 243, 230, 0.94) 0%, rgba(235, 220, 199, 0.94) 100%);
+  border: 1.5px solid #b8925f;
+  background: linear-gradient(180deg, #efe2cb 0%, #e2ceaf 100%);
+  box-shadow: 0 2px 5px rgba(50, 32, 14, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .core-index-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25), inset 0 0 20px rgba(198, 146, 52, 0.18);
   border-color: #c69234;
+  background: linear-gradient(180deg, #f7ecda 0%, #ecdabf 100%);
+  box-shadow: 0 6px 14px rgba(50, 32, 14, 0.18), inset 0 0 10px rgba(198, 146, 52, 0.2);
 }
 
 .core-index-icon-wrap {
@@ -1364,14 +1366,16 @@ onBeforeUnmount(() => {
   cursor: pointer;
   text-decoration: none;
   transition: all 0.18s ease;
-  border: 1.5px solid var(--border-color);
-  background: linear-gradient(180deg, rgba(247, 238, 222, 0.94) 0%, rgba(235, 220, 199, 0.94) 100%);
+  border: 1.5px solid #b8925f;
+  background: linear-gradient(180deg, #efe2cb 0%, #e2ceaf 100%);
+  box-shadow: 0 2px 5px rgba(50, 32, 14, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.6);
 }
 
 .tool-banner-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   border-color: #c69234;
+  background: linear-gradient(180deg, #f7ecda 0%, #ecdabf 100%);
+  box-shadow: 0 6px 14px rgba(50, 32, 14, 0.18), inset 0 0 10px rgba(198, 146, 52, 0.2);
 }
 
 /* 实用工具图标容器 (方案 5：微光透气圆座 + 42px 大图标) */
@@ -1470,13 +1474,13 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(198, 146, 52, 0.28);
+  background: linear-gradient(180deg, #f2e6d1 0%, #e5d2b5 100%);
+  border: 1.5px solid #b8925f;
   border-radius: 8px;
   padding: 12px 6px 10px;
   transition: all 0.22s cubic-bezier(0.2, 0, 0, 1);
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(43, 31, 21, 0.08);
+  box-shadow: 0 2px 6px rgba(50, 32, 14, 0.09), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   text-decoration: none;
   box-sizing: border-box;
   overflow: hidden;
@@ -1484,9 +1488,9 @@ onBeforeUnmount(() => {
 
 .hero-chibi-card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.75);
+  background: linear-gradient(180deg, #f9f0e1 0%, #ede0cb 100%);
   border-color: #c69234;
-  box-shadow: 0 6px 14px rgba(43, 31, 21, 0.16);
+  box-shadow: 0 6px 15px rgba(50, 32, 14, 0.16);
 }
 
 /* 星级角标：固定左上角 (对齐角色图鉴品质色) */
@@ -1614,15 +1618,15 @@ onBeforeUnmount(() => {
 /* 特色定位胶囊标签 */
 .hero-card-tip-pill {
   font-size: 11px;
-  color: #5c4328;
+  color: #382412;
   font-weight: 600;
   margin-top: 8px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.65);
+  background: #dfcdb0;
   padding: 3px 8px;
   border-radius: 12px;
-  border: 1px solid rgba(184, 134, 40, 0.25);
-  box-shadow: 0 1px 3px rgba(43, 31, 21, 0.06);
+  border: 1px solid #b28a55;
+  box-shadow: inset 0 1px 2px rgba(50, 32, 14, 0.08);
   width: 100%;
   box-sizing: border-box;
   white-space: nowrap;
@@ -1632,7 +1636,7 @@ onBeforeUnmount(() => {
 }
 
 .hero-chibi-card:hover .hero-card-tip-pill {
-  background: #ffffff;
+  background: #efe2cb;
   border-color: #c69234;
   color: #2b1f15;
   box-shadow: 0 2px 6px rgba(184, 134, 40, 0.2);
@@ -1663,10 +1667,18 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: space-between;
   padding: 8px 10px;
-  background: rgba(62, 42, 20, 0.05);
-  border: 1px solid var(--border-faint);
+  background: #e9dac0;
+  border: 1.5px solid #b8925f;
   border-radius: 4px;
   font-size: 12.5px;
+  box-shadow: 0 1px 3px rgba(50, 32, 14, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.18s ease;
+}
+
+.daily-item:hover {
+  background: #f2e4cc;
+  border-color: #c69234;
+  box-shadow: 0 2px 6px rgba(50, 32, 14, 0.12);
 }
 
 .daily-item-name {
@@ -1680,10 +1692,11 @@ onBeforeUnmount(() => {
 .daily-item-badge {
   font-size: 10px;
   padding: 1px 5px;
-  background: #dfceb3;
-  border: 1px solid #8f7351;
+  background: #dcbe98;
+  border: 1px solid #aa8049;
   border-radius: 2px;
-  color: #3e2a14;
+  color: #301d0c;
+  font-weight: 600;
 }
 
 .daily-item-status {
