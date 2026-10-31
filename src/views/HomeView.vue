@@ -235,72 +235,70 @@
       </div>
     </section>
 
-    <!-- 4. 强力英雄与推荐展示 (Hero Showcase) -->
+    <!-- 4. 契约者展示 (Hero Showcase) -->
     <section class="hero-showcase paper-panel corner-nails">
       <div class="section-title">
-        <span>深渊学者推荐 · 核心英雄展示</span>
-        <span class="section-title-sub">当前版本热门养成角色</span>
+        <span>契约者展示</span>
+        <span class="section-title-sub">热门角色</span>
       </div>
-      <div class="hero-cards-row">
+      <div class="hero-chibi-grid">
         <div
           v-for="hero in featuredHeroes"
           :key="hero.name"
-          class="hero-card"
+          class="hero-chibi-card"
           @click="goTo('/heroes')"
         >
-          <div class="hero-card-img-wrap">
-            <img :src="getImageUrl(hero.image)" class="hero-card-img" :alt="hero.name" loading="lazy" />
-            <span class="hero-card-rarity">{{ hero.stars }}</span>
+          <!-- 星级角标 (固定左上角，对齐图鉴品质颜色) -->
+          <span class="hero-star-badge" :class="`star-${hero.rare}`">
+            <span class="star-icon">★</span>{{ hero.rare }}星
+          </span>
+
+          <!-- Q版模型立绘容器 -->
+          <div class="chibi-img-wrap">
+            <img
+              :src="getImageUrl(hero.qImg)"
+              class="chibi-img"
+              :alt="`${hero.name}模型小人`"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-          <div class="hero-card-body">
-            <span class="hero-card-name">{{ hero.name }}</span>
-            <span class="hero-card-job">{{ hero.role }}</span>
-            <span class="hero-card-tip">{{ hero.tip }}</span>
+
+          <!-- 角色名 -->
+          <div class="chibi-hero-name">{{ hero.name }}</div>
+
+          <!-- 职业与属性双徽章标签行 -->
+          <div class="chibi-tags-row">
+            <span class="chibi-tag tag-job" :title="hero.jobName">
+              <img :src="getImageUrl(hero.jobIcon)" class="tag-icon" alt="" />
+              {{ hero.jobName }}
+            </span>
+            <span class="chibi-tag tag-element" :title="hero.elementName">
+              <img :src="getImageUrl(hero.elementIcon)" class="tag-icon" alt="" />
+              {{ hero.elementName }}
+            </span>
+          </div>
+
+          <!-- 底部特色定位胶囊标签 -->
+          <div class="hero-card-tip-pill" :title="hero.tip">
+            {{ hero.tip }}
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. 今日日常与互助备忘 (2列) -->
+    <!-- 5. 大书院交流与新人攻略 (2列) -->
     <section class="daily-guide-row">
+      <!-- 左列：大书院交流 (原右列移动到左侧) -->
       <div class="daily-col paper-panel corner-nails">
         <div class="section-title">
-          <span>日常备忘与刷新指南</span>
-        </div>
-        <div class="daily-list">
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">刷新</span>
-              每日 05:00
-            </span>
-            <span class="daily-item-status">免费招募、公会签到与扫荡次数</span>
-          </div>
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">结算</span>
-              周一 05:00
-            </span>
-            <span class="daily-item-status">深渊竞速榜单与挑战赛积分奖励</span>
-          </div>
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">工坊</span>
-              设施制造
-            </span>
-            <span class="daily-item-status">锻造台与营地烹饪具有每日产出上限</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="daily-col paper-panel corner-nails">
-        <div class="section-title">
-          <span>大书院互助与数据勘误</span>
+          <span>大书院交流</span>
         </div>
         <div class="daily-list">
           <div class="daily-item">
             <span class="daily-item-name">
               <span class="daily-item-badge">交流</span>
-              学者讨论区
+              大书院讨论区
             </span>
             <span class="daily-item-status">全站学者自由发帖，交流配队心得</span>
           </div>
@@ -317,6 +315,36 @@
               大书院群
             </span>
             <span class="daily-item-status">交流群 963318625，探索深渊秘境</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右列：新人攻略 (占位内容) -->
+      <div class="daily-col paper-panel corner-nails">
+        <div class="section-title">
+          <span>新人攻略</span>
+        </div>
+        <div class="daily-list">
+          <div class="daily-item">
+            <span class="daily-item-name">
+              <span class="daily-item-badge">攻略</span>
+              占位1
+            </span>
+            <span class="daily-item-status">占位1</span>
+          </div>
+          <div class="daily-item">
+            <span class="daily-item-name">
+              <span class="daily-item-badge">攻略</span>
+              占位2
+            </span>
+            <span class="daily-item-status">占位2</span>
+          </div>
+          <div class="daily-item">
+            <span class="daily-item-name">
+              <span class="daily-item-badge">攻略</span>
+              占位3
+            </span>
+            <span class="daily-item-status">占位3</span>
           </div>
         </div>
       </div>
@@ -586,35 +614,47 @@ const openAllNotices = () => {
   }
 }
 
-// 核心英雄展示数据（原版卡片规格）
+// 契约者展示数据（Q版模型展示）
 const featuredHeroes = [
   {
     name: '奇瓦',
-    role: '秘术 · 火属性',
-    stars: '★★★★★ 5星',
-    tip: '群体高爆发 / 灼烧伤害',
-    image: '/images/chara/l/chara001_0.webp'
+    rare: 5,
+    qImg: '/images/chara/Q/hero_019.webp',
+    jobName: '秘术',
+    jobIcon: '/images/HeroBagPanel/class_icon_s_fs.webp',
+    elementName: '火属性',
+    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagFire03.webp',
+    tip: '群体高爆发 / 灼烧伤害'
   },
   {
     name: '阿娜洛洁',
-    role: '支援 · 水属性',
-    stars: '★★★★★ 5星',
-    tip: '全队治疗 / 驱散负面效果',
-    image: '/images/chara/l/chara002_1.webp'
+    rare: 5,
+    qImg: '/images/chara/Q/hero_043.webp',
+    jobName: '支援',
+    jobIcon: '/images/HeroBagPanel/class_icon_s_fz.webp',
+    elementName: '水属性',
+    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagWater03.webp',
+    tip: '全队治疗 / 驱散负面效果'
   },
   {
     name: '菲莉娜',
-    role: '近卫 · 风属性',
-    stars: '★★★★ 4星',
-    tip: '攻防一体 / 破甲反击',
-    image: '/images/chara/l/chara005_0.webp'
+    rare: 4,
+    qImg: '/images/chara/Q/hero_049.webp',
+    jobName: '近卫',
+    jobIcon: '/images/HeroBagPanel/class_icon_s_zs.webp',
+    elementName: '风属性',
+    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagWind03.webp',
+    tip: '攻防一体 / 破甲反击'
   },
   {
     name: '米拉贝尔',
-    role: '突袭 · 火属性',
-    stars: '★★★★★ 5星',
-    tip: '单体刺杀 / 弱点暴击收割',
-    image: '/images/chara/l/chara007_0.webp'
+    rare: 5,
+    qImg: '/images/chara/Q/hero_050.webp',
+    jobName: '突袭',
+    jobIcon: '/images/HeroBagPanel/class_icon_s_ck.webp',
+    elementName: '火属性',
+    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagFire03.webp',
+    tip: '单体刺杀 / 弱点暴击收割'
   }
 ]
 
@@ -1411,97 +1451,195 @@ onBeforeUnmount(() => {
 }
 
 /* ==========================================================================
-   4. 强力英雄展示 (Hero Showcase)
+   4. 契约者展示 (Hero Showcase: Q版模型小人风采展示)
    ========================================================================== */
 .hero-showcase {
   padding: 16px;
   background: linear-gradient(180deg, rgba(247, 238, 222, 0.94) 0%, rgba(235, 220, 199, 0.94) 100%);
 }
 
-.hero-cards-row {
+.hero-chibi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  gap: 14px;
   margin-top: 10px;
 }
 
-.hero-card {
-  border: 1.5px solid var(--border-soft);
-  border-radius: 6px;
-  overflow: hidden;
-  background: rgba(223, 206, 179, 0.45);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
-  border-color: #c69234;
-}
-
-.hero-card-img-wrap {
-  width: 100%;
-  height: 140px;
-  background: radial-gradient(circle at center, #6b4c2b, #2b1d11);
+.hero-chibi-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(198, 146, 52, 0.28);
+  border-radius: 8px;
+  padding: 12px 6px 10px;
+  transition: all 0.22s cubic-bezier(0.2, 0, 0, 1);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(43, 31, 21, 0.08);
+  text-decoration: none;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
-.hero-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.3s ease;
+.hero-chibi-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.75);
+  border-color: #c69234;
+  box-shadow: 0 6px 14px rgba(43, 31, 21, 0.16);
 }
 
-.hero-card:hover .hero-card-img {
-  transform: scale(1.05);
-}
-
-.hero-card-rarity {
+/* 星级角标：固定左上角 (对齐角色图鉴品质色) */
+.hero-star-badge {
   position: absolute;
-  top: 6px;
-  left: 6px;
-  background: rgba(20, 14, 9, 0.85);
-  border: 1px solid #c69234;
-  color: #f7a028;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 1px 6px;
-  border-radius: 3px;
-}
-
-.hero-card-body {
-  padding: 8px 10px 10px;
-  display: flex;
-  flex-direction: column;
+  top: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
   gap: 2px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+  white-space: nowrap;
+  z-index: 5;
+  box-shadow: 0 1px 3px rgba(43, 31, 21, 0.1);
+  pointer-events: none;
 }
 
-.hero-card-name {
+.hero-star-badge.star-5 {
+  background: rgba(255, 250, 240, 0.95);
+  color: #b15d00;
+  border: 1px solid #ffb64d;
+}
+
+.hero-star-badge.star-4 {
+  background: rgba(253, 245, 255, 0.95);
+  color: #a536aa;
+  border: 1px solid #ee62f1;
+}
+
+.hero-star-badge .star-icon {
+  font-size: 10px;
+  line-height: 1;
+}
+
+/* Q版小人立绘容器与地台投影 */
+.chibi-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.chibi-img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  width: 58px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, rgba(62, 42, 20, 0.3) 0%, transparent 72%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.chibi-img {
+  height: 114px;
+  max-width: 100%;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 6px rgba(43, 31, 21, 0.2));
+  transition: transform 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.hero-chibi-card:hover .chibi-img {
+  transform: scale(1.06);
+}
+
+.chibi-hero-name {
   font-size: 14px;
   font-weight: 700;
   color: #2b1f15;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+  text-align: center;
 }
 
-.hero-card-job {
-  font-size: 11px;
-  color: #725638;
+/* 职业与属性双徽章 */
+.chibi-tags-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.hero-card-tip {
+.chibi-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  border-radius: 4px;
   font-size: 11px;
-  color: #4b7a78;
   font-weight: 600;
-  margin-top: 4px;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.chibi-tag.tag-job {
+  background: rgba(43, 31, 21, 0.08);
+  color: #3e2a14;
+  border: 1px solid rgba(143, 115, 81, 0.28);
+}
+
+.chibi-tag.tag-element {
+  background: rgba(122, 154, 153, 0.16);
+  color: #4b7a78;
+  border: 1px solid rgba(122, 154, 153, 0.38);
+}
+
+.chibi-tag .tag-icon {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* 特色定位胶囊标签 */
+.hero-card-tip-pill {
+  font-size: 11px;
+  color: #5c4328;
+  font-weight: 600;
+  margin-top: 8px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 3px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(184, 134, 40, 0.25);
+  box-shadow: 0 1px 3px rgba(43, 31, 21, 0.06);
+  width: 100%;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+}
+
+.hero-chibi-card:hover .hero-card-tip-pill {
+  background: #ffffff;
+  border-color: #c69234;
+  color: #2b1f15;
+  box-shadow: 0 2px 6px rgba(184, 134, 40, 0.2);
 }
 
 /* ==========================================================================
-   5. 今日日替与日常指南 (2列)
+   5. 大书院交流与新人攻略 (2列)
    ========================================================================== */
 .daily-guide-row {
   display: grid;
@@ -1549,9 +1687,9 @@ onBeforeUnmount(() => {
 }
 
 .daily-item-status {
-  color: #4b7a78;
+  color: #54361a;
   font-weight: 700;
-  font-size: 11.5px;
+  font-size: 12.5px;
 }
 
 /* ==========================================================================
@@ -1662,6 +1800,61 @@ onBeforeUnmount(() => {
 .dark-theme .tool-banner-card:hover {
   border-color: #d8af56;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+.dark-mode .hero-chibi-card,
+.dark-theme .hero-chibi-card {
+  background: rgba(43, 31, 21, 0.55);
+  border-color: rgba(143, 115, 81, 0.35);
+}
+
+.dark-mode .hero-chibi-card:hover,
+.dark-theme .hero-chibi-card:hover {
+  background: rgba(56, 41, 28, 0.85);
+  border-color: #d8af56;
+}
+
+.dark-mode .chibi-hero-name,
+.dark-theme .chibi-hero-name {
+  color: #ebdcc7;
+}
+
+.dark-mode .chibi-tag.tag-job,
+.dark-theme .chibi-tag.tag-job {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ebdcc7;
+  border-color: rgba(143, 115, 81, 0.35);
+}
+
+.dark-mode .hero-card-tip-pill,
+.dark-theme .hero-card-tip-pill {
+  background: rgba(43, 31, 21, 0.65);
+  border-color: rgba(143, 115, 81, 0.35);
+  color: #ebdcc7;
+}
+
+.dark-mode .daily-item,
+.dark-theme .daily-item {
+  background: rgba(43, 31, 21, 0.55);
+  border-color: rgba(143, 115, 81, 0.35);
+}
+
+.dark-mode .daily-item:hover,
+.dark-theme .daily-item:hover {
+  background: rgba(56, 41, 28, 0.85);
+  border-color: #d8af56;
+}
+
+.dark-mode .daily-item-badge,
+.dark-theme .daily-item-badge {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(143, 115, 81, 0.45);
+  color: #dfceb3;
+}
+
+.dark-mode .daily-item-status,
+.dark-theme .daily-item-status {
+  color: #8acbc5;
 }
 
 .dark-mode .core-index-name,
@@ -1868,7 +2061,7 @@ onBeforeUnmount(() => {
     gap: 8px;
   }
 
-  .hero-cards-row {
+  .hero-chibi-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
