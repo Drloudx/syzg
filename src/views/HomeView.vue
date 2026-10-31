@@ -126,7 +126,8 @@
             <li class="patch-feature-item">修复部分装备洗练暴击词条显示异常问题</li>
           </ul>
           <button class="patch-view-full-btn" @click="openNoticeDetail(officialPatchNotice)">
-            查看完整公告 &gt;
+            <span>查看完整公告</span>
+            <span class="btn-arrow" aria-hidden="true">&gt;</span>
           </button>
         </div>
       </div>
@@ -1200,13 +1201,12 @@ onBeforeUnmount(() => {
   margin-top: 1px;
 }
 
-/* 公告跳转按钮 (方案 T1：纯文字居中浮印·彻底无框无底·通透轻盈) */
+/* 公告跳转按钮 (方案 T1 + H1 极简加深·深木浓墨：纯文字居中浮印·彻底无框无底·通透轻盈) */
 .patch-view-full-btn {
   margin-top: 8px;
   padding: 8px 0 2px;
-  text-align: center;
   font-size: 12.5px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.6px;
   color: #4a301a;
   background: transparent;
@@ -1215,14 +1215,27 @@ onBeforeUnmount(() => {
   border-radius: 0;
   cursor: pointer;
   width: 100%;
-  display: block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   transition: all 0.2s ease;
+}
+
+.patch-view-full-btn .btn-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
 }
 
 .patch-view-full-btn:hover {
   background: transparent;
-  color: #b87c14;
+  color: #1f140b;
+  font-weight: 700;
   transform: translateY(-1px);
+}
+
+.patch-view-full-btn:hover .btn-arrow {
+  transform: translateX(3px);
 }
 
 /* ==========================================================================
@@ -1987,7 +2000,8 @@ onBeforeUnmount(() => {
 .dark-mode .patch-view-full-btn:hover,
 .dark-theme .patch-view-full-btn:hover {
   background: transparent;
-  color: #ffd285;
+  color: #fff1d6;
+  font-weight: 700;
 }
 
 .dark-mode .hero-card,
