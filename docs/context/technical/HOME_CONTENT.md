@@ -1,10 +1,10 @@
 # HOME_CONTENT —— 首页内容可配置化（方案与现状）
 
-> **状态**：**方案已定，未实施**（0 行业务代码、0 张表）。
-> **何时读**：要动手实现首页后台编辑（公告 / 海报 / 图鉴入口 / 角色 / 底栏）时；或评估"改首页要不要改代码"时。
-> **何时更新**：表结构、字段口径、后台交互定案或变化时；实施完成后改为"已实施"并补核对时间。
+> **状态**：**已实施**（表 / API / 后端管理面板 / 前端接入 全部完成，本地验证通过；**生产库未迁移、未上线**）。
+> **何时读**：要改首页后台编辑能力（公告 / 海报 / 图鉴入口 / 角色 / 底栏）时；或排查「首页内容为什么不更新」时。
+> **何时更新**：表结构、字段口径、后台交互、权限变化时。
 
-**核对时间**：2026-10-31（方案评审完成，未落库）
+**核对时间**：2026-11-01（P1~P4 完成并本地验收；生产迁移与上线待执行）
 
 ---
 
@@ -43,7 +43,7 @@
 
 - `title` / `content` / `date` / `tag_text` / `tag_class` / 排序 / 软删除 —— **90% 字段相同**。
 - 官方额外只需 3 个可空字段：`version`（版本号）、`features_json`（特性列表）、`source_url`。
-- 「查看完整卷轴」未来要**跨频道混排**，一张表一条 `ORDER BY date` 即可。
+- 若将来做「历史公告总览」（跨频道混排），一张表一条 `ORDER BY date` 即可。
 - 后台 UI 仍按 `channel` 分两个 Tab，用户侧看不出差别。
 - 拆分成本很低（见 §六），所以先合并。
 
@@ -89,7 +89,50 @@
 
 ### 3.2 `home_banners`（可增减）
 
-`id` / `title` / `description` / `tag_text` / `tag_class` / `sub_tag` / `image_url` / `bg_color` / `blend_start` / `btn_text` / `action_type`（`route`|`notice`）/ `action_value` / `sort_order` / `is_active` / `created_at` / `updated_at`
+| 字段 | 类型 | 说明 |
+| --- | --- | --- |
+| `id` | TEXT PK | 稳定标识 |
+| `title` | TEXT | 主标题 |
+| `description` | TEXT | 描述 |
+| `tag_text` / `tag_class` | TEXT | 角标文案与配色（`gold`/`red`/`teal`） |
+| `sub_tag` | TEXT | 角标副文（如「UP 卡池开启」） |
+| `image_url` | TEXT | 海报图（外链或站内路径） |
+| `bg_color` / `blend_start` | TEXT | 左侧底色与融合渐变起色 |
+| `btn_text` | TEXT | 按钮文案 |
+| **`action_type`** | TEXT | **`route` / `notice` / `external`** —— 见下 |
+| **`action_value`** | TEXT | 随 `action_type` 解释：路由路径 / 公告 id / 外部 URL |
+| `sort_order` | INTEGER | 排序 |
+| `is_active` | INTEGER | 启用 / 停用 |
+| `created_at` / `updated_at` | TEXT | 审计 |
+
+#### 按钮行动类型（三种）
+
+| `action_type` | `action_value` 示例 | 点击行为 | 后台表单 |
+| --- | --- | --- | --- |
+| `route` | `/gacha` 或 `/heroes?id=hero_053` | `router.push()` 站内跳转 | 路由下拉（读 `router/index.js`）+ 可选 `query_string` |
+| `notice` | `official-v120` | 打开该条公告的详情弹窗（**不跳页**） | 公告下拉（按 `channel` 分组，显示标题） |
+| `external` | `https://example.com/xxx` | 新标签打开外链 | URL 输入框 + 域名白名单校验 |
+
+**实施要点**：
+
+1. **`notice` 类型要求公告先有稳定 `id`**。
+   当前 `HomeView.vue` 的 `noticesData` **全部没有 `id` 字段**，只有 `title`/`date`/`tagText`/`tagClass`/`content`。
+   落地时必须给每条公告加 `id`（与 `notices` 表主键一致），海报才能按 id 定位。
+
+2. **`notice` 从「固定打开同一张卡」改为「按 id 查」**。
+   现在 `handleBannerAction` 是 `openNoticeDetail(officialPatchNotice)` —— 硬编码只打开那张速览卡。
+   改造后：`openNoticeDetail(noticesByName.get(action_value))`，查不到时回落到默认公告。
+
+3. **`external` 需要改 CSP**。
+   `public/_headers` 的 `default-src 'self'` 与 `connect-src 'self'` 会拦住跨域跳转吗？——**跳转（`<a>`/`window.open`）不受 CSP 限制**，只有 `fetch`/`img`/`frame` 才受控。
+   所以外链按钮本身无需改 CSP；但若外链是图片或 iframe，需要加 `img-src` / `frame-src` 白名单。
+
+4. **外链安全**：
+   - 一律 `rel="noopener noreferrer"`
+   - 后台校验必须是 `https://` 开头（拒绝 `javascript:` / `data:`）
+   - 可选：维护允许域名白名单，防止误填
+
+5. **可访问性**：按钮已用 `<button>`，键盘可达；外链按钮应加 `aria-label` 说明会跳出站外。
 
 - 轮播逻辑已用 `% bannerList.length`，天然支持任意数量。
 - **边界处理**：仅 1 张时需隐藏左右箭头与圆点指示器（模板加 `v-if="banners.length > 1"`）。
@@ -109,7 +152,31 @@
 
 `section`（`guide`|`help`）/ `title` / `subtitle` / `rows_json` / `is_active`
 
-`rows_json` 形如 `[{"tag":"刷新","label":"每日 05:00","text":"免费招募、公会签到与扫荡次数"}]`
+`rows_json` 是**行的数组**，每行 5 个字段：
+
+| 字段 | 说明 |
+| --- | --- |
+| `tag` | 左侧角标（交流 / 勘误 / 群号） |
+| `label` | 条目名称 |
+| `text` | 说明文字 |
+| `actionType` | `none`（默认，纯文本）/ `route` / `notice` / `external` |
+| `actionValue` | 随 `actionType` 解释：路径 / 公告 id / https 外链 |
+
+形如：
+```json
+[{"tag":"交流","label":"大书院讨论区","text":"全站自由发言","actionType":"route","actionValue":"/discussions"}]
+```
+
+**后端逐行校验**（`normalizeBlockRow`）：
+- `actionType` 不在白名单 → 归一为 `none`（不报错，避免旧数据卡住）
+- `route` 有值时必须 `/` 开头
+- `external` 有值时必须 `https://`，且拒绝 `javascript:` / `data:` / `vbscript:`
+- `notice` 有值时不接受协议或斜杠
+
+不透传原始对象 —— 只写入上述 5 个字段，防止夹带未声明的键。
+
+**前端渲染**：`actionType` 非 `none` 时该行加 `.is-clickable`、`role="link"`、`tabindex="0"`、`@keydown.enter/space` 与 `›` 箭头。
+
 用 JSON 而非独立表：该区块内容形态**尚未定稿**，JSON 便于后续调整而不必迁移。
 
 ---
@@ -150,6 +217,151 @@
 | 角标 | `badge_text` 自由文本（HOT / NEW / 热门）；`badge_color` 五选一：red / green / gold / teal / gray |
 | 角色标签 | `tip` 自由文本 |
 | 删除 | 优先「停用」`is_active=0`，保留数据可恢复 |
+| **海报按钮** | 三种行动：`route`（站内跳）/ `notice`（开公告弹窗）/ `external`（新标签外链） |
+
+---
+
+## 五·补、落地前必须解决的问题（实施时逐条核对）
+
+### 问题 1 🔴 **两套公告数据源并存，必须合并**
+
+| 数据源 | 位置 | 用在哪 | 内容 |
+| --- | --- | --- | --- |
+| A | `public/data/notice.json` | `NoticeModal.vue`（自动弹窗） | 站点声明 + 2 条测试 |
+| B | `HomeView.vue` 的 `noticesData` | 首页「本站公告 / 官方更新公告」双 Tab | 站点 4 条 + 官方 3 条 |
+
+**同一件事（站内公告）有两个互不相通的数据源。** 现在内容不同是因为还没统一，一旦后台可编辑，改 A 不会动 B、改 B 不会动 A —— 用户会看到首页和弹窗说法不一致。
+
+**处理**：统一到 `notices` 表 +
+- `NoticeModal` 与 `HomeView` 都读 `GET /api/notices`
+- 「自动弹窗」只用 `tier='normal'` 的最新一条判定已读（`noticeKey` 用 `id`）
+- 保留 `notice.json` 作为 **API 不可用时的兜底**
+
+### 问题 2 🔴 **公告没有稳定 `id`**
+
+现状：`noticesData.site[]` 与 `official[]` 的每一项只有 `title` / `date` / `tagText` / `tagClass` / `content`，**没有 id**。
+
+影响：
+- 海报 `action_type='notice'` 无法按 id 定位目标公告
+- 弹窗「已读去重」现在靠 `date#title` 兜底（`NoticeModal` 已实现），但改标题就会重新弹
+
+**处理**：迁移时给每条公告补 `id`（建议语义化：`site-disclaimer`、`official-v120`）。
+
+### 问题 3 ⚠️ **公告详情弹窗不可通过 URL 直达**
+
+现在 `openNoticeDetail()` 只设置本地 `activeModalNotice`，不写 URL。所以：
+- 海报跳公告没问题（同一页内）
+- 但**无法分享「某条公告」的链接**，刷新后弹窗消失
+
+**处理**（可选）：弹窗打开时 `router.replace({ query: { notice: id } })`，关闭时清除；`onMounted` 读 `?notice=` 自动打开。与 `/heroes?id=`、`/misc?tab=` 口径一致。
+
+### 问题 4 ⚠️ **首页 6 个板块全部依赖单一 API，需分级兜底**
+
+若 `GET /api/home-config` 失败，首页会整块空白。建议：
+- 每个板块（海报/公告/图鉴/工具/角色/底栏）**各自独立兜底**
+- 兜底值就是当前 `HomeView.vue` 的硬编码内容（迁移时保留为 `DEFAULT_*` 常量）
+- 单个板块失败只影响该板块，不整页白屏
+
+### 问题 5 ⚠️ **「大书院交流 / 新人攻略」里是占位内容**
+
+当前「新人攻略」三行都是「占位1/2/3」（用户确认暂时保留）。
+`home_blocks` 建表时 `rows_json` 按现有结构（`{tag, label, text}`）落，内容留空即可，不必为占位符设计特殊字段。
+
+### 问题 6 ⚠️ **海报外链的 CSP 边界**
+
+| 场景 | 是否受 CSP 限制 |
+| --- | --- |
+| `<a href="https://外链">` / `window.open` **跳转** | ❌ 不受限（CSP 管资源加载，不管导航） |
+| 外链作为 `<img src>` | ✅ 受 `img-src` 限制，需加域名白名单 |
+| 外链作为 `<iframe>` | ✅ 受 `frame-src` 限制，需加白名单 |
+
+当前需求只有「按钮跳转」，所以 **`_headers` 无需改动**。若将来海报图直接用外链，才需要加 `img-src`。
+
+### 问题 7 ✅ **「查看完整卷轴」已下线（死代码已清理，2026-11-01）**
+
+该入口已从首页移除，不存在「按钮承诺能看到全部公告、实际看不到」的问题。
+
+清理内容：
+
+| 项 | 处理 |
+| --- | --- |
+| `openAllNotices()` 函数 | 已删除（无调用点） |
+| `.notices-more-link` 样式（含 dark-mode 两处） | 已删除 |
+
+当前公告区只有两个入口，语义清晰：
+- 左侧列表条目 → `openNoticeDetail(item)` 打开该条详情
+- 右侧速览卡「查看完整公告」→ 打开 `officialPatchNotice`（官方版本完整日志）
+
+> 若将来要提供「历史公告总览」，需要新做列表页或弹窗，不能复用已删的这段。
+
+### 问题 8 ⚠️ **首页没有加载态 / 错误态**
+
+首页目前是纯静态渲染（`noticesData` 硬编码），**没有任何 `loading` / `error` UI**。
+接入 API 后互联网延迟会暴露空窗期，必须补：
+
+| 状态 | 处理 |
+| --- | --- |
+| 加载中 | 各板块显示骨架（不要整页 spinner，避免布局跳动） |
+| 部分失败 | 该板块显示兜底内容，不整页报错 |
+| 全部失败 | 全用 `DEFAULT_*` 常量，页面照常可用 |
+
+前端已有可复用的 `UiEmptyState`（`type="loading"` / `type="error"`），不必新造。
+
+### 问题 9 ⚠️ **区块标题全部硬编码，不可配置**
+
+```html
+<span>核心图鉴</span>  <span>实用工具</span>  <span>契约者展示</span>
+<span>大书院交流</span>  <span>新人攻略</span>
+```
+
+5 个 section 标题 + 若干副标题（如「热门角色」「当前版本热门养成角色」）都写死在模板里。
+
+**两种处理**：
+- 若认为标题不需要后台改 → 保持硬编码，但**在文档里写明「标题不可配」**，避免以后误以为能改
+- 若要能改 → 加一张极简的 `home_sections(section, title, subtitle)` 表（第 6 张表）
+
+**建议前者**：标题是站点结构的一部分，改动频率极低，硬编码更简单。
+
+### 问题 10 ✅ **公告 / 海报空态：采用「显示占位」**（2026-11-01 定）
+
+`notice-list-column` 里只有 `v-for`，没有空态分支。若某频道公告全部停用（`is_active=0`），会显示空白列表区。
+
+**已定方案（A）**：
+
+| 场景 | 处理 |
+| --- | --- |
+| 某频道公告全部停用 | **该 Tab 保留**，内容区显示 `UiEmptyState`「暂无公告」 |
+| 两个频道都为空 | Tab 栏仍保留，两个 Tab 各自显示空态 |
+| 海报全部停用 | 轮播区保留，显示「暂无海报」占位 |
+
+**理由**：Tab 与海报区是页面固定结构，消失会让布局塌陷，也会让用户以为页面出错。占位文案明确说明「暂无」比「整块消失」更可预期。
+
+### 问题 11 ✅ **SEO / 分享预览：接受静态现状**（2026-11-01 定）
+
+`index.html` 的 `og:*` 写死为「深渊大书院 / 《深渊之歌》资料库」，不随公告或版本更新。
+
+**已定：接受现状，标记为已知限制。**
+
+原因：`og:*` 必须由服务端返回 HTML 才能被爬虫读到，而本站是纯静态 SPA、公告通过客户端异步加载 —— 爬虫抓不到。要做到动态更新只能走构建期生成或预渲染，会与「后台随时改公告」的目标直接冲突，成本与收益不成比例。
+
+分享到 QQ 群 / 论坛时，预览卡片固定显示站点名与简介，**不体现当前公告内容**。这是可接受的。
+
+
+---
+
+## 五·补二、已确认的决策（2026-11-01）
+
+| 项 | 决策 |
+| --- | --- |
+| 两套公告数据源 | **合并**（`NoticeModal` 与 `HomeView` 都读 `notices` 表） |
+| 公告弹窗 URL 直达 | **需要**（`?notice=id`，与 `/heroes?id=`、`/misc?tab=` 口径一致） |
+| 海报外链域名白名单 | **不要**（只做 `https://` 前缀校验 + 拒绝 `javascript:` / `data:`） |
+| 区块标题可配置 | 保持硬编码（见问题 9 建议） |
+| 空态处理 | **A：保留区块，显示「暂无公告 / 暂无海报」**（见问题 10） |
+| SEO / og 分享预览 | **A：接受静态现状，标记已知限制**（见问题 11） |
+| 加载态 | 按问题 8 方案执行：分板块骨架 + 分板块兜底，不整页 spinner |
+
+
 
 ---
 
@@ -274,14 +486,74 @@ PUT    /api/admin/home-blocks      整组保存（?section=guide|help）
 
 ---
 
-## 十一、相关文档
+## 十一、实施记录（2026-11-01）
+
+### 已完成的文件
+
+| 文件 | 作用 |
+| --- | --- |
+| `scripts/sql/2026-11-01-home-content.sql` | 迁移第 12 步：5 张表 + 22 条初始数据，幂等 |
+| `schema.sql` | 追加 5 张表建表语句（与迁移脚本逐列一致，演练会比对） |
+| `functions/api/[[path]].js` | 新增 `/api/home-config` + `/api/admin/home*` 共 9 个端点 |
+| `src/utils/homeConfig.js` | 前端数据层：拉 API + `DEFAULT_*` 兜底 + `buildRouteTarget` |
+| `src/utils/adminHomeApi.js` | 后台写接口封装（Bearer 会话） |
+| `src/config/navRoutes.js` | 路由 → 名称 / 图标，后台下拉与「跟随导航」图标的唯一来源 |
+| `src/components/admin/AdminHomePanel.vue` | 后台 5 个 Tab（海报 / 公告 / 图鉴工具 / 角色 / 底栏） |
+| `src/views/HomeView.vue` | 6 个板块改为读配置，硬编码保留为兜底 |
+| `src/views/AdminView.vue` | 侧栏新增「首页管理」（超管可见） |
+| `src/router/index.js` | `/admin/home` 路由 |
+| `tests/migration/rehearse.mjs` | STEPS 加第 12 步 + 22 条断言（总 90 条） |
+
+### 关键实现决策
+
+| 项 | 做法 | 理由 |
+| --- | --- | --- |
+| 公告排序 | 应用层 `orderNotices()`：固定项按 slot 插回原位，滚动项按日期倒序填空位 | 纯 SQL `ORDER BY` 会把两条 pin 都挤到最前，破坏「第 1 条 + 第 4 条」的既定布局 |
+| 公告写入 | 单条 POST/PATCH/DELETE（软删） | 公告是可增减的流式内容，单条操作并发安全 |
+| 其余四块写入 | `PUT` 整组替换，`DB.batch()` 先删后插 | 槽位固定，整组提交天然完成排序 |
+| 读缓存 | isolate 内存 60 秒；写操作 `invalidateHomeConfigCache()` | 实测命中 4.9 ms vs 回源 13.6 ms（2.8 倍） |
+| 角色数据 | 只存 `hero_id` + `tip`，运行时 join `heroes.json` | 避免「改了图鉴没改首页」的不一致 |
+| 外链安全 | 强制 `https://`，拒绝 `javascript:` / `data:`；前端二次校验 | 后台校验 + 前端兜底，防直接改库绕过 |
+| 兜底 | `loadHomeConfig()` 任何失败都回落 `DEFAULT_*`，永不抛异常 | 首页是入口，API 抖动不能整页白屏 |
+
+### 验收结果（2026-11-01，本地）
+
+| 项 | 结果 |
+| --- | --- |
+| 迁移演练 | **90 / 90 通过**（原 68 + 新增 22） |
+| 建表 + 初始数据 | 公告 7 / 海报 3 / 链接 8 / 角色 4 / 底栏 2，重复执行幂等 |
+| 公开接口 | `GET /api/home-config` 200，5 块数据齐全，坏图 0 |
+| 公告 CRUD | 新建 / 修改 / 软删 / 后台仍可见（isActive=0）全部通过 |
+| 表单校验 | 空标题、非法日期、`javascript:`、非 https、路由不以 `/` 开头 —— 全部 400 |
+| 权限分级 | 超管 200；普通管理员 `role=1` 读/写均 403；无效令牌 401 |
+| 缓存 | 命中 4.9 ms，强制回源 13.6 ms |
+| 后台面板 | 5 个 Tab 全部加载正确，改动保存后首页立即生效 |
+| 前端兜底 | 拦截 `/api/home-config` 后首页仍渲染 4 图鉴 / 4 角色 / 4 公告 |
+| 构建 | `vite build` 通过，运行时 0 错误 |
+
+### 上线前的必做项
+
+1. `npx wrangler d1 export myrzg-comments --remote --output backup-before.sql`
+2. `npx wrangler d1 execute myrzg-comments --remote --file=./scripts/sql/2026-11-01-home-content.sql`
+3. 验证表已建（`SELECT name FROM sqlite_master WHERE type='table'` 应含 5 张 home 表 + notices）
+4. **此时才 `git push`**（推送即上线）
+5. 上线后登录超管账号，在 `/admin/home` 录入真实内容
+
+⚠️ 忘加 `--remote` 会只改本地库，上线后表不存在 → 首页走兜底（不白屏，但后台打不开）。
+
+---
+
+## 十二、相关文档
 
 | 内容 | 位置 |
 | --- | --- |
 | 首页实现与设计 | `src/views/HomeView.vue` |
+| 首页数据层 | `src/utils/homeConfig.js` |
+| 后台首页管理面板 | `src/components/admin/AdminHomePanel.vue` |
 | 导航与分类 | `src/components/NavigationMenu.vue` |
+| 路由元数据（名称/图标） | `src/config/navRoutes.js` |
 | 公告弹窗 | `src/components/NoticeModal.vue` |
-| 实时公告（当前数据源） | `public/data/notice.json` |
+| 公告数据源（弹窗兜底） | `public/data/notice.json` |
 | 后端单文件 | `functions/api/[[path]].js` |
 | 表结构 | `schema.sql` |
 | 迁移演练 | `tests/migration/rehearse.mjs` |

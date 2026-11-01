@@ -208,6 +208,34 @@
         <button type="button" class="admin-btn admin-btn--danger" @click="confirmRemoveCategory">确认删除</button>
       </template>
     </UiModal>
+
+    <!-- 通用删除与操作确认弹窗 -->
+    <UiModal
+      :visible="confirmModal.visible"
+      teleport-to="body"
+      :title="confirmModal.title"
+      max-width="480px"
+      @update:visible="(v) => { if (!v) onConfirmCancel() }"
+    >
+      <p v-if="confirmModal.lead" class="admin-modal-lead">{{ confirmModal.lead }}</p>
+      <div v-if="confirmModal.content" class="admin-modal-quote" style="white-space: pre-line; line-height: 1.6;">
+        {{ confirmModal.content }}
+      </div>
+
+      <template #footer>
+        <button type="button" class="admin-btn admin-btn--ghost" @click="onConfirmCancel">
+          {{ confirmModal.cancelText || '取消' }}
+        </button>
+        <button
+          type="button"
+          class="admin-btn"
+          :class="{ 'admin-btn--danger': confirmModal.isDanger }"
+          @click="onConfirmAccept"
+        >
+          {{ confirmModal.confirmText || '确定' }}
+        </button>
+      </template>
+    </UiModal>
   </section>
 </template>
 
@@ -248,6 +276,62 @@ const loading = ref(true)
 const saving = ref(false)
 const errorMessage = ref('')
 const savedMessage = ref('')
+
+// 通用确认弹窗
+const confirmModal = ref({
+  visible: false,
+  title: '',
+  lead: '',
+  content: '',
+  confirmText: '确定',
+  cancelText: '取消',
+  isDanger: false,
+  resolve: null
+})
+
+function askConfirm({ title, lead = '', content = '', confirmText = '确定', cancelText = '取消', isDanger = false }) {
+  /*
+   * 🔴 前置结算上一个未完成的确认框。
+   *
+   * `confirmModal.value = {...}` 是**覆盖**赋值：若前一个确认框还没关就再次调用
+   * （快速连点两个删除按钮、或代码里连续 await 两个 askConfirm），
+   * 前一个 Promise 的 resolve 会被丢掉，await 它的函数**永久挂起**。
+   * 这里先把它按「取消」结算，语义上等同于用户没确认。
+   */
+  if (confirmModal.value.resolve) {
+    const prev = confirmModal.value.resolve
+    confirmModal.value.resolve = null
+    prev(false)
+  }
+
+  return new Promise((resolve) => {
+    confirmModal.value = {
+      visible: true,
+      title,
+      lead,
+      content,
+      confirmText,
+      cancelText,
+      isDanger,
+      resolve
+    }
+  })
+}
+
+function onConfirmAccept() {
+  const cb = confirmModal.value.resolve
+  confirmModal.value.visible = false
+  confirmModal.value.resolve = null
+  cb?.(true)
+}
+
+function onConfirmCancel() {
+  const cb = confirmModal.value.resolve
+  confirmModal.value.visible = false
+  confirmModal.value.resolve = null
+  cb?.(false)
+}
+
 /** 行需要一个稳定 key：用数组下标会让「上移/下移」后输入框焦点错位 */
 let nextKey = 0
 const makeRow = (text = '') => ({ key: `r${nextKey++}`, text })
@@ -257,7 +341,17 @@ function addRow() {
   rows.value.push(makeRow())
 }
 
-function removeRow(index) {
+async function removeRow(index) {
+  const row = rows.value[index]
+  const text = row?.text ? `「${row.text}」` : `第 ${index + 1} 项常用原因`
+  const ok = await askConfirm({
+    title: '删除常用选项',
+    lead: `确认删除常用选项 ${text} 吗？`,
+    content: '删除后需点击下方的「保存」才真正生效。在保存前刷新页面即可撤销。',
+    confirmText: '确认删除',
+    isDanger: true
+  })
+  if (!ok) return
   rows.value.splice(index, 1)
 }
 
@@ -360,9 +454,19 @@ function addWord(category, event) {
   if (cat) cat.custom = list.length
 }
 
-function removeWord(category, index) {
+async function removeWord(category, index) {
   const list = kwWords.value[category]
   if (!list) return
+  const word = list[index]
+  const wordText = word ? `「${word}」` : `第 ${index + 1} 个关键词`
+  const ok = await askConfirm({
+    title: '移除敏感词',
+    lead: `确认从分类「${category}」中移除关键词 ${wordText} 吗？`,
+    content: '移除后需点击下方的「保存词表」才真正生效。在保存前刷新页面即可撤销。',
+    confirmText: '确认移除',
+    isDanger: true
+  })
+  if (!ok) return
   list.splice(index, 1)
   const cat = kwCategories.value.find((c) => c.name === category)
   if (cat) cat.custom = list.length

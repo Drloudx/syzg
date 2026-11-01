@@ -163,6 +163,15 @@
               <span>系统设置</span>
               <span class="nav-tag-super">超管</span>
             </RouterLink>
+            <!--
+              首页管理：与「系统设置」同级，**仅超管**。
+              服务端所有写端点都要求 role >= 2，这里隐藏只是体验优化。
+            -->
+            <RouterLink v-if="isSuper" to="/admin/home" class="nav-item" active-class="active">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+              <span>首页管理</span>
+              <span class="nav-tag-super">超管</span>
+            </RouterLink>
           </nav>
         </div>
 

@@ -92,7 +92,8 @@ const STEPS = [
   ['第 8 步 封禁理由', 'scripts/sql/2026-10-09-user-ban-note.sql'],
   ['第 9 步 处理通知', 'scripts/sql/2026-10-09-comment-moderation-notice.sql'],
   ['第 10 步 回复未读改 id 基准', 'scripts/sql/2026-10-09-replies-read-id.sql'],
-  ['第 11 步 后台分页索引', 'scripts/sql/2026-10-13-admin-paging-indexes.sql']
+  ['第 11 步 后台分页索引', 'scripts/sql/2026-10-13-admin-paging-indexes.sql'],
+  ['第 12 步 首页内容表', 'scripts/sql/2026-11-01-home-content.sql']
 ].map(([label, file]) => [label, readFileSync(file, 'utf8')])
 
 const colsOf = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name).sort().join(',')
@@ -466,6 +467,79 @@ try {
       check('🔴 旧代码的改状态 / 删评论 SQL 仍可用', upd.changes === 1)
       db.prepare('DELETE FROM comments WHERE id = ?1').run(row.id)
     }
+
+    // ---- 第 12 步：首页内容表 ----
+    /*
+     * 守三件事：
+     *   ① 5 张表建出来了，且列集合与 schema.sql 一致
+     *   ② 初始数据条数对得上（公告 7 / 海报 3 / 链接 8 / 角色 4 / 底栏 2）
+     *   ③ 重复执行不重复播种（ON CONFLICT DO NOTHING 生效）
+     */
+    const homeTables = ['notices', 'home_banners', 'home_links', 'home_heroes', 'home_blocks']
+    const allTables = db.prepare("SELECT name FROM sqlite_master WHERE type='table'").all().map((r) => r.name)
+    for (const t of homeTables) {
+      check(`🔴 第 12 步建出了 ${t} 表`, allTables.includes(t))
+    }
+
+    // 列集合与全新 schema.sql 一致（防止迁移与 schema 漂移）
+    const schemaSql = readFileSync(path.join(import.meta.dirname, '..', '..', 'schema.sql'), 'utf8')
+    const schemaDb = new DatabaseSync(':memory:')
+    try {
+      schemaDb.exec(schemaSql)
+      for (const t of homeTables) {
+        const fromMig = colsOf(db, t)
+        const fromSchema = colsOf(schemaDb, t)
+        check(
+          `🔴 ${t} 的列集合与 schema.sql 一致`,
+          fromMig === fromSchema,
+          fromMig === fromSchema ? '' : `迁移=${fromMig} / schema=${fromSchema}`
+        )
+      }
+    } finally {
+      schemaDb.close()
+    }
+
+    // 初始数据条数
+    const seedCounts = {
+      notices: 7,
+      home_banners: 3,
+      home_links: 8,
+      home_heroes: 4,
+      home_blocks: 2
+    }
+    for (const [t, want] of Object.entries(seedCounts)) {
+      const n = db.prepare(`SELECT COUNT(*) AS n FROM ${t}`).get().n
+      check(`第 12 步 ${t} 初始数据 ${want} 条`, n === want, `实际 ${n}`)
+    }
+
+    // 站点/官方公告数量与固定项
+    const sitePins = db.prepare("SELECT COUNT(*) AS n FROM notices WHERE channel='site' AND tier='pin'").get().n
+    check('站点公告有 2 条固定项（免责 + 社区规则）', sitePins === 2, `实际 ${sitePins}`)
+    const officialVersioned = db.prepare("SELECT COUNT(*) AS n FROM notices WHERE channel='official' AND version IS NOT NULL").get().n
+    check('官方公告里 1 条带版本号', officialVersioned === 1, `实际 ${officialVersioned}`)
+
+    // 海报的行动类型覆盖
+    const actions = db.prepare('SELECT DISTINCT action_type FROM home_banners ORDER BY action_type').all().map((r) => r.action_type)
+    check('海报包含 route 与 notice 两种行动', actions.includes('route') && actions.includes('notice'), actions.join(','))
+
+    // 海报的 notice 行动必须指向真实存在的公告 id（防悬空引用）
+    const dangling = db.prepare(
+      `SELECT b.id FROM home_banners b
+       WHERE b.action_type = 'notice'
+         AND NOT EXISTS (SELECT 1 FROM notices n WHERE n.id = b.action_value)`
+    ).all()
+    check('海报的 notice 行动所指向的公告都存在', dangling.length === 0, dangling.map((r) => r.id).join(','))
+
+    // 角色 hero_id 格式 sanity（真实存在性由前端 join heroes.json 保证）
+    const badHeroIds = db.prepare("SELECT slot FROM home_heroes WHERE hero_id NOT LIKE 'hero\\_%' ESCAPE '\\'").all()
+    check('核心角色的 hero_id 都形如 hero_xxx', badHeroIds.length === 0, badHeroIds.map((r) => r.slot).join(','))
+
+    // 幂等：重跑第 12 步不重复播种
+    db.exec(STEPS[STEPS.length - 1][1])
+    const noticesAfter = db.prepare('SELECT COUNT(*) AS n FROM notices').get().n
+    check('🔴 第 12 步重复执行成功（幂等，ON CONFLICT DO NOTHING）', noticesAfter === 7, `重跑后 ${noticesAfter}`)
+    const linksAfter = db.prepare('SELECT COUNT(*) AS n FROM home_links').get().n
+    check('第 12 步重跑后 home_links 仍是 8 条', linksAfter === 8, `重跑后 ${linksAfter}`)
   })
 
   console.log(`\n  演练结果：通过 ${pass} / 失败 ${fail}`)

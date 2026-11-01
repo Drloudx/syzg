@@ -309,6 +309,90 @@ CREATE INDEX IF NOT EXISTS idx_comments_user   ON comments(user_id);
 CREATE INDEX IF NOT EXISTS idx_comments_parent ON comments(parent_id);
 
 -- ============================================================
+-- 首页内容（2026-11-01，迁移第 12 步）
+-- 设计依据：docs/context/technical/HOME_CONTENT.md
+-- 把首页 6 个板块从 HomeView.vue 的硬编码搬到库，由后台（超管）维护。
+-- 建表语句与 scripts/sql/2026-11-01-home-content.sql 必须保持一致
+-- （tests/migration/rehearse.mjs 会逐表比对列集合）。
+-- ============================================================
+
+-- 公告：站点 (site) 与官方 (official) 合并，channel 区分
+CREATE TABLE IF NOT EXISTS notices (
+  id            TEXT PRIMARY KEY,
+  channel       TEXT NOT NULL,                    -- 'site' | 'official'
+  tier          TEXT NOT NULL DEFAULT 'normal',   -- 'pin' 固定项 | 'normal' 滚动项
+  slot          INTEGER,                          -- tier='pin' 时的固定位置
+  title         TEXT NOT NULL,
+  content       TEXT,
+  date          TEXT,
+  tag_text      TEXT,
+  tag_class     TEXT,
+  version       TEXT,                             -- official 专用
+  features_json TEXT,                             -- official 专用
+  source_url    TEXT,
+  is_active     INTEGER NOT NULL DEFAULT 1,
+  created_at    TEXT,
+  updated_at    TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_notices_channel
+  ON notices(channel, is_active, tier, date DESC);
+
+-- 海报轮播（数量可增减）
+CREATE TABLE IF NOT EXISTS home_banners (
+  id           TEXT PRIMARY KEY,
+  title        TEXT NOT NULL,
+  description  TEXT,
+  tag_text     TEXT,
+  tag_class    TEXT,
+  sub_tag      TEXT,
+  image_url    TEXT,
+  bg_color     TEXT,
+  blend_start  TEXT,
+  btn_text     TEXT,
+  action_type  TEXT,                              -- route | notice | external
+  action_value TEXT,
+  sort_order   INTEGER NOT NULL DEFAULT 0,
+  is_active    INTEGER NOT NULL DEFAULT 1,
+  created_at   TEXT,
+  updated_at   TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_banners_order
+  ON home_banners(is_active, sort_order);
+
+-- 核心图鉴 (core) + 实用工具 (tool)，各固定 4 格
+CREATE TABLE IF NOT EXISTS home_links (
+  section      TEXT NOT NULL,                     -- 'core' | 'tool'
+  slot         INTEGER NOT NULL,                  -- 1..4
+  title        TEXT NOT NULL,
+  description  TEXT,
+  route        TEXT NOT NULL,
+  query_string TEXT,
+  icon_source  TEXT DEFAULT 'nav',                -- 'nav' | 'custom'
+  icon_url     TEXT,
+  badge_text   TEXT,
+  badge_color  TEXT,
+  is_active    INTEGER NOT NULL DEFAULT 1,
+  PRIMARY KEY (section, slot)
+);
+
+-- 核心角色（固定 4 格，只存 hero_id）
+CREATE TABLE IF NOT EXISTS home_heroes (
+  slot      INTEGER PRIMARY KEY,
+  hero_id   TEXT NOT NULL,
+  tip       TEXT,
+  is_active INTEGER NOT NULL DEFAULT 1
+);
+
+-- 底部两栏（内容形态未定稿，rows_json 存行）
+CREATE TABLE IF NOT EXISTS home_blocks (
+  section   TEXT PRIMARY KEY,                     -- 'guide' | 'help'
+  title     TEXT NOT NULL,
+  subtitle  TEXT,
+  rows_json TEXT,
+  is_active INTEGER NOT NULL DEFAULT 1
+);
+
+-- ============================================================
 -- ⚠️ 以下**不是建表**，是**一次性的测试数据清理**，默认注释掉。
 -- 要执行时**单独**跑，别跟着上面的建表语句一起跑：
 --   wrangler d1 execute myrzg-comments --file=./scripts/sql/reset-test-comments.sql --remote

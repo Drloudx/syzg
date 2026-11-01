@@ -187,6 +187,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getImageUrl } from '../utils/env.js'
 import { prefetchDeferredRouteChunks } from '../router/index.js'
+import { NAV_ROUTES, getGroupedNavRoutes } from '../config/navRoutes.js'
 
 const props = defineProps({
   isOpen: Boolean,
@@ -231,90 +232,16 @@ const syncSideScrollState = () => {
   )
 }
 
-// --- 统一配置导航数据 ---
-const defaultNavList = [
-  { name: '物品图鉴', path: '/items', icon: '/ui/item_00002.webp' },
-  { name: '家具图鉴', path: '/furniture', icon: '/ui/build_roomFlower_yma9_0.webp' },
-  { name: '设施功能', path: '/facilities', icon: '/ui/build_cyyd_yingdizhongxing002.webp' },
-  { name: '角色图鉴', path: '/heroes', icon: '/ui/class_icon_s_zs.webp' },
-  { name: '伙伴邮件', path: '/partner-mails', icon: '/ui/mail_list_new_task_pt.webp' },
-  { name: '魔物图鉴', path: '/pets', icon: '/ui/colect_mon_072.webp' },
-  { name: '装备图鉴', path: '/equip', icon: '/ui/item_442001.webp' },
-  { name: '符石图鉴', path: '/runes', icon: '/images/Common_ItemIcon/item_19310.webp' },
-  { name: '菜谱查询', path: '/recipes', icon: '/ui/item_30047.webp' },
-  { name: '魔物收益', path: '/petseggs', icon: '/ui/pet_079.webp' },
-  { name: '成就查询', path: '/achievement', icon: '/ui/achv_icon_adv.webp' },
-  { name: '怪物图鉴', path: '/monsters', icon: '/ui/colect_mon_052.webp' },
-  { name: '任务图鉴', path: '/tasks', icon: '/images/TaskPanel/task_tag1.webp' },
-  { name: '事件图鉴', path: '/events', icon: '/ui/mtl1.webp' },
-  { name: '副本图鉴', path: '/dungeons', icon: '/ui/map_r_fb_03.webp' },
-  { name: '关卡图鉴', path: '/chapters', icon: '/ui/stage_crystal.webp' },
-  { name: '兑换', path: '/exchange', icon: '/ui/map_r_fb_19.webp' },
-  { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
-  { name: '相关模拟', path: '/sims', icon: '/ui/colect_mon_072.webp' },
-  { name: '词条', path: '/glossary', icon: '/ui/buff_017.webp' },
-  { name: '其他', path: '/misc', icon: '/ui/map_r_fb_12.webp' }
-]
-
-const navList = computed(() => props.items || defaultNavList)
-
-// --- 分类与可展开收起逻辑 ---
-const CATEGORY_DEFINITIONS = [
-  {
-    key: 'encyclopedia',
-    title: '图鉴资料',
-    paths: [
-      '/items', '/heroes', '/equip', '/runes', '/pets', '/monsters',
-      '/dungeons', '/chapters', '/furniture', '/facilities',
-      '/tasks', '/events', '/recipes', '/achievement'
-    ]
-  },
-  {
-    key: 'tools',
-    title: '实用工具',
-    paths: ['/gacha', '/sims', '/petseggs']
-  },
-  {
-    key: 'misc',
-    title: '其他功能',
-    paths: ['/exchange', '/glossary', '/partner-mails', '/misc']
-  }
-]
+// --- 统一配置导航数据（单一权威来源引入自 config/navRoutes.js） ---
+const navList = computed(() => props.items || NAV_ROUTES)
 
 const navCategories = computed(() => {
-  const allItems = navList.value
-  const itemMap = new Map(allItems.map(item => [item.path, item]))
-  const result = []
-  const assigned = new Set()
-
-  for (const def of CATEGORY_DEFINITIONS) {
-    const matched = []
-    for (const p of def.paths) {
-      if (itemMap.has(p)) {
-        matched.push(itemMap.get(p))
-        assigned.add(p)
-      }
-    }
-    if (matched.length > 0) {
-      result.push({
-        key: def.key,
-        title: def.title,
-        items: matched
-      })
-    }
-  }
-
-  // 兜底未匹配的其它条目
-  const unassigned = allItems.filter(item => !assigned.has(item.path))
-  if (unassigned.length > 0) {
-    result.push({
-      key: 'unassigned',
-      title: '其它',
-      items: unassigned
-    })
-  }
-
-  return result
+  const groups = getGroupedNavRoutes({ routes: navList.value, useAdminTitle: false })
+  return groups.map((g) => ({
+    key: g.key,
+    title: g.label,
+    items: g.items
+  }))
 })
 
 const STORAGE_KEY = 'syzg_nav_categories_collapsed'

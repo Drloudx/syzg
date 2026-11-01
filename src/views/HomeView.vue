@@ -105,7 +105,7 @@
         <div class="notice-list-column">
           <div
             v-for="item in currentNoticesList"
-            :key="item.title"
+            :key="item.id || item.title"
             class="notice-list-item"
             @click="openNoticeDetail(item)"
           >
@@ -113,21 +113,31 @@
             <span class="notice-item-title">{{ item.title }}</span>
             <span class="notice-item-date">{{ item.date }}</span>
           </div>
+          <!--
+            空态：该频道公告全被停用时显示占位，而不是留一片空白。
+            Tab 与区块本身保留 —— 它们是页面固定结构，消失会让布局塌陷。
+          -->
+          <div v-if="!currentNoticesList.length" class="notice-empty">暂无公告</div>
         </div>
 
-        <!-- 右侧：官方更新公告特色速览卡 -->
-        <div class="patch-highlight-box">
+        <!--
+          右侧：官方更新公告特色速览卡。
+          数据来自「官方频道里带 version 的那条公告」；该公告被停用或没有版本号时
+          整块隐藏，不显示空壳。
+        -->
+        <div v-if="officialPatchNotice" class="patch-highlight-box">
           <div class="patch-highlight-head">
             <div class="patch-ver-title">
               <span class="patch-ver-tag">OFFICIAL</span>
-              <span>游戏更新：v1.2.0「深境微光」</span>
+              <span>游戏更新：{{ officialPatchNotice.version || officialPatchNotice.title }}</span>
             </div>
           </div>
-          <ul class="patch-features-list">
-            <li class="patch-feature-item">新 5 星秘术英雄「奇瓦」限时招募开启</li>
-            <li class="patch-feature-item">主线第 8 章「无尽深渊回廊」剧情关卡解锁</li>
-            <li class="patch-feature-item">魔物出战羁绊加成数值平衡性微调</li>
-            <li class="patch-feature-item">修复部分装备洗练暴击词条显示异常问题</li>
+          <ul v-if="officialPatchNotice.features?.length" class="patch-features-list">
+            <li
+              v-for="(feat, i) in officialPatchNotice.features"
+              :key="i"
+              class="patch-feature-item"
+            >{{ feat }}</li>
           </ul>
           <button class="patch-view-full-btn" @click="openNoticeDetail(officialPatchNotice)">
             <span>查看完整公告</span>
@@ -143,36 +153,26 @@
         <span>核心图鉴</span>
       </div>
       <div class="core-indexes-grid">
-        <div class="core-index-card paper-panel" @click="goTo('/heroes')">
+        <!--
+          核心图鉴：4 格固定，但内容 / 图标 / 跳转都由后台配置（home_links 表 section='core'）。
+          图标优先取「该路由在导航里的图标」（icon_source='nav'），否则用自定义 URL。
+        -->
+        <div
+          v-for="link in coreLinks"
+          :key="`core-${link.slot}`"
+          class="core-index-card paper-panel"
+          role="link"
+          tabindex="0"
+          :title="`前往${link.title}`"
+          @click="goTo(buildRouteTarget(link.route, link.queryString))"
+          @keydown.enter.prevent="goTo(buildRouteTarget(link.route, link.queryString))"
+          @keydown.space.prevent="goTo(buildRouteTarget(link.route, link.queryString))"
+        >
           <div class="core-index-icon-wrap">
-            <img :src="getImageUrl('/ui/class_icon_s_zs.webp')" alt="角色图鉴" class="game-sprite" />
+            <img :src="getImageUrl(resolveIcon(link))" :alt="link.title" class="game-sprite" />
           </div>
-          <div class="core-index-name">角色图鉴</div>
-          <div class="core-index-desc">全英雄属性、技能天赋与升星材料</div>
-        </div>
-
-        <div class="core-index-card paper-panel" @click="goTo('/equip')">
-          <div class="core-index-icon-wrap">
-            <img :src="getImageUrl('/ui/item_442001.webp')" alt="装备图鉴" class="game-sprite" />
-          </div>
-          <div class="core-index-name">装备图鉴</div>
-          <div class="core-index-desc">武器防具属性、专武词条与锻造</div>
-        </div>
-
-        <div class="core-index-card paper-panel" @click="goTo('/pets')">
-          <div class="core-index-icon-wrap">
-            <img :src="getImageUrl('/ui/colect_mon_072.webp')" alt="魔物图鉴" class="game-sprite" />
-          </div>
-          <div class="core-index-name">魔物图鉴</div>
-          <div class="core-index-desc">魔物羁绊技能、孵化产出与被动</div>
-        </div>
-
-        <div class="core-index-card paper-panel" @click="goTo('/runes')">
-          <div class="core-index-icon-wrap">
-            <img :src="getImageUrl('/images/Common_ItemIcon/item_19310.webp')" alt="符石图鉴" class="game-sprite" />
-          </div>
-          <div class="core-index-name">符石图鉴</div>
-          <div class="core-index-desc">符石共鸣套装、词条洗练与评分</div>
+          <div class="core-index-name">{{ link.title }}</div>
+          <div class="core-index-desc">{{ link.description }}</div>
         </div>
       </div>
     </section>
@@ -184,53 +184,30 @@
       </div>
 
       <div class="tools-grid">
-        <div class="tool-banner-card paper-panel" @click="goTo('/sims')">
+        <div
+          v-for="link in toolLinks"
+          :key="`tool-${link.slot}`"
+          class="tool-banner-card paper-panel"
+          role="link"
+          tabindex="0"
+          :title="`前往${link.title}`"
+          @click="goTo(buildRouteTarget(link.route, link.queryString))"
+          @keydown.enter.prevent="goTo(buildRouteTarget(link.route, link.queryString))"
+          @keydown.space.prevent="goTo(buildRouteTarget(link.route, link.queryString))"
+        >
           <div class="tool-icon-box">
-            <img :src="getImageUrl('/ui/colect_mon_072.webp')" alt="魔物出战搭配模拟器" class="game-sprite" />
+            <img :src="getImageUrl(resolveIcon(link))" :alt="link.title" class="game-sprite" />
           </div>
           <div class="tool-info">
             <div class="tool-head">
-              <span class="tool-title">魔物出战搭配模拟器</span>
-              <span class="tool-tag hot">HOT</span>
+              <span class="tool-title">{{ link.title }}</span>
+              <span
+                v-if="link.badgeText"
+                class="tool-tag"
+                :class="BadgeClass(link.badgeColor)"
+              >{{ link.badgeText }}</span>
             </div>
-            <div class="tool-desc">全角色与魔物羁绊加成实时计算，智能推导最优方案</div>
-          </div>
-        </div>
-
-        <div class="tool-banner-card paper-panel" @click="goTo('/gacha')">
-          <div class="tool-icon-box">
-            <img :src="getImageUrl('/ui/item_20004.webp')" alt="模拟招募抽卡" class="game-sprite" />
-          </div>
-          <div class="tool-info">
-            <div class="tool-head">
-              <span class="tool-title">模拟招募抽卡</span>
-              <span class="tool-tag new">NEW</span>
-            </div>
-            <div class="tool-desc">真实还原原版抽卡概率、卡池保底机制与立绘动画</div>
-          </div>
-        </div>
-
-        <div class="tool-banner-card paper-panel" @click="goTo('/petseggs')">
-          <div class="tool-icon-box">
-            <img :src="getImageUrl('/ui/pet_079.webp')" alt="魔物收益速查" class="game-sprite" />
-          </div>
-          <div class="tool-info">
-            <div class="tool-head">
-              <span class="tool-title">魔物收益速查</span>
-            </div>
-            <div class="tool-desc">各阶段魔物蛋孵化时间、预计产出与金币收益全览</div>
-          </div>
-        </div>
-
-        <div class="tool-banner-card paper-panel" @click="goTo('/recipes')">
-          <div class="tool-icon-box">
-            <img :src="getImageUrl('/ui/item_30047.webp')" alt="营地菜谱查询器" class="game-sprite" />
-          </div>
-          <div class="tool-info">
-            <div class="tool-head">
-              <span class="tool-title">营地菜谱查询器</span>
-            </div>
-            <div class="tool-desc">食材最佳搭配组合、饱食度收益与战斗增益 Buff</div>
+            <div class="tool-desc">{{ link.description }}</div>
           </div>
         </div>
       </div>
@@ -245,9 +222,14 @@
       <div class="hero-chibi-grid">
         <div
           v-for="hero in featuredHeroes"
-          :key="hero.name"
+          :key="hero.id"
           class="hero-chibi-card"
-          @click="goTo('/heroes')"
+          role="link"
+          tabindex="0"
+          :title="`查看「${hero.name}」的角色详情`"
+          @click="goToHero(hero.id)"
+          @keydown.enter.prevent="goToHero(hero.id)"
+          @keydown.space.prevent="goToHero(hero.id)"
         >
           <!-- 星级角标 (固定左上角，对齐图鉴品质颜色) -->
           <span class="hero-star-badge" :class="`star-${hero.rare}`">
@@ -293,86 +275,63 @@
       </div>
     </section>
 
-    <!-- 5. 大书院交流与新人攻略 (2列) -->
+    <!-- 5. 底部两栏：大书院交流 / 新人攻略（内容由 home_blocks 表驱动） -->
     <section class="daily-guide-row">
-      <!-- 左列：大书院交流 (原右列移动到左侧) -->
-      <div class="daily-col paper-panel corner-nails">
+      <div
+        v-for="sec in blockSections"
+        :key="sec.key"
+        class="daily-col paper-panel corner-nails"
+      >
         <div class="section-title">
-          <span>大书院交流</span>
+          <span>{{ sec.title }}</span>
+          <span v-if="sec.subtitle && sec.subtitle !== '占位'" class="section-title-sub">{{ sec.subtitle }}</span>
         </div>
         <div class="daily-list">
-          <div class="daily-item">
+          <div
+            v-for="(row, i) in sec.rows"
+            :key="rowKey(sec.key, row, i)"
+            class="daily-item"
+            :class="{ 'is-clickable': isRowClickable(row) }"
+            :role="isRowClickable(row) ? 'link' : undefined"
+            :tabindex="isRowClickable(row) ? 0 : undefined"
+            :title="isRowClickable(row) ? `前往${row.label}` : undefined"
+            @click="handleBlockRowAction(row)"
+            @keydown.enter.prevent="handleBlockRowAction(row)"
+            @keydown.space.prevent="handleBlockRowAction(row)"
+          >
             <span class="daily-item-name">
-              <span class="daily-item-badge">交流</span>
-              大书院讨论区
+              <span v-if="row.tag" class="daily-item-badge">{{ row.tag }}</span>
+              {{ row.label }}
             </span>
-            <span class="daily-item-status">全站自由发言，交流玩法心得</span>
-          </div>
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">勘误</span>
-              数据校准
+            <span class="daily-item-status">
+              {{ row.text }}
+              <span v-if="isRowClickable(row)" class="daily-item-arrow">›</span>
             </span>
-            <span class="daily-item-status">遇到数值错误或文本缺失可在讨论区反馈</span>
           </div>
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">群号</span>
-              大书院群
-            </span>
-            <span class="daily-item-status">交流群 963318625，一起探索深渊</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 右列：新人攻略 (占位内容) -->
-      <div class="daily-col paper-panel corner-nails">
-        <div class="section-title">
-          <span>新人攻略</span>
-        </div>
-        <div class="daily-list">
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">攻略</span>
-              占位1
-            </span>
-            <span class="daily-item-status">占位1</span>
-          </div>
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">攻略</span>
-              占位2
-            </span>
-            <span class="daily-item-status">占位2</span>
-          </div>
-          <div class="daily-item">
-            <span class="daily-item-name">
-              <span class="daily-item-badge">攻略</span>
-              占位3
-            </span>
-            <span class="daily-item-status">占位3</span>
-          </div>
+          <div v-if="!sec.rows.length" class="notice-empty">暂无内容</div>
         </div>
       </div>
     </section>
 
-    <!-- 6. 内置精美公告详情弹窗 -->
-    <div
-      v-if="activeModalNotice"
-      class="notice-modal-backdrop"
-      @click.self="activeModalNotice = null"
-    >
-      <div class="notice-modal-content paper-panel corner-nails">
-        <button class="notice-modal-close" @click="activeModalNotice = null" title="关闭">✕</button>
-        <div class="notice-modal-header">
-          <h3 class="notice-modal-title">{{ activeModalNotice.title }}</h3>
-          <span class="notice-modal-date">发布时间：{{ activeModalNotice.date }}</span>
-        </div>
-        <div class="notice-modal-body">
-          <p v-for="(p, i) in activeModalNoticeParagraphs" :key="i" class="notice-paragraph">{{ p }}</p>
+    <!-- 6. 内置精美公告详情弹窗 (Teleport 挂到 body 顶层，确保遮罩覆盖全站视口) -->
+    <Teleport to="body">
+      <div
+        v-if="activeModalNotice"
+        class="notice-modal-backdrop"
+        @click.self="activeModalNotice = null"
+      >
+        <div class="notice-modal-content paper-panel corner-nails">
+          <button class="notice-modal-close" @click="activeModalNotice = null" title="关闭">✕</button>
+          <div class="notice-modal-header">
+            <h3 class="notice-modal-title">{{ activeModalNotice.title }}</h3>
+            <span class="notice-modal-date">发布时间：{{ activeModalNotice.date }}</span>
+          </div>
+          <div class="notice-modal-body">
+            <p v-for="(p, i) in activeModalNoticeParagraphs" :key="i" class="notice-paragraph">{{ p }}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>
 
@@ -380,6 +339,8 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { getImageUrl } from '../utils/env.js'
+import { loadHomeConfig, buildRouteTarget } from '../utils/homeConfig.js'
+import { navIconOf } from '../config/navRoutes.js'
 
 const router = useRouter()
 
@@ -392,58 +353,31 @@ const updateDesktopState = () => {
 }
 
 // 洛克王国 Wiki 风格的海报列表：图片放右侧，左侧根据图片边缘与画面主调平滑向左扩展（方案 B：画面主调提亮系）
-const bannerList = [
-  {
-    id: 1,
-    title: '探求深渊秘境的学者殿堂',
-    desc: '全新主线第8章「无尽回廊」正式开放！5星火系秘术英雄【奇瓦】限时招募降临，专属符石秘境与限时讨伐活动全面开启。',
-    tagText: '官方版本焦点',
-    tagClass: 'gold',
-    subTag: 'v1.2.0「深境微光」',
-    btnText: '查看版本更新详情',
-    image: '/images/banners/home-banner-1.jpg',
-    bgColor: '#264440', // 微透碧蓝的湖水林风（方案 B：画面主调提亮系）
-    blendStart: 'rgba(38, 68, 64, 0.95)',
-    action: 'notice',
-    noticeTitle: '官方版本更新：v1.2.0「深境微光」'
-  },
-  {
-    id: 2,
-    title: '限定角色招募 · 双UP概率提升',
-    desc: '掌握禁忌火焰秘术的神秘学者与深渊伙伴！全套技能天赋数据、专属符石词条推荐与配队演算模拟器已同步上线。',
-    tagText: '限定招募进行中',
-    tagClass: 'red',
-    subTag: 'UP 卡池开启',
-    btnText: '前往模拟抽卡',
-    image: '/images/banners/home-banner-2.jpg',
-    bgColor: '#3c281a', // 暗金微透的华丽卡池色（方案 B：画面主调提亮系）
-    blendStart: 'rgba(60, 40, 26, 0.95)',
-    action: 'route',
-    path: '/gacha'
-  },
-  {
-    id: 3,
-    title: '魔物出战被动搭配模拟系统',
-    desc: '全新升级！移动端紧凑自选与四列选择器，实时穷举推导最佳魔物出战组合，助您轻松打通深渊高难关卡。',
-    tagText: '学者实用工具',
-    tagClass: 'teal',
-    subTag: '配队演算升级',
-    btnText: '立即体验模拟工具',
-    image: '/images/banners/home-banner-3.jpg',
-    bgColor: '#42291b', // 温暖的营地木屋红木色（方案 B：画面主调提亮系）
-    blendStart: 'rgba(66, 41, 27, 0.95)',
-    action: 'route',
-    path: '/sims'
-  }
-]
+/** 海报列表：由 `loadHomeConfig()` 填充，默认值在 homeConfig.js 的 DEFAULT_BANNERS */
+const bannerList = ref([])
+
+/** 真实海报张数（不含首尾克隆）。必须跟随 bannerList 变化，不能用一次性常量。 */
+const realTotal = computed(() => bannerList.value.length)
 
 // 轮播海报逻辑 (TapTap 源码级无缝无限物理滑轨 + 移动端丝滑触摸手势)
-const realTotal = bannerList.length
-const loopBanners = computed(() => [
-  bannerList[realTotal - 1], // index 0: 尾部克隆项
-  ...bannerList,             // index 1, 2, 3: 真实海报
-  bannerList[0]              // index 4: 头部克隆项
-])
+/*
+ * 无缝轮播：真实 N 张 → 渲染 N+2 张（首尾各克隆一张）。
+ * 滑到克隆位后由 onTrackTransitionEnd 瞬间跳回真实位置，用户看不出接缝。
+ *
+ * 🔴 必须用 `bannerList.value`：数据改成 ref 后，直接读 `bannerList.length`
+ *    拿到的是 ref 对象（undefined），运行时报 "bannerList is not iterable"。
+ *    之前这些代码在 `const bannerList = [...]` 上是裸数组，所以不需要 .value。
+ */
+const loopBanners = computed(() => {
+  const list = bannerList.value
+  if (!list.length) return []
+  const last = list.length - 1
+  return [
+    list[last],   // index 0: 尾部克隆项
+    ...list,      // index 1..N: 真实海报
+    list[0]       // index N+1: 头部克隆项
+  ]
+})
 
 const currentVirtualIndex = ref(1) // 初始定位在真实第 1 张 (虚拟索引 1)
 const isAnimated = ref(false)
@@ -459,7 +393,10 @@ let isHorizontalGesture = null
 let hasSwiped = false
 
 const currentRealIndex = computed(() => {
-  return (currentVirtualIndex.value - 1 + realTotal) % realTotal
+  // 数据未到位时 realTotal 为 0，取模会得 NaN，进而让圆点高亮失效 —— 先挡住。
+  const total = realTotal.value
+  if (!total) return 0
+  return (currentVirtualIndex.value - 1 + total) % total
 })
 
 const trackStyle = computed(() => {
@@ -558,14 +495,14 @@ const onTrackTransitionEnd = (e) => {
   if (e.propertyName !== 'transform') return
   isTransitioning.value = false
   // 滑到了末尾的首张克隆项 (虚拟索引 4) -> 瞬间无动画跳回真实第 1 张 (虚拟索引 1)
-  if (currentVirtualIndex.value >= realTotal + 1) {
+  if (currentVirtualIndex.value >= realTotal.value + 1) {
     isAnimated.value = false
     currentVirtualIndex.value = 1
   }
   // 滑到了开头的末张克隆项 (虚拟索引 0) -> 瞬间无动画跳回真实最后一张 (虚拟索引 3)
   else if (currentVirtualIndex.value <= 0) {
     isAnimated.value = false
-    currentVirtualIndex.value = realTotal
+    currentVirtualIndex.value = realTotal.value
   }
 }
 
@@ -591,13 +528,73 @@ const restartCarousel = () => {
 const pauseCarousel = () => stopCarousel()
 const resumeCarousel = () => startCarousel()
 
+/**
+ * 行动分发（海报与底栏共用）。
+ *
+ *   route    → 站内跳转（actionValue 是路径，可带 query）
+ *   notice   → 打开指定公告的详情弹窗（actionValue 是公告 id），不跳页
+ *   external → 新标签打开外链（仅 https://）
+ *   none     → 不做任何事
+ *
+ * 🔴 这里**不判断 hasSwiped**。那是海报的专用状态（"刚横向滑过，别误触按钮"），
+ *    底栏离海报很远用不到。由调用方各自决定要不要先挡一道 —— 见 handleBannerAction。
+ *
+ * 找不到目标时静默不动，绝不让首页抛错。
+ */
+function dispatchAction(type, rawValue) {
+  const value = String(rawValue || '').trim()
+  if (!value) return
+
+  if (type === 'route') {
+    router.push(value)
+    return
+  }
+
+  if (type === 'notice') {
+    const all = [...(noticesData.value.site || []), ...(noticesData.value.official || [])]
+    const target = all.find((n) => n.id === value)
+    if (target) openNoticeDetail(target)
+    return
+  }
+
+  if (type === 'external') {
+    // 后台已校验协议；这里再挡一次，防止有人直接改库塞进 javascript:
+    if (!/^https:\/\//i.test(value)) {
+      console.warn('[home] 拒绝打开非 https 外链：', value)
+      return
+    }
+    window.open(value, '_blank', 'noopener,noreferrer')
+  }
+}
+
+/** 海报按钮：先挡「刚滑过海报」的误触，再分发 */
 const handleBannerAction = (banner) => {
   if (hasSwiped) return // 刚滑动切换过海报，不触发链接跳转
-  if (banner.action === 'route' && banner.path) {
-    router.push(banner.path)
-  } else if (banner.action === 'notice') {
-    openNoticeDetail(officialPatchNotice)
-  }
+  dispatchAction(banner.actionType || 'route', banner.actionValue)
+}
+
+/**
+ * 底栏条目是否可点击。
+ *
+ * 抽成函数是因为模板里要用三次（class / role+tabindex / 箭头），
+ * 内联写 `row.actionType && row.actionType !== 'none'` 三遍容易改漏一处。
+ */
+const isRowClickable = (row) => Boolean(row?.actionType && row.actionType !== 'none')
+
+/**
+ * 底栏行的稳定 :key。
+ *
+ * 不用数组下标：后台上移/下移或删除中间行时，下标 key 会让 Vue 复用错 DOM
+ * （项目里 AdminSettingsPanel 踩过：输入框焦点与内容错位）。
+ * 用「区块+标签+名称」组合 —— 底栏行没有 id，这三项在单块内足以区分。
+ */
+const rowKey = (sectionKey, row, index) =>
+  `${sectionKey}:${row?.tag || ''}:${row?.label || ''}:${index}`
+
+/** 底栏条目点击跳转 */
+const handleBlockRowAction = (row) => {
+  if (!isRowClickable(row)) return
+  dispatchAction(row.actionType, row.actionValue)
 }
 
 // 快捷页面跳转
@@ -605,74 +602,61 @@ const goTo = (path) => {
   router.push(path)
 }
 
+/**
+ * 图鉴 / 工具卡片的图标来源。
+ *
+ * `icon_source='nav'` → 取该路由在导航里的图标（`config/navRoutes.js` 是唯一权威来源）
+ * `icon_source='custom'` → 用后台填的 iconUrl
+ * 都取不到时给一个透明占位，避免 <img> 显示破图。
+ */
+const resolveIcon = (link) => {
+  if (link.iconSource === 'custom' && link.iconUrl) return link.iconUrl
+  return navIconOf(link.route) || '/ui/item_00002.webp'
+}
+
+/**
+ * 角标配色类名。
+ *
+ * 后台只允许 5 个预设值（见 HOME_CONTENT.md），这里做一次白名单映射，
+ * 非法值退化成默认色，不拼出任意 class。
+ */
+const BADGE_CLASSES = {
+  red: 'is-badge-red',
+  green: 'is-badge-green',
+  gold: 'is-badge-gold',
+  teal: 'is-badge-teal',
+  gray: 'is-badge-gray'
+}
+const BadgeClass = (color) => BADGE_CLASSES[color] || 'is-badge-gray'
+
+/**
+ * 打开某个角色的详情。
+ *
+ * `/heroes` 读 `?id=` 自动打开对应角色的详情弹窗（见 HeroesView 的
+ * `openFromQueryId` / `watch(() => route.query.id)`），所以带上 id 就能直达，
+ * 不用用户进去后再自己找。
+ */
+const goToHero = (id) => {
+  if (!id) { router.push('/heroes'); return }
+  router.push({ path: '/heroes', query: { id } })
+}
+
 // 公告标签与数据
 const activeNoticeTab = ref('site')
 
-const noticesData = {
-  site: [
-    {
-      title: '深渊大书院站点免责声明与服务协议',
-      date: '2026-09-19',
-      tagText: '置顶',
-      tagClass: 'pinned',
-      content: '深渊大书院为非盈利性质的玩家自发资料库与攻略整理工具，所有素材与文本版权归原游戏制作组所有。\n本站所有算法模拟器均为基于客户端拆解数据进行的前端重构，旨在提供便捷的配队与数值参考。'
-    },
-    {
-      title: '相关模拟（魔物配队）移动端与算法全面升级',
-      date: '2026-10-29',
-      tagText: '功能',
-      tagClass: 'patch',
-      content: '魔物搭配模拟系统完成重大重构！支持自选队伍、自选角色与魔物被动过滤。\n移动端抽屉式选人交互优化完毕，提升手机端排布与浏览体验。'
-    },
-    {
-      title: '客户端解构数据同步与词条修正',
-      date: '2026-10-28',
-      tagText: '数据',
-      tagClass: 'event',
-      content: '已将最新客户端解析表与 Wiki 数据对齐，修正了部分装备在洗练状态下的暴击显示异常，补全魔物技能缺失字段。'
-    },
-    {
-      title: '大书院学者讨论区交流准则',
-      date: '2026-10-25',
-      tagText: '社区',
-      tagClass: 'info',
-      content: '欢迎各位探求者在讨论区交流游戏体验、魔物孵化收益与阵容心得。\n请自觉遵守讨论区发言礼仪，共建友善、客观的游戏研究氛围。'
-    }
-  ],
-  official: [
-    {
-      title: 'v1.2.0「深境微光」版本正式实装与停服维护',
-      date: '2026-10-28',
-      tagText: '版本',
-      tagClass: 'pinned',
-      content: '亲爱的探求者：\n游戏已于 10 月 28 日完成 v1.2.0 停机维护更新。\n【更新内容】\n1. 全新 5 星秘术英雄「奇瓦」限定招募开启；\n2. 开放主线章节第 8 章「无尽深渊回廊」剧情关卡与相关挑战副本；\n3. 优化部分装备洗练词条描述与魔物羁绊加成数值。'
-    },
-    {
-      title: '关于部分机型闪退与战斗结算延迟的修复通知',
-      date: '2026-10-26',
-      tagText: '修复',
-      tagClass: 'patch',
-      content: '技术团队已完成对部分机型内存占用过高导致偶发闪退的紧急补丁更新，请探求者重新启动客户端加载资源包。'
-    },
-    {
-      title: '【开发组通信】第2期：后续养成系统减负前瞻',
-      date: '2026-10-20',
-      tagText: '前瞻',
-      tagClass: 'event',
-      content: '开发组正在推进角色升级与技能强化的材料减负优化，预计在下个版本全面实装，同时优化委托任务的扫荡产出。'
-    }
-  ]
-}
+/** 公告：{ site: [], official: [] }，由 loadHomeConfig() 填充 */
+const noticesData = ref({ site: [], official: [] })
 
-const officialPatchNotice = {
-  title: '游戏更新日志：v1.2.0「深境微光」',
-  date: '2026-10-28',
-  tagText: '官方',
-  tagClass: 'pinned',
-  content: '官方完整更新日志：\n- 新 5 星秘术英雄「奇瓦」限时招募开启；\n- 主线第 8 章「无尽深渊回廊」剧情关卡解锁；\n- 魔物出战羁绊加成数值平衡性微调；\n- 修复部分装备洗练暴击词条显示异常问题。\n\n大书院数据已同步对齐新版本，探求者可在图鉴与模拟工具中查看最新数值！'
-}
+/**
+ * 右侧速览卡指向的公告：优先取官方频道里带 version 的那条（有版本号才是版本日志），
+ * 找不到就退到官方频道第一条。为空时按钮不渲染。
+ */
+const officialPatchNotice = computed(() => {
+  const list = noticesData.value.official || []
+  return list.find((n) => n.version) || list[0] || null
+})
 
-const currentNoticesList = computed(() => noticesData[activeNoticeTab.value] || [])
+const currentNoticesList = computed(() => noticesData.value[activeNoticeTab.value] || [])
 
 // 弹窗状态
 const activeModalNotice = ref(null)
@@ -686,60 +670,122 @@ const openNoticeDetail = (item) => {
   activeModalNotice.value = item
 }
 
-const openAllNotices = () => {
-  activeModalNotice.value = {
-    title: '大书院公报总览',
-    date: '2026-10-30',
-    content: '欢迎查阅大书院历史公报！\n本站所有更新、数据修正与算法优化均会在第一时间公布。\n如有疑问或发现数据偏差，欢迎在右侧讨论区或大书院交流群联系我们。'
+/**
+ * 契约者展示数据（Q版模型展示）
+ *
+ * 🔴 数值必须与 `public/data/parsed/heroes.json` 一致。改之前先查：
+ *    node -e "const d=require('./public/data/parsed/heroes.json');console.log(d.heroes.filter(h=>['hero_053'].includes(h.id)))"
+ *
+ * 🔴 职业图标 slug 的权威映射在 `src/utils/gameMappings.js` 的 JOB_SLUGS：
+ *    1近卫=zs  2守护=qs  3秘术=fs  4射手=yx  5突袭=ck  6支援=fz
+ *    没有 `ss` 这个值 —— 射手是 `yx`，写错会 404。
+ *
+ * 🔴 元素图标在 `/images/HeroGachaShowPanel_Atlas/`：
+ *    Water03 / Fire03 / Wind03 / Ground03（注意是 03，不是 01/02）
+ *
+ * `id` 用于点击跳转 `/heroes?id=<id>`，直接打开该角色详情。
+ * `tip` 依据角色两个主动技能的实战定位概括。
+ */
+/** 核心角色：只含 { slot, heroId, tip }，其余字段由 resolveHeroes() 从 heroes.json join */
+const featuredHeroes = ref([])
+
+/** 图鉴 / 工具：来自 API，失败时用 DEFAULT_* */
+const coreLinks = ref([])
+const toolLinks = ref([])
+
+/** 底部两栏 */
+const homeBlocks = ref({ guide: null, help: null })
+
+/**
+ * 底栏渲染数据：把 `{guide, help}` 拍平成数组，顺序固定（先交流后攻略）。
+ * 缺哪一块就跳过哪一块，不会渲染出半空卡片。
+ */
+const blockSections = computed(() => {
+  const b = homeBlocks.value || {}
+  const out = []
+  for (const key of ['guide', 'help']) {
+    const item = b[key]
+    if (!item) continue
+    out.push({
+      key,
+      title: item.title || '',
+      subtitle: item.subtitle || '',
+      rows: Array.isArray(item.rows) ? item.rows : []
+    })
   }
+  return out
+})
+
+/** 加载态：首屏骨架用；API 失败也置 false（走兜底内容） */
+const configLoading = ref(true)
+
+/**
+ * 角色卡渲染所需的完整数据：把 heroId join 到 heroes.json。
+ *
+ * 为什么不在后端 join：`/heroes`、`/sims` 都已经加载了 heroes.json，
+ * 首页再存一份完整角色数据会让「改了图鉴没改首页」这种不一致再现。
+ * 这里只存 heroId + tip，展示字段实时取。
+ */
+function resolveHeroes(list, heroData) {
+  if (!Array.isArray(list)) return []
+  const byId = new Map((heroData || []).map((h) => [h.id, h]))
+  return list
+    .map((item) => {
+      const h = byId.get(item.heroId)
+      if (!h) return null
+      return {
+        id: h.id,
+        name: h.name,
+        rare: h.rare,
+        qImg: `/images/chara/Q/hero_${h.id.replace(/^hero_/, '')}.webp`,
+        jobName: h.jobName,
+        jobIcon: `/images/HeroBagPanel/class_icon_s_${JOB_SLUGS[h.job] || 'zs'}.webp`,
+        elementName: `${h.elementName}属性`,
+        elementIcon: `/images/HeroGachaShowPanel_Atlas/spGachaTag${ELEMENT_SLUGS[h.element] || 'Fire'}03.webp`,
+        tip: item.tip || ''
+      }
+    })
+    .filter(Boolean)
 }
 
-// 契约者展示数据（Q版模型展示）
-const featuredHeroes = [
-  {
-    name: '奇瓦',
-    rare: 5,
-    qImg: '/images/chara/Q/hero_019.webp',
-    jobName: '秘术',
-    jobIcon: '/images/HeroBagPanel/class_icon_s_fs.webp',
-    elementName: '火属性',
-    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagFire03.webp',
-    tip: '群体高爆发 / 灼烧伤害'
-  },
-  {
-    name: '阿娜洛洁',
-    rare: 5,
-    qImg: '/images/chara/Q/hero_043.webp',
-    jobName: '支援',
-    jobIcon: '/images/HeroBagPanel/class_icon_s_fz.webp',
-    elementName: '水属性',
-    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagWater03.webp',
-    tip: '全队治疗 / 驱散负面效果'
-  },
-  {
-    name: '菲莉娜',
-    rare: 4,
-    qImg: '/images/chara/Q/hero_049.webp',
-    jobName: '近卫',
-    jobIcon: '/images/HeroBagPanel/class_icon_s_zs.webp',
-    elementName: '风属性',
-    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagWind03.webp',
-    tip: '攻防一体 / 破甲反击'
-  },
-  {
-    name: '米拉贝尔',
-    rare: 5,
-    qImg: '/images/chara/Q/hero_050.webp',
-    jobName: '突袭',
-    jobIcon: '/images/HeroBagPanel/class_icon_s_ck.webp',
-    elementName: '火属性',
-    elementIcon: '/images/HeroGachaShowPanel_Atlas/spGachaTagFire03.webp',
-    tip: '单体刺杀 / 弱点暴击收割'
+/** 职业 / 元素 slug 映射（与 gameMappings.js 同源，这里只需数字键） */
+const JOB_SLUGS = { 1: 'zs', 2: 'qs', 3: 'fs', 4: 'yx', 5: 'ck', 6: 'fz' }
+const ELEMENT_SLUGS = { 1: 'Water', 2: 'Fire', 3: 'Wind', 4: 'Ground' }
+
+/**
+ * 首屏数据加载。
+ *
+ * 🔴 失败不阻塞页面：loadHomeConfig() 内部已回落默认值，这里不做 try/catch，
+ *    只是把结果铺到各个 ref 上。任何板块有问题都只影响该板块。
+ */
+async function loadHomeContent() {
+  const cfg = await loadHomeConfig()
+  bannerList.value = cfg.banners
+  noticesData.value = cfg.notices
+  coreLinks.value = cfg.coreLinks
+  toolLinks.value = cfg.toolLinks
+  homeBlocks.value = cfg.blocks
+
+  // 角色需要 join heroes.json（与 /heroes 共用同一份数据源）
+  try {
+    const res = await fetch('/data/parsed/heroes.json')
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    featuredHeroes.value = resolveHeroes(cfg.heroes, data.heroes || data.list || [])
+  } catch (err) {
+    console.warn('[home] heroes.json 加载失败，角色区留空：', err?.message || err)
+    featuredHeroes.value = []
   }
-]
+
+  configLoading.value = false
+
+  // 数据到位后重启轮播（初始 bannerList 为空，轮播定时器此时才有内容）
+  startCarousel()
+}
 
 onMounted(() => {
-  startCarousel()
+  loadHomeContent()
+
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateDesktopState)
   }
@@ -1131,20 +1177,6 @@ onBeforeUnmount(() => {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-.notices-more-link {
-  font-size: 12px;
-  color: #725638;
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.notices-more-link:hover {
-  color: #c69234;
-}
-
 .notices-body-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
@@ -1223,6 +1255,21 @@ onBeforeUnmount(() => {
   color: #8a7359;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+}
+
+/*
+ * 空态占位：
+ * 公告/底栏在后台被清空时显示，避免出现一片无解释的空白区。
+ * 刻意做成低对比度的提示，不与真实内容抢注意力。
+ */
+.notice-empty {
+  padding: 18px 12px;
+  text-align: center;
+  font-size: 12px;
+  color: #9a8a75;
+  border: 1px dashed rgba(143, 115, 81, 0.35);
+  border-radius: 4px;
+  background: rgba(143, 115, 81, 0.05);
 }
 
 /* 官方更新公告特色速览卡 */
@@ -1555,6 +1602,16 @@ onBeforeUnmount(() => {
   color: #fff;
 }
 
+/*
+ * 角标配色：后台只允许 5 个预设键（red/green/gold/teal/gray），
+ * 由 BadgeClass() 白名单映射到这些类名。新增颜色要同时改 JS 与这里。
+ */
+.tool-tag.is-badge-red   { background: #8b0000; color: #fff; }
+.tool-tag.is-badge-green { background: #4b7a78; color: #fff; }
+.tool-tag.is-badge-gold  { background: #b8860b; color: #2b1f15; }
+.tool-tag.is-badge-teal  { background: #2f6f6b; color: #fff; }
+.tool-tag.is-badge-gray  { background: #7a6a56; color: #fff; }
+
 .tool-desc {
   font-size: 12px;
   color: #6b5134;
@@ -1823,6 +1880,32 @@ onBeforeUnmount(() => {
   color: #54361a;
   font-weight: 700;
   font-size: 12.5px;
+  display: flex;
+  align-items: center;
+}
+
+.daily-item.is-clickable {
+  cursor: pointer;
+}
+
+.daily-item.is-clickable:hover {
+  background: #f5e9d3;
+  border-color: #c69234;
+  transform: translateY(-1px);
+}
+
+.daily-item-arrow {
+  margin-left: 6px;
+  font-size: 13px;
+  color: #8f7351;
+  font-weight: 800;
+  display: inline-block;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.daily-item.is-clickable:hover .daily-item-arrow {
+  transform: translateX(2px);
+  color: #c69234;
 }
 
 /* ==========================================================================
@@ -1833,7 +1916,7 @@ onBeforeUnmount(() => {
   inset: 0;
   background: rgba(10, 6, 3, 0.72);
   backdrop-filter: blur(3px);
-  z-index: 1000;
+  z-index: 3000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2038,16 +2121,6 @@ onBeforeUnmount(() => {
   background: linear-gradient(180deg, #6a4a26, #483218);
   color: #fff4e0;
   border-color: #926f3e;
-}
-
-.dark-mode .notices-more-link,
-.dark-theme .notices-more-link {
-  color: #bfa988;
-}
-
-.dark-mode .notices-more-link:hover,
-.dark-theme .notices-more-link:hover {
-  color: #f7ebd7;
 }
 
 .dark-mode .notice-list-item,

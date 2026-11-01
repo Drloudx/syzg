@@ -3373,6 +3373,18 @@ export async function onRequest(context) {
       return await listRecent(env, { fresh })
     }
 
+    /*
+     * 首页内容（公开读）：一次请求拿全 5 块配置。
+     * 60 秒 isolate 内存缓存；?fresh=1 强制回源（后台保存后核对用）。
+     * 前端失败时必须回落到内置 DEFAULT_* 常量，不能整页白屏。
+     */
+    if (path === '/api/home-config') {
+      if (request.method !== 'GET') return bad(ERR.fallback, 405)
+      const fresh = url.searchParams.get('fresh') === '1'
+      const data = await getHomeConfig(env, { fresh })
+      return json({ ok: true, ...data })
+    }
+
     if (isAdminPath) {
       /*
        * 鉴权：必须是**已登录且 role >= 1** 的账号（见 adminSession）。
@@ -3412,6 +3424,36 @@ export async function onRequest(context) {
       if (path === '/api/admin/ping') {
         if (request.method !== 'GET') return bad(ERR.fallback, 405)
         return json({ ok: true, role: Number(actor.role) || 0 })
+      }
+
+      /*
+       * 首页内容管理：**仅超管**（role >= 2），与「系统设置」同级。
+       *
+       * 为什么卡超管而非管理员：这些内容直接决定首页对外的第一印象，
+       * 且「区块存在与否」本身就是站点结构决策，和审核词表一样属于口径的根，
+       * 不该让多个管理员各改一套。
+       *
+       * 读管理端（含已停用项）也是超管 —— 普通管理员不需要看到草稿内容。
+       */
+      if (path === '/api/admin/home') {
+        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+        if (request.method !== 'GET') return bad(ERR.fallback, 405)
+        return await adminHomeGet(env)
+      }
+
+      // 公告：单条 CRUD（可增减的流式内容）
+      if (path === '/api/admin/home/notices') {
+        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+        if (!['POST', 'PATCH', 'DELETE'].includes(request.method)) return bad(ERR.fallback, 405)
+        return await adminNoticeWrite(env, request, actor, request.method, nowSec())
+      }
+
+      // 四块固定/整组内容：PUT 整组替换
+      if (path.startsWith('/api/admin/home/')) {
+        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+        if (request.method !== 'PUT') return bad(ERR.fallback, 405)
+        const section = path.slice('/api/admin/home/'.length)
+        return await adminHomePut(env, request, actor, section, nowSec())
       }
 
       /*
@@ -3484,3 +3526,561 @@ export async function onRequest(context) {
     return bad(ERR.server, 500)
   }
 }
+
+/* ============================================================
+ * 首页内容（2026-11-01，迁移第 12 步）
+ * 设计依据：docs/context/technical/HOME_CONTENT.md
+ *
+ * 五张表：notices / home_banners / home_links / home_heroes / home_blocks
+ * 权限：全部管理端点要求 role >= ROLE_SUPER（与「系统设置」同级）
+ * 缓存：公开读接口在本 isolate 内存里缓存 60 秒
+ * ============================================================ */
+
+/** 公开读缓存：isolate 内存，60 秒。?fresh=1 可跳过 */
+const HOME_CONFIG_CACHE_MS = 60_000
+let homeConfigCache = null
+let homeConfigCacheAt = 0
+
+/**
+ * 公告排序：**固定项按 slot 插回原位**，滚动项按日期倒序填剩余空位。
+ *
+ * 为什么不能只靠 SQL 的 ORDER BY：
+ *   站点频道现设计是「第 1 条免责（pin slot=1）、第 4 条社区规则（pin slot=4），
+ *   中间 2 条是滚动项」。单纯把 pin 排前面会变成「两条都挤到最上」，
+ *   与页面既定布局不符。所以把「按 slot 定位」和「按日期倒序补空位」在应用层合并。
+ *
+ * @param {Array} rows 同频道的公告行（已按 date DESC 排好）
+ * @returns {Array} 最终顺序
+ */
+function orderNotices(rows) {
+  const pins = rows.filter((r) => r.tier === 'pin' && Number.isFinite(r.slot))
+  const normals = rows.filter((r) => !(r.tier === 'pin' && Number.isFinite(r.slot)))
+  if (!pins.length) return normals
+
+  const total = rows.length
+  const out = new Array(total).fill(null)
+
+  // 先把固定项放到各自 slot（slot 从 1 开始，越界则退化为顺序填）
+  for (const p of pins) {
+    const idx = Math.min(Math.max(Number(p.slot) - 1, 0), total - 1)
+    if (out[idx] === null) out[idx] = p
+    else out[out.indexOf(null)] = p
+  }
+  // 空位按日期倒序填入滚动项
+  let ni = 0
+  for (let i = 0; i < total; i++) {
+    if (out[i] === null && ni < normals.length) out[i] = normals[ni++]
+  }
+  // 槽位多于公告数时，数组尾部可能有 null，过滤掉
+  return out.filter(Boolean)
+}
+
+/** 统一的空值兜底：D1 里没有行时返回空数组，前端用 DEFAULT_* 顶上 */
+async function loadHomeConfig(env) {
+  const [notices, banners, links, heroes, blocks] = await Promise.all([
+    env.DB.prepare(
+      `SELECT * FROM notices WHERE is_active = 1
+       ORDER BY channel, date DESC`
+    ).all(),
+    env.DB.prepare(
+      'SELECT * FROM home_banners WHERE is_active = 1 ORDER BY sort_order, id'
+    ).all(),
+    env.DB.prepare('SELECT * FROM home_links WHERE is_active = 1 ORDER BY section, slot').all(),
+    env.DB.prepare('SELECT * FROM home_heroes WHERE is_active = 1 ORDER BY slot').all(),
+    env.DB.prepare('SELECT * FROM home_blocks WHERE is_active = 1').all()
+  ])
+
+  const noticeRows = notices.results || []
+  return {
+    notices: [
+      ...orderNotices(noticeRows.filter((r) => r.channel === 'site')),
+      ...orderNotices(noticeRows.filter((r) => r.channel === 'official'))
+    ].map(cloneNotice),
+    banners: (banners.results || []).map(cloneBanner),
+    links: (links.results || []).map(cloneLink),
+    heroes: (heroes.results || []).map(cloneHero),
+    blocks: (blocks.results || []).map(cloneBlock)
+  }
+}
+
+/** 行 → 公开 JSON（去掉内部字段，features_json 解析成数组） */
+const cloneNotice = (r) => ({
+  id: r.id,
+  channel: r.channel,
+  tier: r.tier,
+  slot: r.slot,
+  title: r.title,
+  content: r.content,
+  date: r.date,
+  tagText: r.tag_text,
+  tagClass: r.tag_class,
+  version: r.version,
+  features: parseJsonArray(r.features_json),
+  sourceUrl: r.source_url
+})
+
+const cloneBanner = (r) => ({
+  id: r.id,
+  title: r.title,
+  description: r.description,
+  tagText: r.tag_text,
+  tagClass: r.tag_class,
+  subTag: r.sub_tag,
+  image: r.image_url,
+  bgColor: r.bg_color,
+  blendStart: r.blend_start,
+  btnText: r.btn_text,
+  actionType: r.action_type,
+  actionValue: r.action_value,
+  sortOrder: r.sort_order
+})
+
+const cloneLink = (r) => ({
+  section: r.section,
+  slot: r.slot,
+  title: r.title,
+  description: r.description,
+  route: r.route,
+  queryString: r.query_string,
+  iconSource: r.icon_source,
+  iconUrl: r.icon_url,
+  badgeText: r.badge_text,
+  badgeColor: r.badge_color
+})
+
+const cloneHero = (r) => ({
+  slot: r.slot,
+  heroId: r.hero_id,
+  tip: r.tip
+})
+
+const cloneBlock = (r) => ({
+  section: r.section,
+  title: r.title,
+  subtitle: r.subtitle,
+  rows: parseJsonArray(r.rows_json)
+})
+
+/** JSON 列容错解析：坏了就当空数组，不让首页整页炸掉 */
+function parseJsonArray(raw) {
+  if (!raw) return []
+  try {
+    const v = JSON.parse(raw)
+    return Array.isArray(v) ? v : []
+  } catch {
+    return []
+  }
+}
+
+/**
+ * 公开读：GET /api/home-config
+ *
+ * 缓存 60 秒。理由：首页每次访问都打一次这个端点，5 张表的全量读
+ * 在 D1 免费额度下虽够用，但没必要每次都读。60 秒足够让「后台改完刷新即见」，
+ * 又能把高峰期的重复读压掉。
+ * 想绕过缓存（后台保存后立即核对）用 `?fresh=1`。
+ */
+async function getHomeConfig(env, { fresh = false } = {}) {
+  const now = Date.now()
+  if (!fresh && homeConfigCache && now - homeConfigCacheAt < HOME_CONFIG_CACHE_MS) {
+    return homeConfigCache
+  }
+  const data = await loadHomeConfig(env)
+  homeConfigCache = data
+  homeConfigCacheAt = now
+  return data
+}
+
+/** 后台保存后让缓存失效，避免「改完还是旧内容」 */
+function invalidateHomeConfigCache() {
+  homeConfigCache = null
+  homeConfigCacheAt = 0
+}
+
+/* ---------- 写操作：公告单条 CRUD ---------- */
+
+const NOTICE_FIELDS = {
+  channel: 'channel',
+  tier: 'tier',
+  slot: 'slot',
+  title: 'title',
+  content: 'content',
+  date: 'date',
+  tagText: 'tag_text',
+  tagClass: 'tag_class',
+  version: 'version',
+  sourceUrl: 'source_url',
+  isActive: 'is_active'
+}
+
+/** 校验公告 payload；返回 { error } 或 { values } */
+function normalizeNotice(body) {
+  const title = String(body?.title || '').trim()
+  if (!title) return { error: '标题不能为空' }
+  const channel = body?.channel === 'official' ? 'official' : 'site'
+  const tier = body?.tier === 'pin' ? 'pin' : 'normal'
+  const date = String(body?.date || '').trim()
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return { error: '日期需为 YYYY-MM-DD' }
+  const slot = tier === 'pin' && Number.isFinite(Number(body?.slot)) ? Number(body.slot) : null
+  return {
+    values: {
+      channel,
+      tier,
+      slot,
+      title,
+      content: body?.content == null ? null : String(body.content),
+      date,
+      tag_text: body?.tagText == null ? null : String(body.tagText),
+      tag_class: body?.tagClass == null ? null : String(body.tagClass),
+      version: body?.version == null ? null : String(body.version),
+      features_json: Array.isArray(body?.features) ? JSON.stringify(body.features) : null,
+      source_url: body?.sourceUrl == null ? null : String(body.sourceUrl),
+      is_active: body?.isActive === 0 || body?.isActive === false ? 0 : 1
+    }
+  }
+}
+
+/* ---------- 写操作：四块固定槽位，整组 PUT ---------- */
+
+const MAX_SLOT = 4
+
+function normalizeBanners(list) {
+  if (!Array.isArray(list)) return { error: 'banners 需为数组' }
+  const out = []
+  for (const [i, b] of list.entries()) {
+    const title = String(b?.title || '').trim()
+    if (!title) return { error: `第 ${i + 1} 张海报缺少标题` }
+    const type = ['route', 'notice', 'external'].includes(b?.actionType) ? b.actionType : 'route'
+    const value = String(b?.actionValue || '').trim()
+    if (type === 'external' && value && !/^https:\/\//i.test(value)) {
+      return { error: `第 ${i + 1} 张海报的外链必须是 https:// 开头` }
+    }
+    if (/^(javascript|data):/i.test(value)) {
+      return { error: `第 ${i + 1} 张海报的链接含非法协议` }
+    }
+    out.push({
+      id: String(b?.id || '').trim() || `banner-${Date.now()}-${i}`,
+      title,
+      description: b?.description == null ? null : String(b.description),
+      tag_text: b?.tagText == null ? null : String(b.tagText),
+      tag_class: b?.tagClass == null ? null : String(b.tagClass),
+      sub_tag: b?.subTag == null ? null : String(b.subTag),
+      image_url: b?.image == null ? null : String(b.image),
+      bg_color: b?.bgColor == null ? null : String(b.bgColor),
+      blend_start: b?.blendStart == null ? null : String(b.blendStart),
+      btn_text: b?.btnText == null ? null : String(b.btnText),
+      action_type: type,
+      action_value: value || null,
+      sort_order: i + 1,
+      is_active: b?.isActive === 0 || b?.isActive === false ? 0 : 1
+    })
+  }
+  return { values: out }
+}
+
+function normalizeLinks(section, list) {
+  if (!['core', 'tool'].includes(section)) return { error: 'section 需为 core 或 tool' }
+  if (!Array.isArray(list)) return { error: 'links 需为数组' }
+  if (list.length > MAX_SLOT) return { error: `${section} 最多 ${MAX_SLOT} 格` }
+  const out = []
+  for (const [i, l] of list.entries()) {
+    const title = String(l?.title || '').trim()
+    const route = String(l?.route || '').trim()
+    if (!title) return { error: `第 ${i + 1} 格缺少标题` }
+    if (!route.startsWith('/')) return { error: `第 ${i + 1} 格的路由需以 / 开头` }
+    out.push({
+      section,
+      slot: i + 1,
+      title,
+      description: l?.description == null ? null : String(l.description),
+      route,
+      query_string: l?.queryString == null ? null : String(l.queryString),
+      icon_source: l?.iconSource === 'custom' ? 'custom' : 'nav',
+      icon_url: l?.iconUrl == null ? null : String(l.iconUrl),
+      badge_text: l?.badgeText == null ? null : String(l.badgeText),
+      badge_color: l?.badgeColor == null ? null : String(l.badgeColor),
+      is_active: l?.isActive === 0 || l?.isActive === false ? 0 : 1
+    })
+  }
+  return { values: out }
+}
+
+function normalizeHeroes(list) {
+  if (!Array.isArray(list)) return { error: 'heroes 需为数组' }
+  if (list.length > MAX_SLOT) return { error: `核心角色最多 ${MAX_SLOT} 格` }
+  const out = []
+  for (const [i, h] of list.entries()) {
+    const heroId = String(h?.heroId || '').trim()
+    if (!heroId) return { error: `第 ${i + 1} 格缺少 heroId` }
+    out.push({
+      slot: i + 1,
+      hero_id: heroId,
+      tip: h?.tip == null ? null : String(h.tip),
+      is_active: h?.isActive === 0 || h?.isActive === false ? 0 : 1
+    })
+  }
+  return { values: out }
+}
+
+/**
+ * 底栏行内行动类型白名单。
+ *
+ * 🔴 必须校验：`rows_json` 是整体透传的 JSON，不校验的话
+ *    `actionType='external', actionValue='javascript:alert(1)'` 会原样入库。
+ *    前端 dispatchAction 有第二道 https 校验挡着，但数据层的闸不能只靠前端
+ *    —— 将来若导出、其他端渲染、或后台预览直接插 DOM，就没保护了。
+ */
+const BLOCK_ACTION_TYPES = new Set(['none', 'route', 'notice', 'external'])
+
+/** 校验并规整底栏的一行；返回 { row } 或 { error } */
+function normalizeBlockRow(raw, sectionLabel, rowIndex) {
+  const where = `${sectionLabel}第 ${rowIndex + 1} 行`
+  const actionType = BLOCK_ACTION_TYPES.has(raw?.actionType) ? raw.actionType : 'none'
+  const actionValue = raw?.actionValue == null ? '' : String(raw.actionValue).trim()
+
+  if (actionType === 'route' && actionValue && !actionValue.startsWith('/')) {
+    return { error: `${where}：站内跳转的路径需以 / 开头` }
+  }
+  if (actionType === 'external' && actionValue) {
+    if (/^(javascript|data|vbscript):/i.test(actionValue)) {
+      return { error: `${where}：链接含非法协议` }
+    }
+    if (!/^https:\/\//i.test(actionValue)) {
+      return { error: `${where}：外部链接必须是 https:// 开头` }
+    }
+  }
+  if (actionType === 'notice' && actionValue) {
+    // 公告 id 允许字母数字与连字符，不允许带协议或路径
+    if (/[\/\\]|^https?:/i.test(actionValue)) {
+      return { error: `${where}：公告 id 不能包含协议或斜杠` }
+    }
+  }
+
+  return {
+    row: {
+      tag: raw?.tag == null ? '' : String(raw.tag),
+      label: raw?.label == null ? '' : String(raw.label),
+      text: raw?.text == null ? '' : String(raw.text),
+      actionType,
+      actionValue: actionValue || ''
+    }
+  }
+}
+
+function normalizeBlocks(list) {
+  if (!Array.isArray(list)) return { error: 'blocks 需为数组' }
+  const out = []
+  for (const [i, blk] of list.entries()) {
+    const section = blk?.section === 'help' ? 'help' : 'guide'
+    const title = String(blk?.title || '').trim()
+    if (!title) return { error: `第 ${i + 1} 个底栏缺少标题` }
+
+    // 逐行校验并规整（不透传原始对象，避免夹带未声明的字段）
+    let rowsJson = null
+    if (Array.isArray(blk?.rows)) {
+      const rows = []
+      for (const [ri, raw] of blk.rows.entries()) {
+        const { row, error } = normalizeBlockRow(raw, `「${title}」`, ri)
+        if (error) return { error }
+        rows.push(row)
+      }
+      rowsJson = JSON.stringify(rows)
+    }
+
+    out.push({
+      section,
+      title,
+      subtitle: blk?.subtitle == null ? null : String(blk.subtitle),
+      rows_json: rowsJson,
+      is_active: blk?.isActive === 0 || blk?.isActive === false ? 0 : 1
+    })
+  }
+  return { values: out }
+}
+
+/* ---------- 管理端：读 ---------- */
+
+/** GET /api/admin/home —— 后台读全量（含已停用项），不走公开缓存 */
+async function adminHomeGet(env) {
+  const [notices, banners, links, heroes, blocks] = await Promise.all([
+    env.DB.prepare('SELECT * FROM notices ORDER BY channel, CASE tier WHEN \'pin\' THEN 0 ELSE 1 END, slot, date DESC').all(),
+    env.DB.prepare('SELECT * FROM home_banners ORDER BY sort_order, id').all(),
+    env.DB.prepare('SELECT * FROM home_links ORDER BY section, slot').all(),
+    env.DB.prepare('SELECT * FROM home_heroes ORDER BY slot').all(),
+    env.DB.prepare('SELECT * FROM home_blocks').all()
+  ])
+  return json({
+    ok: true,
+    notices: (notices.results || []).map((r) => ({ ...cloneNotice(r), isActive: Number(r.is_active) })),
+    banners: (banners.results || []).map((r) => ({ ...cloneBanner(r), isActive: Number(r.is_active) })),
+    links: (links.results || []).map((r) => ({ ...cloneLink(r), isActive: Number(r.is_active) })),
+    heroes: (heroes.results || []).map((r) => ({ ...cloneHero(r), isActive: Number(r.is_active) })),
+    blocks: (blocks.results || []).map((r) => ({ ...cloneBlock(r), isActive: Number(r.is_active) }))
+  })
+}
+
+/* ---------- 管理端：公告单条 CRUD ---------- */
+
+/**
+ * POST /api/admin/home/notices —— 新建公告
+ * PATCH  /api/admin/home/notices —— 修改（body 需带 id）
+ * DELETE /api/admin/home/notices —— 软删（is_active=0）
+ *
+ * 为什么公告用单条 CRUD、其余四块用整组 PUT：
+ *   公告是**可增减**的流式内容（会持续新增），单条操作才能并发安全；
+ *   其余四块是固定槽位，整组提交天然完成排序与增删。
+ */
+async function adminNoticeWrite(env, request, actor, method, ts) {
+  const body = await request.json().catch(() => null)
+  if (!body) return bad(ERR.badRequest)
+
+  if (method === 'DELETE') {
+    const id = String(body.id || '').trim()
+    if (!id) return bad(ERR.badRequest)
+    const r = await env.DB.prepare(
+      'UPDATE notices SET is_active = 0, updated_at = ?2 WHERE id = ?1'
+    ).bind(id, ts).run()
+    if (!r.meta?.changes) return bad(ERR.badRequest)
+    await writeAudit(env, actor, { action: 'home.notice.delete', targetType: 'notice', targetId: id }, ts)
+    invalidateHomeConfigCache()
+    return json({ ok: true })
+  }
+
+  const { values, error } = normalizeNotice(body)
+  if (error) return json({ ok: false, message: error }, 400)
+
+  if (method === 'POST') {
+    const id = String(body.id || '').trim() || `notice-${ts}-${Math.random().toString(36).slice(2, 8)}`
+    await env.DB.prepare(
+      `INSERT INTO notices
+         (id, channel, tier, slot, title, content, date, tag_text, tag_class,
+          version, features_json, source_url, is_active, created_at, updated_at)
+       VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?14)`
+    ).bind(
+      id, values.channel, values.tier, values.slot, values.title, values.content,
+      values.date, values.tag_text, values.tag_class, values.version,
+      values.features_json, values.source_url, values.is_active, ts
+    ).run()
+    await writeAudit(env, actor, { action: 'home.notice.create', targetType: 'notice', targetId: id, detail: values.title }, ts)
+    invalidateHomeConfigCache()
+    return json({ ok: true, id })
+  }
+
+  // PATCH
+  const id = String(body.id || '').trim()
+  if (!id) return bad(ERR.badRequest)
+  await env.DB.prepare(
+    `UPDATE notices SET
+       channel = ?2, tier = ?3, slot = ?4, title = ?5, content = ?6, date = ?7,
+       tag_text = ?8, tag_class = ?9, version = ?10, features_json = ?11,
+       source_url = ?12, is_active = ?13, updated_at = ?14
+     WHERE id = ?1`
+  ).bind(
+    id, values.channel, values.tier, values.slot, values.title, values.content,
+    values.date, values.tag_text, values.tag_class, values.version,
+    values.features_json, values.source_url, values.is_active, ts
+  ).run()
+  await writeAudit(env, actor, { action: 'home.notice.update', targetType: 'notice', targetId: id, detail: values.title }, ts)
+  invalidateHomeConfigCache()
+  return json({ ok: true })
+}
+
+/* ---------- 管理端：四块整组 PUT ---------- */
+
+/**
+ * PUT /api/admin/home/{banners|links|heroes|blocks} —— 整组替换
+ *
+ * 事务语义：先删后插。数量固定或可增减都由上层决定，这里只保证
+ * 「提交的数组 == 库里的最终状态」，顺带完成排序。
+ */
+async function adminHomePut(env, request, actor, section, ts) {
+  const body = await request.json().catch(() => null)
+  if (!body) return bad(ERR.badRequest)
+
+  const statements = []
+  let auditAction = ''
+  let count = 0
+
+  if (section === 'banners') {
+    const { values, error } = normalizeBanners(body.banners)
+    if (error) return json({ ok: false, message: error }, 400)
+    statements.push(env.DB.prepare('DELETE FROM home_banners'))
+    for (const v of values) {
+      statements.push(
+        env.DB.prepare(
+          `INSERT INTO home_banners
+             (id, title, description, tag_text, tag_class, sub_tag, image_url,
+              bg_color, blend_start, btn_text, action_type, action_value,
+              sort_order, is_active, created_at, updated_at)
+           VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?15)`
+        ).bind(
+          v.id, v.title, v.description, v.tag_text, v.tag_class, v.sub_tag, v.image_url,
+          v.bg_color, v.blend_start, v.btn_text, v.action_type, v.action_value,
+          v.sort_order, v.is_active, ts
+        )
+      )
+    }
+    auditAction = 'home.banners.replace'
+    count = values.length
+  } else if (section === 'links') {
+    const sec = body.section === 'tool' ? 'tool' : 'core'
+    const { values, error } = normalizeLinks(sec, body.links)
+    if (error) return json({ ok: false, message: error }, 400)
+    statements.push(env.DB.prepare('DELETE FROM home_links WHERE section = ?1').bind(sec))
+    for (const v of values) {
+      statements.push(
+        env.DB.prepare(
+          `INSERT INTO home_links
+             (section, slot, title, description, route, query_string,
+              icon_source, icon_url, badge_text, badge_color, is_active)
+           VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)`
+        ).bind(
+          v.section, v.slot, v.title, v.description, v.route, v.query_string,
+          v.icon_source, v.icon_url, v.badge_text, v.badge_color, v.is_active
+        )
+      )
+    }
+    auditAction = `home.links.${sec}.replace`
+    count = values.length
+  } else if (section === 'heroes') {
+    const { values, error } = normalizeHeroes(body.heroes)
+    if (error) return json({ ok: false, message: error }, 400)
+    statements.push(env.DB.prepare('DELETE FROM home_heroes'))
+    for (const v of values) {
+      statements.push(
+        env.DB.prepare(
+          'INSERT INTO home_heroes (slot, hero_id, tip, is_active) VALUES (?1,?2,?3,?4)'
+        ).bind(v.slot, v.hero_id, v.tip, v.is_active)
+      )
+    }
+    auditAction = 'home.heroes.replace'
+    count = values.length
+  } else if (section === 'blocks') {
+    const { values, error } = normalizeBlocks(body.blocks)
+    if (error) return json({ ok: false, message: error }, 400)
+    statements.push(env.DB.prepare('DELETE FROM home_blocks'))
+    for (const v of values) {
+      statements.push(
+        env.DB.prepare(
+          'INSERT INTO home_blocks (section, title, subtitle, rows_json, is_active) VALUES (?1,?2,?3,?4,?5)'
+        ).bind(v.section, v.title, v.subtitle, v.rows_json, v.is_active)
+      )
+    }
+    auditAction = 'home.blocks.replace'
+    count = values.length
+  } else {
+    return bad(ERR.fallback, 404)
+  }
+
+  await env.DB.batch(statements)
+  await writeAudit(env, actor, {
+    action: auditAction,
+    targetType: 'home',
+    targetId: section,
+    detail: `${count} 条`
+  }, ts)
+  invalidateHomeConfigCache()
+  return json({ ok: true, count })
+}
+
+

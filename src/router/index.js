@@ -224,6 +224,13 @@ const routes = [
         name: 'admin-settings',
         component: () => import('../components/admin/AdminSettingsPanel.vue'),
         meta: { title: '后台 · 设置' }
+      },
+      {
+        // 首页内容管理：仅超管（服务端 role >= 2 强校验）
+        path: 'home',
+        name: 'admin-home',
+        component: () => import('../components/admin/AdminHomePanel.vue'),
+        meta: { title: '后台 · 首页管理' }
       }
     ]
   },
