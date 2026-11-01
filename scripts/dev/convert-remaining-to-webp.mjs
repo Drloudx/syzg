@@ -28,7 +28,44 @@ const { values } = parseArgs({ options: {
   apply: { type: 'boolean' },
   'backup-to': { type: 'string' },
   root: { type: 'string' },
+  /*
+   * 有损 WebP（2026-11-01 新增）。
+   *
+   * 默认走无损：PNG 无损 WebP 永远更优，且能保证像素零差异。
+   * 但 **JPEG 是无损转不得的** —— 它本身已是有损，无损 WebP 要存解码后像素，
+   * 体积会变大（本文件开头注释里的实测：2 个 JPEG 合计 +150 KB）。
+   *
+   * 照片类大图（首页海报）正确做法是「有损 WebP + 按显示尺寸缩放」：
+   * 实测 posters 623 KB → 370 KB（−40.6%），PSNR ≈ 36 dB，肉眼无差。
+   *
+   * 用了 --lossy 就不再走 verifyLossless（那套断言假定无损）。
+   */
+  lossy: { type: 'boolean' },
+  quality: { type: 'string' },
+  'max-width': { type: 'string' },
 } })
+
+const LOSSY = values.lossy
+const QUALITY = Number.parseInt(values.quality || '85', 10)
+const MAX_WIDTH = values['max-width'] ? Number.parseInt(values['max-width'], 10) : null
+if (LOSSY && (!Number.isFinite(QUALITY) || QUALITY < 1 || QUALITY > 100)) {
+  throw new Error(`--quality 需为 1..100 的整数，收到：${values.quality}`)
+}
+if (MAX_WIDTH !== null && (!Number.isFinite(MAX_WIDTH) || MAX_WIDTH < 16)) {
+  throw new Error(`--max-width 需为 ≥16 的整数，收到：${values['max-width']}`)
+}
+
+const { default: sharp } = await import('sharp')
+
+/** 按当前模式把源图编码成 WebP 字节 */
+async function encodeWebp(srcBuf) {
+  if (!LOSSY) return sharp(srcBuf).webp({ lossless: true, effort: 6 }).toBuffer()
+  const meta = await sharp(srcBuf).metadata()
+  let pipeline = sharp(srcBuf)
+  /* 只在超过目标宽度时缩小，避免把小图放大 */
+  if (MAX_WIDTH && meta.width && meta.width > MAX_WIDTH) pipeline = pipeline.resize({ width: MAX_WIDTH })
+  return pipeline.webp({ quality: QUALITY, effort: 5 }).toBuffer()
+}
 
 const rootDir = values.root ? join(projectRoot, values.root) : join(projectRoot, 'public')
 
@@ -48,8 +85,6 @@ if (!targets.length) {
   process.exit(0)
 }
 
-const { default: sharp } = await import('sharp')
-
 /** 无损校验：alpha 逐字节相同 + 不透明/半透明像素零 RGB 差异 */
 async function verifyLossless(srcBuf, webpBuf) {
   const a = await sharp(srcBuf).ensureAlpha().raw().toBuffer()
@@ -68,7 +103,7 @@ if (!values.apply) {
   const grew = []
   for (const f of targets) {
     const src = readFileSync(f)
-    const webp = await sharp(src).webp({ lossless: true, effort: 6 }).toBuffer()
+    const webp = await encodeWebp(src)
     oldTotal += src.length; newTotal += webp.length
     if (webp.length > src.length) grew.push({ f: relative(projectRoot, f), d: webp.length - src.length })
   }
@@ -96,21 +131,35 @@ for (const f of targets) {
   const to = f.replace(/\.(png|jpg|jpeg)$/i, '.webp')
   if (existsSync(to)) { failures.push(`${relative(projectRoot, f)}: 目标已存在`); failed++; continue }
   try {
-    const webp = await sharp(src).webp({ lossless: true, effort: 6 }).toBuffer()
+    const webp = await encodeWebp(src)
     if (backupDir) {
       const dest = join(backupDir, relative(rootDir, f))
       mkdirSync(dirname(dest), { recursive: true })
       copyFileSync(f, dest)
     }
     writeFileSync(to, webp)
-    // 写盘后复核（针对实际写入的字节，而非内存缓冲）
+    /*
+     * 写盘后复核。
+     * 无损模式：alpha 逐字节相同 + 可见像素零差异（严格）。
+     * 有损模式：那套断言必然失败，改为「可解码 + 尺寸合理」的弱校验。
+     */
     const readBack = readFileSync(to)
-    const bad = await verifyLossless(src, readBack)
-    if (bad) {
-      unlinkSync(to)
-      failures.push(`${relative(projectRoot, f)}: 复核失败(${bad})，已回滚`)
-      failed++
-      continue
+    if (LOSSY) {
+      const meta = await sharp(readBack).metadata()
+      if (meta.format !== 'webp' || !meta.width) {
+        unlinkSync(to)
+        failures.push(`${relative(projectRoot, f)}: 产物无法解码为 WebP，已回滚`)
+        failed++
+        continue
+      }
+    } else {
+      const bad = await verifyLossless(src, readBack)
+      if (bad) {
+        unlinkSync(to)
+        failures.push(`${relative(projectRoot, f)}: 复核失败(${bad})，已回滚`)
+        failed++
+        continue
+      }
     }
     unlinkSync(f)
     converted++
