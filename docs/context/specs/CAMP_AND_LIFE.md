@@ -253,6 +253,17 @@ URL 支持 `pool/tag/q`，`id` 打开详情。
 | 低价 | `> 0.76` | `cart_price_low` |
 | 极低 | 其余（`≥ 0.6`） | `cart_price_min` |
 
+### 市场卡片排版
+
+| 项 | 规则 |
+| --- | --- |
+| 主价签 | 用 `cart_price_*` 整条精灵（64×28，箭头已画在图里），内放银币 `item_00001` + 数字；**九宫格** `border-width: 0 24px 0 8px` |
+| 上下 border 必须为 0 | 写 `border: 24px` 会真的占掉上下各 24px，把内容盒压成 0；`border-image-width` 只改绘制宽度 |
+| 5 档对照 | **不用**价签重复：卡片正文约 290px，5 条价签每条不足 55px（箭头 24 + 银币 17）必然压字，改用文字 + 小箭头 |
+| 库存与补货 | **只在 `buyIn = true` 时显示**，位置在卡片底部一行小字 |
+
+**为什么 `buyIn=false` 不显示库存**：`FreightMarketItemTemp.Init(typeId, num, haveNum, isBuy)` 的 `haveNum` 是市场当前存货，只在买入列表有意义；源码对 `isBuy && !marketItemConf.buyIn` 直接置遮罩，该货品市场根本不进货。标它的 `maxNum` / `addNum` 是编出来的信息（51 件里 20 件属此类）。
+
 ### 与游戏的不一致：只有区间，没有当前价
 
 `priceScale` 是服务端下发（`FreightServerData.freightMarketData`），配置表里没有。页面**不显示当前价**，只给「基础价 × 档位阈值」的区间与该档代表价。

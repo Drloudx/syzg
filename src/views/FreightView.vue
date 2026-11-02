@@ -18,17 +18,7 @@
           :key="entry.key"
           :active="tier === entry.key"
           @click="setFilter('tier', entry.key)"
-        >
-          <img
-            v-if="tab === 'market'"
-            class="tier-pill__icon"
-            :src="tierIcon(entry)"
-            :alt="entry.label"
-            loading="lazy"
-            decoding="async"
-          />
-          {{ entry.label }}
-        </UiFilterPill>
+        >{{ entry.label }}</UiFilterPill>
       </UiFilterRow>
 
       <!-- 市场专属：采购方式 -->
@@ -64,32 +54,45 @@
                 <span v-else>仅能卖出</span>
                 <span v-if="good.sellOut && good.buyIn">· 可卖出</span>
               </div>
-              <!-- A 口径：显示基础价与 5 档各自的价格区间，不编造实时价 -->
+              <!--
+                A 口径：只给「基价 × 5 档阈值」的区间，不编造实时价。
+                主价签按游戏原版：`cart_price_*` 整条（64×28，右侧箭头已画在 sprite 内）里放
+                银币图标 item_00001 + 数字。默认显示基价（对应「持平」），
+                选中档位后换成该档的可能价区间。
+              -->
               <div class="good-entry__price">
-                <span class="good-entry__price-base">基价 {{ good.basePrice }}</span>
-                <template v-if="activeTier">
-                  <img class="good-entry__price-icon" :src="tierIcon(activeTier)" :alt="activeTier.label" />
-                  <span class="good-entry__price-range">
-                    {{ activeTier.label }} {{ tierRange(good, activeTier).low }} ~ {{ tierRange(good, activeTier).high }}
+                <span class="price-bar" :class="`price-bar--${activeTier ? activeTier.key : 'ori'}`">
+                  <img class="price-bar__coin" :src="coinIcon" alt="" aria-hidden="true" />
+                  <span class="price-bar__value">
+                    {{ activeTier ? `${tierRange(good, activeTier).low}~${tierRange(good, activeTier).high}` : good.basePrice }}
                   </span>
-                </template>
-                <span v-else class="good-entry__price-range">
-                  可能区间 {{ good.priceRange.low }} ~ {{ good.priceRange.high }}
+                </span>
+                <span class="good-entry__price-note">
+                  <template v-if="activeTier">{{ activeTier.label }}档可能价 · 基价 {{ good.basePrice }}</template>
+                  <template v-else>基价 · 可能 {{ good.priceRange.low }} ~ {{ good.priceRange.high }}</template>
                 </span>
               </div>
-              <div class="tier-strip">
-                <span
-                  v-for="entry in tiers"
-                  :key="entry.key"
-                  class="tier-strip__cell"
-                  :class="[`is-${entry.tone}`, { 'is-active': tier === entry.key }]"
-                >
-                  <img class="tier-strip__icon" :src="tierIcon(entry)" :alt="entry.label" loading="lazy" decoding="async" />
-                  <span class="tier-strip__label">{{ entry.label }}</span>
-                  <span class="tier-strip__value">{{ tierPrice(good, entry) }}</span>
+              <!--
+                5 档对照：文字 + 小箭头。
+                这块**不用**价格条 —— 卡片正文只有约 290px，5 条游戏价签每条不足 55px，
+                银币 + 三位数 + 24px 箭头必然互相压住。价签只在上面那条主价签上用。
+              -->
+              <div class="tier-compare">
+                <span v-for="entry in tiers" :key="entry.key" class="tier-compare__cell"
+                  :class="{ 'is-active': tier === entry.key }" :title="`${entry.label} ${tierRange(good, entry).low}~${tierRange(good, entry).high}`">
+                  <i class="tier-compare__arrow" :class="`tier-compare__arrow--${entry.key}`" aria-hidden="true"></i>
+                  <span class="tier-compare__label">{{ entry.label }}</span>
+                  <span class="tier-compare__value">{{ tierPrice(good, entry) }}</span>
                 </span>
               </div>
-              <p class="good-entry__extra">
+              <!--
+                库存与补货只在「可买入」时显示。
+                依据 `FreightMarketItemTemp.Init(typeId, num, haveNum, isBuy)`：
+                `haveNum` 是市场当前存货，只在买入列表有意义；`buyIn=false` 的货品
+                市场根本不进货（源码 `isBuy && !marketItemConf.buyIn` 直接置遮罩），
+                给它标库存上限与补货周期是编出来的信息。
+              -->
+              <p v-if="good.buyIn" class="good-entry__stock">
                 库存上限 {{ good.maxNum }} · 每 {{ formatDuration(good.addTime) }} 补 {{ good.addNum }}
               </p>
             </div>
@@ -240,7 +243,8 @@ const dailyTarget = computed(() => {
   return first?.num ?? 0
 })
 
-const tierIcon = entry => `/images/FreightPanel_Atlas/${entry.sprite}.webp`
+/** 银币图标：游戏货币栏与市场价签用的都是 item_00001 */
+const coinIcon = computed(() => getImageUrl('/Common_ItemIcon/item_00001.webp'))
 const npcUrl = name => `/images/FreightPanel_Atlas/${name}.webp`
 
 const QUALITY_LABELS = { 1: '普通', 2: '精良', 3: '稀有', 4: '史诗', 5: '传说' }
@@ -375,26 +379,71 @@ onMounted(loadData)
 /* ── 市场 ── */
 .freight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .good-entry { display: flex; align-items: flex-start; gap: 12px; padding: 12px; min-width: 0; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
-.good-entry :deep(.ui-item-card) { flex: 0 0 70px; margin: 0; }
+.good-entry :deep(.ui-item-card) { flex: 0 0 70px; width: 70px; margin: 0; }
 .good-entry :deep(.ui-item-card__name) { display: none; }
-.good-entry__body { flex: 1; min-width: 0; }
+.good-entry__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .good-entry__name { margin: 0 0 6px; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
 .good-entry__meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; color: var(--text-muted); font-size: 13px; }
 .good-entry__price { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; font-size: 13px; }
-.good-entry__price-base { color: var(--text-main); font-weight: 600; }
-.good-entry__price-icon { width: 26px; height: 13px; object-fit: contain; }
-.good-entry__price-range { color: var(--accent-ink); font-weight: 600; }
-.good-entry__extra { margin: 8px 0 0; font-size: 12px; color: var(--text-muted); }
 
-.tier-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin-top: 8px; }
-.tier-strip__cell { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 2px; border-radius: 4px; background: rgba(143, 115, 81, 0.08); min-width: 0; box-shadow: inset 0 0 0 1px transparent; }
-.tier-strip__cell.is-high { background: rgba(177, 93, 0, 0.14); }
-.tier-strip__cell.is-low { background: rgba(85, 117, 116, 0.14); }
-.tier-strip__cell.is-active { box-shadow: inset 0 0 0 2px var(--accent-ink); }
-.tier-strip__icon { width: 26px; height: 12px; object-fit: contain; }
-.tier-strip__label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
-.tier-strip__value { font-size: 12px; font-weight: 700; color: var(--text-main); }
-.tier-pill__icon { width: 22px; height: 11px; object-fit: contain; margin-right: 4px; vertical-align: middle; }
+/*
+ * 价格条 —— 与游戏市场列表同构。
+ *
+ * 背景用 `cart_price_*`（64×28，右侧箭头已画在 sprite 内）。图集给的是
+ * borderLeft 8 / borderRight 24：左边 8px 圆角、右边 24px 箭头，中段拉伸。
+ * 游戏里这几条 sprite 是 `mType: 1`（Sliced）+ `mWidth: 148`，所以这里也用九宫格，
+ * 不能用 `background-size: 100% 100%` —— 整图拉伸会把箭头横向扯宽。
+ *
+ * 🔴 左右用 border-width、上下必须为 **0**：原来写 `border: 24px` 会真的占掉
+ *    上下各 24px，元素被撑到 76px 再把内容盒压成 0；而 `border-image-width`
+ *    只改绘制宽度、不改布局。所以这里显式 `border-width: 0 24px 0 8px`。
+ */
+.price-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex: none;
+  height: 28px;
+  padding: 0 2px 0 4px;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 0 24px 0 8px;
+  border-color: transparent;
+  border-image-slice: 0 24 0 8 fill;
+  border-image-width: 0 24px 0 8px;
+  border-image-repeat: stretch;
+  font-size: 12px;
+  line-height: 1;
+}
+.price-bar--max { border-image-source: url('/images/FreightPanel_Atlas/cart_price_max.webp'); }
+.price-bar--high { border-image-source: url('/images/FreightPanel_Atlas/cart_price_high.webp'); }
+.price-bar--ori { border-image-source: url('/images/FreightPanel_Atlas/cart_price_ori.webp'); }
+.price-bar--low { border-image-source: url('/images/FreightPanel_Atlas/cart_price_low.webp'); }
+.price-bar--min { border-image-source: url('/images/FreightPanel_Atlas/cart_price_min.webp'); }
+.price-bar__coin { width: 17px; height: 17px; flex: none; object-fit: contain; }
+.price-bar__value { font-weight: 700; color: #fff8e6; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7); white-space: nowrap; }
+
+.good-entry__price-note { font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+
+/*
+ * 5 档对照（纯文字 + 箭头字形）。
+ * 这里刻意不重复用游戏价签：卡片正文可用宽度约 290px，5 条价签每条不足 55px，
+ * 而一条价签光右侧箭头就占 24px、银币 17px —— 必然压字。
+ * 价签只在上面那条主价签上用一次，档位对照保持可读。
+ */
+.tier-compare { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin-top: 8px; }
+.tier-compare__cell { display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 0; padding: 3px 2px; border-radius: 4px; background: rgba(143, 115, 81, 0.07); }
+.tier-compare__cell.is-active { background: rgba(85, 117, 116, 0.2); box-shadow: inset 0 0 0 1px var(--accent-ink); }
+.tier-compare__arrow { display: block; width: 0; height: 0; margin-bottom: 1px; }
+.tier-compare__arrow--max { border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #d4553f; }
+.tier-compare__arrow--high { border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #d38a2e; }
+.tier-compare__arrow--ori { width: 10px; height: 3px; border-radius: 1px; background: #8c7d6c; }
+.tier-compare__arrow--low { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #a8b52c; }
+.tier-compare__arrow--min { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #4f9b45; }
+.tier-compare__label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+.tier-compare__value { font-size: 12px; font-weight: 700; color: var(--text-main); }
+/* 库存与补货：一行小字，与游戏里 market 列表底部的辅助信息同位置 */
+.good-entry__stock { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
 
 /* ── 订单 ── */
 .order-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
@@ -448,8 +497,9 @@ onMounted(loadData)
   .freight-content { padding-inline: 10px; }
   .freight-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .order-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .good-entry { padding: 10px; }
-  .tier-strip { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .good-entry { padding: 10px; gap: 8px; }
+  /* 手机上一行放不下 5 档：改成两行 */
+  .tier-compare { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .rule-row { grid-template-columns: 44px 62px 62px 62px minmax(0, 1fr); font-size: 12px; }
 }
 </style>
