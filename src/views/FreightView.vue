@@ -55,14 +55,14 @@
             <div class="good-entry__body">
               <!--
                 名字行：品质徽章 + 买入 / 卖出徽章。
-                三枚徽章都用同一套品质色边框（UiTag 的 badge-N 只换边框与文字色，
-                背景统一是 --quality-label-bg），所以一行里视觉是一组。
+                **只有品质徽章用品质色**（UiTag 的 badge-N）；买入 / 卖出走 UiTag 默认配色，
+                避免同排三枚彩色徽章抢视线 —— 品质色只用来表达品质。
               -->
               <div class="good-entry__head">
                 <h3 class="good-entry__name">{{ good.name }}</h3>
                 <UiTag :quality="good.quality">{{ qualityLabel(good.quality) }}</UiTag>
-                <UiTag v-if="good.buyIn" :quality="good.quality">买入</UiTag>
-                <UiTag v-if="good.sellOut" :quality="good.quality">卖出</UiTag>
+                <UiTag v-if="good.buyIn">买入</UiTag>
+                <UiTag v-if="good.sellOut">卖出</UiTag>
               </div>
               <!--
                 A 口径：只给「基价 × 5 档阈值」的区间，不编造实时价。
@@ -78,8 +78,8 @@
                   </span>
                 </span>
                 <span class="good-entry__price-note">
-                  <template v-if="activeTier">{{ activeTier.label }}档 {{ tierRange(good, activeTier).low }}~{{ tierRange(good, activeTier).high }} · 基价 {{ good.basePrice }}</template>
-                  <template v-else>基价 · 可能 {{ good.priceRange.low }} ~ {{ good.priceRange.high }}</template>
+                  <template v-if="activeTier">{{ activeTier.label }}档 · 基价 {{ good.basePrice }}</template>
+                  <template v-else>价格范围 {{ good.priceRange.low }} ~ {{ good.priceRange.high }}</template>
                 </span>
               </div>
               <!--

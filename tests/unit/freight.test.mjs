@@ -48,6 +48,40 @@ test('每件货品的价格区间 = 基础价 × (priceMin ~ priceMax)', () => {
 })
 
 /**
+ * 档位对比里那个数字的口径 —— 这是页面上最容易看错的一个值，必须有断言钉住。
+ *
+ * 页面显示 `round(基础价 × (该档下界 + 该档上界) / 2)`，即**该档价位区间的中值**。
+ * 它落在真实可能价范围内，但**不是游戏里的当前价**（priceScale 是服务端下发）。
+ * 悬停能看到该档的完整区间 `round(基价×下界) ~ round(基价×上界)`。
+ */
+test('档位对比值 = 该档区间中值 × 基础价，且落在该档真实区间内', () => {
+  const good = freight.goods.find(entry => entry.name === '金铃草')
+  assert.ok(good, '金铃草 应在市场货品里')
+  assert.equal(good.basePrice, 300)
+
+  const expected = [
+    { key: 'max', mid: 396, low: 372, high: 420 },
+    { key: 'high', mid: 348, low: 324, high: 372 },
+    { key: 'ori', mid: 300, low: 276, high: 324 },
+    { key: 'low', mid: 252, low: 228, high: 276 },
+    { key: 'min', mid: 204, low: 180, high: 228 }
+  ]
+
+  for (const row of expected) {
+    const tier = tiers.find(entry => entry.key === row.key)
+    assert.ok(tier, `档位 ${row.key} 应存在`)
+    const mid = Math.round(good.basePrice * ((tier.min + tier.max) / 2))
+    const low = Math.round(good.basePrice * tier.min)
+    const high = Math.round(good.basePrice * tier.max)
+    assert.equal(mid, row.mid, `${row.key} 中值`)
+    assert.equal(low, row.low, `${row.key} 区间下界`)
+    assert.equal(high, row.high, `${row.key} 区间上界`)
+    // 中值必须落在该档区间内，否则页面上的数字会与悬停区间自相矛盾
+    assert.ok(mid >= low && mid <= high, `${row.key} 中值应在 ${low}~${high} 内`)
+  }
+})
+
+/**
  * 判据来自 `FreightOrderItemTemp.cs:90`：
  *   money = (int)(Σ(item.sellPrice × items[].num) × orderValue + baseValue)
  * 向下取整，不是四舍五入。
