@@ -41,8 +41,8 @@ test('价格档位覆盖 priceMin ~ priceMax 全区间且不重叠', () => {
 test('每件货品的价格区间 = 基础价 × (priceMin ~ priceMax)', () => {
   assert.ok(freight.goods.length > 0)
   for (const good of freight.goods) {
-    assert.equal(good.priceRange.low, Math.round(good.basePrice * priceMin * 100) / 100)
-    assert.equal(good.priceRange.high, Math.round(good.basePrice * priceMax * 100) / 100)
+    assert.equal(good.priceRange.low, Math.round(good.basePrice * priceMin))
+    assert.equal(good.priceRange.high, Math.round(good.basePrice * priceMax))
     assert.ok(good.priceRange.low <= good.priceRange.high)
   }
 })

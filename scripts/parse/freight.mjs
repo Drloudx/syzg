@@ -75,7 +75,7 @@ function buildItemIndex() {
   return index
 }
 
-const money = value => Math.round(value * 100) / 100
+const money = value => Math.round(value)
 
 export function buildFreightFile() {
   const market = table(readJson('market.json'))
