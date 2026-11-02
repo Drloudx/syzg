@@ -12,6 +12,7 @@
 | **第一次接手 / 隔久了回来** | **[HANDOVER.md](docs/context/HANDOVER.md)**（总览：定位、目录、上手三步、红线、常见坑） |
 | 了解项目用途与用法 | [README.md](README.md) |
 | 当前进展 / 断点 / 待办 | [NOW.md](docs/context/NOW.md) |
+| **某次具体交接的工作区快照** | [docs/handover/](docs/handover/)（按期归档，最新在前） |
 | 跑起来 / 构建 / 验收 / 发布 | [RUNBOOK.md](docs/context/RUNBOOK.md) |
 | 目录、资源、部署、配置位置 | [MAP.md](docs/context/MAP.md) |
 | **域名迁移操作清单** | [DOMAIN_MIGRATION.md](docs/context/DOMAIN_MIGRATION.md)（CF / EdgeOne / DNSPod 逐步 + 验收 + 回退） |
