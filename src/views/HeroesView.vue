@@ -4,7 +4,7 @@
     <!-- 筛选区（羊皮纸面板） -->
     <UiFilterPanel class="filter-panel paper-panel">
       <template #search>
-        <UiSearchInput v-model="searchQuery" placeholder="搜索角色、技能、档案、互动文本（支持中英文/数字；空格=且、=或）..." />
+        <UiSearchInput v-model="searchQuery" placeholder="搜索角色、技能、档案、互动文本…（空格=“且”，、=“或”）" />
       </template>
 
       <!-- 稀有度 -->

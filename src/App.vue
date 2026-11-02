@@ -1301,6 +1301,23 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   .app-main :deep(.camp-panel > .camp-grid) {
     flex: 1 0 auto;
   }
+  /*
+   * 图鉴类页面的正文面板：内容少时吸收剩余高度，底边与左右两栏齐平。
+   *
+   * 🔴 上面 `[data-main-scroll] { flex: none }` 让滚动容器按自身高度排布，
+   *    内容多时整页滚动是对的；但内容少时面板就停在半空 ——
+   *    实测筛选后：魔物 469 / 怪物 474 / 物品 501 / 角色 689，
+   *    而左右两栏底边都在 1060，最多差 591px。
+   *
+   * 用 `1 0 auto`：grow 吸收剩余空间，basis=auto 让内容超出时自然增长
+   * （grow 失效 → 仍整页滚动）。与装备页 .equips-content 同一条策略。
+   *
+   * 集中在这里而不是逐页写：这 5 个页面的正文容器都是 UiCardGrid 的
+   * .ui-card-grid-scroll，加同样的 !important 只会散落 5 处、日后不同步。
+   */
+  .app-main :deep(.page-view-container > [data-main-scroll]) {
+    flex: 1 0 auto;
+  }
   .app-main :deep(.page-view-container > .filter-panel),
   .app-main :deep(.page-view-container > .filter-sticky-bar),
   .app-main :deep(.page-view-container > [class*="-filter-panel"]) {
