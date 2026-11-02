@@ -10,9 +10,12 @@
       </template>
       <UiTabs :model-value="tab" :options="tabs" @update:model-value="changeTab" />
 
-      <!-- 市场 / 订单的价格档位。市场是「查看档位价格」，订单是真的按奖励分档筛选。 -->
-      <UiFilterRow v-if="tab !== 'rules'" :label="tab === 'market' ? '价格档位：' : '奖励档位：'">
-        <UiFilterPill :active="!tier" @click="setFilter('tier', '')">{{ tab === 'market' ? '基价' : '全部' }}</UiFilterPill>
+      <!--
+        价格档位**只有市场有**。依据：FreightOrderItemTemp.cs 的字段里没有 priceBg / priceType，
+        订单报酬就是 moneyLabel 上一个纯数字；档位判定只存在于 FreightMarketItemTemp.cs。
+      -->
+      <UiFilterRow v-if="tab === 'market'" label="价格档位：">
+        <UiFilterPill :active="!tier" @click="setFilter('tier', '')">基价</UiFilterPill>
         <UiFilterPill
           v-for="entry in tiers"
           :key="entry.key"
@@ -310,31 +313,11 @@ const filteredGoods = computed(() => {
 
 const filteredOrders = computed(() => {
   const list = data.value?.orders || []
-  return list.filter(order => {
-    if (!matchesText([order.name, order.charaText, order.tip, ...order.items.map(line => line.name)], search.value)) return false
-    if (!tier.value) return true
-    // 订单按奖励金额落在哪一档来筛（订单没有 priceScale，用 reward 的相对高低代替）
-    return orderTierOf(order) === tier.value
-  })
+  return list.filter(order => matchesText(
+    [order.name, order.charaText, order.tip, ...order.items.map(line => line.name)],
+    search.value
+  ))
 })
-
-/** 订单的「价值档位」：按 reward 在全部订单中的分位，5 等分。 */
-const orderRewardBounds = computed(() => {
-  const rewards = (data.value?.orders || []).map(order => order.reward).sort((a, b) => a - b)
-  if (!rewards.length) return []
-  const step = (rewards[rewards.length - 1] - rewards[0]) / 5
-  return [0, 1, 2, 3, 4].map(i => rewards[0] + step * i)
-})
-
-function orderTierOf(order) {
-  const bounds = orderRewardBounds.value
-  if (bounds.length < 5) return ''
-  if (order.reward > bounds[4]) return 'max'
-  if (order.reward > bounds[3]) return 'high'
-  if (order.reward > bounds[2]) return 'ori'
-  if (order.reward > bounds[1]) return 'low'
-  return 'min'
-}
 
 const counter = computed(() => (tab.value === 'market' ? filteredGoods.value.length : filteredOrders.value.length))
 
@@ -495,7 +478,13 @@ onMounted(loadData)
   border-radius: 4px;
   background: rgba(143, 115, 81, 0.07);
 }
-.tier-compare__cell.is-active { background: rgba(85, 117, 116, 0.2); box-shadow: inset 0 0 0 1px var(--accent-ink); }
+/*
+ * 选中态：**只靠档位名变色**，不给底色加厚、不加描边。
+ * 试过 inset 描边 + 加重底色（rgba 0.2）：5 格里像被框住一样，
+ * 和游戏里「当前价落在哪一格」那种若隐若现的感觉差得远。
+ * 现在底色只从 0.07 提到 0.09，主要区分靠 label 的强调色。
+ */
+.tier-compare__cell.is-active { background: rgba(85, 117, 116, 0.09); }
 .tier-compare__top { display: flex; align-items: center; gap: 3px; min-width: 0; }
 .tier-compare__arrow { display: block; width: 0; height: 0; flex: none; }
 .tier-compare__arrow--max { border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #d4553f; }
@@ -505,7 +494,7 @@ onMounted(loadData)
 .tier-compare__arrow--min { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #4f9b45; }
 .tier-compare__label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
 .tier-compare__value { font-size: 13px; font-weight: 700; color: var(--text-main); }
-.tier-compare__cell.is-active .tier-compare__label { color: var(--accent-ink); font-weight: 700; }
+.tier-compare__cell.is-active .tier-compare__label { color: var(--accent-ink); }
 
 /* ── 订单 ── */
 .order-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }

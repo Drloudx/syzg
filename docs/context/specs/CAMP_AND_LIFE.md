@@ -253,19 +253,22 @@ URL 支持 `pool/tag/q`，`id` 打开详情。
 | 低价 | `> 0.76` | `cart_price_low` |
 | 极低 | 其余（`≥ 0.6`） | `cart_price_min` |
 
+**档位只属于市场**。`FreightOrderItemTemp.cs` 的字段是 `conf / infoObj / emptyObj / descLabel / charTex / titleLabel / itemBag / itemBag1 / moneyLabel / btn / conditionObj / timeLabel` —— 没有 `priceBg` / `priceType`；报酬就是 `moneyLabel` 上一个纯数字（`"+" + (int)(...)`）。所以订单页**不提供**档位筛选。
+
 ### 市场卡片排版
 
 | 项 | 规则 |
 | --- | --- |
-| 主价签 | 用 `cart_price_*` 整条精灵（64×28，箭头已画在图里），内放银币 `item_00001` + 数字；**九宫格** `border-width: 0 24px 0 8px` |
-| 上下 border 必须为 0 | 写 `border: 24px` 会真的占掉上下各 24px，把内容盒压成 0；`border-image-width` 只改绘制宽度 |
 | 卡片布局 | 两行网格：行 1 = 图标 + 名称/徽章/主价签/库存，行 2 = 5 档对照跨满整卡宽度 |
-| 行高 `1fr auto` | 第一行吸收剩余高度、第二行贴底；不加则同排两卡「有无库存行」会让档位对比错位约 20px |
-| 5 档对照 | **不用**价签重复（箭头 24 + 银币 17，5 条并排必然压字），改用箭头字形 + 数字，保留档位色语义 |
-| 5 档数值口径 | ound(基价 × (该档下界 + 该档上界) / 2)，即该档区间中值；**不是**当前价，悬停显示该档完整区间 |
-| 徽章配色 | **只有品质徽章**用品质色（adge-N）；买入 / 卖出走 UiTag 默认灰，避免三枚彩色徽章抢视线 |
+| 行高 `1fr auto` | 第一行吸收剩余高度、第二行贴底；不加则同排两卡「有无库存行」会让档位对比错开约 20px |
+| 名称行 | 名称 + 品质徽章 + 买入/卖出徽章同一行 |
+| 徽章配色 | **只有品质徽章**用品质色（`UiTag` 的 `badge-N`）；买入 / 卖出走 `UiTag` 默认灰 |
+| 主价签 | 用 `cart_price_*` 整条精灵（64×28，箭头已画在图里），内放银币 `item_00001` + 数字 |
+| 九宫格写法 | `border-width: 0 24px 0 8px`。写 `border: 24px` 会真的占掉上下各 24px 把内容盒压成 0；`border-image-width` 只改绘制宽度 |
 | 价格文案 | 主价签旁写「价格范围 low ~ high」，不写「可能」，避免被读成概率 |
-| 名称行 | 名称 + 品质徽章 + 买入/卖出徽章同一行，三枚徽章都走 `UiTag` 的 `badge-N`（同套品质色边框） |
+| 5 档对照 | **不用**价签重复（箭头 24 + 银币 17，5 条并排必然压字），改用箭头字形 + 数字 |
+| 5 档数值 | `round(基价 × (该档下界 + 该档上界) / 2)`，即该档区间中值；**不是**当前价，悬停显示该档完整区间 |
+| 档位选中态 | **只靠档位名变色**（`--accent-ink`）；底色 0.07→0.09，**不加描边**。加重底色或 inset 描边会让 5 格像被框住 |
 | 库存与补货 | **只在 `buyIn = true` 时显示**，位置在卡片底部一行小字 |
 
 **为什么 `buyIn=false` 不显示库存**：`FreightMarketItemTemp.Init(typeId, num, haveNum, isBuy)` 的 `haveNum` 是市场当前存货，只在买入列表有意义；源码对 `isBuy && !marketItemConf.buyIn` 直接置遮罩，该货品市场根本不进货。标它的 `maxNum` / `addNum` 是编出来的信息（51 件里 20 件属此类）。
@@ -294,7 +297,7 @@ URL 支持 `pool/tag/q`，`id` 打开详情。
 | --- | --- |
 | `tab` | `market`（默认）/ `orders` / `rules` |
 | `q` | 空格=且、`、`=或 |
-| `tier` | `max` / `high` / `ori` / `low` / `min` |
+| `tier` | `max` / `high` / `ori` / `low` / `min`（**仅市场**，订单无档位） |
 | `kind` | `buyIn` / `sellOut`（仅市场） |
 
 切页签清空 `tier` 与 `kind`，避免 URL 留无效键。
