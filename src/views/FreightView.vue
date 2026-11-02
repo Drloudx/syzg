@@ -12,7 +12,7 @@
 
       <!-- 市场 / 订单的价格档位。市场是「查看档位价格」，订单是真的按奖励分档筛选。 -->
       <UiFilterRow v-if="tab !== 'rules'" :label="tab === 'market' ? '价格档位：' : '奖励档位：'">
-        <UiFilterPill :active="!tier" @click="setFilter('tier', '')">{{ tab === 'market' ? '只看基价' : '全部' }}</UiFilterPill>
+        <UiFilterPill :active="!tier" @click="setFilter('tier', '')">{{ tab === 'market' ? '基价' : '全部' }}</UiFilterPill>
         <UiFilterPill
           v-for="entry in tiers"
           :key="entry.key"
@@ -24,8 +24,8 @@
       <!-- 市场专属：采购方式 -->
       <UiFilterRow v-if="tab === 'market'" label="交易方式：">
         <UiFilterPill :active="!kind" @click="setFilter('kind', '')">全部</UiFilterPill>
-        <UiFilterPill :active="kind === 'buyIn'" @click="setFilter('kind', 'buyIn')">可买入</UiFilterPill>
-        <UiFilterPill :active="kind === 'sellOut'" @click="setFilter('kind', 'sellOut')">可卖出</UiFilterPill>
+        <UiFilterPill :active="kind === 'buyIn'" @click="setFilter('kind', 'buyIn')">买入</UiFilterPill>
+        <UiFilterPill :active="kind === 'sellOut'" @click="setFilter('kind', 'sellOut')">卖出</UiFilterPill>
       </UiFilterRow>
 
       <div v-if="tab !== 'rules'" class="collection-counter">
@@ -39,6 +39,12 @@
       <!-- ── 市场 ── -->
       <template v-if="tab === 'market'">
         <div v-if="filteredGoods.length" class="freight-grid">
+          <!--
+            卡片是两行网格：
+              第一行 = 图标 + 名称/徽章/主价签/库存
+              第二行 = 通栏的 5 档对比（跨满卡片宽度，落在图标正下方那块区域）
+            这样档位对比能拿到整卡宽度，5 档不必挤在左侧正文列里。
+          -->
           <article v-for="good in displayedGoods" :key="good.typeId" class="good-entry" :data-good="good.typeId">
             <UiItemCard
               :name="good.name"
@@ -47,12 +53,16 @@
               @img-error="handleImageFallback"
             />
             <div class="good-entry__body">
-              <h3 class="good-entry__name">{{ good.name }}</h3>
-              <div class="good-entry__meta">
+              <!--
+                名字行：品质徽章 + 买入 / 卖出徽章。
+                三枚徽章都用同一套品质色边框（UiTag 的 badge-N 只换边框与文字色，
+                背景统一是 --quality-label-bg），所以一行里视觉是一组。
+              -->
+              <div class="good-entry__head">
+                <h3 class="good-entry__name">{{ good.name }}</h3>
                 <UiTag :quality="good.quality">{{ qualityLabel(good.quality) }}</UiTag>
-                <span v-if="good.buyIn">可买入</span>
-                <span v-else>仅能卖出</span>
-                <span v-if="good.sellOut && good.buyIn">· 可卖出</span>
+                <UiTag v-if="good.buyIn" :quality="good.quality">买入</UiTag>
+                <UiTag v-if="good.sellOut" :quality="good.quality">卖出</UiTag>
               </div>
               <!--
                 A 口径：只给「基价 × 5 档阈值」的区间，不编造实时价。
@@ -68,21 +78,8 @@
                   </span>
                 </span>
                 <span class="good-entry__price-note">
-                  <template v-if="activeTier">{{ activeTier.label }}档可能价 · 基价 {{ good.basePrice }}</template>
+                  <template v-if="activeTier">{{ activeTier.label }}档 {{ tierRange(good, activeTier).low }}~{{ tierRange(good, activeTier).high }} · 基价 {{ good.basePrice }}</template>
                   <template v-else>基价 · 可能 {{ good.priceRange.low }} ~ {{ good.priceRange.high }}</template>
-                </span>
-              </div>
-              <!--
-                5 档对照：文字 + 小箭头。
-                这块**不用**价格条 —— 卡片正文只有约 290px，5 条游戏价签每条不足 55px，
-                银币 + 三位数 + 24px 箭头必然互相压住。价签只在上面那条主价签上用。
-              -->
-              <div class="tier-compare">
-                <span v-for="entry in tiers" :key="entry.key" class="tier-compare__cell"
-                  :class="{ 'is-active': tier === entry.key }" :title="`${entry.label} ${tierRange(good, entry).low}~${tierRange(good, entry).high}`">
-                  <i class="tier-compare__arrow" :class="`tier-compare__arrow--${entry.key}`" aria-hidden="true"></i>
-                  <span class="tier-compare__label">{{ entry.label }}</span>
-                  <span class="tier-compare__value">{{ tierPrice(good, entry) }}</span>
                 </span>
               </div>
               <!--
@@ -95,6 +92,22 @@
               <p v-if="good.buyIn" class="good-entry__stock">
                 库存上限 {{ good.maxNum }} · 每 {{ formatDuration(good.addTime) }} 补 {{ good.addNum }}
               </p>
+            </div>
+            <!--
+              5 档对比：横跨整卡宽度，落在图标下方。
+              条内是「报价 + 该档价」，报价用游戏价签的同色系底色块，
+              这样既有游戏味，又不会因为 5 条价签挤在一起而压字。
+            -->
+            <div class="tier-compare">
+              <span v-for="entry in tiers" :key="entry.key" class="tier-compare__cell"
+                :class="[`is-${entry.key}`, { 'is-active': tier === entry.key }]"
+                :title="`${entry.label} ${tierRange(good, entry).low}~${tierRange(good, entry).high}`">
+                <span class="tier-compare__top">
+                  <i class="tier-compare__arrow" :class="`tier-compare__arrow--${entry.key}`" aria-hidden="true"></i>
+                  <span class="tier-compare__label">{{ entry.label }}</span>
+                </span>
+                <span class="tier-compare__value">{{ tierPrice(good, entry) }}</span>
+              </span>
             </div>
           </article>
         </div>
@@ -378,12 +391,41 @@ onMounted(loadData)
 
 /* ── 市场 ── */
 .freight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.good-entry { display: flex; align-items: flex-start; gap: 12px; padding: 12px; min-width: 0; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
-.good-entry :deep(.ui-item-card) { flex: 0 0 70px; width: 70px; margin: 0; }
+/*
+ * 卡片是两行网格：
+ *   行 1 = 图标（col 1）+ 名称/徽章/主价签/库存（col 2）
+ *   行 2 = 5 档对比，跨满整卡宽度，正好落在图标与正文下方
+ * 用 grid 而不是 flex：档位对比要的是整卡宽度，flex 换行拿不到跨列。
+ *
+ * 🔴 行高用 `1fr auto`：第一行吸收剩余高度，第二行（档位对比）贴底。
+ *    不加的话，同一行两张卡里「有没有库存那行」会让档位对比错位 20px，
+ *    并排看就是阶梯状。
+ */
+.good-entry {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  align-items: start;
+  gap: 10px 12px;
+  padding: 12px;
+  min-width: 0;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+}
+.good-entry :deep(.ui-item-card) { width: 70px; margin: 0; }
 .good-entry :deep(.ui-item-card__name) { display: none; }
-.good-entry__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.good-entry__name { margin: 0 0 6px; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
-.good-entry__meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; color: var(--text-muted); font-size: 13px; }
+.good-entry__body { min-width: 0; display: flex; flex-direction: column; height: 100%; }
+/* 档位对比跨两列，占满卡片宽度 */
+.good-entry .tier-compare { grid-column: 1 / -1; }
+/*
+ * 名字行：名字与品质/买入/卖出徽章排在同一行。
+ * 徽章统一走 UiTag 的 badge-N（边框与文字用品质色，背景是 --quality-label-bg），
+ * 所以三枚徽章看起来是一组，不会和左侧物品卡抢视线。
+ */
+.good-entry__head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 6px; }
+.good-entry__name { margin: 0; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.good-entry__head .ui-tag { flex: none; padding: 1px 6px; font-size: 11px; }
 .good-entry__price { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 8px; font-size: 13px; }
 
 /*
@@ -425,25 +467,45 @@ onMounted(loadData)
 
 .good-entry__price-note { font-size: 12px; line-height: 1.5; color: var(--text-muted); }
 
+/* 库存与补货：一行小字，与游戏里 market 列表底部的辅助信息同位置 */
+.good-entry__stock { margin: auto 0 0; padding-top: 6px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+
 /*
- * 5 档对照（纯文字 + 箭头字形）。
- * 这里刻意不重复用游戏价签：卡片正文可用宽度约 290px，5 条价签每条不足 55px，
- * 而一条价签光右侧箭头就占 24px、银币 17px —— 必然压字。
- * 价签只在上面那条主价签上用一次，档位对照保持可读。
+ * 5 档对比：跨满卡片宽度，落在图标下方那一块。
+ *
+ * 不重复用游戏价签的原因：一条价签光右侧箭头就占 24px，5 条并排时中段只剩十几像素，
+ * 三位数必然压住箭头。这里保留箭头的颜色语义（红↑↑ / 橙↑ / 灰－ / 黄绿↓ / 绿↓↓），
+ * 用字形画，数字用正文色，读得清且不丢档位辨识。
  */
-.tier-compare { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; margin-top: 8px; }
-.tier-compare__cell { display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 0; padding: 3px 2px; border-radius: 4px; background: rgba(143, 115, 81, 0.07); }
+.tier-compare {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 2px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-soft);
+}
+.tier-compare__cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  padding: 4px 2px;
+  border-radius: 4px;
+  background: rgba(143, 115, 81, 0.07);
+}
 .tier-compare__cell.is-active { background: rgba(85, 117, 116, 0.2); box-shadow: inset 0 0 0 1px var(--accent-ink); }
-.tier-compare__arrow { display: block; width: 0; height: 0; margin-bottom: 1px; }
+.tier-compare__top { display: flex; align-items: center; gap: 3px; min-width: 0; }
+.tier-compare__arrow { display: block; width: 0; height: 0; flex: none; }
 .tier-compare__arrow--max { border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #d4553f; }
 .tier-compare__arrow--high { border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #d38a2e; }
-.tier-compare__arrow--ori { width: 10px; height: 3px; border-radius: 1px; background: #8c7d6c; }
+.tier-compare__arrow--ori { width: 9px; height: 3px; border-radius: 1px; background: #8c7d6c; }
 .tier-compare__arrow--low { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #a8b52c; }
 .tier-compare__arrow--min { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #4f9b45; }
 .tier-compare__label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
-.tier-compare__value { font-size: 12px; font-weight: 700; color: var(--text-main); }
-/* 库存与补货：一行小字，与游戏里 market 列表底部的辅助信息同位置 */
-.good-entry__stock { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+.tier-compare__value { font-size: 13px; font-weight: 700; color: var(--text-main); }
+.tier-compare__cell.is-active .tier-compare__label { color: var(--accent-ink); font-weight: 700; }
 
 /* ── 订单 ── */
 .order-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
