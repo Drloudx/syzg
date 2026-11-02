@@ -157,6 +157,20 @@ const routes = [
     meta: { title: '货运站' }
   },
   {
+    /**
+     * 日常计划（游戏内 DailyWorkPanel）：计划 → 子关卡 → 关卡详情 三层钻取。
+     *
+     * 层级用 URL 表达，可直达可后退：`?plan=<planTypeId>&stage=<battleId>`。
+     * 筛选：`?q=` 搜索、`?type=` 计划类型、`?day=` 刷新日（0=周日）。
+     *
+     * 解锁条件里的任务/关卡可点击跳转：`/tasks?task=<id>`、`/dungeons?battle=<id>`。
+     */
+    path: '/daily',
+    name: 'daily',
+    component: () => import('../views/DailyView.vue'),
+    meta: { title: '日常计划' }
+  },
+  {
     path: '/gacha',
     name: 'gacha',
     component: () => import('../views/GachaView.vue')

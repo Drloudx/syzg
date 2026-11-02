@@ -1,9 +1,9 @@
 # 营地、家具、菜谱与收集
 
-> 本文件是设施功能（含营地建筑与研究）、家具图鉴、菜谱查询、魔物收益、成就查询与货运站的业务契约。
-> 营地数值差异与研究连线的深入规则见本文件第七节。
+> 本文件是设施功能（含营地建筑与研究）、家具图鉴、菜谱查询、魔物收益、成就查询、货运站与日常计划的业务契约。
+> 营地数值差异与研究连线的深入规则见本文件第八节。
 >
-> **何时读**：改动设施、营地、家具、菜谱、魔物收益、成就或货运站时。
+> **何时读**：改动设施、营地、家具、菜谱、魔物收益、成就、货运站或日常计划时。
 > **何时更新**：该领域规则变化时。**只改这一个领域文件，不要把别的领域内容搬进来。**
 
 ---
@@ -74,7 +74,7 @@
 
 材料只追加 `itemId`。
 
-建筑数值差异与研究连线见本文件[第七节](#七营地数值差异与研究连线)。
+建筑数值差异与研究连线见本文件[第八节](#八营地数值差异与研究连线)。
 
 ---
 
@@ -336,7 +336,65 @@ URL 支持 `pool/tag/q`，`id` 打开详情。
 
 ---
 
-## 七、营地数值差异与研究连线
+## 七、日常计划
+
+**入口** `/daily` · **页面** `DailyView.vue` · **数据** `parsed/daily.json` · **构建** `scripts/parse/daily.mjs` · **素材** `public/images/DailyWorkPanel/`（导入脚本 `scripts/dev/import-daily-atlas.mjs`）
+
+计划 → 子关卡 → 关卡详情三层钻取，层级用 URL 表达。
+
+### 数据来源
+
+| 项 | 原表 | 用途 |
+| --- | --- | --- |
+| 计划与子关卡 | `dailyWork.json` 的 `plans` | 7 组计划（含限时），各带 `battle` / `img` / `condition` |
+| 周分配 | `dailyWork.json` 的 `weekPlans` | 按星期 0~6 给出各计划次数 |
+| 限时活动 | `dailyWork.json` 的 `event` | 起止日期与生效星期 |
+| 关卡 | `battle.json` | 等级、时长、说明、`reward` |
+| 房间与怪物 | `room.json` 的 `battleData.monRounds` | 怪物在房间里，不在 battle 上 |
+| 怪物资料 | `mon.json` | 名字 / 图标 / 品质 |
+| 结算掉落 | `reward.json` | `exp` / `money` / `items` |
+| 解锁条件 | `condition.json` | `rules[]` 规则数组 |
+
+### 三条按源码口径处理的硬约束
+
+| # | 约束 | 依据 |
+| --- | --- | --- |
+| 1 | **怪物取 `typeId`，不是 `monId`** | `monId` 是关卡内实例 uid（`BattleManager` 当 uid 用，如 `"mon144"`），`typeId` 才是类型（如 `"007"`）。`monId` 在 `mon.json` 里不存在 |
+| 2 | **`room.json` 是扁平结构** | 顶层直接是 `{ roomTypeId: {...} }`，无 `datas` 包裹（`battle.json` / `mon.json` 有） |
+| 3 | **掉落有两种 `mode`** | `item` 有 `typeId`；`equipGroup` 用 `qualityGroup` + `equipTypeGroup` + `equipLevel` 描述装备池，**没有具体 id 与图标** |
+
+### 解锁条件必须可跳转
+
+`condition.json` 的 `rules[]` 两种类型，前端各给一个链接：
+
+| 类型 | 参数 | 跳转 |
+| --- | --- | --- |
+| `passTask` | `para.typeId` + `para.step`（-1 = 通关） | `/tasks?task=<id>` |
+| `passBattle` | `para.battles[]` | `/dungeons?battle=<id>` |
+
+### 装备池不给图标也不可点击
+
+`equipGroup` 是「某品质 + 某类型 + 某等级」的装备池，具体装备由游戏掉落表随机决定，构建期无法确定。页面显示为「普通装备 · equip11001 · Lv1」，不编具体物品名、不给图标、不跳物品详情。
+
+### URL
+
+| 参数 | 取值 |
+| --- | --- |
+| `plan` | 计划 typeId（`plan_1`…`plan_6`、`doubleExp`） |
+| `stage` | 子关卡 battleId（如 `daily_exp_1`） |
+| `q` | 空格=且、`、`=或 |
+| `type` | 计划类型筛选 |
+| `day` | 刷新日筛选（0=周日） |
+
+展开计划时清空 `stage`，避免留下不属于当前计划的关卡。
+
+### 验证
+
+`tests/unit/daily.test.mjs`（7 条）守：怪物 typeId 解析、55 种怪物全覆盖、三层结构、解锁链接格式、周分配 7 天、掉落两种 mode、经验本与游戏一致（战斗笔记 item_20016 ×15 + exp 80）。
+
+---
+
+## 八、营地数值差异与研究连线
 
 > 本节是[营地数值差异与研究连线]的深入规则；主规范见本文件前面的领域小节。
 

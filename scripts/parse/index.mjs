@@ -35,6 +35,7 @@ import { buildDungeonsFiles } from './dungeons.mjs'
 import { buildChaptersFiles } from './chapters.mjs'
 import { buildRelationsFile } from './relations.mjs'
 import { buildFreightFile } from './freight.mjs'
+import { buildDailyFile } from './daily.mjs'
 import * as runtimeTables from './runtime-tables.mjs'
 
 if (!existsSync(parsedDir)) {
@@ -125,7 +126,8 @@ const jobs = [
   { name: 'heroes', build: () => buildHeroesFile(itemData), dependsOnItems: true },
   { name: 'monsters', build: () => buildMonstersFile(itemData), dependsOnItems: true },
   { name: 'glossary', build: () => buildGlossaryFile(monsterData, { heroes: heroData?.heroes, pets: petData?.pets }), dependsOnItems: false },
-  { name: 'freight', build: () => buildFreightFile(), dependsOnItems: false }
+  { name: 'freight', build: () => buildFreightFile(), dependsOnItems: false },
+  { name: 'daily', build: () => buildDailyFile(), dependsOnItems: false }
 ]
 
 console.log('\n── [page] 页面级预解析 ──')

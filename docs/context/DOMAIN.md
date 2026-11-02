@@ -59,6 +59,7 @@
 | 其他奖励 | `/misc` | `RewardsView.vue` | `parsed-pvp.json`、`parsed-hidden.json` |
 | 配队模拟 | `/sims` | `SimsView.vue` | `heroes.json`、`pets.json`（运行时提取，无新增产物） |
 | 货运站 | `/freight` | `FreightView.vue` | `freight.json`（`?tab=market/orders/rules`，见 [CAMP_AND_LIFE](specs/CAMP_AND_LIFE.md) §六） |
+| 日常计划 | `/daily` | `DailyView.vue` | `daily.json`（`?plan=&stage=` 三层钻取，见 [CAMP_AND_LIFE](specs/CAMP_AND_LIFE.md) §七） |
 | 讨论区 | `/discussions` | `DiscussionsView.vue` | `functions/api/[[path]].js` + D1 |
 | 后台 | `/admin` | `AdminView.vue` | 子路由见下 |
 
