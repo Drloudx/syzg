@@ -120,11 +120,21 @@
       <!-- ── 订单 ── -->
       <template v-else-if="tab === 'orders'">
         <div v-if="filteredOrders.length" class="order-grid">
+          <!--
+            按 FreightOrderItemTemp 预制体复刻（376×280）：
+            卡底 cart_order_botm，左侧 NPC 立绘，右上名称与附言，中部两格货品，
+            底部 cart_order_price 价格条 + 银币 + 报酬，右下「库存不足」。
+            坐标换算：NGUI 以画布中心为原点、Y 向上 → CSS 取反 y 再加半尺寸。
+          -->
           <article v-for="order in displayedOrders" :key="order.orderTypeId" class="order-card" :data-order="order.orderTypeId">
-            <div class="order-card__top">
-              <p v-if="order.charaText" class="order-card__say">
-                <span class="order-card__say-text">{{ order.charaText }}</span>
-              </p>
+            <div class="order-card__frame">
+              <!-- 附言（左上，fs18 288×18 @ -172,123） -->
+              <p class="order-card__note">{{ order.charaText }}</p>
+
+              <!-- 名称（右上，fs22 200×22 @ 69,79） -->
+              <h3 class="order-card__name">{{ order.name }}</h3>
+
+              <!-- NPC 立绘（左侧，256×256 @ -176,0） -->
               <img
                 v-if="order.charaImg"
                 class="order-card__npc"
@@ -134,27 +144,33 @@
                 decoding="async"
                 @error="onNpcError($event, order.charaImg)"
               />
-            </div>
-            <h3 class="order-card__name">{{ order.name }}</h3>
-            <div class="order-card__items">
-              <div v-for="line in order.items" :key="line.typeId" class="order-card__item">
-                <UiItemCard
-                  :name="line.name"
-                  :img="getImageUrl(`/Common_ItemIcon/${line.img}.webp`)"
-                  :quality="line.quality"
-                  :show-name="false"
-                  @img-error="handleImageFallback"
-                />
-                <span class="order-card__need">×{{ line.num }}</span>
+
+              <!-- 货品格（@ 69,2，两格 100×100 横排，第二格向右 100） -->
+              <div class="order-card__items">
+                <div v-for="line in order.items" :key="line.typeId" class="order-card__item">
+                  <span class="order-card__frame-bg" :class="`quality-frame-${line.quality}`"></span>
+                  <img
+                    class="order-card__item-icon"
+                    :src="getImageUrl(`/Common_ItemIcon/${line.img}.webp`)"
+                    :alt="line.name"
+                    loading="lazy"
+                    decoding="async"
+                    @error="handleImageFallback"
+                  />
+                  <span class="order-card__item-need">0/{{ line.num }}</span>
+                </div>
               </div>
+
+              <!-- 底部价格条（cart_order_price 376×56 @ 0,-84） -->
+              <div class="order-card__price">
+                <img class="order-card__coin" :src="coinIcon" alt="" aria-hidden="true" />
+                <span class="order-card__reward">+{{ order.reward }}</span>
+                <span class="order-card__lack">库存不足</span>
+              </div>
+
+              <!-- 删除按钮（cart_del 52×64 @ 162,112） -->
+              <span class="order-card__del" aria-hidden="true"></span>
             </div>
-            <div class="order-card__foot">
-              <span class="order-card__cost">成本 {{ order.cost }}</span>
-              <span class="order-card__reward">+{{ order.reward }}</span>
-            </div>
-            <p class="order-card__formula">
-              {{ order.cost }} × {{ order.orderValue }} + {{ order.baseValue }}
-            </p>
           </article>
         </div>
         <UiEmptyState v-else text="没有符合条件的订单" />
@@ -496,37 +512,158 @@ onMounted(loadData)
 .tier-compare__value { font-size: 13px; font-weight: 700; color: var(--text-main); }
 .tier-compare__cell.is-active .tier-compare__label { color: var(--accent-ink); }
 
-/* ── 订单 ── */
+/* ── 订单（按 FreightOrderItemTemp 预制体 376×280 绝对定位） ── */
 .order-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.order-card { position: relative; display: flex; flex-direction: column; padding: 10px; min-width: 0; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
-.order-card__top { position: relative; min-height: 96px; }
+
 /*
- * 台词条用图集里的 `cart_order_say`（128×52 深棕气泡，带下尖角）。
- * 该精灵是**深色底**，文字必须用浅色，否则与背景同深、读不出来。
- * 用九宫格 border-image 而不是整图拉伸：整图拉伸会把尖角横向扯宽。
+ * 卡片固定 376×280 的比例容器，内部按百分比定位 —— 这样在窄栏里等比缩放，
+ * 元素相对位置不变。用 aspect-ratio 而不是写死 px，避免不同断点各写一套。
  */
-.order-card__say {
+/* 卡片不裁切：删除按钮按游戏原版压在卡角上，上半截在卡外 */
+.order-card { position: relative; min-width: 0; }
+/*
+ * `container-type: inline-size` 只建立 layout/style/inline-size containment，
+ * **不含 paint containment**，所以压在卡角上的删除按钮不会被裁切（实测确认）。
+ * cqi 单位依赖它，不能去掉。
+ */
+.order-card__frame {
   position: relative;
-  margin: 0 0 4px;
-  padding: 2px 6px 8px;
-  border: 10px solid transparent;
-  border-image-source: url('/images/FreightPanel_Atlas/cart_order_say.webp');
-  border-image-slice: 14 14 20 14 fill;
-  border-image-width: 10px;
-  border-image-repeat: stretch;
-  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 376 / 280;
+  background-image: url('/images/FreightPanel_Atlas/cart_order_botm.webp');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  container-type: inline-size;
 }
-.order-card__say-text { display: block; font-size: 11px; line-height: 1.35; color: #f4e6c8; text-align: center; overflow-wrap: anywhere; }
-.order-card__npc { display: block; height: 76px; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25)); }
-.order-card__name { margin: 6px 0 4px; font-size: 14px; text-align: center; overflow-wrap: anywhere; }
-.order-card__items { display: flex; justify-content: center; gap: 8px; }
-.order-card__item { position: relative; flex: 0 0 54px; }
-.order-card__item :deep(.ui-item-card) { max-width: 54px; }
-.order-card__need { position: absolute; right: 0; bottom: -2px; font-size: 11px; font-weight: 700; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9); }
-.order-card__foot { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-top: 8px; padding-top: 6px; border-top: 1px solid var(--border-soft); }
-.order-card__cost { font-size: 12px; color: var(--text-muted); }
-.order-card__reward { font-size: 15px; font-weight: 700; color: var(--accent-ink); }
-.order-card__formula { margin: 2px 0 0; font-size: 11px; color: var(--text-muted); text-align: right; }
+
+/* 所有子元素按容器宽度的百分比定位：x% = left/376，y% = top/280 */
+.order-card__note {
+  position: absolute;
+  left: 3.5%;
+  top: 4.5%;
+  width: 62%;
+  margin: 0;
+  padding: 1px 4px;
+  font-size: 3.5cqi;
+  line-height: 1.3;
+  color: #4a3018;
+  /* 附言压在人像上，用半透明浅底保证可读；不用描边（描边在浅色底上更糊） */
+  background: rgba(255, 248, 232, 0.82);
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  z-index: 2;
+}
+.order-card__name {
+  position: absolute;
+  left: 68.35%;
+  top: 20%;
+  width: 30%;
+  margin: 0;
+  font-size: 4.4cqi;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #3d2510;
+  text-shadow: 0 1px 0 rgba(255, 250, 235, 0.95), 0 0 3px rgba(255, 250, 235, 1);
+  overflow-wrap: anywhere;
+  z-index: 2;
+}
+.order-card__npc {
+  position: absolute;
+  left: 3.19%;
+  bottom: 20%;          /* 站在价格条上沿 */
+  width: 66%;
+  height: auto;
+  max-height: 82%;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+  z-index: 1;
+}
+.order-card__items {
+  position: absolute;
+  left: 68.62%;
+  top: 49.29%;
+  display: flex;
+  gap: 6cqi;
+}
+.order-card__item { position: relative; width: 26.6cqi; aspect-ratio: 1 / 1; }
+/* 货品底框用游戏原生 item_f_N（与 UiItemCard 同一套） */
+.order-card__frame-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/ItemBagPanel/item_f_1.webp');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.order-card__item-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 68%;
+  height: 68%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+.order-card__item-need {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 3.4cqi;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95);
+}
+.order-card__price {
+  position: absolute;
+  left: 0;
+  top: 80%;
+  width: 100%;
+  height: 20%;
+  background-image: url('/images/FreightPanel_Atlas/cart_order_price.webp');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+/* icon 36×36 @(-145,-84)：左边缘 = 188-145-18 = 25 → 6.65%（不是中心点 11.44%） */
+.order-card__coin { position: absolute; left: 6.65%; top: 50%; width: 9.57%; transform: translateY(-50%); }
+.order-card__reward {
+  position: absolute;
+  left: 17.29%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 4cqi;
+  font-weight: 700;
+  color: #fff3d6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+.order-card__lack {
+  position: absolute;
+  left: 68.62%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3.9cqi;
+  font-weight: 700;
+  color: #d8492f;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+}
+/* cart_del 52×64 @(162,112)：left = 188+162-26 = 324 → 86.17%；top = 140-112-32 = -4 → -1.43% */
+.order-card__del {
+  position: absolute;
+  left: 86.17%;
+  top: -1.43%;
+  width: 13.83%;
+  height: 22.86%;
+  background-image: url('/images/FreightPanel_Atlas/cart_del.webp');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 3;
+  pointer-events: none;
+}
 
 /* ── 规则 ── */
 .rule-table { display: flex; flex-direction: column; gap: 2px; }

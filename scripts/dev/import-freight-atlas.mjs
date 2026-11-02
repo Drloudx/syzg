@@ -51,7 +51,9 @@ const ATLAS_SPRITES = [
   'cart_back', 'cart_order_say', 'cart_order_price', 'cart_tips_pricetag',
   'cart_tips_botm', 'cart_select_botm', 'cart_page', 'cart_page_on',
   'cart_price_max', 'cart_price_high', 'cart_price_ori', 'cart_price_low', 'cart_price_min',
-  'cart_time', 'cart_speed_icon'
+  'cart_time', 'cart_speed_icon',
+  /* 订单卡右上角的删除按钮（预制体 OrderTemp.DelBtn） */
+  'cart_del'
 ]
 
 /** 图集外的独立大图：面板底、订单列表面板底、市场面板底、空态。 */

@@ -283,6 +283,34 @@ URL 支持 `pool/tag/q`，`id` 打开详情。
 | 用 `priceRandomArea` 前端随机生成「当前价」 | 那是推算值，不是游戏真值 |
 | 把档位筛选写成排除条件 | 每档对每件货都成立，它用于查看该档价格 |
 
+### 订单卡排版（按 FreightOrderItemTemp 预制体复刻）
+
+卡片 **376×280**，卡底用 `cart_order_botm`（与预制体 `info` 的 UITexture 尺寸一致）。所有子元素按容器宽度百分比定位，坐标来自预制体的 NGUI Transform：
+
+| 元素 | 预制体坐标 | 换算 | 说明 |
+| --- | --- | --- | --- |
+| 卡底 | `info` UITexture 376×280 | — | `cart_order_botm` |
+| 附言 | Label 288×18 @(-172,123) | left 16 / top 17 | 左上，半透明浅底保证压在人像上可读 |
+| 名称 | Label 200×22 @(69,79) | left 257 / top 61 | 右上 |
+| NPC 立绘 | UITexture 256×256 @(-176,0) | left 12 | 宽度铺满、高度自动、**贴价格条上沿**，允许向上溢出 |
+| 货品格 | Grid 100×100 @(69,2) | left 258 / top 138 | 两格横排，第二格右移 100 |
+| 价格条 | `cart_order_price` 376×56 @(0,-84) | left 0 / top 224 | 卡底通栏 |
+| 银币 | `item_00001` 36×36 @(-145,-84) | left 25 / **6.65%** | 左边缘 = 188−145−18，不是中心点 |
+| 报酬 | MoneyLabel @(-123,-85) 150×20 | left 65 | `"+" + reward` |
+| 库存不足 | ConditionLabel @(70,-85) 120×20 | left 258 | 红色，条件不满足时显示 |
+| 删除按钮 | `cart_del` 52×64 @(162,112) | left 324 / top −4 | 压在卡角，**上半截在卡外** |
+
+**换算规则**：NGUI 以画布中心为原点、Y 向上 → CSS `left = 188 + x`、`top = 140 − y`；尺寸取预制体的 w×h。
+
+**两条踩过的坑**：
+
+| 坑 | 现象 | 解法 |
+| --- | --- | --- |
+| 银币按中心点定位 | 图标压住数字 | 用**左边缘**（减去半个图标宽 18px） |
+| `object-fit: contain` + 固定 height | 立绘被压成整张缩略图，遮住附言 | 改 `width` 铺满 + `height: auto` + `bottom` 对齐 |
+
+**素材导入**：`cart_del` 等订单卡精灵在 `scripts/dev/import-freight-atlas.mjs` 的 `ATLAS_SPRITES` 清单里，漏加会导致按钮静默不显示（背景图 404 不报错）。
+
 ### 订单报酬（`FreightOrderItemTemp.cs:90`）
 
 `reward = (int)(Σ(item.sellPrice × items[].num) × orderValue + baseValue)` —— **向下取整**。40 条订单实际区间 **447 ~ 1393**。
