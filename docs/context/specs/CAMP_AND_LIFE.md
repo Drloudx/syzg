@@ -367,10 +367,21 @@ URL 支持 `pool/tag/q`，`id` 打开详情。
 
 `condition.json` 的 `rules[]` 两种类型，前端各给一个链接：
 
-| 类型 | 参数 | 跳转 |
-| --- | --- | --- |
-| `passTask` | `para.typeId` + `para.step`（-1 = 通关） | `/tasks?task=<id>` |
-| `passBattle` | `para.battles[]` | `/dungeons?battle=<id>` |
+| 类型 | 参数 | 名称来源 | 跳转 | 文案 |
+| --- | --- | --- | --- | --- |
+| `passTask` | `para.typeId` + `para.step` | `task.json` 的 `name` | `/tasks?task=<id>` | `step < 0` → 「完成『xxx』任务」；`step >= 0` → 「『xxx』推进至第 N 步」 |
+| `passBattle` | `para.battles[]` | `battle.json` 的 `name` | `/dungeons?battle=<id>` | 「通关 xxx」 |
+
+**必须显示名称，不能只显示 id**：`m_2_1` → 「破损的营地」、`c5_6_a` → 「5-6 冰棱台地」。查不到时退回 id 作兜底，不编造名字。
+
+**任务说「完成」、关卡说「通关」** —— 两者语义不同。依据源码 `ExtentionMethod.CheckConditions` 的 `case "passTask"`：
+
+```csharp
+if (passTasks.CheckDicCnt(taskTypeId)) flag5 = true;              // 整条任务已完成
+else if (当前步骤 > num2 && num2 >= 0) flag5 = true;              // 推进到第 num2 步之后
+```
+
+`step < 0` 时第二个分支因 `num2 >= 0` 不成立，等价于「只认整条完成」，故文案用「完成」。
 
 ### 装备池不给图标也不可点击
 

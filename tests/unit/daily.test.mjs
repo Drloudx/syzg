@@ -45,19 +45,80 @@ test('三层结构完整：计划 → 子关卡 → 详情', () => {
  *   passTask   → /tasks?task=<id>
  *   passBattle → /dungeons?battle=<id>
  */
-test('解锁条件拆成可跳转链接', () => {
+/**
+ * 解锁条件必须拆成可跳转链接，**并且映射成名称** —— 只显示 id 等于没做映射。
+ *
+ * 名称来源：
+ *   - 任务名在 `task.json` 的 `name`（m_2_1 → 破损的营地）
+ *   - 关卡名在 `battle.json` 的 `name`（c5_6_a → 5-6 冰棱台地）
+ */
+test('解锁条件拆成可跳转链接且都映射了名称', () => {
   const conds = daily.plans
     .flatMap(p => [p.condition, ...p.stages.map(s => s.condition)])
     .filter(Boolean)
   assert.ok(conds.length > 0)
   const links = conds.flatMap(c => c.links)
-  assert.ok(links.length > 0)
+  assert.ok(links.length > 0, '应有解锁链接')
+
   for (const l of links) {
     assert.ok(['task', 'battle'].includes(l.kind), `未知 kind ${l.kind}`)
     assert.ok(l.targetId, '链接应有 targetId')
-    if (l.kind === 'task') assert.equal(l.route, `/tasks?task=${encodeURIComponent(l.targetId)}`)
-    if (l.kind === 'battle') assert.equal(l.route, `/dungeons?battle=${encodeURIComponent(l.targetId)}`)
+    /* 🔴 关键断言：必须有可读名称，不能只有 id */
+    assert.ok(l.name, `${l.kind} ${l.targetId} 缺少名称映射`)
+    assert.ok(!l.label.includes(l.targetId) || l.kind === 'battle',
+      `${l.targetId} 的 label 仍是裸 id：${l.label}`)
+
+    if (l.kind === 'task') {
+      assert.equal(l.route, `/tasks?task=${encodeURIComponent(l.targetId)}`)
+      assert.ok(l.stepText, '任务应带步骤说明')
+    }
+    if (l.kind === 'battle') {
+      assert.equal(l.route, `/dungeons?battle=${encodeURIComponent(l.targetId)}`)
+    }
   }
+})
+
+test('具体条件名称与配置表一致', () => {
+  /* 从 daily.json 取，对照配置表的真实名字 */
+  const findLink = (planId, condOwnerId, kind) => {
+    const plan = daily.plans.find(p => p.typeId === planId)
+    const owner = condOwnerId === planId
+      ? plan
+      : plan.stages.find(s => s.battleId === condOwnerId)
+    return owner.condition.links.find(l => l.kind === kind)
+  }
+
+  /*
+   * 任务用「完成」、关卡用「通关」—— 两者语义不同，不能混。
+   * 依据源码 ExtentionMethod.CheckConditions：
+   *   passTask 的 step < 0 表示整条任务完成（不再按步骤推进）
+   */
+  const caravanTask = findLink('plan_5', 'plan_5', 'task')
+  assert.equal(caravanTask.targetId, 'm_2_1')
+  assert.equal(caravanTask.name, '破损的营地')
+  assert.equal(caravanTask.step, -1)
+  assert.equal(caravanTask.stepText, '完成')
+  assert.equal(caravanTask.label, '完成「破损的营地」任务')
+
+  /* 雪原火山商队护送：任务 m_5_1「霜烬平原的召唤」 */
+  const snowTask = findLink('plan_5', 'daily_carriage_4', 'task')
+  assert.equal(snowTask.targetId, 'm_5_1')
+  assert.equal(snowTask.name, '霜烬平原的召唤')
+  assert.equal(snowTask.label, '完成「霜烬平原的召唤」任务')
+
+  /* 带具体步骤的任务：不能说「完成」，要说「推进至第 N 步」 */
+  const cainanTask = findLink('plan_1', 'plan_1', 'task')
+  assert.equal(cainanTask.targetId, 'm_1_7')
+  assert.equal(cainanTask.name, '迦南')
+  assert.equal(cainanTask.step, 8)
+  assert.equal(cainanTask.stepText, '推进至第 8 步')
+  assert.equal(cainanTask.label, '「迦南」推进至第 8 步')
+
+  /* 水火矿洞三层：关卡 c5_6_a「5-6 冰棱台地」，关卡才用「通关」 */
+  const mineStage = findLink('plan_1', 'daily_mine_3_2', 'battle')
+  assert.equal(mineStage.targetId, 'c5_6_a')
+  assert.equal(mineStage.name, '5-6 冰棱台地')
+  assert.equal(mineStage.label, '通关 5-6 冰棱台地')
 })
 
 test('周分配覆盖 7 天且都能对上计划名', () => {

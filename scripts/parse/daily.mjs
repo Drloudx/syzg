@@ -36,8 +36,15 @@ const table = v => v?.datas || v || {}
 /** 周几（0=周日）→ 中文 */
 const WEEKDAY_NAMES = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
 
-/** 条件规则 → { kind, label, target }；target 供前端做跳转 */
-function parseCondition(conditionRes, condId) {
+/**
+ * 条件规则 → { kind, label, target }；target 供前端做跳转。
+ *
+ * 🔴 **必须映射成名称，不能只显示 id**：
+ *   - 任务名在 `task.json` 的 `name`（如 `m_2_1` → 破损的营地）
+ *   - 关卡名在 `battle.json` 的 `name`（如 `c5_6_a` → 5-6 冰棱台地）
+ * 两处都有兜底：查不到时退回 id，不编造名字。
+ */
+function parseCondition(conditionRes, condId, taskRes, battleRes) {
   const conf = conditionRes?.[condId]
   if (!conf) return { id: condId, text: '', links: [] }
 
@@ -46,19 +53,41 @@ function parseCondition(conditionRes, condId) {
     if (rule.need === false) continue
     const para = rule.para || {}
     if (rule.type === 'passTask') {
-      const stepText = Number(para.step) < 0 ? '通关' : `推进至第 ${para.step} 步`
+      const taskId = para.typeId
+      const taskConf = taskRes?.[taskId]
+      const stepNum = Number(para.step)
+      /*
+       * 依据源码 ExtentionMethod.CheckConditions 的 case "passTask"：
+       *   已完成（passTasks.CheckDicCnt）→ 满足
+       *   否则 step >= 0 且 当前步骤 > step → 满足
+       * 所以：
+       *   step < 0  → 要整条任务**完成**
+       *   step >= 0 → 任务推进到第 step 步之后
+       * 文案里 step < 0 不能说「通关」—— 那是关卡（passBattle）的说法。
+       */
+      const stepText = stepNum < 0 ? '完成' : `推进至第 ${stepNum} 步`
+      const category = (taskConf?.category || []).filter(Boolean).join(' · ')
+      const taskName = taskConf?.name || `任务 ${taskId}`
       links.push({
         kind: 'task',
-        targetId: para.typeId,
-        label: `任务 ${para.typeId}（${stepText}）`,
-        route: `/tasks?task=${encodeURIComponent(para.typeId)}`
+        targetId: taskId,
+        name: taskConf?.name || '',
+        category,
+        step: stepNum,
+        stepText,
+        label: stepNum < 0
+          ? `完成「${taskName}」任务`
+          : `「${taskName}」${stepText}`,
+        route: `/tasks?task=${encodeURIComponent(taskId)}`
       })
     } else if (rule.type === 'passBattle') {
       for (const b of para.battles || []) {
+        const battleConf = battleRes?.[b]
         links.push({
           kind: 'battle',
           targetId: b,
-          label: `通关 ${b}`,
+          name: battleConf?.name || '',
+          label: battleConf?.name ? `通关 ${battleConf.name}` : `通关 ${b}`,
           route: `/dungeons?battle=${encodeURIComponent(b)}`
         })
       }
@@ -178,6 +207,7 @@ export function buildDailyFile() {
   const rewardRes = table(readJson('reward.json'))
   const itemRes = table(readJson('item.json'))
   const conditionRes = table(readJson('condition.json')).gameConditions || table(readJson('condition.json'))
+  const taskRes = table(readJson('task.json'))
 
   /* ── ① 计划与子关卡 ── */
   const plans = []
@@ -193,7 +223,7 @@ export function buildDailyFile() {
         des: stage.des || '',
         img: stage.img || '',
         battleId: stage.battle || '',
-        condition: stage.condition ? parseCondition(conditionRes, stage.condition) : null,
+        condition: stage.condition ? parseCondition(conditionRes, stage.condition, taskRes, battleRes) : null,
         /* 关卡本体 */
         battleLevel: battle ? Number(battle.battleLevel) || 0 : 0,
         timeSeconds: battle ? Number(battle.time) || 0 : 0,
@@ -224,7 +254,7 @@ export function buildDailyFile() {
       img: plan.img || '',
       maxNum: Number(plan.maxNum) || 0,
       special: Boolean(plan.special),
-      condition: plan.condition ? parseCondition(conditionRes, plan.condition) : null,
+      condition: plan.condition ? parseCondition(conditionRes, plan.condition, taskRes, battleRes) : null,
       stages
     })
   }

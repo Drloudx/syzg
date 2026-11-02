@@ -64,7 +64,7 @@
                 </span>
               </span>
               <span v-if="plan.condition" class="plan-card__cond">
-                解锁：<template v-for="(link, i) in plan.condition.links" :key="i">
+                解锁条件：<template v-for="(link, i) in plan.condition.links" :key="i">
                   <RouterLink class="cond-link" :to="link.route">{{ link.label }}</RouterLink>
                   <span v-if="i < plan.condition.links.length - 1"> · </span>
                 </template>
@@ -94,7 +94,7 @@
                     <UiTag v-if="stage.monsters.length">{{ stage.monsters.length }} 种怪物</UiTag>
                   </span>
                   <span v-if="stage.condition" class="stage-card__cond">
-                    解锁：<template v-for="(link, i) in stage.condition.links" :key="i">
+                    解锁条件：<template v-for="(link, i) in stage.condition.links" :key="i">
                       <RouterLink class="cond-link" :to="link.route">{{ link.label }}</RouterLink>
                       <span v-if="i < stage.condition.links.length - 1"> · </span>
                     </template>
