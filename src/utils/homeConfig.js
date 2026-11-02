@@ -3,182 +3,179 @@
  *
  * 职责：
  *   1. 从 `GET /api/home-config` 拉取可配置内容（公告 / 海报 / 图鉴 / 工具 / 角色 / 底栏）
- *   2. 拉不到时回落到 `DEFAULT_*` 常量（就是原先写死在 HomeView.vue 里的那份）
+ *   2. 拉不到时回落到 `DEFAULT_*` 常量
  *   3. 把 D1 行的扁平结构整理成视图需要的形状
  *
  * 🔴 兜底是硬要求：首页是站点入口，API 抖动不能导致整页空白。
  *    各板块独立回落，一个板块失败不影响其它板块。
  *
+ * 🔴 **`DEFAULT_*` 是 2026-11-02 从生产 D1 导出的真实配置快照**，
+ *    不是占位文案。改后台内容后若希望离线兜底也跟上，
+ *    重新导出一次并替换下面六个常量即可（见 docs/context/technical/HOME_CONTENT.md）。
+ *
  * 数据口径见 docs/context/technical/HOME_CONTENT.md。
  */
 
-/** 海报默认值（与迁移脚本的初始数据一致） */
+/** 海报默认值（生产 D1 `home_banners` 快照，按 sortOrder） */
 export const DEFAULT_BANNERS = [
   {
     id: 'banner-v120',
-    title: '探求深渊秘境的学者殿堂',
-    desc: '全新主线第8章「无尽回廊」正式开放！5星火系秘术英雄【奇瓦】限时招募降临，专属符石秘境与限时讨伐活动全面开启。',
-    tagText: '官方版本焦点',
-    tagClass: 'gold',
-    subTag: 'v1.2.0「深境微光」',
-    btnText: '查看版本更新详情',
-    image: '/images/banners/home-banner-1.webp',
-    bgColor: '#264440',
-    blendStart: 'rgba(38, 68, 64, 0.95)',
+    title: '欢迎来到深渊之歌',
+    desc: '来吧，工匠大人。\n深渊的风，已经静候您多时了。',
+    tagText: '欢迎',
+    tagClass: 'teal',
+    subTag: '',
+    btnText: '查看游戏简介',
+    image: '/images/banners/home-banner-3.webp',
+    bgColor: '#1a3832',
+    blendStart: 'rgba(26, 56, 50, 0.95)',
     actionType: 'notice',
-    actionValue: 'official-v120'
+    actionValue: 'official-5'
   },
   {
     id: 'banner-gacha',
-    title: '限定角色招募 · 双UP概率提升',
-    desc: '掌握禁忌火焰秘术的神秘学者与深渊伙伴！全套技能天赋数据、专属符石词条推荐与配队演算模拟器已同步上线。',
-    tagText: '限定招募进行中',
+    title: '荒野计费测试现已开始',
+    desc: '「荒野测试」开测在即\n全新角色登场、全新魔物上线、 全新角色时装、限时秘境挑战「洛莉安的幽夜古堡」',
+    tagText: '荒野计费测试',
     tagClass: 'red',
-    subTag: 'UP 卡池开启',
-    btnText: '前往模拟抽卡',
-    image: '/images/banners/home-banner-2.webp',
-    bgColor: '#3c281a',
-    blendStart: 'rgba(60, 40, 26, 0.95)',
-    actionType: 'route',
-    actionValue: '/gacha'
+    subTag: '付费测试',
+    btnText: '前往查看详细',
+    image: '/images/banners/home-banner-1.webp',
+    bgColor: '#3a2416',
+    blendStart: 'rgba(58, 36, 22, 0.95)',
+    actionType: 'external',
+    actionValue: 'https://www.taptap.cn/moment/864080934587075947?group_id=973894'
   },
   {
     id: 'banner-sims',
-    title: '魔物出战被动搭配模拟系统',
-    desc: '全新升级！移动端紧凑自选与四列选择器，实时穷举推导最佳魔物出战组合，助您轻松打通深渊高难关卡。',
-    tagText: '学者实用工具',
-    tagClass: 'teal',
-    subTag: '配队演算升级',
-    btnText: '立即体验模拟工具',
-    image: '/images/banners/home-banner-3.webp',
-    bgColor: '#42291b',
-    blendStart: 'rgba(66, 41, 27, 0.95)',
-    actionType: 'route',
-    actionValue: '/sims'
+    title: '深渊大书院交流群现已创建',
+    desc: '深渊大书院交流群现已创建\n欢迎各位契约者前往沟通交流',
+    tagText: '大书院交流群',
+    tagClass: 'info',
+    subTag: '沟通交流',
+    btnText: '前往加群',
+    image: '/images/banners/home-banner-2.webp',
+    bgColor: '#382216',
+    blendStart: 'rgba(56, 34, 22, 0.95)',
+    actionType: 'external',
+    actionValue: 'https://qun.qq.com/universal-share/share?ac=1&authKey=AV%2BTocfcp1TtVCSa1tqSAvCFZDeszAXWB%2B%2Bb3dnsap/5ovn5saulLXMbJM3qCcRD&busi_data=eyJncm91cENvZGUiOiI5NjMzMTg2MjUiLCJ0b2tlbiI6Ik1YNFV3UXpqMDY2a1F2VjdlbkFQNkM3aUZ5dUI0bHJzaTBnOTlqNHNpcWNlTjRyRFllcTQ2WGVVT0pBTHEwM1EiLCJ1aW4iOiIxOTY1MTYxNjQzIn0=&data=8dUiFBVNaonKdN8v0r32UaW8hIXkzXts3GcEcRSaFeobWqA_JlHP7YJuTCJC9cz1iMG-kgMC3bbMKYzVOKf0iO5goSynDZxr3ZsAWKvuS34&svctype=5&tempid=h5_group_info'
   }
 ]
 
-/** 公告默认值 */
+/** 公告默认值（生产 D1 `notices` 快照，按 `home_notice_slots` 顺序） */
 export const DEFAULT_NOTICES = {
   site: [
-    {
-      id: 'site-disclaimer',
-      tier: 'pin',
+{
+      id: 'site-1',
+      channel: 'site',
+      tier: 'normal',
       title: '深渊大书院站点免责声明与服务协议',
       date: '2026-09-19',
       tagText: '置顶',
       tagClass: 'pinned',
-      content: '深渊大书院为非盈利性质的玩家自发资料库与攻略整理工具，所有素材与文本版权归原游戏制作组所有。\n本站所有算法模拟器均为基于客户端拆解数据进行的前端重构，旨在提供便捷的配队与数值参考。'
+      showInModal: 1,
+      content: '<p>本站由玩家独立维护，是非官方资料站，与深渊之歌、淘气泡游戏不存在隶属关系、官方授权或商业代理关系。本站所提及的游戏名称、商标、标志、截图、游戏数据、角色立绘及相关艺术素材，其版权与所有权归各自权利人所有。<br>本网站仅提供粉丝向参考与信息整理服务。</p>'
     },
-    {
-      id: 'site-sims-upgrade',
+{
+      id: 'site-5',
+      channel: 'site',
       tier: 'normal',
-      title: '相关模拟（魔物配队）移动端与算法全面升级',
-      date: '2026-10-29',
-      tagText: '功能',
-      tagClass: 'patch',
-      content: '魔物搭配模拟系统完成重大重构！支持自选队伍、自选角色与魔物被动过滤。\n移动端抽屉式选人交互优化完毕，提升手机端排布与浏览体验。'
+      title: '占位测试',
+      date: '2026-11-01',
+      tagText: '测试',
+      tagClass: 'info',
+      showInModal: 1,
+      content: ''
     },
-    {
-      id: 'site-data-sync',
+{
+      id: 'site-7',
+      channel: 'site',
       tier: 'normal',
-      title: '客户端解构数据同步与词条修正',
-      date: '2026-10-28',
-      tagText: '数据',
-      tagClass: 'event',
-      content: '已将最新客户端解析表与 Wiki 数据对齐，修正了部分装备在洗练状态下的暴击显示异常，补全魔物技能缺失字段。'
+      title: '占位测试',
+      date: '2026-11-01',
+      tagText: '测试',
+      tagClass: 'info',
+      showInModal: 1,
+      content: ''
     },
-    {
-      id: 'site-community-rules',
-      tier: 'pin',
+{
+      id: 'site-4',
+      channel: 'site',
+      tier: 'normal',
       title: '大书院学者讨论区交流准则',
       date: '2026-10-25',
       tagText: '社区',
-      tagClass: 'info',
-      content: '欢迎各位探求者在讨论区交流游戏体验、魔物孵化收益与阵容心得。\n请自觉遵守讨论区发言礼仪，共建友善、客观的游戏研究氛围。'
+      tagClass: 'gold',
+      showInModal: 1,
+      content: '<p>欢迎各位探求者在讨论区交流游戏体验、阵容心得。</p><p>请自觉遵守讨论区发言礼仪，共建友善、客观的游戏研究氛围。</p>'
     }
   ],
   official: [
-    {
-      id: 'official-v120',
-      tier: 'pin',
-      title: 'v1.2.0「深境微光」版本正式实装与停服维护',
-      date: '2026-10-28',
+{
+      id: 'official-6',
+      channel: 'official',
+      tier: 'normal',
+      title: '「荒野计费测试」内容一览！全新角色登场 限时秘境同步开放',
+      date: '2026-11-02',
       tagText: '版本',
       tagClass: 'pinned',
-      version: 'v1.2.0「深境微光」',
-      features: [
-        '新 5 星秘术英雄「奇瓦」限时招募开启',
-        '主线第 8 章「无尽深渊回廊」剧情关卡解锁',
-        '魔物出战羁绊加成数值平衡性微调',
-        '修复部分装备洗练暴击词条显示异常问题'
-      ],
-      content: '亲爱的探求者：\n游戏已于 10 月 28 日完成 v1.2.0 停机维护更新。\n【更新内容】\n1. 全新 5 星秘术英雄「奇瓦」限定招募开启；\n2. 开放主线章节第 8 章「无尽深渊回廊」剧情关卡与相关挑战副本；\n3. 优化部分装备洗练词条描述与魔物羁绊加成数值。'
+      showInModal: 0,
+      version: '「荒野计费测试」',
+      features: ['✦ 全新角色登场', '✦ 全新魔物上线', '✦ 全新角色时装', '✦ 限时秘境挑战「洛莉安的幽夜古堡」'],
+      content: '<p>荒野测试 正式定档 11.12</p><p>一、全新角色</p><p>新增德莉（5 星）、斯卡莉安（5 星）、洛莉安（5 星）、阿尔克丝（4 星）、修瓦莉（4 星）、诺姿（3 星）等伙伴。</p><p>二、全新活动：洛莉安的幽夜古堡</p><p>秘境挑战「亚空回廊」限时开启！发掘失落的遗器，嵌入强大的法盘，不断探索深入这片奇诡的秘境。可获得独特的神器、传说级装备、契约书、小屋外观等道具。</p><p>三、全新时代</p><p>新增彩虹芭菲公主·德莉（传说）、金鹿的假期·菲莉娜（传说）、阳葵田的守望者·芭杜尔（罕见）、胡萝卜小收获日·米拉贝尔（罕见）、一日侍者·米托拉（罕见）等时装。</p><p>四、全新魔物</p><p>新增圣骑士史莱姆（5 星）、洛莉安的眷属（5 星）、蜂刺骑兵（4 星）、黄金史莱姆（4 星）、粉红史莱姆（3 星）、天青史莱姆（3 星）、幽灵史莱姆（3 星）等魔物。</p><p>五、全新体验</p><p>1. 商业化内容更新：上线驿站补给凭证（月卡）、荒野通行手册（通行证），同步对付费商城进行改版优化。</p><p>2. 开放装扮系统。</p><p>3. 新增小屋外观自定义功能。</p><p>4. 上架全新家具系列。</p><p>5. 优化部分关卡难度曲线，调整关卡体验。</p><p>6. 新增万能突破魔物：新增纯白史莱姆、彩虹史莱姆，可用于任意魔物突破。</p><p>7. 新增万能回忆拼图：新增湛蓝、靛紫、灿金回忆拼图，可替代任意伙伴的对应回忆拼图，完成星阶激活。</p><p>8. 新增角色重置道具：新增成长遗忘药水，使用后即可重置角色等级与技能等级，返还经验书与元素碎片。</p><p>9. 修复若干已知问题。</p><p>注：本素材内容仅供参考，具体请以游戏内实际情况为准。<br><br><a target="_blank" rel="noopener noreferrer" class="rich-link" href="https://www.taptap.cn/moment/864080934587075947?group_id=973894">「荒野计费测试」内容一览！全新角色登场 限时秘境同步开放</a></p>'
     },
-    {
-      id: 'official-crashfix',
+{
+      id: 'official-5',
+      channel: 'official',
       tier: 'normal',
-      title: '关于部分机型闪退与战斗结算延迟的修复通知',
-      date: '2026-10-26',
-      tagText: '修复',
-      tagClass: 'patch',
-      content: '技术团队已完成对部分机型内存占用过高导致偶发闪退的紧急补丁更新，请探求者重新启动客户端加载资源包。'
-    },
-    {
-      id: 'official-devletter-2',
-      tier: 'normal',
-      title: '【开发组通信】第2期：后续养成系统减负前瞻',
-      date: '2026-10-20',
-      tagText: '前瞻',
-      tagClass: 'event',
-      content: '开发组正在推进角色升级与技能强化的材料减贫优化，预计在下个版本全面实装，同时优化委托任务的扫荡产出。'
+      title: '游戏简介',
+      date: '2026-11-01',
+      tagText: '简介',
+      tagClass: 'info',
+      showInModal: 0,
+      content: '<h2 style="line-height: 24px;"><strong>游戏简介</strong></h2><p>「那是人类得到的教训，因为人类的狂妄自负而应得的教训」<br>糟糕！<br>失忆之后坠落深渊？<br>还要当异世界的救世主？我吗？？<br>虽然听着很不妙，但我们是一款拥有治愈复古画风的蛮轻松的异世界冒险手游，旅途比您想象中悠闲得多～<br>您将扮演年轻有为却丧失记忆的工匠，因为一次意外而坠落到了深渊（Abyss）。<br>在这里，您邂逅了魔人少女——米托拉，最好的伙伴！<br>你们一起一砖一瓦搭建家园，春种秋收收获满仓；<br>招募天南海北的有趣伙伴，孵化风格各异的神奇魔物；<br>亲手锻造神器，打造专属冒险营地。<br><br>你们一起抵挡狂暴种魔物作乱，再踩着晨光往未知的区域奔跑。<br>散落在深渊间的记忆碎片，正等您慢慢拼凑；<br>沉眠在这片土地下的真相，也等待着您亲手揭开它的面纱。<br><br>来吧，工匠大人。<br>深渊的风，已经静候您多时了。</p><h2 style="line-height: 24px;"><strong>开发者的话</strong></h2><p>大家好！我们是《深渊之歌》的开发团队。在营地的篝火旁，我们怀着激动与忐忑的心情写下这封信，邀请你们一同踏入这片深邃而迷人的无主之地——“深渊”。<br><br>《深渊之歌》的核心魅力：<br><br>故事驱动，浸入深渊：<br>数百年前那场席卷卡露蒂亚的灾难余波未平，而“深渊”——这场风暴的正中心，正是故事的起点。被克里斯汀圣教军追捕的小小工匠意外坠入其中。这里环境严酷，魔物环伺，但也蕴藏着失落的历史、奇异的生灵和无尽的可能。<br><br>魔物伙伴，从敌到友：<br>从一枚“蛋”开始，孵化、培育你的魔物！培育的魔物拥有独立的技能和专属特性，能为你的组队策略带来全新维度。无论是派遣它们去获得收益，还是带着它们在荒野中披荆斩棘，它们都是你最特别的伙伴。<br><br>深度养成，自由构筑：<br>六大职业、四种元素属性，自由组建你的四人冒险小队。通过获取经验、升级技能、解锁回忆拼图，每个角色都能绽放独特光彩。别忘了给你的伙伴们送送礼，解锁他们的专属羁绊剧情和奖励！<br><br>立足荒野，建造家园：<br>从一堆篝火开始，亲手在危机四伏的深渊中开辟一隅安身之所。建造、升级、研究科技、制作材料、开垦田地、烹饪料理、摆放家具，邀请伙伴入住……这里的一切都由你规划，打造你和伙伴们的家园！<br><br>匠魂不息，锻造传说：<br>能工巧匠，亦是真正的勇者！传说级的金色装备和稀有词条，都可以用自己的双手去锻造！为伙伴量身打造契合的装备，组成套装、强化底材、洗练词条、附魔特性……工匠锤每一次的锻打，都让你离深渊的秘密更近一步。<br><br>经营有方，放置生财：<br>深渊求生，资源为王。除了亲自去野地采集，也有更轻松的方法获取材料。发出探索队让闲置的伙伴收集材料和战利品，在冒险之余配置生产计划，让种植、磨坊、轻工、锻造、制药形成产业闭环，在市场中完成订单和买卖交易，用赚取的资金购买资源或强化队伍，群英荟萃指日可待！<br><br>《深渊之歌》倾注了我们的全部热爱。我们一直梦想着创造这样一个世界：它不仅仅是冒险战斗的舞台，更是一个你能够扎根、成长、与伙伴建立深刻羁绊的家园。<br><br>准备好你的行囊，点燃营地的篝火，孵化第一枚魔物蛋，和伙伴一起举起亲手锻造的武器……在卡露蒂亚的深渊之中，你的传奇，正等待书写。让我们在篝火旁相聚，共同谱写这首属于工匠与勇者的“深渊之歌”！</p>'
     }
   ]
 }
 
-/** 核心图鉴默认值 */
+/** 公告插槽默认值（8 个位置：site 4 + official 4，null = 该位置空着） */
+export const DEFAULT_NOTICE_SLOTS = {"site":["site-1","site-5","site-7","site-4"],"official":["official-6","official-5",null,null]}
+
+/** 图鉴入口默认值（生产 D1 `home_links` 快照，section = core） */
 export const DEFAULT_CORE_LINKS = [
-  { slot: 1, title: '角色图鉴', description: '全英雄属性、技能天赋与升星材料', route: '/heroes', iconSource: 'nav' },
-  { slot: 2, title: '装备图鉴', description: '武器防具属性、专武词条与锻造', route: '/equip', iconSource: 'nav' },
-  { slot: 3, title: '魔物图鉴', description: '魔物羁绊技能、孵化产出与被动', route: '/pets', iconSource: 'nav' },
-  { slot: 4, title: '符石图鉴', description: '符石共鸣套装、词条洗练与评分', route: '/runes', iconSource: 'nav' }
+  { slot: 1, title: '角色图鉴', description: '角色属性，技能，星阶\n角色互动文本', route: '/heroes', iconSource: 'nav' },
+  { slot: 2, title: '怪物图鉴', description: '怪物基础属性\n怪物状态，技能释放条件', route: '/monsters', iconSource: 'nav' },
+  { slot: 3, title: '任务图鉴', description: '全任务流程\n全剧情文本，支持关键词搜索', route: '/pets', iconSource: 'nav' },
+  { slot: 4, title: '副本图鉴', description: '副本路线\n商人，宝箱产出', route: '/dungeons', iconSource: 'nav' }
 ]
 
-/** 实用工具默认值 */
+/** 实用工具默认值（生产 D1 `home_links` 快照，section = tool） */
 export const DEFAULT_TOOL_LINKS = [
-  { slot: 1, title: '魔物出战搭配模拟器', description: '全角色与魔物羁绊加成实时计算，智能推导最优方案', route: '/sims', iconSource: 'nav', badgeText: 'HOT', badgeColor: 'red' },
-  { slot: 2, title: '模拟招募抽卡', description: '真实还原原版抽卡概率、卡池保底机制与立绘动画', route: '/gacha', iconSource: 'nav', badgeText: 'NEW', badgeColor: 'green' },
-  { slot: 3, title: '魔物收益速查', description: '各阶段魔物蛋孵化时间、预计产出与金币收益全览', route: '/petseggs', iconSource: 'nav' },
-  { slot: 4, title: '营地菜谱查询器', description: '食材最佳搭配组合、饱食度收益与战斗增益 Buff', route: '/recipes', iconSource: 'nav' }
+  { slot: 1, title: '模拟招募', description: '欢迎游戏抽卡概率、欧非鉴定器', route: '/gacha', iconSource: 'nav', badgeText: 'HOT', badgeColor: 'red' },
+  { slot: 2, title: '魔物出战推荐', description: '实现属性收益最大化', route: '/sims', queryString: 'tab=monster-team', iconSource: 'custom', badgeText: 'NEW', badgeColor: 'green' },
+  { slot: 3, title: '魔物收益速查', description: '各魔物蛋孵化时间、银币收益与经验收益全览', route: '/petseggs', iconSource: 'nav', badgeText: '111' },
+  { slot: 4, title: '菜谱查询', description: '食材组合、战斗增益 Buff', route: '/recipes', iconSource: 'nav' }
 ]
 
-/** 核心角色默认值（只存 heroId + tip，其余运行时 join heroes.json） */
+/** 核心角色默认值（生产 D1 `home_heroes` 快照；只存 heroId + tip，其余运行时 join heroes.json） */
 export const DEFAULT_HEROES = [
-  { slot: 1, heroId: 'hero_053', tip: '多段连击 / 范围刈割' },
-  { slot: 2, heroId: 'hero_049', tip: '箭雨压制 / 穿甲破防' },
-  { slot: 3, heroId: 'hero_027', tip: '散射爆刀 / 穿透清兵' },
-  { slot: 4, heroId: 'hero_036', tip: '范围水伤 / 击退控场' }
+  { slot: 1, heroId: 'hero_053', tip: '范围伤害/残血收割' },
+  { slot: 2, heroId: 'hero_049', tip: '范围伤害 /高伤爆发 ' },
+  { slot: 3, heroId: 'hero_027', tip: '范围伤害 / 高效清场' },
+  { slot: 4, heroId: 'hero_036', tip: '范围水伤 / 易伤，控制' }
 ]
 
-/** 底部两栏默认值 */
+/** 底部两栏默认值（生产 D1 `home_blocks` 快照） */
 export const DEFAULT_BLOCKS = {
   guide: {
     title: '大书院交流',
-    subtitle: '站内自由发言，交流玩法心得',
-    rows: [
-      { tag: '交流', label: '大书院讨论区', text: '全站自由发言，交流玩法心得' },
-      { tag: '勘误', label: '数据校准', text: '遇到数值错误或文本缺失可在讨论区反馈' },
-      { tag: '群号', label: '大书院群', text: '交流群 963318625，一起探索深渊秘境' }
-    ]
+    subtitle: '占位',
+    rows: [{ tag: '交流', label: '大书院讨论区', text: '全站自由发言，交流玩法心得' }, { tag: '勘误', label: '数据校准', text: '遇到数值错误或文本缺失可在讨论区反馈' }, { tag: '群号', label: '大书院群', text: '交流群 963318625，一起探索深渊秘境' }]
   },
   help: {
     title: '新人攻略',
     subtitle: '占位',
-    rows: [
-      { tag: '攻略', label: '占位1', text: '占位1' },
-      { tag: '攻略', label: '占位2', text: '占位2' },
-      { tag: '攻略', label: '占位3', text: '占位3' }
-    ]
+    rows: [{ tag: '攻略', label: '占位1', text: '占位1' }, { tag: '攻略', label: '占位2', text: '占位2' }, { tag: '攻略', label: '占位3', text: '占位3' }]
   }
 }
 
@@ -195,10 +192,14 @@ export async function loadHomeConfig(opts = {}) {
   const result = {
     banners: DEFAULT_BANNERS,
     notices: DEFAULT_NOTICES,
-    /** 8 个位置明细；默认值下按「有内容就依次排」生成，null 表示该位置空着 */
+    /**
+     * 8 个位置明细（id 数组，null = 该位置空着）。
+     * 用导出的快照而不是从 DEFAULT_NOTICES 现算：现算只能得到「都填满」，
+     * 而真实配置里 official 第 3、4 位是空的。
+     */
     noticeSlots: {
-      site: DEFAULT_NOTICES.site.map((n) => n),
-      official: DEFAULT_NOTICES.official.map((n) => n)
+      site: DEFAULT_NOTICE_SLOTS.site.map((id) => (id ? DEFAULT_NOTICES.site.find((n) => n.id === id) || null : null)),
+      official: DEFAULT_NOTICE_SLOTS.official.map((id) => (id ? DEFAULT_NOTICES.official.find((n) => n.id === id) || null : null))
     },
     coreLinks: DEFAULT_CORE_LINKS,
     toolLinks: DEFAULT_TOOL_LINKS,

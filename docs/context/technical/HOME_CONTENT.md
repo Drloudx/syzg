@@ -626,7 +626,44 @@ PUT    /api/admin/home-blocks      整组保存（?section=guide|help）
 | 前端兜底 | 拦截 `/api/home-config` 后首页仍渲染 4 图鉴 / 4 角色 / 4 公告 |
 | 构建 | `vite build` 通过，运行时 0 错误 |
 
-### 2026-11-02 增补
+### 2026-11-02 增补（二）：`DEFAULT_*` 换成生产配置快照
+
+**问题**：`src/utils/homeConfig.js` 的 `DEFAULT_*` 是早期手写的占位文案（「探求深渊秘境的学者殿堂」「官方版本焦点」等），与后台实际配置无关。API 不可用时首页会静默回落到这些假内容 —— 开发期只跑 `npm run dev`（不起 `dev:api`）时看到的就是假数据。
+
+**改法**：六个常量整体替换为 **2026-11-02 从生产 D1 导出的真实快照**：
+
+| 常量 | 来源表 | 条数 |
+| --- | --- | --- |
+| `DEFAULT_BANNERS` | `home_banners` | 3 |
+| `DEFAULT_NOTICES.site` / `.official` | `notices` + `home_notice_slots` | 4 / 2 |
+| `DEFAULT_NOTICE_SLOTS` | `home_notice_slots`（**新增导出**） | site 4 / official 4（后 2 位 `null`） |
+| `DEFAULT_CORE_LINKS` / `DEFAULT_TOOL_LINKS` | `home_links` | 4 / 4 |
+| `DEFAULT_HEROES` | `home_heroes` | 4 |
+| `DEFAULT_BLOCKS` | `home_blocks` | guide / help |
+
+**为什么新增 `DEFAULT_NOTICE_SLOTS`**：原来 `noticeSlots` 由 `DEFAULT_NOTICES.site.map(n => n)` 现算，只能得到「全部填满」；而真实配置里 official 第 3、4 位是空的。改为显式快照后，兜底与在线表现逐位一致。
+
+**重新导出的方法**：
+
+```bash
+# API 在线时
+node -e "fetch('http://127.0.0.1:8788/api/home-config').then(r=>r.json()).then(j=>require('fs').writeFileSync('scratch/home-config-live.json',JSON.stringify(j,null,2),'utf8'))"
+```
+
+再把 `scratch/home-config-live.json` 按字段映射写回六个常量。字段映射：接口的 `description` → 常量的 `desc`（海报）、`description` → `description`（链接），其余同名。
+
+**验证**（两条路径逐句比对首页文案）：
+
+| 路径 | 结果 |
+| --- | --- |
+| API 在线（8788 起） | 3 张真实海报 + 6 条真实公告 |
+| API 关闭（只跑 5173） | 同上；旧占位「探求深渊秘境的学者殿堂」「官方版本焦点」不再出现 |
+
+`npm run test:unit` 413/0、`npx vite build` 通过。
+
+**维护约定**：改后台内容后若希望离线兜底也跟上，重新导出一次快照。**`DEFAULT_*` 不是占位文案，是生产数据副本**，改它等于改兜底内容。
+
+### 2026-11-02 增补（一）：后台交互口径
 
 **公告插槽改「填 ID + 回显标题」**
 
