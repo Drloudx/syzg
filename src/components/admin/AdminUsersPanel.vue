@@ -705,10 +705,18 @@ function statusBadgeClass(status) {
   return 'status-badge--del'
 }
 
+/**
+ * 输入只更新本地值，不发请求。按 Enter 或点「搜索」才查。
+ * 清空立刻生效（明确意图）。
+ */
 function onSearchInput(value) {
   searchInput.value = value
-  clearTimeout(searchTimer)
-  searchTimer = setTimeout(applySearch, 350)
+  if (!value) applySearch()
+}
+
+/** 回车即搜索 */
+function onSearchEnter() {
+  applySearch()
 }
 
 function applySearch() {

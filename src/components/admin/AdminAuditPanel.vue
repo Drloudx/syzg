@@ -58,7 +58,7 @@
               </span>
             </td>
             <td class="mono-cell">
-              {{ e.targetType === 'user' ? '用户' : '评论' }} #{{ e.targetId }}
+              {{ targetTypeLabel(e.targetType) }} #{{ e.targetId }}
             </td>
             <td class="detail-cell">{{ e.detail || '—' }}</td>
           </tr>
@@ -173,23 +173,64 @@ function getPaginationItems(current, total, delta = 2) {
   return items
 }
 
+/*
+ * 操作名称映射。
+ *
+ * 🔴 新增后台功能时必须在这里补条目，否则审计页会直接显示原始键名
+ *    （如 `home.notice.update`），非开发人员看不懂。
+ */
 const ACTION_LABELS = {
+  // 账号
   ban: '封禁账号',
   unban: '解除封禁',
   user_delete: '彻底删除用户',
+  role_set: '变更权限角色',
+  // 评论
   comment_show: '放行评论',
   comment_hide: '隐藏评论',
   comment_pending: '打回待审',
   comment_delete: '彻底删除评论',
-  role_set: '变更权限角色',
-  review_presets_set: '改待审常用选项'
+  // 审核口径
+  review_presets_set: '改待审常用选项',
+  // 首页内容（2026-11-01 起）
+  'home.notice.create': '新建公告',
+  'home.notice.update': '修改公告',
+  'home.notice.delete': '停用公告',
+  'home.notice-slots.replace': '调整首页公告位置',
+  'home.banners.replace': '保存海报轮播',
+  'home.links.core.replace': '保存核心图鉴入口',
+  'home.links.tool.replace': '保存实用工具入口',
+  'home.heroes.replace': '保存核心角色',
+  'home.blocks.replace': '保存底部两栏'
 }
 
-const DESTRUCTIVE = new Set(['user_delete', 'comment_delete', 'ban', 'comment_hide'])
+const DESTRUCTIVE = new Set([
+  'user_delete', 'comment_delete', 'ban', 'comment_hide',
+  // 停用公告也算破坏性（会从首页消失）
+  'home.notice.delete'
+])
 
 const ROLE_LABELS = { 0: '普通用户', 1: '管理员', 2: '超级管理员' }
 
+/*
+ * 目标类型映射。
+ *
+ * 之前只有 `user` 与「其余都是评论」两分支 —— 首页/公告管理的操作
+ * 目标类型是 `notice` / `home`，就全被显示成「评论 #xxx」，
+ * 看起来像动过评论。这里改成显式映射，未知类型原样显示。
+ */
+const TARGET_TYPE_LABELS = {
+  user: '用户',
+  comment: '评论',
+  notice: '公告',
+  home: '首页',
+  keyword: '审核词',
+  preset: '待审选项',
+  settings: '设置'
+}
+
 const actionLabel = (a) => ACTION_LABELS[a] || a
+const targetTypeLabel = (t) => TARGET_TYPE_LABELS[t] || t || '—'
 const roleLabel = (r) => ROLE_LABELS[r] || String(r)
 const isDestructive = (a) => DESTRUCTIVE.has(a)
 

@@ -703,11 +703,21 @@ function openBatchPending() {
   pendingNote.value = ''
 }
 
+/**
+ * 输入只更新本地值，**不发请求**。
+ *
+ * 为什么不再边打边搜：每个字符一次查询会让 D1 的 rows_read 按
+ * 「字符数 × 结果条数」累加；显式提交后一次输入只花一次查询。
+ * 按 Enter 或点「搜索」才真正查；清空立刻生效（明确意图）。
+ */
 function onSearchInput(value) {
   searchInput.value = value
-  // 输入防抖：边打边搜会把 D1 读额度烧在几个字符上
-  clearTimeout(searchTimer)
-  searchTimer = setTimeout(applySearch, 350)
+  if (!value) applySearch()
+}
+
+/** 回车即搜索 */
+function onSearchEnter() {
+  applySearch()
 }
 
 function applySearch() {
