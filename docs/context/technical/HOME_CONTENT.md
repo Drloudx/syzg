@@ -4,7 +4,7 @@
 > **何时读**：要改首页后台编辑能力（公告 / 海报 / 图鉴入口 / 角色 / 底栏）时；或排查「首页内容为什么不更新」时。
 > **何时更新**：表结构、字段口径、后台交互、权限变化时。
 
-**核对时间**：2026-11-01（P1~P4 完成并本地验收；生产迁移与上线待执行）
+**核对时间**：2026-11-02（新增公告插槽按 ID 填写 + 标题回显；弹窗改由后端按频道强制；D1 迁移共 13 步）
 
 ---
 
@@ -360,6 +360,101 @@
 | 空态处理 | **A：保留区块，显示「暂无公告 / 暂无海报」**（见问题 10） |
 | SEO / og 分享预览 | **A：接受静态现状，标记已知限制**（见问题 11） |
 | 加载态 | 按问题 8 方案执行：分板块骨架 + 分板块兜底，不整页 spinner |
+| **公告模块拆分** | 公告**内容**在「公告管理」维护；**首页显示哪 4 条**由「首页管理」挑选 |
+| **公告 ID 格式** | 序号式 `site-1`…、`official-1`…，新建时后端取同频道最大序号 +1 |
+| **首页公告位置** | 站点 4 位、官方 4 位，各自独立选择；留空 = 动态取该频道最新 |
+| **弹窗排序** | 置顶在最前，其余按日期倒序（选项 A） |
+| **弹窗内容** | 只显示**站点**公告，官方公告不弹、不在弹窗里出现 |
+| **自动弹窗开关** | `show_in_modal` 字段；站点默认开、官方恒关（后端强约束） |
+| **富文本** | 公告正文统一可用；标题保持纯文本 |
+| **选择器候选** | 默认最近 10 条 + 搜索框（搜索时后端放宽到 50 条） |
+| **公告列表分页** | 每页 20 条，后端分页 |
+
+---
+
+## 五·补三、公告模块（2026-11-01，已实施）
+
+### 职责划分
+
+```
+「公告管理」模块（/admin/notices）        「首页管理 · 公告」（/admin/home）
+   ─────────────────────────              ─────────────────────────────
+   公告内容仓库                              首页显示哪 4 条
+   新建 / 编辑 / 删除                         8 个插槽选择器
+   富文本正文（加粗 / 斜体 / 颜色 / 列表 / 链接）   位置 1、4 常挂声明
+   一公告一页                                位置 2、3 留空 = 动态最新
+```
+
+### 数据库
+
+| 项 | 内容 |
+| --- | --- |
+| 新表 | `home_notice_slots(channel, slot, notice_id, updated_at)` PK `(channel, slot)` |
+| 新列 | `notices.show_in_modal INTEGER NOT NULL DEFAULT 0` |
+| 迁移 | `scripts/sql/2026-11-01-notice-admin.sql`（第 13 步） |
+| ID 迁移 | 第 12 步的初始数据已直接使用 `site-1`…；第 13 步的 `UPDATE` 供老库迁移用 |
+
+**插槽语义**：`notice_id` 为 NULL 表示该位置留空 → 后端 `composeNoticeSlots()` 按日期倒序取该频道最新一条，**跳过已被其它位置占用的**（否则四个位置会重复同一条）。
+
+### API
+
+| 端点 | 方法 | 说明 |
+| --- | --- | --- |
+| `/api/admin/notices` | GET | 列表：`channel` / `q` / `page` / `size`（≤50，默认 20），返回 `total` |
+| `/api/admin/notices` | POST / PATCH / DELETE | 单条 CRUD；POST 的 `id` 由后端生成 |
+| `/api/admin/notices/pick` | GET | 选择器用：`channel` / `q` / `limit`（默认 10，有 `q` 时放宽 50） |
+| `/api/admin/home/notice-slots` | PUT | 整组保存 8 个位置；校验频道、位置、引用存在性 |
+| `/api/home-config` | GET | 公开读，新增 `noticeSlots: { site: [4], official: [4] }` |
+
+**权限**：全部要求 `role >= 2`（超管），与「系统设置」「首页管理」同级。
+
+### 前端组件
+
+| 文件 | 作用 |
+| --- | --- |
+| `src/utils/richText.js` | 受限标记解析器 + **12 个颜色预设** |
+| `src/components/ui/RichTextView.vue` | 标记 → VNode 渲染（禁 `v-html`） |
+| `src/components/ui/RichTextEditor.vue` | 工具栏 + 编辑区 + 实时预览 |
+| `src/components/admin/AdminNoticesPanel.vue` | 公告列表（一行一条 / 频道 Tab / 搜索 / 分页） |
+| `src/components/admin/AdminNoticeEditPanel.vue` | 公告编辑页（一公告一页） |
+| `src/utils/adminNoticesApi.js` | 公告模块的接口封装 |
+
+### 颜色预设（12 个）
+
+8 个标准色相（参考 `vue-hxsngh` 的 Tailwind 方案，按羊皮纸浅底压深一档）+ 4 个项目专用：
+
+| 标准 | 值 | | 项目专用 | 值 |
+| --- | --- | --- | --- | --- |
+| 重要 red | `#c0392b` | | 正文 ink | `#3a2717` |
+| 提醒 orange | `#c2660a` | | 次要文字 brown | `#6b5134` |
+| 通过 green | `#2d7a3e` | | 深警示 darkred | `#8b0000` |
+| 信息 blue | `#2563eb` | | 青灰 teal | `#2f6f6b` |
+| 特殊 purple | `#7c3aed` | | | |
+| 活动 pink | `#c2185b` | | | |
+| 次要 gray | `#5c6b7a` | | | |
+| 荣誉 gold | `#b8860b` | | | |
+
+### 富文本语法
+
+```
+**加粗**   *倾斜*   ~~删除线~~
+{red}彩字{/red}    ← key 取自上面 12 个
+- 列表项
+[文字](链接)        ← 只允许 / 站内路径与 https:// 外链
+```
+
+**不支持嵌套**：`{red}**粗**{/red}` 内部按纯文本渲染。非法语法降级为纯文本，不抛错。
+
+### 弹窗（`NoticeModal.vue`）
+
+| 项 | 行为 |
+| --- | --- |
+| 数据源 | `GET /api/home-config`，失败回落 `data/notice.json` |
+| 内容范围 | **只显示站点公告**（`channel === 'site'`） |
+| 排序 | 置顶在最前，其余按日期倒序 |
+| 自动弹出条件 | 存在未读、非置顶、`show_in_modal = 1` 的公告 |
+| 已读记录 | `localStorage.lastNoticeKey`（集合，最多 50）；已读后再发新公告仍会弹 |
+| 正文渲染 | `RichTextView`（VNode，禁 `v-html`） |
 
 
 
@@ -531,11 +626,35 @@ PUT    /api/admin/home-blocks      整组保存（?section=guide|help）
 | 前端兜底 | 拦截 `/api/home-config` 后首页仍渲染 4 图鉴 / 4 角色 / 4 公告 |
 | 构建 | `vite build` 通过，运行时 0 错误 |
 
+### 2026-11-02 增补
+
+**公告插槽改「填 ID + 回显标题」**
+
+- 去掉候选下拉与搜索框，改为直接填公告 ID（`site-1` / `official-2`）。
+- 填入即本地校验：有效显示 `✓ 标题`（绿），无效显示 `⚠ 找不到该 ID`（红 + 输入框标红）。
+- 保存前统一校验，存在无效 ID 时拦下并列出「频道 位置 N：ID」。
+- 留空 = 动态默认，右侧预测「会取到哪条」（按日期倒序、跳过已占用）。
+
+**弹窗开关移除**
+
+- 编辑页不再提供 `show_in_modal` 勾选框，改为只读提示（仅站点频道显示）。
+- 后端 `normalizeNotice` 按频道强制：`site` → 1，`official` → 0，**忽略 `body.showInModal`**。
+- 实测：官方公告传 `showInModal=1` 仍存 0；站点公告传 0 仍存 1。
+
+**速览卡取值口径**
+
+- 右侧「官方更新」卡锚定**带 `version` 的那条**官方公告，而非最新一条。
+- 理由：带版本号的才是版本日志（版本号 + 特性要点）；普通修复通知没有要点，放上去只剩标题。
+
+**已知取舍：公告列表缓存**
+
+- `/api/home-config` 有 60 秒 isolate 内存缓存，后台保存后调用 `invalidateHomeConfigCache()`，但多实例部署时不保证所有实例同时失效。改完公告前台最多 1 分钟才可见。
+
 ### 上线前的必做项
 
 1. `npx wrangler d1 export myrzg-comments --remote --output backup-before.sql`
-2. `npx wrangler d1 execute myrzg-comments --remote --file=./scripts/sql/2026-11-01-home-content.sql`
-3. 验证表已建（`SELECT name FROM sqlite_master WHERE type='table'` 应含 5 张 home 表 + notices）
+2. 依次执行 `scripts/sql/` 下的迁移（共 13 步，`2026-11-01-home-content.sql` 与 `2026-11-01-notice-admin.sql` 在最后）
+3. 验证表已建（`SELECT name FROM sqlite_master WHERE type='table'` 应含 5 张 home 表 + `notices` + `home_notice_slots`）
 4. **此时才 `git push`**（推送即上线）
 5. 上线后登录超管账号，在 `/admin/home` 录入真实内容
 

@@ -341,6 +341,42 @@ import { UiModal, UiSection, UiInfoRow } from '../components/ui/index.js'
 - 默认不 Teleport，内嵌在中间主视图区且不遮挡左右栏；系统公告、关于、提示、更新及全局图片预览使用 `teleport-to="body"` 和统一全局遮罩。
 - 桌面端内嵌详情打开前保存 `.app-container` 的滚动位置，关闭时直接移除覆盖层并通过共享协调器恢复，不等待离场动画；移动端继续使用内容区原生滚动。
 
+### 2.7 `RichTextEditor` / `RichTextView` 富文本
+
+**编辑器**（`src/components/ui/RichTextEditor.vue`）：基于 **Tiptap 3.x**（`@tiptap/vue-3` + `starter-kit` + 颜色/高亮/下划线/对齐/链接扩展，全部 MIT）。
+
+| 项 | 说明 |
+| --- | --- |
+| 输入/输出 | `v-model` 绑定字符串；**编辑器产出 HTML**（`editor.getHTML()`） |
+| 功能 | 加粗、斜体、下划线、删除线、行内代码、全色盘、荧光笔、对齐、多级标题、有序/无序列表、引用、分割线、链接、撤销重做 |
+| 体积 | 约 406 KB，但仅 `/admin/notices/:id` 加载（路由懒加载），不影响前台首屏 |
+| 色板 | `src/utils/richText.js` 的 `COLOR_PRESETS`，12 色锁定，不新增 |
+
+**渲染器**（`src/components/ui/RichTextView.vue`）：双轨。
+
+| 输入形态 | 判定 | 渲染方式 |
+| --- | --- | --- |
+| HTML（Tiptap 产出） | `/<(p|h[1-6]|ul|blockquote|div|strong|span|em|s)\b/i` | 清洗后 `v-html` |
+| 受限标记（历史数据） | 否则 | `parseRichText()` → VNode 树，不用 `v-html` |
+
+- 🔴 **清洗是正则黑名单**（过滤 `script`/`iframe`/带引号事件属性/`javascript:`），挡不住 `<img onerror=>`、`<svg onload=>`、`<details ontoggle=>`。当前仅超管可写公告，作为已知取舍保留；**若开放给普通管理员，必须先改成标签+属性白名单**。
+- HTML 形态下 `isHtml` 判定的标签表未含 `ol`/`li`/`hr`/`mark`/`code`，纯这些标签开头的正文会被判成标记文本走错分支（低概率，已知未修）。
+
+**标记语法**（`src/utils/richText.js`，仅历史数据用）：`**粗**`、`*斜*`、`~~删~~`、`{color}字{/color}`、`- 列表`、`[文字](url)`。支持嵌套；非法语法降级为纯文本。
+
+### 2.8 后台业务组件
+
+| 组件 | 路由 | 说明 |
+| --- | --- | --- |
+| `AdminHomePanel.vue` | `/admin/home` | 首页内容维护，5 个 Tab（海报轮播 / 公告 / 图鉴与工具 / 核心角色 / 底部两栏）。Tab 按钮类名是 `.admin-chip`，**不是** `.home-tab` |
+| `AdminNoticesPanel.vue` | `/admin/notices` | 公告列表，卡片式一行一条（`.notice-card-item`），20 条/页 |
+| `AdminNoticeEditPanel.vue` | `/admin/notices/:id` | 一页一条公告；`id === 'new'` 为新建。频道创建后锁定 |
+| `AdminAuditPanel.vue` | `/admin/audit` | 审计日志。目标类型与操作名称走显式映射表（`TARGET_TYPE_LABELS` / `ACTION_LABELS`），**新增后台功能时必须补条目**，否则显示原始键名 |
+
+**后台搜索一律显式提交**：输入只更新本地变量，点「搜索」按钮或按回车才发请求；清空输入时立即生效。目的是减少 D1 `rows_read`。
+
+**column flex 里的卡片必须写 `flex-shrink: 0`**：`.admin-workshop` 是 `display:flex; flex-direction:column`，子项默认 `flex-shrink:1`，内容超出时会被压扁；配合 `overflow:hidden` 就表现为「后面的元素消失」。
+
 ```html
 <UiModal v-model:visible="isOpen" title="标题">
   内容

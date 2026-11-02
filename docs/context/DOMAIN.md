@@ -1,4 +1,4 @@
-﻿# DOMAIN —— 业务契约总览与跨领域共享约定
+# DOMAIN —— 业务契约总览与跨领域共享约定
 
 > 本文件是业务契约的**索引与共享层**。各页面的完整规则在 [specs/](specs/) 下的领域文件里，按领域独立成文。
 > **不包含**：构建产物与数据链（见 [ARCHITECTURE.md](./ARCHITECTURE.md)）；运行与发布（见 [RUNBOOK.md](RUNBOOK.md)）；长期行为规则（见 [AGENTS.md](../../AGENTS.md)）。
@@ -36,6 +36,7 @@
 
 | 页面 | 路由 | 组件 | 主要数据 |
 | --- | --- | --- | --- |
+| **书院首页** | `/` | `HomeView.vue` | `data/home-config`（D1 `home_*` 表，见 [HOME_CONTENT](technical/HOME_CONTENT.md)） |
 | 物品图鉴 | `/items` | `ItemsView.vue` | `items.json` |
 | 家具图鉴 | `/furniture` | `FurnitureView.vue` | `furniture.json` |
 | 设施功能 | `/facilities` | `FacilitiesView.vue` | `facilities.json` |
@@ -56,13 +57,19 @@
 | 模拟招募 | `/gacha` | `GachaView.vue` | `gacha.json`、`gacha-presentation.json` |
 | 词条 | `/glossary` | `GlossaryView.vue` | `glossary.json`（百科骨架另含静态 `config/glossaryEncyclopedia.js`） |
 | 其他奖励 | `/misc` | `RewardsView.vue` | `parsed-pvp.json`、`parsed-hidden.json` |
+| 配队模拟 | `/sims` | `SimsView.vue` | `heroes.json`、`pets.json`（运行时提取，无新增产物） |
+| 讨论区 | `/discussions` | `DiscussionsView.vue` | `functions/api/[[path]].js` + D1 |
+| 后台 | `/admin` | `AdminView.vue` | 子路由见下 |
+
+后台子路由：`admin`（概览）/ `comments` / `users` / `audit` / `settings` / `home` / `notices` / `notices/:id`（新建传 `new`）。
 
 数据文件均相对 `public/data/parsed/`；这不是原表加载清单。
 
 - 项目入口 `src/main.js`，应用壳 `src/App.vue`，页面在 `src/views/`，共享逻辑在 `src/utils/`，构建入口 `scripts/parse/index.mjs`。
 - 源码目录不等同于运行时请求路径；定位模块沿「路由 → 页面 → parser/产物 → 构建器」。
-- 导航顺序、名称与图标由 `NavigationMenu.vue` 维护，三种菜单模式共用同一数据。`NavigationMenuLite.vue` 是备用精简入口。
-- `/` 重定向 `/items`；未匹配的 hash 统一回首页。
+- 导航顺序、名称与图标由 `src/config/navRoutes.js` 维护（`NAV_ROUTES` + `NAV_CATEGORY_DEFINITIONS`），`NavigationMenu.vue` 消费 `getGroupedNavRoutes()`。三种菜单模式共用同一数据。`NavigationMenuLite.vue` 是备用精简入口。
+- `/` 是**书院首页**（不再是重定向到 `/items`）；未匹配的 hash 统一回首页。
+- 旧地址 `/team-sim` → `/sims`、`/rewards` → `/misc` 已改名，**不保留重定向**。
 
 ---
 
