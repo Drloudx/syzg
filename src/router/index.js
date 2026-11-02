@@ -142,6 +142,21 @@ const routes = [
     component: () => import('../views/GlossaryView.vue')
   },
   {
+    /**
+     * 货运站（游戏内 FreightPanel）：市场 / 订单 / 规则三块。
+     *
+     * 板块用 `?tab=` 寻址（`market` / `orders` / `rules`），可直达、可前进后退。
+     * 筛选同样进 URL：`?q=` 搜索、`?tier=` 价格档位、`?kind=` 交易方式。
+     *
+     * 🔴 页面**不显示实时价格**：`priceScale` 是服务端下发（`FreightServerData`），
+     * 配置表里没有。网页只给「基础价 × 5 档阈值」的价格区间，不编造当前价。
+     */
+    path: '/freight',
+    name: 'freight',
+    component: () => import('../views/FreightView.vue'),
+    meta: { title: '货运站' }
+  },
+  {
     path: '/gacha',
     name: 'gacha',
     component: () => import('../views/GachaView.vue')

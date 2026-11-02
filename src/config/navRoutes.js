@@ -23,6 +23,7 @@ export const NAV_ROUTES = [
   { name: '副本图鉴', path: '/dungeons', icon: '/ui/map_r_fb_03.webp' },
   { name: '关卡图鉴', path: '/chapters', icon: '/ui/stage_crystal.webp' },
   { name: '兑换', path: '/exchange', icon: '/ui/map_r_fb_19.webp' },
+  { name: '货运站', path: '/freight', icon: '/images/FreightPanel_Atlas/cart_price_ori.webp' },
   { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
   { name: '相关模拟', path: '/sims', icon: '/ui/colect_mon_072.webp' },
   { name: '词条', path: '/glossary', icon: '/ui/buff_017.webp' },
@@ -50,7 +51,7 @@ export const NAV_CATEGORY_DEFINITIONS = [
     key: 'misc',
     title: '其他功能',
     adminTitle: '其他功能',
-    paths: ['/exchange', '/glossary', '/partner-mails', '/misc']
+    paths: ['/exchange', '/freight', '/glossary', '/partner-mails', '/misc']
   }
 ]
 
