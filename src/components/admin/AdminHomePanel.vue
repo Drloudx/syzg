@@ -57,7 +57,7 @@
             </label>
             <label class="home-field">
               <span class="home-field-label">角标文案</span>
-              <input v-model="b.tagText" class="admin-input" type="text" placeholder="如：官方版本焦点" />
+              <input v-model="b.tagText" class="admin-input" type="text" />
             </label>
             <label class="home-field">
               <span class="home-field-label">角标配色</span>
@@ -74,7 +74,7 @@
             </label>
             <label class="home-field">
               <span class="home-field-label">副角标</span>
-              <input v-model="b.subTag" class="admin-input" type="text" placeholder="如：v1.2.0" />
+              <input v-model="b.subTag" class="admin-input" type="text" />
             </label>
             <label class="home-field">
               <span class="home-field-label">按钮文案</span>
@@ -144,16 +144,27 @@
                   </div>
                 </div>
               </div>
-              <!-- 公告：按频道分组 -->
-              <select v-else-if="b.actionType === 'notice'" v-model="b.actionValue" class="admin-input admin-select">
-                <option value="">（请选择目标公告）</option>
-                <optgroup label="── 本站公告 ──">
-                  <option v-for="n in siteNotices" :key="n.id" :value="n.id">#{{ n.id }} {{ n.title }}</option>
-                </optgroup>
-                <optgroup label="── 官方公告 ──">
-                  <option v-for="n in officialNotices" :key="n.id" :value="n.id">#{{ n.id }} {{ n.title }}</option>
-                </optgroup>
-              </select>
+              <!-- 公告：填公告 ID，与公告管理一致 -->
+              <div v-else-if="b.actionType === 'notice'" class="home-action-notice-box">
+                <input
+                  v-model.trim="b.actionValue"
+                  class="admin-input"
+                  :class="{ 'is-invalid': noticeActionState(b.actionValue) === 'invalid' }"
+                  type="text"
+                  placeholder="填公告 ID（如 site-1 或 official-1）"
+                />
+                <span class="home-action-notice-hint" :class="`is-${noticeActionState(b.actionValue)}`">
+                  <template v-if="noticeActionState(b.actionValue) === 'empty'">
+                    提示：可前往「公告管理」点击复制 ID 后填入此处
+                  </template>
+                  <template v-else-if="noticeActionState(b.actionValue) === 'ok'">
+                    ✓ [{{ findNoticeById(b.actionValue)?.channel === 'site' ? '本站' : '官方' }}] {{ findNoticeById(b.actionValue)?.title }}
+                  </template>
+                  <template v-else>
+                    ⚠ 找不到该 ID 对应公告（需为有效公告 ID）
+                  </template>
+                </span>
+              </div>
               <!-- 外链 -->
               <input v-else v-model="b.actionValue" class="admin-input" type="text" placeholder="https://..." />
             </label>
@@ -185,96 +196,83 @@
 
       <!-- ============ 公告 ============ -->
       <template v-else-if="activeTab === 'notices'">
-        <!-- 二级频道筛选 (紧凑胶囊) -->
-        <div class="admin-toolbar admin-toolbar--sub">
-          <div class="admin-filters">
-            <button
-              v-for="ch in CHANNELS"
-              :key="ch.value"
-              type="button"
-              class="admin-chip admin-chip--sm"
-              :class="{ 'is-on': noticeChannel === ch.value }"
-              @click="noticeChannel = ch.value"
-            >
-              <span>{{ ch.label }}</span>
-              <span class="admin-chip-count">{{ noticesByChannel(ch.value).length }}</span>
+        <!--
+          首页公告区 = 8 个位置（本站 4 + 官方 4）。
+          公告内容在「公告管理」模块维护；这里只填公告 ID 决定显示哪几条。
+
+          留空 = 动态默认：按日期倒序取该频道最新的一条（跳过已被其它位置占用的）。
+          填了 ID = 固定挂那条；右侧立刻回显标题，防止填错。
+        -->
+        <p class="admin-hint">
+          位置 1、4 通常挂常驻声明（<code>site-1</code> / <code>site-4</code>）；
+          留空则自动显示最新公告。ID 在「公告管理」列表里带 <code>#</code> 前缀显示。
+        </p>
+
+        <div v-for="ch in CHANNELS" :key="ch.value" class="notice-slot-group">
+          <div class="notice-slot-group-head">
+            <span class="notice-slot-group-title">{{ ch.label }}</span>
+            <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="clearSlots(ch.value)">
+              全部留空（走动态最新）
             </button>
           </div>
-        </div>
 
-        <div v-for="n in noticesByChannel(noticeChannel)" :key="n.id" class="home-card">
-          <div class="home-card-head">
-            <span class="home-card-index">#{{ n.id }}</span>
-            <input v-model="n.title" class="admin-input home-input-flex home-title-input" type="text" placeholder="公告标题" />
-            <div class="home-card-ops">
-              <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="saveNotice(n)">保存单条</button>
-              <button
-                type="button"
-                class="admin-btn admin-btn--sm"
-                :class="n.isActive ? 'admin-btn--danger' : 'admin-btn--ghost'"
-                @click="toggleNotice(n)"
-              >{{ n.isActive ? '停用' : '启用' }}</button>
-            </div>
-          </div>
+          <div v-for="slot in SLOT_NUMBERS" :key="`${ch.value}-${slot}`" class="notice-slot-row">
+            <span class="notice-slot-index">{{ slot }}</span>
 
-          <div class="home-field-grid">
-            <label class="home-field">
-              <span class="home-field-label">发布日期（YYYY-MM-DD）</span>
-              <input v-model="n.date" class="admin-input" type="text" placeholder="2026-11-01" />
-            </label>
-            <label class="home-field">
-              <span class="home-field-label">展示层级</span>
-              <select v-model="n.tier" class="admin-input admin-select">
-                <option value="normal">滚动项（按日期倒序展示）</option>
-                <option value="pin">固定项（锁定固定槽位）</option>
-              </select>
-            </label>
-            <label v-if="n.tier === 'pin'" class="home-field">
-              <span class="home-field-label">固定槽位 (1~10)</span>
-              <input v-model.number="n.slot" class="admin-input" type="number" min="1" max="10" />
-            </label>
-            <label class="home-field">
-              <span class="home-field-label">标签文案</span>
-              <input v-model="n.tagText" class="admin-input" type="text" placeholder="置顶 / 功能 / 版本" />
-            </label>
-            <label class="home-field">
-              <span class="home-field-label">标签配色</span>
-              <div class="color-select-wrapper">
-                <select v-model="n.tagClass" class="admin-input admin-select color-select-input">
-                  <option v-for="c in NOTICE_TAG_CLASSES" :key="c.value" :value="c.value">{{ c.label }}</option>
-                </select>
-                <div
-                  class="color-preview-swatch"
-                  :class="`is-notice-${n.tagClass}`"
-                  :title="`当前标签配色：${n.tagClass}`"
-                ></div>
-              </div>
-            </label>
-            <label v-if="n.channel === 'official'" class="home-field">
-              <span class="home-field-label">版本号（有值时作为右侧速览卡展示）</span>
-              <input v-model="n.version" class="admin-input" type="text" placeholder="v1.2.0「深境微光」" />
-            </label>
-            <label v-if="n.channel === 'official'" class="home-field home-field-wide">
-              <span class="home-field-label">特性速览列表（每行一条）</span>
-              <textarea
-                class="admin-input"
-                rows="4"
-                :value="(n.features || []).join('\n')"
-                @input="n.features = $event.target.value.split('\n').map((s) => s.trim()).filter(Boolean)"
-              />
-            </label>
-            <label class="home-field home-field-wide">
-              <span class="home-field-label">正文详情（换行自动分段）</span>
-              <textarea v-model="n.content" class="admin-input" rows="5" />
-            </label>
+            <!--
+              模式切换：固定 / 动态最新。
+              这是**界面状态**，不落库 —— 库里只用 notice_id 是否为 null 表示两态：
+                notice_id 有值 = 固定；为 null = 动态（后端按日期取最新，跳过已占用的）。
+              额外存一个 mode 列会把同一信息存两遍，且可能出现 mode='fixed' 但 id 为空的矛盾。
+            -->
+            <select
+              :value="slots[ch.value][slot - 1] ? 'fixed' : 'dynamic'"
+              class="admin-input admin-select notice-slot-mode"
+              @change="onSlotModeChange(ch.value, slot, $event.target.value)"
+            >
+              <option value="dynamic">动态最新</option>
+              <option value="fixed">固定公告</option>
+            </select>
+
+            <input
+              v-if="slots[ch.value][slot - 1]"
+              :value="slots[ch.value][slot - 1] || ''"
+              class="admin-input notice-slot-id-input"
+              :class="{ 'is-invalid': slotIdState(ch.value, slot) === 'invalid' }"
+              type="text"
+              :placeholder="`填 ID（如 ${ch.value}-1）`"
+              @change="onSlotIdChange(ch.value, slot, $event.target.value)"
+              @keydown.enter.prevent="onSlotIdChange(ch.value, slot, $event.target.value)"
+            />
+            <span v-else class="notice-slot-dynamic-tag">自动取最新</span>
+
+            <!-- 回显：固定显示标题 / 动态显示会取到哪条 / ID 错了报警 -->
+            <span class="notice-slot-current" :class="`is-${slotIdState(ch.value, slot)}`">
+              <template v-if="slotIdState(ch.value, slot) === 'empty'">
+                {{ slotDynamicHint(ch.value, slot) }}
+              </template>
+              <template v-else-if="slotIdState(ch.value, slot) === 'ok'">
+                ✓ {{ slotTitleOf(ch.value, slot) }}
+              </template>
+              <template v-else>
+                ⚠ 找不到该 ID（注意频道要匹配：{{ ch.value }}-N）
+              </template>
+            </span>
           </div>
         </div>
 
         <div class="home-actions">
-          <button type="button" class="admin-btn admin-btn--ghost" @click="addNotice">+ 新增{{ noticeChannel === 'site' ? '本站' : '官方' }}公告</button>
+          <button type="button" class="admin-btn" :disabled="saving" @click="submitSlots">
+            {{ saving ? '保存中…' : '保存首页公告位置' }}
+          </button>
           <span v-if="savedMessage" class="admin-saved">✓ {{ savedMessage }}</span>
           <span v-if="errorMessage" class="admin-error">⚠ {{ errorMessage }}</span>
         </div>
+
+        <p class="admin-hint">
+          要改公告内容 / 新增公告，去
+          <RouterLink to="/admin/notices" class="notice-slot-link">公告管理</RouterLink>。
+        </p>
       </template>
 
       <!-- ============ 图鉴 / 工具 ============ -->
@@ -309,7 +307,7 @@
           <div class="home-field-grid">
             <label class="home-field home-field-wide">
               <span class="home-field-label">入口副描述</span>
-              <input v-model="l.description" class="admin-input" type="text" />
+              <textarea v-model="l.description" class="admin-input" rows="2" placeholder="支持多行描述（按 Enter 或 Shift+Enter 换行）" />
             </label>
             <label class="home-field">
               <span class="home-field-label">目标路由</span>
@@ -609,20 +607,27 @@
                   </div>
                 </div>
 
-                <!-- 公告下拉 -->
-                <select
-                  v-else-if="row.actionType === 'notice'"
-                  v-model="row.actionValue"
-                  class="admin-input admin-select home-row-action-target"
-                >
-                  <option value="">（请选择目标公告）</option>
-                  <optgroup label="── 本站公告 ──">
-                    <option v-for="n in siteNotices" :key="n.id" :value="n.id">#{{ n.id }} {{ n.title }}</option>
-                  </optgroup>
-                  <optgroup label="── 官方公告 ──">
-                    <option v-for="n in officialNotices" :key="n.id" :value="n.id">#{{ n.id }} {{ n.title }}</option>
-                  </optgroup>
-                </select>
+                <!-- 公告：填公告 ID -->
+                <div v-else-if="row.actionType === 'notice'" class="home-row-action-notice-box">
+                  <input
+                    v-model.trim="row.actionValue"
+                    class="admin-input home-row-action-target"
+                    :class="{ 'is-invalid': noticeActionState(row.actionValue) === 'invalid' }"
+                    type="text"
+                    placeholder="填公告 ID（如 site-1）"
+                  />
+                  <span class="home-action-notice-hint" :class="`is-${noticeActionState(row.actionValue)}`">
+                    <template v-if="noticeActionState(row.actionValue) === 'empty'">
+                      提示：填公告 ID
+                    </template>
+                    <template v-else-if="noticeActionState(row.actionValue) === 'ok'">
+                      ✓ {{ findNoticeById(row.actionValue)?.title }}
+                    </template>
+                    <template v-else>
+                      ⚠ 无此公告 ID
+                    </template>
+                  </span>
+                </div>
 
                 <!-- 外链 -->
                 <input
@@ -689,14 +694,12 @@ import {
 } from '../../utils/adminApi.js'
 import {
   fetchHomeAdmin,
-  createNotice,
-  updateNotice,
-  deleteNotice,
   saveBanners,
   saveLinks,
   saveHeroes,
   saveBlocks
 } from '../../utils/adminHomeApi.js'
+import { saveNoticeSlots } from '../../utils/adminNoticesApi.js'
 import { getGroupedNavRoutes, navRouteOf } from '../../config/navRoutes.js'
 
 const TABS = [
@@ -724,7 +727,8 @@ const groupedRoutes = computed(() => getGroupedNavRoutes({ useAdminTitle: true }
 const TAG_CLASSES = [
   { value: 'gold', label: '金色 · 版本焦点' },
   { value: 'red', label: '红色 · 限时活动' },
-  { value: 'teal', label: '青色 · 工具功能' }
+  { value: 'teal', label: '青色 · 工具功能' },
+  { value: 'info', label: '灰褐 · 信息通知' }
 ]
 
 /** 公告标签配色：与 HomeView 的 .notice-tag 样式对应 */
@@ -799,10 +803,12 @@ function onConfirmCancel() {
 }
 
 const activeTab = ref('banners')
-const noticeChannel = ref('site')
 const linkSection = ref('core')
 
 const banners = ref([])
+/** 位置编号 1..4（模板与逻辑共用） */
+const SLOT_NUMBERS = [1, 2, 3, 4]
+
 const notices = ref([])
 const links = ref({ core: [], tool: [] })
 const heroes = ref([])
@@ -1021,6 +1027,18 @@ async function load() {
     // 后台要显示已停用项，所以这里不过滤 isActive
     notices.value = (data.notices || []).map((n) => ({ ...n, features: n.features || [] }))
 
+    /*
+     * 回填 8 个插槽的选择。
+     * 后端返回的是 [{channel, slot, noticeId}]，这里铺成 {site:[4], official:[4]}。
+     */
+    const next = { site: [null, null, null, null], official: [null, null, null, null] }
+    for (const s of data.noticeSlots || []) {
+      if (!next[s.channel]) continue
+      const idx = Number(s.slot) - 1
+      if (idx >= 0 && idx < 4) next[s.channel][idx] = s.noticeId || null
+    }
+    slots.value = next
+
     links.value = {
       core: (data.links || []).filter((l) => l.section === 'core'),
       tool: (data.links || []).filter((l) => l.section === 'tool')
@@ -1111,63 +1129,146 @@ async function submitBanners() {
   }
 }
 
-/* ---------- 公告 ---------- */
+/* ---------- 公告插槽（8 个位置：填 ID + 回显标题） ---------- */
 
-function addNotice() {
-  notices.value.push({
-    id: '',
-    channel: noticeChannel.value,
-    tier: 'normal',
-    slot: null,
-    title: '',
-    content: '',
-    date: new Date().toISOString().slice(0, 10),
-    tagText: '公告',
-    tagClass: 'info',
-    version: null,
-    features: [],
-    isActive: 1
-  })
-}
+/**
+ * 首页公告区的 8 个位置。
+ * null 表示该位置留空 → 后端走动态默认（按日期取最新）。
+ */
+const slots = ref({ site: [null, null, null, null], official: [null, null, null, null] })
 
-async function saveNotice(n) {
-  saving.value = true
-  try {
-    const payload = {
-      id: n.id,
-      channel: n.channel,
-      tier: n.tier,
-      slot: n.slot,
-      title: n.title,
-      content: n.content,
-      date: n.date,
-      tagText: n.tagText,
-      tagClass: n.tagClass,
-      version: n.version,
-      features: n.features,
-      isActive: n.isActive
-    }
-    if (n.id) await updateNotice(payload)
-    else await createNotice(payload)
-    flash('公告已保存')
-    await load()
-  } catch (err) {
-    fail(err)
-  } finally {
-    saving.value = false
+/**
+ * 切换位置的模式。
+ *
+ *   切到「动态」→ 清空 notice_id（后端按日期取最新）
+ *   切到「固定」→ 先填一条推荐的（该频道最新一条），避免空输入框让人不知所措
+ *
+ * 不落库：库里只有 notice_id 一列，null 即动态。
+ */
+function onSlotModeChange(channel, slot, mode) {
+  if (mode === 'dynamic') {
+    slots.value[channel][slot - 1] = null
+    return
+  }
+  // 切到固定：若还没有值，给一个建议（该频道最新一条，且没被其它位置占用）
+  if (!slots.value[channel][slot - 1]) {
+    const taken = new Set(slots.value[channel].filter(Boolean))
+    const pool = notices.value
+      .filter((n) => n.channel === channel && n.isActive && !taken.has(n.id))
+      .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
+    slots.value[channel][slot - 1] = pool[0]?.id || null
   }
 }
 
-async function toggleNotice(n) {
+/**
+ * 填 ID 后立刻校验并回显标题。
+ *
+ * 为什么要回显：ID 是 site-1 这种短标识，光看串不直观；
+ * 填错一位（如 site-11）如果不提示，保存后首页那块就空了。
+ *
+ * 校验只在本地已有数据里查（notices 是接口拉的全量），
+ * 不打接口 —— 输入时不产生任何请求。
+ */
+function onSlotIdChange(channel, slot, rawValue) {
+  const v = String(rawValue || '').trim()
+  slots.value[channel][slot - 1] = v || null
+}
+
+/** 按全局 ID 查找公告（跨本站与官方） */
+function findNoticeById(id) {
+  const cleanId = String(id || '').trim()
+  if (!cleanId) return null
+  return notices.value.find((n) => n.id === cleanId) || null
+}
+
+/** 海报 / 底栏公告行动的状态：empty（未填）/ ok（有效）/ invalid（不存在） */
+function noticeActionState(id) {
+  const cleanId = String(id || '').trim()
+  if (!cleanId) return 'empty'
+  return findNoticeById(cleanId) ? 'ok' : 'invalid'
+}
+
+/** 该位置 ID 的状态：empty（留空）/ ok（有效）/ invalid（找不到） */
+function slotIdState(channel, slot) {
+  const id = slots.value[channel][slot - 1]
+  if (!id) return 'empty'
+  return findNoticeInChannel(channel, id) ? 'ok' : 'invalid'
+}
+
+/** 在指定频道的公告里按 id 找一条 */
+function findNoticeInChannel(channel, id) {
+  if (!id) return null
+  return notices.value.find((n) => n.channel === channel && n.id === id) || null
+}
+
+/** 该位置填的公告标题（仅 ok 状态有意义） */
+function slotTitleOf(channel, slot) {
+  const hit = findNoticeInChannel(channel, slots.value[channel][slot - 1])
+  return hit ? hit.title : ''
+}
+
+/**
+ * 留空时预测「动态会取到哪条」。
+ *
+ * 规则与后端 composeNoticeSlots() 一致：
+ * 按日期倒序，跳过已被其它位置占用的。否则四个位置会预测成同一条。
+ */
+function slotDynamicHint(channel, slot) {
+  const taken = new Set(slots.value[channel].filter(Boolean))
+  const pool = notices.value
+    .filter((n) => n.channel === channel && n.isActive && !taken.has(n.id))
+    .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')))
+
+  let emptyBefore = 0
+  for (let i = 0; i < slot - 1; i++) {
+    if (!slots.value[channel][i]) emptyBefore++
+  }
+  const pick = pool[emptyBefore]
+  return pick ? '动态 → ' + pick.title : '（动态无可用公告）'
+}
+
+/** 把某个频道的 4 个位置全部留空 */
+function clearSlots(channel) {
+  for (const slot of SLOT_NUMBERS) slots.value[channel][slot - 1] = null
+}
+
+/** 保存前校验：填了但找不到的 ID 要拦下 */
+function validateSlots() {
+  const bad = []
+  for (const ch of ['site', 'official']) {
+    for (const slot of SLOT_NUMBERS) {
+      const id = slots.value[ch][slot - 1]
+      if (id && !findNoticeInChannel(ch, id)) {
+        bad.push(ch + ' 位置 ' + slot + '：' + id)
+      }
+    }
+  }
+  return bad
+}
+
+async function submitSlots() {
+  // 填了但找不到的 ID 先拦下 —— 存进去会让首页那块显示空白
+  const bad = validateSlots()
+  if (bad.length) {
+    errorMessage.value = '这些公告 ID 找不到：' + bad.join('；')
+    savedMessage.value = ''
+    return
+  }
+
   saving.value = true
   try {
-    if (n.isActive) {
-      await deleteNotice(n.id)
-      flash('公告已停用')
-    } else {
-      await updateNotice({ ...n, isActive: 1 })
-      flash('公告已启用')
+    const payload = []
+    for (const ch of ['site', 'official']) {
+      for (const slot of SLOT_NUMBERS) {
+        payload.push({
+          channel: ch,
+          slot,
+          noticeId: slots.value[ch][slot - 1] || null
+        })
+      }
     }
+    await saveNoticeSlots(payload)
+    flash('首页公告位置已保存')
     await load()
   } catch (err) {
     fail(err)
@@ -1414,6 +1515,8 @@ onUnmounted(() => {
   padding: 14px 16px;
   margin-bottom: 12px;
   background: var(--paper-card);
+  /* 同上：避免在 .admin-workshop 的 column flex 里被压扁裁切 */
+  flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition: all 0.2s ease;
 }
@@ -1474,6 +1577,13 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.home-field textarea.admin-input {
+  flex: none !important;
+  resize: vertical !important;
+  min-height: 52px;
+  display: block;
 }
 
 .home-field-label {
@@ -1574,6 +1684,37 @@ onUnmounted(() => {
   transform: scale(1.08);
 }
 
+.home-action-notice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.home-row-action-notice-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.home-action-notice-hint {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #8c765e;
+  word-break: break-all;
+}
+
+.home-action-notice-hint.is-ok {
+  color: #3c7d5c;
+  font-weight: 500;
+}
+
+.home-action-notice-hint.is-invalid {
+  color: #a84232;
+}
+
 .color-preview-swatch.is-tag-gold,
 .color-preview-swatch.is-badge-gold {
   background: #c69234;
@@ -1587,6 +1728,10 @@ onUnmounted(() => {
 .color-preview-swatch.is-tag-teal,
 .color-preview-swatch.is-badge-teal {
   background: #4b7a78;
+}
+
+.color-preview-swatch.is-tag-info {
+  background: #7a634b;
 }
 
 .color-preview-swatch.is-badge-green {
@@ -2131,5 +2276,171 @@ onUnmounted(() => {
   color: #b83232;
   font-size: 13px;
   font-weight: 700;
+}
+
+/* ---------- 公告插槽选择器（首页管理 · 公告 Tab） ---------- */
+
+.notice-slot-group {
+  margin-bottom: 14px;
+  border: 1px solid rgba(143, 115, 81, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+  /*
+   * 🔴 必须 flex-shrink: 0。
+   *
+   * `.admin-workshop` 是 `display:flex; flex-direction:column`，flex 子项默认
+   * `flex-shrink:1` —— 当内容总高超过容器时，浏览器会**按比例压扁每个子项**。
+   * 这个分组的实际内容高 258px，被压到 179px，配合 `overflow:hidden`
+   * 就把第 3、4 个位置直接裁掉了（看起来像"只渲染了 3 个"）。
+   * 设置 flex-shrink:0 后按内容自然高度展开，由外层 overflow-y:auto 滚动。
+   */
+  flex-shrink: 0;
+}
+
+.notice-slot-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  background: rgba(143, 115, 81, 0.08);
+  border-bottom: 1px solid rgba(143, 115, 81, 0.22);
+}
+
+.notice-slot-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #3a2717;
+}
+
+.notice-slot-row {
+  display: grid;
+  /* 序号 | 模式下拉（定宽）| ID 输入框（定宽）| 回显标题（占满剩余） */
+  grid-template-columns: 22px 104px 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-bottom: 1px dashed rgba(143, 115, 81, 0.18);
+}
+
+.notice-slot-row:last-child {
+  border-bottom: none;
+}
+
+.notice-slot-index {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #f7ebd7;
+  background: #725638;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.notice-slot-picker {
+  display: flex;
+  gap: 6px;
+  min-width: 0;
+}
+
+.notice-slot-search {
+  flex: 0 0 34%;
+  min-width: 96px;
+}
+
+/* 插槽的 ID 输入框 */
+.notice-slot-id-input {
+  flex: 0 0 150px;
+  min-width: 120px;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
+/* 模式下拉：固定宽度，不与 ID 输入框抢空间 */
+.notice-slot-mode {
+  width: 100%;
+  font-size: 12px;
+}
+
+/* 动态模式下的占位标签（替代 ID 输入框的位置） */
+.notice-slot-dynamic-tag {
+  font-size: 11px;
+  color: #9a8a75;
+  padding: 4px 8px;
+  border: 1px dashed rgba(143, 115, 81, 0.35);
+  border-radius: 3px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 填了但找不到 → 红框提示，保存时会被拦下 */
+.notice-slot-id-input.is-invalid {
+  border-color: #c0392b;
+  background: rgba(192, 57, 43, 0.06);
+}
+
+/* 回显区：留空是灰、有效是绿、无效是红 */
+.notice-slot-current.is-empty {
+  color: #9a8a75;
+}
+
+.notice-slot-current.is-ok {
+  color: #2d7a3e;
+}
+
+.notice-slot-current.is-invalid {
+  color: #c0392b;
+}
+
+/* 插槽的搜索按钮：与输入框同高，不抢宽度 */
+.notice-slot-search-btn {
+  flex-shrink: 0;
+  padding: 0 8px !important;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.notice-slot-picker .admin-select {
+  flex: 1;
+  min-width: 0;
+}
+
+.notice-slot-current {
+  font-size: 12px;
+  color: #7a6a56;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notice-slot-link {
+  color: #8a6408;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.notice-slot-link:hover {
+  color: #b8860b;
+}
+
+/* 窄屏：当前值折到下一行 */
+@media (max-width: 900px) {
+  .notice-slot-row {
+    grid-template-columns: 22px minmax(0, 1fr);
+  }
+  .notice-slot-current {
+    grid-column: 2;
+    font-size: 11px;
+  }
+  .notice-slot-picker {
+    flex-direction: column;
+  }
+  .notice-slot-search {
+    flex: none;
+  }
 }
 </style>

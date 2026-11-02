@@ -3448,6 +3448,40 @@ export async function onRequest(context) {
         return await adminNoticeWrite(env, request, actor, request.method, nowSec())
       }
 
+      // 首页公告插槽：PUT 整组替换（8 个位置的选择）
+      if (path === '/api/admin/home/notice-slots') {
+        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+        if (request.method !== 'PUT') return bad(ERR.fallback, 405)
+        return await adminNoticeSlotsPut(env, request, actor, nowSec())
+      }
+
+      /*
+       * 公告管理（独立模块，2026-11-01）。
+       *
+       * 与 `/api/admin/home` 分开：那个端点一次返回 5 张表全量，
+       * 公告管理只需公告，且要分页与搜索 —— 混用会让每次翻页都多拉首页配置。
+       *
+       *   GET    列表（分页 + 搜索）
+       *   POST   新建（id 由后端按 site-N / official-N 生成）
+       *   PATCH  修改
+       *   DELETE 软删（is_active=0）
+       */
+      if (path === '/api/admin/notices') {
+        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+        if (request.method === 'GET') return await adminNoticesList(env, url)
+        if (['POST', 'PATCH', 'DELETE'].includes(request.method)) {
+          return await adminNoticeWrite(env, request, actor, request.method, nowSec())
+        }
+        return bad(ERR.fallback, 405)
+      }
+
+      // 首页选择器用的精简列表（默认最近 10 条，带 q 时放宽到 50）
+      if (path === '/api/admin/notices/pick') {
+        if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
+        if (request.method !== 'GET') return bad(ERR.fallback, 405)
+        return await adminNoticesPick(env, url)
+      }
+
       // 四块固定/整组内容：PUT 整组替换
       if (path.startsWith('/api/admin/home/')) {
         if (Number(actor.role) < ROLE_SUPER) return bad(ERR.rejected, 403)
@@ -3542,42 +3576,55 @@ let homeConfigCache = null
 let homeConfigCacheAt = 0
 
 /**
- * 公告排序：**固定项按 slot 插回原位**，滚动项按日期倒序填剩余空位。
+ * 按 `home_notice_slots` 组装首页公告区的 4 个位置。
  *
- * 为什么不能只靠 SQL 的 ORDER BY：
- *   站点频道现设计是「第 1 条免责（pin slot=1）、第 4 条社区规则（pin slot=4），
- *   中间 2 条是滚动项」。单纯把 pin 排前面会变成「两条都挤到最上」，
- *   与页面既定布局不符。所以把「按 slot 定位」和「按日期倒序补空位」在应用层合并。
+ * 规则（2026-11-01 定）：
+ *   - 插槽有 `notice_id` → 用该条公告（可能是三个月前的老公告）
+ *   - 插槽为 NULL     → **动态默认**：按日期倒序在「未被其他插槽占用」的公告里补位
  *
- * @param {Array} rows 同频道的公告行（已按 date DESC 排好）
- * @returns {Array} 最终顺序
+ * 为什么要「排除已占用」：
+ *   站点位置 1 固定挂最老的站点声明。若位置 2 不排除已占用的，
+ *   它会取到最新一条；但若位置 1 恰好也是最新（新建站时），
+ *   两条就会显示同一条公告。
+ *
+ * @param {Array} notices   该频道全部启用中的公告（已按 date DESC 排好）
+ * @param {Array} slots     该频道的插槽行（slot 1..4）
+ * @returns {Array} 长度为 4 的数组，元素为公告行或 null
  */
-function orderNotices(rows) {
-  const pins = rows.filter((r) => r.tier === 'pin' && Number.isFinite(r.slot))
-  const normals = rows.filter((r) => !(r.tier === 'pin' && Number.isFinite(r.slot)))
-  if (!pins.length) return normals
+function composeNoticeSlots(notices, slots) {
+  const byId = new Map(notices.map((n) => [n.id, n]))
+  const used = new Set()
+  const out = new Array(4).fill(null)
 
-  const total = rows.length
-  const out = new Array(total).fill(null)
+  // 第一轮：处理显式指定的位置
+  for (const s of slots) {
+    const idx = Number(s.slot) - 1
+    if (idx < 0 || idx > 3) continue
+    if (!s.notice_id) continue
+    const row = byId.get(s.notice_id)
+    if (!row) continue // 公告被删或停用 → 该位置留空，走动态补位
+    out[idx] = row
+    used.add(row.id)
+  }
 
-  // 先把固定项放到各自 slot（slot 从 1 开始，越界则退化为顺序填）
-  for (const p of pins) {
-    const idx = Math.min(Math.max(Number(p.slot) - 1, 0), total - 1)
-    if (out[idx] === null) out[idx] = p
-    else out[out.indexOf(null)] = p
+  // 第二轮：空位置按日期倒序补最新（跳过已占用的）
+  const pool = notices.filter((n) => !used.has(n.id))
+  let cursor = 0
+  for (let i = 0; i < 4; i++) {
+    if (out[i]) continue
+    while (cursor < pool.length && used.has(pool[cursor].id)) cursor++
+    if (cursor >= pool.length) break
+    out[i] = pool[cursor]
+    used.add(pool[cursor].id)
+    cursor++
   }
-  // 空位按日期倒序填入滚动项
-  let ni = 0
-  for (let i = 0; i < total; i++) {
-    if (out[i] === null && ni < normals.length) out[i] = normals[ni++]
-  }
-  // 槽位多于公告数时，数组尾部可能有 null，过滤掉
-  return out.filter(Boolean)
+
+  return out
 }
 
 /** 统一的空值兜底：D1 里没有行时返回空数组，前端用 DEFAULT_* 顶上 */
 async function loadHomeConfig(env) {
-  const [notices, banners, links, heroes, blocks] = await Promise.all([
+  const [notices, banners, links, heroes, blocks, slots] = await Promise.all([
     env.DB.prepare(
       `SELECT * FROM notices WHERE is_active = 1
        ORDER BY channel, date DESC`
@@ -3587,15 +3634,34 @@ async function loadHomeConfig(env) {
     ).all(),
     env.DB.prepare('SELECT * FROM home_links WHERE is_active = 1 ORDER BY section, slot').all(),
     env.DB.prepare('SELECT * FROM home_heroes WHERE is_active = 1 ORDER BY slot').all(),
-    env.DB.prepare('SELECT * FROM home_blocks WHERE is_active = 1').all()
+    env.DB.prepare('SELECT * FROM home_blocks WHERE is_active = 1').all(),
+    // 插槽表可能尚未迁移（老库），失败时退化为「全动态」
+    env.DB.prepare('SELECT * FROM home_notice_slots ORDER BY channel, slot').all().catch(() => ({ results: [] }))
   ])
 
   const noticeRows = notices.results || []
+  const slotRows = slots.results || []
+  const siteNotices = noticeRows.filter((r) => r.channel === 'site')
+  const officialNotices = noticeRows.filter((r) => r.channel === 'official')
+
+  /*
+   * 首页公告区：站点与官方各 4 个位置。
+   * 位置里的 null 保留（前端据此显示「该位置未选择」或折叠），
+   * 但为了兼容旧前端（按数组顺序渲染），这里把存在的公告按位置顺序摊平输出。
+   */
+  const siteSlots = composeNoticeSlots(siteNotices, slotRows.filter((s) => s.channel === 'site'))
+  const officialSlots = composeNoticeSlots(officialNotices, slotRows.filter((s) => s.channel === 'official'))
+
   return {
     notices: [
-      ...orderNotices(noticeRows.filter((r) => r.channel === 'site')),
-      ...orderNotices(noticeRows.filter((r) => r.channel === 'official'))
-    ].map(cloneNotice),
+      ...siteSlots.filter(Boolean).map(cloneNotice),
+      ...officialSlots.filter(Boolean).map(cloneNotice)
+    ],
+    // 插槽明细：前端要按「位置」渲染时用它（null 表示该位置空着）
+    noticeSlots: {
+      site: siteSlots.map((n) => (n ? n.id : null)),
+      official: officialSlots.map((n) => (n ? n.id : null))
+    },
     banners: (banners.results || []).map(cloneBanner),
     links: (links.results || []).map(cloneLink),
     heroes: (heroes.results || []).map(cloneHero),
@@ -3616,7 +3682,9 @@ const cloneNotice = (r) => ({
   tagClass: r.tag_class,
   version: r.version,
   features: parseJsonArray(r.features_json),
-  sourceUrl: r.source_url
+  sourceUrl: r.source_url,
+  // 1 = 有新内容时自动弹窗；官方频道恒为 0（第 13 步新增列）
+  showInModal: Number(r.show_in_modal) || 0
 })
 
 const cloneBanner = (r) => ({
@@ -3735,7 +3803,18 @@ function normalizeNotice(body) {
       version: body?.version == null ? null : String(body.version),
       features_json: Array.isArray(body?.features) ? JSON.stringify(body.features) : null,
       source_url: body?.sourceUrl == null ? null : String(body.sourceUrl),
-      is_active: body?.isActive === 0 || body?.isActive === false ? 0 : 1
+      is_active: body?.isActive === 0 || body?.isActive === false ? 0 : 1,
+      /*
+       * 自动弹窗：**站点频道一律 1，官方一律 0**（2026-11-02 简化）。
+       *
+       * 之前是前端勾选框控制的，但实际使用中永远是勾上的 ——
+       * 「站内公告」发布的目的就是让人看到，留个开关只会让人忘勾。
+       * 官方公告是游戏版本信息，不该在用户进站时打扰，恒为 0。
+       *
+       * 这里按 channel 强约束、**忽略 body.showInModal**：
+       * 前端不再传这个字段，直接调 API 也改不了。
+       */
+      show_in_modal: channel === 'site' ? 1 : 0
     }
   }
 }
@@ -3902,16 +3981,23 @@ function normalizeBlocks(list) {
 
 /** GET /api/admin/home —— 后台读全量（含已停用项），不走公开缓存 */
 async function adminHomeGet(env) {
-  const [notices, banners, links, heroes, blocks] = await Promise.all([
+  const [notices, banners, links, heroes, blocks, slots] = await Promise.all([
     env.DB.prepare('SELECT * FROM notices ORDER BY channel, CASE tier WHEN \'pin\' THEN 0 ELSE 1 END, slot, date DESC').all(),
     env.DB.prepare('SELECT * FROM home_banners ORDER BY sort_order, id').all(),
     env.DB.prepare('SELECT * FROM home_links ORDER BY section, slot').all(),
     env.DB.prepare('SELECT * FROM home_heroes ORDER BY slot').all(),
-    env.DB.prepare('SELECT * FROM home_blocks').all()
+    env.DB.prepare('SELECT * FROM home_blocks').all(),
+    env.DB.prepare('SELECT * FROM home_notice_slots ORDER BY channel, slot').all().catch(() => ({ results: [] }))
   ])
   return json({
     ok: true,
     notices: (notices.results || []).map((r) => ({ ...cloneNotice(r), isActive: Number(r.is_active) })),
+    // 8 个插槽的当前选择（null = 留空走动态）；后台用它回填选择器
+    noticeSlots: (slots.results || []).map((r) => ({
+      channel: r.channel,
+      slot: r.slot,
+      noticeId: r.notice_id || null
+    })),
     banners: (banners.results || []).map((r) => ({ ...cloneBanner(r), isActive: Number(r.is_active) })),
     links: (links.results || []).map((r) => ({ ...cloneLink(r), isActive: Number(r.is_active) })),
     heroes: (heroes.results || []).map((r) => ({ ...cloneHero(r), isActive: Number(r.is_active) })),
@@ -3950,16 +4036,16 @@ async function adminNoticeWrite(env, request, actor, method, ts) {
   if (error) return json({ ok: false, message: error }, 400)
 
   if (method === 'POST') {
-    const id = String(body.id || '').trim() || `notice-${ts}-${Math.random().toString(36).slice(2, 8)}`
+    const id = String(body.id || '').trim() || (await nextNoticeId(env, values.channel))
     await env.DB.prepare(
       `INSERT INTO notices
          (id, channel, tier, slot, title, content, date, tag_text, tag_class,
-          version, features_json, source_url, is_active, created_at, updated_at)
-       VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?14)`
+          version, features_json, source_url, show_in_modal, is_active, created_at, updated_at)
+       VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15,?15)`
     ).bind(
       id, values.channel, values.tier, values.slot, values.title, values.content,
       values.date, values.tag_text, values.tag_class, values.version,
-      values.features_json, values.source_url, values.is_active, ts
+      values.features_json, values.source_url, values.show_in_modal, values.is_active, ts
     ).run()
     await writeAudit(env, actor, { action: 'home.notice.create', targetType: 'notice', targetId: id, detail: values.title }, ts)
     invalidateHomeConfigCache()
@@ -3973,16 +4059,207 @@ async function adminNoticeWrite(env, request, actor, method, ts) {
     `UPDATE notices SET
        channel = ?2, tier = ?3, slot = ?4, title = ?5, content = ?6, date = ?7,
        tag_text = ?8, tag_class = ?9, version = ?10, features_json = ?11,
-       source_url = ?12, is_active = ?13, updated_at = ?14
+       source_url = ?12, show_in_modal = ?13, is_active = ?14, updated_at = ?15
      WHERE id = ?1`
   ).bind(
     id, values.channel, values.tier, values.slot, values.title, values.content,
     values.date, values.tag_text, values.tag_class, values.version,
-    values.features_json, values.source_url, values.is_active, ts
+    values.features_json, values.source_url, values.show_in_modal, values.is_active, ts
   ).run()
   await writeAudit(env, actor, { action: 'home.notice.update', targetType: 'notice', targetId: id, detail: values.title }, ts)
   invalidateHomeConfigCache()
   return json({ ok: true })
+}
+
+/**
+ * 生成下一个公告 ID：`site-N` / `official-N`。
+ *
+ * 取**同频道现有最大序号 + 1**。不用 COUNT(*) —— 删过公告后 COUNT 会重复。
+ * 并发风险：两个请求同时算到同一个 N，`id` 是主键，第二个会插入失败。
+ * 这里失败即报错让用户重试，比静默覆盖好（公告内容比 ID 连续性重要）。
+ */
+async function nextNoticeId(env, channel) {
+  const prefix = channel === 'official' ? 'official-' : 'site-'
+  const row = await env.DB.prepare(
+    'SELECT id FROM notices WHERE id LIKE ?1 ORDER BY LENGTH(id) DESC, id DESC LIMIT 1'
+  ).bind(`${prefix}%`).first()
+  if (!row) return `${prefix}1`
+  const n = Number.parseInt(String(row.id).slice(prefix.length), 10)
+  return `${prefix}${Number.isFinite(n) ? n + 1 : 1}`
+}
+
+/* ---------- 管理端：首页公告插槽 ---------- */
+
+/**
+ * PUT /api/admin/home/notice-slots —— 保存 8 个插槽的选择。
+ *
+ * body: { slots: [{ channel, slot, noticeId }] }
+ * `noticeId` 为空串/null 表示该位置「未选择」→ 前端走动态默认（取最新）。
+ *
+ * 校验：channel 必须 site/official，slot 必须 1..4，
+ * noticeId 若给了就必须存在于 notices 表（防悬空）。
+ */
+async function adminNoticeSlotsPut(env, request, actor, ts) {
+  const body = await request.json().catch(() => null)
+  if (!body || !Array.isArray(body.slots)) return bad(ERR.badRequest)
+
+  const CHANNELS = new Set(['site', 'official'])
+  const rows = []
+  for (const [i, s] of body.slots.entries()) {
+    const channel = s?.channel
+    if (!CHANNELS.has(channel)) return json({ ok: false, message: `第 ${i + 1} 项频道非法` }, 400)
+    const slot = Number(s?.slot)
+    if (!Number.isInteger(slot) || slot < 1 || slot > MAX_SLOT) {
+      return json({ ok: false, message: `第 ${i + 1} 项位置需为 1..${MAX_SLOT}` }, 400)
+    }
+    const rawId = s?.noticeId == null ? '' : String(s.noticeId).trim()
+    if (rawId && /[\/\\]|^https?:/i.test(rawId)) {
+      return json({ ok: false, message: `第 ${i + 1} 项公告 id 不能包含协议或斜杠` }, 400)
+    }
+    rows.push({ channel, slot, noticeId: rawId || null })
+  }
+
+  // 引用完整性：给的值必须存在
+  const ids = [...new Set(rows.map((r) => r.noticeId).filter(Boolean))]
+  if (ids.length) {
+    const placeholders = ids.map((_, i) => `?${i + 1}`).join(',')
+    const found = await env.DB.prepare(
+      `SELECT id FROM notices WHERE id IN (${placeholders})`
+    ).bind(...ids).all()
+    const foundSet = new Set((found.results || []).map((r) => r.id))
+    const missing = ids.filter((id) => !foundSet.has(id))
+    if (missing.length) {
+      return json({ ok: false, message: `公告不存在：${missing.join(', ')}` }, 400)
+    }
+  }
+
+  // 先删后插，保证「提交的 8 个位置 == 库里最终状态」
+  const statements = [env.DB.prepare('DELETE FROM home_notice_slots')]
+  for (const r of rows) {
+    statements.push(
+      env.DB.prepare(
+        'INSERT INTO home_notice_slots (channel, slot, notice_id, updated_at) VALUES (?1,?2,?3,?4)'
+      ).bind(r.channel, r.slot, r.noticeId, ts)
+    )
+  }
+  await env.DB.batch(statements)
+  await writeAudit(env, actor, {
+    action: 'home.notice-slots.replace',
+    targetType: 'home',
+    targetId: 'notice-slots',
+    detail: `${rows.length} 个位置`
+  }, ts)
+  invalidateHomeConfigCache()
+  return json({ ok: true, count: rows.length })
+}
+
+/**
+ * GET /api/admin/notices —— 公告管理列表（专属端点，不复用 /api/admin/home）
+ *
+ * 为什么不复用：
+ *   `/api/admin/home` 一次返回 5 张表的全量，公告管理页只需要公告。
+ *   列表页会翻页、搜索，每次都拉全站首页配置是浪费。
+ *
+ * 查询参数：
+ *   channel  site | official | 省略=全部
+ *   q        标题模糊搜索（LIKE %q%）
+ *   page     1 起，每页 20
+ *   size     每页条数，上限 50
+ *
+ * 返回里带 total 供分页器使用。
+ */
+async function adminNoticesList(env, url) {
+  const channel = url.searchParams.get('channel')
+  const q = String(url.searchParams.get('q') || '').trim()
+  const status = url.searchParams.get('status')
+  const page = Math.max(1, Number.parseInt(url.searchParams.get('page') || '1', 10) || 1)
+  const size = Math.min(50, Math.max(1, Number.parseInt(url.searchParams.get('size') || '20', 10) || 20))
+
+  const where = []
+  const binds = []
+  if (channel === 'site' || channel === 'official') {
+    where.push('channel = ?')
+    binds.push(channel)
+  }
+  if (status === '1' || status === '0') {
+    where.push('is_active = ?')
+    binds.push(Number.parseInt(status, 10))
+  }
+  if (q) {
+    const cleanId = q.replace(/^#/, '').trim()
+    where.push('(title LIKE ? OR id LIKE ?)')
+    binds.push(`%${q}%`, `%${cleanId}%`)
+  }
+  const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : ''
+
+  const totalRow = await env.DB.prepare(
+    `SELECT COUNT(*) AS n FROM notices ${whereSql}`
+  ).bind(...binds).first()
+  const total = Number(totalRow?.n) || 0
+
+  const rows = await env.DB.prepare(
+    `SELECT * FROM notices ${whereSql}
+     ORDER BY date DESC, id DESC
+     LIMIT ? OFFSET ?`
+  ).bind(...binds, size, (page - 1) * size).all()
+
+  return json({
+    ok: true,
+    total,
+    page,
+    size,
+    notices: (rows.results || []).map((r) => ({
+      ...cloneNotice(r),
+      isActive: Number(r.is_active),
+      updatedAt: r.updated_at || null
+    }))
+  })
+}
+
+/**
+ * GET /api/admin/notices/pick —— 首页选择器用的精简列表
+ *
+ * 只返回 id / title / date / channel，且**默认最近 10 条**（用户定的口径）。
+ * 前端拿全量做本地过滤太浪费 —— 选择器不需要正文。
+ *
+ * 参数：channel、q（搜索时忽略 limit，最多 50 条）、limit（默认 10，上限 50）
+ */
+async function adminNoticesPick(env, url) {
+  const channel = url.searchParams.get('channel')
+  const q = String(url.searchParams.get('q') || '').trim()
+  const rawLimit = Number.parseInt(url.searchParams.get('limit') || '10', 10)
+  const limit = Math.min(50, Math.max(1, Number.isFinite(rawLimit) ? rawLimit : 10))
+
+  const where = ['is_active = 1']
+  const binds = []
+  if (channel === 'site' || channel === 'official') {
+    where.push('channel = ?')
+    binds.push(channel)
+  }
+  if (q) {
+    where.push('title LIKE ?')
+    binds.push(`%${q}%`)
+  }
+
+  // 搜索时放宽到 50 条，否则只取最近 limit 条
+  const effectiveLimit = q ? 50 : limit
+  const rows = await env.DB.prepare(
+    `SELECT id, channel, title, date FROM notices
+     WHERE ${where.join(' AND ')}
+     ORDER BY date DESC, id DESC
+     LIMIT ?`
+  ).bind(...binds, effectiveLimit).all()
+
+  return json({
+    ok: true,
+    limit: effectiveLimit,
+    notices: (rows.results || []).map((r) => ({
+      id: r.id,
+      channel: r.channel,
+      title: r.title,
+      date: r.date
+    }))
+  })
 }
 
 /* ---------- 管理端：四块整组 PUT ---------- */

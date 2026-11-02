@@ -93,7 +93,8 @@ const STEPS = [
   ['第 9 步 处理通知', 'scripts/sql/2026-10-09-comment-moderation-notice.sql'],
   ['第 10 步 回复未读改 id 基准', 'scripts/sql/2026-10-09-replies-read-id.sql'],
   ['第 11 步 后台分页索引', 'scripts/sql/2026-10-13-admin-paging-indexes.sql'],
-  ['第 12 步 首页内容表', 'scripts/sql/2026-11-01-home-content.sql']
+  ['第 12 步 首页内容表', 'scripts/sql/2026-11-01-home-content.sql'],
+  ['第 13 步 公告管理', 'scripts/sql/2026-11-01-notice-admin.sql']
 ].map(([label, file]) => [label, readFileSync(file, 'utf8')])
 
 const colsOf = (db, table) => db.prepare(`PRAGMA table_info(${table})`).all().map((c) => c.name).sort().join(',')
@@ -535,11 +536,126 @@ try {
     check('核心角色的 hero_id 都形如 hero_xxx', badHeroIds.length === 0, badHeroIds.map((r) => r.slot).join(','))
 
     // 幂等：重跑第 12 步不重复播种
-    db.exec(STEPS[STEPS.length - 1][1])
+    // 🔴 用固定下标 11（第 12 步），不能用 STEPS.length - 1 ——
+    //    加了第 13 步之后，那个表达式指向的是另一个脚本。
+    db.exec(STEPS[11][1])
     const noticesAfter = db.prepare('SELECT COUNT(*) AS n FROM notices').get().n
     check('🔴 第 12 步重复执行成功（幂等，ON CONFLICT DO NOTHING）', noticesAfter === 7, `重跑后 ${noticesAfter}`)
     const linksAfter = db.prepare('SELECT COUNT(*) AS n FROM home_links').get().n
     check('第 12 步重跑后 home_links 仍是 8 条', linksAfter === 8, `重跑后 ${linksAfter}`)
+
+    // ---- 第 13 步：公告管理（插槽表 + show_in_modal + ID 改序号）----
+    /*
+     * 守四件事：
+     *   ① home_notice_slots 建出来了，8 个插槽齐全
+     *   ② notices 多了 show_in_modal 列，站点置 1、官方置 0
+     *   ③ 老语义 ID 已全部改成序号形式，且不残留旧 id
+     *   ④ 站点位置 1、4 有固定值；位置 2、3 与官方四个位置为 NULL（走动态默认）
+     */
+    check('🔴 第 13 步建出了 home_notice_slots 表', allTables.includes('home_notice_slots'))
+
+    const slotCount = db.prepare('SELECT COUNT(*) AS n FROM home_notice_slots').get().n
+    check('第 13 步插槽共 8 个（本站 4 + 官方 4）', slotCount === 8, `实际 ${slotCount}`)
+
+    const siteSlotCount = db.prepare("SELECT COUNT(*) AS n FROM home_notice_slots WHERE channel='site'").get().n
+    const officialSlotCount = db.prepare("SELECT COUNT(*) AS n FROM home_notice_slots WHERE channel='official'").get().n
+    check('站点 4 个插槽', siteSlotCount === 4, `实际 ${siteSlotCount}`)
+    check('官方 4 个插槽', officialSlotCount === 4, `实际 ${officialSlotCount}`)
+
+    // show_in_modal 列存在
+    const noticeCols = colsOf(db, 'notices')
+    check('🔴 notices 已加 show_in_modal 列', noticeCols.includes('show_in_modal'))
+
+    const siteModal = db.prepare("SELECT COUNT(*) AS n FROM notices WHERE channel='site' AND show_in_modal=1").get().n
+    const siteTotal = db.prepare("SELECT COUNT(*) AS n FROM notices WHERE channel='site'").get().n
+    check('站点公告全部开启弹窗', siteModal === siteTotal, `${siteModal}/${siteTotal}`)
+
+    const officialModal = db.prepare("SELECT COUNT(*) AS n FROM notices WHERE channel='official' AND show_in_modal=1").get().n
+    check('官方公告全部关闭弹窗', officialModal === 0, `实际 ${officialModal}`)
+
+    // ID 已改序号
+    const oldIds = db.prepare(
+      "SELECT id FROM notices WHERE id NOT GLOB 'site-[0-9]*' AND id NOT GLOB 'official-[0-9]*'"
+    ).all()
+    check('🔴 所有公告 id 已改为序号形式（site-N / official-N）', oldIds.length === 0, oldIds.map((r) => r.id).join(','))
+
+    const siteIds = db.prepare("SELECT id FROM notices WHERE channel='site' ORDER BY id").all().map((r) => r.id)
+    check('站点公告 id 为 site-1..site-4', siteIds.join(',') === 'site-1,site-2,site-3,site-4', siteIds.join(','))
+    const officialIds = db.prepare("SELECT id FROM notices WHERE channel='official' ORDER BY id").all().map((r) => r.id)
+    check('官方公告 id 为 official-1..official-3', officialIds.join(',') === 'official-1,official-2,official-3', officialIds.join(','))
+
+    // 固定位与动态位
+    const slotRows = db.prepare('SELECT channel, slot, notice_id FROM home_notice_slots ORDER BY channel, slot').all()
+    const siteSlot1 = slotRows.find((r) => r.channel === 'site' && r.slot === 1)
+    const siteSlot2 = slotRows.find((r) => r.channel === 'site' && r.slot === 2)
+    const siteSlot3 = slotRows.find((r) => r.channel === 'site' && r.slot === 3)
+    const siteSlot4 = slotRows.find((r) => r.channel === 'site' && r.slot === 4)
+    check('站点位置 1 固定为 site-1（站点声明）', siteSlot1?.notice_id === 'site-1', String(siteSlot1?.notice_id))
+    check('站点位置 4 固定为 site-4（社区准则）', siteSlot4?.notice_id === 'site-4', String(siteSlot4?.notice_id))
+    check('站点位置 2、3 为 NULL（走动态最新）', siteSlot2?.notice_id === null && siteSlot3?.notice_id === null,
+      `2=${siteSlot2?.notice_id} 3=${siteSlot3?.notice_id}`)
+
+    const officialAllNull = slotRows.filter((r) => r.channel === 'official').every((r) => r.notice_id === null)
+    check('官方四个位置全为 NULL（走动态最新）', officialAllNull)
+
+    // 插槽引用的公告必须存在（防悬空）
+    const danglingSlots = db.prepare(
+      `SELECT s.channel, s.slot FROM home_notice_slots s
+       WHERE s.notice_id IS NOT NULL
+         AND NOT EXISTS (SELECT 1 FROM notices n WHERE n.id = s.notice_id)`
+    ).all()
+    check('插槽引用的公告都存在', danglingSlots.length === 0, danglingSlots.map((r) => `${r.channel}-${r.slot}`).join(','))
+
+    // 海报的 notice 行动也要跟着新 id 走（否则第 12 步的引用会悬空）
+    const danglingBanners = db.prepare(
+      `SELECT b.id FROM home_banners b
+       WHERE b.action_type = 'notice'
+         AND NOT EXISTS (SELECT 1 FROM notices n WHERE n.id = b.action_value)`
+    ).all()
+    check('🔴 ID 改序号后海报的 notice 行动仍未悬空', danglingBanners.length === 0,
+      danglingBanners.map((r) => r.id).join(','))
+
+    /*
+     * 海报引用「旧 id」时必须被 UPDATE 修正。
+     *
+     * 场景：老库里 banner 的 action_value 曾被人手工改成 `site-community-rules`
+     * （第 13 步之前的老 id），迁移后该 id 已不存在 —— 若脚本只处理
+     * `official-v120` 这一个旧值，这条引用就会悬空，首页点海报没反应。
+     *
+     * 做法：把一条海报改成旧的语义 id，重跑第 13 步的 UPDATE 段，验证被修正。
+     */
+    db.prepare("UPDATE home_banners SET action_type='notice', action_value='site-community-rules' WHERE id='banner-v120'").run()
+    const staleBefore = db.prepare("SELECT action_value FROM home_banners WHERE id='banner-v120'").get().action_value
+    check('构造出旧的语义 id 引用', staleBefore === 'site-community-rules', staleBefore)
+
+    // 只跑 UPDATE 部分（整脚本会因 ALTER 中断），从 STEPS[12] 里截取 UPDATE 段
+    const step13Sql = STEPS[12][1]
+    const updateSection = step13Sql
+      .split('\n')
+      .filter((l) => /^UPDATE home_banners SET action_value/.test(l) || /^\s+WHERE action_type = 'notice'/.test(l))
+      .join('\n')
+    db.exec(updateSection)
+    const staleAfter = db.prepare("SELECT action_value FROM home_banners WHERE id='banner-v120'").get().action_value
+    check('🔴 旧 id 引用被迁移脚本修正为 site-4', staleAfter === 'site-4', staleAfter)
+
+    // 还原成正常的官方引用
+    db.prepare("UPDATE home_banners SET action_value='official-1' WHERE id='banner-v120'").run()
+
+    // 第 13 步幂等：重跑时只在 ALTER TABLE 处报 duplicate column（既定行为）
+    let step13Rerun = ''
+    try {
+      db.exec(STEPS[12][1])
+      step13Rerun = 'ok'
+    } catch (err) {
+      step13Rerun = String(err.message || err)
+    }
+    check('第 13 步重复执行报 duplicate column（既定行为，与第 2/4/5/8/9 步一致）',
+      /duplicate column name: show_in_modal/i.test(step13Rerun), step13Rerun.slice(0, 60))
+
+    const slotsAfter = db.prepare('SELECT COUNT(*) AS n FROM home_notice_slots').get().n
+    check('第 13 步重跑后插槽仍是 8 个（没有重复播种）', slotsAfter === 8, `重跑后 ${slotsAfter}`)
+    const noticesStill7 = db.prepare('SELECT COUNT(*) AS n FROM notices').get().n
+    check('第 13 步重跑后公告仍是 7 条', noticesStill7 === 7, `重跑后 ${noticesStill7}`)
   })
 
   console.log(`\n  演练结果：通过 ${pass} / 失败 ${fail}`)

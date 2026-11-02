@@ -318,24 +318,40 @@ CREATE INDEX IF NOT EXISTS idx_comments_parent ON comments(parent_id);
 
 -- 公告：站点 (site) 与官方 (official) 合并，channel 区分
 CREATE TABLE IF NOT EXISTS notices (
-  id            TEXT PRIMARY KEY,
-  channel       TEXT NOT NULL,                    -- 'site' | 'official'
-  tier          TEXT NOT NULL DEFAULT 'normal',   -- 'pin' 固定项 | 'normal' 滚动项
-  slot          INTEGER,                          -- tier='pin' 时的固定位置
-  title         TEXT NOT NULL,
-  content       TEXT,
-  date          TEXT,
-  tag_text      TEXT,
-  tag_class     TEXT,
-  version       TEXT,                             -- official 专用
-  features_json TEXT,                             -- official 专用
-  source_url    TEXT,
-  is_active     INTEGER NOT NULL DEFAULT 1,
-  created_at    TEXT,
-  updated_at    TEXT
+  id             TEXT PRIMARY KEY,
+  channel        TEXT NOT NULL,                    -- 'site' | 'official'
+  tier           TEXT NOT NULL DEFAULT 'normal',   -- 'pin' 固定项 | 'normal' 滚动项（仅表示性质，不用于首页定位）
+  slot           INTEGER,                          -- 历史字段，首页定位已改由 home_notice_slots 承担
+  title          TEXT NOT NULL,
+  content        TEXT,
+  date           TEXT,
+  tag_text       TEXT,
+  tag_class      TEXT,
+  version        TEXT,                             -- official 专用
+  features_json  TEXT,                             -- official 专用
+  source_url     TEXT,
+  show_in_modal  INTEGER NOT NULL DEFAULT 0,       -- 1 = 有新内容时自动弹窗（官方恒为 0）
+  is_active      INTEGER NOT NULL DEFAULT 1,
+  created_at     TEXT,
+  updated_at     TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_notices_channel
   ON notices(channel, is_active, tier, date DESC);
+-- 公告管理页与「取最近 N 条」走这个索引（2026-11-01，第 13 步）
+CREATE INDEX IF NOT EXISTS idx_notices_recent
+  ON notices(channel, is_active, date DESC);
+
+-- 首页公告区的 8 个插槽（本站 4 + 官方 4）。
+-- 公告本身是内容仓库，首页显示是「展示选择」——两者分表后，
+-- 想把三个月前的老公告挂到位置 2 只需改这里，不动公告自身。
+-- notice_id 为 NULL 表示「未选择」，前端走动态默认（取该频道最新）。
+CREATE TABLE IF NOT EXISTS home_notice_slots (
+  channel    TEXT    NOT NULL,                     -- 'site' | 'official'
+  slot       INTEGER NOT NULL,                     -- 1..4
+  notice_id  TEXT,
+  updated_at TEXT,
+  PRIMARY KEY (channel, slot)
+);
 
 -- 海报轮播（数量可增减）
 CREATE TABLE IF NOT EXISTS home_banners (

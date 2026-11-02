@@ -1,7 +1,7 @@
 <template>
   <UiModal
     :visible="modelValue"
-    title="公告与反馈"
+    title="公告"
     max-width="440px"
     teleport-to="body"
     @update:visible="closeModal"
@@ -15,7 +15,11 @@
           {{ notice.title }}
         </h4>
         <span class="notice-item-date">{{ notice.date }}</span>
-        <p class="notice-item-content">{{ notice.content }}</p>
+        <!--
+          正文用 RichTextView 渲染（受限标记 → VNode），**不用 v-html**。
+          老数据是纯文本，解析器遇到无标记内容会原样输出，所以兼容。
+        -->
+        <RichTextView class="notice-item-content" :content="notice.content" />
       </div>
 
       <!-- 交流群：所有公告通用，放在列表末尾，点击直接跳转加群 -->
@@ -38,6 +42,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
 import { UiModal, UiButton, UiTag, UiEmptyState } from './ui/index.js'
+import RichTextView from './ui/RichTextView.vue'
 import { fetchWithFallback } from '../utils/request.js'
 
 const props = defineProps({
@@ -126,21 +131,62 @@ const writeSeenKeys = (keys) => {
   localStorage.setItem(READ_KEY, JSON.stringify(keys.slice(-50)))
 }
 
+/**
+ * 载入公告。
+ *
+ * 🔴 数据源已从 `public/data/notice.json` 改为 `GET /api/home-config`（2026-11-01）。
+ *    那次改造把「弹窗」与「首页公告」合并到同一张 `notices` 表，
+ *    解决了「首页改了弹窗还是旧的」两套数据源问题。
+ *    接口不可用时仍回落到本地文件，保证弹窗不会整块消失。
+ *
+ * 只取 `channel === 'site'` 的公告 —— 官方更新是「游戏版本信息」，
+ * 不该在用户进站时打扰，它们只在首页展示。
+ */
 const loadNotices = async () => {
   isLoading.value = true
   error.value = null
   try {
-    const data = await fetchWithFallback('data/notice.json')
-    notices.value = data.notices || []
+    let all = []
+    try {
+      const res = await fetch('/api/home-config', { headers: { accept: 'application/json' } })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      if (!data?.ok) throw new Error('payload not ok')
+      all = Array.isArray(data.notices) ? data.notices : []
+    } catch (apiErr) {
+      // 回落：接口挂了也要能看到公告（用打包时的快照）
+      console.warn('[notice] 接口不可用，回落到 data/notice.json：', apiErr?.message || apiErr)
+      const data = await fetchWithFallback('data/notice.json')
+      all = data.notices || []
+    }
 
     /*
-     * 自动弹出：只对**非置顶**公告判定（置顶是常驻声明，不该反复打扰）。
+     * 只保留站点公告。字段映射：
+     *   接口返回 tagClass/tagText/isPinned 语义不同 —— 接口里置顶由 tier==='pin' 表示。
+     *   这里统一成弹窗组件期望的形状（isPinned 布尔）。
+     */
+    notices.value = all
+      .filter((n) => (n.channel || 'site') === 'site')
+      .map((n) => ({
+        id: n.id,
+        title: n.title,
+        date: n.date,
+        content: n.content,
+        isPinned: n.tier === 'pin',
+        tagText: n.tagText,
+        tagClass: n.tagClass,
+        // 1 = 有新内容时自动弹（官方恒为 0；本站默认 1）
+        showInModal: n.showInModal === undefined ? 1 : Number(n.showInModal)
+      }))
+
+    /*
+     * 自动弹出：只对**非置顶**且 `showInModal=1` 的公告判定。
      *
      * 🔴 已读记录存的是**集合**，不是单条。
      * 只记最后一条的话，用户读完最新的那条，旧的未读公告下次又会被判成未读、
      * 每次都弹 —— 实测「一天发两条」时表现为每次刷新都弹窗。
      *
-     * 判定后把「本次展示出来的所有非置顶公告」一次性全部标记已读：
+     * 判定后把「本次展示出来的所有可弹公告」一次性全部标记已读：
      * 弹窗里这些内容用户都看到了，不该再逐条补弹。
      */
     if (!props.modelValue) {
@@ -150,6 +196,7 @@ const loadNotices = async () => {
 
       const unread = notices.value.filter((n) => {
         if (n.isPinned) return false
+        if (!n.showInModal) return false
         const key = noticeKey(n)
         if (seen.has(key)) return false
         // 兼容旧版：只有日期记录的，视为当天这些公告都已读
@@ -158,10 +205,21 @@ const loadNotices = async () => {
       })
 
       if (unread.length) {
+        /*
+         * 🔴 后台路由不自动弹。
+         *
+         * 管理员进 /admin/* 是为了干活（编辑公告、审核评论），
+         * 这时被一条「有新公告」的弹窗盖住只会碍事 —— 而且他很可能
+         * 正是刚发那条公告的人。手动点头部图标仍可打开。
+         */
+        const onAdminPage = typeof window !== 'undefined' &&
+          String(window.location.hash || '').startsWith('#/admin')
+        if (onAdminPage) return
+
         emit('update:modelValue', true)
-        // 一次把所有非置顶公告记为已读（它们都会显示在弹窗里）
+        // 一次把所有可弹公告记为已读（它们都会显示在弹窗里）
         for (const n of notices.value) {
-          if (!n.isPinned) expanded.add(noticeKey(n))
+          if (!n.isPinned && n.showInModal) expanded.add(noticeKey(n))
         }
         writeSeenKeys([...expanded])
         localStorage.removeItem(LEGACY_KEY)

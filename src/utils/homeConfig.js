@@ -195,6 +195,11 @@ export async function loadHomeConfig(opts = {}) {
   const result = {
     banners: DEFAULT_BANNERS,
     notices: DEFAULT_NOTICES,
+    /** 8 个位置明细；默认值下按「有内容就依次排」生成，null 表示该位置空着 */
+    noticeSlots: {
+      site: DEFAULT_NOTICES.site.map((n) => n),
+      official: DEFAULT_NOTICES.official.map((n) => n)
+    },
     coreLinks: DEFAULT_CORE_LINKS,
     toolLinks: DEFAULT_TOOL_LINKS,
     heroes: DEFAULT_HEROES,
@@ -235,13 +240,42 @@ export async function loadHomeConfig(opts = {}) {
     result.degraded = true
   }
 
-  // ② 公告：按 channel 分组；空组保留空数组（视图显示「暂无公告」）
+  /*
+   * ② 公告：按 channel 分组，**并按插槽顺序排列**。
+   *
+   * 后端 `/api/home-config` 返回两样：
+   *   - `notices`     摊平的公告数组（已按位置顺序排好，缺位的不占位置）
+   *   - `noticeSlots` 8 个位置的 id 明细（null = 该位置空着）
+   *
+   * 为什么要用 `noticeSlots` 重排：摊平数组丢失了「第几位是空的」这个信息。
+   * 前端若只按数组顺序渲染，位置 3 留空时位置 4 会顶上来，与后台所见不符。
+   * 这里按插槽重建顺序，`null` 位置原样保留，交给视图决定「跳过」还是「显示占位」。
+   */
   if (Array.isArray(data.notices)) {
-    const site = data.notices.filter((n) => n.channel === 'site')
-    const official = data.notices.filter((n) => n.channel === 'official')
+    const byId = new Map(data.notices.map((n) => [n.id, n]))
+    const slots = data.noticeSlots
+
+    const pickBySlots = (channel) => {
+      const ids = slots?.[channel]
+      if (!Array.isArray(ids)) {
+        // 后端没给插槽（老版本或降级）→ 退回按数组顺序
+        return data.notices.filter((n) => n.channel === channel)
+      }
+      return ids.map((id) => (id ? byId.get(id) || null : null))
+    }
+
+    const siteSlots = pickBySlots('site')
+    const officialSlots = pickBySlots('official')
+
+    // 视图用：过滤掉空位后的实际公告（首页列表只渲染有内容的）
+    const site = siteSlots.filter(Boolean)
+    const official = officialSlots.filter(Boolean)
+
     // 两个频道都为空才回落（单个频道为空是合法的，说明后台清空了该频道）
     if (site.length || official.length) {
       result.notices = { site, official }
+      // 位置明细：null 表示该位置空着（供将来做「该位置未选择」提示用）
+      result.noticeSlots = { site: siteSlots, official: officialSlots }
     } else {
       result.degraded = true
     }

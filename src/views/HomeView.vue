@@ -34,9 +34,9 @@
         >
           <!-- 左侧文字区域 -->
           <div class="poster-content">
-            <div class="poster-tags">
-              <span class="poster-tag" :class="banner.tagClass">{{ banner.tagText }}</span>
-              <span class="poster-tag-sub">{{ banner.subTag }}</span>
+            <div v-if="banner.tagText || banner.subTag" class="poster-tags">
+              <span v-if="banner.tagText" class="poster-tag" :class="banner.tagClass">{{ banner.tagText }}</span>
+              <span v-if="banner.subTag" class="poster-tag-sub">{{ banner.subTag }}</span>
             </div>
             <h2 class="poster-title">{{ banner.title }}</h2>
             <p class="poster-desc">{{ banner.desc }}</p>
@@ -107,7 +107,7 @@
             v-for="item in currentNoticesList"
             :key="item.id || item.title"
             class="notice-list-item"
-            @click="openNoticeDetail(item)"
+            @click="openNoticeDetail(item, { syncUrl: true })"
           >
             <span class="notice-tag" :class="item.tagClass">{{ item.tagText }}</span>
             <span class="notice-item-title">{{ item.title }}</span>
@@ -122,19 +122,18 @@
 
         <!--
           右侧：官方更新公告特色速览卡。
-          数据来自「官方频道里带 version 的那条公告」；该公告被停用或没有版本号时
-          整块隐藏，不显示空壳。
+          锚定「带版本号的那条」官方公告（版本日志才有版本号 + 特性要点）；
+          没有官方公告时整块隐藏，不留空壳。
         -->
         <div v-if="officialPatchNotice" class="patch-highlight-box">
           <div class="patch-highlight-head">
             <div class="patch-ver-title">
-              <span class="patch-ver-tag">OFFICIAL</span>
-              <span>游戏更新：{{ officialPatchNotice.version || officialPatchNotice.title }}</span>
+              <span>版本更新：{{ officialPatchNotice.version || officialPatchNotice.title }}</span>
             </div>
           </div>
-          <ul v-if="officialPatchNotice.features?.length" class="patch-features-list">
+          <ul v-if="patchFeatures.length" class="patch-features-list">
             <li
-              v-for="(feat, i) in officialPatchNotice.features"
+              v-for="(feat, i) in patchFeatures"
               :key="i"
               class="patch-feature-item"
             >{{ feat }}</li>
@@ -318,16 +317,20 @@
       <div
         v-if="activeModalNotice"
         class="notice-modal-backdrop"
-        @click.self="activeModalNotice = null"
+        @click.self="closeNoticeDetail"
       >
         <div class="notice-modal-content paper-panel corner-nails">
-          <button class="notice-modal-close" @click="activeModalNotice = null" title="关闭">✕</button>
+          <button class="notice-modal-close" @click="closeNoticeDetail" title="关闭">✕</button>
           <div class="notice-modal-header">
             <h3 class="notice-modal-title">{{ activeModalNotice.title }}</h3>
             <span class="notice-modal-date">发布时间：{{ activeModalNotice.date }}</span>
           </div>
           <div class="notice-modal-body">
-            <p v-for="(p, i) in activeModalNoticeParagraphs" :key="i" class="notice-paragraph">{{ p }}</p>
+            <!--
+              正文用 RichTextView 渲染（受限标记 → VNode，禁 v-html）。
+              老公告是纯文本，解析器无标记时原样输出，天然兼容。
+            -->
+            <RichTextView class="notice-paragraph" :content="activeModalNotice.content" />
           </div>
         </div>
       </div>
@@ -336,13 +339,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl } from '../utils/env.js'
 import { loadHomeConfig, buildRouteTarget } from '../utils/homeConfig.js'
 import { navIconOf } from '../config/navRoutes.js'
+import RichTextView from '../components/ui/RichTextView.vue'
 
 const router = useRouter()
+const route = useRoute()
 
 // 屏幕宽度判断，移动端适配
 const isDesktop = ref(typeof window !== 'undefined' ? window.innerWidth >= 768 : true)
@@ -648,12 +653,26 @@ const activeNoticeTab = ref('site')
 const noticesData = ref({ site: [], official: [] })
 
 /**
- * 右侧速览卡指向的公告：优先取官方频道里带 version 的那条（有版本号才是版本日志），
- * 找不到就退到官方频道第一条。为空时按钮不渲染。
+ * 右侧速览卡指向的公告：**优先取官方频道里带 version 的那条**。
+ *
+ * 为什么按 version 而不是按日期：
+ *   这张卡是「大版本更新速览」，展示版本号 + 特性要点。
+ *   带 `version` 字段的才是版本日志；普通修复通知 / 前瞻没有版本号，
+ *   放在这张卡上会变成「只有一行标题、没有要点」的空壳。
+ *   所以只要库里还有任何一条带版本号的公告，卡片就锚定它，不随日期漂移。
+ *
+ * 找不到带版本号的，退回官方频道第一条（至少有内容可展示）。
+ * 整个官方频道为空时返回 null，模板据此隐藏卡片。
  */
 const officialPatchNotice = computed(() => {
   const list = noticesData.value.official || []
   return list.find((n) => n.version) || list[0] || null
+})
+
+/** 速览卡的特性列表：直接用该公告自己的 features（没有就不显示列表） */
+const patchFeatures = computed(() => {
+  const own = officialPatchNotice.value?.features
+  return Array.isArray(own) ? own : []
 })
 
 const currentNoticesList = computed(() => noticesData.value[activeNoticeTab.value] || [])
@@ -661,14 +680,72 @@ const currentNoticesList = computed(() => noticesData.value[activeNoticeTab.valu
 // 弹窗状态
 const activeModalNotice = ref(null)
 
-const activeModalNoticeParagraphs = computed(() => {
-  if (!activeModalNotice.value?.content) return []
-  return activeModalNotice.value.content.split('\n')
-})
-
-const openNoticeDetail = (item) => {
+/**
+ * 打开某条公告的详情。
+ *
+ * `syncUrl=true` 时把公告 id 写进地址栏（`?notice=site-1`），
+ * 这样链接可分享、刷新后弹窗还在、浏览器后退能关掉弹窗 ——
+ * 与 `/heroes?id=`、`/misc?tab=` 的口径一致。
+ *
+ * 海报按钮跳公告时**不写 URL**（`syncUrl=false`）：那是首页内的一个动作，
+ * 不改地址更符合用户预期，也不会污染历史记录。
+ */
+const openNoticeDetail = (item, { syncUrl = false } = {}) => {
+  if (!item) return
   activeModalNotice.value = item
+  if (syncUrl && item.id && route.query.notice !== item.id) {
+    router.replace({ query: { ...route.query, notice: item.id } })
+  }
 }
+
+/** 关闭弹窗：同步清掉 URL 里的 notice 参数 */
+const closeNoticeDetail = () => {
+  activeModalNotice.value = null
+  if (route.query.notice) {
+    const next = { ...route.query }
+    delete next.notice
+    router.replace({ query: next })
+  }
+}
+
+/** 按 id 在所有公告里查一条（含两个频道） */
+const findNoticeById = (id) => {
+  if (!id) return null
+  const all = [...(noticesData.value.site || []), ...(noticesData.value.official || [])]
+  return all.find((n) => n.id === id) || null
+}
+
+/**
+ * 处理地址栏的 `?notice=id`。
+ *
+ * 数据加载完成后再调用 —— 公告还没到就查不到。
+ * 找不到对应公告时静默清掉参数，不弹错误（可能是过期链接或公告已删）。
+ */
+const applyNoticeFromQuery = () => {
+  const id = route.query.notice
+  if (!id) return
+  const hit = findNoticeById(String(id))
+  if (hit) {
+    activeModalNotice.value = hit
+  } else {
+    const next = { ...route.query }
+    delete next.notice
+    router.replace({ query: next }).catch(() => {})
+  }
+}
+
+// 浏览器前进/后退、或别处改了 ?notice 时跟着变
+watch(
+  () => route.query.notice,
+  (id) => {
+    if (!id) {
+      activeModalNotice.value = null
+      return
+    }
+    const hit = findNoticeById(String(id))
+    if (hit) activeModalNotice.value = hit
+  }
+)
 
 /**
  * 契约者展示数据（Q版模型展示）
@@ -781,6 +858,13 @@ async function loadHomeContent() {
 
   // 数据到位后重启轮播（初始 bannerList 为空，轮播定时器此时才有内容）
   startCarousel()
+
+  /*
+   * 处理 `?notice=id` 直达。
+   * 必须放在数据加载之后 —— 公告还没到就查不到 id。
+   * 用于：分享某条公告的链接、刷新后弹窗仍在、从别处深链进来看具体公告。
+   */
+  applyNoticeFromQuery()
 }
 
 onMounted(() => {
@@ -891,6 +975,11 @@ onBeforeUnmount(() => {
   color: #fff;
 }
 
+.poster-tag.info {
+  background: #7a634b;
+  color: #f7eedf;
+}
+
 .poster-tag-sub {
   font-size: 11px;
   color: #e5d2b7;
@@ -916,6 +1005,7 @@ onBeforeUnmount(() => {
   color: #d6be9c;
   line-height: 1.55;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  white-space: pre-line;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1221,7 +1311,7 @@ onBeforeUnmount(() => {
 }
 
 .notice-tag.pinned {
-  background: #8b0000;
+  background: #8b1e1e;
   color: #fff;
 }
 
@@ -1231,13 +1321,18 @@ onBeforeUnmount(() => {
 }
 
 .notice-tag.event {
-  background: #4b7a78;
+  background: #3d706e;
   color: #fff;
 }
 
 .notice-tag.info {
-  background: #8f7351;
-  color: #fff;
+  background: #7a634b;
+  color: #f7eedf;
+}
+
+.notice-tag.gold {
+  background: #d4a359;
+  color: #2b1a0d;
 }
 
 .notice-item-title {
@@ -1289,7 +1384,8 @@ onBeforeUnmount(() => {
 .patch-highlight-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  text-align: center;
   margin-bottom: 8px;
 }
 
@@ -1299,7 +1395,10 @@ onBeforeUnmount(() => {
   color: #8b0000;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 6px;
+  width: 100%;
 }
 
 .patch-ver-tag {
@@ -1323,18 +1422,7 @@ onBeforeUnmount(() => {
 .patch-feature-item {
   font-size: 12px;
   color: #4a341f;
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  line-height: 1.35;
-}
-
-.patch-feature-item::before {
-  content: '✔';
-  color: #4b7a78;
-  font-size: 11px;
-  font-weight: 700;
-  margin-top: 1px;
+  line-height: 1.4;
 }
 
 /* 公告跳转按钮 (方案 T1 + H1 极简加深·深木浓墨：纯文字居中浮印·彻底无框无底·通透轻盈) */
@@ -1504,6 +1592,7 @@ onBeforeUnmount(() => {
   font-size: 11.5px;
   color: #725638;
   line-height: 1.3;
+  white-space: pre-line;
 }
 
 /* ==========================================================================

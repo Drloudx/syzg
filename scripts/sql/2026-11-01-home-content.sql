@@ -111,24 +111,24 @@ CREATE TABLE IF NOT EXISTS home_blocks (
 -- ---- 公告：站点 4 条（2 条固定 + 2 条滚动）----
 INSERT INTO notices (id, channel, tier, slot, title, content, date, tag_text, tag_class, is_active, created_at, updated_at)
 VALUES
-  ('site-disclaimer', 'site', 'pin', 1,
+  ('site-1', 'site', 'pin', 1,
    '深渊大书院站点免责声明与服务协议',
    '深渊大书院为非盈利性质的玩家自发资料库与攻略整理工具，所有素材与文本版权归原游戏制作组所有。
 本站所有算法模拟器均为基于客户端拆解数据进行的前端重构，旨在提供便捷的配队与数值参考。',
    '2026-09-19', '置顶', 'pinned', 1, '2026-11-01', '2026-11-01'),
 
-  ('site-sims-upgrade', 'site', 'normal', NULL,
+  ('site-2', 'site', 'normal', NULL,
    '相关模拟（魔物配队）移动端与算法全面升级',
    '魔物搭配模拟系统完成重大重构！支持自选队伍、自选角色与魔物被动过滤。
 移动端抽屉式选人交互优化完毕，提升手机端排布与浏览体验。',
    '2026-10-29', '功能', 'patch', 1, '2026-11-01', '2026-11-01'),
 
-  ('site-data-sync', 'site', 'normal', NULL,
+  ('site-3', 'site', 'normal', NULL,
    '客户端解构数据同步与词条修正',
    '已将最新客户端解析表与 Wiki 数据对齐，修正了部分装备在洗练状态下的暴击显示异常，补全魔物技能缺失字段。',
    '2026-10-28', '数据', 'event', 1, '2026-11-01', '2026-11-01'),
 
-  ('site-community-rules', 'site', 'pin', 4,
+  ('site-4', 'site', 'pin', 4,
    '大书院学者讨论区交流准则',
    '欢迎各位探求者在讨论区交流游戏体验、魔物孵化收益与阵容心得。
 请自觉遵守讨论区发言礼仪，共建友善、客观的游戏研究氛围。',
@@ -138,7 +138,7 @@ ON CONFLICT(id) DO NOTHING;
 -- ---- 公告：官方 3 条（1 条带版本号与特性列表）----
 INSERT INTO notices (id, channel, tier, slot, title, content, date, tag_text, tag_class, version, features_json, is_active, created_at, updated_at)
 VALUES
-  ('official-v120', 'official', 'pin', NULL,
+  ('official-1', 'official', 'pin', NULL,
    'v1.2.0「深境微光」版本正式实装与停服维护',
    '亲爱的探求者：
 游戏已于 10 月 28 日完成 v1.2.0 停机维护更新。
@@ -150,12 +150,12 @@ VALUES
    '["新 5 星秘术英雄「奇瓦」限时招募开启","主线第 8 章「无尽深渊回廊」剧情关卡解锁","魔物出战羁绊加成数值平衡性微调","修复部分装备洗练暴击词条显示异常问题"]',
    1, '2026-11-01', '2026-11-01'),
 
-  ('official-crashfix', 'official', 'normal', NULL,
+  ('official-2', 'official', 'normal', NULL,
    '关于部分机型闪退与战斗结算延迟的修复通知',
    '技术团队已完成对部分机型内存占用过高导致偶发闪退的紧急补丁更新，请探求者重新启动客户端加载资源包。',
    '2026-10-26', '修复', 'patch', NULL, NULL, 1, '2026-11-01', '2026-11-01'),
 
-  ('official-devletter-2', 'official', 'normal', NULL,
+  ('official-3', 'official', 'normal', NULL,
    '【开发组通信】第2期：后续养成系统减负前瞻',
    '开发组正在推进角色升级与技能强化的材料减负优化，预计在下个版本全面实装，同时优化委托任务的扫荡产出。',
    '2026-10-20', '前瞻', 'event', NULL, NULL, 1, '2026-11-01', '2026-11-01')
@@ -168,7 +168,7 @@ VALUES
    '全新主线第8章「无尽回廊」正式开放！5星火系秘术英雄【奇瓦】限时招募降临，专属符石秘境与限时讨伐活动全面开启。',
    '官方版本焦点', 'gold', 'v1.2.0「深境微光」',
    '/images/banners/home-banner-1.webp', '#1a3832', 'rgba(26, 56, 50, 0.95)',
-   '查看版本更新详情', 'notice', 'official-v120', 1, 1, '2026-11-01', '2026-11-01'),
+   '查看版本更新详情', 'notice', 'official-1', 1, 1, '2026-11-01', '2026-11-01'),
 
   ('banner-gacha', '限定角色招募 · 双UP概率提升',
    '掌握禁忌火焰秘术的神秘学者与深渊伙伴！全套技能天赋数据、专属符石词条推荐与配队演算模拟器已同步上线。',

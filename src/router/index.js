@@ -231,6 +231,20 @@ const routes = [
         name: 'admin-home',
         component: () => import('../components/admin/AdminHomePanel.vue'),
         meta: { title: '后台 · 首页管理' }
+      },
+      {
+        // 公告管理列表：仅超管。一公告一行，点整行进编辑页。
+        path: 'notices',
+        name: 'admin-notices',
+        component: () => import('../components/admin/AdminNoticesPanel.vue'),
+        meta: { title: '后台 · 公告管理' }
+      },
+      {
+        // 公告编辑（一公告一页）。放在列表之后，避免 'notices/:id' 抢匹配父路径。
+        path: 'notices/:id',
+        name: 'admin-notice-edit',
+        component: () => import('../components/admin/AdminNoticeEditPanel.vue'),
+        meta: { title: '后台 · 编辑公告' }
       }
     ]
   },

@@ -172,6 +172,16 @@
               <span>首页管理</span>
               <span class="nav-tag-super">超管</span>
             </RouterLink>
+
+            <!--
+              公告管理：与「首页管理」同级，**仅超管**。
+              公告内容在这里维护（含富文本正文），首页显示哪几条由首页管理挑选。
+            -->
+            <RouterLink v-if="isSuper" to="/admin/notices" class="nav-item" active-class="active">
+              <svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+              <span>公告管理</span>
+              <span class="nav-tag-super">超管</span>
+            </RouterLink>
           </nav>
         </div>
 
@@ -887,6 +897,13 @@ function goHome() {
   font-size: 13.5px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: all 0.18s ease;
+}
+
+textarea.admin-input {
+  flex: none !important;
+  resize: vertical !important;
+  min-height: 52px;
+  display: block;
 }
 
 .admin-input:focus {
