@@ -20,7 +20,7 @@
 | [specs/HEROES_AND_COMBAT.md](specs/HEROES_AND_COMBAT.md) | 角色图鉴、伙伴邮件、魔物图鉴、怪物图鉴、词条 | ~25 KB | `heroes.json`、`pets.json`、`monsters.json`、`glossary.json` |
 | [specs/DUNGEONS_AND_CHAPTERS.md](specs/DUNGEONS_AND_CHAPTERS.md) | 副本图鉴、关卡图鉴、章节地图 | ~21 KB | `dungeons.json`、`chapters.json`、`stages/{stageId}.json` |
 | [specs/QUESTS_AND_EVENTS.md](specs/QUESTS_AND_EVENTS.md) | 任务图鉴、事件图鉴、其他奖励 | ~5 KB | `tasks.json`、`events.json`、`parsed-pvp.json` |
-| [specs/CAMP_AND_LIFE.md](specs/CAMP_AND_LIFE.md) | 设施功能（含营地）、家具图鉴、菜谱查询、魔物收益、成就查询 | ~16 KB | `facilities.json`、`furniture.json`、`recipes.json`、`pet-eggs.json`、`achievements.json` |
+| [specs/CAMP_AND_LIFE.md](specs/CAMP_AND_LIFE.md) | 设施功能（含营地）、家具图鉴、菜谱查询、魔物收益、成就查询、货运站 | ~20 KB | `facilities.json`、`furniture.json`、`recipes.json`、`pet-eggs.json`、`achievements.json`、`freight.json` |
 | [specs/GACHA_SIMULATOR.md](specs/GACHA_SIMULATOR.md) | 模拟招募 | ~11 KB | `gacha.json`、`gacha-presentation.json` |
 | [specs/UI_DESIGN_SYSTEM.md](specs/UI_DESIGN_SYSTEM.md) | 主题、组件引用规则、长列表、右栏吉祥物 | ~8 KB | `src/assets/theme.css`、`src/components/ui/` |
 
@@ -58,6 +58,7 @@
 | 词条 | `/glossary` | `GlossaryView.vue` | `glossary.json`（百科骨架另含静态 `config/glossaryEncyclopedia.js`） |
 | 其他奖励 | `/misc` | `RewardsView.vue` | `parsed-pvp.json`、`parsed-hidden.json` |
 | 配队模拟 | `/sims` | `SimsView.vue` | `heroes.json`、`pets.json`（运行时提取，无新增产物） |
+| 货运站 | `/freight` | `FreightView.vue` | `freight.json`（`?tab=market/orders/rules`，见 [CAMP_AND_LIFE](specs/CAMP_AND_LIFE.md) §六） |
 | 讨论区 | `/discussions` | `DiscussionsView.vue` | `functions/api/[[path]].js` + D1 |
 | 后台 | `/admin` | `AdminView.vue` | 子路由见下 |
 

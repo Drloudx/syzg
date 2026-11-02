@@ -1,9 +1,9 @@
 # 营地、家具、菜谱与收集
 
-> 本文件是设施功能（含营地建筑与研究）、家具图鉴、菜谱查询、魔物收益与成就查询的业务契约。
-> 营地数值差异与研究连线的深入规则见本文件第六节。
+> 本文件是设施功能（含营地建筑与研究）、家具图鉴、菜谱查询、魔物收益、成就查询与货运站的业务契约。
+> 营地数值差异与研究连线的深入规则见本文件第七节。
 >
-> **何时读**：改动设施、营地、家具、菜谱、魔物收益或成就时。
+> **何时读**：改动设施、营地、家具、菜谱、魔物收益、成就或货运站时。
 > **何时更新**：该领域规则变化时。**只改这一个领域文件，不要把别的领域内容搬进来。**
 
 ---
@@ -74,7 +74,7 @@
 
 材料只追加 `itemId`。
 
-建筑数值差异与研究连线见本文件[第六节](#六营地数值差异与研究连线)。
+建筑数值差异与研究连线见本文件[第七节](#七营地数值差异与研究连线)。
 
 ---
 
@@ -224,7 +224,71 @@ URL 支持 `pool/tag/q`，`id` 打开详情。
 
 ---
 
-## 六、营地数值差异与研究连线
+## 六、货运站
+
+**入口** `/freight` · **页面** `FreightView.vue` · **数据** `parsed/freight.json` · **构建** `scripts/parse/freight.mjs` · **素材** `public/images/FreightPanel_Atlas/`（导入脚本 `scripts/dev/import-freight-atlas.mjs`）
+
+市场、订单、货运站规则三块用 `?tab=` 寻址；筛选一律进 URL：`q`、`tier`、`kind`。
+
+### 数据来源
+
+| 项 | 原表 | 用途 |
+| --- | --- | --- |
+| 市场货品 | `market.json` | 基础价、库存上限、补货周期、可买/可卖 |
+| 委托订单 | `newOrder.json` | 要什么货、报酬倍率、NPC 台词与立绘 |
+| 物品名/图标/品质/售价 | `item.json` | 市场与订单共用 |
+| 货运站等级 | `homeLevel.json` 的 `carriage` | Lv1~3 载重加成与营地中心门槛 |
+| 载重与时间基数 | `playerAbilityInit.json` | 6 项 `orderWeight` 等 |
+| 每日订单奖励 | `reward.json` 的 `carriage01` | 800 银币 |
+
+### 价格档位（`FreightMarketItemTemp.cs:51-99`）
+
+`step = (priceMax − priceMin) / 5 = 0.16`，**严格大于**阈值才升级：
+
+| 档位 | 判定 | 精灵 |
+| --- | --- | --- |
+| 极高 | `priceScale > 1.24` | `cart_price_max` |
+| 高价 | `> 1.08` | `cart_price_high` |
+| 持平 | `> 0.92` | `cart_price_ori` |
+| 低价 | `> 0.76` | `cart_price_low` |
+| 极低 | 其余（`≥ 0.6`） | `cart_price_min` |
+
+### 与游戏的不一致：只有区间，没有当前价
+
+`priceScale` 是服务端下发（`FreightServerData.freightMarketData`），配置表里没有。页面**不显示当前价**，只给「基础价 × 档位阈值」的区间与该档代表价。
+
+| 禁止 | 依据 |
+| --- | --- |
+| 把某档当成当前价格显示 | 没有数据源 |
+| 用 `priceRandomArea` 前端随机生成「当前价」 | 那是推算值，不是游戏真值 |
+| 把档位筛选写成排除条件 | 每档对每件货都成立，它用于查看该档价格 |
+
+### 订单报酬（`FreightOrderItemTemp.cs:90`）
+
+`reward = (int)(Σ(item.sellPrice × items[].num) × orderValue + baseValue)` —— **向下取整**。40 条订单实际区间 **447 ~ 1393**。
+
+### 等级加成逐级累加
+
+源码 `CampResearchData.RefreshPlayerAbilityInitData` 用 `for (i = 1; i <= 等级; i++)` 累加，所以 Lv3 的 `orderWeight` 是 **15**（0+5+10），不是表里写的 10；加基础 20 得满级 **35**。页面同时给 `gain`（本级新增）与 `total`（累计生效）。
+
+### URL
+
+| 参数 | 取值 |
+| --- | --- |
+| `tab` | `market`（默认）/ `orders` / `rules` |
+| `q` | 空格=且、`、`=或 |
+| `tier` | `max` / `high` / `ori` / `low` / `min` |
+| `kind` | `buyIn` / `sellOut`（仅市场） |
+
+切页签清空 `tier` 与 `kind`，避免 URL 留无效键。
+
+### 验证
+
+`tests/unit/freight.test.mjs`（8 条）守档位边界、区间换算、报酬公式、等级累加与标量配置。
+
+---
+
+## 七、营地数值差异与研究连线
 
 > 本节是[营地数值差异与研究连线]的深入规则；主规范见本文件前面的领域小节。
 

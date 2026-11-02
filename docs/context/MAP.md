@@ -57,11 +57,11 @@ vue-myrzg/
 │   ├── router/index.js        路由表 + 分包预取
 │   └── assets/                theme.css（设计系统）、gacha.css（招募皮肤）
 ├── scripts/
-│   ├── parse/                 30 个数据预处理脚本，入口 index.mjs
+│   ├── parse/                 31 个数据预处理脚本，入口 index.mjs
 │   └── dev/                   维护脚本、原表同步、验收
 ├── functions/api/[[path]].js  评论 + 账号后端（单文件）
 ├── public/
-│   ├── data/parsed/           37 个运行时产物（入库）
+│   ├── data/parsed/           39 个运行时产物（入库）
 │   ├── data/{dialogs,taskDialogs}/  剧情（按需加载）
 │   ├── images/  ui/  fonts/   图片、UI 图标、子集字体
 │   ├── update/hotupdate.json  热更清单
@@ -87,7 +87,7 @@ docs/
 └── history/                   历史归档，**不是当前规范**
     ├── README.md               主题索引 + 按日期浏览 + 专项归档索引
     ├── MIGRATION.md / DELIVERY.md  2026-10-07 文档重构的过程记录
-    ├── freight-cart-{recon,handoff}.md  贸易小车复刻依据（未实装）
+    ├── freight-cart-{recon,handoff}.md  贸易小车勘察与交接（2026-09 归档；现行货运站见 specs/CAMP_AND_LIFE.md §六）
     ├── rename-myrzg-to-syzg.md 改名迁移全过程
     └── dev-logs/               23 个日报（按 YYYY-MM/ 组织）+ 日志规范 README
 ```
