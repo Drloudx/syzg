@@ -229,6 +229,30 @@ export default defineConfig({
         target: process.env.MYRZG_API_ORIGIN || 'http://127.0.0.1:8788',
         changeOrigin: true
       }
+    },
+    /**
+     * 忽略非前端目录的文件监听。
+     *
+     * 🔴 为什么必须加：编辑工具写文件时是「先写 .xxx.tmp → 改名」的原子替换，
+     *    会在目标目录里短暂产生 `.{文件名}.{pid}.{uuid}.tmpdir/{文件名}.tmp`。
+     *    Vite 默认监听整个项目根，一旦扫到这个临时文件就被 Windows 锁住，
+     *    抛出 `EBUSY: resource busy or locked, watch '...tmp'` —— 这是**未捕获异常，
+     *    直接杀掉 dev server 进程**（实测 docs/context/UI_COMPONENT_LIBRARY.md 遇到过）。
+     *
+     *    docs / backups / 游戏数据 / raw 都不是前端资源，监听它们只有坏处。
+     *    加了之后改文档不会再打挂前端。
+     */
+    watch: {
+      ignored: [
+        '**/docs/**',
+        '**/backups/**',
+        '**/raw/**',
+        '**/游戏数据/**',
+        '**/scratch/**',
+        '**/*.tmpdir/**',
+        '**/*.tmp',
+        '**/tools/**'
+      ]
     }
   },
   build: {
