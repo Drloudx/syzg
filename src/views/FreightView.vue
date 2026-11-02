@@ -31,6 +31,18 @@
         <UiFilterPill :active="kind === 'sellOut'" @click="setFilter('kind', 'sellOut')">卖出</UiFilterPill>
       </UiFilterRow>
 
+      <!-- 订单专属：材料品质筛选 -->
+      <UiFilterRow v-if="tab === 'orders'" label="材料品质：">
+        <UiFilterPill :active="!materialQuality" @click="setFilter('quality', '')">全部</UiFilterPill>
+        <UiFilterPill
+          v-for="q in ORDER_QUALITY_OPTIONS"
+          :key="q.value"
+          :quality="q.value"
+          :active="materialQuality === String(q.value)"
+          @click="setFilter('quality', String(q.value))"
+        >{{ q.label }}</UiFilterPill>
+      </UiFilterRow>
+
       <div v-if="tab !== 'rules'" class="collection-counter">
         共 <span class="count-num">{{ counter }}</span> {{ tab === 'market' ? '件货品' : '个订单' }}
       </div>
@@ -82,8 +94,8 @@
                   </span>
                 </span>
                 <span class="good-entry__price-note">
-                  <template v-if="activeTier">{{ activeTier.label }}档 · 基价 {{ good.basePrice }}</template>
-                  <template v-else>价格范围 {{ Math.round(good.priceRange.low) }} ~ {{ Math.round(good.priceRange.high) }}</template>
+                  <template v-if="activeTier">{{ activeTier.label }} · 基价 {{ good.basePrice }}</template>
+                  <template v-else>基准价 {{ good.basePrice }} · 浮动 ±40%</template>
                 </span>
               </div>
               <!--
@@ -97,21 +109,38 @@
                 库存上限 {{ good.maxNum }} · 每 {{ formatDuration(good.addTime) }} 补 {{ good.addNum }}
               </p>
             </div>
-            <!--
-              5 档对比：横跨整卡宽度，落在图标下方。
-              条内是「报价 + 该档价」，报价用游戏价签的同色系底色块，
-              这样既有游戏味，又不会因为 5 条价签挤在一起而压字。
-            -->
-            <div class="tier-compare">
-              <span v-for="entry in tiers" :key="entry.key" class="tier-compare__cell"
-                :class="[`is-${entry.key}`, { 'is-active': tier === entry.key }]"
-                :title="`${entry.label} ${tierRange(good, entry).low}~${tierRange(good, entry).high}`">
-                <span class="tier-compare__top">
-                  <i class="tier-compare__arrow" :class="`tier-compare__arrow--${entry.key}`" aria-hidden="true"></i>
-                  <span class="tier-compare__label">{{ entry.label }}</span>
+            <!-- 5 档行情标尺：连续胶囊频谱条 + 档位区间 -->
+            <div class="tier-spectrum">
+              <div class="tier-spectrum__labels">
+                <span
+                  v-for="entry in tiers"
+                  :key="entry.key"
+                  class="tier-spectrum__label"
+                  :class="[`is-${entry.key}`, { 'is-active': tier === entry.key }]"
+                >
+                  <i class="tier-spectrum__arrow" :class="`tier-spectrum__arrow--${entry.key}`" aria-hidden="true"></i>
+                  <span>{{ entry.label }}</span>
                 </span>
-                <span class="tier-compare__value">{{ tierRange(good, entry).low }}~{{ tierRange(good, entry).high }}</span>
-              </span>
+              </div>
+              <div class="tier-spectrum__bar" :class="{ 'has-active': Boolean(tier) }">
+                <span
+                  v-for="entry in tiers"
+                  :key="entry.key"
+                  class="tier-spectrum__segment"
+                  :class="[`is-${entry.key}`, { 'is-active': tier === entry.key }]"
+                  :title="`${entry.label} ${tierRange(good, entry).low}~${tierRange(good, entry).high}`"
+                ></span>
+              </div>
+              <div class="tier-spectrum__values">
+                <span
+                  v-for="entry in tiers"
+                  :key="entry.key"
+                  class="tier-spectrum__val"
+                  :class="[`is-${entry.key}`, { 'is-active': tier === entry.key }]"
+                >
+                  {{ tierRange(good, entry).low }}~{{ tierRange(good, entry).high }}
+                </span>
+              </div>
             </div>
           </article>
         </div>
@@ -209,13 +238,9 @@
               <span>{{ level.centerLevel }} 级</span>
               <span>{{ level.gain }}</span>
               <span>{{ level.total }}</span>
-              <span>{{ level.desc.replace(/\{[^}]+\}/g, '…') }}</span>
+              <span>{{ level.desc.replace(/[{}]/g, '') }}</span>
             </div>
           </div>
-          <p class="rule-table__note">
-            表里每级写的是本级新增量；源码按 <code>for (i = 1; i &lt;= 等级; i++)</code> 逐级累加，
-            所以 Lv3 实际载重加成是 <strong>{{ levels.at(-1)?.total ?? 0 }}</strong>，不是表里写的 {{ levels.at(-1)?.gain ?? 0 }}。
-          </p>
         </UiSection>
 
         <UiSection title="订单规则">
@@ -223,8 +248,7 @@
             <p>订单上限 <strong>{{ data.order.orderNumMax }}</strong> 个，超过后不再刷新新订单。</p>
             <p>空位每 <strong>{{ formatDuration(data.order.orderTimeSeconds) }}</strong> 刷新 1 个订单。</p>
             <p>每日完成 <strong>{{ dailyTarget }}</strong> 个订单可领 <strong>{{ data.order.dailyRewardMoney }}</strong> 银币。</p>
-            <p>报酬公式：<strong>Σ(货品售价 × 数量) × 委托倍率 + 基础值</strong>，向下取整。</p>
-            <p v-if="data.order.priceTip" class="rule-list__note">{{ data.order.priceTip }}</p>
+            <p>报酬公式：<strong>Σ(货品售价 × 数量) × 委托倍率 + 300（基础值保底）</strong>，向下取整。</p>
           </div>
         </UiSection>
 
@@ -237,14 +261,10 @@
               <strong>持平</strong>（≤{{ thresholds[2] }}）、<strong>高价</strong>（≤{{ thresholds[3] }}）、
               <strong>极高</strong>（>{{ thresholds[3] }}）。
             </p>
-            <p>超载系数 <strong>{{ data.market.priceOverScale }}</strong>，随机浮动区 <strong>{{ data.market.priceRandomArea }}</strong>。</p>
             <p>
               载重：基础 <strong>{{ data.ability.orderWeight }}</strong>（满级建筑累计 {{ data.ability.maxOrderWeight }}），
-              超出部分按比例追加运回时间，超重基数为
-              <strong>{{ formatDuration(data.ability.orderOverweightTimeSeconds) }}</strong>。
+              超重按比例追加运回时间：<strong>追加时间 = {{ formatDuration(data.ability.orderOverweightTimeSeconds) }} × (超载数量 ÷ 额定载重)</strong>。
             </p>
-            <p v-if="data.market.desc" class="rule-list__note">{{ data.market.desc }}</p>
-            <p v-if="data.market.weightDesc" class="rule-list__note">{{ data.market.weightDesc }}</p>
           </div>
         </UiSection>
       </template>
@@ -258,6 +278,7 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { fetchWithFallback } from '../utils/request.js'
 import { getImageUrl, handleImageFallback } from '../utils/env.js'
+import { getRarityName } from '../utils/gameMappings.js'
 import { useLazyList } from '../composables/useLazyList.js'
 import { UiTabs, UiFilterPanel, UiSearchInput, UiFilterRow, UiFilterPill, UiCardGrid, UiItemCard, UiTag,
   UiEmptyState, UiBackToTop, UiSection } from '../components/ui/index.js'
@@ -282,6 +303,14 @@ const tab = computed(() => (tabs.some(entry => entry.value === route.query.tab) 
 const search = computed(() => queryString('q'))
 const tier = computed(() => queryString('tier'))
 const kind = computed(() => queryString('kind'))
+const materialQuality = computed(() => queryString('quality'))
+
+const ORDER_QUALITY_OPTIONS = [
+  { value: 1, label: getRarityName(1) },
+  { value: 2, label: getRarityName(2) },
+  { value: 3, label: getRarityName(3) },
+  { value: 4, label: getRarityName(4) }
+]
 
 const tiers = computed(() => data.value?.market.tiers || [])
 const levels = computed(() => data.value?.carriage.levels || [])
@@ -300,8 +329,7 @@ const dailyTarget = computed(() => {
 const coinIcon = computed(() => getImageUrl('/Common_ItemIcon/item_00001.webp'))
 const npcUrl = name => `/images/FreightPanel_Atlas/${name}.webp`
 
-const QUALITY_LABELS = { 1: '普通', 2: '精良', 3: '稀有', 4: '史诗', 5: '传说' }
-const qualityLabel = quality => QUALITY_LABELS[Number(quality)] || '普通'
+const qualityLabel = quality => getRarityName(Number(quality))
 
 function formatDuration(seconds) {
   const total = Number(seconds) || 0
@@ -350,10 +378,16 @@ const filteredGoods = computed(() => {
 
 const filteredOrders = computed(() => {
   const list = data.value?.orders || []
-  return list.filter(order => matchesText(
-    [order.name, order.charaText, order.tip, ...order.items.map(line => line.name)],
-    search.value
-  ))
+  const qVal = materialQuality.value ? Number(materialQuality.value) : 0
+  return list.filter(order => {
+    if (qVal && !order.items.some(line => Number(line.quality) === qVal)) {
+      return false
+    }
+    return matchesText(
+      [order.name, order.charaText, order.tip, ...order.items.map(line => line.name)],
+      search.value
+    )
+  })
 })
 
 const counter = computed(() => (tab.value === 'market' ? filteredGoods.value.length : filteredOrders.value.length))
@@ -402,6 +436,7 @@ function changeTab(value) {
   // 切模块时清掉只属于上一模块的筛选，避免 URL 里留着无效键
   delete query.tier
   delete query.kind
+  delete query.quality
   router.push({ path: '/freight', query })
 }
 
@@ -453,8 +488,8 @@ onMounted(loadData)
 .good-entry :deep(.ui-item-card) { width: 70px; margin: 0; }
 .good-entry :deep(.ui-item-card__name) { display: none; }
 .good-entry__body { min-width: 0; display: flex; flex-direction: column; height: 100%; }
-/* 档位对比跨两列，占满卡片宽度 */
-.good-entry .tier-compare { grid-column: 1 / -1; }
+/* 5 档行情标尺跨两列，占满卡片宽度 */
+.good-entry .tier-spectrum { grid-column: 1 / -1; }
 /*
  * 名字行：名字与品质/买入/卖出徽章排在同一行。
  * 徽章统一走 UiTag 的 badge-N（边框与文字用品质色，背景是 --quality-label-bg），
@@ -508,47 +543,107 @@ onMounted(loadData)
 .good-entry__stock { margin: auto 0 0; padding-top: 6px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
 
 /*
- * 5 档对比：跨满卡片宽度，落在图标下方那一块。
- *
- * 不重复用游戏价签的原因：一条价签光右侧箭头就占 24px，5 条并排时中段只剩十几像素，
- * 三位数必然压住箭头。这里保留箭头的颜色语义（红↑↑ / 橙↑ / 灰－ / 黄绿↓ / 绿↓↓），
- * 用字形画，数字用正文色，读得清且不丢档位辨识。
+ * 5 档行情标尺（方案 A）：连续胶囊频谱条 + 档位区间
+ * 消除孤立格子感，将 5 档区间作为连续数轴一体化呈现。
  */
-.tier-compare {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 6px;
-  margin-top: 2px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--border-soft);
-}
-.tier-compare__cell {
+.tier-spectrum {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2px;
+  gap: 4px;
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-soft);
   min-width: 0;
-  padding: 4px 2px;
-  border-radius: 4px;
-  background: rgba(143, 115, 81, 0.07);
 }
-/*
- * 选中态：**只靠档位名变色**，不给底色加厚、不加描边。
- * 试过 inset 描边 + 加重底色（rgba 0.2）：5 格里像被框住一样，
- * 和游戏里「当前价落在哪一格」那种若隐若现的感觉差得远。
- * 现在底色只从 0.07 提到 0.09，主要区分靠 label 的强调色。
- */
-.tier-compare__cell.is-active { background: rgba(85, 117, 116, 0.09); }
-.tier-compare__top { display: flex; align-items: center; gap: 3px; min-width: 0; }
-.tier-compare__arrow { display: block; width: 0; height: 0; flex: none; }
-.tier-compare__arrow--max { border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #d4553f; }
-.tier-compare__arrow--high { border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid #d38a2e; }
-.tier-compare__arrow--ori { width: 9px; height: 3px; border-radius: 1px; background: #8c7d6c; }
-.tier-compare__arrow--low { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #a8b52c; }
-.tier-compare__arrow--min { border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #4f9b45; }
-.tier-compare__label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
-.tier-compare__value { font-size: 11px; font-weight: 700; color: var(--text-main); white-space: nowrap; letter-spacing: -0.3px; }
-.tier-compare__cell.is-active .tier-compare__label { color: var(--accent-ink); }
+
+.tier-spectrum__labels {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 3px;
+}
+
+.tier-spectrum__label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.tier-spectrum__label.is-active {
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.tier-spectrum__arrow {
+  display: block;
+  width: 0;
+  height: 0;
+  flex: none;
+}
+.tier-spectrum__arrow--max { border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid #d4553f; }
+.tier-spectrum__arrow--high { border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid #d38a2e; }
+.tier-spectrum__arrow--ori { width: 7px; height: 2.5px; border-radius: 1px; background: #8c7d6c; }
+.tier-spectrum__arrow--low { border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 7px solid #98a82b; }
+.tier-spectrum__arrow--min { border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 7px solid #4f9b45; }
+
+/* 连续胶囊标尺条：5 段首尾相连 */
+.tier-spectrum__bar {
+  display: flex;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(143, 115, 81, 0.12);
+  gap: 1px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.tier-spectrum__segment {
+  flex: 1;
+  height: 100%;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.tier-spectrum__segment.is-max { background: linear-gradient(180deg, #e56752 0%, #c44732 100%); }
+.tier-spectrum__segment.is-high { background: linear-gradient(180deg, #e59c3e 0%, #bf7a20 100%); }
+.tier-spectrum__segment.is-ori { background: linear-gradient(180deg, #a19281 0%, #7d6e5d 100%); }
+.tier-spectrum__segment.is-low { background: linear-gradient(180deg, #b0c036 0%, #8b991f 100%); }
+.tier-spectrum__segment.is-min { background: linear-gradient(180deg, #60b355 0%, #438f39 100%); }
+
+/* 顶栏有选中档位时，其余段淡化，选中的段高亮 */
+.tier-spectrum__bar.has-active .tier-spectrum__segment:not(.is-active) {
+  opacity: 0.35;
+  filter: grayscale(40%);
+}
+.tier-spectrum__bar.has-active .tier-spectrum__segment.is-active {
+  opacity: 1;
+  filter: drop-shadow(0 0 3px rgba(212, 85, 63, 0.4));
+}
+
+.tier-spectrum__values {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 3px;
+}
+
+.tier-spectrum__val {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-sub, #6b5c4d);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: -0.3px;
+  padding: 1px 0;
+  border-radius: 3px;
+}
+
+.tier-spectrum__val.is-active {
+  color: var(--accent-ink);
+  font-weight: 700;
+  background: rgba(85, 117, 116, 0.12);
+}
 
 /* ── 订单（大书院卡片 UI） ── */
 .order-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -776,8 +871,8 @@ onMounted(loadData)
   .order-card__npc { max-height: 145px; }
   .order-card__npc-col { min-height: 145px; }
   .good-entry { padding: 10px; gap: 8px; }
-  /* 手机上一行放不下 5 档：改成两行 */
-  .tier-compare { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tier-spectrum__val { font-size: 9.5px; letter-spacing: -0.4px; }
+  .tier-spectrum__label { font-size: 10px; }
   .rule-row { grid-template-columns: 44px 62px 62px 62px minmax(0, 1fr); font-size: 12px; }
 }
 @media (max-width: 480px) {
