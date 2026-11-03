@@ -92,8 +92,10 @@
 import { ref, shallowRef, computed, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
 import { compareItemsByCategoryQuality, fetchItemData, getItemImageUrl, isVisibleEquipItem } from '../utils/itemParser'
 import { getImageUrl, handleImageFallback } from '../utils/env'
+import { fetchWithFallback } from '../utils/request.js'
 import { itemModalState } from '../utils/itemModalState'
-import { isBlacklisted, isEquipTierHidden, visibleEquipTiers } from '../config/blacklist.js'
+import { visibleEquipTiers } from '../config/blacklist.js'
+import { isVisible, loadChapterLock } from '../config/visibility.js'
 import { getRarityName } from '../utils/gameMappings'
 import { useRoute, useRouter } from 'vue-router'
 import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
@@ -153,7 +155,11 @@ const loadItems = async () => {
   }
 }
 
-onMounted(loadItems)
+onMounted(async () => {
+  /* 章节锁定集合要在列表渲染前就绪，否则首帧会露出第四/五章物品 */
+  await loadChapterLock(fetchWithFallback)
+  loadItems()
+})
 onBeforeUnmount(() => { loadOperation += 1 })
 
 watch(() => itemModalState.visible, async visible => {
@@ -241,11 +247,11 @@ const filteredItems = computed(() => {
     // equipGroup 的 show_* 仅用于奖励池预览，不是玩家背包物品。
     if (String(item.typeId || '').startsWith('show_')) return false
 
-    // 黑名单过滤
-    if (isBlacklisted(item)) return false
-
-    // 被隐藏的装备品阶（config/blacklist.js）
-    if (isEquipTierHidden(item)) return false
+    /*
+     * 统一可见性判定（config/visibility.js）：手写黑名单 + 装备品阶 + 章节锁定。
+     * 章节锁定读 parsed/chapter-lock.json（只可能来自第四/五章的物品）。
+     */
+    if (!isVisible(item)) return false
 
     // 家具图纸在游戏 NewItemTips 中使用 BuildItem 图集，部分正式图纸没有 item.img。
     if (!item.img && !isCollectionFurniture(item)) return false

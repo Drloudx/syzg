@@ -19,9 +19,13 @@ test('怪物取 typeId 而非 monId，且都能解析出名字', () => {
   }
 })
 
-test('日常本怪物覆盖：55 种类型全部解析成功', () => {
+/**
+ * 过滤掉第四/五章子关卡后，怪物种类由 55 降到 33。
+ * 数字变小是**预期结果**：那 10 个子关卡（含火山训练场、黑森林训练室等）连同怪物一并隐藏。
+ */
+test('日常本怪物覆盖：过滤后 33 种类型全部解析成功', () => {
   const types = new Set(daily.plans.flatMap(p => p.stages.flatMap(s => s.monsters.map(m => m.typeId))))
-  assert.equal(types.size, 55)
+  assert.equal(types.size, 33)
 })
 
 test('三层结构完整：计划 → 子关卡 → 详情', () => {
@@ -32,11 +36,26 @@ test('三层结构完整：计划 → 子关卡 → 详情', () => {
     assert.ok(plan.stages.length > 0, `${plan.typeId} 应有子关卡`)
     for (const stage of plan.stages) {
       assert.ok(stage.battleId, '子关卡应有 battleId')
-      assert.ok(stage.battleRoute.startsWith('/dungeons?battle='), '子关卡应能跳副本图鉴')
+      assert.ok(Array.isArray(stage.rooms), '子关卡应有房间 rooms')
+      assert.ok(Array.isArray(stage.waves), '子关卡应有波次 waves')
       if (stage.reward) {
         assert.ok(Array.isArray(stage.reward.items))
       }
     }
+  }
+})
+
+test('山野觅食与巡山采药包含采集物（植物/矿物）', () => {
+  const food = daily.plans.find(p => p.typeId === 'plan_3')
+  const herb = daily.plans.find(p => p.typeId === 'plan_4')
+  assert.ok(food && herb)
+  const foodCols = food.stages.flatMap(s => s.rooms.flatMap(r => r.collections))
+  const herbCols = herb.stages.flatMap(s => s.rooms.flatMap(r => r.collections))
+  assert.ok(foodCols.length > 0, '山野觅食应有采集物')
+  assert.ok(herbCols.length > 0, '巡山采药应有采集物')
+  for (const c of [...foodCols, ...herbCols]) {
+    assert.ok(c.name, '采集物应有名字')
+    assert.ok(c.count > 0, '采集物应有数量')
   }
 })
 
@@ -61,19 +80,26 @@ test('解锁条件拆成可跳转链接且都映射了名称', () => {
   assert.ok(links.length > 0, '应有解锁链接')
 
   for (const l of links) {
-    assert.ok(['task', 'battle'].includes(l.kind), `未知 kind ${l.kind}`)
+    assert.ok(['task', 'stage'].includes(l.kind), `未知 kind ${l.kind}`)
     assert.ok(l.targetId, '链接应有 targetId')
     /* 🔴 关键断言：必须有可读名称，不能只有 id */
     assert.ok(l.name, `${l.kind} ${l.targetId} 缺少名称映射`)
-    assert.ok(!l.label.includes(l.targetId) || l.kind === 'battle',
+    assert.ok(!l.label.includes(l.targetId),
       `${l.targetId} 的 label 仍是裸 id：${l.label}`)
 
     if (l.kind === 'task') {
       assert.equal(l.route, `/tasks?task=${encodeURIComponent(l.targetId)}`)
       assert.ok(l.stepText, '任务应带步骤说明')
     }
-    if (l.kind === 'battle') {
-      assert.equal(l.route, `/dungeons?battle=${encodeURIComponent(l.targetId)}`)
+    if (l.kind === 'stage') {
+      /*
+       * 关卡跳**关卡图鉴** /chapters?stage=，不是副本图鉴 /dungeons?battle=。
+       * battle.json 的 c5_6_a 在 chapters 产物里是 c5_6（去掉难度字母）。
+       */
+      assert.ok(l.stageId, '关卡应有 stageId')
+      assert.ok(!l.stageId.endsWith('_a'), `stageId 应去掉 _a 后缀：${l.stageId}`)
+      assert.equal(l.route, `/chapters?stage=${encodeURIComponent(l.stageId)}`)
+      assert.ok(l.chapterNo > 0, '关卡应带章节号')
     }
   }
 })
@@ -100,11 +126,14 @@ test('具体条件名称与配置表一致', () => {
   assert.equal(caravanTask.stepText, '完成')
   assert.equal(caravanTask.label, '完成「破损的营地」任务')
 
-  /* 雪原火山商队护送：任务 m_5_1「霜烬平原的召唤」 */
-  const snowTask = findLink('plan_5', 'daily_carriage_4', 'task')
-  assert.equal(snowTask.targetId, 'm_5_1')
-  assert.equal(snowTask.name, '霜烬平原的召唤')
-  assert.equal(snowTask.label, '完成「霜烬平原的召唤」任务')
+  /*
+   * 雪原火山商队护送（daily_carriage_4）依赖第五章任务 m_5_1，
+   * 该子关卡已被隐藏 —— 这里改为验证保留下来的「湖区商队护送」（第三章任务）。
+   */
+  const lakeTask = findLink('plan_5', 'daily_carriage_2', 'task')
+  assert.equal(lakeTask.targetId, 'm_3_1')
+  assert.equal(lakeTask.name, '远道而来的求助者')
+  assert.equal(lakeTask.label, '完成「远道而来的求助者」任务')
 
   /* 带具体步骤的任务：不能说「完成」，要说「推进至第 N 步」 */
   const cainanTask = findLink('plan_1', 'plan_1', 'task')
@@ -112,13 +141,19 @@ test('具体条件名称与配置表一致', () => {
   assert.equal(cainanTask.name, '迦南')
   assert.equal(cainanTask.step, 8)
   assert.equal(cainanTask.stepText, '推进至第 8 步')
-  assert.equal(cainanTask.label, '「迦南」推进至第 8 步')
+  assert.equal(cainanTask.label, '任务「迦南」推进至第 8 步')
 
-  /* 水火矿洞三层：关卡 c5_6_a「5-6 冰棱台地」，关卡才用「通关」 */
-  const mineStage = findLink('plan_1', 'daily_mine_3_2', 'battle')
-  assert.equal(mineStage.targetId, 'c5_6_a')
-  assert.equal(mineStage.name, '5-6 冰棱台地')
-  assert.equal(mineStage.label, '通关 5-6 冰棱台地')
+  /*
+   * 水火矿洞三层（daily_mine_3_2）依赖第五章关卡，已被隐藏；
+   * 改用保留下来的一层验证关卡跳转：c3_6_a「3-6 四指湖岸」。
+   */
+  const mineStage = findLink('plan_1', 'daily_mine_2_2', 'stage')
+  assert.equal(mineStage.targetId, 'c3_6_a')
+  assert.equal(mineStage.stageId, 'c3_6')
+  assert.equal(mineStage.name, '3-6 四指湖岸')
+  assert.equal(mineStage.chapterNo, 3)
+  assert.equal(mineStage.label, '通关 3-6 四指湖岸')
+  assert.equal(mineStage.route, '/chapters?stage=c3_6')
 })
 
 test('周分配覆盖 7 天且都能对上计划名', () => {
@@ -171,4 +206,11 @@ test('经验本掉落与截图一致：战斗笔记 + 经验 80', () => {
   const note = stage.reward.items.find(d => d.typeId === 'item_20016')
   assert.ok(note, '应有战斗笔记 item_20016')
   assert.equal(note.min, 15)
+
+  // 验证对齐关卡图鉴的 RewardPools 标准数据
+  assert.ok(Array.isArray(stage.rewardEntries), '应提供 rewardEntries')
+  const expEntry = stage.rewardEntries.find(e => e.kind === 'exp')
+  assert.ok(expEntry, 'rewardEntries 应包含经验条目')
+  assert.equal(expEntry.min, 80)
+  assert.ok(expEntry.icon, '经验条目应有图标')
 })

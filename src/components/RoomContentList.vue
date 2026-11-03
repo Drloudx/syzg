@@ -32,11 +32,56 @@
                 </div>
               </div>
             </div>
-            <template v-if="variant.monsters.length">
-              <p v-for="line in monsterWaveLines(variant)" :key="line.key" class="room-variant__line"><strong v-if="line.wave">第{{ line.wave }}波：</strong><template v-else>怪物：</template>{{ line.text }}</p>
+            <template v-if="variant.monsters?.length">
+              <div v-for="line in monsterWaveLines(variant)" :key="line.key" class="room-wave-line">
+                <strong class="wave-lead" v-if="line.wave">第{{ line.wave }}波：</strong>
+                <strong class="wave-lead" v-else>怪物：</strong>
+                <div class="wave-monsters-flow">
+                  <span
+                    v-for="mon in line.monsters"
+                    :key="mon.typeId"
+                    class="wave-mon-pill"
+                    :title="mon.rank ? `${mon.name} (Rank ${mon.rank})` : mon.name"
+                  >
+                    <img
+                      class="mon-mini-icon"
+                      :src="mon.iconUrl"
+                      :alt="mon.name"
+                      loading="lazy"
+                      decoding="async"
+                      @error="handleImageFallback"
+                    />
+                    <span class="mon-name-txt">{{ mon.name }}</span>
+                    <span class="mon-count-txt">×{{ mon.count }}</span>
+                  </span>
+                </div>
+              </div>
             </template>
             <p v-else-if="variant.notFightRoom" class="room-variant__line">非战斗房间</p>
-            <p v-if="variant.npcCount" class="room-variant__line">NPC：{{ variant.npcCount }} 个</p>
+            <!-- 房间 NPC 展示：优先展示带头像与名称的 NPC 胶囊流，兜底展示计数 -->
+            <div v-if="getRoomNpcs(variant.typeId).length" class="room-wave-line room-npc-line">
+              <strong class="wave-lead">NPC：</strong>
+              <div class="wave-monsters-flow">
+                <span
+                  v-for="(npc, idx) in getRoomNpcs(variant.typeId)"
+                  :key="idx"
+                  class="wave-mon-pill wave-npc-pill"
+                  :title="npc.name"
+                >
+                  <img
+                    v-if="npc.iconUrl"
+                    class="mon-mini-icon"
+                    :src="npc.iconUrl"
+                    :alt="npc.name"
+                    loading="lazy"
+                    decoding="async"
+                    @error="handleImageFallback"
+                  />
+                  <span class="mon-name-txt">{{ npc.name }}</span>
+                </span>
+              </div>
+            </div>
+            <p v-else-if="variant.npcCount" class="room-variant__line">NPC：{{ variant.npcCount }} 个</p>
             <div
               v-for="collection in sortedCollections(variant.collections)"
               :key="`${variant.typeId}-${collection.collectTypeId}`"
@@ -92,6 +137,8 @@
 <script setup>
 import { UiTag } from './ui/index.js'
 import RewardPools from './RewardPools.vue'
+import { handleImageFallback } from '../utils/env.js'
+import { getRoomNpcs } from '../utils/roomNpcMap.js'
 import {
   collectConsumeText,
   monsterWaveLines,
@@ -144,5 +191,103 @@ const emit = defineEmits(['item-click'])
 .dark-theme .room-collection {
   background: rgba(28, 20, 13, 0.65);
   border-color: rgba(143, 115, 81, 0.22);
+}
+
+/* 怪物与 NPC 波次展示（严格水平对齐） */
+.room-wave-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  min-height: 27px;
+}
+
+.wave-lead {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 27px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.wave-monsters-flow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.wave-mon-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px 2px 4px;
+  background: rgba(255, 250, 240, 0.48);
+  border: 1px solid rgba(143, 115, 81, 0.38);
+  border-radius: 4px;
+  font-size: 12px;
+  box-shadow: 0 1px 2px rgba(43, 31, 21, 0.05);
+}
+
+.mon-mini-icon {
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(143, 115, 81, 0.25);
+}
+
+.mon-name-txt {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.mon-count-txt {
+  font-weight: 700;
+  color: #a16207;
+}
+
+.dark-mode .wave-mon-pill,
+.dark-theme .wave-mon-pill {
+  background: rgba(45, 33, 22, 0.75);
+  border-color: rgba(186, 140, 70, 0.35);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .mon-mini-icon,
+.dark-theme .mon-mini-icon {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(223, 206, 179, 0.3);
+}
+
+.dark-mode .mon-name-txt,
+.dark-theme .mon-name-txt {
+  color: #f3ead5;
+}
+
+.dark-mode .mon-count-txt,
+.dark-theme .mon-count-txt {
+  color: #eab308;
+}
+
+.wave-npc-pill {
+  background: rgba(240, 248, 255, 0.45);
+  border-color: rgba(94, 120, 140, 0.35);
+}
+
+.wave-npc-pill:not(:has(.mon-mini-icon)) {
+  padding: 3px 8px;
+}
+
+.dark-mode .wave-npc-pill,
+.dark-theme .wave-npc-pill {
+  background: rgba(30, 38, 48, 0.72);
+  border-color: rgba(120, 150, 180, 0.35);
 }
 </style>

@@ -186,7 +186,7 @@
             </span>
             <span v-else>无</span>
           </UiInfoRow>
-          <UiInfoRow v-if="difficulty.time > 0" label="限时" :value="`${difficulty.time} 秒`" />
+          <UiInfoRow v-if="difficulty.time > 0" label="限时" :value="formatDuration(difficulty.time)" />
           <UiInfoRow v-if="difficulty.unlock" label="解锁条件" :value="difficulty.unlock.text" />
           <UiInfoRow v-if="stageDetail.des" label="关卡描述" :value="stageDetail.des" />
         </UiSection>
@@ -457,6 +457,15 @@ watch(difficultyIndex, () => {
 })
 
 const handleImgError = handleImageFallback
+
+const formatDuration = (seconds) => {
+  const total = Number(seconds) || 0
+  if (total <= 0) return '不限时'
+  if (total >= 3600 && total % 3600 === 0) return `${total / 3600} 小时`
+  if (total >= 60 && total % 60 === 0) return `${total / 60} 分钟`
+  if (total >= 60) return `${Math.floor(total / 60)} 分钟 ${total % 60} 秒`
+  return `${total} 秒`
+}
 
 const selectChapter = (id) => {
   // 换章节后列表内容整体替换，`UiVirtualGrid` 会在 items 变化时自行把列表滚回顶部；

@@ -39,14 +39,16 @@ export const NAV_CATEGORY_DEFINITIONS = [
     paths: [
       '/items', '/heroes', '/equip', '/runes', '/pets', '/monsters',
       '/dungeons', '/chapters', '/furniture', '/facilities',
-      '/tasks', '/events', '/recipes', '/achievement'
+      '/tasks', '/events', '/recipes', '/achievement',
+      /* 日常计划放图鉴资料末尾：它读的是关卡与掉落，性质接近图鉴 */
+      '/daily'
     ]
   },
   {
     key: 'tools',
     title: '实用工具',
     adminTitle: '实用工具',
-    paths: ['/gacha', '/sims', '/petseggs', '/daily']
+    paths: ['/gacha', '/sims', '/petseggs']
   },
   {
     key: 'misc',

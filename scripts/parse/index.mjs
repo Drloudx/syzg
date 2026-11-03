@@ -36,6 +36,7 @@ import { buildChaptersFiles } from './chapters.mjs'
 import { buildRelationsFile } from './relations.mjs'
 import { buildFreightFile } from './freight.mjs'
 import { buildDailyFile } from './daily.mjs'
+import { buildChapterLockFile } from './chapter-lock-file.mjs'
 import * as runtimeTables from './runtime-tables.mjs'
 
 if (!existsSync(parsedDir)) {
@@ -105,6 +106,7 @@ runtimeTables.build().files.forEach(writeOutput)
 
 // ---------- 2. 页面级预解析（items 是 heroes/monsters 依赖表，必须先构建） ----------
 const jobs = [
+  { name: 'chapter-lock', build: () => buildChapterLockFile(), dependsOnItems: false },
   { name: 'items', build: () => buildItemsFile(), dependsOnItems: false },
   { name: 'runes', build: () => buildRunesFile(), dependsOnItems: false },
   { name: 'furniture', build: () => buildFurnitureFile(), dependsOnItems: false },

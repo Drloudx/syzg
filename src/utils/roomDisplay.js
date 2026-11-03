@@ -6,6 +6,7 @@
  * 因此只在这里维护一份；页面只负责自己的布局与样式。
  */
 import { getImageUrl } from './env.js'
+import { getMonsterAvatarUrl } from './monsterIconMap.js'
 
 /** 宝箱档位：金 3 / 银 2 / 铜 1 / 其他 0。用于把高价值箱子排在前面。 */
 export const chestTier = (value = '') => {
@@ -51,17 +52,34 @@ export const sortedMonsterDrops = (monsters = []) => {
   return [...unique.values()]
 }
 
-/** 怪物按波次分行；多波时逐波列出，单波时合并成一行。 */
+/** 怪物按波次分行；多波时逐波列出，单波时合并成一行。每个波次同时提供 text（纯文本兼顾兼容）和 monsters（带头像、名称、数量的结构化列表）。 */
 export const monsterWaveLines = (room) => {
+  const formatMonsters = (list = []) => list.map(m => ({
+    ...m,
+    iconUrl: getMonsterAvatarUrl(m)
+  }))
+
   const waves = room?.waves || []
   if (waves.length > 1) {
-    return waves.map((wave, index) => ({
-      key: `wave-${wave.round || index + 1}`,
-      wave: wave.round || index + 1,
-      text: (wave.monsters || []).map(monster => `${monster.name} ×${monster.count}`).join('、')
-    }))
+    return waves.map((wave, index) => {
+      const monsters = formatMonsters(wave.monsters || [])
+      return {
+        key: `wave-${wave.round || index + 1}`,
+        wave: wave.round || index + 1,
+        text: monsters.map(m => `${m.name} ×${m.count}`).join('、'),
+        monsters
+      }
+    })
   }
-  return [{ key: 'all', wave: 0, text: (room?.monsters || []).map(monster => `${monster.name} ×${monster.count}`).join('、') }]
+
+  const rawList = (waves[0]?.monsters?.length ? waves[0].monsters : room?.monsters) || []
+  const monsters = formatMonsters(rawList)
+  return [{
+    key: 'all',
+    wave: 0,
+    text: monsters.map(m => `${m.name} ×${m.count}`).join('、'),
+    monsters
+  }]
 }
 
 export const collectConsumeText = (collection) => collection?.consumeCost?.ti > 0

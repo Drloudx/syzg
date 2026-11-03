@@ -145,7 +145,7 @@ export const DEFAULT_NOTICE_SLOTS = {"site":["site-1","site-5","site-7","site-4"
 export const DEFAULT_CORE_LINKS = [
   { slot: 1, title: '角色图鉴', description: '角色属性，技能，星阶\n角色互动文本', route: '/heroes', iconSource: 'nav' },
   { slot: 2, title: '怪物图鉴', description: '怪物基础属性\n怪物状态，技能释放条件', route: '/monsters', iconSource: 'nav' },
-  { slot: 3, title: '任务图鉴', description: '全任务流程\n全剧情文本，支持关键词搜索', route: '/pets', iconSource: 'nav' },
+  { slot: 3, title: '任务图鉴', description: '全任务流程\n全剧情文本，支持关键词搜索', route: '/tasks', iconSource: 'nav' },
   { slot: 4, title: '副本图鉴', description: '副本路线\n商人，宝箱产出', route: '/dungeons', iconSource: 'nav' }
 ]
 
