@@ -40,9 +40,13 @@
                   <span
                     v-for="mon in line.monsters"
                     :key="mon.typeId"
-                    class="wave-mon-pill"
-                    :title="mon.rank ? `${mon.name} (Rank ${mon.rank})` : mon.name"
-                  >
+                    class="wave-mon-pill is-clickable"
+                    :title="(mon.rank ? `${mon.name} (Rank ${mon.rank})` : mon.name) + ' · 点击查看详情'"
+                    role="button"
+                    tabindex="0"
+                    @click.stop="openMonsterDetail(mon.typeId)"
+                    @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId)"
+                    @keydown.space.prevent.stop="openMonsterDetail(mon.typeId)">
                     <img
                       class="mon-mini-icon"
                       :src="mon.iconUrl"
@@ -138,6 +142,7 @@
 import { UiTag } from './ui/index.js'
 import RewardPools from './RewardPools.vue'
 import { handleImageFallback } from '../utils/env.js'
+import { openMonsterDetail } from '../utils/monsterModalState.js'
 import { getRoomNpcs } from '../utils/roomNpcMap.js'
 import {
   collectConsumeText,
@@ -222,6 +227,9 @@ const emit = defineEmits(['item-click'])
   gap: 6px;
 }
 
+.wave-mon-pill.is-clickable { cursor: pointer; transition: background-color .15s, border-color .15s; }
+.wave-mon-pill.is-clickable:hover { background: rgba(85, 117, 116, 0.14); border-color: var(--accent-ink); }
+.wave-mon-pill.is-clickable:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 1px; }
 .wave-mon-pill {
   display: inline-flex;
   align-items: center;

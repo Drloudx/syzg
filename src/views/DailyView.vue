@@ -303,9 +303,13 @@
                         <span
                           v-for="mon in w.monsters"
                           :key="mon.typeId"
-                          class="wave-mon-pill"
+                          class="wave-mon-pill is-clickable"
                           :title="`${mon.name} (Rank ${mon.monRank || 1})`"
-                        >
+                         role="button"
+                         tabindex="0"
+                         @click.stop="openMonsterDetail(mon.typeId)"
+                         @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId)"
+                         @keydown.space.prevent.stop="openMonsterDetail(mon.typeId)">
                           <img
                             class="mon-mini-icon"
                             :src="monIcon(mon.icon)"
@@ -381,6 +385,7 @@ import {
 } from '../components/ui/index.js'
 import RewardPools from '../components/RewardPools.vue'
 import { openRewardDetail } from '../utils/rewardModalState.js'
+import { openMonsterDetail } from '../utils/monsterModalState.js'
 
 const route = useRoute()
 const router = useRouter()
@@ -1506,6 +1511,9 @@ onBeforeUnmount(() => {
   gap: 6px;
 }
 
+.wave-mon-pill.is-clickable { cursor: pointer; transition: background-color .15s, border-color .15s; }
+.wave-mon-pill.is-clickable:hover { background: rgba(85, 117, 116, 0.14); border-color: var(--accent-ink); }
+.wave-mon-pill.is-clickable:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 1px; }
 .wave-mon-pill {
   display: inline-flex;
   align-items: center;

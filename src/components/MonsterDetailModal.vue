@@ -246,7 +246,15 @@ import { formatHighlightedText, translateStatName } from '../utils/gameMappings'
 import CommentsPanel from './CommentsPanel.vue'
 import { buildPageKey, COMMENT_PAGE_PREFIX } from '../utils/commentApi.js'
 
-defineProps({ visible: Boolean })
+const props = defineProps({
+  visible: Boolean,
+  /**
+   * 外部指定的怪物形态 id（`monsters.json` 的 `forms[].id` / `summons[].id`）。
+   * 传入时优先使用，不再依赖路由 —— 供 /daily、/dungeons、/chapters 的弹层调用。
+   * 不传时保持原行为：从 `/monsters?id=` 读取。
+   */
+  monsterId: { type: String, default: '' }
+})
 const emit = defineEmits(['update:visible'])
 const router = useRouter()
 const route = useRoute()
@@ -265,10 +273,15 @@ onErrorCaptured(error => { renderError.value = error.message || String(error); c
 
 const loadMonster = async () => {
   const operation = ++loadOperation
-  const newId = route.query.id
+  /*
+   * 两个来源：外部 prop（跨页面弹层）优先，其次 `/monsters?id=` 路由参数。
+   * 有 prop 时不校验路由，让任意页面都能弹；没有 prop 时维持原逻辑。
+   */
+  const externalId = String(props.monsterId || '').trim()
+  const newId = externalId || route.query.id
   loadError.value = ''
   renderError.value = null
-  if (route.path !== '/monsters' || !newId) {
+  if (!newId || (!externalId && route.path !== '/monsters')) {
     monster.value = null
     loading.value = false
     emit('update:visible', false)
@@ -290,7 +303,16 @@ const loadMonster = async () => {
       foundFormIndex = index
       break
     }
-    if (!foundMonster) throw new Error('未找到该怪物，请返回列表重新选择。')
+    if (!foundMonster) {
+      /*
+       * 该形态不在图鉴收录范围内：图鉴列表由 `fileMon.json` 决定，
+       * 而 `room.json` 里的怪物不一定都在其中（如 070_1 治安队员）。
+       * 外部弹层场景给出明确说明，避免弹出空白层。
+       */
+      throw new Error(externalId
+        ? '该怪物暂无图鉴条目（未收录到怪物图鉴）'
+        : '未找到该怪物，请返回列表重新选择。')
+    }
     monster.value = foundMonster
     currentFormIndex.value = foundFormIndex
   } catch (error) {
@@ -299,7 +321,20 @@ const loadMonster = async () => {
     if (operation === loadOperation) loading.value = false
   }
 }
-watch(() => [route.path, route.query.id], loadMonster, { immediate: true })
+watch(
+  () => [route.path, route.query.id, props.monsterId, props.visible],
+  ([, , monsterId, visible]) => {
+    /* 外部弹层：只在 visible 为真且带 id 时加载 */
+    if (monsterId) {
+      if (visible) loadMonster()
+      else { monster.value = null; loading.value = false }
+      return
+    }
+    /* 路由方式：保持原行为 */
+    loadMonster()
+  },
+  { immediate: true }
+)
 onBeforeUnmount(() => { loadOperation += 1 })
 
 const allForms = computed(() => monster.value ? [...(monster.value.forms || []), ...(monster.value.summons || [])] : [])
@@ -544,7 +579,19 @@ watch(currentForm, form => {
   portraitUrl.value = getImageUrl(form.portraitPath)
 }, { immediate: true })
 
-const handleClose = () => { emit('update:visible', false); if (route.query.id) { const query = { ...route.query }; delete query.id; router.replace({ query }) } }
+const handleClose = () => {
+  emit('update:visible', false)
+  /*
+   * 只有「路由方式」打开时才清理 ?id=。
+   * 外部弹层（传入 monsterId）不能动当前页面的 URL —— 否则会污染
+   * /daily、/dungeons、/chapters 的查询参数。
+   */
+  if (!props.monsterId && route.query.id) {
+    const query = { ...route.query }
+    delete query.id
+    router.replace({ query })
+  }
+}
 // ID 显示已隐藏，复制入口随之停用（保留实现，恢复 ID 显示时一并取消注释）
 // const copyId = id => {
 //   if (id) navigator.clipboard.writeText(id).catch(error => console.error('Failed to copy ID:', error))

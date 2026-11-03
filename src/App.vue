@@ -156,6 +156,11 @@
           :item="itemModalState.item"
           :categoryTree="itemModalState.categoryTree" 
         />
+        <!-- 全局怪物详情弹窗：/daily、/dungeons、/chapters 点怪物名时弹出，不跳页 -->
+        <MonsterDetailModal
+          v-model:visible="monsterModalState.visible"
+          :monster-id="monsterModalState.monsterId"
+        />
         <router-view />
       </main>
 
@@ -309,9 +314,11 @@ import { SITE_PAGE_KEY, fetchRecentComments } from './utils/commentApi.js'
 import { lastPostedComment, commentPostedAt } from './utils/commentEvents.js'
 import { UiButton, UiEmptyState, UiModal, EdgeFloatingWidget } from './components/ui/index.js'
 import ItemDetailModal from './components/ItemDetailModal.vue'
+import MonsterDetailModal from './components/MonsterDetailModal.vue'
 import EmoticonText from './components/EmoticonText.vue'
 import RewardProbabilityModal from './components/RewardProbabilityModal.vue'
 import { itemModalState, openItemDetail } from './utils/itemModalState'
+import { monsterModalState } from './utils/monsterModalState'
 import { fetchItemData } from './utils/itemParser'
 import { resetModalScrollCoordinator } from './utils/modalScrollCoordinator.js'
 import { prefetchRouteChunks } from './router/index.js'
