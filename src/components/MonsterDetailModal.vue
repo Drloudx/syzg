@@ -10,7 +10,7 @@
       <!-- <div class="id-line"><UiTag tone="wood" class="copy-tag" title="点击复制 ID" @click="copyId(currentForm.id)">ID: {{ currentForm.id }}</UiTag></div> -->
 
       <div class="portrait-section paper-panel corner-nails">
-        <div class="portrait-box">
+        <div class="portrait-box" :class="{ 'portrait-box--avatar': currentForm.imageKind === 'avatar' }">
           <UiTag :tone="currentForm.monRank === 3 ? 'gold' : 'accent'" class="portrait-relation">{{ currentForm.relationType || currentForm.tabLabel || '本体' }}</UiTag>
           <img :src="portraitUrl" :alt="currentForm.name || monster.name" class="portrait-img" data-image-fallback="custom" @error="handlePortraitError" />
         </div>
@@ -29,7 +29,7 @@
         <p v-if="currentForm.specialDes" class="monster-special-desc">特性说明：{{ currentForm.specialDes }}</p>
       </div>
 
-      <div v-if="allForms.length > 1" class="forms-tabs"><UiTabs v-model="currentFormIndex" :options="formTabOptions" /></div>
+      <div v-if="shouldShowTabs" class="forms-tabs"><UiTabs v-model="currentFormIndex" :options="formTabOptions" /></div>
 
       <!-- 战斗阶段与变身流转卡 -->
       <div v-if="currentForm.transform" class="phase-transition-card paper-panel-solid">
@@ -81,6 +81,16 @@
 
       <div class="form-content">
         <UiSection title="等级属性估算">
+          <div v-if="isSceneScaled" class="scene-scale-banner paper-panel-solid">
+            <div class="scene-scale-header">
+              <span class="scene-scale-badge">关卡修正</span>
+              <span class="scene-scale-text">
+                <span v-if="effectiveScaleHp !== 1">生命值 ×{{ Math.round(effectiveScaleHp * 100) }}%</span>
+                <span v-if="effectiveScaleAtk !== 1"> · 攻防 ×{{ Math.round(effectiveScaleAtk * 100) }}%</span>
+              </span>
+              <span class="scene-scale-base">(未修正标准生命: {{ baseUnscaledHp.toLocaleString('zh-CN') }})</span>
+            </div>
+          </div>
           <div class="level-slider paper-panel-solid">
             <div class="level-slider__header">
               <span>当前等级</span>
@@ -240,8 +250,10 @@ import { useRoute, useRouter } from 'vue-router'
 import { UiBackToTop, UiButton, UiEmptyState, UiModal, UiSection, UiStatGrid, UiTabs, UiTag } from './ui/index.js'
 import RewardPools from './RewardPools.vue'
 import { openRewardDetail } from '../utils/rewardModalState.js'
+import { openMonsterDetail, closeMonsterDetail } from '../utils/monsterModalState.js'
+import { openItemDetail } from '../utils/itemModalState.js'
 import { getImageUrl, handleImageFallback } from '../utils/env'
-import { fetchMonsterData, fetchMonsterLevelStrength } from '../utils/monsterParser'
+import { fetchMonsterData, fetchExtraMonsterMap, fetchMonsterLevelStrength } from '../utils/monsterParser'
 import { formatHighlightedText, translateStatName } from '../utils/gameMappings'
 import CommentsPanel from './CommentsPanel.vue'
 import { buildPageKey, COMMENT_PAGE_PREFIX } from '../utils/commentApi.js'
@@ -253,7 +265,10 @@ const props = defineProps({
    * 传入时优先使用，不再依赖路由 —— 供 /daily、/dungeons、/chapters 的弹层调用。
    * 不传时保持原行为：从 `/monsters?id=` 读取。
    */
-  monsterId: { type: String, default: '' }
+  monsterId: { type: String, default: '' },
+  initialLevel: { type: Number, default: null },
+  scaleHp: { type: Number, default: 1 },
+  scaleAtk: { type: Number, default: 1 }
 })
 const emit = defineEmits(['update:visible'])
 const router = useRouter()
@@ -290,7 +305,11 @@ const loadMonster = async () => {
   loading.value = true
   emit('update:visible', true)
   try {
-    const [officialMonsters, levelStrength] = await Promise.all([fetchMonsterData(), fetchMonsterLevelStrength()])
+    const [officialMonsters, extraMap, levelStrength] = await Promise.all([
+      fetchMonsterData(),
+      fetchExtraMonsterMap(),
+      fetchMonsterLevelStrength()
+    ])
     if (operation !== loadOperation) return
     allMonstersList.value = officialMonsters || []
     levelStrengthMap.value = levelStrength
@@ -302,6 +321,16 @@ const loadMonster = async () => {
       foundMonster = entry
       foundFormIndex = index
       break
+    }
+    if (!foundMonster && extraMap && extraMap[newId]) {
+      const extraForm = extraMap[newId]
+      foundMonster = {
+        id: extraForm.id,
+        name: extraForm.name,
+        isExtra: true,
+        forms: [extraForm]
+      }
+      foundFormIndex = 0
     }
     if (!foundMonster) {
       /*
@@ -321,23 +350,68 @@ const loadMonster = async () => {
     if (operation === loadOperation) loading.value = false
   }
 }
+// 1. 外部弹层模式：从外部传入 monsterId 打开弹窗，或传入的 id 变化时加载
 watch(
-  () => [route.path, route.query.id, props.monsterId, props.visible],
-  ([, , monsterId, visible]) => {
-    /* 外部弹层：只在 visible 为真且带 id 时加载 */
-    if (monsterId) {
-      if (visible) loadMonster()
-      else { monster.value = null; loading.value = false }
-      return
+  [() => props.monsterId, () => props.visible],
+  ([newId, visible], [oldId, oldVisible] = []) => {
+    if (!props.monsterId) return
+    if (visible) {
+      if (!oldVisible || newId !== oldId) {
+        loadMonster()
+      }
+    } else {
+      monster.value = null
+      loading.value = false
     }
-    /* 路由方式：保持原行为 */
-    loadMonster()
+  },
+  { immediate: true }
+)
+
+// 2. 路由模式：在图鉴页（/monsters）根据 URL 参数加载
+watch(
+  () => [route.path, route.query.id],
+  ([path]) => {
+    if (props.monsterId) return
+    if (path === '/monsters') {
+      loadMonster()
+    }
   },
   { immediate: true }
 )
 onBeforeUnmount(() => { loadOperation += 1 })
 
-const allForms = computed(() => monster.value ? [...(monster.value.forms || []), ...(monster.value.summons || [])] : [])
+const allForms = computed(() => {
+  if (!monster.value) return []
+  const forms = monster.value.forms || []
+  const summons = monster.value.summons || []
+  if (forms.length <= 1) return [...forms, ...summons]
+
+  const base = forms[0]
+  const filteredForms = forms.filter((f, idx) => {
+    if (idx === 0) return true
+    // 剔除属性、技能、阶级和本体一模一样的无意义冗余克隆体
+    const isSameStats = f.rawStats?.maxHp === base.rawStats?.maxHp &&
+                        f.rawStats?.phyAtk === base.rawStats?.phyAtk &&
+                        f.rawStats?.phyDef === base.rawStats?.phyDef
+    const isSameSkills = (f.skills?.length || 0) === (base.skills?.length || 0)
+    const isSameRank = f.monRank === base.monRank
+    if (isSameStats && isSameSkills && isSameRank && !f.transform && !f.towerAppearances?.length) {
+      return false
+    }
+    return true
+  })
+  return [...filteredForms, ...summons]
+})
+
+// 控制多形态 Tab 的显示：小怪在外部关卡/日常弹窗中直接聚焦单形态，Boss 或含变身/召唤物才展示 Tabs
+const shouldShowTabs = computed(() => {
+  if (allForms.value.length <= 1) return false
+  if (isBaseMonsterBoss.value) return true
+  if (allForms.value.some(f => f.transform || f.relationType === '变身阶段' || f.relationType === '分裂形态')) return true
+  if (monster.value?.summons?.length > 0) return true
+  if (props.monsterId) return false
+  return formTabOptions.value.length > 1
+})
 const currentForm = computed(() => allForms.value[currentFormIndex.value] || null)
 
 /** 讨论区归属键：`monster:<形态ID>` */
@@ -502,7 +576,11 @@ const handleSummonJump = (summon) => {
   if (target.type === 'local') {
     currentFormIndex.value = target.index
   } else if (target.type === 'global') {
-    router.push({ query: { ...route.query, id: target.formId } })
+    if (props.monsterId) {
+      openMonsterDetail(target.formId)
+    } else {
+      router.push({ query: { ...route.query, id: target.formId } })
+    }
   }
 }
 
@@ -515,10 +593,36 @@ const formatDisplayStat = (key, raw, growth = {}) => {
       : (percentKeys.has(key) ? `${Number(raw[key]) < 2 ? Math.round(Number(raw[key]) * 100) : raw[key]}%` : raw[key])
   }
 }
+const effectiveScaleHp = computed(() => {
+  const scale = Number(props.scaleHp)
+  return scale > 0 ? scale : 1
+})
+const effectiveScaleAtk = computed(() => {
+  const scale = Number(props.scaleAtk)
+  return scale > 0 ? scale : 1
+})
+const isSceneScaled = computed(() => {
+  return (effectiveScaleHp.value !== 1 || effectiveScaleAtk.value !== 1) && Boolean(props.monsterId)
+})
+const baseUnscaledHp = computed(() => {
+  const raw = currentForm.value?.rawStats || {}
+  const coefficient = Number(levelStrengthMap.value[String(currentLevel.value)]?.coefficient || 1)
+  return Math.floor(Number(raw.maxHp || 0) * coefficient)
+})
+
 const statGroups = computed(() => {
   const raw = currentForm.value?.rawStats || {}
   const coefficient = Number(levelStrengthMap.value[String(currentLevel.value)]?.coefficient || 1)
-  const growth = { maxHp: Math.floor(Number(raw.maxHp || 0) * coefficient), phyAtk: Math.floor(Number(raw.phyAtk || 0) * coefficient), magicAtk: Math.floor(Number(raw.magicAtk || 0) * coefficient), phyDef: Math.floor(Number(raw.phyDef || 0) * coefficient), magicDef: Math.floor(Number(raw.magicDef || 0) * coefficient) }
+  const hpScale = effectiveScaleHp.value
+  const atkScale = effectiveScaleAtk.value
+
+  const growth = {
+    maxHp: Math.floor(Number(raw.maxHp || 0) * coefficient * hpScale),
+    phyAtk: Math.floor(Number(raw.phyAtk || 0) * coefficient * atkScale),
+    magicAtk: Math.floor(Number(raw.magicAtk || 0) * coefficient * atkScale),
+    phyDef: Math.floor(Number(raw.phyDef || 0) * coefficient * atkScale),
+    magicDef: Math.floor(Number(raw.magicDef || 0) * coefficient * atkScale)
+  }
   const growthKeys = ['maxHp', 'phyAtk', 'magicAtk', 'phyDef', 'magicDef']
   const fixedKeys = ['crit', 'critRes', 'critDam', 'atkRange', 'atkFloatMin', 'atkFloatMax', 'runSpeed', 'repelRes', 'phyAtkPen', 'magicAtkPen', 'rebDam', 'vampire', 'cureAdd']
   return {
@@ -572,10 +676,17 @@ const configuredRewardSections = computed(() => {
   }
   return sections
 })
-watch(currentFormIndex, index => { const form = allForms.value[index]; if (form) router.replace({ query: { ...route.query, id: form.id } }) })
+watch(currentFormIndex, index => {
+  if (props.monsterId) return
+  const form = allForms.value[index]
+  if (form && route.path === '/monsters') {
+    router.replace({ query: { ...route.query, id: form.id } })
+  }
+})
 watch(currentForm, form => {
   if (!form) return
-  currentLevel.value = Number(form.level || 1)
+  const initLvl = Number(props.initialLevel)
+  currentLevel.value = initLvl > 0 ? initLvl : Number(form.level || 1)
   portraitUrl.value = getImageUrl(form.portraitPath)
 }, { immediate: true })
 
@@ -599,14 +710,29 @@ const handleClose = () => {
 const handlePortraitError = event => {
   const baseId = String(monster.value?.id || '').replace('hero_', '')
   const rawIcon = currentForm.value?.icon || monster.value?.icon
-  const names = [baseId && `colect_mon_${baseId}`, rawIcon].filter(Boolean)
-  const candidates = names.flatMap(name => [name, name.replace('colect_mon_', 'colectr_mon_')])
-    .map(name => getImageUrl(`/images/PicHandBookPanel_Atlas/${name}.webp`))
+  const skel = String(currentForm.value?.model || currentForm.value?.skeletonName || monster.value?.model || '').toLowerCase().replace('/', '_')
+
+  const candidates = [
+    // 1. 官方图鉴立绘候选
+    baseId && getImageUrl(`/images/PicHandBookPanel_Atlas/colect_mon_${baseId}.webp`),
+    baseId && getImageUrl(`/images/PicHandBookPanel_Atlas/colectr_mon_${baseId}.webp`),
+    // 2. 模型渲染图候选
+    skel && getImageUrl(`/images/model-previews/${skel}.webp`),
+    baseId && getImageUrl(`/images/model-previews/mon_${baseId}.webp`),
+    // 3. 圆形头像候选
+    rawIcon && getImageUrl(`/images/HeadIconAtals/${rawIcon}.webp`),
+    baseId && getImageUrl(`/images/HeadIconAtals/avatar_Mon_${baseId}.webp`)
+  ].filter(Boolean)
+
   handleImageFallback(event, { source: portraitUrl.value, candidates })
 }
 const handleRewardClick = (typeId) => {
   if (typeId && typeId !== 'equipGroup') {
-    router.push({ query: { ...route.query, itemId: typeId } })
+    if (props.monsterId) {
+      openItemDetail(typeId)
+    } else {
+      router.push({ query: { ...route.query, itemId: typeId } })
+    }
   }
 }
 const formatPercent = value => { const percent = Number(value || 0) * 100; return `${percent.toFixed(percent % 1 ? 1 : 0)}%` }
@@ -749,6 +875,23 @@ const formatKeyTag = tag => (tag === 'boss' ? '首领' : tag)
 .id-line { display: flex; justify-content: flex-end; margin-bottom: 10px; }
 .copy-tag { cursor: pointer; user-select: none; }
 .portrait-section { display: flex; flex-direction: column; align-items: center; margin-bottom: 16px; padding: 18px 14px; }
+.portrait-box--avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
+  background: radial-gradient(circle at center, rgba(194, 154, 108, 0.22) 0%, transparent 72%);
+}
+.portrait-box--avatar .portrait-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--border-gold, #c89b3c);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  background: var(--card-bg, #f4ecd8);
+}
+
 .portrait-box { position: relative; display: grid; width: min(100%, 300px); min-height: 210px; place-items: center; padding: 14px; border: 1px dashed var(--border-color); border-radius: 6px; background: rgba(43, 31, 21, 0.08); box-shadow: inset 0 2px 8px rgba(43, 31, 21, 0.2); }
 .portrait-relation { position: absolute; top: 8px; left: 8px; z-index: 1; }
 .portrait-img { max-width: 100%; max-height: 190px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35)); }
@@ -992,5 +1135,40 @@ const formatKeyTag = tag => (tag === 'boss' ? '首领' : tag)
 .dark-mode .phase-node {
   background: rgba(43, 31, 21, 0.6);
   border-color: var(--border-soft);
+}
+
+.scene-scale-banner {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background: rgba(194, 154, 108, 0.12);
+  border: 1px solid var(--border-gold, #c89b3c);
+  border-radius: 4px;
+}
+.scene-scale-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.scene-scale-badge {
+  background: var(--tag-gold-bg, #936b28);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+.scene-scale-text {
+  color: var(--text-highlight, #8a5a22);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+.scene-scale-base {
+  color: var(--text-muted, #7c7267);
+  font-size: 0.8rem;
+  margin-left: auto;
 }
 </style>

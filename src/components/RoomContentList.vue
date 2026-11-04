@@ -32,6 +32,67 @@
                 </div>
               </div>
             </div>
+            <!-- 房间战斗特殊机制（增援 / 破盾 / 坚守） -->
+            <div v-if="variant.mechanics?.length" class="room-mechanics">
+              <div v-for="(mech, mIdx) in variant.mechanics" :key="mIdx" class="room-mechanic-card">
+                <div class="room-mechanic-header">
+                  <UiTag tone="gold">机制</UiTag>
+                  <strong class="mechanic-title">{{ mech.title }}</strong>
+                </div>
+                <p v-if="mech.summary" class="mechanic-summary">{{ mech.summary }}</p>
+
+                <div class="mechanic-box">
+                  <div v-if="mech.rule" class="mechanic-row">
+                    <span class="mech-lead">增援规则</span>
+                    <span class="mech-rule-text">{{ mech.rule }}</span>
+                  </div>
+
+                  <div v-if="mech.units?.length" class="mechanic-row mechanic-units-row">
+                    <span class="mech-lead">增援单位：</span>
+                    <div class="wave-monsters-flow">
+                      <span
+                        v-for="unit in mech.units"
+                        :key="unit.typeId"
+                        class="wave-mon-pill is-clickable"
+                        :title="unit.name + ' · 点击查看详情'"
+                        role="button"
+                        tabindex="0"
+                        @click.stop="openMonsterDetail(unit.typeId, null, room?.level || room?.gameLevel, { scaleHp: unit.levelScaleHp, scaleAtk: unit.levelScale })"
+                        @keydown.enter.prevent.stop="openMonsterDetail(unit.typeId, null, room?.level || room?.gameLevel, { scaleHp: unit.levelScaleHp, scaleAtk: unit.levelScale })"
+                        @keydown.space.prevent.stop="openMonsterDetail(unit.typeId, null, room?.level || room?.gameLevel, { scaleHp: unit.levelScaleHp, scaleAtk: unit.levelScale })"
+                      >
+                        <img
+                          class="mon-mini-icon"
+                          :src="unit.iconUrl"
+                          :alt="unit.name"
+                          loading="lazy"
+                          decoding="async"
+                          @error="handleImageFallback"
+                        />
+                        <span class="mon-name-txt">{{ unit.name }}</span>
+                        <span v-if="unit.count > 1" class="mon-count-txt">×{{ unit.count }}</span>
+                        <span class="mon-arrow-txt">→</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div v-if="mech.target" class="mechanic-row">
+                    <span class="mech-lead">破解目标</span>
+                    <span class="mech-text">{{ mech.target }}</span>
+                  </div>
+
+                  <div v-if="mech.effect" class="mechanic-row">
+                    <span class="mech-lead">破解效果</span>
+                    <span class="mech-text mech-text--highlight">{{ mech.effect }}</span>
+                  </div>
+
+                  <div v-if="mech.clearCondition" class="mechanic-row">
+                    <span class="mech-lead">通关条件</span>
+                    <span class="mech-text">{{ mech.clearCondition }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
             <template v-if="variant.monsters?.length">
               <div v-for="line in monsterWaveLines(variant)" :key="line.key" class="room-wave-line">
                 <strong class="wave-lead" v-if="line.wave">第{{ line.wave }}波：</strong>
@@ -44,9 +105,9 @@
                     :title="(mon.rank ? `${mon.name} (Rank ${mon.rank})` : mon.name) + ' · 点击查看详情'"
                     role="button"
                     tabindex="0"
-                    @click.stop="openMonsterDetail(mon.typeId)"
-                    @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId)"
-                    @keydown.space.prevent.stop="openMonsterDetail(mon.typeId)">
+                    @click.stop="openMonsterDetail(mon.typeId, null, room?.level || room?.gameLevel, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })"
+                    @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId, null, room?.level || room?.gameLevel, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })"
+                    @keydown.space.prevent.stop="openMonsterDetail(mon.typeId, null, room?.level || room?.gameLevel, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })">
                     <img
                       class="mon-mini-icon"
                       :src="mon.iconUrl"
@@ -298,4 +359,104 @@ const emit = defineEmits(['item-click'])
   background: rgba(30, 38, 48, 0.72);
   border-color: rgba(120, 150, 180, 0.35);
 }
+
+/* 房间战斗特殊机制卡片 */
+.room-mechanics {
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.room-mechanic-card {
+  background: rgba(253, 250, 243, 0.7);
+  border: 1px solid rgba(186, 140, 70, 0.35);
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
+.room-mechanic-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.mechanic-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.mechanic-summary {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0 0 6px 0;
+}
+
+.mechanic-box {
+  background: rgba(245, 237, 224, 0.55);
+  border-left: 3px solid #b45309;
+  padding: 6px 8px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.mechanic-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 24px;
+}
+
+.mech-lead {
+  font-weight: 700;
+  color: #92400e;
+  flex-shrink: 0;
+}
+
+.mech-text,
+.mech-rule-text {
+  color: var(--text-main);
+  font-size: 12px;
+}
+
+.mech-text--highlight {
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+.mon-arrow-txt {
+  color: var(--text-muted);
+  font-size: 11px;
+  margin-left: 2px;
+}
+
+.dark-mode .room-mechanic-card,
+.dark-theme .room-mechanic-card {
+  background: rgba(35, 27, 19, 0.75);
+  border-color: rgba(186, 140, 70, 0.3);
+}
+
+.dark-mode .mechanic-box,
+.dark-theme .mechanic-box {
+  background: rgba(45, 35, 25, 0.65);
+  border-left-color: #d97706;
+}
+
+.dark-mode .mech-lead,
+.dark-theme .mech-lead {
+  color: #f59e0b;
+}
+
+.dark-mode .mech-text--highlight,
+.dark-theme .mech-text--highlight {
+  color: #f87171;
+}
+
 </style>

@@ -226,14 +226,17 @@ function parseStageRoomsAndWaves(battleConf, roomRes, monRes, roomCollectRes, ro
             const icon = info.icon || ''
             const monRank = Number(info.monRank) || 1
 
+            const monScaleHp = m.levelScaleHp ?? roomObj?.roomLevelScaleHp ?? battleConf?.battleLevelScaleHp ?? 1
+            const monScale = m.levelScale ?? roomObj?.roomLevelScale ?? battleConf?.battleLevelScale ?? 1
+
             const waveItem = waveMonstersMap.get(typeId) || {
               typeId,
               name,
               icon,
               monRank,
               count: 0,
-              levelScale: m.levelScale ?? 1,
-              levelScaleHp: m.levelScaleHp ?? 1
+              levelScale: monScale,
+              levelScaleHp: monScaleHp
             }
             waveItem.count += 1
             waveMonstersMap.set(typeId, waveItem)
@@ -245,8 +248,8 @@ function parseStageRoomsAndWaves(battleConf, roomRes, monRes, roomCollectRes, ro
               icon,
               monRank,
               count: 0,
-              levelScale: m.levelScale ?? 1,
-              levelScaleHp: m.levelScaleHp ?? 1,
+              levelScale: monScale,
+              levelScaleHp: monScaleHp,
               rounds: 0,
               waveList: []
             }
@@ -264,8 +267,8 @@ function parseStageRoomsAndWaves(battleConf, roomRes, monRes, roomCollectRes, ro
               icon,
               monRank,
               count: 0,
-              levelScale: m.levelScale ?? 1,
-              levelScaleHp: m.levelScaleHp ?? 1
+              levelScale: monScale,
+              levelScaleHp: monScaleHp
             }
             roomMon.count += 1
             roomMonsterMap.set(typeId, roomMon)
@@ -290,6 +293,7 @@ function parseStageRoomsAndWaves(battleConf, roomRes, monRes, roomCollectRes, ro
           roomId,
           roomTypeId,
           name: roomDisplayName,
+          level: Number(roomObj?.gameLevel) || Number(battleConf?.battleLevel) || 0,
           index: roomIndex++,
           waves: roomWaves,
           collections,
@@ -496,6 +500,7 @@ export function buildDailyFile() {
         ? parseStageRoomsAndWaves(battle, roomRes, monRes, roomCollectRes, roomCollectTypeRes, rewardRes, itemRes, equipConfig)
         : { rooms: [], waves: [], monsters: [] }
 
+      const effectiveLevel = (battle && Number(battle.battleLevel)) || rooms.find(r => r.level > 0)?.level || 0
       stages.push({
         name: stage.name || '',
         des: stage.des || '',
@@ -503,7 +508,8 @@ export function buildDailyFile() {
         battleId: stage.battle || '',
         condition: stage.condition ? parseCondition(conditionRes, stage.condition, taskRes, battleRes, stageIndex) : null,
         /* 关卡本体 */
-        battleLevel: battle ? Number(battle.battleLevel) || 0 : 0,
+        battleLevel: effectiveLevel,
+        level: effectiveLevel,
         timeSeconds: battle ? Number(battle.time) || 0 : 0,
         battleName: battle?.name || '',
         battleDes: battle?.des || '',

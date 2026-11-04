@@ -3,6 +3,8 @@ import { createCachedLoader } from './resourceClient.js'
 import { getItemImageUrl } from './itemParser.js'
 import { getCleanSkillName, getMonsterIcon, REWARD_MODE_INFO } from './gameMappings.js'
 import { describeBuff } from './buffParser.js'
+import { MONSTER_ICON_MAP } from './monsterIconMap.js'
+import { KNOWN_MODEL_PREVIEWS } from './monsterModelMap.js'
 
 let cachedMonsters = null
 let cachedLevelStrength = null
@@ -643,13 +645,82 @@ function getMonsterPortrait(m, key) {
   return MONSTER_PORTRAIT_OVERRIDES[overrideKey] || generated
 }
 
-function getMonsterPortraitPath(m) {
-  const model = m?.viewData?.skeletonName
-  if (model === 'obj_mon055' || model === 'obj_mon069') {
-    return `/images/model-previews/${model}.webp`
+export function getMonsterVisualPath(m, typeId = m?.typeId) {
+  if (m?.typeId === '003SummonMon') {
+    return { path: '/images/Common_ItemIcon/item_10043.webp', kind: 'item' }
   }
-  if (m.typeId === '003SummonMon') return '/images/Common_ItemIcon/item_10043.webp'
-  return `/images/PicHandBookPanel_Atlas/${getMonsterPortrait(m, m.typeId)}.webp`
+
+  // 1. 优先匹配官方图鉴立绘 (PicHandBookPanel_Atlas)
+  const portraitName = getMonsterPortrait(m, typeId)
+  if (portraitName && KNOWN_PORTRAITS.has(portraitName.toLowerCase())) {
+    return { path: `/images/PicHandBookPanel_Atlas/${portraitName}.webp`, kind: 'portrait' }
+  }
+
+  const clean = String(typeId || '').replace(/_(rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02)$/i, '')
+  const numSub = String(typeId || '').match(/(\d{1,3}(?:_\d+)?)/)?.[1]
+  const num = String(typeId || '').match(/(\d{1,3})/)?.[1]
+  const paddedTypeId = String(typeId || '').replace(/^(\d{1,2})(_|$)/, (_, n, sep) => n.padStart(3, '0') + sep)
+  const paddedClean = clean.replace(/^(\d{1,2})(_|$)/, (_, n, sep) => n.padStart(3, '0') + sep)
+
+  const portraitCandidates = [
+    `colect_mon_${typeId}`,
+    `colect_mon_${paddedTypeId}`,
+    `colect_mon_${clean}`,
+    `colect_mon_${paddedClean}`,
+    numSub ? `colect_mon_${numSub.replace(/^\d{1,2}/, n => n.padStart(3, '0'))}` : null,
+    num ? `colect_mon_${num.padStart(3, '0')}` : null
+  ].filter(Boolean)
+
+  const matchedPortrait = portraitCandidates.find(c => KNOWN_PORTRAITS.has(c.toLowerCase()))
+  if (matchedPortrait) {
+    return { path: `/images/PicHandBookPanel_Atlas/${matchedPortrait}.webp`, kind: 'portrait' }
+  }
+
+  // 2. 次选：回退我们整理出的 Spine 骨骼模型图 (model-previews)
+  // 优先级：怪物 ID 专有图 > (骨骼+皮肤)组合图 > 纯骨骼图
+  const idKey = `mon_${String(typeId || '').toLowerCase()}`
+  if (KNOWN_MODEL_PREVIEWS.has(idKey)) {
+    return { path: `/images/model-previews/${idKey}.webp`, kind: 'model' }
+  }
+
+  const skel = String(m?.viewData?.skeletonName || '').toLowerCase().replace('/', '_')
+  const skin = String(m?.viewData?.skinName || 'default').toLowerCase().replace('/', '_')
+  const skelSkinKey = `${skel}__${skin}`
+  if (KNOWN_MODEL_PREVIEWS.has(skelSkinKey)) {
+    return { path: `/images/model-previews/${skelSkinKey}.webp`, kind: 'model' }
+  }
+
+  if (skel && KNOWN_MODEL_PREVIEWS.has(skel)) {
+    return { path: `/images/model-previews/${skel}.webp`, kind: 'model' }
+  }
+
+  // 伙伴 Q 版模型（如 hero_041）
+  const heroMatch = String(typeId || '').match(/^hero_?(\d{3})/i)
+  if (heroMatch) {
+    const heroNum = heroMatch[1]
+    const KNOWN_HERO_Q_MODELS = new Set([
+      '001', '005', '007', '008', '009', '011', '012', '014', '015', '019',
+      '023', '025', '026', '027', '029', '031', '033', '034', '036', '037',
+      '041', '043', '045', '046', '049', '050', '051', '053', '055', '062',
+      '064', '065', '066'
+    ])
+    if (KNOWN_HERO_Q_MODELS.has(heroNum)) {
+      return { path: `/images/chara/Q/hero_${heroNum}.webp`, kind: 'portrait' }
+    }
+  }
+
+  // 3. 最后回退：头像 (HeadIconAtals)
+  let avatar = m?.icon || MONSTER_ICON_MAP[typeId]
+  if (avatar && avatar === 'avatar_mon_003_2') avatar = 'avatar_mon_003'
+  if (avatar) {
+    return { path: `/images/HeadIconAtals/${avatar}.webp`, kind: 'avatar' }
+  }
+
+  return { path: '', kind: 'none' }
+}
+
+function getMonsterPortraitPath(m) {
+  return getMonsterVisualPath(m, m?.typeId).path
 }
 
 export function getVariantLabel(m, presentation = null) {
@@ -1214,10 +1285,80 @@ export function buildMonsterData(maps) {
   return processedMonsters
 }
 
+export const KNOWN_PORTRAITS = new Set([
+  'colect_mon_001', 'colect_mon_002', 'colect_mon_003', 'colect_mon_003_2', 'colect_mon_003_egg',
+  'colect_mon_004', 'colect_mon_005', 'colect_mon_006', 'colect_mon_006_a', 'colect_mon_007',
+  'colect_mon_008', 'colect_mon_009', 'colect_mon_010', 'colect_mon_011', 'colect_mon_012',
+  'colect_mon_013', 'colect_mon_013_egg', 'colect_mon_013_eggs', 'colect_mon_013_s', 'colect_mon_014',
+  'colect_mon_015', 'colect_mon_016', 'colect_mon_017', 'colect_mon_018', 'colect_mon_019',
+  'colect_mon_020', 'colect_mon_021', 'colect_mon_022', 'colect_mon_023', 'colect_mon_024',
+  'colect_mon_025', 'colect_mon_029_1', 'colect_mon_031', 'colect_mon_032', 'colect_mon_033',
+  'colect_mon_034', 'colect_mon_035', 'colect_mon_036', 'colect_mon_037', 'colect_mon_038',
+  'colect_mon_039', 'colect_mon_040', 'colect_mon_041', 'colect_mon_042', 'colect_mon_043',
+  'colect_mon_044', 'colect_mon_045', 'colect_mon_046', 'colect_mon_046_a', 'colect_mon_047',
+  'colect_mon_048', 'colect_mon_049', 'colect_mon_050', 'colect_mon_051', 'colect_mon_052',
+  'colect_mon_053', 'colect_mon_054', 'colect_mon_055', 'colect_mon_056_1', 'colect_mon_056_2',
+  'colect_mon_056_3', 'colect_mon_056_4', 'colect_mon_056_5', 'colect_mon_057_1', 'colect_mon_057_2',
+  'colect_mon_058', 'colect_mon_059', 'colect_mon_060', 'colect_mon_061', 'colect_mon_062',
+  'colect_mon_063', 'colect_mon_064', 'colect_mon_065', 'colect_mon_065_a', 'colect_mon_066',
+  'colect_mon_067', 'colect_mon_068', 'colect_mon_069', 'colect_mon_070_1', 'colect_mon_070_2',
+  'colect_mon_071', 'colect_mon_071_a', 'colect_mon_072', 'colect_mon_072_a', 'colect_mon_073',
+  'colect_mon_073_a', 'colect_mon_074', 'colect_mon_074_a', 'colect_mon_075', 'colect_mon_075_a',
+  'colect_mon_076', 'colect_mon_077', 'colect_mon_078', 'colect_mon_079', 'colect_mon_080',
+  'colect_mon_080_1', 'colect_mon_080_2', 'colect_mon_083', 'colect_mon_084', 'colect_mon_085',
+  'colect_mon_086', 'colect_mon_087', 'colect_mon_088', 'colect_mon_089', 'colect_mon_090',
+  'colect_mon_091', 'colect_mon_091_lefthand', 'colect_mon_091_righthand', 'colect_mon_092',
+  'colect_mon_093', 'colect_mon_094', 'colect_mon_095', 'colect_mon_096', 'colect_mon_097',
+  'colect_mon_098'
+])
+
+export function buildExtraMonsterData(maps, officialMonsters = []) {
+  const { monData, skillData, buffData, rewards, items, lanDict, equipGroupData, monNames, aiData } = maps
+
+  const officialIds = new Set()
+  for (const entry of officialMonsters) {
+    officialIds.add(String(entry.id))
+    for (const f of [...(entry.forms || []), ...(entry.summons || [])]) {
+      officialIds.add(String(f.id))
+    }
+  }
+
+  const extraMap = {}
+
+  Object.entries(monData).forEach(([typeId, m]) => {
+    if (!m || isHiddenMonster(m)) return
+    if (officialIds.has(String(typeId))) return
+
+    const processed = processForm(m, skillData, buffData, rewards, items, lanDict, equipGroupData, monNames, aiData)
+    processed.id = String(typeId)
+    processed.tabLabel = m.name || m.monDes || typeId
+    processed.relationType = m.monRank === 3 ? '首领' : (m.monRank === 2 ? '精英' : '普通')
+    processed.isExtra = true
+
+    const visual = getMonsterVisualPath(m, typeId)
+    processed.portraitPath = visual.path
+    processed.imageKind = visual.kind
+
+    extraMap[String(typeId)] = processed
+  })
+
+  return extraMap
+}
+
+let cachedExtraMonsters = null
+
 export const fetchMonsterData = createCachedLoader(async () => {
   if (cachedMonsters) return cachedMonsters
 
   const parsed = await fetchWithFallback('data/parsed/monsters.json')
   cachedMonsters = parsed.monsters
+  cachedExtraMonsters = parsed.extraMonsters || {}
   return cachedMonsters
 })
+
+export const fetchExtraMonsterMap = async () => {
+  if (!cachedExtraMonsters) {
+    await fetchMonsterData()
+  }
+  return cachedExtraMonsters || {}
+}

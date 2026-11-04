@@ -17,6 +17,7 @@ import { readFileSync } from 'node:fs'
 import { readJson } from './shared.mjs'
 import { compactRewards, compactRooms } from './compact.mjs'
 import { buildRoomEffects } from './roomEffects.mjs'
+import { buildRoomMechanics } from './roomMechanics.mjs'
 import { CHAPTER_MAP_SIZE, CHAPTER_TILE_RECTS, CHAPTER_MAP_TILE_PATH, CHAPTER_REGION_BG_PATH, AREA_ICON_PATH, INSTANCE_ICON_PATH, STAGE_PLATFORM_PATH, STAGE_PLATFORM_LOCKED_PATH, STAGE_CRYSTAL_PATH, STAGE_CRYSTAL_SMALL_PATH, AREA_TAG_PATH } from './chapterMapLayout.mjs'
 
 const asMap = value => value && typeof value === 'object' ? value : {}
@@ -44,7 +45,7 @@ const AREA_NODE_OFFSET_Y = 0
 const INSTANCE_NODE_OFFSET_Y = 0
 
 /** 房间配置里战斗相关字段都在 battleData 下；这里统一摊平成 dungeonData 期望的形状。 */
-function roomDetailsFrom(roomMap, buffs) {
+function roomDetailsFrom(roomMap, buffs, monMap = {}) {
   const details = {}
   for (const [id, room] of Object.entries(roomMap)) {
     const battleData = room?.battleData || {}
@@ -60,7 +61,8 @@ function roomDetailsFrom(roomMap, buffs) {
       npcList: asArray(battleData.npcList),
       // roundId 是内部字符串，展示层只需要波次序号
       monRounds: asArray(battleData.monRounds).map((round, index) => ({ round: index + 1, mons: asArray(round.mons) })),
-      effects: buildRoomEffects(battleData, buffs)
+      effects: buildRoomEffects(battleData, buffs),
+      mechanics: buildRoomMechanics(id, room, { monMap, buffMap: buffs.buffMap })
     }
   }
   return details
@@ -220,7 +222,8 @@ export function buildChaptersFiles() {
   const items = asMap(readJson('item.json').datas)
   const collectMap = asMap(readJson('roomCollect.json').datas)
   const collectTypes = asMap(readJson('roomCollectType.json').datas)
-  const monMap = asMap(readJson('mon.json').datas)
+  const rawMon = readJson('mon.json');
+  const monMap = asMap(rawMon.datas || rawMon)
   const equipConfig = readJson('equip/equipGroup.json')
   const instances = asMap(readJson('instance.json').datas)
   const routeTables = { areas, instances, levelStages }

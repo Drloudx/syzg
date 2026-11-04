@@ -19,6 +19,12 @@ export const monsterModalState = reactive({
   visible: false,
   /** 要展示的形态 id（`monsters.json` 里 `forms[].id` 或 `summons[].id`） */
   monsterId: '',
+  /** 来源关卡或指定的初始等级，null 时默认取怪物配置等级 */
+  initialLevel: null,
+  /** 场景生命缩放系数（如割草经验本中的 0.3） */
+  scaleHp: 1,
+  /** 场景攻防缩放系数 */
+  scaleAtk: 1,
   /** 打开前的滚动位置，关闭时恢复 */
   savedScrollTop: 0
 })
@@ -29,15 +35,21 @@ function currentScrollTop() {
   return document.querySelector('.app-container')?.scrollTop || 0
 }
 
-export function openMonsterDetail(monsterId, savedScrollTop = null) {
+export function openMonsterDetail(monsterId, savedScrollTop = null, initialLevel = null, options = {}) {
   const id = String(monsterId ?? '').trim()
   if (!id) return
   monsterModalState.savedScrollTop = savedScrollTop == null ? currentScrollTop() : Number(savedScrollTop) || 0
   monsterModalState.monsterId = id
+  monsterModalState.initialLevel = initialLevel ? Number(initialLevel) : null
+  monsterModalState.scaleHp = options?.scaleHp != null ? Number(options.scaleHp) : (options?.levelScaleHp != null ? Number(options.levelScaleHp) : 1)
+  monsterModalState.scaleAtk = options?.scaleAtk != null ? Number(options.scaleAtk) : (options?.levelScale != null ? Number(options.levelScale) : 1)
   monsterModalState.visible = true
 }
 
 export function closeMonsterDetail() {
   monsterModalState.visible = false
   monsterModalState.monsterId = ''
+  monsterModalState.initialLevel = null
+  monsterModalState.scaleHp = 1
+  monsterModalState.scaleAtk = 1
 }

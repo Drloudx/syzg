@@ -159,9 +159,9 @@
                         :title="(mon.rank ? `${mon.name} (Rank ${mon.rank})` : mon.name) + ' · 点击查看详情'"
                     role="button"
                     tabindex="0"
-                    @click.stop="openMonsterDetail(mon.typeId)"
-                    @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId)"
-                    @keydown.space.prevent.stop="openMonsterDetail(mon.typeId)">
+                    @click.stop="openMonsterDetail(mon.typeId, null, selectedRouteRoom?.level || selectedDifficulty?.level, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })"
+                    @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId, null, selectedRouteRoom?.level || selectedDifficulty?.level, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })"
+                    @keydown.space.prevent.stop="openMonsterDetail(mon.typeId, null, selectedRouteRoom?.level || selectedDifficulty?.level, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })">
                         <img
                           class="mon-mini-icon"
                           :src="mon.iconUrl"

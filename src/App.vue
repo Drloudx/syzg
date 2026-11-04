@@ -160,6 +160,9 @@
         <MonsterDetailModal
           v-model:visible="monsterModalState.visible"
           :monster-id="monsterModalState.monsterId"
+          :initial-level="monsterModalState.initialLevel"
+          :scale-hp="monsterModalState.scaleHp"
+          :scale-atk="monsterModalState.scaleAtk"
         />
         <router-view />
       </main>

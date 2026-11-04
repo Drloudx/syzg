@@ -120,7 +120,7 @@ function roomKind(detail, collectType) {
   return detail?.jigDes || '战斗房间'
 }
 
-export function buildRoomVariant(roomTypeId, roomDetails, collectMap, collectTypeMap, rewardMap, consumeMap, itemMap, monMap, equipConfig, source) {
+export function buildRoomVariant(roomTypeId, roomDetails, collectMap, collectTypeMap, rewardMap, consumeMap, itemMap, monMap, equipConfig, source, options = {}) {
   const detail = roomDetails[roomTypeId]
   if (!detail) return null
   const monRounds = asArray(detail.monRounds)
@@ -133,10 +133,28 @@ export function buildRoomVariant(roomTypeId, roomDetails, collectMap, collectTyp
     asArray(round.mons).forEach(mon => {
       const key = mon.typeId || mon.monId
       if (!key) return
-      const waveMonster = waveMonsterMap.get(key) || { typeId: key, name: monMap[key]?.name || key, count: 0, rank: mon.monRank || 0 }
+      const scaleHp = mon.levelScaleHp ?? options.scaleHp
+      const scaleAtk = mon.levelScale ?? options.scaleAtk
+      const waveMonster = waveMonsterMap.get(key) || {
+        typeId: key,
+        name: monMap[key]?.name || key,
+        count: 0,
+        rank: mon.monRank || 0,
+        levelScaleHp: scaleHp,
+        levelScale: scaleAtk
+      }
       waveMonster.count += 1
       waveMonsterMap.set(key, waveMonster)
-      const current = monsterMap.get(key) || { typeId: key, name: monMap[key]?.name || key, count: 0, rounds: [], rank: mon.monRank || 0, drops: [] }
+      const current = monsterMap.get(key) || {
+        typeId: key,
+        name: monMap[key]?.name || key,
+        count: 0,
+        rounds: [],
+        rank: mon.monRank || 0,
+        drops: [],
+        levelScaleHp: scaleHp,
+        levelScale: scaleAtk
+      }
       current.count += 1
       if (!current.rounds.includes(waveNumber)) current.rounds.push(waveNumber)
       if (mon.caijiTypeId || mon.reward) {
@@ -199,6 +217,17 @@ export function buildRoomVariant(roomTypeId, roomDetails, collectMap, collectTyp
     linkStage: detail.linkStage,
     npcCount: asArray(detail.npcList).length,
     effects: asArray(detail.effects),
+    mechanics: asArray(detail.mechanics).map(m => {
+      if (!m.units?.length || (!options.scaleHp && !options.scaleAtk)) return m
+      return {
+        ...m,
+        units: m.units.map(u => ({
+          ...u,
+          levelScaleHp: u.levelScaleHp ?? options.scaleHp,
+          levelScale: u.levelScale ?? options.scaleAtk
+        }))
+      }
+    }),
     monsters,
     waves,
     collections,
@@ -259,6 +288,8 @@ export function buildBattleRooms(fullBattle, roomDetails, collectMap, collectTyp
   const rooms = []
   const nameByPosition = !!options.nameByPosition
   const totalLayers = asArray(fullBattle?.layers).length || 1
+  const battleScaleHp = fullBattle?.battleLevelScaleHp
+  const battleScaleAtk = fullBattle?.battleLevelScale
 
   asArray(fullBattle?.layers).forEach((layer, layerIndex) => {
     const layerDatas = Array.isArray(layer) ? layer : asArray(layer?.layerDatas)
@@ -271,9 +302,23 @@ export function buildBattleRooms(fullBattle, roomDetails, collectMap, collectTyp
         const room = layerData?.rooms?.[roomKey]
         if (!room) return
 
+        const roomScaleHp = room.roomLevelScaleHp ?? battleScaleHp
+        const roomScaleAtk = room.roomLevelScale ?? battleScaleAtk
+
         const candidates = [room.roomTypeId, ...asArray(room.randomRooms).map(item => item.roomTypeId)].filter(Boolean)
-        const variants = [...new Set(candidates)].map((roomTypeId, index) => buildRoomVariant(roomTypeId, roomDetails, collectMap, collectTypeMap, rewardMap, consumeMap, itemMap, monMap, equipConfig, { layer: layerIndex + 1, roomId: room.typeId, candidate: index > 0 }))
-          .filter(Boolean)
+        const variants = [...new Set(candidates)].map((roomTypeId, index) => buildRoomVariant(
+          roomTypeId,
+          roomDetails,
+          collectMap,
+          collectTypeMap,
+          rewardMap,
+          consumeMap,
+          itemMap,
+          monMap,
+          equipConfig,
+          { layer: layerIndex + 1, roomId: room.typeId, candidate: index > 0 },
+          { scaleHp: roomScaleHp, scaleAtk: roomScaleAtk }
+        )).filter(Boolean)
         if (variants.length) {
           let label = ''
           if (nameByPosition) {
@@ -427,13 +472,14 @@ function buildBattle(instance, battle, battleConfig, fullBattle, routeBattle, re
   }
 }
 
-export function buildDungeonData({ instanceJson, battleJson, battleRoomsJson, battleRoutesJson, rewardJson, consumeJson, itemJson, roomCollectJson, roomCollectTypeJson, monJson, equipGroupJson }) {
+export function buildDungeonData({ instanceJson, battleJson, battleRoomsJson, battleRoutesJson, rewardJson, consumeJson, itemJson, roomCollectJson, roomCollectTypeJson, monJson, equipGroupJson, fullBattleJson }) {
   const instances = asMap(instanceJson?.datas)
   const battles = asMap(battleJson?.datas)
   const rewards = asMap(rewardJson?.datas)
   const consumes = asMap(consumeJson?.datas)
   const items = asMap(itemJson?.datas)
   const roomDetails = asMap(battleRoomsJson?.roomDetails)
+  const fullBattleMap = asMap(fullBattleJson?.datas || fullBattleJson)
   const fullBattles = asMap(battleRoomsJson?.datas)
   const routeBattles = asMap(battleRoutesJson?.datas)
   const collectMap = asMap(roomCollectJson?.datas)
@@ -446,7 +492,10 @@ export function buildDungeonData({ instanceJson, battleJson, battleRoomsJson, ba
     .filter(([id, instance]) => !NON_STANDARD_INSTANCE_IDS.has(id) && instance && instance.chapter && Array.isArray(instance.battles))
     .map(([id, instance]) => {
       const visibleBattles = instance.battles
-        .map(entry => buildBattle(instance, entry, battles[entry.dungeonBattle], fullBattles[entry.dungeonBattle], routeBattles[entry.dungeonBattle], rewards, consumes, itemMap, roomDetails, collectMap, collectTypes, monMap, equipConfig))
+        .map(entry => {
+          const fullBattle = fullBattleMap[entry.dungeonBattle] || fullBattles[entry.dungeonBattle]
+          return buildBattle(instance, entry, battles[entry.dungeonBattle], fullBattle, routeBattles[entry.dungeonBattle], rewards, consumes, itemMap, roomDetails, collectMap, collectTypes, monMap, equipConfig)
+        })
         .filter(battle => !battle.disabled && battle.rewardId && (battle.category.length === 0 || battle.category[0] === '副本'))
       const gameBattles = visibleBattles.filter(battle => !battle.story)
       const storyBattles = visibleBattles.filter(battle => battle.story)

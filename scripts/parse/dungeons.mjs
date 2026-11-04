@@ -92,7 +92,8 @@ export function buildDungeonsFiles() {
     roomCollectJson: readJson('roomCollect.json'),
     roomCollectTypeJson: readJson('roomCollectType.json'),
     monJson: readJson('mon.json'),
-    equipGroupJson: readJson('equip/equipGroup.json')
+    equipGroupJson: readJson('equip/equipGroup.json'),
+    fullBattleJson: readJson('battle.json')
   })
 
   const files = []

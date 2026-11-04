@@ -3,7 +3,7 @@
  * 对应浏览器端 src/utils/monsterParser.js 的 buildMonsterData（同一纯函数）
  * 依赖物品表（由 index.mjs 传入）
  */
-import { buildMonsterMaps, buildMonsterData } from '../../src/utils/monsterParser.js'
+import { buildMonsterMaps, buildMonsterData, buildExtraMonsterData } from '../../src/utils/monsterParser.js'
 import { readJson } from './shared.mjs'
 
 export function buildMonstersFile(itemData) {
@@ -24,10 +24,13 @@ export function buildMonstersFile(itemData) {
     dungeonBattleRes: readJson('dungeonBattle.json'),
     dungeonBattleRoomsRes: readJson('dungeonBattleRooms.json')
   })
+  const officialMonsters = buildMonsterData(baseMaps)
+  const extraMonsters = buildExtraMonsterData(baseMaps, officialMonsters)
   const files = [{
     file: 'parsed/monsters.json',
     data: {
-      monsters: buildMonsterData(baseMaps)
+      monsters: officialMonsters,
+      extraMonsters
     }
   }]
   return { files }

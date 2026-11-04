@@ -307,9 +307,9 @@
                           :title="`${mon.name} (Rank ${mon.monRank || 1})`"
                          role="button"
                          tabindex="0"
-                         @click.stop="openMonsterDetail(mon.typeId)"
-                         @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId)"
-                         @keydown.space.prevent.stop="openMonsterDetail(mon.typeId)">
+                         @click.stop="openMonsterDetail(mon.typeId, null, room?.level || activeStage?.battleLevel || activeStage?.level, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })"
+                         @keydown.enter.prevent.stop="openMonsterDetail(mon.typeId, null, room?.level || activeStage?.battleLevel || activeStage?.level, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })"
+                         @keydown.space.prevent.stop="openMonsterDetail(mon.typeId, null, room?.level || activeStage?.battleLevel || activeStage?.level, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })">
                           <img
                             class="mon-mini-icon"
                             :src="monIcon(mon.icon)"

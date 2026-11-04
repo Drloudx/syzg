@@ -28,6 +28,8 @@ export const compactMonster = (monster = {}) => ({
   typeId: monster.typeId,
   name: monster.name,
   count: monster.count,
+  levelScaleHp: (monster.levelScaleHp !== undefined && monster.levelScaleHp !== 1) ? monster.levelScaleHp : undefined,
+  levelScale: (monster.levelScale !== undefined && monster.levelScale !== 1) ? monster.levelScale : undefined,
   drops: (monster.drops || []).map(drop => ({
     collectTypeId: drop.collectTypeId,
     name: drop.name,
@@ -51,13 +53,23 @@ export const compactVariant = (variant = {}) => ({
       detail: option.detail
     }))
   })),
+  mechanics: (variant.mechanics || []).map(mech => ({
+    ...mech,
+    units: (mech.units || []).map(unit => ({
+      ...unit,
+      levelScaleHp: (unit.levelScaleHp !== undefined && unit.levelScaleHp !== 1) ? unit.levelScaleHp : undefined,
+      levelScale: (unit.levelScale !== undefined && unit.levelScale !== 1) ? unit.levelScale : undefined
+    }))
+  })),
   monsters: (variant.monsters || []).map(compactMonster),
   waves: (variant.waves || []).map(wave => ({
     round: wave.round,
     monsters: (wave.monsters || []).map(monster => ({
       typeId: monster.typeId,
       name: monster.name,
-      count: monster.count
+      count: monster.count,
+      levelScaleHp: (monster.levelScaleHp !== undefined && monster.levelScaleHp !== 1) ? monster.levelScaleHp : undefined,
+      levelScale: (monster.levelScale !== undefined && monster.levelScale !== 1) ? monster.levelScale : undefined
     }))
   })),
   collections: (variant.collections || []).map(collection => ({

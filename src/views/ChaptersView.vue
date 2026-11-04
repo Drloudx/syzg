@@ -152,7 +152,6 @@
       :title="detailTitle"
       max-width="1100px"
       scroll-id="chapterStageScroll"
-      :z-index="2000"
       @close="closeStage"
     >
       <UiEmptyState v-if="detailLoading" type="loading" text="正在加载关卡详情..." />
