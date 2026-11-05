@@ -235,12 +235,23 @@
 
 ## 四、怪物图鉴
 
-**入口** `/monsters` · **页面** `MonstersView.vue` · **详情** `MonsterDetailModal`
+**入口** `/monsters` · **页面** `MonstersView.vue` · **详情** `MonsterDetailModal`（由 `App.vue` 挂载**唯一一份**全局实例）
 
 | 数据 | 加载时机 |
 | --- | --- |
 | `parsed/monsters.json` | 页面加载 |
 | `monLevelStrength.json` | 打开详情**按需**加载 |
+
+### 详情弹层的两个入口
+
+| 入口 | 打开方式 | 形态定位 |
+| --- | --- | --- |
+| 图鉴页 | 改 `?id=`，由全局实例自行加载 | 按 **形态 id** 在去重后的列表里查位置 |
+| 其他页面（`/daily` `/dungeons` `/chapters` `/tower`） | `openMonsterDetail(形态id, …)` 写 `monsterModalState` | 同上，且该形态强制保留在列表中 |
+
+- 🔴 禁止按 `monsters.json` 的**原始下标**索引渲染列表。`allForms` 会剔除与本体属性/技能/阶级相同的冗余克隆体，两者下标不对齐。
+- 🔴 打开目标形态即使被判为冗余也**必须保留**（如 `007crazy` 只比本体多一个狂暴 buff，但在日常与关卡里被独立引用）。否则弹层只剩讨论区。
+- 🔴 页面内**不得**再挂第二份 `MonsterDetailModal`：会出现重复 `#monsterModalScroll`、双倍 `/api/comments` 请求与两个重叠的滚动回顶按钮。
 
 ### 收录范围
 

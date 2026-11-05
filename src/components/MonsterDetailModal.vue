@@ -1,5 +1,5 @@
 <template>
-  <UiModal :visible="visible" :title="currentForm?.name || monster?.name || '怪物详情'" max-width="860px" scroll-id="monsterModalScroll" :z-index="2000" @update:visible="handleClose">
+  <UiModal :visible="visible" :title="currentForm?.name || monster?.name || '怪物详情'" max-width="860px" scroll-id="monsterModalScroll" :z-index="2000" :restore-scroll-top="restoreScrollTop" @update:visible="handleClose">
     <UiEmptyState v-if="loading" type="loading" text="正在加载怪物详情..." />
     <UiEmptyState v-else-if="loadError" type="error" :text="loadError">
       <template #action><UiButton @click="loadMonster">重新加载</UiButton></template>
@@ -250,7 +250,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { UiBackToTop, UiButton, UiEmptyState, UiModal, UiSection, UiStatGrid, UiTabs, UiTag } from './ui/index.js'
 import RewardPools from './RewardPools.vue'
 import { openRewardDetail } from '../utils/rewardModalState.js'
-import { openMonsterDetail, closeMonsterDetail } from '../utils/monsterModalState.js'
+import { openMonsterDetail, monsterModalState } from '../utils/monsterModalState.js'
 import { openItemDetail } from '../utils/itemModalState.js'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { fetchMonsterData, fetchExtraMonsterMap, fetchMonsterLevelStrength } from '../utils/monsterParser'
@@ -273,6 +273,22 @@ const props = defineProps({
 const emit = defineEmits(['update:visible'])
 const router = useRouter()
 const route = useRoute()
+
+/**
+ * 打开前的列表滚动位置，交给 `UiModal` 的 `restore-scroll-top`。
+ *
+ * 🔴 为什么必须显式传：覆盖式弹层打开时 `.app-main` 被锁为视口高、页面被钳到顶部，
+ * `UiModal` 内部的实时 `scrollTop` 此时已被污染成 0；它虽然有 `preOpenScrollTop` 兜底，
+ * 但那是「弹窗自己那一刻」读到的值，与「用户点怪物那一瞬」的位置可能不同
+ * （如日常计划里先滚了房间列表再点）。`openMonsterDetail()` 记下的才是准确值。
+ * 只在外部弹层模式（有 `monsterId`）下使用 —— 路由模式（`/monsters?id=`）由 `UiModal` 自理。
+ */
+const restoreScrollTop = computed(() => {
+  if (!props.monsterId) return null
+  if (!props.visible) return null
+  return Number(monsterModalState.savedScrollTop) || 0
+})
+
 const monster = ref(null)
 const currentFormIndex = ref(0)
 const allMonstersList = ref([])
@@ -283,8 +299,49 @@ const portraitUrl = ref('')
 const loading = ref(false)
 const loadError = ref('')
 let loadOperation = 0
+/**
+ * 本次打开要展示的形态 id（来自 prop 或 `?id=`）。
+ *
+ * 🔴 为什么必须单独存：形态列表会被 `resolveForms()` 去重（剔除与本体属性/技能/阶级
+ * 完全相同的克隆体），去重后的下标与 `monsters.json` 里的原始下标**不一致**。
+ * 直接拿原始下标去索引去重后的数组，会取到 `undefined` 或别的形态 ——
+ * 表现为「弹窗只剩讨论区、属性与技能全空」（如日常计划药草山林里的 007crazy）。
+ */
+const requestedFormId = ref('')
 
 onErrorCaptured(error => { renderError.value = error.message || String(error); console.error('MonsterDetailModal render error:', error); return false })
+
+/**
+ * 把一只怪物展开成用于 Tab 的形态列表（去重 + 追加召唤物）。
+ *
+ * @param {object} entry  `monsters.json` 的一条（含 `forms` / `summons`）
+ * @param {string} forceId 必须保留的形态 id（本次打开的目标形态）
+ *   —— 去重规则会把「与本体属性技能阶级完全相同、只是换了 buff」的形态当冗余剔除，
+ *   但该类形态在关卡/日常里是**被独立引用**的真实单位（如 007crazy 只多了狂暴 buff）。
+ *   用户点它时必须能看到详情，否则就是空白弹窗。
+ */
+function resolveForms(entry, forceId = '') {
+  if (!entry) return []
+  const forms = entry.forms || []
+  const summons = entry.summons || []
+  if (forms.length <= 1) return [...forms, ...summons]
+
+  const base = forms[0]
+  const deduped = forms.filter((f, idx) => {
+    if (idx === 0) return true
+    const isSameStats = f.rawStats?.maxHp === base.rawStats?.maxHp &&
+                        f.rawStats?.phyAtk === base.rawStats?.phyAtk &&
+                        f.rawStats?.phyDef === base.rawStats?.phyDef
+    const isSameSkills = (f.skills?.length || 0) === (base.skills?.length || 0)
+    const isSameRank = f.monRank === base.monRank
+    if (isSameStats && isSameSkills && isSameRank && !f.transform && !f.towerAppearances?.length) {
+      // 本次点开的形态例外保留，否则用户点进来会看到空弹窗
+      return forceId === f.id
+    }
+    return true
+  })
+  return [...deduped, ...summons]
+}
 
 const loadMonster = async () => {
   const operation = ++loadOperation
@@ -298,6 +355,7 @@ const loadMonster = async () => {
   renderError.value = null
   if (!newId || (!externalId && route.path !== '/monsters')) {
     monster.value = null
+    requestedFormId.value = ''
     loading.value = false
     emit('update:visible', false)
     return
@@ -313,14 +371,19 @@ const loadMonster = async () => {
     if (operation !== loadOperation) return
     allMonstersList.value = officialMonsters || []
     levelStrengthMap.value = levelStrength
+    /*
+     * 🔴 这里**不能**用 `monsters.json` 里的原始下标当 `currentFormIndex`：
+     * 渲染用的是 `allForms`（去重后列表），两者下标不对齐，会取到别的形态或 undefined。
+     * 做法：先记下目标 id，赋值 monster 后按 id 在 `allForms` 里定位。
+     */
+    requestedFormId.value = String(newId)
     let foundMonster = null
-    let foundFormIndex = 0
     for (const entry of officialMonsters) {
-      const index = [...(entry.forms || []), ...(entry.summons || [])].findIndex(form => form.id === newId)
-      if (index < 0) continue
-      foundMonster = entry
-      foundFormIndex = index
-      break
+      const forms = [...(entry.forms || []), ...(entry.summons || [])]
+      if (forms.some(form => form.id === newId)) {
+        foundMonster = entry
+        break
+      }
     }
     if (!foundMonster && extraMap && extraMap[newId]) {
       const extraForm = extraMap[newId]
@@ -330,7 +393,6 @@ const loadMonster = async () => {
         isExtra: true,
         forms: [extraForm]
       }
-      foundFormIndex = 0
     }
     if (!foundMonster) {
       /*
@@ -343,7 +405,8 @@ const loadMonster = async () => {
         : '未找到该怪物，请返回列表重新选择。')
     }
     monster.value = foundMonster
-    currentFormIndex.value = foundFormIndex
+    const resolvedIndex = allForms.value.findIndex(form => form.id === requestedFormId.value)
+    currentFormIndex.value = resolvedIndex >= 0 ? resolvedIndex : 0
   } catch (error) {
     if (operation === loadOperation) loadError.value = error.message || '怪物数据暂时不可用，请重试。'
   } finally {
@@ -361,6 +424,7 @@ watch(
       }
     } else {
       monster.value = null
+      requestedFormId.value = ''
       loading.value = false
     }
   },
@@ -380,28 +444,11 @@ watch(
 )
 onBeforeUnmount(() => { loadOperation += 1 })
 
-const allForms = computed(() => {
-  if (!monster.value) return []
-  const forms = monster.value.forms || []
-  const summons = monster.value.summons || []
-  if (forms.length <= 1) return [...forms, ...summons]
-
-  const base = forms[0]
-  const filteredForms = forms.filter((f, idx) => {
-    if (idx === 0) return true
-    // 剔除属性、技能、阶级和本体一模一样的无意义冗余克隆体
-    const isSameStats = f.rawStats?.maxHp === base.rawStats?.maxHp &&
-                        f.rawStats?.phyAtk === base.rawStats?.phyAtk &&
-                        f.rawStats?.phyDef === base.rawStats?.phyDef
-    const isSameSkills = (f.skills?.length || 0) === (base.skills?.length || 0)
-    const isSameRank = f.monRank === base.monRank
-    if (isSameStats && isSameSkills && isSameRank && !f.transform && !f.towerAppearances?.length) {
-      return false
-    }
-    return true
-  })
-  return [...filteredForms, ...summons]
-})
+/*
+ * 形态列表 = 去重后的 forms + summons。
+ * 传 `requestedFormId` 保证「本次点开的那个形态」永远在列表里 —— 它可能被去重规则判为冗余。
+ */
+const allForms = computed(() => resolveForms(monster.value, requestedFormId.value))
 
 // 控制多形态 Tab 的显示：小怪在外部关卡/日常弹窗中直接聚焦单形态，Boss 或含变身/召唤物才展示 Tabs
 const shouldShowTabs = computed(() => {

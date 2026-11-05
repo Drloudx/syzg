@@ -371,3 +371,38 @@
 - 同图不同关卡必须按各自路线引用显示宝箱，不把前段铜箱补进后段或噩梦。房间名等于内部编号时按实际类型兜底，不展示配置制作描述。
 - 路线提取用 `scripts/parse/extractDungeonRoutes.mjs`，不由普通构建自动执行；女神/泉水结构化效果用 `npm run data:dungeons:effects` 维护，再构建副本。详情按关卡会话缓存，构建报告最大文件大小作优化提示，不设固定体积失败阈值。
 - 封面近视口才加载，保持尺寸占位，不为加载优化重编码原图。提取输入不得裁剪覆盖完整 `battle/room`；验证按关卡检查路线、波次、采集外键、效果、来源定位与返回位置。
+
+---
+
+## 五、神匠之塔
+
+> 对应路由 `/tower`，解析器 `scripts/parse/tower.mjs`，预解析产物 `public/data/parsed/tower.json`。
+
+### 关卡与层数规则
+- 神匠之塔共 80 层，基础挑战消耗固定 15 理智（`item_10012`）。
+- 每 5 层为「首领」关卡（配置 `mode: 2`、`reward: tower1_boss`），其余为普通关卡。
+- 楼层徽章普通层显示「第 N 层」，首领层显示红色「首领」徽章。
+- 首通奖励**逐层读表**：氪金取该层 `onceReward` 的 `ke`（`once_mon` 50 / `once_boss` 150），幻象立方取 `reward` 条目里兑换货币规则的 `min`（`tower1_mon` 5 / `tower1_boss` 20），80 层合计 5600 氪金与 640 幻象立方。禁止在解析器或前端写死这四组数值。
+- `summary` 另输出 `tiCostPerLayer`（各层 `tiCost` 众数）、`totalTiCost`、`totalLayers`、`bossCount`，以及 `tiItemTypeId`/`tiItemIcon`、`exchangeItemTypeId`/`exchangeItemIcon`、`keItemTypeId`/`keItemIcon`；前端只消费这些字段，不抄物品 ID。
+- 🔴 表级 `towerA.towerTi`（90）是整塔累计口径，**不是**单层消耗，不得用于 `tiCostPerLayer`。
+
+### 挑战目标与首领机制
+- 保护装置关卡提取 `room.battleData.triggers` 的 `countdownStart`，文案为「限定时间（50秒）内保护装置不被破坏」。
+- 普通战斗关卡提取 `battle.time`，文案标注实机限时「限定时间（300秒）内……」。
+- 首领关卡不可一次击杀，展示结构化挑战机制：标明单次限时（120秒/180秒）、单次上限（`pointLimit` 魔物数或伤害值）与跨次累计规则。
+
+### 怪物与波次规范
+- 波次前缀统一使用中文「第 1 波：」「第 2 波：」，不使用英文字母代号。
+- 波次魔物胶囊点击唤起全局 `MonsterDetailModal`，默认初始等级自动对齐该层推荐等级。
+- 怪物立绘优先匹配 `PicHandBookPanel_Atlas` 官方立绘，非编号怪物（如 `tower1_damaged` 装置）回退骨骼模型图 `/images/model-previews/`，禁止正则贪婪回退到 `colect_mon_001`。
+- 安瑟恩单元图标对应 `avatar_Mon_042.webp`，禁止覆盖为不存在的 `avatar_Mon_092`。
+
+### 兑换中心与性能
+- 弹窗展示 `itemExchange.json` 中 `tower1` 兑换池，说明文案限定为「契约书、面包、华丽宝箱与升级材料」。
+- 卡片采用渐进式分批懒加载（首批 12 层 + 400px 哨兵自动扩充）。
+- 🔴 哨兵的 `IntersectionObserver` **必须用 `root: null`（视口）**。桌面端 ≥1025px 时 `[data-main-scroll]` 被 `App.vue` 强制 `overflow-y: visible`、滚动由 `.app-container` 承担；若把 `#towerScroll` 当 root，它自身高度等于内容高度、哨兵恒定「可见」，只在首次回调一次，列表永久停在首批（实测 24 层）。
+- 滚动触底另用 `window` 捕获阶段的 `scroll`（与 `useLazyList` 同构），桌面与移动两种滚动根都能收到。
+- 🔴 `contain-intrinsic-size` 必须接近真实卡高（实测 273~337px，当前 300px）。取 170px 时离屏卡片按一半高度占位、滚到跟前重算，`scrollHeight` 单次最大跳 453px，滚动条抖动。改为 300px 后实测跳变 0。
+- 理智 / 氪金 / 立方三个**装饰性图标**用 CSS 背景（`--icon-url`）绘制，不生成 `<img>`：80 层全渲染时原本是多 240 个元素、却只对应 3 个文件。
+- 楼层计数器使用标准 `.collection-counter` 与 `.count-num`，字号固定 13px。
+- 分段筛选项（`all` / `N-M` / `boss`）由 `summary` 现算，不写死 `1-20`、`首领关卡 (16层)` 之类的字面量。

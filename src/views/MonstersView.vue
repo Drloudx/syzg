@@ -56,8 +56,11 @@
     <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadMonstersData" />
     <UiEmptyState v-else type="loading" text="数据加载中..." />
 
-    <!-- Monster Detail Modal -->
-    <MonsterDetailModal v-model:visible="isModalVisible" />
+    <!--
+      怪物详情弹层由 App.vue 统一挂载（一份），本页通过 `?id=` 触发。
+      🔴 不要再在本页放第二份 `MonsterDetailModal`：同时可见会重复请求
+      `/api/comments`、产生重复 `#monsterModalScroll` 与两个滚动回顶按钮。
+    -->
 
     <UiBackToTop scroll-container="#monstersGridScroll" />
   </div>
@@ -68,7 +71,6 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { fetchMonsterData } from '../utils/monsterParser'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
-import MonsterDetailModal from '../components/MonsterDetailModal.vue'
 import { isBlacklisted } from '../config/blacklist.js'
 import { MAP_NAMES, ELEMENT_NAMES } from '../utils/gameMappings'
 import { useLazyList } from '../composables/useLazyList'
@@ -89,7 +91,6 @@ const allMonsters = ref([])
 const allLabels = ref([])
 const allPlaces = ref([])
 const isDataReady = ref(false)
-const isModalVisible = ref(false)
 const errorMessage = ref('')
 
 const searchQuery = ref(route.query.q || '')
@@ -192,7 +193,7 @@ const filteredMonsters = computed(() => {
 const { displayedItems: displayedMonsters } = useLazyList(filteredMonsters, 60, '#monstersGridScroll')
 
 const handleMonsterClick = (mon) => {
-  isModalVisible.value = true
+  // 详情弹层由 App.vue 的全局实例按 `?id=` 打开，本页只负责改 URL
   const targetId = mon.forms?.[0]?.id || mon.summons?.[0]?.id || mon.id
   router.push({ query: { ...route.query, id: targetId } })
 }

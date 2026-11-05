@@ -12,8 +12,10 @@ import { reactive } from 'vue'
  * 现在增加可选 `monsterId` prop，传入时优先用它，路由方式保持原样。
  *
  * ## 滚动位置
- * 打开时记录当前滚动位置，关闭时恢复 —— 与物品详情一致，
- * 否则关掉弹层后列表会跳回顶部。
+ * `openMonsterDetail()` 在弹层打开**之前**记下 `.app-container` 的 scrollTop，
+ * 由 `MonsterDetailModal` 通过 `UiModal` 的 `restore-scroll-top` 传回去 —— 与物品详情一致。
+ * 必须在打开前记：覆盖式弹层会把 `.app-main` 锁为视口高、页面被钳到顶部，
+ * 打开后再读就只剩 0。
  */
 export const monsterModalState = reactive({
   visible: false,
@@ -46,6 +48,15 @@ export function openMonsterDetail(monsterId, savedScrollTop = null, initialLevel
   monsterModalState.visible = true
 }
 
+/**
+ * 关闭并清空弹层状态。
+ *
+ * 目前没有调用方：关闭走的是 `UiModal` 的 `update:visible`（改 `visible` 即可），
+ * 其余字段在下次 `openMonsterDetail` 时被整体覆盖。
+ * 保留它是为了让「状态机只有一个出口」这件事有落点 —— 一旦将来出现
+ * 需要在关闭时清 URL 或清缓存的场景，改这里而不是再加一处 `visible = false`。
+ * 若长期无人使用，删除时连同 `savedScrollTop` 一起评估（见下方注释）。
+ */
 export function closeMonsterDetail() {
   monsterModalState.visible = false
   monsterModalState.monsterId = ''

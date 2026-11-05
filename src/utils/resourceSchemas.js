@@ -97,6 +97,19 @@ const schemas = {
     && data.tasks.every(task => isList(task.steps) && isRecord(task.getTask))
     && isRecord(data.subOptions) && isRecord(data.stats),
   'data/parsed/recipes.json': data => isRecord(data) && recordList(data.recipes),
+  /**
+   * `data/parsed/tower.json`（神匠之塔）。
+   *
+   * 校验的是**页面真的会用到**的结构：层数组、每层的波次数组、层号是数字。
+   * 不校验 `summary` 里的具体数值 —— 那些随配置表变化，写死范围等于把表锁进前端。
+   * 该文件是唯一绕过 manifest 校验的入口（早前用裸 `fetch`），补上 schema 后
+   * 版本错配会抛错并走 `resourceClient` 的回退，而不是静默渲染旧数据。
+   */
+  'data/parsed/tower.json': data => isRecord(data)
+    && isList(data.layers) && data.layers.length > 0
+    && data.layers.every(layer => Number.isFinite(layer.layer) && Array.isArray(layer.rounds))
+    && isList(data.shop)
+    && isRecord(data.summary),
   'data/parsed/item-sources.json': data => isRecord(data) && Object.values(data).every(isList)
 }
 
