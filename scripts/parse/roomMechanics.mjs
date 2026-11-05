@@ -11,15 +11,37 @@ const MONSTER_ICON_MAP = {
   '070_2a': 'avatar_Mon_070_2a'
 };
 
-const rawMonData = readJson('mon.json');
-const DEFAULT_MON_MAP = rawMonData?.datas || rawMonData || {};
-
-const rawBuffData = readJson('buff.json');
-const DEFAULT_BUFF_MAP = rawBuffData?.datas || rawBuffData || {};
+/*
+ * 🔴 必须**惰性读取**，不能在模块顶层调 `readJson()`。
+ *
+ * 原因：`index.mjs` 有一套「CI 环境无 raw/ 就跳过预处理」的早退逻辑
+ * （`hasRawData` 为 false 时 `process.exit(0)`）。但 ES 模块的 `import`
+ * 在**入口文件执行之前**就全部求值完毕 —— 顶层 `readJson('mon.json')`
+ * 会在跳过判断还没跑到时就把文件打开，CI 里没有 raw/ 也没有 public/data/mon.json，
+ * 于是 `ENOENT` 直接崩，构建部署失败（2026-11-05 实测：Pages 部署 Failure）。
+ *
+ * 改成 getter 后：正常构建时第一次调用才读，行为不变；CI 跳过时永远不读。
+ */
+let cachedMonMap = null;
+let cachedBuffMap = null;
+const getDefaultMonMap = () => {
+  if (!cachedMonMap) {
+    const rawMonData = readJson('mon.json');
+    cachedMonMap = rawMonData?.datas || rawMonData || {};
+  }
+  return cachedMonMap;
+};
+const getDefaultBuffMap = () => {
+  if (!cachedBuffMap) {
+    const rawBuffData = readJson('buff.json');
+    cachedBuffMap = rawBuffData?.datas || rawBuffData || {};
+  }
+  return cachedBuffMap;
+};
 
 export function buildRoomMechanics(roomTypeId, roomRaw, options = {}) {
-  const monMap = options.monMap && Object.keys(options.monMap).length > 0 ? options.monMap : DEFAULT_MON_MAP;
-  const buffMap = options.buffMap && Object.keys(options.buffMap).length > 0 ? options.buffMap : DEFAULT_BUFF_MAP;
+  const monMap = options.monMap && Object.keys(options.monMap).length > 0 ? options.monMap : getDefaultMonMap();
+  const buffMap = options.buffMap && Object.keys(options.buffMap).length > 0 ? options.buffMap : getDefaultBuffMap();
 
   const battleData = roomRaw?.battleData || {};
   const triggers = battleData.triggers || [];
