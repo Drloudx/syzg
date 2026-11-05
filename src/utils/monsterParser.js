@@ -657,8 +657,9 @@ export function getMonsterVisualPath(m, typeId = m?.typeId) {
   }
 
   const clean = String(typeId || '').replace(/_(rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02)$/i, '')
-  const numSub = String(typeId || '').match(/(\d{1,3}(?:_\d+)?)/)?.[1]
-  const num = String(typeId || '').match(/(\d{1,3})/)?.[1]
+  const isNumberedMon = /^(?:mon_?)?\d+/i.test(clean)
+  const numSub = isNumberedMon ? clean.match(/(\d{1,3}(?:_\d+)?)/)?.[1] : null
+  const num = isNumberedMon ? clean.match(/(\d{1,3})/)?.[1] : null
   const paddedTypeId = String(typeId || '').replace(/^(\d{1,2})(_|$)/, (_, n, sep) => n.padStart(3, '0') + sep)
   const paddedClean = clean.replace(/^(\d{1,2})(_|$)/, (_, n, sep) => n.padStart(3, '0') + sep)
 

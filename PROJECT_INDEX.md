@@ -9,6 +9,7 @@
 
 | 我要做的事 | 读 |
 | --- | --- |
+| **开新会话 / 换工具接手** | **[START_PROMPT.md](docs/context/START_PROMPT.md)**（第一条消息直接粘贴） |
 | **第一次接手 / 隔久了回来** | **[HANDOVER.md](docs/context/HANDOVER.md)**（总览：定位、目录、上手三步、红线、常见坑） |
 | 了解项目用途与用法 | [README.md](README.md) |
 | 当前进展 / 断点 / 待办 | [NOW.md](docs/context/NOW.md) |
@@ -34,7 +35,7 @@
 | **书院首页 / 公告 / 海报 / 图鉴入口** | `/` | [HOME_CONTENT](docs/context/technical/HOME_CONTENT.md) |
 | 物品/装备/符石/兑换/其他奖励 | `/items` `/equip` `/runes` `/exchange` `/misc` | [ITEMS_AND_EQUIPMENT](docs/context/specs/ITEMS_AND_EQUIPMENT.md) |
 | 角色/邮件/魔物/怪物/词条 | `/heroes` `/partner-mails` `/pets` `/monsters` `/glossary` | [HEROES_AND_COMBAT](docs/context/specs/HEROES_AND_COMBAT.md) |
-| 副本/关卡/章节地图 | `/dungeons` `/chapters` | [DUNGEONS_AND_CHAPTERS](docs/context/specs/DUNGEONS_AND_CHAPTERS.md) |
+| 副本/关卡/章节地图/神匠之塔 | `/dungeons` `/chapters` `/tower` | [DUNGEONS_AND_CHAPTERS](docs/context/specs/DUNGEONS_AND_CHAPTERS.md) |
 | 任务/事件 | `/tasks` `/events` | [QUESTS_AND_EVENTS](docs/context/specs/QUESTS_AND_EVENTS.md) |
 | 营地/家具/菜谱/魔物收益/成就/货运站/日常计划 | `/facilities` `/furniture` `/recipes` `/petseggs` `/achievement` `/freight` `/daily` | [CAMP_AND_LIFE](docs/context/specs/CAMP_AND_LIFE.md) |
 | 模拟招募 | `/gacha` | [GACHA_SIMULATOR](docs/context/specs/GACHA_SIMULATOR.md) |

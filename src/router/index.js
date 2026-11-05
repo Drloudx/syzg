@@ -171,6 +171,12 @@ const routes = [
     meta: { title: '日常计划' }
   },
   {
+    path: '/tower',
+    name: 'tower',
+    component: () => import('../views/TowerView.vue'),
+    meta: { title: '神匠之塔' }
+  },
+  {
     path: '/gacha',
     name: 'gacha',
     component: () => import('../views/GachaView.vue')

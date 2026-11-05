@@ -30,7 +30,7 @@ export function readJson(relativePath) {
  * 2) 特殊单位（召唤物/塔层装置/NPC/石魔等）图标重定向到真实存在的头像（原始指向错误/通用/空图标）
  */
 const MON_ICON_OVERRIDES = {
-  '042': 'avatar_Mon_092', '042_tower1_35': 'avatar_Mon_092', '042_tower1_70': 'avatar_Mon_092', '042_2': 'avatar_Mon_092',
+  '042': 'avatar_Mon_042', '042_tower1_35': 'avatar_Mon_042', '042_tower1_70': 'avatar_Mon_042', '042_2': 'avatar_Mon_042',
   'hero029_1': 'hero029_1', 'hero029_2': 'hero029_2', 'hero026_1': 'hero026_1',
   'scfx_towerMon': 'avatar_obj_000700_test2', 'hanbingbaotong001': 'avatar_obj_000700_11',
   '069_jianci': 'avatar_obj_mon069', 'car_back': 'car_back', 'car_front': 'car_front', 'car_idle': 'car_idle',
