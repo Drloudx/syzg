@@ -888,7 +888,24 @@ onBeforeUnmount(() => {
   }
 }
 
+/*
+ * 🔴 手机端保持 2 列，不要退成单列。
+ *
+ * 封面是 360×600 的竖版原画卡（`aspect-ratio: 360/600`），单列全宽时卡片高度
+ * 会随宽度等比放大：实测 390px 宽下卡片 334×684，一屏只看得到 1 个，
+ * 6 个计划要滑 6 屏。改成 2 列后卡片约 163 宽、封面约 272 高，一屏可见 2~3 个。
+ *
+ * 上限 480px 仍走 2 列：更窄的屏幕（如 360px）卡片约 150 宽，名字与日期仍可读。
+ * 只有极窄（<=340px）才退回单列，避免文字挤压。
+ */
 @media (max-width: 480px) {
+  .four-column-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 340px) {
   .four-column-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 12px;
