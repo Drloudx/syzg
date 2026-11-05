@@ -46,12 +46,24 @@
     <UiEmptyState v-if="loading" type="loading" text="正在加载神匠之塔挑战数据..." />
     <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadData" />
 
-    <!-- 80 层卡片网格列表 -->
-    <div v-else id="towerScroll" class="tower-scroll-container paper-panel" data-main-scroll @scroll.passive="onScroll">
-      <div v-if="filteredLayers.length" class="tower-cards-grid">
+    <!--
+      80 层卡片列表：用 UiVirtualGrid 做真正的窗口化。
+      🔴 不要再退回「分批 slice + IntersectionObserver 哨兵」：那种做法只增不减，
+      滚到底 80 张卡与 787 个 <img> 全留在 DOM 里，离屏仍有 735 张图被解码（约 14 MB 位图）。
+      UiVirtualGrid 只渲染视口内若干行 + overscan，元素数与位图内存随视口而非总层数增长。
+    -->
+    <UiVirtualGrid
+      v-else
+      ref="gridRef"
+      id="towerScroll"
+      class="tower-scroll-container"
+      :items="filteredLayers"
+      item-key="layer"
+      :estimate-size="CARD_ESTIMATE_SIZE"
+      :overscan="2"
+    >
+      <template #default="{ item: layer }">
         <article
-          v-for="layer in displayedLayers"
-          :key="layer.layer"
           class="tower-card"
           :class="{ 'is-boss': layer.isBoss, 'is-targeted': targetLayer === layer.layer }"
           :id="`layer-${layer.layer}`"
@@ -191,14 +203,11 @@
             </div>
           </div>
         </article>
-
-        <!-- 滚动加载哨兵 -->
-        <div v-if="hasMoreLayers" ref="sentinelRef" class="tower-sentinel" aria-hidden="true">
-          <span class="sentinel-text">正在翻阅更多挑战...</span>
-        </div>
-      </div>
-      <UiEmptyState v-else type="empty" text="没有找到符合筛选条件的楼层" />
-    </div>
+      </template>
+      <template #empty>
+        <UiEmptyState type="empty" text="没有找到符合筛选条件的楼层" />
+      </template>
+    </UiVirtualGrid>
 
     <!-- 幻象立方兑换中心弹窗 -->
     <UiModal
@@ -259,7 +268,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import UiFilterPanel from '../components/ui/UiFilterPanel.vue'
 import UiFilterRow from '../components/ui/UiFilterRow.vue'
@@ -269,12 +278,15 @@ import UiEmptyState from '../components/ui/UiEmptyState.vue'
 import UiTag from '../components/ui/UiTag.vue'
 import UiModal from '../components/ui/UiModal.vue'
 import UiItemCard from '../components/ui/UiItemCard.vue'
+import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
 import { getImageUrl } from '../utils/env.js'
 import { fetchWithFallback } from '../utils/request.js'
 import { openMonsterDetail } from '../utils/monsterModalState.js'
 import { openItemDetail } from '../utils/itemModalState.js'
 
 const route = useRoute()
+
+const gridRef = ref(null)
 
 const loading = ref(true)
 const error = ref('')
@@ -434,111 +446,14 @@ const filteredLayers = computed(() => {
   return list
 })
 
-// 渐进式增量懒加载：初始渲染 12 层，滚动触底增量加载，大幅减轻 DOM 与立绘重绘开销
-const BATCH_SIZE = 12
-const visibleCount = ref(BATCH_SIZE)
-
-const displayedLayers = computed(() => {
-  return filteredLayers.value.slice(0, visibleCount.value)
-})
-
-const hasMoreLayers = computed(() => {
-  return visibleCount.value < filteredLayers.value.length
-})
-
-watch([activeSection, search], () => {
-  visibleCount.value = BATCH_SIZE
-})
-
-const sentinelRef = ref(null)
-let sentinelObserver = null
-
-/**
- * 列表滚动容器。
+/*
+ * 窗口化的行高估值。
  *
- * 🔴 **桌面端它不是滚动根**：`App.vue` 在 ≥1025px 把 `[data-main-scroll]`
- * 强制 `overflow-y: visible`，滚动由 `.app-container` 承担（整页滚）。
- * 因此不能用它当 `IntersectionObserver.root` —— 它自身高度等于内容高度，
- * 哨兵相对它恒定「可见」，只在首次回调一次，之后再滚也不会触发（实测卡在 24 层）。
+ * UiVirtualGrid 用它算总高度、渲染后再用 measureElement 校正。实测 1440×900 单列下
+ * 80 张卡只有 7 种高度（263~337，中位 305、最常见 337×25），取 310 的偏差在一行以内，
+ * 首屏不会出现明显跳动。卡片结构变化（如新增一行奖励）时要同步这里。
  */
-function getScrollContainer() {
-  return document.getElementById('towerScroll')
-}
-
-/**
- * 加载下一批，直到视口填满。
- *
- * 为什么循环：`rootMargin: 400px` 下若新增 12 张仍不足以把哨兵推出阈值，
- * 交叉状态不变 → 不会再有回调 → 列表停住。加载后自检一次可闭合这个缺口。
- */
-function loadNextBatch() {
-  if (visibleCount.value >= filteredLayers.value.length) return
-  visibleCount.value = Math.min(visibleCount.value + BATCH_SIZE, filteredLayers.value.length)
-  // 加完立刻再看一眼（只读 rect，不是热路径）
-  requestAnimationFrame(() => {
-    if (isSentinelNear()) loadNextBatch()
-  })
-}
-
-/** 哨兵是否已进入「提前 600px」区间（与 IntersectionObserver 的 rootMargin 对齐） */
-function isSentinelNear() {
-  const sentinel = sentinelRef.value
-  if (!sentinel) return false
-  const rect = sentinel.getBoundingClientRect()
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight
-  return rect.top <= viewportHeight + 400
-}
-
-/**
- * 滚动触底加载。
- *
- * 用 `window` 捕获阶段监听（与 `useLazyList` 同构）：桌面滚动发生在 `.app-container`、
- * 移动端发生在 `#towerScroll`，捕获阶段都能收到，无需判断谁是滚动根。
- * 热路径只读 `scrollTop / scrollHeight / clientHeight`，不碰 `getBoundingClientRect`。
- */
-function onScroll(e) {
-  const target = e?.target
-  if (!target || typeof target.scrollHeight !== 'number') return
-  if (target.scrollHeight - target.scrollTop - target.clientHeight < 600) {
-    loadNextBatch()
-  }
-}
-
-function setupSentinelObserver() {
-  if (sentinelObserver) {
-    sentinelObserver.disconnect()
-    sentinelObserver = null
-  }
-  if (!sentinelRef.value) return
-  if (!('IntersectionObserver' in window)) {
-    visibleCount.value = filteredLayers.value.length
-    return
-  }
-  /*
-   * `root: null` = 视口。桌面整页滚动、移动端容器内滚动，哨兵相对视口都会移动，
-   * 两种布局下语义一致。不要改回 `#towerScroll`（原因见 getScrollContainer 注释）。
-   */
-  sentinelObserver = new IntersectionObserver((entries) => {
-    if (entries.some(entry => entry.isIntersecting)) loadNextBatch()
-  }, { root: null, rootMargin: '400px 0px' })
-  sentinelObserver.observe(sentinelRef.value)
-}
-
-watch(sentinelRef, () => {
-  setupSentinelObserver()
-})
-
-onMounted(() => {
-  window.addEventListener('scroll', onScroll, { capture: true, passive: true })
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll, { capture: true })
-  if (sentinelObserver) {
-    sentinelObserver.disconnect()
-    sentinelObserver = null
-  }
-})
+const CARD_ESTIMATE_SIZE = 310
 
 async function loadData() {
   loading.value = true
@@ -554,30 +469,42 @@ async function loadData() {
     layersData.value = json.layers || []
     shopItems.value = json.shop || []
     summary.value = json.summary || {}
-
-    if (route.query.layer) {
-      const targetL = parseInt(route.query.layer, 10)
-      if (targetL >= 1 && targetL <= layersData.value.length) {
-        targetLayer.value = targetL
-        const idx = filteredLayers.value.findIndex(l => l.layer === targetL)
-        if (idx >= 0 && idx >= visibleCount.value) {
-          visibleCount.value = idx + 6
-        }
-        nextTick(() => {
-          const el = document.getElementById(`layer-${targetL}`)
-          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        })
-      }
-    }
   } catch (err) {
     error.value = err.message || '加载神匠之塔数据出错'
   } finally {
     loading.value = false
-    nextTick(() => {
-      setupSentinelObserver()
-    })
   }
+
+  /*
+   * 深链定位必须等 `loading = false` 之后：列表是 `v-else`，loading 期间
+   * UiVirtualGrid 根本不存在，此刻 `gridRef` 是 null，scrollToItem 会被静默跳过。
+   * 再留两拍：一拍给 v-else 渲染出列表，一拍给 virtualizer 量完首屏行高。
+   *
+   * 🔴 `scrollToItem` 收的是**数组索引**，不是层号。层号从 1 开始、索引从 0 开始，
+   * 直接传层号会整体错位一层（`?layer=50` 滚到第 51 层），超出长度时返回 -1 完全不滚
+   * （`?layer=80` 是 80 条里的第 81 个索引）。必须用 `findIndex` 换算。
+   */
+  await scrollToLayerFromQuery()
 }
+
+/**
+ * 按 `?layer=` 定位到对应楼层。
+ *
+ * 两个入口都要走这里：首次加载（`loadData` 之后）与站内改 hash
+ * （同一个 SPA 会话里点别人分享的链接，items 没变、组件不会重新挂载）。
+ */
+async function scrollToLayerFromQuery() {
+  if (error.value || !route.query.layer) return
+  const targetL = parseInt(route.query.layer, 10)
+  const index = filteredLayers.value.findIndex(layer => layer.layer === targetL)
+  if (index < 0) return
+  targetLayer.value = targetL
+  await nextTick()
+  await nextTick()
+  await gridRef.value?.scrollToItem(index)
+}
+
+watch(() => route.query.layer, () => { scrollToLayerFromQuery() })
 
 onMounted(() => {
   loadData()
@@ -676,24 +603,29 @@ onMounted(() => {
 }
 
 /* 滚动区域与网格 */
+/*
+ * 滚动容器由 UiVirtualGrid → UiCardGrid 提供（`.ui-card-grid-scroll`），
+ * 这里只做塔页的配色与内边距覆盖。
+ * 🔴 不要再给它写 `overflow-y: auto` 之外的高度约束：桌面端 App.vue 会把
+ * [data-main-scroll] 强制 overflow-y: visible 并交给 .app-container 整页滚。
+ */
 .tower-scroll-container {
-  flex: 1;
-  overflow-y: auto;
   padding: 16px;
   box-sizing: border-box;
   background: var(--paper-light, #dfceb3);
 }
 
-.tower-cards-grid {
-  display: grid;
+/*
+ * 窗口化的行内布局：UiVirtualGrid 的每一行是 `position: absolute` 的 grid，
+ * 列模板由组件按实测 `gridTemplateColumns` 注入，这里只声明塔页每列的最小宽度。
+ */
+.tower-scroll-container :deep(.ui-virtual-grid__row) {
   grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
-  gap: 14px;
 }
 
 @media (max-width: 600px) {
-  .tower-cards-grid {
+  .tower-scroll-container :deep(.ui-virtual-grid__row) {
     grid-template-columns: 1fr;
-    gap: 12px;
   }
   .tower-card {
     flex-direction: column !important;
@@ -718,27 +650,13 @@ onMounted(() => {
   transition: all 0.22s ease;
   position: relative;
   /*
-   * 离屏卡片跳过渲染，但**占位高度必须接近真实卡高**。
+   * 🔴 窗口化之后**不要**给卡片加 `content-visibility: auto`。
    *
-   * 🔴 原值 `0 170px` 只有实测卡高的约一半（实测 273~337px），离屏卡片按 170px 占位、
-   * 滚到跟前再按真实高度重算 → `scrollHeight` 一路上跳（实测单次最大 453px），
-   * 滚动条与滚动位置随之抖动。
-   *
-   * 现在按「立绘列 3 行 × 约 300px + 内边距」给一个贴近实测的估值（300px），
-   * 留少量余量让重算幅度小于一屏。桌面是整页滚动，估值偏差直接表现为跳动，故不取 170。
+   * 原因：UiVirtualGrid 靠 `measureElement` 量真实高度来排队列位置，
+   * 而 `content-visibility: auto` 会让离屏元素按 `contain-intrinsic-size` 占位、
+   * 不参与真实排版 —— 量到的就不是卡高，行位置会错、滚动条跳动。
+   * 现在只渲染视口内几行，本来也没有「离屏卡片」可跳，这层保护不再需要。
    */
-  content-visibility: auto;
-  contain-intrinsic-size: 0 300px;
-}
-
-.tower-sentinel {
-  grid-column: 1 / -1;
-  padding: 16px 0;
-  text-align: center;
-  color: #8f7351;
-  font-size: 12px;
-  font-weight: 600;
-  opacity: 0.7;
 }
 
 .tower-card:hover {

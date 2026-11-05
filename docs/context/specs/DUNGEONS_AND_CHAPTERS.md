@@ -399,10 +399,12 @@
 
 ### 兑换中心与性能
 - 弹窗展示 `itemExchange.json` 中 `tower1` 兑换池，说明文案限定为「契约书、面包、华丽宝箱与升级材料」。
-- 卡片采用渐进式分批懒加载（首批 12 层 + 400px 哨兵自动扩充）。
-- 🔴 哨兵的 `IntersectionObserver` **必须用 `root: null`（视口）**。桌面端 ≥1025px 时 `[data-main-scroll]` 被 `App.vue` 强制 `overflow-y: visible`、滚动由 `.app-container` 承担；若把 `#towerScroll` 当 root，它自身高度等于内容高度、哨兵恒定「可见」，只在首次回调一次，列表永久停在首批（实测 24 层）。
-- 滚动触底另用 `window` 捕获阶段的 `scroll`（与 `useLazyList` 同构），桌面与移动两种滚动根都能收到。
-- 🔴 `contain-intrinsic-size` 必须接近真实卡高（实测 273~337px，当前 300px）。取 170px 时离屏卡片按一半高度占位、滚到跟前重算，`scrollHeight` 单次最大跳 453px，滚动条抖动。改为 300px 后实测跳变 0。
-- 理智 / 氪金 / 立方三个**装饰性图标**用 CSS 背景（`--icon-url`）绘制，不生成 `<img>`：80 层全渲染时原本是多 240 个元素、却只对应 3 个文件。
+- 卡片列表用 `UiVirtualGrid` **窗口化**，只渲染视口内若干行 + `overscan`。实测 1440×900：卡片 15、`<img>` 158、DOM 1787；此前「分批 slice + 哨兵」是只增不减，滚到底 80 张卡、787 个 `<img>`、离屏仍有 735 张解码（约 14 MB 位图）。
+- 🔴 不要退回分批 + `IntersectionObserver` 哨兵的方案。那种写法必须自己判断滚动根（桌面 `.app-container` / 移动容器），一旦判错就永久停在首批；窗口化由 `@tanstack/vue-virtual` 统一处理。
+- 🔴 窗口化后**不要**给卡片加 `content-visibility: auto`：`UiVirtualGrid` 靠 `measureElement` 量真实高度排队列位置，而它会让离屏元素按 `contain-intrinsic-size` 占位、量到的不是卡高，行位置会错。只渲染视口内几行时本来也没有离屏卡片可跳。
+- `estimate-size` 取 310（实测单列 80 张仅 7 种高度：263~337，中位 305，最常见 337×25）。卡片结构变化（如新增一行奖励）要同步。
+- 🔴 `scrollToItem` 收的是**数组索引**，不是层号。层号从 1 起、索引从 0 起，直传会整体错位一层（`?layer=50` 滚到第 51 层），超出长度返回 -1 完全不滚（`?layer=80` 是 80 条里的第 81 个索引）。
+- `?layer=` 深链有两个入口：首次加载（`loading=false` 且 `v-else` 渲染出列表后两拍再滚）与站内改 hash（`items` 未变、组件不重挂，必须 `watch(() => route.query.layer)`）。漏掉后者时分享链接在页面内点击无反应。
+- 理智 / 氪金 / 立方三个**装饰性图标**用 CSS 背景（`--icon-url`）绘制，不生成 `<img>`。
 - 楼层计数器使用标准 `.collection-counter` 与 `.count-num`，字号固定 13px。
 - 分段筛选项（`all` / `N-M` / `boss`）由 `summary` 现算，不写死 `1-20`、`首领关卡 (16层)` 之类的字面量。
