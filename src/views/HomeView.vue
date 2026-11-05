@@ -95,7 +95,7 @@
             :class="{ active: activeNoticeTab === 'official' }"
             @click="activeNoticeTab = 'official'"
           >
-            官方更新公告
+            官方公告
           </button>
         </div>
       </div>
