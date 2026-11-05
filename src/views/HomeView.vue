@@ -3,6 +3,7 @@
     <!-- 1. 顶部焦点海报轮播 (Hero Poster Banner: 洛克王国 Wiki 风格扩展色融合设计) -->
     <section
       class="home-poster-banner corner-nails"
+      :class="{ 'is-loading': configLoading && !bannerList.length }"
       @mouseenter="pauseCarousel"
       @mouseleave="resumeCarousel"
       @touchstart="onTouchStart"
@@ -10,6 +11,15 @@
       @touchend="onTouchEnd"
       @touchcancel="onTouchEnd"
     >
+      <!--
+        加载态：海报还没拿到时显示转圈，而不是一块纯黑。
+        🔴 只在「没有兜底内容」时出现 —— `bannerList` 有 DEFAULT_BANNERS 兜底，
+        但首次渲染时配置尚未回来，`bannerList` 可能是空数组，此时黑块最刺眼。
+      -->
+      <div v-if="configLoading && !bannerList.length" class="poster-loading">
+        <UiEmptyState type="loading" text="正在加载海报..." />
+      </div>
+      <template v-else>
       <!-- 左右切换箭头 -->
       <button class="poster-nav-btn prev" @click="prevSlide" title="上一张" aria-label="上一张">
         <svg width="8" height="23" viewBox="0 0 12 34" fill="none" style="width:8px;height:23px;display:block;"><path fill="currentColor" d="M7.158 2.33a1.5 1.5 0 0 1 2.684 1.34L3.177 17l6.665 13.33a1.5 1.5 0 0 1-2.684 1.34l-7-14a1.5 1.5 0 0 1 0-1.34z"/></svg>
@@ -77,6 +87,7 @@
           @click="jumpToSlide(index)"
         ></div>
       </div>
+      </template>
     </section>
 
     <!-- 1.5 公告与官方更新资讯板块 (Notice & Updates) -->
@@ -114,10 +125,20 @@
             <span class="notice-item-date">{{ item.date }}</span>
           </div>
           <!--
+            加载中：配置还没回来时显示转圈。
+            🔴 必须与「暂无公告」分开 —— 前者是「还在取」，后者是「取到了但被停用」。
+            之前两者共用空态，首次进页面会先闪一下「暂无公告」，看着像坏了。
+          -->
+          <UiEmptyState
+            v-if="configLoading && !currentNoticesList.length"
+            type="loading"
+            text="正在加载公告..."
+          />
+          <!--
             空态：该频道公告全被停用时显示占位，而不是留一片空白。
             Tab 与区块本身保留 —— 它们是页面固定结构，消失会让布局塌陷。
           -->
-          <div v-if="!currentNoticesList.length" class="notice-empty">暂无公告</div>
+          <div v-else-if="!currentNoticesList.length" class="notice-empty">暂无公告</div>
         </div>
 
         <!--
@@ -156,6 +177,7 @@
           核心图鉴：4 格固定，但内容 / 图标 / 跳转都由后台配置（home_links 表 section='core'）。
           图标优先取「该路由在导航里的图标」（icon_source='nav'），否则用自定义 URL。
         -->
+        <template v-if="coreLinks.length">
         <div
           v-for="link in coreLinks"
           :key="`core-${link.slot}`"
@@ -173,6 +195,9 @@
           <div class="core-index-name">{{ link.title }}</div>
           <div class="core-index-desc">{{ link.description }}</div>
         </div>
+        </template>
+        <!-- 加载中：占满整行，避免标题下方出现刺眼的空白 -->
+        <UiEmptyState v-else-if="configLoading" class="section-loading" type="loading" text="正在加载图鉴入口..." />
       </div>
     </section>
 
@@ -183,6 +208,7 @@
       </div>
 
       <div class="tools-grid">
+        <template v-if="toolLinks.length">
         <div
           v-for="link in toolLinks"
           :key="`tool-${link.slot}`"
@@ -209,16 +235,24 @@
             <div class="tool-desc">{{ link.description }}</div>
           </div>
         </div>
+        </template>
+        <UiEmptyState v-else-if="configLoading" class="section-loading" type="loading" text="正在加载工具入口..." />
       </div>
     </section>
 
     <!-- 4. 契约者展示 (Hero Showcase) -->
-    <section class="hero-showcase paper-panel corner-nails">
+    <!--
+      4. 契约者展示 (Hero Showcase)
+      🔴 整块按「有没有内容」显示：加载中显示转圈；加载完仍无角色（后台 home_heroes 为空）
+         则整块隐藏 —— 否则会留一个只有「契约者展示」标题的空壳，看着像没加载出来。
+    -->
+    <section v-if="configLoading || featuredHeroes.length" class="hero-showcase paper-panel corner-nails">
       <div class="section-title">
         <span>契约者展示</span>
         <span class="section-title-sub">热门角色</span>
       </div>
       <div class="hero-chibi-grid">
+        <template v-if="featuredHeroes.length">
         <div
           v-for="hero in featuredHeroes"
           :key="hero.id"
@@ -271,6 +305,8 @@
             {{ hero.tip }}
           </div>
         </div>
+        </template>
+        <UiEmptyState v-else-if="configLoading" class="section-loading" type="loading" text="正在加载角色..." />
       </div>
     </section>
 
@@ -345,6 +381,7 @@ import { getImageUrl } from '../utils/env.js'
 import { loadHomeConfig, buildRouteTarget } from '../utils/homeConfig.js'
 import { navIconOf } from '../config/navRoutes.js'
 import RichTextView from '../components/ui/RichTextView.vue'
+import UiEmptyState from '../components/ui/UiEmptyState.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -836,6 +873,7 @@ const ELEMENT_SLUGS = { 1: 'Water', 2: 'Fire', 3: 'Wind', 4: 'Ground' }
  *    只是把结果铺到各个 ref 上。任何板块有问题都只影响该板块。
  */
 async function loadHomeContent() {
+  try {
   const cfg = await loadHomeConfig()
   bannerList.value = cfg.banners
   noticesData.value = cfg.notices
@@ -853,8 +891,16 @@ async function loadHomeContent() {
     console.warn('[home] heroes.json 加载失败，角色区留空：', err?.message || err)
     featuredHeroes.value = []
   }
-
-  configLoading.value = false
+  } catch (err) {
+    /*
+     * 🔴 兜底：`loadHomeConfig()` 理论上内部已回落默认值，但仍要兜住。
+     * 少了这层，一旦它抛错 `configLoading` 就永远为 true ——
+     * 页面会卡在「正在加载」转圈上，比直接显示兜底内容更糟。
+     */
+    console.warn('[home] 首页配置加载失败，各部分采用内置默认值：', err?.message || err)
+  } finally {
+    configLoading.value = false
+  }
 
   // 数据到位后重启轮播（初始 bannerList 为空，轮播定时器此时才有内容）
   startCarousel()
@@ -914,6 +960,48 @@ onBeforeUnmount(() => {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   background: #1e140b;
   user-select: none;
+}
+
+/*
+ * 海报加载态：占满轮播区并居中。
+ *
+ * 底色沿用 `.home-poster-banner` 的深木色，转圈文字改浅色 ——
+ * `UiEmptyState` 默认按浅色羊皮纸配深色字，直接放进来会看不见。
+ */
+.poster-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d9c9ac;
+}
+
+.poster-loading :deep(.ui-empty-state__text),
+.poster-loading :deep(.ui-empty-state__spinner) {
+  color: #d9c9ac;
+}
+
+/*
+ * 各区块内的加载态：占满整行并留出与内容相当的高度，
+ * 避免「只有标题、下面一片空白」的塌陷感（实测会误以为页面坏了）。
+ */
+.section-loading {
+  grid-column: 1 / -1;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*
+   * 🔴 必须自带面板底色。核心图鉴 / 实用工具这两块没有外层 paper-panel，
+   * 转圈会直接浮在地图背景上（实测文字与地图纹理叠在一起，看着像渲染错乱）。
+   */
+  background-color: rgba(223, 206, 179, 0.94);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(135, 107, 72, 0.12);
+  box-sizing: border-box;
+  padding: 16px;
 }
 
 .poster-track {
