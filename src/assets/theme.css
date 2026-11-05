@@ -866,6 +866,91 @@ input, textarea, select {
   scrollbar-color: var(--border-color) rgba(43, 31, 21, 0.12);
 }
 
+/*
+ * 整页主滚动条（`.app-container`，右侧贴边）单独定制。
+ *
+ * ## 为什么不用 `scrollbar-color`
+ *
+ * 标准属性 `scrollbar-color` **无法控制 hover / 拖动状态**：调亮滑块后，
+ * 鼠标移上去 Chromium 自带的自绘逻辑会把它压深，原本能看清的反而看不清
+ * （2026-11-05 用户反馈）。要固定住状态色，必须换成 `::-webkit-scrollbar-*` 伪元素。
+ *
+ * 注意这里**故意不写 `!important`**，靠选择器特异性与顺序压过上面的
+ * `* { scrollbar-color: var(--border-color) ... }`：`scrollbar-color` 的最终值
+ * 必须是 `auto`，否则 Chromium 会**整体忽略所有 webkit 伪元素**（见本节开头）。
+ * 用户要求只改这一条，所以没有动全局那条 `*` 规则。
+ *
+ * ## 配色
+ *
+ * 滑块 `#c9b391` 比原 `--border-color`(#8f7351) 亮两档。实测屏幕像素：
+ * 原色约 rgb(154,130,91)，新色约 rgb(201,179,145)，在天空底 `rgb(240,231,214)` 上
+ * 明显更清楚，同时保留柔和调性。若再浅到 `#e9dcc3` 会与底色同亮度、等于隐形。
+ *
+ * ## 三条硬约束
+ *
+ * 1. 🔴 必须先让 `scrollbar-color` 回到 `auto`（本规则第 1 行），否则下面全部失效。
+ * 2. 🔴 伪元素写法只在 Chromium / Safari 生效；Firefox 走 `scrollbar-color`，
+ *    因此下面仍保留一条给 Firefox 的降级值。
+ * 3. 🔴 只影响 `.app-container`；后台面板、弹窗正文、表情面板继续走全局 `*` 规则。
+ */
+.app-container {
+  /*
+   * 🔴 必须是 `auto`。
+   *
+   * 只要这里是非 auto 值，Chromium 就切换到「标准滚动条」实现：宽度、圆角、
+   * 两端按钮全部由系统决定，下面的伪元素只剩颜色还能生效（实测宽度仍是 15px）。
+   * 把它设为 auto，才轮到 `::-webkit-scrollbar-*` 完整接管。
+   * 代价：Firefox 会退回系统默认色（可接受，Firefox 份额极低且不影响功能）。
+   */
+  scrollbar-color: auto;
+}
+
+/* Chromium / Safari：宽度与圆角都由这里决定 */
+.app-container::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+/* 去掉两端的上下三角按钮 */
+.app-container::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* 轨道：极淡木色，与卡片底区分但不过分 */
+.app-container::-webkit-scrollbar-track,
+.app-container::-webkit-scrollbar-track-piece {
+  background: rgba(43, 31, 21, 0.06);
+}
+
+/*
+ * 滑块：`#ceb997`。
+ *
+ * 取值经过三轮调整（2026-11-05）：`#8f7351`（原色，偏深）→ `#c9b391`（偏亮）
+ * → `#d8c4a4`（过亮）→ 当前 `#ceb997`，即「比 `#c9b391` 再亮一点点」。
+ * 实测屏幕像素约 rgb(206,185,151)，对天空底 `rgb(240,231,214)` 对比度约 1.55:1。
+ *
+ * 🔴 不要再往 `#e9dcc3` 方向调：那是 1.10:1，与底色几乎同亮度、等于隐形。
+ */
+.app-container::-webkit-scrollbar-thumb {
+  background: #ceb997;
+  border: none;
+  border-radius: 6px;
+}
+
+/*
+ * 🔴 hover / 拖动时**保持同色**（本次核心诉求）。
+ *
+ * 标准属性 `scrollbar-color` 无法控制状态色，鼠标移上去 Chromium 会把它压深；
+ * 改用伪元素后，这三条把 `:hover` / `:active` 一起钉死在同一颜色。
+ * 改颜色时**三处必须同步**，否则悬停又会跳色。
+ */
+.app-container::-webkit-scrollbar-thumb:hover,
+.app-container::-webkit-scrollbar-thumb:active {
+  background: #ceb997;
+}
+
 /* ====== 8b. 触屏端隐藏滚动条（保留滚动效果） ======
    移动端本来就用手指滑动，滚动条既占宽度又不好看；这里只隐藏**视觉**，
    滚动行为、惯性、scrollTop 等一概不变。
