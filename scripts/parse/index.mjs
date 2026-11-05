@@ -156,7 +156,8 @@ for (const job of jobs) {
   if (job.name === 'items') itemData = output.data
   if (job.name === 'tasks') taskData = output.data
   if (job.name === 'recipes') recipeData = output.data
-  if (job.name === 'heroes') heroData = output.data
+  // heroes 现在产出两个文件（heroes.json + hero-summary.json），主数据取第一个
+  if (job.name === 'heroes') heroData = output.files?.[0]?.data || output.data
   if (job.name === 'pets') petData = output.data
   const files = output.files || [output]
   files.forEach(writeOutput)

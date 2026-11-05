@@ -378,7 +378,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl } from '../utils/env.js'
-import { loadHomeConfig, buildRouteTarget } from '../utils/homeConfig.js'
+import { loadHomeConfig, hasHomeConfigCache, buildRouteTarget } from '../utils/homeConfig.js'
 import { navIconOf } from '../config/navRoutes.js'
 import RichTextView from '../components/ui/RichTextView.vue'
 import UiEmptyState from '../components/ui/UiEmptyState.vue'
@@ -830,8 +830,16 @@ const blockSections = computed(() => {
   return out
 })
 
-/** 加载态：首屏骨架用；API 失败也置 false（走兜底内容） */
-const configLoading = ref(true)
+/**
+ * 加载态：首屏骨架用；API 失败也置 false（走兜底内容）。
+ *
+ * 🔴 初值取「是否已有缓存」而不是恒为 true：
+ * 配置已在模块级缓存里时，`loadHomeConfig()` 会立刻 resolve，
+ * 但 `await` 至少要走一拍微任务 —— 若初值为 true，这一拍里就会先渲染出
+ * 5 个转圈再被真实内容替换，用户看到的就是「回来还要加载一次」。
+ * 有缓存时直接从 false 起步，页面不闪。
+ */
+const configLoading = ref(!hasHomeConfigCache())
 
 /**
  * 角色卡渲染所需的完整数据：把 heroId join 到 heroes.json。
@@ -867,6 +875,30 @@ const JOB_SLUGS = { 1: 'zs', 2: 'qs', 3: 'fs', 4: 'yx', 5: 'ck', 6: 'fz' }
 const ELEMENT_SLUGS = { 1: 'Water', 2: 'Fire', 3: 'Wind', 4: 'Ground' }
 
 /**
+ * 首页角色摘要（约 6 KB）。
+ *
+ * 🔴 用模块级 Promise 缓存，理由同 `loadHomeConfig`：
+ * 每次进首页都会走 `loadHomeContent()`，不缓存就会重复下载并重新转圈。
+ */
+let heroSummaryRequest = null
+function loadHeroSummary() {
+  if (!heroSummaryRequest) {
+    heroSummaryRequest = fetch('/data/parsed/hero-summary.json')
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        return res.json()
+      })
+      .then(data => data.heroes || [])
+      .catch(err => {
+        // 失败不缓存，下次进页面还能重试
+        heroSummaryRequest = null
+        throw err
+      })
+  }
+  return heroSummaryRequest
+}
+
+/**
  * 首屏数据加载。
  *
  * 🔴 失败不阻塞页面：loadHomeConfig() 内部已回落默认值，这里不做 try/catch，
@@ -881,14 +913,17 @@ async function loadHomeContent() {
   toolLinks.value = cfg.toolLinks
   homeBlocks.value = cfg.blocks
 
-  // 角色需要 join heroes.json（与 /heroes 共用同一份数据源）
+  /*
+   * 角色数据：读精简版 `hero-summary.json`（约 6 KB），不再下载 1959 KB 的 heroes.json。
+   *
+   * 精简版包含**全部 34 个角色**的 6 个字段，所以后台 `home_heroes` 换成任意角色都能查到；
+   * 它由 `scripts/parse/heroes.mjs` 与 heroes.json 同批次产出，两者不会脱节。
+   * `/heroes`、`/sims`、`/gacha` 仍读完整版，不受影响。
+   */
   try {
-    const res = await fetch('/data/parsed/heroes.json')
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
-    featuredHeroes.value = resolveHeroes(cfg.heroes, data.heroes || data.list || [])
+    featuredHeroes.value = resolveHeroes(cfg.heroes, await loadHeroSummary())
   } catch (err) {
-    console.warn('[home] heroes.json 加载失败，角色区留空：', err?.message || err)
+    console.warn('[home] hero-summary.json 加载失败，角色区留空：', err?.message || err)
     featuredHeroes.value = []
   }
   } catch (err) {

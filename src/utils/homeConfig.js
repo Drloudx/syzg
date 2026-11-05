@@ -30,7 +30,7 @@ export const DEFAULT_BANNERS = [
     bgColor: '#1a3832',
     blendStart: 'rgba(26, 56, 50, 0.95)',
     actionType: 'notice',
-    actionValue: 'official-5'
+    actionValue: 'official-1'
   },
   {
     id: 'banner-gacha',
@@ -77,29 +77,29 @@ export const DEFAULT_NOTICES = {
       content: '<p>本站由玩家独立维护，是非官方资料站，与深渊之歌、淘气泡游戏不存在隶属关系、官方授权或商业代理关系。本站所提及的游戏名称、商标、标志、截图、游戏数据、角色立绘及相关艺术素材，其版权与所有权归各自权利人所有。<br>本网站仅提供粉丝向参考与信息整理服务。</p>'
     },
 {
-      id: 'site-5',
-      channel: 'site',
-      tier: 'normal',
-      title: '占位测试',
-      date: '2026-11-01',
-      tagText: '测试',
-      tagClass: 'info',
-      showInModal: 1,
-      content: ''
-    },
-{
-      id: 'site-7',
-      channel: 'site',
-      tier: 'normal',
-      title: '占位测试',
-      date: '2026-11-01',
-      tagText: '测试',
-      tagClass: 'info',
-      showInModal: 1,
-      content: ''
-    },
-{
       id: 'site-4',
+      channel: 'site',
+      tier: 'normal',
+      title: '占位测试',
+      date: '2026-11-01',
+      tagText: '测试',
+      tagClass: 'info',
+      showInModal: 1,
+      content: ''
+    },
+{
+      id: 'site-3',
+      channel: 'site',
+      tier: 'normal',
+      title: '占位测试',
+      date: '2026-11-01',
+      tagText: '测试',
+      tagClass: 'info',
+      showInModal: 1,
+      content: ''
+    },
+{
+      id: 'site-2',
       channel: 'site',
       tier: 'normal',
       title: '大书院学者讨论区交流准则',
@@ -112,7 +112,7 @@ export const DEFAULT_NOTICES = {
   ],
   official: [
 {
-      id: 'official-6',
+      id: 'official-2',
       channel: 'official',
       tier: 'normal',
       title: '「荒野计费测试」内容一览！全新角色登场 限时秘境同步开放',
@@ -125,7 +125,7 @@ export const DEFAULT_NOTICES = {
       content: '<p>荒野测试 正式定档 11.12</p><p>一、全新角色</p><p>新增德莉（5 星）、斯卡莉安（5 星）、洛莉安（5 星）、阿尔克丝（4 星）、修瓦莉（4 星）、诺姿（3 星）等伙伴。</p><p>二、全新活动：洛莉安的幽夜古堡</p><p>秘境挑战「亚空回廊」限时开启！发掘失落的遗器，嵌入强大的法盘，不断探索深入这片奇诡的秘境。可获得独特的神器、传说级装备、契约书、小屋外观等道具。</p><p>三、全新时代</p><p>新增彩虹芭菲公主·德莉（传说）、金鹿的假期·菲莉娜（传说）、阳葵田的守望者·芭杜尔（罕见）、胡萝卜小收获日·米拉贝尔（罕见）、一日侍者·米托拉（罕见）等时装。</p><p>四、全新魔物</p><p>新增圣骑士史莱姆（5 星）、洛莉安的眷属（5 星）、蜂刺骑兵（4 星）、黄金史莱姆（4 星）、粉红史莱姆（3 星）、天青史莱姆（3 星）、幽灵史莱姆（3 星）等魔物。</p><p>五、全新体验</p><p>1. 商业化内容更新：上线驿站补给凭证（月卡）、荒野通行手册（通行证），同步对付费商城进行改版优化。</p><p>2. 开放装扮系统。</p><p>3. 新增小屋外观自定义功能。</p><p>4. 上架全新家具系列。</p><p>5. 优化部分关卡难度曲线，调整关卡体验。</p><p>6. 新增万能突破魔物：新增纯白史莱姆、彩虹史莱姆，可用于任意魔物突破。</p><p>7. 新增万能回忆拼图：新增湛蓝、靛紫、灿金回忆拼图，可替代任意伙伴的对应回忆拼图，完成星阶激活。</p><p>8. 新增角色重置道具：新增成长遗忘药水，使用后即可重置角色等级与技能等级，返还经验书与元素碎片。</p><p>9. 修复若干已知问题。</p><p>注：本素材内容仅供参考，具体请以游戏内实际情况为准。<br><br><a target="_blank" rel="noopener noreferrer" class="rich-link" href="https://www.taptap.cn/moment/864080934587075947?group_id=973894">「荒野计费测试」内容一览！全新角色登场 限时秘境同步开放</a></p>'
     },
 {
-      id: 'official-5',
+      id: 'official-1',
       channel: 'official',
       tier: 'normal',
       title: '游戏简介',
@@ -139,7 +139,7 @@ export const DEFAULT_NOTICES = {
 }
 
 /** 公告插槽默认值（8 个位置：site 4 + official 4，null = 该位置空着） */
-export const DEFAULT_NOTICE_SLOTS = {"site":["site-1","site-5","site-7","site-4"],"official":["official-6","official-5",null,null]}
+export const DEFAULT_NOTICE_SLOTS = {"site":["site-1","site-4","site-3","site-2"],"official":["official-2","official-1",null,null]}
 
 /** 图鉴入口默认值（生产 D1 `home_links` 快照，section = core） */
 export const DEFAULT_CORE_LINKS = [
@@ -188,7 +188,57 @@ export const DEFAULT_BLOCKS = {
  * @returns {Promise<{banners, notices, coreLinks, toolLinks, heroes, blocks, degraded}>}
  *   degraded=true 表示至少有一个板块用了兜底值（可用于开发期提示）
  */
+/**
+ * 会话级缓存：同一页面生命周期内只真正请求一次。
+ *
+ * ## 为什么必须有
+ *
+ * `HomeView` 每次进入都会 `onMounted → loadHomeContent()`。原先这里**没有任何缓存**，
+ * 于是「首页 → 别的页 → 回首页」会再打一次 `/api/home-config`，
+ * 中间区域重新转一次圈。用户感知就是「明明有缓存，回来还要等」。
+ * 浏览器 HTTP 缓存救不了：这个接口是 `Cache-Control: no-store`（评论/公告必须实时）。
+ *
+ * ## 为什么要缓存 Promise 而不是结果
+ *
+ * 缓存结果的话，并发两次调用（如快速来回切页）仍会发两个请求。
+ * 缓存 Promise 天然去重：第二次直接拿到同一次请求。
+ *
+ * ## 失效规则
+ *
+ * - 只缓存在**模块作用域**：刷新页面即失效，符合「配置可能被后台改动」的预期；
+ * - `opts.fresh = true` 强制绕过（后台保存后核对用）；
+ * - 请求失败**不缓存**（`degraded` 结果也缓存 —— 否则断网时会反复重试，反而更慢）。
+ */
+let cachedRequest = null
+
 export async function loadHomeConfig(opts = {}) {
+  if (opts.fresh) {
+    cachedRequest = null
+  } else if (cachedRequest) {
+    return cachedRequest
+  }
+
+  const request = requestHomeConfig(opts)
+  if (!opts.fresh) cachedRequest = request
+  return request
+}
+
+/** 供后台保存后强制刷新（避免直接操作模块变量）。 */
+export function invalidateHomeConfigCache() {
+  cachedRequest = null
+}
+
+/**
+ * 当前是否已有缓存。
+ *
+ * 用途：页面组件据此决定 `loading` 初值 —— 有缓存时不该先渲染一次转圈
+ * （`await` 至少走一拍微任务，那一拍就够让 5 个转圈闪出来）。
+ */
+export function hasHomeConfigCache() {
+  return cachedRequest !== null
+}
+
+async function requestHomeConfig(opts = {}) {
   const result = {
     banners: DEFAULT_BANNERS,
     notices: DEFAULT_NOTICES,
