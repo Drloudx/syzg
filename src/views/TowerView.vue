@@ -616,16 +616,28 @@ onMounted(() => {
 }
 
 /*
- * 窗口化的行内布局：UiVirtualGrid 的每一行是 `position: absolute` 的 grid，
- * 列模板由组件按实测 `gridTemplateColumns` 注入，这里只声明塔页每列的最小宽度。
+ * 列模板必须写在 `.ui-card-grid` 上（UiCardGrid 的内层网格）。
+ *
+ * 🔴 两个坑：
+ *   1. `UiVirtualGrid` 用 `getComputedStyle(gridElement).gridTemplateColumns` 数出列数，
+ *      再把这个列模板以**内联 style** 写到每一行 `.ui-virtual-grid__row` 上。
+ *      所以给「行」写 `grid-template-columns` 是无效的 —— 内联样式永远赢。
+ *   2. 不改这里就会落回 UiCardGrid 的默认 `minmax(120px, 1fr)`：
+ *      1440 宽下被分成 5 列 × 136px，塔卡被挤成细条、内容竖着堆到 2200px 高
+ *      （实测 cardRect.w=136 / h=2201），整页只剩表头可见。
+ *
+ * 塔卡是「左立绘 + 右信息」的横向大卡，最小列宽要 460px（与原 `.tower-cards-grid` 一致）。
  */
-.tower-scroll-container :deep(.ui-virtual-grid__row) {
+.tower-scroll-container :deep(.ui-card-grid) {
   grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+  gap: 14px;
+  align-content: start;
 }
 
 @media (max-width: 600px) {
-  .tower-scroll-container :deep(.ui-virtual-grid__row) {
+  .tower-scroll-container :deep(.ui-card-grid) {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
   .tower-card {
     flex-direction: column !important;
@@ -657,6 +669,14 @@ onMounted(() => {
    * 不参与真实排版 —— 量到的就不是卡高，行位置会错、滚动条跳动。
    * 现在只渲染视口内几行，本来也没有「离屏卡片」可跳，这层保护不再需要。
    */
+  /*
+   * 移动端整卡不可选中：卡片本身就是滚动区里的长内容，
+   * 手指按住拖动滚动时极易触发文本选择（整块变蓝、立绘被高亮方块盖住），
+   * 且选中态会一直留着直到点别处。卡内没有需要复制的内容（层名/怪物名/数值都可在详情弹窗看）。
+   */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .tower-card:hover {

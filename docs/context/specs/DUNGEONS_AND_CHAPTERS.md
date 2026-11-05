@@ -400,6 +400,8 @@
 ### 兑换中心与性能
 - 弹窗展示 `itemExchange.json` 中 `tower1` 兑换池，说明文案限定为「契约书、面包、华丽宝箱与升级材料」。
 - 卡片列表用 `UiVirtualGrid` **窗口化**，只渲染视口内若干行 + `overscan`。实测 1440×900：卡片 15、`<img>` 158、DOM 1787；此前「分批 slice + 哨兵」是只增不减，滚到底 80 张卡、787 个 `<img>`、离屏仍有 735 张解码（约 14 MB 位图）。
+- 🔴 列模板必须写在 `.tower-scroll-container :deep(.ui-card-grid)` 上。`UiVirtualGrid` 从 `getComputedStyle(.ui-card-grid).gridTemplateColumns` 数出列数，再以**内联 style** 写到每行 `.ui-virtual-grid__row`；因此给「行」写列模板永远无效。不覆盖该父级就落回 `UiCardGrid` 默认 `minmax(120px, 1fr)` —— 1440 宽会被分成 5 列 × 136px，塔卡挤成细条、内容竖排到 2201px，整页只剩表头（2026-11-05 实际发生）。塔卡最小列宽 460px，`tests/unit/tower-and-monster-forms.test.mjs` 守着。
+- 塔卡 `user-select: none`：移动端在卡片上拖动滚动会触发文本选择，整块变蓝并盖住立绘。
 - 🔴 不要退回分批 + `IntersectionObserver` 哨兵的方案。那种写法必须自己判断滚动根（桌面 `.app-container` / 移动容器），一旦判错就永久停在首批；窗口化由 `@tanstack/vue-virtual` 统一处理。
 - 🔴 窗口化后**不要**给卡片加 `content-visibility: auto`：`UiVirtualGrid` 靠 `measureElement` 量真实高度排队列位置，而它会让离屏元素按 `contain-intrinsic-size` 占位、量到的不是卡高，行位置会错。只渲染视口内几行时本来也没有离屏卡片可跳。
 - `estimate-size` 取 310（实测单列 80 张仅 7 种高度：263~337，中位 305，最常见 337×25）。卡片结构变化（如新增一行奖励）要同步。

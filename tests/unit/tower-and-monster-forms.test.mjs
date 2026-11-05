@@ -163,3 +163,38 @@ test('resolveForms 对单形态与缺失数据保持健壮', () => {
   const single = { forms: [{ id: 'x' }], summons: [{ id: 'y' }] }
   assert.deepEqual(resolveForms(single, 'x').map(f => f.id), ['x', 'y'])
 })
+
+/**
+ * 塔页列模板必须写在 `.ui-card-grid` 上，而不是窗口化的「行」上。
+ *
+ * ## 为什么用源码断言
+ *
+ * `UiVirtualGrid` 的列数取自 `getComputedStyle(.ui-card-grid).gridTemplateColumns`，
+ * 再把这个模板以**内联 style** 写到每行 `.ui-virtual-grid__row`。所以：
+ *   - 给「行」写 `grid-template-columns` 永远无效（内联样式赢）；
+ *   - 不覆盖 `.ui-card-grid` 就会落回 `UiCardGrid` 默认的 `minmax(120px, 1fr)`。
+ *
+ * 2026-11-05 就是这么坏的：1440 宽被分成 5 列 × 136px，塔卡被挤成细条、
+ * 内容竖排到 2201px 高，整页只剩表头可见。这条断言把「必须写在哪」钉住。
+ * 纯样式问题无法用产物数据断言，故读源码。也可以改成 Playwright 几何断言，
+ * 但那要起服务、跑浏览器，代价高得多。
+ */
+test('塔页覆盖的是 .ui-card-grid 的列模板，不是窗口化的行', () => {
+  const source = readFileSync(join(repoRoot, 'src/views/TowerView.vue'), 'utf8')
+  const styleBlock = source.slice(source.indexOf('<style'), source.lastIndexOf('</style>'))
+
+  assert.match(
+    styleBlock,
+    /\.tower-scroll-container\s*:deep\(\.ui-card-grid\)\s*\{[^}]*grid-template-columns/,
+    '.tower-scroll-container :deep(.ui-card-grid) 必须声明 grid-template-columns'
+  )
+  assert.doesNotMatch(
+    styleBlock,
+    /:deep\(\.ui-virtual-grid__row\)\s*\{[^}]*grid-template-columns/,
+    '不要给 .ui-virtual-grid__row 写列模板：它被内联 style 覆盖，写了也不生效'
+  )
+  // 塔卡是「左立绘 + 右信息」的横向大卡，最小列宽不能低于 460px（否则会退化成细条）
+  const rule = styleBlock.match(/\.tower-scroll-container\s*:deep\(\.ui-card-grid\)\s*\{[^}]*\}/)?.[0] || ''
+  const minmax = rule.match(/minmax\((\d+)px/)
+  assert.ok(minmax && Number(minmax[1]) >= 460, `塔卡最小列宽应 >= 460px，实际 ${minmax?.[1] ?? '未声明'}`)
+})
