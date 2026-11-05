@@ -1,5 +1,47 @@
+import { ref } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { closeItemDetail } from '../utils/itemModalState'
+
+/**
+ * 路由切换加载态（跨页面共享）。
+ *
+ * ## 为什么需要
+ *
+ * 所有页面都是 `() => import()` 懒加载。点导航后要先下载分包、再挂载，
+ * 这段时间中间区域**整块空白**（左右栏正常），弱网下会持续好几秒，看着像卡死。
+ *
+ * ## 为什么不用 `<Suspense>`
+ *
+ * 实测无效：vue-router 在把异步组件赋给 `RouterView` 的 `Component` **之前**
+ * 就已经 `await` 完 `import()`，所以 Suspense 拿到的是已解析的组件，
+ * fallback 永远不触发（2026-11-05 用最小用例确认 Suspense 本身正常）。
+ *
+ * ## 这里怎么做
+ *
+ * 在守卫里手动开关：`beforeEach` 置 true（但要延时一点，避免本地秒开时闪一下），
+ * `afterEach` 与 `onError` 一律置 false。**必须两条都关** —— 只关成功路径，
+ * 一旦导航被取消或报错，转圈会永远留在屏幕上。
+ */
+export const routeLoading = ref(false)
+export const routeLoadingText = ref('正在打开页面...')
+
+/** 加载态至少延迟这么久才显示：本地/已预取时切换只要 20~120ms，闪一下反而更差。 */
+const LOADING_DELAY_MS = 150
+let loadingTimer = 0
+
+const beginRouteLoading = to => {
+  const title = to?.meta?.title
+  routeLoadingText.value = title ? `正在打开「${title}」...` : '正在打开页面...'
+  clearTimeout(loadingTimer)
+  loadingTimer = setTimeout(() => { routeLoading.value = true }, LOADING_DELAY_MS)
+}
+
+/** 供 `afterEach` / `onError` 统一调用；同时防止延时定时器在结束后又把开关打开。 */
+const endRouteLoading = () => {
+  clearTimeout(loadingTimer)
+  loadingTimer = 0
+  routeLoading.value = false
+}
 
 const routes = [
   {
@@ -307,8 +349,18 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   closeItemDetail()
+  // 首次进入不显示（首屏有各自的骨架），只在页面之间切换时给反馈
+  if (from.matched.length) beginRouteLoading(to)
   next()
 })
+
+/*
+ * 🔴 收尾必须两条守卫都挂上。
+ * `afterEach` 在「导航被取消（如重复点同一个链接）」时也会触发；
+ * `onError` 覆盖分包下载失败。只挂成功路径的话，转圈会永远留在屏幕上。
+ */
+router.afterEach(() => { endRouteLoading() })
+router.onError(() => { endRouteLoading() })
 
 /**
  * 路由分包预取。

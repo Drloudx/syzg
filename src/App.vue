@@ -164,7 +164,17 @@
           :scale-hp="monsterModalState.scaleHp"
           :scale-atk="monsterModalState.scaleAtk"
         />
-        <router-view />
+        <!--
+          路由切换加载态。
+          🔴 **不要用 `<Suspense>`**：vue-router 对 `() => import()` 的路由，
+          会在**替换 `RouterView` 的 `Component` 之前**就把异步组件解析完，
+          所以 Suspense 看到时组件已经就绪，fallback 永远不触发（实测确认）。
+          改为由 `useRouteLoading()` 在导航开始/结束时手动开关（见下方 script）。
+        -->
+        <div v-if="routeLoading" class="route-loading">
+          <UiEmptyState type="loading" :text="routeLoadingText" />
+        </div>
+        <RouterView v-show="!routeLoading" />
       </main>
 
       <!-- 右栏：讨论区预览（用户要求把原「页面信息面板」换成讨论）。
@@ -300,8 +310,8 @@
 </template>
 
 <script setup>
-import { ref, computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { Suspense, ref, computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
+import { RouterView, useRoute, useRouter } from 'vue-router'
 import NavigationMenu from './components/NavigationMenu.vue'
 import GlobalSearchBox from './components/GlobalSearchBox.vue'
 import UpdateModal from './components/UpdateModal.vue'
@@ -324,7 +334,7 @@ import { itemModalState, openItemDetail } from './utils/itemModalState'
 import { monsterModalState } from './utils/monsterModalState'
 import { fetchItemData } from './utils/itemParser'
 import { resetModalScrollCoordinator } from './utils/modalScrollCoordinator.js'
-import { prefetchRouteChunks } from './router/index.js'
+import { prefetchRouteChunks, routeLoading, routeLoadingText } from './router/index.js'
 
 import { isBlacklisted } from './config/blacklist.js'
 import { getImageUrl, handleImageFallback, isNative } from './utils/env.js'
@@ -1284,6 +1294,35 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   min-height: 0;
   display: flex;
   flex-direction: column;
+}
+
+/*
+ * 路由分包下载期间的占位。
+ *
+ * 🔴 必须给一个接近视口的高度：只放一个转圈而不撑高，页面会在「空白 → 内容」
+ * 之间抖一下（高度从 0 跳到整页）。这里取视口高度的六成，既不会撑出滚动条，
+ * 也不会让中间的转圈紧贴在顶部。
+ *
+ * 🔴 必须自带面板底色：`.app-main` 下面是全站地图底纹，转圈与文字直接浮上去
+ * 会和地图线条糊在一起（实测几乎看不清「正在打开…」）。
+ */
+.route-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(var(--vh100, 100vh) * 0.6);
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.route-loading > :deep(.ui-empty-state) {
+  background-color: rgba(223, 206, 179, 0.94);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.35), inset 0 0 20px rgba(135, 107, 72, 0.12);
+  padding: 28px 40px;
+  min-width: 200px;
 }
 
 @media (min-width: 1025px) {
