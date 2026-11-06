@@ -1348,6 +1348,12 @@ onBeforeUnmount(() => {
 .notices-section {
   padding: 14px 16px;
   background: linear-gradient(180deg, rgba(247, 238, 222, 0.95) 0%, rgba(235, 220, 199, 0.95) 100%);
+  /*
+   * 锁定最小高度 = 成品高度（实测 1440 宽 262px；加载态只有 232px）。
+   * 见 `.hero-showcase` 的同款说明。
+   */
+  min-height: 262px;
+  box-sizing: border-box;
 }
 
 .notices-header {
@@ -1651,6 +1657,17 @@ onBeforeUnmount(() => {
   gap: 12px;
 }
 
+/*
+ * 锁定外层 section 的高度，而不是 grid 本身。
+ *
+ * 🔴 不要写在 `.core-indexes-grid` / `.tools-grid` 上：grid 默认
+ * `align-items: stretch`，min-height 会被分摊给卡片，把卡片一起拉高
+ * （实测核心图鉴 188→233、实用工具 201→246，卡片明显变形）。
+ * 写在 section 上，卡片保持自身高度，下方留白由 section 撑住。
+ */
+.home-core-indexes { min-height: 188px; }
+.home-tools-section { min-height: 201px; }
+
 .core-index-card {
   padding: 14px 12px;
   display: flex;
@@ -1839,6 +1856,13 @@ onBeforeUnmount(() => {
 .hero-showcase {
   padding: 16px;
   background: linear-gradient(180deg, rgba(247, 238, 222, 0.94) 0%, rgba(235, 220, 199, 0.94) 100%);
+  /*
+   * 锁定最小高度 = 成品高度，避免「加载态 → 有内容」时这段变高。
+   * 实测（1440 宽）：加载态 200px，成品 308px。不锁的话每次进首页都会
+   * 涨 108px，滚动条跟着变。取值见下方各断点。
+   */
+  min-height: 308px;
+  box-sizing: border-box;
 }
 
 .hero-chibi-grid {
@@ -2038,6 +2062,23 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+  /*
+   * 锁定最小高度 = 成品高度（实测 1440 宽 206px；加载态为 0 —— 整块不存在）。
+   * 见 `.hero-showcase` 的同款说明。
+   */
+  min-height: 206px;
+}
+
+/*
+ * 1200~1359 这一档：底部两栏换行成 266px，核心图鉴 203px。
+ *
+ * 🔴 必须写在这里（`.daily-guide-row` 基础规则之后）。
+ * CSS 同权重时后写覆盖先写，之前放在文件上方会被上面的 `min-height: 206px` 盖掉，
+ * 表现为「1280 宽下 homeHeight 仍会 1489 → 1563 变一次」。
+ */
+@media (min-width: 1200px) and (max-width: 1359px) {
+  .daily-guide-row { min-height: 266px; }
+  .home-core-indexes { min-height: 203px; }
 }
 
 .daily-col {
@@ -2456,6 +2497,18 @@ onBeforeUnmount(() => {
     min-width: 0;
     box-sizing: border-box;
   }
+
+  /*
+   * 移动端各段高度与桌面端不同（实测 390/768 宽同值）：
+   * 公告 418、核心图鉴 339、实用工具 357、角色 544、底部两栏 419。
+   * 只锁最小高度，内容更矮时用占位撑住，加载态与成品等高 ——
+   * 否则「加载转圈 → 真内容」会把整页撑高 400+ px，滚动条跟着变。
+   */
+  .notices-section { min-height: 418px; }
+  .home-core-indexes { min-height: 339px; }
+  .home-tools-section { min-height: 357px; }
+  .hero-showcase { min-height: 544px; }
+  .daily-guide-row { min-height: 419px; }
 
   .home-poster-banner {
     height: 180px;

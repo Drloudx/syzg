@@ -694,12 +694,10 @@ const setRoutePending = () => {
     }
     if (stableFrames >= 2 || performance.now() - started > 4000) {
       /*
-       * 🔴 解锁与「滚回顶部」必须同时发生。
-       *
-       * 之前是在切页那一刻就 `scrollTop = 0`：那时轨道还是旧高度，
-       * 滑块先在旧轨道上跳到顶（用户看到「往上」），等新高度生效再变长（「再短」）。
-       * 现在改成解锁瞬间一次性完成：撤掉 min-height 的同时归零，
-       * 位置与高度在同一次布局里提交，只有一次视觉更新。
+       * 直接撤锁即可 —— 首页已通过 CSS `min-height` 让各段「加载态与成品等高」
+       * （见 HomeView 的 `.hero-showcase` / `.notices-section` 等），
+       * 所以新页从第一帧就是最终高度，`scrollHeight` 不再中途变化。
+       * 之前需要的 180ms 过渡补丁因此不再需要，保留只会拖慢收尾。
        */
       document.querySelectorAll('.main-layout-row.is-route-pending').forEach(r => r.classList.remove('is-route-pending'))
       root.scrollTo({ top: 0, behavior: 'auto' })
@@ -922,11 +920,18 @@ watch(() => route.path, (newPath, oldPath) => {
   // Reset the shared page scroll before the old view is unmounted so route changes do not jump.
   resetModalScrollCoordinator()
   /*
-   * 锁高与滚动归零都在 `setRoutePending()` 内部一次完成 ——
-   * 不要在这里再单独写一次 `scrollTop = 0`，那会拆成两次样式写入，
-   * 造成「先短 → 跳到顶部 → 再短」两跳（见该函数注释）。
+   * 🔴 不再使用 `setRoutePending()` 锁高度。
+   *
+   * 历史：这个锁是为了「旧页已卸载、新页还没挂载」的空窗期别让滚动条塌掉。
+   * 但它本身就是二次跳变的来源 —— 锁住时轨道是旧页高度（如 10726），
+   * 解锁瞬间变成新页高度（如 1602），滑块必然在那一帧伸缩一次，
+   * 而且「先跳位置、再改高度」无论怎么合并都分成两次布局。
+   *
+   * 现在首页各段已经用 CSS `min-height` 做到「加载态与成品等高」
+   * （见 HomeView 的 `.hero-showcase` / `.notices-section` / `.daily-guide-row` 等），
+   * 切页期间整页高度本来就不会中途变化，锁不再需要。
    */
-  setRoutePending()
+  appScrollRoot.value?.scrollTo({ top: 0, behavior: 'auto' })
   nextTick(() => {
     scheduleStickyClipping()
     // 每次换页体检一次「内容容器 + 筛选框」配对；只在开发期提示，生产静默
