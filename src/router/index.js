@@ -25,11 +25,36 @@ import { closeItemDetail } from '../utils/itemModalState'
 export const routeLoading = ref(false)
 export const routeLoadingText = ref('正在打开页面...')
 
+/**
+ * 「导航进行中」的**即时**信号（与 `routeLoading` 的区别见下）。
+ *
+ * - `routeLoading`：延迟 150ms 才 true，用于**显示**转圈（避免秒开时闪一下）；
+ * - `routeNavigating`：`beforeEach` 立刻 true、`afterEach`/`onError` 立刻 false，
+ *   用于**隐藏滚动条**这类「必须在第一帧就生效」的动作。
+ *
+ * 为什么滚动条要用即时的这个：滚动条滑块的长度由 `scrollHeight` 决定。
+ * 旧页面卸载 → 新页面挂载之间会有一次布局，高度先掉到「空白 + 加载占位」，
+ * 滑块瞬间拉满、再随内容撑开变短 —— 用户看到的就是「先变长再变短」。
+ * 等 150ms 才隐藏就晚了，那一帧已经画出来了。
+ */
+export const routeNavigating = ref(false)
+
 /** 加载态至少延迟这么久才显示：本地/已预取时切换只要 20~120ms，闪一下反而更差。 */
 const LOADING_DELAY_MS = 150
 let loadingTimer = 0
+let navigatingPollRaf = 0
 
 const beginRouteLoading = to => {
+  /*
+   * 🔴 新导航开始时必须取消上一次的收尾轮询。
+   * 否则「A→B 开始轮询 → 立刻再 B→C」时，前一次的 poll 看到 B 已就位就会把
+   * `routeNavigating` 关掉，而 C 其实还在加载，滚动条又露出来闪一次。
+   */
+  if (navigatingPollRaf) {
+    cancelAnimationFrame(navigatingPollRaf)
+    navigatingPollRaf = 0
+  }
+  routeNavigating.value = true
   const title = to?.meta?.title
   routeLoadingText.value = title ? `正在打开「${title}」...` : '正在打开页面...'
   clearTimeout(loadingTimer)
@@ -41,6 +66,42 @@ const endRouteLoading = () => {
   clearTimeout(loadingTimer)
   loadingTimer = 0
   routeLoading.value = false
+  scheduleNavigatingEnd()
+}
+
+/**
+ * 收尾 `routeNavigating` —— **不能跟着 `afterEach` 立刻关**。
+ *
+ * 实测（2026-11-06，/items → /）：`afterEach` 在 t=10ms 就把开关关了，
+ * 但新页面的布局变化发生在 t=105ms。开关只活了 8ms，一帧都没盖住，滚动条照样闪。
+ *
+ * 原因：`afterEach` 在**异步组件 import 完成**时触发，此刻新组件还没 patch 进 DOM、
+ * 更没走完第一次布局。要等到「路由 view 里出现了新页面的根节点」才算真的换了内容。
+ *
+ * 判据同时认 `.page-view-container` 与首页的 `.home-view` —— 首页不用 pvc 这个类
+ * （同 `setRoutePending` 的注释）。
+ */
+const scheduleNavigatingEnd = () => {
+  if (navigatingPollRaf) cancelAnimationFrame(navigatingPollRaf)
+  const started = performance.now()
+  const poll = () => {
+    const page =
+      document.querySelector('.page-view-container') ||
+      document.querySelector('.home-view')
+    /*
+     * 两个收尾条件：
+     *   1. 新页面根节点出现，且不再有 loading/error 骨架 → 内容就位；
+     *   2. 超时兜底 1500ms：万一某个页面的判据不适用，不能把滚动条永久藏起来。
+     */
+    const settled = !!page && !page.querySelector('.ui-empty-state--loading, .ui-empty-state--error')
+    if (settled || performance.now() - started > 1500) {
+      routeNavigating.value = false
+      navigatingPollRaf = 0
+      return
+    }
+    navigatingPollRaf = requestAnimationFrame(poll)
+  }
+  navigatingPollRaf = requestAnimationFrame(poll)
 }
 
 const routes = [

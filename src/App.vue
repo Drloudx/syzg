@@ -2,7 +2,7 @@
   <div
     ref="appScrollRoot"
     class="app-container"
-    :class="{ 'dark-mode': isDarkMode, 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy', 'is-not-found-page': isNotFoundPage }"
+    :class="{ 'dark-mode': isDarkMode, 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy', 'is-not-found-page': isNotFoundPage, 'is-route-switching': routeNavigating }"
     @scroll.passive="scheduleStickyClipping"
   >
     <!-- 顶部木质导航条 -->
@@ -165,11 +165,11 @@
           :scale-atk="monsterModalState.scaleAtk"
         />
         <!--
-          路由切换加载态。
-          🔴 **不要用 `<Suspense>`**：vue-router 对 `() => import()` 的路由，
-          会在**替换 `RouterView` 的 `Component` 之前**就把异步组件解析完，
-          所以 Suspense 看到时组件已经就绪，fallback 永远不触发（实测确认）。
-          改为由 `useRouteLoading()` 在导航开始/结束时手动开关（见下方 script）。
+          路由切换加载态：**绝对定位覆盖**，不参与页面高度计算。
+          🔴 不要改回「占位撑高」（`min-height: 60vh` 之类）。
+          撑高会让切页期间的 `scrollHeight` 多出一个中间值：
+          旧页 10726 → 空白+占位 ~1200 → 新页 1601，
+          滚动条滑块跟着变两跳（先拉满再缩短）。覆盖层则完全不改变文档高度。
         -->
         <div v-if="routeLoading" class="route-loading">
           <UiEmptyState type="loading" :text="routeLoadingText" />
@@ -334,7 +334,7 @@ import { itemModalState, openItemDetail } from './utils/itemModalState'
 import { monsterModalState } from './utils/monsterModalState'
 import { fetchItemData } from './utils/itemParser'
 import { resetModalScrollCoordinator } from './utils/modalScrollCoordinator.js'
-import { prefetchRouteChunks, routeLoading, routeLoadingText } from './router/index.js'
+import { prefetchRouteChunks, routeLoading, routeLoadingText, routeNavigating } from './router/index.js'
 
 import { isBlacklisted } from './config/blacklist.js'
 import { getImageUrl, handleImageFallback, isNative } from './utils/env.js'
@@ -649,7 +649,13 @@ let pendingClearRaf = 0
 /**
  * 页面切换期间顶住滚动范围：切页瞬间记录旧页滚动高度（此刻旧 DOM 仍在），
  * 写入 .main-layout-row 的 --route-pending-h 行内变量作为临时 min-height，
- * 新页加载骨架消失（loading/error 空态移除）后撤销，避免加载间隙滚动条拇指闪变。
+ * 新页加载完成即撤销，避免加载间隙滚动条拇指闪变（先变长再变短）。
+ *
+ * 🔴 「新页就绪」的判据必须同时认 `.page-view-container` **与** 首页的 `.home-view`。
+ * 首页根节点是 `.home-view`（`HomeView.vue` 第 2 行），不是 pvc ——
+ * 只查 pvc 时 `page` 为 null、`done` 立刻为 true，防护在第一帧就被撤掉，
+ * 表现为「切到首页时滚动条先拉满再缩短」。同一个坑在首屏骨架判据里踩过一次
+ * （见下方 `reveal()` 的注释），这里是第二处。
  */
 const setRoutePending = () => {
   const root = appScrollRoot.value
@@ -661,7 +667,9 @@ const setRoutePending = () => {
   if (pendingClearRaf) cancelAnimationFrame(pendingClearRaf)
   const started = performance.now()
   const poll = () => {
-    const page = document.querySelector('.page-view-container')
+    const page =
+      document.querySelector('.page-view-container') ||
+      document.querySelector('.home-view')
     const done = !page || !page.querySelector('.ui-empty-state--loading, .ui-empty-state--error')
     if (done || performance.now() - started > 4000) {
       document.querySelectorAll('.main-layout-row.is-route-pending').forEach(r => r.classList.remove('is-route-pending'))
@@ -976,6 +984,22 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   }
   /* 首屏骨架期隐藏滚动条（gutter 仍占位），首个页面数据就绪后以终态尺寸亮出，避免刷新时滚动条短闪 */
   .app-container.is-boot-loading {
+    overflow-y: hidden;
+  }
+  /*
+   * 切页期间隐藏滚动条。
+   *
+   * 为什么会闪：切页时旧页面卸载、新页面挂载之间必然有一次布局 ——
+   * `scrollHeight` 先从旧页的高度掉到「空白 + 加载占位」，再随新页内容撑开。
+   * 滑块长度跟着变两跳，用户看到「先拉满再缩短」。页面高度差越大越明显
+   * （首页 1601px vs 物品页 10726px）。
+   *
+   * 为什么用 `routeNavigating`（即时）而不是 `routeLoading`（延迟 150ms）：
+   * 后者是为了「避免秒开时闪一下转圈」才延时的，等它变 true 时那一帧早画出来了。
+   *
+   * `scrollbar-gutter: stable` 已在上方开启，隐藏期间宽度占位不变，不会横向跳动。
+   */
+  .app-container.is-route-switching {
     overflow-y: hidden;
   }
   .app-header {
@@ -1297,23 +1321,24 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 }
 
 /*
- * 路由分包下载期间的占位。
+ * 路由分包下载期间的加载态：**绝对定位覆盖层**，不撑高文档。
  *
- * 🔴 必须给一个接近视口的高度：只放一个转圈而不撑高，页面会在「空白 → 内容」
- * 之间抖一下（高度从 0 跳到整页）。这里取视口高度的六成，既不会撑出滚动条，
- * 也不会让中间的转圈紧贴在顶部。
- *
- * 🔴 必须自带面板底色：`.app-main` 下面是全站地图底纹，转圈与文字直接浮上去
- * 会和地图线条糊在一起（实测几乎看不清「正在打开…」）。
+ * 🔴 不要改回 `min-height: 60vh` 之类的占位撑高。
+ * 撑高会给切页期间多造一个高度：旧页 10726 → 空白+占位 ~1200 → 新页 1601，
+ * `scrollHeight` 变两跳，滚动条滑块就先拉满再缩短。
+ * 覆盖层完全脱离文档流，页面高度只由目标页决定。
  */
 .route-loading {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(var(--vh100, 100vh) * 0.6);
-  width: 100%;
   padding: 16px;
   box-sizing: border-box;
+  /* 不挡住左右栏的滚动条：父级 .app-main 已定位，覆盖中间区即可 */
+  z-index: 5;
+  pointer-events: none;
 }
 
 .route-loading > :deep(.ui-empty-state) {
