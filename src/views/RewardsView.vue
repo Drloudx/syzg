@@ -365,7 +365,11 @@
       <!-- 育室槽位消耗 -->
       <template v-else-if="currentMainCat === 'slot_cost'">
         <div class="reward-list-container">
-          <UiListRow v-if="slotCosts && matchesRewardQuery(slotCosts, '培育室 槽位 扩张 银币 金币 冒险等级')">
+          <!--
+            搜索关键词：`金币` 保留为同义词，因为这一列用的是 ke（氪金）图标，
+            旧文案曾误写「金币扩建」，部分用户可能仍按「金币」搜索。
+          -->
+          <UiListRow v-if="slotCosts && matchesRewardQuery(slotCosts, '培育室 槽位 扩张 银币 氪金 金币 冒险等级')">
             <div class="slot-cost-title">培育室槽位扩张费用</div>
 
             <div class="slot-costs-grid-layout">
@@ -384,9 +388,9 @@
                 </div>
               </div>
 
-              <!-- 金币扩建 -->
+              <!-- 氪金扩建 -->
               <div class="slot-column-card">
-                <h4 class="slot-column-title">金币扩建</h4>
+                <h4 class="slot-column-title">氪金扩建</h4>
                 <div class="slot-cost-list-item" v-for="(item, idx) in slotCosts.petSlotKe" :key="idx">
                   <span class="slot-times-label">第 {{ idx + 1 }} 次扩建</span>
                   <div class="slot-cost-details">
