@@ -20,7 +20,7 @@
       </UiFilterRow>
 
       <!-- 子分类筛选行（二级） -->
-      <UiFilterRow v-if="currentSubOptions.length" label="章节：">
+      <UiFilterRow v-if="currentSubOptions.length" :label="subFilterLabel">
         <UiFilterPill
           v-for="so in currentSubOptions"
           :key="so.key"
@@ -546,6 +546,34 @@ const currentSubOptions = computed(() => {
   // 点进去是空列表（任务本身已被 filteredTasks 过滤）——按钮与内容不一致。
   return (subOptions.value[filterType.value] || [])
     .filter(opt => !isBlacklisted(opt.label ?? opt.key ?? opt))
+})
+
+/**
+ * 二级筛选行的标签文案。
+ *
+ * 同一行组件在不同分类下承载的内容并不相同：
+ *   1 主线 / 2 支线 → 章节序号（序章、第一章…）
+ *   3 委托          → 地区名（求生者草原、秋日荒野…）
+ *   4 伙伴          → **角色编号区间**（002~019、020~039、040~060）
+ *   5 活动          → 活动名
+ *
+ * 原先一律写死「章节：」，在「伙伴」下会误导 —— 那几个数字是
+ * `fav_hero_002_1` 里的角色编号，不是关卡章节。按分类给出准确文案。
+ */
+const subFilterLabel = computed(() => {
+  switch (String(filterType.value)) {
+    case '1':
+    case '2':
+      return '章节：'
+    case '3':
+      return '地区：'
+    case '4':
+      return '角色编号：'
+    case '5':
+      return '活动：'
+    default:
+      return '分类：'
+  }
 })
 
 /**
