@@ -666,13 +666,43 @@ const setRoutePending = () => {
   row.classList.add('is-route-pending')
   if (pendingClearRaf) cancelAnimationFrame(pendingClearRaf)
   const started = performance.now()
+  /*
+   * 🔴 判定「就绪」后不能立刻撤锁 —— 要再等**稳定帧**。
+   *
+   * 实测（2026-11-06）：新页根节点在 t≈110ms 出现且没有 loading 骨架，
+   * 但它的首帧还没画出来。此时撤锁，高度立刻从 10726 跳到 1601，
+   * 这一跳正好落在用户眼前，就是那句「长变短」。
+   *
+   * 处理：连续 N 帧「页面已就绪且高度不再变化」才撤，让浏览器先把新页画完。
+   */
+  let stableFrames = 0
+  let lastH = -1
   const poll = () => {
     const page =
       document.querySelector('.page-view-container') ||
       document.querySelector('.home-view')
-    const done = !page || !page.querySelector('.ui-empty-state--loading, .ui-empty-state--error')
-    if (done || performance.now() - started > 4000) {
+    const ready = !!page && !page.querySelector('.ui-empty-state--loading, .ui-empty-state--error')
+    const naturalH = root.scrollHeight
+    if (ready) {
+      // 自然高度与上一帧相同才算「画稳了」（内容不再长高）
+      if (naturalH === lastH) stableFrames += 1
+      else stableFrames = 0
+      lastH = naturalH
+    } else {
+      stableFrames = 0
+      lastH = -1
+    }
+    if (stableFrames >= 2 || performance.now() - started > 4000) {
+      /*
+       * 🔴 解锁与「滚回顶部」必须同时发生。
+       *
+       * 之前是在切页那一刻就 `scrollTop = 0`：那时轨道还是旧高度，
+       * 滑块先在旧轨道上跳到顶（用户看到「往上」），等新高度生效再变长（「再短」）。
+       * 现在改成解锁瞬间一次性完成：撤掉 min-height 的同时归零，
+       * 位置与高度在同一次布局里提交，只有一次视觉更新。
+       */
       document.querySelectorAll('.main-layout-row.is-route-pending').forEach(r => r.classList.remove('is-route-pending'))
+      root.scrollTo({ top: 0, behavior: 'auto' })
       pendingClearRaf = 0
       return
     }
@@ -891,7 +921,11 @@ const handleRequestUpdate = (info) => {
 watch(() => route.path, (newPath, oldPath) => {
   // Reset the shared page scroll before the old view is unmounted so route changes do not jump.
   resetModalScrollCoordinator()
-  if (appScrollRoot.value) appScrollRoot.value.scrollTop = 0
+  /*
+   * 锁高与滚动归零都在 `setRoutePending()` 内部一次完成 ——
+   * 不要在这里再单独写一次 `scrollTop = 0`，那会拆成两次样式写入，
+   * 造成「先短 → 跳到顶部 → 再短」两跳（见该函数注释）。
+   */
   setRoutePending()
   nextTick(() => {
     scheduleStickyClipping()
@@ -987,20 +1021,18 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
     overflow-y: hidden;
   }
   /*
-   * 切页期间隐藏滚动条。
+   * 🔴 不要用 `overflow-y: hidden` 来「藏」滚动条。
    *
-   * 为什么会闪：切页时旧页面卸载、新页面挂载之间必然有一次布局 ——
-   * `scrollHeight` 先从旧页的高度掉到「空白 + 加载占位」，再随新页内容撑开。
-   * 滑块长度跟着变两跳，用户看到「先拉满再缩短」。页面高度差越大越明显
-   * （首页 1601px vs 物品页 10726px）。
+   * 实测（2026-11-06）：`hidden` 会让滚动条整根**移除再重建**，
+   * 表现为「滚动条消失一下又出现」，比原来的跳变更怪。
+   * `scrollbar-gutter: stable` 只能保住宽度占位，保不住滑块本身。
    *
-   * 为什么用 `routeNavigating`（即时）而不是 `routeLoading`（延迟 150ms）：
-   * 后者是为了「避免秒开时闪一下转圈」才延时的，等它变 true 时那一帧早画出来了。
-   *
-   * `scrollbar-gutter: stable` 已在上方开启，隐藏期间宽度占位不变，不会横向跳动。
+   * 正确做法是**不改变滚动条的存在性**，只让高度不要中途变化 ——
+   * 那由 `.main-layout-row` 的 `--route-pending-h`（见 setRoutePending）负责。
    */
   .app-container.is-route-switching {
-    overflow-y: hidden;
+    /* 仅用于调试定位，不产生视觉变化 */
+    scroll-behavior: auto;
   }
   .app-header {
     position: fixed;
