@@ -10,12 +10,12 @@
     <div class="mode-options">
       <label class="mode-option paper-panel-solid" :class="{ active: currentMode === 'side' }">
         <input type="radio" value="side" v-model="currentMode" />
-        <span class="mode-label">侧边导航栏 <UiTag v-if="currentMode === 'side'" tone="accent">默认</UiTag></span>
+        <span class="mode-label">侧边导航栏</span>
         <span class="mode-tip">在屏幕右下角点击悬浮按钮后从屏幕右侧显示导航菜单</span>
       </label>
       <label class="mode-option paper-panel-solid" :class="{ active: currentMode === 'bottom' }">
         <input type="radio" value="bottom" v-model="currentMode" />
-        <span class="mode-label">底部导航栏</span>
+        <span class="mode-label">底部导航栏 <UiTag v-if="currentMode === 'bottom'" tone="accent">默认</UiTag></span>
         <span class="mode-tip">在屏幕右下角点击悬浮按钮后从屏幕底部显示导航菜单</span>
       </label>
       <label class="mode-option paper-panel-solid" :class="{ active: currentMode === 'top' }">
@@ -41,7 +41,8 @@ const props = defineProps({
   },
   mode: {
     type: String,
-    default: 'side'
+    // 与 App.vue 的 menuMode 默认值保持一致（bottom）
+    default: 'bottom'
   }
 })
 

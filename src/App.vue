@@ -656,7 +656,14 @@ const messageTitle = ref('提示')
 const messageText = ref('')
 const messageCallback = ref(null)
 
-const menuMode = ref(localStorage.getItem('menuMode') || 'side')
+/**
+ * 导航菜单呼出方式：`side`（侧边）/ `bottom`（底部）/ `top`（顶部）。
+ *
+ * 默认 **bottom**：手机端屏幕高度紧张，侧边抽屉从右侧滑出后只剩窄窄一条内容区，
+ * 底部抽屉从下方升起、宽度铺满，更适合竖屏阅读与单手操作。
+ * 用户改过之后以 `localStorage.menuMode` 为准（设置 → 切换菜单模式）。
+ */
+const menuMode = ref(localStorage.getItem('menuMode') || 'bottom')
 const appScrollRoot = ref(null)
 let stickyClipFrame = 0
 let pendingClearRaf = 0
