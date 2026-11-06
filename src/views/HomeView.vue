@@ -243,10 +243,13 @@
     <!-- 4. 契约者展示 (Hero Showcase) -->
     <!--
       4. 契约者展示 (Hero Showcase)
-      🔴 整块按「有没有内容」显示：加载中显示转圈；加载完仍无角色（后台 home_heroes 为空）
-         则整块隐藏 —— 否则会留一个只有「契约者展示」标题的空壳，看着像没加载出来。
+      🔴 整块**始终渲染**，不要用 `v-if` 按内容有无来显隐。
+      这块 min-height 是 308px，一旦在加载过程中整块消失/出现，
+      下方所有板块会整体上移或下移 300+ px，`scrollHeight` 随之变化，
+      滚动条就在那一帧伸缩 —— 这正是「切到首页时滚动条变一下」的来源。
+      真的没有角色时，在内部显示占位文字，外框高度保持不变。
     -->
-    <section v-if="configLoading || featuredHeroes.length" class="hero-showcase paper-panel corner-nails">
+    <section class="hero-showcase paper-panel corner-nails">
       <div class="section-title">
         <span>契约者展示</span>
         <span class="section-title-sub">热门角色</span>
@@ -307,6 +310,11 @@
         </div>
         </template>
         <UiEmptyState v-else-if="configLoading" class="section-loading" type="loading" text="正在加载角色..." />
+        <!--
+          加载完仍无角色（后台 home_heroes 为空）时给一句说明。
+          外框保留、高度不变 —— 见本段开头的注释：整块不能靠 v-if 消失。
+        -->
+        <p v-else class="hero-showcase-empty">暂无推荐角色</p>
       </div>
     </section>
 
@@ -1863,6 +1871,15 @@ onBeforeUnmount(() => {
    */
   min-height: 308px;
   box-sizing: border-box;
+}
+
+/* 无推荐角色时的占位文字：外框高度已由 min-height 撑住，这里只做说明 */
+.hero-showcase-empty {
+  margin: 0;
+  padding: 24px 0;
+  text-align: center;
+  font-size: 13px;
+  color: #8a7355;
 }
 
 .hero-chibi-grid {
