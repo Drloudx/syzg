@@ -5,7 +5,7 @@
       "data/parsed/pets.json"
     ],
     "heroCount": 39,
-    "petCount": 44,
+    "petCount": 43,
     "note": "配队模拟器专用精简表；由 scripts/dev/build-sims-data.mjs 生成，勿手改"
   },
   "heroes": [
@@ -1090,24 +1090,6 @@
         "value": 8,
         "perCount": false,
         "raw": "队伍中秘术、支援职业伙伴的魔法穿透提高 {8%}。"
-      }
-    },
-    {
-      "id": "pet_105",
-      "name": "玉鳞之仙龙",
-      "element": 3,
-      "elementName": "风",
-      "monImg": "colect_mon_105",
-      "passive": {
-        "elements": [],
-        "jobs": [
-          "近卫",
-          "突袭"
-        ],
-        "stat": "生命值",
-        "value": 6,
-        "perCount": false,
-        "raw": "队伍中近卫、突袭职业伙伴的生命值提高 {6%}。"
       }
     },
     {
