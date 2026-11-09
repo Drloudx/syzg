@@ -47,13 +47,20 @@ export function buildItemAffixes(maps) {
     }
   }
 
-  // 2. 处理特殊的 5星装备词条 (散落在 reward.json 中)
+  // 2. 处理散落在 reward.json 中的装备词条
   const itemData = itemRes || {}
-  // 找出所有 category[0] === 4 且 quality === 5 的装备 typeId
-  const specialEquipIds = new Set()
+  /*
+   * 所有 category[0] === 4 的装备都可能带词缀，不限品质。
+   *
+   * 🔴 旧实现写死 `quality === 5`，导致同名的低/高品质档（如洛莉安的晚礼服
+   * 有 q4/q5/q5/q6 四档、公主之冠有 q4/q6 档）里，只有 q5 那一档拿到词条，
+   * q4 与 q6 显示为「无词条」——玩家看到的就是「紫色和红色没有词条」。
+   * 词缀本身由 reward rule 的 `prefix` 字段决定，与品质无关。
+   */
+  const equipIds = new Set()
   for (const [typeId, item] of Object.entries(itemData.datas || {})) {
-    if (item.category && item.category[0] === 4 && item.quality === 5) {
-      specialEquipIds.add(typeId)
+    if (Array.isArray(item.category) && item.category[0] === 4) {
+      equipIds.add(typeId)
     }
   }
 
@@ -64,7 +71,7 @@ export function buildItemAffixes(maps) {
     for (const group of reward.items) {
       if (!group.rules) continue
       for (const rule of group.rules) {
-        if (rule.typeId && specialEquipIds.has(rule.typeId) && rule.prefix) {
+        if (rule.typeId && equipIds.has(rule.typeId) && rule.prefix) {
           const typeId = rule.typeId
           if (!itemAffixes[typeId]) {
             itemAffixes[typeId] = []
