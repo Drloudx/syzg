@@ -33,6 +33,14 @@
 - 判定统一走 `isHiddenHero(id)`；判定「某条任务/邮件/词条是否归属隐藏角色」走 `belongsToHiddenHero(entry)`。
 - 影响出口：角色图鉴、伙伴邮件、任务图鉴（好感度事件）、词条来源角色、全局搜索（角色/碎片/邮件/好感任务）、相关模拟、模拟招募。
 
+### 魔物图鉴收录判据
+
+- 魔物进图鉴同样双条件：`pet.hide !== true`，且不在 `HIDDEN_PET_IDS`（`src/config/blacklist.js`）。
+- 判定函数 `isHiddenPet(id)`；魔物 id 取 `monId` / `typeId`。
+- **魔物蛋是物品图鉴里 `category[0] === 6` 的独立条目，其 `typeId` 就是魔物 id**；
+  魔物被隐藏时，蛋必须同步隐藏（`visibility.js` 的 `isVisible` 已接入）。
+- 影响出口：魔物图鉴（`parsed/pets.json`）、魔物蛋与收益（`parsed/pet-eggs.json`）、物品图鉴（蛋条目）、全局搜索。
+
 | 项 | 规则 |
 | --- | --- |
 | 搜索范围 | 角色资料、技能、档案、互动文本 |
