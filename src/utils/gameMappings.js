@@ -163,7 +163,7 @@ export const ITEM_CATEGORY_NAMES = {
   '132': '水果',
   '133': '蔬菜',
   '134': '菌菇',
-  '135': '调料',
+  '135': '其他',
 
   // 药水 (31) 下属
   '311': '恢复类',
@@ -215,7 +215,7 @@ export function buildFullCategoryTree(rawTree = []) {
             { type: '132', name: '水果' },
             { type: '133', name: '蔬菜' },
             { type: '134', name: '菌菇' },
-            { type: '135', name: '调料' }
+            { type: '135', name: '其他' }
           ]
         },
         { type: '14', name: '药材' },

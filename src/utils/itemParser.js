@@ -428,6 +428,17 @@ export function buildItemData(maps) {
     if (Number(category[0]) === 4 && Number(category[1]) === 46 && Number(item.equip?.position) === 7) {
       item.category = [4, 47]
     }
+    /*
+     * 食材三级分类归一化：`[1,13]` 下凡是没有第三级的，一律归入 `135`。
+     *
+     * 官方 item.json 里 8 件食材只写了 `[1,13]`、缺三级：面粉/岩盐/果酱/腌菜/
+     * 风干肉/墓地苔/荆刺花红/【未使用】干枯的树枝。不补的话它们在「食材」筛选里
+     * 只能落进「全部」，且 135 这个三级分类永远是空的。
+     * 135 的显示名同步改成「其他」（与官方 gameSetting.item_type 一致）。
+     */
+    if (Number(category[0]) === 1 && Number(category[1]) === 13 && category.length < 3) {
+      item.category = [1, 13, 135]
+    }
     if (Number(category[0]) === 3 && Number(category[1]) === 31) {
       const toxicity = Number(item.use2Info?.poison) || 0
       item.potionInfo = {
