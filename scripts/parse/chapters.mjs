@@ -445,8 +445,17 @@ export function buildChaptersFiles() {
     }
   })
 
-  if (stageIds.size !== Object.keys(levelStages).length) {
-    const orphan = Object.keys(levelStages).filter(id => !stageIds.has(id))
+  // 孤儿关卡校验：只对**可见**关卡（`hide !== true`）要求必须挂到章节。
+  //
+  // `levelStage.hide` 是官方的「不在章节地图上显示」标记，**不是废弃**——
+  // 老数据里 74/92 条都是 hide=true 却照样挂在地图上（渲染时标 hidden）。
+  // 1.7.15 起官方把 c0_2「追索（原0-2）」、c0_5「回忆」从 c0_map 上撤掉了，
+  // 它们本来就是 hide=true、页面上从来不可见，所以离场不影响任何展示。
+  // 若把这类也当孤儿报错，每次官方撤隐藏关卡都会阻断构建。
+  // 判据取 levelStage 自身的 hide，而不是「谁引用了它」。
+  const visibleStageIds = Object.keys(levelStages).filter(id => levelStages[id]?.hide !== true)
+  const orphan = visibleStageIds.filter(id => !stageIds.has(id))
+  if (orphan.length) {
     throw new Error(`[chapters] 有 ${orphan.length} 个关卡没有挂到任何章节：${orphan.join(', ')}`)
   }
 

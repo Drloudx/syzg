@@ -41,6 +41,7 @@
         :area-tag="chapterMap.areaTag"
         :current-stage-id="stageDetail?.id || ''"
         :caption="regionCaption"
+        :fixed-zoom="REGION_FIXED_ZOOM"
         :height="mapAreaHeight"
         @select="openStageById"
         @select-instance="openDungeonByNodeId"
@@ -343,6 +344,14 @@ const regionCaption = computed(() => {
   const count = chapter.stageCount ?? chapter.stages.filter(s => s.kind !== 'area').length
   return `${chapter.areaName} · ${count} 关`
 })
+
+/**
+ * 地区路线图的统一固定缩放（各章相同，不随视口变化）。
+ *
+ * 原来按「本章自己的节点范围」贴合，关卡少的章（c0 只有 3 关）会被放得比关卡多的章
+ * 明显大一号（实测 c0 88% vs c3 54%）。统一成固定 65% 后各章尺度一致，按用户要求定值。
+ */
+const REGION_FIXED_ZOOM = 0.65
 const backToWorldMap = () => { chapterId.value = 'all' }
 
 /**

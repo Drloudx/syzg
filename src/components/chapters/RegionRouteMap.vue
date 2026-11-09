@@ -127,6 +127,15 @@ const props = defineProps({
   /** 当前打开的关卡 id（高亮它在路线上的位置）。 */
   currentStageId: { type: String, default: '' },
   caption: { type: String, default: '' },
+  /**
+   * 统一固定缩放（各章同一个值，与视口尺寸无关）。
+   *
+   * 初始缩放若按「本章自己的节点范围」贴合，关卡少的章（如 c0 只有 3 关、范围扁而窄）
+   * 会被放得比关卡多的章明显大一号，章与章之间无法横向比较。
+   * 传入固定值后，所有章节用同一个 `zoom`，只各自居中。
+   * 缺省（null / ≤0）时退回按本章范围贴合。
+   */
+  fixedZoom: { type: Number, default: 0 },
   /** 可视区高度（由页面统一测量，与世界地图保持一致）。 */
   height: { type: Number, default: 640 }
 })
@@ -195,9 +204,8 @@ const handleNode = (node) => {
 }
 
 /** 节点包围盒（加边距）：初始视图贴合它，而不是整张画布——节点通常只占画布的一小块。 */
-const nodeBounds = computed(() => {
-  const nodes = props.region.nodes || []
-  if (!nodes.length) return { x: 0, y: 0, w: size.value.w, h: size.value.h }
+const boundsOf = nodes => {
+  if (!nodes || !nodes.length) return null
   const xs = nodes.map(n => Number(n.x || 0))
   const ys = nodes.map(n => Number(n.y || 0))
   const x = Math.min(...xs) - FIT_PADDING
@@ -208,7 +216,18 @@ const nodeBounds = computed(() => {
     w: Math.max(...xs) + FIT_PADDING - x,
     h: Math.max(...ys) + FIT_PADDING - y
   }
-})
+}
+
+/**
+ * 计算缩放用的范围：仅在**没有固定缩放**时使用（固定缩放下按本章节点范围居中即可）。
+ * 单位是节点坐标，含 FIT_PADDING 边距。
+ */
+const nodeBounds = computed(() =>
+  boundsOf(props.region?.nodes) || { x: 0, y: 0, w: size.value.w, h: size.value.h }
+)
+
+/** 本章节点范围：用于「居中」。 */
+const selfBounds = nodeBounds
 
 const clampZoom = value => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, value))
 
@@ -232,12 +251,13 @@ const clampPan = () => {
 
 const resetView = () => {
   const view = viewportSize()
-  const bounds = nodeBounds.value
-  const next = clampZoom(Math.min(view.w / bounds.w, view.h / bounds.h) * FIT_BOOST)
+  const center = selfBounds.value
+  // 有固定缩放（各章统一）就用它；否则按本章节点范围贴合。
+  const fixed = Number(props.fixedZoom) || 0
+  const next = clampZoom(fixed > 0 ? fixed : Math.min(view.w / center.w, view.h / center.h) * FIT_BOOST)
   zoom.value = next
-  // 让节点范围居中
-  panX.value = (view.w - bounds.w * next) / 2 - bounds.x * next
-  panY.value = (view.h - bounds.h * next) / 2 - bounds.y * next
+  panX.value = (view.w - center.w * next) / 2 - center.x * next
+  panY.value = (view.h - center.h * next) / 2 - center.y * next
   clampPan()
 }
 
@@ -320,6 +340,7 @@ onMounted(() => {
 })
 onBeforeUnmount(() => window.removeEventListener('resize', onResize))
 watch(() => props.region, () => resetView())
+watch(() => props.fixedZoom, () => resetView())
 watch(() => props.height, () => resetView())
 </script>
 
