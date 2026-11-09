@@ -81,11 +81,13 @@ const emit = defineEmits(['click'])
 .ui-filter-pill.quality-text-3.is-active { background: var(--q3); }
 .ui-filter-pill.quality-text-4.is-active { background: var(--q4); }
 .ui-filter-pill.quality-text-5.is-active { background: var(--q5); }
+.ui-filter-pill.quality-text-6.is-active { background: var(--q6); }
 .ui-filter-pill.quality-text-1.is-active,
 .ui-filter-pill.quality-text-2.is-active,
 .ui-filter-pill.quality-text-3.is-active,
 .ui-filter-pill.quality-text-4.is-active,
-.ui-filter-pill.quality-text-5.is-active {
+.ui-filter-pill.quality-text-5.is-active,
+.ui-filter-pill.quality-text-6.is-active {
   color: #2b1f15 !important;
   border-color: rgba(0, 0, 0, 0.35);
 }
@@ -132,6 +134,15 @@ const emit = defineEmits(['click'])
   background: #f7a028 !important;
   color: #281200 !important;
   border-color: #ffd072 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark-mode .ui-filter-pill.quality-text-6.is-active,
+.dark-theme .ui-filter-pill.quality-text-6.is-active {
+  background: #e72155 !important;
+  color: #fff1f5 !important;
+  border-color: #ff7098 !important;
   font-weight: 700 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }

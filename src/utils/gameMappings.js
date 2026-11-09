@@ -85,7 +85,8 @@ export const RARITY_NAMES = {
   2: '稀少',
   3: '珍贵',
   4: '罕见',
-  5: '传说'
+  5: '传说',
+  6: '神话'
 }
 export const getRarityName = (r) => RARITY_NAMES[r] || RARITY_NAMES[1]
 
@@ -95,7 +96,8 @@ export const EQUIP_QUALITY_LABELS = {
   2: '绿',
   3: '蓝',
   4: '紫',
-  5: '橙'
+  5: '橙',
+  6: '红'
 }
 
 // ---------- 物品分类完整映射（单一真相来源：包含 gameSetting.json 缺漏的二级分类） ----------
@@ -123,6 +125,7 @@ export const ITEM_CATEGORY_NAMES = {
   // 其他 (2) 下属
   '21': '结晶碎片/礼包',
   '22': '兑换代币',
+  '23': '秘境符',
   '25': '宝箱',
   '24': '旧版符石',
 
@@ -137,8 +140,8 @@ export const ITEM_CATEGORY_NAMES = {
   '43': '上衣',
   '44': '手套',
   '45': '鞋子',
-  '46': '项链',
-  '47': '戒指',
+  '46': '头饰',
+  '47': '配饰',
 
   // 收集 (5) 下属
   '51': '食谱',
@@ -225,6 +228,7 @@ export function buildFullCategoryTree(rawTree = []) {
       info: [
         { type: '21', name: '结晶碎片/礼包' },
         { type: '22', name: '兑换代币' },
+        { type: '23', name: '秘境符' },
         { type: '25', name: '宝箱' },
         { type: '24', name: '旧版符石' }
       ]
@@ -272,8 +276,8 @@ export function buildFullCategoryTree(rawTree = []) {
         { type: '43', name: '上衣' },
         { type: '44', name: '手套' },
         { type: '45', name: '鞋子' },
-        { type: '46', name: '项链' },
-        { type: '47', name: '戒指' }
+        { type: '46', name: '头饰' },
+        { type: '47', name: '配饰' }
       ]
     },
     {
@@ -331,13 +335,14 @@ export function resolveItemCategoryTags(category = []) {
 
 // 品质原色/背景色统一从 theme.css 变量读取（--qN 原色 / --qN-bg 浅底）。
 // 仅作为读取失败时的兜底（数值与 theme.css 一致）；网页文字类另用 --qN-text。
-const Q_COLOR_FALLBACK = { 1: '#cfba96', 2: '#a7c037', 3: '#3fa2ff', 4: '#ee62f1', 5: '#ffb64d' }
+const Q_COLOR_FALLBACK = { 1: '#cfba96', 2: '#a7c037', 3: '#3fa2ff', 4: '#ee62f1', 5: '#ffb64d', 6: '#e72155' }
 const Q_BG_FALLBACK = {
   1: 'rgba(111,91,60,0.12)',
   2: 'rgba(167,192,55,0.22)',
   3: 'rgba(63,162,255,0.20)',
   4: 'rgba(238,98,241,0.19)',
-  5: 'rgba(255,182,77,0.24)'
+  5: 'rgba(255,182,77,0.24)',
+  6: 'rgba(231,33,85,0.20)'
 }
 
 // ---------- 大地图名（c0~c5_map -> 地图名；也支持 c0~c5 / C0~C5 归一化） ----------

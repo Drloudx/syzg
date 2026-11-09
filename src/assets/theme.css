@@ -148,11 +148,14 @@
   --q3: #3fa2ff;
   --q4: #ee62f1;
   --q5: #ffb64d;
+  /* 品质 6「神话」：游戏原色 Const.QualityColorString[6] = #e72155（红） */
+  --q6: #e72155;
   --q1-border: var(--q1);
   --q2-border: var(--q2);
   --q3-border: var(--q3);
   --q4-border: var(--q4);
   --q5-border: var(--q5);
+  --q6-border: var(--q6);
 
   /* 浅色羊皮纸上的可读文字色；不替代游戏原色，仅用于文字。 */
   --q1-text: #6f5b3c;
@@ -160,6 +163,7 @@
   --q3-text: #1768a8;
   --q4-text: #a536aa;
   --q5-text: #b15d00;
+  --q6-text: #c01048;
 
   /* 品质背景色（与 .quality-bg-N 一致；供 JS getQualityColors 读取，唯一来源） */
   --q1-bg: rgba(111, 91, 60, 0.12);
@@ -167,6 +171,7 @@
   --q3-bg: rgba(63, 162, 255, 0.20);
   --q4-bg: rgba(238, 98, 241, 0.19);
   --q5-bg: rgba(255, 182, 77, 0.24);
+  --q6-bg: rgba(231, 33, 85, 0.20);
   /* 叠加在插画上的品质角标底，保持不透明以确保文字可读。 */
   --quality-label-bg: rgba(239, 226, 196, 0.96);
 }
@@ -253,21 +258,25 @@ html:has(.app-container.is-native-shell) {
   --q3: #56b0ff;
   --q4: #f377f6;
   --q5: #ffbe5e;
+  --q6: #ff5a80;
   --q1-text: #cbb898;
   --q2-text: #b5ce44;
   --q3-text: #56b0ff;
   --q4-text: #f377f6;
   --q5-text: #ffbe5e;
+  --q6-text: #ff5a80;
   --q1-border: rgba(180, 160, 130, 0.45);
   --q2-border: rgba(125, 165, 55, 0.65);
   --q3-border: rgba(55, 130, 195, 0.65);
   --q4-border: rgba(165, 75, 175, 0.65);
   --q5-border: rgba(215, 145, 45, 0.75);
+  --q6-border: rgba(215, 45, 85, 0.75);
   --q1-bg: rgba(203, 184, 152, 0.06);
   --q2-bg: rgba(181, 206, 68, 0.08);
   --q3-bg: rgba(86, 176, 255, 0.08);
   --q4-bg: rgba(243, 119, 246, 0.08);
   --q5-bg: rgba(255, 190, 94, 0.09);
+  --q6-bg: rgba(255, 90, 128, 0.10);
   --quality-label-bg: rgba(43, 31, 21, 0.94);
 }
 
@@ -439,24 +448,27 @@ input, textarea, select {
   letter-spacing: 1px;
 }
 
-/* ====== 4. 品质（稀有度）系统 —— 全站统一灰/绿/蓝/紫/橙 ====== */
+/* ====== 4. 品质（稀有度）系统 —— 全站统一灰/绿/蓝/紫/橙/红 ====== */
 .quality-text-1 { color: var(--q1-text) !important; }
 .quality-text-2 { color: var(--q2-text) !important; }
 .quality-text-3 { color: var(--q3-text) !important; }
 .quality-text-4 { color: var(--q4-text) !important; }
 .quality-text-5 { color: var(--q5-text) !important; }
+.quality-text-6 { color: var(--q6-text) !important; }
 
 .quality-bg-1 { background-color: var(--q1-bg) !important; }
 .quality-bg-2 { background-color: var(--q2-bg) !important; }
 .quality-bg-3 { background-color: var(--q3-bg) !important; }
 .quality-bg-4 { background-color: var(--q4-bg) !important; }
 .quality-bg-5 { background-color: var(--q5-bg) !important; }
+.quality-bg-6 { background-color: var(--q6-bg) !important; }
 
 .quality-border-1 { border-color: var(--q1-border, var(--q1)) !important; }
 .quality-border-2 { border-color: var(--q2-border, var(--q2)) !important; }
 .quality-border-3 { border-color: var(--q3-border, var(--q3)) !important; }
 .quality-border-4 { border-color: var(--q4-border, var(--q4)) !important; }
 .quality-border-5 { border-color: var(--q5-border, var(--q5)) !important; }
+.quality-border-6 { border-color: var(--q6-border, var(--q6)) !important; }
 
 .rarity-badge {
   display: inline-block;
@@ -473,7 +485,9 @@ input, textarea, select {
 .badge-3 { background: var(--q3); }
 .badge-4 { background: var(--q4); }
 .badge-5 { background: var(--q5); }
+.badge-6 { background: var(--q6); }
 
+.rarity-bg-6 { background: var(--q6); }
 .rarity-bg-5 { background: var(--q5); }
 .rarity-bg-4 { background: var(--q4); }
 .rarity-bg-3 { background: var(--q3); }

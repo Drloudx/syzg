@@ -84,6 +84,11 @@ export function buildRemainingItemSources(maps, existingSources = {}) {
     }
     for (const [itemId, qualitySet] of groups) {
       const qualityList = [...qualitySet].sort((a, b) => a - b)
+      /*
+       * 这里判断的是「分解奖励是否覆盖了分解系统支持的全部品质」。
+       * 分解表 equipDec 实际只配了品质 1~5（神话装备不参与分解），
+       * 因此基准仍是 [1,2,3,4,5]，不能因为新增了品质 6 就跟着加。
+       */
       const restriction = [1, 2, 3, 4, 5].every(quality => qualitySet.has(quality))
         ? '' : ` · ${qualityList.map(getRarityName).join('、')}`
       add(itemId, { type: 'dismantle', id: level, name: '装备分解',

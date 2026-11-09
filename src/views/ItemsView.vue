@@ -55,7 +55,7 @@
       <UiFilterRow label="稀有度：">
         <UiFilterPill :active="selectedRarity === null" @click="selectedRarity = null">全部</UiFilterPill>
         <UiFilterPill
-          v-for="r in [1, 2, 3, 4, 5]"
+          v-for="r in [1, 2, 3, 4, 5, 6]"
           :key="r"
           :quality="r"
           :active="selectedRarity === r"

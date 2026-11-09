@@ -776,7 +776,7 @@ const enhanceRatePercent = computed(() => Math.round(equipEnhanceConfig.value.at
 const enhanceBonusPercent = computed(() => Math.round(selectedEnhanceLevel.value * equipEnhanceConfig.value.attUp * 100))
 
 const availableQualities = computed(() => {
-  if (!props.item || props.item.itemType !== 2) return new Set([1, 2, 3, 4, 5])
+  if (!props.item || props.item.itemType !== 2) return new Set([1, 2, 3, 4, 5, 6])
 
   // 1. 如果有锻造配方，以配方中能产出的品质为准 (如 [3, 4, 5])
   if (smithingRecipes.value.length) {
@@ -791,10 +791,15 @@ const availableQualities = computed(() => {
 
   // 2. 否则（传说装备、固定装备、首饰等），以物品自身品质为准
   const q = Number(props.item.quality)
-  if (q >= 1 && q <= 5) {
+  /*
+   * 品质上限是 6（神话）。旧代码写死 `q <= 5`，品质 6 的装备会掉进兜底的
+   * `new Set([5])`，属性预览按传说系数 1.3 计算 —— 实测洛莉安晚礼服 q6
+   * 生命应为 888×1.45=1288，却显示 888×1.3≈1154。这里放开到 6。
+   */
+  if (q >= 1 && q <= 6) {
     return new Set([q])
   }
-  return new Set([5])
+  return new Set([q >= 1 ? q : 5])
 })
 
 watch(() => props.item, (newVal) => {
