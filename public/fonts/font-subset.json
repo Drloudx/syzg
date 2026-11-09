@@ -2,9 +2,9 @@
   "generator": "scripts/dev/subset-fonts.mjs",
   "note": "由 --apply 生成；--check（npm run verify 内）会核对字符集 sha256 与子集文件，数据更新后必须重新生成。",
   "charset": {
-    "count": 4296,
-    "contentCount": 3831,
-    "sha256": "3da30c35c06016bda06b72c8ba21909991991670532d29fb6e603ee02222a101"
+    "count": 4392,
+    "contentCount": 3927,
+    "sha256": "8382bb17d9177144250b0e7ca6f754dd396b21ffcf34b46ecdaf5022b4e919d3"
   },
   "inputs": [
     {
@@ -30,19 +30,19 @@
       "source": "HarmonyOS_Sans_SC_Regular.woff2",
       "output": "HarmonyOS_Sans_SC_Regular.subset.woff2",
       "sourceBytes": 4279448,
-      "outputBytes": 498460,
+      "outputBytes": 509800,
       "sourceGlyphs": 29063,
-      "glyphs": 4035,
-      "charsetCount": 4296
+      "glyphs": 4119,
+      "charsetCount": 4392
     },
     "Bold": {
       "source": "HarmonyOS_Sans_SC_Bold.woff2",
       "output": "HarmonyOS_Sans_SC_Bold.subset.woff2",
       "sourceBytes": 4403824,
-      "outputBytes": 504216,
+      "outputBytes": 516624,
       "sourceGlyphs": 29063,
-      "glyphs": 4035,
-      "charsetCount": 4296
+      "glyphs": 4119,
+      "charsetCount": 4392
     }
   }
 }
