@@ -4,7 +4,7 @@
  * 对应原 scripts/clean-data.js（等价迁移；不再生成无引用的 roles.json / equips.json）。
  * 不依赖网络与浏览器，Node 构建脚本（scripts/parse/*.mjs）共用。
  */
-import { isBlacklisted, isHiddenHero, belongsToHiddenHero } from '../config/blacklist.js'
+import { isBlacklisted, isHiddenHero, belongsToHiddenHero, isHiddenPet } from '../config/blacklist.js'
 import {
   JOB_NAMES,
   ELEMENT_NAMES,
@@ -432,6 +432,8 @@ export function buildSearchData(maps) {
   const rawPetData = petJson || {}
   const petList = []
   Object.values(rawPetData.datas || {}).forEach(p => {
+    // 手工隐藏魔物（blacklist.js HIDDEN_PET_IDS）不进搜索
+    if (isHiddenPet(p.monId || p.typeId)) return
     const star = p.star || 1
     const starDisplay = star + 2
     petList.push({
@@ -565,7 +567,10 @@ export function buildSearchData(maps) {
       subTag: r.element,
       keywords: `${r.name} ${r.class} ${r.element} ${r.desc} ${r.skillName}`.toLowerCase()
     })),
-    ...rawItems.filter(i => (!i.typeId || !i.typeId.startsWith('show_')) && !isBlacklisted(i)).flatMap(i => {
+    ...rawItems.filter(i => (!i.typeId || !i.typeId.startsWith('show_')) && !isBlacklisted(i)
+      // 隐藏魔物的蛋（category[0] === 6）不进搜索，见 blacklist.js HIDDEN_PET_IDS
+      && !(Number((Array.isArray(i.category) ? i.category : [i.category])[0]) === 6 && isHiddenPet(String(i.typeId || '')))
+    ).flatMap(i => {
       const categoryTags = resolveItemCategoryTags(i.category)
       const isEquip = i.category && String(i.category[0]) === '4'
       const fragHero = getFragmentHeroName(i)

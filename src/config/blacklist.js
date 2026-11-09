@@ -154,6 +154,31 @@ export const belongsToHiddenHero = (entry) => {
 }
 
 /**
+ * 手动维护的「隐藏魔物」名单 —— 与角色名单同口径、同入口。
+ *
+ * 这些魔物在**所有出口**统一隐藏：魔物图鉴、魔物蛋图鉴、魔物收益、全局搜索。
+ * 页面统一调 `isHiddenPet(id)`，不要各自复制规则。
+ *
+ * 判据是魔物 id（`pet` 表的 `monId` / `typeId`），不做名字模糊匹配。
+ */
+export const HIDDEN_PET_IDS = Object.freeze([
+    'pet_105', // 玉鳞之仙龙
+])
+
+const HIDDEN_PET_SET = new Set(HIDDEN_PET_IDS)
+
+/**
+ * 是否属于「手工隐藏魔物」。
+ * @param {string} petId 魔物 id（如 `pet_105`）；也接受只含 id 的对象
+ */
+export const isHiddenPet = (petId) => {
+    const id = typeof petId === 'object' && petId !== null
+        ? String(petId.id ?? petId.monId ?? petId.typeId ?? '')
+        : String(petId ?? '')
+    return HIDDEN_PET_SET.has(id)
+}
+
+/**
  * 校验目标条目是否属于全局黑名单
  * @param {Object|string|number} item 支持 { id, name, typeId } 对象或字符串/数字
  * @returns {boolean} true 表示属于黑名单(应当被隐藏)

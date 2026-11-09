@@ -2,6 +2,7 @@ import { fetchWithFallback } from './request.js'
 import { createCachedLoader } from './resourceClient.js'
 import { ELEMENT_NAMES, getCleanSkillName } from './gameMappings.js'
 import { resolvePlayablePlayerLevelCap } from './levelConfig.js'
+import { isHiddenPet } from '../config/blacklist.js'
 
 let cachedPets = null
 let cachedPetLevel = null
@@ -23,6 +24,8 @@ export function buildPetData(maps) {
 
   const processedPets = Object.entries(petDatas).map(([key, pet]) => {
       if (pet.hide === true) return null
+      // 手工隐藏魔物（见 blacklist.js HIDDEN_PET_IDS）
+      if (isHiddenPet(pet.monId || pet.typeId || key)) return null
 
       const typeId = pet.typeId || key
       const star = pet.star || 1

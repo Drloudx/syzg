@@ -15,7 +15,7 @@
  * 判据是「扫全部来源表后，只有 c4/c5 来源」——构建期算一次即可。
  * 运行时读 `parsed/chapter-lock.json` 的 id 集合，零成本。
  */
-import { isBlacklisted, isEquipTierHidden } from './blacklist.js'
+import { isBlacklisted, isEquipTierHidden, isHiddenPet } from './blacklist.js'
 
 /** 章节锁定 id 集合。构建产物，加载前为空集合（不隐藏任何东西，避免闪空）。 */
 let chapterLockedIds = new Set()
@@ -61,6 +61,13 @@ export function isVisible(item) {
 
   /* ① 手写黑名单 */
   if (isBlacklisted(item)) return false
+
+  /*
+   * ①b 隐藏魔物的蛋：魔物蛋在物品图鉴里是一条 category[0] === 6 的物品，
+   * 其 typeId 就是魔物 id。魔物本身已按 HIDDEN_PET_IDS 隐藏，蛋不能单独留着。
+   */
+  const categories = Array.isArray(item.category) ? item.category : [item.category]
+  if (Number(categories[0]) === 6 && isHiddenPet(String(item.typeId ?? item.id ?? ''))) return false
 
   /* ② 装备品阶 */
   if (isEquipTierHidden(item)) return false

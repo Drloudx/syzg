@@ -3,6 +3,8 @@
  * 与 PetsEggsView.vue 的处理逻辑保持一致（eggImg 为相对 key，渲染时由视图包 getImageUrl）。
  * 不依赖网络与浏览器，Node 构建脚本（scripts/parse/*.mjs）与浏览器共用。
  */
+import { isHiddenPet } from '../config/blacklist.js'
+
 export const PET_DISPOSAL_RULE = Object.freeze({
   feedBelow: 2.2,
   sellAbove: 3.0
@@ -52,7 +54,8 @@ export function calcPetDisposalRecommendation(sellPrice, exp) {
 
 export function buildPetEggsData(maps) {
   const { petJson } = maps
-  const rawList = Object.values(petJson.datas || {})
+  // 手工隐藏魔物（blacklist.js HIDDEN_PET_IDS）：蛋图鉴与收益一并排除
+  const rawList = Object.values(petJson.datas || {}).filter(p => !isHiddenPet(p.monId || p.typeId))
 
   const formatEggTime = (seconds) => {
     const mins = Math.floor(seconds / 60)
