@@ -6,6 +6,7 @@ import { JOB_NAMES, ELEMENT_NAMES, BASE_REWARD_ICONS, REWARD_MODE_INFO, getClean
 import { buildSkillMechanics, buildTalentMechanics, buildSummonMechanics, resolveSummonConfig } from './heroMechanics.js'
 import { buildPartnerMailboxes, parseHeroMail } from './partnerMailData.js'
 import { describeBuff } from './buffParser.js'
+import { isHiddenHero } from '../config/blacklist.js'
 
 let cachedHeroes = null
 let cachedMailboxes = null
@@ -109,6 +110,8 @@ export function buildHeroData(maps) {
     const processedHeroes = Object.keys(heroDatas).map(key => {
       const h = heroDatas[key]
       if (h.hide === true) return null
+      // 手工隐藏角色（预埋/不可实得，如 059/070/047），见 blacklist.js 的 HIDDEN_HERO_IDS
+      if (isHiddenHero(h.typeId || key)) return null
 
       const typeId = h.typeId || key
       const rare = h.rare || 3

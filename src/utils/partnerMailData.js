@@ -1,5 +1,6 @@
 import { parseRewardGroups, REWARD_MODE_INFO } from './acquisitionRules.js'
 import { getItemImageUrl } from './itemParser.js'
+import { isHiddenHero } from '../config/blacklist.js'
 
 // EmailItemTemp.Init(HeroMailData): always use the colored variant in the catalogue.
 export function getPartnerMailPresentation(mail) {
@@ -49,6 +50,8 @@ export function parseHeroMail(id, { mailDatas, archivesDatas, rewards, items }) 
 export function buildPartnerMailboxes({ heroDatas, ...context }) {
   const mailboxes = new Map()
   for (const [id, source] of Object.entries(context.mailDatas)) {
+    // 隐藏角色（预埋/不可实得）的发件箱一律不出，见 blacklist.js HIDDEN_HERO_IDS
+    if (isHiddenHero(source.heroTypeId)) continue
     const hero = heroDatas[source.heroTypeId]
     if (!hero) throw new Error(`邮件 ${id} 缺少发件人配置 ${source.heroTypeId}`)
     const mail = parseHeroMail(id, context)

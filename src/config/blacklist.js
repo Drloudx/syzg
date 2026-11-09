@@ -95,6 +95,65 @@ export const EXACT_BLACKLIST = [
 ]
 
 /**
+ * 手动维护的「隐藏角色」名单 —— 全站唯一入口。
+ *
+ * 这里的角色在**所有出口**统一隐藏：角色图鉴、伙伴邮件、任务图鉴（含好感度事件）、
+ * 词条「来源角色」、全局搜索、相关模拟、模拟招募。
+ * 页面不要再各自复制规则，统一调 `isHiddenHero(id)`。
+ *
+ * ## 为什么需要手工名单，而不是靠 `hero.hide`
+ * `hero.hide` 是官方「图鉴不显示」标记，但官方并没有把**所有预埋角色**都标上：
+ *   · hero_059 菲娜 / hero_070 露库希安：`hide` 为空，所属势力是「未知界域」
+ *     （桃源乡 / 世界树的枝桠），既不在任何卡池、碎片道具只存在于 `banshu005`
+ *     （`category:['测试']`），试用活动 startTime 还写着 2925 年 —— 是预埋占位角色。
+ *   · hero_047 阿迪拉：1.7.15 官方解除了 `hide`，但碎片 item_59047 仍只在测试包里，
+ *     二测/付费测都不可实得。
+ * 这三条都属于「有完整数据但玩家拿不到」，与图鉴口径不符，故手工列出。
+ *
+ * ## 只隐藏「角色相关」，不隐藏其它
+ * 判定只看角色 id，不做名字模糊匹配 —— 避免误伤同名物品/任务。
+ */
+export const HIDDEN_HERO_IDS = Object.freeze([
+    'hero_059', // 菲娜，未知界域·桃源乡，预埋
+    'hero_070', // 露库希安，未知界域·世界树的枝桠，预埋
+    'hero_047', // 阿迪拉，碎片仅测试包发放，付费测不可实得
+])
+
+const HIDDEN_HERO_SET = new Set(HIDDEN_HERO_IDS)
+
+/**
+ * 是否属于「手工隐藏角色」。
+ * @param {string} heroId 角色 id（如 `hero_047`）；也接受只含 id 的对象
+ */
+export const isHiddenHero = (heroId) => {
+    const id = typeof heroId === 'object' && heroId !== null
+        ? String(heroId.id ?? heroId.typeId ?? '')
+        : String(heroId ?? '')
+    return HIDDEN_HERO_SET.has(id)
+}
+
+/**
+ * 判定一条**任务/邮件/词条**是否归属于隐藏角色。
+ *
+ * 不同产物的「角色归属」字段不同，这里统一收口：
+ *   · 邮件：`heroTypeId`
+ *   · 好感度任务：id 形如 `fav_hero_047_1`
+ *   · 词条的来源角色：直接传 id
+ * 命中任一即视为归属隐藏角色。
+ */
+export const belongsToHiddenHero = (entry) => {
+    if (!entry) return false
+    if (typeof entry === 'string') return isHiddenHero(entry)
+    const direct = entry.heroTypeId ?? entry.heroId ?? entry.hero_id ?? entry.typeId ?? entry.id
+    if (direct && isHiddenHero(direct)) return true
+    // 好感度任务 id：fav_hero_047_1 → hero_047
+    const idStr = String(entry.id ?? entry.typeId ?? '')
+    const m = /^fav_hero_(\d+)(?:_|$)/.exec(idStr)
+    if (m) return isHiddenHero('hero_' + m[1].padStart(3, '0'))
+    return false
+}
+
+/**
  * 校验目标条目是否属于全局黑名单
  * @param {Object|string|number} item 支持 { id, name, typeId } 对象或字符串/数字
  * @returns {boolean} true 表示属于黑名单(应当被隐藏)

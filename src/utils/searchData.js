@@ -4,7 +4,7 @@
  * 对应原 scripts/clean-data.js（等价迁移；不再生成无引用的 roles.json / equips.json）。
  * 不依赖网络与浏览器，Node 构建脚本（scripts/parse/*.mjs）共用。
  */
-import { isBlacklisted } from '../config/blacklist.js'
+import { isBlacklisted, isHiddenHero, belongsToHiddenHero } from '../config/blacklist.js'
 import {
   JOB_NAMES,
   ELEMENT_NAMES,
@@ -30,6 +30,10 @@ function buildTaskSearchList(maps) {
     const isDemo = cat.includes('demo') || cat.includes('demo支线') || String(t.typeId || '').startsWith('demo_')
     const isPartnerArchive = cat.length === 1 && cat[0] === '伙伴档案'
     if (isDemo || isPartnerArchive) continue
+    // 隐藏角色的好感度事件不进搜索，与任务页同一判据（blacklist.js HIDDEN_HERO_IDS）
+    if (belongsToHiddenHero({ id: t.typeId, heroTypeId: t.heroTypeId })) continue
+    // 特殊章节（SP1 幽夜古堡 / SP2 黏滑溪谷）整章不进搜索，与任务页同口径
+    if (['SP1', 'SP2'].includes(cat[1])) continue
     const typeLabel = TASK_TYPE_LABELS[t.taskType] || '任务'
     const subLabel = cat[1] || ''
     list.push({
@@ -229,6 +233,8 @@ function buildPartnerMailSearchList(maps) {
 
   for (const [id, m] of Object.entries(heroMails)) {
     if (!m || !m.title) continue
+    // 隐藏角色的邮件不进全局搜索，见 blacklist.js HIDDEN_HERO_IDS
+    if (isHiddenHero(m.heroTypeId)) continue
     const hero = heroes[m.heroTypeId] || {}
     const heroName = hero.name || ''
     if (!heroName) continue
@@ -394,7 +400,7 @@ export function buildSearchData(maps) {
   // ---------- 1. Roles ----------
   const heroDatas = heroJson?.datas || {}
   const rawRoles = Object.values(heroDatas)
-    .filter(h => h.hide !== true)
+    .filter(h => h.hide !== true && !isHiddenHero(h.typeId))
     .map(h => ({
       id: h.typeId,
       type: 'role',
@@ -563,6 +569,15 @@ export function buildSearchData(maps) {
       const categoryTags = resolveItemCategoryTags(i.category)
       const isEquip = i.category && String(i.category[0]) === '4'
       const fragHero = getFragmentHeroName(i)
+      /*
+       * 隐藏角色的碎片道具不进搜索：碎片是「角色 id + 碎片」派生出来的，
+       * 角色本身已隐藏，碎片再留着就是点进去查无此人的断链。
+       * 用 roleNameById 反查碎片所属角色 id 再判 isHiddenHero。
+       */
+      if (fragHero) {
+        const fragHeroId = Object.keys(roleNameById).find(id => roleNameById[id] === fragHero)
+        if (fragHeroId && isHiddenHero(fragHeroId)) return []
+      }
       const fragSuffix = (i.name || '').match(/x\d+$/)?.[0] || ''
       const fragDisplayName = fragHero ? (i.name.includes(fragHero) ? i.name : `${fragHero}碎片${fragSuffix}`) : i.name
       const fragKeywords = fragHero ? ` ${fragDisplayName} ${fragHero}碎片` : ''

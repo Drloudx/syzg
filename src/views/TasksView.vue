@@ -377,7 +377,7 @@ import { TASK_TYPE_LABELS, cleanDialogueLine, resolveRegionName } from '../utils
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { fetchWithFallback, prefetchResourceManifest } from '../utils/request.js'
 import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
-import { isBlacklisted } from '../config/blacklist.js'
+import { isBlacklisted, belongsToHiddenHero } from '../config/blacklist.js'
 import CommentsPanel from '../components/CommentsPanel.vue'
 import { buildPageKey, COMMENT_PAGE_PREFIX } from '../utils/commentApi.js'
 
@@ -387,6 +387,13 @@ const router = useRouter()
 // ===== 开发者开关：true 时隐藏“已下架”任务（面向公开用户）=====
 // 改成 false 则显示已下架任务（卡片上仍带灰色“已下架”徽标）
 const HIDE_CLOSED_TASKS = true
+
+/**
+ * 特殊章节代号 → 地区名。
+ * `resolveRegionName()` 只认 cN 与地区名，不认 SP1/SP2；这里补齐，让任务页的
+ * 地区黑名单能命中「幽夜古堡」「黏滑溪谷」这两个特殊章节（黑名单里已有这两个名字）。
+ */
+const SP_SUBKEY_REGION = { SP1: '幽夜古堡', SP2: '黏滑溪谷' }
 
 const tasks = shallowRef([])
 /**
@@ -630,12 +637,25 @@ const filteredTasks = computed(() => {
          *
          * ⚠️ `place` 必须是**数组**：blacklist 里写的是 `...item.place`，
          * 直接传字符串会被按字符展开（"霜烬平原" → "霜 烬 平 原"），反而匹配不上。
+         *
+         * 🔴 `subKey` 也要送：SP1/SP2 是**特殊章节**（幽夜古堡 / 黏滑溪谷），
+         * 它们的任务 `subLabel` 就是 `SP1`/`SP2`，`resolveRegionName()` 里没有这两个
+         * 代号（只有 cN ↔ 地区名），会返回空 → 黑名单匹配不到 → **整章漏出**
+         * （实测 30 条 SP 任务在任务页可见，而这两章在游戏里本就不在世界地图上）。
+         * 直接把 `subKey` 放进 `place`，让黑名单里的「幽夜古堡」「黏滑溪谷」命中；
+         * 同时补一条字母代号兜底（见下）。
          */
-        place: [resolveRegionName(item.subLabel)].filter(Boolean)
+        place: [resolveRegionName(item.subLabel), SP_SUBKEY_REGION[item.subKey]].filter(Boolean)
       })
     ) {
       return false
     }
+    /*
+     * 隐藏角色的好感度事件（fav_hero_047_1 这类）不出现在任务图鉴。
+     * 判据统一走 `belongsToHiddenHero`，名单见 blacklist.js HIDDEN_HERO_IDS ——
+     * 与角色图鉴、伙伴邮件是同一份，不各自维护。
+     */
+    if (belongsToHiddenHero(item)) return false
     if (filterType.value !== 'all' && String(item.type) !== filterType.value) return false
     if (filterSub.value && item.subKey !== filterSub.value) return false
     if (searchQuery.value.trim()) {
