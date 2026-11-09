@@ -925,6 +925,13 @@ export function parseEquipSuit(item) {
 
 /**
  * 解析装备词条
+ *
+ * 词缀 key 形如 `equip_sp0201_2`，不是 `skillTrigger.json` 的 id ——
+ * 它是 `equipGlobalConfig.prefixPool` 的键，值给出 `{ skillTriggerId, level, name }`。
+ * 真正的描述在 `skillTrigger[skillTriggerId].levelData[level].des`。
+ *
+ * 旧实现直接把 `equip_sp0201_2` 当 skillTrigger id 查，永远查不到，
+ * 于是所有 5 星装备的「可携带效果」都渲染不出来。
  */
 export function parseItemAffixes(item) {
   if (!item || !cachedItemAffixes) return null;
@@ -932,28 +939,35 @@ export function parseItemAffixes(item) {
   const affixGroups = cachedItemAffixes[item.typeId];
   if (!affixGroups || !Array.isArray(affixGroups)) return null;
 
+  const prefixPool = cachedEquipGlobalConfig?.prefixPool || {};
   const resultGroups = [];
   const seenPrefixes = new Set();
-  
+
   for (const group of affixGroups) {
     if (!group.prefixes || !Array.isArray(group.prefixes)) continue;
-    
+
     const parsedPrefixes = group.prefixes.filter(prefixId => {
       if (seenPrefixes.has(prefixId)) return false;
       seenPrefixes.add(prefixId);
       return true;
     }).map(prefixId => {
-      const skillData = cachedSkillTriggers?.[prefixId];
+      // ① 优先按 prefixPool 解析：key → { skillTriggerId, level }
+      const poolEntry = prefixPool[prefixId];
+      const triggerId = poolEntry?.skillTriggerId || prefixId;
+      const levelKey = poolEntry?.level ? String(poolEntry.level) : null;
+
+      const skillData = cachedSkillTriggers?.[triggerId];
       if (!skillData || !skillData.levelData) return null;
-      
-      const levelData = skillData.levelData['1'];
+
+      // ② 有 level 就用对应档，否则退回 1 档
+      const levelData = (levelKey && skillData.levelData[levelKey]) || skillData.levelData['1'];
       if (!levelData || !levelData.des) return null;
-      
+
       const formattedDes = levelData.des.replace(/\{([^}]+)\}/g, "<span class='affix-val' style='color: #3b82f6;'>$1</span>");
-      
+
       return {
         id: prefixId,
-        skillName: levelData.skillName || '',
+        skillName: poolEntry?.name || levelData.skillName || '',
         desHtml: formattedDes
       };
     }).filter(Boolean);

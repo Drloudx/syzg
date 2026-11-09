@@ -271,13 +271,11 @@ test('current raw tables produce the formal catalog and only the four known miss
     'build_roomOutdoor_yma10_', 'build_roomWin_',
     'build_room_czj_chuang', 'build_room_mzh_qiangti04_win', 'build_room_mzhsn_chuang00'
   ]
-  const baselineMissing = [
-    'build_roomLittle_yma7_2',
-    'build_roomLittle_yma8_2',
-    'build_roomLittle_yma8_3',
-    'build_roomOther_xca4_1'
-  ]
-  for (const icon of baselineMissing) assert.ok(missing.includes(icon), `旧基线缺失不应消失：${icon}`)
+  /*
+   * 旧基线缺失的 4 个图标已用模型贴图补成正式图标（2026-11-10），
+   * 这里不再要求它们「保持缺失」——只校验「没有意料之外的新缺失」。
+   */
+  const baselineMissing = []
   const unexpected = missing.filter(icon =>
     !baselineMissing.includes(icon) && !KNOWN_UNAVAILABLE_PREFIXES.some(prefix => icon.startsWith(prefix))
   )
