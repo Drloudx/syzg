@@ -133,9 +133,19 @@ function formatConditionRule(rule, tasks, battles) {
 
   if (rule?.type === 'passTask' && para.typeId) {
     const taskId = String(para.typeId)
-    const step = Math.max(0, Number.parseInt(para.step, 10) || 0)
+    /*
+     * `step < 0`（官方用 `-1`）表示「完成整条任务」，不是第 -1 步。
+     * 旧代码 `Math.max(0, parseInt(step)||0)` 会渲染成「第 0 步」这种不存在的东西。
+     * 1.7.15 起 m_0_2 的解锁条件改成 step=-1，这条才暴露出来。
+     * 依据：源码 `CheckConditions` 里 passTask 的 step<0 即整条完成。
+     */
+    const rawStep = Number.parseInt(para.step, 10)
+    const step = Number.isFinite(rawStep) ? rawStep : 0
     const task = tasks[taskId]
     const taskName = task?.name ? `《${task.name}》` : `任务 ${taskId} `
+    if (step < 0) {
+      return required ? `完成${taskName}` : `尚未完成${taskName}`
+    }
     const stepName = step > 0 ? trimSentenceEnd(asArray(task?.steps)[step - 1]?.stepName) : ''
     const target = `${taskName}第 ${step} 步${stepName ? `「${stepName}」` : ''}`
     return required ? `完成${target}` : `尚未完成${target}`

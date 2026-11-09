@@ -143,8 +143,26 @@ export function buildSupplementalItemSources(maps) {
 
   // 章节表的 hide 是解锁前地图显示状态，不代表测试/废弃关卡。
   const battles = table(maps.battleJson)
+
+  /*
+   * 只认**地图上真实挂载**的关卡。
+   *
+   * `levelStage` 表里存着所有关卡（含官方已从地图上撤下的），但玩家只能打到
+   * 地图节点上的关卡。1.7.15 把 c0_2「追索（原0-2）」、c0_5「回忆」从 c0_map
+   * 撤掉后，它们就成了不可达关卡——再把它们的 reward 当「关卡掉落」写进物品来源，
+   * 等于告诉用户一个点不开的出处（跳转会落空）。
+   * 判据用 area.map.levelStage 的挂载关系，与 `chapters.json` 实际渲染的关卡一致。
+   */
+  const mountedStageIds = new Set()
+  for (const area of Object.values(table(maps.areaJson))) {
+    if (!area || !area.map) continue
+    for (const node of (area.map.levelStage || [])) mountedStageIds.add(node.typeId)
+  }
+  const stageOnMap = stage => mountedStageIds.size === 0 || mountedStageIds.has(stage.typeId)
+
   for (const stage of Object.values(table(maps.levelStageJson))) {
     if (!stage.name || internal(stage.name) || !/^c\d+_/.test(stage.typeId || '')) continue
+    if (!stageOnMap(stage)) continue
     /*
      * 关卡掉落的归并口径：**同一关卡三个难度合成一条**，名字只写 `x-x 关卡名`。
      *

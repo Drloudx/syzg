@@ -622,7 +622,7 @@ export function extractSkillTriggerConditions(aiModel) {
 }
 
 
-function getMonsterPortrait(m, key) {
+function getMonsterPortrait(m, key, monIcon = '') {
   const typeId = String(m?.typeId || key || '')
   if (typeId.includes('023_egg')) {
     return 'colect_mon_021' // 023_egg 复用母体 Mon_021 的游戏立绘
@@ -630,6 +630,18 @@ function getMonsterPortrait(m, key) {
   if (typeId.includes('003_egg')) {
     return 'colect_mon_003_egg'
   }
+
+  /*
+   * 🔴 `fileMon.monIcon` 是官方图鉴表直接给出的立绘图集名，**优先用它**。
+   *
+   * 旧实现靠 `getMonsterIcon(mon.icon, skinName)` + `KNOWN_PORTRAITS` 白名单推导，
+   * 遇到两类情况会推错：
+   *   · 皮肤后缀拼出来的名字图集里没有（`colect_mon_115_skina`、`colect_mon_056_5_004`），
+   *   · 白名单里没有新怪物（1.7.15 新增 102/103/104/115 等）。
+   * `monIcon` 是策划填的权威值，实测 75/75 全部能在图集中命中。
+   * 保留旧推导只作为 `monIcon` 为空时的兜底。
+   */
+  if (monIcon) return monIcon
 
   const skinName = m?.viewData?.skinName || ''
 
@@ -1214,7 +1226,11 @@ export function buildMonsterData(maps) {
       processed.tabLabel = getVariantLabel(m, presentation)
       applyVariantMetadata(processed, m.typeId, String(monTypeId), variantUsage)
       
-      if (isSummonOrEgg(m)) {
+      // 本体条目（fileMon 里登记的 monTypeId）**永远进 forms**，即使 id 里带 Summon。
+      // 1.7.15 起官方把 `mon_103Summon1`（幽夜蝙蝠）直接登记进怪物图鉴，
+      // 若按 isSummonOrEgg 归类会让 forms 为空 → 图鉴卡片没有形态、schema 校验失败。
+      // 真正的召唤物**变体**仍归 summons。
+      if (isSummonOrEgg(m) && String(m.typeId) !== String(monTypeId)) {
         summons.push(processed)
       } else {
         forms.push(processed)
@@ -1247,10 +1263,24 @@ export function buildMonsterData(maps) {
       }
     })
 
+    /*
+     * 兜底：上面两条规则可能仍留下重名 Tab —— 1.7.15 的 056_10（祖基尼团伙成员）
+     * 同时挂出 056_1_h / 056_6 / 056_7 三个「剧情版本 · 游手好闲的荒野客」，
+     * relationType 与 name 都一样，按 relationType+name 拼完仍然重名。
+     * 这里对**仍然重名**的项追加其 id，保证每个 Tab 唯一（页面按 label 做 key）。
+     */
+    const finalCounts = new Map()
+    allFormItems.forEach(f => finalCounts.set(f.tabLabel, (finalCounts.get(f.tabLabel) || 0) + 1))
+    allFormItems.forEach(f => {
+      if ((finalCounts.get(f.tabLabel) || 0) > 1 && !f.tabLabel.includes(f.id)) {
+        f.tabLabel = `${f.tabLabel}（${f.id}）`
+      }
+    })
+
     const baseRewards = parseRewardId(baseMon.reward, rewards, items, equipGroupData)
     const rankVal = forms[0]?.monRank || 3
     const quality = rankToQuality(rankVal)
-    const icon = getMonsterPortrait(baseFormInMonJson, monTypeId) || baseMon.monIcon
+    const icon = getMonsterPortrait(baseFormInMonJson, monTypeId, baseMon.monIcon) || baseMon.monIcon
 
     const allFormNames = forms.map(f => f.name).filter(Boolean)
     const allTabLabels = allFormItems.map(f => f.tabLabel).filter(Boolean)
