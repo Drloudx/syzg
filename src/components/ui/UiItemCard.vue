@@ -13,7 +13,7 @@
         :src="img"
         :alt="name"
         class="ui-item-card__icon"
-        :class="{ 'is-loaded': isLoaded }"
+        :class="{ 'is-loaded': isLoaded, 'is-placeholder': isPlaceholder }"
         loading="lazy"
         decoding="async"
         @load="onImgLoad"
@@ -80,15 +80,26 @@ watch(isFastScrolling, (fast) => {
   }
 })
 
-const onImgLoad = () => {
-  if (props.img) {
-    loadedImages.add(props.img)
-  }
+/**
+ * 是否已退到兜底图（`handleImageFallback` 最终落到 /ui/visibility-off.svg）。
+ *
+ * 兜底图是「禁止」样式的灰色小图标，按原尺寸浮在品质框中央很难看。
+ * 与家具图鉴同口径：命中兜底后加 `is-placeholder`，缩成 42px 方块、加木色底、
+ * 降透明度，读起来像「暂无图」占位而不是破图。
+ */
+const FALLBACK_MARK = 'visibility-off.svg'
+const isPlaceholder = ref(false)
+
+const onImgLoad = (e) => {
+  if (props.img) loadedImages.add(props.img)
   isLoaded.value = true
+  const src = String(e?.target?.getAttribute?.('src') || '')
+  isPlaceholder.value = src.includes(FALLBACK_MARK)
 }
 
 const onImgError = (e) => {
   isLoaded.value = true
+  isPlaceholder.value = true
   emit('img-error', e)
 }
 
@@ -164,6 +175,22 @@ const getQualityFrame = (q) => {
 
 .ui-item-card__icon.is-loaded {
   opacity: 1;
+}
+
+/*
+ * 兜底占位：与家具图鉴 `img.is-placeholder` 同一套观感 ——
+ * 缩成 42px 方块、木色底、降透明度，看上去是「暂无图」而不是破图。
+ */
+.ui-item-card__icon.is-placeholder {
+  width: 42px;
+  height: 42px;
+  max-width: 42px;
+  max-height: 42px;
+  padding: 11px;
+  border-radius: 4px;
+  background: var(--wood-soft, #463424);
+  opacity: 0.72;
+  filter: none;
 }
 
 /* 名称底板复用游戏图鉴资源 colect_list_mx.png，避免网页自定义纯色与游戏视觉不一致。 */
