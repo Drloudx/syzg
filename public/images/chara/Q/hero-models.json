@@ -552,5 +552,71 @@
       "Npc_043.skel": "bd7c3c080c0f1f4c90c8153ca264bdc9fb5b182cacebfcb1c1d6f3bfde1b9625"
     },
     "sha256": "f76bf156d404057696e0d9fddcc59588f70fe08adafab3137f5b5eb14fc9089b"
+  },
+  "hero_060": {
+    "name": "德莉",
+    "skeletonName": "Npc_060",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "hero_060.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_060",
+    "sha256": "c0875c9b470693d448039c12e94a120d37c0a6aa1bf4aa1427dd276747060da4"
+  },
+  "hero_061": {
+    "name": "斯卡莉安",
+    "skeletonName": "Npc_061",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "hero_061.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_061",
+    "sha256": "790eac1f82048a2668503acbe3016b6c69d989ad8020c71f363dc41650f69ac7"
+  },
+  "hero_071": {
+    "name": "洛莉安",
+    "skeletonName": "Npc_071",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "hero_071.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_071",
+    "sha256": "9e74d3b2f4c7a9dd93e26c61f90d88470ef0da78811db42fb84c2fb026d55414"
+  },
+  "hero_030": {
+    "name": "阿尔克丝",
+    "skeletonName": "Npc_030",
+    "skinName": "normal",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "hero_030.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_030",
+    "sha256": "61c7c73cfeb42321c70b57ba0fc7c4fad1e39dfe57956e08a4641ce5a38076fa"
+  },
+  "hero_069": {
+    "name": "修瓦莉",
+    "skeletonName": "Npc_069",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "hero_069.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_069",
+    "sha256": "5e16590908da22c2dff0c81ab94072a19721e53ba4bd6ce1401728fbd0b52445"
+  },
+  "hero_032": {
+    "name": "诺姿",
+    "skeletonName": "Npc_032",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "hero_032.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_032",
+    "sha256": "40f5a6b0977955f7122fdf01b7075eb2ffe174b313fc7b1233eeb11a1f895104"
   }
 }

@@ -1,0 +1,17 @@
+{
+  "Npc_050_1": {
+    "skeletonName": "Npc_050_1",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "Npc_050_1.png",
+    "source": "游戏数据/资源包/assets/res/spine/model/npc/npc_050_1",
+    "inputHashes": {
+      "Npc_050_1.atlas": "cf724346311158ed328c4aee154fd0b3429535fd9edf0addacf3ced30e222a33",
+      "Npc_050_1.png": "d127883adadd154effd8286c4971ef24f8695b2330940616b699f35ca8939295",
+      "Npc_050_1.skel": "2f3f25316c1fd7a155b8e1c34f44572afa8a3e81f116c5a41683eeca9d99123e"
+    },
+    "sha256": "b66027a25f0ab8ef4fe0810293044d77d5837cbaefb3f5f868dc3c5568be874d"
+  }
+}

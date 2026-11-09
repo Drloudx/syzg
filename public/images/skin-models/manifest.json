@@ -30,5 +30,49 @@
     },
     "sha256": "9f59300da28f0940ae1279938989105bd176ba2b93b33b7c3d9ff4e5f95ffa82",
     "bytes": 86316
+  },
+  "hero_002_skin01": {
+    "skeletonName": "Npc_002_2",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "/images/skin-models/hero_002_skin01.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_002_2",
+    "sha256": "83986c729e88aa58be21e3adf05c8e97c8f4f6406976657e4020c9fcb6ca48e2",
+    "bytes": 54064
+  },
+  "hero_015_skin01": {
+    "skeletonName": "Npc_015_1",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "/images/skin-models/hero_015_skin01.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_015_1",
+    "sha256": "d431221042fb0989141ba794c28ee141a18c4707cc30ed9c3efed54e623816cc",
+    "bytes": 55810
+  },
+  "hero_049_skin01": {
+    "skeletonName": "Npc_049_1",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "/images/skin-models/hero_049_skin01.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_049_1",
+    "sha256": "87e4870af2b58af578c6e8b173910323343f6d5908d0a82bf828a215830df33e",
+    "bytes": 55496
+  },
+  "hero_050_skin01": {
+    "skeletonName": "Npc_050_1",
+    "skinName": "normal",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "spineVersion": "4.0.09",
+    "image": "/images/skin-models/hero_050_skin01.webp",
+    "source": "4.24路资源包/assets/res/spine/model/npc/npc_050_1",
+    "sha256": "b00fd793fea4a9d7425a4f444a1ef205aa3bd14bae4758370326783f08d8a7f9",
+    "bytes": 28870
   }
 }
