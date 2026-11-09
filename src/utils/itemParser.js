@@ -411,6 +411,23 @@ export function buildItemData(maps) {
     if (Number(category[0]) === 2 && item.name && item.name.includes('宝箱')) {
       item.category = [2, 25]
     }
+    /*
+     * 装备部位归一化：category[1]=46 在官方表里混装了**两种穿戴槽位**，
+     * 必须按 `equip.position` 拆开，否则「配饰」分类永远是空的。
+     *
+     * 游戏装备图鉴 `PicHandBookPanel.GetEquipItemConfByPosition` 是按 position 分组的：
+     *   position 6 → necklaceConf → 显示「头饰」
+     *   position 7 → ringConf     → 显示「配饰」
+     * 而 item.json 里这 33 件全是 category[1]=46（23 件 pos6 + 10 件 pos7），
+     * 直接按 category 筛的话 10 件配饰（戒指/腕饰/手环）会被并进头饰。
+     *
+     * 只做 46→47 的**单向拆分**：position 6 保留 46，position 7 改 47。
+     * 其它部位（41~45）的数据里有零星错位（如 cat41 的 pos2），但那些位置
+     * 与图鉴标签对不上且数量极少，改动会牵动别处筛选，这里不动。
+     */
+    if (Number(category[0]) === 4 && Number(category[1]) === 46 && Number(item.equip?.position) === 7) {
+      item.category = [4, 47]
+    }
     if (Number(category[0]) === 3 && Number(category[1]) === 31) {
       const toxicity = Number(item.use2Info?.poison) || 0
       item.potionInfo = {
