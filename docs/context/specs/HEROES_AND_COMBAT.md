@@ -14,6 +14,25 @@
 
 通过 `heroParser.fetchHeroData()` 读取；角色、消耗、职业特性、正式皮肤等在**构建期**关联，剧情分段**按需加载**。
 
+### 收录判据
+
+- 角色进图鉴要**同时**满足两条：`hero.hide !== true`，且不在手工隐藏名单 `HIDDEN_HERO_IDS`。
+- `hide` 依据：游戏内 `PicHeroPanel.InitAllHeroConf` 与 `PicHandBookPanel` 都对 `heroConf` 做 `!hide` 过滤；wiki 侧同判据在 `heroParser.js`。
+- `HIDDEN_HERO_IDS` 定义在 `src/config/blacklist.js`，是**手工维护**的「有完整数据但玩家拿不到」的角色（预埋 / 仅测试包发放）。
+- **「表里有这条」不等于「图鉴显示」**：`hero.json` 保留全部角色，展示由上述两条判据决定。
+- `hide` 与 `HIDDEN_HERO_IDS` 都随版本变化，**不得在代码或测试里写死角色总数**。
+
+#### 手工隐藏角色（`HIDDEN_HERO_IDS`）
+
+| 角色 | 原因 |
+| --- | --- |
+| `hero_059` 菲娜 | 所属「未知界域·桃源乡」，不在任何卡池，碎片只在测试 reward，试用活动 2925 年 |
+| `hero_070` 露库希安 | 所属「未知界域·世界树的枝桠」，不在任何卡池，碎片只在测试 reward |
+| `hero_047` 阿迪拉 | 官方解除了 `hide`，但碎片 `item_59047` 仍只在测试包，付费测不可实得 |
+
+- 判定统一走 `isHiddenHero(id)`；判定「某条任务/邮件/词条是否归属隐藏角色」走 `belongsToHiddenHero(entry)`。
+- 影响出口：角色图鉴、伙伴邮件、任务图鉴（好感度事件）、词条来源角色、全局搜索（角色/碎片/邮件/好感任务）、相关模拟、模拟招募。
+
 | 项 | 规则 |
 | --- | --- |
 | 搜索范围 | 角色资料、技能、档案、互动文本 |
