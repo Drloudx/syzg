@@ -88,17 +88,23 @@ scripts/dev/maintenance-paths.mjs 定义（6 常量 + 6 环境变量），脚本
 
 ## 三、数据源一览（与 MAP.md §一 同源，此处只列取数口径）
 
-| 数据 | 路径（相对 `游戏数据/`） | 数量（2026-11-02 实测） | 顶层口径 |
+> **2026-11-09 起数据源版本为 1.7.15 付费测**（独立 CDN `resources.myrzg.com/myrzg/update_dyd`，
+> serverKey `waiWang`）。它与正式服 `myrzx2.cdn.comiai.com/update`（1.6.6）**互不相干**：
+> 前者用 Unity **Addressables**（`catalog.bundle` + `*.bundle`），后者用旧 **AssetBundle**
+> （`*.asset`）。取图链路见 §五「两种资源布局」。
+
+| 数据 | 路径（相对 `游戏数据/`） | 数量（2026-11-09 实测） | 顶层口径 |
 | --- | --- | --- | --- |
-| 配置表 | `配置表/` | 144 张业务表（含 4 张 `*Bak` / `summary`） | APK 首包版 |
+| 配置表 | `配置表/` | 152 个 json（业务 149 + 元数据 3） | APK 首包版（1.7.15） |
 | 配置表 CDN 版 | `配置表/_CDN新版/` | 29 张 | 较新，不参与构建 |
-| 剧情 | `剧情/` | 顶层 3224 个 json；净 3081（扣 143 份备份/弃用副本） | APK 版 + CDN 独有 |
+| 剧情 | `剧情/` | 顶层 3744 个 json；净 3601（扣 143 份备份/弃用副本） | APK 版 + CDN 独有 |
 | 剧情 CDN 版 | `剧情/_CDN新版/` | 4 份 | 较新，不参与构建 |
-| 游戏源码 | `源码/` | 7 程序集 / 4907 .cs | 2026-09-29 反编译版 |
-| UI 图集切图 | `图片资源/图集/` | 59 图集 / 4010 文件（3892 切图 + 59 `_atlas.png` + 59 `_atlas.json`） | NGUI `mSprites` 矩形切图 |
+| 游戏源码 | `源码/` | 7 程序集 / 5224 .cs | 设备热更 DLL 反编译（1.7.15） |
+| UI 图集切图 | `图片资源/图集/` | 59 图集 / 4166 文件 | NGUI `mSprites` 矩形切图 |
 | 散图 | `图片资源/单图/` | 8908 张 / 6 大类 | 解包后重新编码 |
 | 完整资源包 | `资源包/`（真实目录） | 44970 文件 | 官方资源包原样 |
 | APK 解包 | `APK解包/`（真实目录） | 26153 文件 | APK 原样 |
+| APK | `APK/official-1.7.15.apk` | 1.84 GB | 从模拟器 `adb pull` 得到 |
 
 > 旧的同级目录 `Config_decrypted` 仍是**指向 `配置表/` 的 junction**，`GAoNano_decrypted` / `UI_Atlases` / `4.24路资源包` 已不存在。
 > 脚本不做旧路径回退（`maintenance-paths.mjs` 的 `pick()`），但按文件名检索会误命中 `Config_decrypted`。
@@ -106,6 +112,16 @@ scripts/dev/maintenance-paths.mjs 定义（6 常量 + 6 环境变量），脚本
 ---
 
 ## 四、常见误判（核对时容易踩）
+
+> **两种资源布局（2026-11-09 起）**：1.6.6 及以前的 APK 把图放在
+> `assets/Android/AssetBundle/<路径>.asset`；**1.7.15 起改为 Unity Addressables**：
+> `assets/Android/Addressables/catalog.bundle`（资源目录）+ `Android/<md5>.bundle`。
+> 取图流程：`4B_提取Addressables.py` 读 catalog 把资源短路径（如
+> `texture/chara/l/chara059_0`）映射到 `<md5>.bundle`，抽成与旧布局同构的 `.asset`
+> 落到 `APK资源/AssetBundle/`，再交给 `6_提取图片资源.py` 切图。**不要直接按文件名
+> 去 APK 里找图**——Addressables 里文件名是 md5，只能经 catalog 反查。
+> 部分资源（如 `HeroBagPanel`/`HeroInfoPanel` 图集）只在设备下载的增量里、不在 APK，
+> 需 `adb pull` 设备 `files/update/Android/Addressables/Android/`。
 
 | 现象 | 不是问题 | 判据 |
 | --- | --- | --- |

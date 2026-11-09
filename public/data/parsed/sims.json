@@ -4,8 +4,8 @@
       "data/parsed/heroes.json",
       "data/parsed/pets.json"
     ],
-    "heroCount": 34,
-    "petCount": 32,
+    "heroCount": 39,
+    "petCount": 44,
     "note": "配队模拟器专用精简表；由 scripts/dev/build-sims-data.mjs 生成，勿手改"
   },
   "heroes": [
@@ -87,6 +87,28 @@
       "rare": 5
     },
     {
+      "id": "hero_060",
+      "name": "德莉",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at060_0",
+      "img": "chara060_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_061",
+      "name": "斯卡莉安",
+      "job": 2,
+      "jobName": "守护",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at061_0",
+      "img": "chara061_0",
+      "rare": 5
+    },
+    {
       "id": "hero_064",
       "name": "伽拉忒亚",
       "job": 5,
@@ -106,6 +128,17 @@
       "elementName": "火",
       "icon": "at065_0",
       "img": "chara065_0",
+      "rare": 5
+    },
+    {
+      "id": "hero_071",
+      "name": "洛莉安",
+      "job": 3,
+      "jobName": "秘术",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at071_0",
+      "img": "chara071_0",
       "rare": 5
     },
     {
@@ -164,6 +197,17 @@
       "rare": 4
     },
     {
+      "id": "hero_030",
+      "name": "阿尔克丝",
+      "job": 2,
+      "jobName": "守护",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at030_0",
+      "img": "chara030_0",
+      "rare": 4
+    },
+    {
       "id": "hero_033",
       "name": "乌帕·萝特",
       "job": 2,
@@ -197,17 +241,6 @@
       "rare": 4
     },
     {
-      "id": "hero_037",
-      "name": "剋",
-      "job": 2,
-      "jobName": "守护",
-      "element": 3,
-      "elementName": "风",
-      "icon": "at037_0",
-      "img": "chara037_0",
-      "rare": 4
-    },
-    {
       "id": "hero_045",
       "name": "艾尔菲帕",
       "job": 3,
@@ -227,6 +260,17 @@
       "elementName": "水",
       "icon": "at066_0",
       "img": "chara066_0",
+      "rare": 4
+    },
+    {
+      "id": "hero_069",
+      "name": "修瓦莉",
+      "job": 5,
+      "jobName": "突袭",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at069_0",
+      "img": "chara069_0",
       "rare": 4
     },
     {
@@ -340,6 +384,17 @@
       "rare": 3
     },
     {
+      "id": "hero_032",
+      "name": "诺姿",
+      "job": 5,
+      "jobName": "突袭",
+      "element": 4,
+      "elementName": "地",
+      "icon": "at032_0",
+      "img": "chara032_0",
+      "rare": 3
+    },
+    {
       "id": "hero_041",
       "name": "埃迪蒂",
       "job": 1,
@@ -397,7 +452,7 @@
         "stat": "暴击率",
         "value": 5,
         "perCount": false,
-        "raw": "队伍伙伴 暴击率 增加 {5%}。"
+        "raw": "队伍伙伴 暴击率提高 {5%}。"
       }
     },
     {
@@ -415,7 +470,7 @@
         "stat": "魔法防御",
         "value": 6,
         "perCount": false,
-        "raw": "队伍中 {突袭、射手} 职业伙伴的 魔法防御 增加 {6%}。"
+        "raw": "队伍中 {突袭、射手} 职业伙伴的 魔法防御提高 {6%}。"
       }
     },
     {
@@ -433,7 +488,7 @@
         "stat": "生命值",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中 {近卫、守护} 职业伙伴 生命值 增加 {4%}。"
+        "raw": "队伍中 {近卫、守护} 职业伙伴 生命值提高 {4%}。"
       }
     },
     {
@@ -448,7 +503,7 @@
         "stat": "魔法防御",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中伙伴魔法防御增加 {4%}。"
+        "raw": "队伍中伙伴魔法防御提高 {4%}。"
       }
     },
     {
@@ -465,7 +520,7 @@
         "stat": "物理防御",
         "value": 6,
         "perCount": false,
-        "raw": "队伍中 {地属性} 伙伴 物理防御 增加 {6%}。"
+        "raw": "队伍中 {地属性} 伙伴 物理防御提高 {6%}。"
       }
     },
     {
@@ -483,7 +538,7 @@
         "stat": "暴击伤害",
         "value": 12,
         "perCount": false,
-        "raw": "队伍中 {射手、突袭} 职业伙伴 暴击伤害 增加 {12%}。"
+        "raw": "队伍中 {射手、突袭} 职业伙伴 暴击伤害提高 {12%}。"
       }
     },
     {
@@ -500,7 +555,7 @@
         "stat": "魔法攻击",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中 {火属性} 伙伴 魔法攻击 增加 {4%}。"
+        "raw": "队伍中 {火属性} 伙伴 魔法攻击提高 {4%}。"
       }
     },
     {
@@ -515,7 +570,7 @@
         "stat": "魔法攻击",
         "value": 3,
         "perCount": false,
-        "raw": "队伍中伙伴 魔法攻击 增加 {3%}。"
+        "raw": "队伍中伙伴 魔法攻击提高 {3%}。"
       }
     },
     {
@@ -535,14 +590,14 @@
         "stat": "暴击率",
         "value": 10,
         "perCount": false,
-        "raw": "队伍中 {水属性} 且职业为 {射手、突袭} 的伙伴，暴击率增加 {10%}。"
+        "raw": "队伍中 {水属性} 且职业为 {射手、突袭} 的伙伴，暴击率提高 {10%}。"
       }
     },
     {
       "id": "pet_063",
       "name": "繁茂杜吉芽",
-      "element": 4,
-      "elementName": "地",
+      "element": 1,
+      "elementName": "水",
       "monImg": "colect_mon_063",
       "passive": {
         "elements": [],
@@ -550,7 +605,7 @@
         "stat": "生命值",
         "value": 5,
         "perCount": false,
-        "raw": "队伍伙伴 最大生命值 增加 {5%}。"
+        "raw": "队伍伙伴 生命值提高 {5%}。"
       }
     },
     {
@@ -565,7 +620,7 @@
         "stat": "物理攻击",
         "value": 3,
         "perCount": false,
-        "raw": "队伍伙伴 物理攻击 增加 {3%}。"
+        "raw": "队伍伙伴 物理攻击提高 {3%}。"
       }
     },
     {
@@ -583,7 +638,7 @@
         "stat": "暴击伤害",
         "value": 12,
         "perCount": false,
-        "raw": "队伍中 {近卫、守护} 职业的伙伴暴击伤害增加 {12%}。"
+        "raw": "队伍中 {近卫、守护} 职业的伙伴暴击伤害提高 {12%}。"
       }
     },
     {
@@ -600,7 +655,7 @@
         "stat": "生命值",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中 {风属性} 伙伴的最大生命值增加 {4%}。"
+        "raw": "队伍中 {风属性} 伙伴的生命值提高 {4%}。"
       }
     },
     {
@@ -617,7 +672,7 @@
         "stat": "魔法防御",
         "value": 6,
         "perCount": false,
-        "raw": "队伍中 {水属性} 伙伴的魔法防御力增加 {6%}。"
+        "raw": "队伍中 {水属性} 伙伴的魔法防御增加 {6%}。"
       }
     },
     {
@@ -637,7 +692,7 @@
         "stat": "暴击伤害",
         "value": 15,
         "perCount": false,
-        "raw": "队伍中 {水属性} 且职业为 {射手、突袭} 的伙伴，暴击伤害增加 {15%}。"
+        "raw": "队伍中 {水属性} 且职业为 {射手、突袭} 的伙伴，暴击伤害提高 {15%}。"
       }
     },
     {
@@ -655,7 +710,7 @@
         "stat": "物理攻击",
         "value": 6,
         "perCount": false,
-        "raw": "使队伍中 {近卫、守护} 职业伙伴的 物理攻击 增加 {6%}。"
+        "raw": "使队伍中 {近卫、守护} 职业伙伴的 物理攻击提高 {6%}。"
       }
     },
     {
@@ -672,7 +727,7 @@
         "stat": "物理攻击",
         "value": 5,
         "perCount": false,
-        "raw": "队伍中 水属性 伙伴的 物理攻击 增加 {5%}。"
+        "raw": "队伍中 水属性 伙伴的 物理攻击提高 {5%}。"
       }
     },
     {
@@ -689,7 +744,7 @@
         "stat": "物理防御",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中 {风属性} 伙伴的物理防御增加 {4%}。"
+        "raw": "队伍中 {风属性} 伙伴的物理防御提高 {4%}。"
       }
     },
     {
@@ -706,7 +761,7 @@
         "stat": "魔法攻击",
         "value": 5,
         "perCount": false,
-        "raw": "队伍中 {风属性} 伙伴魔法攻击增加 {5%}。"
+        "raw": "队伍中 {风属性} 伙伴魔法攻击提高 {5%}。"
       }
     },
     {
@@ -723,7 +778,7 @@
         "stat": "生命值",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中地属性伙伴 最大生命值 增加 {4%}。"
+        "raw": "队伍中地属性伙伴 生命值提高 {4%}。"
       }
     },
     {
@@ -741,7 +796,7 @@
         "stat": "冷却缩减",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中 {秘术，支援} 伙伴 冷却缩减 增加 {4%}。"
+        "raw": "队伍中 {秘术，支援} 伙伴 冷却缩减提高 {4%}。"
       }
     },
     {
@@ -758,7 +813,7 @@
         "stat": "物理攻击",
         "value": 6,
         "perCount": false,
-        "raw": "队伍中 {火属性} 伙伴物理攻击增加 {6%}。"
+        "raw": "队伍中 {火属性} 伙伴物理攻击提高 {6%}。"
       }
     },
     {
@@ -776,7 +831,7 @@
         "stat": "魔法攻击",
         "value": 6,
         "perCount": false,
-        "raw": "队伍中 {秘术,支援} 伙伴魔法攻击增加 {6%}。"
+        "raw": "队伍中 {秘术，支援} 伙伴魔法攻击提高 {6%}。"
       }
     },
     {
@@ -793,14 +848,14 @@
         "stat": "攻击和移速",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中 {风属性} 伙伴攻击和移速增加 {4%}。"
+        "raw": "队伍中 {风属性} 伙伴攻击和移速加成提高 {4%}。"
       }
     },
     {
       "id": "pet_093",
       "name": "石像鬼",
-      "element": 3,
-      "elementName": "风",
+      "element": 4,
+      "elementName": "地",
       "monImg": "colect_mon_093",
       "passive": {
         "elements": [],
@@ -808,7 +863,7 @@
         "stat": "物理防御",
         "value": 5,
         "perCount": false,
-        "raw": "队伍中物理防御增加 {5%}。"
+        "raw": "队伍中物理防御提高 {5%}。"
       }
     },
     {
@@ -821,9 +876,9 @@
         "elements": [],
         "jobs": [],
         "stat": "生命值",
-        "value": 5,
+        "value": 3,
         "perCount": false,
-        "raw": "队伍中伙伴的最大生命值增加 {5%}。"
+        "raw": "队伍中伙伴的生命值提高 {3%}。"
       }
     },
     {
@@ -838,9 +893,9 @@
         ],
         "jobs": [],
         "stat": "物理攻击",
-        "value": 4,
+        "value": 5,
         "perCount": false,
-        "raw": "队伍中地属性伙伴的物理攻击力增加 {4%}。"
+        "raw": "队伍中地属性伙伴的物理攻击提高 {5%}。"
       }
     },
     {
@@ -858,7 +913,7 @@
         "stat": "物理攻击",
         "value": 5,
         "perCount": false,
-        "raw": "队伍中近卫守护物理攻击增加 {5%}。"
+        "raw": "队伍中近卫守护物理攻击提高 {5%}。"
       }
     },
     {
@@ -875,14 +930,14 @@
         "stat": "攻速",
         "value": 7,
         "perCount": false,
-        "raw": "队伍中地属性攻速增加 {7%}。"
+        "raw": "队伍中地属性攻速加成提高 {7%}。"
       }
     },
     {
       "id": "pet_083",
       "name": "冰棱妖精",
-      "element": 3,
-      "elementName": "风",
+      "element": 1,
+      "elementName": "水",
       "monImg": "colect_mon_083",
       "passive": {
         "elements": [],
@@ -893,14 +948,14 @@
         "stat": "魔法防御",
         "value": 6,
         "perCount": false,
-        "raw": "队伍中法师辅助魔法防御 {6%}。"
+        "raw": "队伍中秘术、支援职业伙伴的魔法防御提高 {6%}。"
       }
     },
     {
       "id": "pet_086",
       "name": "抛雪芙洛波",
-      "element": 3,
-      "elementName": "风",
+      "element": 1,
+      "elementName": "水",
       "monImg": "colect_mon_086",
       "passive": {
         "elements": [
@@ -910,14 +965,14 @@
         "stat": "魔法攻击",
         "value": 4,
         "perCount": false,
-        "raw": "队伍中水属性伙伴魔法攻击 {4%}。"
+        "raw": "队伍中水属性伙伴的魔法攻击提高 {4%}。"
       }
     },
     {
       "id": "pet_088",
       "name": "熔火喷炎者",
-      "element": 3,
-      "elementName": "风",
+      "element": 2,
+      "elementName": "火",
       "monImg": "colect_mon_088",
       "passive": {
         "elements": [
@@ -927,7 +982,220 @@
         "stat": "物理防御",
         "value": 7,
         "perCount": false,
-        "raw": "队伍中火属性伙伴物理防御 {7%}。"
+        "raw": "队伍中火属性伙伴的物理防御提高 {7%}。"
+      }
+    },
+    {
+      "id": "pet_117",
+      "name": "纯白史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_117",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "支援"
+        ],
+        "stat": "",
+        "value": 5,
+        "perCount": false,
+        "raw": "队伍中秘术、支援职业伙伴的法力值上限提高 {5%}。"
+      }
+    },
+    {
+      "id": "pet_118",
+      "name": "彩虹史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_118",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "支援"
+        ],
+        "stat": "",
+        "value": 8,
+        "perCount": false,
+        "raw": "队伍中秘术、支援职业伙伴的魔法穿透提高 {8%}。"
+      }
+    },
+    {
+      "id": "pet_098",
+      "name": "奶油布丁史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_098",
+      "passive": {
+        "elements": [],
+        "jobs": [],
+        "stat": "",
+        "value": 3,
+        "perCount": false,
+        "raw": "全队受到的治疗效果提高 {3%}。"
+      }
+    },
+    {
+      "id": "pet_100",
+      "name": "幽灵史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_100",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "守护",
+          "突袭"
+        ],
+        "stat": "移速",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中守护、近卫、突袭职业伙伴的移速加成提高 {6%}。"
+      }
+    },
+    {
+      "id": "pet_101",
+      "name": "青铜迷迷可",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_101",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "守护",
+          "突袭"
+        ],
+        "stat": "物理防御",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中守护、近卫、突袭职业伙伴的物理防御提高 {6%}。"
+      }
+    },
+    {
+      "id": "pet_104",
+      "name": "洛莉安的眷属",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_104",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "支援"
+        ],
+        "stat": "",
+        "value": 8,
+        "perCount": false,
+        "raw": "队伍中秘术、支援职业伙伴的魔法穿透提高 {8%}。"
+      }
+    },
+    {
+      "id": "pet_105",
+      "name": "玉鳞之仙龙",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_105",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "突袭"
+        ],
+        "stat": "生命值",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中近卫、突袭职业伙伴的生命值提高 {6%}。"
+      }
+    },
+    {
+      "id": "pet_106",
+      "name": "圣骑士史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_106",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "射手"
+        ],
+        "stat": "",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中秘术、射手职业伙伴的技能冷却时间缩短 {6%}。"
+      }
+    },
+    {
+      "id": "pet_107",
+      "name": "黄金史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_107",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "近卫",
+          "守护"
+        ],
+        "stat": "",
+        "value": 14,
+        "perCount": false,
+        "raw": "队伍中守护、近卫职业伙伴的反伤率提高 {14%}。"
+      }
+    },
+    {
+      "id": "pet_108",
+      "name": "粉红史莱姆",
+      "element": 3,
+      "elementName": "风",
+      "monImg": "colect_mon_108",
+      "passive": {
+        "elements": [],
+        "jobs": [
+          "秘术",
+          "支援"
+        ],
+        "stat": "",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中秘术、支援职业伙伴的魔法穿透提高 {6%}。"
+      }
+    },
+    {
+      "id": "pet_109",
+      "name": "澄黄史莱姆",
+      "element": 4,
+      "elementName": "地",
+      "monImg": "colect_mon_109",
+      "passive": {
+        "elements": [
+          "地"
+        ],
+        "jobs": [],
+        "stat": "魔法防御",
+        "value": 6,
+        "perCount": false,
+        "raw": "队伍中地属性伙伴的魔法防御提高 {6%}。"
+      }
+    },
+    {
+      "id": "pet_110",
+      "name": "天青史莱姆",
+      "element": 1,
+      "elementName": "水",
+      "monImg": "colect_mon_110",
+      "passive": {
+        "elements": [
+          "水"
+        ],
+        "jobs": [],
+        "stat": "",
+        "value": 4,
+        "perCount": false,
+        "raw": "队伍中水属性伙伴的技能冷却时间缩短 {4%}。"
       }
     }
   ]
