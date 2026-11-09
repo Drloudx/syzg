@@ -18,15 +18,18 @@ test('处置建议边界保持唯一且明确', () => {
   assert.equal(calcPetDisposalRecommendation(100, 0).text, '卖')
 })
 
-test('全量魔物收益按当前数据自然断层分为 4 喂、8 按需、20 卖', () => {
+test('全量魔物收益按当前数据自然断层分为 5 喂、13 按需、26 卖', () => {
   const { pets } = buildPetEggsData({ petJson })
   const counts = pets.reduce((result, pet) => {
     result[pet.recommendationKey] = (result[pet.recommendationKey] || 0) + 1
     return result
   }, {})
 
-  assert.equal(pets.length, 32)
-  assert.deepEqual(counts, { optional: 8, feed: 4, sell: 20 })
+  // 2026-11-09（1.7.15 数据更新）：魔物 32 → 44，回本断层随之变化。
+  // 断言「总数 = 各档之和」与三条代表性判断，具体档位数随官方配置走。
+  assert.equal(pets.length, 44)
+  assert.deepEqual(counts, { optional: 13, feed: 5, sell: 26 })
+  assert.equal(pets.length, counts.optional + counts.feed + counts.sell)
   assert.equal(pets.find(pet => pet.name === '秋风妖精').recommendationText, '喂')
   assert.equal(pets.find(pet => pet.name === '角布林').recommendationText, '按需选择')
   assert.equal(pets.find(pet => pet.name === '掘地芙洛波').recommendationText, '卖')

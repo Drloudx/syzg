@@ -22,10 +22,9 @@ test('模拟钱包起算值来自原表初始配置量', () => {
     ti: playerInit.ti,
     items: playerInit.initItems.map(entry => ({ typeId: entry.itemTypeId, count: entry.num }))
   })
-  // 新号只带 1 张普通招待券，因此蛋池「常规贩售」可抽一次而角色池不可抽
+  // 新号初始物品随官方配置走（1.7.15 起只发 item_30014 ×2，不再附 item_20025）。
   assert.deepEqual(gacha.initialWallet.items, [
-    { typeId: 'item_30014', count: 2 },
-    { typeId: 'item_20025', count: 1 }
+    { typeId: 'item_30014', count: 2 }
   ])
 })
 

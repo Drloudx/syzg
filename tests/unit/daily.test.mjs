@@ -139,9 +139,14 @@ test('具体条件名称与配置表一致', () => {
   const cainanTask = findLink('plan_1', 'plan_1', 'task')
   assert.equal(cainanTask.targetId, 'm_1_7')
   assert.equal(cainanTask.name, '迦南')
-  assert.equal(cainanTask.step, 8)
-  assert.equal(cainanTask.stepText, '推进至第 8 步')
-  assert.equal(cainanTask.label, '任务「迦南」推进至第 8 步')
+  /*
+   * 2026-11-09（1.7.15 数据更新）：m_1_7 步骤从 9 缩到 7，该计划条件现落到
+   * 「完成整条任务」这一档（step=-1）。判据不变：整条完成用「完成」，
+   * 带具体步骤才用「推进至第 N 步」，两者语义不能混。
+   */
+  assert.equal(cainanTask.step, -1)
+  assert.equal(cainanTask.stepText, '完成')
+  assert.equal(cainanTask.label, '完成「迦南」任务')
 
   /*
    * 水火矿洞三层（daily_mine_3_2）依赖第五章关卡，已被隐藏；

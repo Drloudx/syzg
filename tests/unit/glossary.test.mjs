@@ -144,7 +144,9 @@ test('来源只保留图鉴里点得开的条目（角色/魔物/怪物）', () 
   }
 
   // 原表 hide=true 的角色不进图鉴，因此不应出现在任何来源里。
-  const hiddenNames = ['阿迪拉', '格薇勒', '艾茵', '米托拉（旧）']
+  // 2026-11-09（1.7.15 数据更新）：阿迪拉（hero_047）的 hide 被官方解除、已进图鉴，
+  // 从本名单移除；保留其余仍未收录的角色。
+  const hiddenNames = ['格薇勒', '艾茵', '米托拉（旧）']
   for (const entry of glossary.entries) {
     for (const h of entry.sources?.heroes || []) {
       assert.ok(!hiddenNames.includes(h.name), `词条「${entry.name}」不应把图鉴未收录的「${h.name}」列为来源`)

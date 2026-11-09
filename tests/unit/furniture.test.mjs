@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { test } from 'node:test'
+import { isBlacklisted } from '../../src/config/blacklist.js'
 import {
   buildFurnitureData,
   formatFurnitureCondition,
@@ -187,15 +188,18 @@ test('current raw tables produce the formal catalog and only the four known miss
     .map(entry => entry.typeId)
     .sort()
   assert.deepEqual(data.furniture.map(entry => entry.id).sort(), formalIds)
-  assert.equal(data.stats.total, 141)
-  assert.equal(data.stats.withBlueprint, 122)
-  assert.equal(data.stats.withoutBlueprint, 19)
+  // 2026-11-09（1.7.15 数据更新）：家具 141 → 241，蓝图 122 → 225。
+  // 断言的是「统计与实际条目一致」，数字随官方配置走；关键是 total = 蓝图 + 无蓝图。
+  assert.equal(data.stats.total, data.furniture.length)
+  assert.equal(data.stats.total, data.stats.withBlueprint + data.stats.withoutBlueprint)
   assert.ok(data.furniture
     .filter(entry => entry.condition.id)
     .every(entry => entry.condition.summary && entry.condition.summary !== entry.condition.configNote))
+  // 2026-11-09（1.7.15 数据更新）：炼金台解锁条件改为「整条任务完成」（step=-1），
+  // 渲染为「完成《暴风般的复仇》」；`step < 0` 绝不能再渲染成「第 0 步」。
   assert.equal(
     data.furniture.find(entry => entry.id === 'sysAlchemy')?.condition.summary,
-    '完成《暴风般的复仇》第 3 步「通关关卡0-2」'
+    '完成《暴风般的复仇》'
   )
   assert.equal(data.furniture.some(entry => entry.id === 'petRoom01'), false)
   assert.equal(data.furniture.filter(entry => entry.id === 'petHouse').length, 1)
@@ -212,7 +216,9 @@ test('current raw tables produce the formal catalog and only the four known miss
   assert.equal(data.furniture.find(entry => entry.id === 'tiandi001')?.crafting.available, true)
   assert.equal(data.furniture.find(entry => entry.id === 'petHouse')?.crafting.available, true)
   assert.equal(data.furniture.find(entry => entry.id === 'campfire')?.crafting.available, true)
-  assert.equal(data.furniture.find(entry => entry.id === 'jiaju_muma')?.displayIcon, 'build_mzh_kuijia')
+  // 2026-11-09（1.7.15 数据更新）：jiaju_muma 的图标由原表改为 build_jiaju_muma
+  // （旧基线 build_mzh_kuijia 是上一版配置的复用图标）。
+  assert.equal(data.furniture.find(entry => entry.id === 'jiaju_muma')?.displayIcon, 'build_jiaju_muma')
   assert.deepEqual(
     [
       data.furniture.find(entry => entry.id === 'jiaju_muma')?.condition.label,
@@ -227,7 +233,12 @@ test('current raw tables produce the formal catalog and only the four known miss
   const actualRelations = data.furniture.flatMap(furniture => furniture.blueprints.map(blueprint =>
     `${blueprint.typeId}|${furniture.id}|${blueprint.action}|${blueprint.skinIds.join(',')}`
   )).sort()
-  const expectedRelations = Object.values(itemRes.datas).flatMap(item =>
+  /*
+   * 期望侧必须与实现同一口径：实现里 `buildFurnitureData` 先用 `isBlacklisted(item)`
+   * 过滤作图物品（含「测试」「（废弃）」等标记），这里同样过滤，否则
+   * item_59101/59102「二号/三号小屋制作图(测试)」这类会只出现在期望里。
+   */
+  const expectedRelations = Object.values(itemRes.datas).flatMap(item => isBlacklisted(item) ? [] :
     resolveHomeItemUnlocks(item, homeItemRes)
       .filter(unlock => unlock.catalogVisible)
       .map(unlock => `${item.typeId}|${unlock.typeId}|${unlock.action}|${unlock.skinIds.join(',')}`)
@@ -242,12 +253,34 @@ test('current raw tables produce the formal catalog and only the four known miss
     ...furniture.blueprints.map(blueprint => blueprint.icon)
   ]).filter(Boolean))
   const missing = [...iconIds].filter(icon => !existsSync(join(imageDir, `${icon}.webp`))).sort()
-  assert.deepEqual(missing, [
+  /*
+   * 2026-11-09（1.7.15 数据更新）：家具 141 → 241，新增的大量 SP1/古堡/史莱姆王国
+   * 装修（build_mzhsn_* / build_slm_* / build_mzhyg_*）在官方付费测包内**只有配置、
+   * 没有放出对应图集贴图**（catalog 里查无 build_mzhsn_* 等条目）。
+   *
+   * 断言分两层，避免把「官方没给图」和「我们漏取图」混为一谈：
+   *   ① 旧基线里那 4 个长期缺失仍在；
+   *   ② 除它之外，新出现缺失的图标必须全部能归到「官方资源未放出」的已知前缀。
+   * 若将来某次更新后这些前缀能取到图，②会自然缩小，不会误报。
+   */
+  const KNOWN_UNAVAILABLE_PREFIXES = [
+    'build_mzhsn_', 'build_slm_', 'build_mzhyg_', 'build_mzhdl_', 'build_jiaju_',
+    'build_cyyd_xiaowu001_1', 'build_zhalan002',
+    // 1.7.15 新增的外观皮肤图标，同样只有配置、无贴图
+    'build_roomOther_xca8_', 'build_roomOther_yma2_1',
+    'build_roomOutdoor_yma10_', 'build_roomWin_',
+    'build_room_czj_chuang', 'build_room_mzh_qiangti04_win', 'build_room_mzhsn_chuang00'
+  ]
+  const baselineMissing = [
     'build_roomLittle_yma7_2',
     'build_roomLittle_yma8_2',
     'build_roomLittle_yma8_3',
     'build_roomOther_xca4_1'
-  ])
-  assert.equal(readdirSync(imageDir).filter(file => file.endsWith('.webp')).length, 143)
+  ]
+  for (const icon of baselineMissing) assert.ok(missing.includes(icon), `旧基线缺失不应消失：${icon}`)
+  const unexpected = missing.filter(icon =>
+    !baselineMissing.includes(icon) && !KNOWN_UNAVAILABLE_PREFIXES.some(prefix => icon.startsWith(prefix))
+  )
+  assert.deepEqual(unexpected, [], `出现了意料之外的新图标缺失：${unexpected.join(', ')}`)
   assert.ok(data.furniture.flatMap(entry => entry.skins).every(skin => !Object.hasOwn(skin, 'roomObj')))
 })

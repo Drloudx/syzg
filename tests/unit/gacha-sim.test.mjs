@@ -32,8 +32,10 @@ test('卡池数据带上了原表概率说明与指定伙伴', () => {
     assert.ok(pool.percTip.length > 0, `${pool.id} 缺少 percTip`)
     assert.ok(pool.percTip.includes('{'), `${pool.id} 的 percTip 应保留占位符`)
   }
-  assert.deepEqual(upPool.upTypes, ['hero_064'])
-  assert.equal(upPool.assets.coverSprite, 'gacha_p_sp001')
+  // 2026-11-09（1.7.15 数据更新）：活动 UP 池从 hero_064 换成 hero_060（德莉），
+  // 封面精灵随之变为 gacha_chara060。
+  assert.deepEqual(upPool.upTypes, ['hero_060'])
+  assert.equal(upPool.assets.coverSprite, 'gacha_chara060')
   assert.equal(petPool.assets.coverSprite, 'gacha_egg_sp')
 })
 

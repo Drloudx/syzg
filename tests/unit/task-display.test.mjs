@@ -23,18 +23,23 @@ const tasks = JSON.parse(readFileSync(join(root, 'public/data/parsed/tasks.json'
 
 test('同一分类内的任务按 ID 数字序排列，不是字典序', () => {
   // 第一章 m_1_* 的真实推进链（已用 addTask 核对）
+  //
+  // 2026-11-09（1.7.15 数据更新）：官方给主线补了一批 `_BF` 后缀的**已下架**
+  // （`close:true`）任务副本。页面用 `HIDE_CLOSED_TASKS` 隐藏它们，所以这里
+  // 同样按 `!close` 过滤，校验的才是用户实际看到的列表顺序。
   const ch1 = tasks.tasks
-    .filter(t => t.type === 1 && t.subKey === '第一章' && t.id.startsWith('m_1_'))
+    .filter(t => !t.close && t.type === 1 && t.subKey === '第一章' && t.id.startsWith('m_1_'))
     .map(t => t.id)
   assert.deepEqual(ch1, [
-    'm_1_1', 'm_1_2', 'm_1_4', 'm_1_4_1', 'm_1_5', 'm_1_6', 'm_1_7',
-    'm_1_7_1', 'm_1_7_2', 'm_1_7_3', 'm_1_8', 'm_1_8_2', 'm_1_9',
+    'm_1_1', 'm_1_2', 'm_1_4', 'm_1_5', 'm_1_6', 'm_1_7',
+    'm_1_7_1', 'm_1_8', 'm_1_8_2', 'm_1_9',
     'm_1_10', 'm_1_11', 'm_1_12'
   ])
 
   // 全局检查：任何相邻两个同分类任务，只要 ID 同族，数字小的必须在前
   const byGroup = new Map()
   for (const t of tasks.tasks) {
+    if (t.close) continue // 与页面一致：已下架任务不参与展示排序
     const key = `${t.type}|${t.subKey}`
     if (!byGroup.has(key)) byGroup.set(key, [])
     byGroup.get(key).push(t.id)

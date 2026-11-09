@@ -139,7 +139,13 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
     }
   }
   assert.ok(sources.item_19300.some(x => x.type === 'dungeon' && x.name === '辛瓦特遗迹'))
-  for (const id of ['item_59051', 'item_59005', 'pet_098', 'item_10076']) assert.ok(!sources[id]?.length, id)
+  /*
+   * 2026-11-09（1.7.15 数据更新）：item_59005（指名契约书：茜塔）现在能从主线
+   * 任务「契约者」的步骤奖励拿到，因此**不再**属于「无来源」清单；其余三个仍无来源。
+   * 判据不变：拿不到的东西不得被凭空编出出处。
+   */
+  assert.ok(sources.item_59005?.some(x => x.type === 'task'))
+  for (const id of ['item_59051', 'pet_098', 'item_10076']) assert.ok(!sources[id]?.length, id)
   const parents = new Set(Object.values(sources).flat().filter(x => x.type === 'container').map(x => x.id))
   assert.ok(!parents.has('item_20001'))
   assert.ok(!parents.has('item_26008x'))

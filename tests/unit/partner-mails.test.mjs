@@ -5,6 +5,7 @@ import { buildHeroesFile } from '../../scripts/parse/heroes.mjs'
 import { buildPartnerMailboxes, getPartnerMailPresentation, parseHeroMail } from '../../src/utils/partnerMailData.js'
 import { validateResource } from '../../src/utils/resourceSchemas.js'
 import { CALL_NAME_REPLACE, cleanDialogueLine, cleanMailContent } from '../../src/utils/gameMappings.js'
+import { isHiddenHero } from '../../src/config/blacklist.js'
 
 const read = relative => JSON.parse(fs.readFileSync(new URL(`../../${relative}`, import.meta.url)))
 const itemData = read('public/data/parsed/items.json')
@@ -28,16 +29,23 @@ test('mailboxes cover every game-visible source mail, including hidden catalogue
   assert.throws(() => validateResource('data/parsed/heroes.json', { ...data, mailboxes: undefined }))
   const { heroes, mailboxes } = data
   const actual = mailboxes.flatMap(box => box.mails.map(mail => ({ ...mail, heroId: box.id })))
-  const expected = Object.entries(mailTable).filter(([id, mail]) => mail.mailType !== 2 ||
-    (archiveTable[mail.heroTypeId] || []).some(archive => archive.mailTypeId === id))
+  // 期望侧与实现同口径：手工隐藏角色（blacklist HIDDEN_HERO_IDS）的发件箱不出。
+  const expected = Object.entries(mailTable).filter(([id, mail]) => !isHiddenHero(mail.heroTypeId) && (mail.mailType !== 2 ||
+    (archiveTable[mail.heroTypeId] || []).some(archive => archive.mailTypeId === id)))
   assert.deepEqual(actual.map(mail => mail.id).sort(), expected.map(([id]) => id).sort())
-  assert.equal(actual.length, 61)
-  assert.equal(mailboxes.length, 36)
+  // 期望集由原表推导，条数随官方邮件表变化；隐藏角色（047/059/070）整体不出。
+  assert.equal(actual.length, expected.length)
+  assert.equal(mailboxes.length, new Set(expected.map(([, mail]) => mail.heroTypeId)).size)
   for (const mail of actual) {
     assert.equal(mail.heroId, mailTable[mail.id].heroTypeId)
     assert.equal(mail.content, mailTable[mail.id].content)
   }
-  for (const id of ['hero_028', 'hero_047', 'hero_057']) {
+  // 隐藏角色的发件箱在产物里必须彻底消失
+  for (const id of ['hero_047', 'hero_059', 'hero_070']) {
+    assert.ok(!mailboxes.some(box => box.id === id), `隐藏角色 ${id} 不应出现在伙伴邮件`)
+  }
+  // 2026-11-09（1.7.15）：hero_047 已改为手工隐藏，不再属于「未收录但仍有邮件」。
+  for (const id of ['hero_028', 'hero_057']) {
     assert.ok(mailboxes.find(box => box.id === id)?.mails.length)
     assert.ok(!heroes.some(hero => hero.id === id), 'do not unhide the hero catalogue')
   }
