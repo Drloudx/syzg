@@ -305,6 +305,29 @@
             </button>
           </div>
 
+          <!-- 该阶段自身的属性与词条（与上方「装备属性」同源，按这件装备算） -->
+          <div v-if="stagePreview" class="equip-upgrade__preview">
+            <div v-if="stagePreview.equipLevel || stagePreview.jobList.length" class="equip-upgrade__preview-meta">
+              <span v-if="stagePreview.equipLevel">品阶 {{ stagePreview.equipLevel }}</span>
+              <span v-if="stagePreview.jobList.length">{{ stagePreview.jobList.join(' / ') }}</span>
+            </div>
+
+            <UiStatGrid v-if="stagePreview.attrItems.length" :items="stagePreview.attrItems" />
+
+            <div v-if="stagePreview.affixGroups.length" class="equip-upgrade__preview-affix">
+              <span class="equip-upgrade__preview-label">可携带效果</span>
+              <div class="affix-groups-list">
+                <div v-for="(group, gIdx) in stagePreview.affixGroups" :key="gIdx" class="affix-group-block paper-panel-solid">
+                  <div v-for="(affix, aIdx) in group.prefixes" :key="aIdx" class="affix-row">
+                    <div class="affix-name">{{ affix.skillName }}</div>
+                    <div class="affix-desc" v-html="affix.desHtml"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p v-else class="equip-upgrade__preview-none">该阶段无可携带效果</p>
+          </div>
+
           <!-- 全部阶段的消耗一览 -->
           <div v-if="showAllCosts" class="equip-upgrade__allcosts">
             <div
@@ -955,6 +978,32 @@ const upgradeChain = computed(() => {
 const selectUpgradeStage = (idx) => {
   selectedUpgradeIndex.value = idx
 }
+
+/**
+ * 选中阶段的属性与词条预览。
+ * 每个阶段是榜单上独立的一件装备（typeId 不同），直接按该装备自身算，
+ * 不受上方「品质属性」手动切换影响 —— 那套开关是「同一件装备按不同品质估算」，
+ * 和进阶链是两回事，混用会让阶段卡片显示错的数值。
+ */
+const stagePreview = computed(() => {
+  const stage = upgradeChain.value?.active
+  if (!stage?.item) return null
+  const target = stage.item
+  const attrRange = calculateEquipAttributeRange(target, Number(target.quality) || 1, 0)
+  const attrItems = attrRange
+    ? buildEquipAttributeItems(attrRange).map(a => ({
+        label: translateAttr(a.key),
+        value: a.min === a.max ? `+${a.min}` : `+${a.min}~${a.max}`,
+        tone: 2
+      }))
+    : []
+  return {
+    attrItems,
+    affixGroups: parseItemAffixes(target) || [],
+    equipLevel: target.equip?.equipLevel || null,
+    jobList: translateJobArray(target.equip?.job || [])
+  }
+})
 
 /** 「查看全部消耗」：把每个阶段的消耗一次性列出。 */
 const showAllCosts = ref(false)
@@ -2005,6 +2054,33 @@ onBeforeUnmount(cancelBodyScrollRestore)
 }
 .equip-upgrade__toggle:hover {
   background: rgba(122, 154, 153, 0.26);
+}
+/* 阶段自身的属性 / 词条预览 */
+.equip-upgrade__preview {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-faint, rgba(143, 115, 81, 0.25));
+}
+.equip-upgrade__preview-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-sub, #7a6a52);
+}
+.equip-upgrade__preview-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub, #7a6a52);
+  margin-bottom: 6px;
+}
+.equip-upgrade__preview-none {
+  font-size: 12px;
+  color: var(--text-sub, #7a6a52);
+  margin: 0;
 }
 .equip-upgrade__allcosts {
   display: flex;
