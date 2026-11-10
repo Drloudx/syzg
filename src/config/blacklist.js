@@ -130,6 +130,35 @@ export const EXACT_BLACKLIST = [
 ]
 
 /**
+ * 「官方奖励池配错」的物品 —— 详情页不显示「开启奖励」区块。
+ *
+ * 这 5 个都是**材料 / 入场券**，本身没有开启奖励，但官方 item 表把它们的
+ * `useActionPara.reward` 错填成了 `relic_sp1_explore_c1`（幽夜古堡的
+ * 「通关简普通」结算池：小钱袋 / 神秘遗器 / 装备）。照实渲染会显示
+ * 一整套跟物品毫无关系的掉落，误导玩家。
+ *
+ * 用显式 ID 名单而非「按 reward.tip 前缀判断」—— tips 是策划文案，随时会改，
+ * 拿它当判据会在下次数据更新时静默失效。
+ */
+export const BROKEN_REWARD_POOL_ITEM_IDS = Object.freeze([
+    'item_20032', // 湛蓝回忆拼图（替代 3 星伙伴回忆拼图激活星阶）
+    'item_20033', // 靛紫回忆拼图（替代 4 星伙伴回忆拼图激活星阶）
+    'item_20034', // 灿金回忆拼图（替代 5 星伙伴回忆拼图激活星阶）
+    'item_20035', // 回廊挑战之证（进入亚空回廊·特异次元）
+    'item_20036'  // 秘境挑战之证（进入瓦希什塔秘境）
+])
+
+const BROKEN_REWARD_POOL_SET = new Set(BROKEN_REWARD_POOL_ITEM_IDS)
+
+/** 该物品的「开启奖励」是否为官方配错，应当不显示。 */
+export const hasBrokenRewardPool = (itemOrId) => {
+    const id = typeof itemOrId === 'object' && itemOrId !== null
+        ? String(itemOrId.typeId ?? itemOrId.id ?? '')
+        : String(itemOrId ?? '')
+    return BROKEN_REWARD_POOL_SET.has(id)
+}
+
+/**
  * 手动维护的「隐藏角色」名单 —— 全站唯一入口。
  *
  * 这里的角色在**所有出口**统一隐藏：角色图鉴、伙伴邮件、任务图鉴（含好感度事件）、

@@ -680,7 +680,7 @@ import { fetchWithFallback } from '../utils/request.js'
 import { PREVIEW_AVAILABLE_IDS } from '../utils/recipeUtils'
 import { formatHighlightedText, EQUIP_QUALITY_LABELS, translateStatName } from '../utils/gameMappings.js'
 import { compareExchangeSources } from '../utils/exchangeData.js'
-import { isFacilityRecipeHidden } from '../config/blacklist.js'
+import { isFacilityRecipeHidden, hasBrokenRewardPool } from '../config/blacklist.js'
 import { resolveItemRelations, resolveSimilarItems } from '../utils/relationData.js'
 import { UiModal, UiSection, UiTag, UiInfoRow, UiButton, UiFilterPill, UiStatGrid, UiRewardCard, UiAccordion, UiBackToTop } from './ui/index.js'
 import CommentsPanel from './CommentsPanel.vue'
@@ -1112,7 +1112,14 @@ const affixGroups = computed(() => {
   return parseItemAffixes(props.item)
 })
 
-const acquisition = computed(() => getItemAcquisition(props.item))
+const acquisition = computed(() => {
+  /*
+   * 官方把 5 个材料/入场券的奖励池填错了（挂成幽夜古堡通关结算池），
+   * 照实渲染会显示一堆无关掉落。名单见 blacklist.BROKEN_REWARD_POOL_ITEM_IDS。
+   */
+  if (hasBrokenRewardPool(props.item)) return null
+  return getItemAcquisition(props.item)
+})
 const acquisitionTitle = computed(() => {
   if (acquisition.value?.action === 'appraisal') return '鉴定奖励'
   return '开启奖励'
