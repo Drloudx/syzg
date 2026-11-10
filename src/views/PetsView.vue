@@ -161,7 +161,7 @@
             <div class="variant-line">
               <span class="variant-effect-title">变异概率:</span>
               <span class="variant-effect-txt variant-chance-val">{{ selectedPet.variantChancePercent }}%</span>
-              <span class="variant-effect-note">孵化完成后判定，不是放蛋时</span>
+              <span class="variant-effect-note">孵化完成后判定</span>
             </div>
           </div>
         </div>
@@ -1021,8 +1021,6 @@ const handleImgError = (e) => {
 }
 .variant-line + .variant-line {
   margin-top: 6px;
-  padding-top: 6px;
-  border-top: 1px dashed rgba(126, 42, 168, 0.22);
 }
 .variant-effect-note {
   margin-left: 8px;
