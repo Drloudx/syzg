@@ -149,8 +149,15 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
   const parents = new Set(Object.values(sources).flat().filter(x => x.type === 'container').map(x => x.id))
   assert.ok(!parents.has('item_20001'))
   assert.ok(!parents.has('item_26008x'))
-  assert.ok(!parents.has('item_26013'))
-  assert.equal(parents.size, 13)
+  /*
+   * 2026-11-10：通行证（荒野通行手册）已开放，`item_26013`（高级好感度礼物自选包）
+   * 现在能从通行证付费档拿到 → 变成「可达」，其内含物（item_27005/27008/27011）
+   * 首次获得「自选获得」来源，故它成为容器。
+   * 判据不变：只有本身可达（有真实来源）的物品才展开容器，不凭空编造出处。
+   */
+  assert.ok(parents.has('item_26013'))
+  assert.ok(sources.item_27011?.some(x => x.type === 'container' && x.id === 'item_26013'))
+  assert.equal(parents.size, 25)
   const fresh = build({ dungeonSources: buildDungeonsFiles().deps.dungeonSources }).files.find(x => x.file === 'parsed/item-sources.json').data
   assert.deepEqual(sources, fresh, 'standalone search must not depend on a stale dungeon source file')
 })

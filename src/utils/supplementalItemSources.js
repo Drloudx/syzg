@@ -222,6 +222,40 @@ export function buildSupplementalItemSources(maps) {
   for (const [id, entry] of Object.entries(maps.activityDailyJson?.activityReward || {})) {
     addReward(entry.reward, { type: 'activity', id: `daily:rank:${id}`, name: '每日活跃', des: `活跃度达到 ${entry.activityRank}` })
   }
+
+  /*
+   * 通行证（荒野通行手册）奖励。
+   *
+   * `activityList.battlePass` 只有 `activityType/name/startTime/endTime`，**没有 para 奖励列表**；
+   * 实际奖励分散在 reward 表里 category = ['活动','通行证','免费'|'付费'] 的条目
+   * （freeRewards001~019 / payRewards001~030 共 38 条）。
+   *
+   * 早期通行证未开放（商业化未上线），这些来源被整体跳过；现在已开放，
+   * 按活动本身的 `startTime/endTime` 判断是否生效（当前 2025-12-01 ~ 2027-12-12）。
+   */
+  const battlePass = table(maps.activityListJson).battlePass
+  const passActive = battlePass && battlePass.condition !== 'false' &&
+    battlePass.startTime && battlePass.startTime !== battlePass.endTime
+  if (passActive) {
+    for (const [rid, reward] of Object.entries(rewards)) {
+      const cats = Array.isArray(reward?.category) ? reward.category : []
+      if (!cats.includes('通行证')) continue
+      /*
+       * 只认「免费档 / 付费档」——`68battlePassPreview` / `30battlePassUpPreview`
+       * 的 category 只有 ['活动','通行证']，是**奖励预览**（展示用），
+       * 不是真实获取途径。本文件的既定原则：不扫描展示/预览奖励。
+       */
+      const hasTier = cats.includes('免费') || cats.includes('付费')
+      if (!hasTier) continue
+      const tier = cats.includes('付费') ? '付费' : '免费'
+      addReward(rid, {
+        type: 'activity',
+        id: `battlePass:${rid}`,
+        name: battlePass.name || '通行证',
+        des: `通行证奖励 · ${tier}档`
+      })
+    }
+  }
   for (const [id, entry] of Object.entries(maps.activityDailyJson?.tasks || {})) {
     addReward(entry.reward, { type: 'activity', id: `daily:task:${id}`, name: '每日活跃', des: entry.taskDesc })
   }
