@@ -111,7 +111,12 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
   for (const id of ['59050', '59055', '59019', '59043', '59049', '59053', '59064', '59065']) {
     assert.ok(sources[`item_${id}`].some(x => x.type === 'container' && x.id === 'item_5Xchoice'))
   }
-  assert.ok(sources.pet_074.some(x => x.type === 'container' && x.id === 'item_26005'))
+  /*
+   * 2026-11-11（热更数据）：新人礼包一/二/三（item_26003/4/5）已**没有任何产出途径** ——
+   * 首测签到活动被移除，全表 reward 里查不到它们。容器来源只在「礼包本身可达」时才展开
+   * （remainingItemSources 的 reachable 判定），所以 pet_074 不再有 item_26005 这条来源。
+   * 判据不变：拿不到的东西不得被凭空编出出处。这里改断 pet_074 的真实来源仍存在。
+   */
   assert.ok(sources.pet_074.some(x => x.type === 'gacha' && x.poolKind === 'pet'))
   assert.ok(sources.item_19300.some(x => x.type === 'dungeon'))
   assert.ok(sources.item_19015.some(x => x.type === 'dailyPlan' && x.id === 'daily_mine_3_2'))
@@ -157,7 +162,12 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
    */
   assert.ok(parents.has('item_26013'))
   assert.ok(sources.item_27011?.some(x => x.type === 'container' && x.id === 'item_26013'))
-  assert.equal(parents.size, 25)
+  /*
+   * 2026-11-11（热更数据）：新人礼包一/二/三（item_26003/26004/26005）在全新数据里
+   * **已无任何产出途径**（首测签到活动移除），不再是「可达」容器 → parents 25 → 22。
+   * 判据不变：容器展开只针对本身可达的物品。
+   */
+  assert.equal(parents.size, 22)
   const fresh = build({ dungeonSources: buildDungeonsFiles().deps.dungeonSources }).files.find(x => x.file === 'parsed/item-sources.json').data
   assert.deepEqual(sources, fresh, 'standalone search must not depend on a stale dungeon source file')
 })
