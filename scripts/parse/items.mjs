@@ -33,7 +33,8 @@ export function buildItemsFile() {
     consumeRes: readJson('consume.json'),
     formulaRes: readJson('formula.json'),
     playerInitRes: readJson('playerInit.json'),
-    equipQualityUpgradeRes: readJson('equipQualityUpgrade.json')
+    equipQualityUpgradeRes: readJson('equipQualityUpgrade.json'),
+    itemExchangeRes: readJson('itemExchange.json')
   }
   maps.skinModelImages = loadSkinModelImages(maps.skinRes)
   const data = buildItemData(maps)

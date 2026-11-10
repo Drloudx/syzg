@@ -52,92 +52,145 @@ export function roundToEven(value) {
 }
 
 /**
- * 解析锻造台真实打造方案。装备打造是随机池：先按 exchangeTeam 的品阶开放，
- * 再从 itemExchangeRandom 的奖励池生成 equip/equipGroup，材料只取 consume 表。
+ * 解析锻造台真实打造方案。
+ *
+ * ## 两个数据源的分工（2026-11-10 修）
+ *
+ * - **`itemExchange`（装备兑换表）= 锻造台列表的真正来源**。凡 `category[0]==='装备兑换'`
+ *   的条目（1.7.15 有 148 条）就是锻造台里能做的每一件装备。同名的 `_1` 后缀条目
+ *   （如 `422001` 蓝 / `422001_1` 紫）是同一个装备的不同品质档位，`reward` 指向的
+ *   规则里 `quality` 给出该档品质。
+ * - `itemExchangeRandom` 只有 73 条，会漏掉 `item_422001`（鞣制甲皮风帽）这类
+ *   只在 `itemExchange` 里登记的装备 —— 旧实现只读它，导致该装备没有锻造信息。
+ *
+ * ## 品质概率
+ *
+ * 游戏锻造的品质分布是全局的 `ruleTeam.equipMake`（蓝 25 / 紫 60 / 橙 15），
+ * 不分装备；`itemExchange` 的每条只是「这个品质档能不能做」。
  */
-export function buildSmithingData({ itemExchangeRandomRes = {}, exchangeTeamRes = {}, consumeRes = {}, rewardRes = {}, equipGroupRes = {}, itemRes = {} } = {}) {
-  const randomDatas = itemExchangeRandomRes?.datas || {}
-  const ruleTeams = itemExchangeRandomRes?.ruleTeam || {}
+export function buildSmithingData({ itemExchangeRandomRes = {}, itemExchangeRes = {}, exchangeTeamRes = {}, consumeRes = {}, rewardRes = {}, equipGroupRes = {}, itemRes = {} } = {}) {
+  const randomRes = itemExchangeRandomRes || {}
+  const ruleTeams = randomRes.ruleTeam || {}
   const consumeDatas = consumeRes?.datas || {}
   const rewards = rewardRes?.datas || {}
   const qualityGroups = equipGroupRes?.qualityGroups || {}
   const rawItems = itemRes?.datas || itemRes || {}
   const blacksmith = Array.isArray(exchangeTeamRes?.blacksmith) ? exchangeTeamRes.blacksmith : []
+  const exchangeTable = itemExchangeRes?.itemExchange || itemExchangeRes || {}
 
+  // 锻造台各品阶开放的 team（baodimap1..5）
   const teamLevels = new Map()
   blacksmith.forEach(team => (team.randomTeamList || []).forEach(id => {
     teamLevels.set(id, Number(team.equipLevel) || 0)
   }))
+
+  // 锻造品质概率：取全局 equipMake（蓝 25 / 紫 60 / 橙 15）
+  const makeRules = ruleTeams.equipMake || []
+  const makeTotal = makeRules.reduce((sum, r) => sum + (Number(r.chance) || 0), 0)
+  const makeChances = makeRules
+    .map(r => ({ quality: Number(r.value), chance: makeTotal ? (Number(r.chance) || 0) / makeTotal : 0 }))
+    .filter(e => e.chance > 0 && e.quality > 0)
+
   const result = new Map()
 
-  for (const exchange of Object.values(randomDatas)) {
-    const equipLevel = teamLevels.get(exchange.team)
-    if (!equipLevel || !exchange.consume) continue
-    const consume = consumeDatas[exchange.consume]
-    const materials = (consume?.items || []).map(material => {
-      const target = rawItems[material.typeId] || {}
-      return {
-        typeId: material.typeId,
-        name: target.name || material.typeId,
-        img: target.img ? `/images/Common_ItemIcon/${target.img}.webp` : '',
-        quality: Number(target.quality) || 1,
-        num: Number(material.num) || 0
-      }
-    }).filter(material => material.num > 0)
+  const materialsOf = consumeId => (consumeDatas[consumeId]?.items || []).map(material => {
+    const target = rawItems[material.typeId] || {}
+    return {
+      typeId: material.typeId,
+      name: target.name || material.typeId,
+      img: target.img ? `/images/Common_ItemIcon/${target.img}.webp` : '',
+      quality: Number(target.quality) || 1,
+      num: Number(material.num) || 0
+    }
+  }).filter(material => material.num > 0)
+
+  /*
+   * 遍历 itemExchange 的「装备兑换」条目。
+   * 一条兑换可能产出多件装备（equipGroup 模式，如武器池），也可能只产出一件（equip 模式）。
+   */
+  for (const [exchangeId, entry] of Object.entries(exchangeTable)) {
+    if (!entry || !Array.isArray(entry.category) || entry.category[0] !== '装备兑换') continue
+    const equipLevel = Number(String(entry.id || exchangeId).replace(/_1$/, '').length) >= 0
+      ? (teamLevels.get(String(entry.team).replace(/_1$/, '')) || 0)
+      : 0
+    if (!equipLevel) continue
+
+    const materials = materialsOf(entry.consume)
     if (!materials.length) continue
 
-    const ruleTeam = ruleTeams[exchange.ruleTeamId] || []
-    const totalChance = ruleTeam.reduce((sum, rule) => sum + (Number(rule.chance) || 0), 0)
-    const qualityChances = Object.entries(exchange.reward || {}).map(([quality, rewardId]) => {
-      const chanceRule = ruleTeam.find(rule => String(rule.value) === String(quality))
-      return { quality: Number(quality), chance: totalChance ? (Number(chanceRule?.chance) || 0) / totalChance : 0, rewardId }
-    }).filter(entry => entry.chance > 0)
+    const reward = rewards[entry.reward]
+    if (!reward) continue
 
-    const targets = new Map()
-    for (const { quality, rewardId } of qualityChances) {
-      for (const group of parseRewardGroups(rewards[rewardId], { items: rawItems, equipGroups: equipGroupRes })) {
-        for (const rule of group.rules || []) {
-          if (rule.actualProb === 0) continue
-          if (rule.mode === 'equip' && rule.typeId) {
-            const qualities = targets.get(rule.typeId) || new Set()
-            qualities.add(String(rewardId))
-            targets.set(rule.typeId, qualities)
+    // 该兑换条目对应的具体品质档（蓝=3/紫=4/橙=5）
+    // ① equip 模式：reward 规则直接带 quality
+    // ② equipGroup 模式：reward 规则只给 qualityGroup，需回查 qualityGroups（如 quality_01 → [3]）
+    const entryQuality = (() => {
+      for (const group of (reward.items || [])) {
+        for (const rule of (group.rules || [])) {
+          if (rule.mode === 'equip' && rule.quality) return Number(rule.quality)
+        }
+      }
+      for (const group of (reward.items || [])) {
+        for (const rule of (group.rules || [])) {
+          if (rule.mode === 'equipGroup' && rule.qualityGroup) {
+            const qs = (qualityGroups[rule.qualityGroup] || [])
+              .map(e => Number(e.quality)).filter(q => q > 0)
+            if (qs.length) return Math.min(...qs)
           }
-          if (rule.mode === 'equipGroup' && rule.equipTypeGroup) {
-            const groupQualities = qualityGroups[rule.qualityGroup] || []
-            if (rule.qualityGroup && !groupQualities.some(entry => Number(entry.quality) === quality)) continue
-            for (const entry of rule.candidates || []) {
-              if (entry.typeId && entry.prob !== 0) {
-                const qualities = targets.get(entry.typeId) || new Set()
-                qualities.add(String(rewardId))
-                targets.set(entry.typeId, qualities)
-              }
-            }
-          }
+        }
+      }
+      return null
+    })()
+
+    const targets = new Set()
+    for (const group of (reward.items || [])) {
+      for (const rule of (group.rules || [])) {
+        if (!rule || rule.actualProb === 0) continue
+        if (rule.mode === 'equip' && rule.typeId) targets.add(rule.typeId)
+        if (rule.mode === 'equipGroup' && rule.equipTypeGroup) {
+          const members = equipGroupRes?.equipGroups?.[rule.equipTypeGroup]?.type || []
+          for (const member of members) if (member.typeId) targets.add(member.typeId)
         }
       }
     }
 
-    for (const [typeId, rewardIds] of targets) {
+    for (const typeId of targets) {
       const target = rawItems[typeId]
       if (!target?.equip) continue
       const existing = result.get(typeId) || []
-      const targetQualityChances = qualityChances.filter(entry => rewardIds.has(String(entry.rewardId)))
       existing.push({
-        exchangeId: exchange.typeId,
+        exchangeId,
         facilityId: 'sysBlacksmith',
         facilityName: '锻造台',
         equipLevel,
         position: Number(target.equip.position) || 0,
         materials,
-        qualityChances: targetQualityChances,
-        outputMode: targetQualityChances.some(({ rewardId }) => (rewards[rewardId]?.items || []).some(group => (group.rules || []).some(rule => rule.mode === 'equip'))) ? 'equip' : 'equipGroup'
+        entryQuality,
+        qualityChances: makeChances.map(c => ({ ...c })),
+        outputMode: 'equip'
       })
       result.set(typeId, existing)
     }
   }
 
-  return Object.fromEntries([...result].map(([typeId, recipes]) => [typeId, recipes]))
+  // 同一装备多条兑换（蓝/紫档）只保留一条配方，品质档合并
+  const merged = {}
+  for (const [typeId, recipes] of result) {
+    const qualities = [...new Set(recipes.map(r => r.entryQuality).filter(q => q))].sort()
+    const first = recipes[0]
+    /*
+     * 品质概率用全局 equipMake（蓝 25 / 紫 60 / 橙 15）。
+     * 不能按「itemExchange 里有几条兑换」过滤 —— 那只是登记了蓝/紫两档兑换入口，
+     * 锻造本身是按全局概率出品质的（游戏锻造台截图就是 25/60/15 三档）。
+     */
+    merged[typeId] = [{
+      ...first,
+      qualityChances: makeChances.map(c => ({ ...c })),
+      obtainableQualities: qualities
+    }]
+  }
+
+  return merged
 }
 
 function formatDuration(totalSeconds) {
@@ -346,7 +399,7 @@ export function buildItemData(maps) {
     itemRes, settingRes, lanRes, avatarRes, rewardRes,
     enchantRes, triggerRes, equipGroupRes, equipSuitRes, itemAffixesRes, equipGlobalRes, homeLevelRes,
     heroRes, heroStarRes, skinRes = {}, plantRes = {}, petRes = {}, campResearchRes = {}, homeItemRes = {},
-    itemExchangeRandomRes = {}, exchangeTeamRes = {}, consumeRes = {}, playerInitRes = {},
+    itemExchangeRandomRes = {}, itemExchangeRes = {}, exchangeTeamRes = {}, consumeRes = {}, playerInitRes = {},
     equipQualityUpgradeRes = {}
   } = maps
 
@@ -402,7 +455,7 @@ export function buildItemData(maps) {
   // 3. 解析物品列表并处理碎片名称
   const rawItems = itemRes.datas || {}
   const items = Object.values(rawItems)
-  const smithingData = buildSmithingData({ itemExchangeRandomRes, exchangeTeamRes, consumeRes, rewardRes, equipGroupRes, itemRes })
+  const smithingData = buildSmithingData({ itemExchangeRandomRes, itemExchangeRes, exchangeTeamRes, consumeRes, rewardRes, equipGroupRes, itemRes })
   const originalNameFragmentIds = new Set(['item_59001', 'item_5900101', 'item_5900102', 'item_5900103'])
 
   items.forEach(item => {
@@ -564,6 +617,24 @@ export function buildItemData(maps) {
   }
 
   /*
+   * 装备可获得品质：掉落/探索/副本来源能出的品质档，供详情页「品质属性」开关使用。
+   * 与锻造配方里能产出的品质合并（锻造的蓝/紫/橙也算「可获得」）。
+   */
+  const obtainableQualities = buildEquipObtainableQualities({ rewardRes, equipGroupRes, itemRes })
+  for (const item of items) {
+    const fromDrop = obtainableQualities[item.typeId] || []
+    const fromSmith = (item.smithing?.recipes || [])
+      .flatMap(r => (r.obtainableQualities || []).length
+        ? r.obtainableQualities
+        : (r.qualityChances || []).map(c => Number(c.quality)))
+      .filter(q => q > 0)
+    const merged = [...new Set([...fromDrop, ...fromSmith, Number(item.quality) || 1])]
+      .filter(q => q >= 1 && q <= 6)
+      .sort((a, b) => a - b)
+    if (merged.length > 1) item.obtainableQualities = merged
+  }
+
+  /*
    * 神器进阶链：`equipQualityUpgrade` 每条给出 { consume, reward }，
    * reward 里的 equip rule 就是下一阶段装备。把它双向挂到物品上，
    * 详情页据此渲染「可进阶为」和「由…进阶而来」。
@@ -594,6 +665,49 @@ export function buildItemData(maps) {
     equipGlobalConfig,
     equipEnhanceConfig
   }
+}
+
+/**
+ * 装备的「可获得品质」集合。
+ *
+ * 一件低阶装备在图鉴里自身 quality 往往是最低档（如白 1），但游戏里通过掉落 /
+ * 探索 / 副本等来源其实能掉出更高品质 —— 各来源用 reward 规则的 `qualityGroup`
+ * 指定品质范围（qualityGroups 表：quality_0 → [4]，quality_explore02 → [3,4] …）。
+ *
+ * 旧实现里 `availableQualities` 只看物品自身 quality，导致这类装备的「品质属性」
+ * 只剩最低一档可选。这里汇总所有活跃 reward 里、装备所属 equipGroup 的品质档。
+ */
+export function buildEquipObtainableQualities({ rewardRes = {}, equipGroupRes = {}, itemRes = {} } = {}) {
+  const rewards = rewardRes?.datas || rewardRes || {}
+  const groups = equipGroupRes?.equipGroups || {}
+  const qualityGroups = equipGroupRes?.qualityGroups || {}
+  const rawItems = itemRes?.datas || itemRes || {}
+
+  const isInactive = r => (Array.isArray(r?.category) ? r.category : [])
+    .some(c => /暂不使用|测试|废弃|弃用/.test(String(c)))
+
+  const out = {}
+  for (const reward of Object.values(rewards)) {
+    if (isInactive(reward)) continue
+    for (const group of (reward.items || [])) {
+      for (const rule of (group.rules || [])) {
+        if (!rule || rule.mode !== 'equipGroup' || !rule.equipTypeGroup) continue
+        const grp = groups[rule.equipTypeGroup]
+        if (!grp) continue
+        const qualities = (qualityGroups[rule.qualityGroup] || [])
+          .map(e => Number(e.quality)).filter(q => q > 0)
+        if (!qualities.length) continue
+        for (const member of (grp.type || [])) {
+          const typeId = member.typeId
+          if (!typeId || !rawItems[typeId]?.equip) continue
+          ;(out[typeId] ||= new Set())
+          qualities.forEach(q => out[typeId].add(q))
+        }
+      }
+    }
+  }
+
+  return Object.fromEntries(Object.entries(out).map(([id, s]) => [id, [...s].sort((a, b) => a - b)]))
 }
 
 /**

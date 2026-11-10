@@ -586,7 +586,7 @@
         <div class="smithing-recipe__meta">
           <span>品质概率</span>
           <span v-for="chance in recipe.qualityChances" :key="chance.quality" :class="`quality-text-${chance.quality}`">
-            {{ EQUIP_QUALITY_LABELS[chance.quality] || `品质${chance.quality}` }} {{ formatChance(chance.chance) }}
+            {{ getRarityName(chance.quality) }} {{ formatChance(chance.chance) }}
           </span>
         </div>
         <p class="smithing-recipe__output">
@@ -1042,7 +1042,17 @@ const enhanceBonusPercent = computed(() => Math.round(selectedEnhanceLevel.value
 const availableQualities = computed(() => {
   if (!props.item || props.item.itemType !== 2) return new Set([1, 2, 3, 4, 5, 6])
 
-  // 1. 如果有锻造配方，以配方中能产出的品质为准 (如 [3, 4, 5])
+  /*
+   * ① 构建期汇总的「可获得品质」优先（掉落/探索/副本 + 锻造配方合并）。
+   *    低阶装备自身 quality 往往只是最低档，但游戏里能掉出更高品质，
+   *    只看自身 quality 会让品质开关只剩一档。
+   */
+  const obtainable = props.item.obtainableQualities
+  if (Array.isArray(obtainable) && obtainable.length) {
+    return new Set(obtainable.map(Number).filter(q => q >= 1 && q <= 6))
+  }
+
+  // ② 有锻造配方时，以配方中能产出的品质为准 (如 [3, 4, 5])
   if (smithingRecipes.value.length) {
     const qualities = new Set()
     for (const r of smithingRecipes.value) {
@@ -1053,7 +1063,7 @@ const availableQualities = computed(() => {
     if (qualities.size > 0) return qualities
   }
 
-  // 2. 否则（传说装备、固定装备、首饰等），以物品自身品质为准
+  // ③ 否则（传说装备、固定装备、首饰等），以物品自身品质为准
   const q = Number(props.item.quality)
   /*
    * 品质上限是 6（神话）。旧代码写死 `q <= 5`，品质 6 的装备会掉进兜底的
