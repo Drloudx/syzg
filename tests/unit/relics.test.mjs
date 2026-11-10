@@ -37,11 +37,20 @@ test('遗器分类名取 lan.relic_type（火/水/地/风属性），不是源�
   assert.ok(data.relics.every(relic => Array.isArray(relic.category)))
 })
 
-test('遗器件数与类型分布正确：基础 25 + 核心 9 = 34', () => {
+test('遗器件数与类型分布正确：只保留当前已开放秘境能开出的（20 基础 + 8 核心 = 28）', () => {
   const data = readParsed('relics.json')
-  assert.equal(data.relics.length, 34)
-  assert.equal(data.relics.filter(r => r.type === 'base').length, 25)
-  assert.equal(data.relics.filter(r => r.type === 'core').length, 9)
+  /*
+   * 34 件遗器里有 6 件**只在 sp2（未开放）的开箱池里**：
+   * petDmg_2001 / shield_2002 / petTime_2003 / killMana_2004 / skillDmg_2005 / core_109。
+   * SP1 的池子开不到它们，故隐藏。判据是「出现在已开放秘境的 randomRelics 池里」，
+   * 不是硬编码：官方开放 sp2 后这 6 件会自动回来（届时本断言需跟着改回 34）。
+   */
+  assert.equal(data.relics.length, 28)
+  assert.equal(data.relics.filter(r => r.type === 'base').length, 20)
+  assert.equal(data.relics.filter(r => r.type === 'core').length, 8)
+  for (const hidden of ['petDmg_2001', 'shield_2002', 'petTime_2003', 'killMana_2004', 'skillDmg_2005', 'core_109']) {
+    assert.ok(!data.relics.some(r => r.id === hidden), `${hidden} 属于未开放秘境，不应出现`)
+  }
 })
 
 test('每件遗器的 1~5 级文本齐全且非空；核心遗器必须有共鸣', () => {

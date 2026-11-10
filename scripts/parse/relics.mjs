@@ -120,6 +120,27 @@ const buildDungeons = (info, activityList) => Object.values(info)
     comment: text(dungeon._comment)
   }))
 
+/**
+ * 遗器 → 它能在哪些秘境的「开箱池」里被开出（`useActionPara.spDungeonId` + `randomRelics`）。
+ * 只统计**已开放**秘境，用来判断「某件遗器是否只在未开放副本里产出」。
+ */
+const buildRelicDungeonMap = (itemJson, openDungeonIds) => {
+  const items = itemJson?.datas || itemJson || {}
+  const map = new Map() // relicId -> Set<dungeonId>
+  for (const entry of Object.values(items)) {
+    const para = entry?.useActionPara
+    if (!para || !Array.isArray(para.randomRelics)) continue
+    const dungeonId = para.spDungeonId
+    if (!dungeonId || !openDungeonIds.has(dungeonId)) continue
+    for (const drop of para.randomRelics) {
+      if (!drop?.relicId) continue
+      if (!map.has(drop.relicId)) map.set(drop.relicId, new Set())
+      map.get(drop.relicId).add(dungeonId)
+    }
+  }
+  return map
+}
+
 const buildFapan = (fapan, openDungeonIds) => Object.values(fapan)
   // 只保留已开放秘境的法盘（未开放的整块隐藏，与 dungeons 同一口径）
   .filter(entry => !openDungeonIds || openDungeonIds.has(entry.fapanId))
@@ -158,9 +179,27 @@ export function buildRelicsFile() {
   const relicGroup = readJson('relicGroup.json').datas || readJson('relicGroup.json')
   const relicSetting = readJson('relicSetting.json').datas || readJson('relicSetting.json')
   const activityList = (readJson('activityList.json').datas || readJson('activityList.json')) || {}
+  const itemJson = readJson('item.json')
   const categoryNames = readRelicCategoryNames()
 
-  const relics = Object.values(relicInfo).map(relic => {
+  // 遗器 → 能在哪些【已开放】秘境开出。只在未开放副本（sp2）产出的遗器应当隐藏。
+  const openDungeonIds = new Set(
+    Object.values(relicDungeonInfo)
+      .filter(dungeon => isDungeonOpen(activityList?.[dungeon.id], dungeon.id))
+      .map(dungeon => dungeon.id)
+  )
+  const relicDungeonMap = buildRelicDungeonMap(itemJson, openDungeonIds)
+
+  const relics = Object.values(relicInfo)
+    /*
+     * 只保留「在当前已开放秘境里能开出」的遗器。
+     * 判据：该遗器出现在某个**已开放**秘境的 randomRelics 池里。
+     * 例：petDmg_2001 / shield_2002 / petTime_2003 / killMana_2004 / skillDmg_2005 / core_109
+     * 只在 sp2_yiwu* 的池子里，SP1 开不到 → 属于未开放的瓦希什塔秘境，隐藏。
+     * 注意不是硬编码 id：官方开放 sp2 后，这些遗器会自动回到列表。
+     */
+    .filter(relic => relicDungeonMap.has(relic.id))
+    .map(relic => {
     const isCore = relic.type === 'core'
     const levels = isCore ? buildCoreLevels(relic) : buildBaseLevels(relic)
     return {
@@ -241,12 +280,6 @@ export function buildRelicsFile() {
    *   fapanExp          法盘每级所需经验；总级数 = 键数量
    */
   const fapanExp = relicSetting?.fapanExp || {}
-  // 已开放秘境 id 集合：法盘只保留这些（未开放的整块隐藏）
-  const openDungeonIds = new Set(
-    Object.values(relicDungeonInfo)
-      .filter(dungeon => isDungeonOpen(activityList?.[dungeon.id], dungeon.id))
-      .map(dungeon => dungeon.id)
-  )
   const rules = {
     maxCoreRelicNum: Number(relicSetting?.maxCoreRelicNum) || 0,
     // 官方文案：relicLevelUpCost 是「升级需要消耗多少个同类型遗物来合成」
