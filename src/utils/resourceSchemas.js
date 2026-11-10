@@ -110,7 +110,21 @@ const schemas = {
     && data.layers.every(layer => Number.isFinite(layer.layer) && Array.isArray(layer.rounds))
     && isList(data.shop)
     && isRecord(data.summary),
-  'data/parsed/item-sources.json': data => isRecord(data) && Object.values(data).every(isList)
+  'data/parsed/item-sources.json': data => isRecord(data) && Object.values(data).every(isList),
+  /**
+   * `data/parsed/relics.json`（遗器图鉴）。
+   *
+   * 校验页面真正依赖的结构：遗器列表、每件遗器的等级化文本、法盘网格尺寸、
+   * 秘境名单。不锁死具体数值（随配置表变化）。
+   */
+  'data/parsed/relics.json': data => isRecord(data) && data.schemaVersion === 1
+    && recordList(data.relics) && data.relics.every(relic => ['base', 'core'].includes(relic.type)
+      && isRecord(relic.shape) && Number.isFinite(relic.shape.width) && Number.isFinite(relic.shape.height)
+      && Array.isArray(relic.levels) && relic.levels.length > 0
+      && relic.levels.every(level => Number.isFinite(level.level) && typeof level.text === 'string')
+      && Array.isArray(relic.resonances))
+    && recordList(data.fapan) && data.fapan.every(entry => Number.isFinite(entry.width) && Number.isFinite(entry.height))
+    && isList(data.dungeons) && isRecord(data.categoryNames)
 }
 
 export function validateResource(path, data) {

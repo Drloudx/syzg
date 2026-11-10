@@ -14,6 +14,7 @@ export const NAV_ROUTES = [
   { name: '魔物图鉴', path: '/pets', icon: '/ui/colect_mon_072.webp' },
   { name: '装备图鉴', path: '/equip', icon: '/ui/item_442001.webp' },
   { name: '符石图鉴', path: '/runes', icon: '/images/Common_ItemIcon/item_19310.webp' },
+  { name: '遗器图鉴', path: '/relics', icon: '/images/Common_ItemIcon/item_core_101.webp' },
   { name: '菜谱查询', path: '/recipes', icon: '/ui/item_30047.webp' },
   { name: '魔物收益', path: '/petseggs', icon: '/ui/pet_079.webp' },
   { name: '成就查询', path: '/achievement', icon: '/ui/achv_icon_adv.webp' },
@@ -38,7 +39,7 @@ export const NAV_CATEGORY_DEFINITIONS = [
     title: '图鉴资料',
     adminTitle: '核心图鉴',
     paths: [
-      '/items', '/heroes', '/equip', '/runes', '/pets', '/monsters',
+      '/items', '/heroes', '/equip', '/runes', '/relics', '/pets', '/monsters',
       '/dungeons', '/chapters', '/furniture', '/facilities',
       '/tasks', '/events', '/recipes', '/achievement',
       /* 日常计划放图鉴资料末尾：它读的是关卡与掉落，性质接近图鉴 */

@@ -111,6 +111,11 @@ const routes = [
     component: () => import('../views/RunesView.vue')
   },
   {
+    path: '/relics',
+    name: 'relics',
+    component: () => import('../views/RelicsView.vue')
+  },
+  {
     path: '/',
     name: 'home',
     component: () => import('../views/HomeView.vue'),

@@ -37,6 +37,7 @@ import { buildRelationsFile } from './relations.mjs'
 import { buildFreightFile } from './freight.mjs'
 import { buildDailyFile } from './daily.mjs'
 import { buildTowerFile } from './tower.mjs'
+import { buildRelicsFile } from './relics.mjs'
 import { buildChapterLockFile } from './chapter-lock-file.mjs'
 import * as runtimeTables from './runtime-tables.mjs'
 
@@ -131,7 +132,8 @@ const jobs = [
   { name: 'glossary', build: () => buildGlossaryFile(monsterData, { heroes: heroData?.heroes, pets: petData?.pets }), dependsOnItems: false },
   { name: 'freight', build: () => buildFreightFile(), dependsOnItems: false },
   { name: 'daily', build: () => buildDailyFile(), dependsOnItems: false },
-  { name: 'tower', build: () => buildTowerFile(), dependsOnItems: false }
+  { name: 'tower', build: () => buildTowerFile(), dependsOnItems: false },
+  { name: 'relics', build: () => buildRelicsFile(), dependsOnItems: false }
 ]
 
 console.log('\n── [page] 页面级预解析 ──')
