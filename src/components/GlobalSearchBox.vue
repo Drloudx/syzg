@@ -182,6 +182,12 @@ const subTagLabel = (item) => {
   overflow-y: auto;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
   border-radius: 5px;
+  /*
+   * 与符石图鉴卡片同底色（--paper-soft 实心色），替代 paper-panel 的 0.94 半透明。
+   * 半透明会让底层页面文字透上来，把深色品质名（如 .quality-text-5 的 #b15d00）
+   * 混成看不清的灰褐色 —— 实心底色才能保证文字对比度。
+   */
+  background-color: var(--paper-soft, #e9dcc3);
 }
 
 .search-empty {
