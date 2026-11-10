@@ -664,9 +664,9 @@ const openPetAtlas = () => {
   display: flex;
   align-items: center;
   padding: 9px 12px;
-  /* 与符石图鉴卡片同底色（--paper-soft），行与行之间只留分隔线 */
+  /* 与符石图鉴卡片同底色（--paper-soft）；行间用清晰的分隔线，不用斑马纹半透明 */
   background: var(--paper-soft);
-  border-bottom: 1px solid var(--border-faint);
+  border-bottom: 1px solid var(--border-soft);
   cursor: pointer;
   transition: background 0.15s ease;
   font-size: 13px;
@@ -674,11 +674,6 @@ const openPetAtlas = () => {
 
 .pet-table-row:last-child {
   border-bottom: none;
-}
-
-/* 行斑马纹 */
-.pet-table-row:nth-child(even) {
-  background: rgba(43, 31, 21, 0.05);
 }
 
 .pet-table-row:hover {

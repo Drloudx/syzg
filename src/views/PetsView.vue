@@ -66,37 +66,43 @@
           </button>
         </div>
       </div>
+      <!--
+        表格表头（借鉴魔物收益页）：放在筛选面板的 footer 里，**不参与内容区滚动**，
+        所以不会出现 sticky 表头"跑上去"盖住筛选栏的问题。
+      -->
+      <template v-if="viewMode === 'table'" #footer>
+        <div class="pets-th-row">
+          <div class="pets-th th-name">宠物</div>
+          <div class="pets-th th-star">星级</div>
+          <div class="pets-th th-element">属性</div>
+          <div class="pets-th th-trait">特性名</div>
+          <div class="pets-th th-effect">特性效果（满级 7 级）</div>
+          <div class="pets-th th-range">1 级 → 7 级</div>
+        </div>
+      </template>
     </UiFilterPanel>
 
-    <!-- 特性表格视图 -->
-    <div v-if="viewMode === 'table'" class="pets-table-wrap paper-panel">
-      <table class="pets-table">
-        <thead>
-          <tr>
-            <th class="col-name">宠物</th>
-            <th class="col-star">星级</th>
-            <th class="col-element">属性</th>
-            <th class="col-trait">特性名</th>
-            <th class="col-effect">特性效果（满级 7 级）</th>
-            <th class="col-range">1 级 → 7 级</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="pet in filteredPets" :key="pet.id" class="pets-table__row" @click="handlePetClick(pet)">
-            <td class="col-name">
-              <span class="cell-name">
-                {{ pet.name }}
-                <img v-if="pet.variantChance > 0" :src="getImageUrl('/ui/pet_info_mutate.png')" class="cell-mutate" :title="`可变异：孵化时 ${pet.variantChancePercent}%`" alt="可变异" />
-              </span>
-            </td>
-            <td class="col-star" :class="`quality-text-${pet.starDisplay}`">{{ pet.star }}★</td>
-            <td class="col-element"><span :class="`element-${pet.element}`">{{ pet.elementName }}</span></td>
-            <td class="col-trait">{{ pet.trait?.name || '—' }}</td>
-            <td class="col-effect" v-html="pet.trait ? formatSkillDescription(pet.trait.maxText) : '—'"></td>
-            <td class="col-range">{{ pet.trait?.rangeText || '—' }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <!--
+      特性表格视图（结构借鉴魔物收益页：滚动容器 + paper-panel + flex 行）
+      🔴 不要用 `<table>` + `thead sticky`：sticky 会粘到 app-container 顶部，
+         表头"跑上去"盖住筛选栏。表头单独放在筛选面板 footer 里。
+    -->
+    <div v-if="viewMode === 'table'" id="petsTableScroll" class="pets-table-scroll" data-main-scroll>
+      <div class="pets-table-container paper-panel">
+        <div v-for="pet in filteredPets" :key="pet.id" class="pets-table-row" @click="handlePetClick(pet)">
+          <div class="pets-td td-name">
+            <span class="cell-name">
+              {{ pet.name }}
+              <img v-if="pet.variantChance > 0" :src="getImageUrl('/ui/pet_info_mutate.png')" class="cell-mutate" :title="`可变异：孵化时 ${pet.variantChancePercent}%`" alt="可变异" />
+            </span>
+          </div>
+          <div class="pets-td td-star" :class="`quality-text-${pet.starDisplay}`">{{ pet.star }}★</div>
+          <div class="pets-td td-element"><span :class="`element-${pet.element}`">{{ pet.elementName }}</span></div>
+          <div class="pets-td td-trait">{{ pet.trait?.name || '—' }}</div>
+          <div class="pets-td td-effect" v-html="pet.trait ? formatSkillDescription(pet.trait.maxText) : '—'"></div>
+          <div class="pets-td td-range">{{ pet.trait?.rangeText || '—' }}</div>
+        </div>
+      </div>
     </div>
 
     <!-- 列表区（5列大幅面卡片展示，懒加载每批 60 项） -->
@@ -146,7 +152,7 @@
     <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadPetsData" />
     <UiEmptyState v-else type="loading" text="正在装配魔物图鉴数据..." />
 
-    <UiBackToTop scroll-container="#petsGridScroll" />
+    <UiBackToTop :scroll-container="viewMode === 'table' ? '#petsTableScroll' : '#petsGridScroll'" />
 
     <!-- FULLSCREEN DETAIL MODAL -->
     <UiModal
@@ -946,50 +952,76 @@ const handleImgError = (e) => {
 }
 .view-mode-icon { width: 13px; height: 13px; flex: 0 0 auto; }
 
-/* ====== 特性表格 ====== */
-.pets-table-wrap {
-  background: var(--paper);
-  padding: 12px 14px calc(88px + var(--safe-bottom, 0px));
-  overflow-x: auto;              /* 窄屏横向滚动，不挤压列 */
+/* ====== 特性表格（结构同魔物收益：flex 行 + 固定表头） ====== */
+.pets-table-scroll {
+  flex: 1;
+  overflow-y: auto;
+  /*
+   * 左右内边距必须与筛选面板（.filter-panel 全局 12px 14px）一致：
+   * 表头行在筛选面板 footer 里（已含 14px），行内容在滚动容器里（原本 0），
+   * 差 14px 会让表头与列错位。
+   */
+  padding: 2px 14px calc(14px + var(--safe-bottom, 0px));
+  box-sizing: border-box;
+  min-height: 0;
 }
-.pets-table {
-  width: 100%;
-  min-width: 820px;              /* 低于此宽度靠横向滚动，保证可读 */
-  border-collapse: collapse;
+.pets-table-container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* 表头行：木色条，放在筛选面板 footer，与魔物收益 .table-header-row 同款 */
+.pets-th-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 1px 3px rgba(62, 42, 20, 0.12);
+  user-select: none;
+  flex-shrink: 0;
+}
+.pets-table-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 9px 12px;
+  background: var(--paper-soft);
+  border-bottom: 1px solid var(--border-soft);
+  cursor: pointer;
+  transition: background 0.15s ease;
   font-size: 13px;
   line-height: 1.6;
-  table-layout: fixed;           /* 固定列宽，避免名字被挤成竖排 */
 }
-.pets-table th,
-.pets-table td {
-  padding: 9px 10px;
-  text-align: left;
-  vertical-align: top;
-  border-bottom: 1px solid var(--border-soft);
+.pets-table-row:last-child { border-bottom: none; }
+.pets-table-row:hover { background: rgba(122, 154, 153, 0.14); }
+.pets-th,
+.pets-td {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  /* 内边距计入列宽（border-box），否则表头与行的 flex 基准会差出 padding 宽度导致错位 */
+  box-sizing: border-box;
+  padding-right: 10px;
 }
-.pets-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: var(--accent-ink, #557574);
-  color: var(--on-wood-text, #ebdcc3);
-  font-weight: 700;
-  font-size: 12px;
-  white-space: nowrap;
-}
-.pets-table__row { cursor: pointer; }
-.pets-table__row:hover { background: var(--hover-bg, rgba(85, 117, 116, 0.12)); }
-.pets-table__row:last-child td { border-bottom: none; }
-.col-name { width: 130px; }
-.col-star { width: 56px; white-space: nowrap; }
-.col-element { width: 56px; white-space: nowrap; }
-.col-trait { width: 110px; }
-.col-effect { width: auto; }        /* 效果列吃掉剩余宽度 */
-.col-range { width: 168px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* 列宽在表头与行之间必须完全一致（都是固定 px，不用百分比，避免滚动条差异导致错位） */
+.th-name,   .td-name   { flex: 0 0 130px; }
+.th-star,   .td-star   { flex: 0 0 56px; white-space: nowrap; }
+.th-element,.td-element{ flex: 0 0 56px; white-space: nowrap; }
+.th-trait,  .td-trait  { flex: 0 0 110px; }
+.th-effect, .td-effect { flex: 1 1 auto; }
+.th-range,  .td-range  { flex: 0 0 168px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* 短列垂直居中 */
+.pets-td.td-name, .pets-td.td-star, .pets-td.td-element,
+.pets-td.td-trait, .pets-td.td-range { align-self: center; }
 .cell-name { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; white-space: nowrap; }
 .cell-mutate { width: 15px; height: 15px; flex: 0 0 auto; }
 /* 表格内的高亮数值（formatSkillDescription 产物） */
-.pets-table :deep(.hl), .pets-table :deep(em), .pets-table :deep(strong) { font-style: normal; color: var(--accent-ink); font-weight: 700; }
+.pets-table-row :deep(.hl),
+.pets-table-row :deep(em),
+.pets-table-row :deep(strong) { font-style: normal; color: var(--accent-ink); font-weight: 700; }
 
 .pets-page {
   display: flex;
