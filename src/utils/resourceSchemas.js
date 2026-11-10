@@ -123,8 +123,9 @@ const schemas = {
       && Array.isArray(relic.levels) && relic.levels.length > 0
       && relic.levels.every(level => Number.isFinite(level.level) && typeof level.text === 'string')
       && Array.isArray(relic.resonances))
-    && recordList(data.fapan) && data.fapan.every(entry => Number.isFinite(entry.width) && Number.isFinite(entry.height))
-    && isList(data.dungeons) && isRecord(data.categoryNames)
+    && recordList(data.fapan) && data.fapan.every(entry => Number.isFinite(entry.width) && Number.isFinite(entry.height)
+      && Array.isArray(entry.cells) && entry.cells.length === entry.width * entry.height)
+    && isList(data.dungeons) && isRecord(data.categoryNames) && isRecord(data.rules)
 }
 
 export function validateResource(path, data) {

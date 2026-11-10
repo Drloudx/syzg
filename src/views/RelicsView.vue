@@ -57,9 +57,16 @@
 
               <div class="relic-entry__meta">
                 <span v-if="relic.attributeName" class="relic-attr">{{ relic.attributeName }}</span>
-                <span>占格 {{ relic.shape.width }}×{{ relic.shape.height }}</span>
-                <span>点数 {{ relic.relicPoint }}</span>
+                <span>带出积分 {{ relic.relicPoint }}</span>
                 <span v-if="relic.energyPattern">能量型 {{ relic.energyPattern }}</span>
+              </div>
+
+              <!-- 占格形状：直接画出 w×h 的格子，比「2×3」文字直观 -->
+              <div class="relic-entry__shape">
+                <span class="relic-entry__shape-label">占格 {{ relic.shape.width }}×{{ relic.shape.height }}</span>
+                <div class="shape-mini" :style="{ '--sw': relic.shape.width, '--sh': relic.shape.height }">
+                  <span v-for="(cell, i) in relic.shapeCells" :key="i" class="shape-mini__cell"></span>
+                </div>
               </div>
 
               <!--
@@ -79,8 +86,18 @@
       </template>
       <UiEmptyState v-else text="没有符合条件的遗器" />
 
+      <UiSection title="玩法规则">
+        <div class="rule-copy">
+          <p><b>遗器分两类</b>：基础遗器（<b>火/水/地/风</b> 四种属性之一，提供全局属性加成）、核心遗器（带技能效果与共鸣，属性栏不显示，另有「能量型」参数）。</p>
+          <p><b>法盘</b>：{{ fapanRuleText }}。开局只有 <b>{{ rules.initialOpenGrid }}</b> 格可用，其余锁定格要靠<b>升级法盘</b>获得解锁次数逐个打开；四角为永久隐藏角，不可解锁。</p>
+          <p><b>放置</b>：遗器按自身「占格」形状（纯矩形，见卡片上的小格子）平铺进可用格，<b>不能旋转</b>，不能重叠、不能越界。基础遗器可放多个；核心遗器同名<b>最多 1 个</b>、同时在场<b>最多 {{ rules.maxCoreRelicNum }} 种</b>。</p>
+          <p><b>共鸣</b>：核心遗器的每条共鸣要求场上若干遗器分类达到指定数量（如「火属性 ×2 + 地属性 ×1」），满足即激活该条强化。</p>
+          <p><b>升级</b>：消耗 <b>{{ rules.levelUpCost }}</b> 个同类遗器合成升级，遗器等级上限 5 级；升级同时获得法盘经验，法盘共 {{ rules.maxFapanLevel }} 级。</p>
+          <p><b>带出积分</b>：遗器在副本结算时折算的积分（不是法盘消耗），点数越高越值钱。</p>
+        </div>
+      </UiSection>
+
       <UiSection v-if="fapan.length" title="法盘">
-        <p class="fapan-note">法盘是 8×7 的格子板，四周大部分格子被锁住，中间是<b>可放置遗器</b>的区域。遗器按自身「占格」形状拼进去，凑齐共鸣条件即可激活核心遗器的强化效果。</p>
         <div class="fapan-grid">
           <div v-for="board in fapan" :key="board.id" class="fapan-card">
             <div class="fapan-card__head">
@@ -150,6 +167,16 @@ const focus = computed(() => queryString('relic'))
 const relics = computed(() => data.value?.relics || [])
 const fapan = computed(() => data.value?.fapan || [])
 const dungeons = computed(() => data.value?.dungeons || [])
+const rules = computed(() => data.value?.rules || {
+  maxCoreRelicNum: 0, levelUpCost: 0, maxFapanLevel: 0, initialOpenGrid: 1
+})
+/** 法盘尺寸文案（两块法盘尺寸一致时才合并成一句）。 */
+const fapanRuleText = computed(() => {
+  const boards = fapan.value
+  if (!boards.length) return '遗器放置的格子板'
+  const sizes = [...new Set(boards.map(board => `${board.width}×${board.height}`))]
+  return `${sizes.join(' / ')} 的格子板，四种属性遗器共用一个盘`
+})
 
 const categoryName = value => data.value?.categoryNames?.[value] || `分类${value}`
 const categoryOptions = computed(() => [...new Set(relics.value.map(r => r.relicCategory).filter(c => c > 0))].sort((a, b) => a - b))
@@ -266,6 +293,27 @@ onMounted(loadData)
 .relic-entry__name { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 5px; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 .relic-entry__meta { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; color: var(--text-muted); font-size: 12px; line-height: 1.5; }
 .relic-attr { color: var(--accent-ink); font-weight: 600; }
+/* 占格形状小图：把 w×h 画成格子，比「2×3」文字直观 */
+.relic-entry__shape { display: flex; align-items: center; gap: 8px; margin-top: 7px; }
+.relic-entry__shape-label { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+.shape-mini {
+  display: grid;
+  grid-template-columns: repeat(var(--sw), 1fr);
+  grid-template-rows: repeat(var(--sh), 1fr);
+  gap: 2px;
+  width: calc(var(--sw) * 13px);
+  height: calc(var(--sh) * 13px);
+  flex: 0 0 auto;
+}
+.shape-mini__cell {
+  background: rgba(233, 220, 195, 0.95);
+  border: 1px solid var(--accent-ink, #557574);
+  border-radius: 2px;
+}
+/* 玩法规则 */
+.rule-copy p { margin: 0 0 8px; font-size: 13px; line-height: 1.75; color: var(--text-main); }
+.rule-copy p:last-child { margin-bottom: 0; }
+.rule-copy b { color: var(--accent-ink); font-weight: 700; }
 /* 1 级效果：卡片的主内容，尽量给足行数，不再被背景故事挤占 */
 .relic-entry__effect {
   margin-top: 8px;

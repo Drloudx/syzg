@@ -21,14 +21,18 @@ import { buildRelicsFile } from '../../scripts/parse/relics.mjs'
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '../..')
 const readParsed = name => JSON.parse(readFileSync(join(repoRoot, 'public/data/parsed', name), 'utf8'))
 
-test('遗器分类名用游戏真名（武器/法器/防器/护器），不是臆造名', () => {
+test('遗器分类名取 lan.relic_type（火/水/地/风属性），不是源码里的死代码分支', () => {
   const data = readParsed('relics.json')
-  assert.deepEqual(data.categoryNames, { 1: '武器', 2: '法器', 3: '防器', 4: '护器' })
   /*
-   * `relicCategory`（1~4 数字）与 `category`（物品的数字路径数组，如 [2,21]）语义不同，
-   * 不能混用：ItemDetailModal 多处把 `item.category` 当数组调 `.includes()`，
-   * 若把 relicCategory 塞进 `category` 会抛 "cat.includes is not a function"。
+   * 权威来源是 `lan.json` 的 `relic_type`：`"0,火属性,水属性,地属性,风属性"`。
+   * 客户端 `SpRelicShowTip.GetRelicCateName` 优先读这条 lan 配置；
+   * `RelicDetailPanel.GetRelicCateName` 的「武器/法器/防器/护器」是**过时死代码分支**，
+   * 数据也能自证：cat1 含「哈玛塔坎之爪/火属性伤害」、cat2 含「辛瓦特之泪/水属性伤害」。
    */
+  assert.deepEqual(data.categoryNames, { 1: '火属性', 2: '水属性', 3: '地属性', 4: '风属性' })
+  const catNames = new Set(data.relics.filter(r => r.type === 'base').map(r => r.categoryName))
+  assert.ok(![...catNames].some(name => /武器|法器|防器|护器/.test(name)), `分类名不应出现旧死代码分支：${[...catNames]}`)
+  // relicCategory 是 1~4 的数字，不能与 item.category（数字路径数组）混用
   assert.ok(data.relics.every(relic => typeof relic.relicCategory === 'number'))
   assert.ok(data.relics.every(relic => Array.isArray(relic.category)))
 })
@@ -97,4 +101,30 @@ test('构建产物与 raw 一致（buildRelicsFile 可复现）', () => {
   const parsed = readParsed('relics.json')
   assert.deepEqual(built.relics.map(r => r.id), parsed.relics.map(r => r.id))
   assert.deepEqual(built.categoryNames, parsed.categoryNames)
+})
+
+test('玩法规则数值取自 relicSetting，且形状/共鸣结构完整', () => {
+  const data = readParsed('relics.json')
+  const setting = JSON.parse(readFileSync(join(repoRoot, 'raw/relicSetting.json'), 'utf8'))
+  const s = setting.datas || setting
+  /*
+   * 规则数值必须来自 relicSetting.json，不能写死：
+   *   maxCoreRelicNum 核心遗器最多几种、relicLevelUpCost 升级消耗几个同类、
+   *   fapanExp 的键数 = 法盘总级数。
+   */
+  assert.equal(data.rules.maxCoreRelicNum, Number(s.maxCoreRelicNum))
+  assert.equal(data.rules.levelUpCost, Number(s.relicLevelUpCost))
+  assert.equal(data.rules.maxFapanLevel, Object.keys(s.fapanExp || {}).length)
+  // 每件遗器都带形状格子（= w×h），供页面画占格
+  for (const relic of data.relics) {
+    assert.equal(relic.shapeCells.length, relic.shape.width * relic.shape.height, `${relic.id} 形状格数不对`)
+  }
+  // 核心遗器的共鸣条件里的分类名必须是火/水/地/风，不能是数字或旧名
+  for (const core of data.relics.filter(r => r.type === 'core')) {
+    for (const res of core.resonances) {
+      for (const part of res.requirementParts) {
+        assert.ok(/火属性|水属性|地属性|风属性/.test(part.categoryName), `${core.id} 共鸣分类名异常：${part.categoryName}`)
+      }
+    }
+  }
 })

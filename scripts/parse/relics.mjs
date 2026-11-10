@@ -29,25 +29,47 @@ import { readJson } from './shared.mjs'
 /**
  * 遗器分类（relicCategory）的可读名。
  *
- * 取自客户端 `RelicDetailPanel.GetRelicCateName`：1 武器 / 2 法器 / 3 防器 / 4 护器。
- * 用于共鸣条件展示（如「武器 ×2 + 护器 ×1」）。
+ * **权威来源是 `lan.json` 的 `relic_type`：`"0,火属性,水属性,地属性,风属性"`**
+ * （按逗号切分，下标即 relicCategory）。客户端 `SpRelicShowTip.GetRelicCateName`
+ * 也优先读这条 lan 配置，硬编码只是兜底。
+ *
+ * 数据可自证：cat1 含「哈玛塔坎之爪 / 火属性伤害」、cat2 含「辛瓦特之泪 / 水属性伤害」、
+ * cat3 含「阿娜希塔之碑 / 地属性伤害」、cat4 含「赫尔娜之笛 / 风属性伤害」。
  */
-const RELIC_CATEGORY_NAMES = {
-  1: '武器',
-  2: '法器',
-  3: '防器',
-  4: '护器'
+const DEFAULT_RELIC_CATEGORY_NAMES = {
+  1: '火属性',
+  2: '水属性',
+  3: '地属性',
+  4: '风属性'
+}
+
+/** 从 lan.json 读 relic_type 覆盖默认分类名（lan 结构：{ data: [ {name, desc_cn} ] }）。 */
+const readRelicCategoryNames = () => {
+  try {
+    const lan = readJson('lan.json')
+    const list = lan?.data || lan?.datas || []
+    const entry = Array.isArray(list) ? list.find(item => item?.name === 'relic_type') : null
+    const parts = String(entry?.desc_cn || '').split(',')
+    const names = {}
+    for (let i = 1; i < parts.length; i += 1) {
+      const label = text(parts[i])
+      if (label) names[i] = label
+    }
+    return Object.keys(names).length ? names : DEFAULT_RELIC_CATEGORY_NAMES
+  } catch {
+    return DEFAULT_RELIC_CATEGORY_NAMES
+  }
 }
 
 const text = value => String(value ?? '').trim()
 
 /**
- * 把 `{ {类别:数量}, ... }` 的共鸣条件转成可读文本，如「类别一 ×2 + 类别四 ×1」。
- * 键是 relicCategory 的数字字符串。
+ * 把 `{ {类别:数量}, ... }` 的共鸣条件转成可读文本，如「火属性 ×2 + 地属性 ×1」。
+ * 键是 relicCategory 的数字字符串。`names` 由 buildRelicsFile 传入（lan 覆盖后的分类名）。
  */
-const describeResonanceRequirement = requirement => Object.entries(requirement || {})
+const describeResonanceRequirement = (requirement, names) => Object.entries(requirement || {})
   .filter(([, count]) => Number(count) > 0)
-  .map(([category, count]) => `${RELIC_CATEGORY_NAMES[category] || `分类${category}`} ×${count}`)
+  .map(([category, count]) => `${names[category] || `分类${category}`} ×${count}`)
   .join(' + ')
 
 /** base 遗器的等级化属性：[{ level, value(des 文本) }] */
@@ -60,11 +82,11 @@ const buildCoreLevels = relic => Object.entries(relic.skillTrigger || {})
   .map(([, entry]) => ({ level: Number(entry.lv) || 0, text: text(entry.des) }))
   .sort((a, b) => a.level - b.level)
 
-const buildResonances = relic => (relic.resonances || []).map(entry => ({
-  requirement: '{' + describeResonanceRequirement(entry.relicCategory) + '}',
+const buildResonances = (relic, names) => (relic.resonances || []).map(entry => ({
+  requirement: '{' + describeResonanceRequirement(entry.relicCategory, names) + '}',
   requirementParts: Object.entries(entry.relicCategory || {})
     .filter(([, n]) => Number(n) > 0)
-    .map(([cat, n]) => ({ category: Number(cat), categoryName: RELIC_CATEGORY_NAMES[cat] || `分类${cat}`, count: Number(n) })),
+    .map(([cat, n]) => ({ category: Number(cat), categoryName: names[cat] || `分类${cat}`, count: Number(n) })),
   text: text(entry.des),
   tag: entry.tag
 }))
@@ -111,6 +133,8 @@ export function buildRelicsFile() {
   const relicFapan = readJson('relicFapan.json').datas || readJson('relicFapan.json')
   const relicDungeonInfo = readJson('relicDungeonInfo.json').datas || readJson('relicDungeonInfo.json')
   const relicGroup = readJson('relicGroup.json').datas || readJson('relicGroup.json')
+  const relicSetting = readJson('relicSetting.json').datas || readJson('relicSetting.json')
+  const categoryNames = readRelicCategoryNames()
 
   const relics = Object.values(relicInfo).map(relic => {
     const isCore = relic.type === 'core'
@@ -123,13 +147,27 @@ export function buildRelicsFile() {
       attributeName: isCore ? '' : text(relic.des),
       tip: text(relic.tip),
       icon: relic.icon || '',
+      // relicPoint 官方字段名是「带出积分」（副本结算），不是法盘消耗
       relicPoint: Number(relic.relicPoint) || 0,
       shape: { width: Number(relic.shape?.w) || 0, height: Number(relic.shape?.h) || 0 },
-      // relicCategory：1~4（武器/法器/防器/护器）；核心遗器为 0/未配
+      /*
+       * 形状格子掩码：渲染「遗器占哪些格」用。
+       * 官方 `RelicInfoSizeTempConf` 只有 w/h（**纯矩形**，source 里无额外形状字段），
+       * 所以枚举 w×h 个格即可；将来若官方加了异形空格，这里改一行就能支持。
+       */
+      shapeCells: (() => {
+        const w = Number(relic.shape?.w) || 0
+        const h = Number(relic.shape?.h) || 0
+        const cells = []
+        for (let y = 0; y < h; y += 1) for (let x = 0; x < w; x += 1) cells.push({ x, y })
+        return cells
+      })(),
+      // relicCategory：1~4（火/水/地/风 属性，见 lan.relic_type）；核心遗器未配（0）
       relicCategory: Number(relic.relicCategory) || 0,
-      categoryName: RELIC_CATEGORY_NAMES[relic.relicCategory] || '',      energyPattern: Number.isFinite(Number(relic.energyPattern)) ? Number(relic.energyPattern) : null,
+      categoryName: categoryNames[relic.relicCategory] || '',
+      energyPattern: Number.isFinite(Number(relic.energyPattern)) ? Number(relic.energyPattern) : null,
       levels,
-      resonances: isCore ? buildResonances(relic) : [],
+      resonances: isCore ? buildResonances(relic, categoryNames) : [],
       tags: Array.isArray(relic.tags) ? relic.tags.map(text) : [],
 
       /*
@@ -160,7 +198,7 @@ export function buildRelicsFile() {
   }).sort((a, b) => {
     // 基础在前、核心在后；同类按分类、再按名字
     if (a.type !== b.type) return a.type === 'base' ? -1 : 1
-    if (a.category !== b.category) return a.category - b.category
+    if (a.relicCategory !== b.relicCategory) return a.relicCategory - b.relicCategory
     return a.name.localeCompare(b.name, 'zh')
   })
 
@@ -172,6 +210,22 @@ export function buildRelicsFile() {
     coreLevel: [Number(group.coreMin) || 0, Number(group.coreMax) || 0]
   }))
 
+  /*
+   * 法盘 / 遗器规则数值 —— 全部取自 `relicSetting.json`，不写死：
+   *   maxCoreRelicNum   法盘最多放几种核心遗器（同名核心只能放 1 个）
+   *   relicLevelUpCost  升级消耗几个同类遗器（= 同名可叠多少级的来源）
+   *   fapanExp          法盘每级所需经验；总级数 = 键数量
+   */
+  const fapanExp = relicSetting?.fapanExp || {}
+  const rules = {
+    maxCoreRelicNum: Number(relicSetting?.maxCoreRelicNum) || 0,
+    // 官方文案：relicLevelUpCost 是「升级需要消耗多少个同类型遗物来合成」
+    levelUpCost: Number(relicSetting?.relicLevelUpCost) || 0,
+    maxFapanLevel: Object.keys(fapanExp).length,
+    // 首次进入法盘时默认已解锁的格子数 = 法盘等级 1（见客户端 GetRemainUnlockGridCount）
+    initialOpenGrid: 1
+  }
+
   return {
     file: 'parsed/relics.json',
     data: {
@@ -180,7 +234,8 @@ export function buildRelicsFile() {
       fapan: buildFapan(relicFapan),
       dungeons: buildDungeons(relicDungeonInfo),
       dropTiers,
-      categoryNames: RELIC_CATEGORY_NAMES
+      categoryNames,
+      rules
     }
   }
 }
