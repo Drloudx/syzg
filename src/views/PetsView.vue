@@ -957,11 +957,10 @@ const handleImgError = (e) => {
   flex: 1;
   overflow-y: auto;
   /*
-   * 左右内边距必须与筛选面板（.filter-panel 全局 12px 14px）一致：
-   * 表头行在筛选面板 footer 里（已含 14px），行内容在滚动容器里（原本 0），
-   * 差 14px 会让表头与列错位。
+   * 左右 padding 必须为 0：与魔物收益页一致，数据行要**贴满**滚动容器
+   * （容器宽度 = 筛选面板外宽 770）。之前给了 14px，导致表格比筛选框窄一圈。
    */
-  padding: 2px 14px calc(14px + var(--safe-bottom, 0px));
+  padding: 2px 0 calc(14px + var(--safe-bottom, 0px));
   box-sizing: border-box;
   min-height: 0;
 }
@@ -975,6 +974,11 @@ const handleImgError = (e) => {
   display: flex;
   align-items: center;
   padding: 8px 12px;
+  /*
+   * 表头在筛选面板 footer 里（面板有 14px 横向 padding），
+   * 用负边距抵消，使表头与下方数据行一样**贴满容器内宽**（数据行宽 = 面板外宽 − 2px 边框）。
+   */
+  margin-inline: -14px;
   font-size: 13px;
   font-weight: 700;
   color: var(--text-muted);
@@ -1006,17 +1010,23 @@ const handleImgError = (e) => {
   box-sizing: border-box;
   padding-right: 10px;
 }
-/* 列宽在表头与行之间必须完全一致（都是固定 px，不用百分比，避免滚动条差异导致错位） */
-.th-name,   .td-name   { flex: 0 0 130px; }
-.th-star,   .td-star   { flex: 0 0 56px; white-space: nowrap; }
-.th-element,.td-element{ flex: 0 0 56px; white-space: nowrap; }
-.th-trait,  .td-trait  { flex: 0 0 110px; }
+/*
+ * 列宽用**百分比**，表头与行完全一致 → 任何宽度都自动对齐（同魔物收益页做法）。
+ * 不要用固定 px + 横向滚动：表头在筛选面板里、行在内容区，两者滚动不同步会错位。
+ * 所有列都允许换行（`overflow-wrap: anywhere` 已在 .pets-th/.pets-td 上设置），
+ * 内容再长也不会撑破或被裁。
+ */
+.th-name,   .td-name   { flex: 0 0 15%; }
+.th-star,   .td-star   { flex: 0 0 7%; }
+.th-element,.td-element{ flex: 0 0 7%; }
+.th-trait,  .td-trait  { flex: 0 0 13%; }
 .th-effect, .td-effect { flex: 1 1 auto; }
-.th-range,  .td-range  { flex: 0 0 168px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.th-range,  .td-range  { flex: 0 0 21%; font-variant-numeric: tabular-nums; }
 /* 短列垂直居中 */
 .pets-td.td-name, .pets-td.td-star, .pets-td.td-element,
 .pets-td.td-trait, .pets-td.td-range { align-self: center; }
-.cell-name { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; white-space: nowrap; }
+/* 名字可换行：长名（如「奶油布丁史莱姆」）在窄列里不能 nowrap，否则被裁 */
+.cell-name { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; flex-wrap: wrap; overflow-wrap: anywhere; }
 .cell-mutate { width: 15px; height: 15px; flex: 0 0 auto; }
 /* 表格内的高亮数值（formatSkillDescription 产物） */
 .pets-table-row :deep(.hl),
@@ -1121,6 +1131,20 @@ const handleImgError = (e) => {
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
   }
+  /*
+   * 手机端特性表格：窄屏下把非关键列（星级/属性）压到最小，
+   * 空间让给「特性效果」和「1 级 → 7 级」两列，避免内容被裁。
+   * 表头与行用同一组比例，仍然对齐。
+   */
+  .pets-th-row, .pets-table-row { font-size: 12px; padding-inline: 8px; }
+  .pets-th, .pets-td { padding-right: 6px; }
+  .th-name,   .td-name   { flex: 0 0 17%; }
+  .th-star,   .td-star   { flex: 0 0 8%; }
+  .th-element,.td-element{ flex: 0 0 8%; }
+  .th-trait,  .td-trait  { flex: 0 0 15%; }
+  .th-effect, .td-effect { flex: 1 1 auto; }
+  .th-range,  .td-range  { flex: 0 0 24%; }
+  .cell-mutate { width: 12px; height: 12px; }
 }
 
 @media (max-width: 480px) {
