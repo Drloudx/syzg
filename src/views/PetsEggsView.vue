@@ -83,7 +83,7 @@
           <div class="td-cell td-name">
             <div class="egg-icon-wrapper">
               <img
-                :src="getImageUrl(`/eggs/${pet.eggImg}.webp`)"
+                :src="getImageUrl(eggImageUrl(pet.eggImg))"
                 :alt="pet.name"
                 class="egg-img"
                 loading="lazy"
@@ -143,7 +143,7 @@
           <template #media>
             <img
               v-if="detailModal.pet.eggImg"
-              :src="getImageUrl(`/eggs/${detailModal.pet.eggImg}.webp`)"
+              :src="getImageUrl(eggImageUrl(detailModal.pet.eggImg))"
               :alt="detailModal.pet.name"
               class="detail-egg-img"
               loading="lazy"
@@ -336,8 +336,19 @@ const getSortIcon = (field) => {
 }
 const isSortActive = field => sortState.value.field === field || (field === 'name' && sortState.value.field === 'star')
 
-const handleImgError = (e) => {
-  e.target.style.display = 'none'
+/**
+ * 蛋图 URL。
+ *
+ * 数据里 `eggImg` 形如 `egg_074`，而实际图片在 `public/images/eggs/pet_074.webp`
+ * —— 前缀是 `pet_` 不是 `egg_`，且目录多一层 `images/`。
+ * 之前代码写 `/eggs/${eggImg}.webp`（少 `images/`、前缀也没换），导致**全部蛋图 404**。
+ */
+const eggImageUrl = eggImg => {
+  const key = String(eggImg || '').replace(/^egg_/, 'pet_')
+  return `/images/eggs/${key}.webp`
+}
+
+const handleImgError = (e) => {  e.target.style.display = 'none'
 }
 
 const loadPetEggs = async () => {
@@ -653,7 +664,8 @@ const openPetAtlas = () => {
   display: flex;
   align-items: center;
   padding: 9px 12px;
-  background: transparent;
+  /* 与符石图鉴卡片同底色（--paper-soft），行与行之间只留分隔线 */
+  background: var(--paper-soft);
   border-bottom: 1px solid var(--border-faint);
   cursor: pointer;
   transition: background 0.15s ease;
