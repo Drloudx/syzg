@@ -383,7 +383,6 @@ function getEquipEffectHtml(item) {
   justify-content: space-between;
   gap: 12px;
   padding: 4px 2px 2px 2px;
-  border-top: 1px dashed var(--border-soft);
   margin-top: 2px;
 }
 
