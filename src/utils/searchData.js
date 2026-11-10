@@ -30,6 +30,12 @@ function buildTaskSearchList(maps) {
     const isDemo = cat.includes('demo') || cat.includes('demo支线') || String(t.typeId || '').startsWith('demo_')
     const isPartnerArchive = cat.length === 1 && cat[0] === '伙伴档案'
     if (isDemo || isPartnerArchive) continue
+    /*
+     * 已下架任务不进搜索 —— 与任务页 `HIDE_CLOSED_TASKS` 同口径。
+     * 旧代码只用 `t.close` 给 quality 降档（第 43 行），没有跳过，
+     * 导致 79 个下架任务里 76 个仍能被全局搜到。
+     */
+    if (t.close === true) continue
     // 隐藏角色的好感度事件不进搜索，与任务页同一判据（blacklist.js HIDDEN_HERO_IDS）
     if (belongsToHiddenHero({ id: t.typeId, heroTypeId: t.heroTypeId })) continue
     // 特殊章节（SP1 幽夜古堡 / SP2 黏滑溪谷）整章不进搜索，与任务页同口径
@@ -40,7 +46,7 @@ function buildTaskSearchList(maps) {
       id: t.typeId,
       type: 'task',
       name: t.name || t.typeId,
-      quality: t.close ? 1 : 3,
+      quality: 3,
       category: '任务',
       subTag: typeLabel,
       categoryTags: ['任务', typeLabel],
