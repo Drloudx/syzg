@@ -91,16 +91,39 @@ const buildResonances = (relic, names) => (relic.resonances || []).map(entry => 
   tag: entry.tag
 }))
 
-/** 由 relicDungeonInfo 得出「哪些遗器属于哪个秘境」——目前两套秘境共用同一批遗器 id。 */
-const buildDungeons = info => Object.values(info).map(dungeon => ({
-  id: dungeon.id,
-  name: text(dungeon.name),
-  pointItemId: dungeon.pointItemId || '',
-  consumeItemId: dungeon.dungeonConsumeItemId || '',
-  comment: text(dungeon._comment)
-}))
+/**
+ * 由 relicDungeonInfo 得出秘境列表 —— **过滤掉未开放的秘境**。
+ *
+ * 判据用 `activityList` 里同名活动的开放时间（与其它页面同一口径）：
+ *   sp1 亚空回廊 = 2025-11-14 起，正常开放
+ *   sp2 瓦希什塔 = startTime 2925-12-01（900 年后的占位值）→ 未开放，整章隐藏
+ *
+ * 不能按名字或 `spDungeonId` 硬编码，改用活动时间判断：以后官方把 sp2 定档，这里自动放行。
+ */
+const isDungeonOpen = (activity, dungeonId) => {
+  if (!activity) return true // 没有对应活动配置的（如普通副本）默认视为开放
+  if (activity.condition === 'false') return false
+  if (activity.startTime && activity.startTime === activity.endTime) return false
+  // 占位时间（年份 >= 2900）视为未定档
+  const year = Number(String(activity.startTime || '').slice(0, 4))
+  if (Number.isFinite(year) && year >= 2900) return false
+  return true
+}
 
-const buildFapan = fapan => Object.values(fapan).map(entry => {
+const buildDungeons = (info, activityList) => Object.values(info)
+  .filter(dungeon => isDungeonOpen(activityList?.[dungeon.id], dungeon.id))
+  .map(dungeon => ({
+    id: dungeon.id,
+    name: text(dungeon.name),
+    pointItemId: dungeon.pointItemId || '',
+    consumeItemId: dungeon.dungeonConsumeItemId || '',
+    comment: text(dungeon._comment)
+  }))
+
+const buildFapan = (fapan, openDungeonIds) => Object.values(fapan)
+  // 只保留已开放秘境的法盘（未开放的整块隐藏，与 dungeons 同一口径）
+  .filter(entry => !openDungeonIds || openDungeonIds.has(entry.fapanId))
+  .map(entry => {
   const width = Number(entry.fapanWidth) || 0
   const height = Number(entry.fapanHeight) || 0
   const lockPoints = Array.isArray(entry.fapanLockPoint) ? entry.fapanLockPoint : []
@@ -134,6 +157,7 @@ export function buildRelicsFile() {
   const relicDungeonInfo = readJson('relicDungeonInfo.json').datas || readJson('relicDungeonInfo.json')
   const relicGroup = readJson('relicGroup.json').datas || readJson('relicGroup.json')
   const relicSetting = readJson('relicSetting.json').datas || readJson('relicSetting.json')
+  const activityList = (readJson('activityList.json').datas || readJson('activityList.json')) || {}
   const categoryNames = readRelicCategoryNames()
 
   const relics = Object.values(relicInfo).map(relic => {
@@ -217,6 +241,12 @@ export function buildRelicsFile() {
    *   fapanExp          法盘每级所需经验；总级数 = 键数量
    */
   const fapanExp = relicSetting?.fapanExp || {}
+  // 已开放秘境 id 集合：法盘只保留这些（未开放的整块隐藏）
+  const openDungeonIds = new Set(
+    Object.values(relicDungeonInfo)
+      .filter(dungeon => isDungeonOpen(activityList?.[dungeon.id], dungeon.id))
+      .map(dungeon => dungeon.id)
+  )
   const rules = {
     maxCoreRelicNum: Number(relicSetting?.maxCoreRelicNum) || 0,
     // 官方文案：relicLevelUpCost 是「升级需要消耗多少个同类型遗物来合成」
@@ -231,8 +261,8 @@ export function buildRelicsFile() {
     data: {
       schemaVersion: 1,
       relics,
-      fapan: buildFapan(relicFapan),
-      dungeons: buildDungeons(relicDungeonInfo),
+      fapan: buildFapan(relicFapan, openDungeonIds),
+      dungeons: buildDungeons(relicDungeonInfo, activityList),
       dropTiers,
       categoryNames,
       rules

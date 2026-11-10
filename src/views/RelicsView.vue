@@ -1,10 +1,14 @@
 <template>
   <div class="page-view-container relics-page">
     <UiFilterPanel class="filter-panel paper-panel">
-      <UiTabs :model-value="tab" :options="tabs" @update:model-value="changeTab" />
+      <!--
+        搜索框放在 Tab **外面**：与货运站等页面一致 —— 切到「玩法规则」时搜索框仍在，
+        不会因为整块面板被 v-if 掉而消失。
+      -->
       <template #search>
-        <UiSearchInput v-if="isList" :model-value="search" placeholder="搜索遗器、属性或效果..." @update:model-value="setFilter('q', $event)" />
+        <UiSearchInput :model-value="search" placeholder="搜索遗器、属性或效果..." @update:model-value="setFilter('q', $event)" />
       </template>
+      <UiTabs :model-value="tab" :options="tabs" @update:model-value="changeTab" />
       <template v-if="isList">
         <UiFilterRow label="类型：">
           <UiFilterPill :active="!type" @click="setFilter('type', '')">全部</UiFilterPill>

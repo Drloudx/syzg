@@ -75,25 +75,27 @@ test('核心遗器不把内部 des 当属性名（des 形如 core_101）', () =>
   }
 })
 
-test('法盘尺寸 8×7、上限 30 级，两个秘境各一块', () => {
+test('法盘尺寸 8×7、上限 30 级；未开放秘境（SP2 瓦希什塔）整块隐藏', () => {
   const data = readParsed('relics.json')
-  assert.equal(data.fapan.length, 2)
+  /*
+   * 只保留**已开放**秘境：sp1 亚空回廊（活动 2025-11-14 起）。
+   * sp2 瓦希什塔的 activityList.startTime 是 2925-12-01 占位值 → 未开放，秘境与法盘一起隐藏。
+   * 判据来自活动开放时间，不是硬编码 id：官方定档后自动放行。
+   */
+  assert.equal(data.dungeons.length, 1)
+  assert.equal(data.dungeons[0].name, '亚空回廊·特异次元')
+  assert.equal(data.fapan.length, 1)
+  assert.equal(data.fapan[0].name, '法盘·亚空回廊')
   for (const board of data.fapan) {
     assert.equal(board.width, 8)
     assert.equal(board.height, 7)
     assert.equal(board.maxLevel, 30)
-    /*
-     * 逐格展开必须完整：width×height 个 cell，locked 数等于 lockCount，
-     * openCount = 总数 − 锁定数。页面直接按 cells 画格子，少一格就画不圆。
-     */
     assert.equal(board.cells.length, board.width * board.height, `${board.id} 格子数应为 ${board.width * board.height}`)
     assert.equal(board.cells.filter(cell => cell.locked).length, board.lockCount)
     assert.equal(board.openCount, board.cells.length - board.lockCount)
-    // 坐标必须覆盖每个位置且不重复
     const keys = new Set(board.cells.map(cell => `${cell.x},${cell.y}`))
     assert.equal(keys.size, board.cells.length, `${board.id} 坐标有重复`)
   }
-  assert.deepEqual(data.dungeons.map(d => d.name).sort(), ['亚空回廊·特异次元', '瓦希什塔秘境'].sort())
 })
 
 test('构建产物与 raw 一致（buildRelicsFile 可复现）', () => {
