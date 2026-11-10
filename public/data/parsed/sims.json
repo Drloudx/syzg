@@ -18,7 +18,11 @@
       "elementName": "火",
       "icon": "at019_0",
       "img": "chara019_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 254,
+        "magicAtk": 476
+      }
     },
     {
       "id": "hero_043",
@@ -29,7 +33,11 @@
       "elementName": "地",
       "icon": "at043_0",
       "img": "chara043_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 262,
+        "magicAtk": 354
+      }
     },
     {
       "id": "hero_049",
@@ -40,7 +48,11 @@
       "elementName": "地",
       "icon": "at049_0",
       "img": "chara049_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 430,
+        "magicAtk": 381
+      }
     },
     {
       "id": "hero_050",
@@ -51,7 +63,11 @@
       "elementName": "地",
       "icon": "at050_0",
       "img": "chara050_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 395,
+        "magicAtk": 280
+      }
     },
     {
       "id": "hero_051",
@@ -62,7 +78,11 @@
       "elementName": "水",
       "icon": "at051_0",
       "img": "chara051_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 272,
+        "magicAtk": 382
+      }
     },
     {
       "id": "hero_053",
@@ -73,7 +93,11 @@
       "elementName": "风",
       "icon": "at053_0",
       "img": "chara053_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 471,
+        "magicAtk": 376
+      }
     },
     {
       "id": "hero_055",
@@ -84,7 +108,11 @@
       "elementName": "风",
       "icon": "at055_0",
       "img": "chara055_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 421,
+        "magicAtk": 311
+      }
     },
     {
       "id": "hero_060",
@@ -95,7 +123,11 @@
       "elementName": "风",
       "icon": "at060_0",
       "img": "chara060_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 355,
+        "magicAtk": 496
+      }
     },
     {
       "id": "hero_061",
@@ -106,7 +138,11 @@
       "elementName": "地",
       "icon": "at061_0",
       "img": "chara061_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 397,
+        "magicAtk": 305
+      }
     },
     {
       "id": "hero_064",
@@ -117,7 +153,11 @@
       "elementName": "火",
       "icon": "at064_0",
       "img": "chara064_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 495,
+        "magicAtk": 356
+      }
     },
     {
       "id": "hero_065",
@@ -128,7 +168,11 @@
       "elementName": "火",
       "icon": "at065_0",
       "img": "chara065_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 478,
+        "magicAtk": 386
+      }
     },
     {
       "id": "hero_071",
@@ -139,7 +183,11 @@
       "elementName": "地",
       "icon": "at071_0",
       "img": "chara071_0",
-      "rare": 5
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 377,
+        "magicAtk": 448
+      }
     },
     {
       "id": "hero_015",
@@ -150,7 +198,11 @@
       "elementName": "风",
       "icon": "at015_0",
       "img": "chara015_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 222,
+        "magicAtk": 310
+      }
     },
     {
       "id": "hero_025",
@@ -161,7 +213,11 @@
       "elementName": "地",
       "icon": "at025_0",
       "img": "chara025_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 430,
+        "magicAtk": 328
+      }
     },
     {
       "id": "hero_026",
@@ -172,7 +228,11 @@
       "elementName": "火",
       "icon": "at026_0",
       "img": "chara026_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 412,
+        "magicAtk": 289
+      }
     },
     {
       "id": "hero_027",
@@ -183,7 +243,11 @@
       "elementName": "风",
       "icon": "at027_0",
       "img": "chara027_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 452,
+        "magicAtk": 325
+      }
     },
     {
       "id": "hero_029",
@@ -194,7 +258,11 @@
       "elementName": "地",
       "icon": "at029_0",
       "img": "chara029_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 254,
+        "magicAtk": 299
+      }
     },
     {
       "id": "hero_030",
@@ -205,7 +273,11 @@
       "elementName": "地",
       "icon": "at030_0",
       "img": "chara030_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 372,
+        "magicAtk": 277
+      }
     },
     {
       "id": "hero_033",
@@ -216,7 +288,11 @@
       "elementName": "水",
       "icon": "at033_0",
       "img": "chara033_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 340,
+        "magicAtk": 277
+      }
     },
     {
       "id": "hero_034",
@@ -227,7 +303,11 @@
       "elementName": "水",
       "icon": "at034_0",
       "img": "chara034_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 308,
+        "magicAtk": 408
+      }
     },
     {
       "id": "hero_036",
@@ -238,7 +318,11 @@
       "elementName": "水",
       "icon": "at036_0",
       "img": "chara036_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 272,
+        "magicAtk": 390
+      }
     },
     {
       "id": "hero_045",
@@ -249,7 +333,11 @@
       "elementName": "风",
       "icon": "at045_0",
       "img": "chara045_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 323,
+        "magicAtk": 421
+      }
     },
     {
       "id": "hero_066",
@@ -260,7 +348,11 @@
       "elementName": "水",
       "icon": "at066_0",
       "img": "chara066_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 365,
+        "magicAtk": 274
+      }
     },
     {
       "id": "hero_069",
@@ -271,7 +363,11 @@
       "elementName": "地",
       "icon": "at069_0",
       "img": "chara069_0",
-      "rare": 4
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 465,
+        "magicAtk": 367
+      }
     },
     {
       "id": "hero_001",
@@ -282,7 +378,11 @@
       "elementName": "水",
       "icon": "at001_0",
       "img": "chara001_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 320,
+        "magicAtk": 230
+      }
     },
     {
       "id": "hero_005",
@@ -293,7 +393,11 @@
       "elementName": "水",
       "icon": "at005_0",
       "img": "chara005_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 315,
+        "magicAtk": 212
+      }
     },
     {
       "id": "hero_007",
@@ -304,7 +408,11 @@
       "elementName": "风",
       "icon": "at007_0",
       "img": "chara007_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 211,
+        "magicAtk": 282
+      }
     },
     {
       "id": "hero_008",
@@ -315,7 +423,11 @@
       "elementName": "火",
       "icon": "at008_0",
       "img": "chara008_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 317,
+        "magicAtk": 423
+      }
     },
     {
       "id": "hero_009",
@@ -326,7 +438,11 @@
       "elementName": "风",
       "icon": "at009_0",
       "img": "chara009_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 274,
+        "magicAtk": 377
+      }
     },
     {
       "id": "hero_011",
@@ -337,7 +453,11 @@
       "elementName": "火",
       "icon": "at011_0",
       "img": "chara011_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 272,
+        "magicAtk": 355
+      }
     },
     {
       "id": "hero_012",
@@ -348,7 +468,11 @@
       "elementName": "火",
       "icon": "at012_0",
       "img": "chara012_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 412,
+        "magicAtk": 223
+      }
     },
     {
       "id": "hero_014",
@@ -359,7 +483,11 @@
       "elementName": "风",
       "icon": "at014_0",
       "img": "chara014_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 440,
+        "magicAtk": 210
+      }
     },
     {
       "id": "hero_023",
@@ -370,7 +498,11 @@
       "elementName": "风",
       "icon": "at023_0",
       "img": "chara023_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 336,
+        "magicAtk": 212
+      }
     },
     {
       "id": "hero_031",
@@ -381,7 +513,11 @@
       "elementName": "风",
       "icon": "at031_0",
       "img": "chara031_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 382,
+        "magicAtk": 332
+      }
     },
     {
       "id": "hero_032",
@@ -392,7 +528,11 @@
       "elementName": "地",
       "icon": "at032_0",
       "img": "chara032_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 450,
+        "magicAtk": 344
+      }
     },
     {
       "id": "hero_041",
@@ -403,7 +543,11 @@
       "elementName": "水",
       "icon": "at041_0",
       "img": "chara041_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 361,
+        "magicAtk": 250
+      }
     },
     {
       "id": "hero_046",
@@ -414,7 +558,11 @@
       "elementName": "地",
       "icon": "at046_0",
       "img": "chara046_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 349,
+        "magicAtk": 274
+      }
     },
     {
       "id": "hero_062",
@@ -425,7 +573,11 @@
       "elementName": "地",
       "icon": "at062_0",
       "img": "chara062_0",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 356,
+        "magicAtk": 280
+      }
     },
     {
       "id": "new_hero_002",
@@ -436,7 +588,11 @@
       "elementName": "火",
       "icon": "at002_1",
       "img": "chara002_1",
-      "rare": 3
+      "rare": 3,
+      "unitData": {
+        "phyAtk": 367,
+        "magicAtk": 320
+      }
     }
   ],
   "pets": [

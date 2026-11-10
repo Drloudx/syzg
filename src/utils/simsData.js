@@ -110,6 +110,12 @@ export function toHeroRecord(hero) {
     // 立绘卡片用：img = "chara019_0"（拼 _ka.webp），rare = 3/4/5（决定卡框底图）
     img: hero.img || '',
     rare: hero.rare,
+    /*
+     * 攻击类型判据：`unitData` 的 phyAtk / magicAtk 谁更高。
+     * 求解器要用它判断「物理攻击 / 魔法攻击」类被动是否对该角色生效
+     * （否则会给物理角色推荐魔法攻击加成）。只保留这两个字段，不整包 unitData。
+     */
+    unitData: hero.unitData ? { phyAtk: hero.unitData.phyAtk, magicAtk: hero.unitData.magicAtk } : null,
   }
 }
 
@@ -144,12 +150,52 @@ export function toPetRecord(pet) {
  * 判断某角色能否吃到某魔物的队伍被动。
  * 限定条件之间是「且」关系；同一维度内（多个属性/职业）是「或」关系。
  */
+/**
+ * 队伍被动是否对该角色生效。
+ *
+ * 三个条件全部满足才算生效：
+ *   1. 属性：被动限定了属性时，角色属性必须在其中
+ *   2. 职业：被动限定了职业时，角色职业必须在其中
+ *   3. **攻击类型**：被动是「物理攻击 / 魔法攻击」加成时，角色必须是对应输出类型
+ *
+ * ## 为什么必须判攻击类型（2026-11-11）
+ *
+ * 之前只判属性 + 职业。实测「沃夫加」（火属性·射手，`unitData.phyAtk 412` ≫
+ * `magicAtk 223`，物理输出）被推荐了「顽劣灯火」的被动「队伍中 {火属性} 伙伴
+ * **魔法攻击**提高 4%」—— 属性对得上，但对物理角色毫无收益。
+ *
+ * 攻击类型判据取自 `hero.unitData` 的 `phyAtk` / `magicAtk` 谁更高
+ * （游戏里没有独立的「物理/魔法」标记字段）。
+ */
 export function matchesPassive(hero, passive) {
   if (!passive) return false
-  const { elements, jobs } = passive
+  const { elements, jobs, stat } = passive
   const elementOk = !elements.length || elements.includes(hero.elementName)
   const jobOk = !jobs.length || jobs.includes(hero.jobName)
-  return elementOk && jobOk
+  const attackOk = attackTypeMatches(hero, stat)
+  return elementOk && jobOk && attackOk
+}
+
+/**
+ * 被动里的攻击类型（`物理攻击` / `魔法攻击`）是否匹配角色输出类型。
+ * 非攻击类被动（暴击率、生命值、移速…）一律视为匹配。
+ */
+export function attackTypeMatches(hero, stat) {
+  const name = String(stat || '')
+  if (name.includes('物理攻击')) return heroAttackType(hero) === 'physical'
+  if (name.includes('魔法攻击')) return heroAttackType(hero) === 'magic'
+  return true
+}
+
+/**
+ * 角色的输出类型：`physical` / `magic`。
+ * 依据 `unitData.phyAtk` 与 `unitData.magicAtk` 谁更高（相等时按物理，避免误判）。
+ */
+export function heroAttackType(hero) {
+  const u = hero?.unitData || {}
+  const phy = Number(u.phyAtk) || 0
+  const magic = Number(u.magicAtk) || 0
+  return magic > phy ? 'magic' : 'physical'
 }
 
 /**
