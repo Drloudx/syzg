@@ -1,29 +1,78 @@
 <template>
   <div class="page-view-container relics-page">
     <UiFilterPanel class="filter-panel paper-panel">
+      <UiTabs :model-value="tab" :options="tabs" @update:model-value="changeTab" />
       <template #search>
-        <UiSearchInput :model-value="search" placeholder="搜索遗器、属性或效果..." @update:model-value="setFilter('q', $event)" />
+        <UiSearchInput v-if="isList" :model-value="search" placeholder="搜索遗器、属性或效果..." @update:model-value="setFilter('q', $event)" />
       </template>
-      <UiFilterRow label="类型：">
-        <UiFilterPill :active="!type" @click="setFilter('type', '')">全部</UiFilterPill>
-        <UiFilterPill v-for="option in typeOptions" :key="option.value" :active="type === option.value" @click="setFilter('type', option.value)">{{ option.label }}</UiFilterPill>
-      </UiFilterRow>
-      <UiFilterRow label="分类：">
-        <UiFilterPill :active="!cate" @click="setFilter('cate', '')">全部</UiFilterPill>
-        <UiFilterPill v-for="value in categoryOptions" :key="value" :active="cate === String(value)" @click="setFilter('cate', String(value))">{{ categoryName(value) }}</UiFilterPill>
-      </UiFilterRow>
-      <UiFilterRow label="等级：">
-        <UiFilterPill :active="!level" @click="setFilter('lv', '')">全部</UiFilterPill>
-        <UiFilterPill v-for="value in levelOptions" :key="value" :active="level === String(value)" @click="setFilter('lv', String(value))">{{ value }} 级</UiFilterPill>
-      </UiFilterRow>
-      <div class="collection-counter">
-        共 <span class="count-num">{{ filteredRelics.length }}</span> 件遗器
-        <span v-for="dungeon in dungeons" :key="dungeon.id" class="dungeon-note">· {{ dungeon.name }}</span>
-      </div>
+      <template v-if="isList">
+        <UiFilterRow label="类型：">
+          <UiFilterPill :active="!type" @click="setFilter('type', '')">全部</UiFilterPill>
+          <UiFilterPill v-for="option in typeOptions" :key="option.value" :active="type === option.value" @click="setFilter('type', option.value)">{{ option.label }}</UiFilterPill>
+        </UiFilterRow>
+        <UiFilterRow label="分类：">
+          <UiFilterPill :active="!cate" @click="setFilter('cate', '')">全部</UiFilterPill>
+          <UiFilterPill v-for="value in categoryOptions" :key="value" :active="cate === String(value)" @click="setFilter('cate', String(value))">{{ categoryName(value) }}</UiFilterPill>
+        </UiFilterRow>
+        <UiFilterRow label="等级：">
+          <UiFilterPill :active="!level" @click="setFilter('lv', '')">全部</UiFilterPill>
+          <UiFilterPill v-for="value in levelOptions" :key="value" :active="level === String(value)" @click="setFilter('lv', String(value))">{{ value }} 级</UiFilterPill>
+        </UiFilterRow>
+        <div class="collection-counter">
+          共 <span class="count-num">{{ filteredRelics.length }}</span> 件遗器
+          <span v-for="dungeon in dungeons" :key="dungeon.id" class="dungeon-note">· {{ dungeon.name }}</span>
+        </div>
+      </template>
     </UiFilterPanel>
 
     <UiEmptyState v-if="loading" type="loading" text="正在加载遗器图鉴..." />
     <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadData" />
+    <!-- 规则视图（独立 tab，不是列表底部的区块） -->
+    <UiCardGrid v-else-if="!isList" id="relicsScroll" class="relics-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
+      <UiSection title="遗器与法盘玩法规则">
+        <div class="rule-copy">
+          <p><b>遗器分两类</b>：基础遗器（<b>火 / 水 / 地 / 风</b> 四种属性之一，提供全局属性加成）；核心遗器（带技能效果与共鸣，没有属性栏，另有「能量型」参数，数值越大覆盖的伙伴位置越多）。</p>
+          <p><b>法盘</b>：{{ fapanRuleText }}。开局只有 <b>{{ rules.initialOpenGrid }}</b> 格可用，其余锁定格靠<b>升级法盘</b>逐级获得解锁次数后逐个打开；<b>四角为永久隐藏角，任何情况下不可解锁</b>。</p>
+          <p><b>放置</b>：遗器按自身「占格」形状（纯矩形，见下方示意）平铺进可用格；<b>不能旋转</b>，不能重叠、不能越界。基础遗器可放多个；核心遗器同名<b>最多 1 个</b>、同时在场<b>最多 {{ rules.maxCoreRelicNum }} 种</b>。</p>
+          <p><b>共鸣</b>：核心遗器的每条共鸣要求场上某些分类的遗器达到指定数量（如「火属性 ×2 + 地属性 ×1」），满足即激活该条强化。</p>
+          <p><b>升级</b>：消耗 <b>{{ rules.levelUpCost }}</b> 个同类遗器合成升级，遗器等级上限 5 级；每次升级同时获得法盘经验，法盘共 <b>{{ rules.maxFapanLevel }}</b> 级。</p>
+          <p><b>带出积分</b>：遗器在副本结算时折算的积分（<b>不是法盘消耗</b>），点数越高越值钱。</p>
+        </div>
+      </UiSection>
+
+      <UiSection title="遗器形状一览">
+        <p class="rule-hint">遗器只有「矩形占格」一种形状，下表是全部出现过的尺寸；同一尺寸的遗器可互换放置。</p>
+        <div class="shape-catalog">
+          <div v-for="shape in shapeCatalog" :key="shape.key" class="shape-catalog__item">
+            <div class="shape-mini" :style="{ '--sw': shape.width, '--sh': shape.height }">
+              <span v-for="(cell, i) in shape.cells" :key="i" class="shape-mini__cell"></span>
+            </div>
+            <span class="shape-catalog__label">{{ shape.width }}×{{ shape.height }}<template v-if="shape.count"> · {{ shape.count }} 件</template></span>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection v-if="fapan.length" title="法盘格子">
+        <p class="rule-hint">深色为当前锁定格，浅色框为可放置格。锁定格可随法盘升级解锁（四角除外）。</p>
+        <div class="fapan-grid">
+          <div v-for="board in fapan" :key="board.id" class="fapan-card">
+            <div class="fapan-card__head">
+              <span class="fapan-card__name">{{ board.name }}</span>
+              <span class="fapan-card__meta">{{ board.width }} × {{ board.height }} 格 · 上限 {{ board.maxLevel }} 级</span>
+            </div>
+            <div class="fapan-board" :style="{ '--cols': board.width, '--rows': board.height }">
+              <template v-for="(cell, index) in board.cells" :key="index">
+                <span class="fapan-cell" :class="cell.locked ? 'is-locked' : 'is-open'" :title="cell.locked ? '锁定（可升级解锁）' : `可放置（${cell.x}, ${cell.y}）`"></span>
+              </template>
+            </div>
+            <div class="fapan-legend">
+              <span class="fapan-legend__item"><i class="fapan-cell is-open"></i>可放置 {{ board.openCount }} 格</span>
+              <span class="fapan-legend__item"><i class="fapan-cell is-locked"></i>锁定 {{ board.lockCount }} 格</span>
+            </div>
+          </div>
+        </div>
+      </UiSection>
+    </UiCardGrid>
     <UiCardGrid v-else id="relicsScroll" class="relics-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
       <template v-if="filteredRelics.length">
         <div class="relics-grid">
@@ -85,37 +134,6 @@
         </div>
       </template>
       <UiEmptyState v-else text="没有符合条件的遗器" />
-
-      <UiSection title="玩法规则">
-        <div class="rule-copy">
-          <p><b>遗器分两类</b>：基础遗器（<b>火/水/地/风</b> 四种属性之一，提供全局属性加成）、核心遗器（带技能效果与共鸣，属性栏不显示，另有「能量型」参数）。</p>
-          <p><b>法盘</b>：{{ fapanRuleText }}。开局只有 <b>{{ rules.initialOpenGrid }}</b> 格可用，其余锁定格要靠<b>升级法盘</b>获得解锁次数逐个打开；四角为永久隐藏角，不可解锁。</p>
-          <p><b>放置</b>：遗器按自身「占格」形状（纯矩形，见卡片上的小格子）平铺进可用格，<b>不能旋转</b>，不能重叠、不能越界。基础遗器可放多个；核心遗器同名<b>最多 1 个</b>、同时在场<b>最多 {{ rules.maxCoreRelicNum }} 种</b>。</p>
-          <p><b>共鸣</b>：核心遗器的每条共鸣要求场上若干遗器分类达到指定数量（如「火属性 ×2 + 地属性 ×1」），满足即激活该条强化。</p>
-          <p><b>升级</b>：消耗 <b>{{ rules.levelUpCost }}</b> 个同类遗器合成升级，遗器等级上限 5 级；升级同时获得法盘经验，法盘共 {{ rules.maxFapanLevel }} 级。</p>
-          <p><b>带出积分</b>：遗器在副本结算时折算的积分（不是法盘消耗），点数越高越值钱。</p>
-        </div>
-      </UiSection>
-
-      <UiSection v-if="fapan.length" title="法盘">
-        <div class="fapan-grid">
-          <div v-for="board in fapan" :key="board.id" class="fapan-card">
-            <div class="fapan-card__head">
-              <span class="fapan-card__name">{{ board.name }}</span>
-              <span class="fapan-card__meta">{{ board.width }} × {{ board.height }} 格 · 上限 {{ board.maxLevel }} 级</span>
-            </div>
-            <div class="fapan-board" :style="{ '--cols': board.width, '--rows': board.height }">
-              <template v-for="(cell, index) in board.cells" :key="index">
-                <span class="fapan-cell" :class="cell.locked ? 'is-locked' : 'is-open'" :title="cell.locked ? '锁定' : `可放置（${cell.x}, ${cell.y}）`"></span>
-              </template>
-            </div>
-            <div class="fapan-legend">
-              <span class="fapan-legend__item"><i class="fapan-cell is-open"></i>可放置 {{ board.openCount }} 格</span>
-              <span class="fapan-legend__item"><i class="fapan-cell is-locked"></i>锁定 {{ board.lockCount }} 格</span>
-            </div>
-          </div>
-        </div>
-      </UiSection>
     </UiCardGrid>
     <UiBackToTop scroll-container="#relicsScroll" />
 
@@ -141,7 +159,7 @@ import { useLazyList } from '../composables/useLazyList.js'
 import { resolveScrollTarget } from '../utils/scrollTarget.js'
 import {
   UiFilterPanel, UiSearchInput, UiFilterRow, UiFilterPill, UiCardGrid, UiItemCard,
-  UiTag, UiEmptyState, UiBackToTop, UiSection
+  UiTag, UiEmptyState, UiBackToTop, UiSection, UiTabs
 } from '../components/ui/index.js'
 import ItemDetailModal from '../components/ItemDetailModal.vue'
 
@@ -156,6 +174,17 @@ const typeOptions = [
   { value: 'base', label: '基础' },
   { value: 'core', label: '核心' }
 ]
+
+/** 顶部 Tab：遗器列表 / 玩法规则（规则是独立视图，不是列表底部区块）。 */
+const tabs = [
+  { value: 'list', label: '遗器列表' },
+  { value: 'rules', label: '玩法规则' }
+]
+const tab = computed(() => (tabs.some(entry => entry.value === route.query.tab) ? route.query.tab : 'list'))
+const isList = computed(() => tab.value === 'list')
+function changeTab(value) {
+  router.push({ path: '/relics', query: { ...route.query, tab: value } })
+}
 
 const queryString = key => (typeof route.query[key] === 'string' ? route.query[key] : '')
 const search = computed(() => queryString('q'))
@@ -175,7 +204,25 @@ const fapanRuleText = computed(() => {
   const boards = fapan.value
   if (!boards.length) return '遗器放置的格子板'
   const sizes = [...new Set(boards.map(board => `${board.width}×${board.height}`))]
-  return `${sizes.join(' / ')} 的格子板，四种属性遗器共用一个盘`
+  return `${sizes.join(' / ')} 的格子板`
+})
+
+/**
+ * 遗器形状一览：按 w×h 去重，统计各尺寸有几件。
+ * 官方 shape 只有矩形（RelicInfoSizeTempConf = w/h），所以这里就是全部出现过的尺寸。
+ */
+const shapeCatalog = computed(() => {
+  const groups = new Map()
+  for (const relic of relics.value) {
+    const { width, height } = relic.shape
+    if (!width || !height) continue
+    const key = `${width}x${height}`
+    if (!groups.has(key)) {
+      groups.set(key, { key, width, height, count: 0, cells: relic.shapeCells })
+    }
+    groups.get(key).count += 1
+  }
+  return [...groups.values()].sort((a, b) => (a.width * a.height) - (b.width * b.height) || a.width - b.width)
 })
 
 const categoryName = value => data.value?.categoryNames?.[value] || `分类${value}`
@@ -314,6 +361,11 @@ onMounted(loadData)
 .rule-copy p { margin: 0 0 8px; font-size: 13px; line-height: 1.75; color: var(--text-main); }
 .rule-copy p:last-child { margin-bottom: 0; }
 .rule-copy b { color: var(--accent-ink); font-weight: 700; }
+.rule-hint { margin: 0 0 10px; font-size: 12px; line-height: 1.7; color: var(--text-muted); }
+/* 形状一览 */
+.shape-catalog { display: flex; flex-wrap: wrap; gap: 16px; }
+.shape-catalog__item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.shape-catalog__label { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
 /* 1 级效果：卡片的主内容，尽量给足行数，不再被背景故事挤占 */
 .relic-entry__effect {
   margin-top: 8px;

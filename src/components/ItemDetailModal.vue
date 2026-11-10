@@ -66,9 +66,15 @@
         <UiInfoRow label="类型" :value="relicInfo.type === 'core' ? '核心遗器' : '基础遗器'" />
         <UiInfoRow v-if="relicInfo.categoryName" label="分类" :value="relicInfo.categoryName" />
         <UiInfoRow v-if="relicInfo.attributeName" label="属性" :value="relicInfo.attributeName" />
-        <UiInfoRow label="占格" :value="`${relicInfo.shape.width} × ${relicInfo.shape.height}`" />
-        <UiInfoRow label="遗器点数" :value="String(relicInfo.relicPoint)" />
+        <UiInfoRow label="带出积分" :value="String(relicInfo.relicPoint)" />
         <UiInfoRow v-if="relicInfo.energyPattern" label="能量型" :value="String(relicInfo.energyPattern)" />
+        <!-- 占格形状：画出 w×h 的格子，比文字直观 -->
+        <div class="relic-shape-row">
+          <span class="relic-shape-row__label">占格 {{ relicInfo.shape.width }} × {{ relicInfo.shape.height }}</span>
+          <div class="relic-shape" :style="{ '--sw': relicInfo.shape.width, '--sh': relicInfo.shape.height }">
+            <span v-for="(cell, i) in relicInfo.shapeCells" :key="i" class="relic-shape__cell"></span>
+          </div>
+        </div>
       </UiSection>
 
       <UiSection :title="relicInfo.type === 'core' ? '技能效果（1~5 级）' : '属性加成（1~5 级）'">
@@ -1761,6 +1767,29 @@ onBeforeUnmount(cancelBodyScrollRestore)
 }
 .relic-resonance-row__text { flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
 .relic-hl { color: var(--accent-ink, #557574); font-weight: 700; }
+
+/* 详情页的占格形状 */
+.relic-shape-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 2px;
+  border-bottom: 1px dashed var(--border-soft, rgba(143, 115, 81, 0.45));
+}
+.relic-shape-row__label { flex-shrink: 0; font-weight: 700; font-size: 14px; color: var(--text-muted, #6b5134); }
+.relic-shape {
+  display: grid;
+  grid-template-columns: repeat(var(--sw), 1fr);
+  grid-template-rows: repeat(var(--sh), 1fr);
+  gap: 2px;
+  width: calc(var(--sw) * 15px);
+  height: calc(var(--sh) * 15px);
+}
+.relic-shape__cell {
+  background: rgba(233, 220, 195, 0.95);
+  border: 1px solid var(--accent-ink, #557574);
+  border-radius: 2px;
+}
 
 /* 「可开出遗器」列表（神秘遗器类开箱道具） */
 .relic-drop-note { margin: 0 0 10px; font-size: 14px; color: var(--text-muted); }
