@@ -54,6 +54,8 @@ export function buildPetData(maps) {
 
       // Process Skills
       const skillsList = []
+      // 特性摘要（供表格视图），在下方解析到 trait 时填充
+      let traitSummary = null
       // 0. Normal Attack (普攻)
       skillsList.push({
         id: `${typeId}_normal`,
@@ -94,6 +96,29 @@ export function buildPetData(maps) {
             levelData,
             maxLevel: levelData.length
           })
+          /*
+           * 特性摘要：供「特性表格」视图使用。
+           * `maxText` = 满级（7 级）文本；`rangeText` = 「1 级 → 7 级」的数值区间摘要
+           * （例如「15% → 27%」）。区间取首末两级文本里 `{…}` 高亮片段；两级的片段数量/顺序
+           * 不一致时退化为整段文本，避免给出错误对照。
+           */
+          const pctOf = text => [...String(text || '').matchAll(/\{([^}]+)\}/g)].map(m => m[1])
+          const firstPct = pctOf(levelData[0]?.des)
+          const lastPct = pctOf(levelData[levelData.length - 1]?.des)
+          /*
+           * 只列出**确实随等级变化**的数值（首级 ≠ 满级）。
+           * 「100%→100%」这类恒定值对读者没信息量，剔除。
+           * 两级的高亮片段数量/顺序不一致时不生成区间，避免错配。
+           */
+          const changed = firstPct.length && firstPct.length === lastPct.length
+            ? firstPct.map((v, i) => [v, lastPct[i]]).filter(([a, b]) => a !== b)
+            : []
+          const rangeText = changed.map(([a, b]) => `${a} → ${b}`).join('，')
+          traitSummary = {
+            name: getCleanSkillName(rawName),
+            maxText: levelData[levelData.length - 1]?.des || '',
+            rangeText
+          }
         }
       }
 
@@ -148,6 +173,8 @@ export function buildPetData(maps) {
         elementName,
         variants: variantsList,
         hasVariant: variantsList.length > 0,
+        // 特性摘要（表格视图用）：{ name, maxText(满级文本), rangeText(1→7 级区间) }
+        trait: traitSummary,
         // 孵化变异概率（0.2 = 20%）；0 表示不可变异
         variantChance,
         variantChancePercent,

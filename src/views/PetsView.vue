@@ -36,11 +36,71 @@
         <UiFilterPill :active="filterVariant === true" @click="filterVariant = true">可变异</UiFilterPill>
       </UiFilterRow>
 
-      <div class="collection-counter">共 <span class="count-num">{{ filteredPets.length }}</span> 只魔物</div>
+      <div class="pets-toolbar">
+        <div class="collection-counter">共 <span class="count-num">{{ filteredPets.length }}</span> 只魔物</div>
+        <!-- 视图模式：图文详情 / 特性表格（桌面默认图文，手机默认表格） -->
+        <div class="view-mode-toggle" role="group" aria-label="视图模式切换">
+          <button
+            type="button"
+            class="view-mode-btn"
+            :class="{ 'is-active': viewMode === 'detail' }"
+            title="图文模式：魔物卡片"
+            @click="setViewMode('detail')"
+          >
+            <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M2 3h3v3H2V3zm5 1h7v1H7V4zm0 6h7v1H7v-1zM2 9h3v3H2V9z" />
+            </svg>
+            <span>图文</span>
+          </button>
+          <button
+            type="button"
+            class="view-mode-btn"
+            :class="{ 'is-active': viewMode === 'table' }"
+            title="特性表格：一表看全部魔物的特性与 1~7 级效果"
+            @click="setViewMode('table')"
+          >
+            <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M1 2h14v2H1V2zm0 4h4v3H1V6zm6 0h4v3H7V6zm6 0h2v3h-2V6zM1 11h4v3H1v-3zm6 0h4v3H7v-3zm6 0h2v3h-2v-3z" />
+            </svg>
+            <span>特性表格</span>
+          </button>
+        </div>
+      </div>
     </UiFilterPanel>
 
+    <!-- 特性表格视图 -->
+    <div v-if="viewMode === 'table'" class="pets-table-wrap paper-panel">
+      <table class="pets-table">
+        <thead>
+          <tr>
+            <th class="col-name">宠物</th>
+            <th class="col-star">星级</th>
+            <th class="col-element">属性</th>
+            <th class="col-trait">特性名</th>
+            <th class="col-effect">特性效果（满级 7 级）</th>
+            <th class="col-range">1 级 → 7 级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="pet in filteredPets" :key="pet.id" class="pets-table__row" @click="handlePetClick(pet)">
+            <td class="col-name">
+              <span class="cell-name">
+                {{ pet.name }}
+                <img v-if="pet.variantChance > 0" :src="getImageUrl('/ui/pet_info_mutate.png')" class="cell-mutate" :title="`可变异：孵化时 ${pet.variantChancePercent}%`" alt="可变异" />
+              </span>
+            </td>
+            <td class="col-star" :class="`quality-text-${pet.starDisplay}`">{{ pet.star }}★</td>
+            <td class="col-element"><span :class="`element-${pet.element}`">{{ pet.elementName }}</span></td>
+            <td class="col-trait">{{ pet.trait?.name || '—' }}</td>
+            <td class="col-effect" v-html="pet.trait ? formatSkillDescription(pet.trait.maxText) : '—'"></td>
+            <td class="col-range">{{ pet.trait?.rangeText || '—' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
     <!-- 列表区（5列大幅面卡片展示，懒加载每批 60 项） -->
-    <UiCardGrid id="petsGridScroll" class="pets-card-grid" v-if="isDataReady">
+    <UiCardGrid id="petsGridScroll" class="pets-card-grid" v-else-if="isDataReady">
       <UiItemCard
         v-for="pet in displayedPets"
         :key="pet.id"
@@ -562,6 +622,23 @@ const isDataReady = ref(false)
 const detailVisible = ref(false)
 const selectedPet = ref(null)
 
+/**
+ * 视图模式：`detail`（魔物卡片）/ `table`（特性表格）。
+ *
+ * 桌面默认「图文」，手机默认「特性表格」——手机上表格比 5 列大卡片更好扫读，
+ * 但保留切换按钮，两种视图在两端都能用。用户手动切换后记到 localStorage。
+ */
+const VIEW_MODE_KEY = 'pets_view_mode'
+const isNarrowScreen = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 600px)').matches
+const viewMode = ref(
+  (typeof localStorage !== 'undefined' && localStorage.getItem(VIEW_MODE_KEY)) ||
+  (isNarrowScreen() ? 'table' : 'detail')
+)
+function setViewMode(mode) {
+  viewMode.value = mode
+  try { localStorage.setItem(VIEW_MODE_KEY, mode) } catch { /* 隐私模式下忽略 */ }
+}
+
 /** 讨论区归属键：`pet:pet_006` */
 const petCommentPageKey = computed(() => buildPageKey(COMMENT_PAGE_PREFIX.pet, selectedPet.value?.id))
 const errorMessage = ref('')
@@ -830,6 +907,90 @@ const handleImgError = (e) => {
   color: var(--text-muted);
   white-space: nowrap;
 }
+/* 计数 + 视图切换同一行 */
+.pets-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.view-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--paper-soft, rgba(0, 0, 0, 0.05));
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 2px;
+}
+.view-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.view-mode-btn:hover { background: var(--hover-bg, rgba(85, 117, 116, 0.12)); }
+.view-mode-btn.is-active {
+  background: var(--accent-ink, #557574);
+  color: var(--on-wood-text, #ebdcc3);
+}
+.view-mode-icon { width: 13px; height: 13px; flex: 0 0 auto; }
+
+/* ====== 特性表格 ====== */
+.pets-table-wrap {
+  background: var(--paper);
+  padding: 12px 14px calc(88px + var(--safe-bottom, 0px));
+  overflow-x: auto;              /* 窄屏横向滚动，不挤压列 */
+}
+.pets-table {
+  width: 100%;
+  min-width: 820px;              /* 低于此宽度靠横向滚动，保证可读 */
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.6;
+  table-layout: fixed;           /* 固定列宽，避免名字被挤成竖排 */
+}
+.pets-table th,
+.pets-table td {
+  padding: 9px 10px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-soft);
+}
+.pets-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--accent-ink, #557574);
+  color: var(--on-wood-text, #ebdcc3);
+  font-weight: 700;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.pets-table__row { cursor: pointer; }
+.pets-table__row:hover { background: var(--hover-bg, rgba(85, 117, 116, 0.12)); }
+.pets-table__row:last-child td { border-bottom: none; }
+.col-name { width: 130px; }
+.col-star { width: 56px; white-space: nowrap; }
+.col-element { width: 56px; white-space: nowrap; }
+.col-trait { width: 110px; }
+.col-effect { width: auto; }        /* 效果列吃掉剩余宽度 */
+.col-range { width: 168px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cell-name { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; white-space: nowrap; }
+.cell-mutate { width: 15px; height: 15px; flex: 0 0 auto; }
+/* 表格内的高亮数值（formatSkillDescription 产物） */
+.pets-table :deep(.hl), .pets-table :deep(em), .pets-table :deep(strong) { font-style: normal; color: var(--accent-ink); font-weight: 700; }
+
 .pets-page {
   display: flex;
   flex-direction: column;
