@@ -89,50 +89,16 @@
     </UiCardGrid>
     <UiBackToTop scroll-container="#relicsScroll" />
 
-    <!-- 遗器详情 -->
-    <UiModal :visible="!!detailRelic" :title="detailRelic?.name || '遗器详情'" max-width="760px" max-height="86vh" teleport-to="body" @update:visible="v => !v && closeDetail()">
-      <div v-if="detailRelic" class="relic-detail">
-        <div class="relic-detail__head">
-          <UiItemCard
-            :name="detailRelic.name"
-            :img="getImageUrl(`/images/Common_ItemIcon/${detailRelic.icon}.webp`)"
-            :quality="0"
-            :show-name="false"
-            @img-error="handleImageFallback"
-          />
-          <div class="relic-detail__head-body">
-            <div class="relic-detail__tags">
-              <UiTag :tone="detailRelic.type === 'core' ? 'gold' : 'accent'">{{ detailRelic.type === 'core' ? '核心遗器' : '基础遗器' }}</UiTag>
-              <UiTag v-if="detailRelic.categoryName">{{ detailRelic.categoryName }}</UiTag>
-              <UiTag v-if="detailRelic.attributeName">{{ detailRelic.attributeName }}</UiTag>
-            </div>
-            <div class="relic-detail__stats">
-              <span>占格 {{ detailRelic.shape.width }} × {{ detailRelic.shape.height }}</span>
-              <span>遗器点数 {{ detailRelic.relicPoint }}</span>
-              <span v-if="detailRelic.energyPattern">能量型 {{ detailRelic.energyPattern }}</span>
-            </div>
-          </div>
-        </div>
-
-        <p v-if="detailRelic.tip" class="relic-detail__tip">{{ detailRelic.tip }}</p>
-
-        <UiSection :title="detailRelic.type === 'core' ? '技能效果（1~5 级）' : '属性加成（1~5 级）'">
-          <ul class="relic-levels__list relic-levels__list--detail">
-            <li v-for="lv in detailRelic.levels" :key="lv.level" class="relic-level" :class="{ 'is-active': lv.level === detailLevel }">
-              <span class="relic-level__badge">{{ lv.level }} 级</span>
-              <span class="relic-level__text" v-html="highlight(lv.text)"></span>
-            </li>
-          </ul>
-        </UiSection>
-
-        <UiSection v-if="detailRelic.resonances.length" title="共鸣">
-          <div v-for="(res, index) in detailRelic.resonances" :key="index" class="relic-resonance">
-            <span class="relic-resonance__cond">{{ res.requirement }}</span>
-            <span class="relic-resonance__text" v-html="highlight(res.text)"></span>
-          </div>
-        </UiSection>
-      </div>
-    </UiModal>
+    <!--
+      详情统一走「物品详情」弹层（ItemDetailModal）——与物品图鉴同一个组件。
+      遗器在游戏里本来就以「物品详情」形态展示；该组件会读 relics.json 自动补
+      遗器属性 / 1~5 级效果 / 共鸣。
+    -->
+    <ItemDetailModal
+      v-model:visible="detailVisible"
+      :item="detailItem"
+      :category-tree="categoryTree"
+    />
   </div>
 </template>
 
@@ -145,8 +111,9 @@ import { useLazyList } from '../composables/useLazyList.js'
 import { resolveScrollTarget } from '../utils/scrollTarget.js'
 import {
   UiFilterPanel, UiSearchInput, UiFilterRow, UiFilterPill, UiCardGrid, UiItemCard,
-  UiTag, UiEmptyState, UiBackToTop, UiSection, UiModal
+  UiTag, UiEmptyState, UiBackToTop, UiSection
 } from '../components/ui/index.js'
+import ItemDetailModal from '../components/ItemDetailModal.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -172,7 +139,7 @@ const fapan = computed(() => data.value?.fapan || [])
 const dungeons = computed(() => data.value?.dungeons || [])
 
 const categoryName = value => data.value?.categoryNames?.[value] || `分类${value}`
-const categoryOptions = computed(() => [...new Set(relics.value.map(r => r.category).filter(c => c > 0))].sort((a, b) => a - b))
+const categoryOptions = computed(() => [...new Set(relics.value.map(r => r.relicCategory).filter(c => c > 0))].sort((a, b) => a - b))
 const levelOptions = computed(() => {
   const set = new Set()
   for (const relic of relics.value) for (const lv of relic.levels) set.add(lv.level)
@@ -200,7 +167,7 @@ const matches = relic => {
 const filteredRelics = computed(() => {
   const result = relics.value.filter(relic => matches(relic)
     && (!type.value || relic.type === type.value)
-    && (!cate.value || relic.category === Number(cate.value))
+    && (!cate.value || relic.relicCategory === Number(cate.value))
     && (!level.value || relic.levels.some(lv => lv.level === Number(level.value))))
   const target = result.find(relic => relic.id === focus.value)
   return target ? [target, ...result.filter(relic => relic !== target)] : result
@@ -208,13 +175,13 @@ const filteredRelics = computed(() => {
 
 const { displayedItems: displayedRelics } = useLazyList(filteredRelics, 20, '#relicsScroll')
 
-/* ---- 详情弹层 ---- */
+/* ---- 详情：复用物品详情弹层（ItemDetailModal）---- */
+const categoryTree = ref([])
 const detailId = ref('')
-const detailRelic = computed(() => relics.value.find(r => r.id === detailId.value) || null)
-const detailLevel = computed(() => {
-  const wanted = Number(level.value)
-  if (wanted && detailRelic.value?.levels.some(lv => lv.level === wanted)) return wanted
-  return detailRelic.value?.levels[0]?.level || 1
+const detailItem = computed(() => relics.value.find(r => r.id === detailId.value) || null)
+const detailVisible = computed({
+  get: () => !!detailItem.value,
+  set: value => { if (!value) closeDetail() }
 })
 function openDetail(id) {
   detailId.value = id
@@ -243,6 +210,14 @@ async function loadData() {
   error.value = ''
   try {
     data.value = await fetchWithFallback('data/parsed/relics.json')
+    /*
+     * ItemDetailModal 用 categoryTree 解析 `item.category`（数字分类路径）。
+     * 遗器本身不带分类路径，但组件需要它才不报错，故顺手取 items.json 的分类树。
+     */
+    try {
+      const itemsData = await fetchWithFallback('data/parsed/items.json')
+      categoryTree.value = itemsData?.categoryTree || []
+    } catch { /* 分类树失败不影响遗器列表 */ }
   } catch (cause) {
     error.value = '遗器图鉴加载失败，请重试。'
     console.error('Failed to load relic catalog:', cause)
@@ -281,25 +256,6 @@ onMounted(loadData)
 .relic-entry__summary-label { flex: 0 0 auto; font-size: 12px; font-weight: 700; color: var(--text-muted); }
 .relic-entry__more { display: block; margin-top: 6px; font-size: 12px; color: var(--accent-ink); }
 /* 详情弹层 */
-.relic-detail__head { display: flex; gap: 12px; align-items: flex-start; padding-bottom: 10px; border-bottom: 1px solid var(--border-soft); }
-.relic-detail__head :deep(.ui-item-card) { flex: 0 0 84px; margin: 0; }
-.relic-detail__head-body { flex: 1; min-width: 0; }
-.relic-detail__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
-.relic-detail__stats { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--text-muted); }
-.relic-detail__tip { margin: 10px 0 0; font-size: 13px; line-height: 1.7; color: var(--text-muted); }
-.relic-levels { margin-top: 10px; border-top: 1px dashed var(--border-soft); padding-top: 8px; }
-.relic-levels__list { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
-.relic-levels__list--detail { margin-top: 0; }
-.relic-level { display: flex; gap: 8px; align-items: flex-start; padding: 5px 8px; border-radius: 4px; font-size: 13px; line-height: 1.6; }
-.relic-level.is-active { background: rgba(122, 154, 153, 0.14); }
-.relic-level__badge { flex: 0 0 auto; font-size: 11px; font-weight: 700; color: var(--accent-ink); padding-top: 1px; }
-.relic-level__text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
-:deep(.relic-hl) { color: var(--accent-ink); font-weight: 700; }
-.relic-resonances { margin-top: 10px; border-top: 1px dashed var(--border-soft); padding-top: 8px; }
-.relic-resonances__label { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 5px; }
-.relic-resonance { display: flex; flex-wrap: wrap; gap: 6px; align-items: baseline; font-size: 12px; line-height: 1.6; padding: 3px 0; }
-.relic-resonance__cond { flex: 0 0 auto; font-weight: 700; color: var(--q5-text, #b15d00); }
-.relic-resonance__text { flex: 1 1 160px; min-width: 0; overflow-wrap: anywhere; }
 .fapan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 10px; }
 .fapan-card { padding: 10px 12px; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
 .fapan-card__name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }

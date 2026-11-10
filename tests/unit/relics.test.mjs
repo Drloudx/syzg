@@ -24,6 +24,13 @@ const readParsed = name => JSON.parse(readFileSync(join(repoRoot, 'public/data/p
 test('遗器分类名用游戏真名（武器/法器/防器/护器），不是臆造名', () => {
   const data = readParsed('relics.json')
   assert.deepEqual(data.categoryNames, { 1: '武器', 2: '法器', 3: '防器', 4: '护器' })
+  /*
+   * `relicCategory`（1~4 数字）与 `category`（物品的数字路径数组，如 [2,21]）语义不同，
+   * 不能混用：ItemDetailModal 多处把 `item.category` 当数组调 `.includes()`，
+   * 若把 relicCategory 塞进 `category` 会抛 "cat.includes is not a function"。
+   */
+  assert.ok(data.relics.every(relic => typeof relic.relicCategory === 'number'))
+  assert.ok(data.relics.every(relic => Array.isArray(relic.category)))
 })
 
 test('遗器件数与类型分布正确：基础 25 + 核心 9 = 34', () => {

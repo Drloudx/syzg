@@ -106,12 +106,37 @@ export function buildRelicsFile() {
       icon: relic.icon || '',
       relicPoint: Number(relic.relicPoint) || 0,
       shape: { width: Number(relic.shape?.w) || 0, height: Number(relic.shape?.h) || 0 },
-      category: Number(relic.relicCategory) || 0,
-      categoryName: RELIC_CATEGORY_NAMES[relic.relicCategory] || '',
-      energyPattern: Number.isFinite(Number(relic.energyPattern)) ? Number(relic.energyPattern) : null,
+      // relicCategory：1~4（武器/法器/防器/护器）；核心遗器为 0/未配
+      relicCategory: Number(relic.relicCategory) || 0,
+      categoryName: RELIC_CATEGORY_NAMES[relic.relicCategory] || '',      energyPattern: Number.isFinite(Number(relic.energyPattern)) ? Number(relic.energyPattern) : null,
       levels,
       resonances: isCore ? buildResonances(relic) : [],
-      tags: Array.isArray(relic.tags) ? relic.tags.map(text) : []
+      tags: Array.isArray(relic.tags) ? relic.tags.map(text) : [],
+
+      /*
+       * 下面这些字段是给**物品详情弹层**（ItemDetailModal）消费的。
+       * 遗器在游戏里没有独立图鉴页，是嵌在「物品详情」形态里展示的；
+       * 页面直接复用 ItemDetailModal，所以产物要长成「物品」的形状：
+       *   - `img`：Common_ItemIcon 下的图标名（和 item.img 同一目录）
+       *   - `desc`：描述文本（ItemDetailModal 的「描述」区块）
+       *   - `quality`：官方 relicInfo 表**没有品质字段**，统一 0（不套品质色）
+       *   - `itemType`：1 = 材料类；`equip` 给空对象避免走装备分支
+       *   - `maxNum`：可堆叠上限（对应界面「可堆叠 (99)」）
+       */
+      img: relic.icon || '',
+      desc: text(relic.tip),
+      quality: 0,
+      itemType: 1,
+      maxNum: 99,
+      equip: {},
+      // ItemDetailModal 以 `item.typeId` 为身份键（评论、来源、嵌套跳转都靠它）
+      typeId: relic.id,
+      /*
+       * ItemDetailModal 多处把 `item.category` 当**数字路径数组**（如 `[2, 21]`）使用，
+       * 遗器的 relicCategory 是单个数字（1~4），语义不同，不能混用。
+       * 这里给空数组，分类展示走上面的 `categoryName`。
+       */
+      category: []
     }
   }).sort((a, b) => {
     // 基础在前、核心在后；同类按分类、再按名字

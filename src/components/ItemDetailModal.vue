@@ -32,6 +32,57 @@
       <p class="desc-text">{{ item.desc }}</p>
     </UiSection>
 
+    <!--
+      遗器属性：遗器在游戏里没有独立图鉴页，展示形态就是「物品详情」。
+      `item.typeId` 命中 relics.json 时补这一段（占格 / 遗器点数 / 分类 / 能量型 / 等级效果 / 共鸣）。
+    -->
+    <template v-if="relicInfo">
+      <UiSection title="遗器属性">
+        <div class="equip-meta-list">
+          <div class="equip-meta-item">
+            <span class="meta-label">类型:</span>
+            <span class="meta-val">{{ relicInfo.type === 'core' ? '核心遗器' : '基础遗器' }}</span>
+          </div>
+          <div v-if="relicInfo.categoryName" class="equip-meta-item">
+            <span class="meta-label">分类:</span>
+            <span class="meta-val">{{ relicInfo.categoryName }}</span>
+          </div>
+          <div v-if="relicInfo.attributeName" class="equip-meta-item">
+            <span class="meta-label">属性:</span>
+            <span class="meta-val">{{ relicInfo.attributeName }}</span>
+          </div>
+          <div class="equip-meta-item">
+            <span class="meta-label">占格:</span>
+            <span class="meta-val">{{ relicInfo.shape.width }} × {{ relicInfo.shape.height }}</span>
+          </div>
+          <div class="equip-meta-item">
+            <span class="meta-label">遗器点数:</span>
+            <span class="meta-val">{{ relicInfo.relicPoint }}</span>
+          </div>
+          <div v-if="relicInfo.energyPattern" class="equip-meta-item">
+            <span class="meta-label">能量型:</span>
+            <span class="meta-val">{{ relicInfo.energyPattern }}</span>
+          </div>
+        </div>
+      </UiSection>
+
+      <UiSection :title="relicInfo.type === 'core' ? '技能效果（1~5 级）' : '属性加成（1~5 级）'">
+        <ul class="relic-level-list">
+          <li v-for="lv in relicInfo.levels" :key="lv.level" class="relic-level-row">
+            <span class="relic-level-row__badge">{{ lv.level }} 级</span>
+            <span class="relic-level-row__text" v-html="formatRelicText(lv.text)"></span>
+          </li>
+        </ul>
+      </UiSection>
+
+      <UiSection v-if="relicInfo.resonances.length" title="共鸣">
+        <div v-for="(res, index) in relicInfo.resonances" :key="index" class="relic-resonance-row">
+          <span class="relic-resonance-row__cond">{{ res.requirement }}</span>
+          <span class="relic-resonance-row__text" v-html="formatRelicText(res.text)"></span>
+        </div>
+      </UiSection>
+    </template>
+
     <!-- 使用效果 / 料理效果 / 内容展示 -->
     <UiSection
       v-if="displayUseDes || recipeInfo || bookContent || isRecipeItem"
@@ -789,6 +840,20 @@ const categoryName = computed(() => {
   return translateCategory(props.item.category, props.categoryTree)
 })
 
+/** 当前物品若是遗器（relics.json 里存在同 id），返回遗器详情；否则 null。 */
+const relicInfo = computed(() => {
+  const id = props.item?.typeId
+  if (!id) return null
+  return relicById.value[id] || null
+})
+
+/** 遗器文本里的 `{…}` 是游戏的高亮数值 —— 转成加粗高亮。 */
+const formatRelicText = text => String(text || '')
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/\{([^}]+)\}/g, '<span class="relic-hl">$1</span>')
+
 const jobList = computed(() => {
   if (!props.item?.equip?.job) return []
   return translateJobArray(props.item.equip.job)
@@ -1142,7 +1207,8 @@ const bookContent = ref(null)
 
 const bookEventId = computed(() => {
   if (!props.item) return null
-  const cat = props.item.category || []
+  // 防御：`category` 可能是数字（如遗器）或缺失，不能直接 .includes
+  const cat = Array.isArray(props.item.category) ? props.item.category : []
   if (cat.includes(5) || cat.includes('5') || cat.includes(54) || cat.includes('54')) {
     const p = props.item.useActionPara
     if (p && p.eventType && p.eventType.length > 0) {
@@ -1190,6 +1256,8 @@ watch(bookEventId, async (newVal) => {
 const globalItemSources = ref({})
 const globalItemRelations = ref({})
 const globalSimilarItems = ref({})
+/** 遗器数据（relics.json 的 id → 遗器），用于物品详情里补遗器专属区块。 */
+const relicById = ref({})
 
 // Failed resources remain retryable; successful resources are cached by request.js.
 let sharedResourcesLoaded = false
@@ -1209,6 +1277,14 @@ const loadSharedResources = () => {
     fetchWithFallback('data/parsed/item-relations.json').then(data => {
       globalItemRelations.value = data?.relations || data || {}
       globalSimilarItems.value = data?.similar || {}
+    }).catch(() => {}),
+    /*
+     * 遗器图鉴数据：遗器在游戏里没有独立图鉴页，是嵌在「物品详情」形态里展示的。
+     * 这里取 relics.json，命中 relicId 时补「遗器属性 / 等级效果 / 共鸣」区块。
+     * 失败静默：普通物品详情不依赖它。
+     */
+    fetchWithFallback('data/parsed/relics.json').then(data => {
+      relicById.value = Object.fromEntries((data?.relics || []).map(relic => [relic.id, relic]))
     }).catch(() => {})
   ]).then(() => {
     sharedResourcesLoaded = true
@@ -1600,6 +1676,50 @@ onBeforeUnmount(cancelBodyScrollRestore)
   white-space: pre-wrap;
   text-align: justify;
 }
+
+/* 遗器等级效果 / 共鸣（与遗器图鉴页同一套视觉） */
+.relic-level-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.relic-level-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 6px 9px;
+  border-radius: 4px;
+  background: rgba(122, 154, 153, 0.08);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.relic-level-row__badge {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-ink, #557574);
+  padding-top: 1px;
+}
+.relic-level-row__text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.relic-resonance-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: baseline;
+  font-size: 13px;
+  line-height: 1.65;
+  padding: 4px 0;
+}
+.relic-resonance-row__cond {
+  flex: 0 0 auto;
+  font-weight: 700;
+  color: var(--q5-text, #b15d00);
+}
+.relic-resonance-row__text { flex: 1 1 180px; min-width: 0; overflow-wrap: anywhere; }
+.relic-hl { color: var(--accent-ink, #557574); font-weight: 700; }
 
 /* 装备属性 */
 .equip-meta-list {
