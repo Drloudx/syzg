@@ -67,6 +67,17 @@
               class="pet-card-frame"
               alt=""
             />
+            <!--
+              可变异标记：与游戏内一致（`PicCenterPetTemp.Init` 里 sprite `pet_info_mutate`）。
+              只要 `variantChance != 0` 就显示；概率数字放 title 提示，卡面不挤。
+            -->
+            <img
+              v-if="pet.variantChance > 0"
+              :src="getImageUrl('/ui/pet_info_mutate.png')"
+              class="pet-card-mutate"
+              :alt="`可变异（${pet.variantChancePercent}%）`"
+              :title="`可变异：孵化时 ${pet.variantChancePercent}% 概率`"
+            />
           </div>
         </template>
       </UiItemCard>
@@ -134,6 +145,8 @@
 
           <!-- Mutant variant details description under portraits -->
           <div class="variant-effect-box" v-if="selectedPet.hasVariant && selectedPet.variants.length > 0">
+            <span class="variant-effect-title">变异概率:</span>
+            <span class="variant-effect-txt variant-chance-val">{{ selectedPet.variantChancePercent }}%（孵化时判定）</span>
             <span class="variant-effect-title">变异效果:</span>
             <span
               class="variant-effect-txt"
@@ -884,6 +897,18 @@ const handleImgError = (e) => {
   z-index: 1;
 }
 
+/* 可变异标记：贴在卡片左下角（与游戏内图鉴位置一致），压在边框之上 */
+.pet-card-mutate {
+  position: absolute;
+  left: 8%;
+  bottom: 10%;
+  width: 20%;
+  height: auto;
+  z-index: 4;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+}
+
 /* 列数与 `MonstersView` 保持同一套档位，两页视觉一致 */
 @media (max-width: 1100px) {
   .pets-card-grid :deep(.ui-card-grid) {
@@ -989,6 +1014,13 @@ const handleImgError = (e) => {
   font-weight: bold;
   color: var(--q4);
   margin-right: 6px;
+}
+
+/* 变异概率数值：与「变异效果」标题并列时保持清晰可读 */
+.variant-chance-val {
+  font-weight: 700;
+  color: var(--q5-text, #b15d00);
+  margin-right: 10px;
 }
 
 .variant-effect-txt {

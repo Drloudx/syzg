@@ -43,6 +43,14 @@ export function buildPetData(maps) {
         lifeTimeAdd: v.lifeTimeAdd || 0,
         sellPriceAdd: v.sellPriceAdd || 0
       }))
+      /*
+       * 变异概率：`variantChance` 是**孵化时触发变异的总概率**（0.2 = 20%，0 = 不可变异）。
+       * 客户端 `PetConf.variantChance`，`PicCenterPetTemp.Init` 用它判断是否显示
+       * 「可变异」图标（sprite `pet_info_mutate`）。`variants[].chance` 是在"已变异"前提下
+       * 出哪种变异的权重（当前所有魔物都只有 1 种 → 恒为 1）。
+       */
+      const variantChance = Number(pet.variantChance) || 0
+      const variantChancePercent = Math.round(variantChance * 1000) / 10
 
       // Process Skills
       const skillsList = []
@@ -140,6 +148,9 @@ export function buildPetData(maps) {
         elementName,
         variants: variantsList,
         hasVariant: variantsList.length > 0,
+        // 孵化变异概率（0.2 = 20%）；0 表示不可变异
+        variantChance,
+        variantChancePercent,
         skills: skillsList,
         // Base stats
         atk: pet.atk || 0,
