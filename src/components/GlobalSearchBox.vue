@@ -236,14 +236,19 @@ const subTagLabel = (item) => {
 .item-type-badge.equip { background: rgba(126, 42, 168, 0.15); color: var(--q4); }
 .item-type-badge.item { background: rgba(85, 117, 116, 0.18); color: var(--accent-ink, #557574); }
 .item-type-badge.furniture { background: rgba(176, 97, 12, 0.15); color: var(--q5-text, #b15d00); }
-.item-type-badge.pet, .item-type-badge.pet_egg { background: rgba(176, 97, 12, 0.15); color: var(--q5); }
+/*
+ * 魔物 / 魔物蛋 / 料理 原先用 --q5（#ffb64d 亮橙）配 0.15 淡橙底，
+ * 在浅色羊皮纸上对比度极低，几乎看不清。改用 --q5-text（#b15d00 深棕），
+ * 与上面的 furniture 保持一致，浅色底上可读。
+ */
+.item-type-badge.pet, .item-type-badge.pet_egg { background: rgba(176, 97, 12, 0.15); color: var(--q5-text, #b15d00); }
 .item-type-badge.achievement { background: rgba(46, 125, 50, 0.15); color: #2e7d32; }
-.item-type-badge.recipe { background: rgba(176, 97, 12, 0.18); color: var(--q5); }
+.item-type-badge.recipe { background: rgba(176, 97, 12, 0.18); color: var(--q5-text, #b15d00); }
 .item-type-badge.monster { background: var(--danger-soft, rgba(139, 0, 0, 0.1)); color: var(--danger, #8b0000); }
 .item-type-badge.task { background: rgba(30, 110, 65, 0.16); color: #1b5e20; }
 .item-type-badge.event, .item-type-badge.explore { background: rgba(122, 154, 153, 0.18); color: var(--accent-ink, #557574); }
 .item-type-badge.exchange { background: rgba(126, 42, 168, 0.15); color: var(--q4); }
-.item-type-badge.hidden { background: rgba(110, 110, 110, 0.16); color: var(--q1); }
+.item-type-badge.hidden { background: rgba(110, 110, 110, 0.16); color: var(--q1-text, #6f5b3c); }
 .item-type-badge.research { background: rgba(46, 125, 50, 0.15); color: #2e7d32; }
 .item-type-badge.camp_building { background: rgba(184, 115, 51, 0.15); color: #8d4f16; }
 .item-type-badge.partner_mail { background: rgba(140, 92, 51, 0.18); color: #844c1a; }
