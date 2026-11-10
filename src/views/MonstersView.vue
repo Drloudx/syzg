@@ -72,7 +72,7 @@ import { fetchMonsterData } from '../utils/monsterParser'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
 import { isBlacklisted } from '../config/blacklist.js'
-import { MAP_NAMES, ELEMENT_NAMES } from '../utils/gameMappings'
+import { ELEMENT_NAMES, REGION_PROGRESSION_ORDER } from '../utils/gameMappings'
 import { useLazyList } from '../composables/useLazyList'
 import {
   UiBackToTop,
@@ -111,8 +111,8 @@ const loadMonstersData = async () => {
     })
     allLabels.value = Array.from(labels).sort()
 
-    // 地区清单按**游戏推进顺序**排（沿用 gameMappings 的 MAP_NAMES：c0 求生者草原 →
-    // c1 秋日荒野 → c2 索利德山地 → c3 魔爪湖畔 → c4 黑森林 → c5 霜烬平原）。
+    // 地区清单按**游戏推进顺序**排（gameMappings.REGION_PROGRESSION_ORDER：
+    // 求生者草原 → 秋日荒野 → 索利德山地 → 魔爪湖畔 → 黑森林 → 霜烬平原 → 幽夜古堡 → 黏滑溪谷）。
     // 不用字典序（地理名按拼音排会很乱），也不用数据出现顺序（那只是图鉴编号顺序）。
     //
     // **必须过黑名单**：否则被隐藏的地区（如黑森林）仍会出现在筛选栏里，
@@ -124,7 +124,7 @@ const loadMonstersData = async () => {
         places.add(place)
       }
     })
-    const REGION_ORDER = Object.values(MAP_NAMES)
+    const REGION_ORDER = REGION_PROGRESSION_ORDER
     allPlaces.value = Array.from(places).sort((a, b) => {
       const ia = REGION_ORDER.indexOf(a)
       const ib = REGION_ORDER.indexOf(b)
@@ -187,7 +187,27 @@ const filteredMonsters = computed(() => {
     const q = searchQuery.value.toLowerCase().trim()
     result = result.filter(m => m.keywords.includes(q))
   }
+  /*
+   * 按「地区推进顺序」分组排序。
+   *
+   * 原实现直接沿用 monsters.json 的产物顺序 —— 那是**按骨架分组**的（同骨架的怪挨在一起），
+   * 于是像 `056_1 哈萨琳之手`（秋日荒野）、`070_1 治安队员`（魔爪湖畔）这类
+   * 「骨架变体」全被推到列表末尾，看起来像是没有按地区排。
+   * 这里按每只怪的首个地区归组：求生者草原 → 秋日荒野 → … → 黏滑溪谷，
+   * 同地区内保持产物原有相对顺序（稳定排序）。
+   */
+  const regionIndex = placeList => {
+    let best = Number.POSITIVE_INFINITY
+    for (const p of (placeList || [])) {
+      const idx = REGION_PROGRESSION_ORDER.indexOf(p)
+      if (idx !== -1 && idx < best) best = idx
+    }
+    return best
+  }
   return result
+    .map((m, i) => ({ m, i, r: regionIndex(m.place) }))
+    .sort((a, b) => (a.r - b.r) || (a.i - b.i))
+    .map(entry => entry.m)
 })
 
 const { displayedItems: displayedMonsters } = useLazyList(filteredMonsters, 60, '#monstersGridScroll')

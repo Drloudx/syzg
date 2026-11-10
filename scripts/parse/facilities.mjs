@@ -14,6 +14,8 @@ export function buildFacilitiesFile() {
     conditionRes: readJson('condition.json'),
     taskRes: readJson('task.json'),
     itemExchangeRandomRes: readJson('itemExchangeRandom.json'),
+    // 锻造台列表真正的来源（itemExchangeRandom 只有 73 条，会漏装备）
+    itemExchangeRes: readJson('itemExchange.json'),
     exchangeTeamRes: readJson('exchangeTeam.json'),
     equipGroupRes: readJson('equip/equipGroup.json')
   })
