@@ -139,6 +139,13 @@ export const EXACT_BLACKLIST = [
     'sp2_yiwu_base',
     'sp2_yiwu_core',
     'item_29202', // 粘液之符（瓦希什塔秘境的古代符）
+    /*
+     * SP2 专属料理（用 SP2 食材 item_10122 黏黏菇 / item_10123 虹彩果 做成）。
+     * 上面那 18 件是「按 reward 表反查」得到的，不含**料理成品**——
+     * 料理是 menu.json 里的配方产出，不在 reward 表出现，故单列。
+     */
+    'item_30055', // 香煎黏黏菌菇
+    'item_30056', // 虹彩可丽饼
 
 ]
 

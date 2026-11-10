@@ -4,6 +4,7 @@
  * 不依赖网络与浏览器，Node 构建脚本（scripts/parse/*.mjs）与浏览器共用。
  */
 import { PREVIEW_AVAILABLE_IDS, buildRecipeIngredients } from './recipeUtils.js'
+import { isBlacklisted } from '../config/blacklist.js'
 
 // 配方来源跳转配置（与 RecipesView 保持一致）
 export const RECIPE_SOURCE_CONFIG = {
@@ -20,7 +21,6 @@ export function buildRecipeData(maps) {
   const menuDict = menuJson.datas || {}
   const itemDict = itemJson.datas || {}
   const buffDict = buffJson || {}
-
   // Parse category codes from gameSetting.json
   const categoryCodeMap = {}
   const parseCategoryTypes = (arr) => {
@@ -39,7 +39,6 @@ export function buildRecipeData(maps) {
   const assembledList = Object.values(menuDict).map(menuEntry => {
     const typeId = menuEntry.typeId
     const itemEntry = itemDict[typeId] || {}
-
     // 1. Resolve Recipe Icon & Name using itemEntry.img (e.g. item_30035 -> img: item_30009)
     const recipeName = itemEntry.name || menuEntry.name || '未知食谱'
     const recipeImgKey = itemEntry.img || typeId
@@ -92,6 +91,12 @@ export function buildRecipeData(maps) {
       sourceInfo
     }
   })
+    /*
+     * 黑名单过滤（与其它图鉴产物一致）。
+     * 不过滤会漏出 SP2「黏滑溪谷」未开放章节的料理（香煎黏黏菌菇 / 虹彩可丽饼）——
+     * 它们只是 menu.json 的配方产出，不在 reward 表里，所以按 reward 反查的隐藏清单抓不到。
+     */
+    .filter(recipe => !isBlacklisted({ id: recipe.id, name: recipe.name }))
 
   return { recipes: assembledList }
 }

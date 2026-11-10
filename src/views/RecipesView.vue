@@ -322,6 +322,13 @@ watch(() => route.query.id, (newId, oldId) => {
 
 const filteredRecipes = computed(() => {
   return recipes.value.filter(recipe => {
+    /*
+     * 黑名单过滤：本页此前漏了这一步（其他图鉴页都有）。
+     * 不接黑名单会漏出 SP2「黏滑溪谷」未开放章节的料理（香煎黏黏菌菇 / 虹彩可丽饼），
+     * 以及其它被全局隐藏的条目。
+     */
+    if (isBlacklisted({ id: recipe.id, name: recipe.name })) return false
+
     // Category Tag filter
     if (filterTag.value !== 'all' && !recipe.categoryTags.includes(filterTag.value)) {
       return false
