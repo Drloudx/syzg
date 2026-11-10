@@ -35,6 +35,8 @@
         <UiFilterPill :active="filterVariant === null" @click="filterVariant = null">全部</UiFilterPill>
         <UiFilterPill :active="filterVariant === true" @click="filterVariant = true">可变异</UiFilterPill>
       </UiFilterRow>
+
+      <div class="collection-counter">共 <span class="count-num">{{ filteredPets.length }}</span> 只魔物</div>
     </UiFilterPanel>
 
     <!-- 列表区（5列大幅面卡片展示，懒加载每批 60 项） -->
@@ -803,6 +805,13 @@ const handleImgError = (e) => {
 </script>
 
 <style scoped>
+/* 计数：与其它图鉴页同一套样式（共 N 只魔物） */
+.collection-counter {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 .pets-page {
   display: flex;
   flex-direction: column;
