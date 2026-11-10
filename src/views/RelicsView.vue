@@ -35,6 +35,7 @@
     <UiCardGrid v-else-if="!isList" id="relicsScroll" class="relics-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
       <UiSection title="遗器与法盘玩法规则">
         <div class="rule-copy">
+          <p class="rule-scope"><b>⚠ 适用范围</b>：遗器 / 法盘的属性加成与技能效果，<b>只在对应秘境副本（如亚空回廊）的战斗内生效</b>，离开副本即失效，不影响主线、日常等其它玩法。</p>
           <p><b>遗器分两类</b>：基础遗器（<b>火 / 水 / 地 / 风</b> 四种属性之一，提供全局属性加成）；核心遗器（带技能效果与共鸣，没有属性栏，另有「能量型」参数，数值越大覆盖的伙伴位置越多）。</p>
           <p><b>法盘</b>：{{ fapanRuleText }}。开局只有 <b>{{ rules.initialOpenGrid }}</b> 格可用，其余锁定格靠<b>升级法盘</b>逐级获得解锁次数后逐个打开；<b>四角为永久隐藏角，任何情况下不可解锁</b>。</p>
           <p><b>放置</b>：遗器按自身「占格」形状（纯矩形，见下方示意）平铺进可用格；<b>不能旋转</b>，不能重叠、不能越界。基础遗器可放多个；核心遗器同名<b>最多 1 个</b>、同时在场<b>最多 {{ rules.maxCoreRelicNum }} 种</b>。</p>
@@ -365,6 +366,12 @@ onMounted(loadData)
 .rule-copy p { margin: 0 0 8px; font-size: 13px; line-height: 1.75; color: var(--text-main); }
 .rule-copy p:last-child { margin-bottom: 0; }
 .rule-copy b { color: var(--accent-ink); font-weight: 700; }
+.rule-scope {
+  padding: 9px 11px;
+  border-radius: 5px;
+  background: rgba(176, 97, 12, 0.1);
+  border: 1px solid rgba(176, 97, 12, 0.32);
+}
 .rule-hint { margin: 0 0 10px; font-size: 12px; line-height: 1.7; color: var(--text-muted); }
 /* 形状一览 */
 .shape-catalog { display: flex; flex-wrap: wrap; gap: 16px; }

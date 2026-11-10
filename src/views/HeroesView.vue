@@ -40,6 +40,8 @@
           @click="selectedElement = Number(elementKey)"
         >{{ elementName }}</UiFilterPill>
       </UiFilterRow>
+
+      <div class="collection-counter">共 <span class="count-num">{{ filteredHeroes.length }}</span> 名角色</div>
     </UiFilterPanel>
 
     <!-- 角色网格（懒加载每批 60 项） -->
@@ -1391,6 +1393,13 @@ const handleGiftClick = (giftId) => {
 
 <style scoped>
 /* ====== 页面骨架与筛选面板 ====== */
+/* 计数：与符石/遗器图鉴同一套样式（共 N 名角色） */
+.collection-counter {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
 .heroes-page {
   height: 100%;
   display: flex;
