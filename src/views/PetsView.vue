@@ -145,19 +145,24 @@
 
           <!-- Mutant variant details description under portraits -->
           <div class="variant-effect-box" v-if="selectedPet.hasVariant && selectedPet.variants.length > 0">
-            <span class="variant-effect-title">变异概率:</span>
-            <span class="variant-effect-txt variant-chance-val">{{ selectedPet.variantChancePercent }}%（孵化时判定）</span>
-            <span class="variant-effect-title">变异效果:</span>
-            <span
-              class="variant-effect-txt"
-              v-html="formatSkillDescription(selectedPet.variants[0].des)"
-            ></span>
-            <span class="variant-effect-txt" v-if="selectedPet.variants[0].lifeTimeAdd > 0">
-              ，上场时间增加 +{{ selectedPet.variants[0].lifeTimeAdd }}秒
-            </span>
-            <span class="variant-effect-txt" v-if="selectedPet.variants[0].sellPriceAdd > 0">
-              ，售价增加 +{{ selectedPet.variants[0].sellPriceAdd }}
-            </span>
+            <div class="variant-line">
+              <span class="variant-effect-title">变异效果:</span>
+              <span
+                class="variant-effect-txt"
+                v-html="formatSkillDescription(selectedPet.variants[0].des)"
+              ></span>
+              <span class="variant-effect-txt" v-if="selectedPet.variants[0].lifeTimeAdd > 0">
+                ，上场时间增加 +{{ selectedPet.variants[0].lifeTimeAdd }}秒
+              </span>
+              <span class="variant-effect-txt" v-if="selectedPet.variants[0].sellPriceAdd > 0">
+                ，售价增加 +{{ selectedPet.variants[0].sellPriceAdd }}
+              </span>
+            </div>
+            <div class="variant-line">
+              <span class="variant-effect-title">变异概率:</span>
+              <span class="variant-effect-txt variant-chance-val">{{ selectedPet.variantChancePercent }}%</span>
+              <span class="variant-effect-note">孵化完成后判定，不是放蛋时</span>
+            </div>
           </div>
         </div>
 
@@ -1010,6 +1015,21 @@ const handleImgError = (e) => {
   line-height: 1.6;
 }
 
+/* 每条（变异效果 / 变异概率）独占一行，左标签右内容 */
+.variant-line {
+  display: block;
+}
+.variant-line + .variant-line {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(126, 42, 168, 0.22);
+}
+.variant-effect-note {
+  margin-left: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
 .variant-effect-title {
   font-weight: bold;
   color: var(--q4);
@@ -1020,7 +1040,6 @@ const handleImgError = (e) => {
 .variant-chance-val {
   font-weight: 700;
   color: var(--q5-text, #b15d00);
-  margin-right: 10px;
 }
 
 .variant-effect-txt {
