@@ -80,11 +80,21 @@
       <UiEmptyState v-else text="没有符合条件的遗器" />
 
       <UiSection v-if="fapan.length" title="法盘">
+        <p class="fapan-note">法盘是 8×7 的格子板，四周大部分格子被锁住，中间是<b>可放置遗器</b>的区域。遗器按自身「占格」形状拼进去，凑齐共鸣条件即可激活核心遗器的强化效果。</p>
         <div class="fapan-grid">
           <div v-for="board in fapan" :key="board.id" class="fapan-card">
-            <div class="fapan-card__name">{{ board.name }}</div>
-            <div class="fapan-card__meta">
-              {{ board.width }} × {{ board.height }} 格 · 上限 {{ board.maxLevel }} 级 · 锁格 {{ board.lockCount }}
+            <div class="fapan-card__head">
+              <span class="fapan-card__name">{{ board.name }}</span>
+              <span class="fapan-card__meta">{{ board.width }} × {{ board.height }} 格 · 上限 {{ board.maxLevel }} 级</span>
+            </div>
+            <div class="fapan-board" :style="{ '--cols': board.width, '--rows': board.height }">
+              <template v-for="(cell, index) in board.cells" :key="index">
+                <span class="fapan-cell" :class="cell.locked ? 'is-locked' : 'is-open'" :title="cell.locked ? '锁定' : `可放置（${cell.x}, ${cell.y}）`"></span>
+              </template>
+            </div>
+            <div class="fapan-legend">
+              <span class="fapan-legend__item"><i class="fapan-cell is-open"></i>可放置 {{ board.openCount }} 格</span>
+              <span class="fapan-legend__item"><i class="fapan-cell is-locked"></i>锁定 {{ board.lockCount }} 格</span>
             </div>
           </div>
         </div>
@@ -273,11 +283,42 @@ onMounted(loadData)
 .relic-entry__more { font-size: 12px; color: var(--accent-ink); white-space: nowrap; }
 .relic-entry__effect-text { margin: 0; font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
 .relics-content :deep(.relic-hl) { color: var(--accent-ink); font-weight: 700; }
-/* 详情弹层 */
-.fapan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 10px; }
-.fapan-card { padding: 10px 12px; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
-.fapan-card__name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-.fapan-card__meta { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+/* 法盘 */
+.fapan-note { margin: 0 0 12px; font-size: 13px; line-height: 1.7; color: var(--text-muted); }
+.fapan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.fapan-card { padding: 12px 14px; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
+.fapan-card__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px; margin-bottom: 10px; }
+.fapan-card__name { font-size: 15px; font-weight: 700; }
+.fapan-card__meta { font-size: 12px; color: var(--text-muted); }
+.fapan-board {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  gap: 3px;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: var(--cols) / var(--rows);
+  margin: 0 auto;
+}
+.fapan-cell {
+  display: block;
+  border-radius: 3px;
+  min-width: 0;
+  min-height: 0;
+}
+.fapan-cell.is-locked {
+  background: rgba(94, 70, 43, 0.42);
+  border: 1px solid rgba(60, 42, 24, 0.55);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+.fapan-cell.is-open {
+  background: rgba(233, 220, 195, 0.95);
+  border: 1px solid var(--accent-ink, #557574);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+.fapan-legend { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 10px; font-size: 12px; color: var(--text-muted); }
+.fapan-legend__item { display: inline-flex; align-items: center; gap: 6px; }
+.fapan-legend__item .fapan-cell { width: 13px; height: 13px; flex: 0 0 auto; }
 @media (max-width: 640px) {
   .relics-content { padding-inline: 10px; }
   .relics-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }

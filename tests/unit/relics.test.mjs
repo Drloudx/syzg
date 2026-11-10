@@ -78,6 +78,16 @@ test('法盘尺寸 8×7、上限 30 级，两个秘境各一块', () => {
     assert.equal(board.width, 8)
     assert.equal(board.height, 7)
     assert.equal(board.maxLevel, 30)
+    /*
+     * 逐格展开必须完整：width×height 个 cell，locked 数等于 lockCount，
+     * openCount = 总数 − 锁定数。页面直接按 cells 画格子，少一格就画不圆。
+     */
+    assert.equal(board.cells.length, board.width * board.height, `${board.id} 格子数应为 ${board.width * board.height}`)
+    assert.equal(board.cells.filter(cell => cell.locked).length, board.lockCount)
+    assert.equal(board.openCount, board.cells.length - board.lockCount)
+    // 坐标必须覆盖每个位置且不重复
+    const keys = new Set(board.cells.map(cell => `${cell.x},${cell.y}`))
+    assert.equal(keys.size, board.cells.length, `${board.id} 坐标有重复`)
   }
   assert.deepEqual(data.dungeons.map(d => d.name).sort(), ['亚空回廊·特异次元', '瓦希什塔秘境'].sort())
 })

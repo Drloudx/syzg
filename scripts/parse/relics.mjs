@@ -78,14 +78,33 @@ const buildDungeons = info => Object.values(info).map(dungeon => ({
   comment: text(dungeon._comment)
 }))
 
-const buildFapan = fapan => Object.values(fapan).map(entry => ({
-  id: entry.fapanId,
-  name: text(entry.fapanName),
-  width: Number(entry.fapanWidth) || 0,
-  height: Number(entry.fapanHeight) || 0,
-  maxLevel: Number(entry.fapanMaxLevel) || 0,
-  lockCount: Array.isArray(entry.fapanLockPoint) ? entry.fapanLockPoint.length : 0
-}))
+const buildFapan = fapan => Object.values(fapan).map(entry => {
+  const width = Number(entry.fapanWidth) || 0
+  const height = Number(entry.fapanHeight) || 0
+  const lockPoints = Array.isArray(entry.fapanLockPoint) ? entry.fapanLockPoint : []
+  const locked = new Set(lockPoints.map(p => `${Number(p.x)},${Number(p.y)}`))
+  /*
+   * 逐格展开成 cells（行优先，共 width×height 个），页面直接按顺序画格子。
+   * `fapanLockPoint` 是**被锁**的坐标；未列出的格子才可放置遗器。
+   * 当前两套法盘都是 8×7、锁 34 格 → 可放置 20 格（中间 4×5 区域）。
+   */
+  const cells = []
+  for (let y = 0; y < height; y += 1) {
+    for (let x = 0; x < width; x += 1) {
+      cells.push({ x, y, locked: locked.has(`${x},${y}`) })
+    }
+  }
+  return {
+    id: entry.fapanId,
+    name: text(entry.fapanName),
+    width,
+    height,
+    maxLevel: Number(entry.fapanMaxLevel) || 0,
+    lockCount: lockPoints.length,
+    openCount: cells.filter(cell => !cell.locked).length,
+    cells
+  }
+})
 
 export function buildRelicsFile() {
   const relicInfo = readJson('relicInfo.json').datas || readJson('relicInfo.json')
