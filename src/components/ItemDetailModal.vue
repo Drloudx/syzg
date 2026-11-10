@@ -33,52 +33,59 @@
     </UiSection>
 
     <!--
+      神秘遗器 / 基础 / 核心：使用后随机开出一件遗器。
+      把 randomRelics 展开成可点击列表，点进去就是遗器图鉴的对应详情。
+    -->
+    <UiSection v-if="relicDrops.length" title="可开出遗器">
+      <p class="relic-drop-note">使用后随机获得以下 {{ relicDrops.length }} 件遗器之一：</p>
+      <div class="relic-drop-grid">
+        <button
+          v-for="drop in relicDrops"
+          :key="drop.id"
+          type="button"
+          class="relic-drop"
+          :aria-label="`查看 ${drop.name}`"
+          @click="openRelicDetail(drop.id)"
+        >
+          <UiItemCard :name="drop.name" :img="getImageUrl(`/images/Common_ItemIcon/${drop.icon}.webp`)" :quality="0" :show-name="false" />
+          <span class="relic-drop__body">
+            <span class="relic-drop__name">{{ drop.name }}</span>
+            <span class="relic-drop__meta">{{ drop.type === 'core' ? '核心' : '基础' }}<template v-if="drop.categoryName"> · {{ drop.categoryName }}</template><template v-if="drop.attributeName"> · {{ drop.attributeName }}</template></span>
+            <span class="relic-drop__chance">{{ formatChance(drop.chance) }}</span>
+          </span>
+        </button>
+      </div>
+    </UiSection>
+
+    <!--
       遗器属性：遗器在游戏里没有独立图鉴页，展示形态就是「物品详情」。
       `item.typeId` 命中 relics.json 时补这一段（占格 / 遗器点数 / 分类 / 能量型 / 等级效果 / 共鸣）。
     -->
     <template v-if="relicInfo">
       <UiSection title="遗器属性">
-        <div class="equip-meta-list">
-          <div class="equip-meta-item">
-            <span class="meta-label">类型:</span>
-            <span class="meta-val">{{ relicInfo.type === 'core' ? '核心遗器' : '基础遗器' }}</span>
-          </div>
-          <div v-if="relicInfo.categoryName" class="equip-meta-item">
-            <span class="meta-label">分类:</span>
-            <span class="meta-val">{{ relicInfo.categoryName }}</span>
-          </div>
-          <div v-if="relicInfo.attributeName" class="equip-meta-item">
-            <span class="meta-label">属性:</span>
-            <span class="meta-val">{{ relicInfo.attributeName }}</span>
-          </div>
-          <div class="equip-meta-item">
-            <span class="meta-label">占格:</span>
-            <span class="meta-val">{{ relicInfo.shape.width }} × {{ relicInfo.shape.height }}</span>
-          </div>
-          <div class="equip-meta-item">
-            <span class="meta-label">遗器点数:</span>
-            <span class="meta-val">{{ relicInfo.relicPoint }}</span>
-          </div>
-          <div v-if="relicInfo.energyPattern" class="equip-meta-item">
-            <span class="meta-label">能量型:</span>
-            <span class="meta-val">{{ relicInfo.energyPattern }}</span>
+        <UiInfoRow label="类型" :value="relicInfo.type === 'core' ? '核心遗器' : '基础遗器'" />
+        <UiInfoRow v-if="relicInfo.categoryName" label="分类" :value="relicInfo.categoryName" />
+        <UiInfoRow v-if="relicInfo.attributeName" label="属性" :value="relicInfo.attributeName" />
+        <UiInfoRow label="占格" :value="`${relicInfo.shape.width} × ${relicInfo.shape.height}`" />
+        <UiInfoRow label="遗器点数" :value="String(relicInfo.relicPoint)" />
+        <UiInfoRow v-if="relicInfo.energyPattern" label="能量型" :value="String(relicInfo.energyPattern)" />
+      </UiSection>
+
+      <UiSection :title="relicInfo.type === 'core' ? '技能效果（1~5 级）' : '属性加成（1~5 级）'">
+        <div class="relic-level-list">
+          <div v-for="lv in relicInfo.levels" :key="lv.level" class="relic-level-row">
+            <UiTag>{{ lv.level }} 级</UiTag>
+            <span class="relic-level-row__text" v-html="formatRelicText(lv.text)"></span>
           </div>
         </div>
       </UiSection>
 
-      <UiSection :title="relicInfo.type === 'core' ? '技能效果（1~5 级）' : '属性加成（1~5 级）'">
-        <ul class="relic-level-list">
-          <li v-for="lv in relicInfo.levels" :key="lv.level" class="relic-level-row">
-            <span class="relic-level-row__badge">{{ lv.level }} 级</span>
-            <span class="relic-level-row__text" v-html="formatRelicText(lv.text)"></span>
-          </li>
-        </ul>
-      </UiSection>
-
       <UiSection v-if="relicInfo.resonances.length" title="共鸣">
-        <div v-for="(res, index) in relicInfo.resonances" :key="index" class="relic-resonance-row">
-          <span class="relic-resonance-row__cond">{{ res.requirement }}</span>
-          <span class="relic-resonance-row__text" v-html="formatRelicText(res.text)"></span>
+        <div class="relic-resonance-list">
+          <div v-for="(res, index) in relicInfo.resonances" :key="index" class="relic-resonance-row">
+            <span class="relic-resonance-row__cond">{{ res.requirement }}</span>
+            <span class="relic-resonance-row__text" v-html="formatRelicText(res.text)"></span>
+          </div>
         </div>
       </UiSection>
     </template>
@@ -733,7 +740,7 @@ import { formatHighlightedText, EQUIP_QUALITY_LABELS, translateStatName } from '
 import { compareExchangeSources } from '../utils/exchangeData.js'
 import { isFacilityRecipeHidden, hasBrokenRewardPool } from '../config/blacklist.js'
 import { resolveItemRelations, resolveSimilarItems } from '../utils/relationData.js'
-import { UiModal, UiSection, UiTag, UiInfoRow, UiButton, UiFilterPill, UiStatGrid, UiRewardCard, UiAccordion, UiBackToTop } from './ui/index.js'
+import { UiModal, UiSection, UiTag, UiInfoRow, UiButton, UiFilterPill, UiStatGrid, UiRewardCard, UiAccordion, UiBackToTop, UiItemCard } from './ui/index.js'
 import CommentsPanel from './CommentsPanel.vue'
 
 const props = defineProps({
@@ -846,6 +853,40 @@ const relicInfo = computed(() => {
   if (!id) return null
   return relicById.value[id] || null
 })
+
+/**
+ * 「神秘遗器 / 基础神秘遗器 / 核心神秘遗器」这类**开箱道具**：使用后随机开出一件遗器。
+ *
+ * 数据在 `item.useActionPara.randomRelics`（[{ chance, num, relicId, level }]），
+ * relicId 全部命中 relics.json（28 / 20 / 8 条，已核对无孤儿）。
+ * 这里把它们展开成可点击的遗器列表，点击跳到遗器图鉴对应详情。
+ */
+const relicDrops = computed(() => {
+  const randomRelics = props.item?.useActionPara?.randomRelics
+  if (!Array.isArray(randomRelics) || !randomRelics.length) return []
+  const total = randomRelics.reduce((sum, entry) => sum + (Number(entry.chance) || 0), 0)
+  return randomRelics
+    .map(entry => {
+      const relic = relicById.value[entry.relicId]
+      if (!relic) return null
+      return {
+        id: relic.id,
+        name: relic.name,
+        icon: relic.icon,
+        type: relic.type,
+        categoryName: relic.categoryName,
+        attributeName: relic.attributeName,
+        level: Number(entry.level) || 1,
+        chance: total ? (Number(entry.chance) || 0) / total : 0
+      }
+    })
+    .filter(Boolean)
+})
+
+const openRelicDetail = relicId => {
+  if (!relicId) return
+  router.push({ path: '/relics', query: { relic: relicId } }).finally(() => emit('update:visible', false))
+}
 
 /** 遗器文本里的 `{…}` 是游戏的高亮数值 —— 转成加粗高亮。 */
 const formatRelicText = text => String(text || '')
@@ -1677,49 +1718,77 @@ onBeforeUnmount(cancelBodyScrollRestore)
   text-align: justify;
 }
 
-/* 遗器等级效果 / 共鸣（与遗器图鉴页同一套视觉） */
+/* 遗器等级效果 / 共鸣（与物品详情其他区块同一套字号与信息行节奏） */
 .relic-level-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 .relic-level-row {
   display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  padding: 6px 9px;
+  gap: 10px;
+  align-items: baseline;
+  padding: 8px 10px;
   border-radius: 4px;
-  background: rgba(122, 154, 153, 0.08);
-  font-size: 13px;
+  background: var(--paper-soft, #e9dcc3);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
+  font-size: 14px;
   line-height: 1.65;
 }
-.relic-level-row__badge {
-  flex: 0 0 auto;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--accent-ink, #557574);
-  padding-top: 1px;
-}
+.relic-level-row :deep(.ui-tag) { flex: 0 0 auto; }
 .relic-level-row__text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.relic-resonance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .relic-resonance-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   align-items: baseline;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.65;
-  padding: 4px 0;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: var(--paper-soft, #e9dcc3);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
 }
 .relic-resonance-row__cond {
   flex: 0 0 auto;
   font-weight: 700;
   color: var(--q5-text, #b15d00);
 }
-.relic-resonance-row__text { flex: 1 1 180px; min-width: 0; overflow-wrap: anywhere; }
+.relic-resonance-row__text { flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
 .relic-hl { color: var(--accent-ink, #557574); font-weight: 700; }
+
+/* 「可开出遗器」列表（神秘遗器类开箱道具） */
+.relic-drop-note { margin: 0 0 10px; font-size: 14px; color: var(--text-muted); }
+.relic-drop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 8px;
+}
+.relic-drop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  min-width: 0;
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
+  background: var(--paper-soft, #e9dcc3);
+  border-radius: 5px;
+  color: var(--text-main, #3e2a14);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.relic-drop:hover { background: var(--hover-bg, rgba(85, 117, 116, 0.14)); }
+.relic-drop :deep(.ui-item-card) { flex: 0 0 48px; margin: 0; }
+.relic-drop__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.relic-drop__name { font-size: 14px; font-weight: 700; overflow-wrap: anywhere; }
+.relic-drop__meta { font-size: 12px; color: var(--text-muted, #6b5134); overflow-wrap: anywhere; }
+.relic-drop__chance { font-size: 12px; font-weight: 700; color: var(--accent-ink, #557574); }
 
 /* 装备属性 */
 .equip-meta-list {
