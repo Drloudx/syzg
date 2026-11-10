@@ -346,7 +346,8 @@ export function buildItemData(maps) {
     itemRes, settingRes, lanRes, avatarRes, rewardRes,
     enchantRes, triggerRes, equipGroupRes, equipSuitRes, itemAffixesRes, equipGlobalRes, homeLevelRes,
     heroRes, heroStarRes, skinRes = {}, plantRes = {}, petRes = {}, campResearchRes = {}, homeItemRes = {},
-    itemExchangeRandomRes = {}, exchangeTeamRes = {}, consumeRes = {}, playerInitRes = {}
+    itemExchangeRandomRes = {}, exchangeTeamRes = {}, consumeRes = {}, playerInitRes = {},
+    equipQualityUpgradeRes = {}
   } = maps
 
   // 1. 解析字典 lan.json
@@ -562,6 +563,23 @@ export function buildItemData(maps) {
     if (acquisition) item.acquisition = acquisition
   }
 
+  /*
+   * 神器进阶链：`equipQualityUpgrade` 每条给出 { consume, reward }，
+   * reward 里的 equip rule 就是下一阶段装备。把它双向挂到物品上，
+   * 详情页据此渲染「可进阶为」和「由…进阶而来」。
+   */
+  const equipUpgrades = buildEquipUpgrades({
+    equipQualityUpgradeRes,
+    rewardRes,
+    consumeRes
+  })
+  for (const item of items) {
+    const up = equipUpgrades[item.typeId]
+    if (!up) continue
+    if (up.to) item.upgradeTo = up.to
+    if (up.from) item.upgradeFrom = up.from
+  }
+
   return {
     items,
     categoryTree,
@@ -576,6 +594,83 @@ export function buildItemData(maps) {
     equipGlobalConfig,
     equipEnhanceConfig
   }
+}
+
+/**
+ * 构建神器进阶链。
+ *
+ * 数据来源：`equipQualityUpgrade.json`
+ *   { equipId, consume, reward, des, condition }
+ * 其中 `consume` 指向 consume 表（材料 + 银币），`reward` 指向 reward 表，
+ * reward 里的 `mode: 'equip'` 规则给出下一阶段装备（typeId / quality / equipLevel / prefix）。
+ *
+ * 返回：
+ *   { [typeId]: {
+ *       to:   { typeId, quality, equipLevel, prefix, consumes[], money, condition },
+ *       from: { typeId, quality } | null
+ *     } }
+ *
+ * 一条 upgradeConf 会在两个物品上各留一份：
+ *   · 起始装备（equipId）→ `to`
+ *   · 产出装备（reward 里的 typeId）→ `from`（反查来源）
+ */
+export function buildEquipUpgrades({ equipQualityUpgradeRes = {}, rewardRes = {}, consumeRes = {} } = {}) {
+  const table = equipQualityUpgradeRes?.equipQualityUpgrade || equipQualityUpgradeRes || {}
+  const rewardData = rewardRes?.datas || rewardRes || {}
+  const consumeData = consumeRes?.datas || consumeRes || {}
+  const result = {}
+
+  for (const [equipId, conf] of Object.entries(table)) {
+    if (!conf || !conf.reward) continue
+    const reward = rewardData[conf.reward]
+    if (!reward) continue
+
+    // 找出 reward 里产出的装备规则
+    let output = null
+    for (const group of (reward.items || [])) {
+      for (const rule of (group.rules || [])) {
+        if (rule && rule.mode === 'equip' && rule.typeId) {
+          output = rule
+          break
+        }
+      }
+      if (output) break
+    }
+    if (!output) continue
+
+    // 消耗清单
+    const consumeConf = consumeData[conf.consume] || {}
+    const consumes = (consumeConf.items || [])
+      .filter(x => x && x.typeId && Number(x.num) > 0)
+      .map(x => ({ typeId: x.typeId, num: Number(x.num) }))
+    const money = Number(consumeConf.money) || 0
+
+    const step = {
+      typeId: output.typeId,
+      quality: Number(output.quality) || null,
+      equipLevel: Number(output.equipLevel) || null,
+      prefix: output.prefix || '',
+      consumes,
+      money,
+      condition: conf.condition || '',
+      desc: conf.des || ''
+    }
+
+    // 起始装备 → to
+    if (!result[equipId]) result[equipId] = { to: null, from: null }
+    result[equipId].to = step
+
+    // 产出装备 → from（只有一条来源就先记下，多条会覆盖，当前数据是一对一链）
+    if (!result[output.typeId]) result[output.typeId] = { to: null, from: null }
+    result[output.typeId].from = {
+      typeId: equipId,
+      quality: null, // 起始装备品质由调用方从 items 里补，避免此处再依赖 items
+      consumes,
+      money
+    }
+  }
+
+  return result
 }
 
 function setItemCache(data) {

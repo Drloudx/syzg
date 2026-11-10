@@ -122,4 +122,5 @@ defineEmits(['click'])
 .ui-tag.badge-3 { background: var(--quality-label-bg) !important; color: var(--q3-text) !important; border-color: var(--q3) !important; }
 .ui-tag.badge-4 { background: var(--quality-label-bg) !important; color: var(--q4-text) !important; border-color: var(--q4) !important; }
 .ui-tag.badge-5 { background: var(--quality-label-bg) !important; color: var(--q5-text) !important; border-color: var(--q5) !important; }
+.ui-tag.badge-6 { background: var(--quality-label-bg) !important; color: var(--q6-text) !important; border-color: var(--q6) !important; }
 </style>

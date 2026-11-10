@@ -248,6 +248,127 @@
       </div>
     </UiSection>
 
+    <!-- 神器进阶 -->
+    <UiSection v-if="upgradeChain" title="神器进阶">
+      <div class="equip-upgrade">
+        <!-- 整条进阶链：全部阶段横向摊开，点任意阶段切换查看 -->
+        <div class="equip-upgrade__chain">
+          <template v-for="(stage, idx) in upgradeChain.stages" :key="stage.typeId">
+            <div
+              class="equip-upgrade__stage"
+              :class="{
+                'is-active': upgradeChain.activeIndex === idx,
+                'is-current': stage.typeId === item.typeId
+              }"
+              role="button"
+              tabindex="0"
+              @click="selectUpgradeStage(idx)"
+              @keydown.enter.prevent="selectUpgradeStage(idx)"
+              @keydown.space.prevent="selectUpgradeStage(idx)"
+            >
+              <div class="equip-upgrade__stage-no">第 {{ idx + 1 }} 阶</div>
+              <div
+                class="equip-upgrade__stage-card"
+                :class="[`quality-border-${stage.quality || 1}`, `quality-bg-${stage.quality || 1}`]"
+              >
+                <img
+                  :src="getImageUrl(getItemImageUrl(stage.item))"
+                  :alt="stage.item?.name"
+                  class="equip-upgrade__icon"
+                  loading="lazy"
+                  @error="handleImageFallback"
+                />
+              </div>
+              <div class="equip-upgrade__stage-name" :class="`quality-text-${stage.quality || 1}`">
+                {{ getRarityName(stage.quality) }}
+              </div>
+              <span v-if="stage.typeId === item.typeId" class="equip-upgrade__stage-badge">当前</span>
+            </div>
+            <div v-if="idx < upgradeChain.stages.length - 1" class="equip-upgrade__stage-arrow">→</div>
+          </template>
+        </div>
+
+        <!-- 选中阶段的详情 -->
+        <div v-if="upgradeChain.active" class="equip-upgrade__detail">
+          <div class="equip-upgrade__detail-head">
+            <span class="equip-upgrade__detail-title">第 {{ upgradeChain.activeIndex + 1 }} 阶</span>
+            <UiTag v-if="upgradeChain.active.quality" :quality="upgradeChain.active.quality">
+              {{ getRarityName(upgradeChain.active.quality) }}
+            </UiTag>
+            <button
+              v-if="upgradeChain.stages.some(s => s.to)"
+              type="button"
+              class="equip-upgrade__toggle"
+              @click="showAllCosts = !showAllCosts"
+            >
+              {{ showAllCosts ? '只看当前阶' : '查看全部消耗' }}
+            </button>
+          </div>
+
+          <!-- 全部阶段的消耗一览 -->
+          <div v-if="showAllCosts" class="equip-upgrade__allcosts">
+            <div
+              v-for="(stage, idx) in upgradeChain.stages"
+              :key="stage.typeId"
+              class="equip-upgrade__allcost-row"
+              :class="{ 'is-active': upgradeChain.activeIndex === idx }"
+            >
+              <div class="equip-upgrade__allcost-label">
+                <template v-if="stage.to">第 {{ idx + 1 }} 阶 → 第 {{ idx + 2 }} 阶</template>
+                <template v-else>第 {{ idx + 1 }} 阶</template>
+              </div>
+              <template v-if="stage.to">
+                <div class="reward-grid">
+                  <UiRewardCard
+                    v-for="c in stage.to.consumes"
+                    :key="c.typeId"
+                    :rule="upgradeConsumeRule(c)"
+                    :clickable="!!getCachedItem(c.typeId)"
+                    @click="handleUpgradeEquipClick(c.typeId)"
+                  />
+                  <UiRewardCard
+                    v-if="stage.to.money"
+                    :rule="moneyRewardRule(stage.to.money)"
+                    :clickable="false"
+                  />
+                </div>
+              </template>
+              <span v-else class="equip-upgrade__allcost-none">已是最高阶</span>
+            </div>
+          </div>
+
+          <!-- 当前选中阶段的消耗（查看全部时隐藏，避免重复） -->
+          <template v-else>
+            <template v-if="upgradeChain.active.to">
+              <div class="equip-upgrade__consume">
+                <span class="equip-upgrade__consume-label">
+                  进阶消耗（升至第 {{ upgradeChain.activeIndex + 2 }} 阶）
+                </span>
+                <div class="reward-grid">
+                  <UiRewardCard
+                    v-for="c in upgradeChain.active.to.consumes"
+                    :key="c.typeId"
+                    :rule="upgradeConsumeRule(c)"
+                    :clickable="!!getCachedItem(c.typeId)"
+                    @click="handleUpgradeEquipClick(c.typeId)"
+                  />
+                  <UiRewardCard
+                    v-if="upgradeChain.active.to.money"
+                    :rule="moneyRewardRule(upgradeChain.active.to.money)"
+                    :clickable="false"
+                  />
+                </div>
+              </div>
+              <p v-if="upgradeChain.active.to.condition" class="equip-upgrade__condition">
+                进阶条件：{{ upgradeChain.active.to.condition }}
+              </p>
+            </template>
+            <p v-else class="equip-upgrade__max">已是最高阶（{{ getRarityName(upgradeChain.active.quality) }}）</p>
+          </template>
+        </div>
+      </div>
+    </UiSection>
+
     <!-- 用途 / 解锁内容 -->
     <UiSection v-if="unlockText || homeItemUnlocks.length" :title="usageSectionTitle">
       <div v-if="homeItemUnlocks.length" class="home-item-unlock-list">
@@ -528,6 +649,7 @@ import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { translateJobArray, translateAttr, translateCategory, parseItemUnlocks, getItemImageUrl, getItemAcquisition, getCachedItem, parseRuneEffect, parseEquipGroup, parseEquipSuit, parseItemAffixes, calculateEquipAttributeRange, buildEquipAttributeItems, getEquipEnhanceConfig } from '../utils/itemParser'
+import { getRarityName } from '../utils/gameMappings'
 import AcquisitionRewards from './AcquisitionRewards.vue'
 import { getRuneSourceTarget } from '../utils/runeData.js'
 import { pushItemDetail, popItemDetail, itemModalState } from '../utils/itemModalState'
@@ -767,6 +889,99 @@ const equipGroupItems = computed(() => {
 const suitInfo = computed(() => {
   return parseEquipSuit(props.item)
 })
+
+/** 银币图标：与货币栏/市场价签统一使用 item_00001 */
+const coinIconUrl = computed(() => getImageUrl('/Common_ItemIcon/item_00001.webp'))
+
+/** 银币也渲染成一张奖励卡，和材料保持同一观感。 */
+const moneyRewardRule = (money) => ({
+  targetName: '银币',
+  targetImg: coinIconUrl.value,
+  targetQuality: 1,
+  min: Number(money) || 0,
+  max: Number(money) || 0,
+  typeId: 'item_00001'
+})
+
+/**
+ * 神器进阶：把整条链一次性摊开，支持点任意阶段切换查看。
+ *
+ * `item.upgradeTo` / `item.upgradeFrom` 由构建期 buildEquipUpgrades 挂上（只连相邻两跳）。
+ * 这里沿 `upgradeTo` 向后走到最高阶、沿 `upgradeFrom` 向前走到起始阶，
+ * 拼出完整 stages 数组；默认选中「当前这件」所在阶段。
+ */
+const selectedUpgradeIndex = ref(null)
+
+const upgradeChain = computed(() => {
+  const item = props.item
+  if (!item || (!item.upgradeTo && !item.upgradeFrom)) return null
+
+  // 1. 向起点回溯
+  const before = []
+  let cursor = getCachedItem(item.upgradeFrom?.typeId)
+  const guardA = new Set([item.typeId])
+  while (cursor && !guardA.has(cursor.typeId)) {
+    guardA.add(cursor.typeId)
+    before.unshift(cursor)
+    cursor = getCachedItem(cursor.upgradeFrom?.typeId)
+  }
+
+  // 2. 向终点延伸
+  const after = []
+  let next = getCachedItem(item.upgradeTo?.typeId)
+  const guardB = new Set([item.typeId, ...before.map(x => x.typeId)])
+  while (next && !guardB.has(next.typeId)) {
+    guardB.add(next.typeId)
+    after.push(next)
+    next = getCachedItem(next.upgradeTo?.typeId)
+  }
+
+  const ordered = [...before, item, ...after]
+  const stages = ordered.map(entry => ({
+    typeId: entry.typeId,
+    item: entry,
+    quality: Number(entry.quality) || 1,
+    to: entry.upgradeTo || null
+  }))
+
+  const currentIndex = before.length
+  const activeIndex = selectedUpgradeIndex.value == null
+    ? currentIndex
+    : Math.min(Math.max(0, selectedUpgradeIndex.value), stages.length - 1)
+
+  return { stages, currentIndex, activeIndex, active: stages[activeIndex] || null }
+})
+
+const selectUpgradeStage = (idx) => {
+  selectedUpgradeIndex.value = idx
+}
+
+/** 「查看全部消耗」：把每个阶段的消耗一次性列出。 */
+const showAllCosts = ref(false)
+
+// 切换物品时重置到「当前」阶段，并收起全部消耗
+watch(() => props.item?.typeId, () => {
+  selectedUpgradeIndex.value = null
+  showAllCosts.value = false
+})
+
+/** 进阶消耗 → UiRewardCard 的 rule 形状。 */
+const upgradeConsumeRule = (consume) => {
+  const target = getCachedItem(consume.typeId)
+  return {
+    targetName: target?.name || consume.typeId,
+    targetImg: target ? getImageUrl(getItemImageUrl(target)) : '',
+    targetQuality: target?.quality || 1,
+    min: consume.num,
+    max: consume.num,
+    typeId: consume.typeId
+  }
+}
+
+const handleUpgradeEquipClick = (typeId) => {
+  const target = getCachedItem(typeId)
+  if (target) openNestedItem(target)
+}
 
 // === 装备属性计算 ===
 const selectedAttrQuality = ref(5)
@@ -1676,6 +1891,262 @@ onBeforeUnmount(cancelBodyScrollRestore)
   color: var(--text-main, #3e2a14);
   font-size: 13px;
   line-height: 1.65;
+}
+
+/* ===== 神器进阶 ===== */
+.equip-upgrade {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.equip-upgrade__chain {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+}
+.equip-upgrade__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 8px 6px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  flex: 0 0 auto;
+  min-width: 88px;
+  transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  position: relative;
+}
+.equip-upgrade__stage:hover {
+  transform: translateY(-2px);
+  background: rgba(122, 154, 153, 0.10);
+}
+.equip-upgrade__stage.is-active {
+  border-color: var(--accent-bright, #7a9a99);
+  background: rgba(122, 154, 153, 0.12);
+}
+.equip-upgrade__stage-no {
+  font-size: 11px;
+  color: var(--text-sub, #7a6a52);
+  font-weight: 700;
+}
+.equip-upgrade__stage-card {
+  width: 62px;
+  height: 62px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.equip-upgrade__stage-name {
+  font-size: 11px;
+  font-weight: 700;
+}
+.equip-upgrade__stage-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent-bright, #7a9a99);
+  border-radius: 3px;
+  padding: 0 5px;
+  line-height: 1.5;
+}
+.equip-upgrade__stage-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--text-sub, #7a6a52);
+  font-size: 16px;
+  flex: 0 0 auto;
+  padding-bottom: 22px;
+}
+.equip-upgrade__icon {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(43, 31, 21, 0.08);
+}
+.equip-upgrade__detail {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--paper-soft, #e9dcc3);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.equip-upgrade__detail-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.equip-upgrade__detail-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-ink, #557574);
+}
+.equip-upgrade__toggle {
+  margin-left: auto;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-ink, #557574);
+  background: rgba(122, 154, 153, 0.14);
+  border: 1px solid rgba(122, 154, 153, 0.45);
+  border-radius: 4px;
+  padding: 2px 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.equip-upgrade__toggle:hover {
+  background: rgba(122, 154, 153, 0.26);
+}
+.equip-upgrade__allcosts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.equip-upgrade__allcost-row {
+  /* 统一两行：第一行阶段标题，第二行消耗卡；各阶段卡片左边缘对齐 */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: rgba(43, 31, 21, 0.04);
+}
+.equip-upgrade__allcost-row.is-active {
+  border-color: var(--accent-bright, #7a9a99);
+  background: rgba(122, 154, 153, 0.10);
+}
+/* 全部消耗里的奖励卡用网格，自动均分/换行，起始位置一致 */
+.equip-upgrade__allcost-row :deep(.reward-grid),
+.equip-upgrade__allcost-row .reward-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(122px, 1fr));
+  gap: 6px;
+  width: 100%;
+}
+.equip-upgrade__allcost-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub, #7a6a52);
+}
+.equip-upgrade__allcost-money {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-ink, #557574);
+}
+.equip-upgrade__allcost-none {
+  font-size: 12px;
+  color: var(--text-sub, #7a6a52);
+}
+.dark-mode .equip-upgrade__allcost-row {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* 手机端：阶段条与消耗卡整体缩小，保证一屏能看完 */
+@media (max-width: 640px) {
+  .equip-upgrade {
+    gap: 10px;
+  }
+  .equip-upgrade__chain {
+    gap: 0;
+    padding: 2px 0 4px;
+    justify-content: space-between;
+  }
+  .equip-upgrade__stage {
+    min-width: 56px;
+    padding: 4px 3px 3px;
+    gap: 1px;
+  }
+  .equip-upgrade__stage-card {
+    width: 40px;
+    height: 40px;
+  }
+  .equip-upgrade__icon {
+    width: 34px;
+    height: 34px;
+  }
+  .equip-upgrade__stage-no,
+  .equip-upgrade__stage-name {
+    font-size: 9px;
+  }
+  .equip-upgrade__stage-arrow {
+    font-size: 10px;
+    padding-bottom: 12px;
+    flex: 0 0 auto;
+  }
+  .equip-upgrade__detail {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+  .equip-upgrade__detail-head {
+    gap: 6px;
+  }
+  .equip-upgrade__toggle {
+    font-size: 11px;
+    padding: 1px 8px;
+  }
+  /* 消耗奖励卡在窄屏用两列自适应，单卡更矮 */
+  .equip-upgrade__detail .reward-grid,
+  .equip-upgrade__allcost-row .reward-grid {
+    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+    gap: 4px;
+  }
+  .equip-upgrade__allcost-row {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  .equip-upgrade__allcost-label {
+    min-width: 0;
+    width: 100%;
+    font-size: 11px;
+  }
+}
+.equip-upgrade__consume {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.equip-upgrade__consume-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub, #7a6a52);
+}
+.equip-upgrade__money {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.equip-upgrade__money-val {
+  font-weight: 700;
+  color: var(--accent-ink, #557574);
+  font-size: 14px;
+}
+.equip-upgrade__condition {
+  font-size: 12px;
+  color: var(--text-sub, #7a6a52);
+  margin: 0;
+}
+.equip-upgrade__max {
+  font-size: 13px;
+  color: var(--text-sub, #7a6a52);
+  margin: 0;
+}
+.dark-mode .equip-upgrade__detail {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.dark-mode .equip-upgrade__icon {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .unlock-text {
