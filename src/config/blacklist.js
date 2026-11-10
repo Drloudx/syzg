@@ -126,6 +126,19 @@ export const EXACT_BLACKLIST = [
     'item_50225', // 史莱姆王国御座制作图
     'item_50226', // 史莱姆摆件制作图
     'item_52007', // 黏糊糊城堡外观套组
+    /*
+     * SP2 遗器三件套 + 秘境货币。
+     *
+     * 与 SP1 的差异只在用字（SP1「遗器」，SP2「遗物」），名字极易混淆：
+     *   sp1_yiwu / _base / _core → 神秘遗器…（亚空回廊·特异次元，SP1，已开放，保留）
+     *   sp2_yiwu / _base / _core → 神秘遗物…（瓦希什塔秘境，SP2，未开放，隐藏）
+     * 归属判据是 `useActionPara.spDungeonId` 为 'sp2'。
+     * `item_29202` 粘液之符 = SP2 秘境货币（对照 SP1 的 item_29201 夜之符）。
+     */
+    'sp2_yiwu',
+    'sp2_yiwu_base',
+    'sp2_yiwu_core',
+    'item_29202', // 粘液之符（瓦希什塔秘境的古代符）
 
 ]
 
