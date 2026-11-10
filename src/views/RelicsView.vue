@@ -58,18 +58,21 @@
               <div class="relic-entry__meta">
                 <span v-if="relic.attributeName" class="relic-attr">{{ relic.attributeName }}</span>
                 <span>占格 {{ relic.shape.width }}×{{ relic.shape.height }}</span>
-                <span>遗器点数 {{ relic.relicPoint }}</span>
+                <span>点数 {{ relic.relicPoint }}</span>
                 <span v-if="relic.energyPattern">能量型 {{ relic.energyPattern }}</span>
               </div>
 
-              <p v-if="relic.tip" class="relic-entry__tip">{{ relic.tip }}</p>
-
-              <!-- 卡片只显示 1 级效果作为摘要，完整 1~5 级与共鸣进详情页 -->
-              <p class="relic-entry__summary">
-                <span class="relic-entry__summary-label">{{ relic.type === 'core' ? '技能效果' : '属性加成' }}</span>
-                <span v-html="highlight(relic.levels[0]?.text)"></span>
-              </p>
-              <span class="relic-entry__more">查看 1~{{ relic.levels.length }} 级与{{ relic.type === 'core' ? '共鸣' : '详情' }} ›</span>
+              <!--
+                卡片只承载「一眼要看的」：1 级效果全文。
+                背景故事（tip）与 1~5 级 / 共鸣都进详情弹层——故事放卡片会占 3 行挤掉效果。
+              -->
+              <div class="relic-entry__effect">
+                <div class="relic-entry__effect-head">
+                  <span class="relic-entry__effect-label">{{ relic.type === 'core' ? '1 级技能' : '1 级加成' }}</span>
+                  <span class="relic-entry__more">详情 ›</span>
+                </div>
+                <p class="relic-entry__effect-text" v-html="highlight(relic.levels[0]?.text)"></p>
+              </div>
             </div>
           </article>
         </div>
@@ -239,22 +242,37 @@ onMounted(loadData)
 .dungeon-note { margin-left: 6px; color: var(--text-muted); font-weight: 500; }
 .filter-panel :deep(.ui-filter-pill.is-active) { color: var(--on-wood-text); }
 .relics-content { background: var(--paper); padding: 12px 14px calc(88px + var(--safe-bottom, 0px)); }
-.relics-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.relics-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
 .relic-entry {
   display: flex; align-items: flex-start; gap: 12px; padding: 12px; min-width: 0;
   background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px;
+  transition: background-color 0.15s ease;
 }
+.relic-entry:hover { background: var(--hover-bg, rgba(85, 117, 116, 0.14)); }
 .relic-entry.is-target { outline: 2px solid var(--accent-ink); outline-offset: -2px; }
 /* 基础与核心统一底色：类型靠「基础/核心」标签区分，不再用背景色制造差异。 */
 .relic-entry :deep(.ui-item-card) { flex: 0 0 72px; margin: 0; }
-.relic-entry__body { flex: 1; min-width: 0; }
-.relic-entry__name { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 6px; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
-.relic-entry__meta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; color: var(--text-muted); font-size: 12px; }
+.relic-entry__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.relic-entry__name { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 5px; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.relic-entry__meta { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; color: var(--text-muted); font-size: 12px; line-height: 1.5; }
 .relic-attr { color: var(--accent-ink); font-weight: 600; }
-.relic-entry__tip { margin: 8px 0 0; font-size: 12px; line-height: 1.65; color: var(--text-muted); }
-.relic-entry__summary { display: flex; gap: 8px; align-items: baseline; margin: 8px 0 0; padding-top: 8px; border-top: 1px dashed var(--border-soft); font-size: 13px; line-height: 1.6; }
-.relic-entry__summary-label { flex: 0 0 auto; font-size: 12px; font-weight: 700; color: var(--text-muted); }
-.relic-entry__more { display: block; margin-top: 6px; font-size: 12px; color: var(--accent-ink); }
+/* 1 级效果：卡片的主内容，尽量给足行数，不再被背景故事挤占 */
+.relic-entry__effect {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-soft);
+}
+.relic-entry__effect-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.relic-entry__effect-label { font-size: 12px; font-weight: 700; color: var(--text-muted); }
+.relic-entry__more { font-size: 12px; color: var(--accent-ink); white-space: nowrap; }
+.relic-entry__effect-text { margin: 0; font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
+.relics-content :deep(.relic-hl) { color: var(--accent-ink); font-weight: 700; }
 /* 详情弹层 */
 .fapan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 10px; }
 .fapan-card { padding: 10px 12px; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
