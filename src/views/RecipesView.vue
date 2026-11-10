@@ -396,7 +396,8 @@ const ensureRecipeVisible = matcher => {
   flex-direction: column;
   gap: 8px;
   padding: 10px 12px;
-  background: rgba(223, 206, 179, 0.94);
+  /* 与符石图鉴卡片（.rune-entry）同底色，统一全站卡片观感 */
+  background: var(--paper-soft);
   border: 1px solid var(--border-soft);
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35);
@@ -405,7 +406,7 @@ const ensureRecipeVisible = matcher => {
   min-width: 0;
 }
 .dark-mode .recipe-card {
-  background: rgba(63, 48, 32, 0.84);
+  background: var(--paper-soft);
 }
 .recipe-card:hover {
   transform: translateY(-2px);

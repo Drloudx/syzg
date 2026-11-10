@@ -12,7 +12,9 @@ export const PREVIEW_AVAILABLE_IDS = new Set([
   'item_30028', 'item_30029', 'item_30030', 'item_30031', 'item_30032', 'item_30033',
   'item_30034', 'item_30035', 'item_30036', 'item_30037', 'item_30038', 'item_30039',
   'item_30040', 'item_30041', 'item_30042', 'item_30043', 'item_30044', 'item_30046',
-  'item_30047', 'item_30048'
+  'item_30047', 'item_30048',
+  // 2026-11-11 新增：腌制鲜蔬炖菜 / 蜜渍果香煎饼 的预览图已放入 public/images/menu_prev/
+  'item_30053', 'item_30054'
 ])
 
 /**
