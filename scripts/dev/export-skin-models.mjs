@@ -23,8 +23,14 @@ const { values: options } = parseArgs({ options: {
    * 此时用 `--skeleton Npc_001_boy:skill_off` 导出。
    */
   skeleton: { type: 'string' },
+  'model-dir': { type: 'string' },
   'output-dir': { type: 'string' }
 } })
+/**
+ * 骨架所在子目录：默认 `npc`；时装类模型（如德莉/米拉贝尔的皮肤）放在 `mon` 下
+ * （`mon_hero060_1` / `mon_hero050_1` 等），此时用 `--model-dir mon`。
+ */
+const MODEL_DIR = options['model-dir'] || 'npc'
 const skeletonMode = Boolean(options.skeleton)
 if ([options.hero, options['all-heroes'], options.skeleton].filter(Boolean).length > 1) {
   throw new Error('--hero / --all-heroes / --skeleton are mutually exclusive')
@@ -59,7 +65,7 @@ try {
   for (const skin of skins) {
     const name = skin.skeletonName
     if (!/^[\w-]+$/.test(name) || !/^[\w-]+$/.test(skin.typeId)) throw new Error('Invalid model identifier')
-    const dir = path.join(sourceRoot, name.toLowerCase())
+    const dir = path.join(DATA_ROOT, `资源包/assets/res/spine/model/${MODEL_DIR}`, name.toLowerCase())
     const page = await browser.newPage({ viewport: { width: 640, height: 768 } })
     const inputs = new Map()
     const textureAdjustments = []
@@ -121,7 +127,7 @@ try {
         const binary = new Uint8Array(await (await fetch(`/__skin-source/${name}.skel`)).arrayBuffer())
         const data = new spine.SkeletonBinary(new spine.AtlasAttachmentLoader(atlas)).readSkeletonData(binary)
         const skeleton = new spine.Skeleton(data)
-        if (!data.findSkin(skinName)) throw new Error(`Missing configured skin: ${skinName}`)
+        if (!data.findSkin(skinName)) throw new Error(`Missing configured skin: ${skinName} | available: ${data.skins.map(s => s.name).join(',')}`)
         skeleton.setSkinByName(skinName)
         skeleton.setToSetupPose()
         const animation = 'idle_front'

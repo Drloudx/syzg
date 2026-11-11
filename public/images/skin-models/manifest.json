@@ -69,10 +69,21 @@
     "skinName": "normal",
     "animation": "idle_front",
     "frameTime": 0,
-    "spineVersion": "4.0.09",
     "image": "/images/skin-models/hero_050_skin01.webp",
-    "source": "4.24路资源包/assets/res/spine/model/npc/npc_050_1",
-    "sha256": "b00fd793fea4a9d7425a4f444a1ef205aa3bd14bae4758370326783f08d8a7f9",
-    "bytes": 28870
+    "source": "资源包/assets/res/spine/model/npc/npc_050_1",
+    "bytes": 32972,
+    "sha256": "aac130b8a7101cf988fa35649a47f247ad5ae31b66d36ed9896a51b1f8c5ccf9"
+  },
+  "hero_060_skin01": {
+    "skeletonName": "Npc_060_1",
+    "skinName": "default",
+    "animation": "idle_front",
+    "frameTime": 0,
+    "image": "/images/skin-models/hero_060_skin01.webp",
+    "source": "资源包/assets/res/spine/model/mon/mon_hero060_1",
+    "bytes": 45908,
+    "sha256": "75dc5c97314806d46d0ef69d8d70c0cc976268a424d145e7bf8caceaf3780387",
+    "note": "skin.json 的 skeletonName=Npc_060_1 在 npc 目录不存在；真实皮肤 Spine 在 mon/mon_hero060_1（骨架 Mon_hero060_1, skin=default）。manifest.skeletonName 保留配置值以通过校验。",
+    "actualSkeleton": "Mon_hero060_1"
   }
 }

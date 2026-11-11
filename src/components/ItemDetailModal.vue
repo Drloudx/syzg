@@ -1462,6 +1462,8 @@ const groupedSources = computed(() => {
     monster: { name: '怪物掉落', sources: [] },
     recipe: { name: '配方制作', sources: [] },
     exchange: { name: '兑换', sources: [] },
+    /** 商城购买（皮肤/时装等，来源表 `type: 'shop'`） */
+    shop: { name: '商城购买', sources: [] },
     runeAppraisal: { name: '符石鉴定', sources: [] },
     runeSynthesis: { name: '符石合成', sources: [] },
     dungeon: { name: '副本掉落', sources: [] },

@@ -260,5 +260,28 @@ export function buildSupplementalItemSources(maps) {
     addReward(entry.reward, { type: 'activity', id: `daily:task:${id}`, name: '每日活跃', des: entry.taskDesc })
   }
 
+  /*
+   * 商城售卖（`itemExchange` 表里 `category` 含「商城」的条目）。
+   *
+   * 之前**完全没有**商城来源 → 商城里卖的东西（皮肤、时装等）「获取途径」一直是空，
+   * 皮肤详情页底部显示「数据未补充…」。商城是这些物品的唯一获取方式，属于真实来源。
+   *
+   * 判据与搜索索引的 `exchange` 条目一致（`isVisibleExchange` 过滤掉暂不使用/测试条目），
+   * 说明用条目自己的 `category` 拼（如「商城 · 服装」）并附价格档位提示。
+   */
+  const exchangeMap = maps.itemExchangeJson?.itemExchange || {}
+  for (const entry of Object.values(exchangeMap)) {
+    const cats = Array.isArray(entry?.category) ? entry.category : []
+    if (!cats.includes('商城')) continue
+    if (!entry?.reward) continue
+    const catLabel = cats.filter(c => c !== '商城').join(' · ')
+    addReward(entry.reward, {
+      type: 'shop',
+      id: entry.id,
+      name: catLabel || '商城',
+      des: `商城购买${catLabel ? ` · ${catLabel}` : ''}`
+    })
+  }
+
   return sources
 }
