@@ -82,8 +82,8 @@
     "spineVersion": "4.3.23",
     "image": "/images/skin-models/hero_060_skin01.webp",
     "source": "资源包/assets/res/spine/model/npc/npc_060_1",
-    "bytes": 44614,
-    "sha256": "d0a4bcd0216715770dcf3ecad1887a1512a306bb0a63c2b1950579f1c7217b39",
-    "note": "Spine 4.3.23（全项目唯一 4.3 骨架）；资源在 Addressables bundle，已从 official-1.7.15.apk 提取组装。skeletonName 保留配置值以通过 loadSkinModelImages 校验。"
+    "bytes": 78312,
+    "sha256": "4fe083c3e9fb8aa1a2e75306d95060cc818f59cf558ab816830d16ffca6f0949",
+    "note": "完整（含头发/裙摆 mesh 附件）。Spine 4.3.23；mesh 附件需 SkeletonRenderer.triangleRendering=true。资源从 official-1.7.15.apk Addressables 提取。"
   }
 }
