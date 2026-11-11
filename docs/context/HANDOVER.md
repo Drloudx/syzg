@@ -6,7 +6,7 @@
 > **何时读**：第一次接手本项目、或隔了很久回来时。
 > **何时更新**：目录职责、技术栈、入口命令、红线清单变化时。**不写进度**（进度看 [NOW.md](NOW.md)）。
 
-**核对时间**：2026-11-09 ｜ **最近代码提交**：`44c4636b`
+**核对时间**：2026-11-11 ｜ **最近代码提交**：`1e4cc798`
 
 ---
 
@@ -315,6 +315,16 @@ docs/history/dev-logs/  过程归档（不改写）
 ### 5. `backups/` 未纳入 `.gitignore`
 
 两个 5 MB 的 SQL 备份是未跟踪状态，`git add .` 会误提交。建议加进 `.gitignore`。
+
+### 6. 皮肤/变异模型官方数据缺失（2026-11-11 核对）
+
+| 项 | 内容 |
+| --- | --- |
+| 现象 | 魔物图鉴中「青铜迷迷可」（`pet_101`）的变异形态与常规形态外观一致 |
+| 根因 | `pet_101.variants[0].skin = "change_A"`，但骨架 `Mon_101` 只有 `default` 皮肤（无 `change_A`，其它魔物是 `changeA` 且无下划线）。`PicHandBookPanel.LoadPetSpineModel` 按 `variant.skin` 设皮肤，皮肤不存在时 Spine 静默回退 default |
+| 性质 | **游戏客户端本身如此，非 Wiki 缺陷**；图集 `PicHandBookPanel_Atlas` 也无 `colect_mon_101_a` 变异图 |
+| 现行处理 | 变异图缺失的魔物（当前仅 pet_101）回退显示本体图，不加缺失提示 |
+| 皮肤模型 | `skin060a`（彩虹芭菲公主）骨架 `Npc_060_1` 为全项目唯一 Spine 4.3.23，资源在 `official-1.7.15.apk` 的 Addressables（非 `资源包/res`）；导出需 `triangleRendering=true` 才画头发/裙摆 mesh 附件。详见 [2026-11-11 日志](../history/dev-logs/2026-11/2026-11-11.md) |
 
 ---
 
