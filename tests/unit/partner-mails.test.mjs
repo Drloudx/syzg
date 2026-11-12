@@ -44,7 +44,9 @@ test('mailboxes cover every game-visible source mail, including hidden catalogue
   for (const id of HIDDEN_HERO_IDS) {
     assert.ok(!mailboxes.some(box => box.id === id), `隐藏角色 ${id} 不应出现在伙伴邮件`)
   }
-  for (const id of ['hero_047', 'hero_059', 'hero_070']) {
+  // 已解除隐藏（不在 HIDDEN_HERO_IDS）的角色须同时进入图鉴与伙伴邮件；隐藏者见上面循环。
+  for (const id of ['hero_047']) {
+    if (HIDDEN_HERO_IDS.includes(id)) continue
     assert.ok(heroes.some(hero => hero.id === id), `已解除隐藏角色 ${id} 应出现在角色图鉴`)
     assert.ok(mailboxes.find(box => box.id === id)?.mails.length, `已解除隐藏角色 ${id} 应出现在伙伴邮件`)
   }

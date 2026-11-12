@@ -198,8 +198,8 @@ export const hasBrokenRewardPool = (itemOrId) => {
  * 判定只看角色 id，不做名字模糊匹配 —— 避免误伤同名物品/任务。
  */
 export const HIDDEN_HERO_IDS = Object.freeze([
-    // hero_059 菲娜：2026-11-12 按需求解除隐藏
-    // hero_070 露库希安：2026-11-12 按需求解除隐藏
+    'hero_059', // 菲娜：2026-11-13 按需求重新隐藏
+    'hero_070', // 露库希安：2026-11-13 按需求重新隐藏
     // hero_047 阿迪拉：2026-11-11 按需求解除隐藏（1.7.15 官方已解除 hide）
 ])
 
