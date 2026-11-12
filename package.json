@@ -18,7 +18,7 @@
     "audit:images": "node scripts/dev/audit-image-resources.mjs",
     "quotes:find": "node scripts/dev/find-quotes.mjs",
     "quotes:find-deep": "node scripts/dev/find-quotes-deep.mjs",
-    "build": "npm run data:build && vite build",
+    "build": "node scripts/parse/index.mjs && node scripts/dev/build-sims-data.mjs && vite build",
     "search:update": "node scripts/parse/search.mjs",
     "test:unit": "node --test \"tests/unit/**/*.test.mjs\"",
     "test:ui": "playwright test",
