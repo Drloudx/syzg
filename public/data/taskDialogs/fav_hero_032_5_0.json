@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]哦？你直接同意了吗？我还以为你至少会思考一下呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]虽然你和我职业不同，但我们在很多方面都能达成共识，这种感觉就像是……最佳拍档？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]如果你是刺客的话，我们说不定还能并肩作战，一起去完成更多刺杀任务呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]我只是幻想一下而已啦，就算你以工匠的身份与我合作，我们也是亲密无间的搭档。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]那我们走吧，驿站现在人应该有不少，我们得早点占位置才行。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_032_5_0",
+  "des": "【什么时候出发？】"
+}

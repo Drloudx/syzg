@@ -1,0 +1,442 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "副座巴尔德",
+        "text": "[show]嗯……要注意的差不多就是这些，接下来就拜托你了，奇瓦小姐。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]嗯，放心吧，我会照顾好孩子们的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "奇瓦能接下这份工作吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]嗯，学生不是很多，要教的内容也不是很难，只要大家爱学习我就一定能教好！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子1",
+        "text": "[show]快看……那就是我们的新老师吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]没错，自我介绍一下，我叫奇瓦，是大书院的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]哇！好大一团火球！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子3",
+        "text": "[show]快看！这团东西身上还冒着火呢，一点都不烫。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕咕？咕咕？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]啊……这个是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子3",
+        "text": "[show]好神奇啊，我可以把这只大家伙带回家里去吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]这家伙身上的火有用吗？我想弄几串野菜过来烧烤！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]那……那个……{myName}！救救我和软软！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（出手帮奇瓦和软软拉开孩子。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]呼呼……得救了，谢谢你{myName}。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]孩子们……你们想了解软软的话下课再说吧，现在是上课时间。就让我来和你们说说秘术的起源……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子3",
+        "text": "[show]哈？我才不要，与其听这些无聊的东西，我还不如拿根烧火锅在地上画画呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]就是就是，秘术师整天拿着棍子念咒语的样子多蠢，还不如拿着锅铲的厨师呢，那才是我想要学的东西！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]可是……这是副座专门给你们报的课呀，你们不听多浪费。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]不听不听，我要去烤野菜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这个……{myName}，我该怎么办？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "其实奇瓦可以试着和大家坦诚相待。"
+          },
+          {
+            "tag": "tag_24",
+            "text": "你可以和大家找到共同语言。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]好，我试试。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]那个……其实我以前也经常逃课，也理解你们的心情。所以第一节课我们就闲聊吧，你们可以不那么拘谨，毕竟我也不过比你们大几岁而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子3",
+        "text": "[show]比我们大？可我感觉你比我们还要小啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我是曼恰奇人嘛，我们族人都比较娇小。所以别被我的体型欺骗了，我可比你们年长哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]原来是这样……我就奇怪怎么会找个孩子教我们秘术，原来奇瓦老师是大人啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]我也谈不上大人啦……对了，问一下你们有人之前学过秘术吗？或者有了解过秘术吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]听都没听过啦，我们之前不是在种菜就是织毛衣，哪有空去了解这些东西。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子1",
+        "text": "[show]那个……我之前跟着路过吟游诗人学过一点。不过我只想用秘术来做自己喜欢的事情，所以只懂些皮毛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]没关系，兴趣是最好的老师，就算是皮毛也可以！能问一下你喜欢拿秘术做什么吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子1",
+        "text": "[show]就是……可以用来干这个。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（女孩拿出几个木桶，然后用秘术在木桶上炸出微小的火星。不同的木桶在火星的敲击下发出不同的声音，组合起来便是一曲美妙的音乐。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]好厉害！用秘术来演奏音乐，这创意太巧妙了，我也来试试。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（奇瓦也有样学样地敲击木桶，完整演奏了一曲优美的乐曲。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子1",
+        "text": "[show]老师也好厉害！我学了很久才勉强能弹十几秒，老师一上手就能完整弹一曲，不愧是秘术师！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]这没什么了不起啦，只是凭着长期的训练才能这么熟手而已。只要每天都练习，你们也可以做到！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]你们都好强啊，说起来……秘术好像也能用来烧火，如果能学会一些火焰秘术的话……是不是不用烧柴火也能做烧烤了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]虽然用秘术烧烤有点奇怪，但确实是可行的。如果你想学的话，我可以手把手教会你哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子3",
+        "text": "[show]那有能画画的秘术吗？直接把我心里想到的画面变出来的那种？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]没有那种秘术啦……不过倒是可以用秘术制作特别的颜料，这个应该勉强能和画画沾点边吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子3",
+        "text": "[show]那也可以！之前买不起颜料只能用碳和树枝画画，等我学会秘术之后就能自己做颜料啦！我也要学秘术！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "孩子2",
+        "text": "[show]我也要我也要！什么时候开始上课？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]别急，该教你们的都会教你们的，今天我们先闲聊吧，我想要趁这个机会了解一下大家……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一天的友善交流后，奇瓦成功和孩子们打成一片，完美结束了她第一天的教学。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]呼……终于把孩子们都送回家了，他们的热情还真是有些出乎我的预料呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_49",
+            "text": "说明奇瓦沟通能力很好啊。"
+          },
+          {
+            "tag": "tag_49",
+            "text": "以后的教学估计会更加顺利。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]嗯，只要孩子们感兴趣，今后教起来一定会很轻松的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]要是……我当年也能得到这样的指引就好了……这样我也不会离家出走了……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_52",
+            "text": "让你想起以前的事了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]是想起以前的事了，不过也没什么好说的啦……现在我想回营地休息休息。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]回到营地之后我们也好好吃一顿吧，怎么样？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_019_2_1",
+  "des": "奇瓦-来自大书院的教导-进入战役"
+}

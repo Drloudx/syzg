@@ -1,0 +1,69 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]是啊，善后总算是忙完了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]这段时间可把我累坏了，我要在这里摸鱼摸个爽！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没问题！",
+            "tag": "tag_4"
+          },
+          {
+            "text": "在这儿你尽管摸个够！",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]哦！真够朋友！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]那今天我就听你安排了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]趁着现在有空，你可要带我好好参观一下啊！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_070_1_0",
+  "des": "露库希安好感1-引入"
+}

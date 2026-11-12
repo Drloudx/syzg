@@ -1,0 +1,148 @@
+{
+  "des": "进入风车平野",
+  "script": "m_1_5_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呼……啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]怎么样，两位休息好了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯……大概歇了一个小时吧……脖子都有点僵住了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]我也是。好不容易补了会觉，精气神还不错。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我也是精力满满，随时都能再打十个角布林！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]说起来，你们有看到迦南前辈吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没看到。",
+            "tag": "tag_48"
+          },
+          {
+            "text": "怎么了？",
+            "tag": "tag_48"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[cm][show]刚刚传来的消息，队伍的辎重需要补充，其中有些项目需要迦南前辈亲自过目才行。[r][l]但现在前辈不知道到哪里去了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]算了，这些事情和你们说也没什么用。抓紧时间继续休息吧。我再去别的地方找找……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]什么啊，说话只说一半……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]还说什么“和你们说也没用”。哼，既然你这么说了，那我米托拉大人就偏要证明给你看！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]等着吧！我这就去把那个偷懒的迦南找出来！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "斗志可嘉！",
+            "tag": "tag_56"
+          },
+          {
+            "text": "不过你要怎么找呢？",
+            "tag": "tag_56"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]这还不简单？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]那家伙肯定是躲在什么地方摸鱼去了！以我的经验，这附近最适合摸鱼的地方应该是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]有了！你跟我来！从东边出镇子去，那边肯定舒服！[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

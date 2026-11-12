@@ -1,0 +1,235 @@
+{
+  "script": "fav_hero_008_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]第一次向拉碧丝请假咱还紧张了好一阵，幸好她很快就同意了！要是可可娜的话……[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咳咳！偏题了偏题了～{myName}请看这个！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（夏库塔拉在你面前拿出一个被布条缠绕着的巨大长方形物品。）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "好大……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "这是什么？",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]（听见你的感叹，她笑着把布掀开，露出里面的内容——）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（那是一副令人为之惊叹的美丽画像，栩栩如生的色彩勾勒出一位圣洁的妖精形象。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}可能没听说过吧？[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]画中的是“生命之树的妖精”——卡露迪翁，所有妖精们崇拜的神明大人哦！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱的委托内容就是希望你能将画中的神明大人铸成一尊神像。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱知道这个要求听起来很困难！铸造神像不是一般工匠能够完成的任务，但咱之前已经见识过{myName}的手艺。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱觉得你肯定可以办到，而且你还有深渊之外的知识！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]更重要的是……如果连你也拒绝咱的话，其他工匠更不会愿意接受这份委托。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]拜托你了，{myName}！如果需要支付很多很多的金币咱也愿意，咱攒了不少演出的收入！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（夏库塔拉握住双手抱在胸前向你低下头，即便是深渊外的你也十分清楚，这是作为一只妖精至高的诚意。）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "放心吧，我一定会帮你完成神像的。",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]真、真的吗？谢谢你！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了！这是定金，请收下！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（她递来一袋沉甸甸的金币，里面饱含着一位舞者热情的汗水。）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "夏库塔拉为什么想要铸造神像？",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这个嘛……原因很复杂！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱并不像{myName}想的那样是一位虔诚的信徒，咱的故乡远在一望无际的沙漠。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如今身在异乡，如果不做点什么能够坚定自己信念的事，咱怕咱会因此迷失自咱。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]卡露迪翁大人会指引迷路的孩子！只要看着她咱就明白自己该做的是什么。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（夏库塔拉叙说这段话时，缠绕在身上的热情的火焰也随之收敛，你似乎恍然间窥见了她的不太一样的地方。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不好！和拉碧丝约定的时间快到了，咱得回妖精舞台那边了！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]剩下的交给你了，咱会等待{myName}的好消息！[l][cm][hide]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "夏库塔拉-进入战役【fav_hero_008_2】"
+}

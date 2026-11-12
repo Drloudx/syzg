@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]嗯。对。没错。你说什么都行。你说什么都是对的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]你问我在干什么？我只是在练习如何应付别人的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]我之前的口吻似乎总能把别人激怒，所以我在试着练习，用更温和的口气应付他人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]你说这和我说话的口气无关？是我说话的内容太阴阳怪气了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]算了，怎么想那是他们的事，我不想管了，随便吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_030_03",
+  "des": "阿尔克丝阿尔克丝－友善3"
+}

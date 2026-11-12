@@ -1,0 +1,752 @@
+{
+  "des": "与_______的光点聊聊。",
+  "script": "sp_1_4_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（几人来到了舞厅中央。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇，{myName}，快看！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这面大镜子居然还没完全碎掉，能照出三四个我呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿！哈～我跳我跳……啦啦啦啦～怎么样，我的舞跳的好看嘛，{myName}？说实话～！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "绝世舞步。",
+            "tag": "tag_7"
+          },
+          {
+            "text": "不好评价。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]……感觉你心不怎么诚啊。唔，算了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]让你说实话你真说啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]大小姐，你也来跳一支怎么样！你这身衣服可比我好看多啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]…………[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（贝拉多娜走上舞台，但什么动作也没有做。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]镜子里照出来的……不过是些虚伪的幻影罢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……来这儿就是为了开解下情绪，让你别一直这么别这么死气沉沉的嘛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫回来了。你们还好吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "加尔戈萝",
+        "text": "[show]嗷～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（几人来到舞厅中央的圆桌旁坐下。米托拉取出一些干粮，加尔戈萝安静地趴在阴影里警戒。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在一小段时间的沉默中，众人分食着简单的补给，只有窗外的风声在回荡。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]贝拉多娜……你一点都不吃吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]拿去。这是给加尔戈萝用的高浓度魔力凝块。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]要是没有吃人间食物的胃口，至少把这个当药丸吞下去。但如果你打算就此自生自灭，本宫倒是可以省下这份财产。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]我……斯卡莉安老师……米托拉……{myName}……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]你们说，我这十个年头……到底算什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]算什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]既然我不是血族……既然希斯珀利亚的荣耀只是个彻头彻尾的笑话……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]我告诉自己，我是高贵的希斯珀利亚家族的后裔，我体内流淌着最黑暗、最高贵的血……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]可那个女人说我只是……某种魔物的后裔。我的家族，我那被吸干血液的亲人……原来我们的存在，在始祖眼里只是个可笑的误会……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]那我这些年的流亡……坚持到现在的迷茫……是不是也只是个笑话？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]我到底算什么？一个长着翅膀、只会变戏法模仿血族的杂种吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]…………[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]而且……如果我连这个身份都没有了……我就连“命令”你们留下来陪我的资格都没有了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]你们其实早就想离我这个只会装大小姐的冒牌货远一点了吧？毕竟……谁会愿意和一个连真实身份都不知道，只会大放厥词的笨蛋在一起呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我说大小姐，你脑子里到底装的是什么啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]……米托拉？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]血族不血族的，我从来都没在意过！我和{myName}从来就不是因为你有什么叽里呱啦的血统才和你一起冒险的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你喜欢叫我们下仆，我们喜欢你那幅有志气的样子，觉得这么和你相处也还行，就是这样而已！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]唉……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "的确如此，贝拉多娜。",
+            "tag": "tag_39"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "就算系谱是虚假的，但你对家族的爱是真的。",
+            "tag": "tag_40"
+          },
+          {
+            "text": "为了心中的使命能跨越一切艰险，这份勇气也是真的。",
+            "tag": "tag_40"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]{myName}……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]……看来，你对[color=ffb64d]使命[colorEnd]和[color=ffb64d]人际关系[colorEnd]的理解，和你的剑术一样浅薄呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]你为了寻找真相踏入这死地，这本身就是勇气的证明。如果你真的只是个“杂种”，你不会坚持到现在。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]血统不过是先祖留下的阴影。在旧帝国，本宫见过无数人为了继承所谓的纯正血脉而互相争斗，最后却都成了地牢里的白骨。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]在本宫眼里，那些所谓的纯血的荣耀，甚至不如某个在加尔戈萝爪前，为了保护本宫这副残躯，挺身而出的背影来得高贵。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]斯卡莉安……老师……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没错，之前你帅气的样子，我们都看见了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]还有，我从米拉贝尔那里听说了。你每天都会在村外练剑，为了红色的药水会去爬天梯采赤剑草，还会把挣来的复兴资金分给穷孩子们买面包。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这些可总不是谎言吧？这些和你是不是什么血族有关系吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我答应过那个大姐头要看着你，你也答应过要给我发大笔的酬劳——你要是现在跑了，我上哪儿领钱去？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "无论真相如何，你就是你。",
+            "tag": "tag_87"
+          },
+          {
+            "text": "你是我们的伙伴，贝拉多娜。",
+            "tag": "tag_87"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]…………[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]（狠狠地咬下一口干粮，吞了下去。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，这才像话嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]（擦了擦嘴巴，狠狠眨了眨眼睛，猛地站起身。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]——听、听好了！本小姐的下仆们……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]既然……既然那个女人说本小姐不是血族……那本小姐就要自己去决定，什么才是真正的“血族”！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]她说本小姐不是血族，那本小姐就要成为血族……不，超越血族！本小姐要超越那个傲慢的始祖……直到能亲手抓住那个毁灭本小姐家族的凶手为止！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]所以！呜呜……本小姐……本小姐现在以希斯珀利亚家主的身份……命令你们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]绝对……绝对不准擅自解除和本小姐的契约！在本小姐的那个目标达成之前……你们必须、必须一直待在本小姐的视线之内！不准离开本小姐……一步也不准！听到了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]既然是大小姐的命令，那只能听啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]也得算上本宫吗……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没问题，贝拉多娜小姐！",
+            "tag": "tag_88"
+          },
+          {
+            "text": "只要管饭，去哪都行！",
+            "tag": "tag_89"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗯……嗯！说得好，下仆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]管——管饭！当然管饭！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哼……既、既然你们这么求我，那本小姐就勉为其难……继续让你们追随好了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，看来你打起精神了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]虽然只是为了不被抛弃而编造的借口，但这份执拗倒是让你的灵魂稍微有趣了一点。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]既然意志已经重燃，那就让那个傲慢的城主见识一下，你所选的这条“超越之道”吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]虽然从物理和法理上来说，根本就是不可能的呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]呜～不要多嘴到这个程度啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "加尔戈萝",
+        "text": "[show]吼嗷——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（加尔戈萝突然发出一声低沉的咆哮，巨大的双翼猛然展开。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]时间到了。加尔戈萝感应到了魔力的源头——就在外面的中庭。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]城主似乎并不想直接来找我们。她在位面的连接处留下了一个传送空洞。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]看来那家伙是等不及要看我们的笑话了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]……走吧，{myName}，米托拉，斯卡莉安老师。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]带我……去见她吧。我想再一次去面对……属于我自己的真相。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]还有……谢谢你们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]看来这第三课，也不需要本宫来为你指导了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]……有着这样的伙伴，本宫都有些羡慕了呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]——加尔戈萝，就拜托你带路了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "出发，前往中庭！",
+            "tag": "tag_90"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂！别跑太快啊，大小姐！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]吵、吵死了！本小姐只是不想落后而已！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]呵呵……这种执拗的性格，倒是意外地很适合修行呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "加尔戈萝",
+        "text": "[show]吼——！！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

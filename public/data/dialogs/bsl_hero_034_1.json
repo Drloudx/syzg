@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露帕",
+        "text": "[show]呼啊……刚睡醒就看见{myName}了，这是缘分吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露帕",
+        "text": "[show]这个营地很安静，风也很凉爽。每次只要闭上眼，立刻就能潜入最深沉的梦乡呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露帕",
+        "text": "[show]等等……我给你送个东西……这是我在路上特意为你留着的，不许弄丢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露帕",
+        "text": "[show]既然已经达成了契约，以后就请多多关照我这个……爱睡懒觉的伙伴吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露帕",
+        "text": "[show]呼啊……招呼打完，我就继续睡觉了，安……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_034_1",
+  "des": "bsl_hero_034_1"
+}

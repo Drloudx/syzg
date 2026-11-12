@@ -1,26 +1,44 @@
 {
+  "des": "与米托拉聊聊【关于之前那块碎片……】",
+  "script": "s_1_24_1",
   "exps": [
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]哦，是的，我正准备回去呢！[l][cm]"
+        "text": "[show]啊哈，你们终于有空来找我啦！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]真的？我看你在门口已经磨蹭了老半天了啊？[l][cm]"
+        "text": "[show]之前的合作意向，你们考虑得如何啦？你们愿不愿意和我一起进行魔物驯养的研究呢？[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]呃……这个……这个当然是有原因的。[l]"
+        "text": "[show]呃，怎么说呢……有魔物能帮忙战斗，的确是不错啦……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且和这些小家伙们在一起，看着它们从蛋里孵出来一点一点长大，我也不讨厌……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦哦，那就是很有意向了！工匠大人，你怎么说呢？[l]",
+        "charaName": "露比"
       },
       "key": "text"
     },
@@ -28,12 +46,12 @@
       "para": {
         "options": [
           {
-            "text": "有原因？说来听听？",
-            "tag": "tag"
+            "tag": "tag_7",
+            "text": "能学习到各种各样的知识，本身就是一种获益了。"
           },
           {
-            "text": "什么原因？不妨让我们品鉴一下？",
-            "tag": "tag"
+            "tag": "tag_7",
+            "text": "不过我猜，露比小姐对我们肯定有更大的期许。"
           }
         ]
       },
@@ -42,88 +60,40 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[cm][show]这个……其实……最近这几天有人一直在驿站堵我。我暂时……嗯，是暂～时～还不能回去。[l][cm]"
+        "text": "[show][cm]哎呀你这话说的～[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]啊？什么情况？说明白一点啦！[l][cm]"
+        "text": "[show]不过就像上次说的，只要有你们的加入，我们的大事业简直如虎添翼，肯定能飞黄腾达！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]好吧，我坦白！咳咳！事情是这样的……[l][cm]"
+        "text": "[show]你知道驯养恐兽的车马行有多赚钱吗？以我们团队的力量，轻易就能开辟出几倍乃至几十倍的市场！这可都是钱啊！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]在和你们确定合作关系之后呢，我就找到了之前拉投资的一位老主顾……[l][cm]"
+        "text": "[show]只要我们大量、大量的孵蛋，再由米托拉小姐驯服它们的野性，然后通过不断的观察、记录，甚至交流，肯定就找到能够永久驯化这些魔物的方法！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]我和她说，我能卖给她一些驯养好的魔物，帮助她进行挖掘勘察之类的工作……[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]然后其实你根本没有，就从她那里骗了很多钱？[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]那怎么能说是骗呢？[r]我这不就是把确定会成功的事情，汇报得稍微超前了那么一丁点儿嘛～！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]可惜那位老主顾太急性子了一点，根本不能理解我的超前理念，拿出钱之后就要我马上兑现承诺……[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]所以你在魔物孵出来之前，就一直没法回去？[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]呃……是这样的……所以……只要你们能够稍～微～帮我弄出一点成果，我就可以去交差了。[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]我需要你们帮我孵化两只不需要的魔物，“[color=ffb64d]卖出[colorEnd]”给她。[l]"
+        "text": "[show]嘶……！真有这么赚？你不会是骗我的吧？这不比做契约者更有前途？[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -131,7 +101,78 @@
       "para": {
         "options": [
           {
-            "tag": "tag_42",
+            "tag": "tag_13",
+            "text": "不过，前提是形成规模化的养殖产业吧。"
+          },
+          {
+            "tag": "tag_13",
+            "text": "而且，魔物内心的狂暴可没那么容易消灭。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]哎呀，畅想未来可不犯法。[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且我可不是满口跑火车，我也是有计划的。在找到最终发大财的路子之前，我们得先拿这些孵化出来的魔物做点小生意。[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]具体来说，就是好像契约者那样，把这些魔物作为劳动力，派遣、租借、出售出去，从有需要的人那里换取一些报酬。[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这样，我们的研究就能靠研究本身来提供资金，项目迅速进入正循环，你们觉得怎么样？[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……都到现在了还这么弯弯绕绕的！你就直说吧，想让我们从什么地方开始？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]正好，我们就来试试“卖出”魔物吧！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我需要你们帮我孵化两只不需要的魔物，“卖出”给我一位老主顾。[l]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
             "text": "“卖出”是吗……"
           }
         ]
@@ -141,24 +182,16 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show][cm]对的对的。把不需要的魔物出让给其他有需要的人，也算是一种资源配置的合理化嘛。要注意哦，卖出的魔物就不会再回来了，决定卖出哪只魔物的时候，一定要慎之又慎哦。[l][cm]"
+        "text": "[show][cm]对的对的。把不需要的魔物出让给其他有需要的人，也算是一种资源配置的合理化嘛。要注意哦，卖出的魔物就不会再回来了，决定卖出哪只魔物的时候，一定要慎之又慎哦。[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]为了防止你们手里没有魔物可以卖出，这两个草原黏团的蛋，我就先白送给你们好了！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]那就麻烦你们尽快孵化出来，然后帮忙[color=ffb64d]卖出[colorEnd]吧！[l]"
+        "text": "[show]为了防止你们手里没有魔物可以卖出，这两个草原黏团的蛋，我就先白送给你们好了！那就麻烦你们尽快孵化出来，然后帮忙卖出吧！[l]",
+        "charaName": "露比"
       },
       "key": "text"
     },
@@ -166,18 +199,11 @@
       "para": {
         "options": [
           {
-            "tag": "tag",
+            "tag": "tag_24",
             "text": "好吧，我们就帮你这个忙……"
-          }
-        ]
-      },
-      "key": "option"
-    },
-    {
-      "para": {
-        "options": [
+          },
           {
-            "tag": "tag",
+            "tag": "tag_24",
             "text": "但这些魔物要怎么送出去呢？"
           }
         ]
@@ -187,76 +213,50 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[cm][show]这个没问题，我已经和运货的小哥说好了。等你们决定[color=ffb64d]卖出[colorEnd]的魔物之后，他们会帮忙送达的。[l][cm]"
+        "text": "[show][cm]这个没问题，我已经和运货的小哥说好了。等你们决定卖出的魔物之后，他们会帮忙送达的。[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]当然，除了草原黏团，如果你们还孵出来了更厉害的魔物，那也可以作为替代！[l][cm]"
+        "text": "[show]当然，除了草原黏团，如果你们还孵出来了更厉害的魔物，那也可以作为替代！总之，只要随便卖出两只魔物就可以了！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]总之，只要随便[color=ffb64d]卖出两只魔物[colorEnd]就可以了！[wait=500]"
+        "text": "[show]好好好，我们知道了！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]请一定要尽快啊！[l][cm]"
+        "text": "[show]那就拜托你们啦！我们大事业的第一步，就此启航！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]好好好，我们知道了！[l][cm]"
+        "text": "[show]（总之，无论是不是露比送的那两枚蛋，卖出任意两只魔物就可以了吧。）[l][cm]",
+        "charaName": "{myName}"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]真是，你也少在那玩你那什么超前商法吧！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]看你这小胳膊小腿的，我真怕你哪天活生生把自己玩死啊！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（总之，无论是不是露比送的那两枚蛋，[color=ffb64d]卖出[colorEnd]任意两只魔物就可以了吧。）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（按照露比之前的说法，卖出的魔物，都是[color=ffb64d]一去不复返[colorEnd]的。我要好好想想该卖出哪两只才好！）[l][cm]"
+        "text": "[show]（按照露比之前的说法，卖出的魔物，都是一去不复返的。我要好好想想该卖出哪两只才好！）[l][cm]",
+        "charaName": "{myName}"
       },
       "key": "text"
     }
-  ],
-  "des": "大事业的第一步【你不是回驿站去了吗？】",
-  "script": "s_1_24_1"
+  ]
 }

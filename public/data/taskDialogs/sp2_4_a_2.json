@@ -1,0 +1,486 @@
+{
+  "script": "sp2_4_a_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么样，这下知道厉害了吧？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼，不愧是“索命凶猫”……我承认，现在确实是你更强。[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼哼！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过厉害归厉害，你现在的做法就实在是太没道义了吧？[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈？你说什么？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]明明是兄弟我告诉你的发财路子，你翻过脸就想独吞，这是不是太过了？[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还是说，你为了取信于那个小鬼，就准备把弟兄们卖了？[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈！这还真是不折不扣的荒野客作风啊！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你——！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不、不会吧……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……你们原来是一伙的姆……！[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "德莉！",
+            "tag": "tag_59"
+          },
+          {
+            "text": "不要上当了！",
+            "tag": "tag_59"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]德莉，别听那家伙的！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喔，不然呢？[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的会有人千里迢迢，追寻个不知道在哪的“宝藏”，还正正巧巧地遇上了如此珍稀的你？[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……我……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]至少应该有点自己的判断吧，“公主”陛下？[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不对，可是……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来，你刚刚可就是最无防备的样子了吧？要不是我们现在闯进来，你的宝珠可已经落到他们手里了！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，到现在才认清真相，你是不是还得谢谢我们呢？[l]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "德莉！",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我不听——！我不听——！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们人类果然都是这副样子！亏我还稍微信任了你们一点——！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……太过分了姆——！[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂——！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是应激了吗……！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来她内心中，对于人类有很大的成见啊……[l]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "毕竟人类之中坏种太多了嘛。",
+            "tag": "tag_81"
+          },
+          {
+            "text": "毕竟见过太多那位仁兄一样的人物嘛。",
+            "tag": "tag_81"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵……要在文明社会生存可不是那么容易的！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]并不是每个人都有像你们那样得天独厚的天赋和才能，对于有些人来说……[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哪怕弄脏自己的双手，可也未必可以过上你们那样“正常”的人生啊！[l]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那就是让你心安理得为恶的借口吗？",
+            "tag": "tag_35"
+          },
+          {
+            "text": "这种诡辩听得太多，已经可以端下去了！",
+            "tag": "tag_35"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]{myName}！何必跟他废话！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们快点解决他们，然后去追那个不省心的小鬼！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇啊！妈妈！我好害怕吖～♪！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……你以为我会这样说吗？[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]确实，我这些马仔的实力就远远不如你们，但这次我们可是有备而来！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]以有心算无心，我这次不止要全身而退，主要目标也一定要握在手里呀！！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]小心！有点不对劲！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那家伙好像扔出来了什么！[l][cm][hide]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么！这些看起来就不太对劲的史莱姆……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧！刚才那个是魔物诱饵吗！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼哼哼……你们就在这里和这些危险的魔物好好玩玩吧！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]小的们！我们走！[l][cm]",
+        "charaName": "祖基尼"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是，祖基尼老大！[l][cm][hide]",
+        "charaName": "荒野客们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可恶的贱种！休想逃！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不要冲动！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放着这些史莱姆不管，这个营地很快就会完蛋的！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不管要做什么，我们都不能失去仅有的立足之地！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧——！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那就快点解决它们！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们必须赶快追上那个臭小鬼！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不管那个贱人想要干什么，我米托拉都绝对不会让他得逞！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]绝对不会呀！！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "SP2-4通关"
+}

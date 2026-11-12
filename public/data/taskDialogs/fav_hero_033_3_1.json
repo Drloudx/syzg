@@ -1,0 +1,122 @@
+{
+  "script": "fav_hero_033_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]嗯……看起来不错嘛。就这里吧，我们找个最高最陡的地方，然后开始今天的训练！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_3",
+            "text": "等等，乌帕。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]怎么了？你预感到了什么东西吗？[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "脚下似乎有些松垮。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]嘿，我还以为是什么事呢，不就是一个小小的土坡。我们又不是一直站在这里，塌方的风险也不高啊。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]再说了，我们的实力这么强。就算真的塌了，跳跳就能下去了！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "既然乌帕说没问题的话……"
+          },
+          {
+            "tag": "tag_8",
+            "text": "那就开始训练吧。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]好的！我们先跑到底下去！准备……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]嗯……咦？呜、呜哇啊啊啊啊啊——！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "乌帕，小心——"
+          },
+          {
+            "tag": "tag_11",
+            "text": "我就说不要来这里——"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[hide]"
+      }
+    }
+  ],
+  "des": "乌帕-洞穴遇险"
+}

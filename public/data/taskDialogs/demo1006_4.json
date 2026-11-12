@@ -1,0 +1,203 @@
+{
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]呼……这里已经是最深处了吗……[l][hide][cm]",
+        "charaName": "【沃夫加】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]大家，还好吗……？[r]有需要治疗的地方……还请多叫下我……[l][hide][cm]",
+        "charaName": "【芭杜尔】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]大家，还好吗……？[r]有需要治疗的地方……还请多叫下我……[l][hide][cm]",
+        "charaName": "【芭杜尔】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]没有蜘蛛在这边聚集。除了一些卵囊外，就是条单纯的死路。[r]呵，也好。敲破它们，就能回去继续我们的任务了。[l]",
+        "charaName": "【茜塔】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_145",
+            "text": "米托拉……？"
+          },
+          {
+            "tag": "tag_145",
+            "text": "这些残骸，有什么不对的吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……那可太不对了。[r]狗头，你没闻到些什么吗？[l][hide][cm]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]嗯……？[r]嗅嗅……嗅嗅……[l][hide][cm]",
+        "charaName": "【沃夫加】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]和外面一样，不都是这些砂蜘蛛遗体的骚臭味……[r]啊。[l][hide][cm]",
+        "charaName": "【沃夫加】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这一小撮是腿肉。还没有完全失水，紧致而富有弹性。[r]这一撮是头部的肉。带了点绿色的粘液，是它们的毒素原浆。[r]这团是腹部内脏，带了一点肠道和粪便。[l][hide][cm]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]你还真是吃肉的专家。[r]但这也就是说……[l][hide][cm]",
+        "charaName": "【茜塔】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……这些是砂蜘蛛的残骸。[r]在我们之前就有了。[l][hide][cm]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]这个味道……[r]大家，小心！[l][hide][cm]",
+        "charaName": "【沃夫加】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]我的树叶……在颤抖。[r]有什么……要过来了……[l]",
+        "charaName": "【芭杜尔】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_153",
+            "text": "握紧武器……！"
+          },
+          {
+            "tag": "tag_153",
+            "text": "看来还有个大家伙……！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[cm][show]（吼声）——！[l][hide][cm]",
+        "charaName": "【？】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]这还真是……蛮大的……[l][hide][cm]",
+        "charaName": "【茜塔】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]是它……在这里筑巢、吃掉成年的同类……[r]是为了……孵化那些卵……[l][hide][cm]",
+        "charaName": "【芭杜尔】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不干掉这家伙……就没完了是吧。[l][hide][cm]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]虽然巨大，但也并非不可战胜。[r]只是砂蜘蛛的话，就没什么好怕的。[l][hide][cm]",
+        "charaName": "【茜塔】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "text": "[show]退路暂且通畅。[r]契约主，我们该怎么做？[l]",
+        "charaName": "【沃夫加】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_159",
+            "text": "我们执行任务。"
+          },
+          {
+            "tag": "tag_159",
+            "text": "我们履行契约。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好。储备粮，我们上——！[l][hide][cm]",
+        "charaName": "【米托拉】"
+      }
+    }
+  ],
+  "script": "demo1006_4",
+  "des": "demo1006_4"
+}

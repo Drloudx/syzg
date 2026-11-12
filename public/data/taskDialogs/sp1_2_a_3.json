@@ -1,0 +1,643 @@
+{
+  "des": "战斗后",
+  "script": "sp1_2_a_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……好、好强！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼，还好我米托拉大人够厉害。要是换了一般人，怕是三两下就被打倒了。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……看来每个时代都有英杰出世，本宫是有些小觑几位了。[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过，既然你有如此实力，想必你也能看清楚，本宫对你们没有恶意了？[l]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_74",
+            "text": "的确如此。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉……？[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯～如果是一对一还好说，但要在和你战斗的时候保住他们两个，我还真没那个把握了。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]刚才你至少有两次机会能够重伤我们这位大小姐，但你却并没有出手……对吧？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听到你的同伴怎么说的了吗？这位“大小姐”？[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然误会解除，你是不是应该对本宫说些什么？[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……呜呜！！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我、我知道了！刚才是我误会了……我向你道歉……对不起。[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，知错能改，善莫大焉。[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]能够正确地认识自己的错误，你就已经比九成九的愚蠢贵族更加睿智了。[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……这副居高临下的口气，说得好像你对“贵族”很了解似的……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然时间过去了很久……但本宫依稀觉得，本宫生前的样子，应该也是一名贵族吧。[l]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_75",
+            "text": "从刚才起我就一直很在意……"
+          },
+          {
+            "tag": "tag_75",
+            "text": "你一直自称“本宫”是……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]失礼了。因为太过专注于体验这副身体的奇妙之处，本宫居然忘了自我介绍。[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……既然已经身为魔物之躯，再用生前的名号就不太妥当了……[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这样吧……你们可以称呼本宫“斯卡莉安”……[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]斯卡莉安？这是你新想的名字？我们不打不相识，你就告诉我们一个假名？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个名字确实是本宫刚刚才取的，但说是假名就太过分了。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟本宫也说不准，现在和你们对话的“这个意识”，究竟是这副躯体的主人死而复生，还是继承了她记忆和思维，在这具骸骨上重新诞生的物灵呢。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然如此，不如换个新名字，也算是和生前诀别，重新上路了。[l]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "代表“骸骨”的“斯卡”……"
+          },
+          {
+            "tag": "tag_27",
+            "text": "还有贵族女名常用词尾的“莉安”……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]噢！所以这个名字的意思就是……“骨头贵女”，对吧！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]聪明，但没什么艺术细胞。本宫更希望你们把它翻译成……“罪骨公主”。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]罪……骨……公主？[l]呃……“公主”是什么啊？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大小姐，公主大概是什么等级的贵族呀？比你那个什么女伯爵还强吗？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你是在嘲笑我吗！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]公主是国王的女儿！是王族！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]希斯珀利亚最鼎盛的时候也只敢自称伯爵，离王族还差得远呢！更别说整个卡露蒂亚就只剩克里斯汀一个国家，哪来的那么多王族啊！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦哦！我懂了！所以“骸骨”和“贵女”都对上了！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？等等！那“罪”呢？“罪骨公主”的“罪”又是指的什么？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这不过是为了纪念这具身体生前的经历。具体内容就不足为外人道了。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好吧～你都这么说了，估计也没什么意思。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来误会都解开了。那就最好不过了。[l]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]怎么了？你有什么问题吗？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "倒也不是什么大问题……"
+          },
+          {
+            "tag": "tag_42",
+            "text": "只不过……误会真的解开了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]…………[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这……[l]对、对啊！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]差点被你蒙混过去了！刚才说了这么多，结果也只证明了你对我们没有杀意！你的身份我们还一点都不知道呢！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对啊！这么一说……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你真的不是吸血鬼的手下……呃……或者盟友吗？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然不是。本宫生前没有，现在也没有听人号令的爱好。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]和你们一样，本宫也只是一介访客，顶多只是有一些特殊的目的，如此而已。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]特、特殊的目的？你是来干什么的？难道……[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫是来……收回属于本宫的财产。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]回收财产？果然是无恶不作的吸血鬼！连死灵都是受害者吗！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]受害者？看来你似乎有些误解。[l]不过听你的口气，你似乎是来找此地主人的麻烦？[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫以为……我们的目的，或许有所重合。接下来的路程，不妨彼此照应、一路同行？[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁、谁要和你这种可疑的家伙一起走啊！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然已经没什么“误会”，那咱们就大路朝天，各走一边——[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果本宫得说……“那可不行”呢？如此智勇双全的来客，本宫无论如何也得把你们置于视线之内。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫无法承受被搅局的风险。对你们而言，不也是一样吗？你们真的敢让本宫这样的“可疑人物”独自行动？[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]若是此地真有你们寻找的“吸血鬼”……若是本宫当真成了它的盟友，你们的下场又会如何？[l]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_60",
+            "text": "不愧是公主。"
+          },
+          {
+            "tag": "tag_60",
+            "text": "也只能如此了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]不是吧？我们真的要和她一起？本小姐反对！坚决反对！完全反对！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这对你来说，也是好事才对吧？[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫听你自称“本小姐”，似乎还是某位伯爵之后，可举止却如此粗率，可见礼仪教养着实欠缺。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]正好，以我们一行的实力，这次古堡探秘应是毫无风险。本宫也好趁着路上的时间，好好纠正一下你的粗俗习气。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]能够学习到王族的礼仪，对你重振家风应该也算颇有帮助吧？[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你、你——！！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈，看来我们的大小姐也完全无法拒绝公主的要求啊！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]才、才没有呢——！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵，看来我们达成共识了。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然如此，那接下来就有情几位引路吧。本宫虽然有些自保能力，但野外探索却实在不算拿手呢。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那好吧～！说什么古堡，其实和遗迹探索也没什么区别嘛。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然只是临时的同伴，接下来就让我们好好相处吧！[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_73",
+            "text": "请多指教。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那就拜托几位了～[l][cm][hide]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ]
+}

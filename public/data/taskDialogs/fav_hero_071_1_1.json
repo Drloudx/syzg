@@ -1,0 +1,216 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余的招待如何？感觉可还合你心意吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "非常美味！",
+            "tag": "tag_4"
+          },
+          {
+            "text": "感动至极！",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]呵呵，虽然用料不是最好，但也是余精心选定的菜单，你能喜欢就算是余选对了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不过，满意归满意，这么夸张可就太过了哦？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余可是见识过你的手艺的，相比这些不成器的使魔，明明是你更加高竿才对。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "哪有此事。",
+            "tag": "tag_8"
+          },
+          {
+            "text": "这一顿真的很棒。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]呵，毕竟是练习过不知几百次的得意料理，要是还不能拿出成果那可就糟糕了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]但论起厨艺本身，这些家伙还差得远，智能方面还需要余再多多努力呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是吗……",
+            "tag": "tag_11"
+          },
+          {
+            "text": "原来如此。",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]总之，这次余的招待看来还不错，应该算是报答了你们之前将余唤醒的恩情了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "完全足够了。",
+            "tag": "tag_13"
+          },
+          {
+            "text": "简直受宠若惊！",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]哼哼，你喜欢就好！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]这些桌椅板凳、杯盘什么的，就都送给你吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "什么！",
+            "tag": "tag_16"
+          },
+          {
+            "text": "这怎么能行！",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]呵呵，别紧张，你就当是余寄存在这里的也行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]等余再来作客的时候，你就拿这些东西来招待余就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]毕竟以余的身份，再粗劣一些的用品就无法匹配了呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这……",
+            "tag": "tag_20"
+          },
+          {
+            "text": "好吧。",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]很好！看来你不是那种矫情的家伙！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]能力够强，心志也坚，余开始越发中意你了呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_071_1_1",
+  "des": "洛莉安好感1-战役"
+}

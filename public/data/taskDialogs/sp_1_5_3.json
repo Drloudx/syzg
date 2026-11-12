@@ -1,0 +1,538 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嘿嘿……你来了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_62",
+            "text": "不去米托拉那边聊聊天吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]刚刚已经参加过好多吵闹的聚会了……偶尔也要让本小姐休息一下嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]你还记得在营地里，本小姐第一次请求你……帮本小姐探索古堡时的样子吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_61",
+            "text": "记得啊。"
+          },
+          {
+            "tag": "tag_61",
+            "text": "那时候你还很有大小姐的派头。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]派头啊……是啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]那时候本小姐……我，深信自己体内流淌着血族的血……深信只要来到这里，就一定能找到吸血鬼的下落……说不定，还能优雅地完成复仇呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]结果……你也看到了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]希斯珀利亚……我曾经以为的贵族荣耀，承载了我所有的执念。我一直引以为傲的所谓血统，不过都是些虚假的幻想。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_63",
+            "text": "但这并不代表你的努力也是虚假的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]在会客厅的那时……我差点都想要放弃了。你、米托拉，还有斯卡莉安老师……你们没有嘲笑我，反而还把我狠狠拉了一把。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]……我想，好好谢谢你。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_65",
+            "text": "这不像你啊，大小姐。"
+          },
+          {
+            "tag": "tag_70",
+            "text": "别忘了，我们是伙伴呀。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]那——那个——哪有不像啦！我……本小姐……我……就是说……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]对、对呀……我们是伙伴呢。不过，我……本小姐……我……就是说……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]之后，我们可能有一段时间见不到面了吧……我会留在这里一段时间，作为始祖的实验素体……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]那位洛莉安虽然傲慢，但她的学识是真实的。既然我没有天生的血族之血，那我就留在这里，用她的知识和斯卡莉安老师的教导，去重塑我自己的力量。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]等到日后，本小姐一定会亲手复兴一个真实不虚的希斯珀利亚……一个卡露蒂亚最强盛的家族！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]等我完成了这里的试炼，我会变得比现在强大十倍、百倍。到那时候……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]你还会继续做本小姐的“下仆”……不，做本小姐的……“伙伴”吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_72",
+            "text": "不好说。等那时我也比现在强大百倍咯。"
+          },
+          {
+            "tag": "tag_73",
+            "text": "那当然。这也是契约的一部分，对吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]欸——！会变得比本小姐还强吗！那可得再和本小姐订立一次主仆契约了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]哼，算你识相～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]那……你一定要记得啊。记得我们的约定……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]我们一起去重建希斯珀利亚。重建我们的家族……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]——咦、咦咦咦！怎么说起来有点怪怪的！呜哇，好害羞——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂——！我就说怎么找不到你们，原来躲在这儿说悄悄话呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]加尔戈萝好像感知到有人的情绪波动过于剧烈……本宫便顺路过来看看。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哦？看来余的小素体已经含情脉脉地道别完了？既然如此，那就别浪费余的时间，实验设备已经准备好了～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]——唉唉唉唉？！这么快——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你这家伙也太急了吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]贝拉多娜……你已经不再是那个只会哭泣的小蝙蝠了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]{myName}，米托拉。接下来的路，你们也要多加小心。这深渊里，像我们这样活过千年的老怪，恐怕还有的数呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哼～余的年岁还轮不到你多嘴。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不过，既然你们是经历过余考验的契约者，余也期待在未来的某一天，能在余的领地之外见证你们创下的奇迹。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_38",
+            "text": "深渊的秘密，我们一定会全部揭开。"
+          },
+          {
+            "tag": "tag_38",
+            "text": "黄昏后的异变，我们一定会全部解决。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]没错！到时候，我们还要带着变强后的贝拉多娜，去更远的地方冒险呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗯啊！那就这么说定了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]下仆唷，在营地里给本小姐留好房间吧！等本小姐出关的那天，没有丰盛的烤恐兽迎接，本小姐可是会生气的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_57",
+            "text": "一言为定。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫也期待着……和你们的重逢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]要是去营地做客，记得带上余哦。没有余看着，你这老家伙指不定什么时候就尸变啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]呵呵。在那时之前，本宫就会把你捆在棺材里，沉进这魔爪湖的湖底。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]再见啦——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（贝拉多娜跟着洛莉安与斯卡莉安向古堡深处走去……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……呼。虽然时间不长，但这趟冒险还是很刺激的嘛。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_49",
+            "text": "那我们也回去吧。"
+          },
+          {
+            "tag": "tag_49",
+            "text": "我想好好睡上一觉了……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]那我们赶紧——",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "啊！忘记找贝拉多娜要报酬了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你在这儿等等我，我去去就回——！喂，贝拉多娜！大小姐——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你——忘——了——给——钱——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（叹了一口气，看着米托拉消失在了古堡回廊的尽头……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（……突然安静了下来。怎么感觉……有点可怕？）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_55",
+            "text": "米托拉……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_56",
+            "text": "你跑哪儿去了啊……？"
+          },
+          {
+            "tag": "tag_56",
+            "text": "我们一起回去吧……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_58",
+            "text": "不……不要吓我呀？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_66",
+            "text": "呜哇…………"
+          }
+        ]
+      },
+      "key": "option"
+    }
+  ],
+  "script": "sp_1_5_3",
+  "des": "贝拉多娜，怎么了……？"
+}

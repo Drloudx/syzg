@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]好！不过——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]这是咱们之间的小秘密哦～？咱们到安静一点的地方说吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "夏库塔拉-让咱看看你的委托吧。",
+  "script": "fav_hero_008_2_0"
+}

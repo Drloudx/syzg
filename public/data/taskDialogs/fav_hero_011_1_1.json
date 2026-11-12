@@ -2,9 +2,9 @@
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "缇莎",
-        "text": "[show]你们……你们不要靠近缇莎啊——！[l]"
+        "text": "[show]你们……你们不要靠近缇莎啊——！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -21,17 +21,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm][hide]"
+        "text": "[cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "缇莎",
-        "text": "[cm][show]呼……都……都干掉了吗？[l]"
+        "text": "[cm][show]呼……都……都干掉了吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -48,17 +48,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "缇莎",
-        "text": "[cm][show]咦？{myName}？你怎么会在这里？[l]"
+        "text": "[cm][show]咦？{myName}？你怎么会在这里？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -79,17 +79,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "缇莎",
-        "text": "[cm][show]也就是一些小麻烦而已啦！出门的时候被几只史莱姆跟踪了。然后缇莎又看不懂草原的地图，只好跟着感觉找，这才来晚了。[l][cm]"
+        "text": "[cm][show]也就是一些小麻烦而已啦！出门的时候被几只史莱姆跟踪了。然后缇莎又看不懂草原的地图，只好跟着感觉找，这才来晚了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "缇莎",
-        "text": "[show]不过缇莎还是找到你的营地啦，还把追上来的史莱姆也打败了，有惊无险！[l]"
+        "text": "[show]不过缇莎还是找到你的营地啦，还把追上来的史莱姆也打败了，有惊无险！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -110,9 +110,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "缇莎",
-        "text": "[cm][show]呜……缇莎……只是想来找你玩嘛，缇莎知道错了……[l]"
+        "text": "[cm][show]呜……缇莎……只是想来找你玩嘛，缇莎知道错了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -133,21 +133,21 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "缇莎",
-        "text": "[cm][show]嗯！缇莎知道啦！[l][cm][hide]"
+        "text": "[cm][show]嗯！缇莎知道啦！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
-  "des": "缇莎-迷糊小笨蛋-进入战役",
-  "script": "fav_hero_011_1_1"
+  "script": "fav_hero_011_1_1",
+  "des": "缇莎-迷糊小笨蛋-进入战役"
 }

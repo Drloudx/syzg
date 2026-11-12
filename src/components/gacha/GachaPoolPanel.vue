@@ -144,11 +144,12 @@
       <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_name_stay.webp')" alt="" class="period-badge__bg" />
       <span class="g-text g-text--xs period-badge__text">永·久·开·放</span>
     </div>
-    <!-- limitedPeriod (-47,-54)：限时池显示倒计时，底板 `gacha_name_limit` 228×32 -->
-    <div v-else class="g-abs g-layer-ui period-badge" :style="gachaPos(414, 173)">
+    <!-- limitedPeriod (-47,-54) 是 Pivot=Left 的时间文本（414,173）；其子 bg (+47,0) `gacha_name_limit` 228×32
+         实际居中在 (461,173)，与上方 periodType(461,227) 与下方 exchangeBtn(461,111) 中线对齐。 -->
+    <div v-else class="g-abs g-layer-ui period-badge period-badge--limit" :style="gachaPos(461, 173)">
       <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_name_limit.webp')" alt="" class="period-badge__bg" />
-      <span class="g-text g-text--xs period-badge__text">{{ remainingText }}</span>
-      <span class="g-text g-text--xs period-badge__text">后结束</span>
+      <span class="g-text g-text--sm g-text--gold period-badge__limit-time">{{ remainingText }}</span>
+      <span v-if="remainingText !== '已结束'" class="g-text g-text--sm period-badge__limit-over">后结束</span>
     </div>
     <!-- exchangeBtn (461,111)：有礼包入口时显示兑换按钮 -->
     <button
@@ -211,8 +212,10 @@
       />
       <span class="g-text g-text--sm pool-tab__label">{{ item.name }}</span>
       <template v-if="tabTime(item)">
-        <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_page_time.webp')" alt="" class="pool-tab__time-icon" />
-        <span class="g-text g-text--xs g-text--gold pool-tab__time">{{ tabTime(item) }}</span>
+        <div class="pool-tab__time-bar">
+          <img :src="getImageUrl('/images/HeroPoolPanel_Atlas/gacha_page_time.webp')" alt="" class="pool-tab__time-bg" />
+          <span class="g-text g-text--xs g-text--gold pool-tab__time">{{ tabTime(item) === '已结束' ? '已结束' : `${tabTime(item)} 后结束` }}</span>
+        </div>
       </template>
     </button>
 
@@ -348,7 +351,7 @@
  *   - 未实现卡池物品格 `itemTemp`、蜡烛/灯光粒子与 3D 演出，用 CSS 近似；
  *   - 新增「音效开关 / 模拟说明 / 重置」三个本页控件（游戏内无对应元素）。
  */
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import GachaStage from './GachaStage.vue'
 import { gachaPos } from '../../utils/gachaLayout'
 import { getImageUrl } from '../../utils/env'
@@ -394,15 +397,22 @@ const isPermanent = computed(() => {
   return (closes - Date.now()) / 86400000 >= 365
 })
 
-/** 限时池倒计时文案（游戏 `ExtentionMethod.TimeFormat3`，此处按天/小时给出可读剩余）。 */
+/**
+ * 限时池倒计时文案：严格对齐源码 `ExtentionMethod.TimeFormat3`——**只输出单一时间单位**
+ * （≥1 天只显示「N 天」，不足 1 天显示「N 小时」，再不足显示「N 分钟」），
+ * 绝不出现「X 天 Y 小时」这种拼接。
+ */
 const remainingText = computed(() => {
   const closes = Number(props.pool.closesAt)
   if (!Number.isFinite(closes)) return ''
   const remain = closes - Date.now()
   if (remain <= 0) return '已结束'
-  const days = Math.floor(remain / 86400000)
-  const hours = Math.floor((remain % 86400000) / 3600000)
-  return days > 0 ? `${days} 天 ${hours} 小时` : `${hours} 小时`
+  const mins = Math.floor(remain / 60000)
+  if (mins < 60) return '1 分钟'
+  const hours = Math.floor(mins / 60)
+  if (hours < 24) return `${hours} 小时`
+  const days = Math.floor(hours / 24)
+  return `${days} 天`
 })
 
 /** 有礼包入口才显示兑换按钮（对应 `exchangeBtn.SetActive(!string.IsNullOrEmpty(packDisplay))`）。 */
@@ -433,16 +443,18 @@ function tabSliceClass(item) {
   return tabSprite(item) === 'gacha_page' ? 'g-slice--tab' : 'g-slice--tab-sp'
 }
 
-/** 页签倒计时：永久池不显示（对应 `Time`/`TimeIcon` 的 SetActive）。 */
+/** 页签倒计时：永久池不显示；限时池按源码 `HeroPoolUI` + `ExtentionMethod.TimeFormat5` 输出单级单位（N天 / N小时 / 1分钟）。 */
 function tabTime(item) {
   const closes = Number(item.closesAt)
   if (!Number.isFinite(closes)) return ''
   const remain = closes - Date.now()
   if (remain <= 0) return '已结束'
   if ((remain / 86400000) >= 365) return ''
-  const days = Math.floor(remain / 86400000)
-  const hours = Math.floor((remain % 86400000) / 3600000)
-  return days > 0 ? `${days}天 ${hours}时` : `${hours}时`
+  const mins = Math.floor(remain / 60000)
+  if (mins < 60) return '1分钟'
+  const hours = Math.floor(mins / 60)
+  if (hours < 24) return `${hours}小时`
+  return `${Math.floor(hours / 24)}天`
 }
 
 /** 单抽 / 十连按钮与货币条：与招募结果一览共用同一构建器（utils/gachaCurrency.js）。 */
@@ -463,6 +475,10 @@ function upAvatar(candidate) {
     if (plain) return `/images/HeadIconAtals/at${String(plain[1]).padStart(3, '0')}_0.webp`
     const variant = /^new_hero_0*(\d+)$/.exec(typeId)
     if (variant) return `/images/HeadIconAtals/at${String(variant[1]).padStart(3, '0')}_1.webp`
+  } else if (props.kind === 'pet') {
+    // 魔物蛋的「指定魔物蛋 / 概率详情」头像显示**成体魔物**图（colect_mon_XXX），不是蛋图。
+    const m = /^pet_0*(\d+)$/.exec(typeId)
+    if (m) return `/images/PicHandBookPanel_Atlas/colect_mon_${String(m[1]).padStart(3, '0')}.webp`
   }
   return candidate?.icon ?? ''
 }
@@ -613,6 +629,31 @@ function upAvatar(candidate) {
   position: relative;
   /* prefab UILabel：永·久·开·放 = #cfba96（ColorString[2]）18px */
   color: #cfba96;
+  white-space: nowrap;
+}
+
+/* 限时倒计时：底板 `gacha_name_limit` 228×32 左侧自带时钟图标（x=43..60）。
+   prefab `limitedPeriod`（Pivot=Left, #ffd270）落在距底板左缘 67px（贴近时钟右侧）；
+   子项 `over`（"后结束", Pivot=Left, #cfba96）相对 `limitedPeriod` 偏移 +64px → 距左缘 131px。 */
+.period-badge--limit {
+  display: block;
+}
+
+.period-badge__limit-time,
+.period-badge__limit-over {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.period-badge__limit-time {
+  left: 66px;
+}
+
+.period-badge__limit-over {
+  left: 131px;
+  color: #cfba96;
 }
 
 .exchange-btn {
@@ -688,20 +729,31 @@ function upAvatar(candidate) {
   color: #e6d2af;
 }
 
-.pool-tab__time-icon {
+/* 页签顶部倒计时：prefab `TimeIcon` pos=(81,30) `gacha_page_time` 128×20（左端自带时钟图标，
+   左缘落在 x=+17，时钟图标起于 +18，与下方 4 字池名左缘 +18 对齐；
+   纵坐标因底板顶部含 6px 外边距，取 -27px 使上缘与页签外框齐平不外溢）；
+   `Time` pos=(42,30) pivot=Left，相对底板左缘偏移 42-17=25px。 */
+.pool-tab__time-bar {
   position: absolute;
   left: calc(50% + 81px);
-  top: calc(50% - 16px);
-  width: 16px;
-  height: 16px;
+  top: calc(50% - 27px);
   transform: translate(-50%, -50%);
+  width: 128px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.pool-tab__time-bg {
+  position: absolute;
+  inset: 0;
+  width: 128px;
+  height: 20px;
 }
 
 .pool-tab__time {
-  position: absolute;
-  left: calc(50% + 42px);
-  top: calc(50% - 30px);
-  transform: translate(-50%, -50%);
+  position: relative;
+  padding-left: 25px;
   white-space: nowrap;
 }
 
@@ -759,10 +811,12 @@ function upAvatar(candidate) {
 
 .up-slot__icon {
   position: relative;
-  top: 8px;
+  /* 头像垫在金环 at_f_N 之下（z-index 1 < 环 2），由环作描边盖住边缘：
+     头像接近/填满 100px 画布，菱形边缘被环盖住形成金环描边效果（对齐游戏）。 */
+  top: 0;
   z-index: 1;
-  width: 76px;
-  height: 76px;
+  width: 84px;
+  height: 84px;
   object-fit: contain;
 }
 

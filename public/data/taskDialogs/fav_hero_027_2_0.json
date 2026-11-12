@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]好耶，{myName}有空帮忙真是太好啦！那就麻烦你帮忙了唷。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]工作内容就是打扫卫生、端茶上菜。报酬都准备好啦。请好好加油，服务好每一位客人吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]好啦，我们先上车吧！具体要注意的事情路上跟你说，都不是什么难事，照做就好啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]首先呀，就是面对发火的客人，一定要时刻保持着笑容，然后……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "梅莉莉-营地对话【我们一起去驿站吧。】",
+  "script": "fav_hero_027_2_0"
+}

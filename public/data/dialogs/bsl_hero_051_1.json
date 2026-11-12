@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿莱克西娅",
+        "text": "[show]{myName}，真高兴能来到你的营地。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿莱克西娅",
+        "text": "[show]这里没有喧闹的争吵，只有宁静的微风，这种感觉……真的就像你说的，是一场永不结束的“假日旅行”呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿莱克西娅",
+        "text": "[show]对了，这是我的一点心意，虽然我不再能动用那份强大的神力，但我会尽我所能一直守护你。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿莱克西娅",
+        "text": "[show]愿在接下来的时光里，我们能一起见证更多的美景，书写更多动人的故事……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_051_1",
+  "des": "bsl_hero_051_1"
+}

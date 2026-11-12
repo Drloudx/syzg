@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-11 ｜ **最近代码提交**：`1e4cc798` ｜ **分支**：`main`
+**核对时间**：2026-11-12 ｜ **最近代码提交**：`1e4cc798` ｜ **分支**：`main`
 
 ---
 
@@ -24,16 +24,24 @@
 | 工作区 | **有未提交改动**：`PetsView.vue`/`UiStatGrid.vue` 是**另一会话进行中的任务**（表头/特性表格增强、`getPetRanges`、`stackedMobile`），勿覆盖；其中「变异图回退本体图」小改动未单独提交 |
 | 生产 D1 迁移 | 第 1~13 步已执行；2026-11-06 补齐 `home_banners`/`home_links`/`home_heroes`/`home_blocks` 数据并重排公告 id |
 | 线上健康 | `production-smoke.mjs` **18 / 0**（2026-11-01 口径，此后未复跑） |
-| 数据源版本 | **1.7.15 付费测**（`resources.myrzg.com/myrzg/update_dyd`）；2026-11-11 又拉取 MuMu 设备热更配置 39 张 |
-| 单测 | `npm run test:unit` **454 项全绿**（2026-11-11 核对） |
+| 数据源版本 | **1.7.15 付费测**（`resources.myrzg.com/myrzg/update_dyd`，cdnVer 22 / codeVersion `D3C5D1604C6A7B81EE583ABA658AF7E0`）；2026-11-12 凌晨已按最新 APK + 热更全量重拉：配置表 149 张、剧情 3575、图片图集+单图、源码 2663 .cs；招募三测池已删、全走原表。**仅本地，未提交未推送** |
+| 单测 | `npm run test:unit` **468 项全绿**（2026-11-12 核对） |
 | 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；新增「皮肤/变异模型官方数据缺失」（pet_101 变异与本体一致、skin060a 骨架为 Spine 4.3.23） |
-| 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修） |
+| 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修）。**2026-11-12 新增**：古堡(圣经)贩售蛋池封面 `gacha_pet104` 大图暂缺→回退 `gacha_egg0`（在 APK 未索引压缩 bundle，待扫）；068 冲刺等旧数据「血量阶梯」条件当前全源查无（属旧数据特有，不补）；少数召唤物技能图标/立绘仍按主形态复用 |
 
 ### 待推送的一批
 
-**本轮数据更新（未提交）**：数据源 1.7.15 + 角色图鉴 42 个（净增 8 个可见角色）+ 怪物图鉴图片补齐
-+ 5 处解析器修复 + 9 条测试基线更新。`npm run test:unit` 442/442、`npm run verify` 全通过。
-另有 1 笔未推送 docs 提交 `da38f02f`。
+**本次会话（2026-11-11 夜 ~ 11-12 凌晨，全部未提交、未推送）**：游戏数据按 1.7.15 最新包/热更全量重拉 + 招募/图鉴多处修正。核心见 [开发日志 2026-11-11](../history/dev-logs/2026-11/2026-11-11.md) 22:00~02:05 各节：
+
+- **工具链改源**：`游戏数据/工具/common.py` 的 `CDN_BASE` → `resources.myrzg.com/myrzg/update_dyd`（旧源停 1.6.6）。
+- **数据全量重拉**：Addressables 14239 资源 → 配置表 149 张 / 剧情 3572 / 图片切片 / 源码 2663 .cs；新角色卡面/碎片图集从**未索引 bundle** 导出（catalog 漏登记 HeroGachaShowPanel/InfoPanel）。
+- **招募**：新角色 Q版小人 Spine 补齐（Npc_030/032/047/060/061/069/071）；骨架缺 `win/win_idle` 的角色加动画兜底；恢复 `exchangeCosts`（契约书×1 或 神晶×200 的兑换链）；默认改四测、**删除三测卡池、全部改由原表生成**（costs/bonus 从 consume/reward 出，不再依赖 gacha-baseline）；魔物池 4测=特别贩售→御卫贩售→古堡贩售→常规贩售，活动蛋池货币条同特别贩售；阿迪拉解除隐藏。
+- **角色图鉴**：多召唤物支持（德莉「征号召令」近战+远程两种）+ 召唤物自身技能 + 分裂单位数值展示。
+- **怪物图鉴**：移除 `time`(triType 1)「每隔约X秒」释放条件（与技能 CD 冲突，如蛛丝拉取 cd15 vs AI 12s），保留冷却+攻击次数/受击次数/血量/死亡条件；数据六项全量核验 0 不符。
+
+`npm run test:unit` **468/468**、`npm run verify` 全通过。**未提交**（ahead 60 不变，等官方 12 号新版本后统一处理）。
+
+> 早前未推送 docs 提交 `da38f02f` 仍在队列。
 
 ### 上次已推送
 
@@ -188,6 +196,47 @@
 
 ---
 
+## 三·补 本次会话交接（2026-11-11 夜 ~ 11-12 凌晨，全部未提交）
+
+### 新建 / 修改的文件
+
+| 文件 | 改动 |
+| --- | --- |
+| `游戏数据/工具/common.py` | `CDN_BASE`/`UPDATE_BASE` → `https://resources.myrzg.com/myrzg/update_dyd`（旧 `myrzx2.cdn.comiai.com` 停 1.6.6） |
+| `游戏数据/配置表/petPool.json`、`petPoolTime.json` | 从模拟器热更 Config 重新解密覆盖（补 pool5 圣经贩售，共 5 池） |
+| `scripts/parse/gacha.mjs` | 删三测（`HERO_POOLS`/`PET_POOLS` 仅留 4ce）；`costs`/`bonus` 改由原表 `consume`/`reward` 生成；补 `buildExchangeCosts`（契约书/氪金/神晶兑换链）；魔物池 4 池顺序；删 `readBaseline`/`readThreeCePool` 死代码 |
+| `src/views/GachaView.vue` | `era` 固定 `'4ce'`；删 `selectEra` 与切换逻辑；`syncToRoute` 不再按 kind 删 era；默认四测 |
+| `src/components/gacha/GachaPoolPanel.vue` | 移除「切换卡池」下拉（模板/CSS/prop/emit）；`upAvatar` pet 分支返回成体魔物 `colect_mon_XXX`；`.up-slot__icon` 84px contain |
+| `src/components/gacha/GachaTipPanel.vue` | 概率详情 `upAvatar` 同改；`.tip-up-slot__icon` 84px |
+| `src/utils/gachaCurrency.js` | 货币条判据：池名含「特别」**或** 有 `exchangeCosts.gachaKeExchangeRate` → 券/氪金/神晶 |
+| `src/utils/gachaSpinePlayer.js` | `play()` 加动画兜底（缺 `win/win_idle` 时回退 `idle_front` 循环） |
+| `src/utils/heroMechanics.js` | 新增 `resolveSummonConfigs`（收集所有 `*SummonData`，兼容多召唤） |
+| `src/utils/heroParser.js` | 技能/天赋改用 `resolveSummonConfigs` → `summons` 数组；`attachSummonSkills` 附召唤物自身技能 + 分裂单位 `split` |
+| `src/views/HeroesView.vue` | 多召唤物渲染 + 自身技能/分裂单位行；`.mechanics-label` 列宽 58→76（移动端 52→68） |
+| `src/utils/monsterParser.js` | `extractSkillTriggerConditions` **移除 time(triType1) 释放条件**（与 CD 冲突）；保留攻击次数/受击/血量/死亡 |
+| `src/config/blacklist.js` | 解除 `hero_047` 阿迪拉隐藏 |
+| `tests/unit/gacha-sim.test.mjs` | 引用改 4ce 池；池名单去 3ce；UP 保底 hero_064→hero_060 |
+| `tests/unit/source-completion-followup.test.mjs` | pet_098 由新池获来源，移出"无来源" |
+| `tests/unit/partner-mails.test.mjs` | hero_047 解除隐藏，不再断言其邮件消失 |
+| `docs/history/dev-logs/2026-11/2026-11-11.md` | 追加 22:00~02:05 各节 |
+| `public/data/parsed/*`、`public/images/*`、`public/fonts/*` | 数据产物 + 新角色图集/Spine + 蛋池封面 + 字体子集（4517 字） |
+
+### 检查结果（本次已通过）
+
+- `npm run test:unit` **468 / 468**；`npm run verify` **exit 0**（含 build）。
+- 招募页实拍：默认四测（公主/幽夜/常规）、消耗「契约书×1 或 神晶×200」、新角色 Q版小人可动、魔物池 4 池顺序与货币条正确。
+- 角色图鉴 hero_060：两种召唤物属性 + 自身技能 + 分裂数值全部显示。
+- 怪物图鉴数据核验（对照 fileMon/mon/skill/ai）：覆盖 75/75、冷却/伤害/基础属性/血量条件/攻击次数六项 **0 不符**。
+
+### 待核实 / 待补（不阻塞）
+
+1. **古堡(圣经)贩售封面 `gacha_pet104` 大图**：在 APK 未索引压缩 bundle，反复 grep 未命中；暂用 `gacha_egg0` 回退。<br>解法：`游戏数据` 下按 `_big.txt`（500KB+ bundle 列表）逐个 `UnityPy` 读 `Texture2D` 名 `gacha_pet104`，命中后导出到 `public/images/gacha/gacha_pet104.webp`。
+2. **068 魔爪巨蟒「冲刺」血量阶梯（90/75/60/45/30/15%）**：当前全源（APK/热更/1.6.1 归档）查无此配置，属旧数据特有；用户决定不补。若将来要补需按游戏截图手工加 special override。
+3. **时间类释放条件**：已按用户方案 A 从怪物图鉴移除（原「每隔约X秒」与技能 CD 冲突）。若日后要恢复"释放频率"信息，需先解决 CD 与 AI `noCd` 口径的展示矛盾。
+4. 数据源全量重拉涉及大量 `public/data/**`、`public/images/**` 未提交改动（约 1400+ 文件），提交前需确认与另一会话的 `PetsView.vue` 等改动不冲突。
+
+---
+
 ## 四、证据入口
 
 | 要确认什么 | 跑 / 读 |
@@ -204,7 +253,7 @@
 | 后台权限矩阵 | `node --no-warnings tests/api/admin-roles.mjs`（**164** 条，需 `npm run dev:api`） |
 | 剧情上下文接口 | `node --no-warnings tests/api/comment-context.mjs`（21 条） |
 | 迁移演练 | `npm run test:migration`（**67** 条） |
-| 单测 | `npm run test:unit`（**360** 条） |
+| 单测 | `npm run test:unit`（**468** 条） |
 | **深色模式是否引入位移** | `npx playwright test tests/ui/dark-mode-layout.spec.js --project=desktop`（6 条，守几何不变 + 盒模型不变） |
 | 后台 UI | `npx playwright test tests/ui/admin.spec.js`（**58** 条） |
 

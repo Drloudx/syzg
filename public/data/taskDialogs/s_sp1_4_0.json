@@ -1,0 +1,241 @@
+{
+  "script": "s_sp1_4_0",
+  "des": "（小蝙蝠在吆喝着什么……）",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们，别躲躲藏藏的，出来和我一起去打扫卫生。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！那只蝙蝠！别躲了！平时吃城堡喝城堡的，关键时刻躲一边去算什么？[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱！吱吱吱——！[l][cm]",
+        "charaName": "害怕的蝙蝠"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……你们这些蠢蝙蝠！回头我就跟厨房说，让他们扣除你们的伙食！[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……怎么搞个卫生跟世界末日一样，那管家一吼所有蝙蝠都在到处乱飞，幽灵也在乱跑……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那是因为它们都是胆小鬼，要是本小姐的眷属，一定会心甘情愿做任何事的。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么会有如此胆小的仆从，连打扫卫生都不敢做，本宫还真是闻所未闻。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱！吱吱吱！[l][cm]",
+        "charaName": "害怕的蝙蝠"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？刚刚那个蝙蝠飞走之前好像对我们说了什么，有人能听懂吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐能听懂一些，大致意思好像是……你们行你们上，别在那里说风凉话。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它什么意思嘛！搞个卫生有什么难的，上就上！我们去找那个总管问问。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可要本小姐去搞卫生……这也太委屈了。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你不是要复兴家族吗？复兴家族需要钱，你可以通过打工让洛莉安给你钱嘛。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有道理唉，为了家族复兴，本小姐就勉为其难了。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉……每次搞卫生都是这样，真是麻烦……[l]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你好……",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯？你们是洛莉安大人的客人，抱歉让你们看到城堡丢人的一面了……[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没关系，我们也不理解为什么一搞卫生所有魔物都跑掉了，所以特意来看看。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果可以的话，我们也不是不能帮忙，只要你们付得起报酬就行。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？你们想要来帮忙吗？好吧……我问问洛莉安大人。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余忠实的眷属，呼唤我来此所为何事？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是这样的，几位客人说可以帮着一起大扫除，只要支付报酬就好，大人觉得要怎么安排？[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么回事啊……没关系，他们也是契约者嘛，余批准了。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，既然洛莉安大人同意了，那请跟我来吧，我带一批清洁工和你们一起去餐舍。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？不是有魔物来搞卫生吗？怎么你还要找更多人啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个……他们只是纯粹的清洁人员，不负责战斗和沟通。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之等你们到了现场就知道了，餐舍的托利斯会说清楚的。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么有种不好的预感……算了，去餐舍找托利斯是吧，我们跑一趟就知道情况了。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

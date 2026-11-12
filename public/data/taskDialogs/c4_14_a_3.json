@@ -1,27 +1,26 @@
 {
-  "script": "c4_14_a_3",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]快看，是罗姆洛敏和老鹿头！[l][cm]"
+        "text": "[show]快看，是罗姆洛敏和老鹿头！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]艾伦瑟大人……好像被罗姆洛敏的邪法困住了！我们必须赶快救祂！[l][cm]"
+        "text": "[show]艾伦瑟大人……好像被罗姆洛敏的邪法困住了！我们必须赶快救祂！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]救是要救……但这里还有不少的绊脚石啊……[l]"
+        "text": "[show]救是要救……但这里还有不少的绊脚石啊……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -38,28 +37,29 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]听到了吗？我的搭档可是要我速战速决呢！你们这些愚蠢的家伙，要是不想丢掉性命的话……[l][cm]"
+        "text": "[cm][show]听到了吗？我的搭档可是要我速战速决呢！你们这些愚蠢的家伙，要是不想丢掉性命的话……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]就统统给老娘滚开呀！[l][cm][hide]"
+        "text": "[show]就统统给老娘滚开呀！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "c4_14_a_3",
   "des": "c4_14_a_3"
 }

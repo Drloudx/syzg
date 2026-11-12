@@ -1,0 +1,102 @@
+{
+  "script": "s_sp1_6_2",
+  "des": "（米莉罗在恳求着……）",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎呀……阿莲娜妹妹……就再给一点嘛，我这边急着要……[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你上次就问我要了五大箱，结果不到一个月就用完了，这次又来找我要那么多，你是把我当大冤种了吗？[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且我这边也没材料给你做了，巧妇难为无米之炊懂吗？[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那你把炼制配方告诉我，我回去自己弄出来。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]材料和配方都给你，不过缺了3株药浆草，这个你自己去弄吧。[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，谢谢啦，我回去自己弄。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……你要回去自己把颜料弄出来吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呀，你们也来了啊……自己弄那是可以的，不过我现在这状态没法去外面拿药浆草。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，能拜托你们去带3株药浆草回来吗？我给你们报酬。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]3株药浆草是吧，这个倒是没问题。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，那就拜托你们了，我就在画廊把东西都准备好，等你们把药浆草拿回来。[l][cm][hide]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]我一直在找当年救我的那位大姐姐。真见到她时，我想告诉她，那个吓得发抖的小女孩已经能救别人了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]你问见过她以后要去哪里？当然是回来呀。营地有你，也有吃不完的肉……这么好的地方，我才舍不得丢下。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]万一那个组织不允许我回来？那我先和他们讲道理。讲不通的话……我就偷偷溜出来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]毕竟要是没有你，我大概还会一个人躲在树影里，假装自己不在意有没有人陪。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]不管我的过去如何，我对那个组织的期望如何，我都还是会把你放在首位。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]毕竟……我已经离不开你啦。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_032_09",
+  "des": "亲密"
+}

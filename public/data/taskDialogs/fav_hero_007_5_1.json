@@ -1,0 +1,305 @@
+{
+  "script": "fav_hero_007_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（你推开驿站旅店的大门，和上次参观演出时的热闹相差无几，但妖精舞台演出的话题已经重新成为了酒客们之间的热议。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（拉碧丝带领你来到舞台的一侧，丰盛的佳肴香味扑入鼻尖。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我都听说了！不用客气，和我们一起享用庆功宴吧，{myName}！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……可以动了吗？肚子开始咕咕叫了……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]舞者可是要保持身材的哟？可可娜也不想被笑话动作慢吞吞的吧？[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过今天是特例。那么，庆祝“妖精舞台”演出圆满重获人气，干杯——！[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]干杯！[l][cm][hide]",
+        "charaName": "众人"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（你和舞团的各位一同度过了一段愉快的时光……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（庆功宴结束后，你和拉碧丝来到驿站旅店附近的空地。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那边先交给年轻的后辈们吧，我偶尔也想偷一会儿懒呢。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，古卷研究的工作进展不错，再过不久就会有更精彩的演出等着{myName}来观看了。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}，你觉得“妖精舞台”现在还欠缺点什么吗？[l]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "现在就很好。",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是吗？我说的不是表演方面，而是舞台氛围之类的……[l]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "增加舞蹈效果的工具？",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯？有这么神奇的东西吗？[l]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（将准备好的礼物交给拉碧丝）",
+            "tag": "tag_22"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]等等， 突然送礼物什么的，我欠你的人情岂不是更多了……！[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]把它装饰到舞台上能够自由控制聚焦的闪光，让当前的舞者更为瞩目……这么厉害的东西居然是{myName}亲手制作的。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然知道你是深渊里小有名气的工匠，但我还是第一次见识到你的技术运用在实际方面。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谢谢！我会好好利用，让它在妖精舞台上发挥出全部的作用。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……还有一件重要的事，我不知道该如何传达给你。[l][cm][hide]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（拉碧丝不好意思地扭过头。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]舞团的大家也向我提问了，但我觉得需要征求{myName}的意见……[l][cm][hide]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你——愿意成为妖精舞台的荣誉制作人吗？[l]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "荣誉制作人是什么？",
+            "tag": "tag_32"
+          },
+          {
+            "text": "我愿意。",
+            "tag": "tag_34"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]妖精舞台没落的时光里，是你一直支援我鼓励我才拥有了如今的成果，并且以后会因为你的帮助变得更加美好。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]荣誉制作人是为了将你冠名在妖精舞台的成员名单上，好让观众们知道妖精舞台的成功不完全是舞团成员的功劳，也有你的一份。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没想到你居然真的答应了！[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这意味着今后我还会再因舞团的事来麻烦{myName}，拜托你帮忙制作可以用得上的道具哦？[l]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我很乐意帮上拉碧丝的忙。",
+            "tag": "tag_37"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]{myName}……[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那么……合作愉快，{myName}！妖精舞台的未来，还请你多多指教～[l][cm][hide]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "拉碧丝-进入战役【fav_hero_007_5】"
+}

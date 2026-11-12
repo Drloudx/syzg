@@ -1,0 +1,465 @@
+{
+  "script": "sp_2_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]那个，欢迎大家来我家作客姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]虽然已经有所准备了……这地方居然比我想象中还要破啊！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]确、确实是让人目瞪口呆。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]我还以为智慧魔物的生活状态多少都会有些文明属性，结果实际情况却是这么……这么野性十足么？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]不不不！不要以偏概全，用德莉来代表所有智慧魔物啊姆！我可背不起这个风评被害的黑锅的姆！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]其实……这个单纯就是……就是因为德莉不太懂怎么建造营地啦姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]以前住在秘境里的时候还好点姆，等被赶出来之后，光是能找到这么个藏身处，勉强搭起来这些小屋子，就已经费了老鼻子的劲了姆！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "那确实是辛苦你了。"
+          },
+          {
+            "tag": "tag_10",
+            "text": "野外求生确实很艰难。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[cm][show]咦？你、你能明白姆？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]因为这家伙也被人追杀了好一阵子啊！论起野外躲猫猫，{callName1}的经验可是你的几十倍呢！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]哇！那可太厉害了姆！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]厉害确实是很厉害，但你们关注的重点错了吧！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]德莉！你刚才说的“秘境”是怎么回事？所谓“被赶出来”又是什么情况？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]嗯……这个姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]其实……直到半个月前，德莉都还住在溪谷深处的森林里姆！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]不光是德莉，还有好多好多的史莱姆的同族，大家全都生活在一起，把那座森林里的秘境，变成了史莱姆王国姆！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]还有这种事？史莱姆……还能组成王国？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]公主史莱姆的支配权能就是这么不可思议的力量。有她们在的地方，当地的史莱姆就会不知不觉地产生强烈的社会性，自发地听从她们的命令和管理。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]呃……那个……其实德莉并没有什么“权能”啦姆……虽然好像是有类似血脉传承的东西，但德莉一直没有完全觉醒，能力也就开发得不上不下姆。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]所以德莉并没有“支配”大家，只是自然而然地和同族们一起生活而已姆。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]不怕你们笑话……其实德莉就连普通的小史莱姆都不太能使唤得动姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]甚至这次之所以离开秘境，也是被同族给赶出来了姆……[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "被同族？"
+          },
+          {
+            "tag": "tag_25",
+            "text": "原来不是因为外敌吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[cm][show]是姆。它叫“蚀渊之触”，是一个很大、很厉害的史莱姆。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]本来……它是个非常温柔可靠的史莱姆。不止是我忠诚的臣子……对于其它的国民都很照顾的姆。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]但从半个月前开始，它就不知为什么总是在生气姆。最后更是发了狂，甚至把人家赶了出来姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]从王国被赶出来之后，我本来想要到人类的村子去看看姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]结果路上碰到的人类，一看到我就想抢我的宝珠，还说要把我卖掉姆！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]所以这就是你设陷阱埋伏我们的原因？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]哈哈……对不起嘛！我也没想得到会弄错人的姆。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]不过这么一来，事情的来龙去脉总算是有眉目了。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]是啊！发狂的魔物，还有未知的异变……{myName}，这可是我们最擅长的领域啊！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "{myName}",
+        "nameSide": "left",
+        "text": "[show]（线索这么明显，实在很难想象那个“蚀渊之触”的突然发狂，和露库希安口中的“危机”没有关系……）[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "看来有必要详细调查。"
+          },
+          {
+            "tag": "tag_36",
+            "text": "果然还是要深入秘境才行。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[cm][show]没错！我就是这么想的。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]不过今天天色也不早了……我们是不是先休息一晚比较好啊？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]可是……这里实在不像是能住人的样子……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]呜呜……都是德莉不好姆！要是德莉能再能干一点就好了姆……[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_41",
+            "text": "没关系。"
+          },
+          {
+            "tag": "tag_41",
+            "text": "修建营地，我才是专业的。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[cm][show]姆？你的意思是，你要帮德莉把营地建好姆？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]这会不会太麻烦你们了姆？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]哼哼，说出来你可别惊讶哦！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]其实这位可是“先时工匠”的传人！营地这种东西，只要用那把工匠锤东敲一下西敲一下就能造好啦！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]只要敲几下就能造好……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]难不成说是传说中的匠器？“跳过步骤，直达结果”的那种……！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]好厉害姆？！只要敲上几下就能变出营地来的姆？那你快点，最好把这一片全都敲一遍吧姆！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_54",
+            "text": "先人的遗产确实令人惊叹。"
+          },
+          {
+            "tag": "tag_54",
+            "text": "但巧妇也难为无米之炊啊。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[cm][show]哦对！这锤子好像并不能凭空变出东西来，终究还是需要材料的。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]光是能简化、乃至省略步骤，这就已经非常了不得了。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]德莉听不太懂姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]不过，你们如果是要材料的话——德莉知道哪里有，现在就可以带你们去姆！[l][cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[hide]"
+      }
+    }
+  ],
+  "des": "破损的营地与伪王的自白"
+}

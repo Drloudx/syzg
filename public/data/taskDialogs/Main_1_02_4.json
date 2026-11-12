@@ -1,0 +1,54 @@
+{
+  "script": "Main_1_02_4",
+  "des": "好事多磨",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "缇莎",
+        "text": "[show]两位，看来你们和桑德主祭聊得很不错呀！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你哪里看出来我们聊得很不错的？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "希尔",
+        "text": "[show]这个……我们确实从他那里得到了一些……呃……教诲……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "缇莎",
+        "text": "[show]对吧？桑德主祭虽然看上去很不好说话，不过内心里其实是个很热心的好人！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "缇莎",
+        "text": "[show]我这边要准备的都已经准备好啦！两位，我们可以出发了吗？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]早就不想在这待着了！要走就快点走吧！[l][cm]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]现在看来，要把城堡完全修好，似乎还要好几年的时间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]这段时间闲着也是闲着，不如做些只能在当地开展的研究吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]说起来，这地方似乎有很多工匠一系留下的遗迹？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]你好像对这些东西很感兴趣？遇到问题，向余求助也未尝不可哦？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_071_9",
+  "des": "洛莉安营地闲聊9"
+}

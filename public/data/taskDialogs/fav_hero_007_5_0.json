@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]当然是结束之后立刻赶来{myName}的营地了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]我们还欠一次庆功宴，所以今天……我打算邀请你来驿站旅店，消费全部由我承包！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]夏库塔拉和可可娜已经布置好餐桌了～[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "拉碧丝-哎？拉碧丝今天没有练习吗？",
+  "script": "fav_hero_007_5_0"
+}

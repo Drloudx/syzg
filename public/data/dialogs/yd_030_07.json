@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]你问草原上还有哪里是我没去过的？估计是没有的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]水源、洞穴、能过夜的背风坡，我差不多都记住了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]所以我在想，下一段路该往哪走。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]要不……你来挑吧，只要别选那种一进门就得和几十个人打招呼的地方就好。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_030_07",
+  "des": "阿尔克丝阿尔克丝－亲密1"
+}

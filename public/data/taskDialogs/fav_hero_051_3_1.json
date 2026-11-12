@@ -1,0 +1,319 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]这个东西……看起来和上次的长得差不多啊？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "毕竟算是废物利用。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "其实就是用上次那玩意改造的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]原来是这样，那这东西的用途是？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "我修正了一下上次的思路。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "比起需要连续多次触发的护盾……"
+          },
+          {
+            "tag": "tag_7",
+            "text": "不如选择一次触发、持续生效的方案更加合适。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]所以你这个方案是？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "是悬浮球！"
+          },
+          {
+            "tag": "tag_9",
+            "text": "是反重力力场发生器！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]啊……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]你是说……这东西是一个能够产生反重力力场的装置……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "它可以让人反地心吸力地悬浮起来。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]你让我捋一捋……你的意思是……你准备让我赶路的时候干脆飘在空中……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "只要飘得够高，就不会被打到了，不是吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]你这个思路……要说有没有道理……那确实有点道理……就是不太像是正常人能够想得到的点子……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]咳咳……总、总之，我很高兴你能够为我思考这么多，具体合不合用，还是让我先试试吧……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "情况怎么样？"
+          },
+          {
+            "tag": "tag_20",
+            "text": "这东西好用吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]从结论来说……这东西完全不行！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "啊？"
+          },
+          {
+            "tag": "tag_22",
+            "text": "怎……怎会如此？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]你先别着急，其实功能上，这东西完全符合了设计要求，一旦开启，就能把我悬浮到空中一个相对固定的高度，而且还能如常行走……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]但这东西和所有类似的漂浮类法术一样，都有一个不可忽略的问题……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那就是，一个东西一旦漂浮起来，它对于自然风力的抵抗能力，就会大大减弱了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "啊！"
+          },
+          {
+            "tag": "tag_26",
+            "text": "难道说……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]是的……漂浮确实是很好，但一个人类这么轻的物体，在空中实在是太容易被风吹走了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]如果用作逃命，这当然没问题，但把它当做辅助赶路的道具就有点……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "我明白了……"
+          },
+          {
+            "tag": "tag_29",
+            "text": "这确实是我的疏忽……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]嗯，你明白就好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]总之，我是真的很感谢你为我做了这么多……但这确实不是什么大事，你完全可以先放一放再说……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "做事情总得有始有终嘛。"
+          },
+          {
+            "tag": "tag_32",
+            "text": "放心，我不会勉强自己的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]既然你这么说……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]那好吧……总之一定要以自己的身体为重，我们说好了哦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]要是你把身体搞垮了，我可是会生气的！千万要记好了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "阿莱克西娅-你真是位天才！",
+  "script": "fav_hero_051_3_1"
+}

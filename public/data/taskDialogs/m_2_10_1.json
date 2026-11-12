@@ -1,0 +1,14 @@
+{
+  "des": "m_2_10_1",
+  "script": "m_2_10_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（临时）[l][cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ]
+}

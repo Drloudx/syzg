@@ -1,0 +1,420 @@
+{
+  "script": "sp_2_3_5",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了，该准备的都准备好了。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是时候让我见识一下匠器的威力了。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等、等等！等一下姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？德莉你怎么了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那、那个……可以先让我来试试吗？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然是粘液的话……我、我应该多少可以操纵一下的姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦！居然有人抢着要干活！好呀，那你来试试呀！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜姆姆姆姆——！[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈……哈呜……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……你这个不行啊……粘液动确实是动了，但是动弹两下就没动静了啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……又失败了……我果然还是那么没用姆……[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "没关系。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "任何人也不是一开始就很厉害的。",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]就是，你别看这家伙现在挺有能耐，但他从小开始学当工匠，到现在已经十几年啦！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]刚开始步子慢一点没关系，只要一直走下去就没问题了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯姆……[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这里就交给我吧。",
+            "tag": "tag_21"
+          },
+          {
+            "text": "你们先休息一下。",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好的好的，你去忙吧！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……从刚才开始我就一直想问了……[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你在发动能力的时候，为什么要像那样拿着你的史莱姆宝珠？[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]欸？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦！这东西就是传说中的史莱姆宝珠吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]拿着它施法，有什么问题？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]倒也没有什么大问题，毕竟各人有各人的习惯，外人无从置喙。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只不过这个动作确实有些多余。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为公主史莱姆的权能是植根于灵魂之中的，并不需要任何外物的辅助。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦咦咦咦咦！！是、是这样吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我、我一直以为使用能力的时候宝珠是必须的姆！原、原来不用的吗姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜呜……德莉是不是古往今来最废物的公主史莱姆啊……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]居然连自己的能力都弄不明白……同胞们肯定不会想要有这种无能的首领吧姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对于首领来说，能力确实很重要。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但是，那绝不是说，没有超绝的能力，就不能成为一名合格的领袖。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦……？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]强大，绝不是成为领袖的唯一途径。亲切、温柔、包容……能够让大家追随你的方式还有很多。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果一时找不到变强的路子，从其他方面入手，让自己成为一名值得追随的领袖，也是可以的。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是……这样吗姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然，身为“妖精贤者”，我是不会传授错误的知识的！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]…………[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（哇……气氛好像有点怪怪的，我该说点什么好啊……）[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（对、对了！这种时候有一个万能的话题！）[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来，晚饭吃什么呀？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我在路上稍微收集了一点食材，要不我们趁着{myName}干活的时候，一起把晚饭做出来？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这……这个……烹饪这方面……德莉完全没有经验姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我倒是知道不少食谱，不过妖精的身体要操作人类的厨具还是太为难了。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没关系没关系，你可以把食谱分享出来，由你来指挥我嘛！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这倒是未曾设想过的方法。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行吧！如果你愿意的话——[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就让你见识一下，我从历史上收集的各路美食吧！[l][cm][hide]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "德莉对话：现在就来修补营地吧。"
+}

@@ -1,0 +1,216 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]听说你想到方法了的说！快告诉露比特的说！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "你先别急……"
+          },
+          {
+            "tag": "tag_4",
+            "text": "我们先梳理一下思路。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]嗯嗯！露比特不急的说！你快点告诉露比特的说！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "简单来说……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]向露比特介绍了你的想法——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]嗯嗯！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]露比特完全明白了的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]也就是说，你对魔物的成长并没有什么研究的说？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "是的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]但是露比特看到，你们在营地里好像养了不少魔物的说？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "那些都是米托拉在照顾。"
+          },
+          {
+            "tag": "tag_15",
+            "text": "饲养技术基本都是露比开发的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]怎么这样的说！那不是没办法了的说！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "哪里没办法了？"
+          },
+          {
+            "tag": "tag_17",
+            "text": "你忘了我刚才和你说的了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]哦哦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]确实！露比特差点忘记了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]你刚才说露比特是妖植属的魔物，既是人形魔物，也是植物，除了在魔物方面想办法，也可以在植物方面做点什么的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]可是究竟要做什么的说？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "这个我还没有头绪……"
+          },
+          {
+            "tag": "tag_22",
+            "text": "不过懂得侍弄植物的人，在深渊里还挺多的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]你是准备去找人问问的说？没问题，一时半会露比特还等得起的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]多谢你为露比特操心的说！露比特会报答你的说！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "露比特-马上就过来的说！-进入战役",
+  "script": "fav_hero_062_2_1"
+}

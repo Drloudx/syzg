@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]你知道吗？史莱姆的身体对周围变化很敏感姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]风从哪个方向吹来，地面哪里有震动，甚至远处有没有人偷偷靠近，其实都能感觉到姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]我以前总是害怕这些感觉，心里乱糟糟的姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]现在不一样了姆。我会好好练习，把这份能力用来保护大家姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]如果营地附近有什么危险，我一定会第一个告诉你姆！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_060_05",
+  "des": "德莉-熟识2"
+}

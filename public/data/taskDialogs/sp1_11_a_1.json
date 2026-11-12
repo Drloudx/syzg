@@ -1,0 +1,109 @@
+{
+  "script": "sp1_11_a_1",
+  "des": "画像",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯～这地方好安静啊，怎么连点风声都没有，冷飕飕的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总觉得……脚底下的影子好像要活过来把自己抓走一样……哈哈……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]静谧也是一种重压。越是接近施法者的核心，这种位阶带来的压制就越具象。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来，对于够格踏入这里的闯入者，那位城主便已不需要拿“优雅”来接待了。[l]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "贝拉多娜，如果撑不住就先休息一下。",
+            "tag": "tag_12"
+          },
+          {
+            "text": "这种压迫感，确实不是普通魔物能散发出来的。",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在聊休息还太早喽。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]——吼呜！[l][cm]",
+        "charaName": "魔物们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]似是来了点噪音。也好，就趁机让这地方变得稍微热闹点吧。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]加尔戈萝，我们也上。你也顺着本能，吼出点动静吧。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]——嗷嗷嗷嗷嗷！[l][cm][hide]",
+        "charaName": "加尔戈萝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

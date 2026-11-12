@@ -1,0 +1,386 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]{myName}！三号桌账结了，赶紧翻一下！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "（前往三号桌收拾碗筷。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（旅店现在人山人海，杯盘碰撞声不绝于耳，多一个临时工似乎也只是稍稍缓解了些许压力。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]辛苦啦{myName}！今天的人好像比昨天还多。要是没有你来帮忙，我们指不定得忙到秃头呢。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "能帮上大家的忙就好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]嘿嘿……{myName}真体贴，作为一个新人，你已经做得相当好啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]客人是有点多，大家有点应付不过来。不过请放心吧！就算天塌下来，也有我这个领班顶着！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "侍者萨利",
+        "text": "[show]不好了——！梅莉莉小姐！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "侍者萨利",
+        "text": "[show]驿站刚刚来了一大群黑铁煅炉来的蜥蜴人，说是一会要做什么部族宴会，要求我们一小时内准备一百份烤肉，否则就要——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]一小时一百份烤肉？！我们就算把所有炉子都用上烤也烤不完啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "侍者萨利",
+        "text": "[show]是啊……我们说了做不到，可他们那边就是不肯松口，说什么部族宴会很重要什么的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]那怎么不提前打招呼啊！……行吧，我知道了。看来只能硬着头皮上了，接下来都听我指挥！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]厨房那边多派些人手过去，在后院再架起几支篝火当临时烤架。饮品也要跟上，让杰米把地窖里的库存全搬出来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]我也到后厨帮忙。前厅接待的姐妹们继续工作，有困难立刻来找我！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]{myName}……接下来你们可能会很辛苦，能坚持住吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "安心吧。"
+          },
+          {
+            "tag": "tag_18",
+            "text": "我这边能对付的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]好！那就拜托你了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（在梅莉莉清晰果断的指挥下，侍者队迅速高效地行动起来。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]1号、3号、9号桌结完了，快去清一下台！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]2号、4号桌的客人等很久了！厨房的肉分些到院外去，优先保证这两桌的菜！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]什么……蜥蜴人那边开始催了？我去稳住他们！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（在一片忙碌与喧嚣中，终于在限定时间内备齐了一百份烤肉……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（到了打烊的时刻……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]好——！大家今天都辛苦了！回去好好休息，明天继续加油！解散！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "侍者们",
+        "text": "[show]明白——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]呼……今天可真够闹腾的。{myName}感觉怎么样？还撑得住吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "我只是底下打工的，当然撑得住。"
+          },
+          {
+            "tag": "tag_29",
+            "text": "相比梅莉莉，我一点也不辛苦。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]嘿嘿……也没那么夸张啦。身为领班，比大家多担待点是应该的。而且这种事也不是头一回，我早就习惯啦。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "梅莉莉之前还遇到过很多奇葩的客人？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]嘿，那可太多啦！在我当上领班之前，就经常碰上各种稀奇古怪的要求。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]比如要桌子那么大的蛋糕啦，要用毒蘑菇熬汤啦，甚至还有要用生命药水和面做饼子的啦……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]还有一次快打烊时，呼啦啦涌进来几十来号兔人，说是千辛万苦从索利德山下来的！那场面跟今天差不多，他们吵着非要吃全胡萝卜宴，我们全队拼命加班才搞定。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]{myName}也觉得离谱吧？这种怪事我能说上三天三夜！还有还有……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "（仔细聆听着梅莉莉的故事……）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]嗯……我说到哪儿了……哇！都这个点了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]对不起对不起！是我擅自拉着你听我唠叨！是我得意过头了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "没关系，梅莉莉的故事挺有意思的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]呜……抱歉，我心里其实憋了很多想说的话，但碍于领班的身份，不好总找大家聊。{myName}愿意听我抱怨，我真的很开心。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "梅莉莉有心事不必憋着。"
+          },
+          {
+            "tag": "tag_42",
+            "text": "可以来找我说说的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]嗯……谢谢你，{myName}！我会的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]今天我们就先解散，好好休息吧。以后我还会找你聊天的，还请你到时候愿意听我说故事哦！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "梅莉莉-驿站打工记-进入战役",
+  "script": "fav_hero_027_2_1"
+}

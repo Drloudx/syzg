@@ -1,0 +1,201 @@
+{
+  "script": "s_sp2_8_3",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……这里有好多史莱姆啊，他们都是来做造型的吗？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这里的史莱姆都有着不同的形象啊……",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]发型和脸型都不一样，有些史莱姆头上还有蛋糕……原来还能这么做造型的啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟我们史莱姆都是黏液状的，只要有想法随便捏一下就好姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]阿提莱姆，来给我做个造型吧，最好的那种姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吼吼，好，等我给这位客人做完造型就到你姆。[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？你好像是这里的园丁吧？怎么你一个园丁去给史莱姆做造型了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们园丁平常负责的内容就是创作艺术品，打理花草，这些事跟做造型也很相似吧姆。[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟我们史莱姆就是黏黏糊糊的，你就把我们当成烧窑前的黏土就好姆。[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]至于为什么要来给大家做造型……要挣钱嘛，能在德莉公主的公粮范围外挣点钱，有什么不好吗姆？[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……看来史莱姆也爱挣钱啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，这边搞定了，过来吧姆。[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的姆～[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过一番打理后，伽拉姆的造型焕然一新。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯！谢谢你阿提莱姆！这副样子应该能让希维姆家人满意了！[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……你的样子看起来帅了很多呢。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？你做个造型怎么还是做个它家人看的，我还以为你是为了和对象约会才去做造型的呢姆。[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个……希维姆是从来不介意我的外型的，但毕竟它家里人有要求，所以姆……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咋的？你是跟它家里人结婚啊？你以后是跟她家里人睡一块石头啊？做个造型还考虑它家里人的要求，真是太奇怪了姆。[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]罢了，这是你的家事，我也不多过问姆。我就提个醒，多在乎你对象自己的看法姆。[l][cm]",
+        "charaName": "园丁阿提莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谢谢提醒，我知道了姆……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那么……接下来要去找那位希维姆了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，她现在就在居住区那边，我们去找它吧姆。[l][cm][hide]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（一堆史莱姆在此处排队……）"
+}

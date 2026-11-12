@@ -4,8 +4,27 @@
  * 依赖 items/heroBuilder 共用物品表（由 index.mjs 传入）
  */
 import { buildHeroData } from '../../src/utils/heroParser.js'
-import { readJson } from './shared.mjs'
+import { readJson, publicDataDir } from './shared.mjs'
+import { existsSync, readdirSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { loadSkinModelImages } from './skin-models.mjs'
+
+/**
+ * 读取「档案正文」用到的剧情脚本（public/data/dialogs/，只含 text/option 的精简版）。
+ * 只有 sl_*（首次见面对话）会被档案引用，故按需装载这一批 + 全量兜底。
+ */
+function loadDialogScripts() {
+  const out = {}
+  const dir = join(publicDataDir, 'dialogs')
+  if (!existsSync(dir)) return out
+  for (const name of readdirSync(dir)) {
+    if (!name.endsWith('.json')) continue
+    try {
+      out[name.slice(0, -5)] = JSON.parse(readFileSync(join(dir, name), 'utf8'))
+    } catch { /* 单文件损坏不影响整体 */ }
+  }
+  return out
+}
 
 export function buildHeroesFile(itemData) {
   const rawMaps = {
@@ -25,6 +44,9 @@ export function buildHeroesFile(itemData) {
     taskRes: readJson('task.json'),
     dialogSegmentsRes: readJson('parsed/dialogSegments.json'),
     dialogIndexRes: readJson('parsed/dialogIndex.json'),
+    // 档案正文：一部分「首次见面」档案的 archiveDesc 存的是剧情 id（bsl_*），
+    // 需要按 id 取剧本正文。见 heroParser.js 的 dialogTextOf。
+    dialogScripts: loadDialogScripts(),
     generalRes: readJson('general.json'),
     buffRes: readJson('buff.json'),
     skinRes: readJson('skin.json'),

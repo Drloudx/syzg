@@ -1,0 +1,230 @@
+{
+  "des": "（询问一下床的事。）",
+  "script": "s_sp1_8_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]嗯？床？祖莉尔，你又背着我去搞了什么坏事？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]什么叫搞坏事？我是为洛莉安大人解决问题的，她要求我给她弄一张新床。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]弄一张新床是吧，你说说吧打算怎么弄？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]事情是这样的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（将洛莉安的要求以及祖莉尔的主意告诉伊比瓦……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]哈？拿着材料随性造床，不喜欢就毁掉再造一个？你这办法可真够独特哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]我还记得，当年布置花园的时候，你把整个花园都种满树苗，说觉得哪个树苗位置不对就砍掉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]你还记得当时浪费了多少钱吗？整整超出预算的两倍，现在你又想把这一套重新用一次吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]这都是为了洛莉安大人……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]不行！绝对不行！你要这样搞我一分钱都不会拨给你的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]这可是洛莉安大人的命令，你不能拒绝！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]洛莉安大人只是要一张床而已，什么时候要造床毁床了，你要有意见我就当面请示洛莉安大人，再让她去拿主意！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]那不行……老板把任务交给我，在任务完成之前不能再去找她，不然就是给她添麻烦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]反正你要用原先那个浪费钱的方案，我是不会同意的，你自己再想个办法！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]可我也就是能想到这个方法啊，这个方法多直接多好啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]啊……原来你做事一直是这种风格的吗？本小姐就算在城堡里，花钱也没你那么奢侈啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]说到底洛莉安不就是要一张床嘛，你加上的要求就是什么黑暗风格……我们直接去找实物不就好了，或者看看有没有蓝图什么的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]这不是因为没有那种东西，所以我才能用这种办法嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]你们说的那些东西……我大概知道哪里有。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]中庭那边有一个大洞，只是直接通往地牢的，那个大洞下面好像有些扔掉的杂物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是我们从地牢往上跑的大洞，我印象中洞下面好像是有些杂物……里面都有些什么啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]家具、衣服、材料……大多都是这些东西，还有些闯入城堡的冒险者留下的装备，反正很多没用的东西都在那里。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]我听说曾有个幽灵木匠打造了一批家具，而且还留下了一堆蓝图，在它离开城堡以后那些东西就被遗弃在那里了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就在那条垂直通路里面是吧？怎么说？我们要跑一趟看看能不能找到木床或者蓝图吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]也只能采取这种方法了，别忘了请你们干活也是需要酬劳的，只希望这吝啬鬼能答应。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]如果只是去搜一下地牢，把材料拿回来打造，这个价格我还是可以接受的，至少比某个乱花钱的家伙强多了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]总之我们先出发了，看看那边有没有床再说。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

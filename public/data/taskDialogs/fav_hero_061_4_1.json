@@ -1,0 +1,77 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]哦！居然有这么新鲜的金铃草？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]这种东西对生长环境和气候的要求很高，本宫还以为现在没有新鲜的呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]没想到在野外居然就能采集得到……深渊还真是个神奇的地方。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这样第一种食材就搞定了。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "现在马上去找下一样吗？",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]嗯，顺序就交由你来安排。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]看你这个轻车熟路的样子，把事情交给本地人，确实是个明智的选择。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]无需多言，动身吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_061_4_1",
+  "des": "斯卡莉安好感4-采集一"
+}

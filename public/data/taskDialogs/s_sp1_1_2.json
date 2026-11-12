@@ -1,0 +1,110 @@
+{
+  "script": "s_sp1_1_2",
+  "des": "",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]好了，这就解决了！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]斯卡莉安，你这也太厉害了！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]一般的角布林都没办法破你的防，要用投矛和重槌才能稍微造成伤害呢！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]唔……本宫也没想到，这副躯体居然会被强化到这种地步。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不愧是“大罪人”生前的最高杰作……即使是实验失败的产物，也一点都不容小觑啊。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]还有这种来历吗……连失败品都这么来，那个“大罪人”究竟有多厉害啊？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]可以肯定的是，没有城主阁下厉害。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]毕竟“大罪人”生得太早了，知识的积累上和城主阁下还是差得太远了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]古代最强的魔法师和现代最强的魔法师吗……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]要是两人能够生在同一个时代，说不定洛莉安和“大罪人”的强度就会掉转过来了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不是没有这种可能。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]对于自己的智慧，本宫还是稍微有点自信的。[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    }
+  ]
+}

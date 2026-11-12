@@ -1,0 +1,286 @@
+{
+  "script": "fav_hero_033_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]你看，这是我昨天从委托板上接下来的委托契约。我们要今天之内全部完成！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这堆起来快到膝盖了！",
+            "tag": "tag_3"
+          },
+          {
+            "text": "要在今天之内全部完成吗？",
+            "tag": "tag_3"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]还不是因为{myName}总是以做契约为由逃掉我的锻炼课程嘛。就和我在信里说的一样啦，为什么不能将完成契约和锻炼这两件美好的事情合二为一呢！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]在锻炼自己的同时还能收到酬劳，这样一举两得的事情不是很好吗～！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]至于数量嘛……既然要不断挑战极限，就得先找到极限在哪里！{myName}之前也没试过一天完成这么多的委托吧？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]事不宜迟，我们赶快出发吧！第一个任务，清理角布林的巢穴！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "等、等等，乌帕——",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[show]（经过整整一天的奔波后……）[l][cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]呼……搞……搞定了！下一个任务是什么……[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "委托……已经全部完成了……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]是……是吗……终于完成了啊……我们……我们成功了——！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "我们……真是辛苦了……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]嗯——！{myName}也辛苦了！没想到我们真在一天之内就把这些委托全解决了……[l][cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]呜呜……感觉腿有点站不稳了呢……看来身体差不多也……到极限了……[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "（上前扶着乌帕……）"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]啊，谢谢{myName}……如果没有你，今天肯定没法完成这么多的任务……我已经数不清今天干掉了多少只角布林和角猪了。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]之后那几个委托……要不是你规划的路线和战斗方式……我们肯定得干到明天早上……[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "还不是因为一开始的时候……"
+          },
+          {
+            "tag": "tag_26",
+            "text": "花了太多时间绕路去“锻炼”……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……是我错了啦……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]呼……真是舒爽。没想到用这种方式锻炼，效果也很不错呢。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]我记得报酬里有不少肉和鱼吧……要不就拿那些做成菜肴，当成晚上的庆功宴吧？[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "你不是没力气了吗？"
+          },
+          {
+            "tag": "tag_30",
+            "text": "不打算好好休息一下吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿。我只是拿不动武器而已……几个锅碗瓢盆还是没什么问题的。而且……受到{myName}这么多照顾，我也想报答你嘛。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]像我这样满脑子都是锻炼的人也想不出什么好的礼物……就让你尝尝我做的料理吧！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_33",
+            "text": "那我也来一起参加吧。"
+          },
+          {
+            "tag": "tag_33",
+            "text": "既然一起锻炼，也要一起奖励彼此。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]{myName}……！嗯——！你是喜欢吃烤肉还是鱼汤呢！两种我都会做哦！[l][cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[show]（之后和乌帕一起，筋疲力尽地享用了美味的湖风烤肉和鱼汤。）[l][cm][hide]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[hide]"
+      }
+    }
+  ],
+  "des": "乌帕-委托训练计划"
+}

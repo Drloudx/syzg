@@ -1,0 +1,65 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]你……你好，谢谢你来接我，我是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]咳咳……对不起对不起！咬到嘴唇了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]（怎么办怎么办怎么办？这也太丢人了，为什么我会在第一次访问{myName}的营地，就做出这种丢人的事情啊？）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "诺姿你怎么了？",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[cm][show]没……没什么！你……你先进营地里吧，我去把给你准备的礼物带进来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（诺姿在示意你进入营地后，立刻跑到外面去了。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_032_1_0",
+  "des": "【欢迎来到营地。】"
+}

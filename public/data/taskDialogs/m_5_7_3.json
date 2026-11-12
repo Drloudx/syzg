@@ -1,19 +1,18 @@
 {
-  "script": "m_5_7_3",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]哦！这是……一个山洞，而且看起来是个天然避风的环形洞！[l][cm]"
+        "text": "[show]哦！这是……一个山洞，而且看起来是个天然避风的环形洞！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]居然连这种地方都能找到，软软也太厉害了吧！[l]"
+        "text": "[show]居然连这种地方都能找到，软软也太厉害了吧！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -30,97 +29,97 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[cm][show]嗯嗯，是比我强多了！奇瓦姐……咦？姐姐你怎么了？为什么是这副表情？[l][cm]"
+        "text": "[cm][show]嗯嗯，是比我强多了！奇瓦姐……咦？姐姐你怎么了？为什么是这副表情？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]这、这里是……！[l][cm]"
+        "text": "[show]这、这里是……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]奇瓦？看你的样子……你来过这里？[l][cm]"
+        "text": "[show]奇瓦？看你的样子……你来过这里？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]嗯……我确实来过。这里是……[l]是我和软软第一次相遇的地方。[l][cm]"
+        "text": "[show]嗯……我确实来过。这里是……[l]是我和软软第一次相遇的地方。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]第一次相遇……[l][cm]"
+        "text": "[show]第一次相遇……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]诶？那不就是，命运的邂逅之所吗！[l][cm]"
+        "text": "[show]诶？那不就是，命运的邂逅之所吗！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]嗯，没错，就是我和软软的\"邂逅之地\"。这个洞口……这个回形弯，我绝对不会记错的！[l][cm]"
+        "text": "[show]嗯，没错，就是我和软软的“邂逅之地”。这个洞口……这个回形弯，我绝对不会记错的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]当时我因为迷路来到这里，然后在这里遇到了软软……原来这里就是火龙山径吗……[l][cm]"
+        "text": "[show]当时我因为迷路来到这里，然后在这里遇到了软软……原来这里就是火龙山径吗……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕——！咕咕咕咕！咕——！[l][cm]"
+        "text": "[show]咕——！咕咕咕咕！咕——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]嗯？什么？软软，你在说什么……！[l][cm][hide]"
+        "text": "[show]嗯？什么？软软，你在说什么……！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]啊！奇瓦——！[l][cm]"
+        "text": "[show]啊！奇瓦——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]怎么回事？她怎么突然走了啊？[l]"
+        "text": "[show]怎么回事？她怎么突然走了啊？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -141,20 +140,21 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]嗯！[l][cm][hide]"
+        "text": "[cm][show]嗯！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_7_3",
   "des": "到达关卡，触发【m_5_7_3】。"
 }

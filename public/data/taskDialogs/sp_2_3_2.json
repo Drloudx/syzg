@@ -1,0 +1,284 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇！这里有好多史莱姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这些小家伙，比外面那些脏不溜秋的家伙可爱多了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你看它们那些小眼睛，多水灵啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]这些都是王国的臣民哦姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]不知道是不是环境的关系，王国里的史莱姆都比外面的机灵不少姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]大概是被你身上的魔力浸染的原因吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]咦？可、可是我并没有姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]公主史莱姆是领主级的上位魔物，光是存在就会对周围的同类产生同化和擢升的效果。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]我说……你对自己是怎样的存在，多少也该有点自觉吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]啊哈哈……大概是因为觉醒不完全，德莉真的觉得自己没什么了不起啊姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好啦好啦，“我是谁”这种难懂的问题就放着等有空的时候再讨论吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们先来看看这个金色的粘液块——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这玩意是不是有点可疑？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]嗯？一点也不可疑呀？这不就是[color=ffb64d]黄金史莱姆[colorEnd]的粘液姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]黄金史莱姆？我记得那好像是史莱姆的特殊亚种，粘液里有超过40%都是纯金构成的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]纯金？！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]史莱姆……还真是什么样的都有啊……居然还有纯金的亚种……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]对了对了，这种粘液块好像还挺硬的，我们可以拿它当做建材吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "拿去卖钱倒是没问题……",
+            "tag": "tag_21"
+          },
+          {
+            "text": "黄金的质地还是太软了。",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]这样啊……",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "那算了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不能建房子的话，倒也用不着这么急着把这些垃圾捡回去。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]你们能够把这当成垃圾，但绝大多数人恐怕都没有这个余裕。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]如果被那些荒野客发现，在粘液块里还藏着这种宝贝……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]他们会变得更凶恶、更贪婪、更疯狂吗姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]多半会如此吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]所以说，为了保护史莱姆王国的安宁，我们要在他们发现什么之前抢先解决他们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]呜姆？！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "注意表情。",
+            "tag": "tag_30"
+          },
+          {
+            "text": "德莉要被吓着了！",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]明明我们才是正义的一方，为什么说话做事都那么的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈哈！这也是我们的特色嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]只要动机和结果好就行。至于过程和手段，你就当没看到吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "sp_2_3_2",
+  "des": "调查闪闪发亮的黏液。"
+}

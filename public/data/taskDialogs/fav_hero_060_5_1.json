@@ -1,0 +1,400 @@
+{
+  "script": "fav_hero_060_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……应该就是这里了，这地下的空间好大姆……[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "没想到这里也有遗迹。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "不过跟工匠遗迹好像有些不一样？",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯……这里到处都能看见史莱姆的符号，可能是当时的史莱姆委托工匠建立的姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好像就在前面，我们再往前走走看姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好像找到了，这股力量似乎就是从这个凹槽里传出来的，这里一定有秘密姆。[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这个凹槽里好像要放什么东西进去……",
+            "tag": "tag_10"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯？要放什么东西吗？莫非是黏液吗姆？我撕点黏液放进去看看。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！好像……好像有用姆！凹槽在发光姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（一阵光芒过后，德莉似乎进入了某个神秘的空间之中……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……这里……这里是什么地方？我是掉进洞里来了吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这里不是什么洞，这里是“我们”的精神空间姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁？谁在说话？声音是从四面八方传过来的姆！你是人是鬼，到底在什么地方姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真没礼貌姆！我既不是人也不是鬼，是历代公主史莱姆的精神融合体姆！[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]融合体？你的意思是……你们是每个公主史莱姆先辈的结合姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是每一位公主史莱姆的宿命，如果没有意外的话，你最终也会加入我们姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听起来好凄惨的样子……所以你们把我吸引来这里，有什么目的吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了让史莱姆一族能更好地生存下去，我们要挑选能肩负起族群生存下去的领导者姆。为了实现这个目标，我们在卡露蒂亚大陆各处设下了遗迹姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当出现一位称职的公主史莱姆时，我们便会激活遗迹的力量，将对方吸引过来，把我们储存的知识和力量传递给她姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此……这么说我获得你们的认可了姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错，你一个人能创造出这么多成就，理应得到我们的认可姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实现在史莱姆王国的成就，也不完全是我一只史莱姆的功劳姆。这里面既有我的子民的付出，也有……{myName}的帮助姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆，真诚善良，谦卑有礼，看来我们没有看错人姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这个{myName}是谁啊？是你下属吗？我看你好像很重视的样子姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不是下属，{myName}是我的伙伴姆。不过{myName}不就在外边吗？难道你们看不见姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是一个独立的空间，我们可看不见外面的事情姆。好了，我们要把储存下来的知识和魔力传承给你了姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]感觉……感觉脑海里涌入了很多知识姆！还有好多厉害的魔法姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，这样就可以了，还请你继续把我们史莱姆一族延续下去姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你看起来好像在思考，是在想什么吗姆？[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我在找你刚刚给我的知识里，有没有关于长高变大的魔法，我想要成为成熟的公主姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]刚刚才夸完你，你怎么转头去纠结这些无聊的事情，果真是一代不如一代了姆。[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]找不到找不到，那个……你有能让我变成成熟公主的魔法吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没有那种魔法，好了，我们该走了，你自己保重，溜了溜了姆～[l][cm]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆！那我要许愿，我……我下辈子一定要变成一只成熟、温柔、身材高挑的史莱姆公主姆——！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（一阵光闪过，德莉的意识回到了现实世界……）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "德莉！你没事吧！",
+            "tag": "tag_39"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯？{myName}？你怎么这么紧张姆？[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "刚刚机关闪出一阵光后。",
+            "tag": "tag_41"
+          },
+          {
+            "text": "你就在原地呆站了很久。",
+            "tag": "tag_41"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊，原来如此，我刚刚进入了史莱姆的传承空间，没什么事姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（德莉将刚刚发生的事情全盘托出……）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "原来如此，继承了先祖的力量……",
+            "tag": "tag_44"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……说是先祖的力量，其实也只是一些知识和魔法而已，真正要带领史莱姆一族延续下去，还需要靠自己的实力姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然也需要伙伴的帮助，尤其是你的帮助……所以……你可以一直陪着德莉吗？姆姆？[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "当然可以！",
+            "tag": "tag_47"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……那么今后，我们就一起努力姆！[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "fav_hero_060_5_1"
+}

@@ -1,0 +1,182 @@
+{
+  "script": "s_sp2_6_3",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太好啦姆！我们这就把这些种子播种下去姆！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]伙伴们干活了，今天播种一亩田，明日收获万株果，开始播种吧姆！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]种田姆～种田种田姆～[l][cm]",
+        "charaName": "众农夫史莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们按我刚刚给你们划好的地方种啊，不要像过去那样乱种一通了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]收到，大家都听勒妮小姐的姆！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇噢，大家干劲都很足啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]加油加油，我也跟着你们一起种姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（在众史莱姆的努力下，播种过程顺利完成。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，你们的播种任务既然已经完成，那我也该回去了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]辛苦了勒妮小姐，你远道而来帮了我们大忙姆！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事啦，这只是举手之劳而已。再说了我也拿到了相应的报酬，把这事当成一门生意就行。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且这次行程，我发现你们的黏液也是可用的肥料，到时候我们风车平野可能还会大规模采购你们的黏液哦。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]到时候还请你们给我们打打折，让我们能用更便宜的价格买下优质的肥料～[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没关系，我们会便宜卖给你们的姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要留下来喝一杯吗？本公主打算请你吃一顿大餐姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]史莱姆的食物……还是算了吧，不过喝一杯还是可以的。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……我们也来凑个热闹可以不，当然只需要喝一杯就行了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然可以啦，你们今天也辛苦了姆～[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吃一顿吃一顿姆！今天我会把珍藏多年的黏液饮料拿出来，大家庆祝一番姆！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……黏液饮料吗？怎么……有种不好的预感啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]庆祝姆～庆祝姆～[l][cm][hide]",
+        "charaName": "众农夫史莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "种子都抢回来了。"
+}

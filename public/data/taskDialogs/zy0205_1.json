@@ -1,0 +1,94 @@
+{
+  "script": "zy0205_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]这里是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]好大……好宽阔……这里是古代的建筑吗……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]没想到山神之殒的里面，居然还有这样的地方……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]希尔……你也是这么觉得的吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]没错。毫无疑问……这里是另一处“遗迹”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]哦？这样的遗迹在深渊里还有很多吗～？这可真是让人开始想要好好研究一番了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "right",
+        "text": "[show]（同样的遗迹出现了。那么，在遗迹深处，会不会也藏着同样的“神匠器”呢……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]前方发现小规模的魔物！它们拦在路中央，无法回避！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]后方没有异常！可以放心战斗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]哦，这么快就遇到敌人了吗？那就让它们看看，我们这个山地最强阵容的厉害吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]大家！一起上吧！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

@@ -1,0 +1,316 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我们到了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这……这又是哪里。",
+            "tag": "tag_3"
+          },
+          {
+            "text": "好像又到了不得的地方来了！",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]我之前不是说了吗，这次出来是准备带你欣赏一些鲜为人知的绝景。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]知道危机的存在只会让你更加废寝忘食，但神奇的风景总能治愈你的身心了吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是吗……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "那什么风景是在地下的？",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]这也是我最近偶然找到的小发现。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]前进吧，我所说的风景，就在前面不远。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]好了，我们到了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]如何？这种奇景，应该很少有人看过吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这……",
+            "tag": "tag_11"
+          },
+          {
+            "text": "这些东西是……！",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]是天使们制作的歼灭兵器——天界格莉姆哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]在天地大战的时候，恶魔们开发的奇美拉魔法兽曾一度让天界军苦不堪言。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]作为回应，天使们就制造了这些可怕的歼灭兵器。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]不过出乎大家意料的是，由于理性之楔的爆炸，天地战争很快就戛然而止了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]天使和恶魔纷纷撤退，在离开之时，把无法带走的兵器直接舍弃在了卡露蒂亚大陆。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "就是那些游荡的格莉姆吗？",
+            "tag": "tag_17"
+          },
+          {
+            "text": "就是那些奇怪的合成兽吗？",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]正是如此。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]放生的合成兽野化之后，形成了新的魔物种群。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]而失去主人的格莉姆也觉醒了自我意识，成为了造物属的魔物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]但是，总有一些特别危险的东西，是天使和恶魔们也不得不慎重对待，不敢放归自然的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_22"
+          },
+          {
+            "text": "我大概明白你说的是什么了。",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]没错，就是你眼前的这些超大型歼灭兵器。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]即使是已经放弃责任的天界军，也觉得这些玩意太过危险，把它们在地下封存了起来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]如今，像这样的兵器仓库，多半都施加了天界的封印魔法，轻易不会现世。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]但我偶然游历的时候发现了这个暴露的仓库——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]这一整排的巨大兵器，很有浪漫的感觉吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]看到如此风景，你不觉得心潮澎湃吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "呃……",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[cm][show]（说实话，我只感觉到胃部抽搐……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（暴露的意思，就是说这些玩意的封印彻底失效了对吧……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（这么危险的东西，与其说是风景，不如说是不定时炸弹，根本不会让人欣赏，只会让人感觉窒息啊！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（菲娜小姐，因为自己太强，所以完全体会不到一般人的苦处了吗……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（为了我的心脏着想，看来得找个说得上话的人，稍微扭转一下她的想法了。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_059_3_1",
+  "des": "菲娜好感3-战役"
+}

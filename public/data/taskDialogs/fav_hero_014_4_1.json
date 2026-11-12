@@ -1,0 +1,262 @@
+{
+  "script": "fav_hero_014_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大佬，门口的垃圾已经清理干净了，我现在去清理营地的杂草！[l][cm]",
+        "charaName": "小弟A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大佬，营地里的杂物已经摆放整齐了，我现在去把家具擦一擦！[l][cm]",
+        "charaName": "小弟B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大……大佬！这里的土已经翻过一遍了，我现在去把门口的角布林干掉！[l]",
+        "charaName": "小弟C"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这些家伙……突然就变得这么服服帖帖了。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿，经过我好好教育一番后，这些家伙已经放下过去的身份改邪归正了。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "所以当时发生什么事了？",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我按照你的建议去找了几个车队，然后我担任了这个商队的总护卫。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在担任护卫以后我就立刻到广场上去，把运送的消息贴在公示板上，并且警告所有想要劫商队的人：我是商队的总护卫，有本事就来劫！[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我的名字毕竟在索利德山还是有点名气的，“最狡猾的狐狸”嘛！在这种情况下还敢来抢劫的，怕是只有这三个小家伙了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]果不其然，在出发的前一天我就收到消息，通商道路上有活动的痕迹，我就知道他们上钩了。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你都提前布置好了？",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]当然，商队的目的地是公开的，不过路线却不是。当然能走的路无非就那么几条，三个小家伙猜中并不难。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然，他们能猜中我也能猜中，所以我提前派了一些人去探探情况，果然发现了三个家伙留下的陷阱。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了避免打草惊蛇，我就没有动那些陷阱，并且在当晚就做出了应对的方法，就等着第二天和他们决一胜负。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]然后第二天我就按着计划破解了他们的陷阱，把他们全都抓起来了。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "不愧是皮塔。",
+            "tag": "tag_18"
+          },
+          {
+            "text": "完全把小弟玩弄于股掌之中。",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿，小意思啦，他们毕竟是我教出来的学生，我这个做师傅的当然能打败他们。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]随后我就用大姐头收服我的方法，把他们好好揍了一顿。你别说这招还真管用，调皮的孩子多揍几遍就老实了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过目前他们还只是暂时跟着我，等到他们完全听话了以后。我就会把他们交给大姐头，让他们好好赔偿村民的损失！[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听到没有啊？已经改过自新的小朋友？[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听到了！谨遵皮塔大哥的教诲！[l][cm]",
+        "charaName": "小弟们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好！就是这样！等见到大姐头以后，你们也得是这个诚恳认错的态度！[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那么……今天就打扰你到这了，我们先回去了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]小伙子们！整齐排列，向{myName}道别！[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是！{myName}大佬，再见！[l][cm]",
+        "charaName": "小弟们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（挥手道别。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好！我们走了！{myName}下次见！[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（在皮塔振奋人心的话语下，小弟们有序离开。四人的身影逐渐消失在了夕阳之下。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "皮塔-改过自新的旧友-进入战役"
+}

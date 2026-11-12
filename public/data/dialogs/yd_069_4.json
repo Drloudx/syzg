@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]主公？您问我为什么在这里跳舞？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]不是那样啦，其实我在告诉同胞：越过小溪，朝太阳落下的方向飞，那里有一大片新开的花丛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]蜜蜂会用方向、步幅和转身的次数传递消息。只要认真看，每一步都有意思。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]主公想学？当然可以！先跟着我走，再转半圈——对，就是这样！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]唔……虽然您刚才的动作大概是在说“前面有一块会走路的石头”，但第一次能跳成这样，已经很厉害了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_069_4",
+  "des": "熟识"
+}

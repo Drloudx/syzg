@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哼！本小姐亲自驾临，你居然没有第一时间迎接！太疏忽了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]但看在地方还算雅致的份上……本小姐就勉为其难原谅你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]能与高贵的赤血剑姬签订契约，是你的荣幸，以后本小姐的名号也会成为你的护身符！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]拿好了，这是本小姐赏赐给你的礼物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]今后也要好好服侍本小姐哦，和本小姐一起为了希斯珀利亚家族的复兴而努力吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_026_1",
+  "des": "bsl_hero_026_1"
+}

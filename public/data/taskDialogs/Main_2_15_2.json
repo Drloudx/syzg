@@ -60,7 +60,7 @@
       "para": {
         "charaName": "罗伯特",
         "nameSide": "right",
-        "text": "[show]米~[wait=100]拉~[wait=100]贝~[wait=100]尔~！[wait=200]我的宝贝，[wait=100]你这么长时间都不回来，真是急死我了！[l][cm]"
+        "text": "[show]米～[wait=100]拉～[wait=100]贝～[wait=100]尔～！[wait=200]我的宝贝，[wait=100]你这么长时间都不回来，真是急死我了！[l][cm]"
       },
       "key": "text"
     },

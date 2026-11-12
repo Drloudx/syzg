@@ -1,0 +1,164 @@
+{
+  "script": "fav_hero_007_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（你推开驿站旅店的大门，这里已经与拉碧丝最初邀请你来时的氛围截然不同，四周热闹非凡。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（舞者于观众们的喧嚣声中踏起轻快的步伐登场，每一支舞步都充满了自然的力量、仿佛四周生机盎然，伴随着舞者的指尖、足尖与眼神绽放出“新芽”。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（你突然感到一阵穿越森林的清风回荡在整个舞台之上。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（周围的观众逐渐增多，所有人似乎都被舞台上的演出吸引，直到结束才轰然爆发了此起彼伏的掌声。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "今天的表演太精彩了！",
+            "tag": "tag_8"
+          },
+          {
+            "text": "大家都来看你们的演出了！",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]谢谢，妖精舞台已经很久没迎来如此高涨的呼声了，你应该和我们一起分享此刻成功的喜悦！[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……当我站在舞台上，观众们的每一个表情都能看得一清二楚。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不出所料，夏库塔拉和可可娜的即兴演出是舞台整场观众们热情最高涨的时候呢。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]即便付出了努力，平庸的才能始终和真正的才能有着明显的差距。[l]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "每个人的舞蹈都是独一无二的。",
+            "tag": "tag_13"
+          },
+          {
+            "text": "拉碧丝只是不太擅长大家喜欢的风格。",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]又被安慰了呢，但我可不是会因此气馁的家伙，感谢{myName}一直以来的肯定和支持。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]表演者无法离开观众，正因如此，得到了众多呼声与目光的我要加倍努力精进自己的舞蹈技术。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我将继续研究古卷没读完的内容，希望能学习到更多的舞蹈的相关的知识。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总有一日——我会掌握堪比天才、不，是超越的天才的舞蹈，并将它表演给我的观众们！[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]台下付出的汗水与艰辛正是为了获得掌声的那刻，当看见大家的视线充满了沉醉时，我便明白了自己为何站在这个舞台上表演。[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]给别人带来欢乐也是为自己获得快乐，跳舞真是太开心了～[l][cm]",
+        "charaName": "拉碧丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（之后，你与拉碧丝开心地畅谈了关于未来的演出，并约定好下次也会来观看妖精舞台的表演。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "拉碧丝-进入战役【fav_hero_007_4】"
+}

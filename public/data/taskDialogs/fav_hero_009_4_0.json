@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]呜……一看到她我就忍不住跑掉了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]我们一起去吧，她现在还在驿站等着呢……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "可可娜-可可娜？你怎么来营地了？",
+  "script": "fav_hero_009_4_0"
+}

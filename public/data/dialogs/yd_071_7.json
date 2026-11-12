@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]这个年纪能做到这样已经很好啦，你完全可以为此自豪了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余和你一样大的时候，才刚完成余的第一个大课题呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]那是未曾被社会毒打过的美妙青春，现在想想，还真是让人怀念呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_071_7",
+  "des": "洛莉安营地闲聊7"
+}

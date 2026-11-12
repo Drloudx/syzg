@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "text": "[show]非常感谢你们愿意组织探索队，不过探索也是有风险的工作，一定要注意野外未知的危险。[l][cm]",
+        "charaName": "艾尔莎",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]没关系，我们可都是契约者，才不会害怕这些危险呢！[l][cm]",
+        "charaName": "米托拉",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[show]好，接下来我会教你们如何组织探索队，并且找到合适的探索点进行探索工作。[l][cm][hide]",
+        "charaName": "艾尔莎",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "text": "[hide]",
+        "charaName": "",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "m_1_8_5",
+  "des": "【关于探索队……】"
+}

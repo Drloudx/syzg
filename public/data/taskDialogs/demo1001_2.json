@@ -1,0 +1,216 @@
+{
+  "des": "demo1001_2",
+  "script": "demo1001_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]又是巡逻队……数量越来越多了。[r]到底是怎么回事……今天也太不正常了。[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "喂，储备粮——[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_2",
+            "text": "……"
+          },
+          {
+            "tag": "tag_2",
+            "text": "……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……？[l]你愣着干什么呢。又发昏了吗？[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "一路上都是人类的遗体……"
+          },
+          {
+            "tag": "tag_10",
+            "text": "他们……都是和我一样的流放者吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这些啊。[r]没长尾巴没长角没长翅膀，除了人类还能是什么东西。[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]看到之前的伙伴没剩几个全尸，可怜起他们来了？[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_yes",
+            "text": "他们……不是我的伙伴。"
+          },
+          {
+            "tag": "tag_yes",
+            "text": "他们不过也是一群走投无路的工匠。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哦，是嘛。[r]他们不是抢走了你的面包和水，还把你推到魔物面前，给他们争取逃命的时间吗。[r]掐指一算也没多活一会，这也值得你大发慈悲？[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "你怎么知道……？"
+          },
+          {
+            "tag": "tag_15",
+            "text": "我告诉过你这些吗……？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我怎么知道。[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没有啊。[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]每个“投食日”——你们克里斯汀的流亡者涌进这座“深渊”的时候，都会发生一样的事。[r]哪怕是同胞，哪怕是同样的身份，为了生存，人们都会背信弃义、尔虞我诈。[l][cm]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……这个世界就是这样。[r]变不了了。[l][hide][cm]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……又是角布林。要靠过来了。[r]还能行吗，储备粮？[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "……你很习惯这些了。"
+          },
+          {
+            "tag": "tag_19",
+            "text": "……你……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我可是在这座深渊里活到了现在。[r]要不是出了点意外，今天可是能把这些鲜肉都带回家的丰收日……[r]可惜只捡到一个躺在路边装死的小少爷。[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……妈的，想起来就好气。[r]到底是什么引来这么多角布林……我的营地可就在旁边呢……[l]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "数量不多。一、二、三……我们能行。"
+          },
+          {
+            "tag": "tag_21",
+            "text": "解决掉那只首领，其他的就不足为惧了。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘁，你也很上道了嘛。[r]在发出警告之前干掉他们，然后继续往南边走。[r]上吧！[l][hide][cm]",
+        "charaName": "【米托拉】"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

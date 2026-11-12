@@ -1,0 +1,164 @@
+{
+  "script": "sp1_7_a_1",
+  "des": "描述",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这……这也算“走廊”？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这宽度都比得上驿站的大厅了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还有这个装潢、这地毯和挂饰……这、这也太豪华了吧！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "豪华的装饰确实让人惊叹……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "但真正令人震惊的还是这个面积。",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯？这个面积怎么了？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这个面积……",
+            "tag": "tag_18"
+          },
+          {
+            "text": "和外面看到的并不一致。",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊！真的！这走廊看起来比外面看到的大多了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为这座城堡在修造时就固化了空间魔法。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]具体来说，城堡内部的空间，大约是外部体积的二点五倍。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]给整个城堡附魔？这……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我这个搭档身负先时工匠的技艺，一天也附魔不了多少武器……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这只能说明城主的手段十分高明。不过，这就让你们打起退堂鼓了吗？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然不……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]探索才刚刚开始，没道理这么简单就放弃！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且……不管这个城主有多厉害……只要他真的是那个可恨的凶手……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]作为希斯珀利亚家族的末裔，我都绝不会退缩，一定会用这双手，亲自为我的家族……报仇雪恨！[l][cm][hide]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

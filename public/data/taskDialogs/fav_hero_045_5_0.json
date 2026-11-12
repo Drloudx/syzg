@@ -1,0 +1,53 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]不……我对这边的了解远不如你，也不知道该去哪里调查，只知道那群寻宝人是从秋日荒野那边来的。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "多半是从驿站来的吧。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "那边人来人往的，非常热闹。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]嗯，那我们就去那边看看吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]说起来……这还是我们第一次一起出远门吧？真令人期待呢……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾尔菲帕-营地对话【想好去哪打听传言吗？】",
+  "script": "fav_hero_045_5_0"
+}

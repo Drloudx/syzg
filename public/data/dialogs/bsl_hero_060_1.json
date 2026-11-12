@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]嘿嘿，这真是个很漂亮的营地啊，你也太厉害了{myName}。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]我之前还想着你的营地有多破呢，没想到一来才发现，你的营地豪华程度跟我的王国差不多姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]我可没忘记答应过要送你礼物的事姆！来，把手伸出来姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]这可是公主史莱姆的礼物，你可要拿好了姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]那么契约达成，欢迎和史莱姆王国建立关系，今后我们好好合作吧姆！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_060_1",
+  "des": "060德莉伴手礼"
+}

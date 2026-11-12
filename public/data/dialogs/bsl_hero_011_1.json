@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]嘿嘿，{myName}！缇莎终于在这里和你碰面啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]为了找到这个营地，缇莎在那个三岔路口绕了好几圈……要不是最后跟着商队找到了这里，缇莎怕是要在野外过夜了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]但好在还是找到营地了！这里和修行所完全不一样，没有那些密不透风的石墙，也没有密密麻麻的祷文，只有自由新鲜的空气。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]喏，这是缇莎特意为你准备的礼物。虽然不知道合不合你的心意，但修行所也只有这些东西了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]虽然妈妈总是叮嘱外面很危险，但只要能陪伴在你的身边，就算是去最深的地底探索，缇莎也一点都不会退缩的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]既然已经结成了契约，以后去冒险一定要叫上缇莎哦，我们拉钩！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_011_1",
+  "des": "缇莎"
+}

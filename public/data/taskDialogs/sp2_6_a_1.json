@@ -1,0 +1,101 @@
+{
+  "script": "sp2_6_a_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是这里！穿过这个峡道，再往前就是森林秘境了姆！[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "露库希安！",
+            "tag": "tag_11"
+          },
+          {
+            "text": "祖基尼一伙现在在哪？",
+            "tag": "tag_11"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可能是绕路浪费了一点时间，祖基尼一伙终究还是走到前头去了。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这条峡道是一条直路，我们追上去要不了多少时间。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈！那还等什么！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在姑奶奶面前装完就跑，哪有那么容易！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]狗一样的荒野客！给米托拉大人洗干净脖子等着吧！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈……哈哈……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（虽然知道她是个好人……但米托拉小姐的表情确实非常有恶党的感觉啊姆……）[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "SP2-6进入"
+}

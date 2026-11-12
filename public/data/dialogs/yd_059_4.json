@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]说起来，你最近有空吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我这几天在深渊里巡游了几日，发现了不少有意思的东西。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]从遗留在这里的各种遗迹和战痕，似乎可以一窥天地大战后期那片残酷战场的片影。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]如果你有兴趣的话，或许我们可以一起去找找看，有没有什么新的线索呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_059_4",
+  "des": "菲娜4【熟识】"
+}

@@ -135,11 +135,23 @@ export function buildHiddenRewards(maps) {
     }
   }
 
+  // 🔴 判据必须是源码语义，不是中文分类名。
+  // 源码 `BattleManager.GetCollectUIText(collectType)`：1=对话 2=采集 3=挖掘 4=伐 5=检视。
+  // 「场景宝箱」与「书籍」在游戏里都是 collectType=5（检视）的采集物，只是 reward.category 文案不同：
+  //   旧：['采集','场景宝箱']；1.7.15 起：['大地图采集','cN','书籍']、['采集','聆听偶遇']。
+  // 2026-11-11 前这里写死 `includes('场景宝箱')`，导致 22 本新书 + 2 个聆听偶遇点全部漏收。
+  const INSPECT_COLLECT_TYPE = 5
+  const inspectRewardIds = new Set()
+  for (const ct of Object.values(collectTypeData)) {
+    if (Number(ct?.collectType) === INSPECT_COLLECT_TYPE && ct?.reward) inspectRewardIds.add(ct.reward)
+  }
+
   for (const r of Object.values(rewardData)) {
-    if (r.category && r.category.includes('场景宝箱')) {
+    if (!inspectRewardIds.has(r.typeId)) continue
+    {
       const collectTypes = []
       for (const ct of Object.values(collectTypeData)) {
-        if (ct.reward === r.typeId) {
+        if (ct.reward === r.typeId && Number(ct?.collectType) === INSPECT_COLLECT_TYPE) {
           collectTypes.push(ct)
         }
       }
@@ -177,12 +189,19 @@ export function buildHiddenRewards(maps) {
 
               // 一个物理房间（roomId）可能对应多个采集点/奖励组（各自独立一条隐藏奖励）。
               // 若只用 roomId 作为条目 id，同房多采集点会产生重复 DOM id `hidden-<roomId>`，
-              // 前往定位会命中错误条目。这里给每条生成稳定的唯一 id = roomId + 奖励项摘要，
+              // 前往定位会命中错误条目。这里给每条生成稳定的唯一 id = roomId + 采集点 + 奖励项摘要，
               // 保证同房不同采集点可在 DOM/前往时精确定位到各自条目。
-              const itemIdStr = (r.items || []).map(g => {
-                if (g && g.rules) return g.rules.map(rule => rule.typeId).join('|')
-                return g && g.typeId ? g.typeId : ''
-              }).join('~')
+              //
+              // 🔴 2026-11-11 修复：摘要原先只含奖励项 typeId，当同一房间的两个不同采集点
+              // （如 c1_area2_1 的 lt_pool_c1_area2 与 oy_pool_c1_area2）发放**同一份** reward 时，
+              // 摘要完全相同 → id 碰撞 → 页面 DOM id 重复。把 collectId 纳入摘要即可区分。
+              const itemIdStr = [
+                c.typeId,
+                ...(r.items || []).map(g => {
+                  if (g && g.rules) return g.rules.map(rule => rule.typeId).join('|')
+                  return g && g.typeId ? g.typeId : ''
+                })
+              ].join('~')
               const hash = hashStr(itemIdStr).slice(0, 8)
               const entryId = `${lr.typeId || rm.typeId}-${hash}`
 
@@ -201,10 +220,17 @@ export function buildHiddenRewards(maps) {
                 sortKey,
                 prevImg: getPrevImg(lr.typeId || rm.typeId, c.typeId),
                 rewardItems: r.items,
+                // 页面「隐藏奖励」分组名：按 reward 分类区分，避免把书/偶遇都标成宝箱。
+                category: Array.isArray(r.category) ? r.category : [],
+                sourceLabel: Array.isArray(r.category) && r.category.includes('书籍')
+                  ? '书籍'
+                  : (Array.isArray(r.category) && r.category.includes('聆听偶遇') ? '偶遇' : '场景宝箱'),
                 id: entryId
               })
 
               const locStr = `${bigMapName} - ${areaName} - ${lr.name || rm.name}`
+              // 展示名按 reward 分类区分：书籍类显示「书籍」，其余检视类沿用「场景宝箱」。
+              const sourceLabel = Array.isArray(r.category) && r.category.includes('书籍') ? '书籍' : '场景宝箱'
               if (r.items) {
                 r.items.forEach(itemGrp => {
                   if (itemGrp.rules) {
@@ -215,7 +241,7 @@ export function buildHiddenRewards(maps) {
                         type: 'hidden',
                         id: entryId,
                         roomId: lr.typeId || rm.typeId,
-                        name: '场景宝箱',
+                        name: sourceLabel,
                         des: locStr,
                         bigMapId
                       })

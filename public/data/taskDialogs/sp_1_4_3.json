@@ -1,0 +1,85 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]这就是虚实位面的裂缝。加尔戈萝，把它扩大一些。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "加尔戈萝",
+        "text": "[show]吼——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇，这样就能容下我们所有人了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]唔……胃好痛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]不过本小姐是不会在这里放弃的！麻烦你了，斯卡莉安老师！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]既然觉悟已定，那就随本宫进入这魔性之城的“里侧”吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "大家做好战斗准备！",
+            "tag": "tag_10"
+          },
+          {
+            "text": "我们要进去了！",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]哼，管她什么最强魔法师，既然敢给咱们下套，咱们就去把她的老巢拆个底朝天！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "sp_1_4_3",
+  "des": "前往中庭，触发【sp_1_4_3】。"
+}

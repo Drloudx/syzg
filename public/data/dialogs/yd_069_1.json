@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]报告主公！营地东面的围栏很牢固，水源清洁，附近的花也开得很好，蜜蜂每天都能采到优质花粉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]唯一的问题是，防守区域过大，夜间巡逻的人手似乎不太够。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]把后半夜的巡逻交给我可以吗？蜂刺骑士不畏黑暗，也绝不会让危险靠近主公的领地！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]嗯？您说这里也是我的领地？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]这……这怎么好意思……不过主公都这么说了，那我更要好好守住这里了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_069_1",
+  "des": "友善"
+}

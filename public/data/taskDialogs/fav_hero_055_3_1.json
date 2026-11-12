@@ -1,0 +1,716 @@
+{
+  "script": "fav_hero_055_3_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这是……你自己的小屋吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_3",
+            "text": "嗯，我也偶尔把它用作简易工房。"
+          },
+          {
+            "tag": "tag_3",
+            "text": "迦南前辈，你说的调查究竟是……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]哈……按照约定，就让我来告诉你，这一切的内情吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]你注意到凯蒂的伤了吗？虽然已经用上了你制作的，整个驿站最优秀的炼金药剂，但她的伤势，还有受伤之后……体力的恢复，都根本得不到好转……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "确实是这样。"
+          },
+          {
+            "tag": "tag_6",
+            "text": "为什么会有这种事？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]其实……那是一种诅咒。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "诅咒？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是的，难以愈合的伤口，还有……仿佛被吸取了生命力一般……无法消除的虚弱……这些都是，被魔剑的诅咒侵蚀的表征。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "魔剑……！"
+          },
+          {
+            "tag": "tag_10",
+            "text": "那是什么……？！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]这个名头听上去很唬人对吧？实际上……那个“魔剑”的称呼，一点也没有言过其实，而是真的有这与名称相匹配的邪恶和残酷！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那是……为了追求最高级的神兵利器而堕入邪道的铸剑师们，利用智慧生物的血、肉、灵作为祭品，锻造出的真正拥有灵魂的邪剑。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]而将这种邪恶技术钻研至最高峰的，就是隐居在龙岳一带的铸剑师一族……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "迦南前辈……"
+          },
+          {
+            "tag": "tag_14",
+            "text": "难道说……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]没错，就像你猜的那样，我就是出身于那个邪恶的一族。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "所以这就是迦南前辈不愿意传授铸剑的原因？"
+          },
+          {
+            "tag": "tag_16",
+            "text": "迦南前辈是不愿意让这种技术流传下去？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是的，这种邪恶的技术，本就不应该留存于世间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]尤其是当他们用着无比残忍的手法铸造的魔剑，甚至比不上你轻轻一挥工匠锤就能用先时技术轻松量产的武装……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这一族的研究，就更是显得低能和愚蠢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]因为某个变故……在我离开家的时候，那种邪恶的技术，已经随着一族的覆灭，彻底消失，而那些残存的魔剑，也几乎都被折断销毁。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]没想到在遥远的深渊里，居然还残留有这么一把……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]虽然不知道这柄剑究竟是怎样流落至此，但从它的诅咒强度来看，此等威力的魔剑必然已经觉醒了剑灵，反过来控制了剑主。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]现在它应该正在操纵着宿主，四处寻找猎物满足自己的凶性。这家伙十分的狡猾，光靠一般的手段是抓不住它的尾巴的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]所以……我希望你能够帮忙。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "我？"
+          },
+          {
+            "tag": "tag_26",
+            "text": "我该怎么做？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]我想让你利用你的……工匠技艺，帮我打造一件能够定位魔剑的装置。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不需要很快……我会为你提供足够的资料，方便你进行设计和制造。而在这段时间……我则会加强巡逻，确保不会出现更多的受害者。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]如何？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "没问题！"
+          },
+          {
+            "tag": "tag_30",
+            "text": "这个忙我帮定了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是吗……那……这次就拜托你了。总之，请你先阅读一下这些资料吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（一小段时间后……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]……差不多就是这样，你听明白了吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_34",
+            "text": "大致上听明白了……"
+          },
+          {
+            "tag": "tag_34",
+            "text": "应该没什么大的问题……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]事关重大，不管有什么疑问都尽管问出来吧。只要我知道的，我都会毫无遗漏地告诉你的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "我只是觉得……"
+          },
+          {
+            "tag": "tag_36",
+            "text": "这种技术，似乎有些先时技艺的影子……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]你的感觉没错。即使是如此差劲的技术，也不是愚昧的一族能够靠自己开发出来的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]从一开始，这种“魔剑铸术”就借鉴了很多有关失落技术的残篇。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]大概那些家伙的精力，都放在搞迷信上面，整个脑子里已经剩不下多少创造力了吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "真是毫不留情的评价啊……"
+          },
+          {
+            "tag": "tag_40",
+            "text": "这点评也太犀利了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]本来……这些资料只是我为了以防万一收藏起来，应该伴随着遗忘，在历史中彻底湮灭才对……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]谁知道居然出了这种事，让这些东西重见天日……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]对于你我是很放心，以你从先时工匠传承的技艺，应该是看不上这些低级的玩意的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]但如果这些东西被别人看到……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_45",
+            "text": "我明白，我不会让它们再为祸世间的。"
+          },
+          {
+            "tag": "tag_45",
+            "text": "放心吧，绝不会有第三个人看到这些资料。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]你这么说，我就放心了。承诺的话人人会说，但从你嘴里说出来就格外让人信服。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_47",
+            "text": "不过，这些蓝图还是有些复杂。"
+          },
+          {
+            "tag": "tag_47",
+            "text": "我可能需要一些时间。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]嗯，没关系，慢慢来吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这么强人所难的请求，我也知道不可能一朝一夕就有成果。我会去搜寻魔剑，阻止它继续为祸。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_50",
+            "text": "这样也行？"
+          },
+          {
+            "tag": "tag_50",
+            "text": "这样真的可以吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]没关系的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我姑且也算是当过铸剑师，虽然和制作工匠装置不太一样，但道理是相通的，我也知道设计人员的难处。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在当初学习铸造剑胚的时候，我也为了设计苦恼了好久……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_54",
+            "text": "那个……前辈。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_55",
+            "text": "你是觉得魔剑的存在……"
+          },
+          {
+            "tag": "tag_55",
+            "text": "……是自己的责任吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]诶？……哈哈，突然抛出了非常尖锐的问题呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]也对，仔细想想，我似乎对于魔剑的事情，抱有超出必要的责任感。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]明明那种东西除了携带诅咒之外，根本算不上什么。随便找一个厉害点的契约者……比如菲莉娜她们，都能轻松解决。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]如果按照最为效率的方法，那我们就应该放着不管。等到某一天，它惹上了自己惹不起的人，自然就遇上了命中注定的劫数。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_60",
+            "text": "……迦南前辈……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]你看得很对，我确实是有些着相了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]大概……即使时间已经过去了二……[l]咳咳，不少年头，过去的经历依然缠绕着我，时刻在我的灵魂深处回响……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_63",
+            "text": "过去的经历……"
+          },
+          {
+            "tag": "tag_63",
+            "text": "看来是很深的遗憾啊……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_65",
+            "text": "一直憋在心里很难受吧？"
+          },
+          {
+            "tag": "tag_65",
+            "text": "如果你愿意的话，我可以做你的倾听者。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是啊……确实是很深、很深的遗憾……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]也……对。或许这些往事，说出来会感觉好受很多吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不过……我始终还是有些……没有做好心理准备。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不如这样吧……等到这件事结束的时候，我就把我的过去告诉你，怎么样？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_69",
+            "text": "那就约好了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]嗯，约好了。不过，为了让约定的那天早些到来，你可得快点把装置做出来啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_71",
+            "text": "其实听到你之前说的“灵魂回响”……"
+          },
+          {
+            "tag": "tag_71",
+            "text": "……我突然有了一些灵感。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]不愧是天才工匠！既然你这么说，想来定位装置应该很快就能完成了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-场景：营地小屋。是给主角作为工作坊的室内场景，感觉没有特别适用的场景引用，试着做成一个日后能通用的场景吧。"
+}

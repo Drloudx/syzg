@@ -1,0 +1,110 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]知道。这顶帽……头冠，是我缝制的残次品姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]当年为了给德莉殿下打造一顶完美的头冠，我试做了好多次，还借用了许多遗迹的力量姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]不过，这顶头冠现在的力量远不如当初。我想，应该是受到了暗黑史莱姆魔力的侵蚀姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]原来如此……这么说，它现在是残次品中的残次品了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]是的。不过，这顶头冠的潜力远不止如此，它还能继续变强姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]哎哎哎？这顶头冠还能变强？真的吗姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]当然是真的。这毕竟是给公主殿下准备的头冠，力量怎么会只有这点姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]只要带些有用的秘境材料过来，我就能让这顶头冠恢复原本的力量姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]如果运气好，甚至能让它变得和公主殿下头上那顶一样强姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]一样强？那我可有兴趣了。我们立刻去带些秘境材料回来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]嗯，把材料带回来，再按我说的做就行姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]糟糕！我……我的公主地位要不保了姆！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp2_10_2",
+  "des": "您知道这顶帽子？"
+}

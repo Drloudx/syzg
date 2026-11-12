@@ -1,0 +1,68 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]嘿嘿……{myName}也很期待吧？那我们现在就出发！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "所以这次的宝藏到底是什么呢？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]要是寻宝前就透露了信息，那一路上的乐趣不就大打折扣了嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]不过嘛……我倒是可以小小透露一点：这个宝藏呢，不是什么稀世珍宝，也几乎不能帮你变强。但我保证它绝对能让你眼前一亮！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "那我就拭目以待了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]嗯，我们出发吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "露帕·萝特-营地对话【打算去哪寻宝？】",
+  "script": "fav_hero_034_5_0"
+}

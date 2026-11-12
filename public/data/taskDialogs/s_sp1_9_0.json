@@ -1,0 +1,230 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]洛莉安大人从百年的沉睡中苏醒，我们得把城堡好好打扫一番。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呃……洛莉安不是一直在睡觉吗？城堡能有这么多垃圾？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]与其说是在打扫，不如说是在清理不需要的东西。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]城堡的封印在这百年间也松动过几次，很多探险者借机进入城堡抢夺财宝，不过他们都被城堡的护卫赶出去了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]而他们虽然人出去了，但很多东西都留了下来，我们现在就在清理这些东西。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]唉，这些人是真没礼貌，把锄头和铁铲到处扔，一点礼貌都没有，不知道的还以为余这里是矿场呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]都进来抢财宝的，你就别要求他们讲礼貌了吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]不过大多数人看见这么个城堡都会逃跑吧，怎么还会有人专门来这里寻宝呢？连锄头和铁铲都带上了，莫非你们城堡藏有什么宝藏？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]城堡里有宝藏？余城堡里虽然有一些财宝，但也不是特别珍贵的东西啊，根本不值得他们大费周章进来挖。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是这样吗？这城堡有几百年的历史了，说不定还有你没发现的宝藏呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]反正余作为城堡的主人，没见过什么宝藏，余感觉也不会有人无聊到把宝藏放到城堡里。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不过要说这些留下的垃圾再堆个几百年，说不定还真能当成宝藏呢，就说这是几百年前的伟大探险家留下的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]嗯？这张破纸是什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]纸？我看看……这不就是藏宝图吗？好像还就是这个城堡的藏宝图。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]啊？这么一看……好像确实很像余的城堡，画得还有模有样的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]等一下，上面还真有藏宝地点，虽然只是残破部分……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]喂！祖莉尔，你过来！解释一下这是怎么回事？余沉睡这百年城堡到底发生什么了？是不是真有人往城堡里扔东西了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]报告！洛莉安大人！这事我也不清楚啊，我从来没听说过这里有什么宝藏……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]那这藏宝图是怎么回事？我的幽夜古堡什么时候成了宝藏古堡了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]这个……应该只是那群冒险者胡诌的，大人不必在意。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]要是胡诌的话，这也太详尽了吧，要不要把这藏宝图全图拿来看看，所谓的宝藏是不是真的存在。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余正有此意，在哪里能找到完整的藏宝图？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]应该是有的，大部分冒险者都在前庭被挡住了，他们身上带着的藏宝图应该有留下来，可以去前庭看看。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]前庭那边的魔物好像很活泛，恐怕不会让我们直接过去……罢了，不就是打一架的事情吗？余出发了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]洛莉安大人！等等我——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那可是宝藏哎……古堡前庭离这里也不远，我们也跟上去看看如何？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐复议，我们出发吧！真有宝藏说不定也能分我们一份呢。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp1_9_0",
+  "des": "你们在打扫吗？"
+}

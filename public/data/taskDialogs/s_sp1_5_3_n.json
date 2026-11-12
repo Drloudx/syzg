@@ -1,0 +1,38 @@
+{
+  "script": "s_sp1_5_3_n",
+  "des": "烤肉来了！",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这不是什么都没有嘛……[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]托利斯现在正指挥人在清理地上的垃圾呢，它说你们拿到果香烤肉之后就通知它过来。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等你们手上有了1串果香烤肉之后，再过来跟本宫打招呼吧。[l][cm][hide]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

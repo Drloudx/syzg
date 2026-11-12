@@ -449,39 +449,66 @@
                     <span class="mechanics-text">{{ currentSkillMechanics.bonuses.excludes.map(mechanicsLabel).join(' · ') }}</span>
                   </div>
                   <!--
-                    召唤物属性（只有带 summonData 的技能才有）。
+                    召唤物属性（一次可召唤多种单位，如德莉「征号召令」近战×1 + 远程×2）。
                     口径依据源码 `Unit.cs:1467-1484`：继承只有生命/攻击/防御；
                     攻速·暴击·爆伤固定取自怪物配置表，不随角色变化。
                   -->
-                  <template v-if="currentSummon">
+                  <template v-for="(summon, sIdx) in currentSummons" :key="`summon-${sIdx}-${summon.monTypeId}`">
                     <div class="mechanics-row mechanics-summon-row">
                       <span class="mechanics-label">召唤物</span>
                       <span class="mechanics-text">
-                        <strong>{{ currentSummon.name }}</strong>
-                        <template v-if="currentSummon.maxCount > 0"> ×{{ currentSummon.maxCount }}</template>
-                        <template v-if="currentSummon.duration > 0"> · 持续 {{ currentSummon.duration }} 秒</template>
+                        <strong>{{ summon.name }}</strong>
+                        <template v-if="summon.maxCount > 0"> ×{{ summon.maxCount }}</template>
+                        <template v-if="summon.duration > 0"> · 持续 {{ summon.duration }} 秒</template>
                       </span>
                     </div>
-                    <div v-if="currentSummon.inherit.length" class="mechanics-row">
+                    <div v-if="summon.inherit.length" class="mechanics-row">
                       <span class="mechanics-label">继承比例</span>
-                      <span class="mechanics-text">{{ currentSummon.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                      <span class="mechanics-text">{{ summon.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
                     </div>
                     <!--
                       不主动攻击的召唤物（noAtk=1，如反击假人）不显示攻速/暴击/爆伤 ——
                       那些是配置表默认占位值，`UnitAI.cs:701` 的 `WaitUntil(noAtk<=0)` 永不满足。
                     -->
-                    <div v-if="currentSummon.attackNote" class="mechanics-row">
+                    <div v-if="summon.attackNote" class="mechanics-row">
                       <span class="mechanics-label">攻击方式</span>
-                      <span class="mechanics-text">{{ currentSummon.attackNote.text }}</span>
+                      <span class="mechanics-text">{{ summon.attackNote.text }}</span>
                     </div>
-                    <div v-if="currentSummon.fixed.length" class="mechanics-row">
+                    <div v-if="summon.fixed.length" class="mechanics-row">
                       <span class="mechanics-label">固定属性</span>
-                      <span class="mechanics-text">{{ currentSummon.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                      <span class="mechanics-text">{{ summon.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
                     </div>
-                    <div v-if="currentSummon.bonusNotes.length" class="mechanics-row mechanics-summon-bonus-row">
+                    <div v-if="summon.skills?.length" class="mechanics-row">
+                      <span class="mechanics-label">自身技能</span>
+                      <span class="mechanics-text">{{ summon.skills.join(' · ') }}</span>
+                    </div>
+                    <template v-if="summon.split">
+                      <div class="mechanics-row mechanics-summon-split-row">
+                        <span class="mechanics-label">分裂单位</span>
+                        <span class="mechanics-text">
+                          <strong>{{ summon.split.name }}</strong>
+                          <template v-if="summon.split.maxCount > 0"> ×{{ summon.split.maxCount }}</template>
+                          <template v-if="summon.split.duration > 0"> · 持续 {{ summon.split.duration }} 秒</template>
+                          <template v-if="summon.split.skillName"> · 由「{{ summon.split.skillName }}」产生</template>
+                        </span>
+                      </div>
+                      <div v-if="summon.split.inherit.length" class="mechanics-row">
+                        <span class="mechanics-label">分裂继承</span>
+                        <span class="mechanics-text">{{ summon.split.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                      </div>
+                      <div v-if="summon.split.fixed.length" class="mechanics-row">
+                        <span class="mechanics-label">分裂固定属性</span>
+                        <span class="mechanics-text">{{ summon.split.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                      </div>
+                      <div v-if="summon.split.skills?.length" class="mechanics-row">
+                        <span class="mechanics-label">分裂技能</span>
+                        <span class="mechanics-text">{{ summon.split.skills.join(' · ') }}</span>
+                      </div>
+                    </template>
+                    <div v-if="summon.bonusNotes.length" class="mechanics-row mechanics-summon-bonus-row">
                       <span class="mechanics-label">加成规则</span>
                       <span class="mechanics-text">
-                        <span v-for="(note, noteIdx) in currentSummon.bonusNotes" :key="note.key" class="summon-bonus-note">
+                        <span v-for="(note, noteIdx) in summon.bonusNotes" :key="note.key" class="summon-bonus-note">
                           <template v-if="noteIdx > 0"> · </template>
                           <em>{{ note.label }}</em>：{{ note.value }}
                         </span>
@@ -1254,12 +1281,17 @@ const currentSelectedSkillLevelDetail = computed(() => {
 const currentSkillMechanics = computed(() => currentSelectedSkillLevelDetail.value?.mechanics || null)
 
 /**
- * 当前技能等级的召唤物属性（只有带 `summonData` 的技能才有）。
+ * 当前技能等级的召唤物属性（可多个：如德莉「征号召令」近战 + 远程两种史莱姆）。
  *
  * 数据来自 `heroParser` → `heroMechanics.buildSummonMechanics`，
  * 口径依据源码：继承只有生命/攻击/防御，攻速·暴击·爆伤固定取自怪物配置表。
  */
-const currentSummon = computed(() => currentSelectedSkillLevelDetail.value?.summon || null)
+const currentSummons = computed(() => {
+  const detail = currentSelectedSkillLevelDetail.value
+  if (!detail) return []
+  if (Array.isArray(detail.summons) && detail.summons.length) return detail.summons
+  return detail.summon ? [detail.summon] : []
+})
 
 // Star skill selected
 const currentSelectedStarSkill = computed(() => {
@@ -2134,7 +2166,7 @@ const handleGiftClick = (giftId) => {
 
 .mechanics-row {
   display: grid;
-  grid-template-columns: 58px 1fr;
+  grid-template-columns: 76px 1fr;
   align-items: baseline;
   column-gap: 8px;
   font-size: 12px;
@@ -2203,7 +2235,7 @@ const handleGiftClick = (giftId) => {
     gap: 5px;
   }
   .mechanics-row {
-    grid-template-columns: 52px 1fr;
+    grid-template-columns: 68px 1fr;
     column-gap: 6px;
     font-size: 11.5px;
   }

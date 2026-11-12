@@ -1,0 +1,22 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "缇莎",
+        "text": "[show]唔……这里的魔力更浓烈了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]差不多该到最深处了吧。[wait=300]要跟紧了，小缇莎！[wait=500]大家出发吧！[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c1_d9_1",
+  "des": "遗迹深处三层：进入时"
+}

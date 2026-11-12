@@ -1,0 +1,222 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]这地方很不错吧，有花丛，有溪水，而且还特别安静。我们蜜蜂就喜欢安静的地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]蜜蜂的存在也能给当地环境带来益处，我们会给花授粉，驱赶其它的害虫，甚至可以预防荒野客来捣乱。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]我们在这里还有一个作用，那就是……这个东西！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]这罐子里装的都是我们产的蜂蜜，味道很甜很好吃，您尝尝看。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]味道不错吧？这是我特别挑过的最好的蜂蜜，尝过的都说好吃。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]只要主公容许我们在这里定居，我保证营地每天都能尝到这种美味的蜂蜜。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]蜜蜂的蜂巢并不大，只要留给我们一两块地就好了……主公同意吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我当然没意见。",
+            "tag": "tag_10"
+          },
+          {
+            "text": "你们直接搬进来就好。",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]好的，我稍后就去通知它们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]您问我们需不需要保护？完全不需要，我们的蜜蜂卫兵会保护好蜂巢的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]别忘了我们蜜蜂都会飞，一般的魔物可不是我们的对手。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]曾经有一群角布林想来抢走我们的蜂蜜，结果一下子就被打跑了，我们这边可连个受伤的都没有哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]要说比较麻烦的可能就是角猪吧，毕竟皮糙肉厚的，又喜欢撞来撞去的，我们在草丛和树上的蜂巢好几次都被撞烂了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]唉……要筑一个蜂巢可是很辛苦的，估计大家搬来这里之后得花很长时间才能把蜂巢弄好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]您说您可以给我们准备一些蜂箱？这个会不会太麻烦主公您了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "放心，很轻松就能做出来的。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（拿起锤子打造蜂箱。）",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]哇，一下子就把蜂箱弄好了，主公果然很厉害！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]那我就收下这些蜂箱了，等大家来到这里之后就直接搬进里面住好啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]我看附近好像还有些魔物在游荡，得先把它们赶走，保护这里的安全才行。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我和你一起去。",
+            "tag": "tag_23"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]有主公帮忙，一定能很快解决那些家伙。非常感谢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]那我们走吧，我选了几个地方，我们把那周围的魔物都赶走吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（和修瓦莉一起，将挑选好的位置附近的魔物都清理掉了。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_069_1_1",
+  "des": "修瓦莉好感1-战役"
+}

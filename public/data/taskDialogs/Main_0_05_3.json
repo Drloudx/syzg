@@ -1,0 +1,22 @@
+{
+  "script": "Main_0_05_3",
+  "des": "砂蜘蛛之巢",
+  "exps": [
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]（总算从地窖里走出来了……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]（这些从蜘蛛肚子里挖出来的金属片又黏又臭……[r]还是赶紧回到旅店，问问茜塔小姐报酬的事，早些回去营地吧……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

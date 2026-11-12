@@ -1,0 +1,598 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]德莉！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你没事吗？",
+            "tag": "tag_73"
+          },
+          {
+            "text": "你还好吧？",
+            "tag": "tag_73"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[cm][show]是、是你们……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]没事就好，还好我们赶上了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]你们是来……救我的姆……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊！那不然呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]欸？可、可是……我不是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么可是不可是的？就算你不听人话，被人挑拨两句就得手，我们难道还能放着你不管吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]欸？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]这并不值得惊讶，对于这两个人来说，既然已经认定你是同伴，他们就不会对你坐视不理。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]包括这位米托拉小姐，你别看这家伙态度粗暴，但她的道德水平确实比深渊的平均水平还要高。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么叫态度粗暴啊！你这话也太多余了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]怎么？只许你一直攻击我外表年龄小，就不许我多说两句大实话吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呃……你这家伙居然是这种小心眼的角色？就是你太在意这种小事，你才会很想小孩子啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]所以说！我·不·是·小·孩·子！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]呼呼……呵呵……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咦？德莉？你笑了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]嗯……因为大家，真的很有趣啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]我……我这次……对不起……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]明明在我内心的感觉里，大家都是十分可靠、也可以信任的人姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]但是，当我听到你们有可能有所阴谋，有可能背叛我的时候姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]我还是退缩了、被吓跑了姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]对“背叛”的恐惧，让我失去了理智，抛弃了触手可及的温暖……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]等到我冷静下来，我才发现自己做了多么无法挽回的事姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]我才发现，原来我所做的，正是被我畏之如蛇蝎的“背叛”之举……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]在理解到这一点的时候，我不禁想……即使能够解除误会，被我背叛的大家，一定再也不会接纳我了姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]然而……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "然而你想多了！",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[cm][show]嗯——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（从远处传来啪啪啪的鼓掌声——）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？？",
+        "text": "[show]哎呀，真是感人肺腑的发言，叔叔我听了都要流泪了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这个声音是——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]祖基尼II世！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你这家伙，居然还敢冒出来！是准备好又要吃姑奶奶的铁拳了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]不不不，我这次可不是来与你们为敌的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]我是来——收获属于我的战利品的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？战利品？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]德莉！宝珠！你快找找，宝珠是不是还在身上！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]欸？宝、宝珠是吗？我找找姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]不、不见了！宝珠……我明明放在身上的姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]哈哈哈哈！你当然把宝珠放在了身上，至少直到刚才为止都是这样！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]如果不是这样，我又怎么可能埋伏人手，把这件珍宝弄到手呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "潜行者",
+        "text": "[show]祖基尼大哥，你要的宝珠到手了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]嗯，多谢，我祖基尼II世不会亏待你的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]怎么回事？！什么时候——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]原来如此，被我们打倒的那些荒野客都是吸引注意力的幌子，真正的目标早就有人潜行偷窃入手了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]当然，你们这个组合，又是来历不明的强大妖精，又是驿站的“英雄二人组”……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]哎呀呀，面对这么强大的敌人，我当然要以被你们妨碍为前提来制定计划了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]哦，当然！如果你们没能及时赶到，我也不介意掳走这棵可爱的摇钱树，但这不是没机会嘛？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你这家伙……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "祖基尼",
+        "text": "[show]哼哼哼哼……哈哈哈哈……！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]不行，距离太远！等我们爬上去，他们早就逃之夭夭了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但我们也不能让他们太得意！",
+            "tag": "tag_100"
+          },
+          {
+            "text": "是时候启动我们的后备计划了！",
+            "tag": "tag_100"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]咦？你、你有办法姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]有办法就说说看啊，你准备怎么追踪祖基尼一伙？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你忘记之前发生的事了吗？",
+            "tag": "tag_62"
+          },
+          {
+            "text": "这个办法很早就握在我们手里了。",
+            "tag": "tag_62"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]啊！难道说……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]哼哼～！这下知道妖精贤者的厉害了吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]放心，我老早就发动追踪魔法了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]那个被我标记的家伙，就在祖基尼一伙逃走的方向。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]如果一切顺利的话，我们说不定能赶在前面截住他们呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦哦！那可真是了不起！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]现在有了具体的方位，需要的就只有熟悉地形的向导了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]让、让我来吧姆！德莉对于这一带还是很熟悉的姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]而且，他们离开的方向，应该是准备去往通向森林秘境的峡道。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]既然知道了他们的目标，我们就快点追上去吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]别忘了秘境里还有蚀渊之触在，让祖基尼和它走到一起，我可不觉得会是什么好事情啊……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "sp2_5_a_3",
+  "des": "追加剧本：SP2-5通关（复杂演出）"
+}

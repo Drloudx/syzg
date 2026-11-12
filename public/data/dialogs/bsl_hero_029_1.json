@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]嗯……地脉波动稳定，空气湿度适宜，周围也没有魔物巢穴，看来你选了一处安全的据点啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]在研究室待久了，偶尔接触一下这种原始的地表生态也不错，这里绿色的植被和凉爽的清风也能让我放松不少。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]我喜欢和聪明人合作，而你展现出的工匠智慧确实打动了我。希望这份契约能成为我们迈向未来的新起点。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]这是我精心准备的礼物，还请收好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "text": "[show]那么……今后合作愉快，我的伙伴。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_029_1",
+  "des": "bsl_hero_029_1"
+}

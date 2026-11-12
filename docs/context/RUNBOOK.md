@@ -76,13 +76,28 @@ cmd.exe /c "npm run search:update"     # 重建搜索 / 来源 / 类型索引
 
 `items` **必须先构建**，其他解析模块依赖 `itemData`。
 
-### 3.3 不由常规构建自动执行的独立步骤
+### 3.3 数据前置层（已自动化，`data:build` 会自动跑）
+
+```powershell
+cmd.exe /c "npm run data:prepare:check"   # 预览：派生表/剧情副本是否需要更新
+cmd.exe /c "npm run data:prepare"         # 实际同步这些派生数据
+```
+
+`npm run data:build` 已内置 `data:prepare`，**不再需要手工记得跑下面这几步**：
+
+| 数据 | 生成方式 | 说明 |
+| --- | --- | --- |
+| 4 张派生 raw 表 | `scripts/dev/rebuild-derived-raw.mjs` | `dungeonBattle` / `dungeonBattleRoutes` / `dungeonBattleRooms` / `monsterTowerUsage`；**输出在 `raw/.derived/`**（`raw/` 只放原表），`sync-raw` 会跳过它们，全部幂等 |
+| `public/data/taskDialogs/` | `check-task-data.mjs --apply` | 按任务/战斗/房间引用集复制并裁剪（只留 `text`/`option`） |
+| `public/data/dialogs/` | `sync-dialogs.mjs --apply` | 从 `游戏数据/剧情` 重新裁剪生成（角色档案用） |
+
+> 派生表规则要点：`dungeonBattleRooms` 的 effects 来自 **`room.json`**；`dungeonBattle` 是 `instance.battles[].dungeonBattle` 引用集的字段投影。
+> 解析器读取派生表走 `shared.mjs` 的 `readDerivedJson()`——**缺失会直接报错**，不会静默回退旧表。
+
+### 3.4 其余不由常规构建自动执行的独立步骤
 
 | 命令 | 作用 |
 | --- | --- |
-| `node scripts/parse/extractDungeonRoutes.mjs` | 从完整配置提取副本路线输入 |
-| `npm run data:dungeons:effects` | 维护女神/泉水等房间结构化效果输入 |
-| `npm run data:monsters:tower` | 从完整 tower/battle/room 生成轻量 Boss 塔层索引 |
 | `npm run skins:export` | 离线导出皮肤模型 PNG 与清单。**需要先另起 `npx vite --port 4187`**（脚本用页面内 WebGL 渲染，靠 Vite 提供 spine-webgl 的预构建产物） |
 | `npm run fonts:subset -- --apply` | 字体子集化（数据更新后字符集变大必须重跑） |
 | `npm run audit:item-sources` | 物品来源缺口审计（只读，输出 JSON） |

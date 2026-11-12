@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]哟，杂鱼工匠！阿迪拉终于在这里逮到你了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]阿迪拉感觉你的营地……也就勉强凑合吧，拿来当个住所还是可以的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]看在你这么诚心和阿迪拉签订契约的份上，阿迪拉就暂时把这里当成新据点好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]拿着！这是给你的“对手礼”，不许露出嫌弃的表情，不然阿迪拉就把你的头发拔光！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]可别想轻易甩掉阿迪拉这个最强的伙伴哦，杂鱼～笨蛋～[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_047_1",
+  "des": "bsl_hero_047_1"
+}

@@ -1,97 +1,94 @@
 {
-  "des": "寒冬中的熔火之苗-露比互动",
-  "script": "s_5_12_2",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]哎呀？怎么是你们？没想到会在这儿遇见。[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]什么啊，搞了半天原来是露比啊。我们还以为是那群佣兵呢。不过用\"狡诈的背包客\"来形容你，确实还挺贴切的。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "charaName": "米托拉",
+        "text": "[show]什么啊，搞了半天原来是露比啊。我们还以为是那群佣兵呢。不过用“狡诈的背包客”来形容你，确实还挺贴切的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]什么狡诈的背包客，像我这样的人哪里狡诈了？我明明就是个聪颖迷人的美少女好吧！[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]行行行，你说你像什么就像什么吧。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]嗯？旁边这位是你们的新伙伴吗？[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]你好！我叫艾薇杜尔，是最近加入队伍的新伙伴！[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]你好，我叫露比。是你们的合作伙伴，既然你已经加入他们了，那以后我们也是伙伴啦。[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]好的，露比小姐，合作愉快！说起来……你们的合作是什么？[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]就是一些魔物的事情而已啦。先不谈这个，露比你来这里干嘛？[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]这个嘛……我最初是来这里看看有没有生意能做的，然后在这里发现了……这家伙。[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "小熔火元素",
         "text": "[show]咕呜……咕……[l]",
-        "charaName": "小熔火元素"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -99,79 +96,82 @@
             "text": "这是……熔火元素？"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]好……好可爱啊，不过它的状态好像不太好的样子。[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]我在山径外发现它的时候，它已经奄奄一息了。我想着不能放它不管，所以就把它带来了这儿，想着能避避风。[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]但是……你们也看到了，这儿好像全是它的同类……我也不知道该怎么办，所以就暂且呆在这儿，看看它的情况。[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]你们既然来了，那就好办了。能帮我带些硫磺回来吗？只要三块就够了。那东西可以治疗它的伤。[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]可以是可以，不过……你什么时候变得这么热心了？[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "露比",
         "text": "[show]嘿！别对我们商人有什么误解，我们追逐利益并不意味着就是被利益驱动的机器！我还是很有爱心的好吗！[l][cm]",
-        "charaName": "露比"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]行吧，那你稍等一下，我们这就去给你们带些硫磺回来。[l][cm][hide]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ]
+  ],
+  "script": "s_5_12_2",
+  "des": "寒冬中的熔火之苗-露比互动"
 }

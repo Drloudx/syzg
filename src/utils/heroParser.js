@@ -2,8 +2,8 @@ import { fetchWithFallback } from './request.js'
 import { createCachedLoader } from './resourceClient.js'
 import { getItemImageUrl, roundToEven } from './itemParser.js'
 import { resolvePlayablePlayerLevelCap } from './levelConfig.js'
-import { JOB_NAMES, ELEMENT_NAMES, BASE_REWARD_ICONS, REWARD_MODE_INFO, getCleanSkillName } from './gameMappings.js'
-import { buildSkillMechanics, buildTalentMechanics, buildSummonMechanics, resolveSummonConfig } from './heroMechanics.js'
+import { JOB_NAMES, ELEMENT_NAMES, BASE_REWARD_ICONS, REWARD_MODE_INFO, getCleanSkillName, cleanDialogueBase } from './gameMappings.js'
+import { buildSkillMechanics, buildTalentMechanics, buildSummonMechanics, resolveSummonConfig, resolveSummonConfigs } from './heroMechanics.js'
 import { buildPartnerMailboxes, parseHeroMail } from './partnerMailData.js'
 import { describeBuff } from './buffParser.js'
 import { isHiddenHero } from '../config/blacklist.js'
@@ -23,7 +23,7 @@ export function buildHeroData(maps) {
   const {
     heroRes, archivesRes, behaviorRes, levelRes, playerLevelRes, mailRes, rankRes,
     skillUpgradeRes, talkRes, starRes, consumeRes, skillRes, skillTriggerRes,
-    taskRes, dialogSegmentsRes, dialogIndexRes, generalRes, buffRes,
+    taskRes, dialogSegmentsRes, dialogIndexRes, dialogScripts, generalRes, buffRes,
     monRes = {}, // 召唤物属性来源：技能的 `summonData.monTypeId` → mon.json 的 `unitData`
     skinRes = {}, items, lanDict, rewards
   } = maps
@@ -145,7 +145,7 @@ export function buildHeroData(maps) {
         const skillId = h.normalAttack
         const s = skillDatas[skillId]
         if (s) {
-          parsedSkills.push(processSkillInfo(skillId, s, 'normal', rare, element, skillUpgradeDatas.skillOne, consumeDatas, items, buffDatas, monDatas))
+          parsedSkills.push(processSkillInfo(skillId, s, 'normal', rare, element, skillUpgradeDatas.skillOne, consumeDatas, items, buffDatas, monDatas, skillDatas))
         }
       }
 
@@ -155,7 +155,7 @@ export function buildHeroData(maps) {
           const s = skillDatas[skillId]
           if (s) {
             const upgradeList = idx === 0 ? skillUpgradeDatas.skillOne : skillUpgradeDatas.skillTwo
-            parsedSkills.push(processSkillInfo(skillId, s, 'active', rare, element, upgradeList, consumeDatas, items, buffDatas, monDatas))
+            parsedSkills.push(processSkillInfo(skillId, s, 'active', rare, element, upgradeList, consumeDatas, items, buffDatas, monDatas, skillDatas))
           }
         })
       }
@@ -207,17 +207,17 @@ export function buildHeroData(maps) {
                  * 召唤配置**不在 levelVal 里**，而在 `buffId` 指向的 buff 的 `para.summonData`，
                  * 所以必须传 `buffDatas`；`resolveSummonConfig` 覆盖这两种位置。
                  */
-                const talentSummonConfig = resolveSummonConfig(lvlVal, buffDatas)
-                const talentSummon = talentSummonConfig
-                  ? buildSummonMechanics(lvlVal, monDatas[talentSummonConfig.monTypeId], talentSummonConfig, buffDatas)
-                  : null
+                const talentSummonConfigs = resolveSummonConfigs(lvlVal, buffDatas)
+                const talentSummons = talentSummonConfigs
+                  .map(cfg => attachSummonSkills(buildSummonMechanics(lvlVal, monDatas[cfg.monTypeId], cfg, buffDatas), monDatas, skillDatas))
+                  .filter(Boolean)
 
                 levelData.push({
                   level: parseInt(lvlKey),
                   name: lvlVal.skillName || trigger.skillName || '被动天赋',
                   des: lvlVal.des || '',
                   mechanics: buildTalentMechanics({ skillId, trigger: lvlVal, buffDatas }),
-                  ...(talentSummon ? { summon: talentSummon } : {})
+                  ...(talentSummons.length ? { summons: talentSummons, summon: talentSummons[0] } : {})
                 })
               })
             }
@@ -235,12 +235,42 @@ export function buildHeroData(maps) {
       // 6. Archives and Story Tasks (combined in natural favorability order)
       const archives = []
       const heroArchivesList = archivesDatas[typeId] || []
-      
+
+      /*
+       * 🔴 2026-11-11：一部分「首次见面」档案的 `archiveDesc` **不是正文，而是剧情 id**
+       * （如 hero_069 的 `bsl_hero_069_1`，共 41 条）。此前直接把 id 当正文渲染，
+       * 页面显示的就是一串 `bsl_hero_069_1`。
+       * 这里若检测到「纯 id 形态」且能在 dialogScripts 里找到对应剧本，就把该剧本里
+       * `text` 条目的正文拼出来替换；找不到则留空（宁可空，不显示 id）。
+       */
+      const isDialogIdLike = value => typeof value === 'string' && /^[A-Za-z0-9_]+$/.test(value)
+      const dialogTextOf = id => {
+        const script = dialogScripts?.[id]
+        if (!script || !Array.isArray(script.exps)) return ''
+        const lines = []
+        for (const e of script.exps) {
+          if (e?.key !== 'text') continue
+          const para = e.para || {}
+          // 与任务/互动对话共用同一套清洗：剥舞台标记 + 替换 {myName}/[myName]/主角 → 小工匠
+          const t = cleanDialogueBase(para.text)
+          if (!t) continue
+          const rawName = String(para.charaName || '').trim()
+          const name = ['主角', '[myName]', '{myName}'].includes(rawName) ? '小工匠' : cleanDialogueBase(rawName)
+          lines.push(name ? `${name}：${t}` : t)
+        }
+        return lines.join('\n')
+      }
+
       heroArchivesList.forEach(arch => {
         const taskTypeId = arch.taskTypeId || ''
+        const rawDesc = arch.archiveDesc || ''
+        // ① 纯 id 形态 → 取剧情正文；② 普通文本 → 也要走同一套清洗（{myName}/[myName]/主角 → 小工匠）
+        const desc = isDialogIdLike(rawDesc)
+          ? (dialogTextOf(rawDesc) || '')
+          : cleanDialogueBase(rawDesc)
         archives.push({
           title: arch.archiveTitle || '',
-          desc: arch.archiveDesc || '',
+          desc,
           taskDesc: arch.archiveTask || '',
           unlockFav: arch.unlockFavValue || 0,
           type: arch.type || 0,
@@ -398,7 +428,52 @@ export const fetchHeroData = createCachedLoader(async () => {
 })
 
 // Help process active skills and normal attacks
-function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeDatas, items, buffDatas, monDatas = {}) {
+/**
+ * 给召唤物附加「自身技能」名称列表：mon.json 的 skillList[].skillId → skill.json 的 skillName。
+ * 召唤物（如德莉的剑盾护卫/弓箭手护卫）不在怪物图鉴单列，但其技能数据在 skill 表里，
+ * 角色图鉴的召唤物行可展示这些技能名，避免读者以为召唤物没有技能。
+ */
+function attachSummonSkills(summon, monDatas, skillDatas) {
+  if (!summon) return summon
+  const mon = monDatas[summon.monTypeId] || {}
+  const list = Array.isArray(mon.skillList) ? mon.skillList : []
+  const skillNames = []
+  let split = null
+  for (const entry of list) {
+    const sid = entry?.skillId
+    if (!sid) continue
+    const s = skillDatas[sid]
+    const lv1 = s?.levelData?.['1']
+    const nm = lv1?.skillName || s?.skillName || s?.name
+    if (nm) skillNames.push(String(nm).replace(/\s*Lv[:：]?\s*\d+$/i, '').trim())
+    // 分裂类技能：技能自身带 summonData（再召唤出子单位），记录子单位属性。
+    // 例：弓箭手「远程小能分裂」→ 060_1fenlie ×2（生命50%/攻击50%/防御50%，持续6秒）；
+    //     剑盾「分裂」→ 060_2fenlie ×2（…持续10秒）。
+    if (!split && lv1) {
+      const cfgs = resolveSummonConfigs(lv1)
+      if (cfgs.length) {
+        const childCfg = cfgs[0]
+        const child = buildSummonMechanics(lv1, monDatas[childCfg.monTypeId], childCfg)
+        if (child) {
+          split = {
+            ...child,
+            skillName: nm ? String(nm).replace(/\s*Lv[:：]?\s*\d+$/i, '').trim() : '',
+            skills: (monDatas[childCfg.monTypeId]?.skillList || [])
+              .map(e => {
+                const cs = skillDatas[e?.skillId]
+                const cn = cs?.levelData?.['1']?.skillName || cs?.skillName || cs?.name
+                return cn ? String(cn).replace(/\s*Lv[:：]?\s*\d+$/i, '').trim() : ''
+              })
+              .filter(Boolean)
+          }
+        }
+      }
+    }
+  }
+  return { ...summon, skills: [...new Set(skillNames)], ...(split ? { split } : {}) }
+}
+
+function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeDatas, items, buffDatas, monDatas = {}, skillDatas = {}) {
   // Extract multiplier and damage type for normal attacks
   let power = 100
   let isPhy = true
@@ -424,11 +499,12 @@ function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeD
         customDes = `造成 {${power}%}${isPhy ? '物理攻击' : '魔法攻击'}加成的${isPhy ? '物理' : '魔法'}伤害。`
       }
       // 召唤物属性（只有带 summonData 的技能才有）；`monTypeId` 指向 mon.json
-      // 主动技能在 aniEvents 里，被动天赋在 buffId 指向的 buff 里 —— 两处都要覆盖
-      const summonConfig = resolveSummonConfig(lvlVal, buffDatas)
-      const summon = summonConfig
-        ? buildSummonMechanics(lvlVal, monDatas[summonConfig.monTypeId], summonConfig, buffDatas)
-        : null
+      // 一次可召唤多种单位（德莉「征号召令」= nearOneSummonData + longTwoSummonData），
+      // 用 resolveSummonConfigs 收集全部；主动技能在 aniEvents 里，被动天赋在 buff 里。
+      const summonConfigs = resolveSummonConfigs(lvlVal, buffDatas)
+      const summons = summonConfigs
+        .map(cfg => attachSummonSkills(buildSummonMechanics(lvlVal, monDatas[cfg.monTypeId], cfg, buffDatas), monDatas, skillDatas))
+        .filter(Boolean)
 
       levelData.push({
         level: parseInt(lvlKey),
@@ -437,7 +513,7 @@ function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeD
         cd: lvlVal.cd !== undefined ? lvlVal.cd : (s.cd || 0),
         cost: lvlVal.cost !== undefined ? lvlVal.cost : (s.cost || 0),
         mechanics: buildSkillMechanics({ skillId, type, levelValue: lvlVal, buffDatas }),
-        ...(summon ? { summon } : {})
+        ...(summons.length ? { summons, summon: summons[0] } : {})
       })
     })
     // Restrict skill level max to 12

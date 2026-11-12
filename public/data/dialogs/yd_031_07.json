@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我找到了一些好东西，我想你应该会喜欢，给你看看吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]这是我在先时遗迹里找到的宝物，好像是一只碗？还是一口锅？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]呃……你说这是一个零件？还是战斗装置的零件？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]好吧……不得不承认，你的学识远远在我之上。即便是在克里斯汀，你也能成为一流的学者。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]总之……我以后找到有趣的东西，都会送过来给你看看的……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_031_07",
+  "des": "波特温-亲密1"
+}

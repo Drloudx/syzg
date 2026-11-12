@@ -1,0 +1,92 @@
+{
+  "script": "fav_hero_036_5_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]是的，新人们算是走上正轨了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]之前我用自己的方式来教他们，似乎难度有些太高了。适当放慢进度之后，一下子就有好几个好苗子脱颖而出呢！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "毕竟贝尔卡是天才啊！"
+          },
+          {
+            "tag": "tag_5",
+            "text": "你早就该这么做了！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]哈……毕竟我也是第一次教人，之前没有经验嘛。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]现在想想，当初圣女大人教导我的时候，也是十足地耐心。要是我早点意识到就好了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]好了，不说这些！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]好不容易给自己放假，今天我们就不聊工作，好好放松吧！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "嗯！"
+          },
+          {
+            "tag": "tag_10",
+            "text": "就这么办！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "贝尔卡-营地对话【工作告一段落了吗？】"
+}

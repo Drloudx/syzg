@@ -1,0 +1,53 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]嘿嘿……又能来{myName}这边睡觉啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]不过……眼下肚子还有些饿。营地里现在有吃的吗？当然，我会付钱的。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "不用这么客气。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "都是你最喜欢的甜品。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]真的吗？那太好了！我还想尝尝这边甜品的味道呢！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "露帕·萝特-营地对话【欢迎再次来到营地。】",
+  "script": "fav_hero_034_2_0"
+}

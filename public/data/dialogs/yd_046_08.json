@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]自从来到营地以后，我就感觉自己的状态好很多。[r]以前每天趴在矿洞里都睡不好，现在一躺床上就能睡着。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]可能是因为环境和生活状况都不同了吧，而且营地确实给了我家的感觉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]即便工作再辛苦，一想到自己下班后就能回到营地，突然就感觉自己充满了动力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]回到营地就能见到熟悉的草地、清澈的天空以及值得信任的伙伴，还有就是……{myName}。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嘿嘿……就让我再看看你吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_046_08",
+  "des": "迈妮娅-亲密2"
+}

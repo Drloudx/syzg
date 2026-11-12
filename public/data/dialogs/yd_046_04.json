@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]呜……手臂好酸。果然就算是我，也扛不住连续挖二十个小时的矿……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]唉？是不是有人强迫我？不、不不不，我没事的啦！[r]我只是看到驿站里有挖矿赚外快的契约，就试着学你的样子接了接……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]结果不小心把他们一周的工作量全干完了，哈哈哈哈……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]你说……我辛苦了？要不要帮我按摩？这、这这这这个怎么好意思——嗯～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]好、好舒服……嘻嘻……原来工作过后……有人能帮忙按一按……是这么舒服的事啊……我从来没体验过这种感觉呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]可、可以帮忙按一下这边吗……对，这边，就是这边……对——哇～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]呀！抱、抱抱抱抱抱歉！是我得意忘形了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_046_04",
+  "des": "迈妮娅-熟识1"
+}

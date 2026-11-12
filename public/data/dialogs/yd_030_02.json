@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]我的背包很大，东西很杂，可不能乱碰。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]左边是药，右边是火种，最下面那捆绳子卡着帐篷骨架。抽错一样东西，半个包都会砸下来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿尔克丝",
+        "text": "[show]你真想帮忙？那可以站远一些吗？别挡着我重新绑。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_030_02",
+  "des": "阿尔克丝阿尔克丝－友善2"
+}

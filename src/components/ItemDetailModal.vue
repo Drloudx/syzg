@@ -1458,6 +1458,16 @@ const groupedSources = computed(() => {
     gacha: { name: '招募与贩售', sources: [] },
     tower: { name: '塔层奖励', sources: [] },
     dismantle: { name: '装备分解', sources: [] },
+    /** 神器进阶（来源表 `type: 'upgrade'`）：由上一阶装备 + 材料进阶得到 */
+    upgrade: { name: '神器进阶', sources: [] },
+    /** 秘境首通 / 探索层（`type: 'relicFirst' / 'relicExplore'`） */
+    relicFirst: { name: '秘境首通', sources: [] },
+    relicClear: { name: '秘境通关', sources: [] },
+    relicExplore: { name: '秘境探索', sources: [] },
+    /** 秘境事件（`type: 'relicEvent'`） */
+    relicEvent: { name: '秘境事件', sources: [] },
+    /** 商城礼包（`type: 'pack'`） */
+    pack: { name: '商城礼包', sources: [] },
     pvp: { name: '挑战赛', sources: [] },
     monster: { name: '怪物掉落', sources: [] },
     recipe: { name: '配方制作', sources: [] },

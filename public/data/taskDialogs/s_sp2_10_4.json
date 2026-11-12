@@ -1,0 +1,113 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]嗯……不错，不错。看来这就是这顶头冠最强的状态了姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿……{myName}，你戴到头上试试？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（戴上头冠。）",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]不错啊，你戴上它，也能当史莱姆公主了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]还真挺有感觉的……说不定你也有当史莱姆公主的资质姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]什么叫才不想当史莱姆公主啊？这可是很尊贵的位置，其他史莱姆想当还当不了呢姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]好啦，既然这顶头冠已经恢复到最佳状态，我的任务也完成了姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好嘞，谢谢你。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]呜……这么说，路边随便一个角布林戴上头冠，都能取代我的位置姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]放心吧，公主之冠只是一件装饰，哪有公主殿下本人重要姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]只要公主殿下在，史莱姆公主的位置就没人能取代姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]嘿嘿嘿……还是你说话好听姆！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp2_10_4",
+  "des": "多谢你了，库库姆！"
+}

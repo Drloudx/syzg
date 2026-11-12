@@ -1,0 +1,100 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]很糟糕。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]和你写信之后我又到处转了一圈，果然还是找不到任何蛛丝马迹。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]你当时是怎么找到她的？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "并没有特意去找。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "她们就在迷宫里等着呢。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]迷宫里……？嗯……这倒是个盲点。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]说起来，你现在有空吗？有空的话能不能带我去看看，你之前是在哪里遇上那些家伙的？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "现在还蛮闲的。",
+            "tag": "tag_8"
+          },
+          {
+            "text": "那就一起走一趟吧。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]太好了！那我们这就出发？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]一般的迷宫，有我在就不愁安全了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_070_2_0",
+  "des": "露库希安好感2-引入"
+}

@@ -1,0 +1,70 @@
+{
+  "script": "Main_1_03_5",
+  "des": "核心危机2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]不愧是有传承的工匠……居然这么快就把魔力核心都完成了吗！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]很好，接下来就只剩下麻烦的组装和打磨工序了，工期……应该能够如期完成！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]那就太好了！这次不用被首座大人打手心了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呜喵！你们旧日修行所还有这么可怕的惩罚吗！还要我没有加入！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]放心，不会误了你们的事的！不过这几天时间，光是在那干等，对你们来说也是一种浪费吧？[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]怎么？又有什么麻烦事要丢给我们了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "掌炉者库尔斯",
+        "text": "[show]不是我的委托，是工房的武具匠瑟尔妲。她听说了你们的事迹，有一件很重要的事情想要拜托你们，当然，契约金肯定管够！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……也好，那就去听听她说些什么吧！如果是太麻烦的事情，我会让她另请高明的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

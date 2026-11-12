@@ -1,0 +1,73 @@
+{
+  "script": "c1_7_a_3",
+  "des": "弃用",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]他们的实力杀几只角布林绰绰有余，为什么还要袭击人类？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "“哈萨琳之手”到底是什么？",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "迦南",
+        "text": "[cm][show]哈萨琳战死之后一些激进的追随者组建的势力。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "right",
+        "charaName": "茜塔",
+        "text": "[show]他们信奉强者为尊，不满于菲尔德蕾的软弱，[r]一直想要强势夺取菲尔德蕾的领导权力。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哈？什么信奉强者，只不过是一群喜欢欺凌弱小的臭虫罢了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]（米托拉说得没错，[r]如果真的信奉强者为尊，应该像驿站那样共同对抗凶猛的外敌，而不是趁火打劫。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]（……对这这群人只有强烈的厌恶感。[r]居然还借着哈萨琳的名义，却做着完全不同的事。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]前方就是中央煅炉的外围了。[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

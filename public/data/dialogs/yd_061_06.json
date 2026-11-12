@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]看到营地里的这些装饰，本宫就想起来，当年闲暇之时也曾做过一些小手工。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]虽然古代帝国的审美走的是大、黑、冷的路子，和现代的审美不太合拍，但本宫相信，真正的艺术是不会过时的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]至于本宫的作品，你们也已经品鉴过了。没错，就是加尔戈萝。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]那孩子确实是件杰作，不是吗？本宫觉得，你们应该和她玩耍得很愉快才是。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_061_06",
+  "des": "斯卡莉安6"
+}

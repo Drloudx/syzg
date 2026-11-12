@@ -1,0 +1,472 @@
+{
+  "script": "fav_hero_055_5_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]从哪里说起呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]曾经，隐居在龙岳附近的铸剑师一族里，有一对姐妹……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]姐姐从小就展露出极佳的才能，被称为千年一遇的天才铸剑师。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]而妹妹则憧憬着姐姐，一直为了成为姐姐的臂助而不断努力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]姐妹两人关系极其要好，每天都过着不知世事险恶的幸福日子……直到姐姐十三岁的那一年……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "后来发生了什么？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]姐姐不愧是千年一遇的天才铸剑师，在十三岁的年纪，就锻造出了千载难逢的名剑剑胚。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那是几乎无法重来的奇迹，是奇想、妙手、宝材，还有巨大幸运的集合体。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在那把剑胚出炉的那一天，整个一族的大人们全都沸腾了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]几乎没有花费多少时间，族长和长老们就决定，要把这枚剑胚锻造成前无古人后无来者的稀世魔剑……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]那就是悲剧的起源。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]为了让这柄最强魔剑的威力最大化，一族的长老们经过研究，决定采用血祭，将铸剑师本人联系最为紧密的人作为活祭品。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那一天，过去的幸福生活就好像一个虚幻的美梦一样，只是一瞬间就彻底破碎，等到再睁开眼时，出现在我眼前的已经是宛如炼狱一般的噩梦情景。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]曾经爱护我们的父母，亲手将挣扎的妹妹送上了祭剑台……曾经和蔼的长老们，也都露出了宛如疯魔的表情……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]等到我发现不对冲到一族的禁地时，一切都已经结束了，等待着我的，是倒在血泊之中的妹妹，还有已经铸成的血色魔剑。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那是我第一次知道一族所传承的“魔剑铸术”的真面目，但代价就是我失去了自己的半身……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "然后呢……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]然后就很简单了啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]虽然只有十三岁，但当时的我已经是一族最强的铸剑师，自然也习得了一族最强的试剑术。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]在一族最强的高手，还有与她心意相通的魔剑面前……难道还有什么东西可以阻挡得了吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "所以……"
+          },
+          {
+            "tag": "tag_24",
+            "text": "前辈你……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是的，就像你想象的那样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]发生在我身上的事情，让我醒悟了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我领悟到，让这样疯狂和邪恶的一族继续存在下去，同样的悲剧就只会不断的上演。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]所以在一番变故之后，那个罪恶的一族，就这样从世上消失了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]怎么样，是不是很无聊的故事？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "不，一点也不无聊。"
+          },
+          {
+            "tag": "tag_30",
+            "text": "听完了这些之后，我更加理解前辈了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]哈哈，你真会说好话。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哎呀～从那之后呢，我一直都在反思，一直都在后悔。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]明明我是姐姐，我有责任保护妹妹才对，但我却没能尽到我的职责……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]所以我总是想着，如果当时我再机灵一点，感觉再敏锐一些，实力再强大一点……会不会就能改变这个结局呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_35",
+            "text": "这就是迦南前辈……"
+          },
+          {
+            "tag": "tag_35",
+            "text": "对不负责任的家长特别恼火的原因？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是啊，说到底，这就是单纯的迁怒，是对于当年无能的自己的恼恨而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是不是突然发现我是个非常小家子气的人啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_38",
+            "text": "我倒是觉得这是前辈的可爱之处。"
+          },
+          {
+            "tag": "tag_38",
+            "text": "不如说感觉更亲切了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]诶？诶诶？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "前辈……？！"
+          },
+          {
+            "tag": "tag_40",
+            "text": "我是不是有点没大没小了？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]没有没有，我就是稍微有点……毕竟我这个人，几乎没怎么被这样说过……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哈……被你这么一说，追忆伤怀的气氛一下子就跑掉啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]不过这样也蛮不错的。老实说，这段时间我一直绷得很紧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]要不是有你一直在背后支持我，可能没等魔剑被我们解决，我心里这根弦就要“啪”的一声崩断了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哈，这么一说，好像你已经变成我的心理支柱了呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_46",
+            "text": "这……"
+          },
+          {
+            "tag": "tag_46",
+            "text": "我可以吗……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]我觉得可以啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这位可靠的后辈，今后我可以多依靠你一点吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_49",
+            "text": "这可真是受宠若惊！"
+          },
+          {
+            "tag": "tag_49",
+            "text": "如果前辈不嫌弃的话……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]哈哈，别这么紧张嘛，我有预感我们会变成很不错的搭档的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那作为增进感情的第一步，我们找个地方好好玩一玩，庆祝魔剑事件圆满解决吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]如是，与迦南前辈共度了一段愉快的时光。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-场景：C1主线那个河边"
+}

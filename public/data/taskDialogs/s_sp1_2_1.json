@@ -1,0 +1,239 @@
+{
+  "script": "s_sp1_2_1",
+  "des": "【（来到城主之间的某个角落……）】",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃？最开始就是这里？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不是说有寄生虫要解决吗？这里什么都没有啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]光是行使暴力能够解决什么？任何事情总是要循序渐进的！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……这是什么意思？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]意思是就，在扫除虫子之前，首先要封住它们进来的通路，还要尽可能把它们驱赶到一起。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果入侵的源头还在，那一切都是无用功了。[l]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这里就是入侵的地点吗？",
+            "tag": "tag_9"
+          },
+          {
+            "text": "看起来似乎没什么奇怪之处啊？",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]以你们贫瘠的肉眼当然无法分辨了，不然余为何要亲自跟着过来？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余的城堡可是有着“漂流”功能的，在不现世的时候，可以整个潜航在影位面之中，并且通过影位面移动到卡露蒂亚大陆的任何地方。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过影位面本身带有强烈的侵蚀魔力，这会对城堡的结界产生腐蚀。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那些不洁的灵就会从这种腐蚀的“孔洞”侵入进来，占据城内的物资，成为不受控制的物灵属魔物。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……所以我们之前打的那些活铠甲和幽灵……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错，对这座城堡来说，那些东西也是入侵者。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只不过入侵者和入侵者之间也不是一路人，所以它们才会阻碍和攻击你们吧！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]居然说我们和那种东西是同行……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在非法入侵方面，你们的行为没什么差别。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过你们已经是我承认的客人了，自然和那些玩意划分的档次。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以别抱怨了，快点鼓起你的斗气，给我把这个空间全部扫过一遍！[l]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这样就能解决空间的“孔”了吗？",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没错，影魔力毕竟是负面的魔力，最害怕像小猫咪这种火力旺的孩子呢！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁是小猫咪啊！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错，就是这样，把斗气和魔力一次性放出来吧！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……这家伙……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总觉得这一路上一直都被这家伙牵着鼻子走，看来我是真的应付不来这种人……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "她应该没什么恶意。",
+            "tag": "tag_27"
+          },
+          {
+            "text": "大概只是觉得捉弄我们比较有趣吧。",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我知道她没什么恶意……但就是这样，才更让人不爽啊！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

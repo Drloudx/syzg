@@ -1,43 +1,42 @@
 {
-  "script": "m_4_3_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]这位是特比约恩，是护林人的副将，有关于护林人的事情你们都可以问他哦。[l][cm]"
+        "text": "[show]这位是特比约恩，是护林人的副将，有关于护林人的事情你们都可以问他哦。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]是你们。听说你们之前因为误会被捕入狱，我在此表示歉意。[l][cm]"
+        "text": "[show]是你们。听说你们之前因为误会被捕入狱，我在此表示歉意。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]但规矩就是规矩，即使是我，当时也没法为你们网开一面，个中情由，还请谅解。[l][cm]"
+        "text": "[show]但规矩就是规矩，即使是我，当时也没法为你们网开一面，个中情由，还请谅解。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]不用道歉啦，反正深渊这地方，走到哪里都很排外，我都习惯啦！[l][cm]"
+        "text": "[show]不用道歉啦，反正深渊这地方，走到哪里都很排外，我都习惯啦！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]您能理解就好。关于护林人，你们想问些什么？[l]"
+        "text": "[show]您能理解就好。关于护林人，你们想问些什么？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -54,65 +53,65 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[cm][show]黑森林的安全状况……？涉及到机密的内容，请恕我无法告知，但如果泛泛而谈的话……我们现在确实面临不少麻烦。[l][cm]"
+        "text": "[cm][show]黑森林的安全状况……？涉及到机密的内容，请恕我无法告知，但如果泛泛而谈的话……我们现在确实面临不少麻烦。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哦？说来听听？[l][cm]"
+        "text": "[show]哦？说来听听？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]总的来说，黑森林现在主要面临的威胁只有两种。[l][cm]"
+        "text": "[show]总的来说，黑森林现在主要面临的威胁只有两种。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]第一，是从西部沼泽那边涌进来的魔物。第二，是在森林里偷猎的佣兵和偷猎者。[l][cm]"
+        "text": "[show]第一，是从西部沼泽那边涌进来的魔物。第二，是在森林里偷猎的佣兵和偷猎者。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]佣兵和偷猎者？这组合听起来好熟啊？该不会又是哈萨琳之手那帮人吧？[l][cm]"
+        "text": "[show]佣兵和偷猎者？这组合听起来好熟啊？该不会又是哈萨琳之手那帮人吧？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]哦？你们也知道吗？那些家伙只不过是一些盗用哈萨琳名号的恶徒，而且像是树胶一样甩都甩不掉。造成的危害虽然不大，但对付起来却是相当棘手。[l][cm]"
+        "text": "[show]哦？你们也知道吗？那些家伙只不过是一些盗用哈萨琳名号的恶徒，而且像是树胶一样甩都甩不掉。造成的危害虽然不大，但对付起来却是相当棘手。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]是的是的，我也这么觉得。那驿站的伐木场呢？你们不是和他们有很多摩擦吗？[l][cm]"
+        "text": "[show]是的是的，我也这么觉得。那驿站的伐木场呢？你们不是和他们有很多摩擦吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]驿站的伐木场？的确是有些外地人总是试图侵伐林木，确实有些烦人，但无论如何也算不上“威胁”吧。[l]"
+        "text": "[show]驿站的伐木场？的确是有些外地人总是试图侵伐林木，确实有些烦人，但无论如何也算不上“威胁”吧。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -129,33 +128,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[cm][show]……那个男人啊。他确实不是易与之辈，但这个外号只是因为我们讨厌所有侵伐林木的人，并不是因为他有多么麻烦。[l][cm]"
+        "text": "[cm][show]……那个男人啊。他确实不是易与之辈，但这个外号只是因为我们讨厌所有侵伐林木的人，并不是因为他有多么麻烦。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]在我们的信仰里，树木、精灵、鹿人还有蕈人，都是灵魂圣树的子嗣，所以树木就好像是我们的家人一样，你也不喜欢自己的家人受伤吧？[l][cm]"
+        "text": "[show]在我们的信仰里，树木、精灵、鹿人还有蕈人，都是灵魂圣树的子嗣，所以树木就好像是我们的家人一样，你也不喜欢自己的家人受伤吧？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]真抱歉哪，我从一开始就没有家人。[l][cm]"
+        "text": "[show]真抱歉哪，我从一开始就没有家人。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]不过，如果所谓“家人”就是像我和{myName}这样的关系的话……那我确实不想看到{myName}受到伤害！[l]"
+        "text": "[show]不过，如果所谓“家人”就是像我和{myName}这样的关系的话……那我确实不想看到{myName}受到伤害！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -172,17 +171,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[cm][show]呜呜呜——！真是令人感动的伙伴之情啊！听得我都想要流泪了！[l][cm]"
+        "text": "[cm][show]呜呜呜——！真是令人感动的伙伴之情啊！听得我都想要流泪了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（听上去似乎没什么特别之处……？难道黑森林没有发生异变吗？对了，说到异变……）[l]"
+        "charaName": "",
+        "text": "[show]（听上去似乎没什么特别之处……？难道黑森林没有发生异变吗？对了，说到异变……）[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -199,17 +198,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "特比约恩",
-        "text": "[show]你说狂暴的魔物？从西面魔爪沼泽来的魔物里，倒是有不少没有理智的凶暴玩意。但在黑森林本地，好像并没有听说……[l]"
+        "text": "[show]你说狂暴的魔物？从西面魔爪沼泽来的魔物里，倒是有不少没有理智的凶暴玩意。但在黑森林本地，好像并没有听说……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -226,44 +225,45 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]怎么？这就问完了吗？[l][cm]"
+        "text": "[show]怎么？这就问完了吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]看你的表情，似乎你还没有满足啊！[l][cm]"
+        "text": "[show]看你的表情，似乎你还没有满足啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]没关系，我认识这里的所有人，想要问谁就让我带你们过去吧！[l][cm][hide]"
+        "text": "[show]没关系，我认识这里的所有人，想要问谁就让我带你们过去吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_4_3_1",
   "des": "（关于护林人……）"
 }

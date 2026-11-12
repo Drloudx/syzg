@@ -1,0 +1,54 @@
+{
+  "script": "s_sp1_4_4_n",
+  "des": "石料准备好了。",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！那地方那么好，你为什么要直接给它！[l][cm]",
+        "charaName": "幽灵A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你那地方土质好就知足吧！我这边的土硬得跟石头一样，不知道还以为整片地都是我的碑。[l][cm]",
+        "charaName": "幽灵B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我才是最惨的！为什么要把我放到角落，我抗议！我抗议！[l][cm]",
+        "charaName": "幽灵C"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……各位冷静一些，有什么慢慢说……[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（看来他们这边正在忙呢，还是等收集好3块石料后再回来吧。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

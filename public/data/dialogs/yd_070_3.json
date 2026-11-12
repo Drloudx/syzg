@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]今年的妖精大会看来是去不成了呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]嗯……反正我平时十次有八次不能出席，这也成惯例了吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]这次主持会议的……我看看，好像应该轮到希露芙了吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]也不知道那个封印现在安不安全……但愿不要在我没空的时候出事就好了……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_070_3",
+  "des": "露库希安3"
+}

@@ -1,0 +1,259 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]最近挣了点契约金，买了些油，顺便把这弓重新调试了一下。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]哼……虽然它融合了异端的技术，变得不再纯粹，但正如你所说，它现在确实比以前更强。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "是啦。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "既然能变强，何乐而不为呢。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]又是这套庸俗的实用主义宣言。追求力量而堕落，迟早被戒律骑士送上审判庭……咳，不谈这个了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]那什么。这些日子以来，我一直在观察你如何在这破地方生活，然后得出了结论……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]你利用神秘的技术，在荒原上建起了这个避风港，收容那些魔人，甚至试图改变这片土地的规则……甚至可能组织起一支足以颠覆秩序的力量。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "原来我这么厉害啊。"
+          },
+          {
+            "tag": "tag_9",
+            "text": "原来我是个大反派啊。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]那可不。最初我觉得你不仅是异端，还是个无可救药的疯子。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]但经过许多事后……我必须承认，无论你是善是恶，你的初心如何……但你确实有一种令人心悦诚服的坚韧，还有……包容心。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "感谢夸奖，受宠若惊。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]我只是……陈述客观事实罢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]虽然我不认同你的观念，也不求你的认同……但既然我已被困在这片深渊……我也必须依靠你的技术才能活得像个文明人……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我也不是不可以……稍微实用主义一点。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "理解万岁。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]所以，假如我们之间是合作关系，是平等的……那从今往后，你就不要再称呼我为“爵士”了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "那我要怎么称呼你？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]直接称呼我的名字——波特温吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]在这个没有教皇、没有领地、没有审判庭的地方……也许和你说的一样，我仅仅是波特温而已。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "我明白了，波特温。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]我不会放下我的荣耀和坚持，但在你这里，我觉得还是客随主便一些更有礼数。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]至少，在和你一起的时候，就按你这里的规则走下去吧。相反的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]如果你遇到什么麻烦，只要开口便是。不管是在哪一片荒原，不管是在哪一座高山，我都会出手相助。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]那么，今后……合作愉快。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "合作愉快，朋友。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……朋友吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]唔，这个词……似乎也没有我想象中那么令人难以接受。那就……如此称呼吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]对了，我还带了一些打来的肉。你这的炉火比我家里旺不少，对吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（欣然接过波特温带来的食材，你们度过了一个热闹的下午。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_031_5_1",
+  "des": "波特温-贵族伙伴-进入战役"
+}

@@ -1,0 +1,148 @@
+{
+  "script": "s_sp2_3_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是{myName}和米托拉姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快来帮我看一下姆！这个蛋是不是有什么问题姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊！这不是蚀渊之触留下的蛋吗？这个蛋怎么了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么多天过去了，这个蛋一点孵化的迹象都没有姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我已经不知道该怎么办了姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一直没有孵化？这……你确认这个蛋还活着吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是不知道姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我认识的人里有孵蛋经验的也只有你们了姆！[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我们虽然有孵蛋的经验……",
+            "tag": "tag_11"
+          },
+          {
+            "text": "但这个经验好像用不上啊……",
+            "tag": "tag_11"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯……归根到底我们只是在孵化培育上有点经验……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "要不借助一下真正智者的智慧？",
+            "tag": "tag_13"
+          },
+          {
+            "text": "要不找露库希安和菲娜问问？",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]对啊！露库希安和菲娜都活了很长时间，实力也深不见底……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]找她们问问，说不定一下子就能找到原因呢？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]露库希安和菲娜大人姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我知道了，那我们就去找她们看看姆！[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "s_sp2_3_0"
+}

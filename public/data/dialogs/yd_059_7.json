@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]深渊这里真的是人杰地灵呢，我在游荡的时候，好像随随便便就能碰到平时难得一见的厉害人物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]这里很多人就算在天地战争之中也能占据一席之地，但却扎堆出现在这个小地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]你的人脉好像很宽的样子，可以帮我介绍一下吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我对研究这件事很有兴趣，希望能多认识一些厉害的朋友呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_059_7",
+  "des": "菲娜7【亲密】"
+}

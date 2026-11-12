@@ -1,0 +1,265 @@
+{
+  "des": "demo1001_3",
+  "exps": [
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_2",
+            "text": "米托拉小姐……！"
+          },
+          {
+            "tag": "tag_2",
+            "text": "小心！躲到这里来！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]什么——[l][hide][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【巨大魔物的声音】",
+        "text": "[show]嘎嗷嗷嗷嗷嗷嗷——！[l][hide][cm]",
+        "nameSide": "right"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]喂、储、储备粮……[r]那、那……那那那……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]那、那是什么东西……！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]……那么巨大的魔物……[r]我在这边扎营少说也有四五个月，从没发现过这种大小的家伙……[r]为什么会在这里……？它从哪里来的……？觅食吗……还是在……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "嘘……！"
+          },
+          {
+            "tag": "tag_15",
+            "text": "！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]唔、……[l][hide][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【巨大魔物的声音】",
+        "text": "[cm][show]嘎嗷嗷嗷嗷嗷嗷……嘎……[l][hide][cm]",
+        "nameSide": "right"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]那些角布林……是它的手下吗……？[r]就像在命令那些黄毛的家伙去不同的方向……[l][hide][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【巨大魔物的声音】",
+        "text": "[cm][show]嗷嗷……[l][hide]",
+        "nameSide": "right"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]好像……走掉了。[r]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "那是什么啊？魔物、巨大的魔物……[r]不是、也太大了吧？[l][hide][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "米托拉小姐？"
+          },
+          {
+            "tag": "tag_18",
+            "text": "你没事吧？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]我？",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "我——老子怎么会有事。[r]幸亏没被它发现……[r]不、幸亏它没发现我，否则我至少废它一双手脚。嘁。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]不管怎么说，得亏你注意到了。[r]尽管没什么战斗力，眼睛还蛮尖的嘛，储备粮。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]……？怎么了？储备粮？[l][hide]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "我见过这个怪物。"
+          },
+          {
+            "tag": "tag_20",
+            "text": "我是从它的手下逃走的。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]什么？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]也就是说、它是追着你……追着你们这批流放者的味道……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]……追着我们……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]不、也不会这么巧吧……明明只是个普通的“投食日”……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "看来，刚刚的那些魔物都是它的手下……"
+          },
+          {
+            "tag": "tag_29",
+            "text": "它是顺着那些被我们干掉的角布林，才……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]别在这推理啦！[r]我就真不该多管闲事……！[r]什么储备粮、什么投食日，我根本就不该从营地里出来……我就不该——[l][hide]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【角布林巡逻队】",
+        "text": "[cm][show]……嘎咕咕咕……咕咕嘎嘎？[l][hide]",
+        "nameSide": "right"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]那是我营地的方向……！[r]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "喂、储备粮，给我挡住它们！千万不能让它们靠近那边！[l][hide][cm]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "script": "demo1001_3"
+}

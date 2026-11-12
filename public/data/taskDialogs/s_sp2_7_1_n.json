@@ -1,0 +1,46 @@
+{
+  "script": "s_sp2_7_1_n",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？你们手上的路障还不够姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在门口的防御工事不知道还能撑多久，只希望能快点看到你们说的那种简易路障姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]拜托了，这关系到我们史莱姆的存续姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（萨宾姆没有再理会你们，继续警惕地盯着门口……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "看看这个路障好用不？"
+}

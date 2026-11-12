@@ -1,0 +1,107 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]你……好像是在等我？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没错！",
+            "tag": "tag_3"
+          },
+          {
+            "text": "我可是早早就在准备了。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]准备？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]你说的准备是……？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这个你等下就知道了！",
+            "tag": "tag_6"
+          },
+          {
+            "text": "现在先进屋里再说吧！",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]居然连你也卖起关子来了啊……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这都是和某人学来的！",
+            "tag": "tag_8"
+          },
+          {
+            "text": "这就算是我的小小报复好了！",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]看来之前确实对你造成了很多困扰啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]那这次作为赔罪，就让我来听从你的安排吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_059_5_0",
+  "des": "菲娜好感5-引入"
+}

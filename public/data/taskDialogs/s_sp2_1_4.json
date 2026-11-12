@@ -1,0 +1,73 @@
+{
+  "des": "s_sp2_1_4",
+  "script": "s_sp2_1_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]一段时间后——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]说到索利德山，最典型的魔物就是这些恐兽了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]别看它们长得挺可爱，其实还蛮有野性的呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我看出来了。它们一见面就摆出了攻击的态势呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这、这也算是它们的可爱之处……吧……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "梦话就留到梦里在说吧。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]看来在这里也得先打过一场才行呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

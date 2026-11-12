@@ -1,0 +1,216 @@
+{
+  "script": "fav_hero_030_1_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不可思议……我走过这么多地方，还是第一次看见此等规模的营地。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这真的是你一个人的营地吗？你背后不会有一支施工大队吧？[l]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "严格来说这是大家的营地。",
+            "tag": "tag_4"
+          },
+          {
+            "text": "不过很多设施确实是我弄的。",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那这就是你的营地，不必谦虚。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]之前就听过许多工匠的传闻，今日亲眼所见方知传闻非虚，你的能力着实令人敬佩。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]能在这种营地休整，是我的荣幸，无论我们之间是否有契约关系，我都不能白住这里。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然你不喜欢铜臭味，那我换个报答你的方式吧，你可以问我一个问题。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哪怕是比较隐私的问题，我都会回答你，只要在我能接受的范围内。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然如果你想要宝藏，我也可以给你提供一些可能存在的藏宝地点。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟我走过这么多地方，也见过很多宝藏埋藏的地方，虽然可能记得不太清楚就是了。[l]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "要不你就说说你旅行的目标吧。",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊？我到处跑的目标？你……你就想知道这种无关紧要的事情吗？[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然你想知道，那我告诉你也无妨……[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我并没有明确的目标，大部分时间我都只是在享受旅行的过程。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]走在路上四处看看，看看天上的飞鸟，看看水里的鸭子，这比看着人要有趣多了。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你问我是不是讨厌人？这是第二个问题了……[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过既然是你问的话……那我愿意回答你。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我谈不上讨厌人，只是不太愿意和人沟通而已，就连见也不是很想见。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我并不讨厌任何人，只是单纯不想与他人交流罢了。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为什么不想与人交流？这个问题我不想回答，抱歉……[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有什么别的事情，随时来找我，我先去吃东西了。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那么……待会见，谢谢你愿意让我来这里休整。[l][cm]",
+        "charaName": "阿尔克丝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（随后，阿尔克丝走到角落，从背包里拿出一只小瓦罐，开始舔舐里面的蜂蜜。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（看来阿尔克丝有什么难言之隐，还是下次再问出来吧……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "阿尔克丝好感1-战役"
+}

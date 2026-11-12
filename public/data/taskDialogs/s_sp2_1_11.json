@@ -1,0 +1,585 @@
+{
+  "des": "s_sp2_1_11",
+  "script": "s_sp2_1_11",
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]到这里来，小东西～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]唔～！真可爱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]怎么会有这么可爱的生物呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]菲、菲娜……你是菲娜，没错吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "整个人的气氛都变了啊。",
+            "tag": "tag_8"
+          },
+          {
+            "text": "这就是幼崽的威力吗！",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]呃……咳咳！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]真是的，你们就不要取笑我了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好的好的，对于菲娜隐藏的一面，我们会好好保密的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]还是先说正事吧，你刚才说，你找到了对付诅咒的“钥匙”……难道说……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]是的。经过我在这个孵化室里的调查，我已经确定了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]能够对抗诅咒的“钥匙”，就是这个“驯养”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]驯养……能够对抗……诅咒？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]虽然这么说听起来有些荒谬，但事实就是，被驯养的魔物，不仅失去了狂气，就连灵性也比野生的同类要高。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可是……为什么啊？只是被人孵出来，就会发生这种改变呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "莫非是因为米托拉……",
+            "tag": "tag_18"
+          },
+          {
+            "text": "米托拉身上有什么特殊之处吗？",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]我觉得应该不是。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]米托拉的身上……确实有些奇妙的氛围，但那并不能和已经成为“规则”的诅咒对抗。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我倾向于认为，这种改变是因为“联系”。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是指魔物和人类的联系吗？",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]是的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我觉得会发生这种现象，应该是“孵化”和“驯养”的行为，让魔物和作为驯化者的人类产生了神秘学上的联系。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]诅咒藉由这种联系由双方共同分担，这就是被驯养的魔物，狂气消退的原因。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]诶？什么！也就是说我被诅咒了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]如果我的猜测没错，应该是吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不、不是吧！难、难道米托拉也要狂暴了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]呵呵！放心吧，这就是这件事的精妙之处了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]人类会因为联系而为魔物分担诅咒，但“人外的黄昏”的诅咒，恰恰是对人类没有任何影响的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "也就是单方面减轻了吗！",
+            "tag": "tag_32"
+          },
+          {
+            "text": "也就是利用了机制的漏洞吗！",
+            "tag": "tag_32"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]我想应该就是这样了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]经由人类驯养的魔物，狂气会有所消退，那么，它们的后代，如果继续被人类驯养，终有一天，会出现不再凶暴的个体。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]到那时候，有智慧的魔物，也会因为人类的驯养而逐渐变多起来吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]原来是这样！那看来露比让我们干的，也是挺有意义的事情嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]是的，非常有意义。因此我希望，你们能够把驯养的技术推广出去，尽可能地扩大范围。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我大概理解驯养技术的意义了。",
+            "tag": "tag_38"
+          },
+          {
+            "text": "但这对庇护所的魔物们有帮助吗？",
+            "tag": "tag_38"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]对啊！新出生的驯养魔物们恢复了神智，但诅咒不是还在吗，那庇护所的魔物回来，岂不是又会狂乱了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我很高兴你们能够想到这一点。不过别担心，你们的努力，对于我那些身在庇护所的同胞，也是有意义的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]这涉及到一个除了最上位的魔物之外，很少有人知道的秘辛——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]在卡露蒂亚大陆，现实的“法则”，并不是一成不变的，并且改变它的方法，也绝不止一种两种。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]以“人外的黄昏”为例，诅咒扭转了大陆的法则，让“非人类不能存在智能”成为了“公理”，借助公理撬动了现实。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]但反过来说，只要“拥有智能的魔物”足够多，那么“公理”就会因为“现实”而转变……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]所以！只要驯养技术推广开，有智慧的魔物们就可以安全地回到这个世界了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]就是这样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]太好了，坚持调查还是没错的吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但要达成这个结果……",
+            "tag": "tag_48"
+          },
+          {
+            "text": "需要花上多少时间呢？",
+            "tag": "tag_48"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]唔……虽然听起来很有希望，但仔细一想，这可是个大工程啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]所以，这需要的不仅仅是一些人的努力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我所说的“普及”，不是仅仅把技术交给别人，而是要让真正的有识、有志之士加入进来，让魔物作为文明发展的一环，嵌入到人类社会的方方面面。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]如果人类生活的衣食住行，每一分每一秒，都和魔物密切相关，这种“联系”就会无限扩大，到那时候……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我想，或许只需要一两百年，黄昏的诅咒就会烟消云散了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "“只要”一两百年啊……",
+            "tag": "tag_54"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]长生种的时间观念，真是每一次听到都觉得震撼啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]呵呵……或许吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]两三百年的等待，对我来说确实不过是弹指一挥间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]但是，如果没有你们的努力作为起点，这两三百年，也不过是徒然空过而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]就好像……没有最初的那个“1”，堆积再多的“0”，结果也只会是0。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你言重了。",
+            "tag": "tag_60"
+          },
+          {
+            "text": "不胜惶恐。",
+            "tag": "tag_60"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]你才是太过谦虚了。你们做的事情就是有这么重要。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]所以我决定了。为了帮助你们完成这个“起点”，我必须积极行动起来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]也就是说——！！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]呵呵……今后几年……也可能更长时间……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]作为战友，请多指教了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]太好啦～！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "请多指教！",
+            "tag": "tag_67"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

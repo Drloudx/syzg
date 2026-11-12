@@ -1,0 +1,261 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]看吧！这就是余引以为傲的收藏！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]在余沉睡之前的年代，这些全都是不可多得的珍品！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "确实都是杰作。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "可以感觉到倾注的心血。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]没错，你看这些铠甲上的花纹！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]整套板甲每一寸都刻满精细雕花，远看却光洁得仿佛一面镜子！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]花纹更出自大师之手，光设计图就画了两年呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "确实震撼！",
+            "tag": "tag_9"
+          },
+          {
+            "text": "美不胜收！",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]嗯！再来看看这幅画作！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]这是余最喜欢的画作之一。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]细腻的笔触完美地刻画了秋日的田野，光影在劳作的人们身上跳跃，充满了生机！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]你能感受到这其中的韵味吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "厉害得一目了然！",
+            "tag": "tag_14"
+          },
+          {
+            "text": "厉害之处不言而喻！",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]哼哼！这就是真正厉害的艺术品！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哪怕是没有经历过任何艺术熏陶的野人，也能为此感到震撼，因为这其中的美而欢欣！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]接下来，你就尽情在这里欣赏、参详吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余期待着你不断进步，为余的城堡再添新彩！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我会努力的！",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]嗯，努力虽好，但也不用太过努力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]审美的精进需要时日，倒也不必急于一时。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]对了，余看你平时也没有多少时间常来……不如让余送几幅名家杰作到你那营地里吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]对余来说，这不过是余藏品里的九牛一毛，反而若是能让你在营地也时时精进，那就最好了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这……",
+            "tag": "tag_24"
+          },
+          {
+            "text": "好吧，我收下了。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]没错，人就是要爽快点才行！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（怎么办……不知不觉已经从洛莉安那里收到太多东西了……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（虽然洛莉安好像并不在意，但我也不能太过心安理得……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（对了，洛莉安不是喜欢收藏艺术品吗？要不我找找看，能不能找到一些她那个时代的名作。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（毕竟距离自己的时代已经过了几百年，看到旧时的名作，说不定会让她见景生情呢？嗯，就这么办吧！）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_071_2_1",
+  "des": "洛莉安好感2-战役"
+}

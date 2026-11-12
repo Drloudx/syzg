@@ -33,6 +33,21 @@ const CATEGORY_ORDER = [
   // exchangeTeam.json 的 tower1 → name 均为「神匠之塔」），故用正式名。
   { key: 'tower', label: '神匠之塔兑换', teams: /^tower1$/ },
   { key: 'pvp', label: 'PVP兑换', teams: /^pvp001$/ },
+  /*
+   * 🔴 2026-11-11 补：以下 2 个 team 在 itemExchange 里真实存在、也有正式入口，
+   * 但此前没有任何正则匹配 → isVisibleExchange 把整条兑换过滤掉，导致其产出物
+   * 「获取途径」为空（例：item_444003 洛莉安的晚礼服）。
+   *   · ex01/ex02 → exchangeTeam.json 里 show=true 的「夜之秘兑换 / 瓦哈兑换」（sp01/sp02 秘境商店）
+   *   · equip_sp01 → sp 神器兑换（兑换 444 段装备，随 sp1 秘境开放）
+   *
+   * shiPin / jiaJu 不在此列——它们由 `buildConfiguredShopSubs` 从 packDisplay 得到，
+   * 若在此再给一次会被 `getCategory` 归到 shop，导致商品重复（2026-11-11 已踩过）。
+   * 但为让 `isVisibleExchange` 放行，仍需在 CATEGORY_ORDER 里登记（它们归 shop）。
+   */
+  { key: 'shop', label: '饰品商店', teams: /^shiPin$/ },
+  { key: 'shop', label: '家具商店', teams: /^jiaJu$/ },
+  { key: 'ex', label: '秘境兑换', teams: /^ex0[12]$/ },
+  { key: 'shop', label: '秘境神器兑换', teams: /^equip_sp\d+$/ },
   { key: 'general', label: '通用兑换', teams: /^(team\d*|无)$/ }
 ]
 
@@ -123,7 +138,8 @@ export function buildOfficialExchangeIndex(maps = {}) {
   }
 
   // 积分商店和皮肤商店以礼包中心的可见入口为准；孤立的 payKeShop 不会被误收录。
-  for (const display of Object.values(packDisplay)) {
+  // packDisplay.json 顶层是 { '1': [...], '2': [...], ... }，必须 flat 一层才是 display 列表
+  for (const display of Object.values(packDisplay).flat()) {
     if (display?.hide || !display?.shopTypeId) continue
     const category = [2, 5].includes(display.packType) ? 'shop' : ''
     if (!category) continue
@@ -357,7 +373,7 @@ export function buildExchangeData(maps) {
     }
   }
 
-  const buildConfiguredShopSubs = () => Object.values(maps.packDisplayRes || {})
+  const buildConfiguredShopSubs = () => Object.values(maps.packDisplayRes || {}).flat()
     .filter(display => !display?.hide && display?.shopTypeId
       && [2, 5].includes(display.packType))
     .map(display => ({
@@ -384,8 +400,32 @@ export function buildExchangeData(maps) {
 
   const buildGenericSubs = (categoryKey) => {
     const subs = {}
+    // 秘境兑换（ex01/ex02）：子类用**秘境真实名称**（relicDungeonInfo.sp1/sp2 的 name），
+    // 且未开放的秘境**不列出**（sp2 活动时间是 2900+ 占位值 → 未定档）。
+    const relicInfo = maps.relicDungeonInfoRes?.datas || maps.relicDungeonInfoRes || {}
+    const activityList = maps.activityListRes?.datas || maps.activityListRes || {}
+    const EX_TO_DUNGEON = { ex01: 'sp1', ex02: 'sp2' }
+    const isRelicOpen = (dungeonId) => {
+      const activity = activityList[dungeonId]
+      if (!activity) return true
+      if (activity.condition === 'false') return false
+      if (activity.startTime && activity.startTime === activity.endTime) return false
+      const year = Number(String(activity.startTime || '').slice(0, 4))
+      return !(Number.isFinite(year) && year >= 2900)
+    }
+    const subLabelFor = (subKey) => {
+      const dungeonId = EX_TO_DUNGEON[subKey]
+      if (dungeonId) {
+        const name = relicInfo[dungeonId]?.name
+        if (name) return String(name)
+      }
+      return SUB_LABELS[subKey] || subKey
+    }
     for (const exchange of Object.values(rawExchange)) {
       if (!isVisibleExchange(exchange, officialIndex) || getCategory(exchange).key !== categoryKey) continue
+      const team = exchange.team || ''
+      const dungeonId = EX_TO_DUNGEON[team]
+      if (dungeonId && !isRelicOpen(dungeonId)) continue
       let subKey = exchange.category?.[1] || exchange.team || '无'
       if (/^[cC]\d+$/.test(subKey)) subKey = getMapName(subKey)
       if (!subs[subKey]) subs[subKey] = []
@@ -394,7 +434,7 @@ export function buildExchangeData(maps) {
     }
     return Object.entries(subs)
       .map(([key, list]) => ({
-        key, label: SUB_LABELS[key] || key,
+        key, label: subLabelFor(key),
         list: list.sort((a, b) => a.sort - b.sort || a.id.localeCompare(b.id))
       }))
       .sort((a, b) => getSubSortKey(a.key) - getSubSortKey(b.key) || a.key.localeCompare(b.key, 'zh-CN'))
@@ -408,11 +448,34 @@ export function buildExchangeData(maps) {
     pack: buildDailySubs
   }
 
-  return CATEGORY_ORDER.map(category => {
-    const subs = builders[category.key]?.() || buildGenericSubs(category.key)
-    const summary = category.key === 'seed'
-      ? '固定商品 4 项；随机商品分为两个候选池，每池 5 选 2，每次共随机出现 4 项。'
-      : ''
-    return { key: category.key, label: category.label, summary, subs }
-  }).filter(category => category.subs.length)
+  // 同 key 的分类会合并（本次新增多个 key='shop' 的条目），按 key 去重并合并 subs。
+  // 🔴 有专用构建器的 key **只**用它，不能再叠 `buildGenericSubs`：
+  //    否则 shiPin/jiaJu 这类由 shop.json 定义、同时又能被 getCategory 归到 shop 的商店
+  //    会被「专用构建器 + 通用构建器」各产出一次 → 商品翻倍（2026-11-11 实测 12→24、25→50）。
+  //    每个 key 只跑一次构建器；多个同 key 的 CATEGORY_ORDER 条目用 Set 去重。
+  const merged = new Map()
+  const builtKeys = new Set()
+  for (const category of CATEGORY_ORDER) {
+    if (builtKeys.has(category.key)) continue
+    builtKeys.add(category.key)
+    const subs = (builders[category.key] || (key => buildGenericSubs(key)))(category.key)
+    if (!subs.length) continue
+    if (!merged.has(category.key)) {
+      merged.set(category.key, {
+        key: category.key,
+        label: category.label,
+        summary: category.key === 'seed'
+          ? '固定商品 4 项；随机商品分为两个候选池，每池 5 选 2，每次共随机出现 4 项。'
+          : '',
+        subs: []
+      })
+    }
+    const bucket = merged.get(category.key)
+    for (const sub of subs) {
+      const existing = bucket.subs.find(s => s.key === sub.key)
+      if (existing) existing.list.push(...sub.list)
+      else bucket.subs.push(sub)
+    }
+  }
+  return [...merged.values()]
 }

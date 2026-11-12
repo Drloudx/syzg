@@ -1,0 +1,158 @@
+{
+  "script": "s_sp2_5_4",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快看！他们回来了姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]孩子，你没事吧姆？[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆～姆姆姆姆～[l][cm]",
+        "charaName": "走失的史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了孩子，没事了，你安全了姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……还好最后带回来了，大家都很安全姆。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆姆姆……[l][cm]",
+        "charaName": "走失的史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过一番安置后，所有史莱姆宝宝都被父母接回家……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……这下总算是结束了姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]各位辛苦了，感谢你们今天替我照顾孩子姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]比起我们，你才是最辛苦的那个姆……毕竟我们只照顾了一天就被折腾得受不了了，而你每天都要照顾它们姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实还好啦，虽然跟孩子们打交道确实会很辛苦，但是相处久了之后还是会觉得它们很可爱的姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，我问了刚刚那个跑出去的孩子，它当时想要去找妈妈，所以才独自出去了，希望你们不要怪它姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事，毕竟都找回来了嘛，我们也不会跟一个孩子计较的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，你们能理解就好姆。它们的父母每天都要去工作，所以很少陪它们姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以我们护育员，要承担的责任可是非常重要的，相当于孩子的第二父母了姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯！你辛苦了姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好耶，既然孩子们都回去休息了，那我们回去休息吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼啊……我要回到城堡里，好好睡一觉姆……[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "我们把孩子带回来了。"
+}

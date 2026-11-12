@@ -1,0 +1,49 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]水纹花籽……这样一来，全部的食材都到手了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "看来可以期待大餐了！",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]尽管期待吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫会让你知道，什么是真正的料理！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_061_4_3",
+  "des": "斯卡莉安好感4-采集三"
+}

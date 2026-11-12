@@ -1,0 +1,76 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]嗯？看你的脸色……需求调查应该已经结束了？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "是的，我拜托契约者帮忙……"
+          },
+          {
+            "tag": "tag_4",
+            "text": "今天刚刚拿到汇总。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[cm][show]哦！那真是太好了！既然结果已经到手，那我们快点开始作战会议吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]对了，你这里有吃的吗？为了躲避追债人，我已经两天没有吃饭了……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "放心吧……"
+          },
+          {
+            "tag": "tag_7",
+            "text": "有，当然有！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[cm][show]很好！那我这就去厨房把菜端上来！你先回屋里坐好，我们边吃边聊！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "安娜-哦？这不是安娜吗？",
+  "script": "fav_hero_029_3_0"
+}

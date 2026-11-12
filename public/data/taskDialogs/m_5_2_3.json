@@ -1,235 +1,234 @@
 {
-  "script": "m_5_2_3",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]没错，我就是~！[l][cm]"
+        "text": "[show]没错，我就是～！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]需要我帮忙吗？不管有任何疑问都可以问我，伽拉忒亚可是有问必答的哦~！[l][cm]"
+        "text": "[show]需要我帮忙吗？不管有任何疑问都可以问我，伽拉忒亚可是有问必答的哦～！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哦、哦……那可真是帮大忙了……现在大书院是你在管事吗……？[l][cm]"
+        "text": "[show]哦、哦……那可真是帮大忙了……现在大书院是你在管事吗……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]回答如下：不！没错，不是的！[l][cm]"
+        "text": "[show]回答如下：不！没错，不是的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]啊？你不是代理院长吗？你不管事的话，那现在这里谁做主啊？[l][cm]"
+        "text": "[show]啊？你不是代理院长吗？你不管事的话，那现在这里谁做主啊？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]"
+        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]根据大书院的章程，在院长外出期间，能够进行总体决策的有7名学系长，可以进行部分决策的有15名学部委员，分管具体事务的有32名办公室主任。[l][cm]"
+        "text": "[show]根据大书院的章程，在院长外出期间，能够进行总体决策的有7名学系长，可以进行部分决策的有15名学部委员，分管具体事务的有32名办公室主任。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]以上就是大书院的全部管理人员。代理院长仅负责收集信息并向院长转达，并无实际管理权限。[l][cm]"
+        "text": "[show]以上就是大书院的全部管理人员。代理院长仅负责收集信息并向院长转达，并无实际管理权限。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]呃、等、等等……不对，先谢谢你的说明……虽然我其实并没有想要知道这么多……[l][cm]"
+        "text": "[show]呃、等、等等……不对，先谢谢你的说明……虽然我其实并没有想要知道这么多……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]既然你只是个传话的不能做主，那请你告诉我院长的情况吧，院长现在是怎么回事？[l][cm]"
+        "text": "[show]既然你只是个传话的不能做主，那请你告诉我院长的情况吧，院长现在是怎么回事？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]"
+        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]所谓大书院，是“人外的黄昏”之后，幸存的学者们为了保护知识而建立的传承组织，而院长则是大书院的领袖。[l][cm]"
+        "text": "[show]所谓大书院，是“人外的黄昏”之后，幸存的学者们为了保护知识而建立的传承组织，而院长则是大书院的领袖。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]院长一般由上一代院长提名，经过七名学系长共同表决，至少五人同意才能就任。[l][cm]"
+        "text": "[show]院长一般由上一代院长提名，经过七名学系长共同表决，至少五人同意才能就任。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]自“人外的黄昏”以来，大书院共产生了10任院长，他们分别是……[l][cm]"
+        "text": "[show]自“人外的黄昏”以来，大书院共产生了10任院长，他们分别是……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]停停停停停停！谁问你这个了！[l][cm]"
+        "text": "[show]停停停停停停！谁问你这个了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]我问的是现在的院长在哪儿，我们要去哪里找她？[l][cm]"
+        "text": "[show]我问的是现在的院长在哪儿，我们要去哪里找她？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]原来你是问这个呀~还好还好，刚才我一直在那儿认真回忆相关资料，还生怕一下子记错了呢！[l][cm]"
+        "text": "[show]原来你是问这个呀～还好还好，刚才我一直在那儿认真回忆相关资料，还生怕一下子记错了呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]……你……现在才明白吗？[l][cm]"
+        "text": "[show]……你……现在才明白吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]啊哈哈……我确实总是被人说头脑“有点不灵光”……[l]"
+        "text": "[show]啊哈哈……我确实总是被人说头脑“有点不灵光”……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]不过别看我这样，我的记忆力可是很好的！[l][cm]"
+        "text": "[show]不过别看我这样，我的记忆力可是很好的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]妈妈发现我的天赋后，决定让我来担任大书院的“[color=ffb64d]最终保险[colorEnd]”呢！[l][cm]"
+        "text": "[show]妈妈发现我的天赋后，决定让我来担任大书院的“[color=ffb64d]最终保险[colorEnd]”呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]最终保险……？那又是……等会，我现在没有在提问，你可以不用回答！[l][cm]"
+        "text": "[show]最终保险……？那又是……等会，我现在没有在提问，你可以不用回答！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]总之，我们找院长有事，你能带我们过去吗？[l][cm]"
+        "text": "[show]总之，我们找院长有事，你能带我们过去吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]你们这么着急吗？院长她过几天就会回来的。[l][cm]"
+        "text": "[show]你们这么着急吗？院长她过几天就会回来的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]啊这……[l][cm]"
+        "text": "[show]啊这……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]让我分析分析各位的表情……唔，看来你们是真的很急啊……[l]"
+        "text": "[show]让我分析分析各位的表情……唔，看来你们是真的很急啊……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]那没关系，我就带你们去吧！[l][cm]"
+        "text": "[show]那没关系，我就带你们去吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]居然……不知不觉间事态已经发展成这样了吗……[l][cm]"
+        "text": "[show]居然……不知不觉间事态已经发展成这样了吗……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕……[l]"
+        "text": "[show]咕……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -250,68 +249,69 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[cm][show]不，我要一起去！[l][cm]"
+        "text": "[cm][show]不，我要一起去！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]（总不能呆在这种地方！如果能顺势离开大书院的话……也能避开那个人！）[l][cm]"
+        "text": "[show]（总不能呆在这种地方！如果能顺势离开大书院的话……也能避开那个人！）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]我和你们一起行动！不管去哪都行，总之就是要一起！[l][cm]"
+        "text": "[show]我和你们一起行动！不管去哪都行，总之就是要一起！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]奇瓦居然这么积极……感觉真是可靠呢。[l][cm]"
+        "text": "[show]奇瓦居然这么积极……感觉真是可靠呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]哈哈，看起来你们都很有精神呀！[l][cm]"
+        "text": "[show]哈哈，看起来你们都很有精神呀！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]那我们事不宜迟，赶紧出发吧！[l][cm]"
+        "text": "[show]那我们事不宜迟，赶紧出发吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]院长她现在就在沉星冰湖，我们走快点的话，应该能在那里截住她~！[l][cm][hide]"
+        "text": "[show]院长她现在就在沉星冰湖，我们走快点的话，应该能在那里截住她～！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_2_3",
   "des": "与【伽拉忒亚】对话【请问……你就是院长代理？】"
 }

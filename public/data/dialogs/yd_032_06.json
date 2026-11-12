@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]营地的门、屋顶和围栏，我都记熟了。夜里闭着眼也能摸到你的小屋。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]如果有敌人潜进来，我能比他们更早绕到背后。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]东边围栏有条缝，仓库顶上会留脚印，靠近你房间的那棵树……嗯，很适合埋伏。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]我已经把所有路线都想好了。以后不管谁想偷偷靠近你，都会先碰上我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]你问我是怎么靠近你的？这算刺客的秘密。你只要知道，我一直在你附近就好。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_032_06",
+  "des": "熟识"
+}

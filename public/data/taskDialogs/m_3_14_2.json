@@ -1,0 +1,46 @@
+{
+  "script": "m_3_14_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是这样。两位明白了吗？[l][cm]",
+        "charaName": "迦南"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……算是明白了。组队要分前锋和后备，不同的赛区规则不同……我们赢的次数越多，排名就能越往上升，一直到成为冠军为止……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太多复杂的我也说不清楚，总之就是一路打下去、赢下去就行了，对吧？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯～这么理解也没问题。剩下的细节，等你们实际参加过一次之后，自然就明白了！[l][cm]",
+        "charaName": "迦南"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好咧！突然感觉浑身充满干劲了！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    }
+  ],
+  "des": "剧本结束后进入指引【tiaoZhanSai】"
+}

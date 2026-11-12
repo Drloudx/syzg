@@ -5,40 +5,40 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]咦，真的吗？哪里哪里——[l][cm][hide]"
+        "text": "[show]咦，真的吗？哪里哪里——[l][cm][hide]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]哇，真的到了！没想到这么快就把货车安排好了。那个商人动作还真利索！[l][cm]"
+        "text": "[show]哇，真的到了！没想到这么快就把货车安排好了。那个商人动作还真利索！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]比绍贸易网络……搞不好还真像那么回事！[l][cm]"
+        "text": "[show]比绍贸易网络……搞不好还真像那么回事！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]走，我们去货车那边看看，订单上写了什么吧！[l][cm][hide]"
+        "text": "[show]走，我们去货车那边看看，发上一次订单吧！[l][cm][hide]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }

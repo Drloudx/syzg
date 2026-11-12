@@ -1,6 +1,6 @@
 /** 副本图鉴预解析：轻量索引 + 按关卡拆分的详情文件。 */
 import { buildDungeonData, buildDungeonItemSources } from '../../src/utils/dungeonData.js'
-import { readJson } from './shared.mjs'
+import { readJson, readDerivedJson } from './shared.mjs'
 import { compactRewards, compactRooms } from './compact.mjs'
 
 const compactBattle = (battle = {}) => ({
@@ -83,9 +83,9 @@ const battleSummary = (battle) => ({
 export function buildDungeonsFiles() {
   const fullData = buildDungeonData({
     instanceJson: readJson('instance.json'),
-    battleJson: readJson('dungeonBattle.json'),
-    battleRoomsJson: readJson('dungeonBattleRooms.json'),
-    battleRoutesJson: readJson('dungeonBattleRoutes.json'),
+    battleJson: readDerivedJson('dungeonBattle.json'),
+    battleRoomsJson: readDerivedJson('dungeonBattleRooms.json'),
+    battleRoutesJson: readDerivedJson('dungeonBattleRoutes.json'),
     rewardJson: readJson('reward.json'),
     consumeJson: readJson('consume.json'),
     itemJson: readJson('item.json'),

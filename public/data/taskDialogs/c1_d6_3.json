@@ -1,0 +1,53 @@
+{
+  "script": "c1_d6_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这是……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]唔，老大现身了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这个体型……算是我见过最大的女王种了！大家千万不能掉以轻心！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "米托拉，到你表演的时间了！"
+          },
+          {
+            "tag": "tag_5",
+            "text": "米托拉，一定要平安回到地面！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]那还用说吗！{myName}，我们上，干掉它！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "地窖深处四层 蜘蛛女王出现时"
+}

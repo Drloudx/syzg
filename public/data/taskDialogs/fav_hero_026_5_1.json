@@ -1,0 +1,267 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]呼……果然还是营地里舒服啊，和本小姐当年的古堡一样惬意。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]说回刚刚那张纸条的事情吧，这是巴诺姆村的一些小粉丝送给本小姐的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "巴诺姆村的小粉丝？"
+          },
+          {
+            "tag": "tag_5",
+            "text": "巴诺姆村已经有希斯珀利亚家族的粉丝群体了？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]有啊，本小姐还亲自接待过他们呢。虽然……他们都还只是一群小孩子就是啦，但他们都觉得希斯珀利亚家族很酷，这也算是一种认同啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]这张纸条里的内容，都是孩子们亲手画出来的——他们最崇拜的希斯珀利亚家族！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "所以画上的这两个小人是……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]呃……本小姐想，画的应该就是我们俩吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]毕竟本小姐空闲的时候，总会和他们讲讲故事。而聊到如今家族复兴的故事，那就肯定离不开你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐告诉他们，希斯珀利亚家族的后裔和她的支持者——一位强大的工匠一起合作。我们一同讨论家族复兴的计划，识破奸商的诡计，击退成群的角布林。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]在大家眼中，本小姐和你早就是亲密无间的同伴啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]还记得我在信里说的，有关家族复兴的想法吗？这个想法本小姐只告诉你哦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐觉得……复兴家族这件事不能去刻意推动。之前费了那么大力气去发传单贴画报，效果还不如本小姐去亲自做契约任务呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]所以……接下来本小姐的动作可能不会有那么大了，不过有事情肯定还是要跟你商量的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "贝拉多娜终于成长了。"
+          },
+          {
+            "tag": "tag_16",
+            "text": "真让人欣慰。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]你……你你你你那老前辈的口吻是怎么回事啊！明明是一个下仆居然如此僭越！不要脸！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]咳咳……不过……{myName}毕竟也是立有大功的人，本小姐不和你计较。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐今天过来除了告诉你本小姐的想法之外，还有授予你一个荣誉——那就是希斯珀利亚家族的爵位！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "获得爵位以后有什么福利吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]福利……现在暂时还没有，不过家族复兴之后，该有的福利绝不会少的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "好吧，我接受。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]嘿嘿……从今天开始，{myName}就正式成为我们家族的一员啦！倘若家族成功复兴，你就是家族最大的功臣！可以享尽财宝与荣耀！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "比起财宝，和贝拉多娜小姐成为伙伴才是最好的福利吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]哼哼……说得对，和本小姐合作就是最好的福利！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]虽然目前还很困难，但本小姐相信家族一定会重新崛起，我们种下了种子就终有收获的一天！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]不过……之前种的赤剑草，现在应该成熟了吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "你之前种的赤剑草在那里呢。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]哇……红红的一大片，全都长出来了，那我们先把这些赤剑草都收割下来吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（接下来和贝拉多娜一起，收割了成片的赤剑草。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（希斯珀利亚家族，终有复兴的一天！）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_026_5_1",
+  "des": "贝拉多娜-为复兴而继续前行-进入战役"
+}

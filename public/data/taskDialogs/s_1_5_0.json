@@ -1,10 +1,12 @@
 {
+  "des": "团灭剧本",
+  "script": "s_1_5_0",
   "exps": [
     {
       "para": {
-        "charaName": "米托拉",
         "nameSide": "left",
-        "text": "[show]怎……怎么会……我们竟然输了……[l]"
+        "text": "[show]怎……怎么会……我们竟然输了……[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -12,8 +14,8 @@
       "para": {
         "options": [
           {
-            "text": "快撤回营地吧！",
-            "tag": "tag_3"
+            "tag": "tag_3",
+            "text": "快撤回营地吧！"
           }
         ]
       },
@@ -21,29 +23,27 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
         "nameSide": "left",
-        "text": "[show][cm]可恶……看来只好这样了……我们撤！[l][cm]"
+        "text": "[show][cm]可恶……看来只好这样了……我们撤！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
         "nameSide": "left",
-        "text": "[show]不甘心……明明才刚出驿站，现在居然要撤回去……我一定会回来的！[l][cm][hide]"
+        "text": "[show]不甘心……明明才刚走出营地，现在居然要撤回去……我一定会回来的！[l][cm][hide]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
         "nameSide": "left",
-        "text": "[hide]"
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "script": "s_1_5_0",
-  "des": "团灭剧本"
+  ]
 }

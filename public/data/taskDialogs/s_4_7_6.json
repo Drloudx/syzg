@@ -104,7 +104,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "",
-        "text": "[show](芭杜尔俯下身去，将上身探入帐篷之中……）[l][cm]"
+        "text": "[show]（芭杜尔俯下身去，将上身探入帐篷之中……）[l][cm]"
       },
       "key": "text"
     },
@@ -216,7 +216,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "",
-        "text": "[show]（经过一番无效的挣扎，阿娜洛洁又被扛回了金弦大牢。）[l][cm]"
+        "text": "[show]（经过一番无效的挣扎，阿娜洛洁又被扛回了金弦大牢。）[l]"
       },
       "key": "text"
     },
@@ -235,7 +235,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show][cm]这家伙……真的是自作自受……[l][cm]"
+        "text": "[cm][show]这家伙……真的是自作自受……[l][cm]"
       },
       "key": "text"
     },

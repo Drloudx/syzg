@@ -1,0 +1,53 @@
+{
+  "script": "Main_0_01_1_1",
+  "des": "战斗笔记点击",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]这是……你总结的战斗笔记？我说你昨晚自己一个人在那琢磨什么呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]你说冒险和战斗历程中的经验，是最宝贵的财富……勤记录，勤归结，才能无往不胜？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]虽然不是很懂……但交给你来就没问题了吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "有了这些，就能增长经验了。",
+            "tag": "tag_10"
+          },
+          {
+            "text": "那现在就来一起读读看吧。",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[cm][show]好——！[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

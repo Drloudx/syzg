@@ -1,0 +1,268 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]嗯……应该就是在这附近了，我也感受到了同类的气息姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]啊！在那里姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客A",
+        "text": "[show]哼……找了这么久总算是找到了，这回没白跑一趟。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客B",
+        "text": "[show]可不是嘛，光在这里等就等了好几个小时，好在终于是逮住这家伙了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客C",
+        "text": "[show]哎，你们说这块金色黏团能卖多少钱啊？感觉卖给那些商人的话能顶上我们躺上好几年！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客A",
+        "text": "[show]不管卖多少，我们在卖之前最好刮它几层皮下来，反正这只黄金史莱姆能再生，我们就算刮一半也没人看得出来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "黄金史莱姆",
+        "text": "[show]姆姆……姆姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]喂！本公主命令你们住手姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客A",
+        "text": "[show]啊？史莱姆？你是谁啊？敢坏我们的好事？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]你们不能这样对那只史莱姆，放开它姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客B",
+        "text": "[show]原来你们也是来抢黄金史莱姆的，很遗憾，这玩意是我们先发现的。本大爷今天赚到钱，懒得和你们计较，识相的就赶紧滚蛋！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]别把我们和你们混为一谈，我可不想把人家的皮扒下来姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客A",
+        "text": "[show]哼！虚伪的家伙，你要动手就来！你以为我们怕你啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]动手就动手！别以为我怕你们！我忠实的护卫啊，一起上打败他们姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉的护卫",
+        "text": "[show]姆姆！姆姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "荒野客C",
+        "text": "[show]哇！哪来……哪来这么多史莱姆！快……快拿武器！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在你和德莉的联手打击下，那群荒野客被赶走了。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]好！他们都走掉了，你现在安全了姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "黄金史莱姆",
+        "text": "[show]姆姆，姆姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]嘿嘿，不用谢，这是我身为史莱姆公主的职责姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]你说你是流浪到这里的？目前没有住的地方？那你可以来我的黏糊糊城堡，有很多史莱姆住在那里，很安全的姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "黄金史莱姆",
+        "text": "[show]姆姆，姆姆～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]好，那我就亲自把你带回我的王国吧，黏糊糊城堡又多了一只优秀的史莱姆了姆。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "德莉经常收留史莱姆吗？",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[cm][show]嗯，只要是自愿的智慧型史莱姆，我都会收留到我的史莱姆王国里面姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]毕竟我更希望王国里多些有趣的史莱姆啦，只有更多史莱姆才能让王国更加有活力姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]就像……你的营地一样姆……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那你会允许我成为王国的一份子吗？",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[cm][show]嘿嘿……当然可以啦，你是史莱姆王国的一员，我也是你营地的一份子姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]好啦，现在我要送这位黄金史莱姆到我的王国里去了，你也要一起来吗姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "黄金史莱姆",
+        "text": "[show]姆姆，姆姆～[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_060_4_1",
+  "des": "fav_hero_060_4_1"
+}

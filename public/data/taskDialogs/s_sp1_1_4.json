@@ -1,0 +1,195 @@
+{
+  "script": "s_sp1_1_4",
+  "des": "",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]呃……我们应该是算准了时间才出手的……没有影响到你的测试结果吧？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]时机卡得正好。实际上，再多三秒钟，本宫的躯体就要开始溶化了。[l]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那还真是危险！",
+            "tag": "tag_5"
+          },
+          {
+            "text": "米托拉，做得好！",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]哼哼，也不看看是谁！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]那么，测试的结果是怎样呢？一分半钟……这个时间算厉害还是不厉害啊？[l]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "毫无疑问是厉害吧！",
+            "tag": "tag_8"
+          },
+          {
+            "text": "那可在强酸之中硬撑一分半钟啊！",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]是的，毫无疑问，环境耐受性也是远超本宫的预期。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]虽然最后沦为了安全规程的反面教材，成为了魔法史上的一个笑话。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]但“大罪人”的设计本身还是超越了时代的。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]呵……只可惜性能越是优秀，封印的手段就必须越发强大，研发也就越发困难。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]啊？这不会很麻烦吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这些麻烦，城主阁下会为本宫解决的。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]作为古往今来最强的魔法使，想必洛莉安阁下会妥善处理的。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]啊！你这家伙，刚才是不是在笑？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]你果然是在使坏吧？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这不能叫做使坏，请把它当做对城主阁下的信任就好。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]还有，我们应该移步下一项测试了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]要与本宫战斗的地点，你们选择好了吗？[l]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那当然。",
+            "tag": "tag_21"
+          },
+          {
+            "text": "绝对是合适的地方。",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]是吗？那本宫就好好期待吧。[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    }
+  ]
+}

@@ -40,11 +40,10 @@ test('mailboxes cover every game-visible source mail, including hidden catalogue
     assert.equal(mail.heroId, mailTable[mail.id].heroTypeId)
     assert.equal(mail.content, mailTable[mail.id].content)
   }
-  // 隐藏角色的发件箱在产物里必须彻底消失
-  for (const id of ['hero_047', 'hero_059', 'hero_070']) {
+  // 隐藏角色的发件箱在产物里必须彻底消失（2026-11-11 hero_047 阿迪拉已按用户要求解除隐藏）
+  for (const id of ['hero_059', 'hero_070']) {
     assert.ok(!mailboxes.some(box => box.id === id), `隐藏角色 ${id} 不应出现在伙伴邮件`)
   }
-  // 2026-11-09（1.7.15）：hero_047 已改为手工隐藏，不再属于「未收录但仍有邮件」。
   for (const id of ['hero_028', 'hero_057']) {
     assert.ok(mailboxes.find(box => box.id === id)?.mails.length)
     assert.ok(!heroes.some(hero => hero.id === id), 'do not unhide the hero catalogue')

@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]这个营地比我想象的要先进不少呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]古代的工匠技艺居然流传了下来，在新的时代继续发光。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]这真的是我回归卡露蒂亚之后，听到的最好的消息了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_059_2",
+  "des": "菲娜2"
+}

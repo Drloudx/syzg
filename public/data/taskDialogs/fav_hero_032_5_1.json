@@ -1,0 +1,318 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]哇，还好逃出来了，没想到驿站大厅现在这么多人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]刚进门一望过去全是人头，我这种藏在暗处的刺客都不好意思待了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]不过还好在离开之前，把信息档案都拿到了，要不然后面还得花时间来挑刺杀目标……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你还会挑刺杀目标？",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[cm][show]那当然，我虽然和很多刺杀组织有合作，但我本质上还是自由人，或者说是自由刺客。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]遇到不想刺杀的目标，或者当天心情不好，我想拒单就拒单。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]从某种意义上来说，我就是自由职业者，或者叫刺客契约者。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]从这点来看，我虽然不像其他刺客一样有组织有报酬，但我可以根据自己的意愿去做事，这也是我想要的生活。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]当然啦，要是我能找到当年拯救我的刺客组织，我是不介意牺牲自由加入他们的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]不过有些原则还是要永远坚守的，这一点无论我在哪里都不会改变。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "所谓的原则是指……",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[cm][show]我只会刺杀大奸大恶之人，硬要设置一个标准的话，那就是我只会对伤害其他人的恶人动手。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]所以收到刺杀目标的时候，我会先去调查目标的身世，然后再决定接不接委托。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]不过嘛……大部分目标的确都是大奸大恶之人，毕竟都被人下重金悬赏了，要是正常人也不可能会有这种待遇。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]所以……这就是我现在的状态，一个有着虚伪正义感的刺客。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]你问我是不是很有钱？这个嘛……算是有一点吧，毕竟我有时候接的单也不是那么值钱的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]啊，我的雇主来付钱了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（一个小女孩从远处踮着脚跑来，来到诺姿身前，喜笑颜开地看着她。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小女孩",
+        "text": "[show]诺姿姐姐，谢谢你帮我和妈妈打跑那些坏人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]不客气，那些坏蛋没有再来骚扰你们了吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小女孩",
+        "text": "[show]嗯，托你的福，那些坏人也没有再来骚扰我们了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小女孩",
+        "text": "[show]对了，这是之前说好的报酬，给你。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（小女孩从怀里掏出一阿比放到诺姿手中。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]没关系，既然收了报酬，那这就是我该做的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小女孩",
+        "text": "[show]嗯！谢谢姐姐！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在和诺姿告别后，小女孩开心地跑走了。诺姿甩了甩手上的银币，笑着目送女孩离开。）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这就是你说的……",
+            "tag": "tag_29"
+          },
+          {
+            "text": "“不值钱”的单子吧。",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[cm][show]嗯，我偶尔会接这种单子，那个女孩家里一直被荒野客骚扰，我就出手去教训了那些荒野客。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]说是教训，其实也不过是把他们抓起来，然后实施了水刑、火刑、鞭刑、烙铁刑等等温和手段。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]并且我还友善地告诉他们，今后不允许在这附近活动，不然就把他们抽筋扒皮、放进铁牛里火烤等等……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]哼……像他们这种欺负孤儿寡母的坏蛋，我这手段都算轻了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]啊！抱歉！有些忘我了，总之我就是用了些方法帮了那对母女，这就是我经常会接的便宜单子。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]毕竟我成为刺客的原因，就是希望能变成拯救他人的英雄啊，就像那天拯救我的刺客一样。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "诺姿已经是英雄了。",
+            "tag": "tag_36"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[cm][show]嘿嘿……还差得远呢，不过谢谢你的夸奖。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]我们走吧，去找下一个目标吧～[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_032_5_1",
+  "des": "fav_hero_032_5_1"
+}

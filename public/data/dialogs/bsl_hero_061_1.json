@@ -1,0 +1,54 @@
+{
+  "script": "bsl_hero_061_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]叨扰许久，本宫似乎还未送上什么见面礼。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]作为王室来说，实在有失体面。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]幸好，魔法终究万能，区区备礼之事，根本不在话下。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是本宫最近制作的一点小东西，希望你会喜欢。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果你能因此亲近魔法之道，把你的聪明才智带到魔法的领域，本宫就更加欣喜了。[l][cm][hide]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "斯卡莉安伴手礼"
+}

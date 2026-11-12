@@ -1,0 +1,184 @@
+{
+  "script": "fav_hero_066_3_1",
+  "des": "奥格-会不会成功呢……_进入战役",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]温泉吗？嗯……这倒是个不错的提议。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]水神大人的神恩浸透在所有的水滴之中，而没有被污染的水体，正是承载恩赐的最佳媒介。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]如果那个温泉真的有奥格小姐说的那么有效的话，我们完全可以让水占师带着一些富魔水中毒的病患前去疗养。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]只不过这么一来，我们就得签订一个类似大书院那样的长期协议，而且温泉村那边也得同意我们对泉水施法才行。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]什么？施法？原来你们说的疗养不是单纯的休息，而是真的搞治疗吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]既然有能力施法减轻病痛，当然不会故意不去用吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]唔……这……倒也不是不行……只不过和我想象中的推广稍微有点出入啊……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "奥格想象中的推广是怎样的？"
+          },
+          {
+            "tag": "tag_10",
+            "text": "奥格觉得这样的协议不行吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[cm][show]可以是可以啦……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]但是我想象中……是希望人们能够更加轻松、更加悠闲地享受温泉——享受这种休闲方式。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]但是富魔水症，我记得是危及生命的重病吧？在这种重症面前，大家肯定是没什么心思泡温泉了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]那也是没办法的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]在生存面前，文化、休闲、享受……这些东西统统都得让道。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "贝尔卡",
+        "text": "[show]我们只是在利用一切可以利用的东西，让更多的人可以活下来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]我知道啦，我也没有怪你们。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]反正签订这个协议，也算拯救了一下温泉村的财政。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "奥格",
+        "text": "[show]这也是意外之喜，我也该知足了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "奥格……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（之后，奥格向贝尔卡道了谢，叹了口气就离开了。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（有好几天都没再见到她来信……）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

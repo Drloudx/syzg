@@ -1,0 +1,252 @@
+{
+  "script": "fav_hero_050_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]嗯……你这么一说，我好像确实是有些邋遢了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我的头发本来就有些蓬松无序，长时间不打理变得更乱了，如果被陌生人看到会被怀疑是不良少女吧……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]{myName}，你看看我现在的样子像什么？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "你现在是更可爱的米拉贝尔。"
+          },
+          {
+            "tag": "tag_10",
+            "text": "你现在像一只炸毛的小兔。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]更……更可爱？你……你你在说什么胡话啦！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]就算……就算可爱，那肯定也不是现在这副模样，全身邋遢有什么可爱的……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]总……总之才不是可爱啦！你不要胡说……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]炸毛的小兔是什么鬼啦！你这形容一点也不合适好吧！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]而且这哪里是什么炸毛……就是很久没收拾才会这样的好吧……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]你这种形容……也太羞耻了……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]既然现在看起来那么邋遢，我得好好打理一番才行，不然出去只会让人笑话。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（端来洗脸盆和梳子。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]噢，这么快就准备好了吗？谢谢呀……不过你拿梳子是要……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]唉？你……你要给我梳头吗？可是……这会不会太麻烦你了，还是让我自己来吧……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]你说我好好休息就行了……好吧，我听你的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（开始给端正坐姿的米拉贝尔梳头。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]还是稍微有些羞耻呢……不过看在{myName}手法不错的份上，就让你继续梳下去吧。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]这种舒服的感觉……稍微让我回忆起过往的日子呢。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]说起来……从小到大只有两个人给我梳过头，一个是老爸，另一个就是你。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我记得老爸给我梳头的时候，我在吃萝卜，那些萝卜还是从村子里种出来的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]那片农田既承载了村子过往的回忆，也承载着村子的未来，所以我必须守护好它。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]其实成为领袖之后，我一直感觉自己身上的压力很大。不过有你在身旁，我感觉自己轻松了不少。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我真的……非常感谢你，谢谢你的陪伴。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "能帮到你我也很高兴。"
+          },
+          {
+            "tag": "tag_30",
+            "text": "请放心守护你最爱的村子吧。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嗯！非常感谢！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]不过……我这边的头发好像不是这样卷的，你可以要往另一边梳……[l][cm][hide]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（在米拉贝尔的指导下，她的头发变回了原来那副蓬松帅气的模样。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（米拉贝尔在营地里又休息了几天……）[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "米拉贝尔-\t陷入困境的调查-进入战役"
+}

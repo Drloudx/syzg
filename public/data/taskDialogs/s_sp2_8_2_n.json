@@ -1,0 +1,38 @@
+{
+  "script": "s_sp2_8_2_n",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你手上的黏液……好像还不够呢姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就差这一点点，我们就能上门订婚了姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]拜托你们了，我还得去应付那群债主呢姆……[l][cm][hide]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "黏液准备好了！"
+}

@@ -1,0 +1,338 @@
+{
+  "script": "fav_hero_046_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嗯，差不多了，就在这个地方。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]这个地方就算是恐兽也不会找过来，我们可以慢慢找。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "等等，我有种不安的感觉……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]不安的感觉？是怕魔物过来攻击我们吗？没关系的，只要有魔物赶过来，我就一镐子把它们打飞！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "就是一路上总感觉被什么东西盯着了……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]是吗……可我什么都没感觉到啊。不过应该没事的，我们就来这里捡些石头而已，不会吸引什么危险人物吧。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]来吧，这边还有很多宝石哦，就在这里……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "？？？",
+        "text": "[show]好！东西都发现了！我们可以出来了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]唉？是你们……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友1",
+        "text": "[show]看吧我没说错，一直跟着这绿皮小丫头能找到好东西！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友2",
+        "text": "[show]呵，真被你小子说中了，那这次我们赚大发了。喂，那个绿皮小丫头，这里宝石就交给我们帮你处理，你还是回宿舍里接着睡大觉吧。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]什么？你们……你们什么意思？什么叫宝石交给你们处理了？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "刚刚他们一直在跟踪你。"
+          },
+          {
+            "tag": "tag_15",
+            "text": "应该是想借着你找到宝石矿。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友3",
+        "text": "[cm][show]没错！这小丫头休息的时候经常乱跑，而且总能在一些犄角旮旯的地方找到小宝石。所以我们推断只要跟着她，就能找到更多的宝石，果然如我们所料。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友1",
+        "text": "[show]不和你们废话了，这些宝石是我们“先发现”的，如果识趣的话赶紧离开，否则别怪我们不客气！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]我要是我不同意呢……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友2",
+        "text": "[show]哟？平常唯唯诺诺的小丫头突然硬气起来了？你难道不怕我们跟工头打招呼，给你多安排些体力活吗？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]就算这样，我也不能允许你们打扰我和{myName}！更何况这本来是我们先发现的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友1",
+        "text": "[show]哼！深渊本就是弱肉强食，我们强抢你还能抵抗得了吗？你一个人还能打赢我们三个不成？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "那再加上我呢？"
+          },
+          {
+            "tag": "tag_22",
+            "text": "（掏出工匠锤教训他们。）"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友们",
+        "text": "[cm][show]啊——！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友1",
+        "text": "[show]可恶……这两家伙怎么这么强……我们不是他们的对手，先撤退！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅的工友2",
+        "text": "[show]绿皮小丫头！你给我等着！回去我就跟工头打招呼，让他继续让你干重活！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]呼……终于是走了。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "迈妮娅和刚刚那些人很熟吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]可以说是熟吧，毕竟他们一直看我不顺眼，每天让工头给我加活。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]不过矿场里的人几乎都是这样的，他们看不起我的绿皮肤，没有一个人给我好脸色……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]这次回去估计又要被加一堆重活吧？不过也没什么关系，我已经习惯了……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "迈妮娅面对霸凌不该保持沉默。"
+          },
+          {
+            "tag": "tag_31",
+            "text": "要有尊严地活着。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]可是……我之前也说了，像我这种只会用蛮力的笨蛋，没有其他可以选择的工作啦。与其在野外晃半天后回到矿场，还不如一直在矿场里面生窝囊气呢。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_33",
+            "text": "是迈妮娅太自卑了。"
+          },
+          {
+            "tag": "tag_33",
+            "text": "你的能力绝对能让你有尊严地活着。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_34",
+            "text": "没有尊严地替别人卖命。"
+          },
+          {
+            "tag": "tag_34",
+            "text": "到最后也摆脱不了被欺压的命运。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]我……我知道了，我回去之后会好好想想的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]那……我们接下来就把这里的矿石都收拾一下吧。[l][cm][hide]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（后来和迈妮娅一起挑选了许多优质的石头，度过了愉快的一天。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（迈妮娅的思想，也似乎正在发生着变化……）[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "迈妮娅-被追踪的怯者-进入战役"
+}

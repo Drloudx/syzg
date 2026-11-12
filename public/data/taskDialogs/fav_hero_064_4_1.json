@@ -1,0 +1,250 @@
+{
+  "des": "伽拉忒亚-究竟会是怎样的方案呢？_进入战役",
+  "script": "fav_hero_064_4_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]这、这个装置是……不知为什么看起来好眼熟啊……可我好像也没见过这种东西……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]这是大家口中，你用来调整地脉的那个什么装置吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "嗯，这玩意确实是用那个装置改的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]改的？那就是说，这东西有些不一样的功能了？是什么呀？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "其实……"
+          },
+          {
+            "tag": "tag_7",
+            "text": "是这样的……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]什么！你说这个能记录下你和伙伴们战斗时的信息和数据，甚至还包括战场全域的魔力流动情况？！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]只要把这些信息记进脑海，我就能凭借我的计算力，发挥这些数据的力量了……呜哇啊啊啊——！{myName}，你简直就是天才！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "我会定期更新里面的内容。"
+          },
+          {
+            "tag": "tag_10",
+            "text": "这样每次就会有全新的数据。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "我称它为——"
+          },
+          {
+            "tag": "tag_11",
+            "text": "伽拉忒亚专用学习装置！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]伽拉忒亚专用……学习装置！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]你说得没错，毕竟一般人拿到这种资料也没什么用。这是只有我能处理的信息，只有我能使用的力量……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]是{myName}老师为我专门设计的训练法！是啊，早晚有一天，我一定能发挥这具机体的十成功力，一定能帮上妈妈的忙！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]太感谢你了，{myName}老师——！我好感动——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "老师就不用了。"
+          },
+          {
+            "tag": "tag_16",
+            "text": "我只是为朋友帮了点微小的忙。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]朋友呀……嘿嘿。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]对了，那个，你刚刚说……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]你会定期更新里面的内容，所以我肯定也要定期来这里与你见面才行，是这样吧……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "对呀。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]嘿嘿……原来之后我也可以这么频繁地和你见面呀……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "嗯？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]——没、没什么啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我已经迫不及待想看看这个装置怎么运作的了……不然，我们赶快开始试用吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "当然可以！"
+          },
+          {
+            "tag": "tag_25",
+            "text": "走吧——！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]好耶！出发——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

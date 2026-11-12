@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]唉……你的血统……似乎是纯正的人类血统。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]这可真是稀奇！就连我都会不知不觉感到可信的那种强烈亲和力，居然不是超凡能力的效果？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]我开始犹豫要不要把女儿们交给你了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]或许应该先让阿姨好好研究出一个所以然，之后再做决定？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]呵呵……这个问题，你怎么看呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_065_09",
+  "des": "乌尔勒-亲密3"
+}

@@ -1,0 +1,223 @@
+{
+  "script": "s_sp2_4_6",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]感谢大家的帮助，我这就开始按照菜谱烹饪料理姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你也辛苦啦，我很期待你做出来的料理姆！[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "德莉看起来也很期待呢。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那当然了，做出好吃的料理，这样臣民的生活也能变得更好。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（等待一段时间后，库库姆的炖锅和平底锅开始冒出奇怪的味道……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好香姆！你已经把食物都做好了姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……香吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]已经做好了，你们来看看姆！先来看这个……七彩黏液汤！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……这汤是彩色的，也太吓人了，这真的能喝吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然能喝，请公主殿下喝第一口姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，给我盛一碗吧姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咕噜咕噜……真好喝姆——！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的好喝吗？不……我感觉我该问，这东西能喝吗……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "毕竟是史莱姆的食物……",
+            "tag": "tag_16"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]可别小看这道七彩黏液汤，它可是我们史莱姆过去上百年来最喜欢的料理姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过如果你还是害怕的话，可以试试这个彩虹糖画和斑斓火锅姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这不也是那种奇怪的颜色嘛……行吧，我试试吧……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个彩虹糖……是这么吃的吗？嗯……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喵呜——！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（在把糖吃下去以后，米托拉嘎嘣一下倒下去了。）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "米托拉——！",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]什么嘛……这个糖很好吃呀，你们不吃我吃姆～[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……能得到公主殿下的认同是我的荣幸姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等我把这些菜谱都研究好，我们史莱姆营地的日子会越来越好姆！让史莱姆的美食遍布全世界姆～[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜呜……我……我再也不要吃史莱姆的东西了……[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "黏液都准备好了。"
+}

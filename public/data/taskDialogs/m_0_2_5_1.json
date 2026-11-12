@@ -1,36 +1,44 @@
 {
-  "des": "工作台引导",
+  "des": "升星引导结束",
   "script": "m_0_2_5_1",
   "exps": [
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]哇啊……好像真的变强了……[l][cm]"
+        "text": "[show]哇啊……好像真的变强了……[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]这就是你说的“回忆拼图”啊……看来只要找到更多这种记忆，就真的能唤醒潜力呢……[l][cm]"
+        "text": "[show]这就是你说的“回忆拼图”啊……看来只要找到更多这种记忆，就真的能唤醒潜力呢……[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]两位久等啦。刚刚契约者们已经把角布林营地里的东西都搬过来了，你们看看要留下些什么不？[l][cm]"
+        "text": "[show]好啦，毛耳朵，你坐也坐好一会了吧，是不是也该回去了？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]哇，那我得好好翻一翻！{myName}，你也来看看有什么用得上的东西吧！[l]"
+        "text": "[show]…………[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎、怎么了你这家伙！一直盯着我们看，寒毛都要竖起来了啦！[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -38,12 +46,8 @@
       "para": {
         "options": [
           {
-            "text": "我要这个，还有这个。",
-            "tag": "tag_14"
-          },
-          {
-            "text": "这个，这个，这个也要。",
-            "tag": "tag_14"
+            "tag": "tag_33",
+            "text": "（看来，她是有什么话想认真告诉我们吧……）"
           }
         ]
       },
@@ -52,102 +56,16 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[cm][show]这些是……破旧的木板、坏掉的锯片、废铁锤……和切石刀？[l][cm]"
+        "text": "[cm][hide]",
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]你怎么总选些这么没用的东西啊，又不能吃又不能穿，也不能当武器使。[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]这些应该是别的荒野客丢弃的废品吧，坏到这种程度已经不能用了。[r]如果你们需要新的话，可以向我们驿站附近的铁匠铺订购——[l]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "options": [
-          {
-            "text": "太有用处了，米托拉。",
-            "tag": "tag_17"
-          },
-          {
-            "text": "用这些就能进一步加固营地了。",
-            "tag": "tag_17"
-          }
-        ]
-      },
-      "key": "option"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[cm][show]咦，真的吗？用这种工具就可以做到？[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]你把工匠锤掏出来，是已经跃跃欲试了吗！对，事不宜迟！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]咦？现在就要开工？可是我们不是还要去——[l]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "options": [
-          {
-            "text": "请稍安勿躁，艾尔莎小姐。",
-            "tag": "tag_20"
-          },
-          {
-            "text": "我在工作时需要安静的环境。",
-            "tag": "tag_20"
-          }
-        ]
-      },
-      "key": "option"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]唏！好、好的……！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]听见了嘛，毛耳朵！可不要打扰我们～！[l][cm][hide]"
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }

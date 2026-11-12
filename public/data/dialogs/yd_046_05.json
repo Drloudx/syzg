@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]一颗石头，两颗石头，三颗石头……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]唉？是{myName}～！嘿嘿……这是我刚刚在回营地的路上捡的！[r]今天运气不错，居然能找到这么多漂亮的石头……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]这也算是我的爱好吧～虽然我经常敲石头，但遇见漂亮的石头总还是会收集起来的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]你问我收集了多少石头？这个……大概也就能堆到我身高的量吧，不过这个数不总是稳定的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]毕竟我之前没有固定的居所，所以藏起来的石头经常会丢失，久而久之能存下来的也就一小堆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]所以……你能让我在这个营地里，有一个自己的“石头储藏库”嘛？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_046_05",
+  "des": "迈妮娅-熟识2"
+}

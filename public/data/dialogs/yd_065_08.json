@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]为人父母真的很难，因为生命总是在你没有准备好的时候骤然降临。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]即使是我……也是如此。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]我曾经以为，我已经做好了准备。但当奇瓦真的降临到我面前，我才意识到，自己的准备还远远不够。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]比起如何让生命来到这个世界，如何好好地爱她，才是真正困难的课题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]幸好我学东西总是很快。哪怕是“爱”这么难的科目……我想，我应该也算学得还行吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_065_08",
+  "des": "乌尔勒-亲密2"
+}

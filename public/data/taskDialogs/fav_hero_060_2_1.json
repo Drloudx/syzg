@@ -1,0 +1,304 @@
+{
+  "des": "fav_hero_060_2_1",
+  "script": "fav_hero_060_2_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]到了，就是这里，你看看情况吧姆。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "情况确实很糟糕啊……"
+          },
+          {
+            "tag": "tag_5",
+            "text": "到底发生什么事了？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]就和信里说的一样。有几个荒野客闯了进来，把房子都给炸掉了姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]说起这个我就来气。他们要来找什么“黄金史莱姆”……别说我这里有没有了，我自己总共就没见过这种史莱姆几次姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]结果他们找不到之后就点火把这里炸了，当时护卫说看到了好几桶火药，这是多大仇多大恨啊姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]他们炸掉房子后一走了之，只留下我可怜的子民望着一片废墟发呆，它们的房子全没了姆……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "没关系，我会帮你们修好房子的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]嗯！拜托你啦，把旁边完好的房子当成模板就好，需要的黏液、木头和石料都准备好了，任意取用姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（按照史莱姆们的要求修复了被炸损的地基，并在此基础上修建了一排排房子。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]哇！好厉害，一下子就把房子造出来了，而且质量比之前的房子还要好姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉的子民",
+        "text": "[show]姆姆！姆姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]嘿嘿……大家都在感谢你呢，是你让它们今后都有房子住了姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]你说还有什么需要的可以一并帮忙打造了？这个……这个多不好意思啊姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]不过既然你说要帮忙，我怎么能拒绝呢，其实爆炸的影响不止摧毁了我们的房屋姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]看到那里围起来的木墙吗？那些炸药还把我们的水渠给炸坏了，还有一些护栏也是……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "全都交给我吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]你都可以解决吗？那就拜托你啦姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（经过一番打造，原本王国里的各种被破坏的设施都被修好了，质量甚至比原来的更好。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉的子民",
+        "text": "[show]姆姆！姆姆姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]辛苦了{myName}！太感谢你了，看见这些重新修好的设施，大家的干劲都足了很多姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]你帮了我这么多，我都不知道用什么感谢你了姆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]对了，这个给你姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（德莉从身上撕下一块黏液，放在手里揉了揉，然后递给你。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]这个吃了能恢复体力，你来尝尝吧姆。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "这——这有点——"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]可、可能有点不太好吃，但绝对是有效果的！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "不、不是好不好吃的问题啦……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]怎么样？感觉身体恢复了姆？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "不仅体力恢复了。"
+          },
+          {
+            "tag": "tag_32",
+            "text": "味道意外地也不错。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]那……那当然了，毕竟是从我身上掉下来的，味道肯定很好姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]哦对了，{myName}辛苦了这么久，得先休息一下姆！不然，今晚就在王国过夜，怎么样姆？我去给你安排房间姆！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

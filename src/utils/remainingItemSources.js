@@ -1,4 +1,5 @@
 import { isBlacklisted } from '../config/blacklist.js'
+import { hasBrokenRewardPool } from '../config/blacklist.js'
 import { getRarityName } from './gameMappings.js'
 import { isVisibleEquipItem } from './itemParser.js'
 import { parseRewardGroups, parseItemAcquisition, getObtainableRewardRules,
@@ -6,6 +7,13 @@ import { parseRewardGroups, parseItemAcquisition, getObtainableRewardRules,
 import { isInternalSource, isUsableSourceEntry } from './supplementalItemSources.js'
 
 const table = value => value?.datas || value || {}
+/** 文案字段可能是字符串，也可能是对象结构，统一取可读文本。 */
+const text = value => {
+  if (value == null) return ''
+  if (typeof value === 'string' || typeof value === 'number') return String(value)
+  if (typeof value === 'object') return String(value.text ?? value.name ?? value.des ?? '')
+  return ''
+}
 const ranges = values => {
   const sorted = [...new Set(values)].sort((a, b) => a - b)
   const parts = []
@@ -117,9 +125,56 @@ export function buildRemainingItemSources(maps, existingSources = {}) {
     }
   }
 
+  /*
+   * 神器进阶来源（`equipQualityUpgrade`）。
+   *
+   * 2026-11-11 补：444 系列神器的「兑换」其实分两段——
+   *   · 4 阶起始件（item_444001/444005）在 itemExchange 里**没有独立兑换条目**，
+   *     它只能由上一阶进阶得到；
+   *   · 更高阶（444002/444003/444004…）在 itemExchange 里是「消耗材料 + 上一阶装备」。
+   * 此前只写兑换来源，导致 4 阶起始件完全没有「获取途径」，更高阶也看不出
+   * 「由上一阶进阶获得」。
+   *
+   * 文案口径（2026-11-11 用户要求）：
+   *   · 只写「由「<上一阶名>」<上一阶品质> 品质进阶获得」，**不列材料**——
+   *     材料是进阶消耗、不是获取途径，列出来是噪音；
+   *   · 用**上一阶**的品质名（如 5 阶由 4 阶「罕见」进阶 → 写「罕见」）。
+   */
+  const RARITY_NAMES = { 1: '普通', 2: '优秀', 3: '精良', 4: '罕见', 5: '传说', 6: '神话' }
+  const upgradeTable = maps.equipQualityUpgradeJson?.equipQualityUpgrade
+    || maps.equipQualityUpgradeJson || {}
+  for (const [equipId, conf] of Object.entries(upgradeTable)) {
+    if (!conf || !conf.reward) continue
+    const reward = rewards[conf.reward]
+    if (!reward) continue
+    let output = null
+    for (const group of reward.items || []) {
+      for (const rule of group.rules || []) {
+        if (rule && rule.mode === 'equip' && rule.typeId) { output = rule; break }
+      }
+      if (output) break
+    }
+    if (!output) continue
+    const sourceItem = items[equipId]
+    const sourceName = text(sourceItem?.name) || equipId
+    const sourceQuality = Number(sourceItem?.quality) || 0
+    const qualityLabel = RARITY_NAMES[sourceQuality] || ''
+    add(output.typeId, {
+      type: 'upgrade',
+      id: `${equipId}:${output.typeId}`,
+      name: sourceName,
+      des: `由「${sourceName}」${qualityLabel ? `${qualityLabel} ` : ''}品质进阶获得`
+    })
+  }
+
   const reachable = new Set([...Object.keys(existingSources).filter(id => existingSources[id]?.length), ...Object.keys(sources)])
   const pending = Object.values(items).filter(item => visible(item) && item.useAction !== 'appraisal')
     .flatMap(item => {
+      // 🔴 2026-11-11：官方把这几件（回忆拼图/挑战之证）的 useActionPara.reward 错配成了
+      // 秘境的结算池。`ItemDetailModal` 已经不显示它们的「开启奖励」，但容器链在这里
+      // 仍会把池里的物品记成「从这些物品开启获得」——用户看到「拼图能开出装备」即此因。
+      // 判据与详情页保持一致：同一个名单，不展开其奖励池。
+      if (hasBrokenRewardPool(item)) return []
       const rule = parseItemAcquisition(item, context)
       if (!rule || (rule.rewardId && !rewardRules(rule.rewardId).length)) return []
       return [{ item, rule }]

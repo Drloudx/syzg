@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]嘿呀！终于见着你了！我可在这蹲了你老半天呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]这地方空气好，视野也宽阔，真没想到你能找到这么好的一个地方，更没想到的是你能在这里建起一个这么棒的营地。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]嘿！嘿！嘿！感觉在这里训练出的每一拳都会比以前更有劲呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]喏，这个送给你，就当作是我来营地见面礼啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]今后我会经常来营地训练的，就让我们一起在营地里变得更强吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_033_1",
+  "des": "乌帕"
+}

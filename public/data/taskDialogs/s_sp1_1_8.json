@@ -1,0 +1,220 @@
+{
+  "script": "s_sp1_1_8",
+  "des": "【（把方法告诉洛莉安。）】",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这就是本宫和他们二位一起得出的最终需求，城主阁下，您以为如何了？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]余以为如何？[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]你们这还留了余可以“以为”的余地吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]你们把余当成什么了？许愿机？[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这么鬼畜的要求，居然都敢堂而皇之地提出来啊！[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]哈哈！我看这要求也没多高嘛！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]会提出来，这不是信任您法力高吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]余信你们才有鬼！[l]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那您是准备毁约了？",
+            "tag": "tag_11"
+          },
+          {
+            "text": "您不准备帮忙了吗？",
+            "tag": "tag_11"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]这……倒也不至于……[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]好吧，算你们厉害。[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不光是“大罪人”的本领强，能够测试得这么精准，你们几个也够有能耐的了！[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]既然已经做好了约定，本宫自然会帮忙完成封印的建造。[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不过在这之前，本宫还有古城的迁移计划要执行，你们几个，应该有时间等待吧？[l][cm]",
+        "nameSide": "left",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]本宫估计，应该还有两百年左右的时间。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]两百年！等等……我还以为你很快就要……结果你还能活两百年！！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]在近乎永生的物灵属魔物之中，只能生存两百年，已经是非常巨大的代价了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不不不，你不能这么比！一般的人类能活一百年的都少吧！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]你这家伙，居然把自己说得那么可怜！亏我之前还为你掉眼泪了！[l]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "不论如何……",
+            "tag": "tag_22"
+          },
+          {
+            "text": "结果总是好的嘛。",
+            "tag": "tag_22"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]你这种结果好就一切都好的论调已经过时啦！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]我生气了！不好好赔偿我我是不会消气的！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]呵……那就由本宫来好好赔偿吧。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]毕竟本宫时间还多，不是吗？[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    }
+  ]
+}

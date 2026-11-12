@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]主公，我今天听到一个很难理解的说法——“善意的谎言”。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]如果是为了对方好，为什么不能把实话好好说清楚呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]就像蜂蜜吃多了会牙痛。哪怕主公很喜欢，我也会如实提醒你。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]什么？主公说我昨天做的蜂蜜饼太甜了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]这、这种实话，早点说也没关系的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]剩下那盘先别动，我会负责吃完……然后重新研究配方！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_069_5",
+  "des": "熟识"
+}

@@ -1,0 +1,181 @@
+{
+  "script": "s_sp2_2_11",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，找到了！在那边！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，好可爱，好想抱一抱！[l][cm]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么会有这么可爱的生物……不知道能不能把这份可爱分给我一些呢……[l][cm]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呀……呀！！你不要过来！[l][cm]",
+        "charaName": "梅莉莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快来人哪！迦南……迦南好像坏掉了！[l][cm]",
+        "charaName": "梅莉莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁坏掉了？我只是想要和你进行一些女孩子之间的Girls Talk而已！[l][cm]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不要那么抗拒嘛！[l][cm][hide]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]…………[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]…………[l]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "…………",
+            "tag": "tag_14"
+          },
+          {
+            "text": "真是看不下去了。",
+            "tag": "tag_14"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]就，就是！你在干什么呀！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快点给我住手，不然我可要生气了！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦？这边也冒出来几位小可爱！[l][cm]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们的女子力……好像也不可小觑呢！[l][cm]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵，来得正好，就趁此机会召开茶会，和姐姐我好好分享一下变可爱的经验吧！[l][cm]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……我说，这玩意真的是不同时间线上的分身？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……这……时间是很纤细的，跨越时间线和跨越世界线也没什么不同吧……[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦！小可爱们，你们在说什么悄悄话？让我也加入一下啊！[l][cm]",
+        "charaName": "迦南？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不行了，我的人格不允许我认同这种东西……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不要试图对话了，直接动手，把她送回去吧！[l][cm][hide]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "s_sp2_2_11"
+}

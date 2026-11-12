@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余的血裔——或者说那些被余转化的助手们，好像做了挺大事啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]听那个蝙蝠女孩说，“吸血鬼”在各地都有出没，还形成了某种统一的传说？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]呵呵……真是不争气啊！只要余一不在，立刻就放弃了研究，开始放飞自我了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]对于这种不争气的手下，等余有空的时候，必须要上门去好好敲打一下呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_071_5",
+  "des": "洛莉安营地闲聊5"
+}

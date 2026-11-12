@@ -1,0 +1,258 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]呼……终于可以休息一下了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]其实原本应该更早到的，都怪我身下残破的义足拖慢了速度，好几次我都以为这两条破木棍要散架了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]那么……你要送给我的礼物，到底是什么呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（把做好的木腿递给茜塔。）",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]嗯？这东西……和我现在的义足一模一样，莫非你这是为我特别制作的吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这是我那天看你走路不便，就试着做了一个。",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]原来是这样……没想到你在暗中观察我，还有这一层原因啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]正好我现在这对义足穿的不舒服，既然你特意为我打造了一对新的义足，那我就不客气啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（茜塔脱下原先的义足，换上新的义足。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]嗯？居然这么合适，尺寸和之前一模一样，甚至还比之前舒适了很多……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "就根据肉眼观察猜测了尺寸。",
+            "tag": "tag_13"
+          },
+          {
+            "text": "你觉得合适那就再好不过了。",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]居然这么用心……那我得好好感谢你才行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]我走两步看看……嗯，感觉还挺不错的，感觉比之前还要合适许多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]别说用它来走路，就算是用它来战斗也没问题，灵活程度几乎和真腿差不多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]这个礼物我很喜欢，谢谢……改天我也要为你准备一份回礼。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "茜塔喜欢就好。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]刚和你见面的时候，还以为你是一个比较胆小被动的家伙。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]没想到你不但会主动来驿站找我，还给我准备了这么一份礼物，我对你有所改观了……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我倒没想到你对我的第一印象居然是胆小被动……",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]哈哈，毕竟在深渊打拼的人都是灰头土脸的。不像你总是干干净净的，当时我还以为你是从哪个贵族家庭里出来的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]当然那只是第一印象啦，至少现在，你在我眼中不是懦弱的小工匠了，而是本事和胆子都很大的小工匠。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "怎么还是带了个“小”字。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]总不能叫你老工匠吧，而且不管从年纪还是入行时间来说，我都算是你的前辈呀，用小字不过分吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "好吧……我没意见。",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]嗯嗯……总之谢谢你的义足啦，今后我都会一直穿着它的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]不过新的义足还需要习惯习惯，来陪我一起走走好吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "嗯。",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[cm][show]好，我们走，就在营地附近转转吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_005_4_1",
+  "des": "茜塔-新的义足-进入战役"
+}

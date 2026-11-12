@@ -39,9 +39,9 @@ export const NAV_CATEGORY_DEFINITIONS = [
     title: '图鉴资料',
     adminTitle: '核心图鉴',
     paths: [
-      '/items', '/heroes', '/equip', '/runes', '/relics', '/pets', '/monsters',
-      '/dungeons', '/chapters', '/furniture', '/facilities',
-      '/tasks', '/events', '/recipes', '/achievement',
+      '/items', '/heroes', '/pets', '/equip', '/monsters',
+      '/tasks', '/dungeons', '/chapters', '/relics', '/runes', '/furniture', '/facilities',
+      '/events', '/recipes', '/achievement',
       /* 日常计划放图鉴资料末尾：它读的是关卡与掉落，性质接近图鉴 */
       '/daily',
       '/tower'

@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]呜……又……又失败了！已经连续炸三次了，怎么这瓶药水这么难熬啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]那个……{myName}！快来帮我看看这个配方到底怎么弄出来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]你说这个表有问题？有几个配比都是错的？[r]怎么可能嘛——好、好好好，我按你的说法调一下……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]嘿咻嘿咻……嗯？好像有效果……真的炼出来了？！这怎么可能！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]呜，好不想承认，还是你厉害，一眼就看出问题在哪了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]哼哼，以后遇到不懂的问题，我就来找你啦，毕竟……你也不收我学费，对吧！哈哈！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_043_07",
+  "des": "阿娜洛洁-亲密1"
+}

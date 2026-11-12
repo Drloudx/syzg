@@ -1,0 +1,80 @@
+{
+  "des": "奥格-准备前往我们的第二站吧！",
+  "script": "fav_hero_066_3_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]哦哦！这次是哪里？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "其实是魔爪湖。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]魔爪湖？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]对了，我想起来了！你好像在那边解决过异变，这么说，你和那里的人应该关系很好了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "是还不错。"
+          },
+          {
+            "tag": "tag_7",
+            "text": "起码不算差。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]这样啊……那说不定这次会有个好收获呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]行吧！我们这就出发吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

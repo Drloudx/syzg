@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]哼……那群可恶的岩蟾蜍！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]咦？是你……你问阿迪拉怎么了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]没什么大事，只是阿迪拉刚刚想把三只岩蟾蜍钩在一起，然后一起扔下悬崖，但捆住之后阿迪拉发现自己拉不动它们……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]结果一番拉扯过后，阿迪拉反而被它们拉到悬崖下去了，要不是阿迪拉能飞，恐怕真要受重伤。总之……阿迪拉这回脸丢大了！你想笑就笑吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]嗯？你摸阿迪拉的头干嘛，是想要安慰阿迪拉吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]笑、笑笑笑笑笑话！阿迪拉可是哈比之王，才、才才才才不需要杂鱼的安慰呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]唔……不过……不过……既然是特意要安慰阿迪拉的……那阿迪拉就大方地接受好了……哼……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_047_06",
+  "des": "阿迪拉-熟识3"
+}

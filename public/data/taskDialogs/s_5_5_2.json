@@ -1,32 +1,30 @@
 {
-  "script": "s_5_5_2",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]几位能接受邀请前来，阿莱琳娜真的非常感谢。不过请稍等一下，阿莱琳娜还需要准备准备……[l][cm][hide]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]啊，她出去了……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]从目前的情况来看，她确实和传闻中一模一样。而且表现得相当自然，真不明白为什么斯坎达会觉得她没问题……[l]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -38,66 +36,66 @@
             "tag": "tag_58"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]是的，我感觉阿莱琳娜小姐有些束手束脚的，她很有可能是被胁迫的。[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]嘘……那姑娘回来了。嗯？怎么气味有点混杂……你们注意到了吗？[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]……听样子，门外好像不止一个人……[l][cm][hide]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]哎呀呀……几位久等了。[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]现在这里是我们几人的私密空间哦，你们想做什么都可以。不过事先说好，我这里是小本生意概不赊账哦，还希望你们能够理解。[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]那么……几位接下来打算对阿莱琳娜怎么做呢……那个……还请……礼貌一些……[l]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -105,18 +103,18 @@
             "tag": "tag_13"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[cm][show]唉……？答案？是、是什么答案呢……[l]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -124,26 +122,26 @@
             "tag": "tag_15"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[cm][show]…………[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]那个……你们在说什么？我……我怎么有点听不太懂……[l]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -155,274 +153,274 @@
             "tag": "tag_18"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[cm][show]这……这个……[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]所以说……你是不是遇到了什么麻烦？我们一开始来找你，就是想问这个问题。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]如果你有什么苦衷可以说出来，我们能帮你解决的……[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]不……你们……你们解决不了的……[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]两位直觉确实很敏锐，但这件事……你们解决不了。听我的，等会儿你们狠狠骂我一顿然后马上离开，这样他们就不会伤害你们——[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "？？？",
         "text": "[show]——哼！想逃！？[l][cm]",
-        "charaName": "？？？"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]呵，狐狸尾巴漏出来了！[l][cm][hide]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]黑皮丫头，你这个吃里扒外的东西。我们早就说过了，他们敢拒绝就叫我们出来，他们同意你就提供服务。可你倒好，居然要把煮熟的鸭子放跑？！[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]不要这样对她们……！她们是好人！……这次是我不好，我会继续工作的，你们就换个目标吧！[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]呸！换什么换！你在这儿招摇撞骗一上午，结果连半分钱都没弄到！要不是这两个倒霉蛋自己送上门来，整个上午都得白忙活！[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]亏你打扮得这么妖里妖气的，结果还是个软柿子。既然干活就好好干！别在那里装清纯，听懂了吗？！[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]喂！你们说话太过分了！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]过分？哼！你要不问问这家伙为什么来干这些事情？她不仅本人是个混账，她家人和她一样也是个混账！[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]而且你们两个小崽子……居然还敢还嘴？你是不是以为我们跟你旁边那个水性杨花的家伙一样好说话啊？[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]等等！请不要伤害她们！一切都是我的错！要罚就——[l][cm][hide]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "匠艺系学生斯坎达",
         "text": "[show]你们都给我住手！！[l][cm][hide]",
-        "charaName": "匠艺系学生斯坎达"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]哈？你又是谁啊？[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]你是……斯坎达？！[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "匠艺系学生斯坎达",
         "text": "[show]我……我我我……我是大书院的学生！你们放开他们！[l][cm]",
-        "charaName": "匠艺系学生斯坎达"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]呜哇，你的手抖得好厉害哦……没事吧？[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]什么？就凭你这个——等等，你手上拿的是什么？[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "匠艺系学生斯坎达",
         "text": "[show]阿莱琳娜！契约者！快逃！我来掩护你们！[l][cm]",
-        "charaName": "匠艺系学生斯坎达"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "匠艺系学生斯坎达",
         "text": "[show]看我这招——烟雾弹攻击！[l][cm]",
-        "charaName": "匠艺系学生斯坎达"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]噗嘎——喵呜？！我……我的头啊！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]米托拉！你没事吧？！[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "匠艺系学生斯坎达",
         "text": "[show]糟、糟糕！对、对不起，扔到您脑袋上了——[l][cm]",
-        "charaName": "匠艺系学生斯坎达"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "匠艺系学生斯坎达",
         "text": "[show]不对、这颗居然是哑弹？！阿莱琳娜你快逃——呜啊！[l][cm]",
-        "charaName": "匠艺系学生斯坎达"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]——斯坎达！[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]什么啊？原来只是个弱不禁风的小学生罢了。来这儿表演是为了搞笑吗？你是想英雄救美还是想当小丑啊？[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]想当英雄可是有代价的，代价就是少条胳膊少条腿！不过老子看在你年轻的份上，就断你几根手指吧！[l][cm]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[show]住、住手——！[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]唔，脑袋好晕……喂！你们当我不存在是吧？！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "佣兵",
         "text": "[show]哈？——呜啊！！[l]",
-        "charaName": "佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -430,34 +428,34 @@
             "tag": "tag_86"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[cm][show]……咦？几位居然三两下就打晕了这群大汉……？咦咦咦咦？！[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]真是的，完全把我们当空气！艾薇，我们一起把他们绑严实了！[l]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -465,32 +463,34 @@
             "tag": "tag_56"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生阿莱琳娜",
         "text": "[cm][show]好……好……我们走！斯坎达，能站起来吗？[l][cm]",
-        "charaName": "文艺系学生阿莱琳娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "匠艺系学生斯坎达",
         "text": "[show]可……可以的……我们走吧……[l][cm][hide]",
-        "charaName": "匠艺系学生斯坎达"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "s_5_5_2",
   "des": "雪原中的阴影-文艺系学生阿莱琳娜互动"
 }

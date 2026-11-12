@@ -1,0 +1,257 @@
+{
+  "script": "s_sp1_8_0",
+  "des": "（洛莉安似乎有些疲劳……）",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧……余昨晚睡觉落枕了，现在脖子还疼着呢。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这也不是第一天发生这种事了，余前天睡觉也落枕了，疼了老半天呢。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……你落枕怎么还能连着来的？你睡的床和枕头有问题吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可以说是有问题吧，余那张大床挺软的，躺上去也很舒服，只是余睡了几百年的棺材，再睡这种大软床有些不习惯。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]睡到更好的床你还不满意了……难道你还想睡那种小的硬板床？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]也不是不可以噢，说实在的余就想要这种床……那个祖莉尔，过来一下！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]来了来了！洛莉安陛下！请指示！[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]给余弄一张床过来，要求是比现在这张要小，枕头和被褥也不要太软。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]遵命！保准让洛莉安的大人满意！[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，你可以请这几位帮忙，他们是契约者，给钱什么事都能办。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么说的我们跟雇佣兵似的……还有你想雇我们直说就可以了，怎么还让下属来办。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为余要去休息，保养好余那珍贵的脖子。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那余先走了，等你们的好消息。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]洛莉安大人放心，我一定会完成任务的！[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇，这只蝙蝠眷属怎么这么有活力，而且看起来非常忠诚，比本小姐的眷属强多了。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱！吱吱吱！[l][cm]",
+        "charaName": "贝拉多娜的蝙蝠"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]叫什么叫，看看人家看看你，身为本小姐的眷属，你要比世上所有眷属都做得好才行！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦各位，既然洛莉安大人钦点你们，那我就听从指示请求你们帮忙！[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你要找我们办事那倒是没问题，只是弄一张床不是很简单吗？比如……{myName}是工匠，现场就能弄一张。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那可不行，洛莉安大人喜好黑暗风格的家具，你拿来的床哪怕再豪华，只要不符合洛莉安大人的风格就是白搭。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等会，黑暗风格是什么风格，{myName}听说过这种风格吗？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "闻所未闻……",
+            "tag": "tag_24"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这个专有名词是我自己造的啦，总之要的必须是洛莉安大人喜欢的风格。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可你这也太模糊了，我们还是没法弄清洛莉安想要的床是什么样的……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个简单，你不是说这位工匠能直接弄一张床吗？我去申请一些材料过来，然后工匠直接按照城堡的风格自由发挥，随意打造就好。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我觉得不行的就扔掉重新打造一个，直到打造出满意的为止。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这方法倒是奢侈……不过我们听你说的做，材料也要让我们提供吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不用，我直接向伊比瓦申请就好。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它是我们城堡的另一个副管事，专门负责管理钱财的，我们去门厅那里找它吧。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]去门厅那边是吧，好，我们走。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

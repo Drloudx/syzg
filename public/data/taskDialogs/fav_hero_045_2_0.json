@@ -1,0 +1,57 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]不，没什么辛苦的……你能同意我来，我还要感谢你呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]而且，一想到能跟{myName}分享美味，路上的疲惫就都消散了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "所以……你找到了什么好吃的？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]算是魔爪沼泽的特产吧。当地人肯定也会很喜欢的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]别急，等会你就知道了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾尔菲帕-营地对话【欢迎再临营地，一路过来辛苦了。】",
+  "script": "fav_hero_045_2_0"
+}

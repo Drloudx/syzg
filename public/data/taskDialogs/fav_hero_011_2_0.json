@@ -1,0 +1,80 @@
+{
+  "script": "fav_hero_011_2_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……毕竟妈妈知道缇莎的性格，就算妈妈不让缇莎来，缇莎也一定偷偷过来的，所以她干脆就放我过来了。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这也是妈妈信任{myName}的表现哦，所以你不用太担心妈妈那边的事。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那么……{myName}打算带缇莎去哪里玩呢？[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "缇莎有去过驿站吗？",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没有，缇莎除了修道院就没去过多少地方。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那我们去一趟驿站吧。",
+            "tag": "tag_8"
+          },
+          {
+            "text": "在那里请缇莎尝尝好吃的东西。",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好耶！我们快走吧！[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "缇莎-营地对话【没想到莉拉同意你独自过来啊。】"
+}

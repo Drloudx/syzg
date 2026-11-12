@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]你对桃源之森有兴趣吗？那是一个四季如春，永远飘落着桃花花瓣的美丽世界。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]一直做客这么久，都还没有请你到我那边去坐坐呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]可惜现在深渊被不明的力量封锁……等到深渊解封的那一天，再请你去桃源之森做客吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_059_9",
+  "des": "菲娜9"
+}

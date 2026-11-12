@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]真是奇怪的地方，房子的用材和构造像是蒙昧时代，工具自动化却像是魔导时代……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]你们这个营地也太四不像了吧！再过几百年，说不定会被历史学者当成活化石呢！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_070_1",
+  "des": "露库希安【友善】"
+}

@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_033_3_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]嗯！不错，进步很快嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]今天我们的训练时间应该是够的，走吧，我已经迫不及待了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]朝着求生者草原最高的山坡，前进！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "乌帕-洞穴遇险-营地对话"
+}

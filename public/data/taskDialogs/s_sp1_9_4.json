@@ -1,0 +1,222 @@
+{
+  "des": "（调查宝箱。）",
+  "script": "s_sp1_9_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇！这里还真有好多宝箱，我们是真捡着宝了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]等等，先别靠近，那些宝箱好像……会动？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？",
+        "text": "[show]噗噗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]有……有东西从宝箱里出来了，宝箱里装的还是生物？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迷迷可",
+        "text": "[show]噗噗？噗噗噗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊，这些宝箱是魔物？好像都是迷迷可？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]好像全都是迷迷可，它们好像喜欢在这种地方睡觉……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]莫非……藏宝图上说的宝箱，就是这些迷迷可宝箱？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]看来就是了……好吧，白跑一趟，这藏宝图全是错的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]是的！洛莉安大人！我们的安保真的没问题！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]还没问题呢，这几百年这么多人跑余城堡里挖宝，到现在都还有冒险者进来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]至少现在没有了嘛……哈哈……哈哈……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]谁说没有的，这群契约者不就是吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]怎么又扯上我们了，还不是你这城堡封印松动了，才让我们能发现你的存在啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]而且你也不能怪你的侍卫，毕竟我们很强嘛，它们挡不住我们也很正常。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]总之以后要加强城堡的护卫，不要让莫名其妙的人进来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]遵命！洛莉安大人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好啦，既然是虚惊一场，那我们回去休息啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]就是就是，跑了半天结果是一场空，走了走了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在米托拉等人离开后……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]呼……还好真正的财宝没有被发现……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]洛莉安大人，你放心吧，真正的财宝都好好放在内库里呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]还好意思说，看到这些藏宝图，余还以为那些财宝真的被发现了呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]抱歉洛莉安大人，我们会加强防卫的，以后不会再发生这种事了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]没事，有些人挡不住也不是你们的错。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]只希望几位热心的契约者，能好好替余“辟谣”，告诉外面的人，余的城堡可没什么珍贵的宝藏哦～[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

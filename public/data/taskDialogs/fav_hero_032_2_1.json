@@ -1,0 +1,279 @@
+{
+  "script": "fav_hero_032_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇，果然还是草原凉爽啊。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听着流水和树叶拍打的声音，躲在树荫下乘凉，这种感觉就像是回到无忧无虑的童年一样。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你问我小时候的事？我是在黑森林那边长大的啦。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那里的环境和这地方差不多，不过黑森林的树比这里的树要多一点。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当时我的村子河边也有一条小溪，跟这里的小溪一样清澈。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我没事干的时候，就会蹲在那条小溪旁边，玩玩那里的虫子。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说是蹲也不准确，当时我为了找到那些虫子，还趴在地上、爬到树上甚至还钻到水里呢。[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你的眼力这么好吗？",
+            "tag": "tag_10"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那当然好了，我的视觉可是很敏锐的。只要在我的视线范围，百米之内我都能看清楚。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]比如……那个草丛里，有一只独角仙。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说你看不出来？原来我还是有比你强的地方嘛，看好了。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿……哈——！[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看！这么大一只独角仙，我就是凭着它身上紫色的反光找到它位置的。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之就和你看到的一样，我能轻而易举地看见远处的事物。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这对我野外生存也很有帮助，我只要躲在草丛里观察一下，就能抓到一些填肚子的小动物。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就像……这样！[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……这条蛇可真大啊。只要我能看到这些东西，我就能抓到手上填饱肚子。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有时候抓这些蛇蚁蚊虫也不只为了好玩，也为了填饱肚子，这些野味挺好吃的哦。[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "现在就别生吃咯。",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]放心，能吃熟的就别吃生的嘛。上次吃完烤肉后，我自己就回去练了练，现在已经是厉害的野外烹饪大师了。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这怀疑的表情是什么意思？是不相信我吗？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在就让你看看我的本事，准备木材，升火！[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就算烤肉我烤不好，烤蛇我还能烤不好吗？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]来，皮剥了骨剔了，来试试吧。[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（小心翼翼地咽下一口。）",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]怎么样？我的烹饪水平还是不错的吧？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说味道确实算正常？但是头有点晕？为什么会晕啊？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！你……你怎么躺下去了！这是……这是中毒了吗？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不……不好意思……我差点忘了这蛇有毒，我吃了没事，但是你们人类吃了可能就……[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……我这就把你抱回营地去！你一定不要出事啊！[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（后来两人安全回到营地，所幸毒性不大，很快就恢复健康了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（为了道歉，诺姿把方圆十里的角猪抓了个遍，以角猪肉作为道歉的礼物。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "诺姿-天气很热！-进入战役"
+}

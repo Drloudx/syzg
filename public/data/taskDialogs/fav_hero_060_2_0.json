@@ -1,0 +1,46 @@
+{
+  "des": "营地对话【你需要我怎么做？】",
+  "script": "fav_hero_060_2_0",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]这么说……你同意了吗姆？太好啦！非常感谢你姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]请跟我来，我已经准备好车子了，很快就能赶到黏糊糊城堡了姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]我的子民，请将我们的工匠大人带上车姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉的子民",
+        "text": "[show]姆姆～姆姆～[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

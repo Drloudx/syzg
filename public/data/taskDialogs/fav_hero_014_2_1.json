@@ -1,0 +1,329 @@
+{
+  "script": "fav_hero_014_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了，就是这里了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]他们会在这时候动手，我想……大概会从那个小巷过来，然后会被一路逼到这里，到时候我们直接把他们捉起来就好了。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "确定他们会这么精准地掉入陷阱吗？",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿，我可是非常擅长攻心的，比起用刀剑击败对手，我更喜欢玩心理战。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在行动之前就摸透对手的思想，不断让对手落入提前设计好的圈套，最终就能以最低成本的方式拿下对手。这种攻心为上的方法才更能体现我的智慧。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放心，你就看着吧，猎物很快就会落入陷阱了。[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（……等时间到了后，街头果然出现了几个黑影。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂……动作快一点，巡逻可能等会就过来了，要没按计划完成任务就会被发现的。[l][cm]",
+        "charaName": "小贼A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没关系，这条街的出口特别多，我已经计划好了四条不同的逃生路线。就算发生意外，大家只要跟着计划来做，也可以保证逃出生天。[l][cm]",
+        "charaName": "小贼B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]二……二哥……我好像踩到什么东西了……[l][cm]",
+        "charaName": "小贼C"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么东西……是烟雾陷阱！我们被发现了！[l][cm]",
+        "charaName": "小贼A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]按计划逃跑……那条道路最近，从哪里跑！[l][cm]",
+        "charaName": "小贼B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊！这里……这里也有陷阱！[l][cm]",
+        "charaName": "小贼C"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]开什么玩笑？！怎么又有陷阱！我们换一条……[l][cm]",
+        "charaName": "小贼A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这里也有啊！都是陷阱！路被堵死了！[l][cm]",
+        "charaName": "小贼B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（不一会……盗贼三人组全被皮塔堵住了。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看吧，正如我所说，他们完全按照我的规划掉进陷阱里了，我们只需要看着就好。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "皮塔的智谋真是了不起。",
+            "tag": "tag_20"
+          },
+          {
+            "text": "现在来处理这几个家伙吧。",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊……是啊，接下来得好好料理这群小偷才行。这些家伙……果然都是熟悉的面孔呢。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……直接预料到我们的所有计划，并且做出了这么厉害的反制陷阱，果然是只有大哥才能做到的事情。[l]",
+        "charaName": "小贼B"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "大……大哥？",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]别听他瞎说，我才不是什么大哥。你们可别污我清白哈，我早就不干那些事了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不！皮塔大哥，你无论怎么说都是我们的大哥！我们四人组应该一直在一起，现在大哥这个位置还是留给你的呢！[l][cm]",
+        "charaName": "小贼A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错！希望大哥回到正道上来！和我们一起去当荒野客吧！[l][cm]",
+        "charaName": "小贼C"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]去去去！别大哥长大哥短的，我和你们组团都是多少年前事情了，我已经在米拉贝尔大姐的劝说下改邪归正了！[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]曾经的我和你们一样迷茫无知，不知道自己想要什么，所以才干了那些偷鸡摸狗的事情。如果你们还念及曾经大哥的旧情，那就放下武器去自首！[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼……那可不行……大哥不是还教过我们吗？越是逆境就越要在夹缝中求生，得罪了！[l][cm][hide]",
+        "charaName": "小贼B"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "小心！是烟雾弹！",
+            "tag": "tag_30"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]咳咳……[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（烟雾散去之后，三个小贼全都消失了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵……这群家伙还真有毅力，不愧是我曾经的小弟啊。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]经过多年的历练，那群家伙已经变成训练有素的小贼了。还好他们现在只是干一些小偷小摸的勾当，要在他们犯下大错之前给他们纠正过来。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "现在要怎么办？",
+            "tag": "tag_35"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唉……我也不知道怎么办。这些家伙逃跑的时候会有意识掩盖痕迹，我们肯定没办法追踪到他们。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等吧，等到他们露出破绽，我再出手把他们逮住。毕竟也是曾经的伙伴，他们也不算多坏的人，不忍心抛弃他们啊……[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]眼下先回去吧，对了，还得把陷阱收拾一下。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（把陷阱收拾完后，皮塔便告别了。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "皮塔-抓住那些老伙伴-进入战役"
+}

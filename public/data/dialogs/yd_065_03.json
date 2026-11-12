@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]关于到大书院就读的事情，你好像拒绝了我的邀请？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]唔，你的学识基础已经足够入学好几个高等学系了。有我的推荐，你连入学考试也不用担心。是还有什么顾虑吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]不介意的话，尽管说出来吧。作为过来人，阿姨还是可以给你一些建议的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_065_03",
+  "des": "乌尔勒-友善3"
+}

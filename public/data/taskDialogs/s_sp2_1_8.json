@@ -1,0 +1,77 @@
+{
+  "script": "s_sp2_1_8",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那位，就是你们的朋友？[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错！我就说我没弄错，果然是艾尔菲帕嘛！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "她遇到麻烦了！",
+            "tag": "tag_4"
+          },
+          {
+            "text": "别在这傻看着了！",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]就几条蛇而已，艾尔菲帕自己也能解决啦！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过，你说的也对，来都来了，就让我们帮她一把好了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]让我也搭把手吧！[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对于新朋友，我也得好好表现一下呢。[l][cm][hide]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "s_sp2_1_8"
+}

@@ -1,139 +1,138 @@
 {
-  "script": "c5_ex1_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]呼……温泉……真舒服……[l][cm]"
+        "text": "[show]呼……温泉……真舒服……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]对吧……我没有骗你吧……？[l][cm]"
+        "text": "[show]对吧……我没有骗你吧……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]呼噜噜噜……感觉快要融化惹……[l][cm]"
+        "text": "[show]呼噜噜噜……感觉快要融化惹……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]哼哼，果然温泉就是增进感情最好的方式呀！[l][cm]"
+        "text": "[show]哼哼，果然温泉就是增进感情最好的方式呀！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]奇瓦姐姐，你有没有觉得我们的感情变得更加深厚了？[l][cm]"
+        "text": "[show]奇瓦姐姐，你有没有觉得我们的感情变得更加深厚了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]哪有人会因为一起泡澡就突然变得感情深厚啊？[l][cm]"
+        "text": "[show]哪有人会因为一起泡澡就突然变得感情深厚啊？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]说到底，本来就只有感情深厚的同伴才会一起泡澡吧？你这已经是逻辑谬误，倒果为因了！[l][cm]"
+        "text": "[show]说到底，本来就只有感情深厚的同伴才会一起泡澡吧？你这已经是逻辑谬误，倒果为因了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]挪～季～谬～雾～？[l][cm]"
+        "text": "[show]挪～季～谬～雾～？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]奇瓦……泡澡的时候就不要说那么多难懂的事啦，伽拉忒亚的脑子转不过来啦！[l][cm]"
+        "text": "[show]奇瓦……泡澡的时候就不要说那么多难懂的事啦，伽拉忒亚的脑子转不过来啦！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]诶嘿嘿……[l][cm]"
+        "text": "[show]诶嘿嘿……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]大家的感情真好……我要不要也带姐姐来温泉试试呢？[l][cm]"
+        "text": "[show]大家的感情真好……我要不要也带姐姐来温泉试试呢？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]想来就来嘛！如果是和妈妈还有奇瓦姐姐一起，要我每天都来也可以呀！[l][cm]"
+        "text": "[show]想来就来嘛！如果是和妈妈还有奇瓦姐姐一起，要我每天都来也可以呀！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]不，那也实在是有点……总之请容我拒绝！[l][cm]"
+        "text": "[show]不，那也实在是有点……总之请容我拒绝！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]怎么会这样～[l][cm]"
+        "text": "[show]怎么会这样～[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]奇瓦姐姐要是再坦率一点就好了。[l][cm]"
+        "text": "[show]奇瓦姐姐要是再坦率一点就好了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]……嗯？{myName}，你怎么了？为什么一直不说话？[l][cm]"
+        "text": "[show]……嗯？{myName}，你怎么了？为什么一直不说话？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]是不喜欢温泉，还是有哪里不舒服？[l]"
+        "text": "[show]是不喜欢温泉，还是有哪里不舒服？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -154,17 +153,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]是之前那个石碑的事吗？[l]"
+        "text": "[show]是之前那个石碑的事吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -185,17 +184,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]诶？你不泡了吗？[l]"
+        "text": "[show]诶？你不泡了吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -216,17 +215,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]你是要回屋去研究碑文吗？我和你一起回去！[l]"
+        "text": "[show]你是要回屋去研究碑文吗？我和你一起回去！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -247,9 +246,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]真的不用我一起吗？[l]"
+        "text": "[cm][show]真的不用我一起吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -270,9 +269,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]这样吗……我的，我明白了。那你可千万要注意身体，不要着凉了啊。[l]"
+        "text": "[cm][show]这样吗……我的，我明白了。那你可千万要注意身体，不要着凉了啊。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -289,20 +288,21 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]{myName}……[l][cm][hide]"
+        "text": "[cm][show]{myName}……[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "c5_ex1_1",
   "des": "进入后【c5_ex1_1】。"
 }

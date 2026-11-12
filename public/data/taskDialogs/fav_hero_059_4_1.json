@@ -1,0 +1,178 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]嗯嗯，原来还发生了这种事……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]菲娜她……虽然人挺不错的，但是对于这些事情确实不太敏感呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]究其原因，大概是因为她太强了吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]作为天角兽这样天生的传奇物种，她可没有过过一天的苦日子啊……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "露库希安不是吗？",
+            "tag": "tag_14"
+          },
+          {
+            "text": "你也是那种天生的强者吧？",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]啊哈哈……要说的话，我也算是天生比较厉害的那一类……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]但是和其他人比起来，我可是真正的劳碌命啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]只要经历得够多，就什么人的想法都能理解了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "太好了！",
+            "tag": "tag_14"
+          },
+          {
+            "text": "这下总算可以有个中间人了！",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]啊啊，我知道了，你是想要让我去和菲娜说一下是吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "真心希望强者们能够体谅普通人的接受能力。",
+            "tag": "tag_14"
+          },
+          {
+            "text": "真心希望不要知道太多不应该知道的事情。",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]好啦好啦，不要撒娇啦，我会去和菲娜聊聊的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "呜呜！露库希安！",
+            "tag": "tag_14"
+          },
+          {
+            "text": "呜呜！妈妈！",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]好的好的，摸摸头摸摸头！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]谁是你的妈妈啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]总之这两天你就先好好休息一下，等我的好消息！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]区区菲娜而已，又不是那种死脑筋，看我分分钟给你搞定啦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_059_4_1",
+  "des": "菲娜好感4-战役"
+}

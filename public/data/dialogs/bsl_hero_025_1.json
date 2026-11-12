@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "嘉莉缇",
+        "text": "[show]哈喽{myName}～终于在营地里碰上你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "嘉莉缇",
+        "text": "[show]这个营地的感觉真棒！阳光明媚，微风和煦……我想黑森林也很难找到这么完美的地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "嘉莉缇",
+        "text": "[show]偶尔来这种开阔的地方换换心情也不错……我决定了，以后休假一定要常来你这里坐坐。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "嘉莉缇",
+        "text": "[show]对了，这是我为你准备的见面礼，希望你能喜欢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "嘉莉缇",
+        "text": "[show]既然定下了同伴契约，以后我们就是一家人了，要一直开开心心地在一起哦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_025_1",
+  "des": "嘉莉缇"
+}

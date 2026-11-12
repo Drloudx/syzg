@@ -1,0 +1,476 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]你们是谁？到这儿来干什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]是瑞依小姐吗？我是艾薇杜尔，这位是{myName}，我们是……嗯……是洛泽的朋友。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]因为瑞依小姐的生日快要到了，洛泽她拜托我们，给你带上一些问候。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "这是生日礼物，还请笑纳。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[cm][show]洛泽的朋友？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]你们有什么可以证明的吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？这、这个……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]对了，我想起来了，洛泽说，如果想要证明自己的身份，可以告诉你这个……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]她说在你七岁那年……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]好、好了！我相信你们了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]……看来你们确实是洛泽的朋友。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]你们和她怎么认识的？她为什么没有回来？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这……我们是在冒险途中认识的，她现在正在参加一个非常重要的冒险任务，所以……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]哼……原来是这样啊，居然为了冒险，连我的生日都不回来了啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]不过，会选择你们帮忙带话，她应该确实很信任你们……你们是什么时候认识的？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？这……两、三、三个月前！对，三个月前！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]三个月前啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]…………[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "瑞依小姐？"
+          },
+          {
+            "tag": "tag_21",
+            "text": "你怎么突然不说话了？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[cm][show]……艾薇杜尔小姐，有没有人和你说过，你真的很不擅长撒谎呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？这……这个……？！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "我们是怎么露馅的？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[cm][show]怎么露馅……当然是从一开始就露馅了啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]你们应该不知道吧？洛泽和我一样，都是魔水病的患者……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]自从患病以来，我们两个一直互相扶持、艰难求生，直到半年前，她突然不告而别，离开了大市集……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]你们猜，她这么做是为什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]啊……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "难道说……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[cm][show]是的，就像你们想的那样。她是因为病入膏肓，不愿意在我面前离开人世，才独自一人走入荒野的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]所以，洛泽她既不会冒险，也不会参加什么任务，更不会再三个月前才和你们相识。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]更重要的是，她知道我的病情，知道我最多只有一个多月的时光就要随她而去，她是不会在这种时候跑来给我庆贺生日的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]看来我们……全部……弄错了啊……我还以为这样就能完成和洛泽小姐的约定呢……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]是啊，全部弄错了，不如说根本是画蛇添足。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]因为……明明你们来到我面前，就已经可以了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]诶？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]因为——你们确实是洛泽的朋友吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]在洛泽已经过世三个多月之后，和洛泽相识的“朋友”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]瑞依小姐……好聪明啊……没错，就是你说的那样……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]果然，我知道洛泽想要传达给我的是什么了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "你知道了？"
+          },
+          {
+            "tag": "tag_42",
+            "text": "洛泽想要传达的到底是……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[cm][show]是希望啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]因为有你们这样明确的证据存在，我在生命的最后终于有了一丝希望。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]如果逝者的世界真实存在，如果死亡不是一切的终点，我应该……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]我想我可以更加开朗地面对生命最后的这段时光吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这就是“希望”吗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]洛泽小姐……真是个温柔的人啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]连逝者的约定都要遵守的艾薇杜尔小姐，您也是很温柔的人啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]我有一个请求，艾薇杜尔。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]既然你和洛泽都能成为朋友，那在我去世之后，你也能和我做朋友吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_53",
+            "text": "为什么要等到去世的时候？"
+          },
+          {
+            "tag": "tag_53",
+            "text": "为什么不从现在开始就成为朋友呢？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[cm][show]让艾薇杜尔看着朋友去世，那也太残酷了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瑞依",
+        "text": "[show]我觉得还是等去世之后再成为朋友比较好，你觉得呢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]嗯……我们一定能够成为朋友的，成为很好、很好的朋友，就和洛泽一样……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾薇杜尔-或许我们还可以……-进入战役",
+  "script": "fav_hero_053_4_1"
+}

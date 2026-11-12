@@ -1,0 +1,299 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗯……就选这个地方开始种田吗？土质看起来也确实不错嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（向贝拉多娜示范松土。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗯？等等，你把土翻来翻去做什么？不是随便挖个坑把种子种上去就好了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]你说这是松土，这样有利于根系生长，还有利于增加土壤孔隙度？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]原来如此，请……请继续吧，本小姐接下来不会打扰你的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（完整示范一遍松土、播种、施肥、浇水。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]种田的步骤……居然这么繁琐，而且还要弯腰把种子一个个埋进去，难道不是用什么魔法让种子自动钻进去吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "我并不会那种魔法……"
+          },
+          {
+            "tag": "tag_10",
+            "text": "大多数人也还是一个个埋进去的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]好吧……现在就交给本小姐吧，看本小姐很快就把这块田种满！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]现在先松土……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在种下第十粒种子之后……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哇哇哇——！不行了不行了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]什么嘛！种个田怎么这么难这么无聊啊！本小姐受不了啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]翻土怎么这么难啊！平时看上去软绵绵的土现在就和石头一样硬！而且地里还有很多虫子……吓死本小姐啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]明明只是把种子埋下去，浇浇水就能长大的事，为什么会这么麻烦……不种了不种了！大不了本小姐想别的赚钱方法就好！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "贝拉多娜要学会坚持，不能半途而废啊。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]可是……这真的很累啊……而且忙那么久能收获的东西也很少……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "振兴家族也是这样一个漫长艰苦的过程。"
+          },
+          {
+            "tag": "tag_20",
+            "text": "可不能因为眼前的困难而放弃。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]好吧……知道了……本小姐继续就是了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在贝拉多娜的努力下，经过一天的努力，终于把范围内的田地都种上了种子。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]呼啊……呼啊……好累……本小姐累得想躺下来了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]没想到种这块地要花那么多的时间……然后每天还要浇水……这活不容易啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "可不只是浇水哦。"
+          },
+          {
+            "tag": "tag_25",
+            "text": "后面还要施肥、驱虫、除草。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]种田……真比我想象中要难很多啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]不过忙了那么久，总还是把种子种下去了，本小姐还真有点期待这些作物成熟之后的样子呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "枯燥的努力过后就是等待啦。"
+          },
+          {
+            "tag": "tag_28",
+            "text": "等到收获的时候就知道努力的意义了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]嘿嘿……其实并不枯燥，只是有些累而已。毕竟有{myName}陪在身边，再无聊的事好像也会变得有趣。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "能陪伴在大小姐身边也是我的荣幸。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]咳咳……那当然了！陪伴在希斯珀利亚家族大小姐身边，可是本小姐给予{myName}的最大恩赐，你要好好珍惜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]所以就是……本小姐辛苦种了一天田，现在累坏了。吾忠诚的下仆噢，快去给本小姐烤点肉来！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_33",
+            "text": "听从大小姐指示！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]嘿嘿……辛苦一天后能饱餐一顿，这种感觉也不错嘛……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_026_3_1",
+  "des": "贝拉多娜-大小姐的种田课-进入战役"
+}

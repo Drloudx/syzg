@@ -10,6 +10,12 @@ export const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '../..')
 export const publicDataDir = join(repoRoot, 'public', 'data')
 export const parsedDir = join(publicDataDir, 'parsed')
 export const rawDir = join(repoRoot, 'raw')
+/**
+ * 派生表目录：`raw/` 只放**原表**，`raw/.derived/` 放构建期派生出的中间表
+ * （由 `npm run data:prepare` 生成，见 `scripts/dev/rebuild-derived-raw.mjs`）。
+ * 这样 `raw/` 的语义保持单一：配置表副本，可逐文件与原表比对。
+ */
+export const derivedDir = join(rawDir, '.derived')
 
 /** 读取原始 JSON：优先 raw/（构建期原始表，不进 repo/dist），缺失时兜底 public/data。
  *  mon.json 项目修正（critDam 拼写 + 特殊单位图标）统一由 normalizeMonJson 归一化注入。
@@ -22,6 +28,23 @@ export function readJson(relativePath) {
   const data = JSON.parse(readFileSync(join(baseDir, relativePath), 'utf8'))
   if (relativePath === 'mon.json') return normalizeMonJson(data)
   return data
+}
+
+/**
+ * 读取**派生表**：只从 `raw/.derived/` 取，不再回退 `raw/` 或 `public/data`。
+ *
+ * 派生表（`dungeonBattle*` / `monsterTowerUsage`）由原表生成，缺失时应先跑
+ * `npm run data:prepare`。静默回退会掩盖「忘了重建」，故这里直接报错。
+ */
+export function readDerivedJson(name) {
+  const target = join(derivedDir, name)
+  if (!existsSync(target)) {
+    throw new Error(
+      `[parse] 派生表缺失：${target}\n` +
+      `  派生表由原表生成，请先运行：npm run data:prepare（或 npm run data:build，已内置）`
+    )
+  }
+  return JSON.parse(readFileSync(target, 'utf8'))
 }
 
 /**

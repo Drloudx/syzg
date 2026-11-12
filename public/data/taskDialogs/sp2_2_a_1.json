@@ -1,0 +1,148 @@
+{
+  "script": "sp2_2_a_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂喂，你们看，那里好像有营火！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "确实是营火。",
+            "tag": "tag_15"
+          },
+          {
+            "text": "不过已经熄灭很久了。",
+            "tag": "tag_15"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]你眼力不错嘛，居然隔着那么老远就能看见！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我看看……这地方不仅有余烬，还有不少扎帐篷留下的木桩。看这规模，少说也有几十号人。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来就是之前提到的“大型团队”了。这人数可比我们想象的还要多啊！哼！这么多荒野客凑在一起，准没好事。[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "顺着痕迹追上去吧。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "这个发现证明，我们并没有走错！",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]也不看看引路的是谁！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]反倒是某个自称“贤者”的家伙，说了要指引我们的方向呢？结果一路上不还是我在负责追踪！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这、这肯定啊！我只是负责指引大方向，具体的事情当然要靠专家嘛！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只是指引大方向？呵呵，看来所谓“贤者”，当起来还蛮轻松的嘛！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜呜……！那是你们还不明白贤者的厉害！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看着吧！只要这次冒险继续下去！总会有你求我的时候！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的吗？哈，那就让我们拭目以待吧！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "SP2-2进入"
+}

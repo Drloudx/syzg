@@ -1,0 +1,208 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "到底发生什么了？",
+            "tag": "tag_3"
+          },
+          {
+            "text": "莫非出了什么大事吗？",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]嗯……本宫该从何说起呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]真是难以想象，身为不惧病害的复苏之躯，本宫居然还能感受到“头疼”的感觉……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "啥？",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]事情是这样的——本宫为了之前的约定，决定重现当年的宫廷全餐。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]为此本宫特地找上城主阁下，请她施以援手。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]但事情的发展实在难称如意，那些过来帮忙的使魔，实在是……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "实在是？",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]实在是太蠢了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]那些小蝙蝠虽然也能用念动力操纵厨具，但它们的智力和控制力似乎并没有强到可以完成菜谱的程度。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这样啊……",
+            "tag": "tag_13"
+          },
+          {
+            "text": "真是可惜。",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]或许是本宫的措辞太过轻松，以至于你对它们的水平过分高估……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]事实是，它们的成果完全没有到可以被称为可惜的程度。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]到这一步，即使是本宫也束手无策了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]调整使魔的智能耗时太长，非是良策。思来想去，本宫也只能借助外物。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "啊！",
+            "tag": "tag_18"
+          },
+          {
+            "text": "难道说……",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]没错，就是你用来烹饪的那些工匠造物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]即使是无智的机械也比那些蝙蝠有能。为了完成我们的约定，本宫只能请你多制造几套自动厨具了！[l][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "啊……",
+            "tag": "tag_21"
+          },
+          {
+            "text": "我明白了。",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_061_2_1",
+  "des": "斯卡莉安好感2-战役"
+}

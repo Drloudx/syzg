@@ -1,0 +1,57 @@
+{
+  "script": "fav_hero_012_5_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，至少射箭的时候不会再有犹豫的感觉了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且有你给我打造的新弓，我感觉我现在射出的箭矢能比以前更快更强。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]闲话不多说了，这次我们的狩猎得抓紧时间。我们慢一秒，那头角猪就有可能伤害更多人。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "嗯，我们出发吧。",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好的，请跟我来，这边是近路。[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-营地对话【已经恢复状态了吗？】"
+}

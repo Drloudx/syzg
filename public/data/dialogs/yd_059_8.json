@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]来到营地也有一段时间了。这段时间，真的是我这几十年来过得最开心的日子了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]明明我也没有觉得，维持庇护所的安全有多么劳累，结果还是不知不觉积累了压力吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]不过还好，在深渊里认识了你们这些新朋友之后，压力什么的，好像一下子就飞走了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_059_8",
+  "des": "菲娜8"
+}

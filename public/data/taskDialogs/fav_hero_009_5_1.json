@@ -1,0 +1,238 @@
+{
+  "script": "fav_hero_009_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真怀念……我只来过一次，但很喜欢这里！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]妖精舞台的大家对我也都很好，{myName}也对我很好。离开黑夜部族之后，遇到的基本上都是温柔的家伙呢……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……现在回想起来还是会觉得难过……幸好再也不用回到那种日子了。[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（向可可娜询问粉丝的事。）",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呃……前不久她来过一次，完成约定的事之后就离开了……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然没有我想象的那么可怕了……但我完全没办法理解！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一直以来因为我控制不住攻击别人，给舞团添了很多麻烦，被拉碧丝训斥，表演的时候都能听见观众在议论，还影响到了营业售票……！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了改正自己的毛病花费了好多好多时间，哪怕被罚做练习……直到现在也没能完全成功，我……我很讨厌这样的自己呜……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为什么那个冒险者……会喜欢其他人都排斥的东西……？[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我一直尽量避免的缺点，第一次遇到有谁这样追捧……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]很奇怪，这样太奇怪了！我都搞不清什么是对的，什么是不对的了！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那天和她说了难听的话之后，反而被感谢了……还说现在模样也很棒……我，我完全搞不懂了哇……[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "每个人的喜好千变万化。",
+            "tag": "tag_15"
+          },
+          {
+            "text": "你可以把它当做是你独特的地方。",
+            "tag": "tag_15"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……是、是这样吗！？[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那她的喜好也太“特别”了……[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "可可娜不要用恶意去刺伤别人就好。",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我、我也不是真的那么想才说出口的哇……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]外面的世界还真是奇妙……不过，那位冒险者小姐本身也没有恶意……也许你说得没错。[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要接受还是太难了，我还是希望能改掉自己的毛病……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果我变成了大家心目中的模样……不知道那位冒险者还会不会对我表达喜爱呢。[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了！麻烦你了这么多事，我还没有认真感谢过呢……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这、这是我的一点小心意，不要客气……我没什么能准备的东西。[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]之后……还能来{myName}的营地玩吗？[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "当然了。",
+            "tag": "tag_26"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呜～～～真好！谢谢你……{myName}！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]除了妖精舞台有别的地方可以去了哇！我、我会经常来拜访的！[l][cm][hide]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "可可娜-进入战役【fav_hero_009_5】"
+}

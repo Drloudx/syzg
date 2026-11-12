@@ -4,7 +4,7 @@
       "data/parsed/heroes.json",
       "data/parsed/pets.json"
     ],
-    "heroCount": 39,
+    "heroCount": 40,
     "petCount": 43,
     "note": "配队模拟器专用精简表；由 scripts/dev/build-sims-data.mjs 生成，勿手改"
   },
@@ -337,6 +337,21 @@
       "unitData": {
         "phyAtk": 323,
         "magicAtk": 421
+      }
+    },
+    {
+      "id": "hero_047",
+      "name": "阿迪拉",
+      "job": 5,
+      "jobName": "突袭",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at047_0",
+      "img": "chara047_0",
+      "rare": 4,
+      "unitData": {
+        "phyAtk": 475,
+        "magicAtk": 380
       }
     },
     {

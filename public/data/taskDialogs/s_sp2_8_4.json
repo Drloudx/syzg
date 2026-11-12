@@ -1,0 +1,238 @@
+{
+  "script": "s_sp2_8_4",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]希维姆！我来了姆！[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]伽拉姆！你变帅了姆！[l][cm]",
+        "charaName": "村娘希维姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个是我特意去做的造型，叔叔阿姨，我这样看起来就不邋遢了吧姆……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……还可以吧，勉强合格姆。[l][cm]",
+        "charaName": "希维姆家人"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太好了！那接下来是不是可以……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还不够呢，光有这些还不能订婚，你有稳定的工作吗姆？[l][cm]",
+        "charaName": "希维姆家人"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]工作？我目前还是在给老爸打下手，可能日后会去做表演者吧姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那可不行，区区表演者有什么前途，又不是宫里的表演者姆。[l][cm]",
+        "charaName": "希维姆家人"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你没有编制，就没有稳定的工作，没有铁饭碗姆。那这样怎么在结婚以后扛住风险呢？还是不太行啊姆……[l][cm]",
+        "charaName": "希维姆家人"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？怎么又有新的要求了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个……我……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]伽拉姆，可以了吗？我特意过来看看姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个嘛……恐怕还不行啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（把希维姆家人的要求告诉乔可姆。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还要编制？这个恐怕有点难姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]乔可姆先生，你既然在宫里有编制，把孩子弄进去应该不是什么难事吧姆。[l][cm]",
+        "charaName": "希维姆家人"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我虽然有皇宫的编制，但宫里可不缺那么多表演者姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不试试怎么知道呢，总之要订婚还是得有稳定的工作才行姆。还请你们谅解我们的挑剔，我们希望希维姆嫁过去之后能过上好日子姆。[l][cm]",
+        "charaName": "希维姆家人"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]知道了，我等会进宫里试试吧姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来又得跑一趟了，订个婚怎么这么麻烦啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]希维姆，我想问问……你是怎么想的姆？[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]伽拉姆，其实……我也不知道，从小到大我都是听家里人的，所以我也拿不定主意姆。[l][cm]",
+        "charaName": "村娘希维姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果你真要问我的想法，我其实不在乎那么多，哪怕伽拉姆你一无所有，我都愿意和你在一起姆。[l][cm]",
+        "charaName": "村娘希维姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只是……家里人说得对，结婚是两家人的事情，不是我能做主的姆……[l][cm]",
+        "charaName": "村娘希维姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我知道了，爸，我们跑一趟皇宫吧，去觐见德莉公主姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好吧，我们走姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}，我们也跟上去看看吧。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（伽拉姆深情走向希维姆。）"
+}

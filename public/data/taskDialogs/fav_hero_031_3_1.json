@@ -1,0 +1,382 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]——请用。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（点了点头，接过波特温端来的茶。这只边缘有细微缺口的瓷杯的确是克里斯汀产的，内容物的温度刚刚好，算不上烫。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]这是克里斯汀上好的红茶。我猜以你的身份可能不会有机会尝到……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]可本爵士仍是很慷慨的，这茶年份很久，深渊被封锁之后，这些茶的价格越来越高，珍惜本爵士的馈赠吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]如何？能感觉到……家乡的味道吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "我能。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……那就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（波特温端正身子，仿佛身处皇室宴席般坐在破烂的椅子上。他端起自己的杯子，动作标准得挑不出任何瑕疵，却因屋顶漏下的冷风而微微颤抖。）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "波特温爵士……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "你其实可以不必强装的。"
+          },
+          {
+            "tag": "tag_12",
+            "text": "不如我来帮你看看房顶——"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]——那个是最近雷雨打出的洞。不知道为什么，这些时候总是雷电交加。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]而我最近一直在忙着赛弗德里克那些……任务，一直抽不出手来处理。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "也许我可以——"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]别说了，异端。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]要笑话你便笑吧。这是我能拿出的……最高等级的招待了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]今天你的活动范围，仅限于这座茶台附近。你需要做的，只是品茶、用餐，和享受我的礼遇。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]之后，弓的事我们就两清了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "可是——"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]你不明白，异端。有些东西……如果放下，就再也拿不起来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我清楚你想说什么。但即使我烂在这片漆黑的井底，抬起头来所见不过一隅残天……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]照进这里的，也依然是那片照亮过我家乡的星光。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "…………"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "我明白了，爵士。"
+          },
+          {
+            "tag": "tag_25",
+            "text": "我不会再说为难你的话了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]你知道就好。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "不过，我有个失礼的请求。"
+          },
+          {
+            "tag": "tag_27",
+            "text": "我可以出去一小会吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……啊？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（叮、叮、当、当……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]这是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（将手中的粗制物件置于桌台，然后将茶壶放在其上。打开开关，一阵暖意从装置中涌出。不一会儿，茶壶再次冒出热气来。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]……暖炉？怎么可能，就这么一小会的功夫……这是魔水黏团的核心？难道是用这东西驱动的吗……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_35",
+            "text": "对的，我看路边刚好死掉了一只——"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]——根本不对！你这家伙，怎么这般不听人劝！我不是说过，不要对我——[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_37",
+            "text": "这不是为了你，这是为了我们的茶会。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_38",
+            "text": "你看，茶会还没结束吧？"
+          },
+          {
+            "tag": "tag_38",
+            "text": "这么好的茶，冷掉不就可惜了？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……{myName}……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]说得……也是。若是人还没走，茶就先凉，自然也谈不上什么礼数了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我就……勉为其难，暂时允许它留在这儿吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "感谢您的大度，爵士。"
+          },
+          {
+            "tag": "tag_42",
+            "text": "下次我再带点修屋顶的材料来。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……别得寸进尺！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（茶话会持续了许久，直到小暖炉里的核心烧尽，茶壶里的茶也没剩一滴。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_031_3_1",
+  "des": "波特温-贵族的尊严-进入战役"
+}

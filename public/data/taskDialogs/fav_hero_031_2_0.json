@@ -1,0 +1,134 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]这是上次借用的物品。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]每一件都经过了细致的擦拭，我姑且确保它们没有沾染上这片荒原的……污秽。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "的确都非常干净呢。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "关于这点我诚恳致谢。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "不过波特温爵士……"
+          },
+          {
+            "tag": "tag_6",
+            "text": "你看起来……比上次更清减了一些？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]那——那是为了维持我在战斗的敏锐度。在我们家的传统中，保持适度的饥……我是指，适度的节制，是磨炼意志的必修课。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（咕噜噜噜～）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（一声极其响亮的腹鸣打破了波特温刻意营造的氛围。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]……哼，刚才那是……远处角猪的低吼。看来这附近的生态环境正在急剧恶化。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "原来如此……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "对了，既然这样……"
+          },
+          {
+            "tag": "tag_13",
+            "text": "就让我借用你一点时间吧，爵士。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]……嗯？干嘛？你这异端，又凭空生出了什么鬼点子？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_031_2_0",
+  "des": "波特温-营地对话【欢迎来到营地。】"
+}

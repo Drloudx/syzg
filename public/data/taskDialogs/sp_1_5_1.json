@@ -1,0 +1,473 @@
+{
+  "des": "我们回来了……？",
+  "script": "sp_1_5_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喔，你们居然还在啊。余还以为你们已经抓住余解除领域的机会，落荒而逃了呢。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁会逃啊！我们可是被你的魔法丢到了古堡外面，一路赶回来的！又不是谁都能像你那样，一挥手就传这传那！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不会传送是你们的问题，不是余的。如果有兴趣，你们可以向余买点课程，余可以让余的拟像教导你们。对了，包教不包会喔。[l]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "感谢您的好意。"
+          },
+          {
+            "tag": "tag_7",
+            "text": "可惜我们天资不足，只能忍痛拒绝了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是嘛？余看你们倒也未必真是天资不足。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那可不，客气客气还能当真不成？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]顺便问问，你们现在用的是什么材料做的货币？氪金做的那种有吗？余下一个百年醒来的时候，搞不好还能用用呢。[l]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "有的有的，都有在用的。"
+          },
+          {
+            "tag": "tag_9",
+            "text": "不仅有氪金，还有别的喔。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]哎呦，你就别顺着她的话扯下去啦！好了，大家都时间宝贵，就别在这东扯西拉了。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]直说吧！你想要让我们的伙伴——贝拉多娜付出什么代价，才肯让这次的事情翻篇？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放心，这对她绝对不是什么坏事，不如说是个再好不过的好事。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要知道，余还从没有如此认真地想要成就什么人呢！[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余要你成为余的研究对象和实验素体，协助余进行一项伟大的研究。[l]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_54",
+            "text": "实验素体？"
+          },
+          {
+            "tag": "tag_54",
+            "text": "研究对象？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还说你没有恶意！你这不是都要拿我们的伙伴去做人体实验了吗？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]人体实验倒可能说不上。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然这话由本宫这个“大罪人”来说可能有点缺乏说服力……[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但事实上，法术实验并不会像那些吟游诗人们编排的那么“狂野”，反而总是严谨而克制的。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]尤其是针对“稀有素材”，我们几乎从不会进行破坏性的实验。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟比起素体的唯一性和宝贵价值，选择一点复杂但安全的手段……根本算不上什么麻烦。[l]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "这话还挺有道理的。"
+          },
+          {
+            "tag": "tag_23",
+            "text": "逻辑上好像没什么问题。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]不过说这话的人，就是名字能写入魔法史反面教材第一页的家伙啊……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只要道理没错，不就可以了？[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果你们还有不安，余还可以向你们介绍余的研究方向。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要知道，余在设计“血族”的时候，就借鉴过一部分“蝙蝠”类魔物的血脉力量。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在遇到一个天生继承了同类血脉的案例，余不免想要进行一些对比观察，看看人工设计和天然演化有什么异同。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然，在观察之后，余还有一些后续的研究计划，比如向天然素体写入额外要素，让她不经过初拥仪式，转化为真正的“血族”之类的……[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？啊？你要把本小姐转化成[color=f1401c]真正的血族[colorEnd]？这、这这这就……[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不是现在，也不是在近期，但余确实有这样的研究计划。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果你作为实验素体足够配合，表现足够好，让余更加中意……余也不是不能给你一些额外的服务。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]比如用余擅长的预言法术帮助你找到你一直想要寻找的那个仇敌……你看怎么样？[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……！！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]找到仇敌……找出真相……复兴家族……[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……[l]本小姐可是贵族，肯定言出法随！既然说了要赔偿，那本小姐就绝对会赔偿！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不就是当实验品吗？尽管冲本小姐来吧！为了复兴希斯珀利亚，本小姐就坚持给你们所有人看！[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈哈哈！就算有了魔物血脉，凡人果然还是凡人，和七百年前一样有趣啊！[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然你们都作出了决定，那就让本宫也帮你们一把好了。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好歹也是叫过本宫一声“老师”的弟子，可不能是个法术文盲。为了让她能够更好地履行实验品的职责，本宫会尝试教导她一些“基本”的法术常识。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看你的表情我就知道……那个“基本”肯定不是真的基本吧……[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "但这也没什么不好。"
+          },
+          {
+            "tag": "tag_42",
+            "text": "反正艺多不压身嘛。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]也对，要是有人能给我包吃包住还白教我魔法，我大概也会高兴的吧。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个结果也算不错吧。贝拉多娜，看来你要在这儿多待一会喽。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈……虽然听上去都是好事，但想想未来的遭遇，本小姐还是感觉有些胃疼……[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这就是无知和鲁莽的代价，年轻的“小姐”，牢记这一课——在今后的人生中，尽可能充实自己，然后保持谨慎吧。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……如果余的实验成功，这个“一生”甚至可能等于“永远”呢……[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈、哈哈……是、是吗……[l][cm]",
+        "charaName": "贝拉多娜"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……城主阁下，本宫还有一些话想说。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]噢？直言无妨。[l][cm]",
+        "charaName": "洛莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}、米托拉，还有贝拉多娜……本宫希望你们也能听听。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……啊，喔，怎么了？搞这么严肃？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯。请略微移步，到本宫这里来吧。[l][cm][hide]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "des": "比绍的生意-6",
+  "script": "m_1_4_1_6",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇！好可爱的风车，比小镇上的都好看！{myName}你真厉害！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这样一来，那些订单上的货物就能轻松地筹集到啦。[r]要是有什么闲工夫，就用它来和比绍做点生意，赚点额外的收入吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]现在也休息够了。该回风车小镇找茜塔了！走吧，{myName}！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

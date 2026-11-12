@@ -1,0 +1,261 @@
+{
+  "des": "从回忆中归来",
+  "script": "s_0_6_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……好痛……好痛痛痛……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？一点也不痛……我们明明被卷入了那么可怕的爆炸……[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "记忆旅行结束了。"
+          },
+          {
+            "tag": "tag_11",
+            "text": "我们……回来了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]啊……真的……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们真的回来了……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那、那个，刚刚……谢谢你，从爆炸中保护我。[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_34",
+            "text": "只是下意识的反应。"
+          },
+          {
+            "tag": "tag_34",
+            "text": "你还好吗，米托拉……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]嗯，我没事……只是……有点混乱……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……那个……你还记得吗，我之前说过……[r]我完全不记得来到“深渊”前的事。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我只有这两年来，在求生者草原生活的记忆。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然一开始在营地的那个场景，我还能勉强回忆起来，[r]是我刚刚来到这里时发生的事……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但之后那个奇怪的房间……虽然很确信那个人就是我，[r]但我一点都想不起来我去过那种地方，或是听到过那样的话。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这段记忆让我想认同又害怕……结果就是现在有一点点……烦躁。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这块碎片到底是什么？为什么我的项坠会发光？那段记忆又代表着什么？[r][l]我……我到底是谁……接下来……该怎么办？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_42",
+            "text": "我们掌握到的情报太少，很难推测原理。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "总之找回记忆也不是坏事。"
+          },
+          {
+            "tag": "tag_43",
+            "text": "彼此都有想不起来的事，不需要太烦恼。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]{myName}……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……你说得也对。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]先不想那些破事了。这块东西你先好好收起来。[r]既然那道光是它发出来的，那它肯定很重要。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（我的工匠锤、这块碎片和米托拉的项坠竟然发生了共鸣……指引我们进入了神秘的记忆空间。[l]而在那个空间里，唤起了我们各自的回忆，还有她自己所不了解的一段回忆……）[l][cm]",
+        "charaName": "{myName}"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（如果我想得没错，这块碎片肯定和先时工匠有关。[r][l]之后得想想去哪里能破解它的秘密……）[l][cm]",
+        "charaName": "{myName}"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，我想想，之前我们在这里是在做什么来着……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊对，我们刚给营地报了仇，突然有了些闲暇时间，所以才……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼啊～突然好困……[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_76",
+            "text": "那我们就好好休息一下吧。"
+          },
+          {
+            "tag": "tag_76",
+            "text": "谢谢你相信我、陪我一起，米托拉。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]嘿嘿～这有什么嘛！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我去整理下床铺，好好睡上一觉，再去继续冒险吧！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ]
+}

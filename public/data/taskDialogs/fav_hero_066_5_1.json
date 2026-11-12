@@ -1,0 +1,270 @@
+{
+  "des": "奥格-这次我是认真的！_进入战役",
+  "script": "fav_hero_066_5_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]哈！还是你这里舒服啊！喝下这山泉水，我整个人都活过来了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "看来你这次做了好大事啊！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]嘿嘿！作为大探险家，我一认真起来，可不是一般人能比得了的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]就这么一个星期，我已经踏破了两个遗迹了——虽然都是你去过的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "哦哦，好厉害！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]也不看看我是谁！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]哈……好了，探险的事情就先放到一边，要是在休息的时候都得聊工作，那可就太地狱了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "好吧。"
+          },
+          {
+            "tag": "tag_10",
+            "text": "那你要聊些什么？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]当然是温泉的事啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]还记得我信上说，温泉的再开发一刻都不能停吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "记得。"
+          },
+          {
+            "tag": "tag_13",
+            "text": "当然。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]我思来想去，要修建一个能够满足所有人的大型温泉，光靠我一个人是不够的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]为了完成这个目标，我必须借助朋友们的帮助，其中当然就包括你！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "我……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]是啊！你不是特别厉害的工匠吗？为了温泉村的未来，我今后想向你发包很多大工程！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]如果你有意向的话，也可以入股到温泉村的经营中来，不用真金白银，光是技术入股也好！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "这么宽厚的条件？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]那当然！因为你值得这样的条件啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]你的技术、你的善心，还有你对我的帮助，我全都看在眼里、记在心上。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]在这个深渊里，我可找不到比你更值得信任的人了？如果不选你当合作伙伴，那才是有鬼吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]怎么样？你愿意接受我的提案，成为我的合作伙伴吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "当然。"
+          },
+          {
+            "tag": "tag_24",
+            "text": "我会加入的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]是吗？太好了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "只不过……"
+          },
+          {
+            "tag": "tag_26",
+            "text": "等各处的异变先告一段落吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]那是当然的！太好了，有了你的加盟，我就有最厉害的伙伴了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]不管怎么想，温泉村的前景都是一片光明！或许……我也可以开始期待着，所有人都会享受温泉的那一天到来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]谢谢你，{myName}……！真的谢谢你！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "des": "收集食材后",
+  "script": "m_0_1_6",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]终于可以吃饭了！好耶！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你让我先别急，还得先生火？呜～快点吧快点吧！[r][l]{myName}擅长的到底是怎样的料理呢！好期待呀！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

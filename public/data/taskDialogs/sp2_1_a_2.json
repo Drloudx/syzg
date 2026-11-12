@@ -1,0 +1,201 @@
+{
+  "script": "sp2_1_a_2",
+  "des": "SP2-1通关",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说，你们为什么要攻击我们？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]痛痛痛！快住手！我、我们没有恶意，只是……只是误以为你们是落单的肥羊，想要顺路发上一笔而已……[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啪——！[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇呀呀！[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]都跑来打劫了，还叫没有恶意？你听听你说的这是什么话！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇啊！息怒、息怒呀！要、要是一早就认出您老人家就是那个凶名赫赫的“索命凶猫”，我们也不敢捋您的虎须呀！[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]少说废话！你们跑到这种鸟不拉屎的地方是要干什么？给我从实招来！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我说，我说！[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]各位大人有所不知，最近有个大佬召集了不少荒野客，一头扎进了草原深处……我们这些散人也是寻思着肯定有宝贝，这才组个团过来凑凑热闹……[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有人召集了大型团队？在这种万物凋零的不毛之地，除了灾厄，可没有任何“宝贝”值得挖掘。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，说起宝贝……他们说的会不会就是你之前说的那个“宝藏”？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……不是不可能……[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]根据我的预言，宝藏和危机应该是一体两面。如果他们真的是冲着那个“宝藏”来的……[l]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那就表示他们和危机脱不了干系。",
+            "tag": "tag_16"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哼，这下终于被我们抓到老鼠尾巴了呢！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们几个，听明白这里有多大事了吧？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还想要命的话，就给我麻溜点滚回去！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是，是！我早就说这浑水不是我们能趟的！[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]又是危机又是宝藏的……我们虽然爱钱，但有钱也得有命才能花啊！您放心，我们马上就走！[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼！那就这么说定了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要是再让我看到你们，事情可不会这么轻易解决啊！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是，是！感谢您老人家高抬贵手！[l][cm]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]兄弟们，你们还等什么！趁着猫老板还没改变主意，哥几个赶紧撤啊！[l][cm][hide]",
+        "charaName": "荒野客"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

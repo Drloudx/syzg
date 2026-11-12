@@ -1,0 +1,710 @@
+{
+  "script": "sp_1_3_1",
+  "des": "与幽夜古堡门厅的斯卡莉安对话。",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂，说清楚，你说你是这东西的制造者，这是什么意思？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]连这么简单的事情都弄不懂吗？果然一千多年过去，凡人也还是和本宫印象中一样不学无术。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧——！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如你们所见，这孩子就是本宫要回收的财产。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]她的名字叫做加尔戈萝，是本宫被幽禁的时候，亲手开发的魔像，是本宫的守卫，也是……狱卒。[l]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你说……幽禁？",
+            "tag": "tag_8"
+          },
+          {
+            "text": "你说……狱卒？",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]因为本宫生前，是帝国的“大罪人”啊。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大罪人……！[l]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "帝国……！",
+            "tag": "tag_81"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那是怎么回事？[l]啊，你要是不想说的话，不回答这个问题也行！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这倒是没什么可隐瞒的。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦？那快来说说，你是犯了什么罪？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]能叫做“大罪人”……该不会……你杀掉了很多人吧……？[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫的罪过是……傲慢。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对于自己才能的盲信，让本宫忘记了一切……执意进行疯狂的实验，试图证明自己的结论。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而结果……[l]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "…………",
+            "tag": "tag_19"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]结果就是……失败。暴走的能量击穿空间，引发了巨大的魔力灾害。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]帝国超过三分之一的国土沦为焦土，数万人死亡失踪，不计其数的人流离失所……[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这就是本宫的“大罪”……[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为父皇的庇护……也可能是因为所有人都畏惧本宫……最终本宫并没有被处刑。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但本宫无法原谅自己。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫找了个谁都找不到的地方，把自己幽禁了起来。然后，制造了名为加尔戈萝的狱卒，命令它看守本宫的囚牢，不能让本宫离开此处半步。[l]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "真是难以置信……",
+            "tag": "tag_28"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是、是啊……说什么三分之一个国家、几万几千万的人……本、本小姐已经一点概念都没有了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这些人的生命……是因为你而消逝的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以你就把自己关起来，当做对自己的惩罚？这就算没事了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这当然于事无补。但这已经是那时本宫想到的，唯一能做的事了。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫也曾经想过，是不是应该以命偿命……但本宫最终还是没能下手。那时的本宫……不知为什么，竟然感觉……怕死。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]…………[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过，那场实验也让魔法深深地侵蚀了这副身体，没过两年本宫也就在幽禁之处病逝。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……好歹没有厚颜苟活太久吧……[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……不管哪件事，听上去都完全没法让人高兴啊……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这家伙……这么轻描淡写……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "米托拉。",
+            "tag": "tag_39"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……算了。有空再听你说这些事吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然你说这个……加尔戈萝是你的护卫……那它不是应该一直守着你吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为什么它会出现在这里，还一看到我们就疯了一样打过来？还是说，因为你已经死了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为时间吧……时间能够改变很多东西。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]距离本宫逝世，应该有一千多年了……这一千年里发生了很多事，不光帝国早已毁灭，甚至整个文明都差点因为“人外的黄昏”被连根拔起……[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这孩子应该就是在某次变故之中，从本宫的陵寝之中流落出来……在被本地的主人捕获之后，改造成了这里的看门人吧。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……这改造的手法还挺精妙的，就连本宫也花了一阵功夫，才成功重置她的回路。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过现在，你们就不用担心了。经过本宫的操作，她已经重新启动了底层指令，重新恢复到以本宫的命令为最优先。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]噢！那挺好的。那你的目标应该已经达成了吧？接下来我们是不是可以分道扬镳了？[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为何这么性急呢？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟同行一路，我们也算是伙伴了。就算目的已经达成，本宫还是可以为你们提供一些帮助，不是吗？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……[l]欸～？那多不好意思！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]懂得用礼貌的话语来表达拒绝，你的礼仪算是入门了。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是表情还不够得体，本宫之后会更多指点你的。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧……！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那你还有什么目的？抱歉，在听说过你的过去之后，我越来越觉得你是个危险的家伙了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]言归正传。本宫之所以还想在这里多留一会，主要是对此地的主人有了一些兴趣。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]从改造加尔戈萝的手法上看，此地的主人应该也是一位相当博学的施法者，本宫很有兴趣和他……交流一二。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]和那种邪恶的魔物有什么好交流的！事情做完了你就快点回去啦！反正我们也不需要你的什么帮助！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的吗？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一路战斗过来，大家应该都累了吧？有加尔戈萝在，本宫可以给你们清理出一大片安全的空间，供大家休息。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果加上{myName}的帮助，解读施加给加尔戈萝的魔力术式，说不定有一些被魔法封住的通路，现在也可以慢慢打开了……你们真的不需要本宫的帮助吗？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且……本宫还有很多事情可以教你呢，贝拉多娜小姐。其他人就算了，连你都不感激吗？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咕——！[l]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "公主陛下说得在理。",
+            "tag": "tag_82"
+          },
+          {
+            "text": "之后的旅程，也麻烦你了。",
+            "tag": "tag_82"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这儿大小姐是老板，我听{myName}的。她们都说可以，我也没什么意见。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……看来几位已经作出了明智的决定。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那么各位，请好好休息吧。加尔戈萝，去做你该做的事！[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吼～！[l][cm]",
+        "charaName": "加尔戈萝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]斯卡莉安还真是中意贝拉多娜啊……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "贝拉多娜很对她的胃口吧……",
+            "tag": "tag_70"
+          },
+          {
+            "text": "玩弄贝拉多娜让她感觉很有趣吧……",
+            "tag": "tag_70"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哈，谁说不是呢。总之，斯卡莉安就交给贝拉多娜来应付吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然，要是想做什么动作，我也会看着你的，斯卡莉安公主。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那可能本宫要让您失望了，猫女士。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……哼。这么一直阴沉着也不像我的作风。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之，大小姐就交给公主调教就行了吧。我和{myName}就只享受便利啦，真不好意思。[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "就是这样！",
+            "tag": "tag_83"
+          },
+          {
+            "text": "非常同意！",
+            "tag": "tag_83"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们两个！我都听到啦！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就交给本宫吧。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有强者喜欢你有什么不好嘛！你如果能从她那里学到两手，报仇什么的不就很简单了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这……欸！不理你们了啦！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]反正我要休息了！等休息够了，我们就继续探索吧！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

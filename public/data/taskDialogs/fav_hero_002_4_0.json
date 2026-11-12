@@ -1,0 +1,54 @@
+{
+  "des": "米托拉-营地对话【它们都在这里了吗？】",
+  "script": "fav_hero_002_4_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]都在营地里呢，我刚把姆姆带过来了，这就进去和它们玩。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "姆姆",
+        "text": "[show]姆～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你问我为什么要把姆姆带过来？毕竟它是我们营地的第一个魔宠嘛，让它来给我镇场子。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]毕竟等会要带这么多魔宠出来玩，我还是有些发慌……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]总……总之我们先进去吧，出什么事你也要记得保护我哦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

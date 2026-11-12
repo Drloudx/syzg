@@ -1,0 +1,38 @@
+{
+  "script": "Main_0_01_1_2",
+  "des": "点击装备指引",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊……！你还把它们的武器拿回来了？[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]我父亲说过，祸莫大于轻敌。再弱小的敌人，也需要了解和研究。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]说得是没错啦……啊，这枪尖上有毒液！你看你看，黏答答的！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]这些歪脑筋就是它们个体弱小但依旧猖獗的秘密。我们应该能好好利用它。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

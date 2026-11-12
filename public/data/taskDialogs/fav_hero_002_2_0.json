@@ -1,0 +1,46 @@
+{
+  "script": "fav_hero_002_2_0",
+  "des": "米托拉-营地对话【等会艾尔莎会过来吗？】",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿嘿，她可是我的老顾客啦。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]以前在草原上很难拿到工具，我手上这些工具都是从毛耳朵手里换来的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要是没有她的帮忙，我可能都没法在草原上立足呢。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说你很好奇毛耳朵为什么愿意收？等会你就知道了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快看！她来了！毛耳朵！这边这边！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    }
+  ]
+}

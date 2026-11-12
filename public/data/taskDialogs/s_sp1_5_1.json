@@ -1,0 +1,206 @@
+{
+  "script": "s_sp1_5_1",
+  "des": "（厨师似乎正在生气。）",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊！这是今天第三回了！这些混蛋到底要怎么才肯消停。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]同事们，该拿起锅碗瓢盆和它们再打一场了！[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]战斗！战斗！[l][cm]",
+        "charaName": "幽灵厨师们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？这一群幽灵在干什么呢？要拿着锅铲去打架吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]上去问一下吧……打扰一下，请问诸位在做什么？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们是来城堡拜访的客人吗？怎么突然来餐舍这边了？我们这里还有些问题要处理呢。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对，我们是外来者，想要尝尝城堡的美食，所以就来餐舍这边看看。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此，欢迎来到城堡，我是这里的厨师长托利斯。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这可能要让你们失望了，我们这边出了点问题，没法制作食物，现在大家都是凑合着吃的……[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以发生什么事了？[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是这样的，城堡封印松动以后，一群魔物从外面闯了进来，城堡里的魔物也变得活跃。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]他们经常聚在门厅附近打架，还抢我们的食材，每次货车一过来货物都被它们抢劫一空，我们只能用幸存的食材凑合做菜。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但那些残缺的食材能做的菜有限，满足不了多少魔物。所以魔物们觉得与其等我们用这些食材做出小菜，不如直接伸手去抢。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这几天你们能看到城堡里到处都是烂掉的食物，都是魔物们嫌弃扔掉的……[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此，这么说你们现在是食材运不进来，所以没法做菜。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那可不止，它们还经常闯进来捣乱呢，我们好几次炒菜炒到一半就被蝙蝠掀翻了……[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之那些魔物的存在干扰了你们做菜是吧？我们是契约者，可以帮你解决哦。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的吗？如果你们能帮上忙，我会支付给你们报酬的。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但是提前说好，那些发癫的魔物数量很多，可没有那么容易解决哦。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没关系，你只要说怎么办就好，我们能解决。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]很简单，你们把门厅里捣乱的魔物和幽灵都驱除掉就好，它们主要在那片区域活动。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只要解决掉它们，我们就能顺利把食材运进来，也能顺利在厨房做菜了。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]小问题，没关系，交给我们吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然能赚钱的话……本小姐就勉为其难答应了。[l][cm][hide]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

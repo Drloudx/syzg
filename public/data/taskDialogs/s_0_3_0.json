@@ -1,54 +1,54 @@
 {
   "script": "s_0_3_0",
-  "des": "隐者与药田 接取步骤",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]你们好，契约者们。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]呀，真巧啊，又碰见两位了。[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]这里的森林也还是这么美丽，每次站在这片土地上，就能感受到大自然的宁静与美好。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]这里的环境还是这么美丽，每次站在这片土地上，我就能感受到大自然的宁静与美好。[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]但这种美好是很脆弱的，我需要更加强大的力量保护自然。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]但这种美好是很脆弱的，几个角布林或者荒野客就能破坏……我需要更加强大的力量才能保护自然。[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]我最近在研究制药，但缺少某些原液。我现在需要在这里照顾苗圃，没有时间去寻找。你们可以为我带几瓶法力药水原液吗？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我最近在研究制药，但缺少某些原液。我现在没有时间去寻找。你们可以为我带几瓶法力药水原液吗？[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]万分感谢，我在这里等候你们的消息。[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[show]万分感谢，我会像上次一样支付你们报酬的。[l][cm][hide]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
-  ]
+  ],
+  "des": "隐者与药田 接取步骤"
 }

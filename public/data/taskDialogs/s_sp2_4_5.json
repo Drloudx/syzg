@@ -1,0 +1,70 @@
+{
+  "script": "s_sp2_4_5",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是绿色的黏液，正好，所有材料都收集齐了姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]绿色的史莱姆挺常见的，我们家的姆姆也是这个颜色。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]绿色史莱姆是最受大家欢迎的，它们热情友好，亲近所有史莱姆和人，比那群蓝色的史莱姆好多了姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，我们家姆姆就是这样的，一直都很亲近我们呢。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]至于绿色史莱姆的黏液，那是非常有营养的食物，就相当于你们人类和魔人的蔬菜一样姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过绿色黏液就和蔬菜一样，有营养但是没什么味道，小孩子们尤其讨厌绿色黏液食物姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了，最后一个食材也准备好了，我们回去吧姆。[l][cm][hide]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（搜寻黏液。）"
+}

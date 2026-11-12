@@ -1,0 +1,309 @@
+{
+  "script": "fav_hero_012_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（随着沃夫加射出关键的一箭，远方的角猪终于倒下。）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "好，这只难缠的角猪终于倒下了。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这里面也有你的功劳，要是没有你的陷阱，我也射不中那角猪。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么多年的打猎生涯，我还是第一次见到这么难缠的猎物，这个猎场的猎物看来不简单啊。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我们也不是吃素的，任它闪转腾挪，最终还是逃不出猎人的五指山。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？等等……那边好像来人了。[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快看，那只角猪我们追了三天都没擦着它的皮，没想到还真有人能抓住它！[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]能将那头角猪如此干脆利落地击倒，看来这片猎场来了了不起的猎人啊。[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等……那不是……[l][cm][hide]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你是……沃夫加大哥？[l]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "嗯？这是沃夫加熟人吗？",
+            "tag": "tag_15"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]（这两人看起来都是索利德山的人，沃夫加难道也是从索利德山出来的？）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是我。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？你认识这位猎人吗？等等，我好像听过沃夫加这个名字，莫非是那个被逐出村子的沃夫加吗？[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！你当着人家的面扯这个事情干什么？[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个……我也只是听说嘛，在村子里关于当年的事都传遍了。大家第一时间提起沃夫加，都说他是一个背叛村子的独狼……[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎，你没完了是吧？[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个猎物送你们了，我先走了。[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等！沃夫加大哥……[l][cm][hide]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（跟上沃夫加。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……终于安静些了。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "沃夫加，你还好吗？",
+            "tag": "tag_26"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没想到你追上来了，让你看到我失态的表现了，非常抱歉……[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]感谢你的关心，你算是少数即便见识过我凶狠容貌，依然愿意接近我的人，哪怕是我刚刚做出如此失礼的事情后。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "刚才那两人是沃夫加的同乡伙伴吧。",
+            "tag": "tag_29"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，他们和我一样都是在索利德山长大的，只是我后来被驱逐出村而已。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]背后的故事很多，虽然已经过去很多年了，但那些故事依旧如同梦魇一般缠绕在我的心头。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]时间并没有冲淡回忆，反而让回忆锋利了许多，或许这也是我一直逃避的代价吧。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "所以当年发生什么事了……",
+            "tag": "tag_33"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]等合适的时候，我再和你说吧，对我来说这件事还是有些难以启齿。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在我们继续去狩猎新的目标吧，不要浪费大好时光。[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（后面的狩猎，沃夫加一直心不在焉，根本没射中多少目标。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（此次遇见旧友的狩猎，让沃夫加过去的事迹浮上水面，他也到了面对过往心魔的时候了。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-重遇故乡人-进入战役"
+}

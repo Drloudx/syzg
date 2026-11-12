@@ -1,0 +1,343 @@
+{
+  "script": "fav_hero_012_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是这里了，那头角猪应该就在附近……[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]救……救命啊！[l]",
+        "charaName": "？"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那里是……！",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！那家伙盯上我了，你快射它啊！[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……我在瞄准了……可恶……我拉不动这个弓……[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它……它要撞过来了！救命啊——！[l][cm][hide]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "沃夫加！",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我知道！我在瞄准了！[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈——！[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（随着一阵破空的声音传来，沃夫加射出一道锋利的箭矢，精准命中了角猪的要害。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……呼……得……得救了……[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你……你没事吧？是谁救了我们……[l][cm][hide]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "沃夫加移动",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们没事吧？[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还……还好……谢谢你及时出手，要不然我可能会被那头角猪撞飞了……[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事就好……说起来你们怎么会在这里？前段时间我记得你们应该在那边的猎场活动吧？[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]沃夫加大哥，是这样的……我们之前一直在和你们见面的那猎场活动，但我们后来听说这边有角猪在捣乱，所以就决定先过来把角猪干掉……[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来我们想到一块去了，我和{myName}过来也是为了消灭那头角猪。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]别灰心，你们也是有贡献的，要是没有你们吸引那头角猪出来，我们可能还得找它一段时间，那样它可能会伤害更多的人。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊……谢谢你们……[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了，那我们先走了，那头角猪就交给你们了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等……等一下，沃夫加大哥！[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你可能对我们和村子有点误会，虽然关于你的事还有很多不好的流言，但村子已经有很多人理解你当年的做法了。回来和我们一起生活吧，皮塔和卡夫也很想你……[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]很多关于你的传言都是以讹传讹，很多深入了解你事迹的人都认为你是英雄，至少不是叛徒，正是因为你的勇敢才让巴诺姆村免遭魔物的袭击。[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是这样的……之前是我听信传言不懂事乱说的。在知道沃夫加大哥的做法后，我其实也能理解，对不起。[l][cm]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……你们倒也不必替我说话，我当年的做法确实不妥。那些和我一起下山的亡友，他们逝去的画面一直在我脑海萦绕。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果不是我错估魔物规模，他们也不会牺牲。这是我不可洗刷的过错，被村子里的一些人嫌弃也是应该的。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但我的目标从未改变，那就是尽自己所能拯救更多的人。现在的我不会忘记过去的错误，但我也不会驻足不前，所以也不必担心流言对我会有伤害。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太好了，那大哥回来吧……[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈，那也不必了，如今我已经离开村子，也没有再回去的必要了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我已经找到新的伙伴和归宿，今后我要走自己的路了……[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好吧，我们尊重你的选择。[l][cm]",
+        "charaName": "猎人1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，那么就此别过，希望你们日后一路顺风。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}，我们走吧，今后的路可还长着呢。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "好，我们走吧！",
+            "tag": "tag_37"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]谢谢！两位再见！[l][cm][hide]",
+        "charaName": "猎人2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（和与过去和解的沃夫加一同离开，身后巴诺姆村两人的身影渐渐模糊，最后消失在草原之中。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（沃夫加和你一同前行，共同踏上了崭新的旅程。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-坚守信念的新征程-进入战役"
+}

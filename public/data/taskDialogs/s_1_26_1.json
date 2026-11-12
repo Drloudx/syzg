@@ -1,54 +1,173 @@
 {
+  "des": "精进委托契约-与艾尔莎对话【你怎么来了？】",
+  "script": "s_1_26_1",
   "exps": [
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]呵呵……我这不是放心不下两位，想要再给一些具体的指点嘛。[l][cm]"
+        "text": "[show]咦，毛耳朵你怎么来啦？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]我们可不需要什么指点。这么简单的东西，我们轻松就能搞定啦。[l][cm]"
+        "text": "[show]我听说你们救助了风车平野前的契约者……两位又立下大功一件。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]是吗？既然这样，等有时间的时候，请务必试一试完成这些既简单又对住民意义重大的契约。[l][cm]"
+        "text": "[show]两位在契约者之道上已经愈加精进，所以，我想着该为你们推荐“委托板”了。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]你们就先完成一件委托契约试试吧，我会在这里等你们的。[r]我这里也准备了一些小小的奖励——嗯，这也算是一种委托契约吧～？[l][cm]"
+        "text": "[show]委托板……？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]好咧，包在我们身上。[l][cm]"
+        "text": "[show]驿站每天都会接取许多住民们发布的契约。而其中一些比较简单和轻松的活计，会被张贴在这张委托板上。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]{myName}，我们去委托板上选一个委托契约吧，让毛耳朵见识一下我们的厉害。[l][cm][hide]"
+        "text": "[show]如果在履行主要契约的同时，能顺便承接这种简单的委托，便能顺路获取不少额外的报酬。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而两位完成的这些委托越多，也能让我们越早渡过眼前的难关。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那你直说不就好了，不就是需要我们的力量多做一些活嘛。也罢。现在只要有报酬我都不介意。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以，我就拜托茜塔在{myName}营地里竖了一个这样的委托板。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉？原来是你干的！我还纳闷{myName}没事立一个那样的板子干嘛呢！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟让两位还要每天都专程来一趟驿站接委托，有点太不方便了。对吧，茜塔？[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……到荒野客的营地里竖一个委托板，还每天都要派人上去贴委托，我也当你开玩笑呢。[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过说起来，两位也成为了契约者，这座营地也不再是荒野客的营地了——先这么考虑好了……[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟现在驿站急需有能者的协助，我们肯定要主动做到最好。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我立刻给两位分配一些契约。等有时间的时候，请务必试一试完成这些既简单又对住民意义重大的任务吧。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好咧，包在我们身上。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}，我们去委托板上选一个委托契约吧，让毛耳朵见识一下我们的厉害。[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "我没什么意见。"
+          },
+          {
+            "tag": "tag_19",
+            "text": "之前辛苦茜塔了……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]小事一桩。[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……别忘啦，等我赚完这笔，不干契约者之后，你们得把它还原成之前的样子，统统拆掉哦！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     }
-  ],
-  "des": "精进委托契约-与艾尔莎对话【还有什么事吗？】",
-  "script": "s_1_26_1"
+  ]
 }

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 任务图鉴数据维护脚本
  * - 默认只读校验；--apply 时将缺失的完整 battle/room/condition 原表补入 raw/
  * - 更新已有原表需显式 --apply --replace，不在维护阶段裁剪原始表
@@ -167,20 +167,35 @@ for (const id of dialogIds) {
   const segMatch = /^(.*)_\d+$/.exec(id)
   const baseId = segMatch ? segMatch[1] : id
 
-  // 族内分段：base_0, base_1, ...（有 base_0 才说明是分段事件）
-  if (copyDialogScript(`${baseId}_0`, dialogDir)) {
-    existed.push(baseId + '_0')
-    let segIdx = 1
-    while (true) {
-      const segName = `${baseId}_${segIdx}`
-      if (copyDialogScript(segName, dialogDir)) {
-        existed.push(segName)
-        segIdx++
-      } else {
-        break
-      }
+  /**
+   * 族内分段复制。
+   *
+   * 🔴 2026-11-11 修复：旧实现只从 `base_0` 起步，**没有 `_0` 的族永远遍历不到**，
+   * 已存在的旧副本因此永不刷新（实测 `c0_3_a_*` / `c0_5_a_*` 正文停在旧版本）。
+   * 现在改为按**源目录实际帧号集合**遍历，不依赖 `_0` 是否存在：
+   * 从 0 起连续取，同时把源里出现过的其它帧号（如 3、5、7）一并补齐。
+   */
+  const copySegmentFamily = (base) => {
+    const nums = []
+    // 连续段：0,1,2... 直到源里没有
+    for (let i = 0; ; i++) {
+      if (!copyDialogScript(`${base}_${i}`, dialogDir)) break
+      nums.push(i)
+      existed.push(`${base}_${i}`)
+    }
+    // 源里存在但不连续的帧号（0 缺失或中间有断档）
+    const dirFiles = fs.readdirSync(GAO)
+    const re = new RegExp(`^${base.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}_(\\d+)(舊|旧)?\\.json$`)
+    for (const f of dirFiles) {
+      const m = re.exec(f)
+      if (!m) continue
+      const i = Number(m[1])
+      if (nums.includes(i)) continue
+      if (copyDialogScript(`${base}_${i}`, dialogDir)) existed.push(`${base}_${i}`)
     }
   }
+
+  copySegmentFamily(baseId)
 
   // 非分段事件：直接复制 id 本体（内部会回退 `<id>旧`）
   if (copyDialogScript(id, dialogDir)) existed.push(id)

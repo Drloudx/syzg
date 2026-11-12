@@ -1,0 +1,81 @@
+{
+  "script": "fav_hero_033_5_0",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]呜哇……别提了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]虽说养了那么几天，贝尔卡姐说大体已经没问题了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]但我的肌肉还有些痛……没法立刻开始高强度的训练。所以在正式开始前，我还要先做些轻度运动缓解一下。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]至于要做什么……我的提案是远足。就是慢慢地从营地出发一路往前，走上一段远路。离这里徒步能到的最远地方是哪里？驿站对吧？那我们就去那儿！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]而且……我也很想好好看看这片草原周围的景色。之前的训练都是火急火燎的，还没认真感受过这边的美景呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]不、不过……那个，就、就是说……一个人太无聊了。所以我想找你一起……一起远足……可、可以吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "这有什么不可以。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[cm][show]太、太好了——！那、那事不宜迟，我们出发吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "乌帕-一切随溪水而去-营地对话"
+}

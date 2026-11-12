@@ -1,0 +1,236 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]呜……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]哇！我……我这是睡着了吗？{myName}？我怎么直接到你的营地里面来了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（解释一下刚刚发生的事情。）",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[cm][show]原来如此，是我病倒了，不好意思让你看到了丢人的一面。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]对了，契约……还有刺杀任务没完成，我们得赶快赶到目标那边……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]你说我刚生病要好好休息？好吧，既然你都这么说了，那我就先把任务放一边吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]没事没事，我站着就可以了，我还没那么虚弱。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]之前我生病的时候，都是一个人躲到角落里熬蛇汤喝呢，这还是第一次有人照顾我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]为什么不去驿站找医生？这可能算是我的“职业病”吧，我不太放心把自己的安全交给别人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]每次睡觉的时候，我都会把刀放在身旁。一旦感知到有威胁靠近，我便会立刻醒来警戒。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]当然我是信任你的，在你的身边我能好好休息，这可能也是我刚刚“敢”晕倒的原因吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]你问我平常也会被袭击吗？很少，不过确实会有，毕竟我是刺客，总有人会盯上我的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]有时是来报仇的手下，有时是来灭口的买家，还有来打劫的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]唉……总之刺客就是不好当啊，走上这条道路之后，我不仅把刀刃对准了敌人，也把刀刃对准了自己。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]不过即便这条路非常困难，我也会坚定走下去的，毕竟这是我从小就有的愿望呀。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "为什么从小就想当刺客呢？",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[cm][show]我小时候曾经被奴隶贩子拐走过，当时我和一群同龄人被关在监牢里，那里很冷很黑……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]就在我以为自己要一直被关在这里、直到被卖到很远的地方时，突然有一群刺客袭击了营地，把我们所有人都救了出来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]那天我看见了冲天的火光，听见了人群的嚎叫，感受到了那群刺客的英勇与豪迈。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]听着很奇怪吧？明明只是一群在暗中行动的刺客，却能这么耀眼。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]得救以后，我听说他们似乎来自某个神秘的刺客组织，从此以后就想着：我也要成为刺客，也要和他们并肩作战。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]这就是我成为刺客的理由啦，就是想要成为……和那些拯救过我的人一样的英雄。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]啊……居然把这件事从头到尾跟你说了一遍，还请{myName}保密哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]很抱歉让你听了无聊的故事……啊？你说很有趣？还想听更多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]嘿嘿……你既然喜欢听，那我就大胆说啦，有些事我一直憋着，确实很难受。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]当年我还读过一本《湖风剑侠志》，里面的侠客精神也影响了我……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（后来，生病的诺姿滔滔不绝地讲了一天，直到太阳落下才罢休。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_032_4_1",
+  "des": "fav_hero_032_4_1"
+}

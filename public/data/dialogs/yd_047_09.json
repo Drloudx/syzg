@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]嗯？被你发现了呀～嗯，阿迪拉刚刚一直在天上围着你转圈圈呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]你问为什么？这个嘛……算是习性吧～？[r]哈比在看见喜欢的东西的时候，都会在天上盘旋，然后看准时机抢走！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]你放心吧，阿迪拉不会把你抢走的啦。毕竟杂鱼工匠早就是阿迪拉的宝贝了。[r]而且这里也是阿迪拉的家，没有抢走你的必要。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]只是……阿迪拉最近想要好好看看自己的宝物啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]所以还有什么问题吗？没有的话阿迪拉就继续在你头上飞啦～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_047_09",
+  "des": "阿迪拉-亲密3"
+}

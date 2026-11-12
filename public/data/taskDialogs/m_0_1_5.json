@@ -1,11 +1,12 @@
 {
+  "des": "营地修复完毕",
   "script": "m_0_1_5",
   "exps": [
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]呜哇啊啊啊啊啊——！[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -13,12 +14,12 @@
       "para": {
         "options": [
           {
-            "text": "米托拉，你声音也太大了……",
-            "tag": "tag_4"
+            "tag": "tag_4",
+            "text": "米托拉，你声音也太大了……"
           },
           {
-            "text": "也用不着这么夸张……",
-            "tag": "tag_4"
+            "tag": "tag_4",
+            "text": "也用不着这么夸张……"
           }
         ]
       },
@@ -26,9 +27,9 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show][cm]太了不起了吧！看看这个营地！你真的能行！[r][l]和之前那个垃圾场一样的废墟，简直不敢相信是同一个地方！[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -36,12 +37,12 @@
       "para": {
         "options": [
           {
-            "text": "这都是这把锤子的功劳……",
-            "tag": "tag_20"
+            "tag": "tag_20",
+            "text": "这都是这把锤子的功劳……"
           },
           {
-            "text": "看来我还记得如何使用它……",
-            "tag": "tag_20"
+            "tag": "tag_20",
+            "text": "看来我还记得如何使用它……"
           }
         ]
       },
@@ -49,41 +50,41 @@
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[cm]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]是什么都好啦！工具只有在对的人手里才有用！能使用这玩意的你，可比这东西本身厉害多了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]虽、虽然很不想承认……这比我之前盖得好多了！[r][l]你这家伙……你这家伙何止不是什么没用的累赘，简直就是宝藏！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]本来我还准备等你伤好了，就把你交给驿站那帮人的……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]干脆从现在开始就由我来罩着你吧！之前的救命之恩就一笔勾销怎么样！[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -91,8 +92,8 @@
       "para": {
         "options": [
           {
-            "text": "这点小事不算什么。",
-            "tag": "tag_22"
+            "tag": "tag_22",
+            "text": "这点小事不算什么。"
           }
         ]
       },
@@ -100,17 +101,17 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show][cm]怎么能说是小事……！这个营地……这个营地是我的心血。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]这两年来……我一直都住在这里，它就是我的家，我的宝物！我真不知道该怎么——[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -118,8 +119,8 @@
       "para": {
         "options": [
           {
-            "text": "（看来米托拉真的很珍视这座营地……）",
-            "tag": "tag_24"
+            "tag": "tag_24",
+            "text": "（看来米托拉真的很珍视这座营地……）"
           }
         ]
       },
@@ -127,83 +128,51 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show][cm]（咕噜噜噜～）[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]呃……哈哈……今天确实还没吃什么东西……[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]呃……哈哈……还真的有些饿了……[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]啊，说来我的储备粮也全被角布林给糟蹋了！[r][l]现在营地里什么也不剩了，那些可恶的混蛋——！[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]那接下来是不是该——[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]唉……？你说你也饿了……不然去收集一些食材，你还能帮着……“烹饪”？[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]欸，你让我先别急，还得先生火？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[cm][show]好啊好啊！你还有这种手艺吗！太了不起了吧？[r]找不到人换食物的时候，我都是直接啃生肉的！[l]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]呜～快点吧快点吧！{myName}擅长的到底是怎样的料理呢！好期待呀！[l][cm][hide]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "options": [
-          {
-            "text": "虽然记不太清，但我觉得我会做些料理。",
-            "tag": "tag_28"
-          },
-          {
-            "text": "不管怎么说，直接啃生肉也……",
-            "tag": "tag_28"
-          }
-        ]
-      },
-      "key": "option"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[show][cm]好啦——！不是说这些的时候！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[show]我知道一个食材非常充足的地方！虽然路上有点危险，但有我罩着你，绝对没事的啦！[l][cm][hide]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": "营地修复完毕"
+  ]
 }

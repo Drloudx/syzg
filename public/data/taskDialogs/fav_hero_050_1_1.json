@@ -39,7 +39,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]开玩笑的啦！我知道{myName}你的梦想是浪迹天涯，怎么能被一个小小的村子困住呢。[l]"
+        "text": "[cm][show][cm]开玩笑的啦！我知道{myName}你的梦想是浪迹天涯，怎么能被一个小小的村子困住呢。[l]"
       },
       "key": "text"
     },
@@ -58,7 +58,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]这个嘛……虽然我也很想，但现在还得守着村子呢。[l][cm]"
+        "text": "[cm][show][cm]这个嘛……虽然我也很想，但现在还得守着村子呢。[l][cm]"
       },
       "key": "text"
     },
@@ -89,7 +89,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]没错！正是这世界上最伟大、最美味的食物——胡萝卜！[l][cm]"
+        "text": "[cm][show][cm]没错！正是这世界上最伟大、最美味的食物——胡萝卜！[l][cm]"
       },
       "key": "text"
     },
@@ -124,7 +124,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]我们巴诺姆村对萝卜独有情钟可是传统了。啊对了，那边的料理台可以用吗？我用这些萝卜给你露一手～！[l]"
+        "text": "[cm][show][cm]我们巴诺姆村对萝卜独有情钟可是传统了。啊对了，那边的料理台可以用吗？我用这些萝卜给你露一手～！[l]"
       },
       "key": "text"
     },
@@ -147,7 +147,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]那当然！你不会以为我只会打架吧？我既能抡得动大锤，也能掌得好小铲，你就等着品尝香喷喷的萝卜大餐吧！[l][cm][hide]"
+        "text": "[cm][show][cm]那当然！你不会以为我只会打架吧？我既能抡得动大锤，也能掌得好小铲，你就等着品尝香喷喷的萝卜大餐吧！[l][cm][hide]"
       },
       "key": "text"
     },
@@ -186,7 +186,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]哈哈，烹饪大师可不敢当，不过烧几盘好菜还是没问题的。[l][cm]"
+        "text": "[cm][show][cm]哈哈，烹饪大师可不敢当，不过烧几盘好菜还是没问题的。[l][cm]"
       },
       "key": "text"
     },
@@ -221,7 +221,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]我们两个人，一天解决一袋萝卜，不是很正常嘛。战士当然要吃得多啦，你可不要拒绝噢！[l]"
+        "text": "[cm][show][cm]我们两个人，一天解决一袋萝卜，不是很正常嘛。战士当然要吃得多啦，你可不要拒绝噢！[l]"
       },
       "key": "text"
     },
@@ -240,7 +240,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]这就对啦！我们山里人就是这么热情，千万别客气。[l][cm][hide]"
+        "text": "[cm][show][cm]这就对啦！我们山里人就是这么热情，千万别客气。[l][cm][hide]"
       },
       "key": "text"
     },
@@ -298,7 +298,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "米拉贝尔",
-        "text": "[show][cm]这不是挺好的嘛？萝卜这么棒的东西就该种满整个世界！[l][cm]"
+        "text": "[cm][show][cm]这不是挺好的嘛？萝卜这么棒的东西就该种满整个世界！[l][cm]"
       },
       "key": "text"
     },

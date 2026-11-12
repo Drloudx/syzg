@@ -1,0 +1,216 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]真是难得的飨宴！你真是有心了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "看来你很满意？",
+            "tag": "tag_3"
+          },
+          {
+            "text": "看来这顿饭还能入你法眼？",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]本宫很难和你描述现在的心情。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]如果你对深渊各地的“美食”有所了解，你就应该明白本宫此刻感受到的救赎。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "深渊的美食确实有些粗犷……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "深渊的美食也有可取之处……",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]硬要说的话，此地的美食也算别有风味，但都太过注重本味，纯粹是靠着食材优异取胜。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]能够和本宫生前一样，食不厌精脍不厌细，将平凡食材烹出至味的厨人……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]不说绝无仅有，至少也是凤毛麟角了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]所以你明白了吗？本宫尝到这种“文明”之味的感受？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你过誉了。",
+            "tag": "tag_11"
+          },
+          {
+            "text": "我的手艺也就只是这样而已。",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]谦虚虽是美德，但太过谦虚就不太讨喜了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我的手艺确实一般。",
+            "tag": "tag_13"
+          },
+          {
+            "text": "能做到这样也有工具的功劳。",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]你是说你烹饪的时候借助了工匠造物的帮助？那又如何？本宫当年的御厨还在使用魔法料理呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]料理是一种只论结果的艺术，过程如何并不重要。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]重要的是，本宫认可了你的成果，对此你只需点头接受。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "好吧。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "我明白了。",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]对，就是这样，再自信一些。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫十分感谢你的招待，若是有机会，就让本宫回报你一席宫廷全餐吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我会期待的！",
+            "tag": "tag_20"
+          },
+          {
+            "text": "那我就静候佳音了！",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]嗯，放心，本宫决不食言！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_061_1_1",
+  "des": "斯卡莉安好感1-战役"
+}

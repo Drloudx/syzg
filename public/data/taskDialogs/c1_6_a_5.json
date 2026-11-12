@@ -1,0 +1,117 @@
+{
+  "script": "c1_6_a_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]附近没有别的别的魔物气息。[wait=300]嘿！[wait=200]你可以出来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "铁匠",
+        "text": "[show]多谢你们！这下终于得救了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]我见过你，你是黑铁锻炉的铁匠？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "铁匠",
+        "text": "[show]是啊！黑铁锻炉快要不行了！[r][l]掌炉派我出来求救，没想到走到半路居然被角布林抓走当了储备粮！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]黑铁锻炉的情况这么危急吗？[r][l]我记得那里应该有好几个契约者小队长期驻守才对，魔物的攻势很厉害吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "铁匠",
+        "text": "[show]如果只是魔物的话，当然不会这么快就顶不住了。[r][l]但是攻击黑铁锻炉的不光有魔物，还有哈萨琳之手的佣兵啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]哈萨琳之手？那些混蛋又来了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]居然敢在异变加剧的这个时候？看来他们是有备而来，想要乘人之危了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "哈萨琳之手是什么？"
+          },
+          {
+            "tag": "tag_15",
+            "text": "你们和他们有仇？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]哈萨琳之手是上一代驿站主人哈萨琳牺牲之后，一部分不满菲尔德蕾“软弱”的激进派[r]组成的组织，一直在和我们对着干。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]听上去像是关系不好的兄弟？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哈哈，确实是这样。不过，外来的仇人尚且可以和解，阋墙的兄弟却是常常不死不休啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]唉，既然他们打上门来，那我们也没有办法。[r][l]只能把他们也当做“魔物”，平等地把他们消灭了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

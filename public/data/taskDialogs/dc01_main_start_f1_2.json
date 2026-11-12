@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（一处熄灭的营火，只留下一堆灰烬。看起来已经废弃很久了。）[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "希尔",
+        "text": "[show]靠角布林的智力搭不起这么大的帐篷。这里之前应该也是其他人的营地。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "米托拉",
+        "text": "[show]只会偷别人家东西！真不要脸！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "希尔",
+        "text": "[show]……靠角布林的智力应该也没法明白什么叫“要脸”。[l][cm][hide]"
+      }
+    }
+  ],
+  "des": "熄灭的营火",
+  "script": "dc01_main_start_f1_2"
+}

@@ -1,0 +1,41 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]咳咳……你终于来了，工匠。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "抱歉，我来晚了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]你迟到了大概……算了。只是这点时间，我也没必要追究……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]车来了，我们走吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_031_4_0",
+  "des": "波特温-营地对话【波特温爵士，你好。】"
+}

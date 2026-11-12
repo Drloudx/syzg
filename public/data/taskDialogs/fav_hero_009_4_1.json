@@ -1,0 +1,239 @@
+{
+  "script": "fav_hero_009_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可可娜！谢谢你主动写信给我，我来赴约了哦！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说有很重要的事要告诉我……难道你想通了？来吧，我已经准备好接受你的诅咒了！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜噫噫……！才、才不是！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要和你说明的人是{myName}……交给你了！当然了，他说的也代表我的想法……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎……不是可可娜对我说吗……真失望。[l]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（向冒险者说明可可娜的困扰。）",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]什么！？原来这么做会让可可娜觉得困扰吗！？[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来诅咒的话都是因为害怕被接近下意识说出口的啊……对不起！我之前完全不知道！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总觉得更了解可可娜大人了……啊啊啊～好幸福～！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……呜呃……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你、你也不要再对我说这种话了！像普通粉丝一样就好！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎？普通粉丝？不行，我可是铁粉！不过，为了照顾可可娜大人，我会减少自己的激进行为！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可可娜大人要拒绝我的喜欢吗……？[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜噫！？我……我没有这么说，虽然谢谢你的喜欢……但还是太近了呜～！？[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这样也会给可可娜带来困扰。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "你也学着减轻一些频率吧？",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唔……好吧，因为听见了可可娜大人的心声忍不住又激动起来了。那么，作为忍耐对可可娜喜爱感情的交换……我可以隔一段时间来请求你的诅咒吗？[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈啊……？！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]求你了！没有可可娜的诅咒……我……[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不要哇……！！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一周一次，不……一个月一次也够了！怎么样才能听见你的诅咒呢？只要是我能做到的，我什么都愿意……！[l]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那个……",
+            "tag": "tag_23"
+          },
+          {
+            "text": "我觉得……",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呜噫……那、那就一个月一次吧，不能再多了！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太好了……谢谢，我会一直支持你的，可可娜！期待下次舞台能够再次见到你美丽的身姿……！[l][cm][hide]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总、总算摆脱掉了……但是一个月之后还是会经历这种事呜～！！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但现在能够顺利练习舞蹈了！而且，说出自己的困扰之后心情变得轻松许多……幸好有{myName}帮忙，我自己肯定办不到。[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那我、我先去后台了，待会儿拉碧丝姐要罚我迟到了！[l][cm][hide]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "可可娜-进入战役【fav_hero_009_4】"
+}

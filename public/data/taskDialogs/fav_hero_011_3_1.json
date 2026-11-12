@@ -1,0 +1,382 @@
+{
+  "script": "fav_hero_011_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……这地方就差不多了。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "所以缇莎的计划是什么？",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]计划就是……改正自己冒失的性格！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大家都说缇莎很冒失，连路都找不到。今天缇莎就要证明自己不仅不冒失，还能轻松在陌生的地方找到回家的路！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这是不是太冒险了。",
+            "tag": "tag_7"
+          },
+          {
+            "text": "求生草原外可是有很多魔物啊。",
+            "tag": "tag_7"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没关系，缇莎在秋日荒野也经常迷路，但也没有魔物能伤害到缇莎！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且，不是还有{myName}吗？我们合作的话没有魔物是对手啦！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "好吧……那缇莎接下来想怎么做？",
+            "tag": "tag_10"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]直接从这地方，找到回家的路！缇莎说的家是营地啦！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不需要给缇莎提示，{myName}你要相信缇莎，缇莎对魔力的感知可是很强的！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]让缇莎感受一下营地的气息……在这边！[l][cm][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（跟着缇莎走了一段路后……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……已经走了半小时了，我们应该快到营地了吧。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我想……我们刚刚一直在原地打转。",
+            "tag": "tag_16"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是……是这样吗？那是缇莎感觉错了，缇莎再试试……[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（给缇莎一些提示。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好……好的！缇莎知道了！接下来不用给缇莎提示了！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]缇莎感觉到这边有魔力，来这边吧。[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（又跟着缇莎走了一段路后……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？提升明明感觉这条路有很多魔力气息啊，怎么……[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吼吼——！[l][cm]",
+        "charaName": "角布林"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇——！这些……这些魔物是从哪里冒出来的！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这里好像是角布林的巢穴！",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呜哇哇……怎么……怎么找到这种地方了，缇莎明明是通过感应魔力辨别方位的……[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了……角布林身上也有魔力啊，缇莎把营地的魔力和角布林巢穴的魔力弄混了。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，不……不好意思又搞砸了。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "角布林数量太多了！快跑啊！",
+            "tag": "tag_29"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哇哇哇哇——！快跑——！[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（和缇莎狂奔了一段时间后……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼呼……我们……我们安全了。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我还是给缇莎一些提示吧。",
+            "tag": "tag_33"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好吧……缇莎知道了。应该是这边……[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（在你的指点下，经过一番追寻，你们终于在日落前回到了营地附近。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]终于回到营地了……可如果没有{myName}的提示，缇莎是不可能找到路的。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来缇莎……还是需要多练习才能改掉自己的毛病。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "缺点需要慢慢改正。",
+            "tag": "tag_38"
+          },
+          {
+            "text": "缇莎今天已经有很大进步了！",
+            "tag": "tag_38"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯！以后还请{myName}多多教育我啦！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉？这是……妈妈的气息！是妈妈来接我了！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我先走了哦！{myName}我们下次见！[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（挥手向缇莎道别。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（如果我没猜错的话……莉拉刚刚一直在跟着我们，结果我差点让缇莎在新手村迷路了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（还好最后在日落前把缇莎带回来了，不然可能会被莉拉吊起来打，还好……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "缇莎-照顾好那个孩子！-进入战役"
+}

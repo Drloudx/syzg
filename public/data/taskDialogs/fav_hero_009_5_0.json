@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]呜！？谢谢……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]那我……那我就不客气了……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "可可娜-欢迎哦，我准备了上次吃的零食。",
+  "script": "fav_hero_009_5_0"
+}

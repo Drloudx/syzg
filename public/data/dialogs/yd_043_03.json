@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]嗯～计划表写好了！等会就按照计划，商旅启程！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]啊，是{myName}啊，我正在做商旅计划呢。你那是什么表情啦！[r]虽说我偶尔也挺随性的，但还是会好好做计划啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]毕竟和生意有关嘛。去每一个地方之前，要想好买什么卖什么，这样才能让每次旅行都能赚钱。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]不过，别把我看成纯粹的奸商啦。比起赚钱，旅行和制药更能给我带来快乐。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]所以……有兴趣和我一起去旅行吗？我可以在计划表上加上你哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_043_03",
+  "des": "阿娜洛洁-友善3"
+}

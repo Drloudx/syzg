@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]哟！{myName}老大，之前一直没碰到你，现在终于和你搭话啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]看看这营地的布置，隐蔽性一流，陷阱位也留得地道。不愧是老大，以后我在这儿混啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]有什么需要打探的情报，或者说需要有人出手解决的麻烦，尽管交给我就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]来，这是我特意从巴诺姆村搜罗来的好东西，就当是我的入伙费啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "text": "[show]别客气，老大！以后咱们就是一条绳上的蚱蜢，你的敌人就是我皮塔的敌人！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_014_1",
+  "des": "皮塔"
+}

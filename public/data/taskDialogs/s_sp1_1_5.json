@@ -1,0 +1,157 @@
+{
+  "script": "s_sp1_1_5",
+  "des": "",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这里是……？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这里是驿站地下的古代遗迹。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]在这里战斗的话，大地会吸收多余的威力，无论我们怎么打都没问题。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]确实是个合适的舞台，那我们现在开始？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]唔……要这么着急吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]在开打之前，我们还可以再聊点什么吧？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]也不是不可以。你们准备聊些什么？[l]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "比如“大罪人”的过去。",
+            "tag": "tag_10"
+          },
+          {
+            "text": "比如“大罪人”的罪行。",
+            "tag": "tag_10"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]就是啊！明明都一起战斗过了，我们对你还什么都不了解呢！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]虽然我们知道，你是继承了“大罪人”的记忆而复苏的，但关于“大罪人”的事迹，你和洛莉安一直都遮遮掩掩的。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]都过去大几百年了，也没什么不可以说的吧？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]原来你们是想知道这些无聊的事情吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]没有问题，本宫可以告诉你们。不过……[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不过？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不过这件事情说来话长，还是等到测试结束之后，再找个地方坐下来慢慢聊为好。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]所以，就让我们快点开始——尽管攻过来吧！[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不过，可别以为本宫会站着不还手……毕竟，运动性也是综合性能的一部分呢！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    }
+  ]
+}

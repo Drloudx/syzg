@@ -1,0 +1,241 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（秋日荒野的住民齐聚在修行所，有的来自驿站，有的来自风车平野或黑铁煅炉，他们远道而来，只为聆听来自大书院高材生奇瓦的课。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（开始的奇瓦还有些紧张，不过她随后镇定下来，好好地讲了一节课。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]呼……总算是结束了……{myName}！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "（给紧张的奇瓦一个拥抱。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[cm][show]咕咕！咕咕！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "恭喜你给大家上完了一堂课，奇瓦老师。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]嘿嘿……这只是运气好啦，希望我讲的东西能让大家感到满意。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "大家都觉得来这里听课很值得。"
+          },
+          {
+            "tag": "tag_12",
+            "text": "毫无疑问是一堂成功的公开课。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]嗯……那就太好了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]虽然我刚刚一直在台上讲话，但其实我很紧张，真的很紧张！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]到后来我把自己当成和大家交流的普通学生，这才让心情平复下来。当老师果然也不是一件容易的事情啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]有几次我差点撑不下来了，不过一想到{myName}在下面，我就有继续讲下去的动力了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "能帮到奇瓦就好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]不过这次讲课，我发现大家对魔法的了解真的好少。大书院眼里基本的常识，在他们眼中是珍贵无比的宝藏。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]点火的魔法、光照的魔法甚至是最基础的治愈魔法，大家都要请教专业的魔法师，这些东西不是自己就可以弄吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]在大书院，知识是最容易获取的东西。而在其他的地方，人们却连最基本的知识都需要翻万卷书，行万里路才能得到。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]要是我没有这些知识储备，怕不是离家的第一天就得在雪原的冻土上长眠。那样既遇不到软软，也遇不到{myName}了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]“用知识解放世界”，也难怪大书院有这样的理念，知识比我想象中要宝贵的多啊……我也必须肩负起传播知识的责任才行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]也难怪大书院的学生很早就要学这些知识，突然有些理解妈妈了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]但……但是不管你怎么说！只让女儿不停地学，每天只让睡5小时觉都是错的！这点决不能原谅！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "这点我同意。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]对……对吧？刚刚我在讲课的时候，还特意强调了要结合现实来学习，这就是从妈妈那种呆板教育下得出的结论。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]还有……还有就是……一定要给孩子更多的休息时间！给他们玩耍的自由，比如用魔法表演音乐什么的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕咕……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（随后在奇瓦滔滔不绝的抱怨中，大家踏上了返回营地的旅程。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（为了奖励奇瓦……找艾尔莎给她准备一个惊喜吧。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_019_4_1",
+  "des": "奇瓦-学生的公开课-进入战役"
+}

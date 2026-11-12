@@ -150,7 +150,10 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
    * 判据不变：拿不到的东西不得被凭空编出出处。
    */
   assert.ok(sources.item_59005?.some(x => x.type === 'task'))
-  for (const id of ['item_59051', 'pet_098', 'item_10076']) assert.ok(!sources[id]?.length, id)
+  // 2026-11-11：新增四测「御卫贩售」活动蛋池（pet:4ce:3），其候选含 pet_098/100/107 等，
+  // 这些原本"无来源"的蛋现在可从该池获得 → 从「无来源」清单移除；item_59051 / item_10076 仍无来源。
+  for (const id of ['item_59051', 'item_10076']) assert.ok(!sources[id]?.length, id)
+  assert.ok(sources.pet_098?.some(x => /御卫贩售/.test(x.name || '')))
   const parents = new Set(Object.values(sources).flat().filter(x => x.type === 'container').map(x => x.id))
   assert.ok(!parents.has('item_20001'))
   assert.ok(!parents.has('item_26008x'))
@@ -167,7 +170,19 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
    * **已无任何产出途径**（首测签到活动移除），不再是「可达」容器 → parents 25 → 22。
    * 判据不变：容器展开只针对本身可达的物品。
    */
-  assert.equal(parents.size, 22)
+  /*
+   * 2026-11-11（补秘境来源后）：parents 22 → 26。新增的 4 个是秘境宝箱
+   * item_20029/20030/20031/20035 —— 它们此前无来源（探索层奖励/秘境兑换未被解析），
+   * 现在有了真实来源，按「可达才展开」的判据自然成为容器。仍是真实可达，非凭空。
+   */
+  /*
+   * 2026-11-11（再修）：26 → 24。官方把 5 件物品（回忆拼图 20032/20033/20034、
+   * 挑战之证 20035/20036）的 useActionPara.reward 错配成秘境结算池；这些已在
+   * `BROKEN_REWARD_POOL_ITEM_IDS` 里不显示「开启奖励」。现在容器链也同步不展开它们的
+   * 奖励池（此前会把池里的装备记成「从拼图开启获得」，是用户报的错）。
+   * 其中 20029/20030/20031 保留（真宝箱），20035/20036 被排除 → 26 - 2 = 24。
+   */
+  assert.equal(parents.size, 24)
   const fresh = build({ dungeonSources: buildDungeonsFiles().deps.dungeonSources }).files.find(x => x.file === 'parsed/item-sources.json').data
   assert.deepEqual(sources, fresh, 'standalone search must not depend on a stale dungeon source file')
 })

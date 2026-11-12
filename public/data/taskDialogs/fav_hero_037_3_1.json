@@ -1,0 +1,391 @@
+{
+  "des": "剋-镇魔之期-进入战役",
+  "script": "fav_hero_037_3_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]好了，就是此处了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "这是……"
+          },
+          {
+            "tag": "tag_4",
+            "text": "这不是大市集吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]呵呵，吾听说过你在魔爪湖的英雄事迹，想来你对这里也很是熟悉了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "熟倒是很熟……"
+          },
+          {
+            "tag": "tag_6",
+            "text": "但是……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "我们不是要找灵地吗？"
+          },
+          {
+            "tag": "tag_7",
+            "text": "人这么多的地方也是灵地吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]灵地只关乎这里有没有灵气，和人多人少并无关系。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]更何况，人声鼎沸、市井喧嚣，又何尝不是一种灵韵所在呢？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "是这样吗……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]当然。岂不闻“成住坏空，皆富禅心”？虽然这话非是出自吾等炼气士一门的经卷，但用在此处，确实正应其趣啊！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "感觉好高深啊……"
+          },
+          {
+            "tag": "tag_12",
+            "text": "感觉有点听不懂啊……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]呵，不懂的地方就慢慢体悟，现在先解决你的心魔问题！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]盘膝坐下，屏气凝神！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "是，前辈！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（一段时间后……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]嗯，如此一来，只需再来一次，便可竟全功了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "多谢前辈。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]不必道谢，此事因吾而起，于你不过是无妄之灾，吾又如何敢受你之谢？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]呵呵……如今的世道，残暴凶狂者众，傲慢无礼者多，似小友这般冲和谦淡、行止有度的人，真的越来越少了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]就连当年的虎斗院，那种世外之地，也只出了寥寥几个真君子、真道人，呵呵……这大概就是“人心不古”吧……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "我似乎没听您提起过虎斗院的同门？"
+          },
+          {
+            "tag": "tag_28",
+            "text": "虎斗院的门人都是您这样的世外高人吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]有什么好提的，不过都是些不肖之辈！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]嗯……不过可以一说的，兴许也有三四……二三人吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]吾算得什么世外高人？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]在我虎斗院鼎盛之时，以吾的水平，兴许连座次都排不上吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]要说我虎斗院之中，最富盛名的，应该就是吾的小师叔吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]那是一位堪称天纵奇才的人物，天资绝世的同时，还是一位谦谦君子，对所有同门都温和有礼，一视同仁，不知多少人在修行中受到过他的提点。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]除此之外，还有绛霄师妹……那也是一位惊才绝艳的修者，入门不过短短五年，修为就已经远超同侪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]而本门的心法注重出世逍遥，能够有如此进境，可想而知绛霄师妹是何等风姿超逸、不染尘俗……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]可是俱往矣，俱往矣……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_37",
+            "text": "前辈……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]呵呵……事情都过去这么久了，吾现在说这些干什么。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]今次的“治疗”就到此为止吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]小友你在这边应该还有朋友可以走动，吾就不送你了，如何？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]（剋前辈……嘴里说着“过去许久”，实际还是难以释怀吧……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "{myName}",
+        "text": "[show]（既然他都已经委婉逐客了，那我也该识趣，让他多一些自己的时间吧。）[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "晚辈确实还有朋友要拜访。"
+          },
+          {
+            "tag": "tag_43",
+            "text": "前辈请自便。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]多承体谅，吾谨记在心。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_45",
+            "text": "前辈保重。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]嗯，慢行吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

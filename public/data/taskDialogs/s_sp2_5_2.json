@@ -1,0 +1,281 @@
+{
+  "script": "s_sp2_5_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过一番准备后，十五只史莱姆份的木头被摆放在一处宽广的空地上。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]搞定啦，让孩子们过来吃吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯嗯，各位辛苦了姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]孩子们，来吃木头了姆～[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆～姆姆姆姆姆姆～[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等！你们按照顺序来，别一股脑地乱冲，每只史莱姆都有一份姆——！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆姆～姆姆～[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……它们吃木头的方式居然就是在上面……滚来滚去？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟都是小孩子，史莱姆身上的每个地方也都能进食，所以它们吃东西的方式比较奔放姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！你们……你们不能把吃的木头乱扔啊姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吃木头就吃木头，不要到处乱跑姆！那边的史莱姆，快从石头上下来姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……怎么这群小孩吃个饭都这么闹腾。[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "毕竟小孩子都比较闹腾吧。",
+            "tag": "tag_15"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唉？可是这里有个孩子怎么什么都不吃？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆……[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……你怎么了？快吃吧，看看旁边的史莱姆，它们都吃得很开心呢。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我不饿，也不想吃木头姆姆……[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不行哦，要吃东西才能长身体，不能之后饿了才吃姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不吃不吃我不吃姆姆……[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不要闹脾气啦，快吃吧姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等！那是别的史莱姆的木头，你不能随便吃姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不要打架姆！我们不是都把位置安排好了吗？你为什么要吃别的史莱姆的木头姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]头……头要爆炸了姆——！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（一番折腾过后，史莱姆宝宝们终于吃完午饭了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好累啊……头一回工作得这么辛苦，怎么护育员比公主还要难当啊姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是啊，这也太累人了，我宁可直接出去和荒野客打架……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]事情还没完呢，等会还得带它们出去转转，让它们好好活动姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还……还得出去玩……这是要多折磨啊姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]因为身体原因我就不和你们去啦姆。你们别去太远，带着它们在溪谷野外转转就好。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]溪谷野外……那地方也不算太远，好吧，我们带这些孩子们去转转。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等会去野外玩，你们要听三位老师的话哦，老师在营地里等着你们平安回来姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的姆姆——！[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么有种……不好的预感姆……[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "食物都准备好了。"
+}

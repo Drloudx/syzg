@@ -1,0 +1,126 @@
+{
+  "script": "s_sp1_9_1",
+  "des": "藏宝图到手了。",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧……这藏宝图还真有点东西，画这图的人好像比余还了解城堡，有人进城堡里来勘探了吗？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]祖莉尔，这到底是怎么回事？在余睡觉的时候到底发生什么了？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]洛莉安大人，在入侵者第一时间进犯城堡时，城堡的侍卫就去驱赶了，不可能有人可以优哉游哉地考察城堡全貌。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]至于这个藏宝图为什么那么详细……我想是他们一批批人闯进来，一点点记录城堡的局部，最后才有了这张藏宝图。[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这帮人是吃饱了撑得吗……罢了，先去看看吧。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]上面有这么多标志，你打算先去看哪个呢？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……先看这个吧，神秘实验室里的炼金术。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]据说在一间黑暗的实验室里，有一种名为炼金术的远古魔法，此种法术能将世间任何物质变为宝贵的黄金。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！能把所有东西都变成黄金，要有了这魔法以后就不缺钱了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘶……上面说的神秘实验室应该是研究室吧，阿莲娜什么时候研究出这种东西了？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要真有那种魔法，洛莉安你要分享给我们哦，不要一个人占了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐附议！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你两激动个什么啊，还没有确定这是真的呢，我们先去研究室找阿莲娜问问吧。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行！走吧，我们去研究室看看！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

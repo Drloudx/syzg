@@ -1,0 +1,70 @@
+{
+  "script": "m_1_5_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯……感觉还好啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]能通过执行任务、狩猎魔物来换取报酬……好像也不错，我不讨厌。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]而且……还能碰上像那个迦南一样的强者。虽然不是很想承认，她的确很厉害。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯？这算是求胜心？呃，也许是吧。总之……这么一想，之前在草原的生活也确实有些无趣了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你说，既然有这样的想法，我们就好好利用闲暇的时间，做一些计划行动……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]每天进行不同的计划，一面强化营地，增加储备，一面精进自身的实力……还能去各种不同的地方探索，找那些强大的魔物对战？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]之前每天除了打肉吃和睡大觉，我确实是没做过什么计划……要是能把这些时间拿来锻炼身手，也是个好办法！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]和迦南她们碰头之前还有不少时间。快快，你还有什么想法，现在就来做些计划吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "日常计划行动引导"
+}

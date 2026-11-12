@@ -1,0 +1,85 @@
+{
+  "script": "sp2_3_a_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]到了姆！穿过前面那排乱石堆，就是德莉的临时营地了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……这是什么地方？到处都亮晶晶的，连流水的颜色看起来都透着光。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵，这是由史莱姆分泌的粘液与矿物质结合而成的“粘液结晶”。在光线的折射下，竟然能形成如此壮丽的溪谷奇景。[l]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "简直像是走进了宝石堆里。",
+            "tag": "tag_6"
+          },
+          {
+            "text": "这种风景真是难得一见。",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]确实啊，我以前只知道史莱姆黏糊糊的，没想到它们还能造出这么漂亮的风景！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼，大自然的神奇之处可不止这些。你们这两个没见过世面的小辈，可得把这副景象好好刻在脑子里啊。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦好啦，知道你是老前辈啦！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……你们能喜欢就最好了姆。这里面也有德莉的一份功劳呢姆！[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "SP2-3进入"
+}

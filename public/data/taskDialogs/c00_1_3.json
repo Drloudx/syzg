@@ -1,0 +1,308 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "？",
+        "text": "[show]太好了，看来你成功活下来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]自我介绍一下，我叫米托拉，是你的救命恩人，你可要记好了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_2",
+            "text": "我的名字是……唔……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]你……你怎么了？难道是伤还没治好？要不你赶紧躺下？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_54",
+            "text": "不……只是稍微有点头疼。"
+          },
+          {
+            "tag": "tag_54",
+            "text": "我稍微缓缓就好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]那就好！有什么问题一定要说出来啊！[r]这荒郊野岭的，可没有那个闲工夫给你去逞能！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]对了，你还没自我介绍呢？你叫什么啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_55",
+            "text": "我想起来了……"
+          },
+          {
+            "tag": "tag_55",
+            "text": "如果没弄错的话，我应该是……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_57",
+            "text": "（说出自己的名字。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]{myName}吗？嗯……是个不错的名字呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过看你吞吞吐吐的，难不成你连自己的名字都记不清楚了？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_58",
+            "text": "这么一说，我的记忆确实很模糊。"
+          },
+          {
+            "tag": "tag_58",
+            "text": "根据现状判断，我大概是撞到头了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]你[color=ffb64d]也[colorEnd]失忆了？居然这么巧啊！[r]除了我以外，你还是我见到的第一个失忆的家伙呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_59",
+            "text": "你也……失忆了？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]算是吧！反正只是失忆了而已，就当是开始一段崭新的人生就好了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你可真是命大，从那么高的地方掉下来只是失忆已经很幸运啦！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "从那么高的地方……"
+          },
+          {
+            "tag": "tag_36",
+            "text": "掉下来……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]对啊。我听到后山一声巨响，赶紧营地出来，就看到你和那些穿着装甲的人从天上掉了下来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我在这里生活了好久，还是第一次看到这种景象，把我吓得够呛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]好啦，不说那些了。那{myName}，对于你的救命恩人，你准备用什么来报答这份恩情啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你那些同伴，可都是拿出了全副身家来报答我让他们入土为安的情分呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过我看你这一身装备也不怎么值钱，加上你现在失忆了，[r]好像也不是能够立刻给出报酬的样子……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_61",
+            "text": "这里……到底是哪儿？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]这里是[color=ffb64d]深渊[colorEnd]。说细一点的话，这里是深渊的北部地带，[r]“[color=ffb64d]求生者草原[colorEnd]”。怎么样，想起点什么没？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_46",
+            "text": "深渊……？"
+          },
+          {
+            "tag": "tag_46",
+            "text": "那是什么地方……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]真糟糕……看来你说失忆确实不是骗人的，这已经连基本的常识都没剩下多少了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啧，看来你的酬谢短时间内是收不着了，但我也不可能把你一个人扔在荒野上……[r]那不就是让你在原地丢掉性命吗？那我之前救你干嘛？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]算了！干脆这样吧，你就先和我回营地，把伤先养一下。[r]至于救命之恩要怎么偿还，之后再说吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_51",
+            "text": "感激不尽，米托拉。"
+          },
+          {
+            "tag": "tag_51",
+            "text": "我会尽我所能报答你。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]漂亮话谁都会说……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]还能站起来吗？我们出发吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "c00_1_3",
+  "des": "空"
+}

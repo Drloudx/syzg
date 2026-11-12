@@ -1,0 +1,38 @@
+{
+  "des": "收集材料",
+  "script": "m_0_1_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么样！这里挺不错吧！我平时打柴都是在这一带！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]稍微往深处走点，也有好多可以用来充饥的东西，比如野猪啊蘑菇啊什么的……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那我们快点开始吧！我记得，是要先收集木材和石料？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好！这点小活我平时经常干。我们分头收集，怎么样？[l][cm][hide]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ]
+}

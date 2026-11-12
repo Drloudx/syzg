@@ -1,0 +1,57 @@
+{
+  "script": "fav_hero_012_2_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……干脆利落，这次回答比上次还要爽快。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在来找你之前，我已经挑选好合适的狩猎位置了，相信我们这次合作能获得更大的成果。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "说起来那天然猎场会碰见其他猎人吗？",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这个……我也不清楚，不过就算遇到也不必担心，大部分猎人都很好沟通。就算对方不愿意和我们在一起，我们换个地方打猎就好。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们出发吧，希望今天一切顺利。[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-营地对话【猎场在哪？我们出发吧。】"
+}

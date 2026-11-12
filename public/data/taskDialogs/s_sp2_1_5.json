@@ -1,0 +1,86 @@
+{
+  "des": "s_sp2_1_5",
+  "script": "s_sp2_1_5",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……调查的结果，感觉如何？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]“人外黄昏”的诅咒，比我预想的还要糟糕。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]这些新生代的魔物就连生物的求生本能都被扭曲了，充满了凶暴的攻击欲望，除了外表没多大变化之外，骨子里已经比大灾变之前的同类凶残得多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]像这种情况，差不多都能给它们单独划分为一个品种了，比如说“凶暴种”之类的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]凶暴种吗……这个名字还满恰当的，光是听起来就感觉麻烦透了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]诅咒就是这种东西就是这样的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]看来这里也找不到什么好消息，两位，去下一个地方吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔……好、好吧。那我们接下来去魔爪湖！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]一切由你们做主。事不宜迟，我们快点出发吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "script": "s_sp1_9_2",
+  "des": "我们想问下炼金术的事……",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]炼金术？哈哈哈，你们是小说看多了吧，怎么可能存在那种东西？[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这可不是我的幻想，这是藏宝图上说的，说研究室这里有炼金术。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余也听说了，所以来问问这是情况。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？洛莉安大人也来了？[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不可能，绝对不可能，我在研究室干了这么多年，从来没听过什么炼金术。[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且真要有这种魔法……如今城堡里的装饰肯定都变成黄金了，我们也有更多经费做研究，怎么可能像现在这样。[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那这个炼金术到底是怎么来的？总不会是他们完全瞎扯的，总还是有来源的吧。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]来源……说不定就是他们瞎扯的，可能就是那些商人就是在图上瞎写，然后以此为高价卖给冒险者。[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]至少我可以肯定，做了这么多年研究，我从来没有见过炼金术这种东西，不管是在研究室还是在其他地方。[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那就怪了，这传言到底是怎么来的啊……[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，这么说我想起来了，有可能是那些冒险者看到的是我们的镀金技术，好像当时在研究镀金的时候确实有冒险者闯进来了……[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所谓镀金就是这个技术，你们看。[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？剑上面直接涂了一层金，看起来确实很像黄金。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是我们的镀金技术，是用黄金史莱姆的黏液制作的，虽然跟正经的炼金术相差甚远，不过勉强能凑得上？[l][cm]",
+        "charaName": "研究员阿莲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来这就是真相了，那些缺心眼的冒险者就是把镀金当成炼金术了。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊……那这就是个误会了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]除了误会还能是什么呢？真是白开心一场。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]去找下一个目标的吧，画廊里藏有许多名画，那些名画都是当年的名家留下的……[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？米莉罗什么时候收了那么多画？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要不先去画廊看看情况吧，说不定又是一场误会呢。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说的也对，那我们去画廊那边问问米莉罗吧。[l][cm][hide]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

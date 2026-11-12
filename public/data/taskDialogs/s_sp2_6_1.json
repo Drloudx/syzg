@@ -1,0 +1,182 @@
+{
+  "script": "s_sp2_6_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们是……契约者大人！来这里找我有什么事吗？[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？你们身边的两只魔物是……[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你好姆，我是法尔姆，这位是我们的公主殿下德莉，我们是想问问……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！好……好可爱的史莱姆啊！让我抱抱可以吗？[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜呜……别……这么用力姆，我要晕过去了姆……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……手下留情姆……史莱姆虽然很软，但抱得太紧也会让我们觉得疼姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咳咳……看见可爱的东西就会忍不住，非常抱歉。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来你们也是史莱姆啊，真是可爱，比秋日荒野野外那群黄色黏液怪可爱多了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼哼……那当然，我们可是世界上最可爱最厉害的史莱姆姆～[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，你们远道而来找我，是想要请教什么事呢？[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（告知史莱姆遇到的种植问题。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此……你们可能对种植不太了解，所以来到野外就不知道怎么种田了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过你们来问我算是找对人了，我可是这方面的专家。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太好啦，只要你愿意来教我们种田，我们愿意把那边的一些资源和农作物作为报酬付给你。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，成交，种田这个问题就包在我身上吧。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我得去实地考察一下才行，我收拾一下东西，等会你们带我去那边看看。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，非常感谢你姆！我们的营地在草原那边姆。[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，不过在到那边之前，可以请诸位准备3个药浆草吗？我想这些东西应该能提升土地的肥力。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]3个药浆草是吧？行，交给我们吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，拜托两位契约者大人了，我这就跟史莱姆们过去看看。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯嗯，跟着我们来吧，我这就带你过去姆。[l][cm][hide]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "我们有些问题想要请教……"
+}

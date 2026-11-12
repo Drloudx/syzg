@@ -1,0 +1,94 @@
+{
+  "script": "s_sp2_4_3",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，找到第一份黏液了，是粉色黏液姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，跟我身上的颜色一样呢姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来……不同颜色有什么区别吗？你们莫非是按照颜色分类吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那也不会，颜色只是我们的一个特征而已，各个史莱姆都还是有自己的性格，和颜色不完全相关姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过有时候，同一颜色的史莱姆确实在性格上有相似之处，就连黏液的味道也相似姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]味道也相似？这怎么说？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]比如说粉色史莱姆的性格都很可爱很温柔，味道很甜，就像公主殿下一样姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，是的，德莉最可爱了姆～[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]甜吗……我吃下你的黏液的时候怎么感觉到一阵苦味啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了，粉色黏液收集好了，我们去收集另一种颜色的黏液吧。[l][cm][hide]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（搜寻黏液。）"
+}

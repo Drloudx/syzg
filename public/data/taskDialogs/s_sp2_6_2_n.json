@@ -1,0 +1,38 @@
+{
+  "script": "s_sp2_6_2_n",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……药浆草还不够哦。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]目前来看，这片土地的肥力还不够，就算能种出作物也没法高产。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以现在的当务之急，还是提升土地的肥力，拜托你们了。[l][cm][hide]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "这是你要的药浆草。"
+}

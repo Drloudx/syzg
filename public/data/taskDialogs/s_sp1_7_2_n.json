@@ -1,0 +1,38 @@
+{
+  "script": "s_sp1_7_2_n",
+  "des": "蓝露草准备好了。",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？手上的蓝露草还不够呢。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]记好了，一共需要3株，太少的话没法吸引到它。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过在下不着急，看你们如何安排吧。[l][cm][hide]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

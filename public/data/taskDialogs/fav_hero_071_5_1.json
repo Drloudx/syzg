@@ -1,0 +1,353 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]感觉如何？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]这次招待比上次多了二十余道珍品，不知这些古早菜肴是否合你口味。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "如同仙珍！",
+            "tag": "tag_5"
+          },
+          {
+            "text": "不似人间！",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]呵呵，看来你还算喜欢，那余就安心了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]说回上次的事吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]时隔这么多年，居然在你手上看到古拉奥的杰作，余确实是大大的震惊了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]但给余最大震撼的，却不止是这幅画作本身。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那是什么？",
+            "tag": "tag_11"
+          },
+          {
+            "text": "你到底感受到了什么？",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]是时间、是命运，是一种宏大的存在扑面而来的感觉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]那么多杰作在战乱中毁坏，却又有作品能够历经劫波幸存下来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]这巨大的反差，让余感受到了一种强烈的宿命感，所以……余震恐了、害怕了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "害怕？",
+            "tag": "tag_15"
+          },
+          {
+            "text": "你这么伟大的人也会害怕吗？",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]呵呵……看来你对余有很大的误解啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]没错，余确实是魔法学的集大成者，也无愧于“古往今来最伟大法师”的自称。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]但是，余可从未说过，余是一位勇者，余也从来未曾自矜于自己的勇气。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]事实上，余是一个胆小鬼。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余害怕死亡、害怕战乱、害怕秩序崩塌、害怕余的基业毁坏、智慧不存……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这都是人之常情。",
+            "tag": "tag_21"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]确实是人之常情，余也并不认为这种恐惧有什么不妥。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]正是因为这种恐惧，余才会研究转化之法，才会将自己转化为血族。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]也是因为这种恐惧，余才会建造这座城堡，才会让自己沉眠，度过数百年的战乱岁月。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]但是，也正是因为这种软弱，余在那股宿命感面前害怕了、迷茫了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "害怕我大概明白……",
+            "tag": "tag_26"
+          },
+          {
+            "text": "但迷茫是……？",
+            "tag": "tag_26"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]呵……毕竟是经历了数百年的光阴，当一切物是人非，就算是余也无法保证，自己真的能够东山再起啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]面对一片空白的明天，谁又能够毫不怀疑呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但你现在好像已经没事了？",
+            "tag": "tag_29"
+          },
+          {
+            "text": "你现在已经不迷茫了吗？",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]怎么会，智慧生物的迷茫是永远存在的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]只不过，真正的智者懂得坚定信念，用逻辑和事实压过对不确定的怀疑。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "所以……",
+            "tag": "tag_32"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]所以余只是遍历了所有的信息，确定了余的规划没有问题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]在出现更多问题之前，余决定先做好眼前的事。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]一切等到城堡修缮完成。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "一切等到完成……",
+            "tag": "tag_36"
+          },
+          {
+            "text": "那完成之后呢？",
+            "tag": "tag_36"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]那时候，想必余就有更多底气与余裕去寻找新的方向。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]迷茫永远存在，而唯一战胜它的方法就是……永远向着新的目标，不断向前！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_071_5_1",
+  "des": "洛莉安好感5-战役"
+}

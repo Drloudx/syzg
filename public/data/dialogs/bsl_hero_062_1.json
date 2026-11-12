@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露比特",
+        "text": "[show]{myName}！露比特终于碰见你了的说！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比特",
+        "text": "[show]这个营地附近看起来有很多新鲜的食材的说，露比特的锅铲已经开始按捺不住了的说！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比特",
+        "text": "[show]虽然露比特是黑森林的大厨，但既然和你签订了契约，露比特以后也会在你的营地做饭的说。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比特",
+        "text": "[show]不过在那之前……给！这是露比特特意带来的见面礼的说！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比特",
+        "text": "[show]从契约签订之时，露比特就是你最得力的伙伴了的说，请多关照的说！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_062_1",
+  "des": "bsl_hero_062_1"
+}

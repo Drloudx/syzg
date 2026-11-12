@@ -1,0 +1,100 @@
+{
+  "des": "s_sp2_3_2",
+  "script": "s_sp2_3_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊！好像有德莉的信！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我看看……嗯……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]德莉说她想到了一个好办法，让我们赶紧去和她会合！[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "好办法？"
+          },
+          {
+            "tag": "tag_6",
+            "text": "什么办法？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呃……信上没有说，不过这个地点……就在求生者草原，离这里不太远！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么办？我们现在就过去吗？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "不能放着德莉一个人。"
+          },
+          {
+            "tag": "tag_9",
+            "text": "你不是说好要帮她的吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唔……也对！既然这样，那我们就赶快过去吧！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要是让德莉一个人遇到危险那可就不好了！[l][cm][hide]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "des": "s_sp2_2_12",
+  "script": "s_sp2_2_12",
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]送还——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南？",
+        "text": "[show]哦，这个光芒是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南？",
+        "text": "[show]NO！我不要回去！我还想和小可爱们一起交流更多心得，不——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]就连退场台词都那么碍眼……如果被真正的迦南看到，一定会成为磨灭不去的黑历史的吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]哈哈……虽然不知道来龙去脉……总之多谢你们，谢谢你们救了我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]不用谢，这些是我们应该做的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]不过这件事涉及到一些秘辛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]啊，是要保密对吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]放心吧，作为领班，我的嘴巴可是最严的了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]在驿站干了这么长时间，我可从来都没传过客人们的八卦哦？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没错没错，对于梅莉莉，我们可放心啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]那这边的事情就算是解决了呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "只剩下最后一个了。",
+            "tag": "tag_18"
+          },
+          {
+            "text": "接下来就是露库希安了。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]是啊……我自己的分身……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]希望这最后一个，也能够像前面两个那么顺利吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

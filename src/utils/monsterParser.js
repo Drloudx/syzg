@@ -530,7 +530,6 @@ export function extractSkillTriggerConditions(aiModel) {
         hpPercents: new Set(),
         attackCounts: new Set(),
         hitCounts: new Set(),
-        durations: new Set(),
         others: new Set()
       })
     }
@@ -582,12 +581,16 @@ export function extractSkillTriggerConditions(aiModel) {
           } else if (para.int_para1) {
             entry.hitCounts.add(`自身受到 ${para.int_para1} 次攻击后`)
           }
-        } else if (triType === 1) {
-          const sec = Number(para.float_para1 || 0)
-          if (sec > 0) entry.durations.add(`${sec}秒`)
         } else if (triType === 8) {
           entry.others.add('自身死亡时')
         }
+        /*
+         * `triType:1`（time，按时间间隔触发）**不在此展示**：
+         *   它是 AI 内部调度节拍，常与技能自身 CD 冲突——如 003 蛛丝拉取 `cd=15`，
+         *   但 AI 条件为 `time(12s) AND triType14 技能可用(noCd=true 无视CD)`，
+         *   实际按 ~12 秒放且无视冷却；把「每隔约12秒」与「冷却15秒」并列会让玩家看不懂。
+         * 故怪物图鉴只保留「冷却」+ 攻击次数/受击次数/血量/死亡等真·条件（方案 A）。
+         */
       })
     })
   })
@@ -605,9 +608,6 @@ export function extractSkillTriggerConditions(aiModel) {
     }
     if (data.hitCounts.size > 0) {
       parts.push([...data.hitCounts].join(' / '))
-    }
-    if (data.durations.size > 0 && data.hpPercents.size === 0 && data.attackCounts.size === 0) {
-      parts.push(`战斗持续 ${[...data.durations].join(' / ')} 后`)
     }
     if (data.others.size > 0) {
       parts.push([...data.others].join('，'))

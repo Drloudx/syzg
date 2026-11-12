@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "埃迪蒂",
+        "text": "[show]你好，{myName}，我是来自魔爪湖的治安队队长埃迪蒂，擅长剑术和管理……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "埃迪蒂",
+        "text": "[show]你说不用那么正经？好吧，考虑到我是第一次在营地里和你见面，所以我就打算正经一点……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "埃迪蒂",
+        "text": "[show]不过我还是得正经地夸赞一下，你的营地布局合理且颇具美观，这让我非常佩服。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "埃迪蒂",
+        "text": "[show]这个送给你，就当成是我给你的礼物吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "埃迪蒂",
+        "text": "[show]既然已经成为了彼此依靠的伙伴，我会守护你直至最后一刻。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_041_1",
+  "des": "bsl_hero_041_1"
+}

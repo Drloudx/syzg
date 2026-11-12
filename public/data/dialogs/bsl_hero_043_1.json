@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]呀吼，{myName}！好久不见想我了吗？不想也没关系。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]给，这是我专门为你准备的入伙礼，收好啦，这可是我精心挑选的好货哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]能和你这样有潜力的工匠绑定在一起，绝对是我阿娜洛洁这辈子做过最划算的买卖了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]以后咱们就是一条船上的合伙人了，有什么发财的机会可千万要带上我！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]对了，我这里正好有些好东西，你要看看不？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_043_1",
+  "des": "bsl_hero_043_1"
+}

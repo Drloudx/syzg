@@ -1,0 +1,335 @@
+{
+  "script": "fav_hero_036_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]你来了呀……抱歉，让你看到我这么狼狈的样子……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "你怎么站起来了？"
+          },
+          {
+            "tag": "tag_4",
+            "text": "不是说让你静养吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]静养也不是要在床上躺着呀！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]靠着长老们的魔法，我已经恢复得差不多了，只是身体还有点虚。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]要不是被长老们禁止，我现在都已经回去工作了呢！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "你居然还想着工作！"
+          },
+          {
+            "tag": "tag_8",
+            "text": "还是先顾好你自己吧！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]哈哈……我也知道自己有点钻牛角尖了，但是就是忍不住会担心啊……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]本来……新人教育的进度就有些不太理想，现在我有突然倒下……真的很对不住大家……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]都怪我太逞强了……明明知道自己已经接近极限，还是想着再稍微坚持一下……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]居然感情用事超越了理智，作为施法者来说，真是不合格啊……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "行了！之后有的是你反省的时候！"
+          },
+          {
+            "tag": "tag_13",
+            "text": "现在最重要的是好好休息！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]呵呵……我也没有在反省什么……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]只不过……看到你的脸之后，自然而然地就有很多话想要对你说。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]真不可思议……明明我们认识才没有多久，但我感觉……我好像已经非常依赖你了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]虽然和圣女大人有点不同，但你好像已经成为我的支柱了呢！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "如果真是支柱的话……"
+          },
+          {
+            "tag": "tag_18",
+            "text": "你就好好听我的话啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]哈哈……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "真是的……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "熟悉起来才发现……"
+          },
+          {
+            "tag": "tag_21",
+            "text": "你的性格其实也挺难搞的！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]这话圣女大人也说过，可能我的性格是有点执拗吧……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]不过我觉得，绝大多数时候，这都能算是优点。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "如果会把身体搞垮……"
+          },
+          {
+            "tag": "tag_24",
+            "text": "那就是十成十的缺点了！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]唔……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "唉……"
+          },
+          {
+            "tag": "tag_26",
+            "text": "真拿你没办法。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "既然你不想睡觉……"
+          },
+          {
+            "tag": "tag_27",
+            "text": "我带了些点心，你要来点吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]点心！这也是你做的吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "是我最近才学的蒸点。"
+          },
+          {
+            "tag": "tag_29",
+            "text": "特地用保温盒带来的！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]那我要吃！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]让我试试……（嚼嚼嚼）……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "味道怎么样？"
+          },
+          {
+            "tag": "tag_32",
+            "text": "感觉如何？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]好烫！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]保温效果也太好了！真是温暖得不行呢！[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "贝尔卡-大事不好了——！-进入战役"
+}

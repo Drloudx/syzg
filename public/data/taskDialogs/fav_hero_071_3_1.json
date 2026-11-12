@@ -1,0 +1,189 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]啊，客官，你终于来啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]这可是我们花了好久才给你找到的！快来验验货吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这是什么？",
+            "tag": "tag_4"
+          },
+          {
+            "text": "看上去像是画作？",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[cm][show]没错，就是画作哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]经过权威人士鉴定，这是一件“黄昏前”的杰作，完全符合你的要求哦！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "原来如此。",
+            "tag": "tag_7"
+          },
+          {
+            "text": "看来是没错。",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不过……",
+            "tag": "tag_8"
+          },
+          {
+            "text": "这画上画的什么？",
+            "tag": "tag_8"
+          },
+          {
+            "text": "为什么我看不太懂？",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[cm][show]这个嘛……每个时代有每个时代的审美啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]像是这个时代，大家都在为生存奋斗，审美就会着重于现实性。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]而在更加发达的年代，艺术界的审美反而会脱离现实，追求对于艺术本身的反叛、解构和延伸呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "虽然不是很懂……",
+            "tag": "tag_12"
+          },
+          {
+            "text": "总之这确实是一幅杰作对吧？",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[cm][show]没错哦，在它被画出来的年代，它就已经备受追捧了呢！这可是在画家去世前就名噪一时的作品哦！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那就没问题了。",
+            "tag": "tag_14"
+          },
+          {
+            "text": "这是尾款。",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[cm][show]好的，那么银货两讫！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "莓莓",
+        "text": "[show]感谢您的惠顾！下次还请继续关照莓莓的生意哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（既然是同时代的杰作……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（洛莉安应该会喜欢吧。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_071_3_1",
+  "des": "洛莉安好感3-战役"
+}

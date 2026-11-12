@@ -1,0 +1,49 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（天空乌云密布，貌似有下大雨的征兆，但是艾尔菲帕还没有来。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（莫非……她遇到了什么意外吗？）[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "（出去接艾尔菲帕吧……）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（抓起一把伞，离开营地去找艾尔菲帕。）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾尔菲帕-营地对话【在营地里等待……】",
+  "script": "fav_hero_045_4_0"
+}

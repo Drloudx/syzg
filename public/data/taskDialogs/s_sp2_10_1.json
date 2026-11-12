@@ -1,0 +1,126 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]什么东西？让我看看姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]呀！这……这不就是我的头冠吗？怎么会在你们手上姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]难道你们趁我不注意，把我的头冠拿走了？强烈谴责姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]在你大喊大叫之前，要不要先摸摸你头顶上的是什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]欸？原来头冠还戴在我头上姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]自己看清楚，我们可对你头上那顶叉子帽没兴趣。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]我……我的头冠才不是什么叉子帽姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]不过，你手上这个头冠到底是从哪儿来的？和我头上的有些区别，却又像是同出一脉姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]确实很像，不过上面没有叉子……莫非这是你以前多造出来的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]不知道。当年我这顶头冠是库库姆做的姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]要不去问问库库姆？啊……它正往这边看呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]公主殿下，您把以前那顶帽子找回来了姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]正好啊，库库姆，我也想问你这顶帽子从哪儿来的。你说“以前那顶帽子”……是什么意思姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]原来公主殿下还不知道这件事。请往这边来些，我仔细告诉你们姆。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp2_10_1",
+  "des": "德莉，你看看这顶帽子……"
+}

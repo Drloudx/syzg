@@ -1,0 +1,209 @@
+{
+  "script": "s_sp1_5_3_y",
+  "des": "烤肉来了！",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……本宫隔着老远就闻到香味了，我这就叫托利斯过来。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]托利斯，果香烤肉来了。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，我这就过来——！[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎呀，这东西看起来好香，那些蝙蝠肯定喜欢。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来……你不是幽灵吗？你们要怎么吃东西啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]幽灵有幽灵的吃法，我可以让你看看我们平时是怎么进食的。[l]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（将1串果香烤肉交给托利斯。）",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唉，肉串直接穿过你身体了，原来你还能把肉串直接放进你嘴巴里啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯嗯……味道果然不错，你的厨艺已经可以称之为顶级了。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]肉串在消失……啊，连竹签也消失掉了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吃完了，我可以给满分！[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然食物对我们幽灵来说不是必需品，但我们也可以吃东西的，只是吃的会比较少而已。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我等会就会根据你给的菜谱，按你刚刚那串烤肉味标准，做出一串更好吃的果香烤肉。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在那之前……我们那边的菜也做好了，过来尝尝吧。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！那些餐车上的都是为我们做的吗？有烤鸡烤土豆，还有红果果汁！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，都是你们的，如果还不够的话我们可以免费给你们加餐哦。[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还有这是你们的报酬，拿好后就好好享用[l][cm]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这样的话……我们就恭敬不如从命啦！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}快过来，我们一起解决这只烤鸡！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱！吱吱吱吱——！[l][cm]",
+        "charaName": "贝拉多娜的蝙蝠"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]笨蛋！身为希斯珀利亚家族的眷属，你要把最好的肉留给主人……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……你们嘴上都沾了油渍……看来你们都是一群对饮食感兴趣的冒险者啊。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这些香味也让本宫有些怀念呢……家乡的烤肉也是这种味道吧。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……希望这餐食能让你们更好享受城堡的每一天。[l][cm][hide]",
+        "charaName": "厨师托利斯"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

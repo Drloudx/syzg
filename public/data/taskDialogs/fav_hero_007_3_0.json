@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]是吗？可能是难得碰到了舞团成员整整齐齐练习的缘故，不需要我操费更多的心思～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]所有的古卷都在房间里整理好了，让我们快点开始吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "拉碧丝-你今天看起来很开心。",
+  "script": "fav_hero_007_3_0"
+}

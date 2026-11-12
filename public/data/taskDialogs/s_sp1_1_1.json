@@ -1,0 +1,179 @@
+{
+  "des": "",
+  "script": "s_sp1_1_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这些魔物是？[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是角布林啦！在求生者草原和秋日荒野都还蛮常见的。[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "这些魔物从弱到强都有。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "这些家伙用什么武器的都有。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]因为是群居，所以具备完整生态吗……[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这类亚人种的魔物，在古代帝国时期还不存在，嗯……仔细一看，这些家伙似乎都不是自然演化的结果呢……[l]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "不是自然演化的结果？"
+          },
+          {
+            "tag": "tag_8",
+            "text": "就是说这些家伙都是人造的吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]人造……咦，是这样吗！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说是人造可能有些不太妥当，毕竟这类生物技术多半都是来自于恶魔族。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]生物改造、生物融合、奇美拉……魔族在制造生物兵器方面有着超绝的技术和天赋。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……虽然很多时候她们都会因为造出来太厉害的生物而受到反噬就是了。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么厉害吗？那天使族呢？能和恶魔打天地战争打得那么激烈，天使族又擅长什么啊？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]和擅长生物改造的恶魔族相比，天使族的技术反而是在智械构装的领域登峰造极呢。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]根据本宫的观察，现在大陆上到处游荡的那些构装体，也就是通称为“格莉姆”的魔物，应该就是她们的手笔。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]按照她们的习惯，在这些常规个体之外，应该还建造了不少大尺寸的决战兵器才对。[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？什么？那些硬得要死的石头疙瘩里面还有大块头？那也太恶心了吧？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "我说……那些角布林好像等不及了？"
+          },
+          {
+            "tag": "tag_18",
+            "text": "我们能不能先把任务完成再聊啊？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那就让本宫先上去承受攻击，等它们全都出手过一次之后……[l][cm]",
+        "charaName": "斯卡莉安"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就由米托拉小姐去把它们秒杀啦～！[l][cm][hide]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ]
+}

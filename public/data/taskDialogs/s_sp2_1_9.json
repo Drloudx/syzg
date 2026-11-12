@@ -1,0 +1,357 @@
+{
+  "script": "s_sp2_1_9",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]多谢你们。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个时间跑到魔爪湖来，你们是有什么事吗？[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]事情是这样的……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]几分钟后——[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来是这样，从庇护所回来的魔物，想要通过我多认识几个有智慧的魔物同胞吗……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的，你能为我引荐一下吗？[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可以是可以，但结果恐怕并不能让你如意。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你的意思是？[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我想我大概明白你的意思。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你应该是想要通过我，找到一个“隐藏在人类社会之外的魔物圈子”对吧？[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错，你真是明察秋毫。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这不算什么明察秋毫。只不过，在我“苏醒”过来之后，我也曾经有过想要寻找同类的时期。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是吗……听你的意思，结果好像并不乐观？[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]从结论来说，现在在“深渊”里活跃的智慧魔物，应该也有几十号人。但这个数量，还完全到不了形成“圈子”或者“社会”的程度。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我从雷鸟的骸骨上“苏醒”之后，这么多年也就只认识了其中的三五人。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来这么稀少吗……这些同胞，在这里过得怎么样呢？[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这倒是不用担心。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我没有去过外界，不知道外面是什么样的，但在这个“深渊”里，智慧魔物其实过得都还不错。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？真的吗？[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是真的。“深渊”独特的环境和风俗，让这里的人们并不在意人类和外族的区分，有魔物血统的魔人也堂而皇之地和一般人混居在一起。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]智慧魔物只要声称自己是血脉比较浓的魔人，一般人也就不会特地去寻根究底了。加上大家普遍拥有超乎常人的力量……[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]于是就很方便地融入到了人类社会之中吗……这倒是个未曾设想过的状况。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过，听到这里的同胞们过得不错，我就安心了。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谢谢你的回答。既然大家都有各自的生活，那我就不去上门叨扰了。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]也行。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一切都看你的决定。如果你想要上门拜访，至少我是很欢迎的。[l][cm]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，有空我一定会上门作客。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我现在心情有些乱，这个约定就留待日后履行吧。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，那就这么说定了。[l][cm][hide]",
+        "charaName": "艾尔菲帕"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]…………[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]菲娜……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]米托拉，我没事的。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]多亏了你们，这次调查的最后才有这番意外之喜。[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]菲娜……你是准备回去桃源之森了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]或许我还会到深渊之外看看吧……不过，该做的事情都做了，好像什么时候回去也都可以。[l]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "既然如此……",
+            "tag": "tag_40"
+          },
+          {
+            "text": "要不要来我们营地坐坐呢？",
+            "tag": "tag_40"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]你们的营地？[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对呀，我们还没好好招待过你呢！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]来嘛来嘛！就当时回去之前留个纪念嘛！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们两位，还真是热情啊！[l][cm]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然你们都说到这个地步了，那我也就只能却之不恭了。[l][cm][hide]",
+        "charaName": "菲娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "s_sp2_1_9"
+}

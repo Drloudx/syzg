@@ -1,0 +1,123 @@
+{
+  "AccelerateMainland": {
+    "ExclusiveAnycastIP": {
+      "IsAssociatedToThisZone": false,
+      "Switch": "off"
+    },
+    "Switch": "off"
+  },
+  "Area": "overseas",
+  "CacheConfig": {
+    "Cache": {
+      "CacheTime": 2592000,
+      "Switch": "off"
+    },
+    "FollowOrigin": {
+      "DefaultCache": "on",
+      "DefaultCacheStrategy": "on",
+      "DefaultCacheTime": 0,
+      "Switch": "on"
+    },
+    "NoCache": {
+      "Switch": "off"
+    }
+  },
+  "CacheKey": {
+    "FullUrlCache": "on",
+    "IgnoreCase": "on",
+    "QueryString": {
+      "Action": "includeCustom",
+      "Switch": "off",
+      "Value": []
+    }
+  },
+  "CachePrefresh": {
+    "Percent": 90,
+    "Switch": "on"
+  },
+  "ClientIpCountry": {
+    "HeaderName": "",
+    "Switch": "off"
+  },
+  "ClientIpHeader": {
+    "HeaderName": "",
+    "Switch": "off"
+  },
+  "Compression": {
+    "Algorithms": [
+      "brotli",
+      "gzip"
+    ],
+    "Switch": "on"
+  },
+  "ForceRedirect": {
+    "RedirectStatusCode": 301,
+    "Switch": "on"
+  },
+  "Grpc": {
+    "Switch": "off"
+  },
+  "Https": {
+    "ApplyType": "none",
+    "CertInfo": [],
+    "CipherSuite": "loose-v2023",
+    "Hsts": {
+      "IncludeSubDomains": "off",
+      "MaxAge": 0,
+      "Preload": "off",
+      "Switch": "off"
+    },
+    "Http2": "on",
+    "OcspStapling": "on",
+    "Switch": "off",
+    "TlsVersion": [
+      "TLSv1.2",
+      "TLSv1.3"
+    ]
+  },
+  "ImageOptimize": {
+    "Switch": "off"
+  },
+  "Ipv6": {
+    "Switch": "on"
+  },
+  "JITVideoProcess": {
+    "Switch": "off"
+  },
+  "MaxAge": {
+    "FollowOrigin": "on",
+    "MaxAgeTime": 604800
+  },
+  "NetworkErrorLogging": {
+    "Switch": "on"
+  },
+  "OfflineCache": {
+    "Switch": "on"
+  },
+  "Origin": {
+    "OriginPullProtocol": "follow"
+  },
+  "PostMaxSize": {
+    "MaxSize": 838860800,
+    "Switch": "on"
+  },
+  "Quic": {
+    "Switch": "off"
+  },
+  "SmartRouting": {
+    "Switch": "off"
+  },
+  "StandardDebug": {
+    "AllowClientIPList": [],
+    "ExpireTime": "1970-01-01T00:00:00Z",
+    "Switch": "off"
+  },
+  "UpstreamHttp2": {
+    "Switch": "on"
+  },
+  "WebSocket": {
+    "Switch": "off",
+    "Timeout": 30
+  },
+  "ZoneName": "syzgwiki.top"
+}

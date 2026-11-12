@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]嘿！看这边看这边，阿迪拉给你准备了宝贝～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]这个给你！这是阿迪拉用整整一个月的契约费买下来的宝石，好看吧！送给你了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]嘿嘿，哈比都喜欢闪闪发光的东西，阿迪拉放在手里就能玩一下午。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]如今阿迪拉把这么宝贵的东西送给你，难道你就没什么表示吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]哇！你、你这家伙，怎么双手双脚都舞起来了？阿迪拉只是……阿迪拉只是送一件礼物给你，用不着这么激动吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]你、你说很感动？为了好好把这份感激传达给阿迪拉？行、行吧！既然你喜欢，那就随便你了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_047_07",
+  "des": "阿迪拉-亲密1"
+}

@@ -1,0 +1,714 @@
+{
+  "script": "sp_1_1_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……该从哪里开始说好呢……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……很重要的事情要找两位商量！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有事情……找我们……？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等，你怎么用词这么低三下四的了？这还是我们的大贵族，女伯爵贝拉多娜小姐吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]噢——我知道了，你该不会又要拉我们去当什么下仆给你充场面吧？我才不要呢！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不会不会！那种事情有一次就够了！重点不是那个啦！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐找你们，真的是有很重要的事！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐想请你们帮忙，一起去探索魔爪湖畔的[color=ffb64d]神秘古堡[colorEnd]！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]神秘……古堡？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我怎么不记得那里有什么神秘古堡？魔爪湖我们可是走遍了，要是有什么神秘古堡，我们不可能不知道啊！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，两位在魔爪湖的冒险，本小姐也听说了，居然短短几天就解决了湖区的异变，真是大显神通！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你对湖区很熟悉，本小姐完全相信。但这个古堡，可不是一般的古堡！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个古堡……是最近这几天，才“突然冒出来”的！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜喵喵？！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你、你在说什么喵？！突然冒出来……那不就是……有鬼！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼，听起来很像鬼故事吧！事实上那地方也的确挺像那种闹鬼城堡什么的来着……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐这几天都在打探它的情报。听说啊，在那座古堡出现以后，有不少契约者、佣兵，甚至荒野客都试着想要去那里寻宝。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但他们连院墙都没见到，就被周围的魔物赶走了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听上去就是个挺麻烦的地方啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那，你找我们去这么个危险的的地方是准备干什么？这个闹鬼的古堡是有什么特殊之处吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说出来你们可别吓一跳——那些人告诉本小姐，他们发现[color=f1401c]吸血鬼[colorEnd]的踪迹了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吸、吸血鬼？！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "是“那个”吸血鬼吗？",
+            "tag": "tag_26"
+          },
+          {
+            "text": "吸血鬼居然不是传说吗？",
+            "tag": "tag_26"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是的，就是那个！传说中的吸血鬼，卑鄙、肮脏、残忍、狡猾的……怪物！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……听你这口气，你和吸血鬼有过节？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼！那过节可大了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐一直都没和你们说过……其实，希斯珀利亚之所以会没落……都是因为可恨的吸血鬼！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么什么？这和吸血鬼有什么关系？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "难道说……",
+            "tag": "tag_32"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是的……就是你猜的那样……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐永远都忘不了那一天。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]十一年前的那时候……本小姐不过是一个分家的小女儿，跟着父母一起住在城堡附近的镇上……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]事情发生的那一天，本小姐跟着母亲大人一起到城堡去探亲——[l]哈哈……其实就是去要钱啦……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咳咳！总之，在走进城堡的那一刻，出现在我们眼前的……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是一片血海。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉——？！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可、可你怎么确定是[color=f1401c]吸血鬼[colorEnd]干的呢？也许有别的人、别的魔物也拥有这种……力量？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐知道。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐之前说过——我们希斯珀利亚确实是一个有着神秘血统和强大力量的家族，不然也不可能自封为爵，统领一方——[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么什么？你们那个爵位是自封的？那、那不就是所谓的“土皇帝”了嘛！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]重点是那里吗！[l]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这么说起来……",
+            "tag": "tag_45"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "卡露蒂亚有资格册封贵族的……",
+            "tag": "tag_81"
+          },
+          {
+            "text": "好像就只有克里斯汀了。",
+            "tag": "tag_81"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是嘛！又不是所有地方都爱搞人类那套啰里八嗦的东西！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不、不对，本小姐也没说我们希斯珀利亚就爱搞这套了——哎唷！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]——好好好，我知道了，总之“土皇帝”也有自己的难处，对吧！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那接下来呢？你是怎么知道是吸血鬼干的？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔～！本小姐刚准备说的，这不是被你岔过去了吗！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然很难启齿……但我们希斯珀利亚家族……是血族的末裔。也就是说，本小姐的体内，也有着吸血鬼的血脉。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么！吸血鬼的血脉……！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么一说……你确实能够使唤蝙蝠，还姑且算是会一手鲜血剑法……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱～！[l][cm]",
+        "charaName": "小蝙蝠"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以本小姐知道。除了吸血鬼……没有任何人，任何魔物，能制造那样的景象。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐的亲眷，城堡中的家仆，无一例外倒在魔力制造的鲜血之海中，只剩枯槁的皮骨。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐百分之一万确定，毁灭本小姐家族的凶手……就是一名吸血鬼。而且……它可能无比强大。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那这么一来……你家的变故，岂不是同族相残？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我不知道。但至少那个凶手并没有把我们当成同族。[l]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "看来你对那座古堡的兴趣……",
+            "tag": "tag_61"
+          },
+          {
+            "text": "不止是寻宝了。",
+            "tag": "tag_61"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐……是为了报仇。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那一晚……本小姐的家族，本小姐的亲人，本小姐的归宿……全都在一瞬间失去了。好笑的是，本小姐连理由都不知道。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在深渊流浪这么多年，本小姐也在追查那个吸血鬼的下落。但本小姐也知道，要向那么危险的家伙报仇，肯定也没那么容易……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但即使是这样……本小姐也要查下去。至少……本小姐要知道“理由”。不然，就算本小姐复兴了家族，也没法就这么释怀。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然现在出现了“吸血鬼”的情报……本小姐一定要去亲眼见见！[l]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "贝拉多娜……",
+            "tag": "tag_68"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]思来想去，认识的人里能够足够强大的，也只有身为英雄的你们了……[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们愿意帮帮本小姐，带本小姐去那座古堡看看吗？本小姐不会让你们吃亏，肯定会支付契约金的！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个，我们肯定会帮忙啦！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我们是伙伴嘛！",
+            "tag": "tag_82"
+          },
+          {
+            "text": "我们肯定会搭把手的！",
+            "tag": "tag_82"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错没错，就是这样！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然，为了避免破坏行情，我们肯定也不能给你免费。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯——！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谢谢，谢谢！太感谢两位了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有了你们的帮助……也许希斯珀利亚家族的血债，终于可以讨回来了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱——！吱吱——！[l]",
+        "charaName": "小蝙蝠"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这也说不好。",
+            "tag": "tag_83"
+          },
+          {
+            "text": "但至少有个好的开始。",
+            "tag": "tag_83"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错！这次的古堡探险，就交给我们吧！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]米托拉大人一定会让邪恶的吸血鬼好好了解一下，正义的力量有多么可怕！走，{myName}，贝拉多娜，我们出发！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "与营地的贝拉多娜对话【怎么了，贝拉多娜小姐？】"
+}

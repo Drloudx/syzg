@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]呀吼，{myName}，来看看这些！都是我从各地收集过来的，都是秋日荒野搞不到的好货！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]这些药草可以卖到驿站，这些干咸鱼可以卖到风车平野，这些果饮可以卖到黑铁煅炉……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]唔，这些药水……就捐给旧日修行所吧。他们那边收留了很多孤儿来着。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]什么叫我“居然”这么大方！我一直都是那么大方好吧！[r]有时候我一路旅行都是一路送东西，一趟下来甚至还亏钱呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]你问我为什么要送？嗯……财富本来不是我最终的目标，做商旅只是为了能继续维持旅行制药的生活罢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]毕竟钱不是万能的，没钱是万万不能的嘛。每走万里路，就要花一筐钱啊。不过嘛……我也不会跟钱过不去，既然能赚更多钱，那我何乐而不为呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_043_06",
+  "des": "阿娜洛洁-熟识3"
+}

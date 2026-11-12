@@ -100,11 +100,16 @@ fix(auth): 🔴 线上事故：验证码邮件一封都发不出去 —— 我�
 - `node scripts/dev/sync-raw.mjs` 默认只预览；`--apply` 补缺，`--apply --replace` 才更新
   已有完整原表及 `hero/`、`pet/`、`equip/`、`task/` 兼容别名。副本提取表与
   `monsterTowerUsage.json` 等派生输入不会被覆盖。
+  **2026-11-11 起这 4 张派生表已迁到 `raw/.derived/`**，`raw/` 只放原表（顶层每个 json 都能在配置表找到同名文件，有单测守）。
 - 源目录含无效 JSON 时预览会列出全部问题，实际同步默认拒绝；只有人工确认这些表可排除后
   才加 `--skip-invalid`。已有原表与源版本不同的组不会只补一个新版本别名，需先复核 `--replace` 计划。
 - `mon.json` 使用完整游戏原表，`cirtDam` 字段与头像引用只在预处理内存中归一化，**不改写原文件**；
   `battle.json`、`room.json` 同样不能被任务专用裁剪表覆盖。
 - `node scripts/dev/check-task-data.mjs` 默认只读检查；`--apply` 才补缺原表、剧情并写入索引与报告。
+  **2026-11-11 修复**：族遍历原只从 `base_0` 起步，无 `_0` 的族永不刷新；现按源目录实际帧号遍历。
+- **派生数据已自动化**：`npm run data:prepare`（预览 `data:prepare:check`）一条命令重建
+  4 张派生 raw 表（`rebuild-derived-raw.mjs`）、`taskDialogs`（`check-task-data`）、
+  `dialogs`（`sync-dialogs.mjs`）；`npm run data:build` 已内置，无需手工记得跑。
 - Web 与 Android 构建均保留运行时数据和图片。旧 `clean_dist.bat` 的删除策略已停用，
   **禁止删除 `dist/data`、`dist/images` 后再同步 Android**。
 

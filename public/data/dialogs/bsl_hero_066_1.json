@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]呀哈哈！伙伴，终于碰见你了！这营地的风水一看就是招财进宝、财源广进的绝佳宝地啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]虽然我平时忙着温泉村的生意，但对于你这位带我发财的英雄伙伴，我可是非常看重的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]你问我为什么会知道你要带我发财，这就是我多年从商的直觉了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]等等……找到了，这是我奥格大探险家为你准备的好东西，送你啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]只要我们联手，不管是潜藏的秘宝还是流通的财富，统统都会进到我们的口袋里！让我们一起赚大钱吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_066_1",
+  "des": "bsl_hero_066_1"
+}

@@ -1,54 +1,54 @@
 {
   "script": "s_0_3_1_y",
-  "des": "将 3 瓶法力药水原液交给芭杜尔。",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]法力药水原液的数量足够了……非常感谢你们。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]法力药水原液的数量足够了……非常感谢你们。[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]请收下，这是给你们的报酬。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]请收下，这是约定好的报酬。[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]只有强大的力量才能守护森林，甜美的言语是无法击退入侵者的。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]只有强大的力量才能守护森林，甜美的言语是无法击退入侵者的。[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]这也是我制作毒药、研究制药学的原因。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]这也是我如今制作毒药、研究制药学的原因。[l][cm]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "隐者芭杜尔",
-        "text": "[show]你们也一定有想守护的事物吧，我相信你们能理解的……[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[show]你们也一定有想守护的事物吧，我相信你们能理解的……[l][cm][hide]",
+        "charaName": "隐者芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
-  ]
+  ],
+  "des": "将 3 瓶法力药水原液交给芭杜尔。"
 }

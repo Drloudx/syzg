@@ -1,35 +1,36 @@
 {
+  "des": "寻找生气走开的迦南",
   "script": "m_1_7_3",
   "exps": [
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[cm][show]咦，{myName}……[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]啊，找到了，找到了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]米托拉……还有茜塔？[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]不好意思，我刚才冲动过头了。没吓到你们吧？[l]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
@@ -46,321 +47,321 @@
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[cm][show]你们……[l]真是敏锐啊……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]没错……曾经的我也和那几位父母一样。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]明明应该用生命保护的宝物，最后却因为自己的无能而永远失去了。[l]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[cm][show]那种痛苦……真的刻骨铭心。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]我曾经以为一辈子也无法忘记，但久而久之，[r]就连那种痛苦也渐渐变钝，变得麻木起来……[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]只是偶尔被勾起那段回忆的时候，我才能感觉到，[r]当时的悲伤和愤怒并没有消失，依然冷冷地在心底燃烧着……[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]怎么，不来嘲笑我一下吗？[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]所谓“完美的明星契约者”，其实也不过是因为自己的无能迁怒他人的家伙罢了……[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "茜塔",
+        "nameSide": "left",
         "text": "[show]我们不会嘲笑你的，前辈。[l][cm]",
-        "nameSide": "left"
+        "charaName": "茜塔"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "茜塔",
+        "nameSide": "left",
         "text": "[show]我觉得那不是什么迁怒，而是因为你在意那些孩子们，不想让那个同样的悲剧重演。[l][cm]",
-        "nameSide": "left"
+        "charaName": "茜塔"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]我可不是那么高尚的人啊……[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]谢谢你们愿意过来陪我，我觉得好多了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]还有一件事……[l]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]之前在蛇腹矿坑，你们能来帮忙，[color=ffb64d]我真的很高兴[colorEnd]。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]哼哼，知道我们的好了吧！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]是啊，作为同伴，你们真的是棒极了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]虽然总被称为完美的契约者，但人终究不可能完美，我也是有自己做不来的事。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]而且，就算能处理得来，偶尔也是希望有人能来帮忙啊……[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]那就把你的想法告诉其他契约者啊。你这么有名，肯定会有人来帮你的。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]呵……那还是算了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]毕竟我还要维持“[color=ffb64d]明星[colorEnd]”的形象，有些事情终究还是不足为外人道。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]所以你到底是要哪样啊？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]大概……我是两边都要，但又不想大声宣扬吧……[r]这样看来，我骨子里或许是个贪婪而别扭的家伙。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]茜塔，感觉到幻灭了吗？[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "茜塔",
+        "nameSide": "left",
         "text": "[show]不会。相比起“完美的契约者”，现在的迦南前辈，更像我心目中真正理想的样子了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "茜塔"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]是吗……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "铁匠",
+        "nameSide": "left",
         "text": "[show]哦，在这了在这了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "铁匠"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你是煅炉的铁匠？怎么了？又出事了吗？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "铁匠",
+        "nameSide": "left",
         "text": "[show]啊，也没出什么事，我只是个传话的。[l][cm]",
-        "nameSide": "left"
+        "charaName": "铁匠"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "铁匠",
+        "nameSide": "left",
         "text": "[show]{myName}，还有米托拉小姐，武具匠瑟尔妲让我来找你们，[r]说是想要为之前的事情道歉，希望你们过去一趟。[l][cm]",
-        "nameSide": "left"
+        "charaName": "铁匠"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]哈？道歉居然不是亲自过来，还要我们过去？这合理吗？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "铁匠",
+        "nameSide": "left",
         "text": "[show]呃……我也觉得有些不合理，但她坚持要你们过去。我觉得……她大概有什么重要的事情要和你们说。那我话传到了，先走了啊。[l][cm]",
-        "nameSide": "left"
+        "charaName": "铁匠"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]重要的事情……那家伙在搞什么啊！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]人家都这么说了，你们就放心过去吧。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]好啦好啦，我知道啦！希望她真的有重要的事情，不是在浪费我们的时间吧。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]那个，米托拉。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]嗯？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]今天的米托拉，真的很帅哦。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]唉？唉唉唉？[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -381,36 +382,202 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show][cm]好、好了啦，你们这些家伙！再拿我开玩笑我咬你们！[r]走啦，{myName}！[l][cm][hide]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show][cm]好、好了啦，你们这些家伙！再拿我开玩笑我咬你们！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]噗。两位感情真好呢。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "茜塔",
-        "text": "[show]我赔迦南前辈在这里坐会儿，你们先去忙吧。很快，我们就可以开始下一轮行动了。[l][cm][hide]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]我们也回去煅炉吧。要不了多久，前往修行所的通路就能打开，很快就能展开行动了。[l][cm]",
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
+        "text": "[show]（扑棱棱棱——）[l][cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦，一只大鸟？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那是驿站的“信鹰”。飞到迦南前辈的臂膀上去了……？[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这小家伙是来找我的呀。嗯，有封信。让我看看……[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么了？突然这么严肃？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]菲尔德蕾那边要求支援。我和三成的主力契约者都得回去一趟。茜塔，你也要一起。[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦——又是这样？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么回事？驿站附近的异变不是都镇压住了吗？[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]旅店地窖的地下的蜘蛛群又发生了巨大的骚动。他们判断，这和之前驿站西方的一场地震有关。[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……地震？难道说的是……那些家伙之前在蛇腹矿坑里引爆的炸弹吗……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]八成就是它了。震波辐射到了地下空间的深处，似乎惊醒了不得了的东西。[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但，如果迦南前辈要带着三成主力回驿站帮忙……这边打通道路的进度肯定要延后许多吧。[l][cm]",
+        "charaName": "茜塔"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔，明明都要到修行所了……{myName}，你怎么想？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_138",
+            "text": "光是等着也没什么意义。"
+          },
+          {
+            "tag": "tag_138",
+            "text": "我们也和迦南一起去吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿，也只好这样了！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}……米托拉……[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然很不情愿，在这里干等也没有用。如果能早点解放你们的战力，我们就能早点继续往修行所前进啦！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这当然好，两位也是主力中的主力，菲尔一定会非常感谢你们的支援。[l][cm]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那就这么决定了。我们先回驿站看看情况吧！[l][cm][hide]",
+        "charaName": "迦南"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": "寻找生气走开的迦南"
+  ]
 }

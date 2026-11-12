@@ -1,0 +1,212 @@
+{
+  "script": "s_sp1_1_6",
+  "des": "",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]哈……哈……哈……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]好、好强！这也太厉害了吧！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]你这家伙，之前在古堡的时候是不是完全没认真啊！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]毕竟不过是郊游而已，又没有危险，不是吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]郊、郊游？！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]是啊，因为城主阁下，从头到尾都没显露出任何敌意，不是吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]而只要她没有动手的意愿，途中遇到的其它魔物，对你们来说都不过是可以随意踢开的绊脚石。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这里面也包括了本宫制作的加尔戈萝。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]唔……谢谢你的称赞……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]但因为你之前划水的行为，我真的很难高兴得起来。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]因为生前和一些武者有过来往，本宫很理解你这种想法。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]所以本宫不是趁着这次机会，向你们展示了本宫的全力么？你还有什么不满？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]我不满的就是你打外人的时候划水，打队友的时候才拿出真功夫啦！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]真是的，也不知道谁一天天自称魔法使，结果一打起来，速度快得跟鬼一样！[l]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我证明她说的是真的。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "我差点就要跟不上了。",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]就是说啊！说让我们全力出手，结果因为你速度太快，{myName}那边不是一直在被动防守吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这也是情有可原的。毕竟速度和出力也是综合性能的一部分。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]总之你怎么样都有道理啦！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这次的测试，本宫也消费了很多力气。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]正好约定了要和你们讲古……本宫觉得，我们可以先回去古堡那边，稍微休息一会再说，你们觉得呢？[l]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我觉得挺好的。",
+            "tag": "tag_23"
+          },
+          {
+            "text": "忙了一天我也饿了。",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]这么一说，确实肚子在咕咕叫了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]那就这样吧！回去吃饭，然后再好好地增进了解吧！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    }
+  ]
+}

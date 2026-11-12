@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]哦？你问阿迪拉营地里的那些羽毛是哪来的？那当然是从阿迪拉身上掉下来的啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]哈比掉毛不是很正常吗？这个地处偏僻的小营地，能得到阿迪拉羽毛的滋润难道不是一件幸运的事吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]你说要阿迪拉打扫干净？哈？你这个小小的杂鱼工匠，竟敢命令哈比之王，别以为你和阿迪拉关系好就……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]呜呜……别……别捏阿迪拉的脸啦！去收拾、去收拾！阿迪拉去收拾那些羽毛就是了啦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]可恶……这个仇阿迪拉记下了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_047_05",
+  "des": "阿迪拉-熟识2"
+}

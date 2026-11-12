@@ -1,0 +1,334 @@
+{
+  "des": "我们这就开工吧！",
+  "script": "s_sp1_8_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们搜了一阵子才搜出来的，祖莉尔说就是这风格，要我们立刻开始造吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]可以的，我也想见识一下工匠的能力，你真的可以用锤子快速打造一张床吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，那你可要看好了，{myName}的本事能惊掉你的下巴。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]我是幽灵，可没法把下巴吓掉，不如看看能不能把祖莉尔的嘴巴吓掉吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]去去去，别拿我寻开心，你们就拿这些木床的残骸，按照图纸上的样子打造一张床吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]记住洛莉安大人的要求，床不要太大，被褥不要太软。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（按照祖莉尔的要求，根据木床残骸和蓝图打造了一张新床。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]噢噢噢——！没错，我要的就是这种，洛莉安大人要的就是这种！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]太了不起了，你真让我大开眼界。要是我们城堡里有像你一样优秀的工匠，那能省一大笔钱……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那现在可以把洛莉安叫过来吧，问问她对这张床满不满意。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]好，稍等，我这就把洛莉安大人叫过来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]吱——！吱——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？它在叫什么啊？这声音虽然有些刺耳，但传不了多远吧，这能把洛莉安叫过来吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]这应该是一种特殊的音频，我们耳朵听不见，但有些人或者魔物是能听见的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]来了来了，这么快就把余想要的床造好了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]已经造好了，请洛莉安大人查收。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]嗯嗯……看起来挺不错的，是余喜欢的风格。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不知道躺上去的感觉是如何呢？嗯……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]好，比现在那张大软床舒服多了，今晚就在这张床上休息吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]干得不错，祖莉尔，伊比瓦，还有诸位契约者们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]能为洛莉安大人服务，是我的荣幸！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]把这张床搬到余的卧室去吧，祖莉尔。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]伊比瓦，给这几位契约者多谢报酬，不要太抠哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]好的，洛莉安大人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管祖莉尔",
+        "text": "[show]遵命，洛莉安大人！小的们，过来干活了！吱——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "蝙蝠工",
+        "text": "[show]吱吱！吱吱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇……十几只小蝙蝠把床抬走了，祖莉尔也跟着一起抬，看起来也太狂热了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗯……那家伙虽然很忠诚，但感觉脑子缺根筋……算了，本小姐还是不希望有这种眷属。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜的蝙蝠",
+        "text": "[show]吱吱！吱吱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]什么……什么叫本小姐还是喜欢你，比起真正强大的眷属，你还差得远呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]这是给你们的报酬，请收下吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿！合作愉快！看来你也不是祖莉尔说的那么吝啬嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]毕竟洛莉安大人开口了，我自然不能抠抠搜搜的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]不过说我吝啬，我其实只是花钱比较谨慎而已，毕竟不当家不知柴米贵，我是负责管钱的，祖莉尔是出计划干活的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]它脑袋缺根筋，自然会觉得我吝啬抠门，但我只是正常省钱花钱而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "副管伊比瓦",
+        "text": "[show]好啦，我去做自己的事了，诸位保重。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]呼……事情终于结束啦，我们去休息吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]今晚我要去睡一张软软的大床，要不……你在营地里再打造一张床怎么样？{myName}？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]我也要我也要！我要一张……赤血剑姬主题的大床！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]喂喂喂，一个个来，你不要插队哦。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "script": "fav_hero_069_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一，二，三……[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么样？听起来简单吧？我想主公一定能听懂的。[l]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "听起来还是挺简单的……",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……既然已经学会了，那我们就开始吧。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我先把身上的铠甲和武器都清理一下……稍等……[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，我们开始吧！[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（按照修瓦莉的指导，跟着修瓦莉的舞步做出动作。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]很棒哦！主公配合得很好，我也慢慢进入状态了。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，第一段舞步完成了，先休息一下。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]您问为什么要拿着武器跳舞？这是我们的特色舞蹈啦。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]蜜蜂卫兵持械站岗时，也会跳舞传递信息，久而久之就形成这样的舞蹈传统啦。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]每个工种的蜜蜂舞蹈都有所不同，不过各有优劣的……工蜂的舞太笨重，蜂王的舞太难学。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]最帅最霸气的舞蹈，当然还是我们卫兵的舞蹈啦，舞蹈大赛的冠军基本都是我们卫兵队。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我也拿过好几次哦，大家都叫我蜜蜂舞王呢，很厉害吧？[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]话不宜多，让我们开始第二段舞蹈吧，早点练完主公就能去休息了。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（修瓦莉加快速度，连续绕了几十个圈，最后回到原点。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，这一圈也完成了。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]刚刚我速度太快，希望没有绕晕您。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]让我再把武器擦擦……好了，让我们开始第三段舞蹈吧。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（修瓦莉的速度更快了，只能看见一阵阵残影飞过。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇——！[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（修瓦莉没控制住速度，两人直接撞上了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对……对不起！您……您没事吧！[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对不起，我让主公听我的安排，结果却把主公撞倒了……[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等，您手上有伤，我来帮您……[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（修瓦莉伸出舌头，舔舐手臂上的擦伤……）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "修瓦莉你这是……",
+            "tag": "tag_29"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]主公别害怕，我的唾液含有少量蜂蜜，能治好您的伤口。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么样？感觉舒服一点了吗？[l]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "感觉好多了。",
+            "tag": "tag_32"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那接下来您休息一下，让我一个人练吧。[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？您说可以陪着我练？可我刚刚才把您撞倒……[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然主公不计前嫌，那我再拒绝就不礼貌了……我们继续吧！[l][cm]",
+        "charaName": "修瓦莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（随后，和修瓦莉练了半天的时间……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "修瓦莉好感2-战役"
+}

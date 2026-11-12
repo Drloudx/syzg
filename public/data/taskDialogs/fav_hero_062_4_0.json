@@ -1,0 +1,84 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]露比特没事的说，但是现在情况不妙的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]营养剂一点效果都没有，但是身高差距已经只有0.45厘米的说！非常不妙的说！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "我明白了。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "我们这就去找专家问问。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]专家是指什么的说？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "当然是非常博学的学者。"
+          },
+          {
+            "tag": "tag_7",
+            "text": "放心，她肯定有办法的！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]太好了的说！看来露比特还有救的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]真是太感谢你的说！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "露比特-露比特，你还好吧？",
+  "script": "fav_hero_062_4_0"
+}

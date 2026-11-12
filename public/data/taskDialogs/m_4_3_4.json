@@ -1,235 +1,234 @@
 {
-  "script": "m_4_3_4",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]是你们啊，你们是来……？[l][cm]"
+        "text": "[show]是你们啊，你们是来……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]我们是来找你开通行文书的。不过……我看我们来得好像不是时候？[l][cm]"
+        "text": "[show]我们是来找你开通行文书的。不过……我看我们来得好像不是时候？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]没有什么不是时候，正好我已经准备结束这段谈话了。[l][cm]"
+        "text": "[show]没有什么不是时候，正好我已经准备结束这段谈话了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]姐姐！[l][cm]"
+        "text": "[show]姐姐！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]什么叫要结束这段对话！我们明明在说很重要的事，不要借着{myName}他们转移话题！[l][cm]"
+        "text": "[show]什么叫要结束这段对话！我们明明在说很重要的事，不要借着{myName}他们转移话题！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]如果我们再不采取行动的话，黑森林……[l]"
+        "text": "[show]如果我们再不采取行动的话，黑森林……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]马上就会毁灭了！[l][cm]"
+        "text": "[show]马上就会毁灭了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]诶？毁……毁灭！到底是怎么回事啊！[l][cm]"
+        "text": "[show]诶？毁……毁灭！到底是怎么回事啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]你还是在说这些话，看来离家这么多年，你是一点长进也没有啊。[l][cm]"
+        "text": "[show]你还是在说这些话，看来离家这么多年，你是一点长进也没有啊。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]难道你不知道，就是因为你从小就只会说这些危言耸听的东西，你才会被别人当成乌鸦嘴敬而远之的吗！[l][cm]"
+        "text": "[show]难道你不知道，就是因为你从小就只会说这些危言耸听的东西，你才会被别人当成乌鸦嘴敬而远之的吗！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]那……那些才不是危言耸听！我明明都“[color=ffb64d]看到了[colorEnd]”！而且你也知道，我所说的事情，最后不是都发生了吗……！[l][cm]"
+        "text": "[show]那……那些才不是危言耸听！我明明都“[color=ffb64d]看到了[colorEnd]”！而且你也知道，我所说的事情，最后不是都发生了吗……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]等等、等等！姐妹吵架就先停一下！刚才我好像听到了非常炸裂的单词……所以说黑森林的“毁灭”到底是怎么回事？[l][cm]"
+        "text": "[show]等等、等等！姐妹吵架就先停一下！刚才我好像听到了非常炸裂的单词……所以说黑森林的“毁灭”到底是怎么回事？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]哼……既然他们想问，那你就把你那些胡话再重复一次好了。[l][cm]"
+        "text": "[show]哼……既然他们想问，那你就把你那些胡话再重复一次好了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]这……我、我明白了。[l][cm]"
+        "text": "[show]这……我、我明白了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]事情要从我离开黑森林的时候说起。[l][cm]"
+        "text": "[show]事情要从我离开黑森林的时候说起。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]离家之后，我在深渊里流浪了两年，靠着给人治病和帮村民退治魔物勉强糊口。[l][cm]"
+        "text": "[show]离家之后，我在深渊里流浪了两年，靠着给人治病和帮村民退治魔物勉强糊口。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]直到三年前，我遇到了一个人……那是三十年前卸任离开的前任先知……罗姆洛敏。[l][cm]"
+        "text": "[show]直到三年前，我遇到了一个人……那是三十年前卸任离开的前任先知……罗姆洛敏。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]诶？等等！三十年前卸任的……前任先知？[l][cm]"
+        "text": "[show]诶？等等！三十年前卸任的……前任先知？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]所以你们这儿其实三十年都没有人继承先知的位置吗？[l][cm]"
+        "text": "[show]所以你们这儿其实三十年都没有人继承先知的位置吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]灵魂先知是指引整个部族方向的引领者，可不是什么人都能担当的。要继任灵魂先知之职，必须拥有与灵魂沟通的异能。[l][cm]"
+        "text": "[show]灵魂先知是指引整个部族方向的引领者，可不是什么人都能担当的。要继任灵魂先知之职，必须拥有与灵魂沟通的异能。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]能够在三十年内找到继任者，这个效率已经非常之高了。可惜……[l][cm]"
+        "text": "[show]能够在三十年内找到继任者，这个效率已经非常之高了。可惜……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]可惜继任者跑路了……是吧……？[l][cm]"
+        "text": "[show]可惜继任者跑路了……是吧……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]……[l][cm]"
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]啊，我不说了不说了，你继续往下说，那个前代先知怎么了？[l][cm]"
+        "text": "[show]啊，我不说了不说了，你继续往下说，那个前代先知怎么了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]嗯，我在偶然之下遇到了罗姆洛敏，然后在她的带领下，我加入了一个“组织”……准确地说，是一个“结社”……[l][cm]"
+        "text": "[show]嗯，我在偶然之下遇到了罗姆洛敏，然后在她的带领下，我加入了一个“组织”……准确地说，是一个“结社”……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]结社……？[l][cm]"
+        "text": "[show]结社……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]是的，结社。[l][cm]"
+        "text": "[show]是的，结社。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]因为我一直都只跟随罗姆洛敏进行一些研究工作，对于结社的全貌，我知道得并不太多……[l][cm]"
+        "text": "[show]因为我一直都只跟随罗姆洛敏进行一些研究工作，对于结社的全貌，我知道得并不太多……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]但是通过种种蛛丝马迹，我还是能够察觉到，他们正在进行着某个“大目标”。[l]"
+        "text": "[show]但是通过种种蛛丝马迹，我还是能够察觉到，他们正在进行着某个“大目标”。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -246,25 +245,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]不清楚。但从罗姆洛敏的研究课题来看，应该是和地脉有关……[l][cm]"
+        "text": "[cm][show]不清楚。但从罗姆洛敏的研究课题来看，应该是和地脉有关……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]和地脉有关——！[l][cm]"
+        "text": "[show]和地脉有关——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]{myName}，你觉不觉得，这个结社……我们好像在哪听说过……[l]"
+        "text": "[show]{myName}，你觉不觉得，这个结社……我们好像在哪听说过……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -281,17 +280,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]是、是……！[l]"
+        "text": "[show]是、是……！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -308,33 +307,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show][cm]成、成员……？[l]"
+        "text": "[show][cm]成、成员……？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]我、我想想……[l][cm]"
+        "text": "[show]我、我想想……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]除了罗姆洛敏之外，结社的其他人，我一个都没见过……不过我听说，罗姆洛敏应该就是结社的大干部之一……[l][cm]"
+        "text": "[show]除了罗姆洛敏之外，结社的其他人，我一个都没见过……不过我听说，罗姆洛敏应该就是结社的大干部之一……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]除此之外……我就只知道她还有一个上线，那个人应该就是结社的首领，罗姆洛敏叫他“[color=f1401c]导师[colorEnd]”……他的名字是……是……嗯……[l]"
+        "text": "[show]除此之外……我就只知道她还有一个上线，那个人应该就是结社的首领，罗姆洛敏叫他“[color=f1401c]导师[colorEnd]”……他的名字是……是……嗯……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -351,25 +350,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]对、对对！就是这个名字……[l]"
+        "text": "[cm][show]对、对对！就是这个名字……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]诶……？[l][cm]"
+        "text": "[show]诶……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show][color=f1401c]希拉尔德[colorEnd]！{myName}，那不是……！[l]"
+        "text": "[show][color=f1401c]希拉尔德[colorEnd]！{myName}，那不是……！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -390,17 +389,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[cm][show]（臭老头！你这家伙究竟在搅些什么……！为什么会在这里听到你的名字！）[l][cm]"
+        "charaName": "",
+        "text": "[cm][show]（臭老头！你这家伙究竟在搅些什么……！为什么会在这里听到你的名字！）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]你、你的脸色怎么突然这么可怕……！你们认识那个希拉尔德吗……？[l]"
+        "text": "[show]你、你的脸色怎么突然这么可怕……！你们认识那个希拉尔德吗……？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -421,305 +420,305 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]诶……？[l][cm]"
+        "text": "[cm][show]诶……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]就是就是，无关紧要的事情你就别问了，快点继续说那个罗姆洛敏，黑森林的毁灭，和她有关，是吗？[l][cm]"
+        "text": "[show]就是就是，无关紧要的事情你就别问了，快点继续说那个罗姆洛敏，黑森林的毁灭，和她有关，是吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]是、是的！[l]"
+        "text": "[show]是、是的！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]我“[color=ffb64d]看到了[colorEnd]”！[l][cm]"
+        "text": "[show]我“[color=ffb64d]看到了[colorEnd]”！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]罗姆洛敏正在进行某个“计划”！如果我们不能尽快阻止她的话……[l][cm]"
+        "text": "[show]罗姆洛敏正在进行某个“计划”！如果我们不能尽快阻止她的话……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]巨木将会倾颓，森林将会凋零，这里的住民将遭遇比大兽潮还要惨烈十倍的灾难……[l][cm]"
+        "text": "[show]巨木将会倾颓，森林将会凋零，这里的住民将遭遇比大兽潮还要惨烈十倍的灾难……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]不止生前饱受煎熬，就连长眠后也……不得安息……！[l][cm]"
+        "text": "[show]不止生前饱受煎熬，就连长眠后也……不得安息……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]姐姐！我们真的要行动起来了！必须马上派人调查，找到罗姆洛敏的所在……[l][cm]"
+        "text": "[show]姐姐！我们真的要行动起来了！必须马上派人调查，找到罗姆洛敏的所在……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]够了！[l][cm]"
+        "text": "[show]够了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]噫——！[l][cm]"
+        "text": "[show]噫——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]这个话题就到此为止！[l][cm]"
+        "text": "[show]这个话题就到此为止！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]艾薇杜尔，事到如今，你还是让我这么失望……[l][cm]"
+        "text": "[show]艾薇杜尔，事到如今，你还是让我这么失望……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]如果你还是只有这种程度的话……[l][cm]"
+        "text": "[show]如果你还是只有这种程度的话……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]那我只能说，幸好你当初选择了离家出走，没有真的成为继任先知！[l][cm]"
+        "text": "[show]那我只能说，幸好你当初选择了离家出走，没有真的成为继任先知！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]！[l][cm]"
+        "text": "[show]！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]灵魂先知是黑森林的引路人，而光是说些让人难过的话……这种事，是不能叫做指引的！[l][cm][hide]"
+        "text": "[show]灵魂先知是黑森林的引路人，而光是说些让人难过的话……这种事，是不能叫做指引的！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]哇——！哇——！芭杜尔～！我知道你很恼火，但话也不用说到这个份上吧！[l][cm]"
+        "text": "[show]哇——！哇——！芭杜尔～！我知道你很恼火，但话也不用说到这个份上吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]艾薇杜尔你别哭哦，你姐姐她不是有意要这么说的！[l][cm]"
+        "text": "[show]艾薇杜尔你别哭哦，你姐姐她不是有意要这么说的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]嘉莉缇。艾薇杜尔已经成年，别再娇惯她了！[l][cm]"
+        "text": "[show]嘉莉缇。艾薇杜尔已经成年，别再娇惯她了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]这……啊哈哈……[l][cm]"
+        "text": "[show]这……啊哈哈……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]唔……我是不知道你们姐妹之间到底是怎么回事，但艾薇杜尔说的那个结社明明很可疑啊！[l][cm]"
+        "text": "[show]唔……我是不知道你们姐妹之间到底是怎么回事，但艾薇杜尔说的那个结社明明很可疑啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]你们就这么放着不管，真的没事吗？[l][cm]"
+        "text": "[show]你们就这么放着不管，真的没事吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]罗姆洛敏……作为前代先知，她的实力的确不可小觑。[l][cm]"
+        "text": "[show]罗姆洛敏……作为前代先知，她的实力的确不可小觑。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]但是，在巨木的庇护和护林人的保卫下，即使是她也没有能力伤害这片森林！[l][cm]"
+        "text": "[show]但是，在巨木的庇护和护林人的保卫下，即使是她也没有能力伤害这片森林！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]可是……！[l][cm]"
+        "text": "[show]可是……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]没有什么可是！保护森林是护林人的工作，你就不要指手画脚了！[l][cm]"
+        "text": "[show]没有什么可是！保护森林是护林人的工作，你就不要指手画脚了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]如果你真的想要为这片森林做些什么……那就尽快回归岗位，履行你应尽的职责！[l][cm]"
+        "text": "[show]如果你真的想要为这片森林做些什么……那就尽快回归岗位，履行你应尽的职责！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]这才是你应该为过去的不成熟行为作出的赎罪……否则，黑森林的内务，根本轮不到一个外人来插嘴。[l][cm]"
+        "text": "[show]这才是你应该为过去的不成熟行为作出的赎罪……否则，黑森林的内务，根本轮不到一个外人来插嘴。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]我要去巡逻了，让开吧。[l][cm][hide]"
+        "text": "[show]我要去巡逻了，让开吧。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]姐姐……！[l][cm][hide]"
+        "text": "[show]姐姐……！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]这……啊哈哈……[l][cm]"
+        "text": "[show]这……啊哈哈……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]什么啊……莫名其妙就看了这么一出大戏……[l][cm]"
+        "text": "[show]什么啊……莫名其妙就看了这么一出大戏……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]啊，不过芭杜尔好像料到我们要来拿通行文书，老早就给我们准备好了！你看！[l][cm]"
+        "text": "[show]啊，不过芭杜尔好像料到我们要来拿通行文书，老早就给我们准备好了！你看！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]芭杜尔她就是这么可靠！若非如此，她也不会以一名治疗者的身份，成为树冠守望者啊！[l][cm]"
+        "text": "[show]芭杜尔她就是这么可靠！若非如此，她也不会以一名治疗者的身份，成为树冠守望者啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]……明明在草原的时候，我就只感觉她是个满嘴谜语的怪人……[l][cm]"
+        "text": "[show]……明明在草原的时候，我就只感觉她是个满嘴谜语的怪人……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]这个……毕竟出门在外，她也不好暴露身份，总得有点伪装的嘛。[l][cm]"
+        "text": "[show]这个……毕竟出门在外，她也不好暴露身份，总得有点伪装的嘛。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]这我理解，不过……[l]"
+        "text": "[show]这我理解，不过……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]算了，{myName}，现在文书也拿到了，我们接下来干嘛？[l]"
+        "text": "[show]算了，{myName}，现在文书也拿到了，我们接下来干嘛？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -736,41 +735,41 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]哦！就是露比特说的那件事吗？我记得好像是什么……“变了样的蕈人”，在……什么什么庄园？[l][cm]"
+        "text": "[cm][show]哦！就是露比特说的那件事吗？我记得好像是什么……“变了样的蕈人”，在……什么什么庄园？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]是布拉格乌尔庄园！布拉格乌尔是蕈人族的长老，那座庄园就是他修建起来的。[l][cm]"
+        "text": "[show]是布拉格乌尔庄园！布拉格乌尔是蕈人族的长老，那座庄园就是他修建起来的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哦哦，对，就是叫这个！[l][cm]"
+        "text": "[show]哦哦，对，就是叫这个！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]你们要去那边调查的话，我可以给你们宴会大师的凭证，这样蕈人们应该会稍微好说话一点。[l][cm]"
+        "text": "[show]你们要去那边调查的话，我可以给你们宴会大师的凭证，这样蕈人们应该会稍微好说话一点。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]不过我这边还要筹备下一次宴会，恐怕就没办法和你们一起出行了。[l]"
+        "text": "[show]不过我这边还要筹备下一次宴会，恐怕就没办法和你们一起出行了。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -787,41 +786,41 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]没错，我们大风大浪见得多啦！[l][cm]"
+        "text": "[cm][show]没错，我们大风大浪见得多啦！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]也对，你们毕竟是拯救了好几个地区的英雄二人组嘛！[l][cm]"
+        "text": "[show]也对，你们毕竟是拯救了好几个地区的英雄二人组嘛！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]说实话，我对艾薇杜尔的话，其实还是有点在意，毕竟她可是[color=ffb64d]有资质的人[colorEnd]，说出来的话可不能当成耳边风……[l][cm]"
+        "text": "[show]说实话，我对艾薇杜尔的话，其实还是有点在意，毕竟她可是[color=ffb64d]有资质的人[colorEnd]，说出来的话可不能当成耳边风……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]不过她们姐妹两人闹成这样，估计艾薇杜尔最终还是动摇不了她姐姐的意志了……[l][cm]"
+        "text": "[show]不过她们姐妹两人闹成这样，估计艾薇杜尔最终还是动摇不了她姐姐的意志了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]我想她现在大概在什么地方一个人自怨自艾吧，你们能帮我去看看她吗？[l]"
+        "text": "[show]我想她现在大概在什么地方一个人自怨自艾吧，你们能帮我去看看她吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -842,36 +841,37 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[cm][show]嗯嗯！有些时候呢，像我们这种从小长大的熟人，就是不方便去安慰的呀！[l][cm]"
+        "text": "[cm][show]嗯嗯！有些时候呢，像我们这种从小长大的熟人，就是不方便去安慰的呀！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]那艾薇杜尔就交给你们，要是你们能帮她振作起来就好了……哈哈……[l][cm][hide]"
+        "text": "[show]那艾薇杜尔就交给你们，要是你们能帮她振作起来就好了……哈哈……[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_4_3_4",
   "des": "你们怎么了？"
 }

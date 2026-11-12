@@ -1,0 +1,212 @@
+{
+  "des": "demo1001_1",
+  "script": "demo1001_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈、哈……哈啊……[r]",
+        "charaName": "【？】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "都跑到这里了，应该安全了吧……[l]",
+        "charaName": "【？】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]看来是不会再追过来了。呼～总算。[r]就算是角布林，一口气应付太多也有点难办。[l]",
+        "charaName": "【？】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]但是这数量总觉得有点不对劲。就算是“投食日”也不该聚集这么多魔物。[r]储备粮，和你有关系吗？[l][hide][cm]",
+        "charaName": "【？】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……？储备粮？[r]喂、醒醒！储备粮！[l]",
+        "charaName": "【？】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你是……刚刚救了我的……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "米托拉……小姐……",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊是，没错，老子就是米托拉！[r]好心好意把你从魔物嘴里救出来可惜是准备带回营地当储备粮结果害得我们被那群黄毛怪物追了一路的“不吃活人”的米托拉！[r]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "清醒点没有？嗯？[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]喂……！要晕就晕一边去，别拿我当扶手！[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我是希尔……克里斯汀的工匠……",
+            "tag": "tag_9"
+          },
+          {
+            "text": "我被巨大的魔物追猎……逃到这里",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……你在嘀嘀咕咕什么呢。刚刚不是还生龙活虎的嘛。[r]说什么自己只是个工匠，不擅长战斗什么的，我看你这锤子舞得也挺快活。[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]你刚刚从昏迷中恢复，到现在也不到一小时吧？[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这么高强度的运动，也确实是有点难为你这外面来的乖宝宝了。[r]听你说你是从北面的山坡一直摔到这的？连骨头都没断，还真是撞了大运。[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这里可是“深渊”。[r]和你们白白净净的人类老家不一样，这里是魔物的国度。[r]就算是我们这些习惯了荒野的魔人生存者，也得竭尽全力才能活下去。[r][l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]不过我还是第一次碰到你这么白白嫩嫩的人类任人鱼肉呢。滋溜～口水都流下来了。[r]要不是我出手，你早就被那些黄毛怪物给吃光光了。[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide][cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]但是可惜～你可是我先看到的美餐，哪能被那些家伙抢先。[r]我可是好几天都没吃到新鲜肉了。在回到营地把你腌得鲜嫩之前，你可得好好活着哦。[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]要是在路上失了血挂掉，我还得花好多时间把你的肉给剔了再背回去，口感可是会差很多的。[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]别打哆嗦呀。[hide][cm]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这“深渊”和外面没有两样，都是个人吃人的世界。[r]至少在我们这儿，这事可简单多了。[l][hide][cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……是巡逻队。[r]前面传来的声音。数量应该不多。[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]顺着这条路，很快就能返回营地了。[r]今天你可倒大霉了。要死也得死在我肚子里，听见了吗？[l]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]休息够了。给我打起精神，储备粮～！[l][cm]",
+        "charaName": "【米托拉】"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      },
+      "key": "text"
+    }
+  ]
+}

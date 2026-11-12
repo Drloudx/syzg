@@ -1,0 +1,94 @@
+{
+  "script": "s_sp2_2_10",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，我一直忙着采集浆果，一下子没注意到你们。[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们找我是……？[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你有看到迦南和梅莉莉吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]迦南大人和领班？[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么一说，刚才我好像有看见两个人影往那边去了。[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是吗，那多谢了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们追！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]风风火火的，这是在干什么？[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]算了，不管了，工作要紧。等忙完了回驿站就去泡个澡吧。[l][cm][hide]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "s_sp2_2_10"
+}

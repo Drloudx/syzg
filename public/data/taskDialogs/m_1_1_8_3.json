@@ -1,0 +1,135 @@
+{
+  "des": "引导打开抽蛋界面，随后引导放置蛋、培育、收取",
+  "script": "m_1_1_8_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好、好像有点厉害……只要这么做，魔物就能孵化出来了吗！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错！接下来就只需要耐心的等待就好。当然数据的记录也是非常重要的，可千万别忘了啊！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，我们一定还会见面的！你们一定要好好考虑业务合作的事啊！我对下次的洽谈非常期待！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]溜了拜拜——！[l][cm][hide]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊……跑得真快！[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "看来她是真的很忙。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]我来这两年了，还是第一次眼睁睁放走敢跟踪我到营地来的入侵者……[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_35",
+            "text": "送了我们魔物蛋，也帮我们理清了孵化的流程……"
+          },
+          {
+            "tag": "tag_35",
+            "text": "这位露比应该不是什么坏人吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唔……只是普通的奸商吗……可那什么业务什么合作什么的，我可一点都不懂啊……[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "之后遇到她再好好问问吧。"
+          },
+          {
+            "tag": "tag_17",
+            "text": "反正没什么损失，我们现在也没什么好骗的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，你说得也对！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既没有什么损失，还能收养这么多可爱的魔物，也许强一点的个体还能帮我们作战呢。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还有之前还能从魔物身上学习“特性”的妙用，无论算不算上之前讨论的生意，我们都是稳赚不赔嘛！那就先暂时相信她好了！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，就让这些蛋蛋安安静静地长大吧，我们就别打扰啦！[l][cm][hide]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ]
+}

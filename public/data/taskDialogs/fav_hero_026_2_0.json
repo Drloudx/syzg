@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哼哼，那是当然！这些钱财都是靠本小姐实力拿到手的，自然值得庆贺[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]这次契约任务想必让家族的名声远扬了！交付任务的时候，本小姐特意署名“希斯珀利亚家族大小姐”，总能吸引一些人的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]当然光这点小事还不够，本小姐必须更进一步，让大家更了解本小姐和家族的伟大！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]所以嘛……这次采购顺便把上次谈的宣传家族的方法都用上吧，毕竟有钱就是为所欲为的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]{myName}跟着本小姐来吧，你将成为见证希斯珀利亚家族崛起的重要一员！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_026_2_0",
+  "des": "贝拉多娜-营地对话【恭喜你赚到钱了。】"
+}

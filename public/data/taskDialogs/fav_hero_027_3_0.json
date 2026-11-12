@@ -1,0 +1,57 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]不用担心！不管是食材、调料还是工具，驿站那边都准备得妥妥当当的啦，你什么都不用带！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]说起来，{myName}的厨艺怎么样呀？我还没有亲自品尝过呢……真可惜！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "略懂，略懂。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]嗯！不过嘛，哪怕一时做不出特别棒的烤肉也没关系，你就在旁边看着我做就好啦！正好也让{myName}见识见识我的厨艺！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]好啦，事不宜迟，我们这就出发吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "梅莉莉-营地对话【要准备好烹饪工具吗？】",
+  "script": "fav_hero_027_3_0"
+}

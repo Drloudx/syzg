@@ -1,0 +1,62 @@
+{
+  "des": "满载的货车-3",
+  "script": "s_1_14_3",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喔，极好，极好。这笔货款就先按订单上的数目交给你们了，就当是第一次合作的诚意。[l][cm]",
+        "charaName": "比绍"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]欸？可你不是还没收到货吗？万一我们——[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]做生意的前提就是彼此信任。鄙人相信你们，也是为了日后让你们能更相信鄙人。[l][cm]",
+        "charaName": "比绍"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼，那是当然的，我们可不会做亏心事！这笔钱我们就堂堂正正收下了，可别想压力我们！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]鄙人很乐意建立良好的商务合作关系。有机会，还请多拜访鄙人在旅店里的商店。[l][cm]",
+        "charaName": "比绍"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那让我们下次有缘再会。[l][cm]",
+        "charaName": "比绍"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，那再见啦！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ]
+}

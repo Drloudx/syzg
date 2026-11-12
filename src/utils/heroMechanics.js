@@ -829,6 +829,43 @@ function findSummonConfig(value, buffDatas = null) {
   return null
 }
 
+/**
+ * 收集某一级配置里**全部**召唤配置。
+ *
+ * 有的技能一次召唤**多种**单位，配置里不是单一 `summonData`，而是多个以 `SummonData` 结尾的字段，
+ * 例如德莉「征号召令」`06002` 的 `aniEvents[].arg`：
+ *   - `nearOneSummonData`（近战史莱姆 ×1，monTypeId 060_2，hp 60% / atk 12%）
+ *   - `longTwoSummonData`（远程史莱姆 ×2，monTypeId 060_1，hp 30% / atk 30%）
+ * 旧逻辑只认 `summonData`，会漏掉这类技能（图鉴「召唤物」行不显示）。此函数递归收集所有
+ * key 以 `summonData` 结尾（不区分大小写）的对象，兼容单召唤与多召唤。
+ */
+function findSummonConfigs(value, buffDatas = null, out = [], seen = new Set()) {
+  const object = asObject(value)
+  if (!object || seen.has(object)) return out
+  seen.add(object)
+  for (const [key, child] of Object.entries(object)) {
+    if (/summonData$/i.test(key) && asObject(child) && child.monTypeId) {
+      if (!out.some(c => c.monTypeId === child.monTypeId && c.maxCount === child.maxCount)) out.push(child)
+    } else {
+      findSummonConfigs(child, buffDatas, out, seen)
+    }
+  }
+  // buff 里也可能带 summonData（被动天赋）
+  const buffIds = collectBuffIds(value)
+  for (const id of buffIds) {
+    const buff = buffDatas?.[id]
+    if (!buff) continue
+    const para = buff.para || buff
+    findSummonConfigs(para, buffDatas, out, seen)
+  }
+  return out
+}
+
+/** 供解析器判断某级是否带召唤物（多召唤）、返回全部 configs。 */
+export function resolveSummonConfigs(levelValue, buffDatas = null) {
+  return findSummonConfigs(levelValue, buffDatas)
+}
+
 /** 供解析器判断某级是否带召唤物并拿到 `monTypeId`（需要 buff 表才能覆盖被动天赋）。 */
 export function resolveSummonConfig(levelValue, buffDatas = null) {
   return findSummonConfig(levelValue, buffDatas)

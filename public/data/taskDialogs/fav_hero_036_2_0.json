@@ -1,0 +1,69 @@
+{
+  "script": "fav_hero_036_2_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]哈哈……黑眼圈又变重了是吗？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]我知道的，我知道的。但这不是没办法嘛……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]唉……之前请你做的东西，你已经做好了吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "虽然要得有点急……"
+          },
+          {
+            "tag": "tag_6",
+            "text": "不过我还是尽可能准备了。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]是吗，那太好了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]如果可能的话，我也不想突然这么麻烦你。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]不过这次是真的没办法，我们都已经焦头烂额了，那也就只能拜托你了。[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "贝尔卡-营地对话【你的黑眼圈……】"
+}

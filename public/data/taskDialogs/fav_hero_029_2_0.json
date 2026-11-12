@@ -1,0 +1,84 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]这……哈哈，我就是出来散散心……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]毕竟你看，一直我在研究所里，也未必能有什么成果嘛！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "真的吗？"
+          },
+          {
+            "tag": "tag_5",
+            "text": "你真的能按时拿出方案吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[cm][show]我你还不放心？放心吧，包的！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "……"
+          },
+          {
+            "tag": "tag_7",
+            "text": "但愿吧！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[cm][show]好了，不多说了，我得赶紧回去了！你过两天到研究所来，到时候我肯定已经想出头绪了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "安娜",
+        "text": "[show]我们到时候再聊，就这样，拜拜！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "安娜-安娜，你怎么来了？",
+  "script": "fav_hero_029_2_0"
+}

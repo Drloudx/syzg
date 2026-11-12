@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]抱——抱抱抱抱抱歉！是、是觉得我的大铁镐很碍眼吧？[r]我、我马上从这里离开——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]唉？不、不是这样的？你说……可以帮我找个地方放好它？[r]谢、谢谢你肯接受我……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]呜……我这么敏感是有原因的啦。之前我的同事都觉得我很奇怪，无论吃饭睡觉都要抱着这个铁镐，他们都嫌弃我是个只会挖矿的绿皮笨蛋……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]所以很长一段时间，我都一直受到身边人的白眼，日子很不好过……大概就是这样……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]……不过我想，来这里地之后，这样的日子一定也结束了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]毕竟{myName}是个很好的人，营地里的大家也都是超棒的伙伴！[r]等、等等，这个铁镐很重的，你别直接用手——小心——哇，{myName}——！！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_046_03",
+  "des": "迈妮娅-友善3"
+}

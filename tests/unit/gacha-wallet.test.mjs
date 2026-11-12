@@ -104,7 +104,7 @@ test('topUp 累加模拟额度，resetAll 回到起算值', () => {
 test('钱包与保底/记录一起持久化在同一个 store', () => {
   const store = freshStore()
   store.ensureWallet({ ticket: 3 })
-  store.setRuntime('hero:1:1:0', { poolId: 'hero:1:1:0', totalPulls: 7, pity: { 3: 0, 4: 7, 5: 7 }, guarantyCount: 0, firstGuarantyUsed: false })
-  assert.equal(store.runtimeOf('hero:1:1:0').totalPulls, 7)
+  store.setRuntime('hero:3ce:1', { poolId: 'hero:3ce:1', totalPulls: 7, pity: { 3: 0, 4: 7, 5: 7 }, guarantyCount: 0, firstGuarantyUsed: false })
+  assert.equal(store.runtimeOf('hero:3ce:1').totalPulls, 7)
   assert.equal(store.holdingsOf('ticket'), 3)
 })

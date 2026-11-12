@@ -1,0 +1,143 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]毕竟是要去抓人嘛，那时间当然要根据对方来安排了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]真是嚣张啊！明明是在偷偷摸摸的干坏事，但使用的技术却一点也不自由！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]依赖特殊的时空关联，只能出现在特定时间和特定地点的穿越方法……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]你都这么配合了，我不抓你也不行了啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那个……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "注意表情啊……",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]好的，我知道了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]这种开心的事情，确实应该笑起来才对！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]怎么样，这个表情不错吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]到时候就用这副表情去和偷渡犯见面好了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是看到业绩的表情啊……",
+            "tag": "tag_11"
+          },
+          {
+            "text": "感觉对面会留下心理阴影。",
+            "tag": "tag_11"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]嗯？你在说什么？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不，没什么……",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]没什么就快点出发吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "露库希安",
+        "text": "[cm][show]我已经等不及要看到那家伙哭丧的脸了呢！[l][cm][hide]"
+      }
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_070_4_0",
+  "des": "露库希安好感4-引入"
+}

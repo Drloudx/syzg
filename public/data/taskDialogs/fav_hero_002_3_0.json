@@ -1,0 +1,61 @@
+{
+  "des": "米托拉-营地对话【所以到底啥事？】",
+  "script": "fav_hero_002_3_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呃……这个……就是有点小事啦……有些难以启齿的小事……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "咱们都这么熟了。",
+            "tag": "tag_4"
+          },
+          {
+            "text": "有什么想要我帮忙的直接说就好。",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]啊，抱歉，有些紧张了。毕竟之前一直找你帮忙，但我却从没给你应有的回报，所以我就有些难以切齿啦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我本想着写信毕竟郑重一些，可怎么写也写不好……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]来营地里面吧，我给你看看我的问题。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

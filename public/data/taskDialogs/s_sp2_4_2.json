@@ -1,0 +1,209 @@
+{
+  "script": "s_sp2_4_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿，我们不止把菜谱带回来了，还把路上捡到的其他石板也带回来了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太好了！我们丢的就是这些，你们帮大忙了姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？库库姆也来这边了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然了，一想到能根据菜谱做出更美味的料理，我的心就按捺不住了姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等，那个菜谱也是重要文献，你读完之后记得还回来姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放心吧，我现在就读，读完就立刻还给你姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（说罢，库库姆把“菜谱”放进身体里，然后闭上眼睛，像是在思考着什么。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]…………[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此，这次的收获真是不小啊姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？你这就读完了？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "上面记载了什么内容？",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]有各种各样的菜谱，还有就是当时的历史姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在很久很久很久以前，我们的先辈史莱姆还是彩虹色的，大家一起在物资匮乏的时代努力生存下去姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]彩虹史莱姆？我只在传说里听过，没想到真的存在啊姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实现在也有彩虹色的史莱姆，不过大部分都隐居下来了姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此，过去彩色史莱姆大量存在的时候，单色史莱姆是异种，现在彩色史莱姆反而变成异种了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]以前史莱姆都是彩色的，日后因为大家到了不同的地方生活，为了适应环境就变成其他颜色了姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之我们都是彩色史莱姆的后裔，而书里提到过异种七彩黏液汤，这是当时每个史莱姆都喜欢的料理姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]七彩黏液汤？这名字听起来怎么这么奇怪……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]决定了！我就做这三个菜：七彩黏液汤、烤彩虹糖画、斑斓火锅！让大家吃更好的食物姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过眼下我还是缺点黏液，得去找三种颜色的黏液才行姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]溪谷野外应该能找到三种颜色的黏液，就去那边看看吧姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我也去我也去，我想快点吃到好料理姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]遵命公主殿下，我们走这边姆。[l][cm][hide]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "菜谱找回来了。"
+}

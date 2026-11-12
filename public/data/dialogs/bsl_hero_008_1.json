@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "夏库塔拉",
+        "text": "[show]嘿！{myName}！咱好久没见你了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "夏库塔拉",
+        "text": "[show]这是咱第一次在营地里聊天吧，这里简直太热闹、太好玩啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "夏库塔拉",
+        "text": "[show]比起乱糟糟的驿站，还是你这里最有人情味了，咱恨不得天天待在这儿陪你唠嗑。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "夏库塔拉",
+        "text": "[show]对了，接着这个！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "夏库塔拉",
+        "text": "[show]这是咱特意给准备的礼物，希望你能喜欢！谢谢你啦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_008_1",
+  "des": "夏库塔拉"
+}

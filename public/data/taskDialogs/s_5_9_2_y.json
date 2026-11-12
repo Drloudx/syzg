@@ -1,86 +1,86 @@
 {
-  "script": "s_5_9_2_y",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]太好了……让我们来试试吧！[l][cm]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]嗯……就在那边试试吧。[l][cm]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]（点燃了寒冰爆桶。爆炸的威力瞬间引发了局部雪崩。）[l][cm]",
-        "charaName": ""
-      }
+        "charaName": "",
+        "text": "[show]（点燃了寒冰爆桶。爆炸的威力瞬间引发了局部雪崩。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]太好了！能用这种低成本的炸弹引发雪崩封路，我们很快就能开辟出一条新的通道供熔火元素南迁。[l][cm]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]这样就能减少它们闯入火龙山径主道的次数了，多年的冲突终于得以化解。[l][cm]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]其实熔火元素和我们都是为了生存。我们保障道路畅通是为了让商品和物资能更好地流通，而熔火元素南迁则是为了避寒。从立场上来说，我们都没有错。[l][cm]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]如果生存是零和博弈，那我们都会死伤惨重。作为智慧生物，我们理应寻求让双方共同生存的方法，这才是正确的道路。[l][cm]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]现在有了这种方法，既能节约我们的资源，又能为它们提供一条生存之路。虽然我们之间仍会有争斗，但已经找到了一条避免伤亡的共存之道。[l][cm]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "秘学系教授裴裴霍",
         "text": "[show]当然，这离不开你们的帮助。非常感谢几位远道而来的契约者。[l][cm][hide]",
-        "charaName": "秘学系教授裴裴霍"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "s_5_9_2_y",
   "des": "火龙山径的迁徙-秘学系教授裴裴霍互动完成"
 }

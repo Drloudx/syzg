@@ -1,0 +1,257 @@
+{
+  "script": "s_sp2_5_1_y",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，你们辛苦了姆，那个……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？什么声音姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆～姆姆～[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！好……好多史莱姆啊！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆～姆姆姆姆～[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等！别扒拉我！要……要摔倒了——！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆姆姆～姆姆姆姆～[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈！哈哈哈！好……好痒啊姆！别一下子扑过来啦姆！[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "要……要被压晕过去了……",
+            "tag": "tag_11"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]孩……孩子们，快放开他们，他们是朋友姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]朋友姆姆～朋友姆姆～[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过凯尔姆的努力劝说，史莱姆宝宝们终于肯放开三人……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]今天老师不舒服要休息，你们要好好听这三位新老师的话姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]新老师姆姆～姆姆～[l][cm]",
+        "charaName": "史莱姆宝宝"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……终于不闹腾了姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来……你不是史莱姆的公主吗？怎么也像我们一样被围起来了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只有我直接创造的史莱姆才会听我的话，这些史莱姆宝宝是它们生下的后代，不一定能直接听我指挥姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且它们都还是小孩子，心智不成熟，我怎么能让它们听我的话呢姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行吧，看来我们的史莱姆公主也不是全能的啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]三位，你们过来一下姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然你们准备好了木头，但不能直接给孩子们吃，得给它们加些有营养的食材姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]首先我们要检查木头，清理掉里面的蛀虫或者杂质姆。然后再拿一些野草和水过来，一起加到木头上姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……这么复杂吗？这还仅仅是一餐啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟是要给孩子们吃嘛，它们是长身体的时候，身体的素质不如成年史莱姆那么强大，所以当然要谨慎一些姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]让我来……这样应该就可以了吧姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，就是这样，等会你们把木头摆放在那边就好了姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]切记，每个木头都要保持一定距离，而且要准确划好每个区域姆。我们这边有十五个史莱姆宝宝，你们按照这个数来摆就好姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]保持好距离……划分好区域？为什么要这么严谨？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个嘛……等一会你就知道了姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，我们一起去那边把孩子们的食物准备好吧姆～[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "木头找好了。"
+}

@@ -1,0 +1,295 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（经过一番奔逃，终于和艾尔菲帕在野外某处落脚。艾尔菲帕展开护罩，将天上绵绵不绝的雨水隔绝在外。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]好了，这样应该就没问题了。我们安心在护罩里躲雨就好。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "非常抱歉。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "给艾尔菲帕添麻烦了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]不……这不怪你呀。没人能料到今天会下这么大的雨。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]而且，要是我能及时赶到，{myName}就不会跑出来接我，也就不会和我一起被困在这里……该道歉的是我才对。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "我不忍心看艾尔菲帕一个人在外面淋雨。"
+          },
+          {
+            "tag": "tag_8",
+            "text": "现在有你的护罩保护，也不是很糟。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]是……是这样吗？谢谢你……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]{myName}竟然这样重视我……都怪我迟到才导致了这样的局面。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]其实我不是故意迟到的。只是因为害怕……才一直在附近原地打转。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]我在信里说……这次绝对不会引发糟糕的天气，出门前还特意祛除了身上的魔力。可结果，还是遇上了这种事。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]就算没有轰雷四宝器的魔力，我还是招来了这场大雨。有时候我忍不住想……是不是只要和别人在一起，就会带来厄运。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "这只是单纯的巧合而已。"
+          },
+          {
+            "tag": "tag_14",
+            "text": "并不是艾尔菲帕的错。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]{myName}……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]噗。虽然遭遇了暴雨，但身边有{myName}的陪伴，感觉……似乎也不错。至少比孤零零一个人待在秘境里要好。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "艾尔菲帕……是觉得一个人太寂寞了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]啊？不、不是的。我是说……呃，也不是特别寂寞……只是觉得，有个人在身边的话，总归会好一些……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]{myName}……你觉得我……很寂寞吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "和你相处几次之后……"
+          },
+          {
+            "tag": "tag_20",
+            "text": "的确有这种感觉。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]……唔……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]也是……毕竟我一直都在黏着你嘛。这么多次下来，你察觉到了也不奇怪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]孤独和寂寞……早就成了我生活的一部分。但我其实……并不喜欢这样。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]这还是我第一次跟别人说这些……还真有点不好意思。不过，独自守护封印那么久，有这种感觉也很正常吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]每次从沼泽出来营地找你，不知为什么，孤独感就会被喜悦填满。和你在一起……真的很开心。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]但我们终究是要分别的……等到雨停之后，我就要回到宝器的身旁，而你也要继续去进行你的冒险。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]真希望……这场大雨永远不要停，我就可以永远待在你身边了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "与其纠结分别时的困苦……"
+          },
+          {
+            "tag": "tag_28",
+            "text": "不如珍惜此时此刻。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "能和艾尔菲帕待在一起，我也很开心。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]{myName}……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]谢谢你。那么……请让我好好珍惜、好好享受这段，和你在一起的时光吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（让艾尔菲帕轻轻依偎在身旁，静静度过了这场绵绵不绝的大雨。）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾尔菲帕-暴雨下的相谈-战役2",
+  "script": "fav_hero_045_4_2"
+}

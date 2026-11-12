@@ -66,13 +66,11 @@
           </button>
         </div>
       </div>
-      <!--
-        表格表头（借鉴魔物收益页）：放在筛选面板的 footer 里，**不参与内容区滚动**，
-        所以不会出现 sticky 表头"跑上去"盖住筛选栏的问题。
-      -->
+
+      <!-- 表头行（完全对齐魔物收益页）：放在筛选面板 footer 里，属于顶部固定栏 -->
       <template v-if="viewMode === 'table'" #footer>
         <div class="pets-th-row">
-          <div class="pets-th th-name">宠物</div>
+          <div class="pets-th th-name">魔物</div>
           <div class="pets-th th-star">星级</div>
           <div class="pets-th th-element">属性</div>
           <div class="pets-th th-trait">特性名</div>
@@ -82,25 +80,51 @@
       </template>
     </UiFilterPanel>
 
-    <!--
-      特性表格视图（结构借鉴魔物收益页：滚动容器 + paper-panel + flex 行）
-      🔴 不要用 `<table>` + `thead sticky`：sticky 会粘到 app-container 顶部，
-         表头"跑上去"盖住筛选栏。表头单独放在筛选面板 footer 里。
-    -->
+    <!-- 特性表格视图（结构借鉴魔物收益页：滚动容器 + paper-panel + flex 行） -->
     <div v-if="viewMode === 'table'" id="petsTableScroll" class="pets-table-scroll" data-main-scroll>
       <div class="pets-table-container paper-panel">
         <div v-for="pet in filteredPets" :key="pet.id" class="pets-table-row" @click="handlePetClick(pet)">
+          <!-- 魔物头像 + 名称 -->
           <div class="pets-td td-name">
-            <span class="cell-name">
+            <div class="pet-avatar-wrapper">
+              <img
+                :src="getImageUrl(`/images/PicHandBookPanel_Atlas/${pet.monImg}.webp`)"
+                :alt="pet.name"
+                class="pet-avatar-img"
+                loading="lazy"
+                @error="handleImgError"
+              />
+            </div>
+            <span class="cell-name" :class="`quality-text-${pet.starDisplay}`">
               {{ pet.name }}
-              <img v-if="pet.variantChance > 0" :src="getImageUrl('/ui/pet_info_mutate.png')" class="cell-mutate" :title="`可变异：孵化时 ${pet.variantChancePercent}%`" alt="可变异" />
             </span>
           </div>
-          <div class="pets-td td-star" :class="`quality-text-${pet.starDisplay}`">{{ pet.star }}★</div>
-          <div class="pets-td td-element"><span :class="`element-${pet.element}`">{{ pet.elementName }}</span></div>
-          <div class="pets-td td-trait">{{ pet.trait?.name || '—' }}</div>
+
+          <!-- 星级（按魔物收益页规范：对齐 quality-text 品质文字色） -->
+          <div class="pets-td td-star" :class="`quality-text-${pet.starDisplay}`">{{ pet.starDisplay }}★</div>
+
+          <!-- 属性（沉稳雅致色调） -->
+          <div class="pets-td td-element">
+            <span class="element-tag" :class="`element-${pet.element}`">{{ pet.elementName }}</span>
+          </div>
+
+          <!-- 特性名 -->
+          <div class="pets-td td-trait">
+            <span class="trait-name">{{ pet.trait?.name || '—' }}</span>
+          </div>
+
+          <!-- 特性效果（满级 7 级） -->
           <div class="pets-td td-effect" v-html="pet.trait ? formatSkillDescription(pet.trait.maxText) : '—'"></div>
-          <div class="pets-td td-range">{{ pet.trait?.rangeText || '—' }}</div>
+
+          <!-- 1 级 → 7 级（纯数值换行） -->
+          <div class="pets-td td-range">
+            <div v-if="getPetRanges(pet).length" class="range-list">
+              <span v-for="(rangeItem, idx) in getPetRanges(pet)" :key="idx" class="range-item">
+                {{ rangeItem }}
+              </span>
+            </div>
+            <span v-else class="text-muted">—</span>
+          </div>
         </div>
       </div>
     </div>
@@ -196,7 +220,7 @@
               </div>
 
               <img
-                :src="getImageUrl(`/images/PicHandBookPanel_Atlas/${selectedPet.monImg}_a.webp`)"
+                :src="variantImgUrl(selectedPet)"
                 :alt="selectedPet.name"
                 class="pet-portrait-img"
                 @error="handleImgError"
@@ -388,7 +412,7 @@
               <UiStatGrid v-if="petSetting" :items="[
                 { label: '总好感上限', value: petSetting.maxFavor },
                 { label: '每日好感上限', value: petSetting.maxFavorDaily },
-                { label: '上场加时转化', value: `1秒 / ${petSetting.lifeTimeFavor}好感` },
+                { label: '上场加时转化', value: `1秒 / ${petSetting.lifeTimeFavor}好感`, stackedMobile: true },
                 { label: '抚摸增加好感', value: `+${petSetting.favorActionAdd}` }
               ]" />
             </UiSection>
@@ -903,6 +927,45 @@ const formatHatchTime = (seconds) => {
 const handleImgError = (e) => {
   e.target.style.opacity = '0.3'
 }
+
+/**
+ * 变异形态图 URL。
+ *
+ * 图集 `PicHandBookPanel_Atlas` 里绝大多数可变异魔物有 `{monImg}_a.webp`，
+ * 但个别魔物（当前只有 pet_101 青铜迷迷可）官方未提供变异图 →
+ * 回退到本体图，避免详情页「变异形态」框整块空白（图片 404）。
+ */
+const VARIANT_IMG_AVAILABLE = new Set([
+  // 有独立变异图的 monImg（缺的走回退）
+  'colect_mon_006', 'colect_mon_046', 'colect_mon_065', 'colect_mon_071',
+  'colect_mon_072', 'colect_mon_073', 'colect_mon_074', 'colect_mon_075',
+  'colect_mon_076', 'colect_mon_077', 'colect_mon_078', 'colect_mon_079',
+  'colect_mon_093', 'colect_mon_095', 'colect_mon_096', 'colect_mon_097',
+  'colect_mon_098', 'colect_mon_105', 'colect_mon_106', 'colect_mon_107',
+  'colect_mon_108', 'colect_mon_109', 'colect_mon_110',
+])
+const variantImgUrl = (pet) => {
+  const img = VARIANT_IMG_AVAILABLE.has(pet.monImg) ? `${pet.monImg}_a` : pet.monImg
+  return getImageUrl(`/images/PicHandBookPanel_Atlas/${img}.webp`)
+}
+
+/**
+ * 提取魔物 1 级 → 7 级特性数值变化区间。
+ * 纯数值展示：去掉「物理攻击」「魔法攻击」等汉字修饰，仅保留数字与百分比（如 500% → 1100%）；
+ * 多个属性区间拆分为数组，便于多行换行展示。
+ */
+const getPetRanges = (pet) => {
+  const trait = pet?.trait
+  if (!trait || !trait.rangeText) return []
+  const rawParts = String(trait.rangeText).split(/[，,]/).map(s => s.trim()).filter(Boolean)
+  return rawParts.map(part => {
+    if (!part.includes('→')) return part
+    const [left, right] = part.split('→').map(s => s.trim())
+    const cleanLeft = left.replace(/[\u4e00-\u9fa5]/g, '').trim()
+    const cleanRight = right.replace(/[\u4e00-\u9fa5]/g, '').trim()
+    return (cleanLeft && cleanRight) ? `${cleanLeft} → ${cleanRight}` : part
+  })
+}
 </script>
 
 <style scoped>
@@ -933,9 +996,9 @@ const handleImgError = (e) => {
 .view-mode-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 9px;
-  border: 0;
+  gap: 5px;
+  padding: 3px 9px;
+  border: none;
   border-radius: 4px;
   background: transparent;
   color: var(--text-muted);
@@ -943,24 +1006,26 @@ const handleImgError = (e) => {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.4;
   white-space: nowrap;
 }
-.view-mode-btn:hover { background: var(--hover-bg, rgba(85, 117, 116, 0.12)); }
-.view-mode-btn.is-active {
-  background: var(--accent-ink, #557574);
-  color: var(--on-wood-text, #ebdcc3);
+.view-mode-btn:hover {
+  color: var(--accent-ink);
+  background: rgba(255, 255, 255, 0.3);
 }
-.view-mode-icon { width: 13px; height: 13px; flex: 0 0 auto; }
+.view-mode-btn.is-active {
+  background: var(--paper-solid, #fff);
+  color: var(--accent-ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.view-mode-icon { width: 14px; height: 14px; flex-shrink: 0; }
 
-/* ====== 特性表格（结构同魔物收益：flex 行 + 固定表头） ====== */
+/* ====== 特性表格（结构同魔物收益：筛选面板固定表头 + 头像 + 纯数值换行） ====== */
 .pets-table-scroll {
   flex: 1;
   overflow-y: auto;
-  /*
-   * 左右 padding 必须为 0：与魔物收益页一致，数据行要**贴满**滚动容器
-   * （容器宽度 = 筛选面板外宽 770）。之前给了 14px，导致表格比筛选框窄一圈。
-   */
-  padding: 2px 0 calc(14px + var(--safe-bottom, 0px));
+  padding: 2px 0 calc(20px + var(--safe-bottom, 0px));
   box-sizing: border-box;
   min-height: 0;
 }
@@ -969,16 +1034,12 @@ const handleImgError = (e) => {
   flex-direction: column;
   overflow: hidden;
 }
-/* 表头行：木色条，放在筛选面板 footer，与魔物收益 .table-header-row 同款 */
+/* 表头行：木色条，放在筛选面板 footer，与魔物收益 .table-header-row 完全一致 */
 .pets-th-row {
   display: flex;
   align-items: center;
   padding: 8px 12px;
-  /*
-   * 表头在筛选面板 footer 里（面板有 14px 横向 padding），
-   * 用负边距抵消，使表头与下方数据行一样**贴满容器内宽**（数据行宽 = 面板外宽 − 2px 边框）。
-   */
-  margin-inline: -14px;
+  margin-top: 6px;
   font-size: 13px;
   font-weight: 700;
   color: var(--text-muted);
@@ -991,7 +1052,7 @@ const handleImgError = (e) => {
 }
 .pets-table-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   padding: 9px 12px;
   background: var(--paper-soft);
   border-bottom: 1px solid var(--border-soft);
@@ -1001,42 +1062,151 @@ const handleImgError = (e) => {
   line-height: 1.6;
 }
 .pets-table-row:last-child { border-bottom: none; }
-.pets-table-row:hover { background: rgba(122, 154, 153, 0.14); }
+.pets-table-row:hover { background: rgba(122, 154, 153, 0.12); }
+
 .pets-th,
 .pets-td {
   min-width: 0;
   overflow-wrap: anywhere;
-  /* 内边距计入列宽（border-box），否则表头与行的 flex 基准会差出 padding 宽度导致错位 */
   box-sizing: border-box;
   padding-right: 10px;
 }
-/*
- * 列宽用**百分比**，表头与行完全一致 → 任何宽度都自动对齐（同魔物收益页做法）。
- * 不要用固定 px + 横向滚动：表头在筛选面板里、行在内容区，两者滚动不同步会错位。
- * 所有列都允许换行（`overflow-wrap: anywhere` 已在 .pets-th/.pets-td 上设置），
- * 内容再长也不会撑破或被裁。
- */
-.th-name,   .td-name   { flex: 0 0 15%; }
-.th-star,   .td-star   { flex: 0 0 7%; }
-.th-element,.td-element{ flex: 0 0 7%; }
-.th-trait,  .td-trait  { flex: 0 0 13%; }
-.th-effect, .td-effect { flex: 1 1 auto; }
-.th-range,  .td-range  { flex: 0 0 21%; font-variant-numeric: tabular-nums; }
-/* 短列垂直居中 */
-.pets-td.td-name, .pets-td.td-star, .pets-td.td-element,
-.pets-td.td-trait, .pets-td.td-range { align-self: center; }
-/* 名字可换行：长名（如「奶油布丁史莱姆」）在窄列里不能 nowrap，否则被裁 */
-.cell-name { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; flex-wrap: wrap; overflow-wrap: anywhere; }
-.cell-mutate { width: 15px; height: 15px; flex: 0 0 auto; }
+.pets-th:last-child,
+.pets-td:last-child {
+  padding-right: 0;
+}
+
+/* 列宽用百分比，表头与数据行严格对齐 */
+.th-name,    .td-name    { flex: 0 0 20%; }
+.th-star,    .td-star    { flex: 0 0 6%; display: flex; align-items: center; justify-content: center; text-align: center; white-space: nowrap; }
+.th-element, .td-element { flex: 0 0 6%; display: flex; align-items: center; justify-content: center; text-align: center; white-space: nowrap; }
+.th-trait,   .td-trait   { flex: 0 0 12%; }
+.th-effect,  .td-effect  { flex: 1 1 auto; }
+.th-range,   .td-range   { flex: 0 0 18%; }
+
+/* 魔物列：左侧头像 + 右侧名称（对齐魔物收益页面） */
+.td-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pet-avatar-wrapper {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 6px;
+  background: var(--paper-light, rgba(255, 255, 255, 0.5));
+  border: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.pet-avatar-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+.cell-name {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+/* 颜色压暗微调，避免过亮刺眼（对齐魔物收益页面的深沉典雅色调） */
+.cell-name.quality-text-5 { color: #8e4f07 !important; }
+.cell-name.quality-text-4 { color: #722c80 !important; }
+.cell-name.quality-text-3 { color: #185c8e !important; }
+
+/* 星级：对齐魔物收益页面品质文字色 */
+.td-star {
+  font-weight: 700;
+}
+
+/* 属性标签：沉稳典雅书卷色 */
+.element-tag {
+  font-weight: 700;
+}
+.element-tag.element-1 { color: #1c5b88 !important; } /* 水 */
+.element-tag.element-2 { color: #9a2b20 !important; } /* 火 */
+.element-tag.element-3 { color: #2e6938 !important; } /* 风 */
+.element-tag.element-4 { color: #784c20 !important; } /* 地 */
+
+/* 特性名称 */
+.trait-name {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* 1 级 → 7 级数值列：纯数值小气泡，颜色沉稳古朴，多数值时一行一个清晰换行 */
+.range-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+.range-item {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-main, #3c2f21);
+  background: rgba(62, 42, 20, 0.06);
+  border: 1px solid var(--border-soft);
+  padding: 1px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
 /* 表格内的高亮数值（formatSkillDescription 产物） */
 .pets-table-row :deep(.hl),
 .pets-table-row :deep(em),
 .pets-table-row :deep(strong) { font-style: normal; color: var(--accent-ink); font-weight: 700; }
 
+/* 移动端窄屏适配：按用户要求隐藏星级、属性、特性名，仅保留魔物、特性效果与 1~7 级数值 */
+@media (max-width: 768px) {
+  .th-star, .td-star,
+  .th-element, .td-element,
+  .th-trait, .td-trait {
+    display: none !important;
+  }
+  .th-name, .td-name {
+    flex: 0 0 32% !important;
+    gap: 6px !important;
+    padding-right: 6px !important;
+  }
+  .th-effect, .td-effect {
+    flex: 1 1 auto !important;
+    padding-right: 8px !important;
+    font-size: 12px;
+  }
+  .th-range, .td-range {
+    flex: 0 0 26% !important;
+  }
+  .range-item {
+    font-size: 11px;
+    padding: 1px 5px;
+  }
+  .cell-name {
+    font-size: 12px;
+  }
+  .pet-avatar-wrapper {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+  }
+  .pet-avatar-img {
+    width: 26px;
+    height: 26px;
+  }
+}
+
 .pets-page {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 }
 
 /* ====== 筛选面板：继承 theme.css 全局 .filter-panel（padding 12px 14px，搜索框与其余图鉴页面一致） ====== */

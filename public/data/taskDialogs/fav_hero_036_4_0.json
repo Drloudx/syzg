@@ -1,0 +1,61 @@
+{
+  "script": "fav_hero_036_4_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]贝尔卡姐已经醒过来了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]不过，她的身体还是有些虚弱。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]长老们说，一次性补充太多生命力对身体不好，可能还要静养一段时间。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]你要过去看看她吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "当然！"
+          },
+          {
+            "tag": "tag_7",
+            "text": "我们走！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]嗯！[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "贝尔卡-营地对话【贝尔卡情况怎么样？】"
+}

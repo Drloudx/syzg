@@ -1,0 +1,76 @@
+{
+  "script": "fav_hero_011_3_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的，和{myName}一起玩很有意思，所以缇莎不顾万难又来你的营地啦。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "不是莉拉送你过来的吗？她去哪了？",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]妈妈把缇莎送到营地附近就走了，说是不想打扰缇莎和你一起玩。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……虽然妈妈一开始出于安全考虑不让缇莎过来，但最后还是亲自把缇莎送过来了，这次是缇莎赢了！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这次缇莎有新主意，想要{myName}帮帮忙，你能带我到草原深处吗？只要离营地比较远就好啦！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "可以是可以……不过缇莎想干什么？",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……等到了缇莎就告诉你！妈妈今天日落前回来接缇莎，要抓紧时间哦！[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "缇莎-营地对话【缇莎又来了呀。】"
+}

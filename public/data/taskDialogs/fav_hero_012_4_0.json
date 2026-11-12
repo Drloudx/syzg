@@ -1,0 +1,54 @@
+{
+  "script": "fav_hero_012_4_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，谢谢你同意让我过来，打造新弓的事情也交给你了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是我收集到的木材，坚韧且有一定的柔软度，是许多猎人打造弓的首选，你就用这个打造新武器就好。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（接过沃夫加提供的木材。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然不止这些，我还带了一些角猪肉过来。作为感谢，今天就让你看看我这位猎人的厨艺吧。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那先进营地吧，我已经迫不及待要见见你营地的模样了。[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-营地对话【欢迎来到我的营地！】"
+}

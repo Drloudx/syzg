@@ -1,0 +1,387 @@
+{
+  "script": "fav_hero_036_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]哈……多谢你的咖啡，我可算是活过来了。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "发生什么事了？"
+          },
+          {
+            "tag": "tag_4",
+            "text": "你这比平时还累几倍啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]因为突发状况没办法，这次就别说教了，让我自己缓缓吧。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "不论怎样……"
+          },
+          {
+            "tag": "tag_6",
+            "text": "还是要注意身体啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]是是是，知道了知道了……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]咳咳，还是说正事吧！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]我请你准备的东西在哪？现在可以用了吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "已经准备好了。"
+          },
+          {
+            "tag": "tag_10",
+            "text": "就在你手边。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]哦！就是这个吗！居然还准备了说明书！你真是太贴心了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]我看看……原来这个东西叫做“修复橡皮”！它的原理是……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]呃……虽然看不太懂，总之这个东西可以从时间较近的污渍开始消除，而不是一次性把所有的墨水都擦掉，是吧？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "考虑到你是要修复文件……"
+          },
+          {
+            "tag": "tag_14",
+            "text": "自然不能让你把文件变回白纸啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]嗯嗯！就是这样！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]哈……真是多亏了你，要不是有你帮忙，这次事情可就糟糕了。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "都是朋友嘛。"
+          },
+          {
+            "tag": "tag_17",
+            "text": "不过举手之劳罢了。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "不过到底发生了什么？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]是环会在紧急清理大长老……丹涅尔留下的文件啦！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]因为他突然跑路，他留下来的所有文件都需要重新整理归档……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]不过在我们翻找的时候发现，有很多文件都被墨汁污损了，大概是他留下了什么后手……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "原因我大概明白了……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "你们为什么不用魔法来解决呢？"
+          },
+          {
+            "tag": "tag_23",
+            "text": "为什么会想到用工匠造物来解决呢？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]因为魔法并不是那么方便的东西啊……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]强大的魔法师确实可以用魔法做到很多事，但具体到某个特定的问题，相应的魔法，就不是什么人都掌握的了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]而且……水占师在所有施法者之中，也属于相当偏科的类型……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]有几位长老，倒是懂得回溯物体状态的魔法，但那个法术的消耗实在太高了，不适合进行大批量作业……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "所以才选择可以重复获得的工匠造物吗？"
+          },
+          {
+            "tag": "tag_28",
+            "text": "用这个橡皮确实只需要体力就够了。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]哈哈……要当圣女大人的辅佐官，没有足够的体力可是不行的呢！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]总之这些橡皮我就先带回去了。如果不够的话……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "我会给你多做一些的。"
+          },
+          {
+            "tag": "tag_31",
+            "text": "不过你还是要以身体为重啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]我明白的，多谢你的关心！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]不过，我身负圣女大人的期待，还有环会赋予的职责……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]只是熬夜几天，不会有什么事的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]再说了，我也不是天天都这么干，等事情结束之后，我还是会休息的！你就放心吧！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（会休息……？）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（说实话，我实在不觉得贝尔卡能做到。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（不过……她都这么说了，我也只能相信她了……）[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_39",
+            "text": "那就路上小心。"
+          },
+          {
+            "tag": "tag_39",
+            "text": "祝你一路顺风。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]嗯！这次来得太急没给你带礼物，下次我会一并带来的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]今天多谢你啦！你也要保重身体呀！[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "贝尔卡-黑眼圈又变重了……-进入战役"
+}

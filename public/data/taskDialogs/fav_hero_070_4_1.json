@@ -1,0 +1,393 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]快来看哪！这里有优中选优的绝品哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]走过路过不要错过哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]是的是的！确实不应该错过呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]要是错过的话，还不知道要什么时候才能抓住你呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]噫！你、你是！！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]露库希安……露库希安大人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]知道我这个妖精贤者的名号，居然还敢时空走私！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]你这是明知故犯了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]没、没有没有！这件事大人您也知道的呀！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]我知道？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]对、对对！麦麦虽然没有特别报备，但您绝对是知道这件事的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]既然您没有阻止，那不就是默许了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "怎么样？",
+            "tag": "tag_15"
+          },
+          {
+            "text": "她是在说谎吗？",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]不……她说的大概是真的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]我能从她身上感觉到“古茶树”那家伙的气息，至少关系上应该挺近的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]“古茶树”那家伙一贯谨慎，如果她觉得没有问题，那多半是有什么想法……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]那个……露库希安大人？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]麦麦这个小本生意，应该没事了吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]没事了，你注意一点，随时和“古茶树”那家伙保持联络，不要搞得太出格了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]那当然！麦麦我可是最遵纪守法的了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]咱这也不是为了搞什么大新闻，单纯是七百年后太卷了，才会想到这个时代来开辟蓝海市场的嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]就你话多！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]是是，是麦麦我话多了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]不过，像麦麦我这么听话的商人也不多啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]我举报，其实还有一个叫“莓莓”的家伙也在搞时空走私！请露库希安大人一定要狠狠惩罚她啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]呵呵……你猜我要不要惩罚？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]这……这就不是麦麦我能置喙的了，还请露库希安大人自行抉择吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "麦麦",
+        "text": "[show]那今天就到这里，麦麦先走一步啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]啧，走得真快！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "然后这就结束了？",
+            "tag": "tag_33"
+          },
+          {
+            "text": "还有别的事要做吗？",
+            "tag": "tag_33"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]这事儿当然没完了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]虽然那家伙多半是想借我们的手打压异己，但那个“莓莓”确实也得好好敲打一下才行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]可恶的“古茶树”，就算在七百年后也在给我整活，居然把这么棘手的家伙扔来我这边！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你们之间的关系还真是……",
+            "tag": "tag_37"
+          },
+          {
+            "text": "仅仅“露库希安”就好像一个小社会呢！",
+            "tag": "tag_37"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]那可不……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]要说谁才是最受累的露库希安，我绝对要提名自己！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]总之，这次真是多谢你的帮忙，要不是你之前收集的数据，我还没法这么简单抓到她们的尾巴呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "谢谢说得太多了。",
+            "tag": "tag_41"
+          },
+          {
+            "text": "你不是给了我礼物嘛！",
+            "tag": "tag_41"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不过……",
+            "tag": "tag_42"
+          },
+          {
+            "text": "你平时都这么辛苦吗？",
+            "tag": "tag_42"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]因为时空是很脆弱的，处理时空问题必须慎之又慎，跑腿调查是免不了的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]比起抓人和打架，调查这种事最是耗人心力了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]所以我才会这么感谢你啊！虽然你应该无法理解，但还是请你坦然接受我的感激好了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_070_4_1",
+  "des": "露库希安好感4-战役"
+}

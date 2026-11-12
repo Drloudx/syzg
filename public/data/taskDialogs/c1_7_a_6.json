@@ -1,0 +1,22 @@
+{
+  "script": "c1_7_a_6",
+  "des": "弃用",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]他们的大部队在攻击契约者！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]直接上吧！[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

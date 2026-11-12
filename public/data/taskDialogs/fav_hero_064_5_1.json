@@ -1,0 +1,317 @@
+{
+  "des": "伽拉忒亚-真的帮大忙啦！_进入战役",
+  "script": "fav_hero_064_5_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（伽拉忒亚在营地亲手做了一大堆饭菜，尽情饱餐了一顿……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]哼哼，从今往后就是属于伽拉忒亚的时代了！尽情欢呼吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "伽拉忒亚做的菜真好吃！"
+          },
+          {
+            "tag": "tag_5",
+            "text": "伽拉忒亚万岁！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]哈哈，没错没错，尽情赞扬我吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]咳咳，总之，这次真的很谢谢你。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我也不知道该怎么表达这份感谢，只能给你做了这份礼物……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "这是！"
+          },
+          {
+            "tag": "tag_9",
+            "text": "伽拉忒亚亲手做的玩偶！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]当然，我知道你是大工匠，这种东西肯定分分钟就能做得出来，用它来作为谢礼，实在是有些拿不出手……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]但这份感激的心情，我还是希望能够传达给你。所以……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]请、请你收下！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "谢谢你，伽拉忒亚。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "这才不是什么拿不出手的东西。"
+          },
+          {
+            "tag": "tag_14",
+            "text": "饱含心意的礼物是无可替代的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]嘿、嘿嘿……真的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]总之，你能喜欢就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]我还在想，要是你不接受的话该怎么办，要知道，现在你可是我第三喜欢的人，被拒绝了我可真的会伤心的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "第三喜欢？"
+          },
+          {
+            "tag": "tag_18",
+            "text": "那前面两位是？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]排在前面的当然是妈妈和奇瓦姐姐呀！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "那看来我的排名还挺高的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]就是啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]唔～！听到这个消息，你怎么没有一点高兴的样子啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "嗯……"
+          },
+          {
+            "tag": "tag_23",
+            "text": "说实话，是非常高兴。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]嘿嘿，那就表现得更高兴一点嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]今天可是开心的日子，就别板着一张脸了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]让我们尽情庆祝吧——！等吃完了饭，我们再去之前那条小溪，然后去逛逛药圃和猎场……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]回来之后，我再给你好好展示下我除了料理之外的其他服务模块！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "其他服务模块……"
+          },
+          {
+            "tag": "tag_28",
+            "text": "难道是之前说的那个……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]没错！不仅是料理，家务、按摩，我都有好好训练过，可不能被你小看了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]而且……这可是只有妈妈能享受得到的体验呢，你看我对你好不好！感受到伽拉忒亚第三喜欢的人的待遇了吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "嗯！好期待呢！"
+          },
+          {
+            "tag": "tag_31",
+            "text": "那就恭敬不如从命了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[cm][show]嘿嘿，你就好好期待吧～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（之后，和伽拉忒亚再次度过了一段开心的时光……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,321 @@
+{
+  "script": "fav_hero_046_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]好，就是这里，这地方藏着很多珍贵的东西！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "废弃的矿场？"
+          },
+          {
+            "tag": "tag_4",
+            "text": "这里有什么珍贵的东西吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]别急，让我来找找。嘿嘿……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嗯……找到了！就是这个！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "这是……绿宝石？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]没错，我之前在这里当过矿工。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]当时大家在这里开采岩矿，压根没发现角落里埋有绿宝石，我也是在结算工钱的时候发现的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]我一直没有把这个秘密告诉别人，后来因为工作太忙所以忘记了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]不过前几天在思考怎么赔偿你的时候，我想起这件事了。虽然不清楚这里有多少绿宝石，但应该足够赔偿……吧。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "也不需要赔什么的……"
+          },
+          {
+            "tag": "tag_12",
+            "text": "我也没受到什么损失。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]别这么说啦，我犯的错我当然要承担。而且来都来了，咱们总得拿一筐回去才行。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]接下来就交给我吧，让我把这些绿宝石都挖出来！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]哈！哈！哈——！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（与平常无法控制自己的力道不同，迈妮娅的采掘手法时而有力，时而细凿。随着迈妮娅的铁镐挥舞得越来越快，成块的绿宝石矿也从岩石中蹦出。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嘿嘿，别看我手脚笨，但我的挖矿水平可是很强的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]不过……怎么就这么几块？我还以为有一大堆呢。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "迈妮娅究竟是怎么发现这一小块的？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]我天生就能感知到矿物的位置，甚至发生坍塌的时候，我也能凭着感知找到出口。或许我天生对岩石之类的土地元素有亲和力吧。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]而且我也很喜欢好看的石头，不论是普通石头、魔岩矿或者宝石，只要形状、质感或者颜色够好看，我就会拿过来把玩，我家里收集了很多石头呢。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嘿嘿……这个石头真好看，不过挖的时候太用力了，形状被砸得超难看。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]不过这么多绿宝石应该很值钱吧，要卖给商人，拿到的钱估计能让我们躺一辈子了！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "现在这种绿宝石并不流行。"
+          },
+          {
+            "tag": "tag_24",
+            "text": "要卖可能也卖不了多少钱。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]不值钱？怎么会这样……这些绿宝石怎么都比商人手上的钻石要好看呢。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]或许是我太主观了，毕竟绿色是我的本命色……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "没关系，迈妮娅找到的绿宝石我也很喜欢。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]嗯！只要{myName}喜欢就好！这些你全部拿走吧。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "（用工匠锤打造一个绿宝石饰品。）"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]诶？好漂亮！居然能在这么短的时间内就雕好了！你打算把这些绿宝石都打造成装饰物去卖钱吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "不啊，这是给迈妮娅的。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]给我？可这都是我给你赔偿的绿宝石呀，你应该自己拿走才对……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_33",
+            "text": "绿宝石是迈妮娅开采的，应该有你的一份。"
+          },
+          {
+            "tag": "tag_33",
+            "text": "既然算是我的，那我给你一份也没问题吧。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]好吧，我……我知道了！谢谢你！这颗绿宝石我会好好留着的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嘿嘿……真好看呀，回去我要把它放在家里最显眼的地方……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（在把绿宝石收拾好后，和迈妮娅一起回到营地。途中迈妮娅一直对那颗雕刻好的绿宝石爱不释手。）[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "迈妮娅-索利德山的“宝藏”-进入战役"
+}

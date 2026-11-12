@@ -1,59 +1,60 @@
 {
+  "des": "荒野客闯入",
   "script": "s_1_13_8",
   "exps": [
     {
       "para": {
-        "charaName": "荒野客小弟",
+        "nameSide": "left",
         "text": "[show]对不起对不起对不起！是我们眼瞎冒犯了契约者大人！请……请放过我们！[l][cm]",
-        "nameSide": "left"
+        "charaName": "荒野客小弟"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]赶紧滚！下次再看见你们为非作歹，把你们的毛都拔光！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "荒野客小弟",
+        "nameSide": "left",
         "text": "[show]是……是……我们立刻滚……[l][cm]",
-        "nameSide": "left"
+        "charaName": "荒野客小弟"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[show]（荒野客拉着昏倒的同伴屁颠屁颠地逃走了。）[l][cm]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "格薇勒",
+        "nameSide": "left",
         "text": "[show]就这点本事？一群废物！[l][cm]",
-        "nameSide": "left"
+        "charaName": "格薇勒"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "格薇勒",
+        "nameSide": "left",
         "text": "[show]再来啊！再来战个三百回合……三百……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "格薇勒"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你……你没事吧？[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -61,8 +62,8 @@
       "para": {
         "options": [
           {
-            "text": "还好，只是晕过去了而已。",
-            "tag": "tag_12"
+            "tag": "tag_12",
+            "text": "还好，只是晕过去了而已。"
           }
         ]
       },
@@ -70,9 +71,9 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]那就好……真是把我吓了一跳。没想到格薇勒还有这样的一面啊。[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -80,8 +81,8 @@
       "para": {
         "options": [
           {
-            "text": "也有可能只是……单纯的喝醉了？",
-            "tag": "tag_92"
+            "tag": "tag_92",
+            "text": "也有可能只是……单纯的喝醉了？"
           }
         ]
       },
@@ -89,33 +90,33 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]啊？这难道是她喝醉的样子吗？你别说……还真有可能……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]不过……我们虽然把荒野客赶走了，但这里的桶几乎都被破坏掉了……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]唉。这地方太小了，打架的时候没法兼顾保护桶……而且那些家伙都是在蓄意破坏，太过分了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]这都是维丝的爸爸留给她的宝物……她要知道这里的酿全被砸了，那得多伤心……[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -123,8 +124,8 @@
       "para": {
         "options": [
           {
-            "text": "总之先看还有没有酒桶幸存下来吧。",
-            "tag": "tag_47"
+            "tag": "tag_47",
+            "text": "总之先看还有没有酒桶幸存下来吧。"
           }
         ]
       },
@@ -132,33 +133,25 @@
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[cm][hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
-        "text": "恢复暂停",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[cm][show]（仔细寻觅了一圈以后……）[l][cm]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]找到了！这里还有一个桶是完好的！虽然只剩一个了……但总比没有好。[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -166,8 +159,8 @@
       "para": {
         "options": [
           {
-            "text": "嗯？这桶旁边有东西。",
-            "tag": "tag_68"
+            "tag": "tag_68",
+            "text": "嗯？这桶旁边有东西。"
           }
         ]
       },
@@ -175,57 +168,57 @@
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[cm][hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]这是……笔记本？难道是维丝家人留下来的吗？[r]嗯……我也不太识字啦，{myName}你好好看看吧。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]唔……你说里面大部分内容都是酿造的过程，还有一些料理的烹饪方法，也就偶尔写了一些生活琐事？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]里面提到了“妻子”还有“女儿维丝”……这应该是维丝爸爸的日记……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你说这些饮品是她爸爸每年为维丝特别酿造的，打算在她成年的时候一起给她……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]原来如此……桶上的标签原来是这个意思啊。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]从1岁到14岁都有啊……她爸爸真的很爱她呢。可惜……现在只剩一桶了。[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -233,12 +226,12 @@
       "para": {
         "options": [
           {
-            "text": "先把这本笔记和酒带回去吧。",
-            "tag": "tag_29"
+            "tag": "tag_29",
+            "text": "先把这本笔记和酒带回去吧。"
           },
           {
-            "text": "得让维丝知道真相。",
-            "tag": "tag_29"
+            "tag": "tag_29",
+            "text": "得让维丝知道真相。"
           }
         ]
       },
@@ -246,49 +239,49 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]嗯……只希望不要打击到她……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "格薇勒",
+        "nameSide": "left",
         "text": "[show]刚刚……刚刚发生什么了？[l][cm]",
-        "nameSide": "left"
+        "charaName": "格薇勒"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]唉？你醒了？感觉还好吗？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "格薇勒",
+        "nameSide": "left",
         "text": "[show]在下很好……咦？咦？咦咦咦？周围的饮品怎么全洒了？难、难道是在下——[l][cm]",
-        "nameSide": "left"
+        "charaName": "格薇勒"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]不是你的错啦。错的是那群荒野客，是他们砸掉这些桶的。[r]而且，要是你没出来阻止他们，恐怕是连这最后一桶都保不住啦。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "格薇勒",
+        "nameSide": "left",
         "text": "[show]因为在下……阻止了她们？真……真的吗？[l]",
-        "nameSide": "left"
+        "charaName": "格薇勒"
       },
       "key": "text"
     },
@@ -296,12 +289,12 @@
       "para": {
         "options": [
           {
-            "text": "是真的。",
-            "tag": "tag_95"
+            "tag": "tag_95",
+            "text": "是真的。"
           },
           {
-            "text": "格薇勒刚刚很帅哦！",
-            "tag": "tag_95"
+            "tag": "tag_95",
+            "text": "格薇勒刚刚很帅哦！"
           }
         ]
       },
@@ -309,36 +302,35 @@
     },
     {
       "para": {
-        "charaName": "格薇勒",
+        "nameSide": "left",
         "text": "[cm][show]可、可在下一点印象都没有了……[l][cm]",
-        "nameSide": "left"
+        "charaName": "格薇勒"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]总之……我们先回驿站，把这里的情况和维丝他们说一下吧。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "格薇勒",
+        "nameSide": "left",
         "text": "[show]好……好的……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "格薇勒"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": "荒野客闯入"
+  ]
 }

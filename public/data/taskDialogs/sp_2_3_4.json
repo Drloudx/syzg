@@ -1,0 +1,180 @@
+{
+  "script": "sp_2_3_4",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]这个粉色的粘液块……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]哇——！哇——！哇————！！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]你又怎么了？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]嗯？没、没什么姆……[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "是因为这个粘液吧。"
+          },
+          {
+            "tag": "tag_7",
+            "text": "这个粘液和你有关系？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[cm][show]这个……那个……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]是、是的……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]这些都是我锻炼分裂技能的时候留下的姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]明明是最上位的史莱姆，但德莉就连种族的特性技能都用不好姆。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]这些分裂出来的史莱姆，按说都是德莉的分身，但德莉还是没办法自如地操纵姆……最后只能放任它们在野外自生自灭，一直活动到魔力自然耗尽为止姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]所以这些都是公主史莱姆的分裂体？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "露库希安",
+        "nameSide": "left",
+        "text": "[show]我记得公主史莱姆的粘液本身也是几乎万能的魔法材料，只要注入魔力，性状就可以任意地进行改变，可以满足是百分之九十的材料需求。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]那咱们的材料问题就算是解决了？这种粉色粘液，这地方可是到处都是啊！[l]"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "没问题。"
+          },
+          {
+            "tag": "tag_16",
+            "text": "这些都能用。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[cm][show]咦？咦？要、要用这些粘液块吗姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]唔……这……虽然有点难为情姆……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "德莉",
+        "nameSide": "left",
+        "text": "[show]既然大家觉得有需要的话，那、那就把这些粘液拿去用吧姆！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]哈……我、我们会好好使用的……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]真是……怎么搞得我们好像在欺负小孩子一样……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]下次有空的话，还是给她建一个正儿八经的营地吧……[l][cm][hide]"
+      }
+    }
+  ],
+  "des": "调查弹弹滑滑的黏液。"
+}

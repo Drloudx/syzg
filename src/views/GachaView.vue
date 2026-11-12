@@ -162,6 +162,8 @@ const pools = ref([])
 const presentation = ref({})
 const initialWallet = ref(null)
 const kind = ref('hero')
+/** 测次阵营：3ce（三测卡池，当前线上）｜4ce（四测卡池，游戏 1.7.15 新四池）。 */
+const era = ref('4ce')
 const poolId = ref('')
 const stage = ref('pool')          // pool | card | reveal | result
 const tipMode = ref('')            // '' | rate | record
@@ -258,7 +260,7 @@ const topupAllowance = computed(() => {
   }
   return map
 })
-const poolsOfKind = computed(() => pools.value.filter(pool => pool.kind === kind.value))
+const poolsOfKind = computed(() => pools.value.filter(pool => pool.kind === kind.value && (pool.era ?? '3ce') === era.value))
 const currentPool = computed(() =>
   poolsOfKind.value.find(item => item.id === poolId.value) ?? poolsOfKind.value[0] ?? null)
 const runtime = computed(() => currentPool.value ? store.runtimeOf(currentPool.value.id) : null)
@@ -333,10 +335,14 @@ async function load() {
   }
 }
 
-/** 读取 URL 的 kind / pool / view，并修正到有效值。 */
+/** 读取 URL 的 kind / era / pool / view，并修正到有效值。 */
 function syncFromRoute() {
   const queryKind = String(route.query.kind ?? '')
   if (queryKind === 'hero' || queryKind === 'pet') kind.value = queryKind
+
+  // 三测卡池已删除，仅保留四测（era 固定 '4ce'）
+  era.value = '4ce'
+
   if (!poolsOfKind.value.length) kind.value = kind.value === 'hero' ? 'pet' : 'hero'
 
   const queryPool = String(route.query.pool ?? '')
@@ -357,6 +363,7 @@ function syncFromRoute() {
  */
 function syncToRoute() {
   const query = { ...route.query, kind: kind.value }
+  query.era = era.value // 角色池与魔物池都带 era，切换时同步
   if (poolId.value) query.pool = poolId.value
   else delete query.pool
   if (tipMode.value === 'rate') query.view = 'pool'
@@ -383,6 +390,8 @@ function selectPool(id) {
   stage.value = 'pool'
   syncToRoute()
 }
+
+/** 切换测次阵营已移除（三测卡池已删除，仅保留四测）。 */
 
 function openTip(mode) {
   tipMode.value = mode

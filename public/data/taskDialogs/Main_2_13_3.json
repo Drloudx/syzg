@@ -1,0 +1,318 @@
+{
+  "script": "Main_2_13_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]岩蟾蜍、[wait=200]恐兽、[wait=200]哈比……[wait=300]明明是见了面就会互相捕食的魔物，[r]居然站在一起，组成了联合阵线……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]沃夫加，你有遇到过这种情况吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]不要说遇到了，就连听都没有听过。[wait=300]……真是奇怪。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]呵，[wait=200]无非就是一起打爆的事。[l]对我们来说，有什么影响吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？",
+        "nameSide": "right",
+        "text": "[show]当然有影响，而且是非常严重的影响！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]安娜小姐！您怎么来了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]我观察到逆流天河的哈比突然散去，就想要过来看看发生了什么。[r][l]正好路上遇到了这两位。[wait=200]付出了一些报酬之后，他们就答应护送我过来喽。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]我还是放心不下大姐头……[wait=200]就赶紧叫上菲莉娜一起来帮忙了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]皮塔……！[wait=200]真是多、[wait=100]多管闲事……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]唷，后辈们！[wait=200]我听皮塔说了，这也是你们的功劳吧。[r][l]这才多久不见，你们就干出这么一番大事啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]我们只是恰逢其会而已[wait=50]。[wait=150]等等，安娜小姐。[wait=100]你刚才说，会有很严重的影响是怎么回事？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]啊，说这茬儿。[wait=200]根据大书院在魔物生态学的专门研究，[r]“当平时完全无法共存的魔物们出现共同作战”的情况出现时，那就只有一种原因——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]它们受到了上级魔物的支配，在某种强大的力量下被聚合成了一个整体。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]上级魔物？[wait=200]支配？[wait=200]是像……角布林首领那种？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]嗯～差不多啦。[wait=200]具有支配地位的上级魔物，它们的命令会被下级魔物无条件地服从。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]而随着时间的推移，以及麾下兽群的增加，支配的力度和范围都会以几何级数倍增，[r]严重的时候甚至会席卷整个区域。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]这么一说……[wait=200]我有听说过，白沙荒原那边似乎就有魔物的大军控制。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]没错。[wait=100]如今它们已经封锁住了魔界山口，让深渊无法进出……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]难道……“兽潮”也是因为这种原因吗？[r][l]有一个异常强大的魔物作为头领，让麾下的魔物踏遍整座深渊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]嗯～也许是吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]……也就是说，[wait=200]如果我们放任下去的话，那个大家伙也会成长为席卷整个山地的魔物头子？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]按这位学者小姐所说，或许最终结果没有那么悲观，但确实存在这种趋势。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]那太好了。我们又多了一个要消灭它的理由了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]嗯～所以你们说定了没有？[wait=200]我们是不是可以开始展开研究了？[r][l]一起去那个什么山神之殒，看看万恶之源到底是什么东西？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]安娜小姐……请务必加入我们！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]不过事先说好了，我只是个学者，可没有你们那么强的战斗力，请不要抱有太大的期待。[r][l]——啊对了，里面的数据都是我的哦。[wait=200]反正你们也没能力做研究，麻烦让给需要的人哈。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]幸好我有跟着希尔一起上来，要不然等到大祸临头，说不定都还没发现到底是怎么回事。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]这就是好心有好报吧。[wait=200]因为希尔帮过你，你决定帮助希尔，结果反而又帮助到了你。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]要是说给吟游诗人，说不定会成为一段佳话呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]什么你帮我我帮你的！帮来帮去的真是啰嗦死了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]现在的我们可不是谁在帮谁的关系，是亲密无间的盟友啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "left",
+        "text": "[show]面对危及整个山地的威胁，[wait=100]大家一起并肩作战，[wait=100]这才是真正的佳话不是嘛！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]说得没错。呵。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]沃夫加……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]来自不同立场的人们联合在一起……[wait=200]自从哈萨琳老板去世后，[r]这种场面已经好久没有见过了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]所以要我给大家吟一曲吗？[wait=100]在这种分秒必争的时候？[wait=100]毕竟大家看起来也不怎么赶时间嘛。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]……除了这位小姐的嘴真的毒。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]那，米托拉。[l]接下来我们就以追踪大家伙为最优先的目标，[r][wait=200]山神之殒的探索就等之后有空再说，怎么样？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]你还真是喜欢多管闲事。[wait=200]……不过，[wait=100]我也一样赞成！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

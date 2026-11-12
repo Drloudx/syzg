@@ -1,0 +1,206 @@
+{
+  "script": "s_sp2_8_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的……我就是乔可姆……姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？你就是表演者乔可姆？表演者不是要让别人开心吗？怎么你抑郁成这样……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是啊……一个表演者却郁郁寡欢……我恐怕早就失去成为表演者的资格了姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（告知欧德莱姆的邀请。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，是欧德莱姆先生要我进宫去给公主殿下表演，可你们也看到我现在的状态了，这个忙恐怕我帮不上了姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以你是遇上什么麻烦了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]倒不是我遇上麻烦了，是……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]爸，家里来客人了吗姆？[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]伽拉姆，这些人要请我进宫去给德莉殿下表演，不过眼下你的事情还没解决，我没什么精力去表演姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]爸，你没必要因为我的事操心，这件事我自己可以解决姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那怎么能不担心呢，那可是你的大事啊，我就是砸锅卖铁也得帮你解决姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以是什么事呢？现在德莉公主急着要史莱姆去哄呢。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是我儿子的婚事，前段时间我儿子向对方求婚，对方也同意了姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那不是挺好的吗？恭喜了！既然双方你情我愿，那结婚不是顺理成章的事情了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]事情没那么简单，虽然对方同意了，但它家里人可还没点头呢姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]两位有所不知，我若要娶希维姆，得满足对方家里人提出的要求姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……结个婚还有什么要求啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]最基本的就是房子，而且是我自己的房子姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在史莱姆多，但是地和房子却也很少，所以要弄一间房子并不容易姆……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]家里人忙前忙后，也才勉强买到一份小地契，连起房子的黏液都还没凑够呢姆……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此，宫廷会议好像也讨论过这个问题。这样吧，你们还缺什么，我来帮你们搞定。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真……真的吗？其实大部分建材我们都准备好了，只是还缺一些黏液姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大概还需要5个黏液就可以了，你们能想办法凑到吗姆？[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没问题，交给我们吧。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "请问你是乔可姆吗？"
+}

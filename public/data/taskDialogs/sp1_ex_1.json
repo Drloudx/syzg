@@ -1,0 +1,183 @@
+{
+  "script": "sp1_ex_1",
+  "des": "【我们准备好了！】",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]准备好了吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]那现在本宫说明一下这次测试的计划。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]首先我们要进行抗击打测试，测试这副身体的抗击打极限。[l]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "也就是要找物理攻击强大的魔物吗？",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]嗯……钝器和利器的区别似乎也得考虑一下呢。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]第二项要测试的是对极端环境的耐受力。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]由于这副身躯的魔力密度很高，一般的冰火类的环境伤害几乎不会有效，因此应该集中关注酸性和毒性环境。[l]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "也就是要对付粘液怪吗……",
+            "tag": "tag_10"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]哇……听上去就感觉好脏！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]第三项也是最后一项测试是综合测试，测试这副躯体的恢复能力。[l]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这要怎么测？",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]回复能力……难道还要特意弄伤吗？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这是有必要的。到时候就拜托你们和本宫对战好了。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]反正出问题之前本宫就可以叫停，所以不必担心。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]唔……既然你这么说……那行吧。[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]我们先去第一项测试？[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]嗯，如果你们没问题的话，现在就可以出发。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]当然没问题！要测试多种类的抗击打能力，我已经想到好地方啦！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]跟我来～！地方离这儿不远，我们马上就能开始才测试了～！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    }
+  ]
+}

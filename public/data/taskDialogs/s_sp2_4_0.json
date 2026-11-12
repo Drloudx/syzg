@@ -1,0 +1,324 @@
+{
+  "script": "s_sp2_4_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？那个史莱姆在干什么？那锅都冒出黑雾了……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇，好香啊，我可爱的臣民在干什么呢姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]香吗？我隔着老远就闻到烤糊的味道……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]感兴趣的话就去看看姆，不过在这之前先吃下我的黏液吧，这样就能听懂史莱姆说的话了姆～[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（吃下德莉身上的黏液。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]库库姆，你在这里干什么呢姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是公主陛下啊姆，我在这里烹饪呢，很快就能做出香喷喷的食物姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？你们史莱姆原来还挑着吃吗？平时看你们不是啃木头就是啃野草啥的……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那只是刻板印象姆。我们史莱姆也是挑着吃的，只是木头和野菜是我们最容易弄到的食物而已姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就像人类和魔人吃野菜和白面也能填饱肚子，但是如果一直干巴巴吃那种东西，你们也受不了吧姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……理是这么个理，不过你这东西真的能吃吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然能吃，这是我们史莱姆的传统食物，超级好吃姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]给你和公主殿下都盛一碗，来尝尝吧姆！工匠也要吗姆？[l]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "不用了，谢谢……",
+            "tag": "tag_16"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊，真好喝啊，史莱姆的食物就是美味姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的那么好喝吗？我试试看……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！咳咳……这……这是什么东西啊——！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "米托拉——！",
+            "tag": "tag_39"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]（花了一段时间，终于把米托拉救起来了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不行……我在野外什么东西都吃过，但就是没法把这坨浆糊咽下去……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吃不下去吗姆？可能这道菜不是特别好吃吧，毕竟我手上没有什么好的菜谱姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]菜……菜谱？你们还那么讲究吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在被流放之前，我们史莱姆的生活在公主殿下的领导下，过得可是非常好的姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当时每种颜色的史莱姆都有自己的菜谱，而且我们还会根据各个史莱姆的性格和口味定制不同的食物，大家吃得都非常好姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可惜被流放到野外以后，过去的好日子就不再有了姆。不过我还是想要借用有限的资源，替公主和大家分忧姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太感动了，不愧是我的臣民姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我知道的菜谱比较少，没法做出更好的食物，得想个办法姆……[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]两位也是契约者吧，可以委托你们一件事吗？[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没问题，你想要我们做什么？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我想要请你们弄到先时史莱姆留下的菜谱，这样我就能烹饪更美味的食物了。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]先时史莱姆留下的菜谱？没想到史莱姆也会留下这种东西啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那当然会留下了，可别小看我们史莱姆的智慧呢姆～[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来是这样，那我们该去哪里找这些食谱呢？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我听说欧德莱姆从遗迹里挖出来了很多文献，其中就有菜谱，你们可以去问问它姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我手头忙就不跟着你们去了，希望你们一路顺利姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]去找欧德莱姆是吧？我们走吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯！欧德莱姆那边，我来给你们带路姆。[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（史莱姆在对着大锅倒腾什么……）"
+}

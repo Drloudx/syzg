@@ -1,0 +1,307 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]唔……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "（询问露帕为什么愁眉苦脸的。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]虽然{myName}买了很多甜品回来，但这质量……真是太糟糕了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]{myName}一定是被骗了吧！被那些商人狠狠地宰了一笔！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "我感觉的确是甜的呀。"
+          },
+          {
+            "tag": "tag_7",
+            "text": "被骗要从何说起？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]唉……我刚把袋子里的甜品都尝了一遍，跟你说说情况吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]就拿这个深渊糖球来说，本该是香甜润滑，回味悠长。就算化光了，也该留点淡淡的甜味。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]可眼前这个……简直是甜品之耻。表面糙得能划伤舌头，甜味更是一股魔法合成的感觉……我实在没法忍受！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]还有这个魔爪饼干，完完全全就是冒牌货！我这个魔爪湖长大的，从没见过这种款式！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]而且味道和口感也都很不对劲……除了外层满满的奶泥，饼干内部半点甜味都没有，尝起甚至还发苦，根本不配叫甜品！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]还有这些黑森林黑糖、平野花糕、索利德蛋卷……一个比一个难吃！这种品相都敢拿出来卖，太无耻了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "毕竟是路过行商人便宜卖我的……"
+          },
+          {
+            "tag": "tag_14",
+            "text": "的确是挺遗憾的……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]啊，没有怪{myName}的意思啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]其实……深渊的甜品本来就稀罕，流行起来也就这几年的事。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]可就这么短时间，一堆黑心商人为了赚钱，尽做些粗制滥造的玩意……简直败坏甜品名声！{myName}也是受害者！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]他们的产品还有个特点：齁甜！甜得发腻！就像这些，吃着都甜，但我一吃就知道是用魔法合成的糖分，但凡多吃几口就魔力冲头，让人发昏！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "那……我把这些甜品全扔了算了……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]别呀，{myName}好不容易买的。再说这批糖果也不是全都不行，比如……这个棉花糖！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]这个棉花糖算是这所有甜品里最好吃的啦，而且我还想教你一个有趣的吃法！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（露帕走到篝火前，将棉花糖用木枝串起来，然后放在火上烤。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]小时候在村里，我们常这样烤棉花糖吃哦。火上一烤，香气更浓，甜味也更足。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]嗯，真香！烤好了，你尝尝。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "（唔，味道确实非常好……）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]嘿嘿……{myName}以后想吃更甜的棉花糖，就记得像这样烤一烤哦。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "虽然买了一堆烂甜品回来。"
+          },
+          {
+            "tag": "tag_27",
+            "text": "但总还是有些收获的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]嗯，{myName}下次买甜品，可要擦亮眼睛别买到垃圾货啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]或者……你可以和我一起去买。我肯定会让你买到最好吃的甜品。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[show]呼啊……吃完糖以后变得好困唷。让我先歇息一下吧……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "等等！"
+          },
+          {
+            "tag": "tag_31",
+            "text": "吃完糖果要好好刷牙！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露帕",
+        "text": "[cm][show]……那种事……你来帮我就好了啦……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（露帕在篝火前睡着了，直到接近黄昏才再次醒来。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（当然，也有好好帮她刷了牙！）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "露帕·萝特-甜品审核员-进入战役",
+  "script": "fav_hero_034_2_1"
+}

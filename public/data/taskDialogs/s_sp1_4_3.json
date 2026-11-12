@@ -1,0 +1,260 @@
+{
+  "script": "s_sp1_4_3",
+  "des": "（看看墓碑的情况。）",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是坟地吗？这不就是一堆烂石头吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟都几百年了，烂掉不是很正常嘛。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这地方毕竟也是城堡的范围，总得花些精力去打扫啊。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，几百年，终于来人了。[l][cm]",
+        "charaName": "幽灵A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇啊啊啊——！鬼……鬼啊——！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "别激动米托拉。",
+            "tag": "tag_8"
+          },
+          {
+            "text": "我们又不是第一次看见了。",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯？好像是这么回事，不过在这种地方看见幽灵，还是有点渗人的……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？洛莉安大人醒了呀，有空可以多来这里坐坐啊，这里风很舒爽的。[l][cm]",
+        "charaName": "幽灵B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈哈，一定，我有空就来玩。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么你说的跟度假似的，这里可是坟地啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]坟地也是余城堡的一部分啊，而且这里的幽灵还有很多是余百年前的熟人呢。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]百年前的熟人……听起来还真是有些恍如隔世的感觉……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]请问各位幽灵……大娘大爷，我们要开始打扫卫生了，你们有什么要求吗？[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]有有有！把这片土地的虫子都清理一下，这些东西老是把土弄得乱七八糟。[l][cm]",
+        "charaName": "幽灵A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还有就是我的墓碑都烂掉了，跟一群碎石似的，上面写的文字一点也看不清，这样后辈怎么能知道我的英勇事迹呢。[l][cm]",
+        "charaName": "幽灵B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错，还有就是把我的碑放在栏杆旁边那块地吧，那里地方好。[l][cm]",
+        "charaName": "幽灵A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你在说什么？你的碑离那里有多远啊，那地方应该给我才对！[l][cm]",
+        "charaName": "幽灵B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是距离决定的吗？你的碑和那地方中间还搁着好几块碑呢，再怎么也轮不到你啊！[l][cm]",
+        "charaName": "幽灵A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那地方是我的！[l][cm]",
+        "charaName": "幽灵B"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是我的！[l][cm]",
+        "charaName": "幽灵A"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦好啦，都在这个世界上飘多少年了，你们还在为这种事情吵架。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这样吧，你们先把所有的幽灵叫过来，我们聊聊墓碑的摆放位置。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]然后得把所有墓碑都重新打造一遍才行……对了，这位工匠，你可以给这些幽灵打造墓碑吗？[l]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "可以是可以。",
+            "tag": "tag_26"
+          },
+          {
+            "text": "不过我还是第一次给人造墓碑……",
+            "tag": "tag_26"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]就一块石头上面刻些字就行，这些老前辈的要求不会太高的。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过眼下我们没有石料啊，这么多幽灵的碑，我想大概需要3块石料才够用。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是要把3块石料带过来造墓碑吧，这个没问题。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，我们会先把土里的虫子清理掉，等你们回来，拜托了。[l][cm]",
+        "charaName": "总管茜狄亚"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没想到本小姐还有挖虫子的一天……算了，为了家族振兴，本小姐忍耐一下又如何！[l][cm][hide]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

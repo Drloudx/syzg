@@ -1,145 +1,145 @@
 {
-  "script": "s_5_11_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]哎呀，商队这件事让很多人头疼呢……你们看那边。[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]——嘿！你们到底行不行啊？不行我就自己上了！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "护卫队队员",
         "text": "[show]现在在温泉谷里作乱的芙洛波太多，我们一时没法进去。而且我也不能放你进去，你一个小孩子在里面出了事我们可担不起责任。[l][cm]",
-        "charaName": "护卫队队员"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]那又不是你的货，你当然可以站着说话不腰疼！还有，你说谁是小孩子？我扛着弩出来冒险的时候，你还在玩泥巴呢！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]咦？这不是阿娜洛洁吗？你怎么也在这儿？[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]哎呀，居然是你们！没想到在雪山也能遇见你们。你们来这儿也是为了温泉谷的货物吗？[l]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
-            "text": "（解释前来的缘由。）",
-            "tag": "tag_10"
+            "tag": "tag_10",
+            "text": "（解释前来的缘由。）"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[cm][show]原来如此。缪夏……是为了你的货物来的啊……[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]你、你好——或许我该称呼您为前辈？[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]前辈什么的……你要这么叫也行！先自我介绍一下，我叫阿娜洛洁，是个四处游历的传奇商人兼深渊最强炼金术士！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]哼，你还真是一点都不谦虚啊。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]既然你们也是为了温泉谷的货物而来，那就好办了，我们一起去谷里把我们的货物全取回来吧。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "护卫队队员",
         "text": "[show]可是……里面的魔物太多了——[l][cm]",
-        "charaName": "护卫队队员"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]你们看着货车就好，看看姑奶奶我怎么把那群芙洛波收拾趴下的。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]好……太好了！三位契约者，可以和阿娜洛洁前辈一起进温泉谷迎宾区把货物带回来吗？[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]好的，请交给我们吧。[l][cm][hide]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "s_5_11_1",
   "des": "白雪下的经商之道-雪域探险家奥格互动"
 }

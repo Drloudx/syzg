@@ -1,0 +1,57 @@
+{
+  "script": "fav_hero_005_4_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那当然了，毕竟之前都是一直让你等我，总不能每次都委屈你吧。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然我只请了一天的假，不过也够时间让我们好好聊聊了。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那么……你为我准备了什么礼物呢？[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "礼物就在营地里面了。",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好，那我就进里面看看，咱们的工匠会给我做一个什么礼物。[l][cm][hide]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "茜塔-营地对话【这次来的很快呢。】"
+}

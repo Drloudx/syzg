@@ -1,0 +1,30 @@
+{
+  "script": "c1_d5_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不是……哈啊，哈啊……这路也太长了吧……[r][l]比之前的区域还要广阔，路也更难走……路上的魔物也更强了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]但这附近似乎没有魔物的气息了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]嗯。在这里休息一下……补充一下体力，再继续前进吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "地窖深处三层 中途休息处 进入时"
+}

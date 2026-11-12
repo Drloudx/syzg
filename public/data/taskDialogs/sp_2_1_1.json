@@ -1,0 +1,228 @@
+{
+  "script": "sp_2_1_1",
+  "des": "妖精贤者驾到！",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……最近是有点睡不踏实。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？你手上的这个蓝汪汪的是什么？精力药剂？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我觉得你需要这个。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "喝了它吧，感觉会好些的。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哦，谢啦！不愧是我的搭档，真是善解人意！咕噜、咕噜……哈！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一杯药下肚，可算是活过来啦！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉！这几天可真是烦死了！也不知道是不是我的错觉，每天睡下去总觉得有地龙翻身，一晚上总要醒个几次，真是服了……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "地龙翻身？",
+            "tag": "tag_9"
+          },
+          {
+            "text": "你是说有地震？",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是啊，你也觉得很奇怪吧？明明这附近一直都好好的，也不知道到底为什么会这样……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]尤其是我这个幻觉只有睡下去了才有，醒了之后就完全没事了……该不会是有人在诅咒我，特地让人睡不好觉吧？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我觉得应该另有原因。",
+            "tag": "tag_12"
+          },
+          {
+            "text": "我倒是稍微有点猜想。",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这件事应该和你的魔物血脉有关。",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]魔物血脉？你的意思是说……我从猫科魔物继承的血脉能力？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你说的没错。",
+            "tag": "tag_15"
+          },
+          {
+            "text": "关于这个我听说过一个理论。",
+            "tag": "tag_15"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯？你是说……人类的理智有时候会压制魔物血脉中的天赋能力，而睡着了之后这种能力反而会表现出来？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以你觉得，这个地震不是我的幻觉，反而是我睡觉的时候激活了猫科魔物的强大感知？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这……你这吹得我都有点不好意思了，到底有没有那么厉害啊！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这也只是一种理论猜想。",
+            "tag": "tag_19"
+          },
+          {
+            "text": "也不能排除真的是幻觉的可能。",
+            "tag": "tag_19"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唔……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]很遗憾，地震是真实存在的，并不是什么幻觉。[l][cm]",
+        "charaName": "？？？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]欸！谁、谁……？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]两位，做好准备吧！[l][cm]",
+        "charaName": "？？？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一场巨大的危机，已经在求生者草原上降临了！[l][cm][hide]",
+        "charaName": "？？？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

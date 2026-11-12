@@ -1,0 +1,140 @@
+{
+  "script": "m_1_5_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]迦南！你果然在这！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是你们啊……怎么了？找我有什么事吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是茜塔在找你，我们只是帮帮忙。哼，还以为你到哪里去了呢，结果居然是在这里摸鱼！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]嗯，也算是吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我倒不是想要逃避工作，只是单纯在享受独处而已。[r][l]既然茜塔有事找我，那我也差不多该回去了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]距离出发还有时间，你们有什么想做的事，就趁此机会去把它做完吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]谢谢你们特地来通知我，我们之后再见。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]诶！这么快就走了？话还没说两句呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]所以她一个人躲在这里到底是不是在摸鱼啊？所谓享受独处又是什么意思啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_87",
+            "text": "或许迦南前辈并没有那么享受万众瞩目的感觉。"
+          },
+          {
+            "tag": "tag_87",
+            "text": "或许迦南前辈也对众人的憧憬感觉到压力。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]哈？这怎么可能。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过……好像暂时还是没我们的事啊。还得等上多久呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_89",
+            "text": "反正睡都睡饱了……"
+          },
+          {
+            "tag": "tag_89",
+            "text": "不然把这段时间好好利用起来吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show][cm]啊哈，看来你有想法！那我们先回营地吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]等想做的事情都做完了，再去和迦南她们汇合吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "寻找迦南"
+}

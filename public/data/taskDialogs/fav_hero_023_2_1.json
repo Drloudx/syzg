@@ -1,0 +1,319 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]肉块、香料、蜂蜜、砧板……齐活儿了！这就继续咱们的烤肉大业！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "（忙活了小半天……）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（卡夫经过一番折腾，这次烤出来的肉表面总算有了点像样的焦褐，比上次强些。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]又搞砸了！明明我都在脑子里演练八百遍了，怎么还是不成啊……唉，我就像这团肉一样没用……真没劲。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "卡夫……"
+          },
+          {
+            "tag": "tag_7",
+            "text": "有什么心事可以说给我听听哦。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[cm][show]……是啊，也不能一直闷在心里。那就麻烦你……听听我的故事吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]在来到巴诺姆村之前，我曾在佣兵团里呆过一段时间，那段日子……非常痛苦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]别看我现在很强壮，那时在佣兵团里，我的身体还很虚弱，连块石头都搬不动。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]弱肉强食的法则在佣兵团体现得尤为明显。我们这些新成员每天都被安排超量的任务，完不成指标就会被关进马房，在马粪的包围中过夜。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]而最可怕的是，当时的我还被几个不怀好意的家伙盯上了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]他们是团长身边的亲兵，实力很强。不知为何，他们总喜欢欺负弱小的团员……对待团里最瘦小的我更是过分。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]……那段日子可太难熬了。每天干活干到力气耗光，好不容易歇会儿，还得被那帮人欺负找茬。我记得有次，就因为我吃饭声音大了点，他们就连着好几晚逮着我揍。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "卡夫辛苦了。"
+          },
+          {
+            "tag": "tag_15",
+            "text": "不必把痛苦的回忆和人渣挂在心上。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[cm][show]嘿，弱肉强食嘛……这道理我懂。再说我现在也有新生活了，不至于老揪着过去不放。我提起这些事儿，是因为有个当年欺负我的那家伙……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]——他又在巴诺姆村冒出来了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "什么……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[cm][show]开始我还以为认错了。但后来我又蹲了几次，确定一定以及肯定，绝对就是那家伙！不过他现在不当佣兵了，看样子是想在村里装个普通人。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]但是！他能糊弄别人，可绝对糊弄不了我！这种自己吃饱了还要抢别人最后一口饭的坏种，根本不可能改邪归正！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]他跑到村里来……肯定在打什么坏主意！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "你找到证据了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[cm][show]这个嘛……证据暂时还没抓着，那家伙藏得太严实了。不过蹲了几天点，我还是发现不少不对劲的地方。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]他现在就窝在一个破房子里头，里面就一张破垫子加条毯子。他正经工作都没得，天天打零工，挣那点钱少得可怜。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]这哪像是要在巴诺姆村安家的样子啊！他当佣兵那会儿，日子可比现在滋润一万倍，怎可能甘心跑回这破村子来？背后绝对有鬼！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]那家伙要是敢动巴诺姆村一根汗毛……我非得用棍子给他脑袋开瓢不可，再让恐兽把他撕成碎片！等着瞧吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "卡夫是想要复仇吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[cm][show]唉……说真的……我也不知道。我现在满脑子就一件事——把他对我做过的那些事，好好回敬给他！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]可直接冲上去做掉他肯定也不行……就算不考虑村里的规矩，这么干也显得太掉价了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]所以我才憋着劲儿找证据。只要逮着他想祸害村子的把柄，那我就能名正言顺地上去干掉他了！但……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "还是不要轻举妄动比较好。"
+          },
+          {
+            "tag": "tag_31",
+            "text": "如果有需要的话可以找我帮忙。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[cm][show]嘿嘿……你知道我不会乱来的。谢谢你，愿意听我唠叨这些。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]虽然我真恨不得把那家伙揍成肉饼，但也不能给村子惹麻烦。在没揪住他狐狸尾巴之前，我肯定不会动手。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]不过到时候……也希望{myName}能帮把手吧……咳，算了！先烤肉吧，别提那些晦气玩意儿了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "卡夫",
+        "text": "[show]再抹层蜂蜜就生火吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（继续和卡夫忙活了一整天的蜜汁烤肉，但他明显心事重重，烤出来的肉还是焦黑发苦，根本没法下咽。）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "卡夫-过往的阴霾_进入战役",
+  "script": "fav_hero_023_2_1"
+}

@@ -1,0 +1,188 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]之前不是说要给你带土特产的吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]上次因为角猪的袭击没能送到，这次我趁着送药的机会一起带来了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "送药……？"
+          },
+          {
+            "tag": "tag_5",
+            "text": "你还真的给我送了补剂来啊？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]和草药不同，魔药这种东西，喝了是没什么副作用的，就算你真的用不到，偶尔喝两口也能缓解一下身体疲劳嘛。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "这种东西你怎么不留着自己喝？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]嗯？我有喝啊！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "……"
+          },
+          {
+            "tag": "tag_9",
+            "text": "！！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]对于施法者来说呢，为了确保关键时刻思维清晰，这一类的魔药可以说是常备物资啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]但是魔药毕竟是魔法的载体，要生效也是有所谓的“冷却时间”。像是我给你的这些呢，一天最多喝上三瓶，再多就没效果了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "……我怎么听得你好像还有些遗憾？"
+          },
+          {
+            "tag": "tag_12",
+            "text": "……你这也太拼了吧？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]因为工作是做不完的啊，尤其是必须我本人处理的工作……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]我不会说我是世界的中心，卡露蒂亚离了我就不会再转了……但我个人的精力和一条鲜活的生命，孰轻孰重，应该很明显了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "你说得对……"
+          },
+          {
+            "tag": "tag_15",
+            "text": "但我还是希望你能更多重视自己一点……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]我很重视自己，正因为我知道自己有多重要，我才会像现在这么努力的。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "我们还是换个话题吧……"
+          },
+          {
+            "tag": "tag_17",
+            "text": "要不先去看看我的新方案怎么样？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[cm][show]也对，我们还是先看看你的最新杰作吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "阿莱克西娅",
+        "text": "[show]不知道这次会是怎样令人惊叹的作品呢！真是让人期待啊！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "阿莱克西娅-你……你怎么带了这么多东西！",
+  "script": "fav_hero_051_3_0"
+}

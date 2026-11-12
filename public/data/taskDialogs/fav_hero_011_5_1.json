@@ -1,0 +1,361 @@
+{
+  "des": "缇莎-来自内心的温暖魔力-进入战役",
+  "script": "fav_hero_011_5_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]清新的空气，柔软的草坪，还有这一望无际的蓝天！感觉来到营地以后，一切都变得那么美好！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "草原日常都是这种美景。",
+            "tag": "tag_4"
+          },
+          {
+            "text": "缇莎喜欢的话欢迎多来。",
+            "tag": "tag_4"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嗯！缇莎以后会经常过来的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]这个给你，这是我们修行所种的野菜，还有就是……妈妈的信！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（收下野菜和莉拉的信。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]这封信是妈妈专门写给你的，缇莎也不知道里面写的是什么……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]你先看看吧，缇莎在原地休息一下。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（打开莉拉写来的信。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（莉拉在信中表示，她第一次看到了缇莎面对自己疾病时不一样的一面，看来你已经成为她最亲切的朋友。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（之前莉拉担心缇莎在外头会出事，所以一直把她留在修行所里。哪怕缇莎来到你的营地之后，莉拉也一路尾随跟着缇莎。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在看到你们那次在野外探路的合作后，莉拉也觉得也许自己是有些过度保护了，缇莎终究需要离开修行所，就如同小鸟终将展翅高飞。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（不过莉拉也不能放着缇莎一个人在外自由闯荡，那样太危险了。所以莉拉在信的最后表示，要把缇莎托付给你，由你来保护缇莎的安全。）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "还真是个爱操心的恶魔妈妈呀……",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]看完了吗？妈妈跟你说了什么呀？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "就是希望我能照顾你。",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]就算妈妈不说，{myName}也会一直照顾缇莎的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "至少现在是得到你妈妈认可了。",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嘿嘿……那我们接下来要去哪里呢？缇莎也要体验契约者那样刺激冒险生活！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]有着丰富矿脉的蛇腹矿坑，藏有先时技术的观星高地，还有埋藏着无数宝箱的驿站地窖，这些地方缇莎都想去！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]而且缇莎还想走出秋日荒野，去更远的地方！比如索利德山、魔爪湖、霜烬平原，还有白沙荒原！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]之后去哪里……缇莎就还没想好啦。不过……这一路上可能会非常危险，缇莎希望{myName}能和缇莎在一起。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]只要有{myName}陪着，什么东西都伤害不了缇莎！等到缇莎长大变强以后，就可以让缇莎来保护{myName}和妈妈了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "只要缇莎需要，我会和你一起冒险的。",
+            "tag": "tag_25"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嗯！一言为定！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]缇莎现在能感应到{myName}体内汹涌的魔力，你也能感受到缇莎的魔力吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "所谓感受是……",
+            "tag": "tag_28"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]对了，妈妈小时候教过缇莎一种方法，只要握住对方的手就能感受到对方的魔力。可以让缇莎抓住你的手吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（向缇莎伸出手。）",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嗯……感受到了吗？缇莎体内汹涌澎湃的魔力，正在和{myName}体内的魔力交融呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]原来……魔力是这么温暖的力量，缇莎还是第一次从别人身上感觉到如此温暖的魔力……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]啊！对……对不起！缇莎……缇莎有些得意忘形了！不好意思！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]缇莎只是觉得……握住{myName}的手能感觉到安心，所以就忘记松开了……对不起！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "缇莎能感觉到开心就好。",
+            "tag": "tag_35"
+          },
+          {
+            "text": "我会尽我所能帮助缇莎的。",
+            "tag": "tag_35"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[cm][show]嘿嘿……那来和缇莎一起去冒险吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]缇莎感觉到那边有角布林！我们一起去吧它们消灭掉吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]冲啊——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "等等缇莎……太危险了……",
+            "tag": "tag_39"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（后来缇莎找到了一个角布林巢穴，两人一起合作消灭掉了一大群角布林。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

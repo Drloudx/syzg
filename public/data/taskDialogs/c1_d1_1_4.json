@@ -1,0 +1,30 @@
+{
+  "des": "触发引导，提示小队来这里集合。集合到1号位位置后，播放剧本。",
+  "script": "c1_d1_1_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊，果然就是这个洞口！这里的魔物足迹和抓痕都特别明显！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]看来就是这处了。前面应该就是它们的老巢。我们上！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

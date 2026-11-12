@@ -1,10 +1,10 @@
 import assert from 'node:assert/strict'
 import { spawnSync } from 'node:child_process'
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { basename, dirname, join, resolve } from 'node:path'
 import { test } from 'node:test'
-import { projectRoot, rawRoot, resolveChild } from '../../scripts/dev/maintenance-paths.mjs'
+import { configRoot, projectRoot, rawRoot, resolveChild } from '../../scripts/dev/maintenance-paths.mjs'
 import { applyRawSyncPlan, createRawSyncPlan, fileDigest } from '../../scripts/dev/raw-sync.mjs'
 
 const fixture = t => {
@@ -83,6 +83,29 @@ test('derived input tables are not synchronized even with replace enabled', t =>
   }
   assert.deepEqual(createRawSyncPlan({ ...f, replace: true }), [])
   assert.deepEqual(JSON.parse(readFileSync(join(f.targetRoot, 'dungeonBattleRoutes.json'))), { project: true })
+})
+
+test('raw/ 顶层不再含派生表；派生表只在 raw/.derived', () => {
+  // 这 4 张是派生数据，不该出现在 raw/ 顶层（否则 raw「只放原表」的语义被破坏）
+  for (const name of ['dungeonBattle.json', 'dungeonBattleRooms.json', 'dungeonBattleRoutes.json', 'monsterTowerUsage.json']) {
+    assert.equal(existsSync(join(rawRoot, name)), false, `raw/${name} 不应存在（应迁到 raw/.derived/）`)
+  }
+  // 派生产物目录存在且 4 张齐全
+  const derivedDir = join(rawRoot, '.derived')
+  assert.ok(existsSync(derivedDir), 'raw/.derived 应存在')
+  for (const name of ['dungeonBattle.json', 'dungeonBattleRooms.json', 'dungeonBattleRoutes.json', 'monsterTowerUsage.json']) {
+    assert.ok(existsSync(join(derivedDir, name)), `raw/.derived/${name} 应存在`)
+  }
+})
+
+test('raw/ 顶层每个 json 都能在 配置表/ 找到同名原表（raw 只剩原表副本）', () => {
+  const { configRoot } = globalThis.__maintenancePaths ?? {}
+  // 直接从模块再取一次，避免测试环境差异
+  const list = readdirSync(rawRoot, { withFileTypes: true }).filter(e => e.isFile() && e.name.endsWith('.json'))
+  const cfgFiles = new Set(readdirSync(configRoot ?? join(projectRoot, '..', '游戏数据', '配置表')).filter(f => f.endsWith('.json')))
+  for (const entry of list) {
+    assert.ok(cfgFiles.has(entry.name), `raw/${entry.name} 在配置表里找不到同名原表（raw 应只放原表）`)
+  }
 })
 
 test('invalid JSON aborts planning before any output is written', t => {

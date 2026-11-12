@@ -1,0 +1,94 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]不必客气，你们既是洛莉安大人的伙伴，我自当全力帮助你们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]况且，让你们使用洛莉安大人的力量，也能进一步扩大她的影响。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]没问题，只要能变强，何乐而不为呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]现在这件衣服更强了，装饰也多了不少，简直和洛莉安身上那件一模一样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哼，居然还有这种技术，本小姐迟早也要掌控这种力量……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]不过我有些好奇，其他地方也有这种“神器”吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]这个我也不清楚……或许有吧。就算有，想必也是非常强大的装备。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]总之，你们要好好爱护这件装备，珍惜洛莉安大人的力量。说不定，它能在关键时刻救你们一命。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]好了，就说这么多吧，我先回去工作啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯，辛苦啦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp1_10_4",
+  "des": "多谢你了，茜狄亚。"
+}

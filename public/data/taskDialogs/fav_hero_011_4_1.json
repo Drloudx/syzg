@@ -1,0 +1,289 @@
+{
+  "script": "fav_hero_011_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（来到修行所，莉拉第一眼就发现了你。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咦？你怎么过来了？[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（把缇莎信的事情告诉莉拉。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉……这孩子还真是不让人省心啊。[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放心吧，她没什么大事，只是和之前一样出现魔力外溢的情况，休息一下就好了。[l]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "魔力外溢是和“结晶怪物”有关吗？",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]咦？你是从哪里听到这个词的？[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（将之前和缇莎在驿站的事情告诉莉拉。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此……没错，缇莎出现魔力外溢就是她身上水晶的缘故。[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在深渊有些孩子刚刚出生的时候，会受到魔力侵入的影响。他们脆弱的身体无法承受强大的魔力，所以会有些魔力从他们身上溢出，溢出的具体表现就是那些红水晶。[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]许多父母将这些孩子视为不详的征兆，然后把那些孩子抛弃在野外。我当时也是在野外捡到缇莎的，估计她也是被视为不祥征兆然后被抛弃掉了吧。[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果没人管的话，这些被抛弃的孩子应该会被野兽吃掉。就算长大了也会受尽周围人的歧视，还得忍受间期性的魔力外溢，缇莎就是在这种不幸中长大的……[l][cm][hide]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……是{myName}来了吗？[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]缇莎？你怎么出来了？你的身体现在还不能……[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事的妈妈，缇莎的状态已经恢复得差不多了。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这孩子……好吧……[l][cm]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}，你和缇莎好好聊聊吧，我就不打扰你们了。[l][cm][hide]",
+        "charaName": "莉拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……妈妈果然很懂缇莎嘛。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你写的那封信吓到我了。",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……缇莎也不知道为什么会写出这样的信。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]之前缇莎对自己的身体很有自信，就算真挂掉了只要有妈妈陪在身边就好。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可自从和{myName}呆了一段时间后，缇莎就想要活久一点，和{myName}一起度过更多美好的时光……[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]缇莎这个惹人厌的“结晶怪物”……也想要幸福的人生呀……[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "缇莎可不是怪物。",
+            "tag": "tag_26"
+          },
+          {
+            "text": "缇莎要坚强地活下去。",
+            "tag": "tag_26"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我会一直支持你的，也会找到治疗你的方法。",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，谢谢，缇莎相信{myName}。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在缇莎身体不适，不能陪着你一起去冒险，{myName}可以在这里陪陪缇莎吗？缇莎和你讲讲以前的事……[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（坐在缇莎身旁。）",
+            "tag": "tag_30"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那……缇莎就先来说说妈妈第一次给缇莎上课的事情吧……[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（随后，坐在缇莎身旁，静静地听着她讲述自己的故事。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（随着时光流逝，一天过去了，缇莎和你讲了许多自己的故事，她也变得轻松不少。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（最终你们两人在日落之前告别了。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "缇莎-“怪物”的过往-进入战役"
+}

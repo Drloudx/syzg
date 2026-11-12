@@ -1,0 +1,53 @@
+{
+  "script": "fav_hero_011_5_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……一想到能来{myName}营地玩，这一路根本就不累！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看，这是修行所的野菜，里面有几颗还是缇莎种的，肯定超好吃的！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "嗯，谢谢你。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "先进营地里休息吧。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，我们走吧。[l][cm][hide]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "缇莎-营地对话【一路上辛苦了，缇莎。】"
+}

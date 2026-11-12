@@ -1,0 +1,188 @@
+{
+  "des": "孵化室搭建，引导点击进入孵化室",
+  "script": "m_1_1_8_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……！我、我已经有点词穷了，真的太厉害啦！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]居然只靠这么简单的材料，就搭建出这么大的培育室……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是啊，不光是拥有广大的孵化空间，还能分别针对每一个隔间调整适宜的温度、湿度、酸碱和魔力环境……而不会和一墙之隔的其它隔间互相干扰！[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对啊！要不是这家伙补充，我都不知道该怎么夸你了，{myName}！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……等等，这家伙是谁啊？！你从哪儿冒出来的！！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]噢，我还没自我介绍呢，失礼了！[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我叫露比，是以驿站为中心活动的行商人……而我的真实身份，则是这附近唯一的——“魔物驯养研究者”！[l]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_45",
+            "text": "幸会，我是{myName}，这位是米托拉。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]别这么容易相信入侵者啦！什么寻什么痒……啧，你到底是来干嘛的？！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，时间紧迫，我就长话短说啦！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我能搞到深渊各地的魔物蛋——！请两位和我做生意，一起让我的大事业再次伟大吧——！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……这家伙在说什么呢？不然我们就把她当普通的入侵者对待，简简单单地大卸八块吧？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]别——别别别别别急啊！听我说完！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我看到你们孵化和驯养那只小史莱姆的全过程了。接着，你们又像变魔术一样盖出一间这么大的孵化室！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们完全没有意识到自己的价值。凭借我的货源和指导，{myName}的工匠技术，加上米托拉小姐的战力和魔物亲和力……我们也许就能稳定地驯养出更多不同种类的魔物！你知道这意味着什么吗？[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……意味着什么？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然意味着我们马上就能飞黄腾达了啊！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧，已经这个时间了吗……不行，我得先走了！这包东西你拿着！[l]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_56",
+            "text": "（接过露比递过来的一包东西。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]来，快拿着这些蛋，这些就是我的诚意！赶快来试一试，用这么伟大的培育室来培育魔物吧！[l][cm]",
+        "charaName": "露比"
+      },
+      "key": "text"
+    }
+  ]
+}

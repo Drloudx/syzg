@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]呜？！是、是的，这是参观券。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]那……我先去驿站了，舞台上再见吧……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "可可娜-演出是今天吗？",
+  "script": "fav_hero_009_2_0"
+}

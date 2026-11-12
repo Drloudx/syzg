@@ -1,0 +1,174 @@
+{
+  "script": "s_sp2_8_6",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它？它已经不在这里，和希维姆私奔了姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？私……私奔？到底发生了什么？它当时下了什么决定啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它留了一封信，就带着希维姆跑掉了，它当时下定的决心，就是抛开双方家人逃跑吧姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它在信里说，结婚虽然是两家人的事，但归根结底还是它们两只史莱姆自己的事，最终还是要听它们两人的姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它把那些黏液币和地契都留下来了，今后它们打算只凭着自己独自生活姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]希维姆家人在那边已经疯掉了，不过我想时间过去之后，它们应该也会接受这个现实吧姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那这也没办法啊，要不是它们多次棒打鸳鸯，希维姆和伽拉姆也不会选择私奔吧……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实也可以理解它们，毕竟自从被放逐以后，每只史莱姆的生活都非常不稳定姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了让孩子能嫁给可靠的史莱姆，它们会非常谨慎，不仅要有稳定的现在，还要有稳定的未来姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可就深渊这个环境……哪有什么稳定的生活啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]或许吧，不管怎么说，干涉它们两的婚姻是不对的，事到如今事情发展成这样子，我们也只能受着了姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……让它们自由地去追求自己想要的生活吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过它们是跑去哪了？既然要私奔，总不会跑到野外去吧，外面可是很危险的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放心，它们还在营地里，毕竟这里史莱姆很多，低调一点还是能躲起来的姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果你们想要知道它们的情况，可以去后花园那边看看，应该能在那里找到它们姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉？这么说你知道它们在哪？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那当然了，这小孩怎么能瞒得过它老子姆。只要它还在营地活动，以我的人脉随时都能找到它姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我也不会去主动找它，只要暗中保护它就行了姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，它既然已经娶到自己心爱的史莱姆，那我也放心了姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]也感谢两位一直的帮助，我也该去准备下一个剧本了姆。[l][cm][hide]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "伽拉姆去哪了？"
+}

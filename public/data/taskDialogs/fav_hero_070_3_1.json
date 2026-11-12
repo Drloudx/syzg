@@ -1,0 +1,188 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]怎么样？我这个小玩意还不错吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "真是惊人！",
+            "tag": "tag_3"
+          },
+          {
+            "text": "难以置信！",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]以现在的技术，确实是难以置信了，但放在驯养文明初步成熟的七百年后，那就不算什么了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]这个自动检测装置是完全的魔导产品，主要用于识别和读取绝大多数已知蛋种的孵化条件。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]不过现在的魔物和七百年后不同，这个数据顶多只能给你作为参考。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这我知道。",
+            "tag": "tag_7"
+          },
+          {
+            "text": "有参考就不错了。",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]嗯，你能明白就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]关于这个装置，你还有哪些不清楚的，可以现在就问，我尽可能给你解答。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "使用方式倒是没啥问题。",
+            "tag": "tag_10"
+          },
+          {
+            "text": "但你把这个给我真的没问题吗？",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]你是担心这个装置会不会引起时空波动？放心，不会的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]首先，这玩意是个消耗品，使用次数有限制。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]其次，你们从这里获得的经验，也未必能原原本本地传承下去，对历史的影响非常有限。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "是这样吗……",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]我是“年代纪的妖精”，还是妖精贤者，我说的话是不会有错的！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（看来露库希安确实经过深思熟虑……）",
+            "tag": "tag_16"
+          },
+          {
+            "text": "（这里就应承下她的好意吧！）",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我明白了！",
+            "tag": "tag_17"
+          },
+          {
+            "text": "那就多谢你了！",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]嗯，你可要好好使用哦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_070_3_1",
+  "des": "露库希安好感3-战役"
+}

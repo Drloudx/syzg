@@ -1,0 +1,296 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]唔……一想到马上要和艾伦瑟大人对话，我就有点紧张。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "为什么会紧张？"
+          },
+          {
+            "tag": "tag_4",
+            "text": "之前你和守护灵们不是相处得很不错吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]唔……确实相处得还行……但是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]那种又想要知道答案，又怕答案太过让人失望的紧张感……你应该也能明白的，对吧？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "就像是考核分数出来之前的感觉吗？"
+          },
+          {
+            "tag": "tag_7",
+            "text": "原来是这样，我懂我懂！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]对吧！你也懂得的吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这种沉重的压力，如果只是一个人的话，我肯定一下子就被压垮了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]还好有你在……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我决定了！不管最后答案是什么，如果连问都不敢问，那就太失败了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "嗯，加油！"
+          },
+          {
+            "tag": "tag_12",
+            "text": "艾薇杜尔，你能行的！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]嗯！我上了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]你们两个，在那边磨蹭半天，终于做好心理准备了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]看来你想问的是很重要的事情啊？呵……想问什么就问吧，只要能回答的，我一定知无不言。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]嗯……那……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]关于我的魔眼……最近沟通灵体的能力有些衰弱……这件事，您知道原因吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]魔眼的能力衰弱？呵呵……那是正常现象啊！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "什么？"
+          },
+          {
+            "tag": "tag_20",
+            "text": "正常现象？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[cm][show]当然，所谓“通灵之魔眼”，本质上就是灵魂信道的一种外化表现形式。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]在通过“巨木”的试炼之后，现在艾薇杜尔已经是“灵魂先知”，也就是巨木的管理员……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]为了完成管理员的工作，你的灵魂信道之中，自然会有一部分带宽被“巨木”长期占据。体现在外在上，就是你的魔眼能力的劣化了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]怎么会这样……这种变化是……永久的吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]当然不是。灵魂能力是会随着修炼和适应不断成长的。以你的资质……我想顶多再过一个多月，应该就能收放自如了吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]一个多月……！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "怎么了……？"
+          },
+          {
+            "tag": "tag_27",
+            "text": "你很着急吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]嗯……是的……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]我和一位“朋友”，有一个约定，一个非常重要的约定……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[show]这个约定，恐怕等不了三四个月那么久了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾伦瑟",
+        "text": "[show]是吗……那可真是难为你了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "既然魔眼没法使用……"
+          },
+          {
+            "tag": "tag_32",
+            "text": "那我们就想想办法，用别的方法去完成这个约定吧！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾薇杜尔",
+        "text": "[cm][show]嗯！看来也只能这样了。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾薇杜尔-请你给我一些勇气-进入战役",
+  "script": "fav_hero_053_2_1"
+}

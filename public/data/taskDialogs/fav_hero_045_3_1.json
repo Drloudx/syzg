@@ -1,0 +1,337 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]好。今天我准备和{myName}一起——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]等等——！我感觉到一股强大的能量在附近积聚！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "什么能量？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]这是——是从天上的乌云里来的！雷击要来了！当心！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]轰隆——！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "呜啊啊啊——！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（一道巨型闪电撕裂天空，狠狠劈在营地旁的大树上，瞬间将其化为焦炭！）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]自然的雷电怎么会有这种威力？难道是附近有秘术师正在瞄准我们——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]不对……这感觉也太熟悉了……和轰雷四宝器中的魔力一模一样！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（轰隆——！又一道闪电劈落，击中营地附近的地面，将一片草地烧了个精光。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]难道……我明白了！这股雷电……很可能是我招来的……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "为什么这么说？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]你知道的，我是轰雷四宝器的守护者，长年镇守封印。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]那些宝器不时会蓄满电能，外溢出强大的魔力。而我在镇守它们的这些年月间，早已被这股魔力浸染，我们双方之间都有着联结。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]难怪出门时天气就透着古怪……原来那是宝器在寻找我……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]虽说我本人不惧电击，但这些魔力可不长眼睛。我所在之处随时可能遭遇雷击，甚至波及身边的人……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]不行……绝不能连累{myName}！我还是不要再来这里了……这样对你我都安全！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]对不起……{myName}，让你受惊了……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "等等！艾尔菲帕！"
+          },
+          {
+            "tag": "tag_21",
+            "text": "你没有必要回去！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]可我继续呆在这里的话，会给你带来麻烦的……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "既然雷击没有特定目标。"
+          },
+          {
+            "tag": "tag_23",
+            "text": "那我们造个吸引雷电的靶子就行了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]吸引雷电的靶子？还有那种东西吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "雷电会击中最高、最易导电的物体。"
+          },
+          {
+            "tag": "tag_25",
+            "text": "我们造一根高高的金属针吧！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "（迅速挥舞工匠锤，开始打造！）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（过了一段时间后……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]好厉害……这么大根的金属针，一下就造好了！不过这样……真的能行吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "那当然。"
+          },
+          {
+            "tag": "tag_29",
+            "text": "看着吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（轰隆——！又一道雷电落下，精准地劈在避雷针顶端，雷光四射！）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]成功了！雷电真的被引过去了！{myName}，你太厉害了！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "这样艾尔菲帕就能安心留下了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]嗯，真的……太感谢你了，{myName}。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]从今往后……我再也不用担心雷电了。终于可以自由地……和你呆在一起了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]那么……请让我继续在这里逗留一会吧……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（之后的时间里，虽然雷声轰鸣、电光闪烁，但所有魔力都被那根高高的金属针引入了大地。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（在乌云翻涌、电闪雷鸣的天幕下，艾尔菲帕的脸上终于露出了轻松的笑容。就这样，度过了一段意外却愉快的时光……）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾尔菲帕-天降雷电-进入战役",
+  "script": "fav_hero_045_3_1"
+}

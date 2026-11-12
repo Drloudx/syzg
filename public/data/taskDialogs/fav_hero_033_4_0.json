@@ -1,0 +1,61 @@
+{
+  "script": "fav_hero_033_4_0",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]材料都准备好啦！不过还是先道个歉，我是个连针线活都需要人教的笨蛋。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_3",
+            "text": "其实我也不算多懂啦。"
+          },
+          {
+            "tag": "tag_3",
+            "text": "也只是制作过皮布装备的程度。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[cm][show]这还不算多懂吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]唔，这些就是一会要做的工作了。这些玩偶不算太多，所以我直接从魔爪湖用车拉过来啦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "乌帕",
+        "text": "[show]那我们开始了，还请{myName}{callName4}好好教教我哦。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "乌帕-心境训练-营地对话"
+}

@@ -1,0 +1,65 @@
+{
+  "script": "fav_hero_032_4_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊……是有那么一点，头晕晕的，脸热热的……[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……蛇在天上飞，甲虫也在天上飞……[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "啊？",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊，怎么我……我也在天上飞呀……我……[l][cm][hide]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（突然，诺姿倒在了地上，摸摸她的额头，看来她是发烧了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（不管怎样，先把她带到营地里去吧……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "诺姿-【你的状态看起来很差啊。】"
+}

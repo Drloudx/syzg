@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]{myName}小友，许久不见，甚是想念。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]这营地虽隐于草木之间，却处处透着一股中正平和的禅意。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]能在这片危机四伏的草原上，建立这样一处心安之所，确实是小友经营有方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]此物乃是吾的一点薄礼，虽非珍宝，却也承载着吾这云水之身的一番祝愿。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "剋",
+        "text": "[show]来日漫漫长路，吾愿与小友共进退，同修行。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_037_1",
+  "des": "bsl_hero_037_1"
+}

@@ -1,0 +1,133 @@
+{
+  "script": "sp1_1_a_2",
+  "des": "描述",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来……大小姐啊，这一路上的魔物，是不是和你那只眷属有点像？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你是说那些围上来的蝙蝠魔物吗？[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那些都是吸血鬼的使魔，和本小姐与眷属订立血契的魔法是系出同源。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（只不过本小姐还没来得及完全掌握就是了……）[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吱吱～！[l][cm]",
+        "charaName": "小蝙蝠"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这样啊！连使用的魔法都这么像，看来你们家真的有吸血鬼的血脉了……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本、本小姐虽然说话有——有那么一点点夸张，但也不至于在重要的事情上胡编乱造呀！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈、哈哈……我不是怀疑你，只是对传说中的吸血鬼有点好奇嘛！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "作为吸血鬼出现的证据……",
+            "tag": "tag_11"
+          },
+          {
+            "text": "这些魔物的存在已经很有说服力了。",
+            "tag": "tag_11"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没错！从现在起大家就得提高警惕！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们要面对的可不是一般的恶党……而是一个活了很久很久，无比强大的邪魔！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……我会小心啦！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……吸血鬼这种魔物……到底有多厉害呢～[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一想到马上就要和传说中的存在交手……我都开始有点兴奋起来了～[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

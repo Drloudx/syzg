@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]嘿嘿……你对我的温泉村感兴趣吗？我可以分你一些股份哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]不用你投钱啦，只要用工匠锤把温泉村变得更漂亮一点就好。毕竟你的本事，可不是金钱能衡量的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]这可是最佳合作伙伴的福利哦。要知道，温泉村到现在都还是我一人掌舵，我可从来没给过外人股份。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]当然，你可不是外人啊，咱们是最好的合作伙伴不是吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_066_08",
+  "des": "奥格-亲密2"
+}

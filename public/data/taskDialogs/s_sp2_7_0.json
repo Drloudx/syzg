@@ -1,0 +1,201 @@
+{
+  "script": "s_sp2_7_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……我可爱的护卫真是尽忠职守，每次看它都是这副专注的样子姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]上去问问它现在的状况吧，本公主要好好体贴这些忠实的臣民姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在这之前，你们先吃下我的黏液，这样就能听懂它说话了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（吃下德莉的黏液。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]萨宾姆，最近的防卫情况怎么样？卫兵们都还好吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]公主殿下姆！这边的情况……其实不是那么好姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不好吗？我看你们安排得不是很有序吗？怎么还会不好？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们有所不知，我们自从被放逐以后，安全问题一直都很麻烦姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们这里被魔物、荒野客蹂躏了好多次，每次把防线搭起来，第二天就被敌人冲垮了。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好在这几天比较安稳，我们勉强建立起了些防御工事，但这些工事能不能抵挡敌人还是个问题姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且更关键的问题是……现在士兵的战斗力太差了姆，我怀疑现在一头大角猪就能掀翻我们五个士兵姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]战斗力差……你说的差是指战斗意志差还是身体不行？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]都不太行姆……毕竟刚刚被放逐，老兵也损失一大批，大家的士气都很低落姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过经过库库姆总管的调整，我们现在规定每只史莱姆至少要服一年的兵役，至少数量是不缺了姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]光有史莱姆可还不够，大家要振作起来才行姆！你现在缺什么，我这就叫大家给你补上姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，感谢公主殿下的支持，这群软趴趴的士兵也该提升一下了姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然现在的当务之急还是先把营地防御建起来，大门那边的木头还是用旧木头，只怕是一下就会被冲散姆……[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]需要先把门口的防线稳固是吧……米托拉，{myName}，可以请你们帮忙吗？你们能在野外建立营地，弄一些防御工事不是什么难事吧姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这你可就问对人了，我们的{myName}可是超厉害的工匠，打造几个防御工事完全是小菜一碟。[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "有什么需要尽管提！",
+            "tag": "tag_22"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]真的吗？那可以给我们打造人类营地那种路障吗姆？不多，只需要2个就好姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那就先弄最简单的简易路障吧，我们等会给你带2个简易路障。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯嗯，拜托你们了姆～[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（拿着武器的史莱姆在严阵以待……）"
+}

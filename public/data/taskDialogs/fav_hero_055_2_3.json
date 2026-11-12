@@ -1,0 +1,173 @@
+{
+  "script": "fav_hero_055_2_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哈……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "迦南前辈……"
+          },
+          {
+            "tag": "tag_5",
+            "text": "凯蒂的伤……是有什么问题吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]你看出来了啊？是我表现得太明显了吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "不能说特别明显……"
+          },
+          {
+            "tag": "tag_7",
+            "text": "至少也是一目了然……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是吗？果然涉及到这件事，我终究没办法保持平静啊……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "迦南前辈……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]我知道你想问什么，但现在……还请给我一点时间吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我……还需要一些证据……需要一些证据来说服自己……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "看来是很糟糕的事情啊……"
+          },
+          {
+            "tag": "tag_12",
+            "text": "……凯蒂会有危险吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]如果我的猜测是真的，恐怕确实不是可以一笑了之的事态……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]但凯蒂肯定是不会有事的。我可是驿站的明星契约者，无论如何也不会辜负后辈的信赖，对吧？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "那我就再等等吧。"
+          },
+          {
+            "tag": "tag_15",
+            "text": "我相信迦南前辈的保证。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]很好，多谢你的信任。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]虽然平时大家也都对我十分信赖，但你这份思考之后还能给出的信任，多少还是让我有点受宠若惊了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]你放心，搜集证据要不了太久的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]等我找到了证据之后，我会把一切，都对你好好说清楚的。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-场景：凯蒂的家外"
+}

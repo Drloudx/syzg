@@ -1,0 +1,263 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]这里是哪里的说？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "这里是风车平野。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "是驿站的农业区域。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]原来是这样的说！这里就有你说的植物专家吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "没错，就是那一位。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]咦？你是说那位老奶奶的说？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]啊，你们是……！恩人，真的好久没见了，这次你过来是……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "老人家，我们是有问题想要请教……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]向老奶奶询问了植物生长相关的问题——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]你们是想要种植萝卜？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]现在连契约者大人都要自己种地了吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "其实是我的兴趣。"
+          },
+          {
+            "tag": "tag_15",
+            "text": "其实有些原因……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[cm][show]是吗？具体的情况我就不多问了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]不过说到萝卜种植，除了土质选择、合理密植之外，最重要的就是营养了吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]只要有足够的水、阳光，还有营养，植物就一定能够飞快地成长起来。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]我们这边除了普通的农家肥之外，偶尔也会使用行商人卖的营养剂。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]原来是这样的说！露比特完全明白了的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]这么简单就明白了？契约者大人真是厉害啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[show]如果没别的事情，那老婆子我就先去忙了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "辛苦了，您去忙吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "老人",
+        "text": "[cm][show]不辛苦，不辛苦，唠两句嗑有什么辛苦的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]唔……看来情况已经确定的说！最关键的就是营养的说！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "刚才老奶奶提到了营养剂……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]没错的说！有了这个营养剂肯定就没问题的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]{myName}你有没有办法帮忙制作一点营养剂的说？以你的实力肯定比那些行商人要厉害得多的说！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "我明白了。"
+          },
+          {
+            "tag": "tag_30",
+            "text": "我会试试的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[cm][show]太好了的说！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]这次露比特也赢定了的说！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "露比特-听说有进展了的说！-进入战役",
+  "script": "fav_hero_062_3_1"
+}

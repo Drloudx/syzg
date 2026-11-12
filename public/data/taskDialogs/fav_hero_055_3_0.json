@@ -1,0 +1,30 @@
+{
+  "script": "fav_hero_055_3_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我的预感成真了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]你这附近有方便说话的地方吗？我会把一切都告诉你的。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-营地对话迦南前辈，调查有进展了吗？"
+}

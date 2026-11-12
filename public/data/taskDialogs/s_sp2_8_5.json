@@ -1,0 +1,393 @@
+{
+  "script": "s_sp2_8_5",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？怎么看你还是一副哀伤的样子，两位契约者没帮你解决问题吗姆？[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个问题……不是两位契约者大人能解决的姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么问题这两位还解决不了的？嗯？你还把儿子带过来了姆？[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（解释一下伽拉姆遇到的麻烦。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真是胡闹，难道拿到编制才能结婚吗？我们城堡的编制又不是树枝，随便走几步就能捡到姆！[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可这是对方家人的要求，如果有机会的话，我愿意试一试姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行吧，我带你们去见德莉殿下，真想要编制那也得她点头才行姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，那就拜托你了姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（欧德莱姆将大家带到德莉面前。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼……干什么？本公主在吃蛋糕姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]德莉公主一天吃了六块蛋糕，记录在案姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！你……你还记！信不信本公主用权杖再把你揍一顿姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……公主殿下，我有事相求姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦？是乔可姆啊，今天来宫里是要表演什么吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是这样的姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？想给孩子要一个宫里的编制？为了和对象订婚姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你孩子的表演其实我也看过，它的能力可以入编制，可如果只是为了这个……好像有些不妥姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]德莉殿下，你说的不妥是……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我问你，拥有宫里的编制，是你目前最想要得到的事物吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不，我现在最想要的事情是和希维姆订婚姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错，所以你现在最重要的事情，是怎样和希维姆在一起，而不是来要编制姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们两只史莱姆明明是相爱的，如今却因为对方家人的要求到处乱折腾姆。要是对方要求你把月亮摘下来，你难道还想办法上天吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你爱的是希维姆，又不是它的家人，既然喜欢那就不要犹豫，做你最想要做的那个选择姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我明白了，谢谢公主殿下的教导，我知道该怎么做了姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……你打算做什么？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]抱歉，这个不能说姆。爸，两位契约者，我要先走一步了姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是你这么大，第一次做出自己的选择姆。去吧，只要你不后悔就行姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，请放心，我已经能做出选择了姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊……就这么走了吗？它要去做什么啊？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "只要它下定决心就行。",
+            "tag": "tag_33"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好吧，那我们也回去吧？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等，你们是不是忘了什么？我可是把你们带到公主面前了，你们得表演一下哄公主开心姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对啊对啊姆，我还想要看乔可姆的表演呢，你今天带来的是什么剧本啊姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我是准备了一套有趣的剧本，可现在伽拉姆走掉了，我一个人也没法演姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这里不是还有两个人吗？他们是我委托的契约者，应该也可以配合你们的姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？我……我们来演吗？你确定我们两个人能当表演者？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可以的，两位只要跟我说的做就行姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快点快点，我也想要看{myName}和米托拉演戏！我请你们吃蛋糕姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]算了算了，你的蛋糕就是个草饼而已，我可吃不了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]知道了，我们配合你们就是了，该怎么演？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]按照我说的做就是了，很简单的，这个剧本的名字叫《史莱姆与哈萨琳》……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（按照乔可姆的指示，勉强完成了表演，逗得德莉捧腹大笑。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉……表演终于结束了，我怎么感觉德莉那家伙不是在笑剧情，是在笑我们啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过拿到报酬就好，那个欧德莱姆出手还真是挺大方的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来，我有点好奇伽拉姆的情况，我们去乔可姆那边问问吧。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "表演者来了。"
+}

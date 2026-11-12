@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]嗯～咱很期待！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]顺便一起搬到指定的地方吧？正好还有别的事要做！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "夏库塔拉-来验收你的委托成果吧！",
+  "script": "fav_hero_008_3_0"
+}

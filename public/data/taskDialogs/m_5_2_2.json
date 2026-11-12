@@ -1,171 +1,170 @@
 {
-  "script": "m_5_2_2",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]嘶……外面还不觉得……等进了这扇门之后，总算能够感受到奇瓦说的那种气氛了……[l][cm]"
+        "text": "[show]嘶……外面还不觉得……等进了这扇门之后，总算能够感受到奇瓦说的那种气氛了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]米、米托拉……这里大家都一声不吭的，我们发出声音是不是……是不是不太好啊……[l][cm]"
+        "text": "[show]米、米托拉……这里大家都一声不吭的，我们发出声音是不是……是不是不太好啊……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]我已经尽量压低声音了……总不至于这样也要被抓吧……[l][cm]"
+        "text": "[show]我已经尽量压低声音了……总不至于这样也要被抓吧……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]你们先别开口啦……！[l][cm]"
+        "text": "[show]你们先别开口啦……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]我还从来没去过院长办公室呢！先等我找个人问清楚再说！[l][cm][hide]"
+        "text": "[show]我还从来没去过院长办公室呢！先等我找个人问清楚再说！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]那、那个，请、请留步！[l][cm]"
+        "text": "[show]那、那个，请、请留步！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "忙碌的学者",
-        "text": "[show]嗯？你们有什么事吗？[l][cm]"
+        "text": "[show]嗯？你们有什么事吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]我、我们想要找……找院长大人有事！[l][cm]"
+        "text": "[show]我、我们想要找……找院长大人有事！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]你知道院长办公室……院长大人现在在哪里吗？[l][cm]"
+        "text": "[show]你知道院长办公室……院长大人现在在哪里吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "忙碌的学者",
-        "text": "[show]你们找院长？可是院长她现在不在学院里啊。[l][cm]"
+        "text": "[show]你们找院长？可是院长她现在不在学院里啊。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呼诶？[l][cm]"
+        "text": "[show]呼诶？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "忙碌的学者",
-        "text": "[show]院长有项目要考察，昨天就出门了。如果你们特别紧急的话……嗯……[l][cm]"
+        "text": "[show]院长有项目要考察，昨天就出门了。如果你们特别紧急的话……嗯……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "忙碌的学者",
-        "text": "[show]你们可以去找那个孩子——[l][cm][hide]"
+        "text": "[show]你们可以去找那个孩子——[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]那一位是……？[l][cm]"
+        "text": "[show]那一位是……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "忙碌的学者",
-        "text": "[show]哦，那是……“院长代理”伽拉忒亚小姐。[l][cm]"
+        "text": "[show]哦，那是……“院长代理”伽拉忒亚小姐。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "忙碌的学者",
-        "text": "[show]无论你们有什么事，都可以找她帮忙。我后面还有实验安排，这里就请容我先走一步了。[l][cm]"
+        "text": "[show]无论你们有什么事，都可以找她帮忙。我后面还有实验安排，这里就请容我先走一步了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]啊、啊哦！祝、祝您实验顺利……[l][cm][hide]"
+        "text": "[show]啊、啊哦！祝、祝您实验顺利……[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]唔……刚才那个人是让我们去找那个孩子？[l][cm]"
+        "text": "[show]唔……刚才那个人是让我们去找那个孩子？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]是这样，没错。[l][cm]"
+        "text": "[show]是这样，没错。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]但是……那孩子看上去好年轻！她真的是书院的领导……那个什么“院长代理”吗？[l][cm]"
+        "text": "[show]但是……那孩子看上去好年轻！她真的是书院的领导……那个什么“院长代理”吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]这……书院的学者们都是很单纯的，都是为了研究学术而生的……我想他应该没必要骗我们才对……[l]"
+        "text": "[show]这……书院的学者们都是很单纯的，都是为了研究学术而生的……我想他应该没必要骗我们才对……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -186,33 +185,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]也对，反正就是一句话的事……[l][cm]"
+        "text": "[cm][show]也对，反正就是一句话的事……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]那接下来的交涉就交给米托拉小姐吧……不瞒你们说，刚才那段对话……已经消耗了我全部的勇气了……呜呜。[l][cm]"
+        "text": "[show]那接下来的交涉就交给米托拉小姐吧……不瞒你们说，刚才那段对话……已经消耗了我全部的勇气了……呜呜。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]那你的勇气还蛮少的……[l][cm]"
+        "text": "[show]那你的勇气还蛮少的……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]你们不懂，这是精神上的问题！光是在安静的大书院里开口，我就感觉压力大得不得了……[l]"
+        "text": "[show]你们不懂，这是精神上的问题！光是在安静的大书院里开口，我就感觉压力大得不得了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -229,36 +228,37 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]啊哈哈……[l][cm]"
+        "text": "[show]啊哈哈……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]好吧，我来就我来。那孩子看上去还挺好说话的，接下来就看我米托拉大人大显神威吧！[l][cm][hide]"
+        "text": "[show]好吧，我来就我来。那孩子看上去还挺好说话的，接下来就看我米托拉大人大显神威吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_2_2",
   "des": "与【忙碌的学者】对话【请问哪里可以见到院长？】"
 }

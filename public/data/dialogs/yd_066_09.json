@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]虽然在深渊跑了很多地方，但我还是没有找到独属于自己的宝物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]毕竟遗迹里的好东西基本都会被调研人员拿走，留给我的也就是一些没什么价值的小物件，那些小玩意远远不能称得上宝物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]或许我一辈子都找不到独属于自己的宝物吧。不过，我还是会去世界各地的遗迹，继续探寻未知。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]仔细想想，我喜欢的或许是那个到处冒险的“探索家”奥格。至于宝物，谁知道什么时候才能找到呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]不过，你要问我最好的宝物是什么……我也算找到了，就是你啦，我亲爱的伙伴。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]虽然把你称作物品有些不尊重，不过你应该不会介意的对吧？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_066_09",
+  "des": "奥格-亲密3"
+}

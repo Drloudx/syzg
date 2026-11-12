@@ -1,0 +1,108 @@
+{
+  "script": "m_1_7_4",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，{myName}……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]也没什么啦……我只是想到了那些孩子……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了逞强、一时冲动就跑到那么危险的地方去……[r]要是我们没跟在迦南后面，可就得酿成大祸了吧。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实我觉得……我也挺爱乱来的。在草原的这几年……[r]我也从来没有过计划，都是随心所欲地过着日子。[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "有时候，乱来不一定都是坏事。",
+            "tag": "tag_7"
+          },
+          {
+            "text": "如果我们没去找迦南，结果会更糟。",
+            "tag": "tag_7"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可，话是这么说……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我可不想……变成需要别人一直担心的那种人。[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不过，我赞成有计划地度日。",
+            "tag": "tag_9"
+          },
+          {
+            "text": "我们来试试制作行动计划书吧。",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]“行动计划书”……？你说……可以将每天的行动方案做成计划？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]先从把闲暇时间都利用起来开始，每天有计划地锻炼……[r]不仅能锻炼身手，还能更有规划地筹备营地资源……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯！我当然要参加！我们一起商量商量，之后的这几天都要做些什么吧！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

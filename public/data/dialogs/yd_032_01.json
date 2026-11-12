@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]嗯……这营地很齐全，总能让我对刺杀产生新的灵感。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]比如这个屋顶上的木杆，只要把绳结系在背面，再从屋檐绕过去……等人走到正下方时割断绳子，砰！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]那么重的木牌从头顶砸下来，就算没当场砸死，也能让对方失去行动能力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]那时候就是我的发挥时间了，该用什么方法折磨对方呢……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]啊？你、你什么时候站在后面的？我刚才只是在想怎么修木杆而已！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "诺姿",
+        "text": "[show]真的！我这就把绳子系牢，绝对不会让它掉下来的！还请你……你能忘掉刚刚我说的话……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_032_01",
+  "des": "友善"
+}

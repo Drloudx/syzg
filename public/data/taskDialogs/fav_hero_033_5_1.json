@@ -1,0 +1,452 @@
+{
+  "script": "fav_hero_033_5_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（和乌帕徒步了一段时间……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]这里是溪间小道呢。石头会很滑，得小心点走才好。唔……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]啊，谢谢你扶我。这路还真难走，嘿嘿。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "要不我们绕路吧？",
+            "tag": "tag_6"
+          },
+          {
+            "text": "你浑身还在痛吧？",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]没事的。只要小心一点，不会耗多少体力的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]就是……呃，那个……你可以继续这样扶着我吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没问题。",
+            "tag": "tag_9"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]嗯……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]（呜……感觉好害羞。握着{myName}的手……就感觉心在狂跳……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]（这到底是怎么回事呢……）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "乌帕，小心！",
+            "tag": "tag_14"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]唉？呜、呜哇！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（搀扶住乌帕。）",
+            "tag": "tag_16"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]啊！对、对不起……得救了。还好有你，{myName}。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]没想到我还是太高估自己了……刚刚差点滑倒……还有点使不上力。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "可不要再勉强自己了。",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]我……我也只是想尝试一下嘛……而且这不是还有{myName}扶着我嘛。嘿嘿。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]不过也走了好久了。不然就在这附近歇息一下吧……咦～？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]哇！这边就有条小溪！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]{myName}，我们就在这里休息一下吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "嗯～！",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（脱去鞋袜，和乌帕坐在小溪旁休息。乌帕将脚探入溪水之中，脸上洋溢出兴奋。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]啊——好舒服啊～！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]嘿嘿……走这么久路之后把脚泡在水里，像是在享受溪水的按摩一样。感觉好痒痒呀。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]这里的水可真清，都能看到水底下的鹅卵石。我好久都没有这样过了。有种回到魔爪湖的感觉了呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]我说的是异变前的魔爪湖啦。现在敢不画防水符文就把脚丫伸到魔爪湖的水里，很快就会感染富魔水症，变成呆子的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "乌帕很喜欢水吧。",
+            "tag": "tag_35"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]那是当然啦。以前我锻炼完后，都会在尾指村附近的水里游泳。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]露帕总说我是一个很爱闹腾的人。她说我小时候总是满村乱跑，每天每夜都让我爸妈好找。可能我的确就是这样，脑子里总是躁动着什么吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]但……我只要将身体浸入水中，那种躁动就会瞬间消失。就像现在……只剩下宁静。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]有时候我会想，这可能是我们水栖属的特性吧——但我妹和我相反，只要沾上点水就浑身不舒服，一定要把水抖掉。哈哈哈。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]后来异变来了，我们也都下不了水了。不过，我也有其他和水打交道的方法。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]比如每当我觉得不开心的时候，都会一个人来到湖边，朝着湖水大声吼叫。啊哇哇——！悲伤与愤怒就都跟着水流通通流走啦。哈哈。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没想到乌帕还有这种习惯啊。",
+            "tag": "tag_42"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]嘻嘻……别看我好像每天都很积极的样子，我其实也会有难受的时候啦。可是我不想把这份难受的压力分给妹妹或者伙伴，那就只能对着湖水发泄了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]现在想想，尾指村边的那片湖水还真是大度呢……愿意陪我闹腾这么多年。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "心里难受，也可以找我商量。",
+            "tag": "tag_45"
+          },
+          {
+            "text": "如果你想，我也可以陪你闹腾。",
+            "tag": "tag_45"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]{myName}……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]嗯，我会的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]嘿嘿，这还是我第一次把这个秘密告诉别人呢。就连我妹妹也不知道这事。{myName}可记得要保密哦，和之前缝布娃娃的事一起！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "嗯，我知道啦。",
+            "tag": "tag_49"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]说起来……今天有真是有种奇怪的感觉呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]明明接触到水流的我应该会感到心安才对，可是今天我却感觉到心里有另一种……说不上来的躁动。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]看来我还是太疲劳了吧……晚上回去之后，得好好休息才行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]等身体完全恢复之后……我想找一天，再和{myName}你一起远足。我们要走到离这里更远的地方……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]等我们感觉累了，就再折返到这条小溪旁，一起好好休息一番。第二天再好好地锻炼……这种感觉真不错呢……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（和乌帕度过了一段开心的时光。直到她在小溪边依靠着肩头浅浅睡去，醒来时已是黄昏。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（最终赶在天黑之前回到了营地。虽然没有把远足的目标贯彻到底，但乌帕却重新充满了活力。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "乌帕-一切随溪水而去"
+}

@@ -1,0 +1,213 @@
+{
+  "script": "s_sp1_6_0",
+  "des": "贝拉多娜在忙什么呢？",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]显而易见，本小姐正在欣赏艺术品。即便身为眼光高的贵族，这个城堡的艺术品也令本小姐刮目相看。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看看这幅栩栩如生的油画，看看这件充满灵动的雕像，还有着繁而不杂的花纹木饰，这些都是价值极高的艺术品啊。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]艺术品？嗯……没看懂，我欣赏不来这种东西。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我这些木头不错，长得好看又结实，放在这里太浪费了，拿回去当护栏正好。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这些雕像的石材也很高档，不如让我们拿去当仓库围墙，这样就不怕再被凿穿了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼，真是一只土猫，尽想这些拆毁艺术的事情。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]人生不只有眼前的苟且，还有充满艺术的诗和远方。我当年还在自家城堡的时候，可经常研究这些东西。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼，真遗憾，我听不懂你说的高雅艺术，毕竟我只是一只在野外流浪的猫。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来，斯卡莉安你见过的事情应该很多，对艺术有了解吗？或者说有感觉吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本宫乃是罪人，并没有思考这些高雅之物的精力。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么嘛，就是说这里只有本小姐一个人能欣赏这些高雅的艺术啊。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这样吧，本小姐听说这城堡里有画廊，那里有一位叫米莉罗的画家。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]本小姐可以带你们过去看看，陶冶一下艺术的情操，长长见识。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]免得以后遇见好东西的时候，只会想着拆掉当护栏或者石砖。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这里可是深渊，才容不下你那高雅的喜好，我们想着是怎么填饱肚子呢，没工夫陪你去看画。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……你们就没有欣赏高雅艺术的兴趣吗？这可是本小姐亲自邀请你们啊，看了不吃亏看了不上当！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没兴趣，你自己去看吧，我还要回营地修护栏补石墙呢，再见。[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这毕竟是贝拉多娜的邀请。",
+            "tag": "tag_20"
+          },
+          {
+            "text": "我们就去看看吧。",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]对……对嘛！还是有人识货的，还是{myName}有眼光。[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼……你就宠她吧，等会惹上麻烦可别怪我。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么叫惹上麻烦，看个画能惹上什么麻烦？总之你们快跟过来吧，可别错过这次机会了！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行吧，斯卡莉安，你也要跟上来看看吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]无所谓，我都可以。[l][cm]",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行，我们出发吧，去画廊那边找米莉罗！[l][cm][hide]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]太好啦，我们这边也差不多谈好了，我们开始打造墓碑吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]各位幽灵大爷大娘，你们想要打造什么样的墓碑，跟这位年轻工匠说吧，这位工匠会满足你们的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵A",
+        "text": "[show]真的吗？很好，把我的名字刻上去吧，把我的生卒年也刻上去。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵B",
+        "text": "[show]把我的画像刻上去，就按照我现在帅气的脸刻出来……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵B",
+        "text": "[show]什么？你说我现在没有脸？几百年我也忘了我长什么样了……那你随便刻一张帅脸就好！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵C",
+        "text": "[show]我的要求不高，只要把我的完整的生平刻上去就行，就从我出生开始吧……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过好几个小时的雕刻后，终于把每只幽灵的墓碑雕刻好，并各自放置在之前谈好的地方。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]呼……终于搞定了，这个地方规整了不少，终于有点像正规的墓园了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵A",
+        "text": "[show]各位辛苦了，几百年后要是我们这片地要是又烂掉了，可能还得找你们帮忙呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]几百年？这个……有机会吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵B",
+        "text": "[show]那么……我们先去休息了，下次见……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]啊……它们都飞进土里去了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]好，这次卫生任务差不多结束了，感谢各位的帮助。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]说是打扫卫生……其实好几次差点打起来了呢，还好问题最后都解决了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]是啊，我现在终于知道那群蝙蝠为什么飞走了，原来搞个卫生这么麻烦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]好啦，任务完成啦，茜狄亚，快把报酬给本小姐吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]怎么这么心急啊？你可别忘了你是贵族哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]谁……谁心急啦，本小姐只是提醒你们不要忘记而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]放心，诸位帮了我们，我们一定会回报的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]我就不用了……我一路上没做什么，也不怎么花钱，你给他们三个就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哦？这么好心啊，余都有些怀疑你罪人的身份了……那就依你说的办吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]我看看……洛莉安大人，给这个数没问题吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]没问题，不用跟伊比瓦说，余同意了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇！这个报酬挺多的，看来我们的堡主有不少钱啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]没多少的，只是余出手比较大方而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]居然能给这么多……本小姐迟早也要变得这么有钱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜的蝙蝠",
+        "text": "[show]吱吱！吱吱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好啦，我们去吃一顿怎么样，{myName}？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp1_4_4_y",
+  "des": "石料准备好了。"
+}

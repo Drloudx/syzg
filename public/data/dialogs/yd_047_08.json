@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]杂鱼工匠～你知道飞在天上的感觉吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]从高空往下望，下方的一切事物一览无遗。[r]那些平常看起来凶悍无比的巨大魔物，在高空中看就和蚂蚁一样细小。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]怎么样，想要到天上看看吗？阿迪拉可以用双爪抓着你，带着你一起到天空中翱翔哦～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]什么？你说抓着太危险？莫非……莫非你是想要阿迪拉抱着你飞吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]如果……如果这就是你的请求，那也可以，阿迪拉允许啦！[r]不管你的目的是什么，阿迪拉愿意抱着你！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]来，满怀着感激扑进阿迪拉的怀里来吧，杂鱼工匠～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_047_08",
+  "des": "阿迪拉-亲密2"
+}

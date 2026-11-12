@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]那、那个，你有什么需要我帮忙的吗？比如觉得眼前的小山太麻烦，需要我为你把小山填平之类的……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]你说这太难了？看到我手上的大铁镐了吗？只要我每天都肯花时间去挖，早晚能把小山挖平！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]别说是小山，只要你愿意，就是索利德山我也能给你挖平！那我们什么时候动手？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]你说你不想挖……好吧，总之遇到问题就找我，无论多大的困难，无论需要花多少时间，我都会帮你解决的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]当然，需要动脑的问题还是算了，毕竟我只有肌肉啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_046_06",
+  "des": "迈妮娅-熟识3"
+}

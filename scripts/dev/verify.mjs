@@ -101,7 +101,9 @@ try {
       const collect = collectData.get(collectId)
       const collectType = collectTypeData.get(collect?.collectTypeId)
       const reward = rewardData.get(collectType?.reward)
-      if (reward?.category?.includes('场景宝箱')) {
+      // 与 src/utils/hiddenRewardsData.js 同口径：collectType === 5（检视）才是「隐藏点」。
+      // 不能用 reward.category 的中文名（书籍是 '大地图采集/书籍'，不是 '场景宝箱'）。
+      if (Number(collectType?.collectType) === 5) {
         expectedRelations.add(`${lr.typeId}|${lr.roomTypeId}|${collectId}|${reward.typeId}`)
       }
     }

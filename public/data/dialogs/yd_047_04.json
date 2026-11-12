@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]喂喂——！杂鱼工匠～阿迪拉终于碰上你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]你问阿迪拉要做什么？反正没事就来看看你，不行吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]毕竟杂鱼工匠这么弱小，没有阿迪拉时刻关注的话，可没法在这里生存下去哟。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]什……什么叫阿迪拉离不开你！你在说什么奇怪的话！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]过分！你这是在欺负阿迪拉！阿迪拉……阿迪拉不理你了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_047_04",
+  "des": "阿迪拉-熟识1"
+}

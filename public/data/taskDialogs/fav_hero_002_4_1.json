@@ -1,0 +1,384 @@
+{
+  "des": "米托拉-送别魔宠-进入战役",
+  "script": "fav_hero_002_4_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "绿色史莱姆",
+        "text": "[show]姆姆～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "姆姆",
+        "text": "[show]姆姆！姆姆！姆姆姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇……营地里的魔宠都很听话呢，看来把姆姆带过来果然没错。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]它们玩了那么久应该也很累了，我这里正好有很多浆果和野菜，就放这里给它们当饲料吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]大家来吃饭啦！这里有很多好吃的东西，保准让你们吃个够！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯？什么声音……哇！有很多魔物从营地外冲进来了！它们是从哪里冒出来的啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]得做好战斗的准备……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "冷静点米托拉。",
+            "tag": "tag_10"
+          },
+          {
+            "text": "它们不是狂暴化魔物，也没有敌意。",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]咦……是……是这样吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "草原黏团",
+        "text": "[show]咕噜……咕噜咕噜……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦……它们都是幼崽，扑过来好像真的只是肚子饿了而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]行吧，反正我这里还有很多，你们也过来一起吃吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "草原黏团",
+        "text": "[show]咕噜咕噜！咕噜噜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哈哈哈！别……别蹭我啦，太痒啦……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "魔物依旧很亲近米托拉呢。",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]好像是这样的……它们似乎很喜欢我，我和魔物之间确实有种莫名的亲和力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]真是奇怪，明明我之前一个人的时候天天和魔物打架，和它们应该是相互敌视才对，这亲和力到底是哪里来的……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "可能你见到的大多是狂暴化魔物吧。",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]嗯……这么说也有道理，野外游荡的狂暴魔物确实多，我不可能和它们和谐相处。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但自从你来之后，我就有足够的时间去进行其他探索，也有条件去更广阔的世界看看，这才发现了自己身上这股亲和力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿，搞半天还是回到了你的身上啊。我想这段时间发生在我身上的改变，基本都来自于你吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "姆姆",
+        "text": "[show]姆姆～姆姆姆～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？姆姆要抱抱吗？来～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "姆姆",
+        "text": "[show]姆姆～姆姆～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？那个……{myName}，姆姆好像要你也过来抱抱它……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我……我吗？好吧。",
+            "tag": "tag_28"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（上前和米托拉一起抱住姆姆。）",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "魔物们",
+        "text": "[cm][show]咕噜咕噜～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？你……你们怎么也过来了，哈哈哈！好……好痒啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]怎么所有大家突然都围过来了？是都想要抱抱吗？好吧……那就都来抱抱吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在把魔物都抱了个遍后，露比如约而至。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比",
+        "text": "[show]哇……太感人了，没想到你们和魔物那么亲密，我远远看着还以为你们被一群魔物袭击了呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比",
+        "text": "[show]还有就是，两位打情骂俏动静小点啊，你们大吼大叫的声音估计周围都能听见啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什……什么打情骂俏啦！这明明就是正常的交流玩耍而已！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比",
+        "text": "[show]是是是……那还请两位正常交流的时候小点声，别让我这个来访者以为这里是什么私人约会场所。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你还在那里阴阳怪气？哼！孩子们！揍她！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "魔物们",
+        "text": "[show]咕噜咕噜！咕噜噜！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露比",
+        "text": "[show]哇哇哇！别……别过来！我……我错了还不行吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一番闹腾后……交易总算完成了，魔宠们依依不舍地跟随着露比离开，野外的魔物幼崽也再和米托拉告别之后四散而去。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉……虽然知道迟早要离散，看着大家离开，还是有些舍不得呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "至少和大家相处了一段愉快的时光。",
+            "tag": "tag_43"
+          },
+          {
+            "text": "你也不必太伤心啦。",
+            "tag": "tag_43"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]嗯，只要一起度过愉快的时光就很不错了。不过有一点你说错了，我可没有很伤心啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]因为……你现在还陪伴在我的身旁呀，我没有伤心的理由不是吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

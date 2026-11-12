@@ -1,0 +1,38 @@
+{
+  "des": "营地对话【你打算怎么长高？】",
+  "script": "fav_hero_060_3_0",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]我已经想了好几个办法了，只等着付诸实践呢姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]实现起来可能没那么容易，但我们史莱姆可以自行塑造容貌，对我来说把身高拉高不是什么难事姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]过程的确有些复杂，所以还需要你帮忙姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]我已经找好地方了，就在附近不远的地方，我们走吧姆～[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "露比特",
+        "text": "[show]好！露比特已经迫不及待的说！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "露比特-露比特，我们出发吧！",
+  "script": "fav_hero_062_3_0"
+}

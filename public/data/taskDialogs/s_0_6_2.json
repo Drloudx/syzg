@@ -1,0 +1,38 @@
+{
+  "des": "与米托拉聊聊【那我要开始了！】",
+  "script": "s_0_6_2",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好！来就来吧！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]把这块碎片靠近我的项坠……然后，还有你的工匠锤……喔喔，有反应了——[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜哇，这阵光是——[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜喵喵喵喵——[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ]
+}

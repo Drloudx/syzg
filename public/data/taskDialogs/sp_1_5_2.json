@@ -1,0 +1,775 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]城主阁下。还有{myName}，米托拉，贝拉多娜。本宫希望，你们有人能帮助本宫完成一件夙愿。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]尤其是城主阁下——本宫希望通过之前所述的这些……额外的服务，换取你的协助。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哦？协助？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]作为载入史册的施法者，即使身躯已经腐烂，这个世界上你做不到的事情恐怕业已不多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余实在不知道，你要余帮助你做什么。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]对呀，而且我们也没你想得那么有权有势。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]斯卡莉安老师……究竟想要什么呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]很简单——本宫希望，有人能为本宫物色一处[color=f1401c]埋骨之地[colorEnd]。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？埋骨之地？你是要把自己给埋了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你、你不是刚刚才苏醒的嘛？本来就是不死之身，干嘛还想着死后的事情？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]……对不起，本宫一直没机会向几位说清楚。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]事实上，本宫的这次复苏，状态相当特殊。……本宫的体内，并没有灵魂。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]唉？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这是……什么意思？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]好不容易死而复生，却没有灵魂？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]难道是因为……本来应该附着其中的灵魂，自己先行离开了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]恐怕是吧。根据我的推测和检验，“大罪人”的灵魂，应该早先就恢复了意识，化为[color=f1401c]幽灵[colorEnd]一类的存在，离开了这具残躯。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]现在和你们对话的这个“斯卡莉安”……不过是在残躯之上重新复苏的意识罢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉？你既是大罪人，又不是大罪人？说点我也能懂的话好不好啦？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "可是这有什么问题？",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[cm][show]……会有大问题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不讲太深奥的学术论理了。就像一个花苞只会绽放一朵玫瑰，你只需要记住，一具躯体中只能诞生出一个灵魂。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]如果斯卡莉安所言属实，那个大罪人的灵魂已经飘散，带走了重要的凝魂之核——她此刻的躯体根本没法凝聚出属于自己的灵魂。现在她这丝复苏的意识，不过是一团阴魂不散的魔力罢了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]而灵魂是与大脑同等重要的思维器官，对于没有肉身的生命来说，甚至是唯一的思考器官……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]缺乏灵魂就意味着，意识、思维、念想，这些所有的东西都变成了无源之水。即使人格在某种机缘巧合之下得以复苏、存续，终有一日，也会因缺乏承载的根基而彻底消散。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么？！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]怎么会！斯卡莉安老师……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]何必担心。凡人也终有一死，何况本宫本就是死过翻生的人物。就算有朝一日思维泯灭，那也好歹是在世上又走了一遭，也算是赚到了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]对于自己的生死，本宫早有所料，诸位大可放心。真正让本宫担心的，是在“[color=f1401c]思维消散之后[colorEnd]”的事。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]思维消散之后的事……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]你们是不是忘了，这具残躯原本的主人到底是谁？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]曾经因为鲁莽的实验，毁灭了三分之一个旧帝国的“大罪人”，她的身体难道真的会是一具毫无特异之处的凡俗之躯吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哈哈！那当然不会了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]在余还没有转化为血族的时候，余在自身上都进行了三十多项手术和七十多道法术改造，附于其中的护身魔法更是数不胜数……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]“大罪人”生前是旧帝国的公主，她所能调用的物资和人力，想必数倍于余，对于自身的改造和防护，肯定也是不遗余力了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]正是如此。由于记忆的缺失，本宫也无法确定，这副躯体上究竟有多少魔法改造还能维持。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]但无论如何，一旦本宫的思维消散，这具残躯就势必会成为一个拥有无限自持力，并且经过大量改造，只会依照本能行动的不死生物……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇……听起来就让人觉得麻烦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不止是麻烦而已，这种鬼东西要是丢到外面，可能好几个地方都找不出一个能够对付它的高手……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]到时候别说是“麻烦”，就算被当成“天灾”也不是不可能吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]诚如斯言。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]所以，你是在担心那些凡人？你希望有个人可以给你找个地方设下结界之类的，在你的意识消散之后压制你的残躯，让它不会给凡人们带来灾难？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫知道这有些讽刺，但在造成了那场席卷半个帝国的“大罪”之后，任何还有良心的生物，都多少会被激起一些悲悯和责任心吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哈哈哈哈哈！一个顶级法师的悲悯和责任心！这可真是余数百年来听过的最大的笑话！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不过没关系，对于美德本身，余总是十分欣赏的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]放心吧，余会给予你这个承诺，让你拥有一个满意的埋骨之所。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]不过相对地，在你的意识消散之后，余将保有研究这副身体的权利，怎么样？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]真是再好不过。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]凡人死后的一切都与之无关，此事此理对本宫来说也绝不例外。能用身外之物换来心灵的安稳，无疑是再划算不过的交易了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]很好，余很满意你的提案。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]斯卡莉安老师……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]贝拉多娜……和本宫刚才说的一样，无须在意本宫的结局——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐才不想说那么无聊的事！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]……唉？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]你们说的都好有意义，好有哲学，好有道理……我们当然无权插手你们的交易。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]但是……你所谓的结局，还有好久好久才到吧？到你的意识消散为止，还有好长一段时间可以利用吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]这倒的确如此。余觉得……以你这个残躯，再苟活个三五百年不是什么大问题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]……可本宫并不——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]——既然大罪人的灵魂都不在了，斯卡莉安老师不就是斯卡莉安老师自己了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]别总是想那么多死前死后的破事了！既然现在有这么强的家伙——还有本小姐给你兜底了，就和我们凡人一样，好好考虑怎么过完余生吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦哦，这倒是在理！不说我们，这家伙可是血族的始祖唉，你怕什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]这点……本宫倒是没有想过。本宫从没觉得……本宫有这样的资格。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]而且……米托拉，本宫还记得，你对本宫生前的恶行……应该很难接受吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]……哼，毕竟因为那个什么大罪人，那么多人[color=f1401c]死[colorEnd]掉了嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]但一码归一码！那什么大罪人的灵魂，我们早晚也会找到她的。她千百年前干的那些业障，我们迟早也得让她自己还清！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]我也是这么想的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]总是一脸冷冰冰的样子，但你还是教导了我许多。在我低迷的时候，你也和大家一起鼓励了我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]虽说这么短的相处时间，我也没法很快把你们两个区分得很开……但至少，现在你的样子，可比你嘴里那个大罪人善良太多了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]……本宫……善良吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]没错，斯卡莉安老师！所以，不要再说什么没有资格这种话了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]这么多年后的世界是什么样子，斯卡莉安老师也想亲眼看看吧？等结束训练后，本小姐带你一起去{myName}的营地住一段时间，怎么样！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐都认可的大工匠，那手艺可不是盖的！当年她们为本小姐烤的索利德恐兽肉，肯定连老师的舌头都能感动！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]提起{myName}就只记得吃的了吗！虽然好像我也总是这样……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]噗……呵呵……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]谢谢你……贝拉多娜。还有你，米托拉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫似乎……被自己的学生狠狠教导了一番呢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "攻守之势逆也。",
+            "tag": "tag_93"
+          },
+          {
+            "text": "这也是常有的事。",
+            "tag": "tag_93"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]哈……看来刚刚夙愿得偿的公主小姐，突然变得遗愿未了了呐。余倒是无所谓。何时来进行和余的交易都可——余有的是时间。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]倒是你们这些凡人，看起来比余想象中更加有趣呢。作为一个沉睡了七百年，刚刚苏醒的古人，余对外界的情况……不免也有些好奇。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余记得你们自报家门时，说过自己是“契约者”……是吧。如果你们愿意的话，余可以和你们“签订契约”——你们知道，来到一个新的时代，总是得要有“本地人”作为向导的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那当然欢迎。",
+            "tag": "tag_94"
+          },
+          {
+            "text": "我们就是干这个的。",
+            "tag": "tag_94"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好说，不就是当向导吗？只要你肯给钱，我们保证领你走遍深渊的每一个角落！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]等深渊封锁解除之后，就是带你走遍整个卡露蒂亚大陆都行啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]呵呵，余完全相信你们的专业。毕竟你们可是能够走到余面前的强大冒险者……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]既然你们有意，那我们不如马上开始这份“契约”……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]余想想……对了，就从告诉余……“深渊”是什么玩意开始吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好呀！这就给你安排！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（米托拉跑去洛莉安和斯卡莉安那边，叽叽喳喳地谈天说地去了。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]…………[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（贝拉多娜微笑着拉了拉你的衣角。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]那个……{myName}。我想和你再说两句，可以吗？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "sp_1_5_2",
+  "des": "斯卡莉安……？"
+}

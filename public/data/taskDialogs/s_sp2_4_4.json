@@ -1,0 +1,94 @@
+{
+  "script": "s_sp2_4_4",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，这是蓝色的黏液，赶快收到袋子里姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……蓝色的史莱姆有什么特别的吗？味道怎么样？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]蓝色黏液做出来的食物尝起来很清爽，很冰凉，尝起来非常刺激姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]至于蓝色的史莱姆……很多都是一群不通情的家伙姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那些家伙冷淡、多疑、性子古怪，就比如那个记述者欧德莱姆，一天到晚就只知道倒腾它的文献，完全不和其他史莱姆沟通姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这些蓝色的史莱姆，都是一群冰冷的榆木脑袋姆！[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！看起来你对蓝色史莱姆的怨气非常大啊……你这位公主不说一两句吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……这是总管库库姆自己的观点，史莱姆公主对此概不负责姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……我只是吐槽一下而已，没别的意思姆……[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快去找下一个颜色的黏液吧，就快要凑齐了姆。[l][cm][hide]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（搜寻黏液。）"
+}

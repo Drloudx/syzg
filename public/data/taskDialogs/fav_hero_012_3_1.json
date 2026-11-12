@@ -1,0 +1,239 @@
+{
+  "script": "fav_hero_012_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啧，又没射中，这已经是第三回了……[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "没事，那只角猪还是被陷阱困住了。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]毕竟是我们一起合作的狩猎，要是光让你一个人干活，那我这个久经沙场的猎人就太丢人了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我的状态确实不好，从上次一同打猎之后，我就一直有种恍惚不定的感觉。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]每次拉弓都觉得别扭，射出去的箭也很难命中目标。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "莫非是被什么事情影响到心态了吗？",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]或许吧，真要说是什么事，那就和上次遇到巴诺姆村同乡有关系，他们的出现让我想起了一些不好的回忆。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但就算被情绪影响，我应该也不至于下降到这种程度，或许还有别的原因。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "会不会是弓出了问题？",
+            "tag": "tag_12"
+          },
+          {
+            "text": "我看你拉弓的时候有些难受。",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯……我最近拉弓都感觉有些吃力，莫非真是弓的问题？[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（沃夫加拿起弓，发现上面有许多破损的痕迹，就连弓的弧度也出现了问题。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说的没错，之前我光反思自己的状态了，没想到手上的弓才是出大问题的。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过没发现自己手上的武器出现问题，也是我这个猎人的失职。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵，再坚韧的武器也会有破损的一天，人又何尝不是呢。我这个经历许多的猎人，看来也要被磨损掉了。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "旧武器是会坏，找一个新的武器就好。",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "有些事情总需要抛弃的，人也应该往前看。",
+            "tag": "tag_19"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，你说的有道理，我确实不该拘泥于过去。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来，你好像是工匠吧，你可以为我打造一把新的弓吗？[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "小事一桩！",
+            "tag": "tag_22"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，那这个任务就交给你了，我下次去准备一些材料再过来。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而我……也趁着这段时间休息一下，调养一下身体。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "好好休息，争取早日归来。",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好，谢谢你的鼓励，那我先回房间休息了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等我休息好了，我就好好和你说说，当年的事情……[l][cm][hide]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-磨损的武器-进入战役"
+}

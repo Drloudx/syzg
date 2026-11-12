@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]嗨！{myName}，这是我第一次在营地里和你打招呼！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]当契约者多年，我自认已经见过许多建立在野外的营地，但像你这种规模大且功能齐全的营地，我还是第一次看见。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]果然和你在一起就能开拓眼界，加入你的营地，对我来说也是一种全新的冒险。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]对了……在背包里装着呢……给！这是我从山上带下来的礼物，希望你能喜欢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "text": "[show]今后的路还长着……如果遇到什么解决不了的麻烦，尽管依靠我这个契约者前辈吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_049_1",
+  "des": "bsl_hero_049_1"
+}

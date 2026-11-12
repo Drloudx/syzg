@@ -1,0 +1,208 @@
+{
+  "script": "fav_hero_008_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎——！！？[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]简直和咱给你的画像一样，{myName}太厉害了吧？！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]抱歉！咱居然还在前一天担心会不会没办法符合预期……结果完全超乎咱的想象！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]拿好了！这是约定好的报酬，可能会有点重哦～[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}简直是咱们村里最出色的工匠！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊哈哈……有点过头了吗？总之感谢你的帮忙！那么……[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（夏库塔拉面对神像单膝跪地，双目紧闭，脸上雀跃的神采逐渐平息。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（她平静地念着你无法理解的妖精语言，每一个音调都充满了向生命树神明献上的虔诚。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（你站在一旁，默默地等待直到夏库塔拉的祈祷结束。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "夏库塔拉祈祷了什么愿望？",
+            "tag": "tag_14"
+          },
+          {
+            "text": "你刚才变得和平时很不一样。",
+            "tag": "tag_14"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哎？没什么啦～咱…并不是在为了咱自己而祈祷。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说起来，{myName}是深渊外的人，也许不太清楚数十年前的妖精战争吧……[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]战争爆发时，咱和咱的同伴们作为支援的盟军，从遥远的沙漠赶往深渊——最终没能敌过强大的黑月部族，这副魔法脚镣就是被当做奴隶时留下的。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然重获了自由，但咱仍旧有许许多多的同胞下落不明。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱能为她们做得不多。魔力被限制，咱就去跳更热烈的舞蹈，赚更多的金币，希望她们能够感受到咱的祈愿。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以咱拜托{myName}铸造这尊神像……失散的同胞们如果因咱的祈愿而听见生命树妖精的声音，就一定能找到回到家乡的路。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱……希望她们平安！像永远不熄灭的火焰，一起回到那片等待着咱们的沙土。[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "夏库塔拉真是一位温柔的妖精。",
+            "tag": "tag_22"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呀～！一不小心说了这么多，真是不好意思…！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}制作的神像咱会好好供奉起来。对了，如果你有想要实现的愿望，咱也可以帮你一起祈祷哦！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱先回妖精舞台了，拜拜～！[l][cm][hide]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "夏库塔拉-进入战役【fav_hero_008_3】"
+}

@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]哈喽哈喽——！看这里！杂鱼工匠！阿迪拉给你带来个宝贝！接着！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]这是阿迪拉刚刚在野外捡到的废品。当时阿迪拉在天上飞，看见地里有个闪闪发光的东西。阿迪拉寻思这东西没人要，就给你带回来了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]嘿嘿……就算是垃圾，这也是阿迪拉看上的宝贝——咦？你说这是先时遗迹的产物，很有研究价值？阿迪拉帮大忙了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿迪拉",
+        "text": "[show]这——哈哈哈，没办法，谁叫阿迪拉是哈比之王呢～既然杂鱼工匠喜欢这东西，那阿迪拉就大发慈悲地送给你啦～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_047_03",
+  "des": "阿迪拉-友善3"
+}

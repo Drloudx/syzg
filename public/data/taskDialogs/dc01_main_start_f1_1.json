@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（你面前的石头上长着一张怪脸。）[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "米托拉",
+        "text": "[show]哈。这石头上的脸好怪耶。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "米托拉",
+        "text": "[show]看起来应该是你们人类的脸吧。我们可没有长成这样的。[r]你看，和你好像哦。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "希尔",
+        "text": "[show]……根本就不像啦。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "希尔",
+        "text": "[show]（这些痕迹并非自然形成，而是被雕刻出来的。年代似乎有些久远……会是什么人留下的呢？）[l][cm][hide]"
+      }
+    }
+  ],
+  "des": "长相怪异的面像",
+  "script": "dc01_main_start_f1_1"
+}

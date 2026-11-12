@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]呀，我们终于见面了呢，{myName}。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]早就听闻你营地的大名了，来到这里之后才发现，这里远比我想象中的要更好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]作为驿站的前辈，可不能空手来拜访你，拿好了，这是我为你准备的礼物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]平时顶着“明星”的头衔挺累的，希望能在你这里稍微放下偶像包袱，做一个单纯的契约者。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我很期待我们今后的合作哦，毕竟你可是我最瞩目的后辈。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_055_1",
+  "des": "bsl_hero_055_1"
+}

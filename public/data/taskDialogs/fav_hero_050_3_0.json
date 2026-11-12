@@ -1,0 +1,49 @@
+{
+  "script": "fav_hero_050_3_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]没什么辛苦的，这是我的职责所在。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]不过我最近确实没怎么休息过，所以特别请了几天假。不过我也不想浪费这几天的时间，所以想趁着机会来营地看看你。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "你的装扮似乎有些邋遢？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]毕竟这几天都在干活，每天除了洗澡之外就没有打理过形象了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]先到营地里吧，一路走过来我腿都酸了。[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "米拉贝尔-营地对话【调查辛苦了。】"
+}

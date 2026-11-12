@@ -1,0 +1,126 @@
+{
+  "script": "s_sp2_7_2",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，三位辛苦了，感谢你们帮忙保护了这些小崽子姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那群史莱姆士兵虽有伤员，但大家都还是回来了姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]经过这一段历练之后，我看它们的状态和之前完全不同，战斗力、战斗意志都焕然一新了姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来训练是有效的，很快我就能训练出一支能保护营地的可靠军队了姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，辛苦了姆。期待有一天能看见你练出一支强大的军队，我们就能在这片草原上站稳脚跟了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]史莱姆大军……听起来很好玩的样子啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没问题！我会把它们练成无比强大的军队，请公主静候佳音姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]来，让我训练下一批士兵姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]严阵以待姆！为公主殿下而战姆！[l][cm]",
+        "charaName": "史莱姆士兵们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在开始射箭训练，晚饭开始前射不到6分的*史莱姆官话粗口*，就滚到化粪池里去反思姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一旦让我发现你们这群*史莱姆官话粗口*怠慢，我就扒了你们的黏液，把你们这群*史莱姆方言粗口*扔去喂角猪。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]射箭姆！射箭姆！[l][cm]",
+        "charaName": "史莱姆士兵们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈哈哈，史莱姆讲脏话真好玩，不行了我要在这看一会，等会再回去。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那……那个……史莱姆都是一群温柔的魔物姆……[l][cm][hide]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "清剿任务顺利完成！"
+}

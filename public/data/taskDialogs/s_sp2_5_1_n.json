@@ -1,0 +1,46 @@
+{
+  "script": "s_sp2_5_1_n",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]手上的木头好像还不够哦姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那群孩子快到了，我们不能让它们饿肚子，麻烦手脚快一点吧姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那群孩子们……可是很难伺候的姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（说罢，迷迷糊糊的凯尔姆躺在地上继续休息。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "木头找好了。"
+}

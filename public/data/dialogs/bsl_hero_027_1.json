@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]日安，{myName}，你的营地比我想象中还要规整呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]总觉得这片营地有一种让人安心的魔力，就像是暴风中的港湾一样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]来，这是我作为领班的一点心意，这不是什么贵重的宝物，希望你能喜欢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]今后我会让这个营地变得更好的，让你好好见识一下侍者领班的实力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]那就先从打扫开始吧，我很快就会把营地的垃圾扫掉的～[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_027_1",
+  "des": "bsl_hero_027_1"
+}

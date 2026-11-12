@@ -725,7 +725,11 @@ export function buildSearchData(maps) {
 
   // 兑换奖励来源：与兑换页共用可见性、一级分类和地图子分类规则。
   const rawExchangeData = maps.itemExchangeJson?.itemExchange || {}
+  // 🔴 神器（team=equip_spN）的 itemExchange 与 equipQualityUpgrade 是**同一份数据**
+  // （同 consume 同 reward）。这类条目的「获取途径」由 remainingItemSources 的
+  // 「神器进阶」负责（含品质/上一阶），这里不再重复记一条「兑换」。
   Object.values(rawExchangeData).forEach(exchange => {
+    if (/^equip_sp\d+$/.test(String(exchange?.team || ''))) return
     if (!isVisibleExchange(exchange, officialExchangeIndex)) return
     const meta = getExchangeSourceMeta(exchange, officialExchangeIndex)
     const drops = getItemsFromReward(exchange.reward)

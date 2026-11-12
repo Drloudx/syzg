@@ -1,0 +1,102 @@
+{
+  "script": "s_5_13_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]朋友，你们好像是和院长关系不错的契约者吧？[l][cm]",
+        "charaName": "货殖系学生弗兰佐茨"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]院长……你说乌尔勒？算是比较熟吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那就好了。我想麻烦你们代我们投诉一下农野系的人，他们乱扔垃圾给我们造成了严重的困扰。如果是你们的话，院长肯定更为重视。[l][cm]",
+        "charaName": "货殖系学生弗兰佐茨"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]困扰？垃圾？他们是会到处扔垃圾的人吗？[l][cm]",
+        "charaName": "艾薇杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]来，你们看看这个东西。[l][cm]",
+        "charaName": "货殖系学生弗兰佐茨"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是……小麦？这冰天雪地的地方居然会有小麦？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿，这不就是那群农野系的，想要培育的那种能在冰雪中生长的小麦吗？这大概就是他们的实验品。[l][cm]",
+        "charaName": "货殖系学生弗兰佐茨"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那些家伙几年折腾下来，不仅一无所获，反而给当地留下了大量垃圾污染。[l][cm]",
+        "charaName": "货殖系学生弗兰佐茨"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]客人们在涌泉客道看到我们的温泉飘着小麦，头也不回就跑了，这让我们损失了多少啊。之前我们和他们说过好多次了，这次就麻烦你们亲自上报院长，替我们狠狠投诉他们一番吧！[l][cm]",
+        "charaName": "货殖系学生弗兰佐茨"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行吧……那我们这就去找乌尔勒，我们会把你遇到的事情告诉她的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，这件事就拜托你们了。[l][cm][hide]",
+        "charaName": "货殖系学生弗兰佐茨"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "漂流而来的小麦-接取步骤"
+}

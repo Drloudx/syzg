@@ -1,0 +1,53 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哼……那当然，对于文武双全的贝拉多娜小姐来说，种个田能是什么难事？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐学习的赤血剑法，可比这种挥锄头的活要难多啦。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "种田确实比战斗容易些。"
+          },
+          {
+            "tag": "tag_5",
+            "text": " 但也需要耐心和坚持才能掌握。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]放心吧，本小姐心里有数，{myName}只要点拨几句，我就能学会啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]快到营地里吧，早点学会，本小姐好早点回去把那些赤剑草种子种下！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_026_3_0",
+  "des": "贝拉多娜-营地对话【做好学习种田的准备了吗？】"
+}

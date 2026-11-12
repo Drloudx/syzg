@@ -1,0 +1,187 @@
+{
+  "des": "s_sp2_1_7",
+  "script": "s_sp2_1_7",
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]看来我们又发现了“凶暴种”的一种新特性。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]鱼布林、杜吉芽、史莱姆，这些魔物平时明明是互相捕食的关系，但是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]在遭遇到非凶暴种的其它生物的时候，这些不同物种的凶暴种，反而会跨越食物链的层级，互相合作起来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这、这是好事还是坏事啊？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "当然是坏事。",
+            "tag": "tag_6"
+          },
+          {
+            "text": "对我们来说绝不是好消息！",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]是的，这意味着，就算有其它有理智的魔物组群，它们的生存环境也会被这些凶暴种无限压缩。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]或许只有像德莉麾下那些史莱姆一样躲进与世隔绝的秘境，才能避免被这些凶暴种伤害吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？这……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没关系，会有好消息的。",
+            "tag": "tag_10"
+          },
+          {
+            "text": "只要调查继续进行下去……",
+            "tag": "tag_10"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]对、对啊！要不我们去黑森林……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]不必了。调查了这么多地方，我对诅咒的情况已经了解得差不多了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]虽然很遗憾，但那些背井离乡的同胞们，或许这辈子都无望落叶归根了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]也不必这么急着下结论吧？我们再调查一下，说不定……嗯？！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉？",
+            "tag": "tag_15"
+          },
+          {
+            "text": "你怎么了？",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]等等，这个气味……对了！还有这个！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]菲娜，前面有我们认识的人！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]和我们一起去见一见吧，见到之后，说不定你会有别的想法呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]看来这位“朋友”应该挺特别的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]那就去见见看吧，我对这位特别的朋友，也挺有兴趣的。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

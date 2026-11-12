@@ -1,0 +1,45 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]嗯……就如信中所说的那样。你准备好了吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "当然，爵士。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "我们出发吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]嗯，干脆利落，不赖。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我雇好了马车，走吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_031_3_0",
+  "des": "波特温-营地对话【所以你是要邀请我到你家做客？】"
+}

@@ -1,75 +1,74 @@
 {
-  "script": "m_5_7_4",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哇——！你们快看！这里……这里有好多软软！[l][cm]"
+        "text": "[show]哇——！你们快看！这里……这里有好多软软！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]奇瓦说过，软软其实是一只熔火元素，这么看来……这个山洞的深处，其实是熔火元素的巢穴吗？[l][cm]"
+        "text": "[show]奇瓦说过，软软其实是一只熔火元素，这么看来……这个山洞的深处，其实是熔火元素的巢穴吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]等等，等等啊！你们两位，一点都不慌的吗？[l][cm]"
+        "text": "[show]等等，等等啊！你们两位，一点都不慌的吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]我们现在可是闯进野生魔物的巢穴里来了！我们不会要完蛋了吧！[l][cm]"
+        "text": "[show]我们现在可是闯进野生魔物的巢穴里来了！我们不会要完蛋了吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]放心吧，不会有事的。[l][cm]"
+        "text": "[show]放心吧，不会有事的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]从这些家伙身上，我可是一点狂乱的气息都没感觉到。它们绝不会贸然攻击我们。[l][cm]"
+        "text": "[show]从这些家伙身上，我可是一点狂乱的气息都没感觉到。它们绝不会贸然攻击我们。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]对不对？[l][cm][hide]"
+        "text": "[show]对不对？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "熔火元素",
-        "text": "[show]咕咕！咕呜咕咕——！[l][cm]"
+        "text": "[show]咕咕！咕呜咕咕——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哈哈！你们看，它们很欢迎我们，还在和我撒娇呢！[l]"
+        "text": "[show]哈哈！你们看，它们很欢迎我们，还在和我撒娇呢！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -90,297 +89,297 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]是啊……第一次看到营地里驯养了那么多魔物的时候，我还吓了一跳呢。[l][cm]"
+        "text": "[show]是啊……第一次看到营地里驯养了那么多魔物的时候，我还吓了一跳呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]明明那些魔物有不少都是凶名赫赫的野外凶兽，但经过米托拉的调教之后，就都变得很听话了。[l][cm]"
+        "text": "[show]明明那些魔物有不少都是凶名赫赫的野外凶兽，但经过米托拉的调教之后，就都变得很听话了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]嘿嘿，我也得有点用处嘛！[l][cm]"
+        "text": "[show]嘿嘿，我也得有点用处嘛！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]你们一个能看到未来，一个有工匠技艺，我也不能光是能打而已，总得开发点其他的才艺才行！[l][cm]"
+        "text": "[show]你们一个能看到未来，一个有工匠技艺，我也不能光是能打而已，总得开发点其他的才艺才行！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]好厉害……！原来你们还有这么一手，果然是英雄小队，就是能人所不能啊！[l][cm]"
+        "text": "[show]好厉害……！原来你们还有这么一手，果然是英雄小队，就是能人所不能啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哼，那可不！[l][cm]"
+        "text": "[show]哼，那可不！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]总之，多亏了米托拉，我们应该是安全无虞了。[l][cm]"
+        "text": "[show]总之，多亏了米托拉，我们应该是安全无虞了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]不过……仔细观察一下这些熔火元素……和软软相比，它们是不是有些太瘦弱了？[l][cm]"
+        "text": "[show]不过……仔细观察一下这些熔火元素……和软软相比，它们是不是有些太瘦弱了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]软软本来就是同族之中的特例，不能拿它作为比较的基准。[l][cm]"
+        "text": "[show]软软本来就是同族之中的特例，不能拿它作为比较的基准。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]不过，这些熔火元素也确实比以前虚弱了不少……[l][cm]"
+        "text": "[show]不过，这些熔火元素也确实比以前虚弱了不少……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]这也不奇怪，作为自然元素的一种，异变带来的环境巨变，肯定会对它们造成影响。[l][cm]"
+        "text": "[show]这也不奇怪，作为自然元素的一种，异变带来的环境巨变，肯定会对它们造成影响。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]即使靠着火山内部的环境幸存了下来，但随着火属性魔力越来越稀薄，这里的熔火元素们实力自然也不复当年了。[l][cm]"
+        "text": "[show]即使靠着火山内部的环境幸存了下来，但随着火属性魔力越来越稀薄，这里的熔火元素们实力自然也不复当年了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]原来如此……异变……对所有人……乃至所有生物的影响都如此巨大啊……[l][cm]"
+        "text": "[show]原来如此……异变……对所有人……乃至所有生物的影响都如此巨大啊……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕……[l][cm]"
+        "text": "[show]咕……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]软软？[l][cm][hide]"
+        "text": "[show]软软？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕咕……？咕……[l][cm]"
+        "text": "[show]咕咕……？咕……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]什么？你是说……那些是……你的父母……？[l][cm]"
+        "text": "[show]什么？你是说……那些是……你的父母……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]啊？熔火元素不是元素吗？元素也有父母？[l][cm]"
+        "text": "[show]啊？熔火元素不是元素吗？元素也有父母？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]"
+        "text": "[show]您是要询问这个问题吗？我现在就为您寻找答案！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]根据研究，元素属魔物可分为两类。例如雷元素、火元素这类更接近自然现象意志化的元素属魔物，它们的蛋都是从自然之中凭空凝聚而成的。[l][cm]"
+        "text": "[show]根据研究，元素属魔物可分为两类。例如雷元素、火元素这类更接近自然现象意志化的元素属魔物，它们的蛋都是从自然之中凭空凝聚而成的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]而类似史莱姆、熔火元素这一类实体性更强的元素系魔物，它们的蛋则会通过分裂或者交感等方式产生。[l][cm]"
+        "text": "[show]而类似史莱姆、熔火元素这一类实体性更强的元素系魔物，它们的蛋则会通过分裂或者交感等方式产生。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]原来是这样啊……所以熔火元素也是有父母的……唔？不过话说回来，熔火元素没有性别，到底怎么区分谁是爸爸谁是妈妈啊？[l][cm]"
+        "text": "[show]原来是这样啊……所以熔火元素也是有父母的……唔？不过话说回来，熔火元素没有性别，到底怎么区分谁是爸爸谁是妈妈啊？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]这……可能每一只都既是爸爸也是妈妈……吧……？[l][cm]"
+        "text": "[show]这……可能每一只都既是爸爸也是妈妈……吧……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]软软？怎么了？既然双亲健在，为什么不去和它们相认呢？[l][cm]"
+        "text": "[show]软软？怎么了？既然双亲健在，为什么不去和它们相认呢？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕呜……[l][cm][hide]"
+        "text": "[show]咕呜……[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]啊……！[l][cm]"
+        "text": "[show]啊……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]原来如此……你是害怕父母有了新的孩子之后，就把你忘记了？[l][cm]"
+        "text": "[show]原来如此……你是害怕父母有了新的孩子之后，就把你忘记了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]不会的……就算有了新的家庭成员，但你们的关系是不会改变的！[l][cm]"
+        "text": "[show]不会的……就算有了新的家庭成员，但你们的关系是不会改变的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]去吧！去陪它们好好说说话，倾诉一下这几年的离别之情吧！[l][cm]"
+        "text": "[show]去吧！去陪它们好好说说话，倾诉一下这几年的离别之情吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕！[l][cm][hide]"
+        "text": "[show]咕！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕咕！咕咕咕！[l][cm]"
+        "text": "[show]咕咕！咕咕咕！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软的父母",
-        "text": "[show]咕咕！咕呜~~！[l][cm]"
+        "text": "[show]咕咕！咕呜～！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]真是感人的一幕啊……久别的孩子和父母再次相聚，这种情景真是令人唏嘘……[l][cm]"
+        "text": "[show]真是感人的一幕啊……久别的孩子和父母再次相聚，这种情景真是令人唏嘘……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]是啊……魔物的智力虽然不如人类，但它们的情感却总是比人类要纯粹得多。[l][cm]"
+        "text": "[show]是啊……魔物的智力虽然不如人类，但它们的情感却总是比人类要纯粹得多。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]这种感情即使跨越时间也不会改变，而人类就……[l][cm]"
+        "text": "[show]这种感情即使跨越时间也不会改变，而人类就……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]唔……[l]"
+        "text": "[show]唔……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -397,9 +396,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]怎么了？看你一脸复杂的样子，是想到什么了吗？[l]"
+        "text": "[cm][show]怎么了？看你一脸复杂的样子，是想到什么了吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -416,113 +415,113 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[cm][show]嗯，是有想到一点……[l][cm]"
+        "text": "[cm][show]嗯，是有想到一点……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]看到这么感人的一幕，我就不由自主地开始想起我、妈妈，还有奇瓦姐姐的事……[l][cm]"
+        "text": "[show]看到这么感人的一幕，我就不由自主地开始想起我、妈妈，还有奇瓦姐姐的事……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]虽然我之前说，我不担心奇瓦姐姐把妈妈抢走……但说实话，其实心底里多少还是有那么一丁点担心的。[l][cm]"
+        "text": "[show]虽然我之前说，我不担心奇瓦姐姐把妈妈抢走……但说实话，其实心底里多少还是有那么一丁点担心的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]我因为失去了记忆，对于自己的过去一无所知……从我有记忆以来，一直都是妈妈在照顾我。[l][cm]"
+        "text": "[show]我因为失去了记忆，对于自己的过去一无所知……从我有记忆以来，一直都是妈妈在照顾我。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]是妈妈的爱拯救了我，给予了我现在所拥有的一切；是妈妈为我取名\"伽拉忒亚\"，这个名字定义了我现在的模样。[l][cm]"
+        "text": "[show]是妈妈的爱拯救了我，给予了我现在所拥有的一切；是妈妈为我取名“伽拉忒亚”，这个名字定义了我现在的模样。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]伽拉忒亚……[l][cm]"
+        "text": "[show]伽拉忒亚……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]妈妈对我来说如此重要，但对妈妈来说呢？其实一直以来，我的心里都有这样的担忧，因为妈妈从来没有隐瞒过，她还有一个亲生女儿。[l][cm]"
+        "text": "[show]妈妈对我来说如此重要，但对妈妈来说呢？其实一直以来，我的心里都有这样的担忧，因为妈妈从来没有隐瞒过，她还有一个亲生女儿。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]我对妈妈来说，是不是奇瓦姐姐的替代品呢？是不是因为奇瓦姐姐离家出走，妈妈才会收留我？如果奇瓦姐姐回来，我会不会再次孤身一人，回到那个既不是\"伽拉忒亚\"，也不是其他什么人的时候呢？[l][cm]"
+        "text": "[show]我对妈妈来说，是不是奇瓦姐姐的替代品呢？是不是因为奇瓦姐姐离家出走，妈妈才会收留我？如果奇瓦姐姐回来，我会不会再次孤身一人，回到那个既不是“伽拉忒亚”，也不是其他什么人的时候呢？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]直到奇瓦姐姐真的出现之前，我一直都很担心。[l][cm]"
+        "text": "[show]直到奇瓦姐姐真的出现之前，我一直都很担心。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]我懂我懂，我失忆后也有过很长一段时间患得患失的日子。[l][cm]"
+        "text": "[show]我懂我懂，我失忆后也有过很长一段时间患得患失的日子。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]只不过求生者草原的生活太过艰苦，没过多久，我就没心思去想那些有的没的了。[l][cm]"
+        "text": "[show]只不过求生者草原的生活太过艰苦，没过多久，我就没心思去想那些有的没的了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]伽拉忒亚……我还以为你不会为这些事烦恼呢……[l][cm]"
+        "text": "[show]伽拉忒亚……我还以为你不会为这些事烦恼呢……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]因为我平时很开朗吗？[l][cm]"
+        "text": "[show]因为我平时很开朗吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]我确实比一般人神经大条一些，但会担心这些事，多少也是人之常情吧……[l]"
+        "text": "[show]我确实比一般人神经大条一些，但会担心这些事，多少也是人之常情吧……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -539,193 +538,193 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]你说你之前一直很担心，也就是说现在已经不担心了吗？[l][cm]"
+        "text": "[show]你说你之前一直很担心，也就是说现在已经不担心了吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]是呀，因为我已经明白了，妈妈给我的爱，绝不是一种替代。[l][cm]"
+        "text": "[show]是呀，因为我已经明白了，妈妈给我的爱，绝不是一种替代。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]她是真的把我当做自己的女儿，把我当做奇瓦姐姐一样地关心。[l][cm]"
+        "text": "[show]她是真的把我当做自己的女儿，把我当做奇瓦姐姐一样地关心。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]在奇瓦姐姐回来的这些天，妈妈对我的关心还是一如既往，一点都没有变。[l][cm]"
+        "text": "[show]在奇瓦姐姐回来的这些天，妈妈对我的关心还是一如既往，一点都没有变。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]就好像……嗯，就像那边软软的一家一样。[l][cm]"
+        "text": "[show]就好像……嗯，就像那边软软的一家一样。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]它们的父母没有因为新的家人，就忘记了旧的家人……[l][cm]"
+        "text": "[show]它们的父母没有因为新的家人，就忘记了旧的家人……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]它们的父母也没有因为旧家人的归来，就把新家人抛到一边。[l][cm]"
+        "text": "[show]它们的父母也没有因为旧家人的归来，就把新家人抛到一边。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]所以我现在无比庆幸，能够成为这个家庭的一员。[l][cm]"
+        "text": "[show]所以我现在无比庆幸，能够成为这个家庭的一员。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]在奇瓦姐姐回来后，我不但没有失去妈妈，反而多了一个姐姐。[l][cm]"
+        "text": "[show]在奇瓦姐姐回来后，我不但没有失去妈妈，反而多了一个姐姐。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]这让我感到无比幸福，可以说，我就是这个世界上最幸福的孩子！[l][cm]"
+        "text": "[show]这让我感到无比幸福，可以说，我就是这个世界上最幸福的孩子！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]伽拉忒亚……[l][cm]"
+        "text": "[show]伽拉忒亚……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]怎么了？[l][cm][hide]"
+        "text": "[show]怎么了？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]啊……手……[l][cm]"
+        "text": "[show]啊……手……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]嘿嘿，都这么大了，牵手还蛮害羞的……[l][cm]"
+        "text": "[show]嘿嘿，都这么大了，牵手还蛮害羞的……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]奇瓦姐姐……[l][cm]"
+        "text": "[show]奇瓦姐姐……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]其实我一直想对你说……[l][cm]"
+        "text": "[show]其实我一直想对你说……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]我也……我也感觉很幸运，能够有你这么可爱的妹妹。[l][cm]"
+        "text": "[show]我也……我也感觉很幸运，能够有你这么可爱的妹妹。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]妈妈能够收留你，绝对是她这辈子做的最正确的事！[l][cm]"
+        "text": "[show]妈妈能够收留你，绝对是她这辈子做的最正确的事！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]奇瓦姐姐……！[l][cm]"
+        "text": "[show]奇瓦姐姐……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]最喜欢你了！[l][cm]"
+        "text": "[show]最喜欢你了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]诶嘿嘿……[l][cm]"
+        "text": "[show]诶嘿嘿……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哎呀呀，这边也和那边一样感人呢！[l][cm]"
+        "text": "[show]哎呀呀，这边也和那边一样感人呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]因为伽拉忒亚的情感同样纯粹，所以才会这么打动人心吧……[l]"
+        "text": "[show]因为伽拉忒亚的情感同样纯粹，所以才会这么打动人心吧……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -746,129 +745,129 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]好好好，是我的错！[l][cm]"
+        "text": "[cm][show]好好好，是我的错！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕咕咕——！咕呜！[l][cm]"
+        "text": "[show]咕咕咕——！咕呜！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]诶？软软？你们聊完了吗？[l][cm][hide]"
+        "text": "[show]诶？软软？你们聊完了吗？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕呜！咕呜咕咕——！[l][cm]"
+        "text": "[show]咕呜！咕呜咕咕——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]什么？你说……这里发生了怪事？[l][cm]"
+        "text": "[show]什么？你说……这里发生了怪事？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]怎么了？软软说了什么？[l][cm]"
+        "text": "[show]怎么了？软软说了什么？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]软软说……这里的熔火元素们遇到了麻烦。[l][cm]"
+        "text": "[show]软软说……这里的熔火元素们遇到了麻烦。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]因为异变，这里的火属性魔力大幅渐少，已经不足以供给整个熔火元素族群了。[l][cm]"
+        "text": "[show]因为异变，这里的火属性魔力大幅渐少，已经不足以供给整个熔火元素族群了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]为了生存，熔火元素们不得不派出精锐成员走出洞穴，前往旧火山口挖掘蕴含着火属性魔力的岩矿或结晶……[l][cm]"
+        "text": "[show]为了生存，熔火元素们不得不派出精锐成员走出洞穴，前往旧火山口挖掘蕴含着火属性魔力的岩矿或结晶……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]这种状况持续了好几年，一直都没出什么事，直到最近……连续五六只外出挖掘的熔火元素都杳无音信，其中仅有返回的一只还性情大变，对同族发起了攻击。[l][cm]"
+        "text": "[show]这种状况持续了好几年，一直都没出什么事，直到最近……连续五六只外出挖掘的熔火元素都杳无音信，其中仅有返回的一只还性情大变，对同族发起了攻击。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]居然有这种事？那后来呢？[l][cm]"
+        "text": "[show]居然有这种事？那后来呢？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]后来，在大家的共同努力下，那只性情大变的熔火元素被封印在了山洞深处，而其他的熔火元素也幸运地没有受伤。[l][cm]"
+        "text": "[show]后来，在大家的共同努力下，那只性情大变的熔火元素被封印在了山洞深处，而其他的熔火元素也幸运地没有受伤。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]不过出了这种事，大家都很担心，害怕什么时候会有族人突然发狂……[l][cm]"
+        "text": "[show]不过出了这种事，大家都很担心，害怕什么时候会有族人突然发狂……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]性情大变？对同族发起攻击？[l][cm]"
+        "text": "[show]性情大变？对同族发起攻击？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]这个现象怎么这么耳熟？该不会是……异变导致的“[color=f1401c]狂暴化现象[colorEnd]”吧？[l][cm]"
+        "text": "[show]这个现象怎么这么耳熟？该不会是……异变导致的“[color=f1401c]狂暴化现象[colorEnd]”吧？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]狂暴化现象……？这很有可能，不过……[l]"
+        "text": "[show]狂暴化现象……？这很有可能，不过……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -885,17 +884,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]什么？你又发现了什么？[l]"
+        "text": "[show]什么？你又发现了什么？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -912,9 +911,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]是啊，这整个平原都从岩浆地带变成雪原了，不是异变还能是什么？[l]"
+        "text": "[cm][show]是啊，这整个平原都从岩浆地带变成雪原了，不是异变还能是什么？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -935,33 +934,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]这……好像……还真的没有！[l][cm]"
+        "text": "[show]这……好像……还真的没有！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]这……对、对啊！自从进入霜烬平原之后，我们遇到的魔物都是些普通货色！[l][cm]"
+        "text": "[show]这……对、对啊！自从进入霜烬平原之后，我们遇到的魔物都是些普通货色！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]不管是妖精也好、芙洛波也好，虽然它们都挺有攻击性的，但都没有表现出任何狂暴化的特征！[l]"
+        "text": "[show]不管是妖精也好、芙洛波也好，虽然它们都挺有攻击性的，但都没有表现出任何狂暴化的特征！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -982,41 +981,41 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]如果是这样的话，那确实有点蹊跷。[l][cm]"
+        "text": "[show]如果是这样的话，那确实有点蹊跷。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]但如果……这些熔火元素的麻烦就来自于“魔物狂暴化”现象的话……[l][cm]"
+        "text": "[show]但如果……这些熔火元素的麻烦就来自于“魔物狂暴化”现象的话……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]那就说明，霜烬平原的魔物并非没有出现狂暴化，而是这种现象被局限在了某个特定范围内……[l][cm]"
+        "text": "[show]那就说明，霜烬平原的魔物并非没有出现狂暴化，而是这种现象被局限在了某个特定范围内……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]可能是某个地域，也可能是某一类种群……[l]"
+        "text": "[show]可能是某个地域，也可能是某一类种群……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -1033,100 +1032,101 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[cm][show]确实……不过借着当下的契机，我们总算找到了通往真相的线索。[l][cm]"
+        "text": "[cm][show]确实……不过借着当下的契机，我们总算找到了通往真相的线索。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]“真相”啊……你们这些聪明人，还真是喜欢这玩意儿呢！[l][cm]"
+        "text": "[show]“真相”啊……你们这些聪明人，还真是喜欢这玩意儿呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]大家等等，先别讨论了！[l][cm]"
+        "text": "[show]大家等等，先别讨论了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]洞外面好像发生了什么骚乱，你们听到声音了吗？[l][cm]"
+        "text": "[show]洞外面好像发生了什么骚乱，你们听到声音了吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]这个声音是……有人在攻打这里？[l][cm]"
+        "text": "[show]这个声音是……有人在攻打这里？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]攻打这里？难道真是狂暴化的魔物？[l][cm]"
+        "text": "[show]攻打这里？难道真是狂暴化的魔物？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]不知道。[l][cm]"
+        "text": "[show]不知道。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]无论是否狂暴化的魔物，外界的攻击都让这里的熔火元素们开始躁动不安起来。[l][cm]"
+        "text": "[show]无论是否狂暴化的魔物，外界的攻击都让这里的熔火元素们开始躁动不安起来。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]……我想去看看。毕竟是软软的族人，我可不能置之不理。[l][cm]"
+        "text": "[show]……我想去看看。毕竟是软软的族人，我可不能置之不理。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]没问题！不管遇到多厉害的敌人，都不可能是米托拉大人的对手！[l][cm]"
+        "text": "[show]没问题！不管遇到多厉害的敌人，都不可能是米托拉大人的对手！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]反正站在这里也无济于事，不如就让我们冲出去，看看胆敢来袭的家伙，究竟是何方神圣吧！[l][cm][hide]"
+        "text": "[show]反正站在这里也无济于事，不如就让我们冲出去，看看胆敢来袭的家伙，究竟是何方神圣吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_7_4",
   "des": "到达关卡，触发【m_5_7_4】"
 }

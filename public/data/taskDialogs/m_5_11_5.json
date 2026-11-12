@@ -1,5 +1,4 @@
 {
-  "script": "m_5_11_5",
   "exps": [
     {
       "para": {
@@ -18,25 +17,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]嗯，看来她是真的累了。[l][cm]"
+        "text": "[show]嗯，看来她是真的累了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]毕竟发生了这么多事……米托拉的心里也很不安吧……[l][cm]"
+        "text": "[show]毕竟发生了这么多事……米托拉的心里也很不安吧……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]人在精神紧张的时候容易感到疲劳，或许这就是她如此疲惫的原因……[l]"
+        "text": "[show]人在精神紧张的时候容易感到疲劳，或许这就是她如此疲惫的原因……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -68,9 +67,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]如果是在你面前的话，米托拉一定会尽可能强打起精神来，无论如何也要把最自信、最可靠的一面展现给你吧……[l]"
+        "text": "[cm][show]如果是在你面前的话，米托拉一定会尽可能强打起精神来，无论如何也要把最自信、最可靠的一面展现给你吧……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -87,25 +86,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]而我就……不同了。[l][cm]"
+        "text": "[cm][show]而我就……不同了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]就算我想展现什么，也完全没有自信和能力可以展示出来。[l][cm]"
+        "text": "[show]就算我想展现什么，也完全没有自信和能力可以展示出来。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]虽然厚着脸皮加入了你们，但比起{myName}和米托拉，我还是……差得太远了……[l]"
+        "text": "[show]虽然厚着脸皮加入了你们，但比起{myName}和米托拉，我还是……差得太远了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -141,41 +140,41 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]呵呵……谢谢你。有你这句话，我才能确信，自己多少有帮上一点忙。[l][cm]"
+        "text": "[cm][show]呵呵……谢谢你。有你这句话，我才能确信，自己多少有帮上一点忙。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]不过……帮上忙的是魔眼，而不是“艾薇杜尔”……[l][cm]"
+        "text": "[show]不过……帮上忙的是魔眼，而不是“艾薇杜尔”……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]虽然我知道事情没法分得那么清楚，但人就是会这样想，不是吗？[l][cm]"
+        "text": "[show]虽然我知道事情没法分得那么清楚，但人就是会这样想，不是吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]米托拉明明在追寻着从前的记忆，却也会因体内突然浮现的\"前身\"而感到困扰……[l][cm]"
+        "text": "[show]米托拉明明在追寻着从前的记忆，却也会因体内突然浮现的“前身”而感到困扰……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]我也是……明明总是依靠眼睛的力量，却总想着摆脱它，尽快变得独当一面。[l]"
+        "text": "[show]我也是……明明总是依靠眼睛的力量，却总想着摆脱它，尽快变得独当一面。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -192,9 +191,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]……我也觉得自己成长了不少，但相比起米托拉……我还不够强大。[l]"
+        "text": "[cm][show]……我也觉得自己成长了不少，但相比起米托拉……我还不够强大。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -222,57 +221,57 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]唔……就是因为是同伴，所以才会这样想啊。[l][cm]"
+        "text": "[cm][show]唔……就是因为是同伴，所以才会这样想啊。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]我呢……稍微……真的只是稍微……稍微有一点点嫉妒……[l][cm]"
+        "text": "[show]我呢……稍微……真的只是稍微……稍微有一点点嫉妒……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]有一点点……嫉妒你和米托拉那样的关系……[l][cm]"
+        "text": "[show]有一点点……嫉妒你和米托拉那样的关系……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]亲密无间？一心同体？心有灵犀？我不知道该怎么形容……[l][cm]"
+        "text": "[show]亲密无间？一心同体？心有灵犀？我不知道该怎么形容……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]但我总有一种感觉，你和米托拉之间，好像完全容不下第三个人。明明我也是队伍中的一员，但很多时候，我都觉得自己像个局外人……哈哈……[l][cm]"
+        "text": "[show]但我总有一种感觉，你和米托拉之间，好像完全容不下第三个人。明明我也是队伍中的一员，但很多时候，我都觉得自己像个局外人……哈哈……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]所以我就想，这会不会是因为我不够强的关系呢？[l][cm]"
+        "text": "[show]所以我就想，这会不会是因为我不够强的关系呢？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]如果我能够变得更强一点，是不是也能和米托拉那样，和你稍微拉近一点距离呢？[l]"
+        "text": "[show]如果我能够变得更强一点，是不是也能和米托拉那样，和你稍微拉近一点距离呢？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -289,25 +288,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]唔～我真的吃不下了……[l][cm]"
+        "text": "[cm][show]唔～我真的吃不下了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]……呀！[l][cm]"
+        "text": "[show]……呀！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]唔……[l]"
+        "text": "[show]唔……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -328,17 +327,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]放心吧，我没事的。[l][cm]"
+        "text": "[cm][show]放心吧，我没事的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]不过是看到了自己的极限，略有所感罢了……[l]"
+        "text": "[show]不过是看到了自己的极限，略有所感罢了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -355,17 +354,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]我没事的，真的不用担心。[l][cm]"
+        "text": "[cm][show]我没事的，真的不用担心。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]今天天色不早了，大家都早点回房间去休息吧。[l]"
+        "text": "[show]今天天色不早了，大家都早点回房间去休息吧。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -382,9 +381,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]……随着结社的威胁日益逼近，这样悠闲的时光，还能持续多久呢……？[l]"
+        "text": "[cm][show]……随着结社的威胁日益逼近，这样悠闲的时光，还能持续多久呢……？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -405,17 +404,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]嗯，{myName}……[l][cm]"
+        "text": "[cm][show]嗯，{myName}……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]那就晚安，明天再见。谢谢你。[l]"
+        "text": "[show]那就晚安，明天再见。谢谢你。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -436,36 +435,37 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（明天……吗……）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（但愿……明天会是晴朗、清爽的一天……）[l][cm][hide]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[show]（明天……吗……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（但愿……明天会是晴朗、清爽的一天……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_11_5",
   "des": "与【米托拉】对话【……已经睡着了呢。】"
 }

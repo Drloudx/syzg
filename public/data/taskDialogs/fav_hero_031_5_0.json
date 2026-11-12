@@ -1,0 +1,61 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]你好……工匠。上次多谢你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]这是酒钱……以及，呃……对给你添麻烦的一点补偿。请务必收下。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "的确是麻烦我不少。"
+          },
+          {
+            "tag": "tag_5",
+            "text": "那我就收下了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]嗯，说得好。规矩就是规矩。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]当然……如果你执意要展现你的大度，那不如请本爵士进去坐坐，聊聊信里说的事……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]呃……算了。请让我进去吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_031_5_0",
+  "des": "波特温-营地对话【波特温爵士，你状态好多了。】"
+}

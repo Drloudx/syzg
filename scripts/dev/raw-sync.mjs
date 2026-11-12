@@ -1,4 +1,4 @@
-﻿import { createHash } from 'node:crypto'
+import { createHash } from 'node:crypto'
 import { copyFileSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, relative } from 'node:path'
 import { resolveChild } from './maintenance-paths.mjs'
@@ -18,6 +18,18 @@ export const RAW_ALIASES = Object.freeze({
   ...Object.fromEntries(['pet', 'petLevel', 'petSetting'].map(name => [`${name}.json`, [`pet/${name}.json`]]))
 })
 
+/**
+ * 派生表：**不再放在 `raw/` 顶层**，已迁到 `raw/.derived/`（2026-11-11）。
+ *
+ * 这样 `raw/` 只剩「配置表副本」，可逐文件与原表比对；派生表由
+ * `npm run data:prepare`（`scripts/dev/rebuild-derived-raw.mjs`）生成。
+ *
+ * 本集合保留两个用途：
+ *   1. 兼容历史：若旧环境 `raw/` 顶层仍有同名文件，同步时跳过、不被原表覆盖；
+ *   2. 文档化：这些名字是派生数据，不是原表。
+ *
+ * `equip/equips.json` 仍是 `raw/` 下的空占位（`[]`，无消费方），保留跳过语义。
+ */
 export const DERIVED_RAW_FILES = new Set([
   'dungeonBattle.json', 'dungeonBattleRooms.json', 'dungeonBattleRoutes.json',
   'monsterTowerUsage.json', 'equip/equips.json'

@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_011_4_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（缇莎写的内容也太可怕了，去修行所那边看看她的情况吧。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（还有缇莎在信里说自己生病了，莫非和她身上的结晶有关系吗？）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（得赶快出发……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "缇莎-营地对话【（去修行所看看缇莎的情况吧。）】"
+}

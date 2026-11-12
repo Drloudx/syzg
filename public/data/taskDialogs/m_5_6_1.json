@@ -1,67 +1,66 @@
 {
-  "script": "m_5_6_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]昨天真是多谢你啦！温泉这玩意，果然很舒服啊！[l][cm]"
+        "text": "[show]昨天真是多谢你啦！温泉这玩意，果然很舒服啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奥格",
-        "text": "[show]几位客官玩得开心就好，今后还请多多照顾奥格温泉村！[l][cm]"
+        "text": "[show]几位客官玩得开心就好，今后还请多多照顾奥格温泉村！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奥格",
-        "text": "[show]奥格温泉村永远欢迎您的光临！[l][cm]"
+        "text": "[show]奥格温泉村永远欢迎您的光临！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]噢！下次我会和妈妈一起来的！[l][cm]"
+        "text": "[show]噢！下次我会和妈妈一起来的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]那么，接下来就是回大书院找乌尔勒院长汇报情况了。[l][cm]"
+        "text": "[show]那么，接下来就是回大书院找乌尔勒院长汇报情况了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]除此之外，还要尽可能说服乌尔勒院长，让她中止和希拉尔德的合作……[l][cm]"
+        "text": "[show]除此之外，还要尽可能说服乌尔勒院长，让她中止和希拉尔德的合作……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]这件事情我也会帮忙的，总不能让“结社”在家乡的土地上为所欲为。[l][cm]"
+        "text": "[show]这件事情我也会帮忙的，总不能让“结社”在家乡的土地上为所欲为。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]奇瓦姐姐，加油！[l]"
+        "text": "[show]奇瓦姐姐，加油！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -78,17 +77,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]怎么了？看你一脸复杂的样子……有什么心事吗？[l]"
+        "text": "[show]怎么了？看你一脸复杂的样子……有什么心事吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -109,9 +108,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]什么意思？你觉得乌尔勒院长不会听我们的？[l]"
+        "text": "[cm][show]什么意思？你觉得乌尔勒院长不会听我们的？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -132,25 +131,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]最坏的准备……[l][cm]"
+        "text": "[show]最坏的准备……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]这……事情真的会走到那一步吗？[l]"
+        "text": "[show]这……事情真的会走到那一步吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -171,20 +170,21 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]嗯……我们走吧。[l][cm][hide]"
+        "text": "[cm][show]嗯……我们走吧。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_6_1",
   "des": "与【雪域探险家奥格】对话【谢谢你，奥格。】"
 }

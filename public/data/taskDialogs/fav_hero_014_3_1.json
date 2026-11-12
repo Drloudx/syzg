@@ -1,0 +1,278 @@
+{
+  "script": "fav_hero_014_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呀——！这肉可真好吃啊！又香又嫩，比我当荒野客时吃的东西要好多了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]抱歉来这里光顾着吃肉，都忘了说正事了。这几天我一直在村子里蹲守，却一直没有等到那几个小崽子的消息。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我希望能在他们犯下更多错误之前把他们抓起来，可只要他们不现身，我那他们一点办法都没有啊……[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "可以说说那几个小贼的事情吗？",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊……那是很久以前的事情了，当时我还是荒野客，一直在索利德山上流浪。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了活下来……我不得不和一些人抱团生存。有时候我们会去采石场采矿，有时候会去山间和岩蟾蜍打架。就在这期间我遇见了那三个小家伙。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要知道在深渊这个残酷的土地上，能找到信任的伙伴可不容易，而这三个小家伙虽然没有什么本事，但人却非常好，我们在那段时间结成了伙伴，我成了他们的大哥。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们四个当年作为荒野客可风光了，虽然战斗力不行，但偷点东西还是不在话下的。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]每次开始偷东西之前，我们都会事先踩点做好标记，摸清他们的行踪，然后趁他们不在的情况下手。我们还会制定好几条逃跑路线，意外发生的时候我们有很多应对方法。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这也太专业了……",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿！毕竟干我们这行的只要失误一次，可能连性命都要丢掉。所以我们必须靠着多个备用计划，才能避免失败的命运。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之靠着这么一个方法，我们偷了很多荒野客的营地。最绝的是有一次我们把他们的钱袋子用车直接拉走了，而他们以为我们是商人完全没在意。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这些都是以前的笑谈了，现在我可是正经的村庄护卫，在大姐头的棍棒劝诫下改邪归正了！[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我虽然在巴诺姆村定居了下来，但那三个家伙就没跟着我走，怎么劝也没用。后来村子被异变困扰，我也就没在搭理过他们，直到最近才和他们再次相见。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "从上次对话的情况来看。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "他们好像还是很服你这个大哥的。",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那他们当然要服啊，我当年可教会了他们一堆东西呢。不过可能因为当年的教育太深刻，才导致他们至今还不愿改邪归正。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]情况就是这样，我的智谋可以对付敌人，但没办法对付自己人啊。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "要先想个办法把他们引出来。",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "先放出消息说你要护送商队。",
+            "tag": "tag_21"
+          },
+          {
+            "text": "然后你再表示自己绝对会保护好车队，若失手就辞去工作。",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]额……你是想借这种方法把他们引出来吗？可他们知道是我在护送的话，应该不敢过来劫车吧。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你想把他们拉回正道。",
+            "tag": "tag_23"
+          },
+          {
+            "text": "他们也想把你拉回正道啊。",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "如果他们真的把你当兄弟。",
+            "tag": "tag_24"
+          },
+          {
+            "text": "应该会想着以击败你的方式让你回到他们身边。",
+            "tag": "tag_24"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]原来如此，这倒是个好思路，那我得把这次阵仗做的足一点。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过还有最后一个问题，就是我就算抓住了他们，最后又该怎么说服他们呢？[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "用米拉贝尔说服你的方式去说服他们。",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哦……确实该这样，这真是个好方法。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不愧是{myName}啊，这么快就想好了办法。那我这就去准备，谢谢啦！等计划成功以后再回来请你吃一顿！[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（皮塔兴冲冲地离开营地，去准备收服小弟的计划了。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "皮塔-激情的灰霾岁月-进入战役"
+}

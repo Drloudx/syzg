@@ -1,0 +1,53 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]嗯？你这话就好像你已经连日子都分不清了一样。最近很忙吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "忙得头昏脑涨。",
+            "tag": "tag_3"
+          },
+          {
+            "text": "忙得天昏地暗。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[cm][show]看来你是真的很累，那正好，这次出游你可以万事不管，把一切都交给城主阁下的使魔。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]就当是给自己放个假，好好休息一天吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_061_3_0",
+  "des": "斯卡莉安好感3-引入"
+}

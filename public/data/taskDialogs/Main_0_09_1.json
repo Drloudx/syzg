@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]呼……呼……终于……[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "希尔",
+        "text": "[show]我们赢了，米托拉小姐！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "茜塔",
+        "text": "[show]……真是场尽兴的战斗。[r]肉尾巴，介意我们到你们的营地再休息会吗？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "沃夫加",
+        "text": "[show]嗯～说句老实话，刚刚出发的时候我都没怎么吃饱。[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "芭杜尔",
+        "text": "[show]我也想回去看望看望你们栽种的小苗苗们！[r]也、也许你们还没种下去……但我还是想去看看！[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "right",
+        "charaName": "希尔",
+        "text": "[show]米托拉小姐，您怎么看？[l][cm]"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]我——我还能怎么看！[r]走吧，储备粮！回去好好庆祝一番！[l][cm][hide]"
+      }
+    }
+  ],
+  "des": "进击",
+  "script": "Main_0_09_1"
+}

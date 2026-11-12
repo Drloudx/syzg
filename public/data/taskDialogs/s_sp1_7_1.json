@@ -1,0 +1,185 @@
+{
+  "script": "s_sp1_7_1",
+  "des": "请问你是这座城堡的卫兵吗？",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在下正是城堡的侍卫长萨奇尔，你们这些外来者有什么事情吗？[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！本小姐要投诉！你们这里的安保也太差了！有只魔物到处吓人都不管！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？吓人？你这是碰到什么事了？[l]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（解释刚刚被幽灵吓到的事。）",
+            "tag": "tag_24"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听清楚了吧？你们城堡有只史莱姆在到处吓人，我要你们给我们个解释。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]吓人是它的私自行为，和我们侍卫队没有关系。而且城堡的管理本来就没有那么严格，我们的原则是不干涉大家的自由活动。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]更何况有些地方我们也管不了啊，比起喜欢吓人的史莱姆，那些暴乱的魔物才更让我们头疼。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不干涉就放着人家随便吓人？你这是懒政！放到本小姐之前的城堡里是要被开除的！[l][cm]",
+        "charaName": "贝拉多娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是就是！你们得管管！不然这城堡以后得变成什么样！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们……你们一群外来者为什么这么关心城堡啊……[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]罢了，其实你们说的那个情况在下也清楚，那只史莱姆确实有躲在角落里吓人的习惯。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们规劝过很多次，但它还是每天找机会吓人，我们侍卫队的幽灵也经常被它吓着。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可除此之外它也没干什么出格的事情，所以我们也没去多管……[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只是吓人吗？但现在它给我们造成困扰了，我们必须给它一个教训。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可就算你这么说，我们也没法抓住它啊。它会在城堡各个地方吓人，就连找都未必能找到它。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过在下有个办法……就不知道你们有没有兴趣了。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]幽灵史莱姆很喜欢含有魔法力量的食物，如果你们能拿些蓝露草来做陷阱，说不定能把它吸引过来。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这倒是个好主意，我们就这么办吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那好吧，你们拿3株蓝露草过来，我来给你们做个陷阱把它吸引过来。[l][cm]",
+        "charaName": "侍卫长萨奇尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]需要3株蓝露草吗？好的，我们这就去弄。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

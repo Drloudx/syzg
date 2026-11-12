@@ -1,0 +1,61 @@
+{
+  "des": "奥格-这就是你准备的惊喜？",
+  "script": "fav_hero_066_4_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]哼哼，怎么样？这就是温泉名产！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "奥格亲手做的温泉团子……"
+          },
+          {
+            "tag": "tag_4",
+            "text": "感觉真不错。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]对吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]唉……为了让来的客人们都能带上伴手礼，我可是做了很多呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]结果到现在，库存连十分之一都没消掉……看来我还是太天真了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

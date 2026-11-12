@@ -1,100 +1,98 @@
 {
-  "script": "m_5_1_3",
-  "des": "与【安娜】对话【安娜，有件事请你务必帮忙。】",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]什么？你们让我带你们去大书院？[l][cm]"
+        "text": "[show]什么？你们让我带你们去大书院？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]哎呀呀，你们来得可真不凑巧，我现在哪有那个时间啊！[l][cm]"
+        "text": "[show]哎呀呀，你们来得可真不凑巧，我现在哪有那个时间啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]这……请问，是遇到什么麻烦事了吗？我们很需要您的帮助……[l][cm]"
+        "text": "[show]这……请问，是遇到什么麻烦事了吗？我们很需要您的帮助……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]哦？这位是你们的新队友吗？嗯……虽然看起来还有点不成熟，但似乎已经形成自己的气场了呢！[l][cm]"
+        "text": "[show]哦？这位是你们的新队友吗？嗯……虽然看起来还有点不成熟，但似乎已经形成自己的气场了呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]诶？哪……哪有……[l][cm]"
+        "text": "[show]诶？哪……哪有……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]呵……看起来你还不习惯接受别人的夸奖啊？这可不行，要成为真正的大人物，无论是赞扬还是诋毁，都得坦然受之才行！[l][cm]"
+        "text": "[show]呵……看起来你还不习惯接受别人的夸奖啊？这可不行，要成为真正的大人物，无论是赞扬还是诋毁，都得坦然受之才行！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]好了，不开玩笑了。这次去大书院，我是真的没有时间。[l][cm]"
+        "text": "[show]好了，不开玩笑了。这次去大书院，我是真的没有时间。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]在更换了新的观测设备之后，研究所已经连续观测到了南部多次的\"特殊震荡\"。现在我光是处理数据都忙不过来，更不用说出门远行了。[l][cm]"
+        "text": "[show]在更换了新的观测设备之后，研究所已经连续观测到了南部多次的“特殊震荡”。现在我光是处理数据都忙不过来，更不用说出门远行了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]特殊震荡？等等……我记得你这个研究所应该是“灾害研究所”吧？你说的特殊震荡，该不会又和什么天灾有关系吧？难道说山区的异变又卷土重来了？[l][cm]"
+        "text": "[show]特殊震荡？等等……我记得你这个研究所应该是“灾害研究所”吧？你说的特殊震荡，该不会又和什么天灾有关系吧？难道说山区的异变又卷土重来了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]哦，那你倒是可以放心，索利德山最近这段时间还挺安稳的。我说的\"特殊震荡\"是从霜烬平原那边传过来的。[l][cm]"
+        "text": "[show]哦，那你倒是可以放心，索利德山最近这段时间还挺安稳的。我说的“特殊震荡”是从霜烬平原那边传过来的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]什么！霜烬平原！[l][cm]"
+        "text": "[show]什么！霜烬平原！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]难道说是希拉尔德……[l]"
+        "text": "[show]难道说是希拉尔德……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -115,89 +113,89 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]啧……如果真是这样，那我们得赶快过去才行！[l][cm]"
+        "text": "[cm][show]啧……如果真是这样，那我们得赶快过去才行！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]安娜，你真的不能抽出时间为我们带路吗？[l][cm]"
+        "text": "[show]安娜，你真的不能抽出时间为我们带路吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]看来你们对霜烬平原的事情有所了解……但抱歉啊，我说的没有时间就是真的没有时间。[l][cm]"
+        "text": "[show]看来你们对霜烬平原的事情有所了解……但抱歉啊，我说的没有时间就是真的没有时间。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]不过……你们运气不错，虽然我不能亲自带你们去，但我这儿正好有个当向导的好人选。[l][cm]"
+        "text": "[show]不过……你们运气不错，虽然我不能亲自带你们去，但我这儿正好有个当向导的好人选。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]当向导的……好人选……？[l][cm]"
+        "text": "[show]当向导的……好人选……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]当然，那位向导可能不是很愿意回大书院去，但她其实是个不会拒绝别人的好孩子，你们应该知道该怎么说服她的。[l][cm]"
+        "text": "[show]当然，那位向导可能不是很愿意回大书院去，但她其实是个不会拒绝别人的好孩子，你们应该知道该怎么说服她的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]噢，你这么一说我就懂了，简而言之就是诚恳地拜托她对吧！[l][cm]"
+        "text": "[show]噢，你这么一说我就懂了，简而言之就是诚恳地拜托她对吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]不错不错，看来你们已经懂得和那位小姐相处的诀窍了。现在我去把她叫过来，接下来就交给你们啦！[l][cm][hide]"
+        "text": "[show]不错不错，看来你们已经懂得和那位小姐相处的诀窍了。现在我去把她叫过来，接下来就交给你们啦！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]拜托你了！[l][cm]"
+        "text": "[show]拜托你了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]拜、拜托你了！[l]"
+        "text": "[show]拜、拜托你了！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -218,57 +216,57 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]哇……哇啊！[l][cm]"
+        "text": "[show]哇……哇啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]你们干什么？哪有刚刚见面连名字都不知道就在那里拜托别人的啊！[l][cm]"
+        "text": "[show]你们干什么？哪有刚刚见面连名字都不知道就在那里拜托别人的啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]还有安娜学姐，你为什么只是看着？该不会这一切都是你主使的吧？[l][cm]"
+        "text": "[show]还有安娜学姐，你为什么只是看着？该不会这一切都是你主使的吧？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]哎呀，小奇瓦，话别说得那么难听嘛。这几位驿站的契约者……嗯，还是索利德山、魔爪湖、黑森林的英雄，只是想拜托你带他们去一趟大书院而已。[l][cm]"
+        "text": "[show]哎呀，小奇瓦，话别说得那么难听嘛。这几位驿站的契约者……嗯，还是索利德山、魔爪湖、黑森林的英雄，只是想拜托你带他们去一趟大书院而已。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]算起来你也好久没回去了，我觉得这不是刚刚好嘛！[l][cm]"
+        "text": "[show]算起来你也好久没回去了，我觉得这不是刚刚好嘛！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]各、各位是这么厉害的人吗……咦，等等……两位的样子，我好像……[l]"
+        "text": "[show]各、各位是这么厉害的人吗……咦，等等……两位的样子，我好像……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -289,25 +287,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[cm][show]诶……是、是这样……请多关照……[l][cm]"
+        "text": "[cm][show]诶……是、是这样……请多关照……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]对哦……！当初是两位帮我和软软解决了危机……！谢谢你们——[l][cm]"
+        "text": "[show]对哦……！当初是两位帮我和软软解决了危机……！谢谢你们——[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]不、不对，哪里刚好了安娜学姐！我……我可是出来游学的，这还什么成果都没有，没道理这么早就回去吧！[l]"
+        "text": "[show]不、不对，哪里刚好了安娜学姐！我……我可是出来游学的，这还什么成果都没有，没道理这么早就回去吧！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -328,9 +326,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[cm][show]没错！你也明白这种感觉吧？[l]"
+        "text": "[cm][show]没错！你也明白这种感觉吧？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -351,41 +349,41 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[cm][show]什、什么……！[l][cm]"
+        "text": "[cm][show]什、什么……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]奇瓦……我们去大书院是有很重要的事……[l][cm]"
+        "text": "[show]奇瓦……我们去大书院是有很重要的事……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]如果我们不快点过去的话……很多人都会倒大霉的！请你一定要帮帮我们！[l][cm]"
+        "text": "[show]如果我们不快点过去的话……很多人都会倒大霉的！请你一定要帮帮我们！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]真的……拜托你了。[l]"
+        "text": "[show]真的……拜托你了。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -402,83 +400,85 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[cm][show]呜……这、这么严重吗……你们这么说的话……那……那也不是不行……啦……[l][cm]"
+        "text": "[cm][show]呜……这、这么严重吗……你们这么说的话……那……那也不是不行……啦……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]好耶！[l][cm]"
+        "text": "[show]好耶！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜呜……我这个不懂得拒绝的性格……[l][cm]"
+        "text": "[show]呜呜……我这个不懂得拒绝的性格……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]呵呵……说出口的话可是要说到做到啊，奇瓦！[l][cm]"
+        "text": "[show]呵呵……说出口的话可是要说到做到啊，奇瓦！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜……！[l][cm]"
+        "text": "[show]呜……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]那接下来这一路上就靠你啦！虽然不知道你为什么对大书院这么害怕，但只要你需要，我们都会罩着你的！[l][cm]"
+        "text": "[show]那接下来这一路上就靠你啦！虽然不知道你为什么对大书院这么害怕，但只要你需要，我们都会罩着你的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]唔……谢谢你……[l][cm]"
+        "text": "[show]唔……谢谢你……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]……虽然……大概不会有用就是了……[l][cm]"
+        "text": "[show]……虽然……大概不会有用就是了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]那个，我先去准备一下……先说好，各位到达大书院后请尽快完事，之后就请带我回到这边来哦……[l][cm][hide]"
+        "text": "[show]那个，我先去准备一下……先说好，各位到达大书院后请尽快完事，之后就请带我回到这边来哦……[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ]
+  ],
+  "script": "m_5_1_3",
+  "des": "与【安娜】对话【安娜，有件事请你务必帮忙。】"
 }

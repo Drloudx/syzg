@@ -1,0 +1,390 @@
+{
+  "script": "s_sp2_2_14",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么回事？她是被什么人袭击了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还是说……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等，这个气息是……先别过去！[l][cm][hide]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "……？",
+            "tag": "tag_7"
+          },
+          {
+            "text": "？",
+            "tag": "tag_7"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]什——！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎、怎么回事？身体……动不了了？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这个感觉……",
+            "tag": "tag_59"
+          },
+          {
+            "text": "是被束缚了吗？",
+            "tag": "tag_59"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊，是的……这个是风属性的束缚魔法……[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]难怪我从刚才就感觉这个分身的气息有点不对……[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]结果真的是你啊！那个作乱的分身你已经解决掉了吗？[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]——？！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的，为了给你善后，可是很费了我一番功夫啊。[l][cm][hide]",
+        "charaName": "？？？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]两位契约者，初次见面。[l][cm]",
+        "charaName": "露库希安 ？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还有我愚蠢的“自己”，好久不见。[l][cm]",
+        "charaName": "露库希安 ？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说“自己”……？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的，自己。[l][cm]",
+        "charaName": "露库希安？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]自我介绍一下，我是“古茶树的妖精”露库希安，和那边那个笨蛋一样，是同一株母树上不同的枝杈。[l][cm]",
+        "charaName": "露库希安？"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在我正借助分身送还后的空壳在和你们说话。[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这家伙是所有露库希安里面最喜欢说教的一个，被她捉到就算是倒霉啦！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嚯？倒霉？你还觉得自己是无辜的吗？[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]噫——！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]身为“年代纪的妖精”，时轮的看守者，你要不要看看你做了些什么！[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]居然仅仅为了偷懒，就擅自操纵时间线，把不同时空的个体拉到本时空来！[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要是引发了时空悖论，或者导致了时轮的故障，你是准备以死谢罪吗？[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然以你这条命，也根本抵偿不了就是了！[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……呜呜……！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还有啊，你在搞事之前，就不能体谅一下我吗？[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你知不知道我在办事的时候突然发现有异时空的露库希安出现，是什么心情啊？[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]明明已经累到手指都不想动弹了，却还要跑来处理你造出来的烂摊子！[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我和你说，今后一百年，你都别想有休假了！[l][cm]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不、不要呀！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要是没有休假的话，我、我……！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那你就给我好好反省啊！真是的！[l][cm][hide]",
+        "charaName": "古茶树的妖精"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊！身体好像能动了！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "真是疾风骤雨呢！",
+            "tag": "tag_41"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊、啊哈哈……让你们看笑话了。[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事没事，虽然被束缚有点不爽，但光是看到你吃瘪，就已经值回票价了！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……古茶树的妖精吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然未曾谋面，但感觉上好像是位十分知性又有威严的人物呢……[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "同一个人居然有这么截然不同的气质。",
+            "tag": "tag_47"
+          },
+          {
+            "text": "妖精还真是奇妙啊……",
+            "tag": "tag_47"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊，你们两个！[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真是够了！不要再说啦！[l][cm][hide]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "s_sp2_2_14"
+}

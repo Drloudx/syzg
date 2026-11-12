@@ -1,0 +1,62 @@
+{
+  "script": "Main_1_03_4",
+  "des": "核心危机",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这么多史莱姆够了吗？[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]足够了，接下来只要用这把工匠锤稍微处理一下……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show][l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "缇莎",
+        "text": "[show]诶？这么快？只是砰砰那么两下，所有的史莱姆结晶都变成魔力核心了？[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]这是因为这把匠器上内置了这种处理模式，不过也不是随便什么人都能这样“砰砰”的，具体怎么使用还要看工匠本人的把握。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那也足够厉害了！希尔，莫非你是比我想象的还要厉害的工匠吗！[l][cm]",
+        "nameSide": "right"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "text": "[show]我可不知道你想象的是怎么样的……不过，比起一般的工匠应该还是稍微厉害那么一点点啦……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

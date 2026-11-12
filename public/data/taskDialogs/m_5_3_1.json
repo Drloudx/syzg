@@ -1,148 +1,146 @@
 {
-  "script": "m_5_3_1",
-  "des": "到达关卡触发【m_5_3_1】",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]妈妈——咳咳，乌尔勒院长——！[l][cm]"
+        "text": "[show]妈妈——咳咳，乌尔勒院长——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]什、什么……？乌乌乌……乌尔勒？[l][cm]"
+        "text": "[show]什、什么……？乌乌乌……乌尔勒？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]你妈妈的名字是乌尔勒——？[l][cm][hide]"
+        "text": "[show]你妈妈的名字是乌尔勒——？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]伽拉忒亚？你怎么跑到这里来了？[l][cm][hide]"
+        "text": "[show]伽拉忒亚？你怎么跑到这里来了？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]嘿嘿……其实是有人找你，我正好有空，就带他们过来了。[l][cm]"
+        "text": "[show]嘿嘿……其实是有人找你，我正好有空，就带他们过来了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]有人找我……？是这几位吗……[wait=600]"
+        "text": "[show]有人找我……？是这几位吗……[wait=600]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]嗯——？[l][cm]"
+        "text": "[show]嗯——？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜——！[l][cm]"
+        "text": "[show]呜——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]奇瓦——！奇瓦，你终于回来了！[l][cm][hide]"
+        "text": "[show]奇瓦——！奇瓦，你终于回来了！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜哇啊啊啊啊啊——！[l][cm]"
+        "text": "[show]呜哇啊啊啊啊啊——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]呜哇！我可怜的奇瓦！从你离家到现在已经1917天了！这么多年你一个人在外面受苦了吧，快让妈妈看看，你是不是瘦了——！[l][cm]"
+        "text": "[show]呜哇！我可怜的奇瓦！从你离家到现在已经1917天了！这么多年你一个人在外面受苦了吧，快让妈妈看看，你是不是瘦了——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜……妈妈……别、别这样……[l][cm]"
+        "text": "[show]呜……妈妈……别、别这样……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]可怜的孩子！你在外面肯定是吃不饱睡不好！明明是成长期，你的身高相比五年前……居然只长高了零点三公分！[l][cm]"
+        "text": "[show]可怜的孩子！你在外面肯定是吃不饱睡不好！明明是成长期，你的身高相比五年前……居然只长高了零点三公分！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]还有你的脸！这么可爱的脸蛋，现在竟然冻得又红又碜！我的小奇瓦以前那么光滑的小脸蛋去哪里了啊啊啊——！[l][cm]"
+        "text": "[show]还有你的脸！这么可爱的脸蛋，现在竟然冻得又红又碜！我的小奇瓦以前那么光滑的小脸蛋去哪里了啊啊啊——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜……妈妈，我已经不是小孩子了！[l][cm]"
+        "text": "[show]呜……妈妈，我已经不是小孩子了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]还有你说的都是什么话！我们曼恰奇本来就长不高，而且我的皮肤一点问题都没有，只是稍微挨了一点冻而已！[l][cm][hide]"
+        "text": "[show]还有你说的都是什么话！我们曼恰奇本来就长不高，而且我的皮肤一点问题都没有，只是稍微挨了一点冻而已！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]原来……这就是……奇瓦的妈妈……？[l]"
+        "text": "[show]原来……这就是……奇瓦的妈妈……？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -163,129 +161,129 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]嗯……对于一直梦想着独立的孩子来说，这么溺爱自己的母亲，确实是让人有点……害羞到想逃跑……[l][cm]"
+        "text": "[cm][show]嗯……对于一直梦想着独立的孩子来说，这么溺爱自己的母亲，确实是让人有点……害羞到想逃跑……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]唔……怎么回事？妈妈和奇瓦原来是认识的吗？[l][cm]"
+        "text": "[show]唔……怎么回事？妈妈和奇瓦原来是认识的吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]等一等，难道说……啊！原来如此——！原来她就是妈妈的[color=ffb64d]亲生女儿[colorEnd]，是伽拉忒亚未曾谋面的姐姐呀！[l][cm]"
+        "text": "[show]等一等，难道说……啊！原来如此——！原来她就是妈妈的[color=ffb64d]亲生女儿[colorEnd]，是伽拉忒亚未曾谋面的姐姐呀！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]我的奇瓦姐姐呀呀呀呀呀！[l][cm][hide]"
+        "text": "[show]我的奇瓦姐姐呀呀呀呀呀！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]欢迎回来，奇瓦姐姐！[l][cm]"
+        "text": "[show]欢迎回来，奇瓦姐姐！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]哇啊啊啊！怎么又来一个！[l][cm]"
+        "text": "[show]哇啊啊啊！怎么又来一个！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]伽拉忒亚，你不要学妈妈那样！[l][cm]"
+        "text": "[show]伽拉忒亚，你不要学妈妈那样！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]还有妈妈，你也收敛一点！我还有朋友在这里，拜托你们稍微矜持一点吧！[l][cm][hide]"
+        "text": "[show]还有妈妈，你也收敛一点！我还有朋友在这里，拜托你们稍微矜持一点吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（几人在不远处，看着三人度过了一段亲子时光之后——）[l][cm][hide]"
+        "text": "[show]（几人在不远处，看着三人度过了一段亲子时光之后——）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]原来如此，你们是有事才到大书院来的啊……[l][cm]"
+        "text": "[show]原来如此，你们是有事才到大书院来的啊……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]我还以为是奇瓦想妈妈了，特地回来看我的呢……[l][cm]"
+        "text": "[show]我还以为是奇瓦想妈妈了，特地回来看我的呢……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]妈妈——！现在在说正事呢！[l][cm]"
+        "text": "[show]妈妈——！现在在说正事呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]好吧，那就说正事。[l][cm]"
+        "text": "[show]好吧，那就说正事。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]你们刚才说，你们是为了调查异常魔力震荡而来……[l][cm]"
+        "text": "[show]你们刚才说，你们是为了调查异常魔力震荡而来……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]作为大书院的院长，我很高兴驿站依然愿意关心我们。但这件事情，其实没什么好调查的。[l]"
+        "text": "[show]作为大书院的院长，我很高兴驿站依然愿意关心我们。但这件事情，其实没什么好调查的。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -306,25 +304,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[cm][show]是的，你们所说的“异常震荡”，实际上是大书院正在进行的某项计划的一部分。[l][cm]"
+        "text": "[cm][show]是的，你们所说的“异常震荡”，实际上是大书院正在进行的某项计划的一部分。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]我们正准备通过有规律地制造震荡，消除异变对这片平原的影响。[l][cm]"
+        "text": "[show]我们正准备通过有规律地制造震荡，消除异变对这片平原的影响。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]什么嘛，原来是这么回事啊，那看来我们这次是白跑一趟了？[l]"
+        "text": "[show]什么嘛，原来是这么回事啊，那看来我们这次是白跑一趟了？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -345,33 +343,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm][hide]"
+        "text": "[cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]怎么了？你一直盯着那边，那些装置有什么问题吗？[l][cm]"
+        "text": "[show]怎么了？你一直盯着那边，那些装置有什么问题吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（那些装置……乍一看外表不太像，但仔细观察就会发现，设计和结构上都带有非常浓重的\"先时工匠\"风格……）[l][cm]"
+        "charaName": "",
+        "text": "[show]（那些装置……乍一看外表不太像，但仔细观察就会发现，设计和结构上都带有非常浓重的“先时工匠”风格……）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（如果我没猜错的话……）[l]"
+        "charaName": "",
+        "text": "[show]（如果我没猜错的话……）[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -392,273 +390,273 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]真是自信的年轻人……看你的打扮……你是工匠技艺的传承者？[l][cm]"
+        "text": "[show]真是自信的年轻人……看你的打扮……你是工匠技艺的传承者？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]没错，这位可是非常厉害的工匠，靠着先时技艺已经处理了好几个地区的异变了！[l][cm]"
+        "text": "[show]没错，这位可是非常厉害的工匠，靠着先时技艺已经处理了好几个地区的异变了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]哇~！原来你们是这么厉害的人呀~！[l][cm]"
+        "text": "[show]哇～！原来你们是这么厉害的人呀～！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]这一点我可以证明。虽然不太清楚细节，但我也多少听说过\"英雄二人组\"的事迹。[l][cm]"
+        "text": "[show]这一点我可以证明。虽然不太清楚细节，但我也多少听说过“英雄二人组”的事迹。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]原来如此。奇瓦你在外面也认识了不少值得深交的朋友呢～！[l][cm]"
+        "text": "[show]原来如此。奇瓦你在外面也认识了不少值得深交的朋友呢～！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]这几年来，妈妈可是一直担心你的交友关系，生怕你因为什么不三不四的朋友误入歧途呢！[l][cm]"
+        "text": "[show]这几年来，妈妈可是一直担心你的交友关系，生怕你因为什么不三不四的朋友误入歧途呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]妈、妈妈——！[l][cm]"
+        "text": "[show]妈、妈妈——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]呃，我姑且问一下……如果奇瓦真的误入歧途的话，阿姨你准备怎么办？[l][cm]"
+        "text": "[show]呃，我姑且问一下……如果奇瓦真的误入歧途的话，阿姨你准备怎么办？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]为了自己的孩子，一位母亲可以做出任何事情！如果奇瓦真的被人带坏的话……[l][cm]"
+        "text": "[show]为了自己的孩子，一位母亲可以做出任何事情！如果奇瓦真的被人带坏的话……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]我会将那些坏人，连同他们的团伙，以及包庇他们的组织，还有他们出没的地区，统统碾碎，消灭得一干二净！[l][cm]"
+        "text": "[show]我会将那些坏人，连同他们的团伙，以及包庇他们的组织，还有他们出没的地区，统统碾碎，消灭得一干二净！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]连、连坐……？[l][cm]"
+        "text": "[show]连、连坐……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]奇瓦，看来你在不知不觉间，为深渊的和平作出了很大的贡献啊……[l][cm]"
+        "text": "[show]奇瓦，看来你在不知不觉间，为深渊的和平作出了很大的贡献啊……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜……！[l][cm]"
+        "text": "[show]呜……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]哎呀，你们看看我！光顾着在这里说话，居然连礼数都忘了。[l][cm]"
+        "text": "[show]哎呀，你们看看我！光顾着在这里说话，居然连礼数都忘了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]既然是奇瓦的朋友过来，那我作为长辈，也该尽到地主之谊。[l][cm]"
+        "text": "[show]既然是奇瓦的朋友过来，那我作为长辈，也该尽到地主之谊。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]反正我的工作也做完了，那我们就别在这冰天雪地里多等了。[l][cm]"
+        "text": "[show]反正我的工作也做完了，那我们就别在这冰天雪地里多等了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]先让阿姨好好招待你们，计划的事情，等吃好喝好再聊，怎么样？[l][cm]"
+        "text": "[show]先让阿姨好好招待你们，计划的事情，等吃好喝好再聊，怎么样？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]妈妈？我们这就要回去吗？[l][cm]"
+        "text": "[show]妈妈？我们这就要回去吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]可是……按照之前的安排，您不是还有其他两处地方……[l][cm]"
+        "text": "[show]可是……按照之前的安排，您不是还有其他两处地方……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]工作的事情又不急于一时，只要在期限之前完成不就好了？[l][cm]"
+        "text": "[show]工作的事情又不急于一时，只要在期限之前完成不就好了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]现在可是奇瓦好不容易回家，天大地大女儿最大。伽拉忒亚不也一直想要和未曾谋面的姐姐多亲近一会儿吗？[l][cm]"
+        "text": "[show]现在可是奇瓦好不容易回家，天大地大女儿最大。伽拉忒亚不也一直想要和未曾谋面的姐姐多亲近一会儿吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]妈妈说得对！比起工作，家人肯定是最重要的！[l][cm]"
+        "text": "[show]妈妈说得对！比起工作，家人肯定是最重要的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]奇瓦姐姐，你在外面肯定经历了很多冒险吧？[l][cm]"
+        "text": "[show]奇瓦姐姐，你在外面肯定经历了很多冒险吧？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]我从失忆之后，还从来没有离开过大书院……如果可以，请一定要给我分享一下你的光辉事迹！[l][cm]"
+        "text": "[show]我从失忆之后，还从来没有离开过大书院……如果可以，请一定要给我分享一下你的光辉事迹！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]啊？这……呃……[l][cm]"
+        "text": "[show]啊？这……呃……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]奇瓦姐姐——！[l][cm]"
+        "text": "[show]奇瓦姐姐——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕咕！[l][cm]"
+        "text": "[show]咕咕！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]呜……既然话都说到这份上了，那……那好吧！[l][cm]"
+        "text": "[show]呜……既然话都说到这份上了，那……那好吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]太好了！姐姐万岁！[l][cm]"
+        "text": "[show]太好了！姐姐万岁！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]好闷热的母女俩，幸好不是我的家人，否便样衰了……[l][cm]"
+        "text": "[show]好闷热的母女俩，幸好不是我的家人，否便样衰了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]哈哈……这也是家族爱的一种表现形式……吧……[l][cm]"
+        "text": "[show]哈哈……这也是家族爱的一种表现形式……吧……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哈……仔细回想一下……我们认识的朋友，他们的家庭关系，好像多少都有点……不普通……[l][cm]"
+        "text": "[show]哈……仔细回想一下……我们认识的朋友，他们的家庭关系，好像多少都有点……不普通……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]你看啊，缇莎的妈妈、米拉贝尔的爸爸、艾薇杜尔的姐姐，还有奇瓦的……[l]"
+        "text": "[show]你看啊，缇莎的妈妈、米拉贝尔的爸爸、艾薇杜尔的姐姐，还有奇瓦的……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -679,9 +677,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]……你说这话你自己信吗？[l]"
+        "text": "[cm][show]……你说这话你自己信吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -698,27 +696,29 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[cm][show]这些父母长辈确实都有点……不善于表达……但来自亲人的爱都是一样的。[l][cm]"
+        "text": "[cm][show]这些父母长辈确实都有点……不善于表达……但来自亲人的爱都是一样的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]谁说不是呢……真是……可怜天下父母心啊！[l][cm][hide]"
+        "text": "[show]谁说不是呢……真是……可怜天下父母心啊！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ]
+  ],
+  "script": "m_5_3_1",
+  "des": "到达关卡触发【m_5_3_1】"
 }

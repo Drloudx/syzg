@@ -1,0 +1,256 @@
+{
+  "script": "fav_hero_008_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好多零件……嗯？这个小东西看起来好精致！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来它就是你打算给咱的工具啊！有什么作用吗？[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（向夏库塔拉说明。）",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]能够在一定范围内感知到妖精……咱需要的就是这个！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}，你果然是咱认识的最聪明最厉害的工匠！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过，你刚才说早就准备好了是什么意思？难道在咱寄信之前你就已经在组装它了！？[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（点头。）",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]难道是因为咱上次说的……{myName}居然一直放在心上，生命树女神听了都会被你感动的！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，制作工具的报酬……！咱攒下的金币大多用来支付艾尔莎了，只能等过一段时间，再多参加几次演出就好。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]先收下这些材料吧，{myName}！[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "招募的契约者们怎么样？",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哎？为什么突然问这个？[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]艾尔莎的业务能力当然值得信赖！虽然契约者基本为钱办事，但有几位和咱一样十分重视妖精被捕猎的问题。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱想，有了{myName}制作的工具，肯定可以进展得更加顺利！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]妖精捕猎其实已经存在了很久，即便抓住一个也还会有下一个，无法完全杜绝他们恶劣的行为。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]像咱一样魔力变得低微的妖精……如果没有认识拉碧丝，肯定会被各种不怀好意的家伙利用、榨取价值。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以哪怕只能拯救一位同胞，咱都会努力尝试！[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "工具只能交给你信赖的契约者。",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]咱知道！如果它落入心怀不轨的家伙手里，就会变成对同胞们极具威胁的存在。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]搜救妖精的行动咱会抽出空余时间参与，每一位完成委托的契约者也要好好审查。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱绝不会让这种事发生的哦！[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "需要我的帮忙就尽管说吧。",
+            "tag": "tag_24"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]{myName}……嗯，当然不会辜负你的一片心意。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咱偷偷听说了不少有关{myName}的事迹哦，为什么你会愿意帮助咱们这些深渊里的难民呢？你所拥有的技术……明明可以用来做更多对自己有利的事。[l]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "在夏库塔拉身上感受到了对同胞的爱。",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……你说得咱都要烧起来了！[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不论如何，咱代替咱的同胞们向你表达感谢，卡露迪翁大人也会听见、庇佑咱们的。[l][cm]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}——你是咱、不，你是妖精们永远的挚友！[l][cm][hide]",
+        "charaName": "夏库塔拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "夏库塔拉-进入战役【fav_hero_008_5】"
+}

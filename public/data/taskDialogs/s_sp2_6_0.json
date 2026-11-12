@@ -1,0 +1,197 @@
+{
+  "script": "s_sp2_6_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆，姆姆姆——！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……看起来它很崩溃呢，这是在想什么呢？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那是我们史莱姆的农夫，我们餐盘上美味的食物都是由农夫们种出来的姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]先吃下我的黏液吧，这样就能听懂它讲什么了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（吃下德莉的黏液。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为什么……为什么种不出来啊……这土地的质量也太差了姆——！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？怎么了法尔姆，什么东西种不出来姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是公主殿下姆！你问种不出来的东西……所有东西都种不出来姆！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]过去在被驱逐之前，我们一直在肥沃的土地上种植作物，当时随便把种子放下去就能长出一片作物，但现在不行了姆……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]随便一点小意外就能让几周的努力白费，大雨把作物淹死，肥料放太多把种子烧死，虫子太多把作物吃掉姆……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]别的史莱姆还说……让我别对着田埂白费力气，直接去吃木头和野菜算了姆……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么会这样，我就奇怪为什么最近的伙食越来越差了姆。我……我可不想只吃木头姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]苍天啊——！谁懂我播了一季度的种最后功亏一篑的痛苦啊姆——！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦好啦，别太激动了，不就是种田嘛，这很容易解决。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们营地也在种田呢，这方面的问题可以请教{myName}呀。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真……真的吗？救救我们，{myName}，让我们能产更多粮食姆！[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "其实种田的事我也不是很了解。",
+            "tag": "tag_19"
+          },
+          {
+            "text": "真想提产得去找更懂的人。",
+            "tag": "tag_19"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]更懂的人……说起来秋日荒野那边有很多农民，他们应该懂怎么种田。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对啊，得请教一个懂种田的人过来姆……可以拜托你们请个人来教教我们吗姆？[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯！请两位帮帮忙，报酬我来出姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好吧……这个没问题，我想风车平野那边有个叫勒妮的村姑，她应该懂这些东西。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们去风车平野一趟吧，向她请教一下怎么种田。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（史莱姆望着农田仰天长啸。）"
+}

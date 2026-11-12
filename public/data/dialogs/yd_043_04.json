@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]啾啾～啾啾～嘻嘻嘻～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小鸟",
+        "text": "[show]啾啾——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]啊，是{myName}！啊，我在干嘛？我在和小鸟聊天呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]无论走到什么地方，我总是能吸引附近的小动物……具体原因我也不清楚，可能是因为我比较有魅力吧，总能受到大家的欢迎～哈哈哈。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]嗯～这么说……{myName}也应该是被我的魅力所吸引，所以才会邀请我来到你的身边的吧～？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]啊？你说该算是我主动来你营地的？呃……真没趣。[r]不过，怎么说都好啦，就当是我们互相被彼此的魅力吸引吧～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_043_04",
+  "des": "阿娜洛洁-熟识1"
+}

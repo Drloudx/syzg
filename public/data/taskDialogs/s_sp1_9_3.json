@@ -1,0 +1,198 @@
+{
+  "script": "s_sp1_9_3",
+  "des": "这些画都是名画吗？",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？虽然我的画艺术成分高，绘画技术好，思想内涵深，但要说这是名画就太过了。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……这些画都是你画的吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错，都是我的作品哦，这些画唯一缺的就是名气了，不过我毕竟是个谦虚的幽灵，名气什么的我也不是那么在乎。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是吗？你刚刚的表现看起来一点也不像谦虚的样子啊……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]先不说那些，余问你，有人说这里藏有价值连城的名画，你知道是怎么回事吗？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？价值连城的名画？这怎么可能？[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]藏宝图上写的，这些冒险者闯进余的城堡就为了藏宝图上的宝藏。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然我对上面写的这些宝藏有所怀疑，不过事出必有因，我要知道这些传言的来源是什么？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个……这个……我大概有点头绪……[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？你知道是怎么回事？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大概就很久很久以前，确实有个冒险者闯入了城堡，来到了画廊这边。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过他好像并不是来挖宝的，单纯是来探讨艺术的，所以我就跟他聊了聊……[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什么？你和入侵者聊天？你是脑子进颜料了吗？[l][cm]",
+        "charaName": "副管祖莉尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喜爱艺术无罪嘛，所以我就跟他聊了一段时间，聊天的时候为了要点面子，就吹嘘这些画都是名家作品，随便一张都能卖上亿……[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]然后没多久他就被驱逐了，我想他就是相信了我说的话，所以就把城堡里有名画这事传出去了。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么说，所谓的名画，都是你画的作品咯？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果我没猜错的话，应该就是这样……[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你啊……没事就不要随便吹牛了，你知道因为你的大嘴，让余的城堡一直被外来者入侵吗？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]抱歉洛莉安大人，此后我必定反省，决不再与外人交流，也绝不再撒谎了……[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行，知错能改，余也不与你计较，现在余要去找下一个藏宝地点了。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]据藏宝图的标注，地牢里有很多宝箱，这些宝箱里埋有丰富的财宝……[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？地牢里还有宝箱？我怎么感觉也是假的……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁知道呢……先去看看吧，要是这还是假的，那就说明这副藏宝图就是不靠谱的东西。[l][cm][hide]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

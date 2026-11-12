@@ -1,0 +1,242 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]你们进来以后要讲规矩，不要弄坏这里的东西，知道吗？把主公的营地打扫得干净一点。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "蜜蜂们",
+        "text": "[show]嗡嗡——！嗡嗡——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]别担心，它们在营地里帮主公清理垃圾和害虫，不会惹麻烦的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "这也太客气了。",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]毕竟这片区域都是您的领地，它们来帮忙搞点小卫生也是理所当然的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]先不说那个了，来尝尝蜂蜜吧，这地方产出来的蜂蜜口味很不错哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]来，尝尝吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]您说很甜很好吃？哈哈，能得到您的赞扬，我这一趟就算没白跑了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]每次辛苦劳动过后享受成果，那种感觉就像在遗迹里找到宝藏，或在战斗中取得胜利一样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]您也会有那种感觉吧？干活的时候很恼火，一眼望不到头。虽然很辛苦，但还得骂骂咧咧地继续干。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]但随着时间推移，眼看着自己建的蜂巢逐渐成型，眼看着自己做的蜂蜜慢慢堆满蜂窝，身体和心灵的劳累便开始消散。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]等到收获成果的时候，那些痛苦和抱怨都成美谈啦，明明干活的时候还是很恼怒来着。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "深有体会……",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]不过光吃蜂蜜还是太单调了，早知道就带些花生或者红薯过来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]咦？蜂蜜还可以用来做菜？而且还是烤肉？我有点兴趣了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]我们蜜蜂基本只吃花蜜，食物非常单调。像烤肉这种食物，我只在驿站吃过几次……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]既然您会做蜜汁烤肉，那就直接用我带来的蜂蜜做吧，反正车上蜂蜜多得是。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（用修瓦莉带来的蜂蜜做蜜汁烤肉。）",
+            "tag": "tag_20"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]哇……闻着就很香，看来今天能饱餐一顿啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]啊巴啊巴……真好吃！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]唉……突然想一直留在主公的营地里了，这样我每餐都能吃到这么美味的食物。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]哈哈，开玩笑啦，我还是要回去保护王国的，毕竟我是大家的蜂刺骑士呀。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]当然，从今以后我也是营地的骑士。在营地遭难的时候，我也会第一时间出来保护它。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]从现在开始，我也是……我也是属于主公您的蜂刺骑士啦。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "乐意之至！",
+            "tag": "tag_27"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]那以后我就可以经常来主公这边啦，日后请多指教！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（之后和这位营地的蜂刺骑士一起，享用了美妙的一餐……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_069_5_1",
+  "des": "修瓦莉好感5-战役"
+}

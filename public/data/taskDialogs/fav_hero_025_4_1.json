@@ -1,0 +1,306 @@
+{
+  "script": "fav_hero_025_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这两位就是……？[l]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "请容我为你介绍——",
+            "tag": "tag_36"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我是萨拉！[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我、我是格薇勒……[l][cm]",
+        "charaName": "格薇勒"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你请我过来，就是为了帮这位小姐订制合意的酒水？[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的！两位酿饮大师，你们愿意帮我这个忙吗？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大、大师？不敢当不敢当……居然、居然给我如此高的评价，真是让人无地自容……[l][cm]",
+        "charaName": "格薇勒"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎呀，没事的，你调的酒我都喝过好几回了，这是正常的评价，别害羞～[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这、这真是……[l][cm]",
+        "charaName": "格薇勒"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了好了，看起来格薇勒小姐似乎有点怕生，沟通的事情交给我吧。[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]直接说结论就是——没问题，我们可以帮你这个忙。[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真的吗？！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然，毕竟你也是{myName}的朋友嘛！[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}帮过我几次，能够有机会还上这个人情，怎么可能错过嘛！[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来是这样吗？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈，话虽这么说，但{myName}的人情，想要还清可不是那么容易的啊。[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之，我和格薇勒小姐会一起帮忙的，关于酒的口感还有其它细节要求，你尽管写下来，剩下的就交给我们吧！[l][cm]",
+        "charaName": "萨拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的！谢谢你们！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（几分钟后——）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……这两位大师，确实很厉害啊。光是一个酒的口感，居然就有那么多细节，而且全都可以订制出来！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么厉害的大师，要我自己去找，恐怕拿着礼物都找不到门，但你却只是一句话就把她们全都找来了……[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说实话，我开始有点明白她们为什么这么信赖你了。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你都为我做了这么多，下次你叫我，我也会立刻赶过来的！[l]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "哪有那么严重。",
+            "tag": "tag_27"
+          },
+          {
+            "text": "不过是微不足道的小事罢了。",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿，看来对自己评价过低的，还不止格薇勒小姐一个呢！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了！不管怎么说，这次你都帮了大忙了！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了报答你的恩情，我也必须有所表示！我决定了！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这一次，一定要用完美的菜单，来回报你的帮助！[l]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "完美的菜单……！！",
+            "tag": "tag_32"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯……这个只是一个形容而已啦，但我肯定会拿出自己最好的状态的！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过是请你吃一餐饭而已，这个你总不会觉得受之有愧了吧？[l]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我会好好享受的！",
+            "tag": "tag_35"
+          },
+          {
+            "text": "那就多谢你啦！",
+            "tag": "tag_35"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]很好！那我们就这么说定了！请一定要好好期待，等着我的特制大餐哦！[l][cm][hide]",
+        "charaName": "嘉莉缇"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "嘉莉缇-进入战役【fav_hero_025_4】"
+}

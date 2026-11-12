@@ -1,0 +1,204 @@
+{
+  "des": "奥格-第一站去哪里！_进入战役",
+  "script": "fav_hero_066_2_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]很抱歉，奥格小姐……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]虽然你的条件非常诱人，但驿站的钱还要用在更加重要的事情上。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]我们不可能和温泉村签订类似大书院那样的度假协议，但如果你只是想要在这里设点宣传，我们倒是不会反对。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]啊，这样啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]唔……没有集体优惠的话，就不算是稳定的客源了。不过能够设立个宣传点，倒也算是一种成果吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "有收获就好。"
+          },
+          {
+            "tag": "tag_8",
+            "text": "能谈下来就不错了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]是啊……而且这个成果，多半还是看在你的面子上才有的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]呵呵……那当然。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]如果不是{myName}出面担保，莉拉首座可是让我们看着你，让你多去探探险、勘勘地，不要太过不务正业呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]什么？！莉拉那家伙，居然在这种地方背刺我？她可真是个好老板啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]你们在聊什么——嗯，温泉？在哪里？我倒是很有兴趣去尝试一下。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]长期在岸上生活，我的皮肤都开始变干了……说不定泡个温泉会有奇效呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]噢！你愿意来吗？我们有优惠哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]好了，打住！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]虽然说了你们可以宣传无妨，但茜塔这种业务骨干可没法凭空拿那么久的假期啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔莎",
+        "text": "[show]要找的话，就去找些比较闲的契约者吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]啧……我的下次长假还得等小半年呢。那算了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]什么啊……说是自由宣传，结果其实是有限制的吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]算了，有总比没有强，就这样吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]{myName}，这次真是多谢你了。如果还有其他更好的地方，就请你下次再带我去吧。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "好说，好说。"
+          },
+          {
+            "tag": "tag_24",
+            "text": "我会的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

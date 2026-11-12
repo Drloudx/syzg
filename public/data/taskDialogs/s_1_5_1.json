@@ -1,94 +1,78 @@
 {
+  "des": "",
   "script": "s_1_5_1",
   "exps": [
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]干嘛啦，我没事的。不就是打输了而已……没什么大不了的。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]别这样看着我啦，都说了我没事的。还好我刚刚撤得快，你也没受伤，不是挺好的吗……就让我安静坐会。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]唉嗯！知道了啦！“失败就要总结经验，要吸取教训”……你肯定又要说这些了吧？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]原本还想通过驿站走向更大的世界，没想到刚迈出几步就要被打回去了，实力太弱了还真是抱歉啊……[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]原本还想走出营地迈向更大的世界，没想到刚走出几步就要被打回去了，实力太弱了还真是抱歉啊……[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]唉？你说……你也不想拖我的后腿……可以去问问其他人有没有变强的方法？[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]唉？你说你没那个意思，你也不想拖我的后腿……[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]啊，那……那当然可以。对不起，我还以为……[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]唔……对不起。是我太矫情了。[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]可是我们该向谁去问变强的方法呢？[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]不过，那我们该怎么变强呢？我可不想一直这么输下去！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "茜塔",
-        "text": "[show]呼……终于到了，这包裹也太多了……{myName}、米托拉，你们在吗？打扰喽。[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]啊，是你经常用来做笔记的小本本！又有什么新记录了吗？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]唉？那不是茜塔吗？她怎么突然来营地了？[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[show]要不……就直接去问问她吧。她算是我们的老前辈了，应该知道变强的方法的。[l][cm][hide]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": ""
+  ]
 }

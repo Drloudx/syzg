@@ -1,0 +1,329 @@
+{
+  "script": "s_sp2_8_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们这边的宫廷会议要开始了，你们要过来看看吗姆？[l]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "宫廷会议是什么？",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]就是我们史莱姆高层每隔一段时间都会来开会，讨论一下最近遇到的问题，以及接下来的施政方针姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听起来很好玩的样子，让我们也听听吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，那先吃下这个黏液吧，这样你们就能听懂我们讲的事情了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（吃下德莉的黏液。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，现在宫廷会议开始，本次会议由我来主持，欧德莱姆做记录姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]第一个议题，是农业区提出的问题，最近史莱姆生育状况可观，未来可能有极大的粮食缺口，农夫们提议要多开垦一些农田姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]批了，让它们在北边多开垦几块田吧姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等……我先吃个蛋糕，你们继续聊姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]第二个议题是，现在史莱姆越来越多，营地里的地价和房价都在上涨，我们得开拓更多土地压压价格才行姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好好好，居民区那边的人也挺多的了，那就继续向东开拓土地吧姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，那我就去给工程部批条子姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]接下来是第三个议题，现在黏糊糊城堡的人手不够，可能需要扩编姆……[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过一番讨论后，宫廷会议总算结束了……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，今天的会议就到这里，公主殿下宣布散会吧姆。[l][cm]",
+        "charaName": "总管库库姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等等……让我吃完这块蛋糕姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，那个……诸位散会！各回各家吧姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]欧德莱姆，你这次开会记了什么，让我看看吧姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]德莉公主，在本次会议上一共吃了五块蛋糕，记录在案姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！你……你记开会内容就好，记这些东西干什么姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]记述者的责任，就是忠实记下每一段历史，德莉公主吃蛋糕这事也不例外姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼！本公主命令你，把吃蛋糕这段删掉姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]即便是公主殿下的命令，我也不能违背记述者的职责。倘若将修改后的史料留给后人，我有何面目去见史莱姆记述者先祖姆！[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……我才不管，给我删掉，给我删掉姆！吃我一棍姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆？[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……德莉一棍子把欧德莱姆打扁了，不过一下子又复原了……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我即便是化成一滩黏液了，钉在木盒里了，也要在这底下，用腐朽的手写下……德莉公主在宫廷会议上吃了五块蛋糕姆！[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你……你……哼！不理你了姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？德莉她就这么跑掉了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉……又惹公主生气了姆，这是这个月第三回了姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你刚刚说话但凡柔和一点，都不至于惹她生这么大的气。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个没办法啊，我就只会办事，不懂安慰人什么的姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我也不能放着公主殿下不管，得找个史莱姆逗她开心才行姆。两位可以帮我请个史莱姆过来吗？报酬我来出姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可以是可以，不过找史莱姆这事你自己去不就好了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我这边忙抽不出时间，而且我估计我想找的那只史莱姆遇到什么麻烦了，这一趟请它过来恐怕没那么容易。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，这个委托我们接下啦。不过那只史莱姆是谁啊？请它还不容易。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是居住区的表演者乔可姆，至于为什么难请嘛……因为它是一个悲伤的表演者啊。[l][cm][hide]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（今天的宫廷会议开始了……）"
+}

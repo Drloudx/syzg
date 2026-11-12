@@ -1,0 +1,142 @@
+{
+  "script": "zy0205_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]报告！前面发现了一个大洞！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]大洞？能看到里面是什么状况吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]洞太深了，在洞口看不到里面的情况！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]怎么办？我们要到这个洞里去吗？还是要找找有没有别的路？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]不用找了，大家伙和异变源头就在这个洞里。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]唔哦哦……！我这里突然检测到了读数非常离谱的高能量反应，位置就在洞内～！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]高能量反应？这会不会有危险？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]安啦，都下到这里来了，还有什么危不危险的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]虽然这种波动读数很高，但对人体并没有什么危害。[r][l]至少我的危机感应项链没有报警，放心下去吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]你的仪器还真够多……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]真正的危险……应该来自于“为什么魔力波动变强了”。[r][l]看起来要么是大家伙不见了，要么是另一个魔力波动被大家伙给干掉了——啊，也说不好。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]……看起来，前者的可能性微乎其微。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]而且，里面应该就是它的老巢。身边带着的恐怕都是长期受到支配的精锐战力。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]也就是亲卫队吗！没想到区区魔物，居然也有这种头脑。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]那不是头脑，只是自然的本能，不过结果上并没有差别。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]那么进洞之后，应该就是最后的决战了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]卡夫他们应该已经在村子里准备庆功宴了！[r][l]为了赶上晚餐，就让我们快一点把所有的麻烦全部解决吧！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

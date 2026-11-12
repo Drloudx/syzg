@@ -1,0 +1,54 @@
+{
+  "des": "s_sp2_1_1",
+  "script": "s_sp2_1_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]太好了，那就出发吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]我对深渊……终究还是不太熟。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]究竟该从哪里开始调查起，一切就都交给你们来判断了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼～！包在我们身上！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]路线的事情你完全不用担心，只需要好好调查就可以啦～！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

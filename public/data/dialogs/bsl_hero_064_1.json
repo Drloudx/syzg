@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]哈喽哈喽，{myName}！伽拉忒亚按照指示，准时在营地和你见面了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]这个给你，根据我脑海里的资料库显示，和伙伴建立亲密关系后需要赠送礼物，所以我已经准备好啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]在这里的感觉和大书院完全不一样，没有那么多沉重的文件，只有很亲切的大自然。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]以前我的脑海里只有知识和文献，现在我想记录下这个世界的鸟语花香，记录下属于我们的回忆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]当然你要查资料也没问题，有什么需要检索的信息或者想要解决的麻烦吗？尽管开口，我立刻为您找答案！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_064_1",
+  "des": "bsl_hero_064_1"
+}

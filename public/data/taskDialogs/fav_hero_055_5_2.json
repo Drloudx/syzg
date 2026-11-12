@@ -1,0 +1,280 @@
+{
+  "script": "fav_hero_055_5_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（自斩杀魔剑之后，已经过去了一个礼拜。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（其间，凯蒂也逐渐康复，重新回到了契约者的行列。迦南前辈也被魔剑事件的麻烦事缠身，好些天都没见面了。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（而她今天约我来到这里见面，说要“介绍”些什么……是有什么事想告诉我呢……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "{myName}",
+        "text": "[show]（……嗯？那是？）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]{myName}——！这边——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小孩子A",
+        "text": "[show]是{myName}{callName4}！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小孩子B",
+        "text": "[show]{myName}{callName4}来了！我们可以开始了吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小孩子C",
+        "text": "[show]迦南老师！{myName}{callName4}也来了，我们今天到底要学什么呀？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "迦南……老师？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "这不是当时矿坑那几个小孩子吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]是啊，我想介绍的人，就是她们。虽然你们应该已经认识了，但这一次，我是要把她们作为我的徒弟介绍给你。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "徒弟……！！"
+          },
+          {
+            "tag": "tag_16",
+            "text": "迦南前辈你终于……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是的，在上次的事情之后，我也算是……稍微解开了一些心结了吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]“魔剑铸术”确实是邪恶又愚蠢的玩意，但一族多年来的研究，终究也不是全都倾注在那些不人道的方面。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]即使只是基础的铸剑术，一族的技术也比外面的要先进不少，对于闭塞的深渊来说，就更是遥遥领先了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "所以你决定把这份技术传承下去？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]是的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]虽然我也只是无意中流落至此，但对我来说，深渊已经是我的第二故乡。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]如果能够让这里变得更好……我当然也愿意从不同的方面付出更多的努力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]毕竟我是前辈，对于深渊的贡献，可不能落后你太多啊！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "前辈言重了。"
+          },
+          {
+            "tag": "tag_25",
+            "text": "我只是做了我该做的事情而已。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]或许在你看来，自己做的只是一些力所能及的事情……但无论是深渊、还是我，都不会看轻你的付出。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]有米托拉作为搭档，你们这个组合无论武力还是智力，都已经无懈可击，我可能没办法给你太多的助力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]但至少我可以承诺——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]只要你有需要，我一定会第一时间赶到你身边，无论何时、无论何地。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]今后也请让我和你一起，为了深渊的未来共同战斗吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "那就拜托你了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[cm][show]哈哈，我就知道你会这么说。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]我们这就约好了，你可一定要记得啊！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-场景：黑铁锻炉中央部分，只需要必要的NPC，主人公从右走到左。"
+}

@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "拉碧丝",
+        "text": "[show]啊啦，总算在营地碰见你了，{myName}。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "拉碧丝",
+        "text": "[show]第一次来到你营地的时候，我就感受到一种宁静与祥和，这和驿站那种躁动的氛围完全不同，我非常喜欢这里。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "拉碧丝",
+        "text": "[show]毕竟除了台上跳舞的风光和台下练舞的艰苦之外，我们也想要属于自己的休息时间啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "拉碧丝",
+        "text": "[show]而你的营地就很适合我，只要在这里就能得到更好的休息。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "拉碧丝",
+        "text": "[show]给你，这是我的一点小心意。我想能与你建立这份合作关系，是我这多年来最明智的决定。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_007_1",
+  "des": "拉碧丝"
+}

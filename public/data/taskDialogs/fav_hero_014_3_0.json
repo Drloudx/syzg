@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_014_3_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈，感谢你的迎接，我的好伙伴。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就和信里说的一样，我抓不住那群小崽子，所以来这里问问你的意见。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊～我已经闻到烤肉的香味了，没想到你还做了一顿美食来欢迎我。那事不宜迟，我们进营地里慢慢说吧。[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "皮塔-营地对话【欢迎再次光临营地，皮塔。】"
+}

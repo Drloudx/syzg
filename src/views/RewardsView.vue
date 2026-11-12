@@ -327,6 +327,7 @@
             </div>
             <div class="hidden-row-info">
               <span class="row-title">{{ group.collectName }}</span>
+              <span v-if="group.sourceLabel && group.sourceLabel !== '场景宝箱'" class="source-label">{{ group.sourceLabel }}</span>
               <span v-if="group.collectTip" class="collect-tip">{{ group.collectTip }}</span>
             </div>
             <div class="items-flex">
@@ -1451,6 +1452,17 @@ const closePrevImg = () => {
   font-size: 13px;
   line-height: 1.6;
   color: var(--text-muted);
+}
+
+/* 隐藏点位来源类型标签（书籍 / 偶遇），场景宝箱为默认不显示标签 */
+.source-label {
+  display: inline-block;
+  padding: 0 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  color: var(--accent-ink, #7a4a1f);
+  background: var(--accent-soft, rgba(160, 110, 50, 0.14));
 }
 
 .hidden-prev-img {

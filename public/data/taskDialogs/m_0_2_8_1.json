@@ -1,0 +1,38 @@
+{
+  "des": "营地研究指引弹剧本",
+  "script": "m_0_2_8_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇……改造后的营地中心宽敞了好多！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]咦，这是什么地方啊？{myName}的……工房？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唔喔……你说，可以在营地中心进行研究，来改善冒险和生活中的方方面面，能带来永久性的增益……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇——！这也太有用了吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

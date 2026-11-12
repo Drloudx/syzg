@@ -1,0 +1,61 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]情况非常糟糕。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]猎物上钩了，但是并没有被彻底留下，最终只是重伤就成功脱身了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "怎么可能？"
+          },
+          {
+            "tag": "tag_5",
+            "text": "那个陷阱的威力，可是足够对付恐怖蟾兽了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[cm][show]这也是我所疑惑的，按理来说，那畜生应该绝无逃走的可能，但实际情况却是……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "菲莉娜",
+        "text": "[show]光是用说的还是具体的你看了就知道，准备好了就跟我来吧。[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "菲莉娜-情况怎么样了？",
+  "script": "fav_hero_049_3_0"
+}

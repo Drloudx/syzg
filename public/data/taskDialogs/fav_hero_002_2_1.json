@@ -1,0 +1,267 @@
+{
+  "script": "fav_hero_002_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂喂……都说了不要叫我毛耳朵了，你怎么还在那里叫？[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这有什么关系，伙伴之间相互称呼对方外号不是很好吗？对吧{myName}？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "是的，红毛猫猫。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "没错，荒野猫猫。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好吧，我斗不过你们两个，咱们还是来谈生意吧。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你的那些“货”都准备好了吗？拿来让我看看吧。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]都准备好了，这回我可是和{myName}一起去收集的，质量保证让你满意。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……这里有很多东西还是可以用的，比之前那些垃圾好了不少。都是你保养的吧，{myName}？[l]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "毕竟听说要卖，我就整理了一下……",
+            "tag": "tag_10"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]我就知道是你的主意，毕竟我们的小野猫可没有那样的脑子……[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂喂喂！你说谁没脑子呢？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，那让我们来评估一下这些货物的价值吧。这个有裂痕的勋章不错，可以当个装饰品，这个铁块质量也不错，可以拿过去重新铸造……[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过一番讨价还价后，这些杂物总算卖了一个好价钱。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，两位都辛苦了，这次收的东西我还算比较满意哦。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毛耳朵你们也辛苦了，下次再来哦，我会给你们找到更值钱的东西。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]下次还来……说实在的，你们既然成为契约者了，为什么还要去拾荒呢？[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]过去你没当契约者的时候，以拾荒为生到还可以理解。可现在有了契约者这个身份，就没必要这样干了吧？毕竟每天在野外找东西可比接契约任务要危险多了。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个嘛……我是想过这个问题啦，不过拾荒是我之前一直都有的习惯，我也是靠这个养活自己的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你现在突然让我不继续这样干了，我总有一种难以形容的……不安的感觉。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不安心的感觉？我大概明白了，小野猫是缺乏安全感吧，理解你的想法。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我不会让你改变原来的习惯的，不过我还是想说，你可以给你自己多一点信心，或者说给你旁边这位伙伴多点信任。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟……你现在也不是孤身一人啦，不必像过去一样畏畏缩缩的。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之……{myName}，还请你好好保护好米托拉，不然我可不会放过你的哦～[l]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我会保护好米托拉的。",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]畏畏缩缩？保护我？我可不是那种胆小的家伙，我打起架来超猛的啦。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是是，小野猫最能打啦，我可没有说你不能打哦。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那我先走啦，两位再见～[l][cm][hide]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真是的，毛耳朵那家伙在说什么啊，莫名其妙的……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过今天还是大赚了一笔，我还从没试过能卖这么多钱的，果然还是有你在好啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们今晚吃一顿大餐庆祝一下怎么样？那种超大超大的大餐哦～[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "米托拉-拾荒者的生意-进入战役"
+}

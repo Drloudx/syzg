@@ -1,44 +1,42 @@
 {
-  "des": "c4_11_a_2",
-  "script": "c4_11_a_2",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]快看！这里有伤者！[l][cm]"
+        "text": "[show]快看！这里有伤者！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]是护林人！看上去还有气，我们快过去！[l][cm][hide]"
+        "text": "[show]是护林人！看上去还有气，我们快过去！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]坚持住，我这就来救你！[l][cm][hide]"
+        "text": "[show]坚持住，我这就来救你！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "受伤的护林人",
-        "text": "[show]树冠守望者！我们……我们被袭击了！[l][cm]"
+        "text": "[show]树冠守望者！我们……我们被袭击了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "受伤的护林人",
-        "text": "[show]那个“森林之敌”和一个女精灵一起出现，她法力高强……我们……我们不是对手，只能一直退到这里。[l]"
+        "text": "[show]那个“森林之敌”和一个女精灵一起出现，她法力高强……我们……我们不是对手，只能一直退到这里。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -55,51 +53,53 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "受伤的护林人",
-        "text": "[cm][show]巨……巨枭栖木！他们去了巨枭栖木……[l][cm]"
+        "text": "[cm][show]巨……巨枭栖木！他们去了巨枭栖木……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]他们的目标果然是枭灵的力量……[l][cm]"
+        "text": "[show]他们的目标果然是枭灵的力量……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "芭杜尔",
-        "text": "[show]你先在这里好好休息，我们马上过去！[l][cm]"
+        "text": "[show]你先在这里好好休息，我们马上过去！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "受伤的护林人",
-        "text": "[show]是……树冠守望者……！祝你……你们旗开得胜！[l][cm]"
+        "text": "[show]是……树冠守望者……！祝你……你们旗开得胜！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "受伤的护林人",
-        "text": "[show]一……一定要……要保护……森林……！[l][cm][hide]"
+        "text": "[show]一……一定要……要保护……森林……！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ]
+  ],
+  "script": "c4_11_a_2",
+  "des": "c4_11_a_2"
 }

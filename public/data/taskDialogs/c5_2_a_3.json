@@ -129,19 +129,18 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]我大概明白了。[l]",
-        "nameSide": "left"
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "我大概明白了。"
+          },
+          {
+            "tag": "tag_18",
+            "text": "所以，你就是因为这个才离家出走的？"
+          }
+        ]
       },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[show]所以，你就是因为这个才离家出走的？[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+      "key": "option"
     },
     {
       "para": {

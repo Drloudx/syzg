@@ -1,0 +1,336 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]好，这就让你看看我带来的东西……锵锵。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]就是这个。魔爪沼泽的红魔蘑菇。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（许多形色诡异的鲜红蘑菇从包里探出头来，每一颗都布满了白色的斑点，流着黏液，仿佛张着血盆大口。）[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "这种颜色的蘑菇……"
+          },
+          {
+            "tag": "tag_6",
+            "text": "还真是头一回见……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]魔爪沼泽的蘑菇种类多着呢。光是秘境附近的区域，少说也有几十上百种。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]我在四周巡逻的时候，常会顺手摘点野蘑菇尝尝。好吃的蘑菇不多，这红魔蘑菇就是其中之一。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]这是我……这么多年来，头一次给人带礼物。希望你会喜欢……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "谢谢你，但这个……"
+          },
+          {
+            "tag": "tag_10",
+            "text": "我很感动，可是这……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]唔，你好像有些犹豫。怎么了吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "我愿意相信你说这蘑菇好吃……"
+          },
+          {
+            "tag": "tag_12",
+            "text": "可我有点担心这蘑菇不太能吃……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]原来如此，你的担忧不无道理。不过请放心，虽然这个蘑菇长相比较骇人，但我吃过不少了，一次都没有出问题。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]这次也是，在把这些蘑菇带过来的路上，我也已经吃掉很多个了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]不信你看，我现在就吃一个……啊呜。嚼嚼嚼嚼嚼。真好吃……（吞下）。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]喏。我是不是好好的？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "（犹豫地吃下了一颗艾尔菲帕递来的红魔蘑菇。口感意外地还可以。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]怎么样？是不是很好吃？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "尝起来像鸡肉！"
+          },
+          {
+            "tag": "tag_19",
+            "text": "还真的挺好吃！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "就是……好像……有点……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show]（砰——！突然眼前一黑，然后失去了意识……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（再次睁开眼，只见艾尔菲帕难掩惊慌地守在旁边。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]你……你醒了？刚刚怎么回事，你突然就晕倒了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]我感觉到你体内的魔力很是紊乱……于是马上用紫电闪击给你进行了全身整流。你还好吗……？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "难怪……我还……"
+          },
+          {
+            "tag": "tag_26",
+            "text": "酥酥……麻麻的……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "这蘑菇……果然有问题……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]怎么会这样……明明我吃就一点事都没有。我还以为这蘑菇完全没有毒呢……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]难道就因为我是雷鸟的缘故，所以才没事的吗……对不起，{myName}……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "哈，哈哈……"
+          },
+          {
+            "tag": "tag_30",
+            "text": "也多亏……有你给我……治疗……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]这是我的责任。这个蘑菇毕竟是我带过来的。接下来我会负责照顾你。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "麻烦……你了……艾尔菲帕。"
+          },
+          {
+            "tag": "tag_32",
+            "text": "毕竟……我好像……没法动弹。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]没事，毕竟是我害你晕倒、全身麻痹的。照顾你，陪着你，都是我应负的责任。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]那么……请让我在你身边守护你吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（艾尔菲帕就这样一直守在身边，直到夕阳西沉，身体慢慢恢复了知觉，她才起身离去，回沼泽照看封印……）[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾尔菲帕-好吃的蘑菇-进入战役",
+  "script": "fav_hero_045_2_1"
+}

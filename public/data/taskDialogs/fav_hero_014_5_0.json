@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_014_5_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，我就知道你会同意的。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]村子那边可热闹了，这几天每条大街小巷都弥漫着香味。我还真有点担心你没走到餐桌就被路边摊的美食吸引走了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]事不宜迟，我们出发吧。对了，村子那边还有惊喜哦。[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "皮塔-营地对话【我来赴约了。】"
+}

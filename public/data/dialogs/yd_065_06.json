@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]不知不觉间，奇瓦也交到了这么好的朋友啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]和你们一起冒险，真的让奇瓦成长起来了。还有伽拉忒亚也是，和你非常亲近。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]这种强大的亲和力，或许就是你的独特气质。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]不过阿姨也在怀疑，说不定你其实有着某种……魅魔类魔物的血统？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]嗯，是个不错的研究方向！等有空的时候，让阿姨好好给你检查一下吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_065_06",
+  "des": "乌尔勒-熟识3"
+}

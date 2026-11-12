@@ -1,43 +1,115 @@
 {
+  "des": "菲尔德蕾：离开深渊的方法",
   "script": "m_1_4_1",
   "exps": [
     {
       "para": {
-        "charaName": "菲尔德蕾",
-        "text": "[show]你来得正好，我刚刚结束会议。[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]啊，两位回来啦，辛苦了！[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
+        "text": "[show]事情我已经听迦南小姐说过了。请找个位置落座，尽管点单，我去安排！[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊哈～那就不客气啦！[l][cm][hide]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（一段时间后……）[l][cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇，我还是第一次喝到这种味道的果汁！不愧是驿站，这么会生活！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过，那个老板还没结束吗？还真够久的……[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_89",
+            "text": "你别说，你还真别说。"
+          },
+          {
+            "tag": "tag_89",
+            "text": "真是说什么什么就到。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]欸？什么意思——啊，那个人是！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们在这里啊。抱歉久等，我刚刚结束会议。[l][cm]",
+        "charaName": "菲尔德蕾"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
         "text": "[show]之前，艾尔莎已经和我说了你们的事。对于你们额外的贡献，驿站会在统计之后，以最快的速度把报酬交到你们手上。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]太好了！老板大气！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]既然加入了契约者，那我们就是并肩作战的兄弟手足，这是驿站应该做到的。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]说回正事吧。艾尔莎告诉我，你似乎想要知道……[color=ffb64d]回到你故乡的方法[colorEnd]。[l]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
@@ -45,12 +117,12 @@
       "para": {
         "options": [
           {
-            "text": "是的。",
-            "tag": "tag_7"
+            "tag": "tag_7",
+            "text": "是的。"
           },
           {
-            "text": "请务必告诉我答案。",
-            "tag": "tag_7"
+            "tag": "tag_7",
+            "text": "请务必告诉我答案。"
           }
         ]
       },
@@ -58,49 +130,49 @@
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[cm][show]那我就直说了吧——[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]你想要离开深渊，现在是[color=f1401c]不可能[colorEnd]的。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]哈？不可能是什么意思？你是不许{myName}走，要让{callName1}一直做契约者吗？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]当然不是。驿站与契约者一直是[color=ffb64d]平等合作[colorEnd]的关系，我们从不会妨碍伙伴的选择。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]我所说的不可能……就是字面上的不可能。因为异变的影响，从五年前开始，就再也没有人能够活着走出深渊了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]什么……？五年都没有人出去过？这怎么可能？[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -108,8 +180,8 @@
       "para": {
         "options": [
           {
-            "text": "我也没法这么容易就接受如此离谱的答案。",
-            "tag": "tag_27"
+            "tag": "tag_27",
+            "text": "我也没法这么容易就接受如此离谱的答案。"
           }
         ]
       },
@@ -117,33 +189,33 @@
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[cm][show]当然，我也没想过空口白牙就这么让你们相信。但有些事情你们完全可以亲眼去见证。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]亲眼见证？怎么见证？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]只要你们前往[color=ffb64d]观星高地[colorEnd]，自然就能亲眼发现你们想要的答案。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]毕竟客观存在的现实，可不会因为我的几句话而改变，[r]通过自己寻找到的答案，想必也能让你们更加信服，不是么？[l]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
@@ -151,8 +223,8 @@
       "para": {
         "options": [
           {
-            "text": "这个观星高地，在什么地方？",
-            "tag": "tag_32"
+            "tag": "tag_32",
+            "text": "这个观星高地，在什么地方？"
           }
         ]
       },
@@ -160,25 +232,25 @@
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[cm][show]观星高地位于秋日荒野北部。那里在大兽潮时受灾严重，路途遥远，荒废多年。大多数人只闻其名而不知其所。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]不过，在[color=ffb64d]驿站西北边[colorEnd]有个神秘学的[color=ffb64d]修行所[colorEnd]，[r]那里的[color=ffb64d]莉拉首座[colorEnd]常年在观星高地开展某种研究。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]只要找到她，你们就能知道前往观星高地的方法了。[l]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
@@ -186,12 +258,12 @@
       "para": {
         "options": [
           {
-            "text": "西北部修行所的莉拉首座……",
-            "tag": "tag_59"
+            "tag": "tag_59",
+            "text": "西北部修行所的莉拉首座……"
           },
           {
-            "text": "感谢您的回答，菲尔德蕾女士。",
-            "tag": "tag_59"
+            "tag": "tag_59",
+            "text": "感谢您的回答，菲尔德蕾女士。"
           }
         ]
       },
@@ -199,17 +271,17 @@
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[cm][show]无需道谢。在这个深渊之中，所有智慧生命都必须互相扶持才能生存下去。[l][cm]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[show]我的回答并非慷慨，而是一种投资。希望你在了解一切之后，还能选择和我们站在一起。[l]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
@@ -217,8 +289,8 @@
       "para": {
         "options": [
           {
-            "text": "我会考虑的。",
-            "tag": "tag_61"
+            "tag": "tag_61",
+            "text": "我会考虑的。"
           }
         ]
       },
@@ -226,33 +298,33 @@
     },
     {
       "para": {
-        "charaName": "菲尔德蕾",
+        "nameSide": "left",
         "text": "[cm][show]我期待着。[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "菲尔德蕾"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]嗯……北面的观星高地吗。也就是说要出趟远门了……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]而且……要是信了她的答案，就算不去也没所谓吧。但要是不相信，去了也发现她没说谎，我们好像也没法改变什么。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]{myName}，你怎么想？[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -260,12 +332,12 @@
       "para": {
         "options": [
           {
-            "text": "我会想办法去那个观星高地的。",
-            "tag": "tag_65"
+            "tag": "tag_65",
+            "text": "我会想办法去那个观星高地的。"
           },
           {
-            "text": "米托拉不用勉强跟着我一起。",
-            "tag": "tag_65"
+            "tag": "tag_65",
+            "text": "米托拉不用勉强跟着我一起。"
           }
         ]
       },
@@ -273,25 +345,17 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]哈？你这说的什么话？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]之前你帮了我那么多。为我烤肉串吃，帮我讨伐角布林，甚至还修好了我重要的营地、帮我储备物资。我米托拉可不是白眼狼。[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[show]而、而且……我们还进入过彼此的记忆呢。你看，都是那种关系了，还那么见外，不有点过分了嘛。[l]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]之前你帮了我那么多。为我烤肉串吃，帮我讨伐角布林，甚至还修好了我重要的营地、帮我储备物资。我米托拉可不是白眼狼。[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -299,12 +363,12 @@
       "para": {
         "options": [
           {
-            "text": "米托拉……",
-            "tag": "tag_68"
+            "tag": "tag_68",
+            "text": "米托拉……"
           },
           {
-            "text": "谢谢你。",
-            "tag": "tag_68"
+            "tag": "tag_68",
+            "text": "谢谢你。"
           }
         ]
       },
@@ -312,36 +376,62 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]哼哼。这个话题就到此为止。如果你要去，我也跟着你去！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]不过……具体要怎么去呢……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]你说可以去旁边的桌子坐着商量？[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]关于这个，我倒是有个提案。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]嗯，也好，我也有些累了！反正是他们请客，对吧！[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]你们去找找迦南小姐吧，她会告诉你们详情。她应该就在附近的酒桌旁边。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉？就是刚刚那个剑士吗？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_96",
+            "text": "好的，我会去问问她的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]唔……总觉得没那么简单。既然你这么说了，那我们就去听听看她有什么方案吧。[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     }
-  ],
-  "des": "菲尔德蕾：离开深渊的方法"
+  ]
 }

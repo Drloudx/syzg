@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]日安，{myName}！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]你的营地果然像传闻中一样出色，不仅是普通的落脚点，也是一个能让知识与勇气汇聚的地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]这是一点礼物，虽然并不珍贵，但代表了我最真挚的心意。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]希望在未来各种未知的冒险中，我能与你一同见证更多的奇迹。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_036_1",
+  "des": "bsl_hero_036_1"
+}

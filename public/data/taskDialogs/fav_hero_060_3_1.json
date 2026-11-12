@@ -1,0 +1,530 @@
+{
+  "des": "fav_hero_060_3_1",
+  "script": "fav_hero_060_3_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]嗯……差不多就是这里了，我们就在这里开展我们的“公主长高计划”吧姆——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]首先……把工具都拿出来姆……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "木材、绳子、魔力丸……"
+          },
+          {
+            "tag": "tag_5",
+            "text": "你怎么用这些东西长高？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]这个嘛……你看了就知道姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]第一个办法就是吃东西，这些都是经过风吹雨打的原木，上面还撒了很多药草之类的营养物姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]而我们史莱姆摄入大量营养之后，就有可能促进身体成长，到那时候我就会变成一个成熟的大史莱姆了姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]不过这些木头都太大了，我没法直接吃下去，你可以用帮我把这些木头分成一块一块的姆？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_10",
+            "text": "举手之劳。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][show][cm]（运用工匠锤的力量，把木头切割成了大小一致的块状。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]好！那我就开吃了姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]啊姆啊姆……啊姆啊姆……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "德莉变胖了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]嘿嘿……吃得多当然会变成这样姆……不过为什么是横着长，不是竖着长啊，真是奇怪姆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]姆姆！我……我感觉到了！我的身体正在产生变化姆！我……我终于要长高，变成真正的大人了姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]嗯？什么声音……滴答滴答的……欸！身上多出来的黏液都掉下来了姆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]哇！我……我……又变回原来的样子了姆！果然又失败了姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]好气啊，为什么又失败了姆！没关系……我还有一招！我马上把绳子拿过来姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]{myName}，等会儿我会把自己用绳子绑在树上，然后你抓着我的脚往外扯，把我拉长姆！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "你……你确定要这样吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]没关系，我可是史莱姆公主姆！我可是很强的姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（经过了一段时间……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]好，就这样，绑好了姆！你抓住我的脚往外拉就行了姆！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "（拉扯德莉。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]呜……没什么感觉，可以大力一点吗姆？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "（使劲拉扯德莉。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]有点感觉了姆！还可以再大力一点姆！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "（用尽全力拉扯德莉。）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]有效果了姆！德莉终于要长高了姆！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]啪——！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "哇！腰……腰断掉了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]啊……的确是断了欸。稍等一下，我接回来姆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（德莉的下半身跑向德莉的上半身，重新接到了一起。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]唔……虽然不怎么痛，但好像接合的过程还消耗了一点黏液，身高也不增反降了姆……看来这招一点用都没有姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]没事，我还有办法姆！我可以施展长高魔法，再一直吃魔力丸补充魔力，只要持之以恒，我一定能变高姆！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]嘿——！蕴含着史莱姆先祖意志的魔力哦，让我变得更高更大姆——！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_38",
+            "text": "德莉果然变大了！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]嘿嘿——！果然有效果姆！感觉我很快就能长高了姆——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]轰——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]呜哇……发生什么事了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]我好像……爆炸了姆……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_43",
+            "text": "看来是因为魔力短时间积聚……"
+          },
+          {
+            "tag": "tag_43",
+            "text": "密度过高，支持不住过载了……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]呜呜……又……又变回这个小不点的样子了姆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]难道我的宿命……我的宿命就是一直当一个小个子公主吗姆？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_46",
+            "text": "没关系的德莉。"
+          },
+          {
+            "tag": "tag_46",
+            "text": "身子矮不算什么。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]可是，公主就应该是尊贵高大的样子啊，更何况我还是史莱姆王国的领袖姆。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_48",
+            "text": "个子小不影响本事大。"
+          },
+          {
+            "tag": "tag_48",
+            "text": "在我眼中德莉永远是顶天立地的！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[cm][show][cm]谢谢……谢谢你安慰我姆。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]对不起，{myName}……就请让我先这样……靠在你身边休息一下吧姆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]呜呜……今天身上掉了很多黏液，感觉权杖都拿不起来了姆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（德莉靠着你休息了好一阵。接着，被赶来帮忙的史莱姆子民们扛在头顶，抬回了黏糊糊城堡。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]……谢谢你，{myName}……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "德莉",
+        "text": "[show]远方……似乎有种声音在呼唤我……？是我的错觉吗姆？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

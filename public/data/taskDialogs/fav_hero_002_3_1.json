@@ -1,0 +1,237 @@
+{
+  "des": "米托拉-变钝的双刀-进入战役",
+  "script": "fav_hero_002_3_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]看，这是我的双刀，之前在砍角猪的时候感觉有些不顺手，后来发现两把刀都有些钝了，所以我就想请你帮忙把这双刀修好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]其实我也不是没考虑要自己把刀磨锐，只是想着这把刀已经用了很长一段时间，我怕我控制不住直接把它弄断……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "交给我吧。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "（举起工匠锤。）",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]嘿嘿……拜托你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这两把刀陪我很久了，是在我刚失忆之后就拿到的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]当时刚刚来到一个被拆毁的营地，那里可惨了，所有篝火、帐篷都被拆了个稀巴烂，地上也躺着几个荒野客……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我的双刀就是从那几个荒野客身上拔下来的，不过我那次拾遗可谈不上多轻松，我至今都还是心有余悸……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]在刚把这里的人都把扒完的时候，我立刻被一群角布林发现了。我拔腿就跑，它们一直在后面追，我一直跑到晕过去，幸好没被它们发现……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那种虎口脱险的感觉真的不好受……我那一个礼拜都没睡好觉，因为我时刻害怕被荒野的魔物碾成肉泥。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]自此之后我就加紧练习，要让自己变得更强才能避免变成肉泥的命运。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我先是用双刀制作工具，然后用它来砍树，然后砍角猪。等技术更加成熟的时候，我就去砍角布林了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]当我亲手用那把双刀干掉角布林以后，我就觉得自己战胜了曾经的恐惧，真的能在草原上立足了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]趁着胜利的气势，我重新回到当初发现荒野客的营地，然后在那里建立了我的营地，也就是现在这个地方啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]虽然营地经历过几次破坏，但日子还是磕磕绊绊地走过来了，之后就遇到你了嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]日子就这么过到现在，我如今变得更强啦，而那把刀反而变钝了……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "只是暂时变钝了，我来让它重新变得锐利。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "完成了，你拿着吧。",
+            "tag": "tag_19"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]好耶！这两把刀感觉比之前更强了，果然找你是没错的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]谢谢啦……结果还是让你白帮我的忙了。明明你帮了我那么多，我却没法给你什么……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我们是合作无间的好伙伴。",
+            "tag": "tag_22"
+          },
+          {
+            "text": "不回报也没事的。",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]那不行……怎么说也得为你做些事情才行。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]要不……我来给你做顿饭怎么样？要来尝尝米托拉烧烤吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没问题！我也想尝尝米托拉的手艺。",
+            "tag": "tag_25"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]好！那就让我们先去准备些食材吧，我这把新的双刀已经蠢蠢欲动了哦！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（后来和米托拉一起捕猎了一只角猪，慢慢吃上了一顿肉。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

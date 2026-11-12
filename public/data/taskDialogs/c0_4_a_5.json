@@ -1,51 +1,52 @@
 {
+  "des": "空",
   "script": "c0_4_a_5",
   "exps": [
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]果然，对于这帮混蛋，真的不能有一点期待！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]完啦！全完啦！粮食、衣服、铁器……这帮家伙什么也没剩下！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]嗯……？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你说还是能找回来一些材料和工具……[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "但那都有什么用嘛……！[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -53,8 +54,8 @@
       "para": {
         "options": [
           {
-            "text": "等等，你看那边的桌子！",
-            "tag": "tag_4"
+            "tag": "tag_4",
+            "text": "等等，你看那边的桌子！"
           }
         ]
       },
@@ -62,100 +63,213 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]嗯？这是什么？[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "{myName}",
+        "nameSide": "left",
         "text": "[show]（这个是……从什么东西上剥离出来的碎片吗……）[l][cm]",
-        "nameSide": "left"
+        "charaName": "{myName}"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "{myName}",
+        "nameSide": "left",
         "text": "[show]（不知道为什么，这个形制让我感觉特别熟悉……仿佛在之前，我经常接触这类东西一样……）[l][cm]",
-        "nameSide": "left"
+        "charaName": "{myName}"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "{myName}",
+        "nameSide": "left",
         "text": "[show]（嗯？等等……）[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "{myName}"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "{myName}",
+        "nameSide": "left",
         "text": "[show]（什么……这是……）[l]",
-        "nameSide": "left"
+        "charaName": "{myName}"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show][cm]喵！怎么回事？[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]发……发光了喵！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]我的项坠发光了喵——！[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]呜喵哇啊啊啊……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
+        "text": "[show]头好痛……刚刚……发生了什么……[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_151",
+            "text": "好像有什么灌入了脑海……"
+          },
+          {
+            "tag": "tag_151",
+            "text": "但好像就只是一瞬间的事……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯啊……我也是……一瞬间觉得突然好晕，现在又好了。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你呢？你还好吧？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_154",
+            "text": "没事了，现在好多了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呼，那就好。真就奇了怪了。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在这东西和项坠也不发光了……到底是怎么回事啊。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说这东西有点研究价值，先带回去再说？唔……随便你啦，可别影响我睡觉才好。[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，我想想，之前我们在这里是在做什么来着……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊对，我们刚给营地报了仇，然后要找找看这里还剩什么值钱的东西，好卖给附近驿站的那个谁——[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说要卖给附近驿站的哪个谁，小野猫？[l][cm]",
+        "charaName": "？？？"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喵呀呀呀——？！[l][cm][hide]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": "空"
+  ]
 }

@@ -58,7 +58,7 @@
     },
     {
       "para": {
-        "charaName": "奥格",
+        "charaName": "？？？",
         "text": "[show]欢迎来到温泉与学识之都——大书院！[l][cm]",
         "nameSide": "left"
       },
@@ -66,7 +66,7 @@
     },
     {
       "para": {
-        "charaName": "奥格",
+        "charaName": "？？？",
         "text": "[show]我看看嗷，一、二、三、四，再加上这位熔火元素，总共就是五位，五位——！[l][cm]",
         "nameSide": "left"
       },
@@ -74,7 +74,7 @@
     },
     {
       "para": {
-        "charaName": "奥格",
+        "charaName": "？？？",
         "text": "[show]五位就是异变之后拜访这里的第5555名访客！为了庆祝这个吉利的数字，我们温泉天国“奥格温泉村”将为你们提供宾至如归的服务！[l][cm]",
         "nameSide": "left"
       },
@@ -82,16 +82,16 @@
     },
     {
       "para": {
-        "charaName": "奥格",
-        "text": "[show]几位别在门口站着了，快进来登记入住吧~！[l][cm]",
+        "charaName": "？？？",
+        "text": "[show]几位别在门口站着了，快进来登记入住吧～！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奥格",
-        "text": "[show]温泉村接待处就在前面，一定要赏光哦~！[l][cm]",
+        "charaName": "？？？",
+        "text": "[show]温泉村接待处就在前面，一定要赏光哦～！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"

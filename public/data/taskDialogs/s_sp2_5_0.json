@@ -1,0 +1,198 @@
+{
+  "script": "s_sp2_5_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆姆姆……姆姆姆姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？这只史莱姆怎么晃来晃去的，发生什么了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们先吃下我的翻译黏液，我去问问它姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（吃下德莉的黏液。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……你还好吗？我看你好像有些不舒服姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我……我还好，谢谢公主殿下关心姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只是我的身体有些晕，可能是感冒了姆……但我等会还要去上课，该怎么办姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]上课？你是要给谁上课啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是这样的，我是营地的护育员凯尔姆，负责教育刚出生的史莱姆宝宝，你们可以把我理解成学校里的老师姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]每天我都要照顾十五个孩子，这可是个非常辛苦的任务姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可我今天生病了，没法照顾它们，至少没法全心全意地照顾它们姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但不能把这群孩子放着不管姆。不能把它们送回去，它们的家长今天都要上班，我现在得想个办法姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然你生病了那就好好养病吧，那群孩子就交给我们照顾了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？公主殿下你要来当护育员吗？孩子们可不好照顾姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不怕，昔日我在王宫的时候，可是能指挥成百上千只史莱姆的，照顾几个小孩子对我来说小菜一碟姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂，那可是照顾小孩子啊，跟你直接指挥史莱姆不一样吧，你确定你能行吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就算我不行，不是还有你们吗，你们可是我最可靠的伙伴啊姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……你让我们打架那还在行，照顾小孩子这种事……我从来没做过。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]事情不做怎么知道行不行，还是说两位技艺高超的契约者连小孩子都照顾不了吗姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行，你这活我接了，那群小孩子在哪？我们这就去照顾它们。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]它们一会就到了，不过在那之前我们得准备它们的午餐姆。[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可以拜托你们去带点木头回来吗？大概需要3个就好，我现在病得身子没法动了姆……[l][cm]",
+        "charaName": "护育员凯尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]3个木头是吧？好，交给我们了。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "（史莱姆在摇头晃脑……）"
+}

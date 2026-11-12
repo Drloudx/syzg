@@ -1,0 +1,203 @@
+{
+  "script": "fav_hero_055_2_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]——凯蒂！！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[show]啊，是迦南前辈，还有{myName}前辈！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]凯蒂，你怎么擅自下床了？！赶快躺回床上去！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[show]没事的，迦南前辈，我都躺了一个星期了，现在早就好了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "医生允许你下床了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[cm][show]允许了！不管是外面来的游医还是驿站的治疗者，都说我已经痊愈了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[show]不过毕竟是受了伤，这段时间可能会稍微虚弱一点……还有就是背上的伤口还需要时间复原。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "背上的伤口？"
+          },
+          {
+            "tag": "tag_11",
+            "text": "我不是给你做了强效生命药剂了吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[cm][show]是的！我还没多谢前辈你呢！多亏了你的药剂，我才能好得这么快，只不过……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[show]医师们说这个伤口上好像有些什么奇怪的力量，一时半会儿可能好不了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]奇怪的力量……？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]给我看看！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]…………[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[show]怎么样？前辈，我就说没什么事吧？这个伤口只是看上去有点长，但听医生说，应该要不了几天就能长好啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]嗯……确实没什么事……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]既然医生说了要你好好养伤，那你就别在这里忙来忙去了，多在床上躺会儿吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[show]诶～～！怎么迦南前辈也这么说！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]回答呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[show]……我知道了。我会好好休息的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那好，你可要说话算话，我们还有事，就先告辞了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "请千万要保重身体。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "凯蒂",
+        "text": "[cm][show]我都是大人了，会照顾好自己的！两位前辈你们就放心吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-场景：凯蒂的家"
+}

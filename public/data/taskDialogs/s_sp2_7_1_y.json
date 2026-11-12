@@ -1,0 +1,313 @@
+{
+  "script": "s_sp2_7_1_y",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇噢，看起来很靠谱的样子，比我们设计的那些烂木头要强多了姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]稍等，我这就要下面的史莱姆把这些路障放到门口，这样我就能放心去训练新兵了姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个，你，过来把这两位客人的路障放到门口姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]遵命！长官姆！[l][cm]",
+        "charaName": "史莱姆士兵"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇……看起来很有精神呢，这状态不是很好吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那是经过我亲自训练的士兵，大部分士兵还是浑浑噩噩的姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过门口防线建立好之后，我就有更多时间去训练那群小崽子了姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我现在就打算去练练它们，你们要跟着一起来吗姆？[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可以啊，我也想看看现在士兵的状态姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（跟萨宾姆来到一处空地……它开始训练一群史莱姆士兵。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]小崽子们，全都给我跑起来姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]跑起来，跑起来姆！[l][cm]",
+        "charaName": "史莱姆士兵们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们这群*史莱姆官话粗口*，吃着德莉公主的粮，就不要想着偷懒姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]喂！那只跑在最后的绿色史莱姆，你简直是个*史莱姆方言粗口*，能力孱弱的*史莱姆官话粗口*，还不给我跑起来姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了德莉公主，你们这些*史莱姆官话粗口*都给我跑起来，你们这群*史莱姆方言粗口*姆——！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]姆——！[l][cm]",
+        "charaName": "史莱姆士兵们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……萨宾姆在说什么？有些话我怎么听不懂啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个嘛……算是我们史莱姆的脏话吧，类似于傻瓜或者笨蛋，而且还些方言姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过我也是第一次看见萨宾姆这样，我原本以为它是一个很温柔的侍卫姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所谓慈不掌兵嘛，要把一群普通人训练成士兵都不容易，更何况是史莱姆，这样子也挺好的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这脏话也挺有意思的，让我也学学，*史莱姆方言粗口*啊。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]*史莱姆方言粗口*！哈哈哈真好玩啊，以后用这招骂人，别人可能都不知道我在骂他呢。[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "猫猫学坏了！",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哇……不能……不能说粗口啊……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]给我跑得更快一点，*史莱姆官话粗口*姆——！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过萨宾姆的一番雷霆训练后，原本松懈的史莱姆士兵变得更为坚毅了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]德莉公主，我的训练效果还不错吧，这些士兵一定能让你满意姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]满意是满意，就是训练的过程……还是有些吓史莱姆了姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还没结束呢，接下来我要让它们出去实战姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我已经安排好了，我要它们每只史莱姆出去野外历练，它们每班都需要干掉一头角猪，干不掉不许回来姆！[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？干不掉就不回来，是不是有些太严格了姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以可能还需要公主和两位契约者帮帮忙，最近野外角猪有点多，我想请你们帮忙清剿一些姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然主要目的还是希望你们能在清剿角猪的过程中，顺便保护一下那些士兵姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]出手也没问题，只要别帮助过度就行了，那群小崽子还是需要锻炼锻炼姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿，原来你还是关心它们的嘛……这事就交给我们吧！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟要训练那群小崽子必须得狠嘛，士兵必须经过战斗才能成长姆。[l][cm]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那就拜托你们了，我在这里等着你们姆！[l][cm][hide]",
+        "charaName": "侍卫萨宾姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "看看这个路障好用不？"
+}

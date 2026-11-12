@@ -1,0 +1,69 @@
+{
+  "des": "demo1001_4",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[show]……啊……[l][hide][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【角布林巡逻队】",
+        "text": "[cm][show]咕噜咕噜……咕噜！嘎噜噜噜～！[l]",
+        "nameSide": "right"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "营地……被摧毁了……",
+            "tag": "tag_10"
+          },
+          {
+            "text": "它们把帐篷和粮食都……",
+            "tag": "tag_10"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]呜啊啊啊啊啊啊啊——！[l][hide]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【角布林巡逻队】",
+        "text": "[cm][show]咕嘎？咕嘎嘎、咕噜噜噜——！[l][hide][cm]",
+        "nameSide": "right"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]我要清理干净你们！[l]吃你们的肉、喝你们的血！[l]把你们的骨头碾成粉！[l][hide][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "【米托拉】",
+        "text": "[cm][show]还有你也是，储备粮！你们一个都逃不了！[r]我要把你们吃干抹净！一片指甲都不会留——！[l][hide][cm]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "script": "demo1001_4"
+}

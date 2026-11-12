@@ -1,0 +1,443 @@
+{
+  "script": "fav_hero_033_4_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]嗯……这娃娃开了个口子，这要怎么缝补啊。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（给乌帕示范。）",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]嗯！学会啦！我来试试……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]你看看效果怎么样？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "呃……你把里面的布料也缝起来了。",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]啊……这……这个……那该怎么办呀？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "你得把这些缝错的线拆出来……",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]呜哇，岂不是都白干了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]对了，{myName}的工匠锤不是很厉害吗？你能挥一挥锤子就把这些全都缝好吗？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "理论上是可以的。",
+            "tag": "tag_12"
+          },
+          {
+            "text": "不过这招你没法学啊。",
+            "tag": "tag_12"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]也是哦。可是——这真的好无聊啊。我想跑起来，我想拿起武器战斗，就这么坐在原地把线穿来穿去有什么意思嘛！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我也来和乌帕一起来缝吧。",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]咦，你也要一起来吗？可这会不会太麻烦你了……这可超无聊的哦……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "可不要小看缝纫，这也是一种工艺。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "我见过许多乐此不疲的裁缝专家。",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "而且，太浮躁可不是好事哦。",
+            "tag": "tag_18"
+          },
+          {
+            "text": "所以他们才让你做这种训练吧。",
+            "tag": "tag_18"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]这也是训练啊……嗯，也是。要忍耐无聊重复的工作，就和面对强大的对手一样，都很有难度，确实可以称之为训练。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]而且还有{myName}陪伴……好吧！就把这次任务当做一场修行吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]来！我们一起把这一车子的破布全部缝完吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "哦哦——！",
+            "tag": "tag_22"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（和乌帕缝补一段时间后……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]呀！好疼！我扎到手啦……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "让我看看你的手。",
+            "tag": "tag_27"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]（咦！突、突然被{myName}抓住了手——感、感觉好奇妙——）[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "好惨。",
+            "tag": "tag_29"
+          },
+          {
+            "text": "我给你稍微消消毒。",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]这、这没什么啦！我乌帕可是魔爪湖未来的圣女，一点点小伤不算什么——哇好痛！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "（给乌帕的手指上抹了一点治疗药水。）",
+            "tag": "tag_31"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]呃……谢、谢谢，{myName}……嘿嘿。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "怎么了，乌帕？",
+            "tag": "tag_33"
+          },
+          {
+            "text": "难道还在出血吗？",
+            "tag": "tag_33"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]没、没有啦！我只是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]我只是觉得长这么大了还在缝娃娃的时候被针扎……感觉好丢人哦。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "乌帕以前也缝过东西？",
+            "tag": "tag_36"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]这个嘛……就是我之前信里说过的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]那时我还很小。我和妹妹吵了架，不小心把她的娃娃撕烂了。然后她就躲进房间哭了很久很久，好几天都没理我。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]我感觉有些……呃，不好意思，所以决定一个人偷偷去缝好那个娃娃。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]我当时一点都不懂针线活，只能硬着头皮干，也缝了很久很久。我觉得当时我的手都被扎成海绵了，疼得要命。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]虽然最后修得也不怎么样……但好歹有个娃娃样。还没等我把娃娃放回去，妹妹就找到我，和我和好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]后来我把娃娃放回了她的房间……她也没和我提起这件事。可能她还不知道是我缝的吧。毕竟我到现在都这么笨手笨脚……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "她肯定知道的。",
+            "tag": "tag_43"
+          },
+          {
+            "text": "她肯定和我一样，看到你的手了。",
+            "tag": "tag_43"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[cm][show]是嘛……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]嘿嘿，不知道为什么，我突然感觉做这些缝线活儿没那么无聊了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "text": "[show]咱们一鼓作气，把剩下的布料都缝补完吧——！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "嗯～！",
+            "tag": "tag_47"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一天的努力，车上的玩偶都得到了修复。乌帕的心境似乎也提升了不少。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "乌帕-心境训练"
+}

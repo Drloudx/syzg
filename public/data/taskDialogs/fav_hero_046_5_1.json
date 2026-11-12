@@ -1,0 +1,307 @@
+{
+  "script": "fav_hero_046_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]好吃——！这比矿场里的烂土豆要好吃一万倍！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "慢慢吃，不够可以再做。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]咳咳……对不起，平常吃得太差，吃到好的食物就有点急了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]如果可以的话……再给我来十串可以吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "你不是已经吃了十串了吗？"
+          },
+          {
+            "tag": "tag_7",
+            "text": "看来迈妮娅的胃口不小啊。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]嘿嘿……矿工的食量就是这么大的啦，我还试过一口气吃掉四十多颗土豆呢。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（一顿胡吃海塞后，迈妮娅总算是吃饱了。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嗝——吃饱啦！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]昨天把前工头和同事骂一顿，今天又吃一顿好的，这两天让我体会到了过去从未有过的快乐。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "所以你昨天是怎么骂他们的？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]就在众人面前把说他们做过的事情说一遍，比如克扣工钱、经常甩锅什么的，把憋在肚子里的气一股脑撒出去。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]现在想来……这还是你给我的勇气呢，是你的鼓励让我走出了这一步。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]我从苦力监牢逃出来以后，就一直想着将就，连力气都控制不了的我有什么资格追求更好的生活呢？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]反正怎么也不会比以前关在监牢里要好，然后遇到什么都选择忍让，受了很多委屈……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]但上次那群家伙跟踪我们，想要打扰我们的行为，我无法原谅。那时是我第一次有了要不惜代价也要反抗的想法，我想保护我和你一同度过的时光。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]所以我当时就出手了，然后也借着你的鼓励辞去了工作。总之我说那么多……就是想说一声……谢谢你，{myName}。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "能帮到迈妮娅也是我的荣幸。"
+          },
+          {
+            "tag": "tag_19",
+            "text": "今后不要再被人欺负了。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]知道啦，我接下来会去找工作的，听说巴诺姆村那边有很多机会，我打算去那边看看。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_21",
+            "text": "遇到麻烦随时可以来这里。"
+          },
+          {
+            "tag": "tag_21",
+            "text": "我会尽量帮你的。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]嗯……我会的，不过也不能完全依赖你，我还是得凭本事找到工作，自己养活自己才行。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]我想……“一定要有尊严地活着”就是这个意思吧。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]对了……这个给你……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "这是……"
+          },
+          {
+            "tag": "tag_25",
+            "text": "好大的钻石！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]这是我好不容易才找到的，也是我最喜欢的石头，就送给你啦。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]你是我最珍贵的伙伴，是你让我开启了新的人生。以后的路还请多多关照，{myName}。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "嗯，今后就多多关照了，迈妮娅！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]嗯嗯……吃饱了，突然想好好休息一下……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]终于从那个痛苦的监牢中解放出来了，我想好好地睡一觉。醒过来之后又是新的一天，{myName}也在身边……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（躺在迈妮娅身边。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]呼呼……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（迈妮娅放下铁镐，躺在草坪上，握着你的手进入了梦乡。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（嗯……就不抽开手，让她好好休息一下吧。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（就这么一直陪在迈妮娅身边，她直到傍晚才醒来……）[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "迈妮娅-名为尊严的人生-进入战役"
+}

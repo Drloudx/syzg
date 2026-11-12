@@ -1,0 +1,283 @@
+{
+  "script": "fav_hero_005_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼，先走到这里吧，也该休息一下了。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]旁边正好有一条小溪，我们去那儿坐坐吧，顺便补点水。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（跟随茜塔在溪边休息。）",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿……还是这种地方比较舒服啊，脚下是软软的泥土，眼前是清澈见底的小溪。不像秋日荒野，那土干得像石头一样，方圆百里一滴水都见不着。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要不是在那种干燥的地方生活，我这双脚说不定早就痊愈了。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你的脚恢复得怎么样了？",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好奇吗？那就给你看看吧。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（茜塔脱下义足，露出正在恢复的双脚。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……也算恢复了一些吧，至少看不出咬痕了，不过距离完全康复可能还需要一段时间。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "所以……当时发生什么事了？",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]唉，很久以前的烂事了。既然你感兴趣，告诉你也没关系。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这双腿被咬断大概是好几年前的事了，当时我还是个在村里呆着的小姑娘，遭遇了那场名为“大兽潮”的灾难。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当时第一波兽潮就冲破了村子的防线，我和伙伴四散而逃，在一个树洞里躲避魔物。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]后来为了拯救一个同伴，我只身引开了一只发狂的魔物。最后我拼尽全力把那只魔物干掉了，不过我的双脚也在和它的搏斗中被咬掉了。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你应该能想象，在那样的环境下失去双脚意味着什么。丧失行动的我，最可能的下场就是被路过的魔物撕碎。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过幸运的是在魔物发现我前，我就被驿站联军的菲尔德蕾和艾尔莎收留了。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我很感激他们愿意收留我这个没有双脚的累赘，自此之后我就一直为驿站工作了，以契约精神给予他们回报。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "原来还有这么一段故事……",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]陈芝麻烂谷子的旧事了，我很少对别人说我的往事，你算是第一个完整听完我故事的人。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟……你也算是我的恩人嘛。你为我打造义足这份情，我不会忘记的。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "只是做了一件小事而已。",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]愿意替我做这件小事的人可不多。虽然在驿站收到过不少崇拜的目光，但真正关心我身体情况的人寥寥无几，更别说亲自为我做一副义足了。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实我不太擅长和人相处，第一次见你的时候可能也显得有点冷淡。但你却愿意了解我关心我，就这点下来就足以让我把你当成伙伴了。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，不只是契约的伙伴哦，还是值得交心的好伙伴……[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "茜塔也是我的知心伙伴。",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，谢谢你。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（茜塔穿上义足，站起身来。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在我穿上你为我打造的义足继续前行，日后如果你遇到困难，我也愿意成为你的武器，为你扫清一切障碍。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了，休息得差不多了。我们继续走吧，时间还早，我愿意告诉你关于我更多的故事。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我们走！",
+            "tag": "tag_32"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，接下来……就说说我刚成为侍女的那段时间的事吧……[l][cm][hide]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "茜塔-水魔人的假期-进入战役"
+}

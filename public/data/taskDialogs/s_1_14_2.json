@@ -1,62 +1,62 @@
 {
+  "des": "满载的货车-2",
   "script": "s_1_14_2",
   "exps": [
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]嘿咻……这样就好了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]货物已经发车……希望不会被劫了才好。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]唉？你当真了？[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]啊哈哈哈，开玩笑的啦。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]这附近可是我的地盘，哪有那么容易被劫啦！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]新的订单要等一段时间才会来，趁这个时候去忙些别的事情吧！[l][cm][hide]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]新的订单要等一段时间才会来，趁这个时候回去找那商人报告下吧。[l][cm][hide]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": "满载的货车-2"
+  ]
 }

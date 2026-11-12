@@ -1,0 +1,231 @@
+{
+  "script": "fav_hero_032_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，就是这个位置，等会刺杀目标会路过这里。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]目标是索利德山的山匪头目，常年在索利德山活动，经常在这里打劫商队。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]他还喜欢带着队伍袭击矿工。曾经有一批矿工因他们的袭击而死，而事后他们把责任推给了岩蟾蜍。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以我们这次刺杀，就要好好让他死于岩蟾蜍的“意外”。[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你打算怎么做？",
+            "tag": "tag_7"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]据我观察，附近有好几个岩蟾蜍的巢穴。只要这条路上闹出动静，在岩洞里休息的岩蟾蜍就会出来，好好教训打扰它们的混蛋。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这样我们就能完成一次“意外刺杀”，也是一次完美的、找不到凶手的刺杀。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……山匪头子被岩蟾蜍袭击身亡，这是个多好的新闻啊……[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊不好意思，刚刚有些想得太入神了。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]等会的具体计划就是，我点火引爆炸弹把岩蟾蜍吵醒，等到岩蟾蜍把他们的队伍冲散以后，我就在这里用弹弓射石子，把他干掉。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说用弹弓的话准度太差？而且伤害也不够……没办法啊，眼下只能这样处理了。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]实在射不中，我就直接冲下去把他干掉算了，大不了就是一次“糟糕的刺杀”。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说你有办法扔大石头？虽然知道你是工匠，但要在这么短时间内造一台投石机怕是很困难吧。[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（拿出工匠锤。）",
+            "tag": "tag_16"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哇！居然……居然一下子就造了一台小投石机出来，你也太厉害了！[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……这样就能完成一次完美的刺杀了。[l][cm][hide]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（一番布置后，两人潜伏起来。待到山贼队伍进入陷阱时，诺姿引爆炸弹。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！什么……什么情况？这响动是从哪里来的？[l][cm]",
+        "charaName": "山匪头子"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（炸弹爆炸让队伍乱作一团，随后遭被惊醒的岩蟾蜍袭击，队伍彻底失去秩序。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（随后诺姿用投石机精准砸中了躲在手下中间的山贼头子，完成了一次“完美的刺杀”。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇——！好久没有试过这么酣畅淋漓的刺杀了。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]把你一起带来果然是对的，你也是刺杀的高手啊。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]想来这还是我第一次和他人一起合作刺杀，该怎么庆祝呢……[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们就去驿站好好吃一顿怎么样？就用这次刺杀的酬金。[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "乐意之至！",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好，那我们走吧～[l][cm][hide]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "诺姿-上次中毒那事……-进入战役"
+}

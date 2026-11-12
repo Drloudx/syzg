@@ -50,7 +50,7 @@
     {
       "para": {
         "charaName": "米托拉",
-        "text": "[show]喂，你们都看到了，我根本没动那玩意儿啊！为什么……[l][cm][hide]",
+        "text": "[show]喂，你们都看到了，我根本没动那玩意儿啊！为什么……[wait=500][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"

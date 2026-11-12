@@ -1,107 +1,106 @@
 {
-  "script": "m_5_4_2",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "温泉村员工",
-        "text": "[show]老板，你可算回来了！大书院的援军找来了吗？[l][cm]"
+        "text": "[show]老板，你可算回来了！大书院的援军找来了吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奥格",
-        "text": "[show]这些就是援军！你先喘口气，现在情况怎么样了？[l][cm]"
+        "text": "[show]这些就是援军！你先喘口气，现在情况怎么样了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "温泉村员工",
-        "text": "[show]情况……情况很糟糕。[l][cm]"
+        "text": "[show]情况……情况很糟糕。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "温泉村员工",
-        "text": "[show]虽然靠着那些院卫我们勉强守住了村子，但芙洛波们的攻势源源不断，几乎每两个小时就有一次，我们已经快要顶不住了。[l][cm]"
+        "text": "[show]虽然靠着那些院卫我们勉强守住了村子，但芙洛波们的攻势源源不断，几乎每两个小时就有一次，我们已经快要顶不住了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "温泉村员工",
-        "text": "[show]但这还不是最糟糕的，最糟糕的是，有客人不听劝阻，在昨天夜里偷偷跑到温泉区去了！[l][cm]"
+        "text": "[show]但这还不是最糟糕的，最糟糕的是，有客人不听劝阻，在昨天夜里偷偷跑到温泉区去了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奥格",
-        "text": "[show]什么？你们没有告诉他们，现在外面有魔物出没吗？[l][cm]"
+        "text": "[show]什么？你们没有告诉他们，现在外面有魔物出没吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "温泉村员工",
-        "text": "[show]说了啊！但那几个家伙特别嚣张，昨天为了安抚他们，我们又上了些佳酿……[l][cm]"
+        "text": "[show]说了啊！但那几个家伙特别嚣张，昨天为了安抚他们，我们又上了些佳酿……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "温泉村员工",
-        "text": "[show]等早上送餐的时候，我们才发现他们屋里已经没人了……倒是行李都留了下来。[l][cm]"
+        "text": "[show]等早上送餐的时候，我们才发现他们屋里已经没人了……倒是行李都留了下来。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]我的乖乖！喝醉之后跑到冰天雪地、还有魔物出没的温泉？这听上去已经不是一般的作死了！[l][cm]"
+        "text": "[show]我的乖乖！喝醉之后跑到冰天雪地、还有魔物出没的温泉？这听上去已经不是一般的作死了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奥格",
-        "text": "[show]啧……那些家伙毕竟是客人，就算再怎么作死，我也不能眼睁睁看着他们去死！[l][cm]"
+        "text": "[show]啧……那些家伙毕竟是客人，就算再怎么作死，我也不能眼睁睁看着他们去死！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奥格",
-        "text": "[show]看来这次的契约内容，得追加一份救援委托了！[l][cm]"
+        "text": "[show]看来这次的契约内容，得追加一份救援委托了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哈哈，我们办事，您放心！[l][cm]"
+        "text": "[show]哈哈，我们办事，您放心！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]只要碰到的时候他们还活着，我就能保证把他们全须全尾地带回来！[l]"
+        "text": "[show]只要碰到的时候他们还活着，我就能保证把他们全须全尾地带回来！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -122,68 +121,69 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]我……我准备好了！[l][cm]"
+        "text": "[show]我……我准备好了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]对于冒险，我已经期待多时啦~！[l][cm]"
+        "text": "[show]对于冒险，我已经期待多时啦～！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]干嘛？就我们这个配置，还需要进行战前动员吗？[l][cm]"
+        "text": "[show]干嘛？就我们这个配置，还需要进行战前动员吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "软软",
-        "text": "[show]咕咕！咕咕！[l][cm]"
+        "text": "[show]咕咕！咕咕！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]哈哈，这不是为了让我们的金主更有信心嘛！[l][cm]"
+        "text": "[show]哈哈，这不是为了让我们的金主更有信心嘛！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]既然大家都已经准备好了，那就立刻开始行动吧！[l][cm][hide]"
+        "text": "[show]既然大家都已经准备好了，那就立刻开始行动吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_4_2",
   "des": "与【雪域探险家奥格】对话【这里就是温泉村啊……】"
 }

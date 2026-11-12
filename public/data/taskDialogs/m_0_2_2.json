@@ -1,0 +1,30 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼！吃饱喝足，就连拳头都变得有劲多了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可恶的强盗们！你米托拉爷爷来啦！给我在巢穴里洗干净脖子等着吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我们走！趁着天色还早，去把它们全干掉！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "m_0_2_2",
+  "des": "喊米托拉出发"
+}

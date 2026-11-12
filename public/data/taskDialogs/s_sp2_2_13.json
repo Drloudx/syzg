@@ -1,0 +1,159 @@
+{
+  "script": "s_sp2_2_13",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊？分身？[l][cm]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来是分身啊……[l][cm]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？看来你有线索了？[l][cm]",
+        "charaName": "露库希安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是啊。我刚刚才在山顶上看到这家伙呢！[l][cm]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要不是你们说那是分身，我还在想，这家伙到底是怎么才能从山下跑上来的呢！[l][cm]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]也就是说，那家伙现在在山顶咯？[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "谢了，米拉贝尔。",
+            "tag": "tag_9"
+          },
+          {
+            "text": "多谢你的情报。",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哈哈……咱们之间谢什么谢啊！[l][cm]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]倒是你们有空的话，记得多上山来玩啊！[l][cm]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我这边可是随时准备着要招待你……你们呢。[l]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我们会的。",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没错，我们有空就来！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在还有事，我们就不多说啦！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哈哈，路上小心！下次来的时候，我请你们吃山货大餐！[l]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "一言为定。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "那就等着你的手艺了！",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哦！一言为定！[l][cm][hide]",
+        "charaName": "米拉贝尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "s_sp2_2_13"
+}

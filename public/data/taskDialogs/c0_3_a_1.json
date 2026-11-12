@@ -1,68 +1,87 @@
 {
-  "script": "c0_3_a_1",
   "des": "空",
+  "script": "c0_3_a_1",
   "exps": [
     {
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]怎么了？一脸凝重的样子，有什么问题吗？[l][cm]"
+        "text": "[show]嗯～真好吃～感觉力气也增加了不少呢！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]你说脚印变得更凌乱了……？[l]"
+        "text": "[show]居然把我的东西随意糟蹋，可恶的角布林！等我找到你们的老巢，我要给你们好看！[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "那也得先找到才行嘛。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]这不是好事嘛，说明我们已经很接近那些家伙的老巢了！[l][cm]"
+        "text": "[show]——呜哇啊啊啊！[l][cm][hide]",
+        "charaName": "？？？"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]接下来只要在周围稍微搜寻一下就好……[l][cm][hide]"
+        "text": "[show]救、救命啊——[l][cm]",
+        "charaName": "荒野客猎人"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "荒野客猎人",
-        "text": "[show]救、救命啊——[l][cm]"
+        "text": "[show]嘿嘿，真巧！这不就是现成的向导嘛，说啥啥就来！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]你看，我们还有现成的向导呢！就用救命之恩让他帮我们带路吧！[l][cm][hide]"
+        "text": "[show]走，{myName}！就用救命之恩让他帮我们带路吧！[l][cm][hide]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }

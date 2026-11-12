@@ -1,0 +1,290 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]我们到了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]这里除了迷路的野兽之外很少有其他人打扰，从前我也是在这样静谧的自然中进行舞蹈的呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]无论有什么问题都请大方的指出来吧，那么——表演开始。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（拉碧丝深吸一口气，向你展示了一段优雅的舞步。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]呼……还没有结束，刚才所表演的只是改正后的其中一部分，接下来是另一段动作。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（拉碧丝改变了动作，与先前缓慢的节奏相斥，但你并没有看出多大的差别。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]呼……嗯……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（拉碧丝继续舞动着身姿，或许是被限制了魔力，你总觉得她的动作有些生硬。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]嗯……差不多就是这样，{myName}怎么看？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "拉碧丝是不是太紧张了？"
+          },
+          {
+            "tag": "tag_12",
+            "text": "感觉不太适合拉碧丝的风格"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[cm][show]好吧，从你的反应来看我已经知道答案了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]这些动作还没有经历强度训练，加上被你一直认真注视着……的确做不到完美。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]但这些都不是关键，关键的问题在于我自身。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]身为舞团的领导者，我精通的不是夏库塔拉那样热情、或者是可可娜那般充满魅力的舞步，而是最普通最平凡的祝祷之舞，我的舞步甚至算不上顶尖。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]祝祷舞的风格太过温婉，最开始来到妖精舞台的酒客们都抱怨“与其观看这样的舞蹈，不如直接回家睡觉”。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]我因此尝试了许多不同的调整，最终还是将其他成员的风格融合在一起才令妖精舞台大放异彩。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]刚才向你展示的改进动作也是以她们擅长的内容作为基础，果然不太尽人意呢……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "拉碧丝能做到这些已经很厉害了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[cm][show]嗯？这种安慰的话可挽救不了观众们的心哦～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]我明白酒客们追崇的是一时的新鲜和刺激，可我无论再怎么编排新的创意，还是离不开原本的步调。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]离比绍检查绩效的日子不远了，只要能在下一次演出前找到突破的方法……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "要不要先休息一下？"
+          },
+          {
+            "tag": "tag_24",
+            "text": "试着放松心情再进行刚才的舞蹈呢？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[cm][show]嗯……越到关键的时刻越不能心急，这种时候就该做一组热身运动来放松自己。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]{myName}想尝试吗？每当舞团的成员们上台前感到紧张时，我就会让她们跟着我一起，百试百灵～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（拉碧丝微笑着拉伸自己的四肢，你突然发觉她的动作似曾相识。）[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "拉碧丝，等一下……！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[cm][show]什么？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]你看上了……热身的动作？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]我也不记得自己从什么时候开始学会的呢，“妖精舞台”建立之初我就已经在每场演出前用它进行热身了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]不过……既然{myName}有印象，说不定和深渊之外的知识有所联系。我们找到了一个不错的突破口！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]时间不多了，我还得去照看舞团的各位，刚才的那些动作……一旦我有什么新的发现会立刻告知你。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]今天也感谢你的帮忙呢，{myName}～[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "拉碧丝-进入战役【fav_hero_007_2】",
+  "script": "fav_hero_007_2_1"
+}

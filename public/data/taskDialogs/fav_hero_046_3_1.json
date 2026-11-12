@@ -1,0 +1,280 @@
+{
+  "script": "fav_hero_046_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还是你的营地能让我感到安心，可以好好休息一下了。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这些是我在家里挑出来的石头，你瞧瞧怎么样？[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（迈妮娅摊开一张破布，里面装着形状、颜色各异的石头。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这些石头都是我在歇息的时候捡的，里面既有普通的小石子也有宝石，只要是漂亮的石头我都会收藏。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个习惯我从小就有了，看到漂亮的石头就会收藏起来。哪怕我和那些石头隔着一条峡谷，我也会搭桥或者绕路过去拿。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之你挑一挑，",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "我……[l]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "迈妮娅！",
+            "tag": "tag_9"
+          },
+          {
+            "text": "（扶起快倒下的迈妮娅。）",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]……[l][cm][hide]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（迈妮娅倒下后睡了很久……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊！我……我这是睡着了吗？[l]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "嗯，睡了很久。",
+            "tag": "tag_13"
+          },
+          {
+            "text": "先别急着起来，好好休息。",
+            "tag": "tag_13"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没事，我现在已经恢复得差不多了，至少站起来是没问题的啦。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然一直强撑到了现在，但终于还是没撑住了……果然就算是我这种强壮的身体，也扛不住连续加班。[l]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "迈妮娅在矿场的工作很辛苦吗？",
+            "tag": "tag_16"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是挺辛苦的，早上六点钟上班，晚上九点钟下班，每个月休息两次。不过三餐和住宿是免费的，虽然都不怎么好就是了……[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]工作内容就是什么杂活都干，检查设备、帮忙拿饭什么的，有时候晚上还要帮着工头收拾……烂事一堆啦。[l]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "干这些活没有额外工钱吗？",
+            "tag": "tag_19"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哪有那种好事，在工头眼中，这些活都是应该干的，没干好还得被扣工钱呢。[l]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那也有些太惨了……",
+            "tag": "tag_21"
+          },
+          {
+            "text": "没必要在这种地方干了啊。",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没办法，我只有在灾害研究所那边有比较轻松的工作。但现在那边正在休息，我能去的地方只有矿场，要不然连养活自己都做不到。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在每天上下班都提心吊胆的，在前几天请假的时候还被工头训了一顿呢。我感觉自己的压力，不比那些和魔物争斗的契约者要小。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……一想到能来你的营地，忍受一些辛苦的工作也是值得的。[l]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "迈妮娅还是太委屈自己了。",
+            "tag": "tag_25"
+          },
+          {
+            "text": "辛苦工作应该获得相应的报酬才对。",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这个世界不缺力气大，而我除了肌肉以外一无所有……也就灾害研究所能容得下我这种笨蛋了。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]正因为我没多少可以选择的工作，所以才只能在矿场被他们压榨啊……[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没事，我的身体还能撑得住。好不容易来到你的营地，就不提这些糟心事了，我们来聊点开心吧。[l][cm]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就来……聊聊这些漂亮石头怎么样？[l][cm][hide]",
+        "charaName": "迈妮娅"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（迈妮娅支开了辛苦工作的话题，和你聊起了石头的事情，你也很识趣地接过话题，和她聊了一个下午。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（不过迈妮娅的工作强度实在太大，她本人又因自卑而不敢反抗，这件事必须解决才行……）[l][cm][hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "迈妮娅-绿皮矿工倒下了-进入战役"
+}

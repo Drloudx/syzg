@@ -1,0 +1,61 @@
+{
+  "des": "与米托拉聊聊【关于之前那块碎片……】",
+  "script": "s_0_6_1",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]怎么了，{myName}？你手里的是……角布林营地里的那块碎片？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "我总觉得其中还有什么蹊跷。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "它一直在包里微微闪着光。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]唔……我也稍微有点在意，但你有办法解决嘛？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]欸？你说冥冥中有一种感觉在指引你？但我也要做好准备？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这、这是什么意思啦……感觉很可怕的样子……[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不、不过我相信你！看你这么有把握，我也豁出去了！需要我做准备的时候，就赶紧告诉我吧！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "script": "fav_hero_005_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呼……抱歉让你等了这么久，其实我也是有些身不由己的。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在刚下班的时候，立刻就收拾好了东西准备过来，但不巧的是地窖那边出了问题。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]杰米叫嚷着地窖又跑出来一群蜘蛛，驿站里大多数契约者都去执行任务了，所以我只能留下来加班，把那群蜘蛛打回去。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了解决那群蜘蛛，我可费了一番力气啊……幸好那群蜘蛛数量不多，我没有在驿站里纠缠太久。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉……这次肯定得要跟艾尔莎要更多加班费才行……[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "茜塔辛苦了。",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没什么……辛苦过后能来到你的营地好好休息，感觉也很不错啦。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过毕竟是战斗过后直接跑过来，脸和头发上都是汗，直接这么睡觉可不太好，还是得把头和脸洗一遍才行。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "好，你稍等一下。",
+            "tag": "tag_11"
+          },
+          {
+            "text": "我帮你洗头吧。",
+            "tag": "tag_11"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（给茜塔搬来一盆水和一只大毛巾。）",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊？要帮我来洗头？怎么能这样麻烦你……[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "主人照顾客人是应该的。",
+            "tag": "tag_14"
+          },
+          {
+            "text": "而且比起你我可一点都不麻烦。",
+            "tag": "tag_14"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]可……可是……这样也太让人害羞了……[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好吧……看你这架势我都不好意思拒绝了，谢谢你。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（茜塔坐下后，开始给茜塔洗头。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯嗯……这还是第一次有人替我洗头，感觉还挺舒服的。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "茜塔的头发比想象中要柔软呢。",
+            "tag": "tag_19"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]毕竟我是水属性魔人啊，头发稍微水灵一点也是很正常的。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽说水灵的头发让很多同事羡慕，但这对于我来说不全是好事……比如曾有一群小孩喜欢揪我的头发，就因为摸起来舒服。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "虽然有点不幸。",
+            "tag": "tag_22"
+          },
+          {
+            "text": "但这正好说明茜塔的头发比一般人好不是吗？",
+            "tag": "tag_22"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是比一般人好玩吧，对于处在深渊这个环境来说，头发好可没什么用处。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过……还是得感谢你的夸奖。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（给茜塔洗脸。）",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯嗯……[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，这样就可以了，非常感谢，我下次来的时候给你带点驿站的点心。[l][cm]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我接下来……要好好休息一下了。[l]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "一路上辛苦了。",
+            "tag": "tag_29"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯……你也辛苦了。[l][cm][hide]",
+        "charaName": "茜塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（说罢，茜塔一股脑扎进了床上，很快就呼呼大睡起来。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "茜塔-侍者的休息时间-进入战役"
+}

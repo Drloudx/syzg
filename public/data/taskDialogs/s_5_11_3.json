@@ -1,374 +1,374 @@
 {
-  "des": "白雪下的经商之道-阿娜洛洁互动",
-  "script": "s_5_11_3",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]哼哼……看看周围的学生，缪夏你有什么好的思路吗？[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]你想通过果饮来吸引学生吗？可正如你所说……大家应该不喜欢喝冰凉的饮料。[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]在生意之前，你必须先明确目标客户群体。要清楚哪些人会购买你的产品，而哪些人怎么说都不会成为你的客户。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]仅凭对当地环境的了解就开始做生意是不够稳妥的，你最好先确认目标客群的需求，再决定要采购的商品。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]要卖给学生，还是卖给探险家，或是卖给护卫队，这都是你需要思考的问题。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]当然，说了这么多都只是概念上的，我这就来给你示范一遍。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]可你说那么多，货物都已经是果饮了啊。就算确定了受众，那接下来要怎么办？[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]哼，你们是不是忘了我手上也有货啊？让你们开开眼吧，看！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]这是……金铃草的粉末？[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]没想到你能闻出来啊，没错，这就是金铃草研磨后的粉末。这些粉末提神效果依然不错，而且副作用也很小。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]金铃粉？这东西要怎么卖啊？[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]大书院里升学压力挺大的吧，这里的学生都需要提神醒脑、集中注意力的方法。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]而金铃草恰好有这样的效果，不过直接拿出来卖肯定赚不了多少，我刚来的时候也正为这事头疼。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]不过嘛，既然你手上有果饮，那我可要狠狠赚一笔加工费了。来，拿一杯果饮出来，只要我稍作加工，就能让你大赚一笔。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（阿娜洛洁将一些粉末倒入果饮之中，然后抿了几口。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]嗯……这个味道不错。我们把金铃粉加进这些饮料里，告诉客人这饮料有\"提神醒脑\"的功效，这样就能卖得好了。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "charaName": "阿娜洛洁",
+        "text": "[show]嗯……这个味道不错。我们把金铃粉加进这些饮料里，告诉客人这饮料有“提神醒脑”的功效，这样就能卖得好了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]好像……确实有道理！[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]管他有没有道理，拿来卖就好了——快来看咯快来看咯，同学们！今天刚进的新果饮！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]一瓶提神醒脑，两瓶精神抖擞，三瓶高分到手！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "学生A",
         "text": "[show]咦？提神醒脑？真的有用吗？[l][cm]",
-        "charaName": "学生A"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]有没有用，客人一试便知。为了取得你们的信任，我先提供一小杯免费品尝。如果满意的话，还望多多支持。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "学生A",
         "text": "[show]免费……那好，我试试……[l][cm]",
-        "charaName": "学生A"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "学生A",
         "text": "[show]嗯……喝下去之后确实感觉头脑清醒了不少……？！正好我过几天就要考试了，有了这些饮料我就能狠狠熬夜复习了，给我来10瓶！[l][cm]",
-        "charaName": "学生A"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]好嘞，缪夏，快去给客人准备好。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]好，我马上去准备！[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "学生B",
         "text": "[show]咦……那东西好像真的有用啊，正好我也要考试了，给我也来10瓶！[l][cm]",
-        "charaName": "学生B"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "学生C",
         "text": "[show]提神醒脑，提高成绩……给我来100瓶！[l][cm]",
-        "charaName": "学生C"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]好的好的，各位慢慢来别着急，货还有很多，保证人人有份！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "charaName": "阿娜洛洁",
+        "text": "[show]好的好的，各位慢慢来别着急，货还有很多，保证人人有份！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（短短1小时后，所有饮品就都卖完了。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]还有这种卖法，真是让我大开眼界，这里的学生到底有多需要熬夜复习啊……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]真是……真是太神奇了！这种化腐朽为神奇的方法连老爸都会拍手叫好！[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]哼，这只是小意思。对了，这次的收益咱们五五分吧，就当是给我这个出主意的人一点奖励。[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]没关系！就算只拿三成我也能赚！这次真的非常感谢阿娜洛洁前辈！[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]我手头上的本事还多着呢，就凭大书院这消费能力，我还能狠狠赚上一笔！[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]我……我可以拜您为师吗？！只要能学到您的一半……不，哪怕只学到您一成的本事，我就能赚到钱了，求您教教我！[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]嗯……我是一个旅行者，可能没法长期驻留在大书院……[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "货殖系学生缪夏",
         "text": "[show]没关系！你只要偶尔过来就好。只要你给我支招，等我赚到钱一定会分给你一部分的。[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "阿娜洛洁",
         "text": "[show]哼，那我们说定了哦，我亲爱的徒儿～[l][cm]",
-        "charaName": "阿娜洛洁"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]谢谢……谢谢师傅！[l][cm]",
-        "charaName": "货殖系学生缪夏"
-      }
+        "charaName": "货殖系学生缪夏",
+        "text": "[show]谢谢……谢谢师傅！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（两人聚在一起围绕着生意的话题聊了很久……）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]真是不可思议，能实现这种化腐朽为神奇的生意，阿娜洛洁小姐真是个很了不起的人。[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]唉……这有什么了不起的，那家伙鬼点子多得很，你可别被她骗了。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]听这些商人东拉西扯真没意思，不过反正报酬也拿到了，就随他们去吧。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]我们先走吧，{myName}，艾薇杜尔，今天我们去吃点好的……最好来点果饮下菜！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]好耶！我们走吧！[l][cm][hide]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ]
+  ],
+  "script": "s_5_11_3",
+  "des": "白雪下的经商之道-阿娜洛洁互动"
 }

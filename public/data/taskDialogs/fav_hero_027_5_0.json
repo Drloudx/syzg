@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]果然够果断！不愧是梅莉莉的主人！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]时间刚好，我们出发吧。今天的客人可能会很多，接下来可能会辛苦半天哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]放心吧，半天之后就是我们的自由时间啦，我们可以好好找个地方逛逛！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "梅莉莉-营地对话【我们出发吧。】",
+  "script": "fav_hero_027_5_0"
+}

@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]非、非非非常不好！她又到驿站来了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]虽说是我的粉丝……可我才不想和粉丝有过多的接触！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "可可娜",
+        "text": "[show]你来驿站就知道到底怎么回事了……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "可可娜-还好吗，可可娜？",
+  "script": "fav_hero_009_3_0"
+}

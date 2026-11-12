@@ -1,0 +1,118 @@
+{
+  "script": "s_sp2_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]菜谱姆？那是什么……无聊的东西姆？[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是库库姆说过的，你从遗迹里拿到了什么先时菜谱的东西……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊，你说那个啊，我倒不在乎那东西是不是菜谱，在我眼中只是有价值的历史文献而已姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]历史文献？你是说上面还有记载一些什么重要的历史吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那当然了，任何记录生活细节的书本都是珍贵的文献姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]据我所知，上面除了记载了一些菜谱以外，还有记录当年彩虹史莱姆的饮食习惯，这可是研究古代史莱姆的重要史料姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过很遗憾……那本书在运送的途中丢掉了，现在不在我手上姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]丢……丢掉了！你平时严格管理这些历史档案，为什么会犯这种错姆？[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个没办法啊，当时被一群荒野客打劫，我们只能先保护好自己了姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当时我们已经拼尽全力保住一批文献了，可有得必有失，菜谱属于不那么重要的文献，所以当时就没保下来姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那是前几天刚在黏滑溪谷外围丢的，你们现在去的话应该还能找到姆。[l][cm]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那东西在黏滑溪谷外围是吧……好，那我们就跑一趟吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]辛苦了姆，如果还能找到别的文献，还劳烦你们也一并带回来，拜托了姆。[l][cm][hide]",
+        "charaName": "记述者欧德莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "我们想问问菜谱的事……"
+}

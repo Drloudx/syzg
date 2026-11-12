@@ -6,10 +6,11 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { configRoot as defaultConfigRoot, rawRoot } from './maintenance-paths.mjs'
+import { derivedDir } from '../parse/shared.mjs'
 import { buildRoomEffects } from '../parse/roomEffects.mjs'
 
 const configRoot = resolve(process.argv[2] || defaultConfigRoot)
-const outputPath = join(rawRoot, 'dungeonBattleRooms.json')
+const outputPath = join(derivedDir, 'dungeonBattleRooms.json')
 
 const readJson = path => JSON.parse(readFileSync(path, 'utf8'))
 const roomMap = readJson(join(configRoot, 'room.json'))

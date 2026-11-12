@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_012_3_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，在广阔的草原上打猎，有个伴总会有意思很多。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且有{myName}这样高超水平的猎人在身旁作伴，也能在最大程度上避免意外的发生。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]话不多说，那猎场比较远，我们走吧。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-营地对话【沃夫加又来了呀。】"
+}

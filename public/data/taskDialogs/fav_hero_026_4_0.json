@@ -1,0 +1,64 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "小蝙蝠",
+        "text": "[show]吱吱！吱吱！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_3",
+            "text": "你是……贝拉多娜的小眷属？"
+          },
+          {
+            "tag": "tag_3",
+            "text": "贝拉多娜本人去哪了？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "小蝙蝠",
+        "text": "[cm][show]吱吱吱！吱吱吱吱！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "你的意思是……让我跟你走？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "小蝙蝠",
+        "text": "[cm][show]吱吱！吱吱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（跟着小蝙蝠离开营地……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_026_4_0",
+  "des": "贝拉多娜-营地对话【怎么不是贝拉多娜本人？】"
+}

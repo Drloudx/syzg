@@ -75,7 +75,7 @@
     {
       "para": {
         "charaName": "伽拉忒亚",
-        "text": "[show]好的好的，我们不多打听~！[l][cm]",
+        "text": "[show]好的好的，我们不多打听～！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -83,7 +83,7 @@
     {
       "para": {
         "charaName": "伽拉忒亚",
-        "text": "[show]真是的，别那么害羞嘛~！[l][cm]",
+        "text": "[show]真是的，别那么害羞嘛～！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"

@@ -1,0 +1,278 @@
+{
+  "script": "s_sp2_6_2_y",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊啊，来的正好，我们这边施肥刚刚失败。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]刚刚失败？出了什么事了吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这个嘛……史莱姆的农作物跟我想的不太一样。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们人类或者魔人一般都会选择高营养农作物，像是小麦稻米之类的谷物……[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]史莱姆农作物就非常杂了，最多就是杂草或者菜花，这些作物我之前很少接触。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且它们的种植方式相当粗暴。在土地上随便滚一滚，然后把种子一撒，再拿点黏液当肥料凑合，种植就完成了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这是习惯啦，毕竟我们之前一直都是这么种的姆……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可能之前种的地方土地比较肥沃吧，所以才没有出现麻烦，但来到这地方就不一样了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以我把这里的土都翻了一遍，然后把排水沟和土垄挖好，这样就不用担心作物被水淹掉了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]然后肥料这点我也找到办法了，史莱姆们喜欢用自己的黏液当做肥料。但它们的黏液蕴含营养太丰富了，直接放到种子上很容易把种子烧死。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以我让它们以后把黏液泡进水里，把黏液稀释一下，然后再施肥就可以了。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯嗯，勒妮小姐帮了我们很大的忙，真的非常感谢姆！[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……记得到时候卖我们一些黏液就好，你们的黏液可比粪肥要有营养得多。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过改善土壤肥力这点一直都没法解决，毕竟这里土地比较特殊，而且史莱姆的作物也比较特别……至少草木灰的效果不是那么好。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]正好你们把药浆草带了过来，让我来试试药浆草管不管用。[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（勒妮把药浆草制成粉末，然后洒在土地上。通过观察和催熟法术，你们确认土壤的肥力果然提升了……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]产量增多了姆！真的有效果姆！[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……那这样全部问题都解决了，从今往后我们就能有更多好吃的东西了姆！[l][cm]",
+        "charaName": "村姑勒妮"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然提升产量是好事，不过这些蒲公英狗尾草真能拿来当粮食吗？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]谁说不能，史莱姆和你们又不一样，我们最喜欢吃这些东西了姆。[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就是就是，我们史莱姆还可以吃木头呢，你们魔人不行吧姆。[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好像……也是这么个道理，那你们现在是不是可以开始把种子都种下去了？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是可以开始种了，但我让护卫收集的种子还没到，也不知道为什么今天这么慢姆……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唉？有个史莱姆过来了姆……[l][cm]",
+        "charaName": "德莉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不好了姆！刚刚我们史莱姆的车队被荒野客劫走啦姆！[l][cm]",
+        "charaName": "护卫史莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什……什么？劫走了？不就是一些种子吗？那群荒野客疯了去抢种子姆？[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……我们在收集种子的时候还找到一些宝物，就连着种子一起带回来了姆……[l][cm]",
+        "charaName": "护卫史莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来是这样……看来得花时间重新去收集种子了，这段时间就啃木头吧姆……[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那可不能放过那群荒野客，我们可以出手去把那些种子抢回来！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真……真的可以吗？你们能去把那些种子抢回来姆？[l][cm]",
+        "charaName": "农夫法尔姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没问题，别忘了我们就是干这个的。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那些荒野客在黏滑溪谷丘陵那边，你们在那边可以找到他们姆。[l][cm]",
+        "charaName": "护卫史莱姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]黏滑溪谷丘陵那边是吧，好，我们这就去把那些种子带回来！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "这是你要的药浆草。"
+}

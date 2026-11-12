@@ -4,7 +4,7 @@
  * 依赖物品表（由 index.mjs 传入）
  */
 import { buildMonsterMaps, buildMonsterData, buildExtraMonsterData } from '../../src/utils/monsterParser.js'
-import { readJson } from './shared.mjs'
+import { readJson, readDerivedJson } from './shared.mjs'
 
 export function buildMonstersFile(itemData) {
   const baseMaps = buildMonsterMaps({
@@ -17,12 +17,12 @@ export function buildMonstersFile(itemData) {
     buffRes: readJson('buff.json'),
     equipGroupRes: readJson('equip/equipGroup.json'),
     aiRes: readJson('ai.json'),
-    towerUsageRes: readJson('monsterTowerUsage.json'),
+    towerUsageRes: readDerivedJson('monsterTowerUsage.json'),
     exploreAreaRes: readJson('exploreArea.json'),
     roomRes: readJson('room.json'),
     battleRes: readJson('battle.json'),
-    dungeonBattleRes: readJson('dungeonBattle.json'),
-    dungeonBattleRoomsRes: readJson('dungeonBattleRooms.json')
+    dungeonBattleRes: readDerivedJson('dungeonBattle.json'),
+    dungeonBattleRoomsRes: readDerivedJson('dungeonBattleRooms.json')
   })
   const officialMonsters = buildMonsterData(baseMaps)
   const extraMonsters = buildExtraMonsterData(baseMaps, officialMonsters)

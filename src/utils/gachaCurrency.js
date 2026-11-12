@@ -49,7 +49,11 @@ export function buildCurrencySlots(pool, wallet, kind) {
   const ke = rewardMeta('ke')
   const payKe = rewardMeta('payKe')
   // 源码 `HeroPoolUI.InitRight`：卡池名含「特别」时（不分角色/蛋池）按角色池槽位排布。
+  // 蛋池里「特别贩售 / 御卫贩售 / 古堡贩售」都是活动 UP 池（buttonType=2），与特别贩售同排布：
+  //   消耗券 / 氪金 / 神晶。判据用 exchangeCosts 是否含 gachaKeExchangeRate（这三级活动池都有，
+  //   普通「常规贩售」没有该二级兑换，只显示 券/银币）。
   const isSpecial = String(pool?.name ?? '').includes('特别')
+    || Boolean(pool?.exchangeCosts?.gachaKeExchangeRate?.length)
   const hold = Number(wallet?.[cost?.typeId]) || 0
   const ticket = {
     key: 'item',

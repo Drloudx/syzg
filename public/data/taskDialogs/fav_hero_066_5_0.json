@@ -1,0 +1,61 @@
+{
+  "des": "奥格-恭喜你探险重开！",
+  "script": "fav_hero_066_5_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]有什么可恭喜的，探险这么累的行当，就不是人该干的啦！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "你不是说你这次是认真的吗？"
+          },
+          {
+            "tag": "tag_4",
+            "text": "怎么这么没士气啊？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]是不是投入，和会不会累，这是两码事。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]那个莉拉首座，净给我安排些危险的大活！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]还好我是有经验的大探险家，否则便样衰了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

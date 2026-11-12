@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_014_2_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放心，陷阱都已经提前布置好了，根据那些家伙的标记，我已经轻易能摸清他们的行动轨迹了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们只要在终点蹲伏起来就行，别的不用操心，一切尽在我的掌控之中。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]行，差不多了，我们出发吧！[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "皮塔-营地对话【要准备去蹲守小贼了吗？】"
+}

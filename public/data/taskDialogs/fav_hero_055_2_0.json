@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_055_2_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哦？你看出来了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]确实算是……了却了一桩心事吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]好了，别在门口傻站着，有什么话，等进去了再说吧。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-营地对话迦南前辈，遇上好事了吗？"
+}

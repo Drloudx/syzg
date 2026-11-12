@@ -1,0 +1,30 @@
+{
+  "des": "伽拉忒亚-恭喜你心愿得偿！",
+  "script": "fav_hero_064_5_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]嘿嘿，我又来打扰你啦——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "伽拉忒亚",
+        "text": "[show]也不说恭喜不恭喜啦，这都亏了有你，{myName}！你真是最好的老师，最好的朋友了！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

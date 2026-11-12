@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]原来如此，你是觉得现在重新捡起书本，有些太迟了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]这种想法可不对啊！学习这种事不管什么时候都不嫌晚。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]比如阿姨我——你可能不知道，我是在成为终身教授之后，才改换了研究的分野。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]但即使在新的领域，我现在也已经是首屈一指的专家了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]何必给自己设限？既然我能做到，想必你也可以吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_065_05",
+  "des": "乌尔勒-熟识2"
+}

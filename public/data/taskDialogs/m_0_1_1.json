@@ -1,27 +1,28 @@
 {
+  "des": "与营地中的米托拉聊聊。",
   "script": "m_0_1_1",
   "exps": [
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]完了……全都完了……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]那些家伙！只是一下子没看牢……[r]我好不容易搭好的营地……整整两年的积累……全没了！[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -29,8 +30,8 @@
       "para": {
         "options": [
           {
-            "text": "抱歉，要不是我突然冲出去……",
-            "tag": "tag_29"
+            "tag": "tag_29",
+            "text": "抱歉，要不是我突然冲出去……"
           }
         ]
       },
@@ -38,33 +39,33 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]没事，不是你的错。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]错的是那群混蛋强盗，错的是我，没有在去年的今天就把它们全埋到土里去！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]不过没关系。之前做错的事情，现在改正还不迟。[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]既然敢来我的地盘撒野，我当然也绝不会惯着！[r]我现在就出发，把这附近的角布林全给清光光！[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -72,8 +73,8 @@
       "para": {
         "options": [
           {
-            "text": "等等，米托拉。",
-            "tag": "tag_55"
+            "tag": "tag_55",
+            "text": "等等，米托拉。"
           }
         ]
       },
@@ -81,65 +82,65 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show][cm]啊？为什么要拦着我？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你说……现在还有更重要的事？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你倒是说说看，现在有什么事比铲除那群角布林更重要？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你说……你记得我说过，深渊的野外非常危险？要是没有了营地，我们就得在野外风餐露宿……还没等铲除完角布林，就会寒冷和饥饿搞到丢失性命了？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你这家伙，是在小看我这么多年的野外生存经验吗……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你说什么？可以帮我“修好营地”？等站稳脚跟、养精蓄锐过后再去报仇？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]而且……“不需要多少时间”？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]你在戏弄我吧。这座营地我可是花了好久的时间才勉强搭到能住的地步，[r]就你一个失忆的家伙，到底要怎么做啊？[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -147,12 +148,12 @@
       "para": {
         "options": [
           {
-            "text": "具体的理由，我也说不上来……",
-            "tag": "tag_63"
+            "tag": "tag_63",
+            "text": "具体的理由，我也说不上来……"
           },
           {
-            "text": "但有这把工匠锤，我觉得我可以做到。",
-            "tag": "tag_63"
+            "tag": "tag_63",
+            "text": "但有这把工匠锤，我觉得我可以做到。"
           }
         ]
       },
@@ -160,25 +161,25 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show][cm]“工匠锤”……？真的吗？到底靠不靠谱啊……[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]不过，既然你说你有把握，那当然是先修营地比较好……也罢，这里就相信你一回好了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]嗯，那就这样吧，先按你说的来。我们现在要做些什么？[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -186,8 +187,12 @@
       "para": {
         "options": [
           {
-            "text": "我觉得应该先从收集材料开始。",
-            "tag": "tag_67"
+            "tag": "tag_67",
+            "text": "应该先从收集材料开始。"
+          },
+          {
+            "tag": "tag_67",
+            "text": "然后还得储备一些食物。"
           }
         ]
       },
@@ -195,12 +200,11 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show][cm]你说木头和石块吗？这个好说，我知道哪里可以弄到！[r]那我们就快点走一趟吧！[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show][cm]你说木头、石块……还有食材吗？这个好说，我知道哪里可以弄到！那我们就快点走一趟吧！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     }
-  ],
-  "des": "与营地中的米托拉聊聊。"
+  ]
 }

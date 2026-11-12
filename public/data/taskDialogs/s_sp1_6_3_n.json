@@ -1,0 +1,38 @@
+{
+  "script": "s_sp1_6_3_n",
+  "des": "药浆草来了。",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯？药浆草还不够哦。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我这边已经准备好了，就等你们的药浆草了。[l][cm]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]快点吧快点吧，我有些迫不及待了……[l][cm][hide]",
+        "charaName": "艺术家米莉罗"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

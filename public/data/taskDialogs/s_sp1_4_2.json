@@ -1,0 +1,325 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "加尔戈萝",
+        "text": "[show]讨厌……打扫嗷……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯？加尔戈萝原来会说话啊，不过怎么跟结巴一样？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]加尔戈萝在诞生之初就有一定的语言能力，不过它的灵智程度还比较低，只能做些简单的沟通。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你这么说我就懂了，不过它说讨厌打扫是什么意思？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]谁知道呢，它有时候会有自己的小心思，本宫也拿不准。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]不管怎样，先开始打扫吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "清洁工蝙蝠",
+        "text": "[show]吱吱……吱吱……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]这个中庭还真好看，周围都是花坛，还摆上了这么多石像，改天本小姐建好自己的城堡后也要搞一个。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]这些石像好脏啊，上面怎么还有油墨和颜料？清理一下吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "石像鬼",
+        "text": "[show]嗷嗷——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哇！石像……石像动了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]石像鬼就是这样调皮，经常装成雕像吓人，不过也有些石像鬼可能只是单纯在睡觉而已。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]怎么感觉城堡里每一个地方都很危险啊，你的城堡到底藏了多少秘密。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "洛莉安",
+        "text": "[show]也没那么危险，只是余的城堡比较自由，允许大家根据习惯自由生活而已。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一番打扫后……中庭的大部分地方都得到清理。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]现在中庭的清扫工作都差不多了，只需要把石像擦擦就好，你们用抹布给这些石像擦擦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "石像鬼",
+        "text": "[show]嗷嗷！嗷嗷嗷——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]啊？你说这群石像鬼不愿意配合？为什么？这是擦擦身子而已啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "加尔戈萝",
+        "text": "[show]讨厌……讨厌水，别靠近……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]嗯……加尔戈萝的意思好像是它们石像鬼不喜欢水，所以不允许你们用沾着水的抹布碰它们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]不用水怎么行，用干抹布得擦多久啊？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那打扫卫生的时候一定清洗石像鬼吗？要不就先不管它们怎么样？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]那也不行，这些石像鬼喜欢到处飞，万一它们把身上这些污渍拉到城堡其他地方怎么办。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]可它们又不愿意让我们碰，总不能把它们打晕过去再把它们的身子擦一遍吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]为什么不行，请你们来不就是干这个吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]把人家打晕就为了这个吗……而且打起来的话拿不准分寸怎么办？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "我有个办法。",
+            "tag": "tag_30"
+          },
+          {
+            "text": "可以用工匠锤将它们的表皮重组。",
+            "tag": "tag_30"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]啊，你的工匠锤还有这种本事吗？能直接把人家的皮肤也换了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]毕竟石像鬼的皮肤就是一堆硬石块嘛，{myName}能用锤子给它们换皮也很正常。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那……这种方法你们可以接受不？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "加尔戈萝",
+        "text": "[show]吼吼……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]加尔戈萝点头了，看来没有问题，上吧{myName}。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（拿起工匠锤，将石像鬼们脏污的皮肤重组了一遍。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "石像鬼",
+        "text": "[show]吼吼！吼吼！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]噢噢，那些污渍脱落了，没想到你还有这种本事，看来没请错人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]这下中庭的卫生也解决了，我们去下一个地方吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]我看看……接下来要去前庭那边，我们去那边继续打扫吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]行，我们这就走。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp1_4_2",
+  "des": "我们要打扫卫生了。"
+}

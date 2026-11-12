@@ -1,0 +1,53 @@
+{
+  "script": "fav_hero_046_2_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]嘿嘿，就在索利德山上，我这就带你过去。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "山上值钱的东西？"
+          },
+          {
+            "tag": "tag_4",
+            "text": "不会是去偷别人的东西吧……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[cm][show]不……不是啦！我就是再饥不择食也不会干那种事情啊！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]放心吧……不是什么坏事，到时候你就清楚了。出发之前记得带上背包，我们这一行肯定能收获很多好东西！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "迈妮娅",
+        "text": "[show]准备好了吗？那我们出发吧。[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "迈妮娅-营地对话【好地方指的是哪里？】"
+}

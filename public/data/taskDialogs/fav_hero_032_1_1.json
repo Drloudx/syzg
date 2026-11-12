@@ -1,0 +1,263 @@
+{
+  "script": "fav_hero_032_1_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……准备好了，就是这筐礼物，你看看喜不喜欢？[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这些都是……生肉？",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯，这是角猪肉，是我早上从野外捉来的，我费了好大劲才把肉分割好。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实我昨天就准备好了一筐，但晚上嘴馋不小心吃完了，所以我才早起去捉新的角猪。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之，你先尝尝吧，味道肯定不错。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你看这肉还在跳呢，多新鲜呀。这么多起码够你吃一天，好好享受吧。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说这能吃好几天？可对我来说，这最多也就能吃一餐啊？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不信的话我就吃给你看！比如这块肉，我一口就能吞下。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊呜！好……好吃！[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你……你直接生吃？",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]对啊，不都是这么吃的吗？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我的胃可以直接消化生食，所以吃生肉对我的身体没有危害。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而且在野外也没多少生火烹饪的机会，像我这种秘密行动的刺客，养成吃生肉的习惯是必要的。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……咬一口还能迸出血水，这让肉吃起来更嫩了。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实光吃生肉的味道确实有点淡，如果这时候能加点浆果进去就好了。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦！八分饱了，这样你应该能相信，这些肉其实也只够我吃一餐而已。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]糟……糟了！这是给你准备的肉！我怎么把肉全都吃掉了！[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你……你等我一下，我再去抓头角猪回来。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（诺姿拿上吃空的木筐，飞快跑出营地，随后营地外传来金属碰撞声和角猪的惨叫声。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（接着传来一阵骨头碎裂声，片刻后，诺姿捧着一筐肉回来了。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦！角猪肉准备好了！你看！[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个，不好意思啊……我浑身都是血，等我洗一下。[l]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（用布帮诺姿擦去身上的血迹。）",
+            "tag": "tag_25"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]啊……谢……谢谢你……[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没想到还有人愿意给我擦掉这些东西……普通人要是看见我这副样子，得吓得魂都丢掉。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你说你用这些肉给我做一顿饭？让我在营地就别吃生的肉了？[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好呀，既然是在你的营地，那我就听你的话吧。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿嘿……我很期待你的手艺哦。[l][cm]",
+        "charaName": "诺姿"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（经过一番烹饪后，为诺姿端上了一锅香辣烤肉，诺姿非常喜欢。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（诺姿大快朵颐以后，便在营地里休息了，等到第二天才离开营地……）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "诺姿-闲下来了！-进入战役"
+}

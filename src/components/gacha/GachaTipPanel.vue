@@ -173,6 +173,10 @@ function upAvatar(candidate) {
     if (plain) return `/images/HeadIconAtals/at${String(plain[1]).padStart(3, '0')}_0.webp`
     const variant = /^new_hero_0*(\d+)$/.exec(typeId)
     if (variant) return `/images/HeadIconAtals/at${String(variant[1]).padStart(3, '0')}_1.webp`
+  } else if (props.kind === 'pet' || typeId.startsWith('pet_')) {
+    // 魔物蛋概率详情头像显示**成体魔物**图（colect_mon_XXX），不是蛋图。
+    const m = /^pet_0*(\d+)$/.exec(typeId)
+    if (m) return `/images/PicHandBookPanel_Atlas/colect_mon_${String(m[1]).padStart(3, '0')}.webp`
   }
   return candidate?.icon ?? ''
 }
@@ -362,10 +366,11 @@ function formatTime(timestamp) {
 
 .tip-up-slot__icon {
   position: relative;
-  top: 8px;
+  /* 头像垫在金环下、环作描边：接近填满 100px 画布、居中（同 GachaPoolPanel） */
+  top: 0;
   z-index: 1;
-  width: 76px;
-  height: 76px;
+  width: 84px;
+  height: 84px;
   object-fit: contain;
 }
 

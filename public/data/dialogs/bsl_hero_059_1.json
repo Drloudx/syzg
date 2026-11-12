@@ -1,0 +1,76 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]谢谢招待。我从桃源之森过来，身上没带什么东西，只能把最近培育的花茶【也可以替换成别的植物】作为伴手礼了。希望你能喜欢。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "非常感谢。",
+            "tag": "tag_3"
+          },
+          {
+            "text": "我很喜欢。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]你能喜欢就好。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[show]之后我也会经常过来的。如果你还想喝茶，或许可以把田地借我一块哦。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "等需要时再说吧。",
+            "tag": "tag_6"
+          },
+          {
+            "text": "那就拜托你了。",
+            "tag": "tag_6"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "菲娜",
+        "text": "[cm][show]好的，那就说定了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_059_1",
+  "des": "菲娜伴手礼"
+}

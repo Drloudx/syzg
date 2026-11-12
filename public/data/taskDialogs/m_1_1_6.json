@@ -1,0 +1,14 @@
+{
+  "des": "",
+  "script": "m_1_1_6",
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇——这就是锻造台吗！快快，赶紧试试看怎么用吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

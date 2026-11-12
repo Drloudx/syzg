@@ -1,0 +1,73 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好，这样就做好准备了。不忙的时候就去蛇腹矿坑里采掘一些吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]说起来，还没打开瑟尔妲给我们的这个包裹呢。我拆，我拆……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇，有好多元素石呢！{myName}，你看你看！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]但是……这些要怎么用呢？我们又不是秘术师……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "让我来试试吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]咦？你说……你能感觉到其中蕴含着元素的力量？如果把它们从石头中萃取出来，提供给亲和特定元素的伙伴，也许就能提升她们的潜力？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来如此……还有这种办法！但这样应该会需要很多这种元素石吧。那看来要多多利用日常计划行动，去蛇腹矿坑里采集更多这些石头了……！l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]现在先别想那些。趁这个机会，赶紧试试这个石头怎么用吧！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "完成元素石挖掘",
+  "script": "m_1_7_6"
+}

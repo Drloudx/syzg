@@ -1,0 +1,406 @@
+{
+  "des": "蓝露草准备好了。",
+  "script": "s_sp1_7_2_y",
+  "exps": [
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]很好，我立刻把陷阱做好，你们在这里等一下。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]搞定了，就放在这里吧，我们在角落里躲着。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（众人躲在角落里，等待着幽灵史莱姆上钩……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿，来了，是那只幽灵史莱姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？",
+        "text": "[show]嗯？谁把这些好吃的东西放在这里的姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？",
+        "text": "[show]啊！这是禁锢魔法！这是谁干的姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]好！抓住它了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]快上去堵住那家伙的退路，别让它跑掉了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？",
+        "text": "[show]呜啊！是……是你们姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]好，我抓住了，这回你别想逃。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]那……史莱姆就交给你们了，在下只负责布置陷阱。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿……你现在被呆瓜抓住了，准备好被狠狠教训一顿了吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]看到我手上的棍子了吗？这是为了教训你专门去找的哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]还有本小姐这把剑，让你看看赤血剑姬的厉害……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？",
+        "text": "[show]不要……不要打我……我错了……我错了姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]好啦，吓吓它就好，不要真把人家伤着了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]切，没意思，这么一下就呆住了，你喜欢吓人但自己的胆子就这么小吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]说一下吧，你叫什么，为什么要在城堡里吓人？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]我……我叫嘟鲁鲁，是从城堡外来的姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嘟……嘟什么？嘟嘟噜？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]是嘟鲁鲁，嘟鲁鲁，名字有些拗口，但仔细念还是能念顺口的姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]名字这么可爱，怎么就去干那种吓人的事啊？到底为什么吓人？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]喜欢吓人是幽灵史莱姆的爱好啊……而且我也想找人和我一起玩姆，我在这地方已经呆了很多年了，但一直都是孤身一人姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]我一个史莱姆什么都不懂，所以就喜欢吓人玩，希望能用这种办法和大家交朋友姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？通过吓人来交朋友？你是怎么想的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]关系好的朋友，不就是互相拌嘴，互相吓唬对方的吗姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]等等，暂且不论你通过吓人的方式交朋友是否合理，城堡幽灵这么多，你怎么可能找不到伴呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]我是好几次想要挤进去，但我是史莱姆啊，在它们眼中我只是一只魔物而已姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]墓园那里的幽灵也嫌弃我，压根就不想搭理我姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]唉……它们可是老资历，有墓地的老资历，当然看不上你啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]所以……你只是想要交朋友是吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]嗯……我……我只是觉得寂寞，想和大家一起玩而已姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫能理解你的想法，独自一人生活是非常寂寞的，不过你通过吓人的方法去交朋友是不妥的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]我……我知道了姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]萨奇尔先生，你能为嘟鲁鲁找到一处归宿之地吗？虽然它有点缺心眼，但它也是城堡的一份子，应该被大家接纳。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]不是，你们一群外来者怎么还向在下提出要求了？在下看起来像个老好人吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]因为我们是好心人，喜欢帮助弱者，哪怕是个叫我呆瓜的史莱姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]对……对不起姆……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]罢了……在下这边正好缺个监察员，如果愿意嘟鲁鲁愿意加入的话，就常在城堡里转转，看看有没有什么威胁吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]这是给我的正式职位吗？没问题，我可以做到姆！谢谢萨奇尔先生，谢谢大家！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯……这样才对嘛，以后不许吓人了，就算吓人也不许吓我们！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]你的意思是……我可以去吓别人吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我……我可没那么说！反正别吓我们就是了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "幽灵嘟鲁鲁",
+        "text": "[show]好的……我知道了，我这就去“监察”城堡的各个角落！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "侍卫长萨奇尔",
+        "text": "[show]等等！我们侍卫队的人你也不要吓啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]飞走了……不知道它有没有听见萨奇尔的话呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]它不会把我们的话，理解成“吓我们不行，吓别人可以”吧……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]谁知道呢，这个咱们也管不了了……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

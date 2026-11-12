@@ -1,0 +1,244 @@
+{
+  "script": "fav_hero_050_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]嗨……果然还是在你这里呆着舒服，比坐在办公室里面对成堆成堆的文件要好多了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]其实这件事前前后后，最让我心寒的不是荒野客的恶毒计谋，而是我们自己人为了利益选择背叛村子。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]虽然我也不是第一次遇到这种事情了，但再次碰见熟悉的人做出背叛之事，我感觉自身的信仰在崩塌。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我很爱巴诺姆村，也很爱村子里的每一个人。我欢乐的童年时光与身边的亲朋好友共同构成了这片土地的美好画卷，也构成了我守护这片土地的信仰。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]只是随着我年龄的增长，异变的肆虐，我眼中的世界似乎发生了变化。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]人们不再笑脸相迎，取而代之是针锋相对；土地不再种有鲜美的萝卜，取而代之的是苍凉的杂草。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]要知道这些转变发生的挺突然的，而且比起“转变”这个词，我觉得更像是时间撕下了原本美好的伪装，让真实的世界暴露了出来。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]这个村子……这个世界似乎并没我想象中那样美好。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]所以这几天我一直在思考，要不要搁置村长的职责，去看看外面的世界究竟是怎样的，这样我也能清静一些。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]唉……抱歉和你倾吐了这么多……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "村长可是你自己要当的，对吧。"
+          },
+          {
+            "tag": "tag_13",
+            "text": "现在村子正在恢复，大家比以往更需要你。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "这个世界的确不甚美好。"
+          },
+          {
+            "tag": "tag_14",
+            "text": "但我们可以努力让它变好。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]我明白你的意思，只是……我费尽心思，却只能守护一个虚假的世界……这真的有意义吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "不能因对胸中美好的向往而否定黑暗的存在。"
+          },
+          {
+            "tag": "tag_16",
+            "text": "也不能因些许污秽而否定世间所有的光芒。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "异变发生之后，也有很多人不畏艰险，挺身而出，不是吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嗯…………你说得对。之前，是我太情绪化了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]即便生活变得更加困难了，即便人性变得更加险恶了，也仍有人愿意为守护这片土地而战。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]抵御魔物的自卫团，探索矿脉的研究员，以及运送货物的商队，他们都是为守护这片土地的英雄。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]嗯……是我太过纠结了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]谢谢你，{myName}。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "能为巴诺姆村的领袖解忧是我的荣幸。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]唉……说是领袖，其实不过是一个拧巴的小女孩罢了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我决定了，我要继续坚守村子，我不会再迷茫了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]对了，不能光口头感谢你。等萝卜田再次成熟后，我想再和你吃一顿烤萝卜，怎么样？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "当然可以！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]好，那就这么说定啦！[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "米拉贝尔-袭击的真相-进入战役"
+}

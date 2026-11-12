@@ -1,0 +1,247 @@
+{
+  "script": "fav_hero_014_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]来吧，就是这里了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我还特别架了一团篝火，让这里有了一些营地的感觉，希望你能满意。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "有心了。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]大佬来了！欢迎大佬！[l]",
+        "charaName": "小弟们"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你们是……皮塔的小弟？",
+            "tag": "tag_7"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是啊，他们现在也是大姐头的手下，巴诺姆村的一份子了。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]永远听从米拉贝尔大姐头的指示！为巴诺姆村服务！[l][cm]",
+        "charaName": "小弟们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，你们也辛苦了，把菜呈上来以后就好好去休息吧。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是！[l]",
+        "charaName": "小弟们"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "没想到他们这么快就习惯了这里的生活。",
+            "tag": "tag_12"
+          },
+          {
+            "text": "这种转变还真是不可思议。",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哈哈，其实也没什么不可思议的，像我们这种落草为寇的荒野客，最终的理想也只是找到一个归宿而已。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就拿着三个小家伙干的事来说，他们并不喜欢小偷小摸，只是将这种方式当成生存手段罢了。毕竟要在残酷的深渊中生存，不采取一些极端手段可不行。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而在找到一个能生存的家园之后，这些龌龊事情就再也没有必要去做了。能靠自己的双手合理合法地挣钱，没多少人愿意干那些偷鸡摸狗的坏事。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那三个小家伙在得到我的邀请后没同意，也只是因为他们对于新生活的恐惧与不信任罢了，并不是他们铁了心要靠偷窃为生。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以面对这种情况……打一顿就好了，我当年也是这么被大姐头这么纠正过来的。暴力不能解决所有问题，但能解决一部分问题啊。适当的‘暴力’能让他们认识到错误，接受新生活。[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "看来皮塔也是被纠正过来的人呀。",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……当年的事就别提啦！这些事情我还只对你一个人说过呢，千万别告诉别人，尤其是这三个小家伙。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]对了，这一路上{myName}也帮了不少忙，这一杯敬你的！[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "（和皮塔碰杯。）",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]从现在开始，你就是我皮塔最好的伙伴啦。有什么事情尽管来找我，我会用尽所有资源来帮助你！[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "皮塔也是我最好的伙伴！",
+            "tag": "tag_23"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]要知道像我这种狡猾奸诈的人，一辈子也不会说多少真心话。但和你相处的时候我总是会放下戒心，毫无保留地将想吐露的事情一股脑说出来。[l][cm]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这或许就是心有灵犀吧，在我心中你就和大姐头一样，是能说真心话的好伙伴！[l]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "能得到你的信任也算是我的荣幸啦。",
+            "tag": "tag_26"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]来！干杯！[l][cm][hide]",
+        "charaName": "皮塔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（当天和皮塔的饭局进行了很久，直到次日清晨才离开了索利德山。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "皮塔-信任的火焰-进入战役"
+}

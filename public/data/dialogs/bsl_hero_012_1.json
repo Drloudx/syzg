@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]你好，{myName}，入住营地后，我一直想要和你打招呼，今天终于找到机会了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]你选的这个地方不错，避风且隐蔽，是个适合休憩的好营地。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]习惯了在深山里风餐露宿，原本以为我已经不再需要所谓的“归宿”，但在进入营地的那一刻，我发现自己似乎并不排斥这种感觉。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]拿着吧，这是我在狩猎途中找到的好东西，现在送给你。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "text": "[show]只要你在这里，我便随时听候你的召唤。猎人的承诺和如同射出的箭矢一样，一旦出口必定遵守，请你相信我。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_012_1",
+  "des": "沃夫加"
+}

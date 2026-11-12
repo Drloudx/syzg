@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]哎呀呀，是{myName}啊。看到你这么有活力，阿姨也就放心了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]我听很多契约者念叨了好久，说这里比大书院的主楼还要有意思，今天实地一看，确实名不虚传呢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]作为一名学者，我很好奇你这种能让大家聚在一起的“引力”究竟源自何处。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]为了找到答案，还请以后让阿姨能陪在你身边，毕竟咱们也是签了契约的好伙伴嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌尔勒",
+        "text": "[show]收下吧，这是阿姨的一点小心意。如果你觉得辛苦的话，还可以向阿姨撒娇哦～[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_065_1",
+  "des": "bsl_hero_065_1"
+}

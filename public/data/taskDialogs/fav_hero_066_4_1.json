@@ -1,0 +1,206 @@
+{
+  "des": "奥格-为什么会这样呢？_进入战役",
+  "script": "fav_hero_066_4_1",
+  "exps": [
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]其实呢……这段时间，我仔细思考过了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]为了宣传温泉，我已经非常努力了，而你也帮了我很多。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]我们都已经这么努力了，却还是毫无成效，那问题只可能出在别的方面。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "那你认为问题出在哪儿？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]首先我就想过，问题是不是出在温泉上。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]会不会……我觉得很好的温泉，其实是个很小众的玩意，别人根本就理解不到它的美妙之处……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]但很快我就否定了这个想法，因为不光是我，每一个享受了温泉的人，都对它赞不绝口，很显然温泉的美好是大家公认的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]既然不是我们的问题，也不是温泉的问题，那问题出在哪里呢？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]其实答案早就摆在眼前了，有问题的是这个世道。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]是这个混乱的末世，让人们必须专注于眼前的生存，而没有余力将目光投向其它美好的地方。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]魔物、盗匪、异变……在这些生存的威胁面前，大家已经拼尽全力，我们实在是不该苛责他们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]要让他们有能力、有闲心享受温泉，唯一的办法就是改变这个世道！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "真有觉悟！"
+          },
+          {
+            "tag": "tag_16",
+            "text": "不愧是大探险家！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]嘿嘿……我也是最近才想到的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]你问为什么我会这么执着于推广温泉？那当然是因为……我想让大家知道这么美好的东西，想用温泉让所有人露出笑容！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]但要让大家露出笑容，并不是非要拘泥于温泉不可……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]所以我决定了！温泉村的事情，我要暂时放下来，把精力集中在探险上！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]只要我能够协助莉拉首座……协助你们摆平深渊的异变……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[show]到那个时候，大家一定能够抽出时间，来好好享受温泉的美好了吧！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "一定会的！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奥格",
+        "text": "[cm][show]嗯！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

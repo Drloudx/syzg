@@ -1,0 +1,355 @@
+{
+  "script": "fav_hero_011_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！这里有好多人啊！我在修行所从来没见过这么多人！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}不是说这里还有好吃的东西吗？在哪呢在哪呢？[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "先找个位置坐下吧。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "缇莎可以看着菜单点菜。",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嘿嘿……缇莎已经找到位置了。桌上这本东西是菜单吗？[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}有什么推荐的吗？缇莎喜欢吃甜的！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那就点一些甜的食物吧。",
+            "tag": "tag_8"
+          },
+          {
+            "text": "蜂蜜面包、蜜汁烤肉。",
+            "tag": "tag_8"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]好的！侍女小姐——！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你好，请问有什么需求吗？[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]给我们来一份蜂蜜面包，还有蜜汁烤肉，要做得好吃一点哦！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好的，请稍等，我们这就去准备。[l][cm]",
+        "charaName": "侍者萨利"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（不一会儿后，香喷喷的面包和烤肉呈了上来。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇！好……好香啊！缇莎不客气啦！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "慢慢吃，不够我们再点。",
+            "tag": "tag_15"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯！谢谢！缇莎……缇莎第一次吃到这么好吃的东西！[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "缇莎在修行所没吃过这种东西吗？",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没有……修行所的人每天吃的都是自己种的野菜，那里本来也买不到什么好吃的食物。而且妈妈说吃美食会让修行怠惰，所以缇莎在修行所一直没吃过好吃的……[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过今天缇莎终于尝到好吃的食物啦，谢谢{myName}带着缇莎来驿站！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊呜啊呜……真好吃……[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（就在缇莎狼吞虎咽之际，有几个小孩好奇地凑过来打量她。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们看你们看……她身上有好多红水晶诶，还有一只超大的红水晶尾巴。[l][cm]",
+        "charaName": "小孩1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看到了，好奇怪的家伙……她应该就是大人说的“结晶怪物”吧。[l][cm]",
+        "charaName": "小孩2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没错！就是怪物！我听说这些怪物大多数在出生的时候就被抛弃了，但她居然活到了现在……[l][cm]",
+        "charaName": "小孩3"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]丑陋的结晶怪物！从这里滚出去！这里不是你这个怪胎呆的地方！[l][cm]",
+        "charaName": "小孩1"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]滚出去！滚出去！[l]",
+        "charaName": "小孩们"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你们这些家伙太没礼貌了……",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯嗯，没关系的{myName}，交给缇莎吧。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你们知道吗？缇莎身上的水晶可是会传染的。一旦你们被传染，也会跟缇莎一样变成长满结晶的怪物哦。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你……你说什么……我可不要变成结晶怪物……[l][cm]",
+        "charaName": "小孩2"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哇——！[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呀呀呀呀——！[l][cm]",
+        "charaName": "小孩们"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（缇莎装作吓人的样子，所有小孩瞬间逃开了。）[l]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "缇莎你还好吗？",
+            "tag": "tag_34"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]没事，缇莎已经不是第一次遇到这种情况啦。[l][cm]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好啦，缇莎吃完了，我们去别的地方玩吧。[l]",
+        "charaName": "缇莎"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "好……",
+            "tag": "tag_37"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（虽然缇莎并没有表现出什么不满，但这不是她这个年纪应该承受的东西……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（或许得找个时间问问莉拉，关于缇莎身世的事情……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]最后，和缇莎一起离开了驿站，去别的地方玩了。[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "缇莎-好玩的地方-进入战役"
+}

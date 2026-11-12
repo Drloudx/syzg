@@ -1,0 +1,62 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]啾啾，啾啾～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "小鸟",
+        "text": "[show]啾啾——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]哎呀，每天在营地里逗鸟真的很快乐啊，听着这些小鸟的叫声，感觉心都要融化了～呜嘿嘿～[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]唉……是你啊，你……哈哈哈！你……你用手指戳我干什么啦，好痒的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]等等……你还对着我喊啾啾？！莫非你是把我当成小鸟了吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]喂！你这太过分了啊！把我当小鸟……我要狠狠教训你一顿——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]等、等等，你、你说我可可可可爱？呜，哪有这种时候说这种话的……[r]噗、噗哈哈哈哈～别戳了，别戳了——我知道了啦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_043_09",
+  "des": "阿娜洛洁-亲密3"
+}

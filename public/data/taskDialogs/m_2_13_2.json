@@ -1,0 +1,241 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哇……这里的雾怎么这么大啊，前面的路都看不清了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]现在知道我们来这里的时候有多头疼了吧，每走一步路都要无比小心，走错一步就要掉到沟里去了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]不过这地方……好像和上次有些不同？这次的雾没有之前那么浓了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "等等……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "我手上的工匠锤亮了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[cm][show]啊？那锤子又亮了？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这证明我的想法是对的，这里的存在一定和工匠有关系，或许这正是另一个匠器。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]眼前的雾好像慢慢散开了……慢着……你们看那边——！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]这……这是什么东西？这里怎么突然出现了这么高的一座建筑物？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]从外形来看……好像是座塔？刚刚在外面完全没有看到啊。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]周围的雾气也在渐渐散去，肯定是你的锤子起了作用，在你的工匠锤亮起来之前，我们完全看不见这个高塔的存在。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不过这个高塔到底是什么啊……这比索利德山还要高啊。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "这是……“神匠之塔”。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]咦？你知道这东西吗？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_19",
+            "text": "塔底刻着的先时铭文是这么题的。"
+          },
+          {
+            "tag": "tag_19",
+            "text": "但其他字太模糊，我就看不清了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]嗯……至少清楚这东西的名字了，这里一定还有更多的秘密，说不定里面有新的匠器存在。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看起来好像很有趣的样子……既然里面有匠器的存在，要不我们进去探索一下吧，说不定还能找到和记忆有关的秘密！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]喂！别这么急啊，探索是循序渐进的，你要一股脑冲进去我们全被困在里面了怎么办？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]放心，这不还有{myName}在嘛。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "其实我也想进去看看。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[cm][show]好吧，真拿你们没办法……我在门口做好标记了，你们可以根据标记找到方位，我就在外面……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嘿嘿……别在外面了，一起进来吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]喂喂！别拉我啊！我在外面等你们不行吗？我可不想又在遗迹里面迷路饿肚子！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]不都饿过一次了吗？再饿一次又有什么所谓吗？在里面遇到什么问题我们还得请教你呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]好吧……真拿你们没办法，别太深入哦，到时候真出不去我们都得完蛋！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]安心啦，有{myName}在不会有问题的。[l][cm][hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "指引后调用",
+  "script": "m_2_13_2"
+}

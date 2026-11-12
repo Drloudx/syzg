@@ -1,0 +1,53 @@
+{
+  "script": "fav_hero_033_2_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]唔嗯～你终于起来了呀。{myName}起床还真磨蹭呢，和我妹妹一样。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "抱歉……",
+            "tag": "tag_3"
+          },
+          {
+            "text": "乌帕定的时间也太早了吧。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[cm][show]是{myName}有些怠惰了唷。早睡早起不是每个训练员都应做到的吗？我小时候每天都是起这么早的。要突破自己的极限，就要抢在太阳升起来之前完成训练！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "乌帕",
+        "nameSide": "left",
+        "text": "[show]虽然今天我们早起也不单纯为训练就是了。来吧，我带你去看看我新领的契约～[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "nameSide": "left",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "乌帕-委托训练计划-营地对话"
+}

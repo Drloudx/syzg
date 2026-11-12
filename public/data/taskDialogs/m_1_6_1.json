@@ -1,11 +1,12 @@
 {
+  "des": "进入工房",
   "script": "m_1_6_1",
   "exps": [
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]各位，欢迎来到黑铁煅炉，秋日荒野的金属加工和冶炼中心。[l]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
@@ -26,65 +27,65 @@
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show][cm]看来你很喜欢这里呢。也难怪，你是个工匠嘛。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "契约者A",
+        "nameSide": "left",
         "text": "[show]迦南大人！[l][cm]",
-        "nameSide": "left"
+        "charaName": "契约者A"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "契约者B",
+        "nameSide": "left",
         "text": "[show]是货真价实的迦南大人啊！[l][cm]",
-        "nameSide": "left"
+        "charaName": "契约者B"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "铁匠A",
+        "nameSide": "left",
         "text": "[show]感谢你们的帮助！[l][cm]",
-        "nameSide": "left"
+        "charaName": "铁匠A"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "铁匠B",
+        "nameSide": "left",
         "text": "[show]谢谢迦南大人！[l][cm]",
-        "nameSide": "left"
+        "charaName": "铁匠B"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]不用客气，我们在这休息会儿就好。[r][l]你们才是，应该有很多要忙的事吧？不用管我，先忙自己的事吧！[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "契约者&铁匠",
+        "nameSide": "left",
         "text": "[show]那迦南大人好好休息！需要我们帮忙的话随时都在！[l][cm]",
-        "nameSide": "left"
+        "charaName": "契约者&铁匠"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]大家的气色虽然不太好，但是脸上还都是笑容呢。[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -105,49 +106,49 @@
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[cm][show]是啊，每当在这种时候，我就觉得能够成为明星契约者真的是一件很好的事。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]但光是让他们感到希望还不够，我要带给大家的是实实在在的胜利！[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[cm][show]也没有你说得那么夸张。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]为了不让大家脸上的笑容消失，我们还有很多事情要做。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "茜塔",
+        "nameSide": "left",
         "text": "[show]不愧是迦南前辈，总是这么严以律己。[l][cm]",
-        "nameSide": "left"
+        "charaName": "茜塔"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]这都觉得不满意吗？当个明星也太难了吧……[l]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -164,49 +165,49 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[cm][show]唔，不是很懂……算了，不说这些了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]我们现在已经收复黑铁锻炉，可以出发前往[color=ffb64d]修行所了[colorEnd]吧？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]很可惜，现在还[color=ffb64d]不行[colorEnd]。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]啊？为什么？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]大家战斗了这么久，还突然遇上了强敌，已经累了。[r][l]起码要吃饱喝足好好休息之后，才有可能再次出动。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]更重要的是，我们现在还没有[color=ffb64d]真正地[colorEnd]收复黑铁锻炉，所以不能立刻离开。[l]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
@@ -223,147 +224,115 @@
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[cm][show]没错。正因为对上的是同类，所以这次比驱赶魔物要复杂得多。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]我们无法肯定被击溃的是不是就是他们的全部兵力，[r]也不知道他们会不会稍加恢复后戳我们个回马枪。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]除此之外，聚落周边还有很多附属的设施和关键要地，现在也都没有脱离威胁。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]要完整地恢复黑铁锻炉的功能，至少也得等我们驱逐了所有的哈萨琳之手，并且[color=ffb64d]收复了所有关键地点[colorEnd]才行。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]啊？那我们岂不是要在这里呆很久？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]不会很久的。[r][l]在哈萨琳之手成建制的兵力溃散之后，这附近应该已经只剩下许多零散的敌人，[r]完全可以将契约者们分散为小队来处理。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]唔……好吧，那我们要做什么呢？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]具体的事项，我会和掌炉者商量后决定。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]这段时间你们可以先休息一会，或者四处逛逛。我们之后再见。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]啊，就走了。那……我们现在要做些什么？[l]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]唔……好吧……那我们就在这附近转转吧。[l][cm][hide]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "options": [
-          {
-            "tag": "tag_59",
-            "text": "我们先休息一下？"
-          },
-          {
-            "tag": "tag_60",
-            "text": "要不先到处转转？"
-          }
-        ]
-      },
-      "key": "option"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[cm][show]不要吧？我现在一点都不累，才不要休息呢！唔……就没有什么好玩的吗？[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]（一段时间后……）[l][cm]",
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]嗯？[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]啊，你们在这儿啊。[l][cm]",
+        "charaName": "茜塔"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[cm][show]这里一眼就能望到头，有什么好转的啊！唔……就没有什么好玩的吗？[l][cm]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]走吧，和我去找迦南前辈。她已经和掌炉者聊完了。[l][cm]",
+        "charaName": "茜塔"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]嗯？[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[show]喂！你看！那边是不是在[color=ffb64d]回收武器[colorEnd]啊？[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "米托拉",
-        "text": "[show]一路上缴获了不少家伙事，应该可以换很多钱吧！我们快去看看！[l][cm][hide]",
-        "nameSide": "left"
+        "nameSide": "left",
+        "text": "[show]接下来会分配具体的任务，分到我们这儿的事情有点棘手，她需要当面和我们详谈。[l][cm]",
+        "charaName": "茜塔"
       },
       "key": "text"
     }
-  ],
-  "des": "进入工房"
+  ]
 }

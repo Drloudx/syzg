@@ -1,6 +1,14 @@
 <template>
   <div class="ui-stat-grid" :class="{ 'is-single': !doubleCol }">
-    <div v-for="(item, idx) in items" :key="idx" class="ui-stat-grid__cell">
+    <div
+      v-for="(item, idx) in items"
+      :key="idx"
+      class="ui-stat-grid__cell"
+      :class="{
+        'is-stacked': item.stacked,
+        'is-stacked-mobile': item.stackedMobile
+      }"
+    >
       <span class="ui-stat-grid__name">{{ item.label }}</span>
       <span class="ui-stat-grid__val" :class="item.tone ? `quality-text-${item.tone}` : ''">{{ item.value }}</span>
     </div>
@@ -10,7 +18,7 @@
 <script setup>
 /**
  * UiStatGrid —— 属性数值网格（装备属性/宠物属性等）
- * items: [{ label, value, tone? }]  tone 为 1~5 品质色
+ * items: [{ label, value, tone?, stacked?, stackedMobile? }]  tone 为 1~5 品质色
  * doubleCol: 双列（默认 true）
  */
 defineProps({
@@ -30,7 +38,7 @@ defineProps({
 }
 .ui-stat-grid__cell {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   background: rgba(43, 31, 21, 0.08);
@@ -44,6 +52,16 @@ defineProps({
 .dark-mode .ui-stat-grid__cell {
   background: rgba(0, 0, 0, 0.22);
 }
+.ui-stat-grid__cell.is-stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3px;
+}
+.ui-stat-grid__cell.is-stacked .ui-stat-grid__val {
+  text-align: left;
+  white-space: nowrap;
+}
 .ui-stat-grid__name {
   color: var(--text-muted, #6b5134);
   font-weight: 600;
@@ -54,5 +72,18 @@ defineProps({
   font-weight: 700;
   text-align: right;
   word-break: break-all;
+}
+
+@media (max-width: 768px) {
+  .ui-stat-grid__cell.is-stacked-mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3px;
+  }
+  .ui-stat-grid__cell.is-stacked-mobile .ui-stat-grid__val {
+    text-align: left;
+    white-space: nowrap;
+  }
 }
 </style>

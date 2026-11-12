@@ -1,0 +1,391 @@
+{
+  "script": "fav_hero_049_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如何？发现什么了吗？[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "嗯……确实有点发现。",
+            "tag": "tag_4"
+          },
+          {
+            "text": "这个痕迹似乎有点不对劲。",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哦？你知道那畜生是怎么逃脱的了？[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "虽然还需要再验证一番……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "我已经大致有猜想了。",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是吗？那就拜托你多检查检查，再给我这个大老粗讲个明白吧……[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]几分钟后——[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来如此……你是说……我在追逐的这只猎物，其实并不是“野兽属”的魔物吗……[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "从现状来看，是这样的。",
+            "tag": "tag_12"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哈……哈哈……原来是这样……原来是这样！[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]拟态成野兽的元素属……原来我一直在追猎的，居然是这种东西啊！[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]真是……瞒得我好苦、瞒得我好苦啊！！[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "菲莉娜……",
+            "tag": "tag_16"
+          },
+          {
+            "text": "你……",
+            "tag": "tag_16"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]抱歉，让你看到失态的一面了……我只是……只是想起了一些以前的事。[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]你不问问我是什么事吗？[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "应该是很糟糕的回忆吧？",
+            "tag": "tag_20"
+          },
+          {
+            "text": "应该是刻骨铭心的回忆吧？",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你愿意告诉我吗？",
+            "tag": "tag_21"
+          },
+          {
+            "text": "如果不想说的话……",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这件事……倒也不是什么非要保密的大事。这么多年过去，我也早没有当初那么脆弱了。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我就告诉你吧……虽然你大概也早就猜到了。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那畜生……不，那只魔物，是我的仇人！[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大概在七年前……也就是大兽潮的异变发生之前……[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我所有的朋友……全都……[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_27"
+          },
+          {
+            "text": "节哀。",
+            "tag": "tag_27"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]你不用安慰我啦，那都是过去挺久的事了。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]爱娜、珍妮特、蔻蔻……她们都是很好的女孩，当时和我一样，都是刚刚入行每两年的契约者。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我们那时候和外地商人签订了一份契约，负责为他们保护运送魔岩矿的车队。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在某次行动中，我们遭遇了这次的猎物。当时的我们实力平平，只能选择智取。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在爱娜和我的牵制下，身为武道家的蔻蔻用气功波把那东西打下了山崖。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这本应是一次完美的胜利，但是……[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "敌人卷土重来了吗……",
+            "tag": "tag_34"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]是的。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]总之，在没有准备的情况下，我们遭到了那东西的突袭，最终包括商人和雇工们在内，整个小队只有我一个人艰难逃得一命。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]一直以来，我都以为是我们过于大意，没有查看崖底的情况，让那东西侥幸生还。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]没想到，是我们从一开始就弄错了敌人的类型，根本就没能把握住那东西的真身！[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "……",
+            "tag": "tag_39"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呵……现在想来，那东西能够活下来，真是一点都不奇怪。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]大型元素对于物理伤害本来就有不俗的抵抗效果，区区坠落伤，根本算不了什么。[l][cm]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过这一次可不同了！既然已经把握住了它的真身，下一次我绝不会再失败了！[l]",
+        "charaName": "菲莉娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "嗯！",
+            "tag": "tag_43"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "菲莉娜-棘手的问题-进入战役"
+}

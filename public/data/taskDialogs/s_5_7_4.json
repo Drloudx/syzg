@@ -1,166 +1,158 @@
 {
-  "des": "琦莉可的忧郁-战斗后",
-  "script": "s_5_7_4",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "哈萨琳之手佣兵",
         "text": "[show]呱……[l][cm]",
-        "charaName": "哈萨琳之手佣兵"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（佣兵应声倒下，陷入昏迷。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]好，这是最后一个了！待会儿就把他们交给院卫！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生琦莉可",
         "text": "[show]呼呼……差点就被剑劈成两半了，还好没事……[l][cm]",
-        "charaName": "文艺系学生琦莉可"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]琦莉可同学，你还好吗？[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生琦莉可",
         "text": "[show]我没事……只是被吓到了而已，我还是第一次遇到这么惊险的战斗。[l][cm]",
-        "charaName": "文艺系学生琦莉可"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]搞了半天，原来这里的人是佣兵。现在你确定了吧，所谓的域外之人根本不存在。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生琦莉可",
         "text": "[show]结果有些失望，不过我等会儿会回去和本诺教授好好道歉的。[l][cm]",
-        "charaName": "文艺系学生琦莉可"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生琦莉可",
         "text": "[show]我依旧相信域外之人的存在，今后我也会继续寻找他们的。这个世界总有些我们未能解开的谜团，那片星空也一定有尚未解开的秘密……[l][cm]",
-        "charaName": "文艺系学生琦莉可"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]……喜欢什么是你自己的选择啦，只要别让家人朋友担心就好。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]来吧，现在先把这群人带过去吧，别让他们醒来跑掉了。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]好的……我也来帮忙……[l][cm]",
-        "charaName": "文艺系学生琦莉可"
-      }
+        "charaName": "文艺系学生琦莉可",
+        "text": "[show]好的……我也来帮忙……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]《播放演出：镜头移向远处几个光点》[l][cm]",
-        "charaName": ""
-      }
-    },
-    {
-      "key": "text",
-      "para": {
-        "nameSide": "left",
+        "charaName": "？？？",
         "text": "[show]……差点就被发现了。幸好有那群人在，我们没有暴露。[l][cm]",
-        "charaName": "？？？"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "？？？",
         "text": "[show]没想到那个女孩能察觉到我们的存在，看来还是得小心为妙。[l][cm]",
-        "charaName": "？？？"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]不过\"域外之人\"这个称呼……倒是很有意思。我很中意。[l][cm]",
-        "charaName": "？？？"
-      }
+        "charaName": "？？？",
+        "text": "[show]不过“域外之人”这个称呼……倒是很有意思。我很中意。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]走吧，走吧……诸位，走吧……[l][cm]",
-        "charaName": "？？？"
-      }
+        "charaName": "？？？",
+        "text": "[show]走吧，走吧……诸位，走吧……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "文艺系学生琦莉可",
         "text": "[show]咦……？我怎么感觉听见了谁在说话……？[l][cm]",
-        "charaName": "文艺系学生琦莉可"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]哈？都说了是错觉啦。是芙洛波在叫吧～？[l][cm][hide]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ]
+  ],
+  "script": "s_5_7_4",
+  "des": "琦莉可的忧郁-战斗后"
 }

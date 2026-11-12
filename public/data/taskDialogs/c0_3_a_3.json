@@ -1,0 +1,30 @@
+{
+  "script": "c0_3_a_3",
+  "des": "猎人带路",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "荒野客猎人",
+        "text": "[show]角……角布林的营地，就在这前面了！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]哦！是嘛！我的复仇终于要开始啦……！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ]
+}

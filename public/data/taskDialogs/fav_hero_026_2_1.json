@@ -1,0 +1,341 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗨！希斯珀利亚家族的贝拉多娜驾到！知道的可以来热情欢迎！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]怎么大家都没反应……他们是没听说过本小姐的大名？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "宣传家族的使命任重道远啊。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]哼！被无视就被无视了，本小姐早晚要让家族的大名响彻这个世界！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]现在先去找商人吧，{myName}能推荐个靠谱的商人吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]最好是那种货品齐全的，价钱不是问题，主要是怕麻烦不想东奔西跑啦。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "要说商人的话，确实有一个人……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（将贝拉多娜带到比绍面前。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]呀，这不是我们敬爱的小工匠吗？欢迎欢迎，旁边这位美丽的女孩是……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哼哼……听好了！本小姐乃是希斯珀利亚家族的千金——贝拉多娜小姐！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]希斯珀利亚家族？非常抱歉……鄙人未曾听说过你家族的大名。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]孤陋寡闻的家伙……算了！这次本小姐来到驿站这边，就是要采购些物资，顺便做点宣传，重新振兴希斯珀利亚家族！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]噢，原来如此，虽然未曾听闻贝拉多娜小姐的大名，但想必您的家族必然是家底深厚、历史悠久的显赫门第！能培养出向你这样英姿飒爽的战士，实乃家族荣幸啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]不知大小姐需要什么样的服务？只要是力所能及之处，鄙人一定尽心尽力提供帮助。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗯……算你会说话，本小姐手头宽裕，所以想先给房子添置些家具，现在里面还是太冷清了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]大概就需要一套桌椅就好啦，你这里有卖吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]吼吼，这种东西鄙人当然有了，我们的工人还会亲自把货物送到您家里。不过既然是贵族，光买一套桌椅可不够啊，怎么也得把府邸装点得富丽堂皇把？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嗯……有点道理，那比绍先生有什么好推荐的吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]嘿嘿……鄙人建议桌椅板凳、衣柜橱柜、吊灯地毯、浴盆澡桶……统统来一套！这才配得上您尊贵的身份！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]啊？衣柜吊灯？可我不需要这么多啊，只要桌椅就好……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]哎呀，大小姐此言差矣！您想想……如果客人们上门拜访，却发现希斯珀利亚家族的大小姐如今家徒四壁，凄凉无比，这样不是有失体面吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]呃……这么说也有道理……那就按你说的办吧，放心！本小姐有的是钱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]嗯……既然这样……要不鄙人请几位手艺精湛的工匠，把府邸的墙壁也重新粉刷装潢一番？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]这个……那些花里胡哨的就不必了吧？而且这么一套下来也太贵了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]不不不，贵族的格调全在这些细节！这都是为了您和家族的门面着想啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]而且鄙人推荐给你的是一个超值套装套装，买的越多单价越便宜，鄙人相信精明的贝拉多娜小姐是能算清这笔账的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[show]话都说到这份上了……您应该不会拒绝鄙人的好意吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]那个……我……好吧，我……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "我们只要一套桌椅就可以了。"
+          },
+          {
+            "tag": "tag_31",
+            "text": "比绍先生，请按我们最初的需求提供商品就好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "比绍",
+        "text": "[cm][show]这……好吧，就依你所说。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]没错，{myName}的经验比我丰富，只要听{myName}的话就好。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一番交流后，贝拉多娜买到了想要的家具，并和比绍签下了画报的设计生产订单。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]终于搞定了……还好有你，要不然就得被那个家伙狠狠宰一笔了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_36",
+            "text": "贝拉多娜还是太爱面子了。"
+          },
+          {
+            "tag": "tag_36",
+            "text": "要学会放下虚荣，低调办事。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]本小姐知道啦……下次本小姐不会犯这种低级错误的，也不会再一上来就大张旗鼓地自我介绍了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]为了对{myName}表示感谢，我们就在这里吃一顿如何？就由本小姐来请客！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_39",
+            "text": "当然可以！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]嘿嘿……别客气，尽管放开吃吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_026_2_1",
+  "des": "贝拉多娜-采购！采购！-进入战役"
+}

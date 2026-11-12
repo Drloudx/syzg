@@ -1,227 +1,226 @@
 {
-  "script": "m_5_6_2",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（你们向乌尔勒详细汇报了装置的调查结果——）[l][cm][hide]"
+        "text": "[show]（你们向乌尔勒详细汇报了装置的调查结果——）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]原来如此，我已经完全理解你们的主张了。[l][cm]"
+        "text": "[show]原来如此，我已经完全理解你们的主张了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]那……？[l][cm]"
+        "text": "[show]那……？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]如果你们想问的是，大书院会不会中止和希拉尔德的合作……[l][cm]"
+        "text": "[show]如果你们想问的是，大书院会不会中止和希拉尔德的合作……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]我的答案是“不会”。[l][cm]"
+        "text": "[show]我的答案是“不会”。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]仅仅依靠你们提出的论据，我无法在学系会议上否决现有的计划。[l][cm]"
+        "text": "[show]仅仅依靠你们提出的论据，我无法在学系会议上否决现有的计划。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]为什么？希拉尔德在装置上别有心机，我们不是已经调查得很清楚了吗？[l][cm]"
+        "text": "[show]为什么？希拉尔德在装置上别有心机，我们不是已经调查得很清楚了吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]确实有些蹊跷，但你们是从“有罪推定”的角度来看待这一点，所以才觉得希拉尔德包藏祸心。[l][cm]"
+        "text": "[show]确实有些蹊跷，但你们是从“有罪推定”的角度来看待这一点，所以才觉得希拉尔德包藏祸心。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]这……[l][cm]"
+        "text": "[show]这……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]而且退一步说，就算希拉尔德真的是别有用心，目的就是要从霜烬平原截取冰属性魔力输送到别处……[l][cm]"
+        "text": "[show]而且退一步说，就算希拉尔德真的是别有用心，目的就是要从霜烬平原截取冰属性魔力输送到别处……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]“输送冰属性魔力”这件事，对于大书院来说，又有什么危害？[l][cm]"
+        "text": "[show]“输送冰属性魔力”这件事，对于大书院来说，又有什么危害？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]这……这个……[l][cm]"
+        "text": "[show]这……这个……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]你们说他的目的是要对整个深渊不利……但这只是推测，是你们的一面之词。[l][cm]"
+        "text": "[show]你们说他的目的是要对整个深渊不利……但这只是推测，是你们的一面之词。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]我不是说我不相信你们，但大书院真正的决策机构是学系会议，并不是院长的一言堂。[l][cm]"
+        "text": "[show]我不是说我不相信你们，但大书院真正的决策机构是学系会议，并不是院长的一言堂。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]在事情真正发生之前，学系会议定然不会采信你们的说法。尽管大家都对希拉尔德有所疑虑，但为了消除极寒这个目标，所有人都会默契地保持沉默。[l][cm]"
+        "text": "[show]在事情真正发生之前，学系会议定然不会采信你们的说法。尽管大家都对希拉尔德有所疑虑，但为了消除极寒这个目标，所有人都会默契地保持沉默。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]啊？怎么会这样？难道我们要眼睁睁地看着希拉尔德的阴谋得逞？[l][cm]"
+        "text": "[show]啊？怎么会这样？难道我们要眼睁睁地看着希拉尔德的阴谋得逞？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]至少在这一次，恐怕是的。[l][cm]"
+        "text": "[show]至少在这一次，恐怕是的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]不过……你们也不用太过担心。根据你们的说法，“结社”在进行的是一个宏大的计划，只要能够阻击他们的关键步骤，一些小地方的失败，倒也不算什么。[l][cm]"
+        "text": "[show]不过……你们也不用太过担心。根据你们的说法，“结社”在进行的是一个宏大的计划，只要能够阻击他们的关键步骤，一些小地方的失败，倒也不算什么。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]虽然这次没有办法帮助你们抵制大书院与“结社”的合作，但我作为院长，设立几个新项目的权力还是有的。[l][cm]"
+        "text": "[show]虽然这次没有办法帮助你们抵制大书院与“结社”的合作，但我作为院长，设立几个新项目的权力还是有的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]我会让院卫加强对“结社”的搜查和监视。如果希拉尔德的装置出现任何异动，我会及时联系并通知你们。[l][cm]"
+        "text": "[show]我会让院卫加强对“结社”的搜查和监视。如果希拉尔德的装置出现任何异动，我会及时联系并通知你们。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]这样做，你们能满意吗？[l][cm]"
+        "text": "[show]这样做，你们能满意吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "奇瓦",
-        "text": "[show]妈妈！[l][cm]"
+        "text": "[show]妈妈！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "乌尔勒",
-        "text": "[show]奇瓦！我的好宝宝——！[l][cm]"
+        "text": "[show]奇瓦！我的好宝宝——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]呜呜！真是太令人感动了……[l][cm]"
+        "text": "[show]呜呜！真是太令人感动了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "伽拉忒亚",
-        "text": "[show]妈妈，奇瓦姐姐，我也要来！[l][cm]"
+        "text": "[show]妈妈，奇瓦姐姐，我也要来！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]这……应该也算是个好结果吧……[l][cm]"
+        "text": "[show]这……应该也算是个好结果吧……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]{myName}，你怎么看？[l]"
+        "text": "[show]{myName}，你怎么看？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -238,81 +237,81 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]{myName}说得没错。我们已经在黑森林失败过一次，不能再失败一次了。[l][cm]"
+        "text": "[show]{myName}说得没错。我们已经在黑森林失败过一次，不能再失败一次了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]说到底，我们根本不知道什么才是“结社”计划的“[color=ffb64d]关键步骤[colorEnd]”。[l][cm]"
+        "text": "[show]说到底，我们根本不知道什么才是“结社”计划的“[color=ffb64d]关键步骤[colorEnd]”。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]为了从根本上阻止“结社”的阴谋，我们最好能够阻止结社的“[color=f1401c]每一步[colorEnd]”。[l][cm]"
+        "text": "[show]为了从根本上阻止“结社”的阴谋，我们最好能够阻止结社的“[color=f1401c]每一步[colorEnd]”。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]道理是这个道理啦……但现在事情卡在这里了，我们又能怎么办？[l][cm]"
+        "text": "[show]道理是这个道理啦……但现在事情卡在这里了，我们又能怎么办？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（我们真的没有办法说服大书院了吗……？）[l][cm]"
+        "charaName": "",
+        "text": "[show]（我们真的没有办法说服大书院了吗……？）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（希拉尔德把自己的计划和大书院的利益绑到了一起，为了解决极寒的天气，大书院无论如何也不可能让步……）[l][cm]"
+        "charaName": "",
+        "text": "[show]（希拉尔德把自己的计划和大书院的利益绑到了一起，为了解决极寒的天气，大书院无论如何也不可能让步……）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（我到底要怎么做，才能让大书院抛弃希拉尔德……？）[l][cm]"
+        "charaName": "",
+        "text": "[show]（我到底要怎么做，才能让大书院抛弃希拉尔德……？）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（到底该怎么做……！）[l][cm]"
+        "charaName": "",
+        "text": "[show]（到底该怎么做……！）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]{myName}，你的脸色好难看……要不，你先休息一下，别把自己逼得太紧了！[l]"
+        "text": "[show]{myName}，你的脸色好难看……要不，你先休息一下，别把自己逼得太紧了！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -340,73 +339,73 @@
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[cm][show]（米托拉说得没错，我确实需要冷静下来。）[l][cm]"
+        "charaName": "",
+        "text": "[cm][show]（米托拉说得没错，我确实需要冷静下来。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（仔细想，继续想……世界上没有无解的难题！）[l][cm]"
+        "charaName": "",
+        "text": "[show]（仔细想，继续想……世界上没有无解的难题！）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "{myName}",
-        "text": "[show]（好好想想吧……事情的关键究竟是什么，我方的手里又有什么样的手牌！）[l][cm]"
+        "charaName": "",
+        "text": "[show]（好好想想吧……事情的关键究竟是什么，我方的手里又有什么样的手牌！）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]看起来……你好像冷静下来了？[l][cm]"
+        "text": "[show]看起来……你好像冷静下来了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]先别着急，无论“结社”的图谋是什么，都还没到发动的时候。[l][cm]"
+        "text": "[show]先别着急，无论“结社”的图谋是什么，都还没到发动的时候。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]趁着这段时间，先好好休息，整理一下思绪……我相信，你一定能够找到破局的方法！[l][cm]"
+        "text": "[show]趁着这段时间，先好好休息，整理一下思绪……我相信，你一定能够找到破局的方法！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]原来如此，思考也是需要劳逸结合的……吗……！[l][cm]"
+        "text": "[show]原来如此，思考也是需要劳逸结合的……吗……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]有了！奥格那家伙不是说欢迎我们随时光临吗？[l][cm]"
+        "text": "[show]有了！奥格那家伙不是说欢迎我们随时光临吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]我们这就杀她一个回马枪，让她再好好招待我们一次吧！[l]"
+        "text": "[show]我们这就杀她一个回马枪，让她再好好招待我们一次吧！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -427,9 +426,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]听你这话的意思……[l]"
+        "text": "[cm][show]听你这话的意思……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -437,12 +436,12 @@
       "para": {
         "options": [
           {
-            "text": "就照你们说的。",
-            "tag": "tag_56"
+            "tag": "tag_64",
+            "text": "就照你们说的。"
           },
           {
-            "text": "我们先回温泉，好好合计一番吧。",
-            "tag": "tag_56"
+            "tag": "tag_64",
+            "text": "我们先回温泉，好好合计一番吧。"
           }
         ]
       },
@@ -450,28 +449,29 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm][hide]"
+        "text": "[cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（奥格的温泉村中的温泉包间已解锁。在{myName}想出对策之前，先静心等待吧。）[l][cm][hide]"
+        "text": "[show]（奥格的温泉村中的温泉包间已解锁。在{myName}想出对策之前，先静心等待吧。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_6_2",
   "des": "与【院长乌尔勒】对话【乌尔勒院长，我们回来了。】"
 }

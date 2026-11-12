@@ -1,0 +1,121 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]决定好探索的目标，就可以派出探索队进行探索了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]原来如此……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]不同时段的可探索点会变化，还可能遇到急需探索队处理的突发事件。这些时候你们都可以派出探索队，而且每次探索的奖励也各不相同。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]如果对现有的可探索点不满意，可以通过重新搜寻来发现新的可探索点。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]不过重新搜寻是有限制的，在进行过一次重新搜寻后，需要等待一段时间才可以进行下一次搜寻。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]还有要记住一点，被派去探索的伙伴在归来前，都不能进行加入别的探索队哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好的，我们明白啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]嗯……这样应该没问题了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]我刚刚通过信鹰收到消息，已经有探索队接下了搜寻修行者的任务了。如果他们有失踪修行者的消息，我会直接联系修行所的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]嗯！那样的话我们也可以放心了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "迦南",
+        "text": "[show]既然已经没有后顾之忧了，那也是时候该出发了。我们回修行所去吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "我们随时可以出发！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show][cm]哦哦！我们走吧！目标，观星高地！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "指引结束后，迦南说明白如何组织探索",
+  "script": "m_1_8_6"
+}

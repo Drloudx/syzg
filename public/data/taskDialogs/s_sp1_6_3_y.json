@@ -1,0 +1,316 @@
+{
+  "des": "药浆草来了。",
+  "script": "s_sp1_6_3_y",
+  "exps": [
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]好咧，你们辛苦了，我这就把颜料调配好，稍微等一下。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一番调配后……颜料完成了。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]好，可以开始画了，你们都并排站好或者坐好吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？我们有四个人啊，你要四个人一起画吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]没错，我有这样的本事，而且这样做也能节省时间，毕竟模特站久了也会累的嘛。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐这就过来，记得把本小姐的蝙蝠也画上来哦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜的蝙蝠",
+        "text": "[show]吱吱！吱吱吱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]{myName}，我们站一起吧，就站这边。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]那本宫就站在角落里好了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]好，从现在开始各位就别乱动了，作画开始了哦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好——[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一段时间后……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]好啦！完成啦！每人都有一张，你们看看吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]本小姐先来！让本小姐看看你画的怎么样。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]哇！画得好帅啊！完美展现了本小姐的样子！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？你……你长这样吗？连身高都不一样了，这是不是有点过度美化了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]这是艺术加工，艺术加工，没有加工怎么能称得上艺术呢？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]而且贝拉多娜小姐很满意不是吗？这样说明我画得还是可以的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]那你能不能给我解释一下，为什么把我画得那么凶！我的牙都比嘴巴大了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]这不是为了符合你索命凶猫的设定吗？而且也把你画帅了不是吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]我……我才不要这样的帅啊——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]那个……你为什么把本宫画成这种可爱的小女孩。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫的骨头……也被你换成糖果了，就像是从童话屋里走出来的一样……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]是啊，斯卡莉安小姐现在的状态太阴暗了，所以我给你弄个一个新形象。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]这样的你看起来更可爱不是吗？比起阴暗的斯卡莉安，大家更喜欢这种充满活力的斯卡莉安呀。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]这个……算了……随你便吧，就当这是对本宫的惩罚就是了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "那个……我问一下。",
+            "tag": "tag_29"
+          },
+          {
+            "text": "为什么我这张画连头都没有。",
+            "tag": "tag_29"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[cm][show]这个嘛……当我给你画画的时候，我发现你的面孔一直在不停变化，我拿不住你的样子所以就没画了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]什么跟什么啊……你在城堡呆太久了吧，脑子都被些神神鬼鬼的东西占完了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艺术家米莉罗",
+        "text": "[show]好啦，这是报酬，你们拿好了，接下来我要把这四张画挂在墙上，从此它们就是幽夜古堡的收藏品了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]嘿嘿……记得给我们算个好位置哦，如果可以的话把本小姐挂在中间也没问题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜的蝙蝠",
+        "text": "[show]吱吱！吱吱！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]唉……我们四个也就贝拉多娜一个人喜欢这自己画上的样子吧。说是了欣赏艺术，结果她成了艺术……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "至少我们也看到许多艺术品了。",
+            "tag": "tag_36"
+          },
+          {
+            "text": "就当逛一趟画廊吧。",
+            "tag": "tag_36"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[cm][show]是啊，真不知道多年以后，后人会不会就认为我们长这样子……要真是那样，那就太可怕了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]本宫也很害怕……不过那可不是本宫，不是我们能决定的了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

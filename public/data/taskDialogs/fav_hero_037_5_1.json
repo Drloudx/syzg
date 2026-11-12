@@ -1,0 +1,386 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]唉，说来惭愧，此番波折，吾有一事，一直未曾向你说明。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "是关于前辈要“感谢我”的那件事……？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]不愧是小友，果然聪慧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]没错，就是“那件事”，我想聪明如小友，应该也有所猜测了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "是的，我看了您的信，就有所猜想。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "其实这一次，染上心魔的人并不只有我……"
+          },
+          {
+            "tag": "tag_8",
+            "text": "前辈您也受困于心魔之苦吧？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]哈哈哈！不愧是资质超群的天之骄子。若是我虎斗院还在，吾哪怕跪求师尊，也一定要把你收入门墙啊！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]你猜得没错。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]当日吾和你一样都误食了有毒的蘑菇，加上为了替你镇压心魔，消耗了太多真元……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]吾这潜伏多年的心魔，也终于爆发出来，一发而不可收拾。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]好在还有小友你在，吾一边为你调息理气，一边也是借此为同修，镇伏自身。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]好在吾这几十年修为不是假的，总算没在后辈面前出丑，也是邀天之幸了。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "前辈……"
+          },
+          {
+            "tag": "tag_15",
+            "text": "你的心魔……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "你对虎斗院的事……"
+          },
+          {
+            "tag": "tag_16",
+            "text": "这么多年，还是放不下吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]哈……放下……说起来简单，但谁又真的能放下呢……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]吾虽资质鲁钝，但吾的青葱年华、求学岁月，都是在宗门度过……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]历经二十余度寒暑，迎来送走了多少同门……这又怎会是一句放下就可以了结？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "所以前辈才引动了心魔吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]呵……这也是吾修行不到，才有此劫。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]幸好此番还有小友与吾互相扶持，总算得脱此厄。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "这都是前辈绸缪。"
+          },
+          {
+            "tag": "tag_23",
+            "text": "我什么也没做。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]不，你不仅有功，而且有大功。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]这么多年来，吾一直将愤懑、不甘、失落……统统埋藏心底，直到遇到了你，才终于得以脱口而出。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]比起同修之功，你愿意听吾这番牢骚，才是真正救吾于倒悬的大功。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]人生难得一知己，若非有你在，吾此番怕是注定沉沦了……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "幸好一切都过去了。"
+          },
+          {
+            "tag": "tag_28",
+            "text": "但现在一切都结束了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "那之后呢？"
+          },
+          {
+            "tag": "tag_29",
+            "text": "之后前辈有何打算？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]吾……大约还是会在深渊游历罢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]等此间事了，深渊重开，吾大概会……回去宗门旧地一趟……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]呵……远游经年，也是时候回去看看了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]等吾告慰了历代先长，说不定还能代师收徒，让小友你也列入虎斗院门墙之下呢！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_34",
+            "text": "啊？"
+          },
+          {
+            "tag": "tag_34",
+            "text": "这……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]哈，吾也就是这么一说。毕竟虎斗院早已物是人非，再不是当年鼎盛的大派了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]不过，本宗倒也还有那么几位颇有道行的人物在，若是拜入本宗门下，兴许他们便会多传你几招不传之秘呢？[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_37",
+            "text": "听起来倒是不错。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_38",
+            "text": "不过……"
+          },
+          {
+            "tag": "tag_38",
+            "text": "一切都等到时候再说吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[cm][show]到时候……唔，也好，那就一言为定！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "剋",
+        "text": "[show]待深渊解封之日，再来提此一遭罢！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "剋-近况如何？-进入战役",
+  "script": "fav_hero_037_5_1"
+}

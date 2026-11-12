@@ -1,0 +1,57 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]嗯，我们营地的秘术师说它就在你的营地附近姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]怎么样有兴趣吗？我也就是来找你说一下，如果你不愿意帮忙，那我就自己带着下属去把它救出来姆。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "德莉想做什么我都会帮的！",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[cm][show]嘿嘿……能得到{myName}这样的信任，我很荣幸姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]那我们就走吧，黄金史莱姆应该就在那个方向姆。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_060_4_0",
+  "des": "营地对话【你发现了黄金史莱姆？】"
+}

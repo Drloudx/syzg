@@ -1,0 +1,14 @@
+{
+  "script": "c1_d6_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]这附近也没有魔物的气息。在这里扎个营歇息下，准备决战吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "地窖深处四层 中间休息处 进入时"
+}

@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]嗯～看来你收到邀请函了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]演出再过不久就开始了，但现在最能让我感到放松的不是那些动作，反而是见证过我生硬的舞姿的你。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]……好了！我们赶紧去舞台那边吧？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "拉碧丝-拉碧丝？你不是应该在驿站旅店吗？",
+  "script": "fav_hero_007_4_0"
+}

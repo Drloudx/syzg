@@ -1,34 +1,28 @@
 {
+  "des": "大事业的第一步【黏团已经交出去了。】",
+  "script": "s_1_24_2",
   "exps": [
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]太好了！这下我终于可以安心待在这儿了！[l][cm]"
+        "text": "[show]太好了！这次的钱，我就先垫付给你们吧！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]那么这次的钱，我就先垫付给你们吧！[l][cm]"
+        "text": "[show]之后如果还有别的魔物要卖出，也都尽管使用我的渠道吧！报酬是不会少的！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]之后如果还有别的魔物要卖出，也都尽管使用我的渠道吧！报酬是不会少的！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]放心，我们是不会客气的！[l]"
+        "text": "[show]放心，我们是不会客气的！[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -50,120 +44,120 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[cm][show]放心，劳动力这种东西到处都在缺。只要是合格的劳力，各地都是来者不拒！哈哈，就算是魔物，也有的是人要！[l][cm]"
+        "text": "[cm][show]放心，劳动力这种东西到处都在缺。只要是合格的劳力，各地都是来者不拒！哈哈，就算是魔物，也有的是人要！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]再强调一次哈，[color=ffb64d]卖出[colorEnd]的魔物，都是[color=ffb64d]回不来的[colorEnd]，你们可千万要注意了！[l][cm]"
+        "text": "[show]再强调一次哈，[color=ffb64d]卖出[colorEnd]的魔物，都是[color=ffb64d]回不来的[colorEnd]，你们可千万要注意了！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]就是说，想要带在身边的魔物，就[color=ffb64d]别[colorEnd]把它们卖出。对吧？[l][cm]"
+        "text": "[show]就是说，想要带在身边的魔物，就[color=ffb64d]别[colorEnd]把它们卖出。对吧？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]没错，就是这个道理！[l][cm]"
+        "text": "[show]没错，就是这个道理！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]当然了，任何市场都是有自己的市场规律的。[l][cm]"
+        "text": "[show]当然了，任何市场都是有自己的市场规律的。[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]卖出只能干点杂活的低级魔物，肯定赚不到多少钱。[l][cm]"
+        "text": "[show]卖出只能干点杂活的低级魔物，肯定赚不到多少钱。[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]而具有稀有能力的[color=ffb64d]稀有魔物[colorEnd]，收购价也会[color=ffb64d]水涨船高[colorEnd]。想要最大程度地赚取财富，就多关注一下市场行情吧！[l][cm]"
+        "text": "[show]而具有稀有能力的[color=ffb64d]稀有魔物[colorEnd]，收购价也会[color=ffb64d]水涨船高[colorEnd]。想要最大程度地赚取财富，就多关注一下市场行情吧！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]做生意还有这么多讲究……这也太复杂了吧！[l][cm]"
+        "text": "[show]做生意还有这么多讲究……这也太复杂了吧！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]哈哈，所以说，并不是什么人都能当得了商人的。[l][cm]"
+        "text": "[show]哈哈，所以说，并不是什么人都能当得了商人的。[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]总之，两位尽管努力吧！[l][cm]"
+        "text": "[show]总之，两位尽管努力吧！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]现在魔物劳力市场还是一片蓝海，正是我们乘风破浪之时！[l][cm]"
+        "text": "[show]现在魔物劳力市场还是一片蓝海，正是我们乘风破浪之时！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]也许……迟早有一天，被驯养后、不再狂暴的魔物，会和人类生活在一起，成为人类社会不可分割的一部分……[l][cm]"
+        "text": "[show]也许……迟早有一天，被驯养后、不再狂暴的魔物，会和人类生活在一起，成为人类社会不可分割的一部分……[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]我不知道那一天什么时候会来，但在那一天到来之前，我们一定已经赚到了数不清的财富！[l][cm]"
+        "text": "[show]我不知道那一天什么时候会来，但在那一天到来之前，我们一定已经赚到了数不清的财富！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "露比",
-        "text": "[show]为了我们的明天！加油！[l][cm]"
+        "text": "[show]为了我们的明天！加油！[l][cm]",
+        "charaName": "露比"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]加油！[l]"
+        "text": "[show]加油！[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -171,8 +165,8 @@
       "para": {
         "options": [
           {
-            "text": "加油！",
-            "tag": "tag"
+            "tag": "tag",
+            "text": "加油！"
           }
         ]
       },
@@ -181,12 +175,10 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[cm][hide]"
+        "text": "[cm][hide]",
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": "大事业的第一步【黏团已经派遣出去了。】",
-  "script": "s_1_24_2"
+  ]
 }

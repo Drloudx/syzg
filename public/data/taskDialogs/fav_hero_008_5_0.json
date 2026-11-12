@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]哎！？咱想要的东西，你早就准备好了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]原来是从那次一起吃饭后就开始准备了吗……{myName}真用心，光说谢谢咱都会觉得不好意思了呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]会是什么神奇道具呢，快带咱去看看吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "夏库塔拉-咱早就准备好了。",
+  "script": "fav_hero_008_5_0"
+}

@@ -1,0 +1,246 @@
+{
+  "script": "zy0205_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]小心……！是那个大家伙……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]等等，样子有些不对！那家伙在做什么……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]唔哦哦哦！那个装置我还是头一次见！[r][l]这个读数是……原来如此……啊，原来如此！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]虽然已经有些微弱了……但那确实是和灾害……“异变”一样的能量波动！[r][l]——灾害之源，就是那个装置！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]什么？你的仪器没出问题吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]不要质疑我的仪器！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]难以置信！区区一人高的魔导器，影响范围居然能够波及到整个索利德山地！[r][l]这就是古代技术的结晶吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "left",
+        "text": "[show]（米托拉……没错了。那个东西一定是另一个神匠器！）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]唔……！安娜，别在那感叹了，先看看情况！那个大家伙在做什么！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]嗯嗯嗯～我看看……啊，这不是显而易见的嘛。[r][l]那个大家伙在吸食那个装置散发的能量，已经吸得饱饱的了，充满了强大的魔力波动哦～[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]强化自身？那可不能让它得逞！打断它！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]可恶，完全近不了身，好大的推力！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]唔……！安娜，这是怎么回事？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]嗯……看起来那个装置和索利德山的地脉完全连接在了一起。[r][l]大家伙靠着它拥有了几乎无穷的魔力，完全无法接近也是理所当然的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]这也太赖皮了吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]不……有办法！米托拉……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]嗯……！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]就连菲莉娜都无法靠近它，你们能有什么办法……？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]不能靠近的话，就试着从外面影响它。我们有办法和那个匠器产生共鸣！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]希尔！抓住我的手，开干吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]嗯！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]集中精神——然后——[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]哦哦哦！他们两个……和那个装置共鸣起来了！小工匠这边的魔力读数在蹭蹭地在往上涨！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]这样下去，也许就能中和掉这股力场——！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]米托拉，我们成功了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]好极了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]它的魔力供应断了！两位后辈，做得好！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]虽然魔力供应断了，但我们好像也激怒了那个大块头！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]哈！你生气，我还更生气呢！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]你这个把山地搞得一团糟的狗东西！[r][l]就让你看看究竟是你的怒火更强，还是爷爷的怒火更烈吧！[r][l]皮塔，我们上！把它给我碾碎！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "(CG占位)"
+}

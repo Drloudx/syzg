@@ -1,43 +1,42 @@
 {
-  "script": "m_5_8_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]没问题，既然要露营，那料理的事情就交给我吧。[l][cm]"
+        "text": "[show]没问题，既然要露营，那料理的事情就交给我吧。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]噢！艾薇杜尔做的饭，我还没品尝过呢！[l][cm]"
+        "text": "[show]噢！艾薇杜尔做的饭，我还没品尝过呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]毕竟{myName}的手艺实在太好了，平时根本都没有我们发挥的余地……[l][cm]"
+        "text": "[show]毕竟{myName}的手艺实在太好了，平时根本都没有我们发挥的余地……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]但是这一次{myName}有事要做……[l]"
+        "text": "[show]但是这一次{myName}有事要做……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]嗯，既然这样，那{myName}就先好好专心搞工程，剩下的事情就都交给我们！[l]"
+        "text": "[show]嗯，既然这样，那{myName}就先好好专心搞工程，剩下的事情就都交给我们！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -54,33 +53,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm][hide]"
+        "text": "[cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（两天后——）[l][cm][hide]"
+        "text": "[show]（两天后——）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]{myName}，你这么早就起来了？[l][cm]"
+        "text": "[show]{myName}，你这么早就起来了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]不对，你昨天是不是没睡觉？[l]"
+        "text": "[show]不对，你昨天是不是没睡觉？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -97,9 +96,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]怎么不重要？连身体都不重要，还有什么重要？[l]"
+        "text": "[cm][show]怎么不重要？连身体都不重要，还有什么重要？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -120,57 +119,57 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]已经完成了？[l][cm]"
+        "text": "[show]已经完成了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]真的说两天就是两天啊……不愧是{myName}，果然说到做到！[l][cm]"
+        "text": "[show]真的说两天就是两天啊……不愧是{myName}，果然说到做到！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]那接下来我们该——[l][cm]"
+        "text": "[show]那接下来我们该——[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]接下来这家伙要好好睡觉！[l][cm]"
+        "text": "[show]接下来这家伙要好好睡觉！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]天大地大，身体最大！等他好好睡一觉起来，我们再上山，把样机安装好！[l][cm]"
+        "text": "[show]天大地大，身体最大！等他好好睡一觉起来，我们再上山，把样机安装好！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]嗯，算算奇瓦和伽拉忒亚的脚程，乌尔勒院长差不多傍晚就会到了。[l]"
+        "text": "[show]嗯，算算奇瓦和伽拉忒亚的脚程，乌尔勒院长差不多傍晚就会到了。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -187,44 +186,45 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[cm][show]时间够你还不好好睡觉？[l][cm]"
+        "text": "[cm][show]时间够你还不好好睡觉？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "米托拉",
-        "text": "[show]不管是为了身体着想，还是为了不耽误事，你都快点去躺着吧！[l][cm]"
+        "text": "[show]不管是为了身体着想，还是为了不耽误事，你都快点去躺着吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]我会做好“早餐”等着你的。[l][cm]"
+        "text": "[show]我会做好“早餐”等着你的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]我想想……方便好拿的野菜三明治怎么样？到时候我们就一边吃饭，一边慢慢上山吧！[l][cm][hide]"
+        "text": "[show]我想想……方便好拿的野菜三明治怎么样？到时候我们就一边吃饭，一边慢慢上山吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_8_1",
   "des": "与艾薇杜尔对话，【今晚就在此好好休息吧。】"
 }

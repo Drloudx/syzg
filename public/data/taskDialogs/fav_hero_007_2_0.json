@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]嗯？{myName}已经在这里等着了吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]要是舞团的所有人都像{myName}一样准时就好了呢。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "拉碧丝",
+        "text": "[show]跟我来，我们去一个好地方～[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "拉碧丝-欢迎你，拉碧丝。我们去哪里观摩你的成果？",
+  "script": "fav_hero_007_2_0"
+}

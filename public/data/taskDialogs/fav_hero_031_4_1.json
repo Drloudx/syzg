@@ -1,0 +1,257 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]去他的！这种烂东西……它闻起来像……像是腐烂的树根！我就浅尝一口……差点把我的喉咙烧成——灰！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]这种野蛮的液体，只有在这烂地方……才会被人奉为佳酿……嗝儿！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "哇……你已经喝得烂醉了唉……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……我还要喝！再来一杯！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]唯有这种……烧灼感，才能让我感觉到……我还在世上呼吸，而不是像倭瓜一样腐烂！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "你已经开始胡言乱语了……"
+          },
+          {
+            "tag": "tag_8",
+            "text": "我们出去走走吧……"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]走？走到哪里去？走出这深渊吗！能往哪里走！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]罢了……我们哪儿都走不了！那既然如此，就没必要藏着掖着了！我就跟你讲讲我的过往！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "……啊？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]在克里斯汀，我拥有的这个姓氏……曾经代表着真正的荣光……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我那伟大的祖父，克里斯汀最忠诚的戒律骑士……只因在战场上放走了一个投降的魔物——噢，你们说的魔人！就被那个高高在上的教皇……亲手扯下了勋章！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我就带着这份“罪恶”来到了深渊！我告诫自己，所有的魔物都是敌人！只有这样……我才能替祖父赎罪！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]没错……那些肮脏低贱的魔人……和魔物没有区别！它们都是敌人！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "但你亲眼所见，并不是这样，对吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]……去他的！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]是啊……我看到了不少东西！妖邪一般的魔人也会流泪！操弄异端的工匠也不只会毁灭世界！有些在这里沉沦的人类，比魔物更加可悲！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]呵……真是可笑啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]我一辈子遵守着法律和准则，坚持着我的荣耀，为了守护一个抛弃了我祖父的国家，却告诉我，下半辈子都得困在了他乡！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]剥掉这身洗得发白的礼服，丢掉这张坏掉的银弓……我又算得上什么呢！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]你也别傻看着！喝，给我喝！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "——说得对！好！喝！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[cm][show]喝——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（你就是你，波特温，不是谁的影子。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（你可以遵循本心，做出完全属于自己的选择。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（不过……现在即使说这些他也听不进去吧……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]嗯？杯子又空了？怎么没的这么快……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "波特温",
+        "text": "[show]罢了，我要休息了！让我……稍微……眯一会……你可不许……偷偷溜走……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（说完，波特温趴在桌上就睡着了……没办法，只能看着他了……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（直到第二天清早，面红耳赤的波特温才摇醒你，一同离开驿站旅店……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_031_4_1",
+  "des": "波特温-痛饮后的坦白-进入战役"
+}

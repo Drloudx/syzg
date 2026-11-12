@@ -13,9 +13,9 @@ import {
 } from '../../src/utils/gachaSim.js'
 
 const gacha = JSON.parse(readFileSync(new URL('../../public/data/parsed/gacha.json', import.meta.url), 'utf8'))
-const heroPool = gacha.pools.find(pool => pool.id === 'hero:1:1:0')
-const upPool = gacha.pools.find(pool => pool.id === 'hero:2:2:0')
-const petPool = gacha.pools.find(pool => pool.id === 'pet:1:1:0')
+const heroPool = gacha.pools.find(pool => pool.id === 'hero:4ce:1')
+const upPool = gacha.pools.find(pool => pool.id === 'hero:4ce:2')
+const petPool = gacha.pools.find(pool => pool.id === 'pet:4ce:1')
 
 /** 固定种子随机源，保证测试可复现。 */
 function seeded(seed) {
@@ -27,15 +27,21 @@ function seeded(seed) {
 }
 
 test('卡池数据带上了原表概率说明与指定伙伴', () => {
-  assert.equal(gacha.pools.length, 4)
+  // 2026-11-12：三测卡池已删除，仅保留四测。四测 = 公主（德莉）+ 幽夜（洛莉安）+ 常规。
+  const hero4 = gacha.pools.filter(p => p.kind === 'hero' && p.era === '4ce')
+  assert.deepEqual(hero4.map(p => p.name).sort(), ['公主招募', '幽夜招募', '常规招募'].sort())
   for (const pool of gacha.pools) {
     assert.ok(pool.percTip.length > 0, `${pool.id} 缺少 percTip`)
     assert.ok(pool.percTip.includes('{'), `${pool.id} 的 percTip 应保留占位符`)
   }
-  // 2026-11-09（1.7.15 数据更新）：活动 UP 池从 hero_064 换成 hero_060（德莉），
-  // 封面精灵随之变为 gacha_chara060。
-  assert.deepEqual(upPool.upTypes, ['hero_060'])
-  assert.equal(upPool.assets.coverSprite, 'gacha_chara060')
+  // 四测公主池：UP=hero_060（德莉）、封面 gacha_chara060、期次图 gacha_name_chara060_0。
+  const p4 = hero4.find(p => p.poolTypeId === '2')
+  assert.deepEqual(p4.upTypes, ['hero_060'])
+  assert.equal(p4.assets.coverSprite, 'gacha_chara060')
+  // 四测幽夜池：UP=hero_071（洛莉安）、封面 gacha_chara071。
+  const p5 = hero4.find(p => p.poolTypeId === '5')
+  assert.deepEqual(p5.upTypes, ['hero_071'])
+  assert.equal(p5.assets.coverSprite, 'gacha_chara071')
   assert.equal(petPool.assets.coverSprite, 'gacha_egg_sp')
 })
 
@@ -104,7 +110,7 @@ test('星级分布与官方概率说明一致（大样本）', () => {
   assert.ok(fourRate > 12.5 && fourRate < 15.5, `4★ 实测 ${fourRate.toFixed(2)}% 偏离综合概率 13.9%`)
 })
 
-test('指定伙伴保底：未命中 UP 伙伴后，下一次 5 星必为 hero_064', () => {
+test('指定伙伴保底：未命中 UP 伙伴后，下一次 5 星必为 hero_060', () => {
   const random = seeded(7)
   let runtime = createRuntime(upPool)
   let lastFiveStarWasNonUp = false
@@ -114,11 +120,11 @@ test('指定伙伴保底：未命中 UP 伙伴后，下一次 5 星必为 hero_0
     runtime = result.runtime
     if (result.tier.rank === 5) {
       if (lastFiveStarWasNonUp) {
-        assert.equal(result.candidate.typeId, 'hero_064', '歪了之后下一次 5★ 必定为 UP 伙伴')
+        assert.equal(result.candidate.typeId, 'hero_060', '歪了之后下一次 5★ 必定为 UP 伙伴')
         verifiedPity = true
         break
       }
-      if (result.candidate.typeId !== 'hero_064') {
+      if (result.candidate.typeId !== 'hero_060') {
         lastFiveStarWasNonUp = true
       }
     }

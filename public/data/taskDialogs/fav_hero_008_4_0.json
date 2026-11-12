@@ -1,0 +1,38 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]呀！你今天看起来真精神！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]这是礼物，拿好了！{myName}今晚……应该没有别的工作吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "夏库塔拉",
+        "text": "[show]那么，咱在驿站旅店等你！说好咯？[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "夏库塔拉-好久不见，夏库塔拉。",
+  "script": "fav_hero_008_4_0"
+}

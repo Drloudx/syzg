@@ -1,0 +1,38 @@
+{
+  "script": "fav_hero_002_5_0",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]看来你准备好了，那我们尽快去修行所吧，省得瓦菲诺一直把乌鸦派过来呱呱叫。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实要去把工匠锤和吊坠这事调查清楚……我还是有些紧张的……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只希望一会别吓到手抖就好……我们走吧。[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "米托拉-营地对话【我们走吧。】"
+}

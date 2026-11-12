@@ -1,0 +1,280 @@
+{
+  "script": "fav_hero_050_2_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]到了，就是这里，最近岩蟾蜍都是从这个方向冲出来的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（仔细调查一番。）[l][cm][hide]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过一番调查，你们什么都没查出来。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]怎么样？查出什么了吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_8",
+            "text": "非常抱歉，什么都没查出来……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]没事，还有些时间，我们慢慢查就好。来，这瓶水给你，查了那么久辛苦了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我们之前也把这边的土都翻了一遍，也是什么都没发现，甚至连一些晶石粉末都找不到，完全想不到那群岩蟾蜍是怎么盯上这里的……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我们和自卫团那天刨了一下午的土，突然有点想念以前种田的时光了。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "米拉贝尔小时候还种过田？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]毕竟是山里的住民，一些基础的生存知识还是要学习的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]当时异变的还没有现在那么严重，基本上只要按时间灌溉耕作就好，等成熟后就能自然收获。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]种田真是太累人了，再加上我还笨手笨脚的，闹出来不少笑话。比如一锄头把自己抡倒了，又或者是带着萝卜被牛追了一路……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "那样的米拉贝尔很可爱嘛。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]可……可爱啥啦！都是些羞耻的回忆，有什么可爱的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]不过还是有很多好玩的回忆的……看到那头岩山了吗？那是我当时和伙伴们炸出来的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]毕竟山里没什么玩的，只能从矿场那边借点炸药，看着这里哪片山不顺眼，然后直接用炸药去炸。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]说来也是好笑，我的每个伙伴几乎都被抓到过，唯独我从来没有被抓……可能是因为我腿脚好吧，每次大人来查的时候我都是跑得最快的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]你看看堆碎石，就是我当时亲自炸的。当时声音可响啦，整片种植区的人都能听到我们的壮举。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]轰隆一声，原本高大的岩山就变成一片碎石啦。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "嗯……能看出来这里以前确实有座山。"
+          },
+          {
+            "tag": "tag_23",
+            "text": "等等……这里散发的魔力似乎有些不对劲。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]不对劲？怎么了吗？这里好像有一股硝石的味道……奇怪，爆炸都过去这么久了，怎么还会有这种味道？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（拿出工匠锤。）[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]你拿出工匠锤做什么……你在分割这些石块？等等，这里面除了火药以外，还有另一种东西。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]这些东西是晶石粉末！难怪我们之前没有发现，原来是有人把火药和晶石粉末混合在了一起。这样我们无法发现，魔物却能感知到……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]至少……可以确认是有人在作怪了，到底是谁在干这种龌龊的事情？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_29",
+            "text": "让我用工匠锤找出其他晶石粉末吧。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嗯，麻烦你了，果然找你是没错的。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "没有你的灵光一闪我也找不出缘由。"
+          },
+          {
+            "tag": "tag_31",
+            "text": "这里面也有你的功劳啦。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]也……也就说说一些以前的嗅事，算不上什么功劳。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我们一起先把晶石粉末全都抹除掉，然后再去找幕后黑手吧。[l][cm][hide]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（就这样，和米拉贝尔一起将种植区剩余的晶石粉末全都去除掉了。）[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "米拉贝尔-调查岩山-进入战役"
+}

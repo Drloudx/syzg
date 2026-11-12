@@ -1,0 +1,293 @@
+{
+  "script": "fav_hero_009_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜噫噫噫噫——！？[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦～亲爱的可可娜，我就知道你肯定会回来！不枉我苦苦等待！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]麻、麻烦你不要打扰我……现在是私人时间……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎？我问过了，你们今天的彩排和练习已经结束了！请收下我的礼物吧？亲手制作的可可娜爱心曲奇哦～！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……呃？！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]啊～要来了吗，就是这个表情……！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]……呜呃！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯嗯，没错！可可娜，对我说出那些话语吧！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]什、什么啊？！你不要再靠近我了……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]只是这样而已吗？难道我对你表达的喜欢还不够吗？！明明你对和你相隔一个看台的观众都能说出那种话……[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我准备好了！可可娜大人，请对我使用妖精话语中最恶毒的诅咒吧！如果能被您这般可爱的妖精诅咒，我就可以没有任何遗憾地——[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]我、我已经下定决心不再随便说那些让人不适的话了！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]让人不适？怎么会，那是沐浴我心灵的美言啊！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜噫噫噫噫——！[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "适可而止吧！",
+            "tag": "tag_18"
+          },
+          {
+            "text": "别再骚扰可可娜了！",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]哎？你是谁？！[l][cm]",
+        "charaName": "激动的冒险者"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]{myName}是……是妖精舞台的经纪人，没错！{myName}快帮我把那个人赶走……！！[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "喝——！",
+            "tag": "tag_21"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（于是你挺身而出，帮助可可娜暂且摆脱了狂热粉丝的危机。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呜……真是吓死我了哇，幸好有你帮忙……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]每次都追着我让我对她说那些会招惹人厌恶的话……我、我还从来没见识过这么奇怪的要求呢……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]突然让我这么做，怎么可能哇！而且我也不是真的想要说，只是控制不住自己……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过，她已经不是第一次被赶走了，肯定还会回来的！光是想到她的脸，我连午觉都睡不好了，呜……！[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我们去和她好好谈谈。",
+            "tag": "tag_28"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]什、什么！？逃走都来不及，还要主动去找她……好可怕……[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "要让她意识到自己的错误才行。",
+            "tag": "tag_30"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]能、能做到吗……总让我想起以前那些欺凌我的家伙……我根本说不出什么有气势的话……[l]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我来帮忙说明。",
+            "tag": "tag_32"
+          },
+          {
+            "text": "交给我吧！",
+            "tag": "tag_32"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]事先说好！情况不对我会立刻跑掉的！[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]要，要写信给她吗？呜呜，我会试试看的……[l][cm]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]她回信了我就马上联系你！你一定要快点来帮忙哇！[l][cm][hide]",
+        "charaName": "可可娜"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "可可娜-进入战役【fav_hero_009_3】"
+}

@@ -1,43 +1,42 @@
 {
-  "script": "m_5_11_4",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]你们回来了……实在是辛苦你们了。[l][cm]"
+        "text": "[show]你们回来了……实在是辛苦你们了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]关于你们在霜烬平原的英雄事迹，奥格的信鹰已经带来了大致的经过。[l][cm]"
+        "text": "[show]关于你们在霜烬平原的英雄事迹，奥格的信鹰已经带来了大致的经过。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]但关于那些不为外人所知的具体细节，仍需你们亲自说明。[l][cm]"
+        "text": "[show]但关于那些不为外人所知的具体细节，仍需你们亲自说明。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]怎么样？关于\"结社\"和匠器的事情，你们又了解了多少？快跟我们说说，让我们也长长见识！[l][cm]"
+        "text": "[show]怎么样？关于“结社”和匠器的事情，你们又了解了多少？快跟我们说说，让我们也长长见识！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]说什么涨见识的……我们可是差点全都玩完了呢……[l]"
+        "text": "[show]说什么涨见识的……我们可是差点全都玩完了呢……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -54,65 +53,65 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（大约十五分钟后——）[l][cm]"
+        "text": "[show]（大约十五分钟后——）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（你向菲尔德蕾和瓦菲诺大致说明了这次冒险的经历。当然，关于人造匠器的名字……以及名为“缪娅”的存在……你们思考再三，终究没有提及。）[l][cm]"
+        "text": "[show]（你向菲尔德蕾和瓦菲诺大致说明了这次冒险的经历。当然，关于人造匠器的名字……以及名为“缪娅”的存在……你们思考再三，终究没有提及。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]你们竟然和希拉尔德正面交锋了？[l][cm]"
+        "text": "[show]你们竟然和希拉尔德正面交锋了？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]还有你们之前遇到过的那个小女孩艾茵，她也是“结社”的干部，还是希拉尔德的养女？[l][cm]"
+        "text": "[show]还有你们之前遇到过的那个小女孩艾茵，她也是“结社”的干部，还是希拉尔德的养女？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]{myName}……和父亲对峙，应该很不好受吧。[l][cm]"
+        "text": "[show]{myName}……和父亲对峙，应该很不好受吧。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]我理解这种与至亲反目的痛苦，即便如此，我仍希望你能静下心来，仔细回想当时的情形。[l][cm]"
+        "text": "[show]我理解这种与至亲反目的痛苦，即便如此，我仍希望你能静下心来，仔细回想当时的情形。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]关于\"结社\"之后的行动，希拉尔德是否透露过任何线索？[l]"
+        "text": "[show]关于“结社”之后的行动，希拉尔德是否透露过任何线索？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -133,89 +132,97 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[cm][show]是吗……那看来我们必须重新调查“结社”这批人的去向了。瓦菲诺女士……[l][cm]"
+        "text": "[cm][show]是吗……那看来我们必须重新调查“结社”这批人的去向了。瓦菲诺女士……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]是是是，调查去向，调查去向……可那又有什么用呢？[l][cm]"
+        "text": "[show]是是是，调查去向，调查去向……可那又有什么用呢？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]上次的罗姆洛敏，还有这次的希拉尔德，这两次遭遇告诉我们，\"结社\"的人拥有在深渊中随意传送的技术！[l][cm]"
+        "text": "[show]上次的罗姆洛敏，还有这次的希拉尔德，这两次遭遇告诉我们，“结社”的人拥有在深渊中随意传送的技术！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]有这种神技在手，就算我们查出了什么线索，又能有什么用？[l][cm]"
+        "text": "[show]有这种神技在手，就算我们查出了什么线索，又能有什么用？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]等我们的精锐，啊，英雄小队赶过去，对面说不定已经跑得没影了。[l][cm]"
+        "text": "[show]等我们的精锐，啊，英雄小队赶过去，对面说不定已经跑得没影了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]你的担忧非常现实。但如果真的有了线索，我们怎能不派人去调查呢？[l][cm]"
+        "text": "[show]你的担忧非常现实。但如果真的有了线索，我们怎能不派人去调查呢？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]那当然——[l]不能。[l][cm]"
+        "text": "[show]那当然——[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "菲尔德蕾",
-        "text": "[show]既然不能，那就无谓抱怨，尽量多做实事吧。[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]唉。是——！[l][cm]"
+        "text": "不能。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "菲尔德蕾",
-        "text": "[show]好了，多谢你们的汇报。你们赶路辛苦了，早点回去休息吧，我就不多留你们了。[l][cm]"
+        "text": "[show]既然不能，那就无谓抱怨，尽量多做实事吧。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
+        "charaName": "瓦菲诺",
+        "text": "[show]唉。是——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲尔德蕾",
+        "text": "[show]好了，多谢你们的汇报。你们赶路辛苦了，早点回去休息吧，我就不多留你们了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
         "charaName": "米托拉",
-        "text": "[show]好～～的！我也是真的累了，就不和你们客气啦！[l]"
+        "text": "[show]好～～的！我也是真的累了，就不和你们客气啦！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -232,25 +239,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]好好好，去吧去吧。[l][cm]"
+        "text": "[show]好好好，去吧去吧。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "瓦菲诺",
-        "text": "[show]你们这次匠器碎片有充能吗？如果充能了，别忘了及时来修行所哦。[l]"
+        "text": "[show]你们这次匠器碎片有充能吗？如果充能了，别忘了及时来修行所哦。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -271,28 +278,29 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "艾薇杜尔",
-        "text": "[show]两位也请多保重，我们这就告辞了。[l][cm][hide]"
+        "text": "[show]两位也请多保重，我们这就告辞了。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_5_11_4",
   "des": "与【菲尔德蕾】对话【我们回来了。】"
 }

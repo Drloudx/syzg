@@ -1,0 +1,206 @@
+{
+  "script": "s_sp2_8_2_y",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]太好了，这样条件就足够了姆！只要有这份地契，再拿上这些搭建材料，这样就能顺利订婚了姆！[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]感谢两位，我这就去找希维姆，早日把婚礼的日子定下来姆！[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯！加油，我在这里等你们的好消息！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（伽拉姆开心地朝远方跑去……）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]两位辛苦了，这些黏液对于你们来说可能是很容易拿到的东西，但对于我们史莱姆来说无比珍贵姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]虽然接下来还要花很长时间还债，但一想到娃能成家，我能抱孙子，就感觉这一切都是值得的姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还债？你们为什么结个婚还要欠一大笔债啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]结婚要买地买房，还要准备存款和彩礼，这都是一大笔黏液币姆。普通史莱姆一个月的酬劳也就三十滴黏液币吧，而光彩礼最低也得要六百姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]压力这么大吗？可结婚不就是两个人在一起，日后相互扶持吗？为什么还要搞这么多东西……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]结婚是两家人的事姆，可不是光两人在一起就可以了，日后我们双方家庭还要经常打交道呢姆。[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]搞不懂……史莱姆的生活可真麻烦……[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过眼下问题也解决了，伽拉姆订婚成功之后，你也可以放心进宫给乔可姆表演了吧。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，等状态恢复了，我自然会进宫给德莉殿下表演，如果问题真就这么解决的话姆……[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那个……我回来了姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]这么快回来了呀。怎么样，你们已经成功订婚了吧？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不……希维姆家人说，他们不希望孩子嫁给一个造型邋遢的史莱姆……[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]开什么玩笑！你可是我乔可姆的孩子，怎么可能邋遢，他们是不是找茬姆？[l][cm]",
+        "charaName": "表演者乔可姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]其实他们的意思是，让我改改造型，表达一下要娶走希维姆的诚意姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呃……所以它们的意思是，让你把造型改得更好看一点？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]听他们的语气确实是这个意思，所以接下来我只要去找只史莱姆打理一下造型就好姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]还好这个花不了多少黏液，我等会就去找后花园找阿提莱姆，让它帮我整理一下造型姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哎，史莱姆怎么做造型啊，我有点好奇呢。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好奇吗？那你可以跟过来瞧瞧，我们一起去后花园姆。[l][cm]",
+        "charaName": "伽拉姆"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好，我们走吧～[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "黏液准备好了！"
+}

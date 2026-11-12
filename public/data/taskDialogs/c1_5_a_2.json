@@ -1,59 +1,60 @@
 {
+  "des": "",
   "script": "c1_5_a_2",
   "exps": [
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]很好！这样整个营地都清理干净了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]彻底狂暴化的角布林头领……没想到这种地方居然还有这么危险的魔物。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]如果选择了正面应敌的话，遭到这样的头领攻击的小队，还不知道能活下来几个。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]哈……这边都解决完了，我们也可以回去大部队那边休息了吧？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]嗯，主要的威胁已经全部肃清，剩下的就只有……[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]嗯？[l]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
@@ -74,76 +75,75 @@
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[cm][show]我有了一个非常糟糕的发现……[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]怎么了？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]你们看——[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]这个是……徽章？上面的图案是画的什么？一只……手？[l][cm]",
-        "nameSide": "left"
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]这是[color=f1401c]哈萨琳之手[colorEnd]的徽章。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]先去和大部队汇合吧。为了安全起见，之后的路上，我们得担当斥候小队了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "迦南",
+        "nameSide": "left",
         "text": "[show]如果我猜得没错的话，接下来我们恐怕有麻烦了。[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "迦南"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[hide]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     }
-  ],
-  "des": ""
+  ]
 }

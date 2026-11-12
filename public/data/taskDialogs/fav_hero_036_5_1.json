@@ -1,0 +1,331 @@
+{
+  "script": "fav_hero_036_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]真是丰盛啊！为什么要做这么多次菜？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "当然是为了庆祝了！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]庆祝？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "为了贝尔卡脱胎换骨！"
+          },
+          {
+            "tag": "tag_6",
+            "text": "为了贝尔卡的初次假期！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "干杯！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]干杯！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]哎呀……你也太会哄人开心了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]难不成……你在这方面，其实是个隐藏的高手？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "这……"
+          },
+          {
+            "tag": "tag_11",
+            "text": "那……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]呵呵，说笑的。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]我知道你对我有多么关心。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]如果不是有你的支持，我也不会这么快就振作起来。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]虽然这次倒下，只是一场意外，但通过这次意外，我感觉自己确实是成长了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]在大长老……还有圣女大人都离开之后，我或许也是时候，迈出下一步了。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "你的意思是？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]我想……正式成为水占师之环的长老。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]不再是以“前”圣女辅佐这种不上不下的名义，而是真正肩负起属于自己的责任。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "恭喜！"
+          },
+          {
+            "tag": "tag_20",
+            "text": "你终于下定决心了！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]嘿嘿……也只是下定了决心而已。要解决的事情还像山一样多呢！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]总之，既然已经决定要继续前进，之前那种半吊子的状态就不再适合了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]接下来，我肯定还会因为不够成熟而继续犯错、继续遇到各种挫折……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]如果有个人能在身边支持我、提点我的话……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "我明白你的意思。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]真的吗？那你的意思是！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_27",
+            "text": "我会继续支持你的！"
+          },
+          {
+            "tag": "tag_27",
+            "text": "今后也一起努力吧！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]嗯！我就知道你会这么说的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]不过，能够听到你亲口说出来，我还是很开心！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "那就再来干杯吧！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_31",
+            "text": "遇到开心的事情……"
+          },
+          {
+            "tag": "tag_31",
+            "text": "就干杯来庆祝吧！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]也对！要做其他事情来庆祝，我还要点心理准备。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]现在的话……干杯就可以！嗯！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]那就……干杯？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_35",
+            "text": "干杯！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]干杯！[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "贝尔卡-所以来庆祝吧！-进入战役"
+}

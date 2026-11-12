@@ -1,0 +1,185 @@
+{
+  "des": "制服那群闹腾的家伙了。",
+  "script": "s_sp1_5_2",
+  "exps": [
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]啊，刚刚推车顺利把食材送过来了，餐舍门口的魔物也少了很多，我们可以放心烹饪了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这么说……我们很快就能尝到城堡里的美食了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]嗯，我们会把做好的食物送到这里来，你们会是第一批尝到的客人。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]真的非常感谢你们，现在餐舍可以正常运作了，我们每天都能完成好几桌美食。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]我们也会把周围的垃圾都清理掉的，这段时间真的委屈你们啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]其实我们也没来多久，能帮你们解决问题，也算是某种赎罪吧，不必感谢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你们也辛苦啦，能顶着那么多魔物守住餐舍，你们也挺不容易的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]对了，我想你们的菜谱……也是几百年前的吧？我们这算是要吃百年前的美食了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]嗯……也不至于百年前啦，不过我们最近几十年确实没再更新过菜谱了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]说起来……我还有一个请求，我能尝尝你们外边的美食吗？这几十年我们一直在闭门造车，也想看看外面的美食是怎样的？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]外面的美食……这个你可以问{myName}啊，{myName}一下就能做出一大堆美味的料理。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你是不知道那料理有多好吃，如果把{myName}拉去驿站当厨师，毛耳朵会开除其他厨师，只留{myName}一个。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "夸张了米托拉。",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[cm][show]哦？没想到这位工匠还是个厉害的厨师啊，正好能请你给我们介绍些外面的食物吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这个我来说就好，有粗制烤肉、果香烤肉、蘑菇肉串等等……[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在米托拉报了很多菜名以后……）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]哇……你说了好多我没听过的食物噢，说实在的我每一个都有兴趣，不过城堡的食材太少，很多料理都没法做。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]有一个菜可以试试，就是那个果香烤肉，你们可以给我带一串回来试试嘛？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]城堡里现在没有角猪肉，不过只要能把果香烤肉这个菜谱定下来，以后城堡就可以去收集角猪肉了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]好，{myName}，去做一份果香烤肉出来，让咱们城堡的主人开开眼吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "厨师托利斯",
+        "text": "[show]嗯，麻烦你们了，我会在斯卡莉安小姐这里等着你们的。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ]
+}

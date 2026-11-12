@@ -1,0 +1,132 @@
+{
+  "script": "s_sp1_1_3",
+  "des": "",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这次的地方可是我的宝藏地点哦～！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]这可是连{myName}都不知道的宝藏洞窟呢！[l]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这个洞窟到底宝藏在哪啊？",
+            "tag": "tag_5"
+          },
+          {
+            "text": "这地方有那么宝贝吗？",
+            "tag": "tag_5"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]嗯！因为这里的蘑菇很好吃呀！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]之前我一个人流浪的时候，我可是经常到这里来采蘑菇的！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]不过和{myName}认识之后，因为{myName}太能干了，食物多到吃不完，反而没机会到这儿来了呢！[l]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "这没什么好遗憾的！",
+            "tag": "tag_9"
+          },
+          {
+            "text": "你也不要再把这么危险的地方当成宝了！",
+            "tag": "tag_9"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[cm][show]哈哈……我知道啦……[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]咳咳！接下来就请主角登场啦！[l][cm]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]感谢你的指路。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]被酸液覆盖的时候，本宫未必能够正常发声。[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]究竟该什么时候开始救援，由你们自行判断吧！[l][cm]",
+        "nameSide": "left",
+        "charaName": "斯卡莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[show]放心，我们是专业的，绝对不会让你出事的！[l][cm][hide]",
+        "nameSide": "left",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "text": "[hide]",
+        "nameSide": "left",
+        "charaName": ""
+      }
+    }
+  ]
+}

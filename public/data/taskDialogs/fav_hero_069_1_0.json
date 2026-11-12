@@ -1,0 +1,69 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]嗯嗯，感谢主公亲自出来迎接。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]我已经找好了几个地方，想让部分族人搬到那里去，提前来和您交代一下。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "其实你不必跟我说的。",
+            "tag": "tag_5"
+          },
+          {
+            "text": "毕竟求生者草原不是我一个人的地方。",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[cm][show]但主公的营地附近都是主公的势力范围吧？不管怎么说，招呼还是要打的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]而且它们搬过来说不定对主公也有好处，等到了那边之后，我会与您细细道来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]请跟我来，我带您去看看我选中的几个地方。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_069_1_0",
+  "des": "修瓦莉好感1-引入"
+}

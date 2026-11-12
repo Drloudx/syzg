@@ -1,0 +1,70 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]噢噢噢——！肉眼都看得出它变强了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]连叉子都长出来了，莫非真能取代我的头冠姆？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]喂！库库姆！我的头冠也能像它一样继续成长吧？你可不能偏心，把好东西都给别人姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]公主殿下的头冠当然是最好的！我们怎么可能把残次品给公主殿下姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管库库姆",
+        "text": "[show]至于公主殿下的头冠能不能继续成长……恐怕不行，毕竟给您的已经是最好的了姆！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "德莉",
+        "text": "[show]呃……好像有点道理姆。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]总之，我去多带些材料回来，让这顶帽子继续变强！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp2_10_3",
+  "des": "公主之冠果真变强了！"
+}

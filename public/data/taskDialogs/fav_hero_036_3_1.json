@@ -1,0 +1,313 @@
+{
+  "script": "fav_hero_036_3_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]多谢款待！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_4",
+            "text": "你喜欢就好。"
+          },
+          {
+            "tag": "tag_4",
+            "text": "招待不周！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]一直听说你的料理和工匠技艺一样高杆，没想到实际情况比我想象的还要高明！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]这餐饭可以说是我有生以来吃过的最好吃的一顿了，真不知道该怎么感谢你！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "有那么夸张吗？"
+          },
+          {
+            "tag": "tag_7",
+            "text": "这只是很普通的家常菜而已啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]你就别谦虚了，我也不是没吃过好的，还能不知道你有多厉害吗！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]嗯……不过……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]手艺好确实是一方面……另一方面大概是因为……能和别人一起吃饭，真的很温馨……吧……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_11",
+            "text": "你平时总是一个人吃饭吗？"
+          },
+          {
+            "tag": "tag_11",
+            "text": "你都不和别人一起吃饭吗？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]嗯，除了参加宴会之外，已经很久没有和别人一起吃饭了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]仔细想想……小时候在家里的时候，我应该也是和父母一起吃饭的，但我很早就被环会选中，那时候的事情已经记不太清了。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_14",
+            "text": "那之后呢？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]之后就是在环会学习训练，吃饭都是在冥想之余随便对付两口。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]再然后，我就成功当选为了圣女大人的辅佐官……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]圣女大人对我很好，但她自己一直都是靠魔力维生，整天不眠不食、只知道工作……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "……"
+          },
+          {
+            "tag": "tag_18",
+            "text": "真是辛苦你了。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]倒也没有那么辛苦啦。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]说到底，我也就是吃饭比较随便而已。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]仔细算算的话……我现在负责的工作，还没有圣女大人的十分之一呢！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_22",
+            "text": "阿莱克西娅毕竟是神选……"
+          },
+          {
+            "tag": "tag_22",
+            "text": "你可千万别和她比啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]话是这么说……但人们不是常说“见贤思齐”吗？[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "我觉得那句话不是那么用的。"
+          },
+          {
+            "tag": "tag_24",
+            "text": "人类毕竟是受肉体局限的生物啊！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]放心！水占师好歹也有治疗的职能，我自己的身体我最清楚了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]在真的倒下之前，我肯定会好好休息的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]你看，我最近气色不是好多了吗！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_28",
+            "text": "确实是有好一点。"
+          },
+          {
+            "tag": "tag_28",
+            "text": "不过我真的很担心你啊。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]你就是担心太多了！就连我父母都没这么关心过我呢！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]即使是为了环会，我也不会倒下的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[show]就算你不放心我的自制力，也请多少相信一下我的责任心吧！[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "……"
+          },
+          {
+            "tag": "tag_32",
+            "text": "真希望你能说到做到。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "贝尔卡",
+        "text": "[cm][show]呵呵……真的请你放心，我会注意的！[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "贝尔卡-我还能行的！-进入战役"
+}

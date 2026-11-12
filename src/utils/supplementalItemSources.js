@@ -3,6 +3,13 @@ import { getMapName } from './gameMappings.js'
 import { parseRewardGroups, getObtainableRewardRules } from './acquisitionRules.js'
 
 const table = value => value?.datas || value || {}
+/** 文案字段可能是字符串，也可能是 {text: '...'} / 多语言键值结构，统一取可读文本。 */
+const text = value => {
+  if (value == null) return ''
+  if (typeof value === 'string' || typeof value === 'number') return String(value)
+  if (typeof value === 'object') return String(value.text ?? value.name ?? value.des ?? '')
+  return ''
+}
 const internal = value => /测试|废稿|[（(]废弃[）)]|弃用|停用|暂不使用|未使用|备份|待修改|(?:^|[_\s])(?:test|demo|bak|beifen)(?:[_\s\d]|$)/i.test(String(value || ''))
 const usable = (entry, id = '') => entry && entry.hide !== true && !internal(id) &&
   !internal([entry.name, entry.des, entry.desc, ...(entry.category || [])].join(' '))
@@ -281,6 +288,116 @@ export function buildSupplementalItemSources(maps) {
       name: catLabel || '商城',
       des: `商城购买${catLabel ? ` · ${catLabel}` : ''}`
     })
+  }
+
+  /*
+   * 商城付费礼包 / 月卡（`packCharge.json`）。
+   *
+   * 2026-11-11 补：此前**没有任何代码读 packCharge**，导致只在礼包里出售的物品
+   * （如 skin002a「一曰侍者」）「获取途径」为空。
+   * 链路：packCharge.<id> → reward.<id> → items；packInfo 提供展示名。
+   */
+  const packCharge = maps.packChargeJson?.datas || maps.packChargeJson || {}
+  const packInfo = maps.packInfoJson?.datas || maps.packInfoJson || {}
+  for (const [id, charge] of Object.entries(packCharge)) {
+    if (!charge || typeof charge !== 'object' || !charge.reward) continue
+    const info = packInfo[id] || {}
+    if (info.hide === true) continue
+    const name = text(info.name) || text(charge.tip) || id
+    // `rmb` 单位是**分**：600 = ¥6、3000 = ¥30。不能直接拼 ¥600。
+    const fen = Number(charge.rmb)
+    const price = Number.isFinite(fen) && fen > 0
+      ? `¥${(fen / 100).toFixed(fen % 100 === 0 ? 0 : 2)}`
+      : ''
+    addReward(charge.reward, {
+      type: 'pack',
+      id,
+      name,
+      des: `商城礼包 · ${name}${price ? ` · ${price}` : ''}`
+    })
+  }
+
+  /*
+   * 秘境探索层奖励（`relicDungeonInfo.<id>.layers[].exploreReward`）。
+   *
+   * 2026-11-11 补：这是「亚空回廊 / 瓦希什塔」每层走完给的探索奖励池，此前
+   * 从未被解析，导致池里的先机宝箱（item_20029/20030/20031）及其开出的装备
+   * 全部无来源。链路：relicDungeonInfo → exploreReward → reward.items → 物品。
+   * 未开放秘境用 activityList 判（与 relics.mjs 的 isDungeonOpen 同口径）。
+   */
+  const relicInfo = maps.relicDungeonInfoJson?.datas || maps.relicDungeonInfoJson || {}
+  const activityList = maps.activityListJson?.datas || maps.activityListJson || {}
+  const isRelicOpen = (dungeonId) => {
+    const activity = activityList[dungeonId]
+    if (!activity) return true
+    if (activity.condition === 'false') return false
+    if (activity.startTime && activity.startTime === activity.endTime) return false
+    const year = Number(String(activity.startTime || '').slice(0, 4))
+    return !(Number.isFinite(year) && year >= 2900)
+  }
+  for (const [dungeonId, dungeon] of Object.entries(relicInfo)) {
+    if (!dungeon || typeof dungeon !== 'object') continue
+    if (!isRelicOpen(dungeonId)) continue
+    const dungeonName = text(dungeon.name) || dungeonId
+    const layers = Array.isArray(dungeon.layers) ? dungeon.layers : []
+    /*
+     * 每层三个奖励字段（都在 `layers[]` 内，不在顶层）：
+     *   · firstReward  —— 该层首次通关（固定）；4 阶起始神器就在第 1 层这里
+     *   · reward       —— 该层通关结算
+     *   · exploreReward —— 该层探索奖励（先机宝箱等）
+     * 2026-11-11 补：此前只解析了 exploreReward，漏掉 firstReward/reward，
+     * 导致 4 阶起始神器（item_444001/444005）无来源。
+     */
+    const byField = { firstReward: new Map(), reward: new Map(), exploreReward: new Map() }
+    for (const layer of layers) {
+      if (!(Number(layer?.layer) > 0)) continue
+      for (const field of Object.keys(byField)) {
+        const rid = layer?.[field]
+        if (!rid) continue
+        if (!byField[field].has(rid)) byField[field].set(rid, new Set())
+        byField[field].get(rid).add(Number(layer.layer))
+      }
+    }
+    const FIELD_META = {
+      firstReward: { type: 'relicFirst', label: '首次通关奖励' },
+      reward: { type: 'relicClear', label: '通关结算奖励' },
+      exploreReward: { type: 'relicExplore', label: '探索奖励' }
+    }
+    for (const [field, map] of Object.entries(byField)) {
+      const meta = FIELD_META[field]
+      for (const [rid, layerSet] of map) {
+        const layerNums = [...layerSet].sort((a, b) => a - b)
+        addReward(rid, {
+          type: meta.type,
+          id: `${dungeonId}:${field}:${rid}`,
+          name: dungeonName,
+          des: `${dungeonName} · 第 ${layerNums.join('、')} 层 · ${meta.label}`
+        })
+      }
+    }
+  }
+
+  /*
+   * 秘境事件奖励（`relicDungeonEvents.<id>.eventRewards`）。
+   *
+   * 2026-11-11 补：秘境内随机事件（如「模糊神像」「诡异祭坛」）的选择分支会给
+   * node 级 reward（如 sp1_strange_altar_node_6 → 含 sp1_yiwu_core 核心遗器）。
+   * 此前从未被解析，导致这些遗器「获取途径」为空。
+   * 链路：relicDungeonEvents.<event>.eventRewards{<nodeId>: 权重} → reward.<nodeId>。
+   */
+  const relicEvents = maps.relicDungeonEventsJson?.datas || maps.relicDungeonEventsJson || {}
+  for (const [eventId, event] of Object.entries(relicEvents)) {
+    if (!event || typeof event !== 'object') continue
+    const eventTitle = text(event.title) || eventId
+    const nodeIds = Object.keys(event.eventRewards || {})
+    for (const nodeId of nodeIds) {
+      addReward(nodeId, {
+        type: 'relicEvent',
+        id: `${eventId}:${nodeId}`,
+        name: eventTitle,
+        des: `秘境事件 · ${eventTitle}`
+      })
+    }
   }
 
   return sources

@@ -1,0 +1,310 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（在被软软的火烧了很久之后，奇瓦的气终于消了一些，她同意来驿站旅店和解。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]啊呜！这个蛋糕真好吃……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕咕～[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_6",
+            "text": "慢慢吃，这顿我请客。"
+          },
+          {
+            "tag": "tag_6",
+            "text": "其实……你那天演奏得很好啊。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]什……什么？你当时去看了啊？这太羞耻了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]软软！喷火！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "别别别！这会把驿站点着的！"
+          },
+          {
+            "tag": "tag_9",
+            "text": "我再给你点一杯巴菲！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]哼！看在巴菲的份子上，我暂时不跟你计较了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]其实上台表演这种事……也没让我那么难受，只是事发实在是太突然了[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_12",
+            "text": "奇瓦一直都像这样做吧。"
+          },
+          {
+            "tag": "tag_12",
+            "text": "我只是想推你一把而已。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_13",
+            "text": "自由地使用你的知识。"
+          },
+          {
+            "tag": "tag_13",
+            "text": "展示着你的爱好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]是这么回事……把书里的知识通过自己的爱好展现出来，这种感觉非常不错，我在台上就感觉到了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]只是你叫艾尔莎把我推出来，还是太吓人了，更何况还是在我不知道你在场的情况下！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]你难道不知道……我能鼓起勇气都是因为你吗？上次在修行所上公开课就是这样，但你偏偏就是瞒着我，让我一个人上台表演！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_17",
+            "text": "这也是为了让你习惯独自表演嘛。"
+          },
+          {
+            "tag": "tag_17",
+            "text": "下次不会这样了。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]哼……不过在那天我还是遇见了很多有趣的事情。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]就是之前有些听过我课的村民，他们从我的课堂上得到启发，开发了一种谁都能用的低廉治疗术。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]虽然治疗不了重伤的病人，但一些轻微擦伤还是可以医治的，这也算是我传播知识的功绩之一吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]感觉……还挺有成就感的呢。其实我头脑的很多知识，也是在妈妈的强迫下才学进去的，好像这也算是她的功绩……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]现在想想，也许妈妈就是为了让万千民众也能通过知识自由地生活，才会那样对待我吧，又有些理解她的想法了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "理解不意味着接受。"
+          },
+          {
+            "tag": "tag_23",
+            "text": "而且也不必用强硬的手段。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_24",
+            "text": "但妈妈知道你的想法，肯定会更开心。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]嘿嘿……不愧是{myName}，说话总是能让我开心。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]总之虽然你这一手让我有些猝不及防，但还是感谢你让我迈出了这一步。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]或许过段时间我得回一趟家，和家人好好说清一些问题。顺便也让软软回去和家人团聚，毕竟它也离家很久了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[show]不过我也不是一定会离开啦，我还想要和{myName}在一起。在你身边，我就觉得有了追逐自由的勇气，软软一定也是这么想的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "软软",
+        "text": "[show]咕咕……[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "没问题，我的营地随时对你敞开大门。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "奇瓦",
+        "text": "[cm][show]嘿嘿！就是知道你会这样回答的！那今后请多关照啦。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（随着奇瓦喜笑颜开，两人的晚餐在欢声笑语继续了下去。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？",
+        "text": "[show]……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？",
+        "text": "[show]哼哼……看来那孩子遇到了很有意思的人呢。这样的我就放心了。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_019_5_1",
+  "des": "奇瓦-台上的感悟-进入战役"
+}

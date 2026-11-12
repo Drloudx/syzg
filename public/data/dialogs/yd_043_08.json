@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]呀吼{myName}！我又要出去旅行了哦，要一起来吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]老实说，自从认识了你，我就感觉一个人跑来跑去有些无聊了……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]唉？你说你也想和我一起，但要忙的事情太多，没时间和我一起去旅行？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]呜嘿嘿，有你这份心我已经很感动啦。是啊，像你这样厉害的工匠肯定有自己的行程，没有时间陪着我一起消磨……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]这样吧！换个边儿，由我陪你一起旅行！你去哪我就去哪！[r]只要出发之前把大致行程告诉我就好，毕竟要写商旅计划嘛！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]我为什么这么执着？因、因为……我也想有个伴嘛……就这一个理由。不行吗！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_043_08",
+  "des": "阿娜洛洁-亲密2"
+}

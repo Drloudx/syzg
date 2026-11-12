@@ -1,0 +1,427 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（来到驿站旅店，眼前座无虚席，喧闹非凡。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]这里……真是热闹啊。我已经很久很久没有感受过这样的喧嚣了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]表演的舞者、碰杯的契约者、还有吆喝的商人……这么多年过去了，世间依旧如此充满活力。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]恍惚间……仿佛时光倒流，昔日的伙伴们仿佛还在身边嬉笑……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_7",
+            "text": "在回忆过去的欢乐时光吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]也在感受此刻的快乐呀，毕竟有{myName}陪伴在我身边呢。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_9",
+            "text": "坐下来吃顿饭吧。"
+          },
+          {
+            "tag": "tag_9",
+            "text": "好好体会当下的美好。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]嗯，听你的。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（随便找了个饭桌坐下，和艾尔菲帕享受了一段美妙的午餐时光……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（刚刚享用完美食后……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[show]哟！两位朋友！看打扮，也是从荒野外面来的吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]呃……算是吧。请问有什么事吗？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[show]没啥大事！我们兄弟几个刚从沼泽回来，正喝得高兴呢！想请你们一块儿热闹热闹！加入我们的狂欢吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_16",
+            "text": "莫非……你们也是去寻宝的？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[cm][show]是啊！我们也是那些去沼泽淘金的倒霉蛋！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[show]听信了沼泽女巫财宝的传言，拉上人马、备齐家伙就冲去了。结果呢？啥也没有！纯粹是奸商放假消息，骗人去他们那买装备的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]原来……是假的啊……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_20",
+            "text": "感觉有点失望吗，艾尔菲帕？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]是很失望……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]在我朦胧的记忆碎片里，我依稀记得曾和同伴们有过一段冒险的经历。那段时光真的非常快乐，我非常幸福。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]所以我也想和{myName}一起，共同创造属于我们的美好回忆。可惜宝藏的传言是假的……那冒险也就没有必要了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]本来……还想带你一起去魔爪沼泽看看呢……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_25",
+            "text": "谢谢你的好意。"
+          },
+          {
+            "tag": "tag_25",
+            "text": "和你在一起的每一刻，都是美好的回忆。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "所以即使没有轰轰烈烈的冒险……"
+          },
+          {
+            "tag": "tag_26",
+            "text": "也请你不要太难过。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]倒不至于难过啦……只是确实有些遗憾罢了……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[show]哈哈！虽然听不太明白你们在聊啥，但哥们说句心里话——比起纠结过去和担心未来，眼前的乐子和脚下的路才实在！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[show]钱也花了，时间也搭了，咱就得学会向前看。来来来，朋友，喝一杯吧！[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_30",
+            "text": "（接过佣兵递来的魔爪果饮）"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]向前看啊……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[show]这位秘术师小姐，你也来一杯吧！茜塔，我们还要几杯！欸，好嘛！求你啦！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]谢谢你……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_34",
+            "text": "忘记忧愁，珍惜当下！"
+          },
+          {
+            "tag": "tag_34",
+            "text": "大家好好庆祝吧！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "佣兵大叔",
+        "text": "[cm][show]说得好——！干了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]干……干杯！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（旅店的午后，逐渐被没什么来由的狂欢所淹没。）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（许久之后，喧嚣渐歇……）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]呼……[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "艾尔菲帕，你还好吗？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]我还好……只是好久没有经历这样热闹的宴会了。我好像忘记了孤独，心里只有澎湃的热情……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]虽然宴会散场、人群离去时，心里会感到一丝失落，甚至还有些忘却使命的负罪感涌上来……但一回头，发现你依然在我身旁，心情就立刻安定下来了。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]谢谢你陪着我，有你在身边……真好。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_44",
+            "text": "只要你需要，我会一直陪伴着你的。"
+          },
+          {
+            "tag": "tag_44",
+            "text": "我们可以创造更多美好的回忆。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_45",
+            "text": "总有一天，你会重新感受到冒险的快乐的。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[cm][show]嘿嘿……那……我们说好了哦。只要我觉得寂寞了，就来找你……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "艾尔菲帕",
+        "text": "[show]至于要一起做什么……都不重要了。能和你在一起，就够了……[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "艾尔菲帕-过往的影子-进入战役",
+  "script": "fav_hero_045_5_1"
+}

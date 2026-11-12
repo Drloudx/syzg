@@ -1,166 +1,166 @@
 {
-  "script": "s_5_8_2_y",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]嗯……你们手上的材料已经足够了，接下来请看我的表演吧。[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]{myName}也来帮帮我吧！开始打造～！[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（经过一番精心的打造过后，一个设计独特的木制澡盆被打造出来了。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "“浴缸”瑟尼",
         "text": "[show]哇！这样的手法，这样的速度，没想到奥格前辈居然还如此擅长手工制作！[l][cm]",
-        "charaName": "“浴缸”瑟尼"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]呵呵，可别忘了我还是个雪域探险家，长期在野外生存，没点手艺怎么行？[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "“浴缸”瑟尼",
         "text": "[show]唔哦哦哦哦！虽说木制的澡盆不如浴缸结实，但接触到皮肤的感觉却别有风味。外形虽不像陶瓷那样曲线优美，但棱角分明的木板却彰显出别样的高雅！[l][cm]",
-        "charaName": "“浴缸”瑟尼"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]怎么一个澡盆子就能让你神魂颠倒成这样……虽然确实很好看就是了……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]既然我给了瑟尼先生想要的东西，瑟尼先生怎么也该表示一下吧？[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "“浴缸”瑟尼",
         "text": "[show]要多少钱？我这里有！[l][cm]",
-        "charaName": "“浴缸”瑟尼"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]哈，钱的确是要的，不过我可不只是什么贪财之辈。我听说你在魔爪湖那边有点关系，能帮我把温泉村的名头推过去吗？[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "“浴缸”瑟尼",
         "text": "[show]啊，这个没什么问题。魔爪湖那边的澡堂我都熟，到时候可以给你介绍介绍。[l][cm]",
-        "charaName": "“浴缸”瑟尼"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]嘿嘿，那就拜托了。图纸给你们，这可是我多年来的心血，收好了。[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "“浴缸”瑟尼",
         "text": "[show]嗯！非常感谢奥格前辈！[l][cm]",
-        "charaName": "“浴缸”瑟尼"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]这不还是贪财之辈吗……亏你说得这么振振有词。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "奥格",
         "text": "[show]嘿嘿，我毕竟付出了努力，拿点好处总不算过分吧。你们也拿好手上的图纸吧，澡盆比浴缸更便于携带，正好适合你们这些四处奔波的契约者。[l][cm]",
-        "charaName": "奥格"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]我们也不会带着澡盆到处跑啊，不过弄一个放在营地里确实挺方便的。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]{myName}，我们回到营地就去做一个如何？我也想试试在树林里泡澡的感觉。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾薇杜尔",
         "text": "[show]我也要我也要！我们一起泡吧！[l][cm]",
-        "charaName": "艾薇杜尔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]好，那我们得多准备几个澡盆啦。[l][cm][hide]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "s_5_8_2_y",
   "des": "浴缸之魂-雪域探险家奥格互动完成"
 }

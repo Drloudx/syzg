@@ -5,24 +5,24 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]真的非常感谢你们。[l][cm]"
+        "text": "[show]真的非常感谢你们。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]事情我都听茜塔说了，她对两位的评价非常高。[l][cm]"
+        "text": "[show]事情我都听茜塔说了，她对两位的评价非常高。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]这里是给两位的报酬。请在这里签字领取。[l]"
+        "text": "[show]这里是给两位的报酬。请在这里签字领取。[l]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
@@ -30,8 +30,8 @@
       "para": {
         "options": [
           {
-            "text": "（在卷轴上签名。）",
-            "tag": "tag_4"
+            "tag": "tag_4",
+            "text": "（在卷轴上签名。）"
           }
         ]
       },
@@ -40,56 +40,56 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[cm][show]这、这么轻松就……赚到钱了……？[l][cm]"
+        "text": "[cm][show]这、这么轻松就……赚到钱了……？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]没错。这是你应得的报酬。[l][cm]"
+        "text": "[show]没错。这是你应得的报酬。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]这也太……太轻松了吧？这一趟都够我拾荒[color=ffb64d]一个月的收入[colorEnd]了！呜喵喵！[r][l]这些钱……可以买多少肉啊？或者……买一些木头，把营地的小屋再盖高一点？[l][cm]"
+        "text": "[show]这也太……太轻松了吧？这一趟都够我拾荒[color=ffb64d]一个月的收入[colorEnd]了！呜喵喵！[r][l]这些钱……可以买多少肉啊？或者……买一些木头，把营地的小屋再盖高一点？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]啊对，还得给你买一个铺盖，还有床单！[l][cm]"
+        "text": "[show]啊对，还得给你买一个铺盖，还有床单！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]要买下所有这些应该是不够的，但买上单独一样的话应该还有结余。[l][cm]"
+        "text": "[show]要买下所有这些应该是不够的，但买上单独一样的话应该还有结余。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]你要的东西在驿站里都有，[r]如果嫌麻烦的话，那边的[color=ffb64d]商人比绍[colorEnd]也可以帮你代为采购，你可以过去看看。[l][cm]"
+        "text": "[show]你要的东西在驿站里都有，[r]如果嫌麻烦的话，那边的[color=ffb64d]商人比绍[colorEnd]也可以帮你代为采购，你可以过去看看。[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]好！我去去就回！[l]"
+        "text": "[show]好！我去去就回！[l]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
@@ -97,8 +97,8 @@
       "para": {
         "options": [
           {
-            "text": "米托拉好像很开心。",
-            "tag": "tag_95"
+            "tag": "tag_95",
+            "text": "米托拉好像很开心。"
           }
         ]
       },
@@ -107,16 +107,169 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[cm][show]用劳动换到报酬，没有人会不开心吧？[l][cm]"
+        "text": "[cm][show]用劳动换到报酬，没有人会不开心吧？[l][cm]",
+        "charaName": "艾尔莎"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]不然，你也去看看商店吧。深渊每个地区的商人都会提供当地的货品，有些还是稀有的特产，可以多多利用哦。[l][cm]"
+        "text": "[show]不然，你也去看看商店吧。深渊每个地区的商人都会提供当地的货品，有些还是稀有的特产，可以多多利用哦。[l]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_96",
+            "text": "我就先不了。"
+          },
+          {
+            "tag": "tag_96",
+            "text": "还是接着说正事吧。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]嗯……是说菲尔德蕾的去向吧。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是的，她现在并不在驿站。因为秋日荒野的异变突然加剧，在前线有很多事务需要她亲自处理。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]她目前正是在“风车平野”剿灭魔物。那是驿站住民区以南的农场一带。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]近日，秋日荒野的异变再一次加剧，连农庄都受到了牵连，而我们也正处于人手不足的窘境，老板便和契约者迦南一起前去解围。[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]说到人手不足的窘境，既然如此……[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]——我回来啦！能买的东西还真多！你们聊到哪里啦？[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_104",
+            "text": "艾尔莎想让我们去一趟南边的农地。"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]南边的农地……？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（向米托拉解释了一番关于菲尔德蕾的情报。）[l][cm]",
+        "charaName": ""
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]唔……你是说，毛耳朵看农庄附近正好缺人手，就想着让我们往那边支援，一来能处理魔物，二来说不定也能直接找到老板？[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵，坐着干等的确不合我的风格，但我们也没这么好差使吧？我们都知道怎么挣钱了，还让我们白打工，倒是想得美！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那当然不会是白白打工啦。我已经拟好契约书了，你们看——[l][cm]",
+        "charaName": "艾尔莎"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]欸？这就是契约书吗！既然是像刚才一样可以挣钱的，那～就另当别论了！[l][cm]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show]做这么简单的活计就能赚钱，那我当然要给它赚爆！趁我还在兴头上，尽管把契约什么的丢过来，让我接到不能接为止吧！[l]",
+        "charaName": "米托拉"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_111",
+            "text": "那我们就签下契约，直接出发吧！"
+          },
+          {
+            "tag": "tag_111",
+            "text": "前往驿站南部的农庄，风车平野！"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[show][cm]好嘞——！前往风车平野！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     }

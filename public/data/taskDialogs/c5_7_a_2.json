@@ -90,7 +90,7 @@
     {
       "para": {
         "charaName": "米托拉",
-        "text": "[show]哦~！好孩子，好孩子！[l][cm]",
+        "text": "[show]哦～！好孩子，好孩子！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -98,7 +98,7 @@
     {
       "para": {
         "charaName": "米托拉",
-        "text": "[show]既然你能找到路，那就拜托你啦~！[l][cm]",
+        "text": "[show]既然你能找到路，那就拜托你啦～！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -106,7 +106,7 @@
     {
       "para": {
         "charaName": "软软",
-        "text": "[show]咕~！咕咕！[l][cm][hide]",
+        "text": "[show]咕～！咕咕！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"

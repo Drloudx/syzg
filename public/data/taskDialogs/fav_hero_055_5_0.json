@@ -1,0 +1,30 @@
+{
+  "script": "fav_hero_055_5_0",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]唉，看你这么期待……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]那你可要做好准备，这个故事，真的一点意思都没有呀！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "迦南-营地对话迦南前辈，我准备好听故事了。"
+}

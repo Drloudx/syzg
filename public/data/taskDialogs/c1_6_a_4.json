@@ -1,0 +1,38 @@
+{
+  "script": "c1_6_a_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]哦？前面都已经解决了吗？看来我还是慢了一步啊。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "迦南",
+        "text": "[show]多亏你们的牵制，后面的魔物全都扫清了，[r]可惜都是些杂鱼，比不了你们解决的这些硬茬子。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哼哼，这次我终于凭实力取胜了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "茜塔",
+        "text": "[show]有时间自吹自擂，不如专心战斗。[l]这里还有些负隅顽抗的家伙，一口气解决它们吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

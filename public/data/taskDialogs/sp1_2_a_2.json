@@ -1,0 +1,200 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哦！这里就是庭院大门了吗……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]听说很多人连大门都看不到，我还以为有多可怕呢。结果一路上根本就和砍瓜切菜一样轻松嘛。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "不要大意。",
+            "tag": "tag_24"
+          },
+          {
+            "text": "从这里开始就是吸血鬼的领地了。",
+            "tag": "tag_24"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]没错！我听说吸血鬼经常会用鲜血，吸引强大的魔物来帮他们看门——[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]你说看门，是像那边那个孩子一样吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]啊？[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]是个女孩子？难道有别人能到这里来——等等，这个气味是……！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "？？？",
+        "text": "[show]嗯……？你们也是前来拜访的客人吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]死——死灵？！大家小心，这家伙是个死灵！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]死灵？就是那什么“不死族”、“活死人”吗？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]嗯～呜喵喵？真的唉，脸上还有缝线呢！我还是第一次见到！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "米托拉，要讲礼数。",
+            "tag": "tag_15"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "死灵少女",
+        "text": "[cm][show]本宫看见你们，也觉得很稀奇。至少在本宫生前，也没见过……你们这样的存在。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]——你们可别被她骗了！休想用你的花言巧语让本小姐放松警惕！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "死灵少女",
+        "text": "[show]唉……虽然不知你的敌意从何而来，但这里面肯定有些误会。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "死灵少女",
+        "text": "[show]本宫当然不会说自己纯净无瑕，但至少……自这一次苏醒以来，本宫还从未伤害过谁。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]住口！死灵就是邪恶的存在，谁会信你的鬼话！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]吸血鬼的走狗！给本小姐纳命来！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "死灵少女",
+        "text": "[show]吸血鬼的走狗？[l]本宫还真是被人看扁了啊……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "死灵少女",
+        "text": "[show]既然话不投机，那就用实力说话吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "死灵少女",
+        "text": "[show]本宫是不知道你是哪家的“小姐”，但既然以贵族自居，就让本宫先好好教导你一下贵族应有的礼仪吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "sp1_2_a_2",
+  "des": "进入SP1-2最终房间"
+}

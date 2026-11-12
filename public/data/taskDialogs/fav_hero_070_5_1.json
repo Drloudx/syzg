@@ -1,0 +1,209 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]呼……吃得好饱！你真是有心了！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "没想到你还吃得挺多的。",
+            "tag": "tag_3"
+          },
+          {
+            "text": "我可是按照正常人类的分量准备的。",
+            "tag": "tag_3"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]并不是身材娇小就一定饭量不行哦！只要把吃下去的东西全部转化成能量，那肚子自然就会一直空着了。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "原来还有这种事！",
+            "tag": "tag_5"
+          },
+          {
+            "text": "妖精还真是不可思议啊！",
+            "tag": "tag_5"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]就是！妖精正是天地自然的结晶，能够做到各种不可思议的事情，这才是妖精啊！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]然后，也正是因为这一点，妖精们也承担着守护卡露蒂亚大陆的使命。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "妖精的……",
+            "tag": "tag_8"
+          },
+          {
+            "text": "使命……",
+            "tag": "tag_8"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]是的，这就是妖精的使命。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]就不谈我们这些伟大存在的分身，即使是普通的妖精，也每时每刻都在发挥着重要的作用。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]花的妖精操纵着植物生长，风的妖精调节着雨雪夏冬。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]正是因为妖精们的努力，这个世界才能像现在这样运转，这个世界的法则才能像现在这样固定。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "听上去就好累。",
+            "tag": "tag_13"
+          },
+          {
+            "text": "这样不辛苦吗？",
+            "tag": "tag_13"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]辛苦吗？答案是……不辛苦！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]因为妖精都是拥有着赤子之心的自然之子，对于大家来说，工作或许只是玩乐的一环。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]没错，就好像人类幼童们在玩的游戏一样，妖精们对于自己的使命也是乐此不疲的。[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "但你不是经常喊累吗？",
+            "tag": "tag_17"
+          },
+          {
+            "text": "你不是一直不想工作吗？",
+            "tag": "tag_17"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[cm][show]我属于特殊情况吧……或许是在人类社会呆的太久了，思维方式已经开始变得太像人类了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]不过这也不是什么坏事。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]毕竟，有些邂逅，就是只有在人类社会才会发生。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "露库希安",
+        "text": "[show]人们经常说，妖精都是幸运的，或许，这就是“我的幸运”的一种表现吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "fav_hero_070_5_1",
+  "des": "露库希安好感5-战役"
+}

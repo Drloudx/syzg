@@ -1,0 +1,142 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]这是洛莉安大人的礼服，采用城堡最先进的工艺和最珍贵的材料制成。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]它的力量源自古堡中不断涌动的魔力。这件装备既象征着洛莉安大人，也汇聚了整座古堡的魔力。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]这么厉害？那洛莉安为什么会把它随便丢在特异次元里？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]就是，身为吸血鬼，做事也太粗心了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]你们误会了。洛莉安大人已经十分小心，只是城堡的魔力并不稳定，总有些东西会意外掉进特异次元。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]尤其是这种与城堡魔力紧密相连的宝物，有些意外实在防不住。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]既然是这么珍贵的宝物，那就还给洛莉安吧。毕竟这玩意儿独一无二，对吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]这正是我要说的第二点。其实，洛莉安大人还有不少这样的礼服。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]既然被你们捡到了，就送给你们吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]啊？直接送给我们？你确定吗？要不要先请示一下……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]不必。既然是你们打到的，自然归你们。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]而且，这只是最基础款的礼服，还没有达到最佳形态。送给你们，也不会造成多大损失。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[show]还没到最佳状态？莫非这衣服还能变强？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]是的。只要准备好能增幅魔力的材料，我便能让这件礼服变得更强。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "text": "[show]哇，这么神奇？快让我试试！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "总管茜狄亚",
+        "text": "[show]嗯，按我说的办就好。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "s_sp1_10_2",
+  "des": "和我详细说说神器的事。"
+}

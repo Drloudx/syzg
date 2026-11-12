@@ -1,0 +1,323 @@
+{
+  "script": "s_sp1_2_0",
+  "des": "【城主大人，您召见我们？】",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵，用词何必如此拘谨？既已是余认可的客人，何不放松一些？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余也算是起于寒微，和那些老派贵族不同，并不会因为别人不通礼仪就无端动怒。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……不过在余看来，会因为区区语言而怠慢了真正的人才，那也不过是只知凭恃家门的守户之犬罢了。或许就是那种虫豸太多，旧时代的人类文明才会崩解到今天这个地步吧。[l]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "您对其他贵族的评价……",
+            "tag": "tag_6"
+          },
+          {
+            "text": "这话还真是不留情面啊。",
+            "tag": "tag_6"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]呵呵……那种东西有何资格让余去“尊重”了？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]就凭他们加起来都不够余一只手打的实力？那是靠他们那些合在一起都不及余十分之一的资产？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]或者，靠他们那些曾经显贵，如今却已经湮灭在历史尘埃里的家名？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哼……你总不会说要“死者为大”，所以要余去尊重这些已逝者吧？哈哈！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好了好了，我们已经知道你有多不待见那些贵族了。[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]反正你肯定是有什么不愉快的经历或者心灵创伤才会对那些家伙耿耿于怀吧？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]哦，看来你的感觉，比你的搭档要敏锐得多呢。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余和那些贵族们的龃龉由来已久，写成书的话带能有二百万字。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]不过现在那些家伙已经烟消云散，而余还站在这里，这就说明余是最后的赢家。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……这么看来余或应该大度一些，多展现一些胜者的从容也说不定……[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]呵呵……[l]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "说或许的意思……",
+            "tag": "tag_18"
+          },
+          {
+            "text": "就是并不准备大度的意思吧……",
+            "tag": "tag_18"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]那当然，余从不会为了别人委屈自己。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]咳咳，都是因为你提起无聊的话题，害余浪费了多余的时间。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]既然你们来了，那就让我们快点开始正题吧。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]明明是你自己要闲聊的……算了，所谓正题到底是什么？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余听说，你们现在似乎是在从事类似冒险者一样接受委托的行业？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]是啊？我们确实是驿站麾下的契约者，然后呢？你要雇佣我们？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]当然！只需要支付临时工的价格就能雇佣到比正式骑士还厉害的高手，这么划算的生意没有人会拒绝吧？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余会和你们签订契约，至于内容，就是把余的城堡从上到下，彻彻底底地“打扫”一遍。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]打扫？！[l]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "我看城里的使魔们都很能干啊？",
+            "tag": "tag_28"
+          },
+          {
+            "text": "这种工作不能交给那些使魔吗？",
+            "tag": "tag_28"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]当然不行。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]余说的“打扫”可不是扫扫地这么简单，是要动用武力把城里的寄生虫全部赶出去的那种全方位“打扫”！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]那些小蝙蝠虽然还算机灵，但她们的实力实在太过低微……[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来是这个打扫……那你为什么不自己干呢？以你的实力要解决什么“寄生虫”应该很简单啊？[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你这话说的！[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]如果事事都要余亲力亲为，余还置办这么多资产干什么？[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]能够用钱解决的问题，当然就要用钱解决。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]放心，契约金绝对管够，为余办事的人，余从不亏待，你们已经可以期待最后的报酬了。[l][cm]",
+        "charaName": "洛莉安"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]好吧，虽然有一点～点不爽……但钱能到位，那就一切好说！[l][cm]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你要我们先从哪里开始？不要犹豫，尽管放马过来吧！[l][cm][hide]",
+        "charaName": "米托拉"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ]
+}

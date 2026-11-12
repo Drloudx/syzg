@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]主公，请尝尝这三勺蜂蜜。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]怎么样？尝到不同的感觉了吗？左边采自溪边花丛，中间来自山崖，右边则是洞穴附近的蜂巢。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]根据不同环境，产出的蜂蜜的甜味、香气和浓稠程度都有差别。这是很严肃的环境研究。只要记录好结果，我就能替同胞选出最合适的产蜜地。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]当然这些蜂蜜做出来的加工品味道如何，也是一个值得研究的话题。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]所以我准备了面包和奶油。主公再陪我研究一轮吧！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_069_2",
+  "des": "友善"
+}

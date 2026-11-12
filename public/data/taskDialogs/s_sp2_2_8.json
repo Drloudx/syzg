@@ -1,0 +1,30 @@
+{
+  "script": "s_sp2_2_8",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]明白了，那我这就安排人手。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]迦南前辈的分身，出没地点就在附近。[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]为了前辈的风评，请你们努力奋斗吧！[l][cm]",
+        "charaName": "艾尔莎"
+      }
+    }
+  ],
+  "des": "s_sp2_2_8"
+}

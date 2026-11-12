@@ -1,0 +1,46 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]我来到草原，是为了替同胞寻找新家。溪边、洞穴、山崖……我找到了很多适合筑巢的地方，看着大家一点点安顿下来。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]不过我本人一直没有一个固定家，这也是可以理解的，毕竟我是女王最得力的干将，总是需要到处跑的。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]不过主公的营地，一直给我一种家的感觉。现在每次结束巡逻，看见营地的灯，我都会觉得——啊，我回来了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "修瓦莉",
+        "text": "[show]今后我也会一直守着您，守着……我们的家。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "yd_069_9",
+  "des": "亲密"
+}

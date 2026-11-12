@@ -204,7 +204,7 @@ export const hasBrokenRewardPool = (itemOrId) => {
 export const HIDDEN_HERO_IDS = Object.freeze([
     'hero_059', // 菲娜，未知界域·桃源乡，预埋
     'hero_070', // 露库希安，未知界域·世界树的枝桠，预埋
-    'hero_047', // 阿迪拉，碎片仅测试包发放，付费测不可实得
+    // hero_047 阿迪拉：2026-11-11 按用户要求解除隐藏（1.7.15 官方已解除 hide）
 ])
 
 const HIDDEN_HERO_SET = new Set(HIDDEN_HERO_IDS)

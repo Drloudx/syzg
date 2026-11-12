@@ -396,9 +396,23 @@ export function createSpineScene(canvas, layers, options = {}) {
      */
     play(key, animName, { loop = false, onComplete } = {}) {
       const actor = actors.find(item => item.key === key)
-      if (!actor || !actor.data.findAnimation(animName)) return false
-      const entry = actor.state.setAnimation(0, animName, loop)
-      if (onComplete && !loop) entry.listener = { complete: () => onComplete() }
+      if (!actor) return false
+      /*
+       * 🔴 动画兜底：新角色（诺姿 Npc_032 / 修瓦莉 Npc_069 / 洛莉安 Npc_071 等）的骨架
+       * **没有 `win` / `win_idle` 动画**（4~5 星新角色骨架只含 idle/collect/attack 等），
+       * 而揭晓演出固定播 `win`→`win_idle`。原逻辑 `!findAnimation` 直接 return false → 小人静止。
+       * 兜底：找不到目标动画时，依次回退到 `idle_front`→`idle_fight_front`→第一个动画，并循环播放。
+       */
+      const FALLBACKS = ['idle_front', 'idle_fight_front', 'idle_back']
+      let target = animName
+      let useLoop = loop
+      if (!actor.data.findAnimation(target)) {
+        target = FALLBACKS.find(n => actor.data.findAnimation(n)) || actor.data.animations?.[0]?.name
+        useLoop = true // 兜底的 idle 要循环，否则播一次就停
+        if (!target) return false
+      }
+      const entry = actor.state.setAnimation(0, target, useLoop)
+      if (onComplete && !useLoop) entry.listener = { complete: () => onComplete() }
       return true
     },
     /** 暂停渲染循环（共享场景无人引用时调用；上下文与纹理全部保留）。 */

@@ -1,0 +1,62 @@
+{
+  "script": "s_1_2_4",
+  "des": "",
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]这、这些修行记录果然有点东西！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]运用了里面写的一些细节经验，出手的威力的确会大上不少！我已经完全理解了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]看来想要继续提升技能的威力，就得帮那个毛耳朵做杂活……唉，真是麻烦……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[show]（扑棱棱棱棱——）[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]啊，是驿站的大鸟！有封信耶，你看看……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]你说菲尔德蕾结束了会议，要在旅店里见我们？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "米托拉",
+        "text": "[show]好耶，那我们赶紧过去吧！[l][cm]"
+      },
+      "key": "text"
+    }
+  ]
+}

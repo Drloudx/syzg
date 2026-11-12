@@ -1,0 +1,40 @@
+{
+  "RequestId": "ba9084c2-933f-4619-8b46-a82de857525c",
+  "Rules": [
+    {
+      "Branches": [
+        {
+          "Actions": [
+            {
+              "CacheParameters": {
+                "FollowOrigin": {
+                  "DefaultCache": "on",
+                  "DefaultCacheStrategy": "on",
+                  "DefaultCacheTime": 0,
+                  "Switch": "on"
+                }
+              },
+              "Name": "Cache"
+            },
+            {
+              "CacheKeyParameters": {
+                "FullURLCache": "on",
+                "IgnoreCase": "off",
+                "QueryString": {
+                  "Switch": "off"
+                }
+              },
+              "Name": "CacheKey"
+            }
+          ],
+          "Condition": "${http.request.host} in ['syzgwiki.top']"
+        }
+      ],
+      "RuleId": "rule-3wflk1dsg7tz",
+      "RuleName": "网站加速-syzgwiki.top",
+      "RulePriority": 1,
+      "Status": "enable"
+    }
+  ],
+  "TotalCount": 1
+}

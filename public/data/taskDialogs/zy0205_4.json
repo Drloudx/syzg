@@ -1,0 +1,118 @@
+{
+  "script": "zy0205_4",
+  "exps": [
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]敌人倒下了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]真是一场鏖战……！但这样一来……事情就解决了吧？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]不，还没有！那个装置！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]因为那个大家伙胡乱吸收地脉能量，那个装置已经彻底失衡了！[r][l]如果放着不管的话，很快就会爆发的！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]爆……发？爆发会怎么样？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]首先是这个遗迹，肯定会被爆发的能量炸个稀巴烂！[r][l]然后那种能将水脉晶化的魔力会通过地脉席卷整个山地！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]按照这个读数……到时候恐怕就连生物体内的水分也会被结晶，一个都跑不掉！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]说那么复杂，不就是全都完蛋了吗！那还不快点处理它，学者！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "安娜",
+        "nameSide": "right",
+        "text": "[show]不要对我产生太高的期待啊。这还是我毕生研究中的盲点。[r][l]毕竟我还是第一次见到这种奇怪的东西。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "希尔",
+        "nameSide": "left",
+        "text": "[show]……那就让我们来吧。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]希尔，米托拉……[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]对付这种东西，我们姑且还算是有点经验啦。对了，关于这件事可不要说出去哦。[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "菲莉娜",
+        "nameSide": "right",
+        "text": "[show]两位后辈……虽然不知道缘由，但现在就只能拜托你们了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米拉贝尔",
+        "nameSide": "right",
+        "text": "[show]拜托了，契约者！请救救巴诺姆……救救索利德山……！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": ""
+}

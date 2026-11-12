@@ -1,0 +1,118 @@
+{
+  "script": "Main_2_03_3",
+  "exps": [
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]山狐族[wait=50]…[wait=100]…[wait=150]！[wait=500]是皮塔吗！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]…[wait=100]…[wait=500]巴诺姆村不欢迎背叛者！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "米托拉",
+        "nameSide": "left",
+        "text": "[show]哎？[wait=300]你们认识？[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]沃夫加大哥……[wait=500]这是我最后一次叫你大哥了。[r][l]看在你曾经教过我猎术的份上……[wait=300]从哪里来，[wait=100]就回哪里去吧！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]我沃夫加从来没有背叛过巴诺姆！[l]我想回来就可以回来！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]别狡辩了！明明前团长对你寄予厚望，想要把自卫团交给你……[r]你却在我们最需要你的时候抛下了我们，跑去和山外的家伙们摇尾乞怜！[r][l]这不是背叛又是什么！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]我说了我没有背叛村子！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]和你们一样只听老头子的，关起山门和外界断绝关系，[r]对我们没有任何好处！我早和你说过！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]我离开是想要找到拯救山地的方法！带人回来也只是想要帮助我们的同胞！[r][l]——你们没有任何理由阻止我！现在，把你们的弩箭放下，让我们过去！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]我也说了你不要狡辩！外来者有多么不可信，[r]我们早就以鲜血的代价看得一清二楚了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]多亏了你的离开，我们现在有了一位比前团长强大得多的领袖！[r][l]只要有她在，我们不需要外人的拯救，也不需要什么帮助！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]我再说一遍[wait=300]！[wait=500]从哪里来[wait=500]回哪里去！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "沃夫加",
+        "nameSide": "left",
+        "text": "[show]皮塔！[wait=800]我[wait=100]再[wait=50]说一次，[wait=300]不要逼我动手！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "皮塔",
+        "nameSide": "right",
+        "text": "[show]滚出我们的家园，[wait=300]沃夫加！[l]你要打那就打！[r][wait=300]我可不是从前跟在你身后的那个小毛孩了！让你见识一下自卫团的厉害！[l][cm]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "弃用"
+}

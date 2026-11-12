@@ -1,0 +1,394 @@
+{
+  "script": "fav_hero_050_5_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩1",
+        "text": "[show]哈哈哈！你们看你们看，看我手上这串大烤肉！肯定是所有人里最大的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩2",
+        "text": "[show]你就吹吧，我手上的烤萝卜明显就比你的要大！我才是最大的那个！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩3",
+        "text": "[show]哼，两个小家伙，我手上的可比你们的都大！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩1",
+        "text": "[show]你胡说！我的烤肉才是最大的！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩2",
+        "text": "[show]哼！我才是我才是！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]喂喂喂，你们几个小孩在这里吵什么吵？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]这吃的又不是你们自己做的，你们自己去做上一顿再来比比大小，不是更心服口服？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩1",
+        "text": "[show]哼，要你管！别以为你是村长，我们就什么都得听你的了！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩2",
+        "text": "[show]就是就是，你不就是想让我们走开，好继续和那个拿锤子的家伙呆在一起吗？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]吼，嘴巴还挺硬的啊？可别忘了我手上也有锤子，就用这个给你们打个满脸桃花开怎么样？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "小孩们",
+        "text": "[show]哇——！村长姐姐好坏——[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]哼……这就被吓跑了，连我当年一半的胆儿都没有。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_15",
+            "text": "米拉贝尔小时候也经历过这些？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]那当然，我小时候也经常回怼那些山下来的混混。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]看着这些调皮的小鬼，我也突然有些怀念以前的时光呢。那时候虽然没脑子经常惹祸，但那种自由自在的感觉很少能体会到了。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_18",
+            "text": "噢？还想继续炸山？"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]那当然不会了……而且现在哪个敢在我面前炸山，我一定要把他揍一顿。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]可能这就是所谓的成长吧。回头一看，自己变成了当初讨厌的样子。不过，这也算不得什么坏事。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]好啦，该做菜啦。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "",
+        "text": "[show]（经过米拉贝尔一番烹饪过后，一盘盘令人垂涎三尺的菜肴被端了上来。其中包括萝卜肉汤、香烤萝卜、炒萝卜丝等等。）[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_23",
+            "text": "居然全是萝卜啊……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]萝卜怎么了？萝卜可是这个世界上最伟大的食物，我就算吃一万年也吃不腻。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]尝尝吧，保证合你胃口。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_26",
+            "text": "啊姆……嚼嚼……"
+          },
+          {
+            "tag": "tag_26",
+            "text": "唔哦！味道比上次好得多！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嘿嘿……这就是我真正的厨艺！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "？",
+        "text": "[show]啊，原来你在这里啊。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]咦？老爸？你怎么来了？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]我看这里有火光就过来看看了，没想到是你们啊。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]唔哦！这一桌菜都是你烧的吗？闻着真香，看来你这几天在厨房加班加点的训练没白费啊。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_32",
+            "text": "加班加点的训练是指……"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[cm][show]就是她这几天都在厨房烧火，每次把脸都熏黑了。这不就是加班加点训练啊，对吧？[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]喂！臭老爸你不要多嘴啦！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]之前的事我也听说了。唉，你真的是个好人。我一把年纪，也终于能放心把米拉贝尔托付给你了。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]喂喂喂！你说的话怎么越来越奇怪了啊？！[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "“工头”罗伯特",
+        "text": "[show]呜，呜呜……岁月如梭，逝者如斯啊！噢，都这个时间了，我就不打扰了啊！你们就趁兴好好吃一顿吧！哈哈哈哈——[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_48",
+            "text": "罗伯特先生再见——！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]真是的……怎么一个个都装神弄鬼的……[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_40",
+            "text": "真的很感谢你，米拉贝尔。"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]没……没什么啦，我也就花了些时间而已。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]其实把你邀请到这里，为你准备了那么多食材，是对你之前帮助我调查歹人，为我解开心结的回报。[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]如果没有你调查出岩蟾蜍的真相，我现在怕不是已经累晕过去。如果没有你开导我的思想，我可能会一蹶不振，从此浑浑噩噩……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]总之……总之说那么多，我只是想说……真的很感谢你……[l][cm]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[show]我希望接下来的日子，你还能陪伴在我的身旁。[l]",
+        "nameSide": "left"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "tag": "tag_46",
+            "text": "我会陪伴在米拉贝尔身旁的！"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "charaName": "米拉贝尔",
+        "text": "[cm][show]嗯！一言为定！[l][cm][hide]",
+        "nameSide": "left"
+      }
+    }
+  ],
+  "des": "米拉贝尔-山中的宴会-进入战役"
+}

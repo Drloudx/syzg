@@ -1,0 +1,373 @@
+{
+  "script": "fav_hero_012_4_1",
+  "exps": [
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……我在野外看见过许多营地，还是第一次见到内部如此整洁、设施如此齐全的营地。哪怕是专业狩猎队的野外营地恐怕也比不上这里的一分一毫。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "也没那么夸张啦……",
+            "tag": "tag_4"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]不必谦虚，我一直很认可你的能力，这也是我愿意让你打造武器的原因。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]你估计一下，大概什么时候能把弓给做好？[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "不会超过半小时。",
+            "tag": "tag_7"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这……这么厉害？看来我还是低估你的实力了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]在你打造新弓的时候，我就在旁边做一顿烤肉吧。这样你忙完之后就能直接吃顿大餐。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（开始打造沃夫加的新弓。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，那就拜托你了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（沃夫加在一旁坐下，建起一座小小的篝火开始烤肉。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……从村子里出来以后，这还是我第一次在别人营地里烤肉呢，也是第一次在别人营地里呆这么久。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "沃夫加不喜欢和人交往吗？",
+            "tag": "tag_14"
+          },
+          {
+            "text": "总会和其他人聊过天吧。",
+            "tag": "tag_14"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]谈不上不喜欢，只是没刻意去在意人际交往而已。我之前到别人营地里去也只是为了换点钱和物资，几乎没跟其他人说几句话。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]可能也是因为我的样子和性格太吓人了吧，每个碰见我的人都会对我敬而远之，就算我想交朋友也找不到人，当然你是个例外。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "沃夫加其实是个很友善的人。",
+            "tag": "tag_17"
+          },
+          {
+            "text": "大家应该是误会你了吧。",
+            "tag": "tag_17"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]或许吧，不过这对我来说意义不大，毕竟我大部分时间都没有与他人交往的意愿。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]现在想想，或许我当时拿起弓箭独自狩猎，只是为了逃避与他人交流，或者说为了逃避过去……[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "过去到底发生什么了？",
+            "tag": "tag_20"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]罢了……我总不能一直吊你胃口，是时候和你说说我过去的事了。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]和你之前听到的一样，我是从巴诺姆村出来的猎人。当年在村子里也是有点名气和地位，还被一些人称作大哥。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]事情的变故发生在大兽潮的时候，当时巴诺姆村的策略是固守村庄，但我认为要出动出击，出去和驿站联军一起战斗。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟就魔物潮的规模而言，要是它们突破了山下联军的防线，我们这点人根本守不了村子。还不如主动加入联军，在山下就把那群魔物挡住。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]但可惜村长并不同意我的计划，村里大多数人也不认同，大家只想守着自己这一亩三分地。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]所以我就带着一批认同我的人，私自下山加入联军和魔物战斗。最后成功和联军阻挡了兽潮的蔓延，当然我们没有起决定作用，只是帮了他们一把而已。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]战斗结束后，由于错估了敌人的攻势，和我一同下山的很多人都牺牲了。很多人认为那些人原本能活下来的，是我的一意孤行害了他们，这成为了我一直以来无法忘却的伤痛。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]而我回到村子里也被视为异类，不久后就被逐出村子了。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "原来还有这么一段故事。",
+            "tag": "tag_29"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]这也是我第一次和别人谈起这件事，反正从那以后我就一直封闭着自己，不愿见他人。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]毕竟我是一个不合群的人，就算是找到志同道合的人，最终也只会让他们受伤。所以我想着独来独往算了，所谓“独狼”这个称号也就是这么来的。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你并没有伤害志同道合的伙伴。",
+            "tag": "tag_32"
+          },
+          {
+            "text": "他们也是因为认同你才和你一起行动的。",
+            "tag": "tag_32"
+          }
+        ]
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "你们都是巴诺姆村的英雄。",
+            "tag": "tag_33"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm][show]（说罢，把打造好的弓交给沃夫加。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯……谢谢你为我打造的武器，以及……对我的认可。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嘿——！[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（沃夫加拿起新的弓，向远处的树木射了一箭。箭矢穿透两片树叶，正中在粗壮的树干之上。）[l][cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]嗯，看来我恢复得不错。[l][cm]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]辛苦你了，我的伙伴。现在来尝尝我做的烤肉吧，虽然可能不太好吃，但我也尽我所能做到最好了。[l]",
+        "charaName": "沃夫加"
+      }
+    },
+    {
+      "key": "option",
+      "para": {
+        "options": [
+          {
+            "text": "那我不客气了。",
+            "tag": "tag_40"
+          }
+        ]
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[cm]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]（后来和沃夫加一同享用了美味的烤肉，沃夫加的状态也恢复如初。）[l][cm][hide]",
+        "charaName": ""
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
+    }
+  ],
+  "des": "沃夫加-荒野独狼的过往-进入战役"
+}

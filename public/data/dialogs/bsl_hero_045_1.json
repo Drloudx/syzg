@@ -1,0 +1,54 @@
+{
+  "exps": [
+    {
+      "para": {
+        "charaName": "艾尔菲帕",
+        "text": "[show]你好，{myName}，等了半天，终于在营地里等到你了。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔菲帕",
+        "text": "[show]这里的空气没有魔爪沼泽那么沉重，甚至连那些吵闹的小鸟也变得……温柔了一些。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔菲帕",
+        "text": "[show]我习惯了长久以来的孤独生活，但自从遇见你，我好像开始对他人的陪伴有了新的期待。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔菲帕",
+        "text": "[show]这个送你……我不太擅长挑选礼物，所以送的东西可能有些简陋。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "艾尔菲帕",
+        "text": "[show]只要我还在这里，就会操纵雷鸣的力量为你驱散黑暗。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    }
+  ],
+  "script": "bsl_hero_045_1",
+  "des": "bsl_hero_045_1"
+}

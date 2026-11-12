@@ -1,0 +1,69 @@
+{
+  "exps": [
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]就是字面意思，只为{myName}一人服务的侍者！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]顺便驿站那边我也请假了，接下来的时间就留给你一个人哦。[l]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "tag": "tag_5",
+            "text": "实在是荣幸……"
+          },
+          {
+            "tag": "tag_5",
+            "text": "你打算要去哪里约会呢？"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[cm][show]这个嘛，我大概有想法了，我们去魔爪湖的大市集吧！那里可多好吃好玩的了！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]为了这次约会，我可做了很多准备。大市集里所有好玩的地方，所以{myName}只要好好享受约会就好！[l][cm]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]那么……我们走吧！[l][cm][hide]"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "charaName": "",
+        "text": "[hide]"
+      },
+      "key": "text"
+    }
+  ],
+  "des": "梅莉莉-营地对话【“专属侍者”是什么意思？】",
+  "script": "fav_hero_027_4_0"
+}
