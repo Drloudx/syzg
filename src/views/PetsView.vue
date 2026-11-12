@@ -234,19 +234,18 @@
           </div>
 
           <!-- Mutant variant details description under portraits -->
-          <div class="variant-effect-box" v-if="selectedPet.hasVariant && selectedPet.variants.length > 0">
+          <div class="variant-effect-box" v-if="selectedPet.hasVariant && primaryVariant">
             <div class="variant-line">
               <span class="variant-effect-title">变异效果:</span>
               <span
+                v-if="hasVariantDes"
                 class="variant-effect-txt"
-                v-html="formatSkillDescription(selectedPet.variants[0].des)"
-              ></span>
-              <span class="variant-effect-txt" v-if="selectedPet.variants[0].lifeTimeAdd > 0">
-                ，上场时间增加 +{{ selectedPet.variants[0].lifeTimeAdd }}秒
-              </span>
-              <span class="variant-effect-txt" v-if="selectedPet.variants[0].sellPriceAdd > 0">
-                ，售价增加 +{{ selectedPet.variants[0].sellPriceAdd }}
-              </span>
+                v-html="formatSkillDescription(primaryVariant.des)"
+              ></span><span
+                v-for="(extra, index) in variantExtraEffects"
+                :key="extra"
+                class="variant-effect-txt"
+              >{{ (hasVariantDes || index > 0 ? '，' : '') + extra }}</span>
             </div>
             <div class="variant-line">
               <span class="variant-effect-title">变异概率:</span>
@@ -617,7 +616,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { fetchPetData } from '../utils/petParser'
+import { fetchPetData, getPetVariantExtraEffects } from '../utils/petParser'
 import { getImageUrl } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
 import {
@@ -804,6 +803,10 @@ const closePetDetail = () => {
 
 // Format Skill description values
 const formatSkillDescription = formatHighlightedText
+
+const primaryVariant = computed(() => selectedPet.value?.variants?.[0] || null)
+const hasVariantDes = computed(() => Boolean(primaryVariant.value?.des?.trim()))
+const variantExtraEffects = computed(() => getPetVariantExtraEffects(primaryVariant.value))
 
 // Skills Logic
 const activeSkill = computed(() => {

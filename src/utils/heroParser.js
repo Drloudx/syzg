@@ -110,7 +110,7 @@ export function buildHeroData(maps) {
     const processedHeroes = Object.keys(heroDatas).map(key => {
       const h = heroDatas[key]
       if (h.hide === true) return null
-      // 手工隐藏角色（预埋/不可实得，如 059/070/047），见 blacklist.js 的 HIDDEN_HERO_IDS
+      // 手工隐藏角色，见 blacklist.js 的 HIDDEN_HERO_IDS
       if (isHiddenHero(h.typeId || key)) return null
 
       const typeId = h.typeId || key

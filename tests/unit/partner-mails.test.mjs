@@ -5,7 +5,7 @@ import { buildHeroesFile } from '../../scripts/parse/heroes.mjs'
 import { buildPartnerMailboxes, getPartnerMailPresentation, parseHeroMail } from '../../src/utils/partnerMailData.js'
 import { validateResource } from '../../src/utils/resourceSchemas.js'
 import { CALL_NAME_REPLACE, cleanDialogueLine, cleanMailContent } from '../../src/utils/gameMappings.js'
-import { isHiddenHero } from '../../src/config/blacklist.js'
+import { HIDDEN_HERO_IDS, isHiddenHero } from '../../src/config/blacklist.js'
 
 const read = relative => JSON.parse(fs.readFileSync(new URL(`../../${relative}`, import.meta.url)))
 const itemData = read('public/data/parsed/items.json')
@@ -33,16 +33,20 @@ test('mailboxes cover every game-visible source mail, including hidden catalogue
   const expected = Object.entries(mailTable).filter(([id, mail]) => !isHiddenHero(mail.heroTypeId) && (mail.mailType !== 2 ||
     (archiveTable[mail.heroTypeId] || []).some(archive => archive.mailTypeId === id)))
   assert.deepEqual(actual.map(mail => mail.id).sort(), expected.map(([id]) => id).sort())
-  // 期望集由原表推导，条数随官方邮件表变化；隐藏角色（047/059/070）整体不出。
+  // 期望集由原表推导，条数随官方邮件表变化；仅 HIDDEN_HERO_IDS 中的角色不出。
   assert.equal(actual.length, expected.length)
   assert.equal(mailboxes.length, new Set(expected.map(([, mail]) => mail.heroTypeId)).size)
   for (const mail of actual) {
     assert.equal(mail.heroId, mailTable[mail.id].heroTypeId)
     assert.equal(mail.content, mailTable[mail.id].content)
   }
-  // 隐藏角色的发件箱在产物里必须彻底消失（2026-11-11 hero_047 阿迪拉已按用户要求解除隐藏）
-  for (const id of ['hero_059', 'hero_070']) {
+  // 仍在 HIDDEN_HERO_IDS 中的角色发件箱必须消失；已解除隐藏的角色须同时进入图鉴与伙伴邮件。
+  for (const id of HIDDEN_HERO_IDS) {
     assert.ok(!mailboxes.some(box => box.id === id), `隐藏角色 ${id} 不应出现在伙伴邮件`)
+  }
+  for (const id of ['hero_047', 'hero_059', 'hero_070']) {
+    assert.ok(heroes.some(hero => hero.id === id), `已解除隐藏角色 ${id} 应出现在角色图鉴`)
+    assert.ok(mailboxes.find(box => box.id === id)?.mails.length, `已解除隐藏角色 ${id} 应出现在伙伴邮件`)
   }
   for (const id of ['hero_028', 'hero_057']) {
     assert.ok(mailboxes.find(box => box.id === id)?.mails.length)

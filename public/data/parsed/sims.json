@@ -4,7 +4,7 @@
       "data/parsed/heroes.json",
       "data/parsed/pets.json"
     ],
-    "heroCount": 40,
+    "heroCount": 42,
     "petCount": 43,
     "note": "配队模拟器专用精简表；由 scripts/dev/build-sims-data.mjs 生成，勿手改"
   },
@@ -115,6 +115,21 @@
       }
     },
     {
+      "id": "hero_059",
+      "name": "菲娜",
+      "job": 2,
+      "jobName": "守护",
+      "element": 1,
+      "elementName": "水",
+      "icon": "at059_0",
+      "img": "chara059_0",
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 339,
+        "magicAtk": 276
+      }
+    },
+    {
       "id": "hero_060",
       "name": "德莉",
       "job": 3,
@@ -172,6 +187,21 @@
       "unitData": {
         "phyAtk": 478,
         "magicAtk": 386
+      }
+    },
+    {
+      "id": "hero_070",
+      "name": "露库希安",
+      "job": 6,
+      "jobName": "支援",
+      "element": 3,
+      "elementName": "风",
+      "icon": "at070_0",
+      "img": "chara070_0",
+      "rare": 5,
+      "unitData": {
+        "phyAtk": 285,
+        "magicAtk": 347
       }
     },
     {

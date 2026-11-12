@@ -231,3 +231,22 @@ export const fetchPetData = createCachedLoader(async () => {
   cachedPlayerLevelCap = parsed.playerLevelCap || 1
   return parsed
 })
+
+/**
+ * 返回魔物变异在 `des` 之外需要补充展示的效果文案列表。
+ * `des` 已包含驻场/上场时间说明时不重复追加 `lifeTimeAdd`（如圣骑士史莱姆、青铜迷迷可）。
+ */
+export function getPetVariantExtraEffects(variant) {
+  if (!variant) return []
+  const extras = []
+  const des = String(variant.des || '').trim()
+  const lifeTimeAdd = Number(variant.lifeTimeAdd) || 0
+  const sellPriceAdd = Number(variant.sellPriceAdd) || 0
+  if (lifeTimeAdd > 0 && !/(?:驻场|上场)时间/.test(des)) {
+    extras.push(`上场时间增加 +${lifeTimeAdd}秒`)
+  }
+  if (sellPriceAdd > 0) {
+    extras.push(`售价增加 +${sellPriceAdd}`)
+  }
+  return extras
+}
