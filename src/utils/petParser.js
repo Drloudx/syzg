@@ -44,12 +44,13 @@ export function buildPetData(maps) {
         sellPriceAdd: v.sellPriceAdd || 0
       }))
       /*
-       * 变异概率：`variantChance` 是**孵化时触发变异的总概率**（0.2 = 20%，0 = 不可变异）。
-       * 客户端 `PetConf.variantChance`，`PicCenterPetTemp.Init` 用它判断是否显示
-       * 「可变异」图标（sprite `pet_info_mutate`）。`variants[].chance` 是在"已变异"前提下
-       * 出哪种变异的权重（当前所有魔物都只有 1 种 → 恒为 1）。
+       * 变异：`variantChance`（配置值 0.2）在客户端只作**开关**用 —— 非 0 即可变异，
+       * 客户端从不把它当概率参与运算或显示（`PicCenterPetTemp.Init` / `PicPetDetail.InitVariantButtons`
+       * 均只判断 `!= 0f`）。真实孵化变异概率由服务端判定，反编译客户端与配置表均无法证实具体数值，
+       * 故页面不展示百分比，仅以 0/非0 判定「可变异」。`variants[].chance` 亦未被客户端读取。
        */
       const variantChance = Number(pet.variantChance) || 0
+      // 保留供将来确认口径后再展示；当前页面不渲染任何百分比
       const variantChancePercent = Math.round(variantChance * 1000) / 10
 
       // Process Skills
@@ -175,7 +176,7 @@ export function buildPetData(maps) {
         hasVariant: variantsList.length > 0,
         // 特性摘要（表格视图用）：{ name, maxText(满级文本), rangeText(1→7 级区间) }
         trait: traitSummary,
-        // 孵化变异概率（0.2 = 20%）；0 表示不可变异
+        // 变异开关（配置值；非 0 即可变异）。具体概率服务端判定，页面不展示百分比
         variantChance,
         variantChancePercent,
         skills: skillsList,

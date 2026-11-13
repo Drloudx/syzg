@@ -159,14 +159,14 @@
             />
             <!--
               可变异标记：与游戏内一致（`PicCenterPetTemp.Init` 里 sprite `pet_info_mutate`）。
-              只要 `variantChance != 0` 就显示；概率数字放 title 提示，卡面不挤。
+              仅按 `variantChance != 0` 显隐；真实孵化概率服务端判定、数值未证实，故不展示百分比。
             -->
             <img
               v-if="pet.variantChance > 0"
               :src="getImageUrl('/ui/pet_info_mutate.png')"
               class="pet-card-mutate"
-              :alt="`可变异（${pet.variantChancePercent}%）`"
-              :title="`可变异：孵化时 ${pet.variantChancePercent}% 概率`"
+              alt="可变异"
+              title="可变异：孵化后判定"
             />
           </div>
         </template>
@@ -246,11 +246,6 @@
                 :key="extra"
                 class="variant-effect-txt"
               >{{ (hasVariantDes || index > 0 ? '，' : '') + extra }}</span>
-            </div>
-            <div class="variant-line">
-              <span class="variant-effect-title">变异概率:</span>
-              <span class="variant-effect-txt variant-chance-val">{{ selectedPet.variantChancePercent }}%</span>
-              <span class="variant-effect-note">孵化完成后判定</span>
             </div>
           </div>
         </div>
@@ -1405,29 +1400,18 @@ const getPetRanges = (pet) => {
   line-height: 1.6;
 }
 
-/* 每条（变异效果 / 变异概率）独占一行，左标签右内容 */
+/* 变异效果独占一行，左标签右内容 */
 .variant-line {
   display: block;
 }
 .variant-line + .variant-line {
   margin-top: 6px;
 }
-.variant-effect-note {
-  margin-left: 8px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
 
 .variant-effect-title {
   font-weight: bold;
   color: var(--q4);
   margin-right: 6px;
-}
-
-/* 变异概率数值：与「变异效果」标题并列时保持清晰可读 */
-.variant-chance-val {
-  font-weight: 700;
-  color: var(--q5-text, #b15d00);
 }
 
 .variant-effect-txt {
