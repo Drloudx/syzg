@@ -345,7 +345,7 @@ import { useGlobalSearch } from './composables/app/useGlobalSearch.js'
 import { useNativeShell } from './composables/app/useNativeShell.js'
 import { useOverlay } from './composables/useOverlay.js'
 import { useVisibilityPolling } from './composables/useVisibilityPolling.js'
-import { DISCUSSION_POLL_MS } from './config/discussions.js'
+import { RECENT_POLL_MS } from './config/discussions.js'
 
 const route = useRoute()
 const router = useRouter()
@@ -493,8 +493,10 @@ function openDiscussionFor(comment) {
  *   2. **本机发表评论后**（监听 commentEvents 广播，绕过缓存）——
  *      实测踩到的坑：本站是 hash 路由，站内发帖**不改变路由也不重载应用**，
  *      光靠时机 1 会看到"刚发的评论只在左边、右栏还是旧的"；
- *   3. **30 秒定时 + 从后台切回时刷新**——让**别人发的**也能出现：
+ *   3. **定时 + 从后台切回时刷新**——让**别人发的**也能出现：
  *      用户停在某页不动时，光靠前两个时机右栏会一直停在旧内容。
+ *      定时周期见 `RECENT_POLL_MS`（2026-11-14 由 1 分钟改为 **30 分钟**，
+ *      因为右栏在每个页面都常驻，是 Workers 请求量的最大来源）。
  *
  * 三个时机都走 `fresh`（跳服务端共享缓存 + 时间戳穿透中间层缓存），
  * 否则会撞上 30 秒缓存窗口看到旧快照（实测：切页后新评论仍不出现）。
@@ -584,13 +586,16 @@ watch(commentPostedAt, () => addRecentComment(lastPostedComment.value))
  * `useVisibilityPolling`：同一套边界（后台停跑、切回立即补一次、预渲染不跑、
  * 用 `setTimeout` 递归避免请求慢时堆积）现在只维护一处，讨论区也用它。
  *
- * 间隔与讨论区**共用** `config/discussions.js` 的 `DISCUSSION_POLL_MS`
- * （两处填不同数字的话，用户会看到"右边出现了、中间还没有"的错位）。
+ * 间隔用 `config/discussions.js` 的 `RECENT_POLL_MS`（**30 分钟**，2026-11-14 起）。
+ * 右栏在每个页面都常驻，是 Workers 请求量的最大来源；原来与讨论区共用 1 分钟，
+ * 用户挂在任意页面不动每小时就打 60 次 `/api/recent`，额度被快速吃掉。
+ * 讨论区页面仍用 `DISCUSSION_POLL_MS`（1 分钟）——用户正在那里读，需要快。
+ * 切页、发表后、从后台切回这三个时机仍会立即刷新，不必等这 30 分钟。
  * 轮询走 `fresh`（跳服务端 30 秒共享缓存 + 时间戳穿透中间层），
  * 否则会撞上那个缓存窗口、看到的是旧快照。
  */
 useVisibilityPolling(() => loadRecentDiscussions({ fresh: true }), {
-  intervalMs: DISCUSSION_POLL_MS
+  intervalMs: RECENT_POLL_MS
 })
 
 /**

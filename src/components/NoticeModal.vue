@@ -44,6 +44,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 import { UiModal, UiButton, UiTag, UiEmptyState } from './ui/index.js'
 import RichTextView from './ui/RichTextView.vue'
 import { fetchWithFallback } from '../utils/request.js'
+import { loadHomeConfig } from '../utils/homeConfig.js'
 
 const props = defineProps({
   modelValue: {
@@ -148,11 +149,22 @@ const loadNotices = async () => {
   try {
     let all = []
     try {
-      const res = await fetch('/api/home-config', { headers: { accept: 'application/json' } })
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const data = await res.json()
-      if (!data?.ok) throw new Error('payload not ok')
-      all = Array.isArray(data.notices) ? data.notices : []
+      /*
+       * 复用 `homeConfig.loadHomeConfig()` 的**会话级 Promise 缓存**，不再自己 fetch。
+       *
+       * 为什么：原来这里手写 `fetch('/api/home-config')`，绕过了 homeConfig.js 已有的
+       * 模块级缓存 —— 结果「进首页」和「公告弹窗挂载」各拉一次，同一屏发两个请求。
+       * 而公告弹窗在 App.vue 常驻挂载、每次打开页面都会 mount，是全站每页 1 次的请求。
+       * 走 loadHomeConfig 后与首页共用同一个 Promise，一次访问只发 1 个请求（并发也会去重）。
+       *
+       * ⚠️ 返回结构与原始接口不同：这里 `data.notices` 已经是 **`{ site, official }` 分组对象**
+       * （见 homeConfig.js 的 pickBySlots），不是扁平数组。所以取 `data.notices.site`。
+       * 只取 site 频道 —— 官方更新（official）不在进站弹窗打扰。
+       */
+      const data = await loadHomeConfig()
+      const site = data?.notices?.site
+      if (Array.isArray(site)) all = site
+      else throw new Error('home-config notices 不可用')
     } catch (apiErr) {
       // 回落：接口挂了也要能看到公告（用打包时的快照）
       console.warn('[notice] 接口不可用，回落到 data/notice.json：', apiErr?.message || apiErr)
