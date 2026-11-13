@@ -1,4 +1,4 @@
-/**
+﻿/**
  * UI 组件库统一出口 (Parchment Wiki Design System)
  *
  * 使用示例：
@@ -20,6 +20,7 @@ export { default as UiFilterRow } from './UiFilterRow.vue'
 export { default as UiFilterPanel } from './UiFilterPanel.vue'
 export { default as UiInfoPanel } from './UiInfoPanel.vue'
 export { default as UiInfoRow } from './UiInfoRow.vue'
+export { default as UiImageLightbox } from './UiImageLightbox.vue'
 export { default as UiItemCard } from './UiItemCard.vue'
 export { default as UiListRow } from './UiListRow.vue'
 export { default as UiListPanel } from './UiListPanel.vue'

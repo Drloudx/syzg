@@ -190,7 +190,7 @@
               class="skin-entry"
               :data-skin-id="skin.type"
             >
-              <div class="skin-entry__preview">
+              <div class="skin-entry__preview" :class="{ 'is-zoomable': skin.image || buildItemImage(skin.icon) }">
                 <img
                   :class="{ 'is-placeholder': !(skin.image || buildItemImage(skin.icon)) }"
                   :src="skin.image ? getImageUrl(skin.image) : (buildItemImage(skin.icon) || missingImageUrl)"
@@ -198,6 +198,7 @@
                   loading="lazy"
                   @error="handlePreviewFallback"
                   @load="handlePreviewLoad"
+                  @click="openSkinPreview(skin)"
                 />
               </div>
               <div class="skin-entry__content">
@@ -252,6 +253,14 @@
         <UiBackToTop scroll-container="#furnitureModalScroll" />
       </template>
     </UiModal>
+
+    <!-- 家具外观大图查看（全屏黑底 lightbox，与 B 站评论区同款交互） -->
+    <UiImageLightbox
+      v-model:visible="skinPreview.visible"
+      :src="skinPreview.url"
+      :alt="skinPreview.title"
+      @close="closeSkinPreview"
+    />
   </div>
 </template>
 
@@ -270,6 +279,7 @@ import {
   UiModal,
   UiRewardCard,
   UiFilterPanel, UiSearchInput,
+  UiImageLightbox,
   UiSection,
   UiTag
 } from '../components/ui/index.js'
@@ -334,6 +344,22 @@ const handlePreviewLoad = event => {
   if (image && !String(image.getAttribute('src') || '').includes('/ui/visibility-off.svg')) {
     image.classList.remove('is-placeholder')
   }
+}
+
+/*
+ * 外观列表大图查看：点击缩略图弹出 UiModal 显示原图。
+ * 无图/占位图（visibility-off.svg）不响应点击，避免弹出无意义的大图。
+ */
+const skinPreview = ref({ visible: false, url: '', title: '' })
+
+const openSkinPreview = skin => {
+  const url = skin?.image ? getImageUrl(skin.image) : buildItemImage(skin?.icon)
+  if (!url || String(url).includes('/ui/visibility-off.svg')) return
+  skinPreview.value = { visible: true, url, title: skin?.name || '外观预览' }
+}
+
+const closeSkinPreview = () => {
+  skinPreview.value.visible = false
 }
 
 const categoryText = furniture => {
@@ -617,6 +643,11 @@ onBeforeUnmount(() => { loadOperation += 1 })
   width: 94%;
   height: 94%;
   object-fit: contain;
+}
+
+/* 可放大的外观缩略图：手型光标提示可点 */
+.skin-entry__preview.is-zoomable img {
+  cursor: zoom-in;
 }
 
 .skin-entry__content {

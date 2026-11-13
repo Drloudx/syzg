@@ -426,18 +426,13 @@
 
     <UiBackToTop scroll-container="#rewardsScroll" />
 
-    <!-- 点位预览图全屏查看 -->
-    <UiModal
+    <!-- 点位预览图全屏查看（与 B 站评论区同款：黑底、无边框、按视口 contain、不滚动） -->
+    <UiImageLightbox
       v-model:visible="prevImgModal.visible"
-      title="点位预览"
-      max-width="1100px"
-      scroll-id="rewardPreviewScroll"
-      teleport-to="body"
-      :close-on-overlay="true"
+      :src="prevImgModal.url"
+      alt="点位预览大图"
       @close="closePrevImg"
-    >
-      <img :src="prevImgModal.url" class="prev-img-full" alt="点位预览大图" decoding="async" />
-    </UiModal>
+    />
   </div>
 </template>
 
@@ -453,7 +448,7 @@ import {
   UiListPanel,
   UiExchangeTrade,
   UiRewardCard,
-  UiModal,
+  UiImageLightbox,
   UiSection,
   UiFilterPanel, UiSearchInput,
   UiBackToTop
@@ -1647,11 +1642,4 @@ const closePrevImg = () => {
   object-fit: contain;
 }
 
-.prev-img-full {
-  display: block;
-  width: 100%;
-  max-height: calc(var(--vh100) - var(--safe-top, 0px) - var(--safe-bottom, 0px) - 128px);
-  object-fit: contain;
-  border-radius: 4px;
-}
 </style>
