@@ -1,110 +1,126 @@
 {
-  "script": "sp1_4_a_2",
   "des": "描述",
+  "script": "sp1_4_a_2",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]呼……还、还好……只要能够打得中，这些幽魂好像也没什么大不了的……[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]不过那都是小事，真正让人瘆得慌的是这个空间！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]这地方到底是怎么回事，也太阴森了吧？[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]因为这里就是专门设计用来关押犯人的地牢啊。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]为了给犯人足够的压力，在意识中根植恐惧也是必要的手段。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]特地设计得这么阴森吗……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]当然，本宫说的是一般情况。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]具体到这座城堡，这里的地牢反而好像并没有关押过多少犯人，修成这样更多是基于学术上的考量。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]地牢区域的阴气，以及功能构成，可能给这座城堡整体赋予了某些形而上的神秘学意向……[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]具体是什么本宫一时难以分辨，但大体上的意思是大差不差的。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]虽然听不太明白……呃，既然是老师说的，肯定意有所指！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "charaName": "贝拉多娜",
+        "text": "[show]虽然听不太明白……呃，既然是斯卡莉安说的，肯定意有所指！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]……还是继续往前行进吧。说不定出口就在前方。[l][cm][hide]",
-        "charaName": "斯卡莉安"
-      }
+        "charaName": "斯卡莉安",
+        "text": "[show]嗯？你刚刚叫我名字的时候，是不是忘了什么？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
+        "text": "[show]斯……斯卡莉安老师……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "斯卡莉安",
+        "text": "[show]……继续往前行进吧。说不定出口就在前方。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ]
 }

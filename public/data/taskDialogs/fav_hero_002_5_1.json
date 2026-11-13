@@ -1,24 +1,24 @@
 {
+  "des": "米托拉-牵手的未来-进入战役",
   "script": "fav_hero_002_5_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]唉……刚来到这里准备开始研究，瓦菲诺突然就被莉拉叫走了，只留我们两个在这里等着。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]本来一路过来的时候就很紧张了，现在还要在这里等着更紧张了，这折磨究竟什么时候到头啊。[l]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -26,66 +26,66 @@
             "tag": "tag_5"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[cm][show]是有点紧张啦，毕竟真相可能会非常复杂……甚至很有可能会颠覆我现有的认知。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]毕竟你虽然失忆了，但梦境里的记忆还是你自己的，但我梦境里的那个人我完全不认识……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]就比如说，你手上的工匠锤是你熟悉的东西吧？你不仅记得它的来历，还记得如何使用它。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]但我身上的这个吊坠，我完全不知道这是个什么东西，也完全不知道它里面蕴含的力量。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]实际上在到那个角布林营地之前，我都一直以为这玩意只是个装饰品……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]你的过往起码还是清晰的，而我的过往却是一团迷雾。我刚开始其实也不怎么在乎啦，只是越深入探究下去就越觉得害怕。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]为什么这个吊坠会流落到我的手中？我到底是谁？我身上到底发生了什么事情？回忆里的那个我又是谁？[l]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -97,10 +97,10 @@
             "tag": "tag_13"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -112,26 +112,26 @@
             "tag": "tag_14"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[cm][show]我知道我有点杞人忧天没错啦，只是我确实是很害怕嘛……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]如果我继续探究下去，我害怕自己无法承受最后的真相，无论是丧失记忆还是被其他人取代……[l]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -143,10 +143,10 @@
             "tag": "tag_17"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -154,66 +154,66 @@
             "tag": "tag_18"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[cm][show]伙伴……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]对，我还有你啊，只要有你在什么困难都能克服。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]突然想起来，我很少在别人面前表露自己的窘态，但在你面前我经常袒露自己的真实的一面。[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]不如说我只对你诉说过自己内心的想法吧，看来这都已经成习惯了。果然我已经离不开你了……[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "瓦菲诺",
         "text": "[show]喂！两位，这边的事情已经处理好了，你们准备好了吗？[l][cm]",
-        "charaName": "瓦菲诺"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]好，我们这就过来！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]那个……{myName}，可以握住你的手吗？我……还是有些害怕。[l]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -221,32 +221,32 @@
             "tag": "tag_26"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[cm][show]嘿嘿……我们一起走吧～[l][cm][hide]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（和米托拉一起踏入了瓦菲诺的研究，也踏上了新的未来……）[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "des": "米托拉-牵手的未来-进入战役"
+  ]
 }

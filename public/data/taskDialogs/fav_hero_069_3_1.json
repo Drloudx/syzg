@@ -1,24 +1,22 @@
 {
-  "script": "fav_hero_069_3_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]你们想找材料商人是吧？稍等，我去把人带过来。[l][cm]",
-        "charaName": "艾尔莎"
-      }
+        "charaName": "艾尔莎",
+        "text": "[show]你们想找材料商人是吧？稍等，我去把人带过来。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]主公的人脉果然很厉害，这下我们的蜜蜂王国有救了。[l]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -26,130 +24,130 @@
             "tag": "tag_5"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[cm][show]嗯……你就是那个想买材料的客人吧？[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]是的！您可以卖些木材给我们吗？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]没问题，不过我看你是第一次来这边，你手上的钱够吗？[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]我手上没有钱，不过我带来了一批蜂蜜，我猜应该能卖不少钱吧。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]那你不应该先把那些蜂蜜换成钱再来买木材吗？你也太缺乏常识了吧？[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]这个……很抱歉，我第一次来这种地方做生意，没想到这一层。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]之前我都是和旅行商人做交易，当时都是以物易物的，所以我想着这里也是以物易物，是我欠考虑了。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]不过你运气不错，我这边也有些卖甜品的渠道，你可以先把蜂蜜给我看看，我再来决定卖你多少木材。[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]先让我尝尝你带来的蜂蜜吧，等我尝完以后再来判断这些蜂蜜的价值。[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]好的，请尝尝吧。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]嗯嗯……[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]味道不错啊……这比我之前吃过的蜂蜜还要甜，可以卖个不错的价钱。[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]您觉得不错就好，请问我这一车蜂蜜能换多少木材呢？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]我看大概……能换30捆木材吧。[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]好啊，那我们就……[l]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -161,50 +159,50 @@
             "tag": "tag_21"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[cm][show]啊？是……是这样的吗？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]您说他想凭着信息差坑我一把？是这样的吗？商人先生？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]啊，这个……这个……[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]哼！撒谎是不能原谅的，看枪！[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]哇哇哇——！[l]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -212,80 +210,82 @@
             "tag": "tag_27"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[cm][show]主公？您为什么拦住我？他居然敢撒谎就应该付出代价。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]您说商人就是为了逐利，压价幅度不算大，可以原谅？而且在驿站动手很不礼貌？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]我知道了，既然主公不计较，我就不惩罚您了。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "材料商人",
         "text": "[show]是，是！感谢两位大人不记小人过。[l][cm]",
-        "charaName": "材料商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（后来以正常价格，收获了一批珍贵的木材。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]嘿嘿……这下我们可以重建家园了。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]谢谢主公，要是没有您，我估计得被那些商人坑一笔。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]我先回去了，等到下次见面，我会给您带来更好的消息。[l][cm][hide]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "fav_hero_069_3_1",
   "des": "修瓦莉好感3-战役"
 }

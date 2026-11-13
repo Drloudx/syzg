@@ -1,299 +1,299 @@
 {
+  "script": "fav_hero_027_4_1",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]咦？奇怪？这里应该有一家甜品店才对，怎么是家烧烤店……啊，那家甜品店已经搬到隔壁了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]咦？奇怪？这里应该有一家甜品店才对，怎么是家烧烤店……啊，那家甜品店已经搬到隔壁了。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]我手上这张地图是一个月前出版的，没想到短短隔了一个月小食街的布局就发生变化了，大市集的变化速度也太快了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我手上这张地图是一个月前出版的，没想到短短隔了一个月小食街的布局就发生变化了，大市集的变化速度也太快了。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]不过能找到地方就好！我们先去买些甜品吧，{myName}想吃什么？[l]"
-      },
-      "key": "text"
+        "text": "[show]不过能找到地方就好！我们先去买些甜品吧，{myName}想吃什么？[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_6",
-            "text": "草莓蛋糕。"
+            "text": "草莓蛋糕。",
+            "tag": "tag_6"
           },
           {
-            "tag": "tag_6",
-            "text": "巧克力冰淇淋。"
+            "text": "巧克力冰淇淋。",
+            "tag": "tag_6"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]好的，我这就去买！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]好的，我这就去买！[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（梅莉莉小跑着去买甜品……）[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]（梅莉莉小跑着去买甜品……）[l][cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]久等了，这是主人要的甜品！[l]"
-      },
-      "key": "text"
+        "text": "[show]久等了，这是主人要的甜品！[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_10",
-            "text": "主……主人是……"
+            "text": "主……主人是……",
+            "tag": "tag_10"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]嘿嘿……毕竟我现在是{myName}的专属侍者，叫你一声主人很正常吧？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]嘿嘿……毕竟我现在是{myName}的专属侍者，叫你一声主人很正常吧？[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]先尝尝味道吧，不然该化掉啦！[l]"
-      },
-      "key": "text"
+        "text": "[show]先尝尝味道吧，不然该化掉啦！[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "（吃几口甜品。）"
+            "text": "（吃几口甜品。）",
+            "tag": "tag_13"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]嗯？等一下……[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]嗯？等一下……[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]嘿嘿……是甜品太好吃了吧，主人的嘴上沾着奶油呢，让我给主人擦擦吧。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]嘿嘿……是甜品太好吃了吧，主人的嘴上沾着奶油呢，让我给主人擦擦吧。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]好啦，主人接下来慢点吃，别着急，嘴馋的话我再去买就好。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]好啦，主人接下来慢点吃，别着急，嘴馋的话我再去买就好。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]而且旁边还有几家店铺呢，足够一定能填饱主人的肚子了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]而且旁边还有几家店铺呢，足够一定能填饱主人的肚子了。[l][cm][hide]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（尝完甜品后梅莉莉又兴致勃勃逛遍了小食街的其他店铺……）[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]（尝完甜品后梅莉莉又兴致勃勃逛遍了小食街的其他店铺……）[l][cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（在走完小食街后……）[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]（在走完小食街后……）[l][cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]嗯，终于走过这条街了，主人感觉怎么样？[l]"
-      },
-      "key": "text"
+        "text": "[show]嗯，终于走过这条街了，主人感觉怎么样？[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_21",
-            "text": "差不多饱了。"
+            "text": "差不多饱了。",
+            "tag": "tag_21"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]既然差不多的话……那正好，我手里这串年糕就交给主人解决吧。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]既然差不多的话……那正好，我手里这串年糕就交给主人解决吧。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]主人一路辛苦了，就让梅莉莉喂主人吃吧，啊——[l]"
-      },
-      "key": "text"
+        "text": "[show]主人一路辛苦了，就让梅莉莉喂主人吃吧，啊——[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_24",
-            "text": "（吃下梅莉莉手上的年糕。）"
+            "text": "（吃下梅莉莉手上的年糕。）",
+            "tag": "tag_24"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]感觉主人很开心呢，看来我的服务还是很不错的吧？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]感觉主人很开心呢，看来我的服务还是很不错的吧？[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]说起来……如果主人喜欢的话，我回去之后也可以常来你的营地，把今天吃到的甜品完完整整地复刻出来哦！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]说起来……如果主人喜欢的话，我回去之后也可以常来你的营地，把今天吃到的甜品完完整整地复刻出来哦！[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]到时候我一定会做的比他们更好吃，让主人在家里就能享受到逛美食街的感觉！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]到时候我一定会做的比他们更好吃，让主人在家里就能享受到逛美食街的感觉！[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]嗯？主人看上去怎么有些脸红，是哪里不舒服吗？[l]"
-      },
-      "key": "text"
+        "text": "[show]嗯？主人看上去怎么有些脸红，是哪里不舒服吗？[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_29",
-            "text": "梅莉莉一直喊主人让我有些害羞。"
+            "text": "梅莉莉一直喊主人让我有些害羞。",
+            "tag": "tag_29"
           },
           {
-            "tag": "tag_29",
-            "text": "已经引起部分路人的围观议论了。"
+            "text": "已经引起部分路人的围观议论了。",
+            "tag": "tag_29"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]嘿嘿……侍者喊服务对象主人，这不是很正常吗？而且我都没害羞主人有什么好害羞的，不必太在意他人的眼光啦。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]嘿嘿……侍者喊服务对象主人，这不是很正常吗？而且我都没害羞主人有什么好害羞的，不必太在意他人的眼光啦。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]所以……主人，我们接下来要去哪里啊？主——人——！[l]"
-      },
-      "key": "text"
+        "text": "[show]所以……主人，我们接下来要去哪里啊？主——人——！[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_32",
-            "text": "……"
+            "text": "……",
+            "tag": "tag_32"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[cm][show]（在梅莉莉的呼唤下，投入视线的路人越来越多了。）[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]（在梅莉莉的呼唤下，投入视线的路人越来越多了。）[l][cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（最终带着梅莉莉慌忙离开了现场。）[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[show]（最终带着梅莉莉慌忙离开了现场。）[l][cm][hide]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "梅莉莉-和专属侍者的一天-进入战役",
-  "script": "fav_hero_027_4_1"
+  "des": "梅莉莉-和专属侍者的一天-进入战役"
 }

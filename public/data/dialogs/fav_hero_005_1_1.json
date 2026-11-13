@@ -1,10 +1,12 @@
 {
+  "des": "茜塔-忙碌的侍者-进入战役",
+  "script": "fav_hero_005_1_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]欢迎光……啊，{myName}，你来啦！[l]"
+        "text": "[show]欢迎光……啊，{myName}，你来啦！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -12,12 +14,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_4",
-            "text": "毕竟茜塔亲自写信邀请。"
+            "text": "毕竟茜塔亲自写信邀请。",
+            "tag": "tag_4"
           },
           {
-            "tag": "tag_4",
-            "text": "我就加紧步伐赶过来了。"
+            "text": "我就加紧步伐赶过来了。",
+            "tag": "tag_4"
           }
         ]
       },
@@ -25,57 +27,57 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[cm][show]那还真是受宠若惊呢，多谢啦。不过你也来得太早了吧，这个时间我要是没班，肯定还在补觉呢。[l][cm]"
+        "text": "[cm][show]那还真是受宠若惊呢，多谢啦。不过你也来得太早了吧，这个时间我要是没班，肯定还在补觉呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]不过既然来了，那就得好好招待你一番了。不能让你在这白等不是？[l][cm]"
+        "text": "[show]不过既然来了，那就得好好招待你一番了。不能让你在这白等不是？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]就让我作为当班厨师为你做一份烤肉吧。和信里说的一样，我请客——[l][cm]"
+        "text": "[show]就让我作为当班厨师为你做一份烤肉吧。和信里说的一样，我请客——[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "侍者萨利",
-        "text": "[show]——茜塔姐，我们需要支援。[l][cm]"
+        "text": "[show]——茜塔姐，我们需要支援。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "侍者萨利",
-        "text": "[show]外面突然来了好多客人，点单要各种各样的蘑菇。有要煎的有要烤的，还有的要喝蘑菇汤。我们这边整不过来了。[l][cm]"
+        "text": "[show]外面突然来了好多客人，点单要各种各样的蘑菇。有要煎的有要烤的，还有的要喝蘑菇汤。我们这边整不过来了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]现在？这帮家伙来得真是时候……[l][cm]"
+        "text": "[show]现在？这帮家伙来得真是时候……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]抱歉{myName}，现在还是工作时间。可以让我先处理完那边的事吗？[l]"
+        "text": "[show]抱歉{myName}，现在还是工作时间。可以让我先处理完那边的事吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -83,12 +85,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_12",
-            "text": "没关系。"
+            "text": "没关系。",
+            "tag": "tag_12"
           },
           {
-            "tag": "tag_12",
-            "text": "茜塔先把自己的工作完成吧。"
+            "text": "茜塔先把自己的工作完成吧。",
+            "tag": "tag_12"
           }
         ]
       },
@@ -96,145 +98,145 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[cm][show]嗯，那我就先去忙了。真不好意思。[l][cm]"
+        "text": "[cm][show]嗯，那我就先去忙了。真不好意思。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]我来了我来了——哪里需要点单？[l][cm][hide]"
+        "text": "[show]我来了我来了——哪里需要点单？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（在饭桌旁等了好一会……）[l][cm]"
+        "text": "[show]（在饭桌旁等了好一会……）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]……呼。久等了。那些客人都回去了。我这就去给你准备烤肉——[l][cm]"
+        "text": "[show]……呼。久等了。那些客人都回去了。我这就去给你准备烤肉——[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "侍者杰米",
-        "text": "[show]茜塔前辈！不、不好啦！地窖里的砂蜘蛛又出来了！数量好多！救命啊！[l][cm]"
+        "text": "[show]茜塔前辈！不、不好啦！地窖里的砂蜘蛛又出来了！数量好多！救命啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]什么？为什么偏偏是这个时候……[l][cm]"
+        "text": "[show]什么？为什么偏偏是这个时候……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]抱歉，我得先把这件事处理好。一会见！[l][cm][hide]"
+        "text": "[show]抱歉，我得先把这件事处理好。一会见！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]啊……笤帚不行，得把斧子带上。[l][cm][hide]"
+        "text": "[show]啊……笤帚不行，得把斧子带上。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（在饭桌旁又等了好一会……）[l][cm]"
+        "text": "[show]（在饭桌旁又等了好一会……）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]呼呼……终于把它们都干掉了，地窖的破洞也被我堵上了……[l][cm]"
+        "text": "[show]呼呼……终于把它们都干掉了，地窖的破洞也被我堵上了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]那个，我马上去给你准备——[l][cm]"
+        "text": "[show]那个，我马上去给你准备——[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（轰隆——！）[l][cm]"
+        "text": "[show]（轰隆——！）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "侍者维丝",
-        "text": "[show]——茜塔小姐，有一群客人在那边打起来了，都砸坏一张桌子了！[l][cm]"
+        "text": "[show]——茜塔小姐，有一群客人在那边打起来了，都砸坏一张桌子了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]呜啊——！今天到底是怎么回事！我等会再来——！[l][cm]"
+        "text": "[show]呜啊——！今天到底是怎么回事！我等会再来——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]你们这些家伙耍什么癫疯！客人都没法好好吃饭了——！[l][cm][hide]"
+        "text": "[show]你们这些家伙耍什么癫疯！客人都没法好好吃饭了——！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（在饭桌旁再次等了好一会。茜塔不停地被各种麻烦纠缠。直到旅店都要打烊，茜塔才终于抽出空来……）[l][cm]"
+        "text": "[show]（在饭桌旁再次等了好一会。茜塔不停地被各种麻烦纠缠。直到旅店都要打烊，茜塔才终于抽出空来……）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]我……我回来了。[l][cm]"
+        "text": "[show]我……我回来了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]抱歉……今天本来应该没那么忙的……不知怎么回事，突然麻烦就扎堆来了。你饿坏了吧……[l]"
+        "text": "[show]抱歉……今天本来应该没那么忙的……不知怎么回事，突然麻烦就扎堆来了。你饿坏了吧……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -242,12 +244,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_31",
-            "text": "没事的，我不饿。"
+            "text": "没事的，我不饿。",
+            "tag": "tag_31"
           },
           {
-            "tag": "tag_31",
-            "text": "原来茜塔要管这么多事啊。"
+            "text": "原来茜塔要管这么多事啊。",
+            "tag": "tag_31"
           }
         ]
       },
@@ -255,9 +257,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[cm][show]唔，虽然名头上我只是个侍者，但还是不能放着大家不管啊……渐渐地，大家遇到麻烦，就都来找我帮忙了……[l]"
+        "text": "[cm][show]唔，虽然名头上我只是个侍者，但还是不能放着大家不管啊……渐渐地，大家遇到麻烦，就都来找我帮忙了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -265,12 +267,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_33",
-            "text": "这说明大家依赖你。"
+            "text": "这说明大家依赖你。",
+            "tag": "tag_33"
           },
           {
-            "tag": "tag_33",
-            "text": "这说明你对旅店来说很重要。"
+            "text": "这说明你对旅店来说很重要。",
+            "tag": "tag_33"
           }
         ]
       },
@@ -278,17 +280,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[cm][show]唔……或许吧。只是比起依赖和需要，我更想好好歇会……[l][cm]"
+        "text": "[cm][show]唔……或许吧。只是比起依赖和需要，我更想好好歇会……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]现在好了，折腾到打烊，连说好的招待都没做到……对不起啊。[l]"
+        "text": "[show]现在好了，折腾到打烊，连说好的招待都没做到……对不起啊。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -296,12 +298,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_36",
-            "text": "茜塔先好好休息。"
+            "text": "茜塔先好好休息。",
+            "tag": "tag_36"
           },
           {
-            "tag": "tag_36",
-            "text": "就让我来给你做一餐吧。"
+            "text": "就让我来给你做一餐吧。",
+            "tag": "tag_36"
           }
         ]
       },
@@ -309,9 +311,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[cm][show]啊？这怎么行？明明是我邀你过来的……[l]"
+        "text": "[cm][show]啊？这怎么行？明明是我邀你过来的……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -319,12 +321,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_38",
-            "text": "伙伴之间就别算这么多账了。"
+            "text": "伙伴之间就别算这么多账了。",
+            "tag": "tag_38"
           },
           {
-            "tag": "tag_38",
-            "text": "下次再请回来就好。"
+            "text": "下次再请回来就好。",
+            "tag": "tag_38"
           }
         ]
       },
@@ -334,8 +336,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_39",
-            "text": "你辛苦了，茜塔。"
+            "text": "你辛苦了，茜塔。",
+            "tag": "tag_39"
           }
         ]
       },
@@ -343,45 +345,43 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[cm][show]{myName}……[l][cm]"
+        "text": "[cm][show]{myName}……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "茜塔",
-        "text": "[show]谢谢你。那我就在这里，等着你的美味佳肴了。[l][cm][hide]"
+        "text": "[show]谢谢你。那我就在这里，等着你的美味佳肴了。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（向领班借了后厨，为茜塔做了一餐饭。等端出来的时候，她已经累得趴在桌子上睡着了。）[l][cm]"
+        "text": "[show]（向领班借了后厨，为茜塔做了一餐饭。等端出来的时候，她已经累得趴在桌子上睡着了。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（温柔地叫醒她，开心地吃了一餐迟到的晚饭。）[l][cm][hide]"
+        "text": "[show]（温柔地叫醒她，开心地吃了一餐迟到的晚饭。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "茜塔-忙碌的侍者-进入战役",
-  "script": "fav_hero_005_1_1"
+  ]
 }

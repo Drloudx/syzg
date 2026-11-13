@@ -1,66 +1,68 @@
 {
+  "des": "梅莉莉-驿站的厨艺比赛-进入战役",
+  "script": "fav_hero_027_3_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]嘿咻，下车喽……等等，那几位食客已经到了吗？[l][cm]"
+        "text": "[show]嘿咻，下车喽……等等，那几位食客已经到了吗？[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[show]哦？侍者队终于露面了。我们还以为你们被吓破了胆，临阵脱逃了呢。[l][cm]"
+        "text": "[show]哦？侍者队终于露面了。我们还以为你们被吓破了胆，临阵脱逃了呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家2",
-        "text": "[show]既然来了，就好好展现你们的实力吧。那群蜥蜴人把你们的烤肉吹得天花乱坠，待会儿可别端上来一堆焦炭！哈哈哈！[l][cm]"
+        "text": "[show]既然来了，就好好展现你们的实力吧。那群蜥蜴人把你们的烤肉吹得天花乱坠，待会儿可别端上来一堆焦炭！哈哈哈！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]请放心，我们的厨师都是专业的，做出来的烤肉绝不会让大家失望！[l][cm]"
+        "text": "[show]请放心，我们的厨师都是专业的，做出来的烤肉绝不会让大家失望！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[show]是吗？那我们拭目以待。动作快些，我们的时间很宝贵。若是做得好，除了菜钱，这笔和艾尔莎小姐商量好的奖金就是你们的了。[l][cm]"
+        "text": "[show]是吗？那我们拭目以待。动作快些，我们的时间很宝贵。若是做得好，除了菜钱，这笔和艾尔莎小姐商量好的奖金就是你们的了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]好的，诸位客人请稍候，烤肉马上就好！[l][cm]"
+        "text": "[show]好的，诸位客人请稍候，烤肉马上就好！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]呼……竟然擅自接下这么麻烦的活动，之后我一定要好好问问艾尔莎！{myName}你也看到了，这几位客人要求很高，咱们可不能拿粗制滥造的烤肉糊弄过去！[l][cm]"
+        "text": "[show]呼……竟然擅自接下这么麻烦的活动，之后我一定要好好问问艾尔莎！{myName}你也看到了，这几位客人要求很高，咱们可不能拿粗制滥造的烤肉糊弄过去！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]这次食材调料都备足了，{myName}你可以自由发挥！要是没把握就跟着我学，虽然我不敢自称什么大厨，但学个七成就能做出不错的料理啦！[l]"
+        "text": "[show]这次食材调料都备足了，{myName}你可以自由发挥！要是没把握就跟着我学，虽然我不敢自称什么大厨，但学个七成就能做出不错的料理啦！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -68,8 +70,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_10",
-            "text": "没关系，交给我吧。"
+            "text": "没关系，交给我吧。",
+            "tag": "tag_10"
           }
         ]
       },
@@ -77,17 +79,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[cm][show]那好，这边就靠你啦！我已经打好招呼了，这些工具和食材你随便用。[l][cm]"
+        "text": "[cm][show]那好，这边就靠你啦！我已经打好招呼了，这些工具和食材你随便用。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]那么……我先进厨房去忙了，一会儿见！[l]"
+        "text": "[show]那么……我先进厨房去忙了，一会儿见！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -95,8 +97,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "一会见！"
+            "text": "一会见！",
+            "tag": "tag_54"
           }
         ]
       },
@@ -104,14 +106,22 @@
     },
     {
       "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
         "options": [
           {
-            "tag": "tag_14",
-            "text": "要做什么烤肉比较好呢……"
+            "text": "要做什么烤肉比较好呢……",
+            "tag": "tag_14"
           },
           {
-            "tag": "tag_14",
-            "text": "干脆试试蜜汁烤肉吧？"
+            "text": "干脆试试蜜汁烤肉吧？",
+            "tag": "tag_14"
           }
         ]
       },
@@ -119,113 +129,121 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm][show]（经过一番忙碌的烹饪，几盘香气四溢的烤肉被端上食客的餐桌。）[l][cm]"
+        "text": "[cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "美食家1",
-        "text": "[show]嗯……闻着倒是挺香的，就不知道味道如何了。[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]客人们请慢用，然后给出你们最客观的评价吧！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（食客们拿起餐具，开始细细品尝。）[l][cm]"
+        "text": "[show]（经过一番忙碌的烹饪，几盘香气四溢的烤肉被端上食客的餐桌。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]（嘿，{myName}快看！吃我们做的烤肉时，他们表情很享受啊。）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]（他们还互相交换着品尝，一直在交流……应该是在讨论哪盘更好吃吧？真不愧是专业的美食鉴赏家！）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]（呀！他们好像要点评了。看样子是要出结果了！）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[show]嗯……经过我们讨论，你们驿站的烤肉整体还算不错，勉强能打个及格分吧。[l][cm]"
+        "text": "[show]嗯……闻着倒是挺香的，就不知道味道如何了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
+        "charaName": "梅莉莉",
+        "text": "[show]客人们请慢用，然后给出你们最客观的评价吧！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（食客们拿起餐具，开始细细品尝。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]（嘿，{myName}快看！吃我们做的烤肉时，他们表情很享受啊。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]（他们还互相交换着品尝，一直在交流……应该是在讨论哪盘更好吃吧？真不愧是专业的美食鉴赏家！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "梅莉莉",
+        "text": "[show]（呀！他们好像要点评了。看样子是要出结果了！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "美食家1",
+        "text": "[show]嗯……经过我们讨论，你们驿站的烤肉整体还算不错，勉强能打个及格分吧。[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
         "charaName": "美食家2",
-        "text": "[show]不过也就仅此而已了。大部分烤肉流于平庸，只有技术堆砌出的美味，缺乏灵魂。[l][cm]"
+        "text": "[show]不过也就仅此而已了。大部分烤肉流于平庸，只有技术堆砌出的美味，缺乏灵魂。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[show]但，也并非没有亮点。我们一致认为，这份蜜汁烤肉是最美味的！[l][cm]"
+        "text": "[show]但，也并非没有亮点。我们一致认为，这份蜜汁烤肉是最美味的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]什……什么？那、那个不是{myName}做的吗？[l][cm]"
+        "text": "[show]什……什么？那、那个不是{myName}做的吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[show]口感香嫩至极，一口下去汁水充盈。蜂蜜的香甜中带着恰到好处的焦香，美味顺着味蕾直击心灵。这份蜜汁烤肉，足以登上我的美食必吃榜。[l][cm]"
+        "text": "[show]口感香嫩至极，一口下去汁水充盈。蜂蜜的香甜中带着恰到好处的焦香，美味顺着味蕾直击心灵。这份蜜汁烤肉，足以登上我的美食必吃榜。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]这……这么厉害？我尝尝……唔，确实……口感非常棒……[l][cm]"
+        "text": "[show]这……这么厉害？我尝尝……唔，确实……口感非常棒……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[show]所以请问，这份烤肉是哪位厨师的手笔？[l]"
+        "text": "[show]所以请问，这份烤肉是哪位厨师的手笔？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -233,8 +251,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_29",
-            "text": "是我……"
+            "text": "是我……",
+            "tag": "tag_29"
           }
         ]
       },
@@ -242,9 +260,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家2",
-        "text": "[cm][show]哦？你看起来不像侍者队啊，莫非是请来的外援？[l]"
+        "text": "[cm][show]哦？你看起来不像侍者队啊，莫非是请来的外援？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -252,12 +270,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_31",
-            "text": "我是侍者队的新人。"
+            "text": "我是侍者队的新人。",
+            "tag": "tag_31"
           },
           {
-            "tag": "tag_31",
-            "text": "之前是位普通的工匠。"
+            "text": "之前是位普通的工匠。",
+            "tag": "tag_31"
           }
         ]
       },
@@ -265,81 +283,81 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[cm][show]哈，工匠居然还能烹饪出如此美味的食物，在下佩服！[l][cm]"
+        "text": "[cm][show]哈，工匠居然还能烹饪出如此美味的食物，在下佩服！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "侍者1",
-        "text": "[show]咦，那不是之前来帮过我们忙的{myName}吗？烹饪水平居然比梅莉莉小姐还高？这怎么可能？[l][cm]"
+        "text": "[show]咦，那不是之前来帮过我们忙的{myName}吗？烹饪水平居然比梅莉莉小姐还高？这怎么可能？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "侍者2",
-        "text": "[show]那个……你好！{myName}，有空能教教我们吗？[l][cm]"
+        "text": "[show]那个……你好！{myName}，有空能教教我们吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]唔、唔奴奴奴……[l][cm]"
+        "text": "[show]唔、唔奴奴奴……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]喂喂喂，都散了散了！别围着打扰{myName}了，还有客人要招呼呢！[l][cm]"
+        "text": "[show]喂喂喂，都散了散了！别围着打扰{myName}了，还有客人要招呼呢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]那、那个，几位客人如果还需要的话，我……我还可以再做几份烤肉的！[l][cm]"
+        "text": "[show]那、那个，几位客人如果还需要的话，我……我还可以再做几份烤肉的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家1",
-        "text": "[show]不必了，我们已经吃饱了。虽说最好吃的烤肉是个新人做的，但其他的烤肉毕竟也合格了。[l][cm]"
+        "text": "[show]不必了，我们已经吃饱了。虽说最好吃的烤肉是个新人做的，但其他的烤肉毕竟也合格了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "美食家2",
-        "text": "[show]没错，该付的奖金还是要付的。按照约定，我们在外面也会好好宣传，让大家都来照顾你们的生意！[l][cm]"
+        "text": "[show]没错，该付的奖金还是要付的。按照约定，我们在外面也会好好宣传，让大家都来照顾你们的生意！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（一番周折后，美食家们满意地离开了驿站。）[l][cm]"
+        "text": "[show]（一番周折后，美食家们满意地离开了驿站。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[show]呼……[l]"
+        "text": "[show]呼……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -347,12 +365,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_42",
-            "text": "总算通过他们的考验啦。"
+            "text": "总算通过他们的考验啦。",
+            "tag": "tag_42"
           },
           {
-            "tag": "tag_42",
-            "text": "我们该好好庆祝一下！"
+            "text": "我们该好好庆祝一下！",
+            "tag": "tag_42"
           }
         ]
       },
@@ -360,9 +378,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "梅莉莉",
-        "text": "[cm][show]哼！{myName}你别得意！下次……下次我做的料理，一定会打败你的！[l]"
+        "text": "[cm][show]哼！{myName}你别得意！下次……下次我做的料理，一定会打败你的！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -370,12 +388,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_46",
-            "text": "啊？"
+            "text": "啊？",
+            "tag": "tag_46"
           },
           {
-            "tag": "tag_46",
-            "text": "我……我做错什么了吗？"
+            "text": "我……我做错什么了吗？",
+            "tag": "tag_46"
           }
         ]
       },
@@ -383,37 +401,35 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm]"
+        "text": "[cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[cm][show]（梅莉莉说完，气鼓鼓地转身冲回了厨房。）[l][cm]"
+        "text": "[cm][show]（梅莉莉说完，气鼓鼓地转身冲回了厨房。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（所以……到底发生什么事了？）[l][cm][hide]"
+        "text": "[show]（所以……到底发生什么事了？）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "梅莉莉-驿站的厨艺比赛-进入战役",
-  "script": "fav_hero_027_3_1"
+  ]
 }

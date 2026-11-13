@@ -1,18 +1,20 @@
 {
+  "des": "贝拉多娜-家族振兴计划-进入战役",
+  "script": "fav_hero_026_1_1",
   "exps": [
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]哇……里面的布置意外地不错嘛，和外面那片野林子相比简直是天壤之别。[l][cm]"
+        "text": "[show]哇……里面的布置意外地不错嘛，和外面那片野林子相比简直是天壤之别。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]而且……本小姐好像还闻到了一阵诱人的香味……是烤肉！唔……{myName}，可以让本小姐……尝尝吗？[l]"
+        "text": "[show]而且……本小姐好像还闻到了一阵诱人的香味……是烤肉！唔……{myName}，可以让本小姐……尝尝吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -20,8 +22,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_5",
-            "text": "请便。"
+            "text": "请便。",
+            "tag": "tag_5"
           }
         ]
       },
@@ -30,32 +32,32 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]那……那本小姐就不客气了！吾之眷属啊，快出来一同享用美食吧！[l][cm]"
+        "text": "[cm][show]那……那本小姐就不客气了！吾之眷属啊，快出来一同享用美食吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "小蝙蝠",
-        "nameSide": "left",
-        "text": "[show]（兴奋地飞出来）吱、吱吱——！[l][cm]"
+        "text": "[show]（兴奋地飞出来）吱、吱吱——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]呜呜……好吃……实在太好吃了——！[l][cm]"
+        "text": "[show]呜呜……好吃……实在太好吃了——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]{myName}，趁着用膳之际，本小姐问问你，关于复兴希斯珀利亚家族的计划，你可有什么想法了吗？[l]"
+        "text": "[show]{myName}，趁着用膳之际，本小姐问问你，关于复兴希斯珀利亚家族的计划，你可有什么想法了吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -63,12 +65,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_10",
-            "text": "我有几个想法了。"
+            "text": "我有几个想法了。",
+            "tag": "tag_10"
           },
           {
-            "tag": "tag_10",
-            "text": "要现在向你提议吗？"
+            "text": "要现在向你提议吗？",
+            "tag": "tag_10"
           }
         ]
       },
@@ -77,8 +79,8 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]嗯，你尽管说便是！若是提得好，本小姐重重有赏！[l]"
+        "text": "[cm][show]嗯，你尽管说便是！若是提得好，本小姐重重有赏！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -86,8 +88,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_12",
-            "text": "（将自己设想的方案详细告诉贝拉多娜。）"
+            "text": "（将自己设想的方案详细告诉贝拉多娜。）",
+            "tag": "tag_12"
           }
         ]
       },
@@ -96,16 +98,16 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]你说……印刷家族小册子、在野外张贴画报、创建以家族为名的契约者团体……唔，听起来都是不错的点子，看来{myName}是下了番功夫思考的。[l][cm]"
+        "text": "[cm][show]你说……印刷家族小册子、在野外张贴画报、创建以家族为名的契约者团体……唔，听起来都是不错的点子，看来{myName}是下了番功夫思考的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]不过……这些方法恐怕……行不通。因为本小姐目前的经费……嗯，还有一些……匮乏。[l]"
+        "text": "[show]不过……这些方法恐怕……行不通。因为本小姐目前的经费……嗯，还有一些……匮乏。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -113,8 +115,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_15",
-            "text": "贝拉多娜小姐之前不是赚到钱了吗？"
+            "text": "贝拉多娜小姐之前不是赚到钱了吗？",
+            "tag": "tag_15"
           }
         ]
       },
@@ -123,16 +125,16 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]这个嘛……只是一些微不足道的小钱啦，那种……根本派不上多大用场的小钱。[l][cm]"
+        "text": "[cm][show]这个嘛……只是一些微不足道的小钱啦，那种……根本派不上多大用场的小钱。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]对比刚刚的方案，开销实在太大了！印册子要钱，请画家画海报要钱，组建契约者团体更要钱……[l]"
+        "text": "[show]对比刚刚的方案，开销实在太大了！印册子要钱，请画家画海报要钱，组建契约者团体更要钱……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -140,12 +142,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_18",
-            "text": "请放心，小钱也能办成大事。"
+            "text": "请放心，小钱也能办成大事。",
+            "tag": "tag_18"
           },
           {
-            "tag": "tag_18",
-            "text": "我已经想好了最具性价比的方式。"
+            "text": "我已经想好了最具性价比的方式。",
+            "tag": "tag_18"
           }
         ]
       },
@@ -154,8 +156,8 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]问题就出在这里……就是……本小姐身上这点小钱……可能……也不太够……[l]"
+        "text": "[cm][show]问题就出在这里……就是……本小姐身上这点小钱……可能……也不太够……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -163,8 +165,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_20",
-            "text": "呃……小钱也没剩多少了吗？"
+            "text": "呃……小钱也没剩多少了吗？",
+            "tag": "tag_20"
           }
         ]
       },
@@ -173,40 +175,40 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]那……那个……本小姐也不是故意的啦！就是每次赚来的钱，都因为……嗯……一些必要的理由花掉了。[l][cm]"
+        "text": "[cm][show]那……那个……本小姐也不是故意的啦！就是每次赚来的钱，都因为……嗯……一些必要的理由花掉了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]比如每天完成任务后，都会被一些商人鼓吹，忍不住就会买些小装饰物，像精致的挂件啦、漂亮的杯子啦……[l][cm]"
+        "text": "[show]比如每天完成任务后，都会被一些商人鼓吹，忍不住就会买些小装饰物，像精致的挂件啦、漂亮的杯子啦……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]那个商人说，我可是堂堂希斯珀利亚家族的一员，虽然如今住着小破屋，但贵族的尊严和体面，总还是要维持的不是吗！[l][cm]"
+        "text": "[show]那个商人说，我可是堂堂希斯珀利亚家族的一员，虽然如今住着小破屋，但贵族的尊严和体面，总还是要维持的不是吗！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]然后嘛……还有人建议本小姐充实同伴们的信心，两三天就请人吃点饭送点礼什么的……结果家族的名声没打出去多少，钱袋子倒是瘪下去一大截……[l][cm]"
+        "text": "[show]然后嘛……还有人建议本小姐充实同伴们的信心，两三天就请人吃点饭送点礼什么的……结果家族的名声没打出去多少，钱袋子倒是瘪下去一大截……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]每次自以为精打细算，觉得都是为了振兴家族的必要支出，结算的时候才发现，存款已经所剩无几了……[l]"
+        "text": "[show]每次自以为精打细算，觉得都是为了振兴家族的必要支出，结算的时候才发现，存款已经所剩无几了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -214,8 +216,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_26",
-            "text": "你是被那些精明的商人给设计了啊……"
+            "text": "你是被那些精明的商人给设计了啊……",
+            "tag": "tag_26"
           }
         ]
       },
@@ -224,24 +226,24 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]呜呜，本小姐已经好好反省过了……[l][cm]"
+        "text": "[cm][show]呜呜，本小姐已经好好反省过了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]前些日子本小姐都只能靠着淡水和粗粮勉强度日，剩下的钱只够维持温饱，实在……实在是没办法了。[l][cm]"
+        "text": "[show]前些日子本小姐都只能靠着淡水和粗粮勉强度日，剩下的钱只够维持温饱，实在……实在是没办法了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]所以……{myName}……你有什么既不花钱，又能振兴家族的好办法吗？[l]"
+        "text": "[show]所以……{myName}……你有什么既不花钱，又能振兴家族的好办法吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -249,8 +251,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_30",
-            "text": "不花钱的办法啊……"
+            "text": "不花钱的办法啊……",
+            "tag": "tag_30"
           }
         ]
       },
@@ -259,16 +261,16 @@
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[cm][show]（两人绞尽脑汁，进行了好一番头脑风暴，最终也没能琢磨出既不花钱又能有效宣传家族的神奇办法。）[l][cm]"
+        "text": "[cm][show]（两人绞尽脑汁，进行了好一番头脑风暴，最终也没能琢磨出既不花钱又能有效宣传家族的神奇办法。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]呼……看样子……我们两个暂时是想不出什么办法了……[l]"
+        "text": "[show]呼……看样子……我们两个暂时是想不出什么办法了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -276,8 +278,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_33",
-            "text": "巧妇难为无米之炊啊……"
+            "text": "巧妇难为无米之炊啊……",
+            "tag": "tag_33"
           }
         ]
       },
@@ -286,24 +288,24 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[cm][show]好、好吧！本小姐明白了！本小姐在此郑重发誓，从今往后，绝对不再随意挥霍！本小姐定当全力以赴，为家族复兴大业积攒每一枚银币！[l][cm]"
+        "text": "[cm][show]好、好吧！本小姐明白了！本小姐在此郑重发誓，从今往后，绝对不再随意挥霍！本小姐定当全力以赴，为家族复兴大业积攒每一枚银币！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]不过在那之前……[l][cm]"
+        "text": "[show]不过在那之前……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "贝拉多娜",
-        "nameSide": "left",
-        "text": "[show]{myName}……能……能劳烦你再做一份烤肉吗？我、我还……还没吃饱呢……[l]"
+        "text": "[show]{myName}……能……能劳烦你再做一份烤肉吗？我、我还……还没吃饱呢……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -311,8 +313,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_37",
-            "text": "好咧，包在我身上。"
+            "text": "好咧，包在我身上。",
+            "tag": "tag_37"
           }
         ]
       },
@@ -321,36 +323,34 @@
     {
       "para": {
         "charaName": "小蝙蝠",
-        "nameSide": "left",
-        "text": "[cm][show]——吱吱！吱吱！[l][cm][hide]"
+        "text": "[cm][show]——吱吱！吱吱！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[show]（虽然复兴家族的计划讨论未能取得实质进展，但贝拉多娜和小蝙蝠在营地里享用了一顿丰盛的烤肉大餐，倒也心满意足地踏上了归途。）[l][cm]"
+        "text": "[show]（虽然复兴家族的计划讨论未能取得实质进展，但贝拉多娜和小蝙蝠在营地里享用了一顿丰盛的烤肉大餐，倒也心满意足地踏上了归途。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[show]（贝拉多娜小姐的家族复兴大业，之后会如何呢……）[l][cm][hide]"
+        "text": "[show]（贝拉多娜小姐的家族复兴大业，之后会如何呢……）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "贝拉多娜-家族振兴计划-进入战役",
-  "script": "fav_hero_026_1_1"
+  ]
 }

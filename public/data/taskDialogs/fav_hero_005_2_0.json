@@ -1,41 +1,40 @@
 {
-  "script": "fav_hero_005_2_0",
   "des": "茜塔-营地对话【（在营地里等待茜塔到来。）】",
+  "script": "fav_hero_005_2_0",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]……[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（等了一段时间后，茜塔并没有如约到来。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]难道又是出什么意外了……[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]抱歉！我来晚了！[l]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -43,23 +42,32 @@
             "tag": "tag_7"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[cm][show]这个……只是碰到一些意外罢了。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]先让我进小屋里吧，我会慢慢和你说清楚的。[l][cm][hide]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ]
 }

@@ -1,112 +1,112 @@
 {
+  "des": "可可娜-进入战役【fav_hero_009_2】",
   "script": "fav_hero_009_2_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]（奇怪，一直没有看到{myName}呢……因为客人太多了吗？）[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "拉碧丝",
         "text": "[show]可可娜——轮到你的个人秀了，好好记住表演前说过的话。[l][cm]",
-        "charaName": "拉碧丝"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]知、知道了啦……我马上准备好。[l][cm][hide]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]那个……大家好！接下来敬请欣赏……由我为各位带来的……黑夜之舞。[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "观众们",
         "text": "[show]可可娜！可可娜！可可娜！[l][cm]",
-        "charaName": "观众们"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]呜噫噫噫——！好、好恐怖的声浪……不对不对，不能这样！[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]（快点进行舞蹈，忘掉刚才的心情吧……）[l][cm][hide]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（可可娜在观众的欢呼声中顺利完成了表演，尽管好几次差点没能忍住说出妖精粗口。）[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]比上次成长了不少嘛，可可娜！虽然观众应该觉察到你打算说些什么了……幸好被舞蹈遮掩过去了哦！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "拉碧丝",
         "text": "[show]光是这种程度还不够。[l][cm]",
-        "charaName": "拉碧丝"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]……呜呜。[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]别丧气！演出刚结束，好好休息！对了，我记得你说过今天邀请了{myName}参观表演来着？[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]哎？{myName}真的没有来吗……？[l][cm][hide]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -114,66 +114,66 @@
             "tag": "tag_19"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[cm][show]哦！话题的主角出现了，今日的所有演出都已经结束了哦？[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]……唉。[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（可可娜颓丧着脑袋，什么也没有和你说。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "拉碧丝",
         "text": "[show]夏库塔拉，我们去后台商量一下之后演出的计划。[l][cm]",
-        "charaName": "拉碧丝"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]收到～！[l][cm][hide]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]…………[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]（小声）不守信用的家伙，变成工匠炉里的废渣掉进火山湖里吧……妖精粗口！[l]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -181,26 +181,26 @@
             "tag": "tag_28"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[cm][show]唔……看你气喘吁吁的模样，肯定是忙完之后赶过来的吧。[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]我知道不能怪你，只是……我觉得我今天表现得很好，下次可就不一定了。[l]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -212,26 +212,26 @@
             "tag": "tag_31"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[cm][show]你这个……像卸货毛驴一样笨拙的家伙！这么简单就能安慰的话还要警卫队有什么用哇！[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]总之……这是下周演出的参观券，再错过真的会变成火山灰哦！……真的哦！[l]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -239,26 +239,26 @@
             "tag": "tag_34"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[cm][show]和以前没什么区别……好几次控制不住碎碎念被拉碧丝姐狠狠瞪了，差点把演出搞砸。可是，我真的控制不住……！[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]到底该怎么办才好哇……果然还是逃跑吧？！我就应该在森林里自生自灭……呜呜！[l]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -270,40 +270,40 @@
             "tag": "tag_37"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[cm][show]哈……我真的能办到吗？如果{myName}准时来参观了，我也许会放松一点……[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]他们都说你是一位很厉害的工匠，我、我就尝试一下你的话吧！不想被一直压力了啦……[l][cm]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "可可娜",
         "text": "[show]那么，我、我先去后台了！你也努力不要变成火山灰哦……！[l][cm][hide]",
-        "charaName": "可可娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "des": "可可娜-进入战役【fav_hero_009_2】"
+  ]
 }

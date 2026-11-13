@@ -1,32 +1,30 @@
 {
-  "script": "fav_hero_060_1_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]姆姆！这营地好厉害啊，占地大，设备也很齐全，说是据点也不会有人怀疑姆。[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]要是你再好好打造一下，这里当成我们史莱姆的城堡都没问题姆！[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]开玩笑啦，我是不会让{myName}做这种麻烦事的姆。不过……能让我们在这里参观一下吗？让我们的史莱姆子民开开眼姆。[l]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -34,114 +32,114 @@
             "tag": "tag_6"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[cm][show][cm]好，大家都进来看看吧姆。[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉的子民",
         "text": "[show]姆姆～姆姆姆～[l][cm]",
-        "charaName": "德莉的子民"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]大家都很开心呢，看来这一趟没白来姆……[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]喂喂喂！你们……你们不要啃人家的护栏！那不是吃的东西姆！[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉的子民",
         "text": "[show]姆姆～姆姆～[l][cm]",
-        "charaName": "德莉的子民"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]住手！你们……你们太不礼貌了！身为我的子民，怎么能做出这种失礼的事情姆——！[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]以史莱姆公主之名，我命令你们停下姆——！[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉的子民",
         "text": "[show]姆姆……姆姆……[l][cm]",
-        "charaName": "德莉的子民"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（一段时间后……）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]呜呜……可算是安静下来了……[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]那、那个……造成什么损失了没有姆？我刚刚看它们把你的围栏都给吃掉了……[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]哇啊啊……第一次外访他国，就闯下了这种大祸，这会演变成外交问题的姆……[l]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -149,42 +147,42 @@
             "tag": "tag_19"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[cm][show][cm]什么？唉……？真的！果然是深渊最厉害的工匠姆！[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]不过我总得给你补偿点什么才行……对了！我拿来的礼物还没给你呢姆！[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]我的子民，请将我们辛苦准备的礼物，送给这位工匠朋友吧姆。[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉的子民",
         "text": "[show]姆姆！姆姆！[l]",
-        "charaName": "德莉的子民"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -196,26 +194,26 @@
             "tag": "tag_24"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[cm][show][cm]嗯！这是我们史莱姆最喜欢的甜点，和你们的“蛋糕”差不多，很好吃的！你尝尝吧姆。[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]怎么样？味道不错吧……嗯？你的表情好像有些奇怪姆？[l]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -227,26 +225,26 @@
             "tag": "tag_27"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[cm][show][cm]太好啦，我这里还有几十个草饼，你还想要的话都可以给你姆。[l][cm]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "德莉",
         "text": "[show]对了对了，我还带了很多吃的，今天我们就好好吃一顿吧姆！[l]",
-        "charaName": "德莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -254,10 +252,10 @@
             "tag": "tag_30"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -269,32 +267,34 @@
             "tag": "tag_31"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（忍着轻微的不适，和德莉吃了一下午的草饼。至少德莉非常开心。）[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "fav_hero_060_1_1",
   "des": "fav_hero_060_1_1"
 }

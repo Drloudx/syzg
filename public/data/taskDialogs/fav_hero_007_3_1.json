@@ -1,26 +1,28 @@
 {
+  "des": "拉碧丝-进入战役【fav_hero_007_3】",
+  "script": "fav_hero_007_3_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]先从最上面的两本开始翻阅吧。[l][cm]"
+        "text": "[show]先从最上面的两本开始翻阅吧。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（拉碧丝向你递来一捆看似颇有年份的书卷，纸张已经泛黄，许多地方还存在着缺口。）[l][cm]"
+        "text": "[show]（拉碧丝向你递来一捆看似颇有年份的书卷，纸张已经泛黄，许多地方还存在着缺口。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（卷页基本以图案与文字相结合展现，你虽然看不太懂精灵的语言，但能从描绘的图案上能得知大致的内容。）[l]"
+        "text": "[show]（卷页基本以图案与文字相结合展现，你虽然看不太懂精灵的语言，但能从描绘的图案上能得知大致的内容。）[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -28,8 +30,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_6",
-            "text": "拉碧丝是怎么找到这么多古卷的？"
+            "text": "拉碧丝是怎么找到这么多古卷的？",
+            "tag": "tag_6"
           }
         ]
       },
@@ -37,25 +39,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]嗯～说来话长……我曾经是居住在森林中的风之妖精，然而这个部族在数十年前的妖精战争中战败了。[l][cm]"
+        "text": "[cm][show]嗯～说来话长……我曾经是居住在森林中的风之妖精，然而这个部族在数十年前的妖精战争中战败了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]{myName}最开始就注意到了吧？我们腿部装备着的魔法脚镣，是败者无法摆脱的终生烙印呢。[l][cm]"
+        "text": "[show]{myName}最开始就注意到了吧？我们腿部装备着的魔法脚镣，是败者无法摆脱的终生烙印呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]古卷是部族内仅剩不多的“宝物”。我携带着它们一路逃离森林，幸好得到了驿站联军的救助，不然{myName}也没办法翻阅这些内容。[l]"
+        "text": "[show]古卷是部族内仅剩不多的“宝物”。我携带着它们一路逃离森林，幸好得到了驿站联军的救助，不然{myName}也没办法翻阅这些内容。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -63,12 +65,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_10",
-            "text": "辛苦你了，拉碧丝。"
+            "text": "辛苦你了，拉碧丝。",
+            "tag": "tag_10"
           },
           {
-            "tag": "tag_10",
-            "text": "拉碧丝是当之无愧的前辈。"
+            "text": "拉碧丝是当之无愧的前辈。",
+            "tag": "tag_10"
           }
         ]
       },
@@ -76,17 +78,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]与其说些安慰的话不如抓紧时间完成正事，作为前辈我可不能让妖精舞台一直举步维艰下去呢。[l][cm]"
+        "text": "[cm][show]与其说些安慰的话不如抓紧时间完成正事，作为前辈我可不能让妖精舞台一直举步维艰下去呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（一段时间后……）[l]"
+        "text": "[show]（一段时间后……）[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -94,8 +96,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "拉碧丝，这副古卷上的图画……"
+            "text": "拉碧丝，这副古卷上的图画……",
+            "tag": "tag_13"
           }
         ]
       },
@@ -103,49 +105,49 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]——！没错，和我的习惯的热身动作很像。[l][cm]"
+        "text": "[cm][show]——！没错，和我的习惯的热身动作很像。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]嗯，我想起来了……！[l][cm]"
+        "text": "[show]嗯，我想起来了……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]那个时候，我还没有正式成为祝祷舞的一员，部族中的祭司大人给我看过这副古卷上的图画。[l][cm]"
+        "text": "[show]那个时候，我还没有正式成为祝祷舞的一员，部族中的祭司大人给我看过这副古卷上的图画。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]她并没有仔细说明这些动作的来历，只告诉了我可以用它来放松心情和舒展身体。只要我一直保持着风之部族的信仰，就能感受到它带来的“祝福”。[l][cm]"
+        "text": "[show]她并没有仔细说明这些动作的来历，只告诉了我可以用它来放松心情和舒展身体。只要我一直保持着风之部族的信仰，就能感受到它带来的“祝福”。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]你看，图画上描绘的正是我们风之部族传说中的化身——“枯叶秋风”希露芙，而动作源于传说中精灵希露芙所掌握的……“祝福之舞”！[l][cm]"
+        "text": "[show]你看，图画上描绘的正是我们风之部族传说中的化身——“枯叶秋风”希露芙，而动作源于传说中精灵希露芙所掌握的……“祝福之舞”！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]难怪我总觉得这些动作蕴含着神奇魔力。希露芙是传说中的妖精……她所创造的舞蹈哪怕只是拙劣的模仿，也能让人感觉到力量的涌动。[l]"
+        "text": "[show]难怪我总觉得这些动作蕴含着神奇魔力。希露芙是传说中的妖精……她所创造的舞蹈哪怕只是拙劣的模仿，也能让人感觉到力量的涌动。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -153,12 +155,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_20",
-            "text": "我希望在妖精舞台的演出上看到它。"
+            "text": "我希望在妖精舞台的演出上看到它。",
+            "tag": "tag_20"
           },
           {
-            "tag": "tag_20",
-            "text": "要试着表演它吗？"
+            "text": "要试着表演它吗？",
+            "tag": "tag_20"
           }
         ]
       },
@@ -166,53 +168,51 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]如果能够在妖精舞台上表演“祝福之舞”，一定会吸引所有人的目光，但它所需要的艺术造诣对目前的舞团而言十分困难。[l][cm]"
+        "text": "[cm][show]如果能够在妖精舞台上表演“祝福之舞”，一定会吸引所有人的目光，但它所需要的艺术造诣对目前的舞团而言十分困难。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]……我不会放弃，为了一直以来拼命练习的舞团的各位，和帮助我解决困境的{myName}。[l][cm]"
+        "text": "[show]……我不会放弃，为了一直以来拼命练习的舞团的各位，和帮助我解决困境的{myName}。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]我决定了，要和舞团的各位一同商量如何在下次的演出中复刻这段“传说中的舞蹈”。[l][cm]"
+        "text": "[show]我决定了，要和舞团的各位一同商量如何在下次的演出中复刻这段“传说中的舞蹈”。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]事不宜迟，我得立刻让她们到后台进行演习。[l][cm]"
+        "text": "[show]事不宜迟，我得立刻让她们到后台进行演习。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]下次见面——就请在“妖精舞台”上见证历史吧！[l][cm][hide]"
+        "text": "[show]下次见面——就请在“妖精舞台”上见证历史吧！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "拉碧丝-进入战役【fav_hero_007_3】",
-  "script": "fav_hero_007_3_1"
+  ]
 }

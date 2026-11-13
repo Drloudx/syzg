@@ -1,40 +1,40 @@
 {
+  "des": "夏库塔拉-进入战役【fav_hero_008_4】",
   "script": "fav_hero_008_4_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]…………[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾尔莎",
         "text": "[show]嗯～这是契约条款，要认真过目哦～？[l][cm]",
-        "charaName": "艾尔莎"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]咱明白！关于费用的事……[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（夏库塔拉似乎正在和艾尔莎商量着什么，没有注意到你已经到达了旅店。）[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -46,66 +46,66 @@
             "tag": "tag_7"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[cm][show]哎？！{myName}……！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]对不起啦……刚才光顾着和艾尔莎进行委托交易，没想到你来得这么快，明明天还没黑下来呢！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]不过，能够提早见到你咱也很开心！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "艾尔莎",
         "text": "[show]哦呀？看来你有别的事要忙，既然交易已经达成，咱就不打扰你们了。[l][cm]",
-        "charaName": "艾尔莎"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]嗯，麻烦你了！咱们到那边去坐吧{myName}？[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]两份今日特供套餐，一份仙人掌色拉，还有两杯芦荟蜜汁！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]{myName}还想吃点什么？咱请客哦！[l]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -117,50 +117,50 @@
             "tag": "tag_15"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[cm][show]哎？刚才和艾尔莎谈论的吗？……不是什么特别的事，咱向她招募了一些契约者，仅此而已！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]战争让太多妖精流离失所，不仅是咱的同胞们，还有拉碧丝和可可娜的朋友们……说不定仍旧被困在深渊的某处，或者没能从奴役中逃脱。[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]招募契约者所花费的金币是咱拼命跳舞赚来的，这些事也是咱之前告诉{myName}的——“想为她们献出一份绵薄之力”。[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]哎呀！现在不是谈论沉重话题的场合呢！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]但是，不知道为什么……{myName}会给咱一种想要向你倾诉的冲动。[l]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -168,48 +168,48 @@
             "tag": "tag_21"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[cm][show]嗯……像之前委托的那样？有新的想法咱会告诉你！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]战争的背后远比想象中更可怕……咱希望你不要过多了解，也不要参与任何因此受伤，不然咱上哪儿去找像你一样优秀的工匠呢！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "夏库塔拉",
         "text": "[show]哇啊～餐点到了，快尝尝看吧！[l][cm]",
-        "charaName": "夏库塔拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（和夏库塔拉度过了一段愉快的时光……）[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "des": "夏库塔拉-进入战役【fav_hero_008_4】"
+  ]
 }

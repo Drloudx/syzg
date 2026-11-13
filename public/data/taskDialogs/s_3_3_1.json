@@ -99,7 +99,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]……[l][cm][hide]"
       },
       "key": "text"
@@ -115,7 +115,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]终于……找到了……碎片……[l][cm]"
       },
       "key": "text"
@@ -123,7 +123,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]你们……就是偷窃束雷之冠的贼人吗？[l][cm][hide]"
       },
       "key": "text"
@@ -186,7 +186,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]环会？圣女……水占师？莫非……你们不是那个贼人的同伙？[l][cm]"
       },
       "key": "text"
@@ -202,7 +202,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]看来……你们并不知情。[l][cm]"
       },
       "key": "text"
@@ -210,7 +210,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]既然你们只是偶然拾得此物的话，那我直说了。你手上的[color=ffb64d]东西[colorEnd]是我的。请交还给我吧。[l][cm]"
       },
       "key": "text"
@@ -234,7 +234,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]真是麻烦。我从头开始说吧。[l][cm]"
       },
       "key": "text"

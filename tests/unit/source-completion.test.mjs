@@ -116,7 +116,13 @@ test('real source build preserves existing dungeon sources and links target real
   const stageSource = stageItem[1].find(x => x.type === 'stage')
   assert.match(stageSource.id, /^c\d+_\d+$/, `关卡来源 id 应是 stage id：${stageSource.id}`)
   assert.equal(stageSource.des, '关卡掉落')
-  assert.ok(sources.item_50004.some(x => x.type === 'camp' && x.level === 1 && x.targetLevel === 2))
+  /*
+   * 用 item_50012（营地中心 1→2 升级奖励产物）验 camp 来源。
+   * 原断言写死 item_50004，但 1.7.15 官方把 homeLevel_center1 的奖励从
+   * item_50004 换成了 item_50012/50005/50006/50007/50008/50009/50013，
+   * 该物品已不再属于这条升级奖励，断言随官方数据同步替换。
+   */
+  assert.ok(sources.item_50012.some(x => x.type === 'camp' && x.level === 1 && x.targetLevel === 2))
   assert.ok(sources.item_50087.some(x => x.type === 'activity' && x.name === '世界探险挑战'))
   assert.ok(sources.item_10036.some(x => x.type === 'plant' && x.seedId === 'item_15009'))
   const events = readJson('randomEventInfo.json').datas

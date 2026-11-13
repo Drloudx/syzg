@@ -13,7 +13,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]魔物先生们体力真不错，居然追到这里来了吗？[l][cm]"
       },
       "key": "text"
@@ -21,7 +21,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]本来还想着如果有人掉队就放过它的，没想到送命这种事，大家都这么积极呀～！[l][cm]"
       },
       "key": "text"
@@ -29,7 +29,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]既然如此……哎呀呀？这种地方居然有人来了？[l][cm][hide]"
       },
       "key": "text"

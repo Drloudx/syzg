@@ -67,7 +67,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[cm][show]好的！侍女小姐——！[l][cm]",
+        "text": "[cm][show]好的！侍女小姐——！[l][cm][hide]",
         "charaName": "缇莎"
       }
     },
@@ -91,7 +91,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]好的，请稍等，我们这就去准备。[l][cm]",
+        "text": "[show]好的，请稍等，我们这就去准备。[l][cm][hide]",
         "charaName": "侍者萨利"
       }
     },
@@ -169,7 +169,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]（就在缇莎狼吞虎咽之际，有几个小孩好奇地凑过来打量她。）[l][cm]",
+        "text": "[show]（就在缇莎狼吞虎咽之际，有几个小孩好奇地凑过来打量她。）[l][cm][hide]",
         "charaName": ""
       }
     },
@@ -177,7 +177,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]你们看你们看……她身上有好多红水晶诶，还有一只超大的红水晶尾巴。[l][cm]",
+        "text": "[show]你们看你们看……她身上有好多红水晶诶，还有一只超大的红水晶尾巴。[l][cm][hide]",
         "charaName": "小孩1"
       }
     },
@@ -185,7 +185,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]看到了，好奇怪的家伙……她应该就是大人说的“结晶怪物”吧。[l][cm]",
+        "text": "[show]看到了，好奇怪的家伙……她应该就是大人说的“结晶怪物”吧。[l][cm][hide]",
         "charaName": "小孩2"
       }
     },
@@ -252,7 +252,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]哇——！[l][cm]",
+        "text": "[show]哇——！[l][cm][hide]",
         "charaName": "缇莎"
       }
     },
@@ -268,7 +268,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]（缇莎装作吓人的样子，所有小孩瞬间逃开了。）[l]",
+        "text": "[show]（缇莎装作吓人的样子，所有小孩瞬间逃开了。）[l][cm]",
         "charaName": ""
       }
     },

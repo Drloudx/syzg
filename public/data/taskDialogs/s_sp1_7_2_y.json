@@ -44,7 +44,7 @@
     },
     {
       "para": {
-        "charaName": "？？",
+        "charaName": "？？？",
         "text": "[show]嗯？谁把这些好吃的东西放在这里的姆？[l][cm]",
         "nameSide": "left"
       },
@@ -52,7 +52,7 @@
     },
     {
       "para": {
-        "charaName": "？？",
+        "charaName": "？？？",
         "text": "[show]啊！这是禁锢魔法！这是谁干的姆？[l][cm]",
         "nameSide": "left"
       },
@@ -76,7 +76,7 @@
     },
     {
       "para": {
-        "charaName": "？？",
+        "charaName": "？？？",
         "text": "[show]呜啊！是……是你们姆！[l][cm]",
         "nameSide": "left"
       },
@@ -124,7 +124,7 @@
     },
     {
       "para": {
-        "charaName": "？？",
+        "charaName": "？？？",
         "text": "[show]不要……不要打我……我错了……我错了姆……[l][cm]",
         "nameSide": "left"
       },

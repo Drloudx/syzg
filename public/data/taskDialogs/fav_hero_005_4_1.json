@@ -1,4 +1,6 @@
 {
+  "des": "茜塔-新的义足-进入战役",
+  "script": "fav_hero_005_4_1",
   "exps": [
     {
       "para": {
@@ -251,8 +253,14 @@
         "nameSide": "left"
       },
       "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "script": "fav_hero_005_4_1",
-  "des": "茜塔-新的义足-进入战役"
+  ]
 }

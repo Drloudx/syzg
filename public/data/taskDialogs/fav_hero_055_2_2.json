@@ -1,10 +1,17 @@
 {
-  "script": "fav_hero_055_2_2",
   "exps": [
     {
       "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
         "charaName": "迦南",
-        "text": "[show]——凯蒂！！[l][cm]",
+        "text": "[show]——凯蒂！！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -102,7 +109,7 @@
     {
       "para": {
         "charaName": "迦南",
-        "text": "[show]给我看看！[l][cm]",
+        "text": "[show]给我看看！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -199,5 +206,6 @@
       "key": "text"
     }
   ],
+  "script": "fav_hero_055_2_2",
   "des": "迦南-场景：凯蒂的家"
 }

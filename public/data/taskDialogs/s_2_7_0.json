@@ -5,7 +5,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]呱……啊啊……我……我要挂了啦……[l][cm]"
       },
       "key": "text"
@@ -21,7 +21,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]咳咳……我……我没事……[l][cm]"
       },
       "key": "text"
@@ -29,7 +29,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]不……事还是有那么一点事的……我已经好几天没吃过饭……没尝过佳酿的味道了……哇啊啊啊……我要挂了啦……[l][cm]"
       },
       "key": "text"
@@ -56,7 +56,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[cm][show]呃……[l][cm]"
       },
       "key": "text"

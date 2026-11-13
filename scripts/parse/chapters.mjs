@@ -13,6 +13,7 @@
  * 只在“从完整 battle.json 取哪一批关卡”和“章节归属”上与副本不同。
  */
 import { buildBattleRooms, buildBattleRoutes, buildSpecialChestSources, buildRewardEntries, consumeCost, buildRoomVariant } from '../../src/utils/dungeonData.js'
+import { isBlacklisted } from '../../src/config/blacklist.js'
 import { readFileSync } from 'node:fs'
 import { readJson } from './shared.mjs'
 import { compactRewards, compactRooms } from './compact.mjs'
@@ -121,6 +122,9 @@ function unlockOf(index, conf, chapterConf) {
     for (const entry of [...difficulty.reward, ...difficulty.firstReward]) words.push(entry.name)
     for (const room of difficulty.rooms) {
       words.push(room.label)
+      if (room.unlockTasks) {
+        for (const t of room.unlockTasks) words.push(t.name)
+      }
       for (const variant of room.variants) {
         words.push(variant.name, variant.kind, ...variant.effects.map(effect => effect.title))
         for (const monster of variant.monsters) {
@@ -209,6 +213,32 @@ function buildRegionRoute(chapterId, areaMap, tables) {
   }
 }
 
+const TASK_TYPE_LABELS = { 1: '主线', 2: '支线', 3: '委托', 4: '伙伴', 5: '活动' }
+
+function buildTaskUnlockMap(rawTasks) {
+  const map = {}
+  for (const [tid, t] of Object.entries(rawTasks)) {
+    if (t.close) continue
+    const cat = Array.isArray(t.category) ? t.category : []
+    if (cat.includes('demo') || cat.includes('demo支线') || tid.startsWith('demo_')) continue
+
+    const direct = asArray(t.unlockStage)
+    const stepStages = asArray(t.steps).flatMap(s => asArray(s.stepUnlockStage))
+    const allUnlocked = new Set([...direct, ...stepStages])
+
+    for (const sid of allUnlocked) {
+      if (!map[sid]) map[sid] = []
+      map[sid].push({
+        id: tid,
+        name: t.name,
+        type: t.taskType,
+        typeName: TASK_TYPE_LABELS[t.taskType] || '任务'
+      })
+    }
+  }
+  return map
+}
+
 export function buildChaptersFiles() {
   const chapterInfo = asMap(readJson('chapterInfo.json'))
   const ownerGrid = JSON.parse(readFileSync(new URL('./chapterMapOwner.json', import.meta.url), 'utf8'))
@@ -226,6 +256,8 @@ export function buildChaptersFiles() {
   const monMap = asMap(rawMon.datas || rawMon)
   const equipConfig = readJson('equip/equipGroup.json')
   const instances = asMap(readJson('instance.json').datas)
+  const rawTasks = asMap(readJson('task.json').datas)
+  const taskUnlockMap = buildTaskUnlockMap(rawTasks)
   const routeTables = { areas, instances, levelStages }
   const roomDetails = roomDetailsFrom(rawRoomMap, {
     buffMap: asMap(readJson('buff.json')),
@@ -321,6 +353,7 @@ export function buildChaptersFiles() {
       const rawRooms = asArray(areaNode.map?.levelRoom)
       const rooms = rawRooms.map((rNode, rIdx) => {
         const lr = levelRooms[rNode.typeId] || {}
+        if (isBlacklisted({ id: rNode.typeId, name: lr.name })) return null
         const candidates = [lr.roomTypeId, ...asArray(lr.randomRooms).map(item => item.roomTypeId)].filter(Boolean)
         const variants = [...new Set(candidates)].map((roomTypeId, index) => {
           const v = buildRoomVariant(
@@ -348,8 +381,9 @@ export function buildChaptersFiles() {
         if (!variants.length) return null
         const hasValidLabel = lr.name && lr.name !== rNode.typeId && !lr.name.includes('未命名')
         const label = hasValidLabel ? lr.name : `房间 ${rIdx + 1}`
+        const taskUnlocks = taskUnlockMap[rNode.typeId] || []
 
-        return {
+        const roomObj = {
           layer: '1',
           roomId: rNode.typeId,
           label,
@@ -357,6 +391,11 @@ export function buildChaptersFiles() {
           hidden: !!lr.hiddenRoom,
           variants
         }
+        if (taskUnlocks.length) {
+          roomObj.unlockTasks = taskUnlocks
+        }
+
+        return roomObj
       }).filter(Boolean)
 
       const roomLevels = rooms.map(r => r.level).filter(Boolean)

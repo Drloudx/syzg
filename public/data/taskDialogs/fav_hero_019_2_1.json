@@ -1,4 +1,6 @@
 {
+  "des": "奇瓦-来自大书院的教导-进入战役",
+  "script": "fav_hero_019_2_1",
   "exps": [
     {
       "para": {
@@ -11,7 +13,7 @@
     {
       "para": {
         "charaName": "奇瓦",
-        "text": "[show]嗯，放心吧，我会照顾好孩子们的。[l]",
+        "text": "[show]嗯，放心吧，我会照顾好孩子们的。[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -20,8 +22,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_5",
-            "text": "奇瓦能接下这份工作吗？"
+            "text": "奇瓦能接下这份工作吗？",
+            "tag": "tag_5"
           }
         ]
       },
@@ -38,7 +40,7 @@
     {
       "para": {
         "charaName": "孩子1",
-        "text": "[show]快看……那就是我们的新老师吗？[l][cm]",
+        "text": "[show]快看……那就是我们的新老师吗？[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -175,12 +177,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_24",
-            "text": "其实奇瓦可以试着和大家坦诚相待。"
+            "text": "其实奇瓦可以试着和大家坦诚相待。",
+            "tag": "tag_24"
           },
           {
-            "tag": "tag_24",
-            "text": "你可以和大家找到共同语言。"
+            "text": "你可以和大家找到共同语言。",
+            "tag": "tag_24"
           }
         ]
       },
@@ -382,12 +384,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_49",
-            "text": "说明奇瓦沟通能力很好啊。"
+            "text": "说明奇瓦沟通能力很好啊。",
+            "tag": "tag_49"
           },
           {
-            "tag": "tag_49",
-            "text": "以后的教学估计会更加顺利。"
+            "text": "以后的教学估计会更加顺利。",
+            "tag": "tag_49"
           }
         ]
       },
@@ -413,8 +415,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_52",
-            "text": "让你想起以前的事了吗？"
+            "text": "让你想起以前的事了吗？",
+            "tag": "tag_52"
           }
         ]
       },
@@ -435,8 +437,14 @@
         "nameSide": "left"
       },
       "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "script": "fav_hero_019_2_1",
-  "des": "奇瓦-来自大书院的教导-进入战役"
+  ]
 }

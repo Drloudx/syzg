@@ -1,166 +1,166 @@
 {
-  "script": "sp1_6_a_2",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]这是……米托拉，你看！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]哈，做得好呀大小姐！喂，我们找到门了！[l][cm][hide]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（众人来到一扇紧闭的侧门前。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]……嘿咻！啧，这扇门也打不开！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]嗯。这扇门上也有锁之魔法……[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]哎呦……怎么还有啊？我可不想再找条下水道，再像老鼠一样绕半天了！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]本宫还没说完……[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]这扇门上有魔法，但不多。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（哐当！）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]相比古堡的正门，这不过是用来防止园丁和仆人走错廊道设置的次等魔法。破解这种术式对本宫来说，比折断小木棍还简单。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]哇——真给我气笑了。你怎么不早说！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]本宫不是等你先说吗。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]总之，这样就算找到真正进入古堡内部的入口了。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]顺着里面的连廊往东走，应该就能到达城堡的门厅……说不定可以趁机打开被封锁的大门。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]真没想到……花了这么久，我们对于城堡的探索才算是正式开始……[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]有时候绕远路也是必要的前置准备。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "斯卡莉安",
         "text": "[show]至少现在我们确保了安全的路径……后路无忧，剩下的就只有前进而已。[l][cm]",
-        "charaName": "斯卡莉安"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "米托拉",
         "text": "[show]唉，是是是。好，打起精神继续冒险吧！走吧各位，我去开路！[l][cm]",
-        "charaName": "米托拉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]等等本小姐！本小姐也要！[l][cm][hide]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "sp1_6_a_2",
   "des": "描述"
 }

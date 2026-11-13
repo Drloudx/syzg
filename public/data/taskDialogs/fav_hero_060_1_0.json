@@ -1,12 +1,10 @@
 {
-  "des": "营地对话【欢迎德莉公主。】",
-  "script": "fav_hero_060_1_0",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "德莉",
-        "text": "[show]{myName}！你亲自出来见我了姆！[l]"
+        "text": "[show]{myName}！你亲自出来见我了姆！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -27,43 +25,45 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "德莉",
-        "text": "[cm][show][cm]嘿嘿，我……我没有怪罪{myName}的意思姆。[l][cm]"
+        "text": "[cm][show][cm]嘿嘿，我……我没有怪罪{myName}的意思姆。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "德莉",
-        "text": "[show]你愿意真的把我当成王国的公主接待，这让我很开心啦姆！[l][cm]"
+        "text": "[show]你愿意真的把我当成王国的公主接待，这让我很开心啦姆！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "德莉",
-        "text": "[show]总之我们先到营地里去吧，我还想看看你能在野外弄出一个什么样的营地呢姆。[l][cm]"
+        "text": "[show]总之我们先到营地里去吧，我还想看看你能在野外弄出一个什么样的营地呢姆。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "德莉",
-        "text": "[show]走走走，别忘了我还有礼物给你哦姆。[l][cm][hide]"
+        "text": "[show]走走走，别忘了我还有礼物给你哦姆。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ]
+  ],
+  "script": "fav_hero_060_1_0",
+  "des": "营地对话【欢迎德莉公主。】"
 }

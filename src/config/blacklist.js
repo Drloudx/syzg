@@ -20,10 +20,15 @@ export const FUZZY_BLACKLIST = [
     //特殊章节
     // 幽夜古堡（SP1）已按需求端上（开放），不再隐藏；黏滑溪谷（SP2）仍未开放，整章隐藏。
     '黏滑溪谷',
+    // 官方未实装废案房间
+    '山神之殒外围',
 
 ]
 // 2. 精确匹配名单 (ID、typeId 或 完整名称 必须完全匹配才隐藏)
 export const EXACT_BLACKLIST = [
+    // 官方未实装废案房间
+    'c2_area4_4',
+    '山神之殒外围',
     //物品图鉴乱七八糟的物品
     // 希尔旧版获取道具不进入网页图鉴；原始 JSON 保留。
     'item_59001',
@@ -50,6 +55,13 @@ export const EXACT_BLACKLIST = [
     'c3装备',
     'C1~C3家具宝箱',
     '全种子各类代币属性碎片',
+    /*
+     * item_99969 神器宝箱：1.7.15 热更新增的运营补发道具（reward `sq_sp01`
+     * 分类「运营/补发」，tip「神器补发」），全配置表无任何产出/掉落来源，
+     * 图标又被官方指成产出物 item_444001（洛莉安的晚礼服），与其它 999xx
+     * 测试宝箱同性质。按需求隐藏，不进物品图鉴。
+     */
+    'item_99969',
     'item_26008x',
     'item_26009x',
     '坚韧的板材',
@@ -246,6 +258,7 @@ export const belongsToHiddenHero = (entry) => {
  * 判据是魔物 id（`pet` 表的 `monId` / `typeId`），不做名字模糊匹配。
  */
 export const HIDDEN_PET_IDS = Object.freeze([
+    'pet_097', // 格里芬（1.7.15 起官方 pet.json 标 hide=true；官方字段只作用于魔物图鉴，蛋/搜索需此名单才一致）
     'pet_105', // 玉鳞之仙龙
 ])
 

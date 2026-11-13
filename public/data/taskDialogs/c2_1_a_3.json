@@ -27,7 +27,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]费了这么大功夫，终于让你落单了！[l][cm]"
       },
       "key": "text"
@@ -35,7 +35,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]可恶的怪物！就是你把我们的村子给……！给我纳命来！[l][cm]"
       },
       "key": "text"
@@ -43,7 +43,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]嘿呀——！[l][cm]"
       },
       "key": "text"
@@ -59,7 +59,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]唔——！怎么会……！居然……这么强……！[l][cm]"
       },
       "key": "text"
@@ -67,7 +67,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]算计了那么多，最后还棋差一着……竟然是因为实力之差……[l][cm]"
       },
       "key": "text"
@@ -75,7 +75,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]真是没想到……我米拉贝尔居然会在这里倒下……[l][cm][hide]"
       },
       "key": "text"

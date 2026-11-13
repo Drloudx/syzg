@@ -13,7 +13,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]哎呀呀，居然问出这种问题，我还真是伤心。[l][cm]"
       },
       "key": "text"
@@ -21,7 +21,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]我可是听一位大人说要在大市集协助某两位英雄契约者，结果你们居然把我忘了？亏我在你们来到大市集的第一时间，就特地把你们叫过来。[l][cm]"
       },
       "key": "text"
@@ -29,7 +29,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]结果……我好像是自作多情了？[l][cm]"
       },
       "key": "text"

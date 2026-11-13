@@ -58,3 +58,30 @@ test('判据不依赖 category 文案：同样 collectType=5 换任意分类都�
     assert.equal(hidden.length, 1, `分类 ${cat.join('/')} 应命中`)
   }
 })
+
+test('聆听偶遇与带货币点位应正确提取固定货币与计算抽取概率', () => {
+  const maps = makeMaps(['采集', '聆听偶遇'])
+  maps.rewardRes.datas.r1.money = 500
+  maps.rewardRes.datas.r1.items = [
+    {
+      rate: 1,
+      num: 1,
+      rules: [
+        { typeId: 'item_a', min: 1, max: 1, chance: 1 },
+        { typeId: 'item_b', min: 1, max: 1, chance: 1 }
+      ]
+    }
+  ]
+  const { hidden } = buildHiddenRewards(maps)
+  assert.equal(hidden.length, 1)
+  const items = hidden[0].rewardItems
+  assert.equal(items.length, 2, '应包含固定货币组与随机组')
+  assert.equal(items[0].kind, 'fixed')
+  assert.equal(items[0].rules[0].typeId, 'item_00001')
+  assert.equal(items[0].rules[0].min, 500)
+  assert.equal(items[1].kind, 'random')
+  assert.equal(items[1].rules.length, 2)
+  assert.equal(items[1].rules[0].actualProb, 0.5)
+  assert.equal(items[1].rules[1].actualProb, 0.5)
+})
+

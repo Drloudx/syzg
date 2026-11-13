@@ -2,6 +2,14 @@
   "exps": [
     {
       "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
         "charaName": "德莉",
         "text": "[show]嗯……应该就是在这附近了，我也感受到了同类的气息姆……[l][cm]",
         "nameSide": "left"
@@ -11,7 +19,7 @@
     {
       "para": {
         "charaName": "德莉",
-        "text": "[show]啊！在那里姆！[l][cm]",
+        "text": "[show]啊！在那里姆！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -59,7 +67,7 @@
     {
       "para": {
         "charaName": "德莉",
-        "text": "[show]喂！本公主命令你们住手姆！[l][cm]",
+        "text": "[show]喂！本公主命令你们住手姆！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -123,7 +131,7 @@
     {
       "para": {
         "charaName": "荒野客C",
-        "text": "[show]哇！哪来……哪来这么多史莱姆！快……快拿武器！[l][cm]",
+        "text": "[show]哇！哪来……哪来这么多史莱姆！快……快拿武器！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -131,7 +139,7 @@
     {
       "para": {
         "charaName": "",
-        "text": "[show]（在你和德莉的联手打击下，那群荒野客被赶走了。）[l][cm]",
+        "text": "[show]（在你和德莉的联手打击下，那群荒野客被赶走了。）[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"

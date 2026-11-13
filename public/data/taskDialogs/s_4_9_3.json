@@ -4,7 +4,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]你……你们好……[l][cm]"
       },
       "key": "text"
@@ -67,7 +67,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show][cm]是……是的。软软是很温顺的魔物……它、它只是……唔……[l][cm]"
       },
       "key": "text"

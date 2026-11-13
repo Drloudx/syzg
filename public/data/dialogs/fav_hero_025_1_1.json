@@ -1,10 +1,12 @@
 {
+  "des": "嘉莉缇-深渊之旅的第一站-进入战役",
+  "script": "fav_hero_025_1_1",
   "exps": [
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]这是伴手礼，要快点吃掉，可别放坏了哦！[l]"
+        "text": "[show]这是伴手礼，要快点吃掉，可别放坏了哦！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -12,8 +14,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_4",
-            "text": "谢谢。"
+            "text": "谢谢。",
+            "tag": "tag_4"
           }
         ]
       },
@@ -22,16 +24,16 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]不用谢不用谢！[l][cm]"
+        "text": "[cm][show]不用谢不用谢！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]嘿嘿，我比信上说的早到了两天，你有没有觉得惊喜呀？[l]"
+        "text": "[show]嘿嘿，我比信上说的早到了两天，你有没有觉得惊喜呀？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -39,8 +41,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_7",
-            "text": "惊喜，当然惊喜。"
+            "text": "惊喜，当然惊喜。",
+            "tag": "tag_7"
           }
         ]
       },
@@ -50,12 +52,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_8",
-            "text": "还好我早有准备……"
+            "text": "还好我早有准备……",
+            "tag": "tag_8"
           },
           {
-            "tag": "tag_8",
-            "text": "要不然可就赶不上招待你了！"
+            "text": "要不然可就赶不上招待你了！",
+            "tag": "tag_8"
           }
         ]
       },
@@ -64,32 +66,32 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]哦？你还准备了东西招待我？[l][cm]"
+        "text": "[cm][show]哦？你还准备了东西招待我？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]干嘛呀，咱俩是什么交情，用得着那么客气嘛！[l][cm]"
+        "text": "[show]干嘛呀，咱俩是什么交情，用得着那么客气嘛！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]嗯，不过你放心，作为厨师，浪费食物这种事情，我肯定是不会做的。[l][cm]"
+        "text": "[show]嗯，不过你放心，作为厨师，浪费食物这种事情，我肯定是不会做的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]既然是你精心准备的料理，我一定会满怀感激，认认真真地吃完的！[l]"
+        "text": "[show]既然是你精心准备的料理，我一定会满怀感激，认认真真地吃完的！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -97,8 +99,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "那就再好不过了！"
+            "text": "那就再好不过了！",
+            "tag": "tag_13"
           }
         ]
       },
@@ -107,24 +109,24 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]好，让我看看，能被你这么郑重其事端出来的料理，究竟是何方神圣！[l][cm]"
+        "text": "[cm][show]好，让我看看，能被你这么郑重其事端出来的料理，究竟是何方神圣！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]（嚼嚼）——[l][cm]"
+        "text": "[show]（嚼嚼）——[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]这是什么！这也太好吃了吧！简直就是仙馔！[l]"
+        "text": "[show]这是什么！这也太好吃了吧！简直就是仙馔！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -132,12 +134,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_17",
-            "text": "你的形容也太夸张了。"
+            "text": "你的形容也太夸张了。",
+            "tag": "tag_17"
           },
           {
-            "tag": "tag_17",
-            "text": "真的有那么好吃吗？"
+            "text": "真的有那么好吃吗？",
+            "tag": "tag_17"
           }
         ]
       },
@@ -146,24 +148,24 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]就是很好吃啊！[l][cm]"
+        "text": "[cm][show]就是很好吃啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]在黑森林的时候我就发现，{myName}你的手艺很好了，只是没有想到居然有这～么好！[l][cm]"
+        "text": "[show]在黑森林的时候我就发现，{myName}你的手艺很好了，只是没有想到居然有这～么好！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]除了手艺之外，这道菜采用的食材也很特别，全都是我在黑森林里没有见过的货色！[l]"
+        "text": "[show]除了手艺之外，这道菜采用的食材也很特别，全都是我在黑森林里没有见过的货色！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -171,12 +173,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_21",
-            "text": "哈哈，这也算是我的一点小心机。"
+            "text": "哈哈，这也算是我的一点小心机。",
+            "tag": "tag_21"
           },
           {
-            "tag": "tag_21",
-            "text": "用一样的食材我可没信心让你满意啊。"
+            "text": "用一样的食材我可没信心让你满意啊。",
+            "tag": "tag_21"
           }
         ]
       },
@@ -185,16 +187,16 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]哪里哪里，你才是真的太谦虚了！[l][cm]"
+        "text": "[cm][show]哪里哪里，你才是真的太谦虚了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]嗯，本来我还在想，这么长的假期究竟要干什么，你这道菜可算是提醒我了。[l]"
+        "text": "[show]嗯，本来我还在想，这么长的假期究竟要干什么，你这道菜可算是提醒我了。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -202,8 +204,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_24",
-            "text": "哦？你准备怎么做？"
+            "text": "哦？你准备怎么做？",
+            "tag": "tag_24"
           }
         ]
       },
@@ -212,16 +214,16 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]好不容易有时间，当然要去尝试新鲜事物了！[l][cm]"
+        "text": "[cm][show]好不容易有时间，当然要去尝试新鲜事物了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]我准备在深渊各处进行食材巡礼！采集各个地方的特有食材，开创前所未有的崭新菜式！[l]"
+        "text": "[show]我准备在深渊各处进行食材巡礼！采集各个地方的特有食材，开创前所未有的崭新菜式！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -229,12 +231,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_27",
-            "text": "哦，这可是大工程！"
+            "text": "哦，这可是大工程！",
+            "tag": "tag_27"
           },
           {
-            "tag": "tag_27",
-            "text": "不愧是嘉莉缇！"
+            "text": "不愧是嘉莉缇！",
+            "tag": "tag_27"
           }
         ]
       },
@@ -243,24 +245,24 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]嘿嘿，人家也是有追求的嘛！[l][cm]"
+        "text": "[cm][show]嘿嘿，人家也是有追求的嘛！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]对了，你这段时间一直走南闯北，足迹遍布整个深渊，对于各地的食材应该很有了解吧？[l][cm]"
+        "text": "[show]对了，你这段时间一直走南闯北，足迹遍布整个深渊，对于各地的食材应该很有了解吧？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]我能不能请你作为我的向导，带我一起去进行这个食材巡礼呢？[l]"
+        "text": "[show]我能不能请你作为我的向导，带我一起去进行这个食材巡礼呢？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -268,12 +270,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_31",
-            "text": "当然可以。"
+            "text": "当然可以。",
+            "tag": "tag_31"
           },
           {
-            "tag": "tag_31",
-            "text": "没问题。"
+            "text": "没问题。",
+            "tag": "tag_31"
           }
         ]
       },
@@ -282,44 +284,42 @@
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[cm][show]太好了！那我们就这么说定了！[l][cm]"
+        "text": "[cm][show]太好了！那我们就这么说定了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]既然要进行食材巡礼，那一般的装备可就不够用了！[l][cm]"
+        "text": "[show]既然要进行食材巡礼，那一般的装备可就不够用了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]我这就回黑森林去打理行装，你如果想好了行程规划，记得马上通知我！[l][cm]"
+        "text": "[show]我这就回黑森林去打理行装，你如果想好了行程规划，记得马上通知我！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "嘉莉缇",
-        "nameSide": "left",
-        "text": "[show]这段时间我都有空，肯定会立马飞过来的！[l][cm][hide]"
+        "text": "[show]这段时间我都有空，肯定会立马飞过来的！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "嘉莉缇-深渊之旅的第一站-进入战役",
-  "script": "fav_hero_025_1_1"
+  ]
 }

@@ -1,57 +1,65 @@
 {
+  "script": "fav_hero_019_5_0",
   "exps": [
     {
+      "key": "text",
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]软软，喷火！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "奇瓦"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕——！[l]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "软软"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_5",
-            "text": "别烧了别烧了，我错了还不行吗？"
+            "text": "别烧了别烧了，我错了还不行吗？",
+            "tag": "tag_5"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]哼！我很生气！哄不好的那种！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "奇瓦"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]软软！继续喷！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "奇瓦"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕——！[l][cm][hide]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "软软"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "script": "fav_hero_019_5_0",
   "des": "奇瓦-营地对话【（奇瓦愤怒地站在营地门口。）】"
 }

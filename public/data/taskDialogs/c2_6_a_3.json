@@ -12,7 +12,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]我个人希望你们可以稍微留步。[l][cm][hide]"
       },
       "key": "text"
@@ -28,7 +28,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]要让那些连魔法都不会的佣兵困住一位卷宗学者，你也太过为难他们了一些。[l][cm]"
       },
       "key": "text"

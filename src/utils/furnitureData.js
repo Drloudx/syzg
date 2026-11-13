@@ -4,7 +4,14 @@ import { fetchWithFallback } from './request.js'
 import { createCachedLoader } from './resourceClient.js'
 
 const FURNITURE_ACTIONS = new Set(['unlockHomeItem', 'unlockHomeItemSkin'])
-const NON_CATALOG_HOME_ITEMS = new Set(['cultivation001', 'petRoom01'])
+/*
+ * 不进家具图鉴的条目：
+ *   - cultivation001 / petRoom01：功能性占位，非玩家可摆放家具（历史规则）
+ *   - house002 / house003：官方配置里的**测试房屋**，描述明写
+ *     「测试用房子家具二号/三号，内部两层，复用同一套室内外观」，
+ *     对应制作图 item_59101/59102 名称也带「(测试)」。按需求隐藏。
+ */
+const NON_CATALOG_HOME_ITEMS = new Set(['cultivation001', 'petRoom01', 'house002', 'house003'])
 const FIXED_CAMP_FACILITIES = new Set(['mailBox', 'carriage'])
 const ROOM_OBJECT_PREVIEW_IMAGES = {
   // This is the actual in-world mailbox shown by the game, not the build-list

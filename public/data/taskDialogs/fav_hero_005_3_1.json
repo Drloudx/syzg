@@ -1,200 +1,200 @@
 {
+  "des": "茜塔-侍者的“宿命”-进入战役",
   "script": "fav_hero_005_3_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（来到驿站，这里异常热闹，挤满了身材魁梧的蜥蜴人。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "侍者萨利",
         "text": "[show]茜塔小姐，刚刚那桌客人椅子不够坐了，要求我们再搬几张过去。[l][cm]",
-        "charaName": "侍者萨利"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]稍等一下，这边还要送十多盘烤肉呢，等送完之后我就把椅子送过去。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]唉……原本想请假的，结果不知道哪里冒出那么多蜥蜴人，现在必须呆在这里直到他们离开才行，运气真是够倒霉的。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "侍者萨利",
         "text": "[show]嘿嘿……这也不算太倒霉啦，我们至少有加班费不是吗？就深渊现在这个情况，我们请假也没地方去玩啊。[l][cm]",
-        "charaName": "侍者萨利"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]那点加班费哪抵得上现在的工作强度，而且上次在地窖清理蜘蛛的加班费，艾尔莎还没给我呢。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]算了，反正这就是我的命，老老实实打工就好了。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]厨房那边把烤肉准备好了，我先去送餐，等会再聊。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（茜塔走路有些一瘸一拐，似乎是支撑她的义足有些损坏了。）[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]好，烤肉送完了，接下来就去准备椅子……[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "侍者杰米",
         "text": "[show]呀——！[l][cm]",
-        "charaName": "侍者杰米"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "壮硕的蜥蜴人",
         "text": "[show]喂！你们送上来的东西怎么回事？我点的明明是蜂蜜烤肉，你们送上来一盘涂满辣酱的，是存心找我的茬吗？[l][cm]",
-        "charaName": "壮硕的蜥蜴人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "侍者杰米",
         "text": "[show]呜呜……我也不知道啊……我只是按照要求把烤肉端上来了，明明单子上写着就是这桌……[l][cm]",
-        "charaName": "侍者杰米"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "壮硕的蜥蜴人",
         "text": "[show]哈？你的意思是我的错吗？你们就是这样对待客人的？[l][cm]",
-        "charaName": "壮硕的蜥蜴人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "侍者杰米",
         "text": "[show]不是……我……我……[l][cm]",
-        "charaName": "侍者杰米"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]好了，客人先冷静一下吧。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]如果我印象没错的话，这里一共上了四盘烤肉，三盘涂了蜂蜜，一盘涂了辣酱，你是不是吃错了别人的烤肉。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（在茜塔高明的调停下，误会被澄清，原来是那个去厕所的同伴把蜜蜂烤肉吃了，让那位发怒的蜥蜴人误吃了辣肉。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "侍者杰米",
         "text": "[show]茜塔小姐……谢谢你，刚刚我还以为自己要挨揍了。[l][cm]",
-        "charaName": "侍者杰米"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]别害怕，不至于的。再说在驿站动手打人得承担后果，他们没这个胆。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]以后遇到这种事情不要害怕，很多时候可能是误会，就算真弄错了给他们补个新的就是了，不会有什么事情的。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "侍者杰米",
         "text": "[show]嗯……我知道了。[l][cm]",
-        "charaName": "侍者杰米"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（杰米再次道谢，然后一脸如释重负的模样回去工作了。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]呼……还好是个误会，我可不想又在驿站打起来。[l]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -202,26 +202,26 @@
             "tag": "tag_28"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]啊？{myName}？你怎么会在这里？[l]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -233,18 +233,18 @@
             "tag": "tag_30"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[cm][show]是这样……等等，你是什么时候到的？[l]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -252,18 +252,18 @@
             "tag": "tag_32"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[cm][show]好啊，来了之后不和我打招呼，一直躲在一边偷偷看我。没想到你还挺会耍小心思的。[l]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -275,34 +275,34 @@
             "tag": "tag_34"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[cm][show]是这样吗？那是我误会你了……[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]如你所见，旅店突然来了很多蜥蜴人，急需人手帮忙，我就这样被叫来加班了。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]已经连续加班了好几天，整个人都快散架了，头发和脸也变得干巴巴的。让你看见我这副狼狈的样子实在抱歉……[l]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -310,40 +310,48 @@
             "tag": "tag_38"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[cm][show]咳咳……你不要在大庭广众之下说这种奇怪的话啦。[l][cm]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "茜塔",
         "text": "[show]不过还是谢谢你的夸奖，下班之后我请你吃一顿饭吧，还请你在这里等一下，我先去工作了……[l][cm][hide]",
-        "charaName": "茜塔"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（说罢，茜塔一瘸一拐地去端菜了。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（看来茜塔的义足出问题了，我得为她做点什么才行……）[l][cm][hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "des": "茜塔-侍者的“宿命”-进入战役"
+  ]
 }

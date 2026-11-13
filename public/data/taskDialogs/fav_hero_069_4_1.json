@@ -1,72 +1,70 @@
 {
-  "script": "fav_hero_069_4_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]这里怎么这么乱？发生什么事了？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]嗡嗡——！[l][cm]",
-        "charaName": "兵蜂"
-      }
+        "charaName": "兵蜂",
+        "text": "[show]嗡嗡——！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（兵蜂在修瓦莉面前跳了好几段舞，似乎想通过舞步解释什么。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]什……什么？居然还有这回事？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]主公，是这样的，最近蜂箱一直被某些荒野客骚扰。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]他们经常放烟雾逼走我们的蜜蜂，然后偷偷把蜂蜜拿走，这也是大家一直没法把蜂蜜送过来的原因。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]真是太可恶了！居然做出偷窃这种龌龊之事，得好好教训他们才行！[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]他们往哪里逃去了？我直接把他们抓回来。[l]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -74,130 +72,130 @@
             "tag": "tag_11"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[cm][show]主公怎么又拉住我了？您说这种追击方法效率太低了？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]没事的，我们蜜蜂都会飞，只要把搜索网铺开，我们迟早能找到他们的。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]您说与其主动出击，不如在这里等着他们上钩？[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（一旁的兵蜂又跳了一段舞，似乎在表达对你观点的赞许。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]噢，您说那些荒野客每隔一段时间就会过来，这是个不错的办法。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]那好吧，我们就在这里蹲他们，等他们出来以后就教训他们一顿。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "charaName": "修瓦莉",
+        "text": "[show]那好吧，我们就在这里蹲他们，等他们出来以后就教训他们一顿。[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（于是你们选择了一个地方蹲伏，等待着荒野客的出现。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]（蹲伏许久以后，你们看见一群荒野客鬼鬼祟祟地在远处放烟，蜂巢里的蜜蜂都被烟熏走了。）[l][cm]",
-        "charaName": ""
-      }
+        "charaName": "",
+        "text": "[show]（蹲伏许久以后，你们看见一群荒野客鬼鬼祟祟地在远处放烟，蜂巢里的蜜蜂都被烟熏走了。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]那些坏蛋出现了，我们过去把他们拿下吧。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "荒野客A",
         "text": "[show]呵呵，这些蜜蜂真是听话，我们偷多少它们就产多少。[l][cm]",
-        "charaName": "荒野客A"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "荒野客B",
         "text": "[show]再偷几波，我们就有钱去魔爪湖做生意，到时候想赚多少就赚多少。[l][cm]",
-        "charaName": "荒野客B"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]住手！你们不许动那些蜂蜜！[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "charaName": "修瓦莉",
+        "text": "[show]住手！你们不许动那些蜂蜜！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "荒野客A",
         "text": "[show]嗯？你们……你们是谁啊？怎么会在这里？[l][cm]",
-        "charaName": "荒野客A"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "荒野客B",
         "text": "[show]等等，那家伙好像是蜜蜂魔人，莫非是这些蜜蜂的护卫？[l][cm]",
-        "charaName": "荒野客B"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]你们说对了！看枪！[l]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -205,72 +203,74 @@
             "tag": "tag_27"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[cm][show]快……快逃！[l][cm]",
-        "charaName": "荒野客A"
-      }
+        "charaName": "荒野客A",
+        "text": "[cm][show]快……快逃！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（经过一番战斗后，两个荒野客被揍得昏头转向，留下赔偿后灰溜溜地离开了。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]好，这样应该就不会有人敢再过来捣乱啦。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]谢谢主公帮忙，要是没有您，我现在可能还在草原上傻乎乎地找它们呢。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]大家快出来，谢谢主公帮忙。[l][cm]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（蜂箱里飞出一群小蜜蜂，一同绕着你转来转去，似乎是在对你表达感谢。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "修瓦莉",
         "text": "[show]看来这里没问题了，那我们回去吧，主公～[l][cm][hide]",
-        "charaName": "修瓦莉"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[hide]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "fav_hero_069_4_1",
   "des": "修瓦莉好感4-战役"
 }

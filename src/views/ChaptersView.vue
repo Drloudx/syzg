@@ -223,6 +223,7 @@
               v-for="room in roomOptions"
               :key="room.key"
               :active="selectedRoomKey === room.key"
+              :title="room.hasUnlockTask ? `需完成任务解锁：${room.taskNames}` : ''"
               @click="selectedRoomKey = room.key"
             >
               {{ room.label }}
@@ -437,7 +438,12 @@ const roomOptions = computed(() => {
   for (const r of rooms) {
     const label = r.label || r.roomId
     if (!map.has(label)) {
-      map.set(label, { key: label, label })
+      map.set(label, {
+        key: label,
+        label,
+        hasUnlockTask: !!r.unlockTasks?.length,
+        taskNames: (r.unlockTasks || []).map(t => `${t.typeName}「${t.name}」`).join(' / ')
+      })
     }
   }
   return [...map.values()]

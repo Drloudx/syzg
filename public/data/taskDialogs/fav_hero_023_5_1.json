@@ -1,210 +1,210 @@
 {
+  "script": "fav_hero_023_5_1",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]让我看看……这次腌得还算顺利。[l]"
-      },
-      "key": "text"
+        "text": "[show]让我看看……这次腌得还算顺利。[l]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_4",
-            "text": "你现在的状态比之前好多了。"
+            "text": "你现在的状态比之前好多了。",
+            "tag": "tag_4"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[cm][show]嘿嘿，可能是心结解开了吧。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]嘿嘿，可能是心结解开了吧。[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]之前一直不知道怎么处理那家伙。我心里是真想宰了他……可又实在下不去手。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]之前一直不知道怎么处理那家伙。我心里是真想宰了他……可又实在下不去手。[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]开始觉得是自己太纠结，我这脑子也想不通为啥。直到你用那句话点醒了我……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]开始觉得是自己太纠结，我这脑子也想不通为啥。直到你用那句话点醒了我……[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]“仇人不该轻易原谅，但也不能任由仇恨制造新的悲剧。”说得太好了，我的好伙伴！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]“仇人不该轻易原谅，但也不能任由仇恨制造新的悲剧。”说得太好了，我的好伙伴！[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]我想杀他，是因为我不能原谅他对我的伤害。但我没有杀他，并非因为同情，而是我不想认那套弱肉强食的规矩。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我想杀他，是因为我不能原谅他对我的伤害。但我没有杀他，并非因为同情，而是我不想认那套弱肉强食的规矩。[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]要是趁他弱小时报复得更狠，那我跟他有什么区别？不都成了仗势欺人的恶棍了吗？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]要是趁他弱小时报复得更狠，那我跟他有什么区别？不都成了仗势欺人的恶棍了吗？[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]当年挨打、睡马房、啃野草的时候，我最盼的是变强。但我想变强是为了之后不再受欺负……把这份痛苦原样还回去的愿望，反而是其次了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]当年挨打、睡马房、啃野草的时候，我最盼的是变强。但我想变强是为了之后不再受欺负……把这份痛苦原样还回去的愿望，反而是其次了。[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[cm][show]你的话让我想到了那时我最初的想法。没错，这是我凭本心做的选择，没什么好后悔的。[l]"
-      },
-      "key": "text"
+        "text": "[cm][show]你的话让我想到了那时我最初的想法。没错，这是我凭本心做的选择，没什么好后悔的。[l]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "能帮到卡夫就好啦。"
+            "text": "能帮到卡夫就好啦。",
+            "tag": "tag_13"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[cm][show]你这次可帮了大忙！没你的话，我估计早用棒子把他打得和之前的肉团一样了。然后……我可能，一辈子都没法像这样和你一起烤肉了吧。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]你这次可帮了大忙！没你的话，我估计早用棒子把他打得和之前的肉团一样了。然后……我可能，一辈子都没法像这样和你一起烤肉了吧。[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]你指引我做出了最好的选择。这都多亏你啊，亲爱的伙伴！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]你指引我做出了最好的选择。这都多亏你啊，亲爱的伙伴！[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]以后你想干啥尽管开口！管它是端佣兵窝点，还是踹魔物老巢，我肯定举着棒子冲最前头！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]以后你想干啥尽管开口！管它是端佣兵窝点，还是踹魔物老巢，我肯定举着棒子冲最前头！[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]嘿嘿……我脑子是笨，但帮你打架绝对够用！[l]"
-      },
-      "key": "text"
+        "text": "[show]嘿嘿……我脑子是笨，但帮你打架绝对够用！[l]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_18",
-            "text": "谢谢你，卡夫。"
+            "text": "谢谢你，卡夫。",
+            "tag": "tag_18"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[cm][show]该我谢你才对！白帮我这么多回，还能让我解开心结……这种情谊就连我们村里父老乡亲之间都少见。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]该我谢你才对！白帮我这么多回，还能让我解开心结……这种情谊就连我们村里父老乡亲之间都少见。[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]好啦，腌得差不多了，咱们继续做蜜汁烤肉吧。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]好啦，腌得差不多了，咱们继续做蜜汁烤肉吧。[l][cm]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "卡夫",
-        "text": "[show]做出一道完美的烤肉，就是我对你最好的报答！这次我一定会成功的！起锅，烧火！[l]"
-      },
-      "key": "text"
+        "text": "[show]做出一道完美的烤肉，就是我对你最好的报答！这次我一定会成功的！起锅，烧火！[l]",
+        "charaName": "卡夫"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_24",
-            "text": "烧火！"
+            "text": "烧火！",
+            "tag": "tag_24"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[cm]"
-      },
-      "key": "text"
+        "text": "[cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（一番忙碌后，卡夫总算做出了一份……勉强能入口的蜜汁烤肉。）[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]（一番忙碌后，卡夫总算做出了一份……勉强能入口的蜜汁烤肉。）[l][cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（味道虽不算上佳，但对卡夫已是足够。这个莽撞的战士，似乎已经静下心来，掌握了这项新的本领……）[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[show]（味道虽不算上佳，但对卡夫已是足够。这个莽撞的战士，似乎已经静下心来，掌握了这项新的本领……）[l][cm][hide]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "卡夫-进入战役【fav_hero_023_5】",
-  "script": "fav_hero_023_5_1"
+  "des": "卡夫-进入战役【fav_hero_023_5】"
 }

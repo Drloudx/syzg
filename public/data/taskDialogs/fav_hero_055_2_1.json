@@ -1,6 +1,13 @@
 {
-  "script": "fav_hero_055_2_1",
   "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
     {
       "para": {
         "charaName": "迦南",
@@ -202,7 +209,15 @@
     {
       "para": {
         "charaName": "",
-        "text": "[show]与迦南一起度过了一段悠闲的时光……[l][cm]",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]与迦南一起度过了一段悠闲的时光……[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -356,5 +371,6 @@
       "key": "text"
     }
   ],
+  "script": "fav_hero_055_2_1",
   "des": "迦南-场景：营地门前"
 }

@@ -294,7 +294,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]藏？呵……让我来指出你的一处谬误吧！[l][cm]"
       },
       "key": "text"
@@ -302,7 +302,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]学者确实都很有钱，但有钱和把钱带在身上，完全是两码事。[l][cm]"
       },
       "key": "text"
@@ -310,7 +310,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]如果是在别的地方还好说，但在这个荒凉无比的索利德山上，我想任何智力正常的旅人——不管他是不是学者——都没有必要随身携带大笔的现金。[l][cm]"
       },
       "key": "text"
@@ -318,7 +318,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]因为在这座物产贫瘠的山上，根本找不到可以花钱的地方。[l][cm]"
       },
       "key": "text"
@@ -326,7 +326,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]综上所述，你们之前从我身上抢走的50阿比，已经是我身上带着的全部通货。这样解释，你那被暴力锈蚀的脑袋，可以理解吗？[l][cm]"
       },
       "key": "text"
@@ -342,7 +342,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]啊，当然，如果你有胆子的话，我身上的法袍，还有这本魔法书，也都值不少钱。[l][cm]"
       },
       "key": "text"
@@ -350,7 +350,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]不过这上面有着[color=ffb64d]大书院[colorEnd]的防窃魔法，你做好出手之后，被大书院的[color=ffb64d]守密人[colorEnd]追捕到天涯海角的准备了吗？[l][cm]"
       },
       "key": "text"
@@ -366,7 +366,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]啊，多谢你陪我解闷，不过很可惜，愉快的聊天时间看来是结束了。[l][cm]"
       },
       "key": "text"
@@ -374,7 +374,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]如果你还想有命继续赚钱，不妨先接待好那边的客人吧？[l][cm]"
       },
       "key": "text"

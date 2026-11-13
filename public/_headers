@@ -20,6 +20,7 @@
 #   扛得住：`index.html` 与构建产物里**内联 `<script>` 为 0 个**，
 #   也**没有任何 `onclick=` 之类的内联事件处理器**（全仓实测 0 处）。
 #   一旦将来有人加内联脚本，CSP 会直接拦下并报错 —— 这正是它该起的作用。
+#   （百度统计因此也走**同源外部脚本** /baidu-analytics.js，不写内联。）
 #
 # · `style-src` 必须带 `'unsafe-inline'` —— Vue 的 `:style` 绑定会写成内联 style
 #   属性，全仓 141 处（招募舞台坐标、地图节点、吉祥物、营地研究树等）。
@@ -37,8 +38,17 @@
 # · `frame-ancestors 'none'` —— 防本站被第三方 iframe 嵌套（点击劫持）。
 #   它是 `X-Frame-Options` 的现代写法，两个都写是为了兼容老浏览器。
 #
-# · `connect-src 'self'` —— 事实核对：网页端所有接口与数据都是**同域**请求
-#   （`/api/*` 由 Pages Functions 提供，数据在 `/data/**`），没有跨域 XHR。
+# · `connect-src 'self'` —— 事实核对：网页端业务接口与数据都是**同域**请求
+#   （`/api/*` 由 Pages Functions 提供，数据在 `/data/**`）。
+#   例外：百度统计（hm.baidu.com）需要跨域上报，见下方「百度统计」段落。
+#
+# · `script-src` / `img-src` / `connect-src` 里的 `hm.baidu.com` —— 百度统计所需：
+#   - `script-src hm.baidu.com`：加载 https://hm.baidu.com/hm.js
+#   - `connect-src hm.baidu.com`：统计上报（部分版本走 XHR/beacon）
+#   - `img-src hm.baidu.com`：统计上报的 1×1 gif（hm.gif）
+#   加载入口是**同源**的 /baidu-analytics.js（命中 'self'），且它只在正式域名
+#   syzgwiki.top 才注入 hm.js；localhost / pages.dev 预览与 Android 原生壳
+#   （https://localhost）都不加载，不会污染数据。
 #
 # 🔴 **改这个头之后必须实测**，因为 CSP 的误伤特点是「不报错、只静默失效」
 #   （图不显示、音不播、样式错位）。仓库内的自测入口：
@@ -52,7 +62,7 @@
 #   —— 这是「原生端没有 CSP 保护」，不是配置错误，如实记录。
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' hm.baidu.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: hm.baidu.com; media-src 'self'; font-src 'self'; connect-src 'self' hm.baidu.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff

@@ -24,7 +24,7 @@
           ({{ formatCountProbability(rule.min, rule.max) }})
         </span>
       </div>
-      <span v-if="formatRewardProbability(rule)" class="ui-reward-card__prob">{{ formatRewardProbability(rule) }}</span>
+      <span v-if="rule.probText || formatRewardProbability(rule)" class="ui-reward-card__prob">{{ rule.probText || formatRewardProbability(rule) }}</span>
       <span v-if="rule.detail" class="ui-reward-card__detail">{{ rule.detail }}</span>
     </div>
   </div>

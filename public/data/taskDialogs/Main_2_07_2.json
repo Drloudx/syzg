@@ -36,7 +36,7 @@
       "para": {
         "nameSide": "right",
         "text": "[show]哦？你们要到采石场去吗？[l][cm]",
-        "charaName": "？"
+        "charaName": "？？？"
       },
       "key": "text"
     },
@@ -44,7 +44,7 @@
       "para": {
         "nameSide": "left",
         "text": "[show]什么人？[l][cm]",
-        "charaName": "？"
+        "charaName": "？？？"
       },
       "key": "text"
     },

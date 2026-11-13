@@ -1,4 +1,6 @@
 {
+  "des": "贝拉多娜-营地对话【怎么不是贝拉多娜本人？】",
+  "script": "fav_hero_026_4_0",
   "exps": [
     {
       "para": {
@@ -12,12 +14,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_3",
-            "text": "你是……贝拉多娜的小眷属？"
+            "text": "你是……贝拉多娜的小眷属？",
+            "tag": "tag_3"
           },
           {
-            "tag": "tag_3",
-            "text": "贝拉多娜本人去哪了？"
+            "text": "贝拉多娜本人去哪了？",
+            "tag": "tag_3"
           }
         ]
       },
@@ -35,8 +37,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_5",
-            "text": "你的意思是……让我跟你走？"
+            "text": "你的意思是……让我跟你走？",
+            "tag": "tag_5"
           }
         ]
       },
@@ -57,8 +59,14 @@
         "nameSide": "left"
       },
       "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "script": "fav_hero_026_4_0",
-  "des": "贝拉多娜-营地对话【怎么不是贝拉多娜本人？】"
+  ]
 }

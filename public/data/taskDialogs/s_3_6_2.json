@@ -70,7 +70,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]不行！你们这样是不对的！[l][cm]",
         "nameSide": "left"
       },
@@ -78,7 +78,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]说什么呢！你们那样才是错的！异端！[l][cm]",
         "nameSide": "left"
       },
@@ -86,7 +86,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]你们才是异端！[l][cm]",
         "nameSide": "left"
       },

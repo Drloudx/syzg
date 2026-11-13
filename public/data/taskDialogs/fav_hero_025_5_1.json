@@ -1,303 +1,303 @@
 {
+  "script": "fav_hero_025_5_1",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "艾尔莎",
-        "text": "[show]让我们祝贺嘉莉缇小姐的新作试吃会圆满成功！让我们干杯！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]让我们祝贺嘉莉缇小姐的新作试吃会圆满成功！让我们干杯！[l][cm]",
+        "charaName": "艾尔莎"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "众人",
-        "text": "[show]干杯——！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]干杯——！[l][cm]",
+        "charaName": "众人"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（宴会散场后——）[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]（宴会散场后——）[l][cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]哎呀，宴会果然很开心啊！虽然忙前忙后准备了很久，但能看到大家的笑容，我就满足了！[l]"
-      },
-      "key": "text"
+        "text": "[show]哎呀，宴会果然很开心啊！虽然忙前忙后准备了很久，但能看到大家的笑容，我就满足了！[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_9",
-            "text": "大家对嘉莉缇的新作评价很高。"
+            "text": "大家对嘉莉缇的新作评价很高。",
+            "tag": "tag_9"
           },
           {
-            "tag": "tag_9",
-            "text": "这次的新作非常成功。"
+            "text": "这次的新作非常成功。",
+            "tag": "tag_9"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]嘿嘿，这一点我一早就料到了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]嘿嘿，这一点我一早就料到了。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]身为厨师，最重要的就是要能够准确把握客人的喜好。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]身为厨师，最重要的就是要能够准确把握客人的喜好。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]在确定试吃会是在驿站举办之后，我稍微调查了一下这边的口味，作出了一些针对性的调整。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]在确定试吃会是在驿站举办之后，我稍微调查了一下这边的口味，作出了一些针对性的调整。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]结果就是，这道新菜在不改变整体风味的情况下，尽可能地适配了驿站这边的喜好，所以大家感觉不错，那都是理所当然的啦！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]结果就是，这道新菜在不改变整体风味的情况下，尽可能地适配了驿站这边的喜好，所以大家感觉不错，那都是理所当然的啦！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]毕竟这也算是一种小小的“作弊”嘛。[l]"
-      },
-      "key": "text"
+        "text": "[show]毕竟这也算是一种小小的“作弊”嘛。[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_15",
-            "text": "那也是因为你技术好。"
+            "text": "那也是因为你技术好。",
+            "tag": "tag_15"
           },
           {
-            "tag": "tag_15",
-            "text": "别人可是想“作弊”都没有那个能力呢！"
+            "text": "别人可是想“作弊”都没有那个能力呢！",
+            "tag": "tag_15"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]谢谢夸奖，能够得到你的承认，我这么多年磨炼厨艺也算是有回报了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]谢谢夸奖，能够得到你的承认，我这么多年磨炼厨艺也算是有回报了。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]不过，这一次能够得到大家的肯定，光靠我一个人肯定是不够的。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]不过，这一次能够得到大家的肯定，光靠我一个人肯定是不够的。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]都是多亏了{myName}的帮忙，我才能得到这样一个发挥技术的舞台。[l]"
-      },
-      "key": "text"
+        "text": "[show]都是多亏了{myName}的帮忙，我才能得到这样一个发挥技术的舞台。[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_19",
-            "text": "这……"
+            "text": "这……",
+            "tag": "tag_19"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]好了，不要谦虚了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]好了，不要谦虚了。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]我其实也是有自觉的，我的要求……说实话，多少还是有些任性的。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我其实也是有自觉的，我的要求……说实话，多少还是有些任性的。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]但即使这样，你还是愿意尽你所能地帮助我，最终完成了这份完美的料理。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]但即使这样，你还是愿意尽你所能地帮助我，最终完成了这份完美的料理。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]所以说，这次的成功可不是我一个人的功劳，功劳簿上有我的一半，也有你的一半。[l]"
-      },
-      "key": "text"
+        "text": "[show]所以说，这次的成功可不是我一个人的功劳，功劳簿上有我的一半，也有你的一半。[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_24",
-            "text": "嘉莉缇……"
+            "text": "嘉莉缇……",
+            "tag": "tag_24"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]啊，当然！光是说说还不足以表达我的感谢，所以我想和你立下一个约定。[l]"
-      },
-      "key": "text"
+        "text": "[cm][show]啊，当然！光是说说还不足以表达我的感谢，所以我想和你立下一个约定。[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_26",
-            "text": "约定……？"
+            "text": "约定……？",
+            "tag": "tag_26"
           },
           {
-            "tag": "tag_26",
-            "text": "什么约定？"
+            "text": "什么约定？",
+            "tag": "tag_26"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]我想……请你成为我的首席试吃人。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]我想……请你成为我的首席试吃人。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]无论什么时候，当我研究出来新的料理，我都希望你能第一个品尝。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]无论什么时候，当我研究出来新的料理，我都希望你能第一个品尝。[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]这种事情……你、你愿意吗……？[l]"
-      },
-      "key": "text"
+        "text": "[show]这种事情……你、你愿意吗……？[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_30",
-            "text": "我还以为是什么呢！"
+            "text": "我还以为是什么呢！",
+            "tag": "tag_30"
           },
           {
-            "tag": "tag_30",
-            "text": "我当然愿意了！"
+            "text": "我当然愿意了！",
+            "tag": "tag_30"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]真、真的吗！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]真、真的吗！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]唔……虽然感觉你好像没能明白我的意思……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]唔……虽然感觉你好像没能明白我的意思……[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]但总之！你答应就好！今后我也会时常前来叨扰的，你可千万别不欢迎哦？[l]"
-      },
-      "key": "text"
+        "text": "[show]但总之！你答应就好！今后我也会时常前来叨扰的，你可千万别不欢迎哦？[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_34",
-            "text": "那当然！"
+            "text": "那当然！",
+            "tag": "tag_34"
           },
           {
-            "tag": "tag_34",
-            "text": "这个营地永远欢迎你。"
+            "text": "这个营地永远欢迎你。",
+            "tag": "tag_34"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]哼哼，那咱们就说定啦～！[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[cm][show]哼哼，那咱们就说定啦～！[l][cm][hide]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "嘉莉缇-进入战役【fav_hero_025_5】",
-  "script": "fav_hero_025_5_1"
+  "des": "嘉莉缇-进入战役【fav_hero_025_5】"
 }

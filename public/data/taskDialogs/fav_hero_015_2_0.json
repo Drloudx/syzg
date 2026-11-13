@@ -1,22 +1,30 @@
 {
+  "script": "fav_hero_015_2_0",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "芭杜尔",
-        "text": "[show]这么着急？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]这么着急？[l][cm]",
+        "charaName": "芭杜尔"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "芭杜尔",
-        "text": "[show]究竟是要去哪里呢？我开始感觉期待起来了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]究竟是要去哪里呢？我开始感觉期待起来了。[l][cm][hide]",
+        "charaName": "芭杜尔"
+      }
+    },
+    {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "芭杜尔-我们出发吧！",
-  "script": "fav_hero_015_2_0"
+  "des": "芭杜尔-我们出发吧！"
 }

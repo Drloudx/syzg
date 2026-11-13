@@ -1,6 +1,13 @@
 {
-  "script": "fav_hero_055_2_3",
   "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
     {
       "para": {
         "charaName": "迦南",
@@ -169,5 +176,6 @@
       "key": "text"
     }
   ],
+  "script": "fav_hero_055_2_3",
   "des": "迦南-场景：凯蒂的家外"
 }

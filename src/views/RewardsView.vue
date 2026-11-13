@@ -331,7 +331,7 @@
               <span v-if="group.collectTip" class="collect-tip">{{ group.collectTip }}</span>
             </div>
             <div class="items-flex">
-              <div v-for="grp in group.rewardItems" :key="grp.typeId || Math.random()" class="item-group">
+              <template v-for="(grp, gIdx) in group.rewardItems" :key="grp.typeId || gIdx">
                 <UiRewardCard
                   v-for="rule in grp.rules"
                   :key="rule.typeId"
@@ -342,11 +342,16 @@
                     min: rule.min !== undefined ? rule.min : (rule.num !== undefined ? rule.num : undefined),
                     max: rule.max !== undefined ? rule.max : (rule.num !== undefined ? rule.num : undefined),
                     num: rule.num,
+                    actualProb: grp.kind === 'random' && rule.actualProb < 1 ? rule.actualProb : undefined,
+                    probText: grp.kind === 'random' && rule.actualProb < 1
+                      ? (grp.rules.length > 1 ? `随机其一 (${Math.round(rule.actualProb * 100)}%)` : `概率 ${Math.round(rule.actualProb * 100)}%`)
+                      : undefined,
                     typeId: rule.typeId
                   }"
                   @click="openItem(rule.typeId)"
                 />
-              </div>
+              </template>
+              <span v-if="!group.rewardItems || !group.rewardItems.length" class="empty-reward-text">无物品奖励</span>
             </div>
             <!-- 点位预览图：独占一行，放在点位信息下方 -->
             <img
@@ -370,36 +375,41 @@
             搜索关键词：`金币` 保留为同义词，因为这一列用的是 ke（氪金）图标，
             旧文案曾误写「金币扩建」，部分用户可能仍按「金币」搜索。
           -->
-          <UiListRow v-if="slotCosts && matchesRewardQuery(slotCosts, '培育室 槽位 扩张 银币 氪金 金币 冒险等级')">
+          <UiListRow
+            v-if="slotCosts && matchesRewardQuery(slotCosts, '培育室 槽位 扩张 银币 氪金 金币 冒险等级')"
+            class="slot-cost-row"
+          >
             <div class="slot-cost-title">培育室槽位扩张费用</div>
 
             <div class="slot-costs-grid-layout">
               <!-- 银币扩建 -->
               <div class="slot-column-card">
-                <h4 class="slot-column-title">银币扩建</h4>
+                <h4 class="slot-column-title">
+                  <img :src="getImageUrl(REWARD_MODE_INFO.money.icon)" class="slot-title-icon" alt="" />
+                  <span>银币扩建</span>
+                </h4>
                 <div class="slot-cost-list-item" v-for="(item, idx) in slotCosts.petSlotMoney" :key="idx">
                   <span class="slot-times-label">第 {{ idx + 1 }} 次扩建</span>
-                  <div class="slot-cost-details">
-                    <span class="slot-level-req">需要冒险等级 {{ item.level }}</span>
-                    <div class="slot-cost-badge">
-                      <img :src="getImageUrl(REWARD_MODE_INFO.money.icon)" class="mini-coin-icon" />
-                      <span>×{{ item.value }}</span>
-                    </div>
+                  <span class="slot-level-req">需要冒险等级 {{ item.level }}</span>
+                  <div class="slot-cost-badge">
+                    <img :src="getImageUrl(REWARD_MODE_INFO.money.icon)" class="mini-coin-icon" />
+                    <span>×{{ item.value }}</span>
                   </div>
                 </div>
               </div>
 
               <!-- 氪金扩建 -->
               <div class="slot-column-card">
-                <h4 class="slot-column-title">氪金扩建</h4>
+                <h4 class="slot-column-title">
+                  <img :src="getImageUrl(REWARD_MODE_INFO.ke.icon)" class="slot-title-icon" alt="" />
+                  <span>氪金扩建</span>
+                </h4>
                 <div class="slot-cost-list-item" v-for="(item, idx) in slotCosts.petSlotKe" :key="idx">
                   <span class="slot-times-label">第 {{ idx + 1 }} 次扩建</span>
-                  <div class="slot-cost-details">
-                    <span class="slot-level-req">需要冒险等级 {{ item.level }}</span>
-                    <div class="slot-cost-badge">
-                      <img :src="getImageUrl(REWARD_MODE_INFO.ke.icon)" class="mini-coin-icon" />
-                      <span>×{{ item.value }}</span>
-                    </div>
+                  <span class="slot-level-req">需要冒险等级 {{ item.level }}</span>
+                  <div class="slot-cost-badge">
+                    <img :src="getImageUrl(REWARD_MODE_INFO.ke.icon)" class="mini-coin-icon" />
+                    <span>×{{ item.value }}</span>
                   </div>
                 </div>
               </div>
@@ -1348,6 +1358,13 @@ const closePrevImg = () => {
   gap: 6px;
 }
 
+.item-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
 /* 手机端：列表行纵向堆叠 */
 @media (max-width: 640px) {
   .pvp-area-grid {
@@ -1409,17 +1426,27 @@ const closePrevImg = () => {
 
 /* 被隐藏的物品 */
 .hidden-list-row {
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  background-color: var(--paper-soft) !important;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
 }
 
 .hidden-list-row.is-collected {
   border-color: rgba(122, 154, 153, 0.6);
-  background-color: rgba(223, 206, 179, 0.96);
+  background-color: var(--paper-hover, #dfd0b2) !important;
+  opacity: 0.85;
+}
+
+.dark-mode .hidden-list-row {
+  background-color: var(--paper-soft) !important;
+  border-color: var(--border-soft);
 }
 
 .dark-mode .hidden-list-row.is-collected {
   border-color: rgba(122, 154, 153, 0.45);
-  background-color: rgba(56, 44, 32, 0.85);
+  background-color: rgba(56, 44, 32, 0.9) !important;
 }
 
 .hidden-row-head {
@@ -1479,6 +1506,18 @@ const closePrevImg = () => {
 }
 
 /* 育室槽位消耗 */
+.slot-cost-row {
+  background-color: var(--paper-soft) !important;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.dark-mode .slot-cost-row {
+  background-color: var(--paper-soft) !important;
+  border-color: var(--border-soft);
+}
+
 .slot-cost-title {
   font-size: 16px;
   font-weight: 700;
@@ -1488,42 +1527,61 @@ const closePrevImg = () => {
 
 .slot-costs-grid-layout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: 16px;
   width: 100%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 720px) {
   .slot-costs-grid-layout {
     grid-template-columns: 1fr;
   }
 }
 
 .slot-column-card {
-  background: rgba(217, 198, 166, 0.62);
-  border: 1px solid var(--border-faint);
-  border-radius: 4px;
-  padding: 14px;
+  background: var(--input-bg, #f3ead5);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  min-width: 0;
 }
 
 .slot-column-title {
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
   font-weight: 700;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: var(--text-main);
   border-bottom: 1px solid var(--border-soft);
-  padding-bottom: 6px;
+  padding-bottom: 8px;
+}
+
+.slot-title-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
 }
 
 .slot-cost-list-item {
   display: grid;
-  grid-template-columns: 92px minmax(0, 1fr);
+  grid-template-columns: 72px 100px minmax(0, 1fr);
   align-items: center;
-  gap: 10px;
-  padding: 8px 0;
-  border-bottom: 1px dashed var(--border-soft);
+  gap: 8px;
+  padding: 8px 4px;
+  border-bottom: 1px solid rgba(143, 115, 81, 0.14);
   font-size: 13px;
   line-height: 1.6;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.slot-cost-list-item:hover {
+  background-color: rgba(143, 115, 81, 0.08);
 }
 
 .slot-cost-list-item:last-child {
@@ -1532,54 +1590,54 @@ const closePrevImg = () => {
 
 .slot-times-label {
   color: var(--text-main);
-  font-weight: 600;
-}
-
-.slot-cost-details {
-  display: grid;
-  grid-template-columns: minmax(0, 142px) 78px;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .slot-level-req {
-  color: var(--text-muted);
-  font-size: 12px;
+  color: var(--accent-ink, #2f4a49);
+  font-size: 11px;
   font-weight: 600;
-  width: 100%;
-  box-sizing: border-box;
   text-align: center;
-  background: rgba(43, 31, 21, 0.14);
-  padding: 3px 8px;
-  border-radius: 3px;
+  background: rgba(122, 154, 153, 0.16);
+  border: 1px solid rgba(122, 154, 153, 0.32);
+  padding: 2px 4px;
+  border-radius: 4px;
   white-space: nowrap;
 }
 
 .slot-cost-badge {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 4px;
-  width: 78px;
-  justify-content: flex-start;
   font-weight: 700;
   color: var(--text-main);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
 }
 
-.dark-mode .hidden-prev-img,
-.dark-mode .slot-column-card {
+.dark-mode .hidden-prev-img {
   background: rgba(35, 26, 17, 0.62);
+}
+
+.dark-mode .slot-column-card {
+  background: rgba(30, 22, 15, 0.6);
+  border-color: var(--border-soft);
+}
+
+.dark-mode .slot-level-req {
+  background: rgba(122, 154, 153, 0.22);
+  color: var(--accent-bright, #7a9a99);
+  border-color: rgba(122, 154, 153, 0.45);
 }
 
 @media (max-width: 600px) {
   .slot-cost-list-item {
-    grid-template-columns: 1fr;
-    gap: 5px;
-  }
-
-  .slot-cost-details {
-    justify-content: start;
+    grid-template-columns: 78px 106px minmax(0, 1fr);
+    gap: 6px;
+    padding: 7px 4px;
   }
 }
 

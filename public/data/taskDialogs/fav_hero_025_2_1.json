@@ -1,225 +1,225 @@
 {
-  "des": "嘉莉缇-进入战役【fav_hero_025_2】",
   "script": "fav_hero_025_2_1",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]哦哦！这些长得像蛤蟆一样的魔物，就是你推荐的主材吗？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]哦哦！这些长得像蛤蟆一样的魔物，就是你推荐的主材吗？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]这些家伙看起来硬邦邦的，作为食材真的没问题吗？[l]"
-      },
-      "key": "text"
+        "text": "[show]这些家伙看起来硬邦邦的，作为食材真的没问题吗？[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_6",
-            "text": "其实硬的只是皮。"
+            "text": "其实硬的只是皮。",
+            "tag": "tag_6"
           },
           {
-            "tag": "tag_6",
-            "text": "肉质比牛蛙还要鲜美。"
+            "text": "肉质比牛蛙还要鲜美。",
+            "tag": "tag_6"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]真的吗？那可要好好尝试一下！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]真的吗？那可要好好尝试一下！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]来之前你说，这种食材是“期间限定”的稀有品，过段时间可能就没有了？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]来之前你说，这种食材是“期间限定”的稀有品，过段时间可能就没有了？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]这是怎么回事？这些魔物难道快要灭绝了吗？[l]"
-      },
-      "key": "text"
+        "text": "[show]这是怎么回事？这些魔物难道快要灭绝了吗？[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_10",
-            "text": "（向嘉莉缇解释岩蟾蜍的事。）"
+            "text": "（向嘉莉缇解释岩蟾蜍的事。）",
+            "tag": "tag_10"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]什么？原来这些家伙不是地面上的魔物，而是来自地底的入侵者？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]什么？原来这些家伙不是地面上的魔物，而是来自地底的入侵者？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]现在异变已经解决，地面很快就会变得不适于它们生存，要不了多久它们就要逃回地下去了？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]现在异变已经解决，地面很快就会变得不适于它们生存，要不了多久它们就要逃回地下去了？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]还有这种事啊……异变对于生态的影响，比我想象的要大得多呢！[l]"
-      },
-      "key": "text"
+        "text": "[show]还有这种事啊……异变对于生态的影响，比我想象的要大得多呢！[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_14",
-            "text": "了解之后你有什么想法吗？"
+            "text": "了解之后你有什么想法吗？",
+            "tag": "tag_14"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]嗯……我在想……要不咱们多打几只？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]嗯……我在想……要不咱们多打几只？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]你看看，这些魔物可是很快就要在地表销声匿迹了呀！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]你看看，这些魔物可是很快就要在地表销声匿迹了呀！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]这种稀有食材，不趁着还有时间，多采集一点怎么行呢！[l]"
-      },
-      "key": "text"
+        "text": "[show]这种稀有食材，不趁着还有时间，多采集一点怎么行呢！[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_18",
-            "text": "你是怎么想的？"
+            "text": "你是怎么想的？",
+            "tag": "tag_18"
           },
           {
-            "tag": "tag_19",
-            "text": "可是保存怎么办？"
+            "text": "可是保存怎么办？",
+            "tag": "tag_19"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]你是在担心保存的事吗？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]你是在担心保存的事吗？[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[cm][show]没关系的，你别忘了，我可是黑森林的宴会大师！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]没关系的，你别忘了，我可是黑森林的宴会大师！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]保存生鲜食材的方法，不说几十种，起码十种还是能够拿得出来的！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]保存生鲜食材的方法，不说几十种，起码十种还是能够拿得出来的！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]好了，别愣着了！开发菜式可不简单，光是尝白、试菜、定型，一整套流程下来，还不知道要消耗多少呢！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]好了，别愣着了！开发菜式可不简单，光是尝白、试菜、定型，一整套流程下来，还不知道要消耗多少呢！[l][cm]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "嘉莉缇",
-        "text": "[show]我们可得多储备一点才行！[l]"
-      },
-      "key": "text"
+        "text": "[show]我们可得多储备一点才行！[l]",
+        "charaName": "嘉莉缇"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_24",
-            "text": "……"
+            "text": "……",
+            "tag": "tag_24"
           },
           {
-            "tag": "tag_24",
-            "text": "好吧，那就按你说的办！"
+            "text": "好吧，那就按你说的办！",
+            "tag": "tag_24"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[cm]"
-      },
-      "key": "text"
+        "text": "[cm]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（于是，和嘉莉缇在山上度过了充实的两天……）[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[show]（于是，和嘉莉缇在山上度过了充实的两天……）[l][cm][hide]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
-  ]
+  ],
+  "des": "嘉莉缇-进入战役【fav_hero_025_2】"
 }

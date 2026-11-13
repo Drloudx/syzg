@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-13T05:29:40.176Z",
+  "generatedAt": "2026-11-13T21:07:30.088Z",
   "summary": {
     "taskTotal": 523,
     "removedDemo": 7,
@@ -14,8 +14,8 @@
     "getItemNpc": 93,
     "gotoCamp": 7,
     "gotoStage": 61,
-    "hunter": 33,
-    "hunterUid": 14,
+    "hunter": 31,
+    "hunterUid": 16,
     "level": 1,
     "npcTalkBattle": 250,
     "openAreaShow": 81,

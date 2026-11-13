@@ -2,17 +2,17 @@
   "exps": [
     {
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕！咕咕！[l][cm]",
-        "nameSide": "left"
+        "charaName": "软软"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]嘿嘿……好久不见了，我和软软等你很久了。[l]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
@@ -33,9 +33,17 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]嗯……听你的～[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }

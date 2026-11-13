@@ -1,289 +1,289 @@
 {
+  "script": "fav_hero_027_5_1",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]好，驿站门口已经挂上停止经营的标志了。忙了一上午，大家现在可以好好休息了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]好，驿站门口已经挂上停止经营的标志了。忙了一上午，大家现在可以好好休息了。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]嗯？有声音……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]嗯？有声音……[l][cm][hide]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "侍者杰米",
-        "text": "[show]呜呜……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]呜呜……[l][cm]",
+        "charaName": "侍者杰米"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]杰米？你怎么哭了？发生什么事了吗？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]杰米？你怎么哭了？发生什么事了吗？[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "侍者萨利",
-        "text": "[show]梅莉莉小姐，是这样的，刚刚杰米给客人上菜的时候，客人嫌弃上得太慢，然后就把杰米臭骂了一顿……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]梅莉莉小姐，是这样的，刚刚杰米给客人上菜的时候，客人嫌弃上得太慢，然后就把杰米臭骂了一顿……[l][cm]",
+        "charaName": "侍者萨利"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "侍者杰米",
-        "text": "[show]呜呜……我们明明这么用心为客人服务，却还是被凶……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]呜呜……我们明明这么用心为客人服务，却还是被凶……[l][cm]",
+        "charaName": "侍者杰米"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "侍者杰米",
-        "text": "[show]我明明上菜很快啊！再说就算慢了也不该全怪我嘛……呜呜……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我明明上菜很快啊！再说就算慢了也不该全怪我嘛……呜呜……[l][cm]",
+        "charaName": "侍者杰米"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]原来如此……杰米小姐辛苦了，这次确实是客人做的不对。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]原来如此……杰米小姐辛苦了，这次确实是客人做的不对。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]不过我们侍者的工作就是服务好客人，即使遇到不讲理的客人，也请不要因此对所有客人感到失望。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]不过我们侍者的工作就是服务好客人，即使遇到不讲理的客人，也请不要因此对所有客人感到失望。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]别哭啦，下午好好休息吧。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]别哭啦，下午好好休息吧。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "侍者杰米",
-        "text": "[show]嗯……谢……谢谢梅莉莉小姐……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]嗯……谢……谢谢梅莉莉小姐……[l][cm]",
+        "charaName": "侍者杰米"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[show]（在梅莉莉的安排下，侍者队的大家都下班休息了。）[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]（在梅莉莉的安排下，侍者队的大家都下班休息了。）[l][cm][hide]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]呼……终于都搞定了……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]呼……终于都搞定了……[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]咦？{myName}还没去休息吗？[l]"
-      },
-      "key": "text"
+        "text": "[show]咦？{myName}还没去休息吗？[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_17",
-            "text": "等着和你一起休息呢。"
+            "text": "等着和你一起休息呢。",
+            "tag": "tag_17"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]这样啊，谢谢你愿意等我。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]这样啊，谢谢你愿意等我。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]刚刚杰米的事情……其实也让我有些动摇呢。明明不是第一次了，可心里还是酸酸的。[l]"
-      },
-      "key": "text"
+        "text": "[show]刚刚杰米的事情……其实也让我有些动摇呢。明明不是第一次了，可心里还是酸酸的。[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_20",
-            "text": "有什么烦恼可以向我倾诉哦。"
+            "text": "有什么烦恼可以向我倾诉哦。",
+            "tag": "tag_20"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]嘿嘿……我就知道{myName}愿意听我这个侍者队长的唠叨……[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]嘿嘿……我就知道{myName}愿意听我这个侍者队长的唠叨……[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]其实我们每位姐妹几乎都都挨过客人的骂，毕竟相处得多，发生一些冲突在所难免。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]其实我们每位姐妹几乎都都挨过客人的骂，毕竟相处得多，发生一些冲突在所难免。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]可一想到我们的诚心服务遭到客人的嫌弃，就特别难受……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]可一想到我们的诚心服务遭到客人的嫌弃，就特别难受……[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]如果真心的付出换来的只有粗暴的指责，那我们努力的意义究竟在哪里呢……[l]"
-      },
-      "key": "text"
+        "text": "[show]如果真心的付出换来的只有粗暴的指责，那我们努力的意义究竟在哪里呢……[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_25",
-            "text": "部分客人的坏并不能代表全体客人。"
+            "text": "部分客人的坏并不能代表全体客人。",
+            "tag": "tag_25"
           },
           {
-            "tag": "tag_25",
-            "text": "至少我很喜欢你的侍者队。"
+            "text": "至少我很喜欢你的侍者队。",
+            "tag": "tag_25"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_26",
-            "text": "梅莉莉可不能因为挫折而忘记本心。"
+            "text": "梅莉莉可不能因为挫折而忘记本心。",
+            "tag": "tag_26"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]没错……我之所以愿意成为侍者，为客人提供服务，是希望大家能得到在忙碌之后得到安稳幸福，让每个为了生存奔波的人过得好一点。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]没错……我之所以愿意成为侍者，为客人提供服务，是希望大家能得到在忙碌之后得到安稳幸福，让每个为了生存奔波的人过得好一点。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]虽然那些指责总令我印象深刻，但那终归是少数。我不能因为少数人尖锐的批评而影响我想要追求的梦想。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]虽然那些指责总令我印象深刻，但那终归是少数。我不能因为少数人尖锐的批评而影响我想要追求的梦想。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]谢谢你，又是你帮了我呢。[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]谢谢你，又是你帮了我呢。[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]我决定了！从今天开始，我就是{myName}营地的专属侍者，我也要为主人带来更多的幸福！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我决定了！从今天开始，我就是{myName}营地的专属侍者，我也要为主人带来更多的幸福！[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]以后的日子……还请多多指教啦。[l]"
-      },
-      "key": "text"
+        "text": "[show]以后的日子……还请多多指教啦。[l]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_32",
-            "text": "还请多多指教！"
+            "text": "还请多多指教！",
+            "tag": "tag_32"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[cm][show]接下来的时间还长，主人是想在回营地呢，还是在这里和我约会呢？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]接下来的时间还长，主人是想在回营地呢，还是在这里和我约会呢？[l][cm]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "梅莉莉",
-        "text": "[show]不过，只要和主人在一起，去哪里都没所谓吧……[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[show]不过，只要和主人在一起，去哪里都没所谓吧……[l][cm][hide]",
+        "charaName": "梅莉莉"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "梅莉莉-成为侍者的原因-进入战役",
-  "script": "fav_hero_027_5_1"
+  "des": "梅莉莉-成为侍者的原因-进入战役"
 }

@@ -1,4 +1,6 @@
 {
+  "des": "贝拉多娜-营地对话【（贝拉多娜似乎有些高兴。）】",
+  "script": "fav_hero_026_5_0",
   "exps": [
     {
       "para": {
@@ -39,8 +41,14 @@
         "nameSide": "left"
       },
       "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "script": "fav_hero_026_5_0",
-  "des": "贝拉多娜-营地对话【（贝拉多娜似乎有些高兴。）】"
+  ]
 }

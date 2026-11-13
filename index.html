@@ -15,6 +15,13 @@
       <meta property="og:title" content="深渊大书院">
       <meta property="og:description" content="《深渊之歌》资料库">
       <meta property="og:type" content="website">
+      <!--
+        百度统计：同源外部加载器（实际脚本见 public/baidu-analytics.js）。
+        这里**不能**写官方那段内联 <script>：本站 CSP 为 script-src 'self'，
+        内联脚本会被拦掉（_headers 明确要求内联 script 为 0）。
+        加载器内部只在正式域名 syzgwiki.top 才注入 hm.js，原生壳（https://localhost）不上报。
+      -->
+      <script src="/baidu-analytics.js" defer></script>
     </head>
   <body>
     <div id="app"></div>

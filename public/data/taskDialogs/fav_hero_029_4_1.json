@@ -1,264 +1,272 @@
 {
+  "script": "fav_hero_029_4_1",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]哦哦哦！这就是原型机！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]哦哦哦！这就是原型机！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]这段时间，我可是等得好辛苦啊！但终于还是给我等到了！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]这段时间，我可是等得好辛苦啊！但终于还是给我等到了！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]我们智慧的结晶，深渊人士的福音——战斗力探测器！[l]"
-      },
-      "key": "text"
+        "text": "[show]我们智慧的结晶，深渊人士的福音——战斗力探测器！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_6",
-            "text": "矜持矜持！"
+            "text": "矜持矜持！",
+            "tag": "tag_6"
           },
           {
-            "tag": "tag_6",
-            "text": "你是不是太激动了一点。"
+            "text": "你是不是太激动了一点。",
+            "tag": "tag_6"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]咳咳，我有点失态了。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]咳咳，我有点失态了。[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]产品上市之前，肯定要先进行一番检测，所以这玩意怎么用？[l]"
-      },
-      "key": "text"
+        "text": "[show]产品上市之前，肯定要先进行一番检测，所以这玩意怎么用？[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_9",
-            "text": "你把它对准那边的史莱姆。"
+            "text": "你把它对准那边的史莱姆。",
+            "tag": "tag_9"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]嗯嗯，然后呢？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][hide]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "史莱姆",
-        "text": "[show]姆姆？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]嗯嗯，然后呢？[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "探测器",
-        "text": "[show]目标锁定！开始战斗力检测，最终结果，战斗力——5点！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]姆姆？[l][cm]",
+        "charaName": "史莱姆"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]哦哦！真的测出来了！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]目标锁定！开始战斗力检测，最终结果，战斗力——5点！[l][cm]",
+        "charaName": "探测器"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]原来这只姆姆的战斗力是5……哼哼，战斗力只有5的渣滓！[l]"
-      },
-      "key": "text"
+        "text": "[show]哦哦！真的测出来了！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
+      "para": {
+        "nameSide": "left",
+        "text": "[show]原来这只姆姆的战斗力是5……哼哼，战斗力只有5的渣滓！[l]",
+        "charaName": "安娜"
+      }
+    },
+    {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_15",
-            "text": "不错不错。"
+            "text": "不错不错。",
+            "tag": "tag_15"
           },
           {
-            "tag": "tag_15",
-            "text": "再试试别的。"
+            "text": "再试试别的。",
+            "tag": "tag_15"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]哼哼，那我再试试人类。对了，就先看看你的战斗力吧！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]哼哼，那我再试试人类。对了，就先看看你的战斗力吧！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]看过来！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]看过来！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "探测器",
-        "text": "[show]目标锁定！开始战斗力检测，最终结果，战斗力——150点！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]目标锁定！开始战斗力检测，最终结果，战斗力——150点！[l][cm]",
+        "charaName": "探测器"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]居然有150点吗！看不出来，你这个后勤人员，还蛮能打的嘛！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]居然有150点吗！看不出来，你这个后勤人员，还蛮能打的嘛！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]那我呢？我好歹也是大书院的精英，应该比你厉害吧！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]那我呢？我好歹也是大书院的精英，应该比你厉害吧！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]我看看……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我看看……[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "探测器",
-        "text": "[show]目标锁定！开始战斗力检测，最终结果，战斗力——140点！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]目标锁定！开始战斗力检测，最终结果，战斗力——140点！[l][cm]",
+        "charaName": "探测器"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]140……！我、我居然比你还弱！[l]"
-      },
-      "key": "text"
+        "text": "[show]140……！我、我居然比你还弱！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_24",
-            "text": "咳咳！"
+            "text": "咳咳！",
+            "tag": "tag_24"
           },
           {
-            "tag": "tag_24",
-            "text": "这个不重要。"
+            "text": "这个不重要。",
+            "tag": "tag_24"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_25",
-            "text": "现在原型机已经做出来了……"
+            "text": "现在原型机已经做出来了……",
+            "tag": "tag_25"
           },
           {
-            "tag": "tag_25",
-            "text": "我们也该考虑一下该如何改进了。"
+            "text": "我们也该考虑一下该如何改进了。",
+            "tag": "tag_25"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]唔……现在这样确实没办法直接上市。为了尽可能符合大家的实际需求，我们确实还有很多事情要做。[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]唔……现在这样确实没办法直接上市。为了尽可能符合大家的实际需求，我们确实还有很多事情要做。[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]好吧，那我们就再努力一把！为了美好的明天，一起加油吧！[l]"
-      },
-      "key": "text"
+        "text": "[show]好吧，那我们就再努力一把！为了美好的明天，一起加油吧！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_28",
-            "text": "哦哦！"
+            "text": "哦哦！",
+            "tag": "tag_28"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[cm][hide]"
-      },
-      "key": "text"
+        "text": "[cm][hide]",
+        "charaName": ""
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "安娜-祝我们一切顺利！-进入战役",
-  "script": "fav_hero_029_4_1"
+  "des": "安娜-祝我们一切顺利！-进入战役"
 }

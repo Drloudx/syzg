@@ -1,6 +1,13 @@
 {
-  "script": "fav_hero_055_5_2",
   "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
     {
       "para": {
         "charaName": "{myName}",
@@ -28,7 +35,7 @@
     {
       "para": {
         "charaName": "{myName}",
-        "text": "[show]（……嗯？那是？）[l][cm]",
+        "text": "[show]（……嗯？那是？）[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -276,5 +283,6 @@
       "key": "text"
     }
   ],
+  "script": "fav_hero_055_5_2",
   "des": "迦南-场景：黑铁锻炉中央部分，只需要必要的NPC，主人公从右走到左。"
 }

@@ -2,148 +2,148 @@
   "script": "m_2_4_2",
   "exps": [
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]什么？你说工人们分成两边在后山约架，马上就要打起来了？[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]怎么会这样……我得马上过去——[l][cm][hide]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "罗伯特",
+        "nameSide": "left",
         "text": "[show]什么？那些家伙竟然又……我准备一下，马上过去！我的宝贝，你就在这里好好呆着，别到处乱跑！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "罗伯特"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]啊……！好、好的，父亲……我会在这儿好好呆着的～[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]（糟糕，我的声音好像大了点儿，给你老爸听见了……）[l][cm][hide]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米托拉"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]啧……这不怪你，他早晚也会知道。但就他手下那两三个人，能够阻止什么啊……[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]算了，既然他在场，那我就算蒙面都可能被认出来，这次是没法出手了。[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]不过要劝住情绪激动的两边，光靠老爸肯定是不行的！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]虽然不太情愿，但这种时候也只能依靠“[color=ffb64d]那个女人[colorEnd]”了！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]那个女人？[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米托拉"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]嗯，就是居住在村子不远的狩猎小屋里的那个猎人菲莉娜。[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]如果是她的话，肯定能替我平息这次的骚乱。[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]我把路指给你们，你们现在赶紧去找她过来。我趁这个时候，去做些别的准备！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]帮忙是好说，不过这和我们的交易无关吧。你总不能让我们白白干活吧？[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米托拉"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]你说得对，这次就算我欠你们一个人情。关于魔岩矿的事情，[r]我会尽可能快地帮你们搞定。[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米托拉",
+        "nameSide": "left",
         "text": "[show]哦，不愧是大姐头，真是上道啊！[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米托拉"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]我会让皮塔和卡夫早点带人去后山。在你们和菲莉娜赶来之前，我们无论如何都得拖住他们，千万不能让他们动手。[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "米拉贝尔",
+        "nameSide": "left",
         "text": "[show]这件事就拜托你们了！[l][cm][hide]",
-        "nameSide": "left"
-      },
-      "key": "text"
+        "charaName": "米拉贝尔"
+      }
     }
   ],
   "des": "m_2_4_2"

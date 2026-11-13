@@ -1,4 +1,6 @@
 {
+  "des": "描述",
+  "script": "sp1_3_a_2",
   "exps": [
     {
       "para": {
@@ -229,7 +231,30 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "text": "[show]我——我才不要呢！[l][cm]",
+        "text": "[show]我——我才不要呢！[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "贝拉多娜，为了家族使命。",
+            "tag": "tag_38"
+          },
+          {
+            "text": "你必须要保持谦卑好学的态度……",
+            "tag": "tag_38"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "贝拉多娜",
+        "text": "[cm][show]本……本小姐知道啦！为了家族，本小姐先叫她老师就是了……[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -237,7 +262,7 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "text": "[show]不过……你说得对。在家族的血仇面前，一点污水根本算不了什么。[l][cm]",
+        "text": "[show]不过……斯卡莉安说得对。在家族的血仇面前，一点污水根本算不了什么。[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -269,7 +294,7 @@
     {
       "para": {
         "charaName": "贝拉多娜",
-        "text": "[show]哼！本小姐会证明自己的——不对，谁要当什么学生了啦！弟子也不要——！[l][cm][hide]",
+        "text": "[show]哼！本小姐会证明自己的——就……就允许你暂时这么叫本小姐吧！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -282,7 +307,5 @@
       },
       "key": "text"
     }
-  ],
-  "script": "sp1_3_a_2",
-  "des": "描述"
+  ]
 }

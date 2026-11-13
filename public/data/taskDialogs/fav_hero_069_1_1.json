@@ -140,19 +140,16 @@
     },
     {
       "para": {
-        "options": [
-          {
-            "text": "（拿起锤子打造蜂箱。）",
-            "tag": "tag_19"
-          }
-        ]
+        "charaName": "",
+        "text": "[cm][show]（拿起锤子打造蜂箱。）[l][cm]",
+        "nameSide": "left"
       },
-      "key": "option"
+      "key": "text"
     },
     {
       "para": {
         "charaName": "修瓦莉",
-        "text": "[cm][show]哇，一下子就把蜂箱弄好了，主公果然很厉害！[l][cm]",
+        "text": "[show]哇，一下子就把蜂箱弄好了，主公果然很厉害！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -195,7 +192,7 @@
     {
       "para": {
         "charaName": "修瓦莉",
-        "text": "[show]那我们走吧，我选了几个地方，我们把那周围的魔物都赶走吧。[l][cm]",
+        "text": "[show]那我们走吧，我选了几个地方，我们把那周围的魔物都赶走吧。[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"

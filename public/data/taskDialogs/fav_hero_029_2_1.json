@@ -1,268 +1,268 @@
 {
+  "script": "fav_hero_029_2_1",
   "exps": [
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]你、你怎么来了……！[l]"
-      },
-      "key": "text"
+        "text": "[show]你、你怎么来了……！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_4",
-            "text": "你以为都几天了？"
+            "text": "你以为都几天了？",
+            "tag": "tag_4"
           },
           {
-            "tag": "tag_4",
-            "text": "方案呢？我要的方案呢？"
+            "text": "方案呢？我要的方案呢？",
+            "tag": "tag_4"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]这、这个……你放心，方案我已经在想了！[l]"
-      },
-      "key": "text"
+        "text": "[cm][show]这、这个……你放心，方案我已经在想了！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_6",
-            "text": "你看我这能放心吗？"
+            "text": "你看我这能放心吗？",
+            "tag": "tag_6"
           },
           {
-            "tag": "tag_6",
-            "text": "我完全放不了心好吧！"
+            "text": "我完全放不了心好吧！",
+            "tag": "tag_6"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]啊、啊哈哈……[l]"
-      },
-      "key": "text"
+        "text": "[cm][show]啊、啊哈哈……[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_8",
-            "text": "被人催债的是你自己！"
+            "text": "被人催债的是你自己！",
+            "tag": "tag_8"
           },
           {
-            "tag": "tag_8",
-            "text": "你就不能多为自己考虑一下吗？"
+            "text": "你就不能多为自己考虑一下吗？",
+            "tag": "tag_8"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]我在想、我在想了！这不是完全没有思路吗！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]我在想、我在想了！这不是完全没有思路吗！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]对了！我听说你在平日里发明了不少小玩意？[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]对了！我听说你在平日里发明了不少小玩意？[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]你在制作那些发明的时候，到底是怎么弄出来那么多奇思妙想的？[l]"
-      },
-      "key": "text"
+        "text": "[show]你在制作那些发明的时候，到底是怎么弄出来那么多奇思妙想的？[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_12",
-            "text": "我吗……"
+            "text": "我吗……",
+            "tag": "tag_12"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "主要是看别人需要什么吧？"
+            "text": "主要是看别人需要什么吧？",
+            "tag": "tag_13"
           },
           {
-            "tag": "tag_13",
-            "text": "发明最重要的就是要能解决问题。"
+            "text": "发明最重要的就是要能解决问题。",
+            "tag": "tag_13"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]原来是这样吗……也就是说，你每次在发明的时候，都是先找到市场的痛点，才能优化打法、开辟赛道的，是吗……[l]"
-      },
-      "key": "text"
+        "text": "[cm][show]原来是这样吗……也就是说，你每次在发明的时候，都是先找到市场的痛点，才能优化打法、开辟赛道的，是吗……[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_15",
-            "text": "道理是这个道理……"
+            "text": "道理是这个道理……",
+            "tag": "tag_15"
           },
           {
-            "tag": "tag_15",
-            "text": "但你这个用词是不是有点……"
+            "text": "但你这个用词是不是有点……",
+            "tag": "tag_15"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]只要道理对了就好！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]只要道理对了就好！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]是吗……是要找到别人的需求吗……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]是吗……是要找到别人的需求吗……[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]嗯，这下有思路了！不过，所谓“别人的需求”到底是什么，我还没有什么头绪……[l]"
-      },
-      "key": "text"
+        "text": "[show]嗯，这下有思路了！不过，所谓“别人的需求”到底是什么，我还没有什么头绪……[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_19",
-            "text": "……"
+            "text": "……",
+            "tag": "tag_19"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]所以，{myName}，能不能请你再多帮我一个忙？[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]所以，{myName}，能不能请你再多帮我一个忙？[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]现在深渊里的大家都在关注些什么问题，能请你帮我调查一下吗？[l]"
-      },
-      "key": "text"
+        "text": "[show]现在深渊里的大家都在关注些什么问题，能请你帮我调查一下吗？[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_22",
-            "text": "我真是服了……"
+            "text": "我真是服了……",
+            "tag": "tag_22"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_23",
-            "text": "行吧，帮人帮到底……"
+            "text": "行吧，帮人帮到底……",
+            "tag": "tag_23"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]太好了！我就知道你会帮我的！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]太好了！我就知道你会帮我的！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[show]等项目赚了钱，我会给你回报的！[l]"
-      },
-      "key": "text"
+        "text": "[show]等项目赚了钱，我会给你回报的！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_26",
-            "text": "我不怀疑你的信誉……"
+            "text": "我不怀疑你的信誉……",
+            "tag": "tag_26"
           },
           {
-            "tag": "tag_26",
-            "text": "但报答的事情还是等项目做出来再说吧！"
+            "text": "但报答的事情还是等项目做出来再说吧！",
+            "tag": "tag_26"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "安娜",
-        "text": "[cm][show]这……啊哈……啊哈哈……[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[cm][show]这……啊哈……啊哈哈……[l][cm][hide]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
         "nameSide": "left",
-        "charaName": "",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "安娜-在想了在想了！-进入战役",
-  "script": "fav_hero_029_2_1"
+  "des": "安娜-在想了在想了！-进入战役"
 }

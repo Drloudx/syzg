@@ -1,40 +1,38 @@
 {
-  "script": "fav_hero_026_4_1",
   "exps": [
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]混蛋角布林！快给本小姐让开！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "charaName": "贝拉多娜",
+        "text": "[show]混蛋角布林！快给本小姐让开！[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "角布林",
         "text": "[show]吼——！[l][cm]",
-        "charaName": "角布林"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "商人们",
         "text": "[show]呜……[l][cm]",
-        "charaName": "商人们"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]可恶……这些角布林数量太多了，根本没法应付，而且还要保护后面的人……[l]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -42,82 +40,82 @@
             "tag": "tag_7"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[cm][show]是{myName}！太好了！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]这里有支商队遭到了角布林的袭击！本小姐现在正在保护他们，快来一起解决包围他们的角布林！[l][cm][hide]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "",
         "text": "[show]（出手和贝拉多娜一起对付角布林。）[l][cm]",
-        "charaName": ""
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
-        "text": "[show]（经过一番苦战后，角布林终于被击退了……）[l][cm]",
-        "charaName": ""
-      }
+        "charaName": "",
+        "text": "[show]（经过一番苦战后，角布林终于被击退了……）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]好，终于打退这群混账角布林了，你们还好吗？[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "男商人1",
         "text": "[show]嗯！谢……谢谢你们！要是没有你们，我们的车队得遭遇灭顶之灾！[l][cm]",
-        "charaName": "男商人1"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "男商人1",
         "text": "[show]不过……还不清楚货物有没有损失，请让我们先清点一下……[l][cm]",
-        "charaName": "男商人1"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]没事没事，你们只要安全就好啦。[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]对了{myName}，你来的可太及时了！要是你刚刚不在，车队非得被那群家伙啃掉层皮！[l]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -125,42 +123,42 @@
             "tag": "tag_17"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[cm][show]也不算一直在保护吧，只是本小姐一边发传单一边往营地这边走，在路上碰见他们被袭击然后才出手的。[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]不过本小姐害怕应付不了那么多角布林，所以就派眷属来找你帮忙啦。还好事情是完美解决了。[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]对了，你看看这个！这是本小姐亲自制作的传单，上面还有本小姐的联系方式。[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]从几天前就本小姐就开始给大家发传单啦，只要是看见人就送。想必不久之后……他们一定会把希斯珀利亚家族的名声传遍世界！[l]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -168,58 +166,58 @@
             "tag": "tag_22"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "男商人2",
         "text": "[cm][show]咦？恩人手上也有这个传单啊，我们手上也有好几张呢。[l][cm]",
-        "charaName": "男商人2"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]嘿嘿……这么快就人手一份了？看来家族的号召力还是……[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]等等……好几张传单？你们拿这么多干什么？[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "男商人2",
         "text": "[show]啊，是这样的，我们前几天在索利德山交货的时候，有人把这些纸送给了我们。[l][cm]",
-        "charaName": "男商人2"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "男商人2",
         "text": "[show]说是什么……没用的废纸，垫桌脚擦鼻涕正好。我们看着还行就收下了。难道……这都是恩人的？[l][cm]",
-        "charaName": "男商人2"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]……[l]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -227,26 +225,26 @@
             "tag": "tag_29"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[cm][show]我……我知道啦，发的时候就看出来了，大家接过去的表情都很冷淡……早料到会这样。[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]但是这样……我依旧不想放弃，毕竟这也是我目前能为家族做的唯一一件事了……[l]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -254,58 +252,58 @@
             "tag": "tag_32"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "女商人",
         "text": "[cm][show]那个……请问这张传单，上面写的“希斯珀利亚家族的贝拉多娜小姐”，是恩人您吗？[l][cm]",
-        "charaName": "女商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]是……有什么事吗？[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "女商人",
         "text": "[show]那个……这几张我收下了，我们日后可能也会去您那片地方做生意，说不定还会找您当护卫呢。[l][cm]",
-        "charaName": "女商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "女商人",
         "text": "[show]到时候……还请希斯珀利亚家族的贝拉多娜小姐多多关照啦。[l][cm]",
-        "charaName": "女商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]那……那是当然了，只要你们上门，本小姐一定会代表家族保护好你们的！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "女商人",
         "text": "[show]嗯，那我们是时候该出发了，贝拉多娜小姐，还有这位契约者，我们有缘再见。[l]",
-        "charaName": "女商人"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -313,26 +311,26 @@
             "tag": "tag_39"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[cm][show]再见——！欢迎来找本小姐哟——！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]嗯……这么一趟下来，本小姐还是相当有成就感的。[l]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -344,26 +342,26 @@
             "tag": "tag_42"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[cm][show]没错！现在只是开始，以后这样的事情会越来越多，家族的名声也一定能在本小姐宣传下重振旗鼓！[l][cm]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[show]本小姐手上还有很多传单呢，{myName}要一起来送出去吗？[l]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
     },
     {
-      "key": "option",
       "para": {
         "options": [
           {
@@ -371,16 +369,26 @@
             "tag": "tag_45"
           }
         ]
-      }
+      },
+      "key": "option"
     },
     {
-      "key": "text",
       "para": {
-        "nameSide": "left",
+        "charaName": "贝拉多娜",
         "text": "[cm][show]好，那我们走吧！[l][cm][hide]",
-        "charaName": "贝拉多娜"
-      }
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
   ],
+  "script": "fav_hero_026_4_1",
   "des": "贝拉多娜-失败的宣传-进入战役"
 }

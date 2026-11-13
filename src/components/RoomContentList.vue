@@ -9,9 +9,27 @@
 <template>
   <div class="room-list">
     <article v-for="room in rooms" :key="`${room.layer}-${room.roomId}`" class="room-card">
-      <div v-if="room.level || room.hidden" class="room-card__heading room-card__heading--meta-only">
-        <UiTag v-if="room.level" tone="default">Lv.{{ room.level }}</UiTag>
-        <UiTag v-if="room.hidden" tone="muted">隐藏</UiTag>
+      <div v-if="room.level || room.hidden || room.unlockTasks?.length" class="room-card__heading" :class="{ 'room-card__heading--meta-only': !room.unlockTasks?.length }">
+        <div v-if="room.unlockTasks?.length" class="room-unlock-cond">
+          <span class="unlock-cond-label">解锁条件：</span>
+          <span
+            v-for="task in room.unlockTasks"
+            :key="task.id"
+            class="unlock-task-link"
+            :title="`点击前往任务详情：${task.typeName}「${task.name}」`"
+            role="button"
+            tabindex="0"
+            @click.stop="goToTask(task.id)"
+            @keydown.enter.prevent.stop="goToTask(task.id)"
+            @keydown.space.prevent.stop="goToTask(task.id)"
+          >
+            {{ task.typeName }}「{{ task.name }}」
+          </span>
+        </div>
+        <div class="room-card__meta-tags">
+          <UiTag v-if="room.level" tone="default">Lv.{{ room.level }}</UiTag>
+          <UiTag v-if="room.hidden" tone="muted">隐藏</UiTag>
+        </div>
       </div>
       <div class="room-card__variants">
         <template v-for="variant in room.variants" :key="variant.typeId">
@@ -200,6 +218,7 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
 import { UiTag } from './ui/index.js'
 import RewardPools from './RewardPools.vue'
 import { handleImageFallback, getImageUrl } from '../utils/env.js'
@@ -212,6 +231,13 @@ import {
   sortedMonsterDrops
 } from '../utils/roomDisplay.js'
 import { openRewardDetail } from '../utils/rewardModalState.js'
+
+const router = useRouter()
+
+const goToTask = (taskId) => {
+  if (!taskId || !router) return
+  router.push({ path: '/tasks', query: { task: taskId } })
+}
 
 const handleMonsterIconError = (event, mon) => {
   const img = event?.target
@@ -245,8 +271,41 @@ const emit = defineEmits(['item-click'])
 .room-list { display: flex; flex-direction: column; gap: 8px; overflow: visible; padding-right: 0; }
 .room-card { border: 1px solid var(--border-soft); border-radius: 5px; background: var(--paper-soft); padding: 9px 10px; }
 .room-card__heading, .room-variant__title, .room-collection__heading { display: flex; align-items: center; gap: 7px; min-width: 0; }
-.room-card__heading { color: var(--text-main); font-size: 13px; }
+.room-card__heading { color: var(--text-main); font-size: 13px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 2px; }
 .room-card__heading--meta-only { justify-content: flex-end; }
+.room-unlock-cond {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-sub);
+  background: rgba(143, 115, 81, 0.08);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 2px 7px;
+}
+.dark-mode .room-unlock-cond,
+.dark-theme .room-unlock-cond {
+  background: rgba(143, 115, 81, 0.16);
+}
+.unlock-cond-label {
+  color: var(--text-muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.unlock-task-link {
+  color: var(--accent-ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.unlock-task-link:hover {
+  color: var(--accent-bright, var(--accent-ink));
+}
+.room-card__meta-tags { display: flex; align-items: center; gap: 7px; margin-left: auto; }
 .room-card__variants { display: flex; flex-direction: column; gap: 7px; margin-top: 7px; }
 .room-variant { border-left: 3px solid var(--accent); padding: 6px 0 6px 9px; min-width: 0; }
 .room-variant__title { font-size: 12px; font-weight: 700; color: var(--text-main); }

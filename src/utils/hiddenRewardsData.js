@@ -5,6 +5,8 @@
  * 不依赖网络与浏览器，Node 构建脚本（scripts/parse/*.mjs）共用。
  */
 
+import { isBlacklisted } from '../config/blacklist.js'
+
 // 点位预览图映射（roomId -> { roomName, file, variants? }）。
 // roomName 取自当前 levelRoom 表，便于按关卡核对/补图；暂无图片时 file 留空。
 // 同一关卡有多个采集点时，在 variants 中按 collectId 分别配图。
@@ -33,7 +35,6 @@ const HIDDEN_PREV_MAP = {
   'c2_area3_1': { roomName: '破败古院', file: '破败古院-破败古院_prev.webp' },
   'c2_area3_2': { roomName: '古院后院', file: '' },
   'c2_area4_3': { roomName: '安娜的勘测地', file: '山神之殒-安娜的勘测地_prev.webp' },
-  'c2_area4_4': { roomName: '山神之殒外围', file: '' },
   'c3_area1_3': { roomName: '长老小屋内', file: '' },
   'c3_area1_4': { roomName: '尾指村居民区', file: '尾指村-尾指村居民区_prev.webp' },
   'c3_area1_5': { roomName: '尾指村居民区', file: '尾指村-未知区域_prev.webp' },
@@ -88,6 +89,74 @@ function hashStr(str) {
     h = ((h << 5) + h + str.charCodeAt(i)) | 0
   }
   return (h >>> 0).toString(16)
+}
+
+function normalizeHiddenRewardItems(r) {
+  const result = []
+  // 1. 基础货币（如偶遇事件必得 500 银币）
+  if (r.money && Number(r.money) > 0) {
+    result.push({
+      kind: 'fixed',
+      rate: 1,
+      num: 1,
+      rules: [{
+        mode: 'money',
+        typeId: 'item_00001',
+        min: Number(r.money),
+        max: Number(r.money),
+        num: Number(r.money),
+        chance: 1,
+        actualProb: 1
+      }]
+    })
+  }
+  if (r.ke && Number(r.ke) > 0) {
+    result.push({
+      kind: 'fixed',
+      rate: 1,
+      num: 1,
+      rules: [{
+        mode: 'ke',
+        typeId: 'item_00002',
+        min: Number(r.ke),
+        max: Number(r.ke),
+        num: Number(r.ke),
+        chance: 1,
+        actualProb: 1
+      }]
+    })
+  }
+  // 2. 物品组（计算抽取概率与模式）
+  for (const grp of (r.items || [])) {
+    if (!grp || !grp.rules || !grp.rules.length) continue
+    const rules = grp.rules.filter(Boolean)
+    const totalChance = rules.reduce((sum, rl) => sum + (Number(rl.chance) || 1), 0)
+    const rate = Number(grp.rate ?? 1)
+    const num = Number(grp.num ?? 1)
+    const isRandom = rules.length > 1
+
+    result.push({
+      kind: isRandom ? 'random' : 'fixed',
+      rate,
+      num,
+      rules: rules.map(rl => {
+        const min = Number(rl.min ?? rl.num ?? 1)
+        const max = Number(rl.max ?? rl.num ?? min)
+        const chance = Number(rl.chance) || 1
+        const prob = totalChance > 0 ? chance / totalChance : 1
+        const actualProb = num > 0 ? Number((rate * prob).toFixed(4)) : 0
+        return {
+          ...rl,
+          min,
+          max,
+          prob,
+          actualProb,
+          groupCount: num
+        }
+      })
+    })
+  }
+  return result
 }
 
 export function buildHiddenRewards(maps) {
@@ -168,6 +237,7 @@ export function buildHiddenRewards(maps) {
       for (const c of collects) {
         for (const rm of roomsByCollectId.get(c.typeId) || []) {
           for (const lr of levelRoomsByRoomTypeId.get(rm.typeId) || []) {
+            if (isBlacklisted({ id: lr.typeId, name: lr.name })) continue
             const areaId = lr.areaId
             const areaName = areaData[areaId] ? areaData[areaId].name : areaId
 
@@ -195,8 +265,10 @@ export function buildHiddenRewards(maps) {
               // 🔴 2026-11-11 修复：摘要原先只含奖励项 typeId，当同一房间的两个不同采集点
               // （如 c1_area2_1 的 lt_pool_c1_area2 与 oy_pool_c1_area2）发放**同一份** reward 时，
               // 摘要完全相同 → id 碰撞 → 页面 DOM id 重复。把 collectId 纳入摘要即可区分。
+              const normalizedRewardItems = normalizeHiddenRewardItems(r)
               const itemIdStr = [
                 c.typeId,
+                ...(r.money ? [`money_${r.money}`] : []),
                 ...(r.items || []).map(g => {
                   if (g && g.rules) return g.rules.map(rule => rule.typeId).join('|')
                   return g && g.typeId ? g.typeId : ''
@@ -219,7 +291,7 @@ export function buildHiddenRewards(maps) {
                 rewardId: r.typeId,
                 sortKey,
                 prevImg: getPrevImg(lr.typeId || rm.typeId, c.typeId),
-                rewardItems: r.items,
+                rewardItems: normalizedRewardItems,
                 // 页面「隐藏奖励」分组名：按 reward 分类区分，避免把书/偶遇都标成宝箱。
                 category: Array.isArray(r.category) ? r.category : [],
                 sourceLabel: Array.isArray(r.category) && r.category.includes('书籍')
@@ -231,23 +303,22 @@ export function buildHiddenRewards(maps) {
               const locStr = `${bigMapName} - ${areaName} - ${lr.name || rm.name}`
               // 展示名按 reward 分类区分：书籍类显示「书籍」，其余检视类沿用「场景宝箱」。
               const sourceLabel = Array.isArray(r.category) && r.category.includes('书籍') ? '书籍' : '场景宝箱'
-              if (r.items) {
-                r.items.forEach(itemGrp => {
-                  if (itemGrp.rules) {
-                    itemGrp.rules.forEach(rule => {
-                      const tId = rule.typeId
-                      if (!globalSources[tId]) globalSources[tId] = []
-                      globalSources[tId].push({
-                        type: 'hidden',
-                        id: entryId,
-                        roomId: lr.typeId || rm.typeId,
-                        name: sourceLabel,
-                        des: locStr,
-                        bigMapId
-                      })
-                    })
-                  }
-                })
+              for (const itemGrp of normalizedRewardItems) {
+                // 基础货币（银币等）不作为隐藏探索点逆向来源写入，避免来源列表过度膨胀
+                if (itemGrp.kind === 'fixed' && itemGrp.rules[0]?.mode === 'money') continue
+                for (const rule of (itemGrp.rules || [])) {
+                  const tId = rule.typeId
+                  if (!tId) continue
+                  if (!globalSources[tId]) globalSources[tId] = []
+                  globalSources[tId].push({
+                    type: 'hidden',
+                    id: entryId,
+                    roomId: lr.typeId || rm.typeId,
+                    name: sourceLabel,
+                    des: locStr,
+                    bigMapId
+                  })
+                }
               }
             }
           }

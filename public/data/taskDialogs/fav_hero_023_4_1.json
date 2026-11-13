@@ -2,97 +2,97 @@
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（来到暗处蹲伏不久，落魄佣兵和荒野客便如期现身。）[l][cm]"
+        "text": "[show]（来到暗处蹲伏不久，落魄佣兵和荒野客便如期现身。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]这、这几天要交的钱……都……都在这儿了……[l][cm]"
+        "text": "[show]这、这几天要交的钱……都……都在这儿了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客A",
-        "text": "[show]嗯……不错，不仅这次交齐了，连上次欠的也补上了。[l][cm]"
+        "text": "[show]嗯……不错，不仅这次交齐了，连上次欠的也补上了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客A",
-        "text": "[show]瞧你这身子骨又瘦了一圈，这段日子不好过吧？[l][cm]"
+        "text": "[show]瞧你这身子骨又瘦了一圈，这段日子不好过吧？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]没、没有……能活着……多亏各位恩人……[l][cm]"
+        "text": "[show]没、没有……能活着……多亏各位恩人……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客A",
-        "text": "[show]老让你受这委屈，爷爷们心里也过意不去啊。这样吧，你借我们一样东西，我们帮你彻底解脱这苦日子，如何？[l][cm]"
+        "text": "[show]老让你受这委屈，爷爷们心里也过意不去啊。这样吧，你借我们一样东西，我们帮你彻底解脱这苦日子，如何？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]借东西？可……可我还有什么能借给你们？[l][cm]"
+        "text": "[show]借东西？可……可我还有什么能借给你们？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客B",
-        "text": "[show]嘿嘿……当然有，借你项上人头一用！[l][cm]"
+        "text": "[show]嘿嘿……当然有，借你项上人头一用！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]等等！你们拔刀做什么？！我……我这条贱命不值钱啊！[l][cm]"
+        "text": "[show]等等！你们拔刀做什么？！我……我这条贱命不值钱啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客C",
-        "text": "[show]呵呵……这你就怨不得我们了。外面有人查到了你的行踪，说要花钱买你的命。[l][cm]"
+        "text": "[show]呵呵……这你就怨不得我们了。外面有人查到了你的行踪，说要花钱买你的命。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客A",
-        "text": "[show]虽说你的命也就值头角猪的钱，不过好歹能让我们兄弟捞一笔。就用你的命成全我们吧！[l][cm]"
+        "text": "[show]虽说你的命也就值头角猪的钱，不过好歹能让我们兄弟捞一笔。就用你的命成全我们吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客A",
-        "text": "[show]反正在你残废的那一刻，你的人生早就结束了——！[l]"
+        "text": "[show]反正在你残废的那一刻，你的人生早就结束了——！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -100,8 +100,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_14",
-            "text": "（出手打断荒野客的攻击！）"
+            "text": "（出手打断荒野客的攻击！）",
+            "tag": "tag_14"
           }
         ]
       },
@@ -109,153 +109,153 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客A",
-        "text": "[cm][show]啊——！什……什么人！[l][cm]"
+        "text": "[cm][show]啊——！什……什么人！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]光天化日之下，竟敢在村子附近行凶！你们好大的胆子！[l][cm]"
+        "text": "[show]光天化日之下，竟敢在村子附近行凶！你们好大的胆子！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "荒野客A",
-        "text": "[show]你……你是巴诺姆的自卫团？！怎么会在这儿？！[l][cm]"
+        "text": "[show]你……你是巴诺姆的自卫团？！怎么会在这儿？！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]少废话！乖乖束手就擒！{myName}！动手！[l][cm]"
+        "text": "[show]少废话！乖乖束手就擒！{myName}！动手！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（经过一番战斗后……）[l][cm]"
+        "text": "[show]（经过一番战斗后……）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]好，都解决了！等下就把他们押去见村长！[l][cm]"
+        "text": "[show]好，都解决了！等下就把他们押去见村长！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]活下来了……我活下来了……呼、呼……[l][cm]"
+        "text": "[show]活下来了……我活下来了……呼、呼……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]喂……你还认得我吗？[l][cm]"
+        "text": "[show]喂……你还认得我吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]恩、恩人……我、我不记得了……对、对不起……[l][cm]"
+        "text": "[show]恩、恩人……我、我不记得了……对、对不起……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]我可不是你的恩人。看清楚这张脸……还记不记得卡夫这名字？[l][cm]"
+        "text": "[show]我可不是你的恩人。看清楚这张脸……还记不记得卡夫这名字？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]卡夫……卡夫！你、你是当年那个小狼崽子？你……你居然长这么壮了……[l][cm]"
+        "text": "[show]卡夫……卡夫！你、你是当年那个小狼崽子？你……你居然长这么壮了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]哼……看来你想起来了。你记性真差。我可从没忘记你……还有你对我干过的那些好事。[l][cm]"
+        "text": "[show]哼……看来你想起来了。你记性真差。我可从没忘记你……还有你对我干过的那些好事。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]对……对对对不起！是我当年昏了头，我狗仗人势，才——我、我就是个打杂的废物，求您大人有大量，饶了我吧！[l][cm]"
+        "text": "[show]对……对对对不起！是我当年昏了头，我狗仗人势，才——我、我就是个打杂的废物，求您大人有大量，饶了我吧！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]这么多年的事，一句对不起就想完？！——看打！！[l][cm]"
+        "text": "[show]这么多年的事，一句对不起就想完？！——看打！！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]啊——！[l][cm]"
+        "text": "[show]啊——！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]这一拳，是你当年只让我睡马房的报应！[l][cm]"
+        "text": "[show]这一拳，是你当年只让我睡马房的报应！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]这一拳，是你当年抢了我的面包，让我吃了三天芦苇的报应！这一拳，是你每天拉着人来揍我的报应！！[l][cm]"
+        "text": "[show]这一拳，是你当年抢了我的面包，让我吃了三天芦苇的报应！这一拳，是你每天拉着人来揍我的报应！！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]好痛、好痛——我知错了，卡夫大哥，我知错了……！[l][cm]"
+        "text": "[show]好痛、好痛——我知错了，卡夫大哥，我知错了……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]呼……呼……手都打麻了……[l]"
+        "text": "[show]呼……呼……手都打麻了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -263,12 +263,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_35",
-            "text": "差不多可以了吧。"
+            "text": "差不多可以了吧。",
+            "tag": "tag_35"
           },
           {
-            "tag": "tag_35",
-            "text": "他已经被揍成猪头了。"
+            "text": "他已经被揍成猪头了。",
+            "tag": "tag_35"
           }
         ]
       },
@@ -276,49 +276,49 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[cm][show]嗯……就这样吧。[l][cm]"
+        "text": "[cm][show]嗯……就这样吧。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]放心，我不会要你的命。想杀你的人是谁，我们自卫团会去调查的。这段时间老实待在村里别乱跑……不然，小命难保。[l][cm]"
+        "text": "[show]放心，我不会要你的命。想杀你的人是谁，我们自卫团会去调查的。这段时间老实待在村里别乱跑……不然，小命难保。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]话就这么多，你自己掂量。以后我会一直盯着你，别想在村里惹事！听懂了就滚！[l][cm]"
+        "text": "[show]话就这么多，你自己掂量。以后我会一直盯着你，别想在村里惹事！听懂了就滚！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "落魄佣兵",
-        "text": "[show]是……是……谢谢卡夫大哥……[l][cm]"
+        "text": "[show]是……是……谢谢卡夫大哥……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]…………[l][cm]"
+        "text": "[show]…………[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]……好，这事算结了。[l]"
+        "text": "[show]……好，这事算结了。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -326,8 +326,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_42",
-            "text": "辛苦了。"
+            "text": "辛苦了。",
+            "tag": "tag_42"
           }
         ]
       },
@@ -335,37 +335,37 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[cm][show]没什么辛苦的。这么一来，心里反而松快了些。[l][cm]"
+        "text": "[cm][show]没什么辛苦的。这么一来，心里反而松快了些。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "卡夫",
-        "text": "[show]我得先把这些荒野客押回村子。剩下的改天再说吧。真的很感谢你……{myName}。[l][cm]"
+        "text": "[show]我得先把这些荒野客押回村子。剩下的改天再说吧。真的很感谢你……{myName}。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（目送卡夫独自将所有的荒野客押去了巴诺姆村。能察觉到他的脚步稍微轻快了些。）[l][cm][hide]"
+        "text": "[show]（目送卡夫独自将所有的荒野客押去了巴诺姆村。能察觉到他的脚步稍微轻快了些。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
-  "des": "卡夫-阻止那群强者_进入战役",
-  "script": "fav_hero_023_4_1"
+  "script": "fav_hero_023_4_1",
+  "des": "卡夫-阻止那群强者_进入战役"
 }

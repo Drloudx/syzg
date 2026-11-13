@@ -1,26 +1,28 @@
 {
+  "des": "卡夫-心不在焉的料理课_进入战役",
+  "script": "fav_hero_023_1_1",
   "exps": [
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]这是我刚从森林里打来的肉，够我们吃好几天的啦。[l][cm]"
+        "text": "[show]这是我刚从森林里打来的肉，够我们吃好几天的啦。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]不过就和我在信里说的一样，我在扎营的时候总是吃着那种又硬又难吃的烤肉，我想要吃更好的！[l][cm]"
+        "text": "[show]不过就和我在信里说的一样，我在扎营的时候总是吃着那种又硬又难吃的烤肉，我想要吃更好的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]请教会我如何做更美味的烤肉！拜托你了！虽然我脑子笨，但我听话，你说什么我就做什么！[l]"
+        "text": "[show]请教会我如何做更美味的烤肉！拜托你了！虽然我脑子笨，但我听话，你说什么我就做什么！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -28,8 +30,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_6",
-            "text": "好，交给我吧。"
+            "text": "好，交给我吧。",
+            "tag": "tag_6"
           }
         ]
       },
@@ -39,8 +41,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_7",
-            "text": "（示范一次制作“蜜汁烤肉”的方法。）"
+            "text": "（示范一次制作“蜜汁烤肉”的方法。）",
+            "tag": "tag_7"
           }
         ]
       },
@@ -49,8 +51,8 @@
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[cm][show]呃……这个……这么复杂啊……[l]"
+        "text": "[cm][show]呃……这个……这么复杂啊……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -58,8 +60,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_9",
-            "text": "卡夫觉得很困难吗？"
+            "text": "卡夫觉得很困难吗？",
+            "tag": "tag_9"
           }
         ]
       },
@@ -68,40 +70,40 @@
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[cm][show]也不是多困难啦……只不过我确实是第一次见到这种做法，我还以为在肉上涂点蜂蜜，用火过过就能算是蜜汁烤肉了……[l][cm]"
+        "text": "[cm][show]也不是多困难啦……只不过我确实是第一次见到这种做法，我还以为在肉上涂点蜂蜜，用火过过就能算是蜜汁烤肉了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]不过放心吧，虽然我不清楚原理，但只要跟着你做就行了，照葫芦画瓢我还是懂的。[l][cm]"
+        "text": "[show]不过放心吧，虽然我不清楚原理，但只要跟着你做就行了，照葫芦画瓢我还是懂的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]接下来请交给我吧，我会好好努力的！[l][cm]"
+        "text": "[show]接下来请交给我吧，我会好好努力的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]首先就是拍打肉的表面，用蛮力的事情我擅长了，看我的！[l][cm]"
+        "text": "[show]首先就是拍打肉的表面，用蛮力的事情我擅长了，看我的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]大棒伺候！呼哈——噫呀——！[l]"
+        "text": "[show]大棒伺候！呼哈——噫呀——！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -109,107 +111,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_15",
-            "text": "等等，别、别用武器啊——"
-          }
-        ]
-      },
-      "key": "option"
-    },
-    {
-      "para": {
-        "charaName": "",
-        "nameSide": "left",
-        "text": "[cm][show]（卡夫抡起手上的大棒，几声巨响后，肉和石头砧板都变成了碎片。）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]咦？这……我还没用力呢，怎么全都碎掉了？[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]没、没事！还能继续！就算样子和你的不一样，勉强能用就行。接下来放入香料和蜂蜜！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "",
-        "nameSide": "left",
-        "text": "[show]（咕咚咕咚……卡夫往肉馅上倒了一大瓶蜂蜜。）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]……会不会有些多啊？不管了，这些小细节也不会影响大局。唔，肉太碎了，竹签没法串上啊。那直接团成球吧！我揉、我揉、我揉揉揉……[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]好，就用这根粗粗的树枝串上……好极了！腌制过后就点火开始烤肉！很快就到最后一步了！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "",
-        "nameSide": "left",
-        "text": "[show]（轰——！熊熊的烈火冒了出来！）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]快看这熊熊燃烧的篝火，卡夫最完美的烤肉就要从中诞生了！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]接下是转动树枝，让肉均匀受热——呃，但这肉团也太大了，要怎么转才好呢？嗯……好……这样！[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "",
-        "nameSide": "left",
-        "text": "[show]（卡夫尝试用蛮力转动树枝！肉球跟着高速转动了起来！）[l][cm]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]好好好好——等、等等，我的烤肉怎么飞出去了——哇、好烫！我的毛！火烧着我的毛了！[l]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "options": [
-          {
-            "tag": "tag_47",
-            "text": "（帮助卡夫灭火。）"
+            "text": "等等，别、别用武器啊——",
+            "tag": "tag_15"
           }
         ]
       },
@@ -218,48 +121,88 @@
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[cm][hide]"
+        "text": "[cm][show]（卡夫抡起手上的大棒，几声巨响后，肉和石头砧板都变成了碎片。）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]咦？这……我还没用力呢，怎么全都碎掉了？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]没、没事！还能继续！就算样子和你的不一样，勉强能用就行。接下来放入香料和蜂蜜！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[cm][show]（经过一阵鸡飞狗跳以后，卡夫终于从地上捡起了心中梦寐以求的蜜汁烤肉。）[l][cm][hide]"
+        "text": "[show]（咕咚咕咚……卡夫往肉馅上倒了一大瓶蜂蜜。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]唔，这就是蜜汁烤肉吗？感觉和{myName}做的有些不同？[l][cm]"
+        "text": "[show]……会不会有些多啊？不管了，这些小细节也不会影响大局。唔，肉太碎了，竹签没法串上啊。那直接团成球吧！我揉、我揉、我揉揉揉……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]……只是颜色不同而已，尝起来味道应该差不多……吧？让我试试……[l][cm]"
+        "text": "[show]好，就用这根粗粗的树枝串上……好极了！腌制过后就点火开始烤肉！很快就到最后一步了！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（轰——！熊熊的烈火冒了出来！）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]唉哟我嘞个岩蟾蜍啊啊啊——！[l][cm]"
+        "text": "[show]快看这熊熊燃烧的篝火，卡夫最完美的烤肉就要从中诞生了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]呸呸呸——！这也太难吃了！为什么会这样……步骤明明都差不多，为什么出来的效果完全不同？[l]"
+        "text": "[show]接下是转动树枝，让肉均匀受热——呃，但这肉团也太大了，要怎么转才好呢？嗯……好……这样！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[show]（卡夫尝试用蛮力转动树枝！肉球跟着高速转动了起来！）[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]好好好好——等、等等，我的烤肉怎么飞出去了——哇、好烫！我的毛！火烧着我的毛了！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -267,8 +210,67 @@
       "para": {
         "options": [
           {
-            "tag": "tag_33",
-            "text": "咱们的步骤完全不一样吧……"
+            "text": "（帮助卡夫灭火。）",
+            "tag": "tag_47"
+          }
+        ]
+      },
+      "key": "option"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[cm][show]（经过一阵鸡飞狗跳以后，卡夫终于从地上捡起了心中梦寐以求的蜜汁烤肉。）[l][cm][hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]唔，这就是蜜汁烤肉吗？感觉和{myName}做的有些不同？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]……只是颜色不同而已，尝起来味道应该差不多……吧？让我试试……[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]唉哟我嘞个岩蟾蜍啊啊啊——！[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "卡夫",
+        "text": "[show]呸呸呸——！这也太难吃了！为什么会这样……步骤明明都差不多，为什么出来的效果完全不同？[l]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "options": [
+          {
+            "text": "咱们的步骤完全不一样吧……",
+            "tag": "tag_33"
           }
         ]
       },
@@ -277,8 +279,8 @@
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[cm][show]唉……还是太粗心大意了……[l]"
+        "text": "[cm][show]唉……还是太粗心大意了……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -286,8 +288,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_35",
-            "text": "卡夫是有什么心事吗？"
+            "text": "卡夫是有什么心事吗？",
+            "tag": "tag_35"
           }
         ]
       },
@@ -296,8 +298,8 @@
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[cm][show]有、有什么心事？你为啥这么问？[l]"
+        "text": "[cm][show]有、有什么心事？你为啥这么问？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -305,12 +307,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_37",
-            "text": "我感觉你有些心不在焉。"
+            "text": "我感觉你有些心不在焉。",
+            "tag": "tag_37"
           },
           {
-            "tag": "tag_37",
-            "text": "而且比平常急躁多了。"
+            "text": "而且比平常急躁多了。",
+            "tag": "tag_37"
           }
         ]
       },
@@ -320,8 +322,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_38",
-            "text": "是有什么心事吗？"
+            "text": "是有什么心事吗？",
+            "tag": "tag_38"
           }
         ]
       },
@@ -330,24 +332,24 @@
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[cm][show]…………[l][cm]"
+        "text": "[cm][show]…………[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]还真是什么都瞒不过你的眼睛。也不算是心事吧，就是……遇见了一个“故人”罢了……[l][cm]"
+        "text": "[show]还真是什么都瞒不过你的眼睛。也不算是心事吧，就是……遇见了一个“故人”罢了……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[show]一个……可憎的故人……[l]"
+        "text": "[show]一个……可憎的故人……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -355,8 +357,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_42",
-            "text": "可憎的故人？"
+            "text": "可憎的故人？",
+            "tag": "tag_42"
           }
         ]
       },
@@ -365,44 +367,42 @@
     {
       "para": {
         "charaName": "卡夫",
-        "nameSide": "left",
-        "text": "[cm][show]不、没、没事，就只是一些小事而已！啊……我、我突然想起家里的衣服还没收呢！我……我先走了！对对对对不起，这些肉就先全留给你吧！砧板的事我也会赔偿给你的！！[l][cm]"
+        "text": "[cm][show]不、没、没事，就只是一些小事而已！啊……我、我突然想起家里的衣服还没收呢！我……我先走了！对对对对不起，这些肉就先全留给你吧！砧板的事我也会赔偿给你的！！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[show]（卡夫一溜烟地逃走了。）[l][cm]"
+        "text": "[show]（卡夫一溜烟地逃走了。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "{myName}",
-        "nameSide": "left",
-        "text": "[show]…………[l][cm]"
+        "text": "[show]…………[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "{myName}",
-        "nameSide": "left",
-        "text": "[show]（还是等卡夫冷静下来，再去问问他怎么回事吧。）[l][cm][hide]"
+        "text": "[show]（还是等卡夫冷静下来，再去问问他怎么回事吧。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "卡夫-心不在焉的料理课_进入战役",
-  "script": "fav_hero_023_1_1"
+  ]
 }

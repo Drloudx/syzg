@@ -1,298 +1,298 @@
 {
+  "script": "fav_hero_029_1_1",
   "exps": [
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]哈……终于可以松一口气了！[l]"
-      },
-      "key": "text"
+        "text": "[show]哈……终于可以松一口气了！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_4",
-            "text": "你这到底是演的哪出戏啊？"
+            "text": "你这到底是演的哪出戏啊？",
+            "tag": "tag_4"
           },
           {
-            "tag": "tag_4",
-            "text": "你这到底是怎么了？"
+            "text": "你这到底是怎么了？",
+            "tag": "tag_4"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]还能是怎么了？当然是遇到催债的咯！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]还能是怎么了？当然是遇到催债的咯！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]真是的！当初我也是为了拯救索利德山才邮购了关键设备啊！为什么不光不肯让我退款，还给我上了那么高的利息啊！[l]"
-      },
-      "key": "text"
+        "text": "[show]真是的！当初我也是为了拯救索利德山才邮购了关键设备啊！为什么不光不肯让我退款，还给我上了那么高的利息啊！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_7",
-            "text": "原来你没退掉吗？"
+            "text": "原来你没退掉吗？",
+            "tag": "tag_7"
           },
           {
-            "tag": "tag_7",
-            "text": "我还以为你退款成功了呢！"
+            "text": "我还以为你退款成功了呢！",
+            "tag": "tag_7"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]要是退掉了我就不会这么苦恼啦！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]要是退掉了我就不会这么苦恼啦！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]唉，你知道更糟糕的是什么？我买东西贷款的担保人是大书院啊！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]唉，你知道更糟糕的是什么？我买东西贷款的担保人是大书院啊！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]现在不光借钱的那边到处找我要钱，要是还不上钱，我连大书院的宿舍都回不去了！[l]"
-      },
-      "key": "text"
+        "text": "[show]现在不光借钱的那边到处找我要钱，要是还不上钱，我连大书院的宿舍都回不去了！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_11",
-            "text": "听上去好惨……"
+            "text": "听上去好惨……",
+            "tag": "tag_11"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]是啊，我为正义付出这么多，为什么正义就不能给我一些回报呢！[l]"
-      },
-      "key": "text"
+        "text": "[cm][show]是啊，我为正义付出这么多，为什么正义就不能给我一些回报呢！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "这确实是个问题。"
+            "text": "这确实是个问题。",
+            "tag": "tag_13"
           },
           {
-            "tag": "tag_13",
-            "text": "我们确实不能让正义的伙伴流血又流泪。"
+            "text": "我们确实不能让正义的伙伴流血又流泪。",
+            "tag": "tag_13"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]什么什么？听你这话，你是准备……？[l]"
-      },
-      "key": "text"
+        "text": "[cm][show]什么什么？听你这话，你是准备……？[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_15",
-            "text": "我看看有没有什么办法帮帮你吧。"
+            "text": "我看看有没有什么办法帮帮你吧。",
+            "tag": "tag_15"
           },
           {
-            "tag": "tag_15",
-            "text": "我准备帮你还上这笔债务。"
+            "text": "我准备帮你还上这笔债务。",
+            "tag": "tag_15"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]太好了！你可真是个大好人！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]太好了！你可真是个大好人！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]不过别看我这样，我也是有学者的自尊的！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]不过别看我这样，我也是有学者的自尊的！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]再怎么说，也不至于让你帮我出这笔钱！[l]"
-      },
-      "key": "text"
+        "text": "[show]再怎么说，也不至于让你帮我出这笔钱！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_19",
-            "text": "哦？看来你有别的想法？"
+            "text": "哦？看来你有别的想法？",
+            "tag": "tag_19"
           },
           {
-            "tag": "tag_19",
-            "text": "说说看，你想怎么做？"
+            "text": "说说看，你想怎么做？",
+            "tag": "tag_19"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]我想，咱们不如再合作一次！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]我想，咱们不如再合作一次！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]你看，你有学术水平，懂的东西多，你有工匠技术，能把研究成果变现……[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]你看，你有学术水平，懂的东西多，你有工匠技术，能把研究成果变现……[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]咱们把这个资源整合一下，制作一个爆款商品，这还债的钱，它不就有了吗？[l]"
-      },
-      "key": "text"
+        "text": "[show]咱们把这个资源整合一下，制作一个爆款商品，这还债的钱，它不就有了吗？[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_23",
-            "text": "听上去确实不错。"
+            "text": "听上去确实不错。",
+            "tag": "tag_23"
           },
           {
-            "tag": "tag_23",
-            "text": "那就按你说的办吧！"
+            "text": "那就按你说的办吧！",
+            "tag": "tag_23"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]哈哈！真是天无绝人之路！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]哈哈！真是天无绝人之路！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]我就知道你会同意这个方案的！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]我就知道你会同意这个方案的！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]有了你我两人之力，我已经看到我们成功的未来了！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]有了你我两人之力，我已经看到我们成功的未来了！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]现在就让我们，为了将来的成功，尽情干杯吧！[l]"
-      },
-      "key": "text"
+        "text": "[show]现在就让我们，为了将来的成功，尽情干杯吧！[l]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "option",
       "para": {
         "options": [
           {
-            "tag": "tag_28",
-            "text": "这八字还没一撇呢……"
+            "text": "这八字还没一撇呢……",
+            "tag": "tag_28"
           },
           {
-            "tag": "tag_28",
-            "text": "赛前开香槟不可取啊……"
+            "text": "赛前开香槟不可取啊……",
+            "tag": "tag_28"
           }
         ]
-      },
-      "key": "option"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[cm][show]哈哈，说什么呢！[l][cm]"
-      },
-      "key": "text"
+        "text": "[cm][show]哈哈，说什么呢！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]凭我们两个的能力，这个项目根本没有失败的可能！[l][cm]"
-      },
-      "key": "text"
+        "text": "[show]凭我们两个的能力，这个项目根本没有失败的可能！[l][cm]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "安娜",
         "nameSide": "left",
-        "text": "[show]你看着，我很快就给你拿出方案出来！要不了多久，我们就能一炮而红，然后轻轻松松财务自由啦！[l][cm][hide]"
-      },
-      "key": "text"
+        "text": "[show]你看着，我很快就给你拿出方案出来！要不了多久，我们就能一炮而红，然后轻轻松松财务自由啦！[l][cm][hide]",
+        "charaName": "安娜"
+      }
     },
     {
+      "key": "text",
       "para": {
-        "charaName": "",
         "nameSide": "left",
-        "text": "[hide]"
-      },
-      "key": "text"
+        "text": "[hide]",
+        "charaName": ""
+      }
     }
   ],
-  "des": "安娜-救命啊救命啊！-进入战役",
-  "script": "fav_hero_029_1_1"
+  "des": "安娜-救命啊救命啊！-进入战役"
 }

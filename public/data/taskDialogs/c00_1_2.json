@@ -3,7 +3,7 @@
   "exps": [
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]",
         "nameSide": "left"
       },
@@ -11,7 +11,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]你……你你你还好吗？脑子清醒吗？还能动吗？[l]",
         "nameSide": "left"
       },
@@ -34,7 +34,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[cm][show]哦！看起来还能动，那就好！[l]",
         "nameSide": "left"
       },
@@ -53,7 +53,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[cm][show]哈！痛就是活着的证明，感觉痛就对了！[l]",
         "nameSide": "left"
       },
@@ -72,7 +72,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]",
         "nameSide": "left"
       },
@@ -80,7 +80,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show][cm]你、你怎么脸色突然变这么差！难、难道还有别的伤势吗？[l][cm]",
         "nameSide": "left"
       },
@@ -88,7 +88,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]唔……可我也只懂这么点急救的手法，再多的我就完全没活了！[l][cm]",
         "nameSide": "left"
       },
@@ -96,7 +96,7 @@
     },
     {
       "para": {
-        "charaName": "？",
+        "charaName": "？？？",
         "text": "[show]喂，你！如果有什么办法，你就快点自救吧！好不容易救活你，我可不想再把你扔回墓穴里去啊！[l][cm]",
         "nameSide": "left"
       },

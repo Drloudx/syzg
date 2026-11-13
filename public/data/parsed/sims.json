@@ -5,7 +5,7 @@
       "data/parsed/pets.json"
     ],
     "heroCount": 40,
-    "petCount": 43,
+    "petCount": 42,
     "note": "配队模拟器专用精简表；由 scripts/dev/build-sims-data.mjs 生成，勿手改"
   },
   "heroes": [
@@ -1085,23 +1085,6 @@
         "value": 5,
         "perCount": false,
         "raw": "队伍中近卫守护物理攻击提高 {5%}。"
-      }
-    },
-    {
-      "id": "pet_097",
-      "name": "格里芬",
-      "element": 3,
-      "elementName": "风",
-      "monImg": "colect_mon_097",
-      "passive": {
-        "elements": [
-          "地"
-        ],
-        "jobs": [],
-        "stat": "攻速",
-        "value": 7,
-        "perCount": false,
-        "raw": "队伍中地属性攻速加成提高 {7%}。"
       }
     },
     {

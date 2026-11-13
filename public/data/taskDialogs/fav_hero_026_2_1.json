@@ -1,4 +1,6 @@
 {
+  "des": "贝拉多娜-采购！采购！-进入战役",
+  "script": "fav_hero_026_2_1",
   "exps": [
     {
       "para": {
@@ -20,8 +22,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_5",
-            "text": "宣传家族的使命任重道远啊。"
+            "text": "宣传家族的使命任重道远啊。",
+            "tag": "tag_5"
           }
         ]
       },
@@ -55,8 +57,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_9",
-            "text": "要说商人的话，确实有一个人……"
+            "text": "要说商人的话，确实有一个人……",
+            "tag": "tag_9"
           }
         ]
       },
@@ -65,7 +67,7 @@
     {
       "para": {
         "charaName": "",
-        "text": "[cm]",
+        "text": "[cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -242,12 +244,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_31",
-            "text": "我们只要一套桌椅就可以了。"
+            "text": "我们只要一套桌椅就可以了。",
+            "tag": "tag_31"
           },
           {
-            "tag": "tag_31",
-            "text": "比绍先生，请按我们最初的需求提供商品就好。"
+            "text": "比绍先生，请按我们最初的需求提供商品就好。",
+            "tag": "tag_31"
           }
         ]
       },
@@ -289,12 +291,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_36",
-            "text": "贝拉多娜还是太爱面子了。"
+            "text": "贝拉多娜还是太爱面子了。",
+            "tag": "tag_36"
           },
           {
-            "tag": "tag_36",
-            "text": "要学会放下虚荣，低调办事。"
+            "text": "要学会放下虚荣，低调办事。",
+            "tag": "tag_36"
           }
         ]
       },
@@ -320,8 +322,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_39",
-            "text": "当然可以！"
+            "text": "当然可以！",
+            "tag": "tag_39"
           }
         ]
       },
@@ -334,8 +336,14 @@
         "nameSide": "left"
       },
       "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
     }
-  ],
-  "script": "fav_hero_026_2_1",
-  "des": "贝拉多娜-采购！采购！-进入战役"
+  ]
 }

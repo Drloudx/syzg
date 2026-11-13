@@ -2,25 +2,25 @@
   "exps": [
     {
       "para": {
-        "charaName": "奇瓦",
         "nameSide": "left",
-        "text": "[show]嘿嘿……谢谢你亲自出来迎接我。[l][cm]"
+        "text": "[show]嘿嘿……谢谢你亲自出来迎接我。[l][cm]",
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
         "nameSide": "left",
-        "text": "[show]说实话，离家这么久还是第一次有人愿意收留我，简直……简直就像做梦一样，对吧软软？[l][cm]"
+        "text": "[show]说实话，离家这么久还是第一次有人愿意收留我，简直……简直就像做梦一样，对吧软软？[l][cm]",
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "软软",
         "nameSide": "left",
-        "text": "[show]吼、吼吼——！[l]"
+        "text": "[show]吼、吼吼——！[l]",
+        "charaName": "软软"
       },
       "key": "text"
     },
@@ -37,29 +37,29 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
         "nameSide": "left",
-        "text": "[cm][show]这个……软软面对陌生人是会有些紧张啦，不必害怕。[l][cm]"
+        "text": "[cm][show]这个……软软面对陌生人是会有些紧张啦，不必害怕。[l][cm]",
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
         "nameSide": "left",
-        "text": "[show]我们可以先进到营地里面去吗？一路赶过来，软软需要好好休息一下了～[l][cm][hide]"
+        "text": "[show]我们可以先进到营地里面去吗？一路赶过来，软软需要好好休息一下了～[l][cm][hide]",
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
         "nameSide": "left",
-        "text": "[hide]"
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }
   ],
-  "des": "奇瓦-营地对话欢迎你，奇瓦。",
-  "script": "fav_hero_019_1_0"
+  "script": "fav_hero_019_1_0",
+  "des": "奇瓦-营地对话欢迎你，奇瓦。"
 }

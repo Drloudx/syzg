@@ -215,7 +215,7 @@
     {
       "para": {
         "charaName": "修瓦莉",
-        "text": "[cm][show]那以后我就可以经常来主公这边啦，日后请多指教！[l][cm]",
+        "text": "[cm][show]那以后我就可以经常来主公这边啦，日后请多指教！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"

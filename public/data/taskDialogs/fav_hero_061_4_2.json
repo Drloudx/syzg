@@ -49,7 +49,7 @@
     {
       "para": {
         "charaName": "斯卡莉安",
-        "text": "[cm][show]所以你要找的朋友就是这一位吗？[l][cm]",
+        "text": "[cm][show]所以你要找的朋友就是这一位吗？[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -127,7 +127,7 @@
     {
       "para": {
         "charaName": "露比特",
-        "text": "[show]我去忙啦～！要好好使用这些的说！[l][cm]",
+        "text": "[show]我去忙啦～！要好好使用这些的说！[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"

@@ -2,49 +2,57 @@
   "exps": [
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]嗯，我也是在契约者版块的角落里看到的。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]修行所那边收留了很多孩子，但他们没有老师，所以就来契约者这边招人。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]告示贴了很久都没有人去应聘，毕竟给的钱太少，加上大家对教小孩子也没什么兴趣。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]不过这事就很适合我啦，我在大书院的成绩不错，要教他们还是没问题的。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]只是我的胆子还有些小……不过有你和软软在就没问题啦，我们出发吧！[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕——！咕——！[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "软软"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }

@@ -91,6 +91,7 @@ export const compactRoom = (room = {}) => ({
   label: room.label,
   level: room.level,
   hidden: room.hidden,
+  unlockTasks: room.unlockTasks?.length ? room.unlockTasks : undefined,
   variants: (room.variants || []).map(compactVariant)
 })
 

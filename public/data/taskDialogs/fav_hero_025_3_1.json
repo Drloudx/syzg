@@ -1,18 +1,20 @@
 {
+  "des": "嘉莉缇-进入战役【fav_hero_025_3】",
+  "script": "fav_hero_025_3_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]经过一番忙碌，美味地享用了嘉莉缇的料理——[l][cm]"
+        "text": "[show]经过一番忙碌，美味地享用了嘉莉缇的料理——[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]怎么样？你感觉出来问题在哪里了吗？[l]"
+        "text": "[show]怎么样？你感觉出来问题在哪里了吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -20,12 +22,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_7",
-            "text": "感觉好像缺了一点冲击力。"
+            "text": "感觉好像缺了一点冲击力。",
+            "tag": "tag_7"
           },
           {
-            "tag": "tag_7",
-            "text": "感觉好像少了一点香气。"
+            "text": "感觉好像少了一点香气。",
+            "tag": "tag_7"
           }
         ]
       },
@@ -33,25 +35,25 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[cm][show]对吧！我就觉得是这样！[l][cm]"
+        "text": "[cm][show]对吧！我就觉得是这样！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]为了能够充分勾出岩蟾蜍肉里的香味，我已经用了很多香料，不管是森林里的还是外来的，效果都非常一般。[l][cm]"
+        "text": "[show]为了能够充分勾出岩蟾蜍肉里的香味，我已经用了很多香料，不管是森林里的还是外来的，效果都非常一般。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]对比了大宴会上最受欢迎的几道传统料理之后，我才大致猜想出了这道菜到底缺少了什么。[l]"
+        "text": "[show]对比了大宴会上最受欢迎的几道传统料理之后，我才大致猜想出了这道菜到底缺少了什么。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -59,8 +61,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_11",
-            "text": "那么是缺少了什么呢？"
+            "text": "那么是缺少了什么呢？",
+            "tag": "tag_11"
           }
         ]
       },
@@ -68,9 +70,9 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[cm][show]答案其实很简单——是酒，这道菜里缺少了一味美酒！[l]"
+        "text": "[cm][show]答案其实很简单——是酒，这道菜里缺少了一味美酒！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -78,12 +80,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_13",
-            "text": "酒？"
+            "text": "酒？",
+            "tag": "tag_13"
           },
           {
-            "tag": "tag_13",
-            "text": "酒也能用来料理吗？"
+            "text": "酒也能用来料理吗？",
+            "tag": "tag_13"
           }
         ]
       },
@@ -91,33 +93,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[cm][show]当然可以啦！[l][cm]"
+        "text": "[cm][show]当然可以啦！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]其实呢，在黑森林的菜系里，很多名菜都是用酒提香提味的！[l][cm]"
+        "text": "[show]其实呢，在黑森林的菜系里，很多名菜都是用酒提香提味的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]比如说蕈酵酒烤香肠，烈酒烹牛肉，火炙醉恐兽，还有葡萄酒炖百果……[l][cm]"
+        "text": "[show]比如说蕈酵酒烤香肠，烈酒烹牛肉，火炙醉恐兽，还有葡萄酒炖百果……[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]好酒可不光是能够佐餐，用来做菜也是一品至味啊！[l]"
+        "text": "[show]好酒可不光是能够佐餐，用来做菜也是一品至味啊！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -125,8 +127,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_18",
-            "text": "所以你是想让我帮忙找一种美酒来？"
+            "text": "所以你是想让我帮忙找一种美酒来？",
+            "tag": "tag_18"
           }
         ]
       },
@@ -134,33 +136,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[cm][show]嘿嘿，是这样的。[l][cm]"
+        "text": "[cm][show]嘿嘿，是这样的。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]为了最大化地发挥食材的味道，美酒是必不可少的！[l][cm]"
+        "text": "[show]为了最大化地发挥食材的味道，美酒是必不可少的！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]其实我也想过要不要用蕈酵酒，但那样一来，整个菜式就太过“黑森林”了，完全丧失了开拓新食材的本意。[l][cm]"
+        "text": "[show]其实我也想过要不要用蕈酵酒，但那样一来，整个菜式就太过“黑森林”了，完全丧失了开拓新食材的本意。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[show]所以，这次也能拜托你吗？[l]"
+        "text": "[show]所以，这次也能拜托你吗？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -168,12 +170,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_23",
-            "text": "好吧，我正好有点这方面的人脉。"
+            "text": "好吧，我正好有点这方面的人脉。",
+            "tag": "tag_23"
           },
           {
-            "tag": "tag_23",
-            "text": "这次也交给我吧。"
+            "text": "这次也交给我吧。",
+            "tag": "tag_23"
           }
         ]
       },
@@ -181,21 +183,19 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "嘉莉缇",
-        "text": "[cm][show]嗯！那就太感谢你了！喜欢你哦～❤！[l][cm][hide]"
+        "text": "[cm][show]嗯！那就太感谢你了！喜欢你哦～❤！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "嘉莉缇-进入战役【fav_hero_025_3】",
-  "script": "fav_hero_025_3_1"
+  ]
 }

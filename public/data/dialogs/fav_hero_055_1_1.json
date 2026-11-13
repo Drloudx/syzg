@@ -1,6 +1,13 @@
 {
-  "script": "fav_hero_055_1_1",
   "exps": [
+    {
+      "para": {
+        "charaName": "",
+        "text": "[hide]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
     {
       "para": {
         "charaName": "迦南",
@@ -424,5 +431,6 @@
       "key": "text"
     }
   ],
+  "script": "fav_hero_055_1_1",
   "des": "迦南-场景：营地门前"
 }

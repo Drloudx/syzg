@@ -2,17 +2,17 @@
   "exps": [
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]其实……我要跟你先道个歉，其实我和你见面不只是为了交房租。只是……软软想要见你了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕？[l]",
-        "nameSide": "left"
+        "charaName": "软软"
       },
       "key": "text"
     },
@@ -29,25 +29,25 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]是这样吗？那我们来聊聊天吧？就来聊我和那几位孩子上课的事。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]自从我们一起给孩子们上完第一节课后，他们就很配合了，我说什么他们都乖乖坐着听。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]我也根据他们各自的爱好设计了不同的秘术课，他们都学得很开心，果然兴趣就是最好的老师。[l]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
@@ -64,33 +64,33 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]嗯……学到了些皮毛吧，他们已经可以用手上的魔法做自己喜欢的事了，比如烹饪、绘画、音乐什么的……[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]大家又没有大书院那样的条件，在教学资源有限的情况下，大家已经做得很不错啦。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]而且我也在这次代课中把之前的知识温习了一遍，从某种程度上，我学到的东西可能比他们还多呢。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]而且通过这次教学我证明了一件事，那就是比起大书院那种无聊的说教，我这种结合学生兴趣的教学才更有趣、更高效！[l]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
@@ -107,49 +107,49 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]{myName}恐怕不知道吧？大书院的教育就是一种无聊的说教，我当时都被那种教育训疯了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]再加上妈妈也是那种控制欲超强的人，她和老师每天都对着我叽叽喳喳，真是烦死了！[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]比如我喜欢鲁特琴，那算是我小时候唯一的兴趣。结果就老师就以打扰我学习为理由，把我的琴没收了。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]也正是拜他们的唠叨，我才选择离家出走，去找寻真正的自由。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]只是从外面跑出来之后，我也遇到了很多危险的事情。脱离了家与学校的保护后，我果然碰了一鼻子灰……[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]所以我也经常感到不安，总怀疑自己当初做的选择真的对吗？[l]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
@@ -185,73 +185,73 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]嘿嘿……你说的没错。这趟旅行我见过了很多新鲜的东西，也学到了很多知识。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]我还遇到了软软和{myName}这些值得信任伙伴，以及修行所那群可爱的孩子们……[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]现在我至少可以肯定，离家这个选择是对的！我要追求真正的自由！[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕！咕咕咕！[l][cm]",
-        "nameSide": "left"
+        "charaName": "软软"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
+        "nameSide": "left",
         "text": "[show]（紧接着，奇瓦滔滔不绝地和你讲述了自己对于大书院的怨恨，以及出来旅行的感觉……）[l][cm]",
-        "nameSide": "left"
+        "charaName": ""
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]哇！已经这个时间点了，不知不觉间说了那么长时间……谢谢你听我唠叨这么久。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]总之……能在这个世界旅行，能遇见大家，我真的很开心。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]感觉好久没和其他人说那么多真心话了，恐怕也只有在你面前我才能毫无顾忌地袒露心声吧。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]那个……我下次还能再来和你聊天吗？[l]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
@@ -268,17 +268,25 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]嘿嘿！那就这么说定啦！[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕！咕咕咕！[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "软软"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }

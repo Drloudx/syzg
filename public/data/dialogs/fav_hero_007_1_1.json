@@ -1,10 +1,12 @@
 {
+  "des": "拉碧丝-难以解决的困扰-进入战役",
+  "script": "fav_hero_007_1_1",
   "exps": [
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]今天是舞台的休息日，{myName}可以随意参观～[l]"
+        "text": "[show]今天是舞台的休息日，{myName}可以随意参观～[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -12,12 +14,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_4",
-            "text": "桌上堆积的是……？"
+            "text": "桌上堆积的是……？",
+            "tag": "tag_4"
           },
           {
-            "tag": "tag_4",
-            "text": "感觉很安静呢……"
+            "text": "感觉很安静呢……",
+            "tag": "tag_4"
           }
         ]
       },
@@ -25,57 +27,57 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]嗯～桌上这些都是没有贩售出去的坐席票呢，我所困扰的正是这个。[l][cm]"
+        "text": "[cm][show]嗯～桌上这些都是没有贩售出去的坐席票呢，我所困扰的正是这个。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]以往的休息日会有不少客人边品尝美酒边讨论舞者的话题，但最近以来，舞团吸引的客人逐渐变少。[l][cm]"
+        "text": "[show]以往的休息日会有不少客人边品尝美酒边讨论舞者的话题，但最近以来，舞团吸引的客人逐渐变少。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]为了维持演出的水准，舞团每一位成员都在努力训练，哪怕是喜欢逃跑的可可娜也能在舞台上进行完美的演出呢。[l][cm]"
+        "text": "[show]为了维持演出的水准，舞团每一位成员都在努力训练，哪怕是喜欢逃跑的可可娜也能在舞台上进行完美的演出呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]即便如此，妖精舞台依旧吸引不了更多的观众，这样下去的话比绍很可能会减少妖精们的酬劳金……！[l][cm]"
+        "text": "[show]即便如此，妖精舞台依旧吸引不了更多的观众，这样下去的话比绍很可能会减少妖精们的酬劳金……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]唉，几个孩子已经足够努力了，我不想因为酬劳金的问题让妖精舞台变得七零八落。[l][cm]"
+        "text": "[show]唉，几个孩子已经足够努力了，我不想因为酬劳金的问题让妖精舞台变得七零八落。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]所以我才决定请教{myName}，从深渊外面来的你应该比我们更清楚外面的世界流行怎样的表演。[l][cm]"
+        "text": "[show]所以我才决定请教{myName}，从深渊外面来的你应该比我们更清楚外面的世界流行怎样的表演。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（拉碧丝的眼神充满了期待。）[l]"
+        "text": "[show]（拉碧丝的眼神充满了期待。）[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -83,12 +85,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_12",
-            "text": "我只懂得工匠的艺术……"
+            "text": "我只懂得工匠的艺术……",
+            "tag": "tag_12"
           },
           {
-            "tag": "tag_12",
-            "text": "抱歉，我没有观赏过表演……"
+            "text": "抱歉，我没有观赏过表演……",
+            "tag": "tag_12"
           }
         ]
       },
@@ -96,17 +98,17 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]是吗……{myName}的确不像是会特地去旅店欣赏演出的家伙呢。[l][cm]"
+        "text": "[cm][show]是吗……{myName}的确不像是会特地去旅店欣赏演出的家伙呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]我原本以为能从{myName}这里学到新的演出技巧，现在该怎么办才好呢……[l]"
+        "text": "[show]我原本以为能从{myName}这里学到新的演出技巧，现在该怎么办才好呢……[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -114,8 +116,8 @@
       "para": {
         "options": [
           {
-            "tag": "tag_15",
-            "text": "拉碧丝自己的想法呢？"
+            "text": "拉碧丝自己的想法呢？",
+            "tag": "tag_15"
           }
         ]
       },
@@ -123,33 +125,33 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]我、我吗……！？[l][cm]"
+        "text": "[cm][show]我、我吗……！？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]我的确想过一些方案，但我认为它们和目前的演出节目相比没有多大的改变。[l][cm]"
+        "text": "[show]我的确想过一些方案，但我认为它们和目前的演出节目相比没有多大的改变。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]舞团的剧目演出一直由我主导，倒是不好意思过问她们的想法呢。[l][cm]"
+        "text": "[show]舞团的剧目演出一直由我主导，倒是不好意思过问她们的想法呢。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]更何况我们需要的是能够吸引观众目光的改进方案，这些烦恼由我一个承担，她们只需要在舞台上负责演出就好。[l]"
+        "text": "[show]更何况我们需要的是能够吸引观众目光的改进方案，这些烦恼由我一个承担，她们只需要在舞台上负责演出就好。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -157,12 +159,12 @@
       "para": {
         "options": [
           {
-            "tag": "tag_20",
-            "text": "如果不展现出来就无法改进。"
+            "text": "如果不展现出来就无法改进。",
+            "tag": "tag_20"
           },
           {
-            "tag": "tag_20",
-            "text": "我可以尽我所能地提供建议。"
+            "text": "我可以尽我所能地提供建议。",
+            "tag": "tag_20"
           }
         ]
       },
@@ -170,69 +172,67 @@
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[cm][show]……！[l][cm]"
+        "text": "[cm][show]……！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]{myName}来提供意见吗？[l][cm]"
+        "text": "[show]{myName}来提供意见吗？[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[show]（拉碧丝陷入了沉思。）[l][cm]"
+        "text": "[show]（拉碧丝陷入了沉思。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]……{myName}说得没错，表演者无法做出的决断就让观众赋予答案。[l][cm]"
+        "text": "[show]……{myName}说得没错，表演者无法做出的决断就让观众赋予答案。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]来自深渊外的你作为“观众”也会拥有不同的见解。[l][cm]"
+        "text": "[show]来自深渊外的你作为“观众”也会拥有不同的见解。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]再给我一些时间！我需要完善自己的想法，到时候再来{myName}的营地拜访。[l][cm]"
+        "text": "[show]再给我一些时间！我需要完善自己的想法，到时候再来{myName}的营地拜访。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "拉碧丝",
-        "text": "[show]今天很感谢你。[l][cm][hide]"
+        "text": "[show]今天很感谢你。[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "nameSide": "left",
         "charaName": "",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
-  ],
-  "des": "拉碧丝-难以解决的困扰-进入战役",
-  "script": "fav_hero_007_1_1"
+  ]
 }

@@ -2,25 +2,25 @@
   "exps": [
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]也不是什么大单子啦，就是在大家面前讲讲话而已。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]不过……现在还是有点紧张的，我害怕等会上台之后一句话也说不出来。[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "软软",
+        "nameSide": "left",
         "text": "[show]咕咕……[l]",
-        "nameSide": "left"
+        "charaName": "软软"
       },
       "key": "text"
     },
@@ -41,17 +41,25 @@
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[cm][show]嗯！谢谢！[l][cm]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "奇瓦",
+        "nameSide": "left",
         "text": "[show]那我们出发吧，工作人员已经在那边等我了。[l][cm][hide]",
-        "nameSide": "left"
+        "charaName": "奇瓦"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "nameSide": "left",
+        "text": "[hide]",
+        "charaName": ""
       },
       "key": "text"
     }
