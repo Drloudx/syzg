@@ -7,7 +7,12 @@ import {
   PET_DISPOSAL_RULE
 } from '../../src/utils/petEggsData.js'
 
-const petJson = JSON.parse(readFileSync(new URL('../../raw/pet.json', import.meta.url), 'utf8'))
+const readRaw = (file) => JSON.parse(readFileSync(new URL(`../../raw/${file}`, import.meta.url), 'utf8'))
+const petJson = readRaw('pet.json')
+const petPoolJson = readRaw('petPool.json')
+const petPoolTimeJson = readRaw('petPoolTime.json')
+const consumeJson = readRaw('consume.json')
+const petsEggsViewSource = readFileSync(new URL('../../src/views/PetsEggsView.vue', import.meta.url), 'utf8')
 
 test('处置建议边界保持唯一且明确', () => {
   assert.deepEqual(PET_DISPOSAL_RULE, { feedBelow: 2.2, sellAbove: 3 })
@@ -19,7 +24,7 @@ test('处置建议边界保持唯一且明确', () => {
 })
 
 test('全量魔物收益按当前数据自然断层分为 5 喂、13 按需、25 卖', () => {
-  const { pets } = buildPetEggsData({ petJson })
+  const { pets } = buildPetEggsData({ petJson, petPoolJson, petPoolTimeJson, consumeJson })
   const counts = pets.reduce((result, pet) => {
     result[pet.recommendationKey] = (result[pet.recommendationKey] || 0) + 1
     return result
@@ -33,4 +38,31 @@ test('全量魔物收益按当前数据自然断层分为 5 喂、13 按需、25
   assert.equal(pets.find(pet => pet.name === '秋风妖精').recommendationText, '喂')
   assert.equal(pets.find(pet => pet.name === '角布林').recommendationText, '按需选择')
   assert.equal(pets.find(pet => pet.name === '掘地芙洛波').recommendationText, '卖')
+})
+
+test('卡池分类按原表消耗生成：银币池与除银币外全氪金池合并去重', () => {
+  const { pets } = buildPetEggsData({ petJson, petPoolJson, petPoolTimeJson, consumeJson })
+  const silver = pets.filter(pet => pet.pools.includes('silver'))
+  const premium = pets.filter(pet => pet.pools.includes('premium'))
+  const nonPool = pets.filter(pet => pet.pools.length === 0)
+
+  // 无重复 id 与重复 pools 标签
+  assert.equal(new Set(pets.map(pet => pet.id)).size, pets.length)
+  for (const pet of pets) {
+    assert.equal(new Set(pet.pools).size, pet.pools.length)
+  }
+
+  // 与当前 raw/petPool.json 对齐：常规贩售 20 只；特别(38) ∪ 御卫(39) ∪ 古堡(39) 去重 40 只；非卡池 3 只
+  assert.equal(silver.length, 20)
+  assert.equal(premium.length, 40)
+  assert.deepEqual(nonPool.map(p => p.name).sort(), ['格里芬', '彩虹史莱姆', '纯白史莱姆'].sort())
+  assert.ok(silver.every(pet => pet.pools.includes('premium')))
+  assert.ok(premium.some(pet => pet.name === '圣骑士史莱姆'), '御卫贩售独有应合并进氪金池')
+  assert.ok(premium.some(pet => pet.name === '洛莉安的眷属'), '古堡贩售独有应合并进氪金池')
+
+  // 页面不再使用「金币池」或手写名单，且兼容 ?pool=gold 旧链接
+  assert.ok(!petsEggsViewSource.includes('金币池'))
+  assert.ok(!petsEggsViewSource.includes('goldPoolNames'))
+  assert.ok(!petsEggsViewSource.includes('premiumPoolNames'))
+  assert.ok(petsEggsViewSource.includes("route.query.pool === 'silver' || route.query.pool === 'gold'"))
 })

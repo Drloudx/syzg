@@ -7,7 +7,10 @@ import { readJson } from './shared.mjs'
 
 export function buildPetEggsFile() {
   const data = buildPetEggsData({
-    petJson: readJson('pet.json')
+    petJson: readJson('pet.json'),
+    petPoolJson: readJson('petPool.json'),
+    petPoolTimeJson: readJson('petPoolTime.json'),
+    consumeJson: readJson('consume.json')
   })
   return { file: 'parsed/pet-eggs.json', data }
 }

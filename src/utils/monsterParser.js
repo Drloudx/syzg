@@ -668,8 +668,10 @@ export function getMonsterVisualPath(m, typeId = m?.typeId) {
     return { path: `/images/PicHandBookPanel_Atlas/${portraitName}.webp`, kind: 'portrait' }
   }
 
-  const clean = String(typeId || '').replace(/_(rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02)$/i, '')
-  const isNumberedMon = /^(?:mon_?)?\d+/i.test(clean)
+  const clean = String(typeId || '')
+    .replace(/^(?:mon_|pet_)/i, '')
+    .replace(/_(rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02)$/i, '')
+  const isNumberedMon = /^\d+/i.test(clean)
   const numSub = isNumberedMon ? clean.match(/(\d{1,3}(?:_\d+)?)/)?.[1] : null
   const num = isNumberedMon ? clean.match(/(\d{1,3})/)?.[1] : null
   const paddedTypeId = String(typeId || '').replace(/^(\d{1,2})(_|$)/, (_, n, sep) => n.padStart(3, '0') + sep)
@@ -1037,12 +1039,15 @@ function processForm(m, skillData, buffData, rewards, items, lanDict, equipGroup
 
   const collectRewards = m.rewards ? parseRewardId(m.rewards, rewards, items, equipGroupData) : []
 
+  const visual = getMonsterVisualPath(m, m?.typeId)
+
   return {
     id: m.typeId,
     name: m.name || m.monDes || m.typeId,
     tabLabel: getVariantLabel(m),
     icon: m.icon || m.monIcon || '',
-    portraitPath: getMonsterPortraitPath(m),
+    portraitPath: visual.path,
+    imageKind: visual.kind,
     monDes: m.monDes || '',
     weakAttDes: m.weakAttDes || '',
     specialDes: m.specialDes || '',
@@ -1328,19 +1333,28 @@ export const KNOWN_PORTRAITS = new Set([
   'colect_mon_039', 'colect_mon_040', 'colect_mon_041', 'colect_mon_042', 'colect_mon_043',
   'colect_mon_044', 'colect_mon_045', 'colect_mon_046', 'colect_mon_046_a', 'colect_mon_047',
   'colect_mon_048', 'colect_mon_049', 'colect_mon_050', 'colect_mon_051', 'colect_mon_052',
-  'colect_mon_053', 'colect_mon_054', 'colect_mon_055', 'colect_mon_056_1', 'colect_mon_056_2',
-  'colect_mon_056_3', 'colect_mon_056_4', 'colect_mon_056_5', 'colect_mon_057_1', 'colect_mon_057_2',
-  'colect_mon_058', 'colect_mon_059', 'colect_mon_060', 'colect_mon_061', 'colect_mon_062',
-  'colect_mon_063', 'colect_mon_064', 'colect_mon_065', 'colect_mon_065_a', 'colect_mon_066',
-  'colect_mon_067', 'colect_mon_068', 'colect_mon_069', 'colect_mon_070_1', 'colect_mon_070_2',
-  'colect_mon_071', 'colect_mon_071_a', 'colect_mon_072', 'colect_mon_072_a', 'colect_mon_073',
-  'colect_mon_073_a', 'colect_mon_074', 'colect_mon_074_a', 'colect_mon_075', 'colect_mon_075_a',
-  'colect_mon_076', 'colect_mon_077', 'colect_mon_078', 'colect_mon_079', 'colect_mon_080',
-  'colect_mon_080_1', 'colect_mon_080_2', 'colect_mon_083', 'colect_mon_084', 'colect_mon_085',
+  'colect_mon_053', 'colect_mon_054', 'colect_mon_055', 'colect_mon_056_1', 'colect_mon_056_10',
+  'colect_mon_056_14', 'colect_mon_056_2', 'colect_mon_056_3', 'colect_mon_056_4', 'colect_mon_056_5',
+  'colect_mon_057_1', 'colect_mon_057_2', 'colect_mon_058', 'colect_mon_059', 'colect_mon_060',
+  'colect_mon_061', 'colect_mon_062', 'colect_mon_063', 'colect_mon_064', 'colect_mon_065',
+  'colect_mon_065_a', 'colect_mon_066', 'colect_mon_067', 'colect_mon_068', 'colect_mon_069',
+  'colect_mon_070_1', 'colect_mon_070_2', 'colect_mon_071', 'colect_mon_071_a', 'colect_mon_072',
+  'colect_mon_072_a', 'colect_mon_073', 'colect_mon_073_a', 'colect_mon_074', 'colect_mon_074_a',
+  'colect_mon_075', 'colect_mon_075_a', 'colect_mon_076', 'colect_mon_076_a', 'colect_mon_077',
+  'colect_mon_077_a', 'colect_mon_078', 'colect_mon_078_a', 'colect_mon_079', 'colect_mon_079_a',
+  'colect_mon_080', 'colect_mon_080_1', 'colect_mon_080_2', 'colect_mon_081_10', 'colect_mon_081_11',
+  'colect_mon_081_3', 'colect_mon_081_4', 'colect_mon_081_5', 'colect_mon_081_6', 'colect_mon_081_7',
+  'colect_mon_081_8', 'colect_mon_081_9', 'colect_mon_083', 'colect_mon_084', 'colect_mon_085',
   'colect_mon_086', 'colect_mon_087', 'colect_mon_088', 'colect_mon_089', 'colect_mon_090',
   'colect_mon_091', 'colect_mon_091_lefthand', 'colect_mon_091_righthand', 'colect_mon_092',
-  'colect_mon_093', 'colect_mon_094', 'colect_mon_095', 'colect_mon_096', 'colect_mon_097',
-  'colect_mon_098'
+  'colect_mon_093', 'colect_mon_093_a', 'colect_mon_094', 'colect_mon_095', 'colect_mon_095_a',
+  'colect_mon_096', 'colect_mon_096_a', 'colect_mon_097', 'colect_mon_097_a', 'colect_mon_098',
+  'colect_mon_098_a', 'colect_mon_099', 'colect_mon_100', 'colect_mon_101', 'colect_mon_102',
+  'colect_mon_103', 'colect_mon_104', 'colect_mon_105', 'colect_mon_105_a', 'colect_mon_106',
+  'colect_mon_106_a', 'colect_mon_107', 'colect_mon_107_a', 'colect_mon_108', 'colect_mon_108_a',
+  'colect_mon_109', 'colect_mon_109_a', 'colect_mon_10_a', 'colect_mon_110', 'colect_mon_110_a',
+  'colect_mon_111', 'colect_mon_112', 'colect_mon_113', 'colect_mon_114', 'colect_mon_115',
+  'colect_mon_117', 'colect_mon_118', 'colect_mon_tower1_damaged', 'colect_mon_tower1_protected'
 ])
 
 export function buildExtraMonsterData(maps, officialMonsters = []) {

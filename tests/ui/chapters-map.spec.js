@@ -16,9 +16,24 @@ import { expect, test } from '@playwright/test'
 
 const CHAPTER = 'c1'
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ isMobile, page }) => {
+  test.skip(isMobile, '地区地图仅在桌面端出现（手机端恒为列表）')
   await page.route('**/data/notice.json*', route => route.fulfill({ json: { notices: [] } }))
 })
+
+const dismissGlobalModals = async page => {
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    const clicked = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ui-modal-overlay.is-teleported .ui-modal-close')]
+        .find(element => element.getClientRects().length > 0)
+      if (!button) return false
+      button.click()
+      return true
+    })
+    if (!clicked) break
+    await page.waitForTimeout(250)
+  }
+}
 
 /**
  * 打开地区路线图并等节点装配完（**含节点图解码**）。
@@ -38,6 +53,7 @@ async function openRegionMap(page) {
   page.on('pageerror', error => errors.push(error.message))
   page.on('requestfailed', request => failed.push(request.url()))
   await page.goto(`/#/chapters?chapter=${CHAPTER}`)
+  await dismissGlobalModals(page)
   await expect(page.locator('.region-map__viewport')).toBeVisible()
   await expect(page.locator('.region-map__node.is-stage').first()).toBeVisible()
   await page.waitForFunction(() => {
@@ -214,4 +230,59 @@ test('area exploration node opens detail modal, and list difficulty filter suppo
 
   expect(errors).toEqual([])
 })
+
+test('world map renders sp1 tile and clicking it opens sp1 region route map', async ({ page }) => {
+  const errors = []
+  const failed = []
+  page.on('pageerror', error => errors.push(error.message))
+  page.on('requestfailed', request => failed.push(request.url()))
+
+  await page.goto('/#/chapters')
+  await dismissGlobalModals(page)
+
+  const canvas = page.locator('#chapterMapCanvas')
+  await expect(canvas).toBeVisible()
+
+  // sp1 (EX 幽夜古堡) 拼块已渲染，使用 map_w1_ex1.webp
+  const sp1Tile = canvas.locator('.chapter-map__tile[data-tile="sp1"]')
+  await expect(sp1Tile).toBeVisible()
+  const tileSrc = await sp1Tile.getAttribute('src')
+  expect(tileSrc).toContain('map_w1_ex1.webp')
+
+  // 世界地图上所有已渲染图片均无坏图
+  const brokenWorldImgs = await page.evaluate(() => {
+    const imgs = Array.from(document.querySelectorAll('#chapterMapCanvas img'))
+    return imgs.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.src)
+  })
+  expect(brokenWorldImgs).toEqual([])
+
+  // 点击 sp1 拼块（舞台设为 pointer-events:none，点击事件由 #chapterMapCanvas 按归属图捕获，因此用 force: true 或直接点击对应热区）
+  await sp1Tile.click({ force: true })
+  await expect(page).toHaveURL(/chapter=sp1/)
+  await expect(page.locator('.region-map__viewport')).toBeVisible()
+
+  // 12 个关卡节点（EX1-1 ~ EX1-12）、1 个小地区节点（幽夜古堡）、1 个副本入口（亚空回廊）
+  await expect(page.locator('.region-map__node.is-stage')).toHaveCount(12)
+  await expect(page.locator('.region-map__node.is-area')).toHaveCount(1)
+  await expect(page.locator('.region-map__node.is-instance')).toHaveCount(1)
+
+  // 路线图中底图与节点图标均完整加载
+  await page.waitForFunction(() => {
+    const imgs = Array.from(document.querySelectorAll('.region-map__bg, .region-map__node-art'))
+    return imgs.length > 0 && imgs.every(img => img.complete)
+  })
+  const brokenRegionImgs = await page.evaluate(() => {
+    const imgs = Array.from(document.querySelectorAll('.region-map__bg, .region-map__node-art'))
+    return imgs.filter(img => !img.complete || img.naturalWidth === 0).map(img => img.currentSrc || img.src)
+  })
+  expect(brokenRegionImgs).toEqual([])
+
+  // 点击返回世界地图
+  await page.locator('.region-map__back').click()
+  await expect(page.locator('#chapterMapCanvas')).toBeVisible()
+
+  expect(errors).toEqual([])
+  expect(failed).toEqual([])
+})
+
 

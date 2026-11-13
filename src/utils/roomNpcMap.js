@@ -4021,21 +4021,3661 @@ export const ROOM_NPC_MAP = {
       "name": "神秘商人",
       "icon": ""
     }
+  ],
+  "c2_ex5_f1A_2": [
+    {
+      "name": "阿迪拉",
+      "icon": "at047_0"
+    },
+    {
+      "name": "哈比巢母",
+      "icon": "avatar_Mon_054"
+    },
+    {
+      "name": "哈比狂怒者1",
+      "icon": "avatar_Mon_053"
+    },
+    {
+      "name": "哈比狂怒者2",
+      "icon": "avatar_Mon_053"
+    },
+    {
+      "name": "哈比狂怒者3",
+      "icon": "avatar_Mon_053"
+    }
+  ],
+  "fav_hero_069_3_f1A_1": [
+    {
+      "name": "修瓦莉",
+      "icon": "at069_0"
+    }
+  ],
+  "fav_hero_059_3_f1A_1": [
+    {
+      "name": "菲娜",
+      "icon": "at059_0"
+    }
+  ],
+  "fav_hero_029_3_f1A_1": [
+    {
+      "name": "安娜",
+      "icon": "at029_0"
+    }
+  ],
+  "fav_hero_031_5_f1A_1": [
+    {
+      "name": "波特温",
+      "icon": "at031_0"
+    }
+  ],
+  "fav_hero_065_3_f1A_1": [
+    {
+      "name": "乌尔勒\rnpc_065",
+      "icon": "at065_0"
+    },
+    {
+      "name": "莉拉\rnpc_010",
+      "icon": "at010_0"
+    }
+  ],
+  "c2_ex2_f1A_1": [
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    }
+  ],
+  "fav_hero_059_5_f1A_1": [
+    {
+      "name": "菲娜",
+      "icon": "at059_0"
+    }
+  ],
+  "c3_ex4_f1A_4": [
+    {
+      "name": "乌帕·萝特",
+      "icon": "at033_0"
+    },
+    {
+      "name": "露帕·萝特",
+      "icon": "at034_0"
+    },
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    }
+  ],
+  "c2_ex0_f1A_1": [
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_057_1"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_057_2"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_057_1"
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_057_1"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    }
+  ],
+  "fav_hero_062_4_f1A_1": [
+    {
+      "name": "安娜",
+      "icon": "at029_0"
+    },
+    {
+      "name": "露比特",
+      "icon": "at062_0"
+    }
+  ],
+  "fav_hero_049_3_f1A_1": [
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    }
+  ],
+  "fav_hero_045_4_f1A_1": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    }
+  ],
+  "fav_hero_009_4_f1A_1": [
+    {
+      "name": "可可娜\rnpc_009",
+      "icon": "at009_0"
+    },
+    {
+      "name": "激动的冒险者npc_922_other_C1",
+      "icon": ""
+    }
+  ],
+  "stage_sp1_area1_6": [
+    {
+      "name": "厨师托利斯",
+      "icon": ""
+    }
+  ],
+  "fav_hero_059_2_f1A_1": [
+    {
+      "name": "菲娜",
+      "icon": "at059_0"
+    }
+  ],
+  "fav_hero_055_2_f1A_2": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    },
+    {
+      "name": "凯蒂",
+      "icon": ""
+    }
+  ],
+  "fav_hero_031_2_f1A_1": [
+    {
+      "name": "波特温",
+      "icon": "at031_0"
+    }
+  ],
+  "fav_hero_071_3_f1A_1": [
+    {
+      "name": "商人莓莓",
+      "icon": ""
+    }
+  ],
+  "sp2_3_a_f1A_3": [
+    {
+      "name": "荒野客A",
+      "icon": "avatar_Mon_056_1"
+    },
+    {
+      "name": "荒野客B",
+      "icon": "avatar_Mon_056_2"
+    }
+  ],
+  "c2_ex3_f1A_1": [
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    },
+    {
+      "name": "卡夫",
+      "icon": "at023_0"
+    },
+    {
+      "name": "皮塔",
+      "icon": "at014_0"
+    },
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    },
+    {
+      "name": "“石头”贾马尔",
+      "icon": ""
+    },
+    {
+      "name": "sernie，“浴缸”瑟尼",
+      "icon": ""
+    },
+    {
+      "name": "faiza，“双刃”费萨",
+      "icon": ""
+    },
+    {
+      "name": "robert，“工头”罗伯特",
+      "icon": ""
+    },
+    {
+      "name": "theesyr，“老师”希瑟",
+      "icon": ""
+    },
+    {
+      "name": "ronny，“锈锄”罗尼",
+      "icon": ""
+    },
+    {
+      "name": "deliter，“车夫”德利特尔",
+      "icon": ""
+    },
+    {
+      "name": "adda，“皮匠”埃达",
+      "icon": ""
+    },
+    {
+      "name": "mon_057_1",
+      "icon": "avatar_Mon_057_1"
+    },
+    {
+      "name": "messenger_linna，“铁箭”莱米",
+      "icon": ""
+    }
+  ],
+  "fav_hero_064_5_f1A_1": [
+    {
+      "name": "伽拉忒亚\rnpc_064",
+      "icon": "at064_0"
+    }
+  ],
+  "sp2_6_a_f1A_3": [
+    {
+      "name": "祖基尼",
+      "icon": ""
+    },
+    {
+      "name": "荒野客1",
+      "icon": "avatar_Mon_056_3"
+    },
+    {
+      "name": "荒野客2",
+      "icon": "avatar_Mon_056_1"
+    }
+  ],
+  "fav_hero_007_4_f1A_1": [
+    {
+      "name": "拉碧丝",
+      "icon": "at007_0"
+    }
+  ],
+  "fav_hero_014_1_f1A_1": [
+    {
+      "name": "皮塔",
+      "icon": "at014_0"
+    }
+  ],
+  "stage_c1_area1_3": [
+    {
+      "name": "侍者茜塔",
+      "icon": ""
+    }
+  ],
+  "fav_hero_030_4_f1A_1": [
+    {
+      "name": "阿尔克丝",
+      "icon": "at030_0"
+    }
+  ],
+  "fav_hero_055_2_f1A_1": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    }
+  ],
+  "fav_hero_037_3_f1A_1": [
+    {
+      "name": "剋\rnpc_037",
+      "icon": "at037_0"
+    }
+  ],
+  "stage_sp1_area1_4": [
+    {
+      "name": "坟墓堆",
+      "icon": ""
+    }
+  ],
+  "fav_hero_043_2_f1A_1": [
+    {
+      "name": "阿娜洛洁",
+      "icon": "at043_0"
+    },
+    {
+      "name": "醉醺醺的契约者",
+      "icon": ""
+    },
+    {
+      "name": "契约官艾尔莎",
+      "icon": ""
+    }
+  ],
+  "fav_hero_065_4_f1A_1": [
+    {
+      "name": "乌尔勒\rnpc_065",
+      "icon": "at065_0"
+    }
+  ],
+  "stage_c0_area4_1": [
+    {
+      "name": "修业学徒缇莎",
+      "icon": ""
+    },
+    {
+      "name": "修行者桑德",
+      "icon": ""
+    },
+    {
+      "name": "修业学徒格兰缇",
+      "icon": ""
+    },
+    {
+      "name": "修业学徒梵妮",
+      "icon": ""
+    },
+    {
+      "name": "修行者凯帕斯克",
+      "icon": ""
+    },
+    {
+      "name": "商人塞勒",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "首座莉拉",
+      "icon": "at010_0"
+    }
+  ],
+  "fav_hero_036_3_f1A_1": [
+    {
+      "name": "贝尔卡",
+      "icon": "at036_0"
+    }
+  ],
+  "fav_hero_025_2_f1A_1": [
+    {
+      "name": "嘉莉缇",
+      "icon": "at025_0"
+    }
+  ],
+  "fav_hero_051_4_f1A_1": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    }
+  ],
+  "fav_hero_002_1_f1A_1": [
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    }
+  ],
+  "c3_ex3_f1A_1": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    }
+  ],
+  "fav_hero_025_1_f1A_1": [
+    {
+      "name": "嘉莉缇",
+      "icon": "at025_0"
+    }
+  ],
+  "c4_ex2_f3A_2": [
+    {
+      "name": "魔花1",
+      "icon": "avatar_Mon_031"
+    },
+    {
+      "name": "魔花2",
+      "icon": "avatar_Mon_032"
+    },
+    {
+      "name": "魔花3",
+      "icon": "avatar_Mon_031"
+    },
+    {
+      "name": "护林人1",
+      "icon": ""
+    },
+    {
+      "name": "护林人3",
+      "icon": ""
+    },
+    {
+      "name": "护林人2",
+      "icon": ""
+    },
+    {
+      "name": "芭杜尔",
+      "icon": "at015_0"
+    },
+    {
+      "name": "嘉莉缇",
+      "icon": "at025_0"
+    },
+    {
+      "name": "主角",
+      "icon": "at001_0"
+    }
+  ],
+  "fav_hero_015_1_f1A_1": [
+    {
+      "name": "芭杜尔",
+      "icon": "at015_0"
+    }
+  ],
+  "fav_hero_050_3_f1A_1": [
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    }
+  ],
+  "c1_ex3_f1A_1": [
+    {
+      "name": "格薇勒",
+      "icon": "at028_0"
+    },
+    {
+      "name": "游手好闲的荒野客",
+      "icon": "avatar_Mon_056_1"
+    },
+    {
+      "name": "游手好闲的荒野客",
+      "icon": ""
+    },
+    {
+      "name": "荒野客首领",
+      "icon": "avatar_Mon_056_4"
+    }
+  ],
+  "c3_ex6_f1A_6": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    },
+    {
+      "name": "贼人",
+      "icon": "at045_0"
+    },
+    {
+      "name": "露帕",
+      "icon": "at034_0"
+    },
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    }
+  ],
+  "sp1_2_a_f1A_3": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "c5_ex4_f1A_4": [
+    {
+      "name": "雷素",
+      "icon": ""
+    },
+    {
+      "name": "霜火队角布林",
+      "icon": "avatar_Mon_007"
+    },
+    {
+      "name": "霜火队男",
+      "icon": ""
+    },
+    {
+      "name": "霜火队女",
+      "icon": ""
+    },
+    {
+      "name": "奥格",
+      "icon": "at066_0"
+    },
+    {
+      "name": "掘冰芙洛波",
+      "icon": "avatar_Mon_085"
+    },
+    {
+      "name": "魔水黏怪",
+      "icon": "avatar_Mon_058"
+    },
+    {
+      "name": "顽劣灯火",
+      "icon": "avatar_Mon_044"
+    }
+  ],
+  "sp2_2_a_f1A_3": [
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    }
+  ],
+  "fav_hero_008_1_f1A_1": [
+    {
+      "name": "夏库塔拉",
+      "icon": "at008_0"
+    }
+  ],
+  "stage_sp1_area1_1": [
+    {
+      "name": "副管伊比瓦",
+      "icon": ""
+    },
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_055_5_f1A_2": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    },
+    {
+      "name": "小孩",
+      "icon": ""
+    },
+    {
+      "name": "小孩",
+      "icon": ""
+    },
+    {
+      "name": "小孩",
+      "icon": ""
+    }
+  ],
+  "fav_hero_031_1_f1A_1": [
+    {
+      "name": "波特温",
+      "icon": "at031_0"
+    }
+  ],
+  "fav_hero_032_3_f1A_1": [
+    {
+      "name": "诺姿",
+      "icon": "at032_0"
+    }
+  ],
+  "sp1_ex_2_f1A_3": [
+    {
+      "name": "洛莉安",
+      "icon": "avatar_Mon_103"
+    }
+  ],
+  "aseyj_main_03_d_f1A_16": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    },
+    {
+      "name": "缇莎",
+      "icon": ""
+    }
+  ],
+  "fav_hero_049_4_f1A_1": [
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    }
+  ],
+  "fav_hero_007_3_f1A_1": [
+    {
+      "name": "拉碧丝",
+      "icon": "at007_0"
+    }
+  ],
+  "c5_ex2_f2A_1": [
+    {
+      "name": "乌尔勒",
+      "icon": "at065_0"
+    },
+    {
+      "name": "伽拉忒亚",
+      "icon": "at064_0"
+    },
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    }
+  ],
+  "sp2_d_3_f1A_2": [
+    {
+      "name": "蚀渊之触",
+      "icon": "avatar_Mon_115"
+    },
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    }
+  ],
+  "fav_hero_055_3_f1A_1": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    }
+  ],
+  "c1_ex1_f1A_1": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    }
+  ],
+  "fav_hero_015_4_f1A_1": [
+    {
+      "name": "芭杜尔\rnpc_015",
+      "icon": "at015_0"
+    }
+  ],
+  "c3_ex3_f1A_4": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    }
+  ],
+  "c3_ex1_f1A_1": [
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    }
+  ],
+  "fav_hero_041_4_f1A_1": [
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    },
+    {
+      "name": "小偷",
+      "icon": ""
+    }
+  ],
+  "c4_ex2_f1A_1": [
+    {
+      "name": "主角",
+      "icon": "at001_0"
+    }
+  ],
+  "fav_hero_043_5_f1A_1": [
+    {
+      "name": "阿娜洛洁",
+      "icon": "at043_0"
+    }
+  ],
+  "fav_hero_047_2_f1A_1": [
+    {
+      "name": "阿迪拉\rnpc_047",
+      "icon": "at047_0"
+    },
+    {
+      "name": "大角猪1",
+      "icon": "avatar_Mon_035"
+    },
+    {
+      "name": "大角猪2",
+      "icon": "avatar_Mon_035"
+    },
+    {
+      "name": "大角猪3",
+      "icon": "avatar_Mon_035"
+    }
+  ],
+  "fav_hero_066_4_f1A_1": [
+    {
+      "name": "奥格\rnpc_066",
+      "icon": "at066_0"
+    }
+  ],
+  "fav_hero_019_1_f1A_1": [
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    }
+  ],
+  "fav_hero_061_5_f1A_1": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_011_2_f1A_1": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    },
+    {
+      "name": "小孩1",
+      "icon": ""
+    },
+    {
+      "name": "小孩2",
+      "icon": ""
+    },
+    {
+      "name": "小孩3",
+      "icon": ""
+    },
+    {
+      "name": "侍者萨利",
+      "icon": ""
+    },
+    {
+      "name": "酒客",
+      "icon": ""
+    }
+  ],
+  "fav_hero_070_4_f1A_1": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "sp2_ex_4_f1A_1": [
+    {
+      "name": "菲娜",
+      "icon": "at059_0"
+    }
+  ],
+  "fav_hero_002_5_f1A_1": [
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    }
+  ],
+  "fav_hero_049_5_f1A_1": [
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    }
+  ],
+  "stage_c1_area3_2": [
+    {
+      "name": "掌炉者库尔斯",
+      "icon": ""
+    },
+    {
+      "name": "武具匠瑟尔妲",
+      "icon": ""
+    },
+    {
+      "name": "铸甲匠达尔曼",
+      "icon": ""
+    },
+    {
+      "name": "高炉工桑克斯",
+      "icon": ""
+    },
+    {
+      "name": "高炉工乌斯克",
+      "icon": ""
+    },
+    {
+      "name": "旅行厨师德拉卡斯",
+      "icon": ""
+    }
+  ],
+  "fav_hero_069_1_f1A_1": [
+    {
+      "name": "修瓦莉",
+      "icon": "at069_0"
+    }
+  ],
+  "stage_sp1_area1_7": [
+    {
+      "name": "艺术家米莉罗",
+      "icon": ""
+    }
+  ],
+  "fav_hero_011_3_f1A_1": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    }
+  ],
+  "fav_hero_026_5_f1A_1": [
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    }
+  ],
+  "main_zy3_f1_4": [
+    {
+      "name": "沃夫加",
+      "icon": "at012_0"
+    }
+  ],
+  "fav_hero_060_2_f1A_1": [
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    },
+    {
+      "name": "护育员凯尔姆",
+      "icon": ""
+    },
+    {
+      "name": "史莱姆宝宝",
+      "icon": "avatar_Mon_109"
+    },
+    {
+      "name": "史莱姆宝宝",
+      "icon": "avatar_Mon_110"
+    },
+    {
+      "name": "史莱姆宝宝",
+      "icon": "avatar_Mon_108"
+    },
+    {
+      "name": "表演者乔可姆",
+      "icon": ""
+    },
+    {
+      "name": "村娘希维姆",
+      "icon": ""
+    }
+  ],
+  "fav_hero_060_3_f1A_1": [
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    }
+  ],
+  "fav_hero_008_5_f1A_1": [
+    {
+      "name": "夏库塔拉\rnpc_008",
+      "icon": "at008_0"
+    }
+  ],
+  "stage_sp1_area1_8": [
+    {
+      "name": "加尔戈萝",
+      "icon": "avatar_Mon_102"
+    },
+    {
+      "name": "调皮的石像鬼",
+      "icon": ""
+    },
+    {
+      "name": "魔力汇聚点",
+      "icon": ""
+    }
+  ],
+  "fav_hero_050_1_f1A_1": [
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    }
+  ],
+  "fav_hero_014_3_f1A_1": [
+    {
+      "name": "皮塔",
+      "icon": "at014_0"
+    }
+  ],
+  "yzdj_4_f1A_1a": [
+    {
+      "name": "据点守卫",
+      "icon": ""
+    },
+    {
+      "name": "据点守卫",
+      "icon": ""
+    },
+    {
+      "name": "据点护卫",
+      "icon": ""
+    }
+  ],
+  "fav_hero_061_2_f1A_1": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_070_5_f1A_1": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "stage_sp1_area1_3": [
+    {
+      "name": "混乱的空间点",
+      "icon": ""
+    }
+  ],
+  "stage_yzdq_23": [
+    {
+      "name": "首座莉拉",
+      "icon": "at010_0"
+    }
+  ],
+  "pata_f1A_1": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    }
+  ],
+  "fav_hero_007_1_f1A_1": [
+    {
+      "name": "拉碧丝",
+      "icon": "at007_0"
+    }
+  ],
+  "fav_hero_071_2_f1A_1": [
+    {
+      "name": "洛莉安",
+      "icon": "at071_0"
+    }
+  ],
+  "npctest": [
+    {
+      "name": "米拉贝尔2",
+      "icon": "at050_0"
+    },
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    },
+    {
+      "name": "米托菈",
+      "icon": "at002_0"
+    },
+    {
+      "name": "米托菈2",
+      "icon": "at002_0"
+    }
+  ],
+  "fav_hero_034_5_f1A_1": [
+    {
+      "name": "露帕",
+      "icon": "at034_0"
+    }
+  ],
+  "fav_hero_026_2_f1A_1": [
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    },
+    {
+      "name": "商人比绍",
+      "icon": ""
+    },
+    {
+      "name": "侍女",
+      "icon": ""
+    },
+    {
+      "name": "侍女",
+      "icon": ""
+    },
+    {
+      "name": "顾客",
+      "icon": ""
+    }
+  ],
+  "fav_hero_051_2_f1A_1": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    }
+  ],
+  "fav_hero_023_2_f1A_1": [
+    {
+      "name": "卡夫",
+      "icon": "at023_0"
+    }
+  ],
+  "fav_hero_071_4_f1A_1": [
+    {
+      "name": "洛莉安",
+      "icon": "at071_0"
+    }
+  ],
+  "fav_hero_041_4_f2A_1": [
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    },
+    {
+      "name": "小偷",
+      "icon": ""
+    },
+    {
+      "name": "佣兵1",
+      "icon": ""
+    },
+    {
+      "name": "佣兵4",
+      "icon": "avatar_Mon_056_1"
+    },
+    {
+      "name": "佣兵2",
+      "icon": "avatar_Mon_056_5"
+    },
+    {
+      "name": "佣兵3",
+      "icon": ""
+    }
+  ],
+  "fav_hero_053_3_f1A_1": [
+    {
+      "name": "少女",
+      "icon": ""
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "治安队员埃尔戈瓦",
+      "icon": ""
+    },
+    {
+      "name": "治安队员奥希娅尔",
+      "icon": ""
+    },
+    {
+      "name": "文员拉比尔",
+      "icon": ""
+    }
+  ],
+  "fav_hero_027_1_f1A_1": [
+    {
+      "name": "梅莉莉",
+      "icon": "at027_0"
+    }
+  ],
+  "fav_hero_070_1_f1A_1": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "fav_hero_053_5_f1A_1": [
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    }
+  ],
+  "fav_hero_043_4_f1A_1": [
+    {
+      "name": "阿娜洛洁",
+      "icon": "at043_0"
+    },
+    {
+      "name": "有鸟马车",
+      "icon": ""
+    },
+    {
+      "name": "蜥蜴人铁匠",
+      "icon": ""
+    },
+    {
+      "name": "小孩",
+      "icon": ""
+    },
+    {
+      "name": "农妇",
+      "icon": ""
+    },
+    {
+      "name": "驿站的卫兵2",
+      "icon": ""
+    },
+    {
+      "name": "驿站的卫兵1",
+      "icon": ""
+    }
+  ],
+  "c1_ex4_f1A_3": [
+    {
+      "name": "修业学徒玛姬",
+      "icon": ""
+    }
+  ],
+  "fav_hero_008_3_f1A_1": [
+    {
+      "name": "夏库塔拉",
+      "icon": "at008_0"
+    }
+  ],
+  "fav_hero_055_5_f1A_1": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    }
+  ],
+  "fav_hero_046_4_f1A_1": [
+    {
+      "name": "迈妮娅",
+      "icon": "at046_0"
+    },
+    {
+      "name": "迈妮娅的工友1",
+      "icon": ""
+    },
+    {
+      "name": "迈妮娅的工友2",
+      "icon": ""
+    },
+    {
+      "name": "迈妮娅的工友3",
+      "icon": "avatar_Mon_057_2"
+    }
+  ],
+  "fav_hero_061_3_f1A_1": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_029_1_f1A_1": [
+    {
+      "name": "安娜",
+      "icon": "at029_0"
+    }
+  ],
+  "c5_ex1_f1A_1": [
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "伽拉忒亚",
+      "icon": "at064_0"
+    },
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    }
+  ],
+  "stage_sp1_area1_9": [
+    {
+      "name": "研究员阿莲娜",
+      "icon": ""
+    }
+  ],
+  "fav_hero_045_3_f1A_1": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    }
+  ],
+  "c5_ex3_f1A_1": [
+    {
+      "name": "阿莱琳娜",
+      "icon": ""
+    },
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "佣兵1",
+      "icon": "avatar_Mon_056_1"
+    },
+    {
+      "name": "佣兵2",
+      "icon": "avatar_Mon_056_5"
+    },
+    {
+      "name": "匠艺系学生斯坎达",
+      "icon": ""
+    }
+  ],
+  "fav_hero_069_4_f1A_1": [
+    {
+      "name": "修瓦莉",
+      "icon": "at069_0"
+    },
+    {
+      "name": "兵峰",
+      "icon": ""
+    },
+    {
+      "name": "荒野客A",
+      "icon": ""
+    },
+    {
+      "name": "荒野客B",
+      "icon": ""
+    }
+  ],
+  "sp2_d_2_f1A_2": [
+    {
+      "name": "祖基尼",
+      "icon": ""
+    },
+    {
+      "name": "荒野客2",
+      "icon": "avatar_Mon_056_1"
+    },
+    {
+      "name": "荒野客1",
+      "icon": "avatar_Mon_056_3"
+    },
+    {
+      "name": "蚀渊之触",
+      "icon": "avatar_Mon_115"
+    }
+  ],
+  "c3_ex2_f1A_4": [
+    {
+      "name": "乌帕·萝特",
+      "icon": "at033_0"
+    },
+    {
+      "name": "露帕·萝特",
+      "icon": "at034_0"
+    },
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    },
+    {
+      "name": "贝尔卡",
+      "icon": "at036_0"
+    },
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    }
+  ],
+  "c5_d1_ex_f1A_1": [
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    },
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "伽拉忒亚",
+      "icon": "at064_0"
+    }
+  ],
+  "sp2_5_a_f1A_3": [
+    {
+      "name": "荒野客1",
+      "icon": ""
+    },
+    {
+      "name": "荒野客2",
+      "icon": ""
+    },
+    {
+      "name": "荒野客3",
+      "icon": ""
+    },
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    },
+    {
+      "name": "祖基尼",
+      "icon": ""
+    },
+    {
+      "name": "潜行者",
+      "icon": ""
+    }
+  ],
+  "fav_hero_047_4_f1A_1": [
+    {
+      "name": "阿迪拉\rnpc_047",
+      "icon": "at047_0"
+    },
+    {
+      "name": "哈比",
+      "icon": "avatar_Mon_054"
+    }
+  ],
+  "fav_hero_002_2_f1A_1": [
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "艾尔莎",
+      "icon": ""
+    }
+  ],
+  "fav_hero_051_5_f1A_1": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    }
+  ],
+  "fav_hero_066_1_f1A_1": [
+    {
+      "name": "奥格",
+      "icon": "at066_0"
+    }
+  ],
+  "stage_sp1_area1_10": [
+    {
+      "name": "哲学家斯卡里帕",
+      "icon": ""
+    },
+    {
+      "name": "角落的宝箱",
+      "icon": ""
+    },
+    {
+      "name": "混乱的空间点",
+      "icon": ""
+    }
+  ],
+  "fav_hero_049_1_f1A_1": [
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    }
+  ],
+  "fav_hero_023_3_f1A_1": [
+    {
+      "name": "卡夫",
+      "icon": "at023_0"
+    },
+    {
+      "name": "荒野客C",
+      "icon": "avatar_Mon_056_5"
+    },
+    {
+      "name": "落魄佣兵",
+      "icon": ""
+    },
+    {
+      "name": "荒野客B",
+      "icon": "avatar_Mon_056_3"
+    },
+    {
+      "name": "荒野客A",
+      "icon": "avatar_Mon_056_1"
+    }
+  ],
+  "fav_hero_061_4_f2A_1": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_029_5_f1A_1": [
+    {
+      "name": "安娜",
+      "icon": "at029_0"
+    }
+  ],
+  "fav_hero_055_4_f1A_1": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    },
+    {
+      "name": "魔剑（暂时用光点）",
+      "icon": ""
+    }
+  ],
+  "fav_hero_045_4_f1A_2": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    }
+  ],
+  "fav_hero_008_2_f1A_1": [
+    {
+      "name": "夏库塔拉",
+      "icon": "at008_0"
+    }
+  ],
+  "fav_hero_060_5_f1A_1": [
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    }
+  ],
+  "fav_hero_012_5_f1A_1": [
+    {
+      "name": "沃夫加",
+      "icon": "at012_0"
+    },
+    {
+      "name": "猎人2",
+      "icon": ""
+    },
+    {
+      "name": "猎人1",
+      "icon": ""
+    },
+    {
+      "name": "角猪",
+      "icon": "avatar_Mon_035"
+    }
+  ],
+  "fav_hero_033_1_f1A_1": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    },
+    {
+      "name": "角猪",
+      "icon": "avatar_Mon_035"
+    }
+  ],
+  "fav_hero_033_5_f1A_1": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    }
+  ],
+  "fav_hero_012_1_f1A_1": [
+    {
+      "name": "沃夫加",
+      "icon": "at012_0"
+    }
+  ],
+  "fav_hero_014_2_f1A_1": [
+    {
+      "name": "皮塔",
+      "icon": "at014_0"
+    },
+    {
+      "name": "小贼A\rFig_02e1_001",
+      "icon": ""
+    },
+    {
+      "name": "小贼B\radda",
+      "icon": ""
+    },
+    {
+      "name": "小贼C\rmarco",
+      "icon": ""
+    }
+  ],
+  "c1_ex2_f1A_4": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    }
+  ],
+  "fav_hero_062_1_f1A_1": [
+    {
+      "name": "露比特",
+      "icon": "at062_0"
+    }
+  ],
+  "c4_ex4_f1A_3": [
+    {
+      "name": "奥菲娜·黑棘",
+      "icon": ""
+    },
+    {
+      "name": "瑟蕾娜·黑棘",
+      "icon": ""
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "芭杜尔",
+      "icon": "at015_0"
+    }
+  ],
+  "sp02_bossRoomStory3": [
+    {
+      "name": "蚀渊之触",
+      "icon": "avatar_Mon_115"
+    },
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    }
+  ],
+  "stage_c0_area1_1": [
+    {
+      "name": "米托拉的分身",
+      "icon": "at002_0"
+    }
+  ],
+  "fav_hero_064_1_f1A_1": [
+    {
+      "name": "伽拉忒亚",
+      "icon": "at064_0"
+    }
+  ],
+  "fav_hero_061_1_f1A_1": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_053_1_f1A_1": [
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    }
+  ],
+  "fav_hero_033_3_f3A_1": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    }
+  ],
+  "fav_hero_051_3_f1A_1": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    }
+  ],
+  "fav_hero_066_3_f1A_1": [
+    {
+      "name": "贝尔卡\rnpc_036",
+      "icon": "at036_0"
+    },
+    {
+      "name": "奥格\rnpc_066",
+      "icon": "at066_0"
+    }
+  ],
+  "fav_hero_071_1_f1A_1": [
+    {
+      "name": "洛莉安",
+      "icon": "at071_0"
+    }
+  ],
+  "fav_hero_065_2_f1A_1": [
+    {
+      "name": "乌尔勒\rnpc_065",
+      "icon": "at065_0"
+    }
+  ],
+  "stage_c0_area1_2": [
+    {
+      "name": "新鲜的脚印",
+      "icon": ""
+    },
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    }
+  ],
+  "sp1_d_3_f1A_3": [
+    {
+      "name": "洛莉安",
+      "icon": "avatar_Mon_103"
+    }
+  ],
+  "fav_hero_033_3_f2A_1": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    }
+  ],
+  "fav_hero_055_2_f2A_1": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    }
+  ],
+  "fav_hero_047_5_f1A_1": [
+    {
+      "name": "阿迪拉\rnpc_047",
+      "icon": "at047_0"
+    },
+    {
+      "name": "光点\robj_006",
+      "icon": ""
+    }
+  ],
+  "main_zy8_f1A_2": [
+    {
+      "name": "剋",
+      "icon": "at037_0"
+    }
+  ],
+  "stage_sp2_area1_6": [
+    {
+      "name": "令人在意的黏液",
+      "icon": ""
+    },
+    {
+      "name": "令人在意的黏液",
+      "icon": ""
+    },
+    {
+      "name": "令人在意的黏液",
+      "icon": ""
+    },
+    {
+      "name": "户外活动地点",
+      "icon": ""
+    }
+  ],
+  "fav_hero_050_5_f1A_1": [
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    },
+    {
+      "name": "小孩3",
+      "icon": ""
+    },
+    {
+      "name": "小孩2",
+      "icon": ""
+    },
+    {
+      "name": "小孩1",
+      "icon": ""
+    },
+    {
+      "name": "“工头”罗伯特",
+      "icon": ""
+    }
+  ],
+  "fav_hero_050_4_f1A_1": [
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    }
+  ],
+  "fav_hero_041_3_f1A_1": [
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    }
+  ],
+  "fav_hero_005_5_f1A_1": [
+    {
+      "name": "茜塔",
+      "icon": "at005_0"
+    }
+  ],
+  "c1_ex2_f1A_1": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    }
+  ],
+  "c00_0_a_f1A_2": [
+    {
+      "name": "超天界格莉姆",
+      "icon": "avatar_Mon_091"
+    }
+  ],
+  "fav_hero_047_3_f1A_1": [
+    {
+      "name": "阿迪拉\rnpc_047",
+      "icon": "at047_0"
+    }
+  ],
+  "fav_hero_064_4_f1A_1": [
+    {
+      "name": "伽拉忒亚\rnpc_064",
+      "icon": "at064_0"
+    }
+  ],
+  "c5_ex1_f2A_1": [
+    {
+      "name": "希拉尔德",
+      "icon": "avatar_Mon_067"
+    }
+  ],
+  "c4_ex5_f1A_1": [
+    {
+      "name": "芭杜尔?暗心祭司",
+      "icon": "at015_0"
+    }
+  ],
+  "fav_hero_037_5_f1A_1": [
+    {
+      "name": "剋\rnpc_037",
+      "icon": "at037_0"
+    }
+  ],
+  "fav_hero_064_3_f1A_1": [
+    {
+      "name": "伽拉忒亚\rnpc_064",
+      "icon": "at064_0"
+    }
+  ],
+  "fav_hero_046_3_f1A_1": [
+    {
+      "name": "迈妮娅",
+      "icon": "at046_0"
+    }
+  ],
+  "fav_hero_036_1_f1A_1": [
+    {
+      "name": "贝尔卡",
+      "icon": "at036_0"
+    }
+  ],
+  "fav_hero_046_1_f1A_1": [
+    {
+      "name": "迈妮娅",
+      "icon": "at046_0"
+    }
+  ],
+  "fav_hero_065_1_f1A_1": [
+    {
+      "name": "乌尔勒",
+      "icon": "at065_0"
+    },
+    {
+      "name": "契约官艾尔莎",
+      "icon": ""
+    },
+    {
+      "name": "侍者茜塔",
+      "icon": ""
+    },
+    {
+      "name": "侍者维丝",
+      "icon": ""
+    }
+  ],
+  "fav_hero_027_4_f1A_1": [
+    {
+      "name": "梅莉莉\rnpc_027",
+      "icon": "at027_0"
+    },
+    {
+      "name": "治安队员奥希娅尔",
+      "icon": ""
+    },
+    {
+      "name": "女商人",
+      "icon": ""
+    },
+    {
+      "name": "治安队员埃尔戈瓦",
+      "icon": ""
+    }
+  ],
+  "fav_hero_002_3_f1A_1": [
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    }
+  ],
+  "fav_hero_030_5_f1A_1": [
+    {
+      "name": "阿尔克丝",
+      "icon": "at030_0"
+    }
+  ],
+  "sp2_ex_3_f1A_1": [
+    {
+      "name": "侍者杰米",
+      "icon": ""
+    }
+  ],
+  "c4_ex2_f2A_3": [
+    {
+      "name": "艾伦瑟？",
+      "icon": ""
+    }
+  ],
+  "fav_hero_059_4_f1A_1": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "fav_hero_066_2_f1A_1": [
+    {
+      "name": "奥格\rnpc_066",
+      "icon": "at066_0"
+    },
+    {
+      "name": "艾尔莎\rElsa\rnpc_004",
+      "icon": ""
+    },
+    {
+      "name": "西塔\rnpc_005",
+      "icon": "at005_0"
+    }
+  ],
+  "fav_hero_065_5_f1A_1": [
+    {
+      "name": "乌尔勒\rnpc_065",
+      "icon": "at065_0"
+    },
+    {
+      "name": "奇瓦\rnpc_019",
+      "icon": "at019_0"
+    },
+    {
+      "name": "伽拉忒亚\rnpc_064",
+      "icon": "at064_0"
+    }
+  ],
+  "fav_hero_005_4_f1A_1": [
+    {
+      "name": "茜塔",
+      "icon": "at005_0"
+    }
+  ],
+  "c2_ex4_f1A_2": [
+    {
+      "name": "模糊的人影",
+      "icon": ""
+    },
+    {
+      "name": "希拉尔德",
+      "icon": "avatar_Mon_067"
+    }
+  ],
+  "fav_hero_046_2_f1A_1": [
+    {
+      "name": "迈妮娅",
+      "icon": "at046_0"
+    }
+  ],
+  "fav_hero_045_2_f1A_1": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    }
+  ],
+  "stage_sp1_area1_5": [
+    {
+      "name": "混乱的空间点",
+      "icon": ""
+    }
+  ],
+  "sp01_bossRoomStory3": [
+    {
+      "name": "洛莉安",
+      "icon": "avatar_Mon_103"
+    }
+  ],
+  "fav_hero_008_4_f1A_1": [
+    {
+      "name": "艾尔莎",
+      "icon": ""
+    },
+    {
+      "name": "夏库塔拉",
+      "icon": "at008_0"
+    }
+  ],
+  "c2_ex4_f1A_4": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    }
+  ],
+  "fav_hero_034_4_f1A_1": [
+    {
+      "name": "露帕",
+      "icon": "at034_0"
+    }
+  ],
+  "c4_ex2_f2A_2": [
+    {
+      "name": "幽灵1",
+      "icon": ""
+    },
+    {
+      "name": "幽灵2",
+      "icon": ""
+    },
+    {
+      "name": "幽灵3",
+      "icon": ""
+    },
+    {
+      "name": "幽灵5",
+      "icon": ""
+    },
+    {
+      "name": "幽灵4",
+      "icon": ""
+    },
+    {
+      "name": "欧尔布洛？",
+      "icon": ""
+    }
+  ],
+  "fav_hero_069_2_f1A_1": [
+    {
+      "name": "修瓦莉",
+      "icon": "at069_0"
+    }
+  ],
+  "c1_ex1_f1A_3": [
+    {
+      "name": "希拉尔德",
+      "icon": "avatar_Mon_067"
+    },
+    {
+      "name": "哈萨琳",
+      "icon": ""
+    }
+  ],
+  "fav_hero_061_4_f3A_1": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "sp2_4_a_f1A_1": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    },
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    },
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "荒野客3",
+      "icon": ""
+    },
+    {
+      "name": "荒野客2",
+      "icon": ""
+    },
+    {
+      "name": "荒野客4",
+      "icon": ""
+    },
+    {
+      "name": "荒野客1",
+      "icon": ""
+    },
+    {
+      "name": "剧毒史莱姆1",
+      "icon": "avatar_Mon_111"
+    },
+    {
+      "name": "剧毒史莱姆2",
+      "icon": "avatar_Mon_111"
+    },
+    {
+      "name": "剧毒史莱姆3",
+      "icon": "avatar_Mon_111"
+    },
+    {
+      "name": "剧毒史莱姆4",
+      "icon": "avatar_Mon_111"
+    }
+  ],
+  "fav_hero_011_1_f2A_1": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    }
+  ],
+  "c3_ex3_f1A_2": [
+    {
+      "name": "阿莱克西亚",
+      "icon": "at051_0"
+    },
+    {
+      "name": "贝尔卡",
+      "icon": "at036_0"
+    },
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    },
+    {
+      "name": "柏莉尔",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": "at002_0"
+    }
+  ],
+  "test_BOSS_f1A_1": [
+    {
+      "name": "测试",
+      "icon": "at050_0"
+    }
+  ],
+  "fav_hero_025_3_f1A_1": [
+    {
+      "name": "嘉莉缇",
+      "icon": "at025_0"
+    }
+  ],
+  "fav_hero_036_2_f1A_1": [
+    {
+      "name": "贝尔卡",
+      "icon": "at036_0"
+    }
+  ],
+  "fav_hero_045_1_f1A_1": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    }
+  ],
+  "fav_hero_029_2_f1A_1": [
+    {
+      "name": "安娜",
+      "icon": "at029_0"
+    }
+  ],
+  "c2_ex1_f1A_1": [
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_057_1"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_057_2"
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_057_1"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "罗伯特",
+      "icon": ""
+    },
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    }
+  ],
+  "c3_ex2_f1A_5": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    },
+    {
+      "name": "露帕·萝特",
+      "icon": "at034_0"
+    },
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    },
+    {
+      "name": "NPC",
+      "icon": "avatar_Mon_052"
+    }
+  ],
+  "fav_hero_069_5_f1A_1": [
+    {
+      "name": "修瓦莉",
+      "icon": "at069_0"
+    },
+    {
+      "name": "兵峰1",
+      "icon": ""
+    },
+    {
+      "name": "兵峰2",
+      "icon": ""
+    },
+    {
+      "name": "兵峰3",
+      "icon": ""
+    }
+  ],
+  "c3_ex1_f1A_2": [
+    {
+      "name": "NPC",
+      "icon": ""
+    }
+  ],
+  "fav_hero_026_3_f1A_1": [
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    }
+  ],
+  "fav_hero_037_4_f1A_1": [
+    {
+      "name": "剋\rnpc_037",
+      "icon": "at037_0"
+    }
+  ],
+  "fav_hero_064_2_f1A_1": [
+    {
+      "name": "伽拉忒亚",
+      "icon": "at064_0"
+    }
+  ],
+  "c4_ex3_f1A_2": [
+    {
+      "name": "芭杜尔",
+      "icon": "at015_0"
+    },
+    {
+      "name": "嘉莉缇",
+      "icon": "at025_0"
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "艾尔莎",
+      "icon": ""
+    },
+    {
+      "name": "因瓦尔布",
+      "icon": "at022_0"
+    },
+    {
+      "name": "契约者2",
+      "icon": ""
+    },
+    {
+      "name": "契约者1",
+      "icon": ""
+    }
+  ],
+  "fav_hero_005_3_f1A_1": [
+    {
+      "name": "光点-茜塔",
+      "icon": ""
+    },
+    {
+      "name": "女蜥蜴人",
+      "icon": ""
+    },
+    {
+      "name": "男蜥蜴人",
+      "icon": ""
+    },
+    {
+      "name": "侍者萨利",
+      "icon": ""
+    },
+    {
+      "name": "女蜥蜴人2",
+      "icon": ""
+    },
+    {
+      "name": "男蜥蜴人2",
+      "icon": ""
+    }
+  ],
+  "fav_hero_043_1_f1A_1": [
+    {
+      "name": "阿娜洛洁",
+      "icon": "at043_0"
+    }
+  ],
+  "fav_hero_019_4_f1A_1": [
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    }
+  ],
+  "c4_ex4_f1A_4": [
+    {
+      "name": "奥菲娜",
+      "icon": ""
+    },
+    {
+      "name": "瑟蕾娜",
+      "icon": ""
+    }
+  ],
+  "fav_hero_015_3_f1A_1": [
+    {
+      "name": "芭杜尔\rnpc_015",
+      "icon": "at015_0"
+    }
+  ],
+  "fav_hero_046_5_f1A_1": [
+    {
+      "name": "迈妮娅",
+      "icon": "at046_0"
+    }
+  ],
+  "fav_hero_002_4_f1A_1": [
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "嫩绿史莱姆",
+      "icon": "avatar_Mon_072"
+    },
+    {
+      "name": "草原黏团",
+      "icon": "avatar_Mon_036"
+    }
+  ],
+  "fav_hero_030_3_f1A_1": [
+    {
+      "name": "阿尔克丝",
+      "icon": "at030_0"
+    }
+  ],
+  "fav_hero_015_5_f1A_1": [
+    {
+      "name": "芭杜尔\rnpc_015",
+      "icon": "at015_0"
+    }
+  ],
+  "fav_hero_009_2_f1A_1": [
+    {
+      "name": "拉碧丝\rnpc_007",
+      "icon": "at007_0"
+    },
+    {
+      "name": "夏库塔拉\rnpc_008",
+      "icon": "at008_0"
+    },
+    {
+      "name": "可可娜\rnpc_009",
+      "icon": "at009_0"
+    },
+    {
+      "name": "可可娜2",
+      "icon": "at009_0"
+    }
+  ],
+  "fav_hero_071_5_f1A_1": [
+    {
+      "name": "洛莉安",
+      "icon": "at071_0"
+    }
+  ],
+  "fav_hero_012_4_f1A_1": [
+    {
+      "name": "沃夫加",
+      "icon": "at012_0"
+    }
+  ],
+  "fav_hero_060_4_f1A_1": [
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    },
+    {
+      "name": "荒野客A，人男",
+      "icon": ""
+    },
+    {
+      "name": "荒野客B，狐狸人",
+      "icon": ""
+    },
+    {
+      "name": "黄金史莱姆",
+      "icon": ""
+    },
+    {
+      "name": "荒野客C，兔人",
+      "icon": ""
+    },
+    {
+      "name": "德莉的护卫，弓兵",
+      "icon": ""
+    },
+    {
+      "name": "德莉的护卫，盾兵",
+      "icon": ""
+    }
+  ],
+  "fav_hero_045_5_f1A_1": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    },
+    {
+      "name": "佣兵2",
+      "icon": ""
+    },
+    {
+      "name": "佣兵1",
+      "icon": ""
+    },
+    {
+      "name": "侍者茜塔",
+      "icon": ""
+    },
+    {
+      "name": "侍者领班梅莉莉",
+      "icon": "at027_0"
+    }
+  ],
+  "fav_hero_059_1_f1A_1": [
+    {
+      "name": "菲娜",
+      "icon": "at059_0"
+    }
+  ],
+  "fav_hero_019_3_f1A_1": [
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    }
+  ],
+  "sp1_12_a_f1A_3": [
+    {
+      "name": "洛莉安",
+      "icon": "avatar_Mon_103"
+    }
+  ],
+  "fav_hero_034_1_f1A_1": [
+    {
+      "name": "露帕",
+      "icon": "at034_0"
+    }
+  ],
+  "c3_ex3_f1A_3": [
+    {
+      "name": "赛弗德里克",
+      "icon": "avatar_Mon_052"
+    },
+    {
+      "name": "丹涅尔",
+      "icon": "avatar_Mon_040"
+    },
+    {
+      "name": "希拉尔德",
+      "icon": "avatar_Mon_067"
+    }
+  ],
+  "fav_hero_030_1_f1A_1": [
+    {
+      "name": "阿尔克丝",
+      "icon": "at030_0"
+    }
+  ],
+  "c2_ex5_f1A_4": [
+    {
+      "name": "阿迪拉",
+      "icon": "at047_0"
+    },
+    {
+      "name": "哈比巢母",
+      "icon": "avatar_Mon_054"
+    },
+    {
+      "name": "哈比狂怒者1",
+      "icon": "avatar_Mon_053"
+    },
+    {
+      "name": "哈比狂怒者2",
+      "icon": "avatar_Mon_053"
+    },
+    {
+      "name": "哈比狂怒者3",
+      "icon": "avatar_Mon_053"
+    }
+  ],
+  "fav_hero_011_5_f1A_1": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    }
+  ],
+  "fav_hero_041_1_f1A_1": [
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    }
+  ],
+  "fav_hero_007_5_f1A_1": [
+    {
+      "name": "拉碧丝",
+      "icon": "at007_0"
+    },
+    {
+      "name": "夏库塔拉",
+      "icon": "at008_0"
+    },
+    {
+      "name": "可可娜",
+      "icon": "at009_0"
+    }
+  ],
+  "c3_ex2_f1A_2": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "柏丽尔的父亲",
+      "icon": ""
+    },
+    {
+      "name": "柏丽尔的母亲",
+      "icon": ""
+    }
+  ],
+  "stage_sp1_area1_2": [
+    {
+      "name": "洛莉安",
+      "icon": "at071_0"
+    },
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    },
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    },
+    {
+      "name": "总管茜狄亚",
+      "icon": "avatar_Mon_104"
+    },
+    {
+      "name": "副管祖莉尔",
+      "icon": "avatar_Mon_099"
+    },
+    {
+      "name": "侍卫长萨奇尔",
+      "icon": ""
+    },
+    {
+      "name": "幽灵嘟鲁鲁",
+      "icon": "avatar_Mon_100"
+    },
+    {
+      "name": "迷迷可图里尔",
+      "icon": "avatar_Mon_101"
+    },
+    {
+      "name": "贝拉多娜的蝙蝠",
+      "icon": ""
+    }
+  ],
+  "fav_hero_009_3_f1A_1": [
+    {
+      "name": "激动的冒险者\rnpc_922_other_C1",
+      "icon": ""
+    },
+    {
+      "name": "可可娜\rnpc_009",
+      "icon": "at009_0"
+    }
+  ],
+  "fav_hero_036_5_f1A_1": [
+    {
+      "name": "贝尔卡",
+      "icon": "at036_0"
+    }
+  ],
+  "c3_ex1_f1A_3": [
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    }
+  ],
+  "fav_hero_062_3_f1A_1": [
+    {
+      "name": "露比特",
+      "icon": "at062_0"
+    },
+    {
+      "name": "妇人",
+      "icon": ""
+    }
+  ],
+  "fav_hero_012_2_f1A_1": [
+    {
+      "name": "沃夫加",
+      "icon": "at012_0"
+    },
+    {
+      "name": "猎人1",
+      "icon": ""
+    },
+    {
+      "name": "猎人2",
+      "icon": ""
+    },
+    {
+      "name": "角猪",
+      "icon": "avatar_Mon_035"
+    }
+  ],
+  "fav_hero_005_1_f1A_1": [
+    {
+      "name": "茜塔",
+      "icon": "at005_0"
+    },
+    {
+      "name": "侍者萨利",
+      "icon": ""
+    },
+    {
+      "name": "侍者杰米",
+      "icon": ""
+    },
+    {
+      "name": "侍者维丝",
+      "icon": ""
+    }
+  ],
+  "fav_hero_007_2_f1A_1": [
+    {
+      "name": "拉碧丝",
+      "icon": "at007_0"
+    }
+  ],
+  "c5_d2_ex_f1A_1": [
+    {
+      "name": "巴赫洛克斯",
+      "icon": "avatar_Mon_068"
+    },
+    {
+      "name": "艾茵",
+      "icon": ""
+    },
+    {
+      "name": "希拉尔德",
+      "icon": "avatar_Mon_067"
+    },
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "伽拉忒亚",
+      "icon": "at064_0"
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    },
+    {
+      "name": "乌尔勒",
+      "icon": "at065_0"
+    }
+  ],
+  "fav_hero_050_2_f1A_1": [
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    }
+  ],
+  "fav_hero_027_3_f1A_1": [
+    {
+      "name": "梅莉莉\rnpc_027",
+      "icon": "at027_0"
+    }
+  ],
+  "fav_hero_005_2_f1A_1": [
+    {
+      "name": "茜塔",
+      "icon": "at005_0"
+    }
+  ],
+  "fav_hero_032_4_f1A_1": [
+    {
+      "name": "诺姿",
+      "icon": "at032_0"
+    }
+  ],
+  "fav_hero_031_3_f1A_1": [
+    {
+      "name": "波特温",
+      "icon": "at031_0"
+    }
+  ],
+  "fav_hero_009_1_f1A_1": [
+    {
+      "name": "可可娜",
+      "icon": "at009_0"
+    }
+  ],
+  "fav_hero_019_5_f1A_1": [
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    },
+    {
+      "name": "乌尔勒",
+      "icon": "at065_0"
+    }
+  ],
+  "fav_hero_062_5_f1A_1": [
+    {
+      "name": "露比特",
+      "icon": "at062_0"
+    }
+  ],
+  "fav_hero_041_2_f1A_1": [
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    }
+  ],
+  "fav_hero_053_4_f1A_1": [
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    },
+    {
+      "name": "少女",
+      "icon": ""
+    }
+  ],
+  "fav_hero_026_1_f1A_1": [
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    },
+    {
+      "name": "小蝙蝠",
+      "icon": ""
+    }
+  ],
+  "c3_ex2_f1A_1": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    }
+  ],
+  "fav_hero_032_1_f1A_1": [
+    {
+      "name": "诺姿",
+      "icon": "at032_0"
+    }
+  ],
+  "c2_ex7_f1A_1": [
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    },
+    {
+      "name": "小蝙蝠",
+      "icon": ""
+    }
+  ],
+  "c4_ex5_f1A_4": [
+    {
+      "name": "芭杜尔",
+      "icon": "at015_0"
+    },
+    {
+      "name": "暗心祭司",
+      "icon": "at015_0"
+    },
+    {
+      "name": "护林人叛徒1",
+      "icon": ""
+    },
+    {
+      "name": "巨木侍女",
+      "icon": ""
+    },
+    {
+      "name": "护林人叛徒2",
+      "icon": ""
+    }
+  ],
+  "c2_ex4_f1A_1": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    }
+  ],
+  "fav_hero_030_2_f1A_1": [
+    {
+      "name": "阿尔克丝",
+      "icon": "at030_0"
+    }
+  ],
+  "fav_hero_025_5_f1A_1": [
+    {
+      "name": "嘉莉缇",
+      "icon": "at025_0"
+    },
+    {
+      "name": "艾尔莎",
+      "icon": ""
+    },
+    {
+      "name": "萨拉",
+      "icon": "avatar_Mon_048"
+    },
+    {
+      "name": "格薇勒",
+      "icon": "at028_0"
+    }
+  ],
+  "fav_hero_019_2_f1A_1": [
+    {
+      "name": "奇瓦",
+      "icon": "at019_0"
+    },
+    {
+      "name": "副座巴尔德",
+      "icon": ""
+    },
+    {
+      "name": "孩子3",
+      "icon": ""
+    },
+    {
+      "name": "孩子2",
+      "icon": ""
+    },
+    {
+      "name": "孩子1",
+      "icon": ""
+    }
+  ],
+  "fav_hero_066_5_f1A_1": [
+    {
+      "name": "奥格\rnpc_066",
+      "icon": "at066_0"
+    }
+  ],
+  "fav_hero_033_3_f1A_1": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    }
+  ],
+  "fav_hero_034_2_f1A_1": [
+    {
+      "name": "露帕",
+      "icon": "at034_0"
+    }
+  ],
+  "fav_hero_033_4_f1A_1": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    }
+  ],
+  "main_zy6_f1A_1": [
+    {
+      "name": "皮塔",
+      "icon": "at014_0"
+    },
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    },
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    }
+  ],
+  "c3_ex6_f1A_3": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    },
+    {
+      "name": "贼人",
+      "icon": "avatar_Mon_060"
+    },
+    {
+      "name": "露帕",
+      "icon": "at034_0"
+    },
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    }
+  ],
+  "sp2_ex_3_f1A_3": [
+    {
+      "name": "梅莉莉",
+      "icon": "at027_0"
+    },
+    {
+      "name": "迦南？",
+      "icon": "at055_0"
+    },
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "fav_hero_034_3_f1A_1": [
+    {
+      "name": "露帕",
+      "icon": "at034_0"
+    }
+  ],
+  "fav_hero_037_1_f1A_1": [
+    {
+      "name": "剋",
+      "icon": "at037_0"
+    }
+  ],
+  "c001_2": [
+    {
+      "name": "米托拉",
+      "icon": "at002_0"
+    },
+    {
+      "name": "见习铁匠达特",
+      "icon": ""
+    },
+    {
+      "name": "艾尔莎",
+      "icon": ""
+    },
+    {
+      "name": "温顺的拉车恐兽",
+      "icon": ""
+    },
+    {
+      "name": "卫兵盖鲁尔特",
+      "icon": ""
+    },
+    {
+      "name": "露比",
+      "icon": ""
+    },
+    {
+      "name": "营地门前",
+      "icon": ""
+    },
+    {
+      "name": "地上的阴影",
+      "icon": ""
+    },
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    },
+    {
+      "name": "芭杜尔",
+      "icon": "at015_0"
+    },
+    {
+      "name": "商人比绍",
+      "icon": ""
+    },
+    {
+      "name": "铸甲匠达尔曼",
+      "icon": ""
+    },
+    {
+      "name": "先时学者瓦菲诺",
+      "icon": "avatar_Mon_038"
+    },
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    },
+    {
+      "name": "菲娜",
+      "icon": "at059_0"
+    },
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    },
+    {
+      "name": "小蝙蝠",
+      "icon": ""
+    },
+    {
+      "name": "恐兽",
+      "icon": "avatar_Mon_046"
+    }
+  ],
+  "fav_hero_027_2_f1A_1": [
+    {
+      "name": "梅莉莉\rnpc_027",
+      "icon": "at027_0"
+    },
+    {
+      "name": "侍者萨利",
+      "icon": ""
+    }
+  ],
+  "c4_ex2_f2A_1": [
+    {
+      "name": "斯塞拉？",
+      "icon": ""
+    }
+  ],
+  "fav_hero_027_5_f1A_1": [
+    {
+      "name": "梅莉莉\rnpc_027",
+      "icon": "at027_0"
+    }
+  ],
+  "fav_hero_032_2_f1A_1": [
+    {
+      "name": "诺姿",
+      "icon": "at032_0"
+    }
+  ],
+  "fav_hero_037_2_f1A_1": [
+    {
+      "name": "剋\rnpc_037",
+      "icon": "at037_0"
+    }
+  ],
+  "fav_hero_026_4_f1A_1": [
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    },
+    {
+      "name": "女商人",
+      "icon": ""
+    },
+    {
+      "name": "男商人1",
+      "icon": ""
+    },
+    {
+      "name": "男商人2",
+      "icon": ""
+    },
+    {
+      "name": "角布林01",
+      "icon": "avatar_Mon_008"
+    },
+    {
+      "name": "角布林2",
+      "icon": "avatar_Mon_007"
+    }
+  ],
+  "fav_hero_047_1_f1A_1": [
+    {
+      "name": "阿迪拉",
+      "icon": "at047_0"
+    }
+  ],
+  "c2_ex7_f1A_3": [
+    {
+      "name": "贝拉多娜",
+      "icon": "at026_0"
+    }
+  ],
+  "sp2_ex_1_f1A_4": [
+    {
+      "name": "艾尔菲帕",
+      "icon": "at045_0"
+    },
+    {
+      "name": "魔爪蛇怪2",
+      "icon": "avatar_Mon_066"
+    },
+    {
+      "name": "魔爪蛇怪1",
+      "icon": "avatar_Mon_066"
+    },
+    {
+      "name": "魔爪毒卫2",
+      "icon": "avatar_Mon_067"
+    },
+    {
+      "name": "魔爪毒卫1",
+      "icon": "avatar_Mon_067"
+    }
+  ],
+  "fav_hero_062_2_f1A_1": [
+    {
+      "name": "露比特",
+      "icon": "at062_0"
+    }
+  ],
+  "main_zy3_f1_3": [
+    {
+      "name": "茜塔",
+      "icon": ""
+    }
+  ],
+  "fav_hero_070_2_f1A_1": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "c1_ex1_f1A_5": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    }
+  ],
+  "c3_ex2_f1A_3": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    },
+    {
+      "name": "NPC",
+      "icon": ""
+    }
+  ],
+  "c2_ex4_f1A_3": [
+    {
+      "name": "“工头”罗伯特",
+      "icon": ""
+    },
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    },
+    {
+      "name": "“锈锄”罗尼",
+      "icon": ""
+    },
+    {
+      "name": "“自卫团员”马可",
+      "icon": ""
+    },
+    {
+      "name": "工友1",
+      "icon": ""
+    },
+    {
+      "name": "工友2",
+      "icon": ""
+    },
+    {
+      "name": "自卫团员1",
+      "icon": ""
+    },
+    {
+      "name": "自卫团员2",
+      "icon": ""
+    },
+    {
+      "name": "驿站卫兵1",
+      "icon": ""
+    },
+    {
+      "name": "驿站卫兵2",
+      "icon": ""
+    },
+    {
+      "name": "？？？",
+      "icon": "at002_0"
+    },
+    {
+      "name": "米拉贝尔",
+      "icon": "at050_0"
+    },
+    {
+      "name": "契约者斥候",
+      "icon": ""
+    }
+  ],
+  "fav_hero_051_1_f1A_1": [
+    {
+      "name": "阿莱克西娅",
+      "icon": "at051_0"
+    }
+  ],
+  "fav_hero_031_4_f1A_1": [
+    {
+      "name": "波特温",
+      "icon": "at031_0"
+    }
+  ],
+  "fav_hero_033_2_f1A_1": [
+    {
+      "name": "乌帕",
+      "icon": "at033_0"
+    }
+  ],
+  "sp2_ex_3_f1A_2": [
+    {
+      "name": "侍者萨利",
+      "icon": ""
+    }
+  ],
+  "fav_hero_061_4_f1A_1": [
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_023_1_f1A_1": [
+    {
+      "name": "卡夫",
+      "icon": "at023_0"
+    }
+  ],
+  "fav_hero_049_2_f1A_1": [
+    {
+      "name": "菲莉娜",
+      "icon": "at049_0"
+    }
+  ],
+  "main_zy5_f1A_1": [
+    {
+      "name": "恐怖蟾兽",
+      "icon": "avatar_Mon_055"
+    }
+  ],
+  "fav_hero_011_4_f1A_1": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    },
+    {
+      "name": "首座莉拉",
+      "icon": "at010_0"
+    }
+  ],
+  "sp02_bossRoomStory2": [
+    {
+      "name": "祖基尼",
+      "icon": ""
+    },
+    {
+      "name": "荒野客2",
+      "icon": ""
+    },
+    {
+      "name": "荒野客1",
+      "icon": ""
+    },
+    {
+      "name": "蚀渊之触",
+      "icon": "avatar_Mon_115"
+    }
+  ],
+  "fav_hero_029_4_f1A_1": [
+    {
+      "name": "安娜",
+      "icon": "at029_0"
+    }
+  ],
+  "fav_hero_011_1_f1A_1": [
+    {
+      "name": "缇莎",
+      "icon": ""
+    },
+    {
+      "name": "荒地黏怪",
+      "icon": "avatar_Mon_009"
+    }
+  ],
+  "c4_ex1_f1A_3": [
+    {
+      "name": "罗姆洛敏",
+      "icon": "avatar_Mon_063"
+    }
+  ],
+  "fav_hero_015_2_f1A_1": [
+    {
+      "name": "芭杜尔\rnpc_015",
+      "icon": "at015_0"
+    }
+  ],
+  "c2_ex6_f1B_1": [
+    {
+      "name": "阿尔克丝",
+      "icon": "at030_0"
+    },
+    {
+      "name": "迈妮娅",
+      "icon": "at046_0"
+    },
+    {
+      "name": "灾害学者安娜",
+      "icon": "at029_0"
+    }
+  ],
+  "fav_hero_032_5_f1A_1": [
+    {
+      "name": "诺姿",
+      "icon": "at032_0"
+    },
+    {
+      "name": "卫兵盖鲁尔特",
+      "icon": ""
+    },
+    {
+      "name": "卫兵尼尔",
+      "icon": ""
+    },
+    {
+      "name": "药剂师琳扎德",
+      "icon": ""
+    },
+    {
+      "name": "小孩",
+      "icon": ""
+    }
+  ],
+  "fav_hero_055_1_f1A_1": [
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    },
+    {
+      "name": "凯蒂",
+      "icon": ""
+    }
+  ],
+  "fav_hero_012_3_f1A_1": [
+    {
+      "name": "沃夫加",
+      "icon": "at012_0"
+    }
+  ],
+  "fav_hero_023_5_f1A_1": [
+    {
+      "name": "卡夫",
+      "icon": "at023_0"
+    }
+  ],
+  "fav_hero_041_5_f1A_1": [
+    {
+      "name": "埃迪蒂",
+      "icon": "at041_0"
+    }
+  ],
+  "fav_hero_009_5_f1A_1": [
+    {
+      "name": "可可娜\rnpc_009",
+      "icon": "at009_0"
+    }
+  ],
+  "c1_ex1_f1A_2": [
+    {
+      "name": "瓦菲诺",
+      "icon": "avatar_Mon_038"
+    },
+    {
+      "name": "莉拉",
+      "icon": "at010_0"
+    }
+  ],
+  "c4_ex3_f1A_1": [
+    {
+      "name": "路人1",
+      "icon": ""
+    },
+    {
+      "name": "路人2",
+      "icon": ""
+    },
+    {
+      "name": "路人3",
+      "icon": ""
+    },
+    {
+      "name": "路人4",
+      "icon": ""
+    },
+    {
+      "name": "路人5",
+      "icon": ""
+    },
+    {
+      "name": "路人6",
+      "icon": ""
+    },
+    {
+      "name": "路人7",
+      "icon": ""
+    }
+  ],
+  "c4_ex2_f3A_1": [
+    {
+      "name": "主角",
+      "icon": "at001_0"
+    }
+  ],
+  "sp1_7_a_f1A_3": [
+    {
+      "name": "加尔戈萝",
+      "icon": "avatar_Mon_102"
+    },
+    {
+      "name": "加尔戈萝",
+      "icon": "avatar_Mon_102"
+    },
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    },
+    {
+      "name": "斯卡莉安",
+      "icon": "at061_0"
+    }
+  ],
+  "fav_hero_025_4_f1A_1": [
+    {
+      "name": "嘉莉缇",
+      "icon": "at025_0"
+    },
+    {
+      "name": "萨拉",
+      "icon": "avatar_Mon_048"
+    },
+    {
+      "name": "格薇勒",
+      "icon": "at028_0"
+    }
+  ],
+  "fav_hero_053_2_f1A_1": [
+    {
+      "name": "鹿灵艾伦瑟",
+      "icon": ""
+    },
+    {
+      "name": "艾薇杜尔",
+      "icon": "at053_0"
+    }
+  ],
+  "fav_hero_070_3_f1A_1": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "fav_hero_014_4_f1A_1": [
+    {
+      "name": "皮塔",
+      "icon": "at014_0"
+    },
+    {
+      "name": "小贼A\rFig_02e1_001",
+      "icon": ""
+    },
+    {
+      "name": "小贼B\radda",
+      "icon": ""
+    },
+    {
+      "name": "小贼C\rmarco",
+      "icon": ""
+    }
+  ],
+  "fav_hero_036_4_f1A_1": [
+    {
+      "name": "贝尔卡",
+      "icon": "at036_0"
+    }
+  ],
+  "fav_hero_043_3_f1A_1": [
+    {
+      "name": "阿娜洛洁",
+      "icon": "at043_0"
+    }
+  ],
+  "sp2_ex_2_f1A_2": [
+    {
+      "name": "露库希安",
+      "icon": "at070_0"
+    }
+  ],
+  "fav_hero_014_5_f1A_1": [
+    {
+      "name": "皮塔",
+      "icon": "at014_0"
+    },
+    {
+      "name": "小贼A\rFig_02e1_001",
+      "icon": ""
+    },
+    {
+      "name": "小贼B\radda",
+      "icon": ""
+    },
+    {
+      "name": "小贼C\rmarco",
+      "icon": ""
+    }
+  ],
+  "main_zy3_f1_2": [
+    {
+      "name": "芭杜尔",
+      "icon": "at015_0"
+    }
+  ],
+  "fav_hero_023_4_f1A_1": [
+    {
+      "name": "卡夫",
+      "icon": "at023_0"
+    },
+    {
+      "name": "荒野客B",
+      "icon": "avatar_Mon_056_3"
+    },
+    {
+      "name": "荒野客C",
+      "icon": "avatar_Mon_056_5"
+    },
+    {
+      "name": "荒野客A",
+      "icon": "avatar_Mon_056_1"
+    },
+    {
+      "name": "落魄佣兵",
+      "icon": ""
+    }
+  ],
+  "c1_ex1_f1A_4": [
+    {
+      "name": "艾尔莎",
+      "icon": ""
+    },
+    {
+      "name": "米托菈",
+      "icon": "at002_0"
+    },
+    {
+      "name": "迦南",
+      "icon": "at055_0"
+    },
+    {
+      "name": "菲尔德蕾",
+      "icon": ""
+    }
+  ],
+  "c5_ex4_f1A_3": [
+    {
+      "name": "霜火队女",
+      "icon": ""
+    },
+    {
+      "name": "霜火队男",
+      "icon": ""
+    },
+    {
+      "name": "霜火队角布林",
+      "icon": "avatar_Mon_007"
+    }
+  ],
+  "fav_hero_060_1_f1A_1": [
+    {
+      "name": "德莉",
+      "icon": "at060_0"
+    },
+    {
+      "name": "总管库库姆",
+      "icon": ""
+    },
+    {
+      "name": "记述者欧德莱姆",
+      "icon": ""
+    },
+    {
+      "name": "农夫法尔姆",
+      "icon": ""
+    },
+    {
+      "name": "园丁阿提莱姆",
+      "icon": ""
+    }
   ]
 }
 
 /**
  * 获取指定房间变体的结构化 NPC 列表
+ * @param {string|object} variantOrId 房间变体对象或房间 ID
+ * @param {object} [options]
+ * @param {boolean} [options.dedupe=true] 是否自动去重同名同头像的 NPC（默认去重）
  */
-export function getRoomNpcs(variantOrId) {
+export function getRoomNpcs(variantOrId, { dedupe = true } = {}) {
   if (!variantOrId) return []
   const typeId = typeof variantOrId === 'object' ? (variantOrId.typeId || variantOrId.id) : String(variantOrId)
   if (!typeId) return []
   const list = ROOM_NPC_MAP[typeId]
   if (!list || !list.length) return []
-  return list.map(npc => ({
+
+  const formatted = list.map(npc => ({
     name: npc.name || 'NPC',
     icon: npc.icon || '',
     iconUrl: npc.icon ? getImageUrl(`/images/HeadIconAtals/${npc.icon}.webp`) : ''
   }))
+
+  if (!dedupe) return formatted
+
+  const seen = new Set()
+  return formatted.filter(npc => {
+    const key = `${npc.name}__${npc.icon}`
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
 }

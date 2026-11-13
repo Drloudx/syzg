@@ -171,6 +171,20 @@
           </blockquote>
         </UiSection>
 
+        <!-- 前置任务：包含解锁本任务或推进自动添加本任务的上游任务 -->
+        <UiSection v-if="selectedTask.predecessorTasks && selectedTask.predecessorTasks.length" title="前置任务" class="task-predecessor-section">
+          <div class="task-follow-up-list chip-group">
+            <button
+              v-for="task in selectedTask.predecessorTasks"
+              :key="task.id"
+              type="button"
+              class="task-link-chip"
+              :title="`查看前置任务《${task.name}》`"
+              @click="openTaskById(task.id)"
+            >{{ task.name }}</button>
+          </div>
+        </UiSection>
+
         <!-- 完成后直接加入当前任务列表，与仅开放接取资格的 unlockTask 分开。 -->
         <UiSection v-if="selectedTask.addTasks.length" title="后续任务" class="task-follow-up-section">
           <div class="task-follow-up-list chip-group">

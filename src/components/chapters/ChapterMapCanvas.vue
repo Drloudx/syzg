@@ -5,8 +5,8 @@
   命中判定用构建期烘焙的**归属图**：拼块包围盒互相重叠（c0 的框有 57% 被 c3 压住），
   不能用矩形热区；不透明区域也有重叠，所以归属按渲染顺序定，运行时按格查表。
 
-  布局要点：底图是正方形，而「占满中间区域」的区域是长方形。做法是画布铺满区域、内部放一个
-  正方形**舞台**按 cover 缩放居中，超出画布的部分裁掉——裁掉的是边缘云朵，大陆本身不动。
+  布局要点：底图接近正方形（如 1680×1740），而「占满中间区域」的区域是长方形。做法是画布铺满区域、内部放一个
+  按底图宽高比缩放居中的**舞台**（cover），超出画布的部分裁掉——裁掉的是边缘云朵，大陆本身不动。
   因此命中判定必须用**舞台**的矩形换算（舞台可能比画布大），不能用画布矩形。
   画布高度按左右面板底部实测对齐（见 measure），且**底部不留外边距**——留了画布就比面板高，
   页面会多出一条无意义的滚动条。
@@ -28,7 +28,7 @@
       @mousemove="handleMove"
       @mouseleave="hoverId = ''"
     >
-      <div ref="stageRef" class="chapter-map__stage" :class="{ 'is-hovering': !!hoverId }" aria-hidden="true">
+      <div ref="stageRef" class="chapter-map__stage" :class="{ 'is-hovering': !!hoverId }" :style="stageStyle" aria-hidden="true">
         <img class="chapter-map__bg" :src="getImageUrl(map.background)" alt="" decoding="async" @error="handleImgError" />
         <img
           v-for="tile in tiles"
@@ -74,6 +74,14 @@ const hoverId = ref('')
 const handleImgError = handleImageFallback
 
 const canvasStyle = computed(() => ({ '--chapter-map-h': `${props.height}px` }))
+const stageStyle = computed(() => {
+  const w = Math.max(1, Number(props.map?.size?.w || 1680))
+  const h = Math.max(1, Number(props.map?.size?.h || 1740))
+  return {
+    aspectRatio: `${w} / ${h}`,
+    width: `max(100%, calc(var(--chapter-map-h, 640px) * ${w / h}))`
+  }
+})
 
 const visible = computed(() => new Set(props.visibleIds))
 const tiles = computed(() => (props.map.tiles || []).filter(tile => visible.value.has(tile.id)))
@@ -156,14 +164,14 @@ const handleMove = (event) => {
 }
 .chapter-map__canvas.is-pointing { cursor: pointer; }
 
-/* 正方形舞台：取画布宽高较大的一边，居中，超出画布的部分被裁掉。 */
+/* 舞台：按底图实际比例 cover 缩放并居中，超出画布的部分被裁掉。 */
 .chapter-map__stage {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: max(100%, var(--chapter-map-h, 640px));
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1680 / 1740;
   pointer-events: none;
 }
 .chapter-map__bg {

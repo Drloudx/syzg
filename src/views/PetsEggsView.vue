@@ -231,25 +231,10 @@ import { useLazyList } from '../composables/useLazyList'
 const route = useRoute()
 const router = useRouter()
 
-// Exact Gold Pool & Premium Pool Name Matching Lists
-const goldPoolNames = [
-  '繁茂杜吉芽', '秋风妖精', '源泉猫', '雷素', '提灯妖精', '吵吵蕈', '臭臭蕈',
-  '角布林', '掘地芙洛波', '扬沙芙洛波', '顽劣灯火', '游离灯火', '射水杜吉芽',
-  '囊袋恐兽', '利齿恐兽', '草原黏团', '魔水粘团', '鱼布林', '绿色史莱姆', '格莉姆'
-]
-
-const premiumPoolNames = [
-  '宝石迷迷可', '真护之黑龙', '星云史莱姆', '东天之青龙', '格里芬', '繁茂杜吉芽',
-  '秋风妖精', '源泉猫', '雷素', '熔火喷炎者', '石像鬼', '蜂刺骑兵', '白银迷迷可',
-  '提灯妖精', '吵吵蕈', '臭臭蕈', '角布林', '掘地芙洛波', '扬沙芙洛波', '顽劣灯火',
-  '游离灯火', '射水杜吉芽', '囊袋恐兽', '利齿恐兽', '草原黏团', '魔水粘团', '鱼布林',
-  '绿色史莱姆', '格莉姆', '冰棱妖精', '抛雪芙洛波', '布丁史莱姆'
-]
-
-// Filter options definitions
+// Filter options definitions（卡池归属由构建期 parsed/pet-eggs.json 的 pools 字段提供）
 const row1Options = [
   { value: '全部', label: '全部' },
-  { value: '金币池', label: '金币池' },
+  { value: '银币池', label: '银币池' },
   { value: '氪金池', label: '氪金池' },
   { value: '3星', label: '3星' },
   { value: '4星', label: '4星' },
@@ -265,7 +250,7 @@ const row2Options = [
 
 // Filter & Control States
 const getInitialRow1 = () => {
-  if (route.query.pool === 'gold') return '金币池'
+  if (route.query.pool === 'silver' || route.query.pool === 'gold') return '银币池'
   if (route.query.pool === 'premium') return '氪金池'
   if (['3星', '4星', '5星'].includes(route.query.tag)) return route.query.tag
   return '全部'
@@ -366,8 +351,11 @@ const loadPetEggs = async () => {
     }
 
     if (!processed) {
-      const res = await fetchWithFallback('data/parsed/pet.json')
-      processed = buildPetEggsData({ petJson: res }).pets
+      const [res, gachaJson] = await Promise.all([
+        fetchWithFallback('data/parsed/pet.json'),
+        fetchWithFallback('data/parsed/gacha.json').catch(() => null)
+      ])
+      processed = buildPetEggsData({ petJson: res, gachaJson }).pets
     }
 
     pets.value = processed || []
@@ -390,7 +378,7 @@ onMounted(() => {
 // Bidirectional URL Query State Sync
 watch([activeRow1Filter, activeRow2Filter, searchQuery], () => {
   const query = {}
-  if (activeRow1Filter.value === '金币池') query.pool = 'gold'
+  if (activeRow1Filter.value === '银币池') query.pool = 'silver'
   else if (activeRow1Filter.value === '氪金池') query.pool = 'premium'
   else if (activeRow1Filter.value !== '全部') query.tag = activeRow1Filter.value
 
@@ -407,6 +395,13 @@ watch([activeRow1Filter, activeRow2Filter, searchQuery], () => {
 watch(() => route.query, (newQuery) => {
   const nextSearch = typeof newQuery.q === 'string' ? newQuery.q : ''
   if (nextSearch !== searchQuery.value) searchQuery.value = nextSearch
+  if (newQuery.pool === 'silver' || newQuery.pool === 'gold') {
+    if (activeRow1Filter.value !== '银币池') activeRow1Filter.value = '银币池'
+  } else if (newQuery.pool === 'premium') {
+    if (activeRow1Filter.value !== '氪金池') activeRow1Filter.value = '氪金池'
+  } else if (['银币池', '氪金池'].includes(activeRow1Filter.value)) {
+    activeRow1Filter.value = '全部'
+  }
   if (newQuery.id && isDataReady.value) {
     const match = pets.value.find(p => p.id === String(newQuery.id))
     if (match) openDetail(match)
@@ -421,9 +416,9 @@ const filteredPets = computed(() => {
   const result = pets.value.filter(pet => {
     if (isBlacklisted(pet)) return false
 
-    // 1. Row 1 filter (全部 | 金币池 | 氪金池 | 3星 | 4星 | 5星)
-    if (activeRow1Filter.value === '金币池' && !goldPoolNames.includes(pet.name)) return false
-    if (activeRow1Filter.value === '氪金池' && !premiumPoolNames.includes(pet.name)) return false
+    // 1. Row 1 filter (全部 | 银币池 | 氪金池 | 3星 | 4星 | 5星)
+    if (activeRow1Filter.value === '银币池' && !pet.pools?.includes('silver')) return false
+    if (activeRow1Filter.value === '氪金池' && !pet.pools?.includes('premium')) return false
     if (['3星', '4星', '5星'].includes(activeRow1Filter.value)) {
       const targetStar = parseInt(activeRow1Filter.value)
       if (pet.displayStar !== targetStar) return false

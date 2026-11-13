@@ -370,7 +370,7 @@ const measureMapArea = () => {
   mapAreaHeight.value = Math.max(360, Math.min(Math.round(bottom - top), 900))
 }
 
-/** 不在世界地图上的章节（幽夜古堡、黏滑溪谷）：地图视图里由 extra 插槽给入口，否则无路可进。 */
+/** 不在世界地图上的章节（若将来新增未入图章节）：地图视图里由 extra 插槽给入口，否则无路可进。 */
 const mapTileIds = computed(() => new Set((chapterMap.value?.tiles || []).map(tile => tile.id)))
 const mapExtraChapters = computed(() => visibleChapters.value.filter(chapter => !mapTileIds.value.has(chapter.id)))
 

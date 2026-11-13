@@ -244,7 +244,67 @@ export const MONSTER_ICON_MAP = {
   "mon_094": "avatar_Mon_072",
   "065Summon1": "avatar_Mon_042",
   "065Summon2": "avatar_obj_000700_02",
-  "023_egg": "023_egg"
+  "023_egg": "023_egg",
+  "102": "avatar_Mon_102",
+  "103": "avatar_Mon_103",
+  "108": "avatar_Mon_108",
+  "109": "avatar_Mon_109",
+  "110": "avatar_Mon_110",
+  "111": "avatar_Mon_111",
+  "112": "avatar_Mon_112",
+  "113": "avatar_Mon_113",
+  "114": "avatar_Mon_114",
+  "115": "avatar_Mon_115",
+  "pet_093": "avatar_pet_093",
+  "pet_093_1": "avatar_pet_093",
+  "056_8": "avatar_Mon_056_4",
+  "mon_103Summon1": "avatar_Mon_104",
+  "108crazy": "avatar_Mon_108",
+  "pet_096_1": "avatar_pet_096",
+  "056_13": "avatar_Mon_056_4",
+  "056_11": "avatar_Mon_056_2",
+  "056_7": "avatar_Mon_056_3",
+  "056_9": "avatar_Mon_056_1",
+  "109crazy": "avatar_Mon_109",
+  "110crazy": "avatar_Mon_110",
+  "056_6": "avatar_Mon_056_5",
+  "pet_100": "avatar_Mon_100",
+  "pet_099": "avatar_Mon_099",
+  "pet_101": "avatar_Mon_101",
+  "pet_100_1": "avatar_Mon_100",
+  "056_10": "avatar_Mon_056_5",
+  "072crazy": "avatar_Mon_072",
+  "pet_096": "avatar_pet_096",
+  "056_12": "avatar_Mon_056_3",
+  "115Summon": "avatar_Mon_112",
+  "056_14": "avatar_Mon_056_14",
+  "060_1": "avatar_Mon_060_1",
+  "060_2": "avatar_Mon_060_2",
+  "060_1fenlie": "avatar_Mon_060_1",
+  "060_2fenlie": "avatar_Mon_060_2",
+  "060_1Talent": "avatar_Mon_060_1",
+  "060_2Talent": "avatar_Mon_060_2",
+  "060_1Skin": "avatar_Mon_060_1",
+  "060_2Skin": "avatar_Mon_060_2",
+  "060_1fenlieSkin": "avatar_Mon_060_1",
+  "060_2fenlieSkin": "avatar_Mon_060_2",
+  "060_1TalentSkin": "avatar_Mon_060_1",
+  "060_2TalentSkin": "avatar_Mon_060_2",
+  "hero060_npc": "at060_0",
+  "hero061_npc": "at061_0",
+  "hero071_1": "avatar_Mon_104",
+  "hero055_npc": "at055_0",
+  "108_elite": "avatar_Mon_108",
+  "mon_072_elite": "avatar_Mon_072",
+  "pet_106_summon": "avatar_pet_106",
+  "pet_109_summon": "avatar_pet_109",
+  "108_01": "avatar_Mon_108",
+  "109_01": "avatar_Mon_109",
+  "110_01": "avatar_Mon_110",
+  "mon_094_01": "avatar_Mon_072",
+  "mon_072_01": "avatar_Mon_072",
+  "s_2_1_ks": "avatar_Mon_047",
+  "s_2_1_ycc": "avatar_Mon_051"
 }
 
 /**
@@ -259,9 +319,20 @@ export function getMonsterIconName(monsterOrId, explicitIcon = '') {
   
   if (MONSTER_ICON_MAP[typeId]) return MONSTER_ICON_MAP[typeId]
   
-  // 兼容变种与分身（如 036_fenLie -> 036）
+  // 兼容变种与分身（如 036_fenLie -> 036, pet_093_1 -> pet_093）
+  const cleanId = typeId.replace(/_(?:rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02|\d+)$/i, '')
+  if (MONSTER_ICON_MAP[cleanId]) return MONSTER_ICON_MAP[cleanId]
+
   const baseId = typeId.split('_')[0]
   if (MONSTER_ICON_MAP[baseId]) return MONSTER_ICON_MAP[baseId]
+
+  // pet_xxx 前缀处理
+  if (typeId.startsWith('pet_')) {
+    const petNum = typeId.slice(4).split('_')[0]
+    if (MONSTER_ICON_MAP[`pet_${petNum}`]) return MONSTER_ICON_MAP[`pet_${petNum}`]
+    if (MONSTER_ICON_MAP[petNum]) return MONSTER_ICON_MAP[petNum]
+    return `avatar_pet_${petNum}`
+  }
   
   // 命名规律回退
   return `avatar_Mon_${baseId}`

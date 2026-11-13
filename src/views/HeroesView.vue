@@ -460,6 +460,7 @@
                         <strong>{{ summon.name }}</strong>
                         <template v-if="summon.maxCount > 0"> ×{{ summon.maxCount }}</template>
                         <template v-if="summon.duration > 0"> · 持续 {{ summon.duration }} 秒</template>
+                        <template v-if="summon.damageTypes?.length"> · 造成{{ summon.damageTypes.join('/') }}伤害</template>
                       </span>
                     </div>
                     <div v-if="summon.inherit.length" class="mechanics-row">

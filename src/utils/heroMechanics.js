@@ -715,7 +715,7 @@ export function buildSummonMechanics(levelValue, summonMon, summonData = null, b
    */
   const canAttack = unit ? !unit.noAtk : true
 
-  // 继承项：只有 extendSummoner 为真时这些比例才生效（见 Unit.cs:1467）
+  // 继承项：只有 extendSummoner 为真时这些比例才生效（见 Unit.cs:1946-1970）
   const inherit = extendsSummoner
     ? [
       percent(config.hpPrecent) && { key: 'maxHp', label: '生命', value: percent(config.hpPrecent) },

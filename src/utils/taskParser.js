@@ -51,6 +51,7 @@ export function buildTaskData(maps) {
     roomCollectTypeJson,
     newOrderJson,
     heroJson,
+    generalJson,
     eventRecordJson,
     dialogIndexJson,
     dialogSegmentsJson
@@ -180,6 +181,21 @@ export function buildTaskData(maps) {
 
   const taskNameMap = {}
   for (const [id, t] of Object.entries(taskMap)) taskNameMap[id] = t && t.name
+
+  // 前置任务反查索引（由其他任务的 unlockTask 与 addTask 反查本任务的来源）
+  const unlockedByMap = {}
+  const addedByMap = {}
+  for (const [id, t] of Object.entries(taskMap)) {
+    if (t.close) continue
+    for (const ch of arr(t.unlockTask)) {
+      if (!unlockedByMap[ch]) unlockedByMap[ch] = []
+      unlockedByMap[ch].push(id)
+    }
+    for (const ch of arr(t.addTask)) {
+      if (!addedByMap[ch]) addedByMap[ch] = []
+      addedByMap[ch].push(id)
+    }
+  }
 
   /*
    * 地点名清洗：剥离原表里混入的策划备注。
@@ -335,54 +351,116 @@ export function buildTaskData(maps) {
    * `desc` 仍作**补充**：它能提供 `rules` 表达不了的信息（如「完成 m_4_6 后可接取」里的
    * 任务名替换、或「紧急契约：蔓晶采石场」这类前缀）。但备注性片段会被剔除。
    *
+   * 解析任务接取条件：
+   * 1. 优先从 condition.json 解析显式 rules 与去噪后的 desc；
+   * 2. 首次战败触发任务（general.json firstFailTaskTypeId / s_1_5 与 s_1_7）；
+   * 3. 伙伴好感度任务（fav_hero_XXX_Y）；
+   * 4. 由前置任务完成解锁（unlockTask 反查）；
+   * 5. 由前置任务推进自动接取（addTask 反查）；
+   * 6. 日常委托任务（taskType === 3）按委托池章节映射；
+   * 7. 序章与活动起始任务；
+   * 8. 兜底为「无」。
+   *
    * @param {string} condId condition.json 的键
+   * @param {string} [taskId] 当前任务 ID
+   * @param {object} [task] 当前任务原始配置
    */
-  const parseCondition = (condId) => {
-    if (!condId) return '无'
-    const c = conditionMap[condId]
-    if (!c) return condId
+  const parseCondition = (condId, taskId = '', task = null) => {
+    // 1) 先从 condition.json 解析显式条件
+    if (condId && conditionMap[condId]) {
+      const c = conditionMap[condId]
+      const parts = []
+      for (const rule of arr(c.rules)) {
+        if (rule.type === 'passTask' && rule.para && rule.para.typeId) {
+          const tname = taskNameMap[rule.para.typeId] || rule.para.typeId
+          const step = rule.para.step
+          parts.push(step > 0 ? `完成《${tname}》第${step}步` : `完成《${tname}》`)
+        } else if (rule.type === 'passStage' && rule.para && rule.para.stages) {
+          const names = arr(rule.para.stages).map((s) => {
+            const loc = resolveLocation(s)
+            return loc ? loc.label : s
+          })
+          parts.push(`通关 ${names.join('、')}`)
+        }
+      }
 
-    // 1) 先从 rules 生成结构化条件（这是权威来源）
-    const parts = []
-    for (const rule of arr(c.rules)) {
-      if (rule.type === 'passTask' && rule.para && rule.para.typeId) {
-        const tname = taskNameMap[rule.para.typeId] || rule.para.typeId
-        const step = rule.para.step
-        parts.push(step > 0 ? `完成《${tname}》第${step}步` : `完成《${tname}》`)
-      } else if (rule.type === 'passStage' && rule.para && rule.para.stages) {
-        const names = arr(rule.para.stages).map((s) => {
-          const loc = resolveLocation(s)
-          return loc ? loc.label : s
+      const rawDesc = String(c.desc || '').trim()
+      const NOTE_ONLY = /^(?:任务接取步骤条件|NPC显示条件|NPC交互项条件|.*?(?:显示|接取|交互项?)?条件)$/
+      const cleanedDesc = rawDesc
+        .replace(/^[^，,。;；]{0,12}?(?:任务)?(?:接取)?(?:步骤)?条件[，,。;；\s]*/, '')
+        .trim()
+      const descUsable = cleanedDesc && !NOTE_ONLY.test(rawDesc)
+
+      // rules 是权威来源
+      if (parts.length) return parts.join('；')
+
+      // rules 为空时才退回 desc（剔除纯备注）
+      if (descUsable) {
+        return cleanedDesc.replace(/[A-Za-z_][A-Za-z0-9_]*/g, (tok) => {
+          if (taskNameMap[tok] && tok !== condId) return `《${taskNameMap[tok]}》`
+          return tok
         })
-        parts.push(`通关 ${names.join('、')}`)
+      }
+      if (rawDesc && !NOTE_ONLY.test(rawDesc)) return rawDesc
+    }
+
+    // 2) 首次战败触发任务（general.json）
+    const firstFailId = (generalJson && generalJson.firstFailTaskTypeId) || 's_1_5'
+    if (taskId === firstFailId || taskId === 's_1_5') {
+      return '首次战斗失败后解锁（于营地接取）'
+    }
+    if (taskId === 's_1_7') {
+      return '完成支线《失败是成功之母》（需首次战斗失败后解锁）'
+    }
+
+    // 3) 好感度任务 (fav_hero_XXX_Y)
+    if (taskId && taskId.startsWith('fav_hero_')) {
+      const m = /^fav_hero_(\d+)_(\d+)$/.exec(taskId)
+      if (m) {
+        const heroId = `hero_${m[1]}`
+        const heroName = heroMap[heroId]?.name || m[1]
+        return `伙伴【${heroName}】好感度达到第 ${m[2]} 阶段`
       }
     }
 
-    /*
-     * 2) desc 只在**无法从 rules 得到条件**时使用（见下方 4)。
-     *
-     * 实测 `desc` 混有大量非条件内容：任务自身名（「蛙肉却如此滑嫩……」「我的研究员们去了哪里」）、
-     * 策划备注（「任务接取步骤条件」「NPC显示条件」）、装饰性描述（「珍贵的装饰鸟羽」）。
-     * 把它们拼进条件只会制造噪声 —— 有 rules 时**完全以 rules 为准**。
-     */
-    const rawDesc = String(c.desc || '').trim()
-    const NOTE_ONLY = /^(?:任务接取步骤条件|NPC显示条件|NPC交互项条件|.*?(?:显示|接取|交互项?)?条件)$/
-    const cleanedDesc = rawDesc
-      .replace(/^[^，,。;；]{0,12}?(?:任务)?(?:接取)?(?:步骤)?条件[，,。;；\s]*/, '')
-      .trim()
-    const descUsable = cleanedDesc && !NOTE_ONLY.test(rawDesc)
-
-    // 3) rules 是权威来源
-    if (parts.length) return parts.join('；')
-
-    // 4) rules 为空时才退回 desc（剔除纯备注）
-    if (descUsable) {
-      return cleanedDesc.replace(/[A-Za-z_][A-Za-z0-9_]*/g, (tok) => {
-        if (taskNameMap[tok] && tok !== condId) return `《${taskNameMap[tok]}》`
-        return tok
-      })
+    // 4) 由前置任务完成解锁（unlockTask 触发）
+    const unlockParents = arr(unlockedByMap[taskId]).filter((pid) => !taskMap[pid]?.close)
+    if (unlockParents.length) {
+      const parentNames = unlockParents.map((pid) => `《${taskNameMap[pid] || pid}》`)
+      return `完成${parentNames.join('、')}`
     }
-    if (rawDesc && !NOTE_ONLY.test(rawDesc)) return rawDesc
+
+    // 5) 由前置任务推进自动接取（addTask 触发）
+    const addParents = arr(addedByMap[taskId]).filter((pid) => !taskMap[pid]?.close)
+    if (addParents.length) {
+      const parentNames = addParents.map((pid) => `《${taskNameMap[pid] || pid}》`)
+      return `推进${parentNames.join('、')}自动接取`
+    }
+
+    // 6) 日常委托任务（taskType === 3）
+    if (task && task.taskType === 3) {
+      const cat = arr(task.category)
+      const sub = cat[1] || ''
+      if (sub === 'C1' || taskId.startsWith('wt_yz_')) return '开启秋日荒野委托（完成主线《深渊》）'
+      if (sub === 'C2' || taskId.startsWith('wt_c2_')) return '开启索利德山地委托（完成主线《狂野的白兔》）'
+      if (sub === 'C3' || taskId.startsWith('wt_c3_')) return '开启魔爪湖畔委托（完成主线《水占师的村落》）'
+      if (sub === 'C4' || taskId.startsWith('wt_c4_')) return '开启风车平野委托（完成主线《无妄之灾》）'
+      if (sub === 'C5' || taskId.startsWith('wt_c5_')) return '开启永冻之渊委托（完成主线《向那皑皑雪原》）'
+      if (sub === 'C0' || taskId.startsWith('wt_yd_')) return '开启求生者草原委托（旅店委托板开放）'
+      return '日常委托任务'
+    }
+
+    // 7) 初始章节/活动主线任务
+    if (taskId === 'm_00_0' || taskId === 'm_0_1' || taskId === 'task_100100') {
+      return '初始主线任务（自动开启）'
+    }
+    if (taskId === 'm_4_1') {
+      return '完成第三章主线《魔爪湖的未来》后开启'
+    }
+    if (taskId === 'sp_2_1') {
+      return '活动开启后自动接取'
+    }
+
     return '无'
   }
 
@@ -863,8 +941,37 @@ export function buildTaskData(maps) {
           : null,
         title: getTaskTitle,
         dialog: getTaskDialog,
-        condition: parseCondition(getTask.condition)
+        condition: parseCondition(getTask.condition, typeId, t)
       },
+      predecessorTasks: (() => {
+        const seen = new Set()
+        const list = []
+        for (const pid of arr(unlockedByMap[typeId])) {
+          if (pid && !seen.has(pid) && !taskMap[pid]?.close) {
+            seen.add(pid)
+            list.push({ id: pid, name: taskNameMap[pid] || pid, type: 'unlock' })
+          }
+        }
+        for (const pid of arr(addedByMap[typeId])) {
+          if (pid && !seen.has(pid) && !taskMap[pid]?.close) {
+            seen.add(pid)
+            list.push({ id: pid, name: taskNameMap[pid] || pid, type: 'add' })
+          }
+        }
+        const condObj = conditionMap[getTask.condition]
+        if (condObj) {
+          for (const rule of arr(condObj.rules)) {
+            if (rule.type === 'passTask' && rule.para && rule.para.typeId) {
+              const pid = rule.para.typeId
+              if (pid && !seen.has(pid) && !taskMap[pid]?.close) {
+                seen.add(pid)
+                list.push({ id: pid, name: taskNameMap[pid] || pid, type: 'condition' })
+              }
+            }
+          }
+        }
+        return list
+      })(),
       addTasks: arr(t.addTask)
         .map((id) => ({ id, name: taskNameMap[id] || id, close: !!taskMap[id]?.close }))
         .filter((task) => task.id && !task.close),

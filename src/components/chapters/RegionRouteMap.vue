@@ -499,29 +499,28 @@ watch(() => props.height, () => resetView())
 }
 
 /*
-  副本节点：172px 原始宽度，底座圆盘中心距底部约 54px。
+  副本节点：允许随原图自适应宽度与高度（如 c1..c5 为 172x180，sp1 为 200x216），底座圆盘中心距底部约 54px。
 */
 .region-map__node.is-instance {
-  width: 172px;
-  height: 180px;
+  position: absolute;
+  width: auto;
+  height: auto;
   transform: translate(-50%, calc(-100% + 54px));
   z-index: 2;
   pointer-events: auto;
   cursor: pointer;
 }
 .region-map__node.is-instance .region-map__node-art {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 172px;
-  height: auto;
+  position: relative;
   display: block;
+  max-width: none;
+  height: auto;
 }
-/* 副本名：精准居中落在图片自带的深褐色底框（bottom: 26~50px，高24px）内部，绝不遮挡上方“迷宫挑战”（bottom: 62~66px） */
+/* 副本名：精准居中落在图片自带的深褐色底框（距底部 24~48px，高 24px）内部，绝不遮挡上方“迷宫挑战”（距底部 56px 以上） */
 .region-map__node.is-instance .region-map__node-label.is-builtin {
   position: absolute;
   left: 50%;
-  bottom: 26px;
+  bottom: 24px;
   height: 24px;
   display: flex;
   align-items: center;
@@ -531,12 +530,13 @@ watch(() => props.height, () => resetView())
   border: none;
   background: none;
   box-shadow: none;
-  color: #f4e6c8;
-  font-size: 18px;
+  color: #f7eed8;
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 0.5px;
   line-height: 1;
   white-space: nowrap;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 4px rgba(0, 0, 0, 0.7);
   -webkit-text-stroke: 0;
 }
 

@@ -65,6 +65,7 @@ export function buildTasksFile() {
     roomCollectTypeJson: readJson('roomCollectType.json'),
     newOrderJson: readJson('newOrder.json'),
     heroJson: readJson('hero/hero.json'),
+    generalJson: readJson('general.json'),
     // `tag` 步骤的 `stepPara.tag` 是事件记录键，可读描述在 eventRecord 的 `desc` 里
     eventRecordJson: readJson('eventRecord.json'),
     dialogIndexJson: readJson('parsed/dialogIndex.json'),

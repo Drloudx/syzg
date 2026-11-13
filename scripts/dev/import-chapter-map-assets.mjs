@@ -19,15 +19,20 @@ import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 import {
   ATLAS_PATH, STAGE_PLATFORM_RECT, STAGE_PLATFORM_LOCKED_RECT, AREA_TITLE_RECT, STAGE_CRYSTAL_RECT, STAGE_CRYSTAL_SMALL_RECT,
-  AREA_TAG_RECT
+  AREA_TAG_RECT, CHAPTER_TILE_ASSET_ID
 } from '../parse/chapterMapLayout.mjs'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const DATA_ROOT = process.env.MYRZG_DATA_DIR || path.resolve(root, '../游戏数据')
 const resDir = path.resolve(DATA_ROOT, '资源包/assets/res')
-const sourceDir = path.join(resDir, 'prefab/uiprefab/chapterpanel')
+const singleDir = path.resolve(DATA_ROOT, '图片资源/单图')
+const sourceDir = path.join(singleDir, '根目录')
+const textureDir = path.join(singleDir, 'texture')
+const atlasFile = path.join(resDir, ATLAS_PATH)
 const target = path.join(root, 'public/images/chapters')
 const apply = process.argv.includes('--apply')
+const onlyArg = process.argv.find(arg => arg.startsWith('--only='))
+const onlyFiles = onlyArg ? new Set(onlyArg.slice(7).split(',').map(s => s.trim()).filter(Boolean)) : null
 
 /**
  * 地区/副本节点的图标名直接读构建产物里的 `icon` 字段，不另维护一份清单——
@@ -49,32 +54,48 @@ function collectIcons() {
 }
 const { areas: AREA_ICONS, instances: INSTANCE_ICONS } = collectIcons()
 
-/** 世界地图底图 + 6 个已开放章节的彩色拼块 + 标题条；锁定块另行评估。 */
+const hasAtlas = fs.existsSync(atlasFile)
+
+/** 世界地图底图 + 全部章节彩色拼块（含 sp1→ex1、sp2→ex2）+ 地区路线图资源。 */
 const ASSETS = [
-  { from: path.join(sourceDir, 'map_w1_bg.png'), to: 'map_w1_bg.webp', note: '世界地图底图 1680x1680' },
-  ...['c0', 'c1', 'c2', 'c3', 'c4', 'c5'].map(id => ({ from: path.join(sourceDir, `map_w1_${id}.png`), to: `map_w1_${id}.webp`, note: `第 ${id.slice(1)} 章彩色拼块` })),
+  { from: path.join(sourceDir, 'map_w1_bg.png'), to: 'map_w1_bg.webp', note: '世界地图底图 1680x1740' },
+  ...['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'sp1', 'sp2'].map(id => {
+    const assetId = CHAPTER_TILE_ASSET_ID(id)
+    return {
+      from: path.join(sourceDir, `map_w1_${assetId}.png`),
+      to: `map_w1_${assetId}.webp`,
+      note: `${id} 世界地图彩色拼块（${assetId}）`
+    }
+  }),
   { from: path.join(sourceDir, 'map_w1_title.png'), to: 'map_w1_title.webp', note: '「世界地图 · 选择需要前往的章节」标题条' },
-  // 章节地区地图底图（点进章节后的那张关卡地图）。8 张全导——sp1/sp2 当前在黑名单里用不到，
+  // 章节地区地图底图（点进章节后的那张关卡地图）。8 张全导——sp2 当前在黑名单里，
   // 但 chapters.json 同样保留这些章节的数据，只导一半会让「取消隐藏」变成半坏状态。
   // 单张 2~4.5 MB 的整屏地图，用 q80（世界地图那套小图仍用 q85）。
   ...['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'sp1', 'sp2'].map(id => ({
-    from: path.join(resDir, `texture/area/bg/map_w1_${id}_bg.png`),
+    from: [
+      path.join(textureDir, `area/bg/map_w1_${id}_bg.png`),
+      path.join(resDir, `texture/area/bg/map_w1_${id}_bg.png`)
+    ],
     to: `map_w1_${id}_bg.webp`,
     quality: 80,
     note: `${id} 地区地图底图`
   })),
-  // 关卡节点石台：从 MapPanelAtlas 切出来（见 chapterMapLayout.mjs 的说明）
-  { from: path.join(resDir, ATLAS_PATH), to: 'stage_platform.webp', crop: STAGE_PLATFORM_RECT, note: '关卡节点石台（三水晶 + 橙宝石）' },
-  { from: path.join(resDir, ATLAS_PATH), to: 'stage_platform_locked.webp', crop: STAGE_PLATFORM_LOCKED_RECT, note: '关卡节点石台（未开放，灰）' },
-  { from: path.join(resDir, ATLAS_PATH), to: 'area_title.webp', crop: AREA_TITLE_RECT, note: '地区名称牌边框' },
-  { from: path.join(resDir, ATLAS_PATH), to: 'stage_crystal.webp', crop: STAGE_CRYSTAL_RECT, note: '关卡石台中间的大宝石' },
-  { from: path.join(resDir, ATLAS_PATH), to: 'stage_crystal_small.webp', crop: STAGE_CRYSTAL_SMALL_RECT, note: '关卡石台两侧的小宝石' },
-  // 地区节点名称牌上方的小标签（游戏里写「自由探索」）。
-  // 图集里的 map_select_out/in/corner 是「选中态」橙环，本站不显示，故不导入。
-  { from: path.join(resDir, ATLAS_PATH), to: 'area_tag.webp', crop: AREA_TAG_RECT, note: '地区节点「自由探索」标签' },
+  // 关卡节点石台：从 MapPanelAtlas 切出来（仅当本地存在完整版图集时导入）
+  ...(hasAtlas ? [
+    { from: atlasFile, to: 'stage_platform.webp', crop: STAGE_PLATFORM_RECT, note: '关卡节点石台（三水晶 + 橙宝石）' },
+    { from: atlasFile, to: 'stage_platform_locked.webp', crop: STAGE_PLATFORM_LOCKED_RECT, note: '关卡节点石台（未开放，灰）' },
+    { from: atlasFile, to: 'area_title.webp', crop: AREA_TITLE_RECT, note: '地区名称牌边框' },
+    { from: atlasFile, to: 'stage_crystal.webp', crop: STAGE_CRYSTAL_RECT, note: '关卡石台中间的大宝石' },
+    { from: atlasFile, to: 'stage_crystal_small.webp', crop: STAGE_CRYSTAL_SMALL_RECT, note: '关卡石台两侧的小宝石' },
+    { from: atlasFile, to: 'area_tag.webp', crop: AREA_TAG_RECT, note: '地区节点「自由探索」标签' }
+  ] : []),
   // 地区节点立体图：按 area.icon 命名，只导有 icon 的
   ...AREA_ICONS.map(icon => ({
-    from: path.join(resDir, `texture/area/icon/${icon}.png`),
+    from: [
+      path.join(textureDir, `area/icon/${icon}.png`),
+      path.join(sourceDir, `${icon}.png`),
+      path.join(resDir, `texture/area/icon/${icon}.png`)
+    ],
     to: `area/${icon}.webp`,
     note: `地区节点立体图 ${icon}`
   })),
@@ -82,13 +103,16 @@ const ASSETS = [
   // map_fb_* 在 instancepanel），按顺序取第一个存在的。
   ...INSTANCE_ICONS.map(icon => ({
     from: [
+      path.join(textureDir, `area/icon/${icon}.png`),
+      path.join(textureDir, `uipanel/instancepanel/${icon}.png`),
+      path.join(sourceDir, `${icon}.png`),
       path.join(resDir, `texture/area/icon/${icon}.png`),
       path.join(resDir, `texture/uipanel/instancepanel/${icon}.png`)
     ],
     to: `instance/${icon}.webp`,
     note: `副本入口图 ${icon}`
   }))
-]
+].filter(asset => !onlyFiles || onlyFiles.has(asset.to) || onlyFiles.has(path.basename(asset.to)))
 
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex')
 
@@ -134,23 +158,25 @@ async function buildOwnerGrid(resolution = 256) {
   const { w: W, h: H } = CHAPTER_MAP_SIZE
   const owner = new Int8Array(W * H).fill(-1)
   for (let index = 0; index < ids.length; index++) {
-    const { x: ox, y: oy, w, h } = CHAPTER_TILE_RECTS[ids[index]]
-    const source = path.join(sourceDir, `map_w1_${ids[index]}.png`)
+    const id = ids[index]
+    const { x: ox, y: oy, w, h } = CHAPTER_TILE_RECTS[id]
+    const source = path.join(sourceDir, `map_w1_${CHAPTER_TILE_ASSET_ID(id)}.png`)
     const { data } = await sharp(source).ensureAlpha().raw().toBuffer({ resolveWithObject: true })
     for (let y = 0; y < h; y++) {
       for (let x = 0; x < w; x++) {
         if (data[(y * w + x) * 4 + 3] <= 128) continue
         const gx = ox + x, gy = oy + y
-        if (gx < W && gy < H) owner[gy * W + gx] = index
+        if (gx >= 0 && gx < W && gy >= 0 && gy < H) owner[gy * W + gx] = index
       }
     }
   }
-  const cell = W / resolution
+  const cellX = W / resolution
+  const cellY = H / resolution
   const grid = new Int8Array(resolution * resolution)
   for (let gy = 0; gy < resolution; gy++) {
     for (let gx = 0; gx < resolution; gx++) {
-      const sx = Math.min(W - 1, Math.floor((gx + 0.5) * cell))
-      const sy = Math.min(H - 1, Math.floor((gy + 0.5) * cell))
+      const sx = Math.min(W - 1, Math.floor((gx + 0.5) * cellX))
+      const sy = Math.min(H - 1, Math.floor((gy + 0.5) * cellY))
       grid[gy * resolution + gx] = owner[sy * W + sx]
     }
   }

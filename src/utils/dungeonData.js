@@ -138,6 +138,7 @@ export function buildRoomVariant(roomTypeId, roomDetails, collectMap, collectTyp
       const waveMonster = waveMonsterMap.get(key) || {
         typeId: key,
         name: monMap[key]?.name || key,
+        icon: monMap[key]?.icon || '',
         count: 0,
         rank: mon.monRank || 0,
         levelScaleHp: scaleHp,
@@ -148,6 +149,7 @@ export function buildRoomVariant(roomTypeId, roomDetails, collectMap, collectTyp
       const current = monsterMap.get(key) || {
         typeId: key,
         name: monMap[key]?.name || key,
+        icon: monMap[key]?.icon || '',
         count: 0,
         rounds: [],
         rank: mon.monRank || 0,

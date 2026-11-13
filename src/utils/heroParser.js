@@ -433,11 +433,36 @@ export const fetchHeroData = createCachedLoader(async () => {
  * 召唤物（如德莉的剑盾护卫/弓箭手护卫）不在怪物图鉴单列，但其技能数据在 skill 表里，
  * 角色图鉴的召唤物行可展示这些技能名，避免读者以为召唤物没有技能。
  */
+/**
+ * 从一组技能的 levelData.aniEvents 里提取「造成伤害的属性类型」集合：
+ *   magicAtk → 魔法，phyAtk → 物理，realAtk → 真实。返回 ['物理']/['魔法']/['物理','魔法'] 等。
+ * 用于在召唤物行标注「造成物理/魔法伤害」，避免玩家误以为取决于继承哪种攻击。
+ */
+function collectDamageTypes(skillDatas, skillList) {
+  const set = new Set()
+  for (const entry of skillList || []) {
+    const s = skillDatas[entry?.skillId]
+    const lv1 = s?.levelData?.['1']
+    if (!lv1) continue
+    const s2 = JSON.stringify(lv1.aniEvents || '')
+    for (const m of s2.matchAll(/"damageType"\s*:\s*"([^"]+)"/g)) {
+      const t = m[1]
+      if (t === 'magicAtk') set.add('魔法')
+      else if (t === 'phyAtk') set.add('物理')
+      else if (t === 'realAtk') set.add('真实')
+    }
+  }
+  // 稳定顺序：物理 → 魔法 → 真实
+  const order = ['物理', '魔法', '真实']
+  return order.filter(x => set.has(x))
+}
+
 function attachSummonSkills(summon, monDatas, skillDatas) {
   if (!summon) return summon
   const mon = monDatas[summon.monTypeId] || {}
   const list = Array.isArray(mon.skillList) ? mon.skillList : []
   const skillNames = []
+  const damageTypes = collectDamageTypes(skillDatas, list)
   let split = null
   for (const entry of list) {
     const sid = entry?.skillId
@@ -464,13 +489,14 @@ function attachSummonSkills(summon, monDatas, skillDatas) {
                 const cn = cs?.levelData?.['1']?.skillName || cs?.skillName || cs?.name
                 return cn ? String(cn).replace(/\s*Lv[:：]?\s*\d+$/i, '').trim() : ''
               })
-              .filter(Boolean)
+              .filter(Boolean),
+            damageTypes: collectDamageTypes(skillDatas, monDatas[childCfg.monTypeId]?.skillList)
           }
         }
       }
     }
   }
-  return { ...summon, skills: [...new Set(skillNames)], ...(split ? { split } : {}) }
+  return { ...summon, skills: [...new Set(skillNames)], damageTypes, ...(split ? { split } : {}) }
 }
 
 function processSkillInfo(skillId, s, type, rare, element, upgradeList, consumeDatas, items, buffDatas, monDatas = {}, skillDatas = {}) {

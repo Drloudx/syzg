@@ -27,6 +27,7 @@ export const compactRewards = (entries = []) => entries.map(compactReward)
 export const compactMonster = (monster = {}) => ({
   typeId: monster.typeId,
   name: monster.name,
+  icon: monster.icon || undefined,
   count: monster.count,
   levelScaleHp: (monster.levelScaleHp !== undefined && monster.levelScaleHp !== 1) ? monster.levelScaleHp : undefined,
   levelScale: (monster.levelScale !== undefined && monster.levelScale !== 1) ? monster.levelScale : undefined,
@@ -67,6 +68,7 @@ export const compactVariant = (variant = {}) => ({
     monsters: (wave.monsters || []).map(monster => ({
       typeId: monster.typeId,
       name: monster.name,
+      icon: monster.icon || undefined,
       count: monster.count,
       levelScaleHp: (monster.levelScaleHp !== undefined && monster.levelScaleHp !== 1) ? monster.levelScaleHp : undefined,
       levelScale: (monster.levelScale !== undefined && monster.levelScale !== 1) ? monster.levelScale : undefined

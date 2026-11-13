@@ -256,3 +256,35 @@ test('hunter 步骤的怪物列表带可点击详情标记', () => {
     }
   }
 })
+
+test('任务接取条件推导与前置任务链（含首次战败、主线后续与好感度）', () => {
+  // 1. 变强的方法（s_1_7）：需完成 s_1_5，且标明首次战斗失败后解锁
+  const s17 = tasks.tasks.find(t => t.id === 's_1_7')
+  assert.ok(s17, 's_1_7 应存在')
+  assert.equal(s17.getTask.condition, '完成支线《失败是成功之母》（需首次战斗失败后解锁）')
+  assert.ok(s17.predecessorTasks?.some(p => p.id === 's_1_5'), 's_1_7 前置任务应包含 s_1_5')
+
+  // 2. 失败是成功之母（s_1_5）：首次战败触发
+  const s15 = tasks.tasks.find(t => t.id === 's_1_5')
+  assert.ok(s15, 's_1_5 应存在')
+  assert.equal(s15.getTask.condition, '首次战斗失败后解锁（于营地接取）')
+  assert.ok(s15.predecessorTasks?.some(p => p.id === 'm_1_1'), 's_1_5 前置任务应包含契约者')
+
+  // 3. 赤血剑姬，贝拉多娜（s_2_3）：过完第二章主线解锁
+  const s23 = tasks.tasks.find(t => t.id === 's_2_3')
+  assert.ok(s23, 's_2_3 应存在')
+  assert.equal(s23.getTask.condition, '完成《索利德的未来》')
+  assert.ok(s23.predecessorTasks?.some(p => p.id === 'm_2_11'), 's_2_3 前置任务应包含索利德的未来')
+
+  // 4. 好感度任务：不再是「无」，而是伙伴好感度阶段
+  const favTasks = tasks.tasks.filter(t => t.id.startsWith('fav_hero_') && !t.close)
+  assert.ok(favTasks.length > 200, '活跃好感度任务应有 200+ 条')
+  for (const ft of favTasks) {
+    assert.match(ft.getTask.condition, /^伙伴【.+】好感度达到第 \d+ 阶段$/, `${ft.id} 接取条件应为好感度阶段`)
+  }
+
+  // 5. 整体接取条件覆盖率：绝大多数活跃任务都有明确条件
+  const activeTasks = tasks.tasks.filter(t => !t.close)
+  const noneCond = activeTasks.filter(t => t.getTask.condition === '无')
+  assert.ok(noneCond.length < 10, `活跃任务无条件数量应极少（实际 ${noneCond.length}）`)
+})

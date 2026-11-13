@@ -67,7 +67,7 @@
                           :alt="unit.name"
                           loading="lazy"
                           decoding="async"
-                          @error="handleImageFallback"
+                          @error="handleMonsterIconError($event, unit)"
                         />
                         <span class="mon-name-txt">{{ unit.name }}</span>
                         <span v-if="unit.count > 1" class="mon-count-txt">×{{ unit.count }}</span>
@@ -114,7 +114,7 @@
                       :alt="mon.name"
                       loading="lazy"
                       decoding="async"
-                      @error="handleImageFallback"
+                      @error="handleMonsterIconError($event, mon)"
                     />
                     <span class="mon-name-txt">{{ mon.name }}</span>
                     <span class="mon-count-txt">×{{ mon.count }}</span>
@@ -202,7 +202,7 @@
 <script setup>
 import { UiTag } from './ui/index.js'
 import RewardPools from './RewardPools.vue'
-import { handleImageFallback } from '../utils/env.js'
+import { handleImageFallback, getImageUrl } from '../utils/env.js'
 import { openMonsterDetail } from '../utils/monsterModalState.js'
 import { getRoomNpcs } from '../utils/roomNpcMap.js'
 import {
@@ -212,6 +212,28 @@ import {
   sortedMonsterDrops
 } from '../utils/roomDisplay.js'
 import { openRewardDetail } from '../utils/rewardModalState.js'
+
+const handleMonsterIconError = (event, mon) => {
+  const img = event?.target
+  if (!img) return
+  const typeId = String(mon?.typeId || '')
+  const clean = typeId.replace(/^(?:mon_|pet_)/i, '').replace(/_(?:rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02|\d+)$/i, '')
+  const padded = clean.padStart(3, '0')
+  const step = Number(img.dataset.fallbackStep || 0)
+
+  if (step === 0) {
+    img.dataset.fallbackStep = '1'
+    img.src = getImageUrl(`/images/PicHandBookPanel_Atlas/colect_mon_${clean}.webp`)
+  } else if (step === 1) {
+    img.dataset.fallbackStep = '2'
+    img.src = getImageUrl(`/images/PicHandBookPanel_Atlas/colect_mon_${padded}.webp`)
+  } else if (step === 2) {
+    img.dataset.fallbackStep = '3'
+    img.src = getImageUrl(`/images/model-previews/mon_${padded}.webp`)
+  } else {
+    handleImageFallback(event)
+  }
+}
 
 defineProps({
   rooms: { type: Array, default: () => [] }

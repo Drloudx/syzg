@@ -14,6 +14,7 @@ android/app/build/
 
 # 备份、临时文件
 android_backup/
+backups/backup-local-*.sql
 *.log
 .DS_Store
 

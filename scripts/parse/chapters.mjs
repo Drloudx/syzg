@@ -459,8 +459,8 @@ export function buildChaptersFiles() {
     throw new Error(`[chapters] 有 ${orphan.length} 个关卡没有挂到任何章节：${orphan.join(', ')}`)
   }
 
-  // 世界地图：底图 + 已开放章节的拼块矩形（坐标由模板匹配测得，见 chapterMapLayout.mjs）。
-  // 拼块只对有矩形且有关卡数据的章节输出；特殊章节（sp1/sp2）不在世界地图上，不参与。
+  // 世界地图：底图 + 各章节的拼块矩形（含 sp1/sp2 的 ex1/ex2，坐标由模板匹配测得，见 chapterMapLayout.mjs）。
+  // 拼块只对有矩形且有关卡数据的章节输出，顺序与 CHAPTER_TILE_RECTS 保持一致（决定叠加层级）。
   const tiles = chapters
     .filter(chapter => CHAPTER_TILE_RECTS[chapter.id] && chapter.stages.length)
     .map(chapter => {
