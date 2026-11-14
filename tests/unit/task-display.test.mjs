@@ -288,3 +288,30 @@ test('任务接取条件推导与前置任务链（含首次战败、主线后�
   const noneCond = activeTasks.filter(t => t.getTask.condition === '无')
   assert.ok(noneCond.length < 10, `活跃任务无条件数量应极少（实际 ${noneCond.length}）`)
 })
+
+test('任务地点优先取接取 NPC 所在房间，而非第 1 步的指引目标房间', () => {
+  // 古堡也要大扫除（s_sp1_4）：接取 NPC 茜狄亚在会客厅，第 1 步去餐舍找托利斯
+  const sSp14 = tasks.tasks.find(t => t.id === 's_sp1_4')
+  assert.ok(sSp14, 's_sp1_4 应存在')
+  assert.equal(sSp14.startLocation, '会客厅（幽夜古堡 > 幽夜古堡）', '任务地点应为接取 NPC 茜狄亚所在的会客厅，不能误显示为第 1 步目标餐舍')
+  assert.equal(sSp14.steps[0].detail.find(d => d.label === '房间')?.value, '餐舍（幽夜古堡 > 幽夜古堡）', '第 1 步步骤房间保持餐舍')
+
+  // 美食之夜（s_sp1_5）：接取 NPC 在会客厅，第 1 步同样是指引去餐舍
+  const sSp15 = tasks.tasks.find(t => t.id === 's_sp1_5')
+  assert.ok(sSp15, 's_sp1_5 应存在')
+  assert.equal(sSp15.startLocation, '会客厅（幽夜古堡 > 幽夜古堡）')
+
+  // 哈比之王（s_2_1）：接取 NPC 在巴诺姆村，第 1 步是指引去矿山道
+  const s21 = tasks.tasks.find(t => t.id === 's_2_1')
+  assert.ok(s21, 's_2_1 应存在')
+  assert.equal(s21.startLocation, '巴诺姆村（索利德山地）')
+
+  // 营地接取判定：伙伴好感度事件、在营地与米托拉接取的主支线任务
+  const favTask = tasks.tasks.find(t => t.id === 'fav_hero_034_5')
+  assert.ok(favTask, 'fav_hero_034_5 应存在')
+  assert.equal(favTask.startLocation, '营地', '伙伴好感度任务地点应明确标记为「营地」')
+
+  const campSubTask = tasks.tasks.find(t => t.id === 's_1_1')
+  assert.ok(campSubTask, 's_1_1 变废为宝应存在')
+  assert.equal(campSubTask.startLocation, '营地', '在营地找米托拉接取的支线任务地点应标记为「营地」')
+})

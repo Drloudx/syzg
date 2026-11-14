@@ -84,12 +84,28 @@ export function buildTaskData(maps) {
 
   // 预构建索引
   const npcUidName = {}
+  const npcUidLevelRoomId = {}
   const roomMonIdType = {}
-  for (const scene of Object.values(roomJson)) {
+
+  // roomTypeId -> levelRoomId 反查索引（用于从 room.json 场景反查 levelRoom 表中的房间条目）
+  const roomTypeIdToLevelRoomId = {}
+  for (const [lrId, lr] of Object.entries(levelRoomMap)) {
+    if (lr && lr.roomTypeId) roomTypeIdToLevelRoomId[lr.roomTypeId] = lrId
+    roomTypeIdToLevelRoomId[lrId] = lrId
+  }
+
+  for (const [sceneKey, scene] of Object.entries(roomJson)) {
+    const sceneId = scene?.typeId || scene?.name || sceneKey
+    const lrId = roomTypeIdToLevelRoomId[sceneId] || roomTypeIdToLevelRoomId[sceneKey]
     for (const n of arr(scene && scene.battleData && scene.battleData.npcList)) {
-      if (n && n.uid && !npcUidName[n.uid]) {
-        const nm = firstNonEmpty([n.npcName, n.npcDes])
-        if (nm) npcUidName[n.uid] = nm
+      if (n && n.uid) {
+        if (!npcUidName[n.uid]) {
+          const nm = firstNonEmpty([n.npcName, n.npcDes])
+          if (nm) npcUidName[n.uid] = nm
+        }
+        if (lrId && !npcUidLevelRoomId[n.uid]) {
+          npcUidLevelRoomId[n.uid] = lrId
+        }
       }
     }
     // hunterUid 的 uid（如 mon_s_4_6）在 monRounds.mons 里，monId -> typeId 才是怪的真实 id
@@ -866,9 +882,44 @@ export function buildTaskData(maps) {
     )
     const parsedSteps = arr(t.steps).map((s, i) => parseStep(s, i + 1))
 
-    let startLocation = null
+    /*
+     * 任务接取地点：
+     *
+     * 1. 优先：若任务有接取 NPC（`getTask.npc`），且该 NPC 在场景房间中配置（`npcUidLevelRoomId`），
+     *    则以该接取 NPC 所在房间作为任务接取地点（如《古堡也要大扫除》接取 NPC 茜狄亚在「会客厅」）。
+     * 2. 营地接取判定：若属于伙伴来访任务、原表标记为营地/来访（position: 1）、或接取交互明确在营地中，
+     *    标注为「营地」（如全部伙伴好感度事件、在营地与米托拉/盖鲁尔特接取的任务）。
+     * 3. 回退：若没有接取 NPC 或接取 NPC 无法定位具体房间，则回退至第 1 步的野外指引地点。
+     */
     const firstStep = parsedSteps[0]
-    if (firstStep && firstStep.detail) {
+    let startLocation = null
+    if (getTask.npc && npcUidLevelRoomId[getTask.npc]) {
+      const loc = resolveLocation(npcUidLevelRoomId[getTask.npc])
+      if (loc) {
+        startLocation = loc.sub ? `${loc.label}（${loc.sub}）` : loc.label
+      }
+    }
+
+    if (!startLocation) {
+      const rawStep1 = t.steps?.[0] || {}
+      const stepPara = rawStep1.stepPara || {}
+      const isCampTask =
+        type === 4 ||
+        rawStep1.stepType === 'npcTalkBattle' ||
+        getTask.position === 1 ||
+        stepPara.position === 1 ||
+        getTask.npc === 'mituola001' ||
+        getTask.npc === 'gailuerte001' ||
+        stepPara.npc === 'mituola001' ||
+        (/(?:来访营地|在营地|于营地|营地[中里]|营地门前)/.test(rawStep1.stepName || '') && (!rawStep1.stepPosition || rawStep1.stepPosition[0] !== 'room')) ||
+        (/(?:来访营地|在营地|于营地接取)/.test(t.des || '') && (!rawStep1.stepPosition || rawStep1.stepPosition[0] !== 'room'))
+
+      if (isCampTask) {
+        startLocation = '营地'
+      }
+    }
+
+    if (!startLocation && firstStep && firstStep.detail) {
       const roomRow = firstStep.detail.find((d) => d.label === '房间')
       const stageRow = firstStep.detail.find((d) => d.label === '关卡' || d.label === '场景')
       const battleRow = firstStep.detail.find((d) => d.label === '副本' || d.label === '副本关卡')

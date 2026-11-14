@@ -31,8 +31,20 @@
         </UiFilterRow>
       </div>
 
-      <!-- 隐藏物品地图子分类（Row 2） -->
+      <!-- 隐藏物品类型子分类（Row 2） -->
       <div class="control-row-2" v-if="currentMainCat === 'hidden'">
+        <UiFilterRow label="类型：">
+          <UiFilterPill
+            v-for="sub in hiddenTypeOptions"
+            :key="sub.id"
+            :active="currentHiddenType === sub.id"
+            @click="currentHiddenType = sub.id"
+          >{{ sub.name }}</UiFilterPill>
+        </UiFilterRow>
+      </div>
+
+      <!-- 隐藏物品地图子分类（Row 3，刷新机制时隐藏） -->
+      <div class="control-row-3" v-if="currentMainCat === 'hidden' && currentHiddenType !== 'rules'">
         <UiFilterRow label="地图：">
           <UiFilterPill
             v-for="option in hiddenMapOptions"
@@ -43,7 +55,7 @@
         </UiFilterRow>
       </div>
 
-      <UiFilterRow v-if="currentMainCat === 'hidden'" label="状态：">
+      <UiFilterRow v-if="currentMainCat === 'hidden' && currentHiddenType !== 'rules'" label="状态：">
         <UiFilterPill
           v-for="status in hiddenStatusOptions"
           :key="status.value"
@@ -54,7 +66,7 @@
         </UiFilterPill>
       </UiFilterRow>
 
-      <div v-if="currentMainCat === 'hidden'" class="hidden-count">
+      <div v-if="currentMainCat === 'hidden' && currentHiddenType !== 'rules'" class="hidden-count">
         共有 <span class="count-num">{{ mapHiddenRewards.length }}</span> 个点位
         <span class="hidden-count__divider">·</span>
         已收集 <span class="count-num">{{ hiddenCollectedCount }}</span> / {{ mapHiddenRewards.length }}
@@ -77,7 +89,16 @@
     <UiEmptyState v-if="loading" type="loading" text="正在装配奖励数据..." />
 
     <!-- 主内容区 -->
-    <div v-else-if="pvpRewards" class="rewards-content" :class="{ 'paper-panel': currentSubCat !== 'exchange', 'is-rank-tab': ['rank', 'tier', 'battle'].includes(currentSubCat) }" id="rewardsScroll" data-main-scroll>
+    <div
+      v-else-if="pvpRewards"
+      class="rewards-content"
+      :class="{
+        'paper-panel': (currentMainCat === 'pvp' && currentSubCat !== 'exchange') || (currentMainCat === 'hidden' && currentHiddenType === 'rules'),
+        'is-rank-tab': currentMainCat === 'pvp' && ['rank', 'tier', 'battle'].includes(currentSubCat)
+      }"
+      id="rewardsScroll"
+      data-main-scroll
+    >
 
       <template v-if="currentMainCat === 'pvp'">
 
@@ -313,7 +334,35 @@
 
       <!-- 被隐藏的物品 -->
       <template v-else-if="currentMainCat === 'hidden'">
-        <div class="reward-list-container">
+        <!-- 刷新机制与探索规则 -->
+        <div v-if="currentHiddenType === 'rules' && matchesRewardQuery(hiddenRulesSearchData, '探索 规则 刷新 机制 宝箱 书籍 偶遇 聆听 跨天 自由探索')" class="hidden-rules-container">
+          <UiSection title="点位类型与刷新周期">
+            <div class="hidden-rule-grid">
+              <article class="hidden-rule-card">
+                <div class="hidden-rule-card__head">
+                  <span class="rule-badge rule-badge--once">常驻探索</span>
+                  <h4>被隐藏的物品 / ？？？</h4>
+                </div>
+                <p><strong>机制属性</strong>：<code>一次性收集 (collectOnce)</code></p>
+                <p>固定分布在各自由探索地图的隐秘角落。全地图点位为永久一次性拾取，采集后永久标记完成，<strong>不再刷新</strong>。</p>
+              </article>
+
+              <article class="hidden-rule-card">
+                <div class="hidden-rule-card__head">
+                  <span class="rule-badge rule-badge--daily">每日轮换</span>
+                  <h4>驻足聆听 / 偶遇事件</h4>
+                </div>
+                <p><strong>机制属性</strong>：<code>每日跨天重置 (crossDay: 1)</code> · <code>区域共享池 (pool)</code></p>
+                <p><strong>并非一次性</strong>！同一大区域内的多个街道或候选房间共享同一个偶遇事件池。系统每天基于日期跨天在候选房间中<strong>随机激活其中 1 个点位</strong>。</p>
+                <p>当天前往对应激活房间完成交互采集后，该区域该池当天进入冷却；<strong>次日跨天重置后，该区域会再次随机轮换出新的点位</strong>。若当天在某房间未找到，说明当天轮换在同区域的其他房间，或当日已完成采集。</p>
+              </article>
+            </div>
+          </UiSection>
+        </div>
+        <UiEmptyState v-else-if="currentHiddenType === 'rules'" text="未找到匹配的刷新机制说明" />
+
+        <!-- 点位列表 -->
+        <div v-else class="reward-list-container">
           <UiListRow
             v-for="group in groupedHiddenRewards"
             :key="group.id || group.roomId"
@@ -364,7 +413,7 @@
             />
           </UiListRow>
 
-          <UiEmptyState v-if="!groupedHiddenRewards.length" text="当前地图下暂无隐藏场景宝箱数据" />
+          <UiEmptyState v-if="!groupedHiddenRewards.length" :text="currentHiddenType === 'encounter' ? '当前筛选下暂无驻足聆听/偶遇事件数据' : '当前筛选下暂无隐藏点位数据'" />
         </div>
       </template>
 
@@ -503,9 +552,28 @@ const routeTabsReady = ref(false)
 const searchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 
 const hiddenRewardsData = ref([])
+const hiddenTypeOptions = [
+  { id: 'all', name: '全部' },
+  { id: 'hidden', name: '被隐藏的物品' },
+  { id: 'encounter', name: '驻足聆听 / 偶遇事件' },
+  { id: 'rules', name: '刷新机制' }
+]
+const currentHiddenType = ref('all')
 const currentHiddenCat = ref('')
 const currentHiddenStatus = ref('all')
 const slotCosts = ref(null)
+
+const isEncounterReward = group => group.sourceLabel === '偶遇' || group.collectId?.startsWith('oy_') || group.collectId?.startsWith('lt_')
+
+const filteredHiddenRewardsByType = computed(() => {
+  if (currentHiddenType.value === 'hidden') {
+    return hiddenRewardsData.value.filter(h => !isEncounterReward(h))
+  }
+  if (currentHiddenType.value === 'encounter') {
+    return hiddenRewardsData.value.filter(isEncounterReward)
+  }
+  return hiddenRewardsData.value
+})
 
 const hiddenStatusOptions = [
   { value: 'all', label: '全部' },
@@ -514,7 +582,7 @@ const hiddenStatusOptions = [
 ]
 
 const hiddenMapCategories = computed(() => {
-  const maps = new Set(hiddenRewardsData.value.map(h => h.bigMapName))
+  const maps = new Set(filteredHiddenRewardsByType.value.map(h => h.bigMapName))
   return Array.from(maps)
 })
 
@@ -524,8 +592,9 @@ const hiddenMapOptions = computed(() => [
 ])
 
 const mapHiddenRewards = computed(() => {
-  if (currentHiddenCat.value === 'all') return hiddenRewardsData.value
-  return hiddenRewardsData.value.filter(h => h.bigMapName === currentHiddenCat.value)
+  const base = filteredHiddenRewardsByType.value
+  if (currentHiddenCat.value === 'all') return base
+  return base.filter(h => h.bigMapName === currentHiddenCat.value)
 })
 
 const groupedHiddenRewards = computed(() => {
@@ -534,6 +603,17 @@ const groupedHiddenRewards = computed(() => {
   if (currentHiddenStatus.value === 'uncollected') groups = groups.filter(group => !isHiddenCollected(group))
   return groups.filter(group => matchesRewardQuery(group))
 })
+
+watch(currentHiddenType, newType => {
+  if (newType !== 'rules' && currentHiddenCat.value !== 'all' && !hiddenMapCategories.value.includes(currentHiddenCat.value)) {
+    currentHiddenCat.value = 'all'
+  }
+})
+
+const hiddenRulesSearchData = {
+  title: '被隐藏的物品 场景宝箱 书籍 驻足聆听 偶遇事件 刷新机制 探索规则 自由探索',
+  content: '一次性收集 collectOnce 每日跨天重置 crossDay 区域共享池 pool 随机轮换 候选房间 冷却'
+}
 
 const hiddenProgressId = group => {
   const relationId = [group.roomId, group.collectId, group.rewardId].filter(Boolean).join('|')
@@ -625,6 +705,10 @@ const applyTabsFromRoute = () => {
         : (exchangeCategories[0] || '')
     }
   } else if (currentMainCat.value === 'hidden') {
+    const requestedType = queryText(route.query.type)
+    currentHiddenType.value = hiddenTypeOptions.some(opt => opt.id === requestedType)
+      ? requestedType
+      : 'all'
     const requestedMap = queryText(route.query.map)
     currentHiddenCat.value = requestedMap === 'all' || hiddenMapCategories.value.includes(requestedMap)
       ? requestedMap
@@ -642,6 +726,7 @@ const syncTabsToRoute = async () => {
   const query = { ...route.query, tab: currentMainCat.value }
   delete query.sub
   delete query.season
+  delete query.type
   delete query.map
   delete query.status
   delete query.q
@@ -651,9 +736,14 @@ const syncTabsToRoute = async () => {
     if (currentSubCat.value === 'exchange' && currentExchangeCat.value) {
       query.season = currentExchangeCat.value
     }
-  } else if (currentMainCat.value === 'hidden' && currentHiddenCat.value) {
-    query.map = currentHiddenCat.value
-    query.status = currentHiddenStatus.value
+  } else if (currentMainCat.value === 'hidden') {
+    if (currentHiddenType.value && currentHiddenType.value !== 'all') {
+      query.type = currentHiddenType.value
+    }
+    if (currentHiddenType.value !== 'rules' && currentHiddenCat.value) {
+      query.map = currentHiddenCat.value
+      query.status = currentHiddenStatus.value
+    }
   }
   if (searchQuery.value.trim()) query.q = searchQuery.value.trim()
 
@@ -763,36 +853,40 @@ const scrollToTarget = async () => {
   const { id } = route.query
   if (!id) return
 
+  let targetId = ''
   if (String(id).startsWith('hidden-')) {
     currentMainCat.value = 'hidden'
     currentHiddenStatus.value = 'all'
-  } else {
-    currentMainCat.value = 'pvp'
-  }
-
-  let targetId = ''
-  if (String(id).startsWith('pvpExchange')) {
-    currentSubCat.value = 'exchange'
-    targetId = `pvpExchange-${id}`
-  } else if (String(id).match(/^\d+$/) && pvpRewards.value.tier.find(t => t.id === id)) {
-    currentSubCat.value = 'tier'
-    targetId = `tier-${id}`
-  } else if (String(id).startsWith('pvpRank')) {
-    currentSubCat.value = 'rank'
-    // To exact target if possible
-    targetId = `rank-${id}` // id here is pvpRank00x, we didn't map perfectly for rank ID.
-    // Let's just highlight the tab for rank
-  } else if (id === 'pvpWin' || id === 'pvpFailure' || id === 'battle') {
-    currentSubCat.value = 'battle'
-    if (id === 'pvpWin') targetId = 'battle-win'
-    if (id === 'pvpFailure') targetId = 'battle-fail'
-  } else if (String(id).startsWith('hidden-')) {
+    if (currentHiddenType.value === 'rules') {
+      currentHiddenType.value = 'all'
+    }
     targetId = id
     // id 可能是唯一条目 id（roomId-摘要）或旧 roomId；匹配时按 id 优先，缺失再回退 roomId。
     const rawKey = id.replace('hidden-', '')
     const rewardGroup = hiddenRewardsData.value.find(h => h.id === rawKey || h.roomId === rawKey)
     if (rewardGroup) {
       currentHiddenCat.value = rewardGroup.bigMapName
+      if (currentHiddenType.value !== 'all') {
+        const isEncounter = isEncounterReward(rewardGroup)
+        if (isEncounter && currentHiddenType.value === 'hidden') currentHiddenType.value = 'encounter'
+        else if (!isEncounter && currentHiddenType.value === 'encounter') currentHiddenType.value = 'hidden'
+      }
+    }
+  } else {
+    currentMainCat.value = 'pvp'
+    if (String(id).startsWith('pvpExchange')) {
+      currentSubCat.value = 'exchange'
+      targetId = `pvpExchange-${id}`
+    } else if (String(id).match(/^\d+$/) && pvpRewards.value?.tier?.find(t => t.id === id)) {
+      currentSubCat.value = 'tier'
+      targetId = `tier-${id}`
+    } else if (String(id).startsWith('pvpRank')) {
+      currentSubCat.value = 'rank'
+      targetId = `rank-${id}`
+    } else if (id === 'pvpWin' || id === 'pvpFailure' || id === 'battle') {
+      currentSubCat.value = 'battle'
+      if (id === 'pvpWin') targetId = 'battle-win'
+      if (id === 'pvpFailure') targetId = 'battle-fail'
     }
   }
 
@@ -825,14 +919,14 @@ watch(() => route.query.id, () => {
 })
 
 watch(
-  () => [route.query.tab, route.query.sub, route.query.season, route.query.map, route.query.status, route.query.q],
+  () => [route.query.tab, route.query.sub, route.query.season, route.query.type, route.query.map, route.query.status, route.query.q],
   () => {
     if (routeTabsReady.value) applyTabsFromRoute()
   }
 )
 
 watch(
-  [currentMainCat, currentSubCat, currentExchangeCat, currentHiddenCat, currentHiddenStatus, searchQuery],
+  [currentMainCat, currentSubCat, currentExchangeCat, currentHiddenType, currentHiddenCat, currentHiddenStatus, searchQuery],
   () => syncTabsToRoute()
 )
 
@@ -1119,6 +1213,111 @@ const closePrevImg = () => {
 
 .dark-mode .pvp-area-rule {
   background: rgba(35, 26, 17, 0.62);
+}
+
+/* 被隐藏物品 / 偶遇事件：刷新机制与探索规则 */
+.hidden-rules-container {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hidden-rule-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .hidden-rule-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+.hidden-rule-card {
+  min-width: 0;
+  padding: 14px 16px;
+  background: var(--paper-soft, #e9dcc3);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.dark-mode .hidden-rule-card {
+  background: rgba(35, 26, 17, 0.72);
+}
+
+.hidden-rule-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-faint);
+}
+
+.hidden-rule-card__head h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.rule-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 4px;
+  background: rgba(122, 154, 153, 0.18);
+  color: var(--accent-ink, #2d5a57);
+  white-space: nowrap;
+}
+
+.rule-badge--once {
+  background: rgba(184, 134, 11, 0.16);
+  color: #8c6200;
+}
+
+.rule-badge--daily {
+  background: rgba(30, 144, 255, 0.14);
+  color: #1a5fb4;
+}
+
+.rule-badge--hide {
+  background: rgba(147, 112, 219, 0.16);
+  color: #6a3ab2;
+}
+
+.hidden-rule-card p {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+.hidden-rule-card p strong {
+  color: var(--text-main);
+}
+
+.hidden-rule-card code {
+  padding: 1px 5px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 12px;
+  color: var(--text-main);
+}
+
+.dark-mode .hidden-rule-card code {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* 兑换列表：与 /exchange 页面完全统一的紧凑多列网格规范 */
