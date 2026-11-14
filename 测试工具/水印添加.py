@@ -4,7 +4,7 @@ from tkinter import ttk, filedialog, messagebox
 from PIL import Image
 
 # ===================== 默认路径配置 =====================
-DEFAULT_INPUT_DIR = r"E:\Desktop\html\myrzg\vue-myrzg\public\images\chara111"
+DEFAULT_INPUT_DIR = r"E:\Desktop\html\myrzg\vue-myrzg\public\images\chara\l"
 DEFAULT_LOGO_PATH = r"E:\Desktop\html\myrzg\vue-myrzg\public\images\test\logo.png"
 # ✅ 修改点1：扩大比例范围，上移到大腿和裙摆区域（参考黄色框）
 # x1向左扩，y1向上扩，x2向右扩，y2保持在膝盖上方
@@ -144,7 +144,13 @@ class WatermarkGUI:
         paste_y = y1 + padding + (avail_h - logo.height)//2
 
         bg.paste(logo, (paste_x, paste_y), mask=logo)
-        bg.save(out_img_path)
+        ext = os.path.splitext(out_img_path)[1].lower()
+        if ext == ".webp":
+            bg.save(out_img_path, "WEBP", quality=95, method=4)
+        elif ext in (".jpg", ".jpeg"):
+            bg.convert("RGB").save(out_img_path, "JPEG", quality=95, subsampling=0)
+        else:
+            bg.save(out_img_path)
 
     def run_batch(self):
         from PIL import Image
@@ -169,7 +175,7 @@ class WatermarkGUI:
             messagebox.showerror("打开Logo失败", str(e))
             return
 
-        img_exts = {".png",".jpg",".jpeg",".bmp"}
+        img_exts = {".png", ".jpg", ".jpeg", ".bmp", ".webp"}
         file_list = [f for f in os.listdir(input_dir) if os.path.splitext(f)[1].lower() in img_exts]
         self.log(f"发现图片 {len(file_list)} 张\n")
 

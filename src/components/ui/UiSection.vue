@@ -103,7 +103,7 @@ const emit = defineEmits(['update:open'])
   align-items: center;
 }
 .ui-section__title-main { gap: 10px; min-width: 0; }
-.ui-section__title-end { gap: 8px; flex-shrink: 0; }
+.ui-section__title-end { gap: 8px; flex-shrink: 0; margin-left: auto; }
 .ui-section__chevron {
   color: var(--text-faint, #8a6d4d);
   transition: transform 0.2s ease;

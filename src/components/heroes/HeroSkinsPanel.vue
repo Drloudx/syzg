@@ -6,27 +6,16 @@
           v-for="skin in skins"
           :key="skin.id"
           class="skin-entry paper-panel-solid"
-          :class="[skin.quality ? `quality-border-${skin.quality}` : '', { 'has-model': skin.modelImage }]"
+          :class="[skin.quality ? `quality-border-${skin.quality}` : '']"
         >
-          <div class="skin-portrait-wrap">
-            <img
-              :src="getImageUrl(`/images/chara/l/${skin.img}.webp`)"
-              :alt="skin.name"
-              class="skin-portrait"
-              loading="lazy"
-              @error="handleImageError"
-            />
-          </div>
-
-          <div class="skin-info">
-            <div class="skin-heading">
-              <h4>{{ skin.name }}</h4>
-              <UiTag v-if="skin.from" tone="accent">{{ skin.from }}</UiTag>
-            </div>
-
-            <div v-if="skin.attributes?.length" class="skin-attributes">
-              <span class="skin-info-label">属性加成</span>
-              <div class="skin-attribute-list">
+          <!-- 头部：标题、来源、属性加成，以及右侧视图切换器 -->
+          <header class="skin-entry__header">
+            <div class="skin-entry__meta">
+              <div class="skin-entry__title-row">
+                <h4>{{ skin.name }}</h4>
+                <UiTag v-if="skin.from" tone="accent">{{ skin.from }}</UiTag>
+              </div>
+              <div v-if="skin.attributes?.length" class="skin-entry__attributes">
                 <UiTag
                   v-for="attribute in skin.attributes"
                   :key="attribute.key"
@@ -36,25 +25,106 @@
                 </UiTag>
               </div>
             </div>
-          </div>
-          <div v-if="skin.modelImage" class="skin-model-wrap">
-            <img :src="getImageUrl(skin.modelImage)" :alt="`${skin.name}小人模型`"
-              class="skin-model" loading="lazy" decoding="async" @error="handleImageFallback" />
+
+            <div v-if="skin.modelImage" class="skin-entry__toggle-wrap">
+              <UiSegmentedToggle
+                :model-value="getSkinTab(skin.id)"
+                :options="skinTabOptions"
+                aria-label="皮肤展示切换"
+                @update:model-value="setSkinTab(skin.id, $event)"
+              />
+            </div>
+          </header>
+
+          <!-- 舞台主体：100% 全宽舞台 -->
+          <div class="skin-entry__stage">
+            <!-- 完整立绘 -->
+            <div
+              v-if="getSkinTab(skin.id) === 'portrait'"
+              class="skin-stage-pane skin-stage-pane--portrait"
+              title="点击查看全屏大图"
+              @click="openLightbox(skin)"
+            >
+              <img
+                :src="getImageUrl(`/images/chara/l/${skin.img}.webp`)"
+                :alt="`${skin.name}立绘`"
+                class="skin-portrait-img"
+                loading="lazy"
+                @error="handleImageError"
+              />
+              <div class="skin-zoom-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  <line x1="11" y1="8" x2="11" y2="14"></line>
+                  <line x1="8" y1="11" x2="14" y2="11"></line>
+                </svg>
+                <span>点击查看大图</span>
+              </div>
+            </div>
+
+            <!-- 战斗模型 -->
+            <div
+              v-else-if="getSkinTab(skin.id) === 'model' && skin.modelImage"
+              class="skin-stage-pane skin-stage-pane--model"
+            >
+              <div class="skin-model-figure">
+                <img
+                  :src="getImageUrl(skin.modelImage)"
+                  :alt="`${skin.name}战斗模型`"
+                  class="skin-model-img"
+                  loading="lazy"
+                  decoding="async"
+                  @error="handleImageFallback"
+                />
+                <div class="skin-model-pedestal" aria-hidden="true"></div>
+              </div>
+            </div>
           </div>
         </article>
       </div>
     </UiSection>
+
+    <UiImageLightbox
+      v-model:visible="lightboxVisible"
+      :src="lightboxSrc"
+      :alt="lightboxAlt"
+    />
   </div>
 </template>
 
 <script setup>
+import { reactive, ref } from 'vue'
 import { getImageUrl, handleImageFallback } from '../../utils/env.js'
 import { translateStatName } from '../../utils/gameMappings.js'
-import { UiSection, UiTag } from '../ui/index.js'
+import { UiSection, UiTag, UiSegmentedToggle, UiImageLightbox } from '../ui/index.js'
 
 defineProps({
   skins: { type: Array, default: () => [] }
 })
+
+const skinTabOptions = [
+  { value: 'portrait', label: '完整立绘' },
+  { value: 'model', label: '战斗模型' }
+]
+
+const activeSkinTabs = reactive({})
+const getSkinTab = (skinId) => activeSkinTabs[skinId] || 'portrait'
+const setSkinTab = (skinId, tab) => {
+  activeSkinTabs[skinId] = tab
+}
+
+const lightboxVisible = ref(false)
+const lightboxSrc = ref('')
+const lightboxAlt = ref('')
+
+const openLightbox = (skin) => {
+  if (skin?.img) {
+    lightboxSrc.value = getImageUrl(`/images/chara/l/${skin.img}.webp`)
+    lightboxAlt.value = skin.name ? `${skin.name}立绘` : '皮肤立绘'
+    lightboxVisible.value = true
+  }
+}
 
 const formatAttributeValue = attribute => {
   const values = []
@@ -77,130 +147,205 @@ const handleImageError = event => {
 }
 
 .skin-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .skin-entry {
-  display: grid;
-  grid-template-columns: minmax(180px, 42%) minmax(0, 1fr);
-  min-height: 310px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   border-width: 1px;
   border-style: solid;
-  border-radius: 4px;
+  border-radius: 6px;
+  background: var(--paper-soft, #f4ede0);
 }
 
-.skin-entry.has-model {
-  grid-template-columns: minmax(0, 42fr) minmax(0, 27fr) minmax(0, 31fr);
-}
-
-.skin-model-wrap {
+.skin-entry__header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-width: 0;
-  padding: 16px 10px;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-faint, rgba(143, 115, 81, 0.22));
+  background: rgba(122, 154, 153, 0.05);
 }
 
-.skin-model {
-  display: block;
-  width: 100%;
-  height: 270px;
-  object-fit: contain;
-}
-
-.skin-portrait-wrap {
+.skin-entry__meta {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
   min-width: 0;
-  padding: 12px 8px 0;
-  background: rgba(122, 154, 153, 0.09);
-  border-right: 1px solid var(--border-faint, rgba(143, 115, 81, 0.25));
 }
 
-.skin-portrait {
-  display: block;
-  width: 100%;
-  height: 298px;
-  object-fit: contain;
-  object-position: center bottom;
-  filter: drop-shadow(0 4px 8px rgba(43, 31, 21, 0.28));
-}
-
-.skin-info {
+.skin-entry__title-row {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 18px;
-  min-width: 0;
-  padding: 18px;
-}
-
-.skin-heading {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
+  flex-shrink: 0;
 }
 
-.skin-heading h4 {
+.skin-entry__title-row h4 {
   margin: 0;
   color: var(--text-main, #3e2a14);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
+  line-height: 1.3;
 }
 
-.skin-attributes {
-  padding-top: 14px;
-  border-top: 1px dashed var(--border-soft, rgba(143, 115, 81, 0.45));
-}
-
-.skin-info-label {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--text-muted, #6b5134);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.skin-attribute-list {
+.skin-entry__attributes {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: 6px;
 }
 
+.skin-entry__toggle-wrap {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.skin-entry__stage {
+  width: 100%;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: rgba(122, 154, 153, 0.06);
+  overflow: hidden;
+}
+
+.skin-stage-pane {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+}
+
+.skin-stage-pane--portrait {
+  height: 440px;
+  cursor: zoom-in;
+  user-select: none;
+}
+
+.skin-portrait-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 4px 10px rgba(43, 31, 21, 0.3));
+  transition: transform 0.2s ease;
+}
+
+.skin-stage-pane--portrait:hover .skin-portrait-img {
+  transform: scale(1.015);
+}
+
+.skin-zoom-badge {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted, #6b5134);
+  background: var(--paper-soft, rgba(244, 237, 224, 0.9));
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.3));
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.skin-stage-pane--portrait:hover .skin-zoom-badge {
+  color: var(--accent-ink, #2d5a57);
+  border-color: var(--accent, #7a9a99);
+}
+
+.dark-mode .skin-zoom-badge {
+  background: rgba(35, 26, 17, 0.85);
+  color: var(--text-muted);
+}
+
+.skin-stage-pane--model {
+  align-items: center;
+  justify-content: center;
+  height: 440px;
+  padding: 24px;
+}
+
+.skin-model-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.skin-model-img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 280px);
+  height: 300px;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 6px 12px rgba(43, 31, 21, 0.25));
+}
+
+.skin-model-pedestal {
+  width: 130px;
+  height: 14px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(43, 31, 21, 0.32) 0%, rgba(43, 31, 21, 0) 72%);
+  pointer-events: none;
+}
+
+/* 手机端深度适配 */
 @media (max-width: 560px) {
-  .skin-list {
-    grid-template-columns: 1fr;
+  .skin-entry__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
   }
 
-  .skin-entry {
-    grid-template-columns: 1fr;
+  .skin-entry__meta {
+    justify-content: space-between;
+    gap: 8px;
   }
 
-  .skin-entry.has-model {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .has-model .skin-portrait-wrap { grid-column: 1; grid-row: 1; }
-  .has-model .skin-model-wrap { grid-column: 2; grid-row: 1; }
-  .has-model .skin-info { grid-column: 1 / -1; grid-row: 2; }
-  .has-model .skin-portrait { height: 230px; }
-  .has-model .skin-model { height: 200px; }
-
-  .skin-portrait-wrap {
-    border-right: 0;
-    border-bottom: 1px solid var(--border-faint, rgba(143, 115, 81, 0.25));
+  .skin-entry__toggle-wrap {
+    margin-left: 0;
+    align-self: flex-end;
   }
 
-  .skin-portrait {
-    height: 330px;
+  .skin-entry__stage {
+    min-height: 320px;
   }
 
-  .skin-info {
-    padding: 14px;
+  .skin-stage-pane--portrait {
+    height: 350px;
+  }
+
+  .skin-stage-pane--model {
+    height: 350px;
+    padding: 16px;
+  }
+
+  .skin-model-img {
+    height: 250px;
+    max-width: 240px;
   }
 }
 </style>

@@ -13,8 +13,17 @@
 
     <template v-else>
       <div v-if="errorMessage" class="comments-error" role="alert">
-        <UiEmptyState type="error" :text="errorMessage" />
-        <UiButton variant="secondary" size="sm" @click="load()">重新加载</UiButton>
+        <UiEmptyState :text="errorDisplayText">
+          <template #action>
+            <UiButton variant="secondary" size="sm" @click="load()">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+              </svg>
+              <span>重新连接</span>
+            </UiButton>
+          </template>
+        </UiEmptyState>
       </div>
 
       <template v-else>
@@ -333,6 +342,13 @@ const commentsLength = computed(() => comments.value.length)
 const comments = ref([])
 const loading = ref(false)
 const errorMessage = ref('')
+const errorDisplayText = computed(() => {
+  if (!errorMessage.value) return ''
+  if (/无法连接|Failed to fetch|NetworkError|Load failed|502|503/i.test(errorMessage.value)) {
+    return '无法连接服务器'
+  }
+  return errorMessage.value
+})
 /** 删除等操作的失败提示（与"加载失败"分开：列表仍可见，只提示这次操作失败） */
 const actionError = ref('')
 const cursor = ref(null)

@@ -23,7 +23,7 @@ const TIMEOUT_MS = 15000
  * 正常情况下服务端会返回自己的中文文案（见 `functions/api/[[path]].js` 的 `ERR` 契约），
  * 这几个只用于"请求根本没到服务端"的情形。
  */
-const CONNECT_ERROR = '无法连接评论服务器'
+const CONNECT_ERROR = '无法连接服务器'
 const NETWORK_ERROR = '网络连接异常'
 const TIMEOUT_ERROR = '网络连接超时，请稍后再试'
 const GENERIC_ERROR = '操作失败，请稍后再试'

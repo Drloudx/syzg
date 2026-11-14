@@ -358,18 +358,19 @@ export function buildExchangeData(maps) {
   }
 
   // PackHeroSkinTempUI: shop.skins → skin.heroTypeId → hero.Name;
-  // 商店封面使用 shop.skins.img，不使用角色详情立绘或按名称猜测关联。
+  // 商店封面优先使用 shop.skins.img，缺失时回退到 skin.skinCard 或详情立绘。
   const skinPresentation = (entry) => {
     const skin = maps.skinRes?.datas?.[entry.heroSkin]
     const hero = maps.heroRes?.datas?.[skin?.heroTypeId]
     if (!skin || !hero) return null
+    const fallbackImage = skin.skinCard ? `/images/chara/skincard/${skin.skinCard}.webp` : (skin.img ? `/images/chara/l/${skin.img}.webp` : '')
     return {
       id: entry.heroSkin,
       heroId: skin.heroTypeId,
       heroName: hero.name,
       name: skin.name,
       quality: skin.quality,
-      image: entry.img ? `/images/PackPane/${entry.img}.webp` : ''
+      image: entry.img ? `/images/PackPane/${entry.img}.webp` : fallbackImage
     }
   }
 

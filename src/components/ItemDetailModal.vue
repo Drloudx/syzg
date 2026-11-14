@@ -525,17 +525,56 @@
     </UiSection>
 
     <UiSection v-if="skinUnlock" title="皮肤立绘">
-      <div class="skin-portrait-preview" :class="[skinUnlock.quality ? `quality-border-${skinUnlock.quality}` : '', { 'has-model': skinUnlock.modelImage }]">
-        <div class="skin-preview-pane">
+      <template #title-end v-if="skinUnlock.modelImage">
+        <UiSegmentedToggle
+          v-model="activeSkinTab"
+          :options="skinTabOptions"
+          aria-label="皮肤展示切换"
+        />
+      </template>
+
+      <div
+        class="skin-portrait-preview"
+        :class="skinUnlock.quality ? `quality-border-${skinUnlock.quality}` : ''"
+      >
+        <!-- 完整立绘（占满全宽 100%，点击可呼出全屏高清查看器） -->
+        <div
+          v-if="activeSkinTab === 'portrait'"
+          class="skin-preview-pane skin-preview-pane--portrait"
+          title="点击查看全屏大图"
+          @click="openSkinLightbox"
+        >
           <img
             :src="getImageUrl(`/images/chara/l/${skinUnlock.img}.webp`)"
             :alt="`${skinUnlock.skinName}立绘`"
             loading="lazy"
           />
+          <div class="skin-zoom-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+            <span>点击查看大图</span>
+          </div>
         </div>
-        <div v-if="skinUnlock.modelImage" class="skin-preview-pane skin-preview-pane--model">
-          <img :src="getImageUrl(skinUnlock.modelImage)" :alt="`${skinUnlock.skinName}小人模型`"
-            loading="lazy" decoding="async" @error="handleImageFallback" />
+
+        <!-- 战斗模型（居中展示配备地台阴影） -->
+        <div
+          v-else-if="activeSkinTab === 'model' && skinUnlock.modelImage"
+          class="skin-preview-pane skin-preview-pane--model"
+        >
+          <div class="skin-model-stage">
+            <img
+              :src="getImageUrl(skinUnlock.modelImage)"
+              :alt="`${skinUnlock.skinName}战斗模型`"
+              loading="lazy"
+              decoding="async"
+              @error="handleImageFallback"
+            />
+            <div class="skin-model-pedestal" aria-hidden="true"></div>
+          </div>
         </div>
       </div>
     </UiSection>
@@ -729,6 +768,12 @@
     <UiBackToTop scroll-container="#itemModalScroll" />
     </template>
   </UiModal>
+
+  <UiImageLightbox
+    v-model:visible="skinLightboxVisible"
+    :src="skinLightboxSrc"
+    :alt="skinLightboxAlt"
+  />
 </template>
 
 <script setup>
@@ -746,7 +791,7 @@ import { formatHighlightedText, EQUIP_QUALITY_LABELS, translateStatName } from '
 import { compareExchangeSources } from '../utils/exchangeData.js'
 import { isFacilityRecipeHidden, hasBrokenRewardPool } from '../config/blacklist.js'
 import { resolveItemRelations, resolveSimilarItems } from '../utils/relationData.js'
-import { UiModal, UiSection, UiTag, UiInfoRow, UiButton, UiFilterPill, UiStatGrid, UiRewardCard, UiAccordion, UiBackToTop, UiItemCard } from './ui/index.js'
+import { UiModal, UiSection, UiTag, UiInfoRow, UiButton, UiFilterPill, UiStatGrid, UiRewardCard, UiAccordion, UiBackToTop, UiItemCard, UiSegmentedToggle, UiImageLightbox } from './ui/index.js'
 import CommentsPanel from './CommentsPanel.vue'
 
 const props = defineProps({
@@ -913,6 +958,26 @@ const unlockText = computed(() => {
 const heroStarUsage = computed(() => props.item?.heroStarUsage || null)
 const heroUnlock = computed(() => props.item?.heroUnlock || null)
 const skinUnlock = computed(() => props.item?.skinUnlock || null)
+const activeSkinTab = ref('portrait')
+const skinTabOptions = [
+  { value: 'portrait', label: '完整立绘' },
+  { value: 'model', label: '战斗模型' }
+]
+
+const skinLightboxVisible = ref(false)
+const skinLightboxSrc = computed(() => {
+  if (!skinUnlock.value?.img) return ''
+  return getImageUrl(`/images/chara/l/${skinUnlock.value.img}.webp`)
+})
+const skinLightboxAlt = computed(() => {
+  return skinUnlock.value?.skinName ? `${skinUnlock.value.skinName}立绘` : '皮肤立绘'
+})
+
+const openSkinLightbox = () => {
+  if (skinLightboxSrc.value) {
+    skinLightboxVisible.value = true
+  }
+}
 const homeItemUnlocks = computed(() => (props.item?.homeItemUnlocks || [])
   .filter(unlock => unlock?.typeId && unlock.catalogVisible !== false))
 const potionInfo = computed(() => props.item?.potionInfo || null)
@@ -1120,10 +1185,11 @@ const stagePreview = computed(() => {
 /** 「查看全部消耗」：把每个阶段的消耗一次性列出。 */
 const showAllCosts = ref(false)
 
-// 切换物品时重置到「当前」阶段，并收起全部消耗
+// 切换物品时重置到「当前」阶段，并收起全部消耗，皮肤视图恢复完整立绘
 watch(() => props.item?.typeId, () => {
   selectedUpgradeIndex.value = null
   showAllCosts.value = false
+  activeSkinTab.value = 'portrait'
 })
 
 /** 进阶消耗 → UiRewardCard 的 rule 形状。 */
@@ -2008,53 +2074,125 @@ onBeforeUnmount(cancelBodyScrollRestore)
 }
 .skin-portrait-preview {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  min-height: 360px;
+  min-height: 400px;
   overflow: hidden;
   border-width: 1px;
   border-style: solid;
   border-radius: 4px;
   background: rgba(122, 154, 153, 0.08);
+  position: relative;
 }
-.skin-portrait-preview.has-model {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
+
 .skin-preview-pane {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  width: 100%;
   min-width: 0;
+  position: relative;
 }
-.skin-preview-pane--model {
-  align-items: center;
-  align-self: stretch;
-  padding: 12px;
-}
-.skin-portrait-preview img {
-  display: block;
-  width: min(100%, 520px);
+
+.skin-preview-pane--portrait {
   height: 440px;
+  cursor: zoom-in;
+  user-select: none;
+}
+
+.skin-preview-pane--portrait img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: center bottom;
   filter: drop-shadow(0 4px 10px rgba(43, 31, 21, 0.3));
+  transition: transform 0.2s ease;
 }
-.skin-preview-pane--model img {
-  width: min(100%, 280px);
+
+.skin-preview-pane--portrait:hover img {
+  transform: scale(1.015);
+}
+
+.skin-zoom-badge {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted, #6b5134);
+  background: var(--paper-soft, rgba(244, 237, 224, 0.9));
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.3));
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.skin-preview-pane--portrait:hover .skin-zoom-badge {
+  color: var(--accent-ink, #2d5a57);
+  border-color: var(--accent, #7a9a99);
+}
+
+.dark-mode .skin-zoom-badge {
+  background: rgba(35, 26, 17, 0.85);
+  color: var(--text-muted);
+}
+
+.skin-preview-pane--model {
+  align-items: center;
+  justify-content: center;
+  height: 440px;
+  padding: 24px;
+}
+
+.skin-model-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.skin-model-stage img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 280px);
   height: 300px;
-  object-position: center;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 6px 12px rgba(43, 31, 21, 0.25));
 }
+
+.skin-model-pedestal {
+  width: 130px;
+  height: 14px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(43, 31, 21, 0.32) 0%, rgba(43, 31, 21, 0) 72%);
+  pointer-events: none;
+}
+
 @media (max-width: 560px) {
   .skin-portrait-preview {
-    min-height: 300px;
+    min-height: 320px;
   }
-  .skin-portrait-preview img {
-    height: 360px;
+  .skin-preview-pane--portrait {
+    height: 350px;
   }
-  .skin-portrait-preview.has-model { min-height: 250px; }
-  .has-model .skin-preview-pane img { height: 250px; }
-  .has-model .skin-preview-pane--model img { height: 210px; }
+  .skin-preview-pane--model {
+    height: 350px;
+    padding: 16px;
+  }
+  .skin-model-stage img {
+    height: 250px;
+    max-width: 240px;
+  }
 }
 .recipe-ingredients-mini {
   display: flex;

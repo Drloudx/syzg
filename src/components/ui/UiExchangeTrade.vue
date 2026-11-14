@@ -108,7 +108,7 @@ const cardTitle = computed(() => {
 })
 
 const cardStyle = computed(() => {
-  if (props.skin) return { borderImageSource: `url('${imageSrc('/PackPane/shop_list_skin.webp')}')` }
+  if (props.skin) return null
   if (!props.shop) return null
   const quality = Math.min(5, Math.max(1, Number(props.rewardItems[0]?.quality) || 1))
   return {
@@ -576,26 +576,21 @@ const hidePackImage = (event) => {
    以九宫格保留背景四角；静态图鉴不模拟账号已拥有状态。 */
 .ui-exchange-trade.is-skin {
   min-height: 0;
+  display: flex;
+  flex-direction: column;
   padding: 0;
-  border: 8px solid transparent;
-  border-image-slice: 56 16 20 fill;
-  border-image-width: 40px 8px 12px;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
+  border: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #4b5226;
+  background-image: url('/images/PackPane/shop_skin_tray.webp');
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100% auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__header {
-  min-height: 24px;
-  padding: 0 22px 2px;
-  align-items: center;
-}
-.ui-exchange-trade.is-skin .ui-exchange-trade__title {
-  min-height: 0;
-  text-align: center;
-  /* 原图姓名栏始终是浅色纸张，使用固定墨色 Token。 */
-  color: var(--wood-soft);
-  font-size: 15px;
-  line-height: 1.6;
+  display: none;
 }
 .ui-exchange-trade__skin-visual {
   display: block;
@@ -603,7 +598,7 @@ const hidePackImage = (event) => {
   width: 100%;
   padding: 0;
   border: 0;
-  background: transparent;
+  background: #1e2812;
   font: inherit;
   cursor: pointer;
 }
@@ -615,90 +610,101 @@ const hidePackImage = (event) => {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 5 / 9;
-  object-fit: contain;
+  aspect-ratio: 172 / 338;
+  object-fit: cover;
 }
-.ui-exchange-trade__skin-name {
-  position: absolute;
-  bottom: 4.5%;
-  left: 2px;
-  right: 2px;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.6;
-  text-align: center;
+.ui-exchange-trade.is-skin .ui-exchange-trade__skin-name {
+  display: none;
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__reward-stage {
   flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 0;
-  padding: 6px 0;
+  padding: 9px 0 9px;
   border: 0;
   background: transparent;
 }
+.ui-exchange-trade.is-skin .ui-exchange-trade__items--reward {
+  justify-content: center;
+}
 .ui-exchange-trade.is-skin .ui-exchange-trade__item--reward {
-  width: 44px;
-  height: 44px;
-  min-height: 0;
-  padding: 6px;
+  width: 48px;
+  height: 48px;
+  min-height: 48px;
+  padding: 4px;
   border: 0;
   border-radius: 0;
   background-color: transparent;
   background-size: 100% 100%;
+  box-shadow: none;
+}
+.ui-exchange-trade.is-skin .ui-exchange-trade__item--reward:hover,
+.ui-exchange-trade.is-skin .ui-exchange-trade__item--reward:focus-visible {
+  border: 0;
+  box-shadow: none;
+  background-color: transparent;
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__item--reward img {
-  width: 32px;
-  height: 32px;
-  flex-basis: 32px;
+  width: 38px;
+  height: 38px;
+  flex-basis: 38px;
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__item--reward .ui-exchange-trade__item-count {
-  bottom: 3px;
-  right: 4px;
+  bottom: 2px;
+  right: 3px;
   padding: 0;
   border: 0;
   border-radius: 0;
   background: transparent;
   color: var(--q1);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 1;
-  /* 小数字压在物品原图上，用轮廓阴影保持游戏式角标可读性。 */
   text-shadow: 0 1px 2px var(--wood-deep), 1px 0 2px var(--wood-deep);
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__consume-footer {
-  padding: 0 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 28px;
+  padding: 2px 0;
+  margin-bottom: 12px;
+  background: radial-gradient(ellipse 98% 85% at 50% 50%, rgba(0, 0, 0, 0.36) 0%, rgba(0, 0, 0, 0.28) 40%, rgba(0, 0, 0, 0.16) 75%, rgba(0, 0, 0, 0.10) 100%);
+  border: 0;
   box-sizing: border-box;
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__items--consume {
   justify-content: center;
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__item--consume {
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 4px;
+  width: auto;
+  min-height: 22px;
   padding: 0;
-  background: transparent;
-  border: 0 solid transparent;
+  border: 0;
   border-radius: 0;
+  background: transparent;
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__item--consume::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  /* 只调整原图背景的叠色，图标和价格不受滤镜影响。 */
-  border-image-source: var(--skin-price-image);
-  border-image-slice: 6 30 fill;
-  border-image-width: 4px 22px;
-  filter: grayscale(1) brightness(0.45);
-  opacity: 0.45;
+  display: none;
+}
+.ui-exchange-trade.is-skin .ui-exchange-trade__item--consume img {
+  width: 23px;
+  height: 23px;
+  flex-basis: 23px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__item--consume .ui-exchange-trade__item-count {
-  color: var(--on-wood-text);
-  font-size: 18px;
-  font-weight: 400;
+  color: #df4822;
+  font-size: 16px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.6);
 }
 @media (max-width: 640px) {
   .ui-exchange-trade {

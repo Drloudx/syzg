@@ -529,9 +529,8 @@ const goToItem = (typeId) => {
 }
 
 .exchange-list--skin {
-  grid-template-columns: repeat(2, minmax(0, 160px));
-  justify-content: start;
-  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .exchange-list--shop {
@@ -548,7 +547,7 @@ const goToItem = (typeId) => {
     grid-template-columns: minmax(0, 1fr);
   }
   .exchange-list--skin {
-    grid-template-columns: repeat(2, minmax(0, 160px));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
   .exchange-list--shop {
