@@ -118,30 +118,34 @@
           <UiInfoRow label="队伍人数" :value="`${selectedItem.maxNum} 人`" />
           <UiInfoRow label="消耗" :value="selectedItem.consumeText || '无'" />
           <UiInfoRow v-if="selectedItem.positions && selectedItem.positions.length" label="探索点位">
-            <UiTag v-for="(p, pi) in selectedItem.positions" :key="pi" tone="default">{{ p }}</UiTag>
+            <div class="event-map-tags">
+              <UiTag v-for="(p, pi) in selectedItem.positions" :key="pi" tone="default">{{ p }}</UiTag>
+            </div>
           </UiInfoRow>
           <UiInfoRow v-if="selectedItem.enemys && selectedItem.enemys.length" label="遭遇敌人">
-            <UiTag v-for="(en, ei) in selectedItem.enemys" :key="ei" tone="default">{{ en.name }}</UiTag>
+            <div class="event-map-tags">
+              <UiTag v-for="(en, ei) in selectedItem.enemys" :key="ei" tone="default">{{ en.name }}</UiTag>
+            </div>
           </UiInfoRow>
         </UiSection>
 
         <!-- 奖励 -->
-        <UiSection :title="activeTab === 'random' ? '事件奖励' : '探索奖励'">
-          <div v-if="selectedItem.reward.entries.length" class="reward-list">
-            <UiRewardCard
-              v-for="(rw, rIdx) in selectedItem.reward.entries"
-              :key="rIdx"
-              :rule="{
-                targetName: rw.name,
-                targetImg: getImageUrl(rw.icon),
-                targetQuality: rw.quality,
-                min: rw.count,
-                max: rw.count,
-                typeId: rw.typeId
-              }"
-              @click="goToItem(rw.typeId)"
-            />
-            <UiTag v-for="(txt, tIdx) in selectedItem.reward.text" :key="'t' + tIdx" tone="gold">{{ txt }}</UiTag>
+        <UiSection :title="activeTab === 'random' ? '事件奖励' : '预估探索奖励'">
+          <template #title-end>
+            <button
+              v-if="selectedItem?.reward?.entries?.length"
+              type="button"
+              class="prob-detail-btn prob-detail-btn--section"
+              @click.stop="openRewardDetail(selectedItem?.name || (activeTab === 'random' ? '事件奖励' : '预估探索奖励'), selectedItem.reward.entries)"
+            >
+              概率明细
+            </button>
+          </template>
+          <div v-if="selectedItem?.reward?.entries?.length || selectedItem?.reward?.text?.length">
+            <RewardPools v-if="selectedItem?.reward?.entries?.length" :entries="selectedItem.reward.entries" @item-click="goToItem" />
+            <div v-if="selectedItem?.reward?.text?.length" class="event-reward-tags">
+              <UiTag v-for="(txt, tIdx) in selectedItem.reward.text" :key="'t' + tIdx" tone="gold">{{ txt }}</UiTag>
+            </div>
           </div>
           <p v-else class="no-reward">无</p>
         </UiSection>
@@ -171,11 +175,12 @@ import {
   UiInfoRow,
   UiItemCard,
   UiModal,
-  UiRewardCard,
   UiFilterPanel, UiSearchInput,
   UiSection,
   UiTag
 } from '../components/ui/index.js'
+import RewardPools from '../components/RewardPools.vue'
+import { openRewardDetail } from '../utils/rewardModalState.js'
 import { fetchWithFallback } from '../utils/request.js'
 import { getImageUrl } from '../utils/env'
 import { isBlacklisted } from '../config/blacklist.js'
@@ -364,7 +369,7 @@ const closeDetail = () => {
 }
 
 const goToItem = (typeId) => {
-  if (!typeId) return
+  if (!typeId || !typeId.startsWith('item_')) return
   router.push({ query: { ...route.query, itemId: typeId } })
 }
 
@@ -460,10 +465,11 @@ watch(
   background: rgba(43, 31, 21, 0.08);
   display: block;
 }
-.reward-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 8px;
+.event-reward-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
 }
 .no-reward {
   margin: 0;

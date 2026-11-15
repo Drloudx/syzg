@@ -47,7 +47,7 @@ export const DIFFICULTY = { '1': '简单', '2': '普通', '3': '困难' }
 // Reward definitions live with the pure parser to avoid circular dependencies.
 export {
   BASE_REWARD_ICONS, BASE_REWARD_NAMES, BASE_REWARD_PATHS, REWARD_MODE_INFO,
-  parseRewardObject, parseRewardEntries
+  parseRewardObject, parseRewardEntries, parseRewardGroups
 } from './acquisitionRules.js'
 
 // ---------- 角色/魔物 职业与元素映射（角色图鉴、魔物图鉴、搜索索引共用） ----------

@@ -20,7 +20,7 @@
         <span class="ui-reward-card__qty">
           ×{{ rule.min === rule.max ? rule.min : `${rule.min}~${rule.max}` }}
         </span>
-        <span v-if="formatCountProbability(rule.min, rule.max)" class="ui-reward-card__qty-prob">
+        <span v-if="!rule.hideCountProb && formatCountProbability(rule.min, rule.max)" class="ui-reward-card__qty-prob">
           ({{ formatCountProbability(rule.min, rule.max) }})
         </span>
       </div>

@@ -256,7 +256,10 @@ export function parseRewardObject(reward, items = {}) {
  */
 export function parseRewardEntries(rewards, items, rewardId) {
   const entries = []
+  let groupIndex = 0
   for (const group of parseRewardGroups(rewardId, { rewards, items })) {
+    const groupRate = Number(group.rate ?? 1)
+    const groupCount = Number(group.num ?? 1)
     for (const rule of group.rules) {
       if (!rule.typeId || rule.actualProb === 0) continue
       const min = Number(rule.min ?? 0)
@@ -268,17 +271,28 @@ export function parseRewardEntries(rewards, items, rewardId) {
        */
       const rawIcon = group.kind === 'fixed' ? rule.targetImg : String(rule.targetImg || '').replace(/^\/images\//, '/')
       const icon = rawIcon && String(rawIcon).trim() ? rawIcon : `/Common_ItemIcon/${rule.typeId}.webp`
+      const actualProb = Number(rule.actualProb ?? 1)
+      const pSingle = groupRate > 0 ? actualProb / groupRate : actualProb
+      const cumulativeProb = groupRate * (1 - Math.pow(1 - pSingle, groupCount))
       entries.push({
         kind: group.kind === 'fixed' ? rule.mode : 'item', name: rule.targetName,
         count: min,
+        min,
+        max: Math.max(min, max),
         // 区间支持：max > min 表示随机数量，展示层据此渲染「min~max」
         countMin: min,
         countMax: Math.max(min, max),
         typeId: rule.typeId,
         icon,
-        quality: rule.targetQuality
+        quality: rule.targetQuality,
+        groupIndex,
+        groupRate,
+        groupCount,
+        actualProb,
+        cumulativeProb
       })
     }
+    groupIndex++
   }
   return { entries, text: [] }
 }

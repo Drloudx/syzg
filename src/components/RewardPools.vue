@@ -61,8 +61,8 @@
                 <div class="reward-slot__tooltip-title" :class="`quality-text-${entry.quality || 1}`">
                   {{ entry.name }}
                 </div>
-                <div v-if="entry.min !== undefined && entry.max !== undefined" class="reward-slot__tooltip-line">
-                  数量：{{ tooltipCountText(entry.min, entry.max) }}
+                <div v-if="entryMin(entry) !== undefined && entryMax(entry) !== undefined" class="reward-slot__tooltip-line">
+                  数量：{{ tooltipCountText(entryMin(entry), entryMax(entry)) }}
                 </div>
                 <div class="reward-slot__tooltip-line reward-slot__tooltip-rule">
                   所属规则：{{ tooltipRuleText(group.rate, group.count) }}
@@ -93,7 +93,7 @@
               </span>
               <template v-if="groupHasCountRange(group)">
                 <span v-if="hasCountRange(entry)" class="reward-slot__breakdown-prob is-count">
-                  数量：{{ breakdownCountText(entry.min, entry.max) }}
+                  数量：{{ breakdownCountText(entryMin(entry), entryMax(entry)) }}
                 </span>
                 <span v-else class="reward-slot__breakdown-prob is-count is-placeholder" aria-hidden="true">
                   &nbsp;
@@ -355,10 +355,19 @@ const onSlotLeave = (event) => {
   }
 }
 
+const entryMin = (entry) => {
+  return props.breakdown && entry?.rawMin !== undefined ? entry.rawMin : entry?.min
+}
+const entryMax = (entry) => {
+  return props.breakdown && entry?.rawMax !== undefined ? entry.rawMax : entry?.max
+}
+
 /** 数量角标：如 ×1，×2~3 */
 const slotCountText = (entry) => {
-  if (entry.min === undefined || entry.max === undefined) return ''
-  return `×${entry.min === entry.max ? entry.min : `${entry.min}~${entry.max}`}`
+  const min = entryMin(entry)
+  const max = entryMax(entry)
+  if (min === undefined || max === undefined) return ''
+  return `×${min === max ? min : `${min}~${max}`}`
 }
 
 /** 角标综合概率简写 */
@@ -392,7 +401,9 @@ const formatBreakdownProb = (prob) => {
 
 /** 数量是否为区间 */
 const hasCountRange = (entry) => {
-  return entry?.min !== undefined && entry?.max !== undefined && entry.min !== entry.max
+  const min = entryMin(entry)
+  const max = entryMax(entry)
+  return min !== undefined && max !== undefined && min !== max
 }
 
 /** 奖励池组内是否有任意物品是区间数量（用于同行卡片高度对齐） */
