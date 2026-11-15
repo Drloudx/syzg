@@ -71,6 +71,10 @@ test('探索点位与遭遇敌人包裹了 flex tags 容器且标题使用「预
     '事件/探索奖励应使用 RewardPools 统一货架组件'
   )
   assert.ok(
+    eventsView.includes('hide-prob'),
+    '探索货架应隐藏右上角概率角标保持清爽'
+  )
+  assert.ok(
     eventsView.includes('prob-detail-btn'),
     '事件/探索奖励应配备「概率明细」弹窗按钮'
   )

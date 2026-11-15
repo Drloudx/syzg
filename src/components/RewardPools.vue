@@ -132,7 +132,7 @@
             <span v-else class="reward-slot__placeholder">✦</span>
 
             <!-- 综合概率角标 -->
-            <span v-if="slotProbText(item._prob.compositeProb)" class="reward-slot__prob">
+            <span v-if="!hideProb && slotProbText(item._prob.compositeProb)" class="reward-slot__prob">
               {{ slotProbText(item._prob.compositeProb) }}
             </span>
 
@@ -198,7 +198,9 @@ const props = defineProps({
   /** 紧凑模式 */
   dense: { type: Boolean, default: false },
   /** 是否为概率明细弹窗展开模式 */
-  breakdown: { type: Boolean, default: false }
+  breakdown: { type: Boolean, default: false },
+  /** 是否隐藏货架右上角概率角标（预估探索奖励等场景使用） */
+  hideProb: { type: Boolean, default: false }
 })
 
 const emit = defineEmits(['item-click'])
@@ -374,7 +376,7 @@ const slotCountText = (entry) => {
 const slotProbText = (prob) => {
   if (prob === undefined || prob === null) return ''
   const percent = prob * 100
-  if (percent >= 100) return '100%'
+  if (percent >= 100) return ''
   if (percent <= 0) return ''
   if (percent < 0.01) return '<0.01%'
   if (percent >= 10) return `${Math.round(percent)}%`

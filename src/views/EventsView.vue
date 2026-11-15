@@ -142,7 +142,7 @@
             </button>
           </template>
           <div v-if="selectedItem?.reward?.entries?.length || selectedItem?.reward?.text?.length">
-            <RewardPools v-if="selectedItem?.reward?.entries?.length" :entries="selectedItem.reward.entries" @item-click="goToItem" />
+            <RewardPools v-if="selectedItem?.reward?.entries?.length" :entries="selectedItem.reward.entries" hide-prob @item-click="goToItem" />
             <div v-if="selectedItem?.reward?.text?.length" class="event-reward-tags">
               <UiTag v-for="(txt, tIdx) in selectedItem.reward.text" :key="'t' + tIdx" tone="gold">{{ txt }}</UiTag>
             </div>
