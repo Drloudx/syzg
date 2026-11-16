@@ -35,7 +35,9 @@ test('特性培育阶梯 (getPetTraitTiers)', () => {
 })
 
 test('主动技能与队伍被动突破阶梯 (getPetActiveSkillTiers)', () => {
-  // 3星魔物，技能1 (activeIndex 0)
+  // 3星魔物，技能1 (activeIndex 0)：突破 +1/+3/+5 阶
+  // 突破不可跳阶 → cumulative 为到达该阶的前缀和（含前序阶段）
+  // petTpExp[3] = [1,1,1,2,2,2] → 前缀和 [1,2,3,5,7,9]
   const skill1 = getPetActiveSkillTiers(3, petSetting, 0)
   assert.equal(skill1.tiers.length, 4)
   assert.deepEqual(
@@ -43,28 +45,29 @@ test('主动技能与队伍被动突破阶梯 (getPetActiveSkillTiers)', () => {
     [
       { level: 1, stage: 0, cost: 0, cumulative: 0 },
       { level: 2, stage: 1, cost: 1, cumulative: 1 },
-      { level: 3, stage: 3, cost: 1, cumulative: 2 },
-      { level: 4, stage: 5, cost: 2, cumulative: 4 }
+      { level: 3, stage: 3, cost: 1, cumulative: 3 },
+      { level: 4, stage: 5, cost: 2, cumulative: 7 }
     ]
   )
-  assert.equal(skill1.totalSkillCost, 4)
+  // 主动技能升至 Lv.4（+5 阶）需累计突破到 +5 阶 = 7 只
+  assert.equal(skill1.totalSkillCost, 7)
   assert.equal(skill1.totalPetBreakthroughCost, 9)
 
-  // 3星魔物，队伍被动 (activeIndex 1)
+  // 3星魔物，队伍被动 (activeIndex 1)：突破 +2/+4/+6 阶
   const partySkill = getPetActiveSkillTiers(3, petSetting, 1)
   assert.equal(partySkill.tiers.length, 4)
   assert.deepEqual(
     partySkill.tiers.map(t => ({ level: t.level, stage: t.stage, cost: t.cost, cumulative: t.cumulative })),
     [
       { level: 1, stage: 0, cost: 0, cumulative: 0 },
-      { level: 2, stage: 2, cost: 1, cumulative: 1 },
-      { level: 3, stage: 4, cost: 2, cumulative: 3 },
-      { level: 4, stage: 6, cost: 2, cumulative: 5 }
+      { level: 2, stage: 2, cost: 1, cumulative: 2 },
+      { level: 3, stage: 4, cost: 2, cumulative: 5 },
+      { level: 4, stage: 6, cost: 2, cumulative: 9 }
     ]
   )
-  assert.equal(partySkill.totalSkillCost, 5)
-  // 两者突破消耗之和：4 + 5 = 9，正好等于 totalPetBreakthroughCost
-  assert.equal(skill1.totalSkillCost + partySkill.totalSkillCost, partySkill.totalPetBreakthroughCost)
+  // 队伍被动升至 Lv.4 必须走完 +1~+6 全部 6 阶 = 9 只（不可跳阶）
+  assert.equal(partySkill.totalSkillCost, 9)
+  assert.equal(partySkill.totalSkillCost, partySkill.totalPetBreakthroughCost)
 })
 
 test('6阶全景突破路线图 (getPetBreakthroughRoadmap)', () => {

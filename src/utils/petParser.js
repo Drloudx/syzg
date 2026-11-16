@@ -293,6 +293,11 @@ export function getPetTraitTiers(star, petSetting) {
  * 魔物共有 6 阶突破（+1 ~ +6），技能1 与 技能2（队伍被动）交替提升：
  *   - activeIndex 0 (技能1)：突破 +1, +3, +5 阶分别升至 Lv.2, Lv.3, Lv.4
  *   - activeIndex 1 (队伍被动)：突破 +2, +4, +6 阶分别升至 Lv.2, Lv.3, Lv.4
+ *
+ * 突破只能逐阶 +1、不可跳阶（`PetBagPanelUI.GetAddTpLevel` / `PetServerData.GetCurTpExp`
+ * 均按 petTpExp 顺序扣阈值）。因此升到某阶的「累计消耗」= petTpExp 的**前缀和**
+ * （含全部前序阶段），而不是只累加本技能跳到的几阶。技能本身不能单独升级，
+ * 只能跟随 tpLevel 提升（`ExtentionMethod.GetPetSkillLevel` / `GetPetPaSkillLevel`）。
  * @param {number} star 魔物星级 (1, 2, 3)
  * @param {Object} petSetting 配置表中的 petSetting 对象
  * @param {number} activeIndex 0 表示主动技能1，1 表示队伍被动技能2
@@ -304,12 +309,20 @@ export function getPetActiveSkillTiers(star, petSetting, activeIndex = 0) {
   }
   const starTp = petSetting.petTpExp[String(star)] || petSetting.petTpExp[star] || {}
   const steps = activeIndex === 1 ? [1, 3, 5] : [0, 2, 4]
-  let totalSkillCost = 0
-  let totalPetBreakthroughCost = 0
 
+  // 每一阶的突破消耗（petTpExp 为 tpLevel 逐阶阈值）
+  const stageCosts = []
   for (let s = 0; s < 6; s++) {
-    totalPetBreakthroughCost += Number(starTp[String(s)] ?? starTp[s]) || 0
+    stageCosts.push(Number(starTp[String(s)] ?? starTp[s]) || 0)
   }
+  // 到达某阶的累计消耗（含全部前序阶段，突破不可跳阶）
+  const prefix = []
+  let running = 0
+  for (let s = 0; s < 6; s++) {
+    running += stageCosts[s]
+    prefix.push(running)
+  }
+  const totalPetBreakthroughCost = prefix[5]
 
   const tiers = [
     {
@@ -325,11 +338,9 @@ export function getPetActiveSkillTiers(star, petSetting, activeIndex = 0) {
     }
   ]
 
-  let cumulative = 0
   steps.forEach((stepIdx, idx) => {
-    const cost = Number(starTp[String(stepIdx)] ?? starTp[stepIdx]) || 0
-    cumulative += cost
-    totalSkillCost += cost
+    const cost = stageCosts[stepIdx]
+    const cumulative = prefix[stepIdx]
     const lvl = idx + 2
     const stage = stepIdx + 1
     tiers.push({
@@ -344,6 +355,9 @@ export function getPetActiveSkillTiers(star, petSetting, activeIndex = 0) {
       isMax: lvl === 4
     })
   })
+
+  // 该技能满级所需累计消耗 = 满级所在阶的前缀和（前序阶无法跳过，必须一并突破）
+  const totalSkillCost = prefix[steps[steps.length - 1]]
 
   return {
     tiers,

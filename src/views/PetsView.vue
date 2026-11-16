@@ -450,7 +450,7 @@
                   </div>
                 </div>
 
-                <div class="tier-summary-card">
+                <div class="tier-summary-card tier-summary-card--active">
                   <span class="summary-label">当前等级要求：</span>
                   <span class="summary-val highlight">Lv.{{ selectedSkillLevel }}</span>
                   <span class="summary-sub" v-if="selectedSkillLevel > 1">
@@ -491,7 +491,7 @@
             </div>
 
             <!-- 底部汇总说明（角色图鉴同款 star-limits-box） -->
-            <div class="star-limits-box" v-if="activeSkill.maxLevel > 1">
+            <div class="star-limits-box" :class="{ 'star-limits-box--active': activeSkill.type !== 'trait' }" v-if="activeSkill.maxLevel > 1">
               <div class="limit-title">
                 {{ activeSkill.type === 'trait' ? '特性培育总览：' : '技能突破总览：' }}
               </div>
@@ -506,7 +506,7 @@
                 </template>
                 <template v-else>
                   <li>
-                    该技能升至满级（Lv.4）累计需消耗同种魔物 <span class="limit-num">{{ activeSkillProgression.totalSkillCost }}</span> 只。
+                    该技能升至满级（Lv.4）需累计突破至 <span class="limit-num">{{ activeSkillProgression.tiers[activeSkillProgression.tiers.length - 1]?.stageLabel }}</span>，累计消耗同种魔物 <span class="limit-num">{{ activeSkillProgression.totalSkillCost }}</span> 只（突破不可跳阶，含全部前序阶段）。
                   </li>
                   <li>
                     魔物突破 1~6 阶全满总计需消耗 <span class="limit-num">{{ activeSkillProgression.totalPetBreakthroughCost }}</span> 只。
@@ -1939,6 +1939,17 @@ const getPetRanges = (pet) => {
   gap: 8px;
 }
 
+/* 主动技能 / 队伍被动：字号单独上调（特性页共用基类，故仅在此作用域内覆盖） */
+.pet-tier-spectrum--active .pet-tier-spectrum__label {
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.pet-tier-spectrum--active .pet-tier-spectrum__val {
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .pet-tier-spectrum__label {
   position: relative;
   display: flex;
@@ -1983,14 +1994,14 @@ const getPetRanges = (pet) => {
 }
 
 .stage-tag {
-  font-size: 9.5px;
+  font-size: 11px;
   color: var(--text-muted, #6b5134);
-  font-weight: normal;
+  font-weight: 600;
 }
 
 .pet-tier-spectrum__label.is-active .stage-tag {
   color: var(--accent-ink, #2f4a49);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* 连续胶囊标尺条：高度 6px，首尾平整，杜绝任何突兀肥皂泡形变 */
@@ -2053,6 +2064,12 @@ const getPetRanges = (pet) => {
 
 .tier-summary-card .summary-sub strong {
   color: var(--gold, #8a6a1f);
+}
+
+/* 主动 / 被动变体：正文上调（特性页共用基类，故仅作用于此变体） */
+.tier-summary-card--active {
+  font-size: 13px;
+  font-weight: 600;
 }
 
 /* 魔物 6 阶突破路线图 */
@@ -2121,7 +2138,7 @@ const getPetRanges = (pet) => {
 }
 
 .step-badge {
-  font-size: 9.5px;
+  font-size: 11px;
   font-weight: 700;
   padding: 0 4px;
   border-radius: 2px;
@@ -2142,7 +2159,8 @@ const getPetRanges = (pet) => {
 }
 
 .step-skill-name {
-  font-size: 9.5px;
+  font-size: 11px;
+  font-weight: 600;
   color: var(--text-main);
   white-space: nowrap;
   overflow: hidden;
@@ -2151,19 +2169,63 @@ const getPetRanges = (pet) => {
 }
 
 .step-target-lvl {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--accent-ink, #2f4a49);
 }
 
 .step-cost {
-  font-size: 9px;
+  font-size: 11px;
+  font-weight: 600;
   color: var(--text-muted, #6b5134);
 }
 
 @media (max-width: 600px) {
   .roadmap-steps-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 主动 / 被动：手机端字号再上调一档，4 列布局保持不变（收窄间距腾出空间） */
+  .pet-tier-spectrum--active .pet-tier-spectrum__labels,
+  .pet-tier-spectrum--active .pet-tier-spectrum__bar,
+  .pet-tier-spectrum--active .pet-tier-spectrum__values {
+    gap: 4px;
+  }
+
+  .pet-tier-spectrum--active .pet-tier-spectrum__label {
+    font-size: 13.5px;
+  }
+
+  .pet-tier-spectrum--active .pet-tier-spectrum__val {
+    font-size: 13px;
+  }
+
+  .stage-tag {
+    font-size: 11.5px;
+  }
+
+  .tier-summary-card--active {
+    font-size: 13.5px;
+  }
+
+  .step-badge {
+    font-size: 11.5px;
+  }
+
+  .step-skill-name {
+    font-size: 11.5px;
+  }
+
+  .step-target-lvl {
+    font-size: 13px;
+  }
+
+  .step-cost {
+    font-size: 12px;
+  }
+
+  .star-limits-box--active .limit-list {
+    font-size: 13px;
   }
 }
 
@@ -2198,6 +2260,12 @@ const getPetRanges = (pet) => {
 .star-limits-box .limit-num {
   font-weight: 700;
   color: var(--gold, #8a6a1f);
+}
+
+/* 主动 / 被动变体：正文上调（特性页共用基类，故仅作用于此变体） */
+.star-limits-box--active .limit-list {
+  font-size: 12.5px;
+  font-weight: 600;
 }
 
 /* ====== 属性/成长区 ====== */

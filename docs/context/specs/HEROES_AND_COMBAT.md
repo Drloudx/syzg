@@ -239,6 +239,15 @@
 | 技能特性 | 普攻、特性、主动技能及等级；突破要求使用 `petSetting.petTpExp/petTjExp` |
 | 基础属性 | 基础值、成长区间、等级、累计经验、好感配置 |
 
+### 突破消耗口径
+
+| 规则 | 说明 |
+| --- | --- |
+| 突破轨道 | 单条 `tpLevel`；只能逐阶 +1，**不可跳阶**（`PetBagPanelUI.GetAddTpLevel` / `PetServerData.GetCurTpExp` 按 `petTpExp` 顺序扣阈值） |
+| 技能等级绑定 | 技能**不能单独升级**，跟随 `tpLevel`：主动技能 `(tpLevel+1)/2+1`、队伍被动 `tpLevel/2+1`（`ExtentionMethod.GetPetSkillLevel/GetPetPaSkillLevel`） |
+| 累计消耗 | 到达某阶的累计 = `petTpExp` 的**前缀和**（含全部前序阶段），非仅该技能所跳的几阶 |
+| 队伍被动满级 | Lv.4 需 `tpLevel=6`，累计消耗 = 6 阶全满 `totalPetBreakthroughCost`，**不是** +2/+4/+6 三阶之和 |
+
 ### 成长评级
 
 按各属性**区间的分段**计算，C/B/A/S 对应区间档位；**不用**全站统一百分比代替具体成长值。
