@@ -239,7 +239,7 @@
 | 筛选 | 类型（全部 / 一次性 / 偶遇事件 / 刷新机制）、地图、名称、本地收集状态 |
 | 点位分类 | 常驻探索（`collectOnce` 一次性，永久不刷新）；偶遇事件（`crossDay: 1` 每日跨天轮换，区域池随机激活 1 点） |
 | 状态存储 | `collectedHiddenRewardIds` —— **不反映账号领取** |
-| 点位预览 | 由 `HIDDEN_PREV_MAP` 维护，**有图才显示**，采用 `UiImageLightbox` 全屏预览 |
+| 点位预览 | 由 `HIDDEN_PREV_MAP`（按 `collectId` 键）维护，文件为 `public/images/hidden_points/<collectId>.webp`，**有图才显示**，采用 `UiImageLightbox` 全屏预览 |
 
 ### 育室槽位
 

@@ -7,79 +7,80 @@
 
 import { isBlacklisted } from '../config/blacklist.js'
 
-// 点位预览图映射（roomId -> { roomName, file, variants? }）。
-// roomName 取自当前 levelRoom 表，便于按关卡核对/补图；暂无图片时 file 留空。
-// 同一关卡有多个采集点时，在 variants 中按 collectId 分别配图。
-// 来源：TapTap 帖子《被隐藏的物品点位》（moment/710617298674649775）主贴 27 张截图
-// 命名规则：点位名 + _prev 后缀。
+// 点位预览图映射（collectId -> { roomName, file }）。
+// 来源：用户实机截图《隐藏点位》整理稿，按采集点 collectId 一一对应。
+// 命名规则：`<collectId>.webp`；目录 public/images/hidden_points/。
+// collectId 在 parsed-hidden 中全局唯一，同一房间多个采集点各自独立配图；
+// md 未覆盖的第 4/5 章（黑森林·霜烬平原·黏滑溪谷等）保持无图。
 const HIDDEN_PREV_MAP = {
-  'c0_area1_1': { roomName: '三岔路口', file: '营地周边-岔路口_prev.webp' },
-  'c0_area1_6': { roomName: '隐居者的药田', file: '营地周边-隐居者的药田_prev.webp' },
-  'c1_area1_1': { roomName: '驿站住民区', file: '驿站住民区-驿站住民区_prev.webp' },
-  'c1_area1_2': { roomName: '驿站地窖', file: '驿站住民区-驿站地窖1_prev.webp' },
-  'c1_area1_10': { roomName: '驿站地窖', file: '驿站住民区-驿站地窖2_prev.webp' },
-  'c1_area1_7': { roomName: '枯草小径', file: '驿站住民区-枯草小径_prev.webp' },
-  'c1_area1_9': { roomName: '枯草小径', file: '' },
-  'c1_area2_1': { roomName: '风车小镇', file: '风车平野-风车小镇_prev.webp' },
-  'c1_area2_6': { roomName: '民居', file: '风车平野-民居_prev.webp' },
-  'c1_area3_6': { roomName: '维丝的秘密基地', file: '黑铁锻炉-维丝的秘密基地_prev.webp' },
-  'c1_area4_4': { roomName: '碎石小径', file: '旧日修行所-碎石小径_prev.webp' },
-  'c1_area5_3': { roomName: '观星高地外围', file: '观星高地-观星高地外围_prev.webp' },
-  'c2_area1_2': { roomName: '工头小屋', file: '巴诺姆村-工头小屋_prev.webp' },
-  'c2_area1_3': { roomName: '矿山道', file: '巴诺姆村-矿山道_prev.webp' },
-  'c2_area1_6': { roomName: '山腰道路', file: '巴诺姆村-山腰道路_prev.webp' },
-  'c2_area1_8': { roomName: '菲莉娜的契约台', file: '巴诺姆村-菲莉娜的契约台_prev.webp' },
-  'c2_area2_1': { roomName: '灾害研究所（外部）', file: '灾害研究所-灾害研究所外部_prev.webp' },
-  'c2_area2_3': { roomName: '研究所外围', file: '' },
-  'c2_area2_5': { roomName: '外围山崖', file: '灾害研究所-外围山崖_prev.webp' },
-  'c2_area3_1': { roomName: '破败古院', file: '破败古院-破败古院_prev.webp' },
-  'c2_area3_2': { roomName: '古院后院', file: '' },
-  'c2_area4_3': { roomName: '安娜的勘测地', file: '山神之殒-安娜的勘测地_prev.webp' },
-  'c3_area1_3': { roomName: '长老小屋内', file: '' },
-  'c3_area1_4': { roomName: '尾指村居民区', file: '尾指村-尾指村居民区_prev.webp' },
-  'c3_area1_5': { roomName: '尾指村居民区', file: '尾指村-未知区域_prev.webp' },
-  'c3_area2_2': { roomName: '水纹花海', file: '献水圣坛-水纹花海_prev.webp' },
-  'c3_area3_3': { roomName: '大市集居民区2', file: '大市集-大市集居民区2_prev.webp' },
-  'c3_area3_6': { roomName: '赛弗的藏身处', file: '' },
-  'c3_area4_2': { roomName: '柏莉尔的家', file: '贫民街-柏莉尔的家_prev.webp' },
-  'c3_area4_3': { roomName: '贫民街·二街道', file: '贫民街-贫民街二街道_prev.webp' },
-  'c3_area4_4': { roomName: '贫民街·民居', file: '贫民街-贫民街民居_prev.webp' },
-  'c3_area5_2': { roomName: '蒸馏工厂内部', file: '蒸馏工厂废墟-蒸馏工厂内部_prev.webp' },
-  'c4_area1_4': { roomName: '住民区2', file: '' },
-  'c4_area1_6': { roomName: '艾薇杜尔的故居', file: '' },
-  'c4_area1_7': { roomName: '金弦宴堂', file: '' },
-  'c4_area2_1': { roomName: '布拉格乌尔庄园', file: '' },
-  'c4_area2_4': { roomName: '庄园外围', file: '' },
-  'c4_area3_2': { roomName: '北部猎场', file: '' },
-  'c4_area4_1': { roomName: '艾伦瑟的故居', file: '' },
-  'c4_area4_3': { roomName: '寂静林野', file: '' },
-  'c4_area5_2': { roomName: '巨木之口', file: '' },
-  'c4_area5_3': { roomName: '巨木之影', file: '' },
-  'c5_area1_2': { roomName: '大书院·旧街', file: '' },
-  'c5_area1_3': { roomName: '本院·大厅', file: '' },
-  'c5_area1_5': { roomName: '本院·审议室', file: '' },
-  'c5_area1_6': { roomName: '本院·院长室', file: '' },
-  'c5_area1_7': { roomName: '大书院·西口', file: '' },
-  'c5_area2_1': { roomName: '沉星冰湖', file: '' },
-  'c5_area2_2': { roomName: '冰湖东部', file: '' },
-  'c5_area3_2': { roomName: '你的包间', file: '' },
-  'c5_area3_3': { roomName: '露天温泉', file: '' },
-  'c5_area4_1': { roomName: '扎营点', file: '' },
-  'c5_area5_2': {
-    roomName: '达卡拉狭路',
-    file: '',
-    variants: {
-      'c5yinCang05': { roomName: '达卡拉狭路', file: '' },
-      'c5changJing07': { roomName: '达卡拉狭路', file: '' }
-    }
-  }
+  'c1tongBookHsl01': { roomName: '三岔路口', file: 'c1tongBookHsl01.webp' },
+  'c0yinBookMrymw01': { roomName: '密林深处', file: 'c0yinBookMrymw01.webp' },
+  'c1yinBookHsl05': { roomName: '隐居者的药田', file: 'c1yinBookHsl05.webp' },
+  'c1yinBookHsl08': { roomName: '驿站住民区', file: 'c1yinBookHsl08.webp' },
+  'c1jinBookHsl03': { roomName: '驿站地窖', file: 'c1jinBookHsl03.webp' },
+  'c1jinBookHsl02': { roomName: '驿站地窖', file: 'c1jinBookHsl02.webp' },
+  'c1changJing01': { roomName: '枯草小径', file: 'c1changJing01.webp' },
+  'c1yinBookQryy01': { roomName: '枯草小径', file: 'c1yinBookQryy01.webp' },
+  'c1yinBookQryy03': { roomName: '枯草小径', file: 'c1yinBookQryy03.webp' },
+  'c1changJing02': { roomName: '风车小镇', file: 'c1changJing02.webp' },
+  'c1yinCangHsl04': { roomName: '民居', file: 'c1yinCangHsl04.webp' },
+  'c1yinBookQryy05': { roomName: '锻炉外围', file: 'c1yinBookQryy05.webp' },
+  'c1jinBookHsl06': { roomName: '维丝的秘密基地', file: 'c1jinBookHsl06.webp' },
+  'c1yinBookWhrz01': { roomName: '修行所外围', file: 'c1yinBookWhrz01.webp' },
+  'c1changJingHsl07': { roomName: '碎石小径', file: 'c1changJingHsl07.webp' },
+  'c1yinBookMrymw02': { roomName: '安瑟恩遗迹入口', file: 'c1yinBookMrymw02.webp' },
+  'c1yinCangHsl09': { roomName: '观星高地外围', file: 'c1yinCangHsl09.webp' },
+  'c2yinBookBnmc01': { roomName: '工头小屋', file: 'c2yinBookBnmc01.webp' },
+  'c2changJing03': { roomName: '工头小屋', file: 'c2changJing03.webp' },
+  'c2changJing05': { roomName: '矿山道', file: 'c2changJing05.webp' },
+  'c2yinBookBnmc03': { roomName: '后山', file: 'c2yinBookBnmc03.webp' },
+  'c2yinBookBnmc02': { roomName: '村口', file: 'c2yinBookBnmc02.webp' },
+  'c2changJing04': { roomName: '山腰道路', file: 'c2changJing04.webp' },
+  'c2yinBookBnmc04': { roomName: '菲莉娜的契约台', file: 'c2yinBookBnmc04.webp' },
+  'c2changJing01': { roomName: '菲莉娜的契约台', file: 'c2changJing01.webp' },
+  'c2changJing06': { roomName: '灾害研究所（外部）', file: 'c2changJing06.webp' },
+  'c2yinBookMrymw03': { roomName: '灾害研究所（内部）', file: 'c2yinBookMrymw03.webp' },
+  'c2yinCang': { roomName: '研究所外围', file: 'c2yinCang.webp' },
+  'c2changJing07': { roomName: '外围山崖', file: 'c2changJing07.webp' },
+  'c2yinBookSsj01': { roomName: '野草陷坑', file: 'c2yinBookSsj01.webp' },
+  'c2changJing08': { roomName: '破败古院', file: 'c2changJing08.webp' },
+  'c2yinBookSsj02': { roomName: '古院后院', file: 'c2yinBookSsj02.webp' },
+  'c2yinCang02': { roomName: '古院后院', file: 'c2yinCang02.webp' },
+  'c2yinBookSsj03': { roomName: '山神之殒', file: 'c2yinBookSsj03.webp' },
+  'c2changJing02': { roomName: '安娜的勘测地', file: 'c2changJing02.webp' },
+  'c3yinCang': { roomName: '长老小屋内', file: 'c3yinCang.webp' },
+  'c3yinBookSwcs01': { roomName: '长老小屋内', file: 'c3yinBookSwcs01.webp' },
+  'c3changJing01': { roomName: '尾指村居民区', file: 'c3changJing01.webp' },
+  'c3yinBookHfxjl01': { roomName: '尾指村居民区', file: 'c3yinBookHfxjl01.webp' },
+  'c3changJing02': { roomName: '尾指村居民区', file: 'c3changJing02.webp' },
+  'c3yinBookMrymw04': { roomName: '外围深处', file: 'c3yinBookMrymw04.webp' },
+  'c3yinBookSwcs02': { roomName: '献水圣坛', file: 'c3yinBookSwcs02.webp' },
+  'c3changJing05': { roomName: '水纹花海', file: 'c3changJing05.webp' },
+  'c3yinBookMzhyj01': { roomName: '大市集居民区2', file: 'c3yinBookMzhyj01.webp' },
+  'c3changJing06': { roomName: '大市集居民区2', file: 'c3changJing06.webp' },
+  'c3yinBookHfxjl02': { roomName: '赛弗的藏身处', file: 'c3yinBookHfxjl02.webp' },
+  'c3yinCang02': { roomName: '赛弗的藏身处', file: 'c3yinCang02.webp' },
+  'c3yinBookHfxjl03': { roomName: '贫民街·主街道', file: 'c3yinBookHfxjl03.webp' },
+  'c3changJing03': { roomName: '柏莉尔的家', file: 'c3changJing03.webp' },
+  'c3yinCang03': { roomName: '贫民街·二街道', file: 'c3yinCang03.webp' },
+  'c3changJing04': { roomName: '贫民街·民居', file: 'c3changJing04.webp' },
+  'c3changJing07': { roomName: '蒸馏工厂内部', file: 'c3changJing07.webp' },
+  'c3yinBookSwcs03': { roomName: '郊外野地', file: 'c3yinBookSwcs03.webp' },
+  'sp1_jiaju_item_50189': { roomName: '会客厅', file: 'sp1_jiaju_item_50189.webp' },
+  'sp1_jiaju_item_50179': { roomName: '城主之间', file: 'sp1_jiaju_item_50179.webp' },
+  'sp01_yincang02': { roomName: '城主之间', file: 'sp01_yincang02.webp' },
+  'sp01_yincang06': { roomName: '野外', file: 'sp01_yincang06.webp' },
+  'sp01_yincang01': { roomName: '餐舍', file: 'sp01_yincang01.webp' },
+  'sp1_jiaju_item_50174': { roomName: '画廊', file: 'sp1_jiaju_item_50174.webp' },
+  'sp01_yincang03': { roomName: '画廊', file: 'sp01_yincang03.webp' },
+  'sp1_jiaju_item_50180': { roomName: '中庭', file: 'sp1_jiaju_item_50180.webp' },
+  'sp1_jiaju_item_50186': { roomName: '研究室', file: 'sp1_jiaju_item_50186.webp' },
+  'sp01_yincang04': { roomName: '研究室', file: 'sp01_yincang04.webp' },
+  'sp01_yincang05': { roomName: '地牢', file: 'sp01_yincang05.webp' }
 }
-const getPrevImg = (roomId, collectId) => {
-  const config = HIDDEN_PREV_MAP[roomId]
-  const f = config?.variants
-    ? config.variants[collectId]?.file
-    : config?.file
-  return f ? `/images/hidden_prev/${f}` : ''
+const getPrevImg = (collectId) => {
+  const f = HIDDEN_PREV_MAP[collectId]?.file
+  return f ? `/images/hidden_points/${f}` : ''
 }
 
 /** 简单确定性字符串哈希（djb2），用于生成稳定的条目唯一 id 摘要 */
@@ -290,7 +291,7 @@ export function buildHiddenRewards(maps) {
                 collectTip: cTip,
                 rewardId: r.typeId,
                 sortKey,
-                prevImg: getPrevImg(lr.typeId || rm.typeId, c.typeId),
+                prevImg: getPrevImg(c.typeId),
                 rewardItems: normalizedRewardItems,
                 // 页面「隐藏奖励」分组名：按 reward 分类区分，避免把书/偶遇都标成宝箱。
                 category: Array.isArray(r.category) ? r.category : [],
