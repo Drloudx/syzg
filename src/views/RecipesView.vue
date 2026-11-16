@@ -23,6 +23,17 @@
           </div>
         </template>
       </UiFilterRow>
+
+      <UiFilterRow label="获取：">
+        <UiFilterPill
+          v-for="opt in unlockOptions"
+          :key="opt.key"
+          :active="filterUnlock === opt.key"
+          @click="filterUnlock = opt.key"
+        >
+          {{ opt.label }}
+        </UiFilterPill>
+      </UiFilterRow>
     </UiFilterPanel>
 
     <!-- Async Data Loading State -->
@@ -41,7 +52,10 @@
       >
         <!-- 头部：图标 + 名称/分类 -->
         <div class="recipe-card-head">
-          <div class="recipe-card-icon-wrap">
+          <div
+            class="recipe-card-icon-wrap"
+            :class="[`quality-border-${item.quality || 1}`, `quality-bg-${item.quality || 1}`]"
+          >
             <img
               :src="item.icon"
               :alt="item.name"
@@ -87,6 +101,10 @@
           >
             <span class="source-text">{{ item.sourceInfo.text }}</span>
             <span class="source-arrow">›</span>
+          </div>
+
+          <div v-if="item.sourceInfo?.craftNote" class="recipe-craft-note">
+            {{ item.sourceInfo.craftNote }}
           </div>
         </div>
 
@@ -145,6 +163,7 @@ import {
 import { isBlacklisted } from '../config/blacklist.js'
 import { fetchWithFallback } from '../utils/request.js'
 import { getImageUrl } from '../utils/env.js'
+import { getRecipePreviewPath } from '../utils/recipeUtils.js'
 import { useLazyList } from '../composables/useLazyList'
 import { alignElementInScrollTarget } from '../utils/scrollTarget.js'
 
@@ -159,8 +178,15 @@ const tagOptions = [
   { key: '抗性类', label: '抗性类' }
 ]
 
+// Unlock Filter Options
+const unlockOptions = [
+  { key: 'all', label: '全部' },
+  { key: 'unlock', label: '需解锁' }
+]
+
 // Filter States
 const filterTag = ref(route.query.tag || 'all')
+const filterUnlock = ref(route.query.unlock || 'all')
 const searchQuery = ref(route.query.q || '')
 const highlightedRecipeId = ref('')
 
@@ -197,7 +223,7 @@ const openPreviewModal = (recipe) => {
   previewModal.value = {
     visible: true,
     recipe,
-    imgUrl: getImageUrl(`/menu_prev/${recipe.id}_prev.webp`)
+    imgUrl: getImageUrl(getRecipePreviewPath(recipe.id))
   }
 }
 
@@ -236,6 +262,9 @@ const handleLocateRecipe = async (targetId, queryQ) => {
   if (match) {
     if (filterTag.value !== 'all' && !match.categoryTags.includes(filterTag.value)) {
       filterTag.value = 'all'
+    }
+    if (filterUnlock.value === 'unlock' && !match.sourceInfo) {
+      filterUnlock.value = 'all'
     }
 
     await nextTick()
@@ -292,7 +321,7 @@ const loadRecipes = async () => {
     }
   } catch (err) {
     console.error('Fetch parsed recipes data error:', err)
-    errorMessage.value = '菜谱数据加载失败，请重试'
+    errorMessage.value = '食谱数据加载失败，请重试'
     isDataReady.value = true
   }
 }
@@ -302,9 +331,10 @@ onMounted(() => {
 })
 
 // Bidirectional URL Query State Sync
-watch([filterTag, searchQuery], () => {
+watch([filterTag, filterUnlock, searchQuery], () => {
   const query = {}
   if (filterTag.value !== 'all') query.tag = filterTag.value
+  if (filterUnlock.value !== 'all') query.unlock = filterUnlock.value
   if (searchQuery.value.trim()) query.q = searchQuery.value.trim()
   if (route.query.id) query.id = route.query.id
   router.replace({ query })
@@ -314,6 +344,11 @@ watch([filterTag, searchQuery], () => {
 watch(() => route.query.q, newQuery => {
   if (newQuery !== undefined && newQuery !== searchQuery.value) {
     searchQuery.value = newQuery || ''
+  }
+})
+watch(() => route.query.unlock, newUnlock => {
+  if (newUnlock !== undefined && newUnlock !== filterUnlock.value) {
+    filterUnlock.value = newUnlock || 'all'
   }
 })
 watch(() => route.query.id, (newId, oldId) => {
@@ -331,6 +366,11 @@ const filteredRecipes = computed(() => {
 
     // Category Tag filter
     if (filterTag.value !== 'all' && !recipe.categoryTags.includes(filterTag.value)) {
+      return false
+    }
+
+    // Unlock filter
+    if (filterUnlock.value === 'unlock' && !recipe.sourceInfo) {
       return false
     }
 
@@ -428,8 +468,9 @@ const ensureRecipeVisible = matcher => {
   align-items: center;
   justify-content: center;
   background: var(--paper-soft);
-  border: 1px solid var(--border-faint);
+  border: 1.5px solid var(--border-faint);
   border-radius: 6px;
+  box-sizing: border-box;
 }
 .recipe-card-icon {
   width: 38px;
@@ -542,8 +583,8 @@ const ensureRecipeVisible = matcher => {
   align-items: center;
   gap: 6px;
   padding: 5px 10px;
-  background: rgba(138, 106, 31, 0.14);
-  border: 1px dashed rgba(138, 106, 31, 0.5);
+  background: color-mix(in srgb, var(--text-main) 6%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--text-main) 40%, transparent);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -551,21 +592,34 @@ const ensureRecipeVisible = matcher => {
 }
 
 .source-link-bar:hover {
-  background: rgba(138, 106, 31, 0.22);
+  background: color-mix(in srgb, var(--text-main) 12%, transparent);
   transform: translateX(2px);
 }
 
 .source-text {
   font-size: 13px;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--text-main);
   line-height: 1.6;
 }
 
 .source-arrow {
   font-size: 14px;
-  color: var(--gold);
+  color: var(--text-main);
   font-weight: 700;
+}
+
+/* 特殊制作要求说明（无法直接制作） */
+.recipe-craft-note {
+  margin-top: 6px;
+  padding: 5px 9px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--text-main) 5%, transparent);
+  border-left: 3px solid var(--accent, #557574);
+  border-radius: 4px;
+  word-break: break-word;
 }
 
 /* 制作图预览按钮（圆形） */

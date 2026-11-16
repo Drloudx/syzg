@@ -251,3 +251,143 @@ export function getPetVariantExtraEffects(variant) {
   }
   return extras
 }
+
+/**
+ * 计算魔物特性（Trait）各等级培育阶梯数据（Lv.1 ~ Lv.7）。
+ * 数据源：petSetting.petTjExp[star]
+ * @param {number} star 魔物星级 (1, 2, 3)
+ * @param {Object} petSetting 配置表中的 petSetting 对象
+ * @returns {{ tiers: Array, totalHatch: number }}
+ */
+export function getPetTraitTiers(star, petSetting) {
+  if (!petSetting || !petSetting.petTjExp) {
+    return { tiers: [], totalHatch: 0 }
+  }
+  const starTj = petSetting.petTjExp[String(star)] || petSetting.petTjExp[star] || {}
+  let cumulative = 0
+  const tiers = []
+
+  for (let lvl = 1; lvl <= 7; lvl++) {
+    const cost = Number(starTj[String(lvl - 1)] ?? starTj[lvl - 1]) || 0
+    cumulative += cost
+    tiers.push({
+      level: lvl,
+      label: `Lv.${lvl}`,
+      cost,
+      cumulative,
+      costLabel: lvl === 1 ? '初始获得' : `+${cost}只`,
+      cumLabel: `累积${cumulative}只`,
+      isMax: lvl === 7
+    })
+  }
+
+  return {
+    tiers,
+    totalHatch: cumulative
+  }
+}
+
+/**
+ * 计算魔物主动技能或队伍被动的各等级突破阶梯（Lv.1 ~ Lv.4）。
+ * 数据源：petSetting.petTpExp[star]
+ * 魔物共有 6 阶突破（+1 ~ +6），技能1 与 技能2（队伍被动）交替提升：
+ *   - activeIndex 0 (技能1)：突破 +1, +3, +5 阶分别升至 Lv.2, Lv.3, Lv.4
+ *   - activeIndex 1 (队伍被动)：突破 +2, +4, +6 阶分别升至 Lv.2, Lv.3, Lv.4
+ * @param {number} star 魔物星级 (1, 2, 3)
+ * @param {Object} petSetting 配置表中的 petSetting 对象
+ * @param {number} activeIndex 0 表示主动技能1，1 表示队伍被动技能2
+ * @returns {{ tiers: Array, totalSkillCost: number, totalPetBreakthroughCost: number }}
+ */
+export function getPetActiveSkillTiers(star, petSetting, activeIndex = 0) {
+  if (!petSetting || !petSetting.petTpExp) {
+    return { tiers: [], totalSkillCost: 0, totalPetBreakthroughCost: 0 }
+  }
+  const starTp = petSetting.petTpExp[String(star)] || petSetting.petTpExp[star] || {}
+  const steps = activeIndex === 1 ? [1, 3, 5] : [0, 2, 4]
+  let totalSkillCost = 0
+  let totalPetBreakthroughCost = 0
+
+  for (let s = 0; s < 6; s++) {
+    totalPetBreakthroughCost += Number(starTp[String(s)] ?? starTp[s]) || 0
+  }
+
+  const tiers = [
+    {
+      level: 1,
+      label: 'Lv.1',
+      stage: 0,
+      stageLabel: '初始解锁',
+      cost: 0,
+      cumulative: 0,
+      costLabel: '初始无需突破',
+      cumLabel: '消耗 0',
+      isMax: false
+    }
+  ]
+
+  let cumulative = 0
+  steps.forEach((stepIdx, idx) => {
+    const cost = Number(starTp[String(stepIdx)] ?? starTp[stepIdx]) || 0
+    cumulative += cost
+    totalSkillCost += cost
+    const lvl = idx + 2
+    const stage = stepIdx + 1
+    tiers.push({
+      level: lvl,
+      label: `Lv.${lvl}`,
+      stage,
+      stageLabel: `突破+${stage}阶`,
+      cost,
+      cumulative,
+      costLabel: `${cost}只`,
+      cumLabel: `累计消耗 ${cumulative}只`,
+      isMax: lvl === 4
+    })
+  })
+
+  return {
+    tiers,
+    totalSkillCost,
+    totalPetBreakthroughCost
+  }
+}
+
+/**
+ * 魔物 6 阶全景突破路线图（Breakthrough Roadmap）。
+ * @param {number} star 魔物星级 (1, 2, 3)
+ * @param {Object} petSetting 配置表
+ * @param {string} s1Name 技能1名称
+ * @param {string} s2Name 技能2（队伍被动）名称
+ * @param {number} currentActiveIndex 当前激活的技能索引 (0 或 1)
+ * @returns {Array} 6 个阶段的路线图对象
+ */
+export function getPetBreakthroughRoadmap(star, petSetting, s1Name = '技能', s2Name = '队伍被动', currentActiveIndex = 0) {
+  if (!petSetting || !petSetting.petTpExp) return []
+  const starTp = petSetting.petTpExp[String(star)] || petSetting.petTpExp[star] || {}
+  const roadmap = []
+  let cumulative = 0
+
+  for (let step = 0; step < 6; step++) {
+    const cost = Number(starTp[String(step)] ?? starTp[step]) || 0
+    cumulative += cost
+    const isS1 = step % 2 === 0
+    const targetLevel = Math.floor(step / 2) + 2
+    const skillIndex = isS1 ? 0 : 1
+    roadmap.push({
+      stepIndex: step,
+      stage: step + 1,
+      stageLabel: `+${step + 1}阶`,
+      cost,
+      cumulative,
+      costLabel: `消耗 ${cost}只`,
+      skillType: isS1 ? 'active' : 'party',
+      skillTypeName: isS1 ? '主动技能' : '队伍被动',
+      skillName: isS1 ? s1Name : s2Name,
+      targetLevel,
+      targetLevelLabel: `Lv.${targetLevel}`,
+      isCurrentSkillTarget: skillIndex === currentActiveIndex
+    })
+  }
+
+  return roadmap
+}

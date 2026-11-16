@@ -1892,8 +1892,9 @@ const handleGiftClick = (giftId) => {
 }
 .skill-select-card.active,
 .star-select-card.active {
-  background: rgba(122, 154, 153, 0.12);
-  border-color: var(--accent-bright, #7a9a99);
+  background: rgba(85, 117, 116, 0.16);
+  border-color: var(--accent-ink, #2f4a49);
+  box-shadow: 0 0 0 1px var(--accent-ink, #2f4a49);
 }
 .skill-select-icon,
 .star-select-icon {

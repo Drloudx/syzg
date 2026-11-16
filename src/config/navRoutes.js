@@ -15,7 +15,7 @@ export const NAV_ROUTES = [
   { name: '装备图鉴', path: '/equip', icon: '/ui/item_442001.webp' },
   { name: '符石图鉴', path: '/runes', icon: '/ui/item_19310.webp' },
   { name: '遗器图鉴', path: '/relics', icon: '/ui/relic_guide.webp' },
-  { name: '菜谱查询', path: '/recipes', icon: '/ui/item_30047.webp' },
+  { name: '食谱查询', path: '/recipes', icon: '/ui/item_30047.webp' },
   { name: '魔物收益', path: '/petseggs', icon: '/ui/pet_079.webp' },
   { name: '成就查询', path: '/achievement', icon: '/ui/achv_icon_adv.webp' },
   { name: '怪物图鉴', path: '/monsters', icon: '/ui/colect_mon_052.webp' },
@@ -28,6 +28,7 @@ export const NAV_ROUTES = [
   { name: '日常计划', path: '/daily', icon: '/ui/plan02.webp' },
   { name: '神匠之塔', path: '/tower', icon: '/ui/item_25002.webp' },
   { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
+  { name: '抽卡分析', path: '/gacha/analysis', icon: '/ui/item_20004.webp' },
   { name: '相关模拟', path: '/sims', icon: '/ui/colect_mon_072.webp' },
   { name: '词条', path: '/glossary', icon: '/ui/buff_017.webp' },
   { name: '其他', path: '/misc', icon: '/ui/map_r_fb_12.webp' }
@@ -51,7 +52,7 @@ export const NAV_CATEGORY_DEFINITIONS = [
     key: 'tools',
     title: '实用工具',
     adminTitle: '实用工具',
-    paths: ['/gacha', '/sims', '/petseggs']
+    paths: ['/gacha', '/gacha/analysis', '/sims', '/petseggs']
   },
   {
     key: 'misc',

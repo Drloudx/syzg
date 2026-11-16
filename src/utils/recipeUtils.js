@@ -18,13 +18,22 @@ export const PREVIEW_AVAILABLE_IDS = new Set([
 ])
 
 /**
- * 通用食材类型 ID 转换关系 (foodType: 1->兽肉, 2->野菜, 3->浆果, 4->地菇)
+ * 通用食材类型 ID 转换关系 (foodType: 1->肉类, 2->蔬菜, 3->水果, 4->菌菇)
+ * 图标保持通用基础食材图标（兽肉/野菜/浆果/地菇），文本名称按官方配置分类显示
  */
 export const GENERIC_FOOD_TYPE_MAP = {
-  '1': { typeId: 'item_10006', name: '兽肉' },
-  '2': { typeId: 'item_10056', name: '野菜' },
-  '3': { typeId: 'item_10055', name: '浆果' },
-  '4': { typeId: 'item_10057', name: '地菇' }
+  '1': { typeId: 'item_10006', name: '肉类' },
+  '2': { typeId: 'item_10056', name: '蔬菜' },
+  '3': { typeId: 'item_10055', name: '水果' },
+  '4': { typeId: 'item_10057', name: '菌菇' }
+}
+
+/**
+ * 获取食谱成品大图预览路径（供 getImageUrl 消费）
+ * 统一指向 public/images/recipes/ 目录
+ */
+export function getRecipePreviewPath(typeId) {
+  return `/recipes/${typeId}.webp`
 }
 
 /**

@@ -8,11 +8,21 @@ import { isBlacklisted } from '../config/blacklist.js'
 
 // 配方来源跳转配置（与 RecipesView 保持一致）
 export const RECIPE_SOURCE_CONFIG = {
-  'item_30035': { text: '配方由成就「战场美食家」获取', targetType: 'achievement', targetId: '10501', targetQuery: '战场美食家' },
+  'item_30035': { text: '完成成就「战场美食家」获取', targetType: 'achievement', targetId: '10501', targetQuery: '战场美食家' },
   'item_30041': { text: '完成任务“修行者的佐餐小菜”获取配方', targetType: 'task', targetId: 's_2_7' },
   'item_30034': { text: '完成任务“稀缺的食材”获取配方', targetType: 'task', targetId: 'sub_0_01' },
-  'item_30040': { text: '完成任务“禅武同如一，虎啸除心魔”获取配方', targetType: 'task', targetId: 'm_2_8' },
-  'item_30042': { text: '完成任务“香甜美食在哪里”获取配方', targetType: 'task', targetId: 's_2_10' }
+  'item_30040': {
+    text: '完成任务“禅武同如一，虎啸除心魔”获取配方',
+    targetType: 'task',
+    targetId: 'm_2_8',
+    craftNote: '不能通过食材直接做，需要从解锁配方后点击右下角料理食谱再这里点击食谱做'
+  },
+  'item_30042': {
+    text: '完成任务“香甜美食在哪里”获取配方',
+    targetType: 'task',
+    targetId: 's_2_10',
+    craftNote: '不能通过食材直接做，需要从解锁配方后点击右下角料理食谱再这里点击食谱做'
+  }
 }
 
 export function buildRecipeData(maps) {
@@ -79,6 +89,7 @@ export function buildRecipeData(maps) {
     return {
       id: typeId,
       name: recipeName,
+      quality: Number(itemEntry.quality || 1),
       icon: recipeIcon,
       hasPreview,
       categoryTags,

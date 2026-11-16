@@ -38,6 +38,16 @@
         >{{ getRarityName(r) }}</UiFilterPill>
       </UiFilterRow>
 
+      <UiFilterRow label="职业：">
+        <UiFilterPill :active="selectedJob === null" @click="selectedJob = null">全部</UiFilterPill>
+        <UiFilterPill
+          v-for="(jobName, jobKey) in JOB_NAMES"
+          :key="jobKey"
+          :active="selectedJob === Number(jobKey)"
+          @click="selectedJob = Number(jobKey)"
+        >{{ jobName }}</UiFilterPill>
+      </UiFilterRow>
+
       <!-- 底部工具栏：计数与视图切换 -->
       <template #footer>
         <div class="equips-toolbar">
@@ -146,7 +156,7 @@ import {
 } from '../utils/itemParser'
 import { getImageUrl } from '../utils/env'
 import { isBlacklisted, isEquipTierHidden, visibleEquipTiers } from '../config/blacklist.js'
-import { getRarityName } from '../utils/gameMappings'
+import { getRarityName, JOB_NAMES } from '../utils/gameMappings'
 import { useLazyList } from '../composables/useLazyList'
 import {
   UiBackToTop,
@@ -174,6 +184,7 @@ const searchQuery = ref('')
 const selectedSub = ref(null)
 const selectedLevel = ref(null)
 const selectedRarity = ref(null)
+const selectedJob = ref(route.query.job ? Number(route.query.job) : null)
 
 // 视图模式：'detail' 图文模式（默认），'grid' 紧凑图标模式
 const viewMode = ref(localStorage.getItem('equips_view_mode') || 'detail')
@@ -326,6 +337,13 @@ const filteredItems = computed(() => {
     // 7. 稀有度过滤
     if (selectedRarity.value !== null && item.quality !== selectedRarity.value) {
       return false
+    }
+
+    // 8. 职业过滤
+    if (selectedJob.value !== null) {
+      if (!item.equip || !Array.isArray(item.equip.job) || !item.equip.job.includes(selectedJob.value)) {
+        return false
+      }
     }
 
     return true

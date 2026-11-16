@@ -291,75 +291,231 @@
             </div>
           </div>
 
-          <!-- Detail panel below -->
+          <!-- Detail panel below (紧凑高利用率滑块排版) -->
           <div class="skill-desc-detail-card" v-if="activeSkill">
             <header class="sk-detail-header">
-              <span class="sk-detail-title">{{ activeSkill.name }}</span>
-              <UiTag :tone="activeSkill.type === 'normal' ? 'default' : ((activeSkill.type === 'trait' || selectedSkillIdx === 3) ? 'accent' : 'gold')">
-                {{ activeSkill.type === 'normal' ? '普通攻击' : (activeSkill.type === 'trait' ? '被动特性' : (selectedSkillIdx === 3 ? '队伍被动' : '主动技能')) }}
+              <div class="sk-detail-header-left">
+                <span class="sk-detail-title">{{ activeSkill.name }}</span>
+                <UiTag :tone="activeSkill.type === 'normal' ? 'default' : ((activeSkill.type === 'trait' || selectedSkillIdx === 3) ? 'accent' : 'gold')">
+                  {{ activeSkill.type === 'normal' ? '普通攻击' : (activeSkill.type === 'trait' ? '被动特性' : (selectedSkillIdx === 3 ? '队伍被动' : '主动技能')) }}
+                </UiTag>
+                <!-- 技能 CD 与消耗（对齐角色图鉴放技能后面） -->
+                <div class="skill-meta-tags" v-if="activeSkillLevelData && (activeSkillLevelData.cd || activeSkillLevelData.cost)">
+                  <UiTag v-if="activeSkillLevelData.cd" tone="accent">CD: {{ activeSkillLevelData.cd }}s</UiTag>
+                  <UiTag v-if="activeSkillLevelData.cost" tone="accent">消耗: {{ activeSkillLevelData.cost }}</UiTag>
+                </div>
+              </div>
+              <UiTag v-if="activeSkill.maxLevel > 1" tone="accent">
+                可升至 Lv.{{ activeSkill.maxLevel }}
               </UiTag>
             </header>
 
-            <!-- Skill Level Selector Slider -->
-            <div class="level-slider-block" v-if="activeSkill.maxLevel > 1">
-              <div class="slider-labels">
-                <span class="slider-title">技能等级:</span>
-                <span class="slider-value">Lv.{{ selectedSkillLevel }} / {{ activeSkill.maxLevel }}</span>
+            <!-- 技能等级滑块（恢复整行 100% 满宽，无按键阻碍，丝滑手感） -->
+            <div class="skill-level-slider-container" v-if="activeSkill.maxLevel > 1">
+              <div class="skill-slider-header">
+                <span class="skill-slider-title">技能等级:</span>
+                <div class="skill-slider-status">
+                  <strong class="skill-slider-current">Lv.{{ selectedSkillLevel }}</strong>
+                  <span class="skill-slider-max">/ {{ activeSkill.maxLevel }}</span>
+                  <UiTag v-if="selectedSkillLevel === activeSkill.maxLevel" tone="gold" size="sm" class="max-badge">满级</UiTag>
+                </div>
               </div>
               <input
                 type="range"
                 min="1"
                 :max="activeSkill.maxLevel"
                 v-model.number="selectedSkillLevel"
-                class="range-slider-m"
+                class="calc-range-slider"
+                aria-label="技能等级"
               />
             </div>
 
-            <!-- Skill Stats & Cd/Cost -->
-            <UiStatGrid
-              v-if="activeSkillLevelData && (activeSkillLevelData.cd || activeSkillLevelData.cost)"
-              :items="[
-                ...(activeSkillLevelData.cd ? [{ label: '冷却时间', value: activeSkillLevelData.cd + '秒' }] : []),
-                ...(activeSkillLevelData.cost ? [{ label: '魔力消耗', value: activeSkillLevelData.cost }] : [])
-              ]"
-            />
-
-            <!-- Skill Level Description -->
-            <div class="sk-description-body" v-if="activeSkillLevelData">
-              <div class="lvl-subname">{{ activeSkillLevelData.name }}</div>
-              <p v-html="formatSkillDescription(activeSkillLevelData.des)"></p>
+            <!-- 当前等级效果描述 -->
+            <div class="skill-des-box" v-if="activeSkillLevelData">
+              <div class="lvl-subname" v-if="activeSkillLevelData.name && activeSkill.type === 'active'">{{ activeSkillLevelData.name }}</div>
+              <p class="lvl-des-txt" v-html="formatSkillDescription(activeSkillLevelData.des)"></p>
             </div>
 
-            <!-- Breakthrough/Upgrade Costs Requirements -->
-            <div class="sk-upgrade-cost-alert-box" v-if="activeSkill.type !== 'normal'">
-              <div class="alert-title">培育提升要求:</div>
+            <!-- 培育/突破分段标尺 (货运站同款优雅设计，双向联动) -->
+            <div class="pet-upgrade-section" v-if="activeSkill.type !== 'normal'">
+              <!-- 1. 特性培育阶梯 (Trait: Lv.1 ~ Lv.7) -->
+              <template v-if="activeSkill.type === 'trait'">
+                <div class="upgrade-section-header">
+                  <span class="upgrade-section-title">培育提升要求</span>
+                  <span class="upgrade-section-hint">孵化同种魔物获得图鉴值（育成数）</span>
+                </div>
 
-              <!-- Active skills upgrade lists -->
-              <div v-if="activeSkill.type === 'active'" class="alert-text">
-                每级突破所需。
-                <br />
-                <span>突破分别所需数量：</span>
-                <template v-for="(cost, index) in getPetBreakthroughCosts" :key="index">
-                  <span
-                    :style="{
-                      color: getActiveBreakthroughStepIndex === index ? 'var(--danger)' : 'inherit',
-                      fontWeight: getActiveBreakthroughStepIndex === index ? 'bold' : 'normal'
-                    }"
-                  >
-                    {{ cost }}
+                <div class="pet-tier-spectrum">
+                  <div class="pet-tier-spectrum__labels">
+                    <span
+                      v-for="item in traitProgression.tiers"
+                      :key="item.level"
+                      class="pet-tier-spectrum__label"
+                      :class="{ 'is-active': selectedSkillLevel === item.level }"
+                      @click="selectSkillLevel(item.level)"
+                    >
+                      <i v-if="selectedSkillLevel === item.level" class="pet-tier-spectrum__arrow" aria-hidden="true"></i>
+                      <span>{{ item.label }}</span>
+                      <span v-if="item.isMax" class="max-badge">满级</span>
+                    </span>
+                  </div>
+
+                  <div class="pet-tier-spectrum__bar">
+                    <button
+                      type="button"
+                      v-for="item in traitProgression.tiers"
+                      :key="item.level"
+                      class="pet-tier-spectrum__segment"
+                      :class="{
+                        'is-active': selectedSkillLevel === item.level,
+                        'is-reached': selectedSkillLevel >= item.level
+                      }"
+                      :title="`Lv.${item.level} 需孵化 ${item.cost} 只`"
+                      @click="selectSkillLevel(item.level)"
+                    ></button>
+                  </div>
+
+                  <div class="pet-tier-spectrum__values">
+                    <span
+                      v-for="item in traitProgression.tiers"
+                      :key="item.level"
+                      class="pet-tier-spectrum__val"
+                      :class="{ 'is-active': selectedSkillLevel === item.level }"
+                      @click="selectSkillLevel(item.level)"
+                    >
+                      {{ item.costLabel }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="tier-summary-card">
+                  <span class="summary-label">当前等级要求：</span>
+                  <span class="summary-val highlight">Lv.{{ selectedSkillLevel }}</span>
+                  <span class="summary-sub" v-if="selectedSkillLevel > 1">
+                    （需孵化 <strong>+{{ traitProgression.tiers[selectedSkillLevel - 1]?.cost }}</strong> 只，累计需 <strong>{{ traitProgression.tiers[selectedSkillLevel - 1]?.cumulative }}</strong> 只）
                   </span>
-                  <span v-if="index < getPetBreakthroughCosts.length - 1">、</span>
-                </template>
-              </div>
+                  <span class="summary-sub" v-else>
+                    （解锁魔物即激活 Lv.1 特性）
+                  </span>
+                </div>
+              </template>
 
-              <!-- Trait skill upgrade lists -->
-              <div v-else-if="activeSkill.type === 'trait'" class="alert-text">
-                提升特性等级需要孵化同种魔物获得图鉴值（育成数）。
-                <br />
-                <span class="highlight-orange">
-                  {{ getTraitLevelHatchRequirement() }}
-                </span>
+              <!-- 2. 主动技能与队伍被动突破阶梯 (Active / Team Passive: Lv.1 ~ Lv.4) -->
+              <template v-else-if="activeSkill.type === 'active'">
+                <div class="upgrade-section-header">
+                  <span class="upgrade-section-title">突破提升要求</span>
+                  <span class="upgrade-section-hint">通过魔物突破提升技能等级（魔物突破共 6 阶）</span>
+                </div>
+
+                <div class="pet-tier-spectrum pet-tier-spectrum--active">
+                  <div class="pet-tier-spectrum__labels">
+                    <span
+                      v-for="item in activeSkillProgression.tiers"
+                      :key="item.level"
+                      class="pet-tier-spectrum__label"
+                      :class="{ 'is-active': selectedSkillLevel === item.level }"
+                      @click="selectSkillLevel(item.level)"
+                    >
+                      <i v-if="selectedSkillLevel === item.level" class="pet-tier-spectrum__arrow" aria-hidden="true"></i>
+                      <span>{{ item.label }}</span>
+                      <span class="stage-tag">{{ item.stageLabel }}</span>
+                    </span>
+                  </div>
+
+                  <div class="pet-tier-spectrum__bar">
+                    <button
+                      type="button"
+                      v-for="item in activeSkillProgression.tiers"
+                      :key="item.level"
+                      class="pet-tier-spectrum__segment"
+                      :class="{
+                        'is-active': selectedSkillLevel === item.level,
+                        'is-reached': selectedSkillLevel >= item.level
+                      }"
+                      :title="`Lv.${item.level} (${item.stageLabel})，消耗 ${item.costLabel}`"
+                      @click="selectSkillLevel(item.level)"
+                    ></button>
+                  </div>
+
+                  <div class="pet-tier-spectrum__values">
+                    <span
+                      v-for="item in activeSkillProgression.tiers"
+                      :key="item.level"
+                      class="pet-tier-spectrum__val"
+                      :class="{ 'is-active': selectedSkillLevel === item.level }"
+                      @click="selectSkillLevel(item.level)"
+                    >
+                      {{ item.costLabel }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="tier-summary-card">
+                  <span class="summary-label">当前等级要求：</span>
+                  <span class="summary-val highlight">Lv.{{ selectedSkillLevel }}</span>
+                  <span class="summary-sub" v-if="selectedSkillLevel > 1">
+                    （需魔物 <strong>{{ activeSkillProgression.tiers[selectedSkillLevel - 1]?.stageLabel }}</strong>，消耗同种魔物 <strong>{{ activeSkillProgression.tiers[selectedSkillLevel - 1]?.cost }}</strong> 只，累计消耗 <strong>{{ activeSkillProgression.tiers[selectedSkillLevel - 1]?.cumulative }}</strong> 只）
+                  </span>
+                  <span class="summary-sub" v-else>
+                    （无需突破，魔物初始具备）
+                  </span>
+                </div>
+
+                <!-- 3. 魔物 6 阶突破交替路线图 (Roadmap) -->
+                <div class="breakthrough-roadmap-box">
+                  <div class="roadmap-header">
+                    <span class="roadmap-title">魔物 6 阶突破路线图</span>
+                    <span class="roadmap-tip">点击阶段可跳转对应技能</span>
+                  </div>
+                  <div class="roadmap-steps-grid">
+                    <div
+                      v-for="step in breakthroughRoadmap"
+                      :key="step.stage"
+                      class="roadmap-step-pill"
+                      :class="{
+                        'is-current-skill': step.isCurrentSkillTarget,
+                        'is-selected-step': step.isCurrentSkillTarget && selectedSkillLevel === step.targetLevel
+                      }"
+                      @click="onSelectRoadmapStep(step)"
+                    >
+                      <div class="step-badge">{{ step.stageLabel }}</div>
+                      <div class="step-info">
+                        <span class="step-skill-name">{{ step.skillName }}</span>
+                        <span class="step-target-lvl">{{ step.targetLevelLabel }}</span>
+                      </div>
+                      <div class="step-cost">消耗 {{ step.cost }} 只</div>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+
+            <!-- 底部汇总说明（角色图鉴同款 star-limits-box） -->
+            <div class="star-limits-box" v-if="activeSkill.maxLevel > 1">
+              <div class="limit-title">
+                {{ activeSkill.type === 'trait' ? '特性培育总览：' : '技能突破总览：' }}
               </div>
+              <ul class="limit-list">
+                <template v-if="activeSkill.type === 'trait'">
+                  <li>
+                    升至满级（Lv.7）累计需要孵化同种魔物 <span class="limit-num">{{ traitProgression.totalHatch }}</span> 只（当前魔物为 {{ selectedPet.star }} 星）。
+                  </li>
+                  <li>
+                    孵化获得的图鉴值对该魔物的所有同种实例永久生效。
+                  </li>
+                </template>
+                <template v-else>
+                  <li>
+                    该技能升至满级（Lv.4）累计需消耗同种魔物 <span class="limit-num">{{ activeSkillProgression.totalSkillCost }}</span> 只。
+                  </li>
+                  <li>
+                    魔物突破 1~6 阶全满总计需消耗 <span class="limit-num">{{ activeSkillProgression.totalPetBreakthroughCost }}</span> 只。
+                  </li>
+                  <li>
+                    <strong>突破交替规则：</strong>+1/+3/+5 阶提升主动技能（Lv.2/3/4），+2/+4/+6 阶提升队伍被动（Lv.2/3/4）。
+                  </li>
+                </template>
+              </ul>
             </div>
           </div>
         </div>
@@ -611,7 +767,13 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { fetchPetData, getPetVariantExtraEffects } from '../utils/petParser'
+import {
+  fetchPetData,
+  getPetVariantExtraEffects,
+  getPetTraitTiers,
+  getPetActiveSkillTiers,
+  getPetBreakthroughRoadmap
+} from '../utils/petParser'
 import { getImageUrl } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
 import {
@@ -817,6 +979,60 @@ const activeSkillLevelData = computed(() => {
 const selectSkill = (idx) => {
   selectedSkillIdx.value = idx
   selectedSkillLevel.value = 1
+}
+
+const selectSkillLevel = (lvl) => {
+  if (lvl >= 1 && lvl <= (activeSkill.value?.maxLevel || 1)) {
+    selectedSkillLevel.value = lvl
+  }
+}
+
+// 当前魔物的所有主动技能（通常为2个：主动技能 + 队伍被动）
+const currentPetActiveSkills = computed(() => {
+  if (!selectedPet.value?.skills) return []
+  return selectedPet.value.skills.filter(s => s.type === 'active')
+})
+
+// 当前选中的技能是第几个主动技能（0 = 主动技能, 1 = 队伍被动）
+const currentActiveSkillIndex = computed(() => {
+  if (!activeSkill.value) return 0
+  const idx = currentPetActiveSkills.value.findIndex(s => s.id === activeSkill.value.id)
+  return idx >= 0 ? idx : 0
+})
+
+// 特性培育阶梯数据 (Lv.1 ~ Lv.7)
+const traitProgression = computed(() => {
+  if (!selectedPet.value || !petSetting.value) return { tiers: [], totalHatch: 0 }
+  return getPetTraitTiers(selectedPet.value.star, petSetting.value)
+})
+
+// 主动技能 / 队伍被动突破阶梯数据 (Lv.1 ~ Lv.4)
+const activeSkillProgression = computed(() => {
+  if (!selectedPet.value || !petSetting.value) return { tiers: [], totalSkillCost: 0, totalPetBreakthroughCost: 0 }
+  return getPetActiveSkillTiers(selectedPet.value.star, petSetting.value, currentActiveSkillIndex.value)
+})
+
+// 6 阶全景突破路线图
+const breakthroughRoadmap = computed(() => {
+  if (!selectedPet.value || !petSetting.value) return []
+  const s1Name = currentPetActiveSkills.value[0]?.name || '技能'
+  const s2Name = currentPetActiveSkills.value[1]?.name || '队伍被动'
+  return getPetBreakthroughRoadmap(
+    selectedPet.value.star,
+    petSetting.value,
+    s1Name,
+    s2Name,
+    currentActiveSkillIndex.value
+  )
+})
+
+// 点击全景路线图某阶时，自动切换到对应技能及对应等级
+const onSelectRoadmapStep = (step) => {
+  const targetSkillIdx = selectedPet.value.skills.findIndex(s => s.name === step.skillName)
+  if (targetSkillIdx >= 0) {
+    selectedSkillIdx.value = targetSkillIdx
+    selectedSkillLevel.value = step.targetLevel
+  }
 }
 
 // Active Skill Breakthrough costs list (e.g. [1, 1, 1, 2, 2, 2])
@@ -1327,15 +1543,21 @@ const getPetRanges = (pet) => {
   position: relative;
   background: var(--paper-soft);
   border: 1px solid var(--border-soft);
-  border-radius: 10px;
-  padding: 20px 16px;
+  border-radius: 8px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100% - 32px);
-  max-width: calc(800px - 32px);
-  margin: 16px auto;
+  width: 100%;
+  margin: 0 0 16px;
   box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .portrait-section {
+    padding: 12px 10px;
+    margin-bottom: 12px;
+  }
 }
 
 .pet-portraits-row {
@@ -1444,40 +1666,38 @@ const getPetRanges = (pet) => {
 
 /* ====== 详情页签包装 ====== */
 .detail-tabs-wrap {
-  width: calc(100% - 32px);
-  max-width: calc(800px - 32px);
-  margin: 0 auto 16px;
+  width: 100%;
+  margin: 0 0 14px;
   box-sizing: border-box;
 }
 
-/* ====== 页签内容块 ====== */
+/* ====== 页签内容块（对齐角色图鉴，去除多余厚重大外框） ====== */
 .tab-pane-content {
-  background: var(--paper-soft);
-  border: 1px solid var(--border-soft);
-  border-radius: 10px;
-  padding: 16px;
-  width: calc(100% - 32px);
-  max-width: calc(800px - 32px);
-  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 24px;
+  width: 100%;
   box-sizing: border-box;
 }
 
-/* ====== 技能选择网格（页特有卡组） ====== */
+/* ====== 技能选择网格（页特有卡组，对齐角色图鉴星阶选择） ====== */
 .skills-select-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .skills-select-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
   }
 }
 
 .skill-select-card {
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
   border-radius: 8px;
   padding: 8px;
   display: flex;
@@ -1485,29 +1705,30 @@ const getPetRanges = (pet) => {
   gap: 8px;
   background: var(--paper-soft);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .skill-select-card:hover {
-  background: var(--hover-bg);
+  background: var(--hover-bg, rgba(85, 117, 116, 0.14));
 }
 
 .skill-select-card.active {
-  border-color: var(--accent-bright);
-  background: rgba(122, 154, 153, 0.12);
+  background: rgba(85, 117, 116, 0.16);
+  border-color: var(--accent-ink, #2f4a49);
+  box-shadow: 0 0 0 1px var(--accent-ink, #2f4a49);
 }
 
 .skill-select-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
   background: rgba(43, 31, 21, 0.10);
 }
 
 .skill-select-icon-wrap {
   position: relative;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
 }
 
@@ -1530,8 +1751,8 @@ const getPetRanges = (pet) => {
 }
 
 .active-skill-sprite {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -1552,74 +1773,431 @@ const getPetRanges = (pet) => {
   text-overflow: ellipsis;
 }
 
-/* ====== 技能详情卡 ====== */
+/* ====== 技能详情卡（角色图鉴同款纯净面板，去除多余厚重外框） ====== */
 .skill-desc-detail-card {
   flex: 1;
   background: var(--paper-soft);
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-  padding: 16px;
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.35));
+  border-radius: 4px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .skill-desc-detail-card {
+    padding: 8px;
+  }
 }
 
 .sk-detail-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  border-bottom: 1px solid var(--border-soft);
-  padding-bottom: 8px;
+  gap: 8px;
+  border-bottom: 1px dashed var(--border-soft, rgba(143, 115, 81, 0.45));
+  padding-bottom: 6px;
+}
+
+.sk-detail-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .sk-detail-title {
   font-size: 15px;
   font-weight: bold;
   color: var(--text-main);
+  letter-spacing: 0.5px;
 }
 
-.sk-description-body {
-  font-size: 13px;
-  color: var(--text-main);
-  line-height: 1.7;
-  background: var(--paper-solid);
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid var(--border-faint);
+/* ====== 角色图鉴同款技能等级滑块（拉等级，纯净无框） ====== */
+.skill-level-slider-container {
+  padding: 4px 2px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.lvl-subname {
+.skill-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skill-slider-title {
   font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted, #6b5134);
+}
+
+.skill-slider-status {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.skill-slider-current {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-ink, #557574);
+}
+
+.skill-slider-max {
+  font-size: 12px;
+  color: var(--text-muted, #6b5134);
+}
+
+.skill-slider-status .max-badge {
+  margin-left: 2px;
+}
+
+.skill-des-box {
+  padding: 8px 10px;
+  background: rgba(43, 31, 21, 0.04);
+  border: 1px solid var(--border-faint, rgba(143, 115, 81, 0.2));
+  border-radius: 4px;
+}
+
+.skill-des-box .lvl-subname {
+  font-size: 12.5px;
   font-weight: bold;
   color: var(--text-main);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
-/* 培育提升要求提示框 */
-.sk-upgrade-cost-alert-box {
-  background: rgba(138, 106, 31, 0.08);
-  border: 1px solid rgba(138, 106, 31, 0.28);
-  border-radius: 6px;
-  padding: 10px 12px;
+.skill-des-box .lvl-des-txt {
   font-size: 13px;
-  line-height: 1.7;
-}
-
-.sk-upgrade-cost-alert-box .alert-title {
-  font-weight: bold;
-  color: var(--gold);
-  margin-bottom: 4px;
-}
-
-.sk-upgrade-cost-alert-box .alert-text {
+  line-height: 1.6;
   color: var(--text-main);
-  line-height: 1.7;
+  margin: 0;
 }
 
-.highlight-orange {
-  color: var(--gold);
-  font-weight: bold;
+.skill-meta-tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* ====== 培育与突破分段标尺区 (对齐古典温润纸质风格) ====== */
+.pet-upgrade-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(43, 31, 21, 0.04);
+  border: 1px solid var(--border-faint, rgba(143, 115, 81, 0.22));
+  border-radius: 4px;
+  padding: 8px 10px;
+}
+
+.upgrade-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.upgrade-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main, #3e2a14);
+}
+
+.upgrade-section-hint {
+  font-size: 11px;
+  color: var(--text-muted, #6b5134);
+}
+
+/* 货运站同款阶梯标尺（清爽平整、沉稳自然、无刺眼高光） */
+.pet-tier-spectrum {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--paper-soft, #f7f1e5);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.35));
+  border-radius: 4px;
+  padding: 8px 8px 6px;
+}
+
+.pet-tier-spectrum__labels,
+.pet-tier-spectrum__bar,
+.pet-tier-spectrum__values {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  align-items: center;
+}
+
+.pet-tier-spectrum--active .pet-tier-spectrum__labels,
+.pet-tier-spectrum--active .pet-tier-spectrum__bar,
+.pet-tier-spectrum--active .pet-tier-spectrum__values {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.pet-tier-spectrum__label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted, #6b5134);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+}
+
+.pet-tier-spectrum__label:hover {
+  color: var(--text-main);
+}
+
+.pet-tier-spectrum__label.is-active {
+  color: var(--accent-ink, #2f4a49);
+  font-weight: 700;
+}
+
+/* 小倒三角指针：指向当前激活段，清爽明确 */
+.pet-tier-spectrum__arrow {
+  position: absolute;
+  top: -5px;
+  width: 0;
+  height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 4px solid var(--accent, #557574);
+}
+
+.max-badge {
+  font-size: 9px;
+  background: var(--danger, #a83a2d);
+  color: #fff;
+  border-radius: 2px;
+  padding: 0 3px;
+  line-height: 1.2;
+}
+
+.stage-tag {
+  font-size: 9.5px;
+  color: var(--text-muted, #6b5134);
+  font-weight: normal;
+}
+
+.pet-tier-spectrum__label.is-active .stage-tag {
+  color: var(--accent-ink, #2f4a49);
+  font-weight: 600;
+}
+
+/* 连续胶囊标尺条：高度 6px，首尾平整，杜绝任何突兀肥皂泡形变 */
+.pet-tier-spectrum__segment {
+  appearance: none;
+  border: none;
+  padding: 0;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(143, 115, 81, 0.18);
+  cursor: pointer;
+  outline: none;
+  transition: background 0.15s ease;
+}
+
+.pet-tier-spectrum__segment.is-reached {
+  background: rgba(85, 117, 116, 0.45);
+}
+
+/* 激活段：优雅沉稳的湖泊暗青，无白色内边框，无刺眼外发光，平整紧凑 */
+.pet-tier-spectrum__segment.is-active {
+  background: var(--accent, #557574);
+  box-shadow: 0 1px 2px rgba(43, 31, 21, 0.18);
+}
+
+.pet-tier-spectrum__val {
+  font-size: 10px;
+  text-align: center;
+  color: var(--text-muted, #6b5134);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.pet-tier-spectrum__val:hover {
+  color: var(--text-main);
+}
+
+.pet-tier-spectrum__val.is-active {
+  color: var(--accent-ink, #2f4a49);
+  font-weight: 700;
+}
+
+/* 阶梯简要预览 */
+.tier-summary-card {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-main);
+}
+
+.tier-summary-card .summary-label {
+  color: var(--text-muted, #6b5134);
+}
+
+.tier-summary-card .summary-val.highlight {
+  color: var(--accent-ink, #2f4a49);
+  font-weight: 700;
+}
+
+.tier-summary-card .summary-sub strong {
+  color: var(--gold, #8a6a1f);
+}
+
+/* 魔物 6 阶突破路线图 */
+.breakthrough-roadmap-box {
+  margin-top: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px dashed rgba(143, 115, 81, 0.35);
+  padding-top: 8px;
+}
+
+.roadmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.roadmap-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-main, #3e2a14);
+}
+
+.roadmap-tip {
+  font-size: 10.5px;
+  color: var(--text-muted, #6b5134);
+}
+
+.roadmap-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+
+.roadmap-step-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 3px;
+  background: var(--paper-soft, #f7f1e5);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.4));
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.roadmap-step-pill:hover {
+  border-color: var(--accent, #557574);
+}
+
+.roadmap-step-pill.is-current-skill {
+  border-color: rgba(85, 117, 116, 0.5);
+  background: rgba(85, 117, 116, 0.08);
+}
+
+.roadmap-step-pill.is-selected-step {
+  border-color: var(--accent, #557574);
+  background: rgba(85, 117, 116, 0.16);
+  box-shadow: 0 0 0 1px var(--accent, #557574);
+}
+
+.step-badge {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 0 4px;
+  border-radius: 2px;
+  background: rgba(43, 31, 21, 0.08);
+  color: var(--text-main);
+}
+
+.roadmap-step-pill.is-current-skill .step-badge {
+  background: var(--accent, #557574);
+  color: #fff;
+}
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.step-skill-name {
+  font-size: 9.5px;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.step-target-lvl {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-ink, #2f4a49);
+}
+
+.step-cost {
+  font-size: 9px;
+  color: var(--text-muted, #6b5134);
+}
+
+@media (max-width: 600px) {
+  .roadmap-steps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 底部总览 (角色图鉴同款 star-limits-box) */
+.star-limits-box {
+  background: rgba(138, 106, 31, 0.06);
+  border: 1px dashed var(--border-soft, rgba(143, 115, 81, 0.4));
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-top: 2px;
+}
+
+.star-limits-box .limit-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold, #8a6a1f);
+  margin-bottom: 2px;
+}
+
+.star-limits-box .limit-list {
+  margin: 0;
+  padding-left: 16px;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-muted, #6b5134);
+}
+
+.star-limits-box .limit-list li {
+  margin-bottom: 2px;
+}
+
+.star-limits-box .limit-num {
+  font-weight: 700;
+  color: var(--gold, #8a6a1f);
 }
 
 /* ====== 属性/成长区 ====== */
@@ -1782,36 +2360,13 @@ const getPetRanges = (pet) => {
   color: var(--accent-ink);
 }
 
+.calc-range-slider,
 .range-slider-m {
   width: 100%;
+  cursor: pointer;
+  accent-color: var(--accent-bright, #7a9a99);
   height: 6px;
-  border-radius: 3px;
-  background: var(--border-soft);
-  outline: none;
-  -webkit-appearance: none;
-}
-
-.range-slider-m::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-  transition: transform 0.1s ease;
-}
-
-.range-slider-m::-webkit-slider-thumb:hover {
-  transform: scale(1.2);
-}
-
-.range-slider-m::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent);
-  cursor: pointer;
-  border: none;
+  touch-action: pan-y;
 }
 
 /* ====== 经验换算 ====== */

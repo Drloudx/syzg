@@ -135,7 +135,7 @@
 
 ---
 
-## 三、菜谱查询
+## 三、食谱查询
 
 **入口** `/recipes` · **页面** `RecipesView.vue` · **数据** `parsed/recipes.json`
 
@@ -147,7 +147,7 @@
 | 展示 | 标签、搜索、料理卡片；食材、料理效果及获取方式 |
 | 图标 | 优先用已关联 `item.img` |
 | 材料组装 | 通用食材和具体材料**一律**由 `buildRecipeIngredients` 组装；物品详情复用同样结果 |
-| 料理预览 | **只在 `PREVIEW_AVAILABLE_IDS` 登记时出现**，使用对应 `menu_prev` 图片；未登记**不猜测**文件存在 |
+| 料理预览 | **只在 `PREVIEW_AVAILABLE_IDS` 登记时出现**，使用对应 `recipes` 图片（`public/images/recipes/`）；未登记**不猜测**文件存在 |
 | Buff 说明 | 用清洗后的纯文本 |
 
 ### 来源
