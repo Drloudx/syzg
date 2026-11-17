@@ -37,7 +37,7 @@
         <div class="rule-copy">
           <p class="rule-scope"><b>⚠ 适用范围</b>：遗器 / 法盘的属性加成与技能效果，<b>只在对应秘境副本（如亚空回廊）的战斗内生效</b>，离开副本即失效，不影响主线、日常等其它玩法。</p>
           <p><b>遗器分两类</b>：基础遗器（<b>火 / 水 / 地 / 风</b> 四种属性之一，提供全局属性加成）；核心遗器（带技能效果与共鸣，没有属性栏，另有「能量型」参数，数值越大覆盖的伙伴位置越多）。</p>
-          <p><b>法盘</b>：{{ fapanRuleText }}。开局只有 <b>{{ rules.initialOpenGrid }}</b> 格可用，其余锁定格靠<b>升级法盘</b>逐级获得解锁次数后逐个打开；<b>四角为永久隐藏角，任何情况下不可解锁</b>。</p>
+          <p><b>法盘</b>：{{ fapanRuleText }}（四角为永久隐藏切角，实际有效共 <b>52</b> 格）。开局中心默认开放 <b>{{ rules.initialOpenGrid || 22 }}</b> 格可用；法盘共 <b>{{ rules.maxFapanLevel || 30 }}</b> 级，每升 1 级可逐格解锁 1 格，满级 30 级时<b>全部 52 格均可放置遗器</b>。</p>
           <p><b>放置</b>：遗器按自身「占格」形状（纯矩形，见下方示意）平铺进可用格；<b>不能旋转</b>，不能重叠、不能越界。基础遗器可放多个；核心遗器同名<b>最多 1 个</b>、同时在场<b>最多 {{ rules.maxCoreRelicNum }} 种</b>。</p>
           <p><b>共鸣</b>：核心遗器的每条共鸣要求场上某些分类的遗器达到指定数量（如「火属性 ×2 + 地属性 ×1」），满足即激活该条强化。</p>
           <p><b>升级</b>：消耗 <b>{{ rules.levelUpCost }}</b> 个同类遗器合成升级，遗器等级上限 5 级；每次升级同时获得法盘经验，法盘共 <b>{{ rules.maxFapanLevel }}</b> 级。</p>
@@ -58,21 +58,56 @@
       </UiSection>
 
       <UiSection v-if="fapan.length" title="法盘格子">
-        <p class="rule-hint">深色为当前锁定格，浅色框为可放置格。锁定格可随法盘升级解锁（四角除外）。</p>
+        <p class="rule-hint">法盘整体为 8×7 切角八边形（四角镂空不计入可用格）。初始开放中心 22 格，升级可解锁 30 格，满级 30 级全盘 52 格均可放置遗器。</p>
         <div class="fapan-grid">
           <div v-for="board in fapan" :key="board.id" class="fapan-card">
             <div class="fapan-card__head">
-              <span class="fapan-card__name">{{ board.name }}</span>
-              <span class="fapan-card__meta">{{ board.width }} × {{ board.height }} 格 · 上限 {{ board.maxLevel }} 级</span>
+              <div class="fapan-card__title-group">
+                <span class="fapan-card__name">{{ board.name }}</span>
+                <span class="fapan-card__meta">（8 × 7 八角形 · 满级 {{ board.maxLevel || 30 }} 级）</span>
+              </div>
+              <div class="fapan-mode-toggle" role="group" aria-label="法盘等级预览模式">
+                <button
+                  type="button"
+                  class="fapan-mode-btn"
+                  :class="{ 'is-active': fapanViewMode === 'max' }"
+                  @click="fapanViewMode = 'max'"
+                >
+                  满级全景 (52格)
+                </button>
+                <button
+                  type="button"
+                  class="fapan-mode-btn"
+                  :class="{ 'is-active': fapanViewMode === 'initial' }"
+                  @click="fapanViewMode = 'initial'"
+                >
+                  初始状态 (22格)
+                </button>
+              </div>
             </div>
             <div class="fapan-board" :style="{ '--cols': board.width, '--rows': board.height }">
               <template v-for="(cell, index) in board.cells" :key="index">
-                <span class="fapan-cell" :class="cell.locked ? 'is-locked' : 'is-open'" :title="cell.locked ? '锁定（可升级解锁）' : `可放置（${cell.x}, ${cell.y}）`"></span>
+                <span
+                  class="fapan-cell"
+                  :class="{
+                    'is-corner': isCornerCell(cell, board),
+                    'is-open': isCellOpen(cell, board, fapanViewMode),
+                    'is-locked': isCellLocked(cell, board, fapanViewMode)
+                  }"
+                  :title="isCornerCell(cell, board) ? '永久切角（不可用）' : (isCellOpen(cell, board, fapanViewMode) ? `可放置格（${cell.x}, ${cell.y}）` : `升级解锁格（${cell.x}, ${cell.y}）`)"
+                ></span>
               </template>
             </div>
             <div class="fapan-legend">
-              <span class="fapan-legend__item"><i class="fapan-cell is-open"></i>可放置 {{ board.openCount }} 格</span>
-              <span class="fapan-legend__item"><i class="fapan-cell is-locked"></i>锁定 {{ board.lockCount }} 格</span>
+              <template v-if="fapanViewMode === 'max'">
+                <span class="fapan-legend__item"><i class="fapan-cell is-open"></i>满级已全解锁 {{ board.maxUsableCount || 52 }} 格</span>
+                <span class="fapan-legend__item text-muted">（四角切角已镂空隐藏）</span>
+              </template>
+              <template v-else>
+                <span class="fapan-legend__item"><i class="fapan-cell is-open"></i>初始开放 {{ board.initialCount || 22 }} 格</span>
+                <span class="fapan-legend__item"><i class="fapan-cell is-locked"></i>升级解锁 {{ board.unlockableCount || 30 }} 格</span>
+                <span class="fapan-legend__item text-muted">（满级 30 级全开共 52 格）</span>
+              </template>
             </div>
           </div>
         </div>
@@ -200,6 +235,29 @@ const focus = computed(() => queryString('relic'))
 
 const relics = computed(() => data.value?.relics || [])
 const fapan = computed(() => data.value?.fapan || [])
+/** 法盘等级预览模式：'max'（满级 30 级全景，默认）/ 'initial'（初始 1 级） */
+const fapanViewMode = ref('max')
+
+function isCornerCell(cell, board) {
+  if (cell.isCorner !== undefined) return Boolean(cell.isCorner)
+  const w = board.width || 8
+  const h = board.height || 7
+  return (cell.x === 0 || cell.x === w - 1) && (cell.y === 0 || cell.y === h - 1)
+}
+
+function isCellOpen(cell, board, mode) {
+  if (isCornerCell(cell, board)) return false
+  if (mode === 'max') return true
+  if (cell.isInitial !== undefined) return Boolean(cell.isInitial)
+  return !cell.locked
+}
+
+function isCellLocked(cell, board, mode) {
+  if (isCornerCell(cell, board)) return false
+  if (mode === 'max') return false
+  if (cell.isUnlockable !== undefined) return Boolean(cell.isUnlockable)
+  return Boolean(cell.locked)
+}
 const dungeons = computed(() => data.value?.dungeons || [])
 const rules = computed(() => data.value?.rules || {
   maxCoreRelicNum: 0, levelUpCost: 0, maxFapanLevel: 0, initialOpenGrid: 1
@@ -398,9 +456,38 @@ onMounted(loadData)
 .fapan-note { margin: 0 0 12px; font-size: 13px; line-height: 1.7; color: var(--text-muted); }
 .fapan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
 .fapan-card { padding: 12px 14px; background: var(--paper-soft); border: 1px solid var(--border-soft); border-radius: 6px; }
-.fapan-card__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px; margin-bottom: 10px; }
+.fapan-card__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.fapan-card__title-group { display: flex; flex-direction: column; gap: 2px; }
 .fapan-card__name { font-size: 15px; font-weight: 700; }
 .fapan-card__meta { font-size: 12px; color: var(--text-muted); }
+.fapan-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 2px;
+}
+.fapan-mode-btn {
+  border: none;
+  background: transparent;
+  padding: 3px 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.fapan-mode-btn:hover {
+  color: var(--text-main);
+}
+.fapan-mode-btn.is-active {
+  background: var(--paper-solid, #fff);
+  color: var(--accent-ink, #557574);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
 .fapan-board {
   display: grid;
   grid-template-columns: repeat(var(--cols), 1fr);
@@ -416,6 +503,14 @@ onMounted(loadData)
   border-radius: 3px;
   min-width: 0;
   min-height: 0;
+}
+.fapan-cell.is-corner {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 .fapan-cell.is-locked {
   background: rgba(94, 70, 43, 0.42);

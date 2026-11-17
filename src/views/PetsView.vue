@@ -80,8 +80,12 @@
       </template>
     </UiFilterPanel>
 
+    <!-- 加载态 / 错误态 -->
+    <UiEmptyState v-if="!isDataReady && !errorMessage" type="loading" text="正在装配魔物图鉴数据..." />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadPetsData" />
+
     <!-- 特性表格视图（结构借鉴魔物收益页：滚动容器 + paper-panel + flex 行） -->
-    <div v-if="viewMode === 'table'" id="petsTableScroll" class="pets-table-scroll" data-main-scroll>
+    <div v-else-if="viewMode === 'table'" id="petsTableScroll" class="pets-table-scroll" data-main-scroll>
       <div class="pets-table-container paper-panel">
         <div v-for="pet in filteredPets" :key="pet.id" class="pets-table-row" @click="handlePetClick(pet)">
           <!-- 魔物头像 + 名称 -->
@@ -126,11 +130,14 @@
             <span v-else class="text-muted">—</span>
           </div>
         </div>
+
+        <!-- 空态提示：筛选无结果时展示，避免表格坍塌为一条线 -->
+        <UiEmptyState v-if="filteredPets.length === 0" text="未找到匹配的魔物特性数据" />
       </div>
     </div>
 
     <!-- 列表区（5列大幅面卡片展示，懒加载每批 60 项） -->
-    <UiCardGrid id="petsGridScroll" class="pets-card-grid" v-else-if="isDataReady">
+    <UiCardGrid v-else id="petsGridScroll" class="pets-card-grid">
       <UiItemCard
         v-for="pet in displayedPets"
         :key="pet.id"
@@ -173,8 +180,6 @@
       </UiItemCard>
       <UiEmptyState v-if="filteredPets.length === 0" text="未找到匹配的魔物数据" />
     </UiCardGrid>
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadPetsData" />
-    <UiEmptyState v-else type="loading" text="正在装配魔物图鉴数据..." />
 
     <UiBackToTop :scroll-container="viewMode === 'table' ? '#petsTableScroll' : '#petsGridScroll'" />
 
@@ -772,7 +777,8 @@ import {
   getPetVariantExtraEffects,
   getPetTraitTiers,
   getPetActiveSkillTiers,
-  getPetBreakthroughRoadmap
+  getPetBreakthroughRoadmap,
+  getPetSearchText
 } from '../utils/petParser'
 import { getImageUrl } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
@@ -912,19 +918,39 @@ const filteredPets = computed(() => {
     result = result.filter(p => p.hasVariant)
   }
   
-  // Search Query
-  if (searchQuery.value) {
-    const q = searchQuery.value.toLowerCase().trim()
-    result = result.filter(p => p.keywords.includes(q))
+  // Search Query：空格表示“且”，顿号/逗号/斜杠表示“或”
+  // 🔴 特性表格视图只检索特性相关内容，不检索主动技能与队伍被动，避免表格中未展示技能引发“货不对板”的困惑
+  if (searchQuery.value && searchQuery.value.trim()) {
+    const isTable = viewMode.value === 'table'
+    const termGroups = searchQuery.value.trim().toLowerCase()
+      .split(/\s+/)
+      .map(group => group.split(/[、,，|/]+/).filter(Boolean))
+      .filter(group => group.length)
+    result = result.filter(pet => {
+      const searchText = getPetSearchText(pet, { includeSkills: !isTable })
+      return termGroups.every(group => group.some(term => searchText.includes(term)))
+    })
   }
   
-  // Sort: First by star rating descending, then by pet ID ascending
-  result.sort((a, b) => {
-    if (b.starDisplay !== a.starDisplay) {
-      return b.starDisplay - a.starDisplay
-    }
-    return a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' })
-  })
+  // Sort：搜索时优先排「特性/名称直接命中」的项，避免仅技能命中的高星魔物强行霸占前排
+  if (searchQuery.value && searchQuery.value.trim()) {
+    const qLower = searchQuery.value.trim().toLowerCase()
+    result.sort((a, b) => {
+      const aTraitHit = getPetSearchText(a, { includeSkills: false }).includes(qLower) ? 1 : 0
+      const bTraitHit = getPetSearchText(b, { includeSkills: false }).includes(qLower) ? 1 : 0
+      if (bTraitHit !== aTraitHit) return bTraitHit - aTraitHit
+
+      if (b.starDisplay !== a.starDisplay) return b.starDisplay - a.starDisplay
+      return a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' })
+    })
+  } else {
+    result.sort((a, b) => {
+      if (b.starDisplay !== a.starDisplay) {
+        return b.starDisplay - a.starDisplay
+      }
+      return a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' })
+    })
+  }
   
   return result
 })

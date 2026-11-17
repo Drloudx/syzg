@@ -5,6 +5,8 @@
  * 与 AdminHomePanel.vue（后台首页管理）统一读取。
  * 🔴 严禁在业务组件中私自硬编码路由分组或路径。
  */
+const isDev = Boolean(typeof import.meta !== 'undefined' && import.meta.env?.DEV)
+
 export const NAV_ROUTES = [
   { name: '物品图鉴', path: '/items', icon: '/ui/item_00002.webp' },
   { name: '家具图鉴', path: '/furniture', icon: '/ui/build_roomFlower_yma9_0.webp' },
@@ -28,6 +30,7 @@ export const NAV_ROUTES = [
   { name: '日常计划', path: '/daily', icon: '/ui/plan02.webp' },
   { name: '神匠之塔', path: '/tower', icon: '/ui/item_25002.webp' },
   { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
+  ...(isDev ? [{ name: '抽卡分析', path: '/gacha/analysis', icon: '/ui/item_20004.webp' }] : []),
   { name: '相关模拟', path: '/sims', icon: '/ui/colect_mon_072.webp' },
   { name: '词条', path: '/glossary', icon: '/ui/buff_017.webp' },
   { name: '其他', path: '/misc', icon: '/ui/map_r_fb_12.webp' }
@@ -51,7 +54,7 @@ export const NAV_CATEGORY_DEFINITIONS = [
     key: 'tools',
     title: '实用工具',
     adminTitle: '实用工具',
-    paths: ['/gacha', '/sims', '/petseggs']
+    paths: ['/gacha', ...(isDev ? ['/gacha/analysis'] : []), '/sims', '/petseggs']
   },
   {
     key: 'misc',

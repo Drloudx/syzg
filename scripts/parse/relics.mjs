@@ -151,23 +151,44 @@ const buildFapan = (fapan, openDungeonIds) => Object.values(fapan)
   const locked = new Set(lockPoints.map(p => `${Number(p.x)},${Number(p.y)}`))
   /*
    * 逐格展开成 cells（行优先，共 width×height 个），页面直接按顺序画格子。
-   * `fapanLockPoint` 是**被锁**的坐标；未列出的格子才可放置遗器。
-   * 当前两套法盘都是 8×7、锁 34 格 → 可放置 20 格（中间 4×5 区域）。
+   * 源码 SpRelicPanel 行为：
+   * 1. 四角（0,0）、(width-1,0)、(0,height-1)、(width-1,height-1) 为永久隐藏缺角（IsPermanentHiddenCorner）。
+   * 2. 初始状态下，未在 fapanLockPoint 中的格子默认开放（22 格）。
+   * 3. fapanLockPoint 中的 34 点除去 4 个隐藏角，剩余 30 格随法盘 1~30 级逐级解锁。
+   * 4. 满级（30 级）时全部 52 个格子（56 - 4）完全解锁可用。
    */
   const cells = []
   for (let y = 0; y < height; y += 1) {
     for (let x = 0; x < width; x += 1) {
-      cells.push({ x, y, locked: locked.has(`${x},${y}`) })
+      const isCorner = (x === 0 || x === width - 1) && (y === 0 || y === height - 1)
+      const isLockedInitial = locked.has(`${x},${y}`)
+      cells.push({
+        x,
+        y,
+        isCorner,
+        isInitial: !isCorner && !isLockedInitial,
+        isUnlockable: !isCorner && isLockedInitial,
+        locked: !isCorner && isLockedInitial
+      })
     }
   }
+  const initialCount = cells.filter(cell => cell.isInitial).length
+  const unlockableCount = cells.filter(cell => cell.isUnlockable).length
+  const maxUsableCount = initialCount + unlockableCount
+
   return {
     id: entry.fapanId,
     name: text(entry.fapanName),
     width,
     height,
-    maxLevel: Number(entry.fapanMaxLevel) || 0,
-    lockCount: lockPoints.length,
-    openCount: cells.filter(cell => !cell.locked).length,
+    maxLevel: Number(entry.fapanMaxLevel) || 30,
+    cornerCount: cells.filter(cell => cell.isCorner).length,
+    initialCount,
+    unlockableCount,
+    maxUsableCount,
+    // 兼容旧字段
+    lockCount: unlockableCount,
+    openCount: initialCount,
     cells
   }
 })
@@ -285,8 +306,8 @@ export function buildRelicsFile() {
     // 官方文案：relicLevelUpCost 是「升级需要消耗多少个同类型遗物来合成」
     levelUpCost: Number(relicSetting?.relicLevelUpCost) || 0,
     maxFapanLevel: Object.keys(fapanExp).length,
-    // 首次进入法盘时默认已解锁的格子数 = 法盘等级 1（见客户端 GetRemainUnlockGridCount）
-    initialOpenGrid: 1
+    // 首次进入法盘时默认已开放放置的中心格子数 = 22 格
+    initialOpenGrid: 22
   }
 
   return {

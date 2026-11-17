@@ -2,7 +2,7 @@
   <div
     ref="appScrollRoot"
     class="app-container"
-    :class="{ 'dark-mode': isDarkMode, 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-privacy-page': route.path === '/privacy', 'is-not-found-page': isNotFoundPage, 'is-route-switching': routeNavigating }"
+    :class="{ 'dark-mode': isDarkMode, 'dark-theme': isDarkMode, 'is-native-shell': isNative, 'is-mail-reader': route.path === '/partner-mails', 'is-gacha-stage': isGachaFullscreen, 'is-gacha-analysis': route.path.includes('/gacha/analysis') || route.path === '/gacha-analysis', 'is-privacy-page': route.path === '/privacy', 'is-not-found-page': isNotFoundPage, 'is-route-switching': routeNavigating }"
     @scroll.passive="scheduleStickyClipping"
   >
     <!-- 顶部木质导航条 -->
@@ -384,6 +384,7 @@ const PAGE_TITLES = {
   '/chapters': '关卡图鉴',
   '/glossary': '词条',
   '/gacha': '模拟招募',
+  '/gacha/analysis': '招募记录分析',
   '/sims': '相关模拟',
   '/admin': '后台',
   '/privacy': '隐私协议',
@@ -1688,6 +1689,27 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
 
 .is-not-found-page .app-main {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .is-gacha-analysis .main-layout-row {
+    padding: 0 !important;
+  }
+  .is-gacha-analysis .app-main {
+    padding: 0 !important;
+    display: block !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  .is-gacha-analysis .app-main :deep(.page-view-container) {
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+    min-height: 100% !important;
+    overflow: visible !important;
+  }
 }
 
 @media (max-width: 1024px) {

@@ -290,6 +290,13 @@ const routes = [
     component: () => import('../views/GachaView.vue')
   },
   {
+    path: '/gacha/analysis',
+    alias: '/gacha-analysis',
+    name: 'gacha-analysis',
+    component: () => import('../views/GachaAnalysisView.vue'),
+    meta: { title: '招募记录分析' }
+  },
+  {
     /**
      * 配队模拟器：选 4 名角色，按队伍被动的属性/职业条件推荐魔物。
      * 纯前端计算，数据来自 heroes.json / pets.json，不新增构建产物。

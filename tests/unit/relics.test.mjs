@@ -100,8 +100,12 @@ test('法盘尺寸 8×7、上限 30 级；未开放秘境（SP2 瓦希什塔）�
     assert.equal(board.height, 7)
     assert.equal(board.maxLevel, 30)
     assert.equal(board.cells.length, board.width * board.height, `${board.id} 格子数应为 ${board.width * board.height}`)
+    assert.equal(board.cornerCount, 4, '四角应为 4 个切角镂空')
+    assert.equal(board.initialCount, 22, '初始开放 22 格')
+    assert.equal(board.unlockableCount, 30, '随升级可解锁 30 格')
+    assert.equal(board.maxUsableCount, 52, '满级总可用 52 格')
     assert.equal(board.cells.filter(cell => cell.locked).length, board.lockCount)
-    assert.equal(board.openCount, board.cells.length - board.lockCount)
+    assert.equal(board.openCount + board.lockCount + board.cornerCount, board.cells.length)
     const keys = new Set(board.cells.map(cell => `${cell.x},${cell.y}`))
     assert.equal(keys.size, board.cells.length, `${board.id} 坐标有重复`)
   }

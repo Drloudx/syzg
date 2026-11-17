@@ -200,7 +200,17 @@ export function buildPetData(maps) {
         petCd: pet.petCd || 0,
         roomCd: pet.roomCd || 0,
         lifeTime: pet.lifeTime || 0,
-        keywords: `${pet.name} ${elementName} ${pet.des || ''}`.toLowerCase()
+        keywords: [
+          pet.name,
+          elementName,
+          `${elementName}属性`,
+          `${starDisplay}星`,
+          `${starDisplay}★`,
+          variantChance > 0 ? '可变异 变异' : '',
+          pet.des || '',
+          traitSummary ? `${traitSummary.name} ${traitSummary.maxText} ${traitSummary.rangeText || ''}` : '',
+          skillsList.map(s => `${s.name} ${s.levelData ? s.levelData.map(l => l.des).join(' ') : ''}`).join(' ')
+        ].filter(Boolean).join(' ').replace(/[{}\[\]]/g, ' ').toLowerCase()
       }
     }).filter(Boolean)
 
@@ -405,3 +415,58 @@ export function getPetBreakthroughRoadmap(star, petSetting, s1Name = '技能', s
 
   return roadmap
 }
+
+/**
+ * 魔物检索文本聚合（WeakMap 缓存）。
+ * @param {object} pet 魔物对象
+ * @param {object} [options]
+ * @param {boolean} [options.includeSkills=true] 是否包含主动/被动技能（特性表格视图应为 false，避免未展示技能产生误解）
+ */
+const petSearchTextCache = new WeakMap()
+export function getPetSearchText(pet, { includeSkills = true } = {}) {
+  if (!pet || typeof pet !== 'object') return ''
+  const cacheKey = includeSkills ? 'all' : 'traitOnly'
+  let cachedMap = petSearchTextCache.get(pet)
+  if (!cachedMap) {
+    cachedMap = {}
+    petSearchTextCache.set(pet, cachedMap)
+  }
+  if (cachedMap[cacheKey]) return cachedMap[cacheKey]
+
+  const traitTexts = []
+  if (pet.trait) {
+    if (pet.trait.name) traitTexts.push(pet.trait.name)
+    if (pet.trait.maxText) traitTexts.push(pet.trait.maxText)
+    if (pet.trait.rangeText) traitTexts.push(pet.trait.rangeText)
+  }
+
+  const skillTexts = []
+  if (includeSkills && Array.isArray(pet.skills)) {
+    for (const s of pet.skills) {
+      if (s.name) skillTexts.push(s.name)
+      if (Array.isArray(s.levelData)) {
+        for (const l of s.levelData) {
+          if (l.des) skillTexts.push(l.des)
+          if (l.name && l.name !== s.name) skillTexts.push(l.name)
+        }
+      }
+    }
+  }
+
+  const raw = [
+    pet.name,
+    pet.elementName,
+    `${pet.elementName}属性`,
+    `${pet.starDisplay}星`,
+    `${pet.starDisplay}★`,
+    pet.hasVariant ? '可变异 变异' : '',
+    pet.des,
+    ...traitTexts,
+    ...skillTexts
+  ].filter(Boolean).join(' ')
+
+  const text = raw.replace(/[{}\[\]]/g, ' ').toLowerCase()
+  cachedMap[cacheKey] = text
+  return text
+}
+
