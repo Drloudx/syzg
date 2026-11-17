@@ -31,4 +31,9 @@ test('装备职业定义与过滤逻辑核验', () => {
     const exclusiveEquips = validEquips.filter(i => i.equip.job.length < 6);
     assert.ok(exclusiveEquips.length > 0, '应存在职业专属装备');
   }
+
+  // 物品图鉴在选定大类「装备 (4)」时的职业过滤行为
+  const equipCategoryItems = data.items.filter(i => i.category && String(i.category[0]) === '4' && isVisibleEquipItem(i) && !isBlacklisted(i));
+  const archerOnly = equipCategoryItems.filter(i => i.equip?.job?.includes(4));
+  assert.ok(archerOnly.length > 0 && archerOnly.length < equipCategoryItems.length, '射手职业筛选应正确筛出子集');
 });

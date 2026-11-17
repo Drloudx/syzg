@@ -51,6 +51,17 @@
         >{{ tier }}阶</UiFilterPill>
       </UiFilterRow>
 
+      <!-- 职业：仅装备大类下显示（与装备图鉴一致） -->
+      <UiFilterRow v-if="String(selectedMain) === EQUIP_MAIN_TYPE" label="职业：">
+        <UiFilterPill :active="selectedJob === null" @click="selectedJob = null">全部</UiFilterPill>
+        <UiFilterPill
+          v-for="(jobName, jobKey) in JOB_NAMES"
+          :key="jobKey"
+          :active="selectedJob === Number(jobKey)"
+          @click="selectedJob = Number(jobKey)"
+        >{{ jobName }}</UiFilterPill>
+      </UiFilterRow>
+
       <!-- 稀有度 -->
       <UiFilterRow label="稀有度：">
         <UiFilterPill :active="selectedRarity === null" @click="selectedRarity = null">全部</UiFilterPill>
@@ -96,7 +107,7 @@ import { fetchWithFallback } from '../utils/request.js'
 import { itemModalState } from '../utils/itemModalState'
 import { visibleEquipTiers } from '../config/blacklist.js'
 import { isVisible, loadChapterLock } from '../config/visibility.js'
-import { getRarityName } from '../utils/gameMappings'
+import { getRarityName, JOB_NAMES } from '../utils/gameMappings'
 import { useRoute, useRouter } from 'vue-router'
 import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
 import {
@@ -127,6 +138,8 @@ const selectedMini = ref(null)
 const selectedRarity = ref(null)
 /** 装备品阶（equip.equipLevel）。仅装备大类下生效，见 showTierFilter */
 const selectedTier = ref(null)
+/** 装备职业。仅装备大类下生效 */
+const selectedJob = ref(null)
 
 /** 装备大类的 type 为 '4'（与 items.json 的 categoryTree 一致） */
 const EQUIP_MAIN_TYPE = '4'
@@ -135,9 +148,12 @@ const showTierFilter = computed(() =>
   String(selectedMain.value) === EQUIP_MAIN_TYPE && visibleEquipTiers().length > 1)
 const tierOptions = computed(() => visibleEquipTiers())
 
-/** 切走装备大类时清掉品阶选择，避免留下无效筛选 */
+/** 切走装备大类时清掉品阶与职业选择，避免留下无效筛选 */
 watch(selectedMain, () => {
-  if (String(selectedMain.value) !== EQUIP_MAIN_TYPE) selectedTier.value = null
+  if (String(selectedMain.value) !== EQUIP_MAIN_TYPE) {
+    selectedTier.value = null
+    selectedJob.value = null
+  }
 })
 
 const loadItems = async () => {
@@ -268,6 +284,13 @@ const filteredItems = computed(() => {
     // 装备品阶过滤（仅装备有该字段；非装备不参与，避免把没有 equipLevel 的条目全滤掉）
     if (selectedTier.value !== null) {
       if (Number(item.equip?.equipLevel) !== Number(selectedTier.value)) return false
+    }
+
+    // 装备职业过滤（仅装备大类且已选时生效）
+    if (selectedJob.value !== null) {
+      if (!item.equip || !Array.isArray(item.equip.job) || !item.equip.job.includes(selectedJob.value)) {
+        return false
+      }
     }
 
     // 稀有度过滤

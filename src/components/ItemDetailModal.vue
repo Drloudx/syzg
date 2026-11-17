@@ -204,7 +204,7 @@
         </div>
       </div>
 
-      <div v-if="equipEnhanceConfig.maxLevel > 0" class="equip-enhance-control paper-panel-solid">
+      <div v-if="equipEnhanceConfig && equipEnhanceConfig.maxLevel > 0" class="equip-enhance-control paper-panel-solid">
         <div class="equip-enhance-header">
           <span>强化等级</span>
           <strong>+{{ selectedEnhanceLevel }} / +{{ equipEnhanceConfig.maxLevel }}</strong>
@@ -861,7 +861,7 @@
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl, handleImageFallback } from '../utils/env'
-import { translateJobArray, translateAttr, translateCategory, parseItemUnlocks, getItemImageUrl, getItemAcquisition, getCachedItem, parseRuneEffect, parseEquipGroup, parseEquipSuit, parseItemAffixes, calculateEquipAttributeRange, buildEquipAttributeItems, getEquipEnhanceConfig } from '../utils/itemParser'
+import { translateJobArray, translateAttr, translateCategory, parseItemUnlocks, getItemImageUrl, getItemAcquisition, getCachedItem, parseRuneEffect, parseEquipGroup, parseEquipSuit, parseItemAffixes, calculateEquipAttributeRange, buildEquipAttributeItems, getEquipEnhanceConfig, fetchItemData } from '../utils/itemParser'
 import { getRarityName } from '../utils/gameMappings'
 import AcquisitionRewards from './AcquisitionRewards.vue'
 import { getRuneSourceTarget } from '../utils/runeData.js'
@@ -1294,9 +1294,21 @@ const handleUpgradeEquipClick = (typeId) => {
 // === 装备属性计算 ===
 const selectedAttrQuality = ref(5)
 const selectedEnhanceLevel = ref(0)
-const equipEnhanceConfig = computed(() => getEquipEnhanceConfig())
-const enhanceRatePercent = computed(() => Math.round(equipEnhanceConfig.value.attUp * 100))
-const enhanceBonusPercent = computed(() => Math.round(selectedEnhanceLevel.value * equipEnhanceConfig.value.attUp * 100))
+const equipEnhanceConfig = ref(getEquipEnhanceConfig())
+
+const refreshEnhanceConfig = () => {
+  const cfg = getEquipEnhanceConfig()
+  if (!cfg || !cfg.maxLevel) {
+    fetchItemData().then(() => {
+      equipEnhanceConfig.value = getEquipEnhanceConfig()
+    }).catch(() => {})
+  } else {
+    equipEnhanceConfig.value = cfg
+  }
+}
+
+const enhanceRatePercent = computed(() => Math.round((equipEnhanceConfig.value?.attUp || 0) * 100))
+const enhanceBonusPercent = computed(() => Math.round(selectedEnhanceLevel.value * (equipEnhanceConfig.value?.attUp || 0) * 100))
 
 const availableQualities = computed(() => {
   if (!props.item || props.item.itemType !== 2) return new Set([1, 2, 3, 4, 5, 6])
@@ -1346,6 +1358,12 @@ watch(() => props.item, (newVal) => {
       selectedAttrQuality.value = Array.from(available)[0] || 5
     }
     selectedEnhanceLevel.value = 0
+  }
+}, { immediate: true })
+
+watch([() => props.item, () => props.visible], () => {
+  if (props.visible && props.item?.itemType === 2) {
+    refreshEnhanceConfig()
   }
 }, { immediate: true })
 

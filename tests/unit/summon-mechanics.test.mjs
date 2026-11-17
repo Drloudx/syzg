@@ -196,3 +196,49 @@ test('产物不携带「描述与配置不一致」的标注字段', () => {
     assert.ok(!keys.includes('descMismatches'), `${e.summon.monTypeId} 带了 descMismatches`)
   }
 })
+
+/**
+ * 🔴 召唤物造成伤害的属性与类型完整性（准确包含 elementType 与 damageType）。
+ */
+test('召唤物伤害类型准确提取（含风/火等元素属性）', () => {
+  const byMon = new Map()
+  for (const e of summonEntries) if (!byMon.has(e.summon.monTypeId)) byMon.set(e.summon.monTypeId, e.summon)
+
+  // 德莉侍从：风属性魔法
+  const deliLong = byMon.get('060_1')
+  assert.ok(deliLong, '应有德莉弓箭手护卫')
+  assert.deepEqual(deliLong.damageTypes, ['风属性魔法'], '弓箭手护卫应为风属性魔法')
+  assert.deepEqual(deliLong.split?.damageTypes, ['风属性魔法'], '分裂弓箭手护卫应为风属性魔法')
+
+  const deliNear = byMon.get('060_2')
+  assert.ok(deliNear, '应有德莉剑盾护卫')
+  assert.deepEqual(deliNear.damageTypes, ['风属性魔法'], '剑盾护卫应为风属性魔法')
+
+  // 乌尔勒浮游炮：火属性物理
+  const ule = byMon.get('065Summon1')
+  assert.ok(ule, '应有乌尔勒先时浮游炮')
+  assert.deepEqual(ule.damageTypes, ['火属性物理'], '先时浮游炮应为火属性物理')
+
+  const uleTalent = byMon.get('065Summon2')
+  assert.ok(uleTalent, '应有乌尔勒驻守浮游炮')
+  assert.deepEqual(uleTalent.damageTypes, ['火属性物理'], '驻守浮游炮应为火属性物理')
+
+  // 安娜：火精灵与风精灵
+  const annaFire = byMon.get('hero029_1')
+  assert.ok(annaFire, '应有安娜火精灵')
+  assert.deepEqual(annaFire.damageTypes, ['火属性魔法'], '火精灵应为火属性魔法')
+
+  const annaWind = byMon.get('hero029_2')
+  assert.ok(annaWind, '应有安娜风精灵')
+  assert.deepEqual(annaWind.damageTypes, ['风属性魔法'], '风精灵应为风属性魔法')
+
+  // 露帕水精灵：纯魔法（无元素）
+  const lupa = byMon.get('hero034_mon')
+  assert.ok(lupa, '应有水精灵')
+  assert.deepEqual(lupa.damageTypes, ['魔法'], '水精灵应为纯魔法')
+
+  // 贝拉多娜吸血蝙蝠：火属性物理
+  const bella = byMon.get('hero026_1')
+  assert.ok(bella, '应有贝拉多娜蝙蝠')
+  assert.deepEqual(bella.damageTypes, ['火属性物理'], '贝拉多娜蝙蝠应为火属性物理')
+})

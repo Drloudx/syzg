@@ -404,6 +404,7 @@
                   </div>
                   <div v-if="!isSkillMechanicsExpanded" class="mechanics-preview-tags">
                     <UiTag v-if="currentSkillMechanics.damage?.formLabel" tone="default" size="sm">{{ currentSkillMechanics.damage.formLabel }}</UiTag>
+                    <UiTag v-if="currentSummons.length" tone="accent" size="sm">部署召唤</UiTag>
                     <UiTag v-for="label in currentSkillMechanics.damage?.typeLabels" :key="`prev-type-${label}`" tone="danger" size="sm">{{ label }}</UiTag>
                     <UiTag v-for="label in currentSkillMechanics.damage?.elementLabels" :key="`prev-elem-${label}`" tone="accent" size="sm">{{ label }}属性</UiTag>
                     <UiTag v-if="currentSkillMechanics.damage?.crit && currentSkillMechanics.damage.crit !== 'na'" :tone="critTone(currentSkillMechanics.damage.crit)" size="sm">{{ critLabel(currentSkillMechanics.damage.crit) }}</UiTag>
@@ -415,6 +416,7 @@
                     <span class="mechanics-label">结算</span>
                     <div class="mechanics-tags-wrap">
                       <UiTag v-if="currentSkillMechanics.damage?.formLabel" tone="default">{{ currentSkillMechanics.damage.formLabel }}</UiTag>
+                      <UiTag v-if="currentSummons.length" tone="accent">部署召唤</UiTag>
                       <UiTag v-for="label in currentSkillMechanics.damage?.typeLabels" :key="`type-${label}`" tone="danger">{{ label }}</UiTag>
                       <UiTag v-for="label in currentSkillMechanics.damage?.elementLabels" :key="`element-${label}`" tone="accent">{{ label }}属性</UiTag>
                       <UiTag v-if="currentSkillMechanics.damage?.crit && currentSkillMechanics.damage.crit !== 'na'" :tone="critTone(currentSkillMechanics.damage.crit)">{{ critLabel(currentSkillMechanics.damage.crit) }}</UiTag>
@@ -453,69 +455,76 @@
                     口径依据源码 `Unit.cs:1467-1484`：继承只有生命/攻击/防御；
                     攻速·暴击·爆伤固定取自怪物配置表，不随角色变化。
                   -->
-                  <template v-for="(summon, sIdx) in currentSummons" :key="`summon-${sIdx}-${summon.monTypeId}`">
-                    <div class="mechanics-row mechanics-summon-row">
-                      <span class="mechanics-label">召唤物</span>
-                      <span class="mechanics-text">
-                        <strong>{{ summon.name }}</strong>
-                        <template v-if="summon.maxCount > 0"> ×{{ summon.maxCount }}</template>
-                        <template v-if="summon.duration > 0"> · 持续 {{ summon.duration }} 秒</template>
-                        <template v-if="summon.damageTypes?.length"> · 造成{{ summon.damageTypes.join('/') }}伤害</template>
-                      </span>
-                    </div>
-                    <div v-if="summon.inherit.length" class="mechanics-row">
-                      <span class="mechanics-label">继承比例</span>
-                      <span class="mechanics-text">{{ summon.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
-                    </div>
-                    <!--
-                      不主动攻击的召唤物（noAtk=1，如反击假人）不显示攻速/暴击/爆伤 ——
-                      那些是配置表默认占位值，`UnitAI.cs:701` 的 `WaitUntil(noAtk<=0)` 永不满足。
-                    -->
-                    <div v-if="summon.attackNote" class="mechanics-row">
-                      <span class="mechanics-label">攻击方式</span>
-                      <span class="mechanics-text">{{ summon.attackNote.text }}</span>
-                    </div>
-                    <div v-if="summon.fixed.length" class="mechanics-row">
-                      <span class="mechanics-label">固定属性</span>
-                      <span class="mechanics-text">{{ summon.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
-                    </div>
-                    <div v-if="summon.skills?.length" class="mechanics-row">
-                      <span class="mechanics-label">自身技能</span>
-                      <span class="mechanics-text">{{ summon.skills.join(' · ') }}</span>
-                    </div>
-                    <template v-if="summon.split">
-                      <div class="mechanics-row mechanics-summon-split-row">
-                        <span class="mechanics-label">分裂单位</span>
+                  <div v-if="currentSummons.length" class="mechanics-summons-group">
+                    <div
+                      v-for="(summon, sIdx) in currentSummons"
+                      :key="`summon-${sIdx}-${summon.monTypeId}`"
+                      class="mechanics-summon-card"
+                    >
+                      <div class="mechanics-row mechanics-summon-row">
+                        <span class="mechanics-label">召唤物</span>
                         <span class="mechanics-text">
-                          <strong>{{ summon.split.name }}</strong>
-                          <template v-if="summon.split.maxCount > 0"> ×{{ summon.split.maxCount }}</template>
-                          <template v-if="summon.split.duration > 0"> · 持续 {{ summon.split.duration }} 秒</template>
-                          <template v-if="summon.split.skillName"> · 由「{{ summon.split.skillName }}」产生</template>
+                          <strong>{{ summon.name }}</strong>
+                          <template v-if="summon.maxCount > 0"> ×{{ summon.maxCount }}</template>
+                          <template v-if="summon.duration > 0"> · 持续 {{ summon.duration }} 秒</template>
+                          <template v-if="summon.damageTypes?.length"> · 造成{{ summon.damageTypes.join('/') }}伤害</template>
                         </span>
                       </div>
-                      <div v-if="summon.split.inherit.length" class="mechanics-row">
-                        <span class="mechanics-label">分裂继承</span>
-                        <span class="mechanics-text">{{ summon.split.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                      <div v-if="summon.inherit.length" class="mechanics-row">
+                        <span class="mechanics-label">继承比例</span>
+                        <span class="mechanics-text">{{ summon.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
                       </div>
-                      <div v-if="summon.split.fixed.length" class="mechanics-row">
-                        <span class="mechanics-label">分裂固定属性</span>
-                        <span class="mechanics-text">{{ summon.split.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                      <!--
+                        不主动攻击的召唤物（noAtk=1，如反击假人）不显示攻速/暴击/爆伤 ——
+                        那些是配置表默认占位值，`UnitAI.cs:701` 的 `WaitUntil(noAtk<=0)` 永不满足。
+                      -->
+                      <div v-if="summon.attackNote" class="mechanics-row">
+                        <span class="mechanics-label">攻击方式</span>
+                        <span class="mechanics-text">{{ summon.attackNote.text }}</span>
                       </div>
-                      <div v-if="summon.split.skills?.length" class="mechanics-row">
-                        <span class="mechanics-label">分裂技能</span>
-                        <span class="mechanics-text">{{ summon.split.skills.join(' · ') }}</span>
+                      <div v-if="summon.fixed.length" class="mechanics-row">
+                        <span class="mechanics-label">固定属性</span>
+                        <span class="mechanics-text">{{ summon.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
                       </div>
-                    </template>
-                    <div v-if="summon.bonusNotes.length" class="mechanics-row mechanics-summon-bonus-row">
-                      <span class="mechanics-label">加成规则</span>
-                      <span class="mechanics-text">
-                        <span v-for="(note, noteIdx) in summon.bonusNotes" :key="note.key" class="summon-bonus-note">
-                          <template v-if="noteIdx > 0"> · </template>
-                          <em>{{ note.label }}</em>：{{ note.value }}
+                      <div v-if="summon.skills?.length" class="mechanics-row">
+                        <span class="mechanics-label">自身技能</span>
+                        <span class="mechanics-text">{{ summon.skills.join(' · ') }}</span>
+                      </div>
+                      <div v-if="summon.split" class="mechanics-summon-split-card">
+                        <div class="mechanics-row mechanics-summon-split-row">
+                          <span class="mechanics-label">分裂单位</span>
+                          <span class="mechanics-text">
+                            <strong>{{ summon.split.name }}</strong>
+                            <template v-if="summon.split.maxCount > 0"> ×{{ summon.split.maxCount }}</template>
+                            <template v-if="summon.split.duration > 0"> · 持续 {{ summon.split.duration }} 秒</template>
+                            <template v-if="summon.split.damageTypes?.length"> · 造成{{ summon.split.damageTypes.join('/') }}伤害</template>
+                            <template v-if="summon.split.skillName"> · 由「{{ summon.split.skillName }}」产生</template>
+                          </span>
+                        </div>
+                        <div v-if="summon.split.inherit.length" class="mechanics-row">
+                          <span class="mechanics-label">分裂继承</span>
+                          <span class="mechanics-text">{{ summon.split.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                        </div>
+                        <div v-if="summon.split.fixed.length" class="mechanics-row">
+                          <span class="mechanics-label">分裂固定属性</span>
+                          <span class="mechanics-text">{{ summon.split.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                        </div>
+                        <div v-if="summon.split.skills?.length" class="mechanics-row">
+                          <span class="mechanics-label">分裂技能</span>
+                          <span class="mechanics-text">{{ summon.split.skills.join(' · ') }}</span>
+                        </div>
+                      </div>
+                      <div v-if="summon.bonusNotes.length" class="mechanics-row mechanics-summon-bonus-row">
+                        <span class="mechanics-label">加成规则</span>
+                        <span class="mechanics-text">
+                          <span v-for="(note, noteIdx) in summon.bonusNotes" :key="note.key" class="summon-bonus-note">
+                            <template v-if="noteIdx > 0"> · </template>
+                            <em>{{ note.label }}</em>：{{ note.value }}
+                          </span>
                         </span>
-                      </span>
+                      </div>
                     </div>
-                  </template>
+                  </div>
                   <div v-if="currentSkillMechanics.conditions?.length" class="mechanics-row mechanics-condition-row">
                     <span class="mechanics-label">机制说明</span>
                     <span class="mechanics-text">{{ currentSkillMechanics.conditions.join('；') }}</span>
@@ -2203,8 +2212,40 @@ const handleGiftClick = (giftId) => {
   color: var(--gold, #8a6a1f);
 }
 
-/* 召唤物属性行：与「机制说明」区分开，但仍属同一信息层 */
+/* 召唤物属性分组与卡片 */
+.mechanics-summons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 2px 0;
+}
+
+.mechanics-summon-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  background: rgba(138, 106, 31, 0.05);
+  border: 1px solid rgba(138, 106, 31, 0.16);
+  border-radius: 6px;
+}
+
 .mechanics-summon-row .mechanics-text strong {
+  color: var(--gold, #8a6a1f);
+}
+
+.mechanics-summon-split-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 3px 0 2px 8px;
+  padding: 6px 8px;
+  background: rgba(138, 106, 31, 0.04);
+  border-left: 2px solid var(--gold, #8a6a1f);
+  border-radius: 0 4px 4px 0;
+}
+
+.mechanics-summon-split-row .mechanics-text strong {
   color: var(--gold, #8a6a1f);
 }
 

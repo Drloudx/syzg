@@ -265,54 +265,62 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
   '03403': {
     reviewStatus: 'verified',
     damage: {
-      form: 'summon',
-      formLabel: '召唤物攻击',
-      types: ['magicAtk'],
-      typeLabels: ['魔法'],
+      form: 'none',
+      formLabel: '无直接伤害',
+      types: [],
+      typeLabels: [],
       elements: [],
       elementLabels: [],
-      scaling: ['magicAtk'],
-      scalingLabels: ['魔法攻击'],
-      crit: 'yes'
+      scaling: [],
+      scalingLabels: [],
+      multiplier: 0,
+      segments: [],
+      crit: 'na'
     },
     bonuses: {
-      applies: ['magicAtk', 'magicDamage', 'magicPenetration', 'normalDamage', 'normalAndSkillDamage'],
-      excludes: ['skillDamage']
+      applies: [],
+      excludes: []
     },
-    conditions: [
-      '魔水精灵喷射魔水弹为远程普通攻击，按魔法伤害结算，可以暴击（召唤物基础暴击率25%、暴击伤害125%）。',
-      '魔水精灵继承露帕对应技能等级比例的法术强度与最大生命值。'
-    ],
+    features: [],
+    outcomes: ['statInherit'],
+    outcomeLabels: ['属性继承'],
+    effectScalings: ['magicAtk', 'maxHp'],
+    effectScalingLabels: ['法术强度', '最大生命'],
+    conditions: [],
     notes: []
   },
   '06502': {
     reviewStatus: 'verified',
     damage: {
-      form: 'summon',
-      formLabel: '召唤物攻击',
-      types: ['phyAtk'],
-      typeLabels: ['物理'],
-      elements: ['fire'],
-      elementLabels: ['火'],
-      scaling: ['phyAtk'],
-      scalingLabels: ['物理攻击'],
-      crit: 'yes'
+      form: 'none',
+      formLabel: '无直接伤害',
+      types: [],
+      typeLabels: [],
+      elements: [],
+      elementLabels: [],
+      scaling: [],
+      scalingLabels: [],
+      multiplier: 0,
+      segments: [],
+      crit: 'na'
     },
     bonuses: {
-      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'fireDamage', 'normalDamage', 'normalAndSkillDamage'],
-      excludes: ['skillDamage']
+      applies: [],
+      excludes: []
     },
-    conditions: [
-      '浮游炮自动攻击为远程普通攻击，按火属性物理伤害结算，可以暴击（召唤物基础暴击率12%、暴击伤害150%）。',
-      '浮游炮继承乌尔勒60%攻击力、20%防御力与80%最大生命值。'
-    ],
+    features: [],
+    outcomes: ['statInherit'],
+    outcomeLabels: ['属性继承'],
+    effectScalings: ['phyAtk', 'maxHp'],
+    effectScalingLabels: ['物理攻击', '最大生命'],
+    conditions: [],
     notes: []
   },
   '02603': {
     reviewStatus: 'verified',
     conditions: [
       '技能本体造成的范围斩击按技能伤害结算，不能暴击。',
-      '召唤出的吸血蝙蝠攻击为近战普通攻击，按火属性物理伤害结算，可以暴击（蝙蝠基础暴击率35%、暴击伤害125%），攻击附带吸血恢复。'
+      '召唤出的吸血蝙蝠攻击为近战普通攻击，造成火属性物理伤害，可以暴击（蝙蝠基础暴击率35%、暴击伤害125%），攻击附带吸血恢复；吸血蝙蝠不继承角色装备的火属性伤害加成。'
     ],
     notes: []
   },
@@ -320,7 +328,7 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
     reviewStatus: 'verified',
     conditions: [
       '技能发射的音波斩击按技能伤害结算，不能暴击。',
-      '召唤出的火精灵自动攻击为火属性普通攻击，可以暴击（火精灵基础暴击率25%、暴击伤害125%）。'
+      '召唤出的火精灵自动攻击为火属性普通攻击，造成火属性魔法伤害，可以暴击（火精灵基础暴击率25%、暴击伤害125%）；火精灵不继承角色装备的火属性伤害加成。'
     ],
     notes: []
   },
@@ -328,31 +336,35 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
     reviewStatus: 'verified',
     conditions: [
       '技能为群体治疗，无直接伤害。',
-      '召唤出的风精灵持续演奏，为附近的友方单位提供持续治疗。'
+      '召唤出的风精灵持续演奏，为附近的友方单位提供持续治疗；其音波攻击造成风属性魔法伤害。'
     ],
     notes: []
   },
   '06504': {
     reviewStatus: 'verified',
     damage: {
-      form: 'summon',
-      formLabel: '召唤物攻击',
-      types: ['phyAtk'],
-      typeLabels: ['物理'],
-      elements: ['fire'],
-      elementLabels: ['火'],
-      scaling: ['phyAtk'],
-      scalingLabels: ['物理攻击'],
-      crit: 'yes'
+      form: 'none',
+      formLabel: '无直接伤害',
+      types: [],
+      typeLabels: [],
+      elements: [],
+      elementLabels: [],
+      scaling: [],
+      scalingLabels: [],
+      multiplier: 0,
+      segments: [],
+      crit: 'na'
     },
     bonuses: {
-      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'fireDamage', 'normalDamage', 'normalAndSkillDamage'],
-      excludes: ['skillDamage']
+      applies: [],
+      excludes: []
     },
-    conditions: [
-      '驻守浮游炮自动攻击为远程普通攻击，按火属性物理伤害结算，可以暴击（浮游炮基础暴击率20%、暴击伤害125%）。',
-      '浮游炮继承乌尔勒100%物理攻击力与80%最大生命值。'
-    ],
+    features: [],
+    outcomes: ['statInherit'],
+    outcomeLabels: ['属性继承'],
+    effectScalings: ['phyAtk', 'maxHp'],
+    effectScalingLabels: ['物理攻击', '最大生命'],
+    conditions: [],
     notes: []
   },
   '04604': {
@@ -529,10 +541,14 @@ function mergeMechanics(base, override) {
     ...override,
     damage: { ...base.damage, ...(override.damage || {}) },
     bonuses: { ...base.bonuses, ...(override.bonuses || {}) },
-    features: unique([...(base.features || []), ...(override.features || [])]),
-    effects: unique([...(base.effects || []), ...(override.effects || [])]),
-    conditions: unique([...(base.conditions || []), ...(override.conditions || [])]),
-    notes: unique([...(base.notes || []), ...(override.notes || [])])
+    features: override.features !== undefined ? override.features : unique([...(base.features || []), ...(override.features || [])]),
+    effects: override.effects !== undefined ? override.effects : unique([...(base.effects || []), ...(override.effects || [])]),
+    outcomes: override.outcomes !== undefined ? override.outcomes : unique([...(base.outcomes || []), ...(override.outcomes || [])]),
+    outcomeLabels: override.outcomeLabels !== undefined ? override.outcomeLabels : (override.outcomes ? override.outcomes.map(o => OUTCOME_LABELS[o] || o) : base.outcomeLabels),
+    effectScalings: override.effectScalings !== undefined ? override.effectScalings : base.effectScalings,
+    effectScalingLabels: override.effectScalingLabels !== undefined ? override.effectScalingLabels : base.effectScalingLabels,
+    conditions: override.conditions !== undefined ? override.conditions : unique([...(base.conditions || []), ...(override.conditions || [])]),
+    notes: override.notes !== undefined ? override.notes : unique([...(base.notes || []), ...(override.notes || [])])
   }
   return merged
 }
@@ -746,13 +762,8 @@ export function buildSummonMechanics(levelValue, summonMon, summonData = null, b
    */
   const bonusNotes = extendsSummoner
     ? [
-      /*
-       * 🔴 **只列「继承什么」，不列「不继承什么」**。
-       * 源码 `Unit.cs:1368-1675` 的 `InitSummonUnitIE` 全程只读召唤师 5 个属性
-       * （`phyAtk`/`magicAtk`/`phyDef`/`magicDef`/`maxHp`，见 L1471-1482），其余一概不读。
-       * 写清这 5 项，读者自然知道别的都没有 —— 比再列一长串「不继承」更准也更短。
-       */
       { key: 'inherited', label: '继承', value: '只继承物攻、魔攻、物防、魔防、生命（按上述比例）' },
+      { key: 'elementLimit', label: '属性结算', value: '攻击自带对应元素属性，但独立结算，不继承角色装备的元素伤害加成' },
       { key: 'teamBuff', label: '全体加成', value: '生效（召唤物计入友方单位列表）' }
     ]
     : [

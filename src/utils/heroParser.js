@@ -433,10 +433,35 @@ export const fetchHeroData = createCachedLoader(async () => {
  * 召唤物（如德莉的剑盾护卫/弓箭手护卫）不在怪物图鉴单列，但其技能数据在 skill 表里，
  * 角色图鉴的召唤物行可展示这些技能名，避免读者以为召唤物没有技能。
  */
+const SUMMON_DAMAGE_TYPE_LABELS = {
+  phyAtk: '物理',
+  magicAtk: '魔法',
+  realAtk: '真实'
+}
+
+const SUMMON_ELEMENT_LABELS = {
+  water: '水',
+  fire: '火',
+  wind: '风',
+  earth: '地'
+}
+
+function findDamagesInObject(obj, out = []) {
+  if (!obj || typeof obj !== 'object') return out
+  if (obj.damage && typeof obj.damage === 'object' && obj.damage.damageType) {
+    out.push(obj.damage)
+  }
+  for (const v of Object.values(obj)) {
+    findDamagesInObject(v, out)
+  }
+  return out
+}
+
 /**
- * 从一组技能的 levelData.aniEvents 里提取「造成伤害的属性类型」集合：
- *   magicAtk → 魔法，phyAtk → 物理，realAtk → 真实。返回 ['物理']/['魔法']/['物理','魔法'] 等。
- * 用于在召唤物行标注「造成物理/魔法伤害」，避免玩家误以为取决于继承哪种攻击。
+ * 从一组技能的 levelData.aniEvents 里提取「造成伤害的属性与类型」集合：
+ *   如 magicAtk + wind → 风属性魔法，phyAtk + fire → 火属性物理，magicAtk → 魔法。
+ * 返回 ['风属性魔法']/['火属性物理']/['魔法'] 等。
+ * 用于在召唤物行标注「造成X属性物理/魔法伤害」，准确反映召唤物的攻击属性与类型。
  */
 function collectDamageTypes(skillDatas, skillList) {
   const set = new Set()
@@ -444,17 +469,17 @@ function collectDamageTypes(skillDatas, skillList) {
     const s = skillDatas[entry?.skillId]
     const lv1 = s?.levelData?.['1']
     if (!lv1) continue
-    const s2 = JSON.stringify(lv1.aniEvents || '')
-    for (const m of s2.matchAll(/"damageType"\s*:\s*"([^"]+)"/g)) {
-      const t = m[1]
-      if (t === 'magicAtk') set.add('魔法')
-      else if (t === 'phyAtk') set.add('物理')
-      else if (t === 'realAtk') set.add('真实')
+    const damages = findDamagesInObject(lv1.aniEvents || lv1)
+    for (const dmg of damages) {
+      const typeLabel = SUMMON_DAMAGE_TYPE_LABELS[dmg.damageType] || dmg.damageType
+      const elemLabel = SUMMON_ELEMENT_LABELS[dmg.elementType]
+      if (typeLabel) {
+        if (elemLabel) set.add(`${elemLabel}属性${typeLabel}`)
+        else set.add(typeLabel)
+      }
     }
   }
-  // 稳定顺序：物理 → 魔法 → 真实
-  const order = ['物理', '魔法', '真实']
-  return order.filter(x => set.has(x))
+  return Array.from(set)
 }
 
 function attachSummonSkills(summon, monDatas, skillDatas) {
