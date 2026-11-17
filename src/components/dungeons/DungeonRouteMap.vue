@@ -87,7 +87,9 @@ const props = defineProps({
   routes: { type: Array, default: () => [] },
   routeIndex: { type: Number, default: 0 },
   roomId: { type: String, default: '' },
-  variantId: { type: String, default: '' }
+  variantId: { type: String, default: '' },
+  // 适配整图：初始/重置时缩放到整张地图可见并居中（日常分支图节点少、默认 70% 会截边）
+  fit: { type: Boolean, default: false }
 })
 const emit = defineEmits(['update:routeIndex', 'update:roomId', 'update:variantId'])
 
@@ -257,8 +259,22 @@ const resetViewport = () => {
 }
 const queueViewportReset = () => nextTick(() => requestAnimationFrame(resetViewport))
 const resetMap = () => {
-  routeZoom.value = DEFAULT_ROUTE_ZOOM
   expandedNodes.value = new Set()
+  if (props.fit) {
+    // 适配整图：测量容器后按容器/地图尺寸算缩放（留 12px 余量），并居中
+    nextTick(() => requestAnimationFrame(() => {
+      const { w, h } = measureViewport()
+      const size = dimensions(displayLayer.value)
+      if (w > 0 && h > 0 && size.width > 0 && size.height > 0) {
+        const z = Math.min(w / size.width, (h - 12) / size.height)
+        setZoom(Math.max(MIN_ROUTE_ZOOM, Math.min(MAX_ROUTE_ZOOM, z)))
+        panX.value = Math.round((w - size.width * routeZoom.value) / 2)
+        panY.value = Math.round((h - size.height * routeZoom.value) / 2)
+      }
+    }))
+    return
+  }
+  routeZoom.value = DEFAULT_ROUTE_ZOOM
   queueViewportReset()
 }
 const zoomBy = amount => {
@@ -416,8 +432,17 @@ function orientLayer(layer) {
   const sourceNodes = layer.nodes.map(node => ({ ...node, sourceX: Number(node.x || 0), sourceY: Number(node.y || 0) }))
   const start = sourceNodes.find(node => node.id === layer.startRoomId) || sourceNodes[0]
   const end = sourceNodes.find(node => node.id === layer.endRoom) || sourceNodes.at(-1)
-  const spanX = Number(end.sourceX - start.sourceX) || 1
-  const spanY = Number(end.sourceY - start.sourceY) || 1
+  /*
+   * 轴跨度用「起点→终点」方向；但当两者在某一轴几乎重合时（如日常分支图起终点同 Y），
+   * 差值趋近 0 会把其余节点的偏移放大到天文数字（实测 -43520px）。
+   * 仅在这种情况下回退到该轴的包围盒跨度；正常副本起终点差异远大于 1px，行为不变。
+   */
+  const boxSpanX = Math.max(...sourceNodes.map(n => n.sourceX)) - Math.min(...sourceNodes.map(n => n.sourceX))
+  const boxSpanY = Math.max(...sourceNodes.map(n => n.sourceY)) - Math.min(...sourceNodes.map(n => n.sourceY))
+  let spanX = end.sourceX - start.sourceX
+  let spanY = end.sourceY - start.sourceY
+  if (Math.abs(spanX) < 1) spanX = boxSpanX || 1
+  if (Math.abs(spanY) < 1) spanY = boxSpanY || 1
   const rawNodes = sourceNodes.map(node => {
     const progressX = (node.sourceX - start.sourceX) / spanX
     const progressY = (node.sourceY - start.sourceY) / spanY

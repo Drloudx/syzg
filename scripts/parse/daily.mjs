@@ -141,6 +141,62 @@ function parseCondition(conditionRes, condId, taskRes, battleRes, stageIndex) {
   }
 }
 
+/**
+ * 从 battle 的 `layers[].layerDatas[].map` 提取路线布局（levelRoom 坐标 + link 连线）。
+ * 与 `chapters.mjs:73 routeBattleOf` 同构，供日常页分支路线图（DungeonRouteMap）使用。
+ * 线性关卡（单路无并行）前端不渲染地图，但仍保留 routes，由 `parallelMap` 判定是否分支。
+ */
+function buildDailyRoutes(battleConf) {
+  const layers = []
+  let parallel = false
+  for (const layer of battleConf?.layers || []) {
+    for (const layerData of layer.layerDatas || []) {
+      const map = layerData.map || {}
+      const roomsCfg = layerData.rooms || {}
+      // map.levelRoom 只有 {typeId,x,y}；房间图标/名称在 layerData.rooms[roomId] 上
+      const nodes = (Array.isArray(map.levelRoom) ? map.levelRoom : []).map(n => {
+        const rc = roomsCfg[n.typeId] || {}
+        const icon = Number(rc.roomIcon) || 0
+        const label = rc.name || n.typeId
+        return {
+          id: n.typeId,
+          typeId: n.typeId,
+          x: Number(n.x) || 0,
+          y: Number(n.y) || 0,
+          roomId: n.typeId,
+          icon,
+          label,
+          // DungeonRouteMap 按 variantOptions 渲染节点图标/名称（副本页同构字段）
+          candidates: 0,
+          candidateOptions: [],
+          variantOptions: [{ typeId: n.typeId, name: label, icon }]
+        }
+      })
+      const links = (Array.isArray(map.link) ? map.link : []).map(l => ({
+        rooms: Array.isArray(l.levelRooms) ? l.levelRooms : [],
+        x1: Number(l.x1) || 0,
+        y1: Number(l.y1) || 0,
+        x2: Number(l.x2) || 0,
+        y2: Number(l.y2) || 0
+      }))
+      // 边数 ≥ 节点数 ⇒ 存在环 ⇒ 并行/分支路线（线性单路的边数恒为节点数-1）
+      if (nodes.length > 1 && links.length >= nodes.length) parallel = true
+      layers.push({
+        id: layerData.layerId || `layer-${layers.length + 1}`,
+        name: layerData.name || `布局 ${layers.length + 1}`,
+        chance: Number(layerData.chance) || 0,
+        startRoomId: layerData.startRoomId || '',
+        endRoom: layerData.endRoom || '',
+        startEntrance: layerData.startEntrance || '',
+        size: map.size || { w: 1600, h: 1000 },
+        nodes,
+        links
+      })
+    }
+  }
+  return { routes: layers, parallelMap: parallel }
+}
+
 /** 从 battle 的所有房间收集怪物（按 typeId 去重，保留首次出现的顺序） */
 function parseStageRoomsAndWaves(battleConf, roomRes, monRes, roomCollectRes, roomCollectTypeRes, rewardRes, itemRes, equipConfig) {
   const rooms = []
@@ -494,11 +550,25 @@ export function buildDailyFile() {
       const battle = battleRes[stage.battle] || null
       const reward = battle ? parseReward(rewardRes, itemRes, battle.reward) : null
       const rewardEntries = battle?.reward && rewardRes?.[battle.reward]
-        ? compactRewards(buildRewardEntries(rewardRes[battle.reward], itemRes, null, equipConfig))
+        ? compactRewards(buildRewardEntries(rewardRes[battle.reward], itemRes, null, equipConfig, { estimateMultiDraw: true }))
         : []
       const { rooms, waves, monsters } = battle
         ? parseStageRoomsAndWaves(battle, roomRes, monRes, roomCollectRes, roomCollectTypeRes, rewardRes, itemRes, equipConfig)
         : { rooms: [], waves: [], monsters: [] }
+      const { routes, parallelMap } = battle ? buildDailyRoutes(battle) : { routes: [], parallelMap: false }
+      // 地图节点显示名对齐房间卡标题（rooms[].name），避免节点叫「林地入口」而卡片叫「药草山林 3」
+      if (routes.length) {
+        const roomNameById = new Map(rooms.map(r => [r.roomId, r.name]))
+        for (const layer of routes) {
+          for (const node of layer.nodes) {
+            const nm = roomNameById.get(node.id)
+            if (!nm) continue
+            node.label = nm
+            // DungeonRouteMap 显示 variant.name，需一并覆盖
+            if (node.variantOptions?.[0]) node.variantOptions[0].name = nm
+          }
+        }
+      }
 
       const effectiveLevel = (battle && Number(battle.battleLevel)) || rooms.find(r => r.level > 0)?.level || 0
       stages.push({
@@ -518,6 +588,9 @@ export function buildDailyFile() {
         rooms,
         waves,
         monsters,
+        /* 路线布局：并行/分支地图供日常页渲染 DungeonRouteMap；线性关卡前端忽略 */
+        routes,
+        parallelMap,
         reward,
         rewardEntries
       })

@@ -250,11 +250,14 @@
           <span class="ing-count">× {{ ing.count }}</span>
         </div>
       </div>
+      <div v-if="recipeInfo.sourceInfo?.craftNote" class="recipe-modal-craft-note">
+        {{ recipeInfo.sourceInfo.craftNote }}
+      </div>
     </UiSection>
 
     <UiSection v-if="recipeInfo && PREVIEW_AVAILABLE_IDS.has(recipeInfo.typeId)" title="预览图">
       <div class="recipe-preview-box">
-        <img :src="getImageUrl(`/menu_prev/${recipeInfo.typeId}_prev.webp`)" alt="预览图" class="recipe-prev-img" />
+        <img :src="getImageUrl(getRecipePreviewPath(recipeInfo.typeId))" alt="预览图" class="recipe-prev-img" />
       </div>
     </UiSection>
 
@@ -307,6 +310,45 @@
           <div v-for="(affix, aIdx) in group.prefixes" :key="aIdx" class="affix-row">
             <div class="affix-name">{{ affix.skillName }}</div>
             <div class="affix-desc" v-html="affix.desHtml"></div>
+
+            <!-- 词缀召唤物属性卡片 -->
+            <div v-if="affix.summons && affix.summons.length" class="affix-summons-container">
+              <div v-for="(summon, sIdx) in affix.summons" :key="sIdx" class="affix-summon-card">
+                <div class="mechanics-row mechanics-summon-row">
+                  <span class="mechanics-label">召唤物</span>
+                  <span class="mechanics-text">
+                    <strong>{{ summon.name }}</strong>
+                    <template v-if="summon.maxCount > 0"> ×{{ summon.maxCount }}</template>
+                    <template v-if="summon.duration > 0"> · 持续 {{ summon.duration }} 秒</template>
+                    <template v-if="summon.damageTypes?.length"> · 造成{{ summon.damageTypes.join('/') }}伤害</template>
+                  </span>
+                </div>
+                <div v-if="summon.inherit?.length" class="mechanics-row">
+                  <span class="mechanics-label">继承属性</span>
+                  <span class="mechanics-text">{{ summon.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                </div>
+                <div v-if="summon.attackNote" class="mechanics-row">
+                  <span class="mechanics-label">攻击方式</span>
+                  <span class="mechanics-text">{{ summon.attackNote.text }}</span>
+                </div>
+                <div v-if="summon.fixed?.length" class="mechanics-row">
+                  <span class="mechanics-label">固定属性</span>
+                  <span class="mechanics-text">{{ summon.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                </div>
+                <div v-if="summon.skills?.length" class="mechanics-row">
+                  <span class="mechanics-label">自带技能</span>
+                  <span class="mechanics-text">{{ summon.skills.join(' · ') }}</span>
+                </div>
+                <div v-if="summon.bonusNotes?.length" class="mechanics-row mechanics-summon-bonus-row">
+                  <span class="mechanics-label">机制说明</span>
+                  <span class="mechanics-text">
+                    <span v-for="(note, noteIdx) in summon.bonusNotes" :key="note.key" class="summon-bonus-note">
+                      <em>{{ note.label }}</em>：{{ note.value }}
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -385,6 +427,45 @@
                   <div v-for="(affix, aIdx) in group.prefixes" :key="aIdx" class="affix-row">
                     <div class="affix-name">{{ affix.skillName }}</div>
                     <div class="affix-desc" v-html="affix.desHtml"></div>
+
+                    <!-- 词缀召唤物属性卡片 -->
+                    <div v-if="affix.summons && affix.summons.length" class="affix-summons-container">
+                      <div v-for="(summon, sIdx) in affix.summons" :key="sIdx" class="affix-summon-card">
+                        <div class="mechanics-row mechanics-summon-row">
+                          <span class="mechanics-label">召唤物</span>
+                          <span class="mechanics-text">
+                            <strong>{{ summon.name }}</strong>
+                            <template v-if="summon.maxCount > 0"> ×{{ summon.maxCount }}</template>
+                            <template v-if="summon.duration > 0"> · 持续 {{ summon.duration }} 秒</template>
+                            <template v-if="summon.damageTypes?.length"> · 造成{{ summon.damageTypes.join('/') }}伤害</template>
+                          </span>
+                        </div>
+                        <div v-if="summon.inherit?.length" class="mechanics-row">
+                          <span class="mechanics-label">继承属性</span>
+                          <span class="mechanics-text">{{ summon.inherit.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                        </div>
+                        <div v-if="summon.attackNote" class="mechanics-row">
+                          <span class="mechanics-label">攻击方式</span>
+                          <span class="mechanics-text">{{ summon.attackNote.text }}</span>
+                        </div>
+                        <div v-if="summon.fixed?.length" class="mechanics-row">
+                          <span class="mechanics-label">固定属性</span>
+                          <span class="mechanics-text">{{ summon.fixed.map(item => `${item.label} ${item.value}`).join(' · ') }}</span>
+                        </div>
+                        <div v-if="summon.skills?.length" class="mechanics-row">
+                          <span class="mechanics-label">自带技能</span>
+                          <span class="mechanics-text">{{ summon.skills.join(' · ') }}</span>
+                        </div>
+                        <div v-if="summon.bonusNotes?.length" class="mechanics-row mechanics-summon-bonus-row">
+                          <span class="mechanics-label">机制说明</span>
+                          <span class="mechanics-text">
+                            <span v-for="(note, noteIdx) in summon.bonusNotes" :key="note.key" class="summon-bonus-note">
+                              <em>{{ note.label }}</em>：{{ note.value }}
+                            </span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -786,7 +867,7 @@ import AcquisitionRewards from './AcquisitionRewards.vue'
 import { getRuneSourceTarget } from '../utils/runeData.js'
 import { pushItemDetail, popItemDetail, itemModalState } from '../utils/itemModalState'
 import { fetchWithFallback } from '../utils/request.js'
-import { PREVIEW_AVAILABLE_IDS } from '../utils/recipeUtils'
+import { PREVIEW_AVAILABLE_IDS, getRecipePreviewPath } from '../utils/recipeUtils'
 import { formatHighlightedText, EQUIP_QUALITY_LABELS, translateStatName } from '../utils/gameMappings.js'
 import { compareExchangeSources } from '../utils/exchangeData.js'
 import { isFacilityRecipeHidden, hasBrokenRewardPool } from '../config/blacklist.js'
@@ -2199,6 +2280,16 @@ onBeforeUnmount(cancelBodyScrollRestore)
   gap: 8px;
   flex-wrap: wrap;
 }
+.recipe-modal-craft-note {
+  margin-top: 8px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-main, #3e2a14);
+  background: color-mix(in srgb, var(--text-main, #3e2a14) 6%, transparent);
+  border-left: 3px solid var(--accent, #557574);
+  border-radius: 4px;
+}
 .ingredient-chip {
   display: flex;
   align-items: center;
@@ -2325,6 +2416,71 @@ onBeforeUnmount(cancelBodyScrollRestore)
   color: var(--text-main, #3e2a14);
   font-size: 13px;
   line-height: 1.65;
+}
+
+/* 词缀召唤物属性卡片 */
+.affix-summons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+.affix-summon-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  background: rgba(122, 154, 153, 0.07);
+  border: 1px dashed rgba(122, 154, 153, 0.35);
+  border-radius: 4px;
+}
+.dark-mode .affix-summon-card {
+  background: rgba(122, 154, 153, 0.12);
+  border-color: rgba(147, 179, 178, 0.3);
+}
+.affix-summon-card .mechanics-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: baseline;
+  column-gap: 8px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.affix-summon-card .mechanics-label {
+  color: var(--text-muted, #6b5134);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.affix-summon-card .mechanics-text {
+  min-width: 0;
+  color: var(--text-main, #3e2a14);
+  word-break: break-word;
+}
+.affix-summon-card .mechanics-summon-row .mechanics-text strong {
+  color: var(--gold, #8a6a1f);
+}
+.dark-mode .affix-summon-card .mechanics-summon-row .mechanics-text strong {
+  color: var(--accent-bright, #93b3b2);
+}
+.affix-summon-card .summon-bonus-note em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--text-muted, #6b5134);
+}
+.affix-summon-card .summon-bonus-note:not(:last-child)::after {
+  content: " · ";
+  color: var(--text-muted, #6b5134);
+}
+@media (max-width: 640px) {
+  .affix-summon-card {
+    padding: 6px 8px;
+    gap: 4px;
+  }
+  .affix-summon-card .mechanics-row {
+    grid-template-columns: 64px 1fr;
+    column-gap: 6px;
+    font-size: 11.5px;
+  }
 }
 
 /* ===== 神器进阶 ===== */

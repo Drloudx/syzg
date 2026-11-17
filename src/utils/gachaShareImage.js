@@ -1111,7 +1111,7 @@ function isTouchDevice() {
  *
  * @returns {Promise<'shared'|'downloaded'>}
  */
-export async function shareOrSaveImage(blob, fileName, { title = '', dialogTitle = '' } = {}) {
+export async function shareOrSaveImage(blob, fileName, { title = '', dialogTitle = '', timeoutMs = SHARE_TIMEOUT_MS } = {}) {
   if (isNativePlatform()) {
     const { Filesystem, Directory } = await import('@capacitor/filesystem')
     const { Share } = await import('@capacitor/share')
@@ -1133,7 +1133,7 @@ export async function shareOrSaveImage(blob, fileName, { title = '', dialogTitle
   const file = new File([blob], fileName, { type: 'image/png' })
   if (navigator.canShare?.({ files: [file] })) {
     try {
-      await withTimeout(navigator.share({ files: [file], title }), SHARE_TIMEOUT_MS)
+      await withTimeout(navigator.share({ files: [file], title }), timeoutMs)
       return 'shared'
     } catch (err) {
       // 用户主动取消 → 尊重他的选择，不要偷偷下载
@@ -1160,16 +1160,17 @@ export async function shareOrSaveImage(blob, fileName, { title = '', dialogTitle
  */
 const SHARE_TIMEOUT_MS = 20000
 function withTimeout(promise, ms) {
-  return Promise.race([
-    promise,
-    new Promise((_, reject) => {
-      setTimeout(() => {
-        const err = new Error('分享超时')
-        err.name = 'TimeoutError'
-        reject(err)
-      }, ms)
-    })
-  ])
+  let timer
+  const timeoutPromise = new Promise((_, reject) => {
+    timer = setTimeout(() => {
+      const err = new Error('分享超时')
+      err.name = 'TimeoutError'
+      reject(err)
+    }, ms)
+  })
+  return Promise.race([promise, timeoutPromise]).finally(() => {
+    if (timer) clearTimeout(timer)
+  })
 }
 
 /** 是否原生端。单独包一层便于测试替换（`env.js` 的 `isNative` 是模块加载时定死的）。 */

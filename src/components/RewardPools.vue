@@ -17,7 +17,7 @@
     <template v-if="breakdown">
       <div v-for="group in groups" :key="group.index" class="breakdown-pool">
         <div class="breakdown-pool__heading">
-          <strong class="breakdown-pool__title">奖励池 {{ group.index + 1 }}</strong>
+          <strong class="breakdown-pool__title">{{ group.isFixed ? '固定奖励' : `奖励池 ${group.displayIndex ?? (group.index + 1)}` }}</strong>
           <span class="breakdown-pool__rule">{{ breakdownRuleText(group) }}</span>
           <span v-if="sourceOf" class="breakdown-pool__source">来源：{{ sourceOf(group) }}</span>
         </div>
@@ -62,7 +62,7 @@
                   {{ entry.name }}
                 </div>
                 <div v-if="entryMin(entry) !== undefined && entryMax(entry) !== undefined" class="reward-slot__tooltip-line">
-                  数量：{{ tooltipCountText(entryMin(entry), entryMax(entry)) }}
+                  数量：{{ tooltipCountText(entryMin(entry), entryMax(entry), entry) }}
                 </div>
                 <div class="reward-slot__tooltip-line reward-slot__tooltip-rule">
                   所属规则：{{ tooltipRuleText(group.rate, group.count) }}
@@ -85,19 +85,27 @@
 
             <!-- 弹窗明细：单次抽取与综合获得概率展示 -->
             <div class="reward-slot__breakdown-probs">
-              <span class="reward-slot__breakdown-prob">
-                单次：{{ formatBreakdownProb(resolveEntryProb(entry, group).singleProb) }}
-              </span>
-              <span class="reward-slot__breakdown-prob is-composite">
-                综合：{{ formatBreakdownProb(resolveEntryProb(entry, group).compositeProb) }}
-              </span>
-              <template v-if="groupHasCountRange(group)">
-                <span v-if="hasCountRange(entry)" class="reward-slot__breakdown-prob is-count">
-                  数量：{{ breakdownCountText(entryMin(entry), entryMax(entry)) }}
+              <template v-if="group.isFixed">
+                <span class="reward-slot__breakdown-prob is-composite">
+                  必定获得
                 </span>
-                <span v-else class="reward-slot__breakdown-prob is-count is-placeholder" aria-hidden="true">
-                  &nbsp;
+                <span class="reward-slot__breakdown-prob is-count is-placeholder" aria-hidden="true">&nbsp;</span>
+              </template>
+              <template v-else>
+                <span class="reward-slot__breakdown-prob">
+                  单次：{{ formatBreakdownProb(resolveEntryProb(entry, group).singleProb) }}
                 </span>
+                <span class="reward-slot__breakdown-prob is-composite">
+                  综合：{{ formatBreakdownProb(resolveEntryProb(entry, group).compositeProb) }}
+                </span>
+                <template v-if="groupHasCountRange(group)">
+                  <span v-if="hasCountRange(entry)" class="reward-slot__breakdown-prob is-count">
+                    数量：{{ breakdownCountText(entryMin(entry), entryMax(entry)) }}
+                  </span>
+                  <span v-else class="reward-slot__breakdown-prob is-count is-placeholder" aria-hidden="true">
+                    &nbsp;
+                  </span>
+                </template>
               </template>
             </div>
           </div>
@@ -147,7 +155,7 @@
                 {{ item.name }}
               </div>
               <div v-if="item.min !== undefined && item.max !== undefined" class="reward-slot__tooltip-line">
-                数量：{{ tooltipCountText(item.min, item.max) }}
+                数量：{{ tooltipCountText(item.min, item.max, item) }}
               </div>
 
               <!-- 单来源规则 -->
@@ -216,6 +224,14 @@ const handleClick = (entry) => {
 
 /** 计算单个条目的单次概率与综合概率 */
 const resolveEntryProb = (entry, group = null) => {
+  if (group?.isFixed || entry?.isFixed) {
+    return {
+      groupRate: 1,
+      groupCount: 1,
+      singleProb: 1,
+      compositeProb: 1
+    }
+  }
   const groupRate = Number(entry?.groupRate ?? group?.rate ?? 1)
   const groupCount = Number(entry?.groupCount ?? group?.count ?? 1)
 
@@ -293,6 +309,9 @@ const tooltipRuleText = (rate, count) => {
 
 /** 弹窗明细模式下的标头文字（放在奖励池 X 右边） */
 const breakdownRuleText = (group) => {
+  if (group.isFixed) {
+    return '（必定获得）'
+  }
   if (group.rate < 1) {
     return `（${Math.round(group.rate * 100)}% 触发 · ${group.count} 件）`
   }
@@ -364,12 +383,24 @@ const entryMax = (entry) => {
   return props.breakdown && entry?.rawMax !== undefined ? entry.rawMax : entry?.max
 }
 
-/** 数量角标：如 ×1，×2~3 */
+/** 是否为候选池多抽概率估算数量（存在多抽且单次概率 < 1，非硬性范围） */
+const isProbabilisticEstimate = (entry) => {
+  if (props.breakdown) return false
+  if (entry?.rawMin === undefined) return false
+  if (entry.min === entry.rawMin && entry.max === entry.rawMax) return false
+  const groupRate = Number(entry?.groupRate ?? 1)
+  const actualProb = Number(entry?.actualProb ?? 1)
+  const pSingle = groupRate > 0 ? Math.min(1, actualProb / groupRate) : actualProb
+  return pSingle < 1
+}
+
+/** 数量角标：如 ×1，×2~3，概率预估数量显示为「约 4~11」 */
 const slotCountText = (entry) => {
   const min = entryMin(entry)
   const max = entryMax(entry)
   if (min === undefined || max === undefined) return ''
-  return `×${min === max ? min : `${min}~${max}`}`
+  const prefix = isProbabilisticEstimate(entry) ? '约 ' : '×'
+  return `${prefix}${min === max ? min : `${min}~${max}`}`
 }
 
 /** 角标综合概率简写 */
@@ -414,8 +445,35 @@ const groupHasCountRange = (group) => {
 }
 
 /** 桌面端 Tooltip 数量文案 */
-const tooltipCountText = (min, max) => {
+const tooltipCountText = (min, max, entry = null) => {
   if (min === undefined || max === undefined) return ''
+  if (!entry || props.breakdown) {
+    if (min === max) return String(min)
+    const prob = formatCountProbability(min, max)
+    return prob ? `${min}~${max} (${prob})` : `${min}~${max}`
+  }
+
+  if (isProbabilisticEstimate(entry)) {
+    const groupCount = Number(entry?.groupCount || 1)
+    const rawMin = Number(entry?.rawMin ?? min)
+    const rawMax = Number(entry?.rawMax ?? max)
+    const avgPerDraw = (rawMin + rawMax) / 2
+    const groupRate = Number(entry?.groupRate ?? 1)
+    const actualProb = Number(entry?.actualProb ?? 1)
+    const pSingle = groupRate > 0 ? Math.min(1, actualProb / groupRate) : actualProb
+    const expVal = groupCount * pSingle * avgPerDraw
+    const expStr = Number(expVal.toFixed(1)).toString()
+    const theoMax = groupCount * rawMax
+    return `约 ${min}~${max}（期望 ${expStr} · 理论 0~${theoMax}）`
+  }
+
+  const groupCount = Number(entry?.groupCount || 1)
+  if (groupCount > 1 && entry.rawMin !== undefined && (min !== entry.rawMin || max !== entry.rawMax)) {
+    const expVal = groupCount * ((Number(entry.rawMin) + Number(entry.rawMax)) / 2)
+    const expStr = Number(expVal.toFixed(1)).toString()
+    return `${min}~${max}（期望 ${expStr} · 共 ${groupCount} 轮累计）`
+  }
+
   if (min === max) return String(min)
   const prob = formatCountProbability(min, max)
   return prob ? `${min}~${max} (${prob})` : `${min}~${max}`

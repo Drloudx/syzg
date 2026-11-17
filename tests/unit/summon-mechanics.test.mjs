@@ -94,7 +94,7 @@ test('不主动攻击的召唤物不显示攻速/暴击/爆伤，改为说明攻
   assert.match(dummy.attackNote.text, /反击|反伤/, '应说明靠反击')
 })
 
-test('🔴 乌尔勒浮游炮的具体数值（截图里的技能）', () => {
+test('典型主动攻击召唤物属性完整性（乌尔勒追击指令浮游炮）', () => {
   const e = summonEntries.find(x => x.summon.monTypeId === '065Summon1')
   assert.ok(e, '应有浮游炮')
   assert.equal(e.hero.name, '乌尔勒')

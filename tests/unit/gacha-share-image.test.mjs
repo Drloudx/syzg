@@ -93,12 +93,17 @@ test('share 失败（非取消）→ 兜底下载，至少让用户拿到图', a
 
 test('🔴 share 永久挂起 → 超时后兜底下载（否则用户点了毫无反应）', async () => {
   await withEnv({ canShare: true, shareImpl: () => new Promise(() => {}) }, async (mod, spy) => {
-    // 缩短等待：直接断言它最终会 settle 成 downloaded（真实超时 20s，这里只等 21s 太久，
-    // 所以用 race 确认它在合理上限内完成）
+    // 注入短超时（20ms），测试分支与兜底逻辑，同时清理兜底挂起计时器
+    let hungTimer
+    const hungPromise = new Promise(res => {
+      hungTimer = setTimeout(() => res('STILL_HUNG'), 500)
+    })
     const r = await Promise.race([
-      mod.shareOrSaveImage(blob, 'a.png'),
-      new Promise(res => setTimeout(() => res('STILL_HUNG'), 25000))
-    ])
+      mod.shareOrSaveImage(blob, 'a.png', { timeoutMs: 20 }),
+      hungPromise
+    ]).finally(() => {
+      if (hungTimer) clearTimeout(hungTimer)
+    })
     assert.equal(r, 'downloaded', '挂起的 share 必须被超时兜底成下载')
     assert.equal(spy.clicked.length, 1)
   })

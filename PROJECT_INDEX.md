@@ -37,7 +37,7 @@
 | 角色/邮件/魔物/怪物/词条 | `/heroes` `/partner-mails` `/pets` `/monsters` `/glossary` | [HEROES_AND_COMBAT](docs/context/specs/HEROES_AND_COMBAT.md) |
 | 副本/关卡/章节地图/神匠之塔 | `/dungeons` `/chapters` `/tower` | [DUNGEONS_AND_CHAPTERS](docs/context/specs/DUNGEONS_AND_CHAPTERS.md) |
 | 任务/事件 | `/tasks` `/events` | [QUESTS_AND_EVENTS](docs/context/specs/QUESTS_AND_EVENTS.md) |
-| 营地/家具/菜谱/魔物收益/成就/货运站/日常计划 | `/facilities` `/furniture` `/recipes` `/petseggs` `/achievement` `/freight` `/daily` | [CAMP_AND_LIFE](docs/context/specs/CAMP_AND_LIFE.md) |
+| 营地/家具/食谱/魔物收益/成就/货运站/日常计划 | `/facilities` `/furniture` `/recipes` `/petseggs` `/achievement` `/freight` `/daily` | [CAMP_AND_LIFE](docs/context/specs/CAMP_AND_LIFE.md) |
 | 模拟招募 | `/gacha` | [GACHA_SIMULATOR](docs/context/specs/GACHA_SIMULATOR.md) |
 | **抽卡记录分析（方案，未实施）** | — | [GACHA_RECORD_ANALYSIS](docs/context/technical/GACHA_RECORD_ANALYSIS.md) |
 | 相关模拟 / 魔物出战（选角色→推荐魔物） | `/sims` | [SIMS](docs/context/technical/SIMS.md)｜[2026-10-28 日志](docs/history/dev-logs/2026-10/2026-10-28.md) |

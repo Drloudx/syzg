@@ -203,7 +203,7 @@ test('结算掉落：具体物品有名字与图标，装备池有池参数', ()
   }
 })
 
-test('经验本掉落与截图一致：战斗笔记 + 经验 80', () => {
+test('日常经验本基础战役掉落格式规范（战斗笔记与固定经验收益）', () => {
   const plan = daily.plans.find(p => p.typeId === 'plan_2')
   const stage = plan.stages.find(s => s.battleId === 'daily_exp_1')
   assert.ok(stage, '应有驿站训练室')

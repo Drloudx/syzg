@@ -65,7 +65,7 @@ function buildDungeonBattle() {
   return { file: 'dungeonBattle.json', text: JSON.stringify({ datas }) }
 }
 
-/** dungeonBattleRooms.json：只刷新 effects，其余字段原样。effects 来自 `room.json` 的 battleData。 */
+/** dungeonBattleRooms.json：刷新 effects 与 spObj，其余字段原样。来自 `room.json` 的 battleData。 */
 function buildDungeonBattleRooms() {
   const roomCfg = readRaw('room.json')
   const roomMap = roomCfg.datas || roomCfg
@@ -75,7 +75,15 @@ function buildDungeonBattleRooms() {
   const extracted = readDerived('dungeonBattleRooms.json')
   const buffs = { buffMap, buffTeamMap, buffCardMap }
   for (const [roomId, detail] of Object.entries(extracted.roomDetails || {})) {
-    detail.effects = buildRoomEffects(roomMap[roomId]?.battleData, buffs)
+    const r = roomMap[roomId]
+    if (r?.battleData?.spObj && Array.isArray(r.battleData.spObj)) {
+      detail.spObj = r.battleData.spObj.map(obj => ({
+        caijiTypeId: obj.caijiTypeId || '',
+        winLock: obj.winLock || 0,
+        showCondition: obj.showCondition || ''
+      }))
+    }
+    detail.effects = buildRoomEffects(r?.battleData, buffs)
   }
   return { file: 'dungeonBattleRooms.json', text: JSON.stringify(extracted) }
 }

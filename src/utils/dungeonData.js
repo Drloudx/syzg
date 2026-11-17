@@ -15,9 +15,10 @@ export const consumeCost = (consume) => consume ? {
 // 蛇腹矿坑是主线矿坑/日常采集混合配置，不属于标准副本图鉴的常规副本列表。
 const NON_STANDARD_INSTANCE_IDS = new Set(['dungeonD'])
 
-export function buildRewardEntries(reward, itemMap, source = null, equipConfig = null) {
+export function buildRewardEntries(reward, itemMap, source = null, equipConfig = null, options = {}) {
   if (!reward || isInternalSource([reward.tip, ...(reward.category || [])].join(' '))) return []
   const entries = []
+  const estimateMultiDraw = Boolean(options?.estimateMultiDraw)
 
   for (const [field, iconId] of Object.entries(BASE_REWARD_ICONS)) {
     const count = Number(reward[field] || 0)
@@ -27,10 +28,14 @@ export function buildRewardEntries(reward, itemMap, source = null, equipConfig =
         name: BASE_REWARD_NAMES[field],
         icon: BASE_REWARD_PATHS[field],
         quality: 0,
+        rawMin: count,
+        rawMax: count,
         min: count,
         max: count,
         actualProb: 1,
+        cumulativeProb: 1,
         kind: field,
+        isFixed: true,
         source
       })
     }
@@ -43,6 +48,9 @@ export function buildRewardEntries(reward, itemMap, source = null, equipConfig =
     const groupCount = Number(group?.num ?? 1)
     if (!(groupRate > 0 && groupCount > 0 && totalChance > 0)) continue
 
+    const validRules = rules.filter(r => r && Number(r.chance) > 0 && Number(r.max ?? r.min ?? 1) > 0)
+    const isSingleItem = validRules.length === 1
+
     for (const rule of rules) {
       if (!rule || !(Number(rule.chance) > 0) || Number(rule.max ?? rule.min ?? 1) <= 0) continue
       const mode = rule.mode || 'item'
@@ -54,6 +62,14 @@ export function buildRewardEntries(reward, itemMap, source = null, equipConfig =
         const showId = equipGroup?.showItemTypeId || ''
         const candidateIds = showId ? [showId] : asArray(equipGroup?.type).map(item => item?.typeId).filter(Boolean)
         const ids = candidateIds.length ? candidateIds : ['equipGroup']
+        const rawMin = Number(rule.min ?? 1)
+        const rawMax = Number(rule.max ?? rule.min ?? 1)
+        let min = Number(rule.min ?? groupCount ?? 1)
+        let max = Number(rule.max ?? rule.min ?? groupCount ?? 1)
+        if (estimateMultiDraw && groupCount > 1) {
+          min = rawMin * groupCount
+          max = rawMax * groupCount
+        }
         ids.forEach(typeId => {
           const target = itemMap[typeId]
           entries.push({
@@ -61,8 +77,10 @@ export function buildRewardEntries(reward, itemMap, source = null, equipConfig =
             name: target?.name || (showId ? '随机装备' : equipGroup?.tip || '随机装备'),
             icon: target ? `/images/Common_ItemIcon/${target.img || target.typeId}.webp` : '',
             quality: Number(quality || target?.quality || 0),
-            min: Number(rule.min ?? groupCount ?? 1),
-            max: Number(rule.max ?? rule.min ?? groupCount ?? 1),
+            rawMin,
+            rawMax,
+            min,
+            max,
             actualProb,
             cumulativeProb: 1 - Math.pow(1 - actualProb, groupCount),
             groupIndex,
@@ -81,15 +99,35 @@ export function buildRewardEntries(reward, itemMap, source = null, equipConfig =
       const target = mode === 'item' ? itemMap[rule.typeId] : null
       const isEquip = mode === 'equip'
       const equipTarget = isEquip ? itemMap[rule.typeId] : null
-      const min = Number(rule.min ?? groupCount ?? 1)
-      const max = Number(rule.max ?? min)
+      const rawMin = Number(rule.min ?? 1)
+      const rawMax = Number(rule.max ?? rawMin)
       const chance = totalChance > 0 ? Number(rule.chance || 0) / totalChance : 1
       const actualProb = Math.min(1, chance * groupRate)
+
+      let min = Number(rule.min ?? groupCount ?? 1)
+      let max = Number(rule.max ?? min)
+      if (estimateMultiDraw && groupCount > 1) {
+        if (isSingleItem) {
+          min = rawMin * groupCount
+          max = rawMax * groupCount
+        } else {
+          const pSingle = chance
+          const avgPerDraw = (rawMin + rawMax) / 2
+          const theoMax = groupCount * rawMax
+          const expVal = groupCount * pSingle * avgPerDraw
+          const std = Math.sqrt(groupCount * pSingle * (1 - pSingle)) * avgPerDraw
+          min = Math.min(theoMax, Math.max(rawMin, Math.round(expVal - 1.25 * std)))
+          max = Math.min(theoMax, Math.max(min, Math.round(expVal + 1.25 * std)))
+        }
+      }
+
       entries.push({
         typeId: (equipTarget || target)?.typeId || rule.typeId || mode,
         name: (equipTarget || target)?.name || (isEquip ? '具体装备' : rule.typeId || mode),
         icon: (equipTarget || target) ? `/images/Common_ItemIcon/${(equipTarget || target).img || (equipTarget || target).typeId}.webp` : '',
         quality: Number((equipTarget || target)?.quality || rule.quality || 0),
+        rawMin,
+        rawMax,
         min,
         max,
         actualProb,

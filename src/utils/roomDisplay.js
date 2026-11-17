@@ -115,17 +115,66 @@ export const rewardRule = (entry) => ({
 /** 按 groupIndex 把奖励条目还原成奖励池，池内按品质排序。 */
 export const rewardGroups = (entries = []) => {
   const groups = new Map()
+  const fixedEntries = []
+
   entries.forEach(entry => {
-    const index = Number(entry.groupIndex || 0)
-    if (!groups.has(index)) groups.set(index, { index, rate: Number(entry.groupRate ?? 1), count: Number(entry.groupCount || 1), entries: [] })
+    const isFixed = Boolean(
+      entry.isFixed ||
+      entry.groupIndex === 'fixed' ||
+      (entry.groupIndex === undefined && ['money', 'exp', 'ke', 'payKe'].includes(entry.kind))
+    )
+    if (isFixed) {
+      fixedEntries.push({ ...entry, isFixed: true })
+      return
+    }
+
+    const index = Number(entry.groupIndex ?? 0)
+    if (!groups.has(index)) {
+      groups.set(index, {
+        index,
+        isFixed: false,
+        rate: Number(entry.groupRate ?? 1),
+        count: Number(entry.groupCount ?? 1),
+        entries: []
+      })
+    } else {
+      const g = groups.get(index)
+      if (entry.groupCount && g.count === 1 && Number(entry.groupCount) > 1) {
+        g.count = Number(entry.groupCount)
+      }
+      if (entry.groupRate !== undefined && g.rate === 1 && Number(entry.groupRate) < 1) {
+        g.rate = Number(entry.groupRate)
+      }
+    }
     groups.get(index).entries.push(entry)
   })
-  return [...groups.values()]
-    .map(group => ({ ...group, entries: [...group.entries].sort(rewardQualitySort) }))
+
+  const sortedPoolGroups = [...groups.values()]
     .sort((a, b) => a.index - b.index)
+    .map((group, poolIdx) => ({
+      ...group,
+      displayIndex: poolIdx + 1,
+      entries: [...group.entries].sort(rewardQualitySort)
+    }))
+
+  const result = []
+  if (fixedEntries.length) {
+    result.push({
+      index: -1,
+      displayIndex: 0,
+      isFixed: true,
+      rate: 1,
+      count: fixedEntries.length,
+      entries: [...fixedEntries].sort(rewardQualitySort)
+    })
+  }
+
+  result.push(...sortedPoolGroups)
+  return result
 }
 
 export const rewardGroupLabel = (group) => {
+  if (group.isFixed) return '固定获得'
   const countText = `${group.count} 件`
   if (group.rate < 1) {
     return `${(group.rate * 100).toFixed(0)}% 触发 · ${countText}`

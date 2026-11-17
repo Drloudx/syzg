@@ -388,6 +388,19 @@ else if (当前步骤 > num2 && num2 >= 0) flag5 = true;              // 推进�
 
 `equipGroup` 是「某品质 + 某类型 + 某等级」的装备池，具体装备由游戏掉落表随机决定，构建期无法确定。页面显示为「普通装备 · equip11001 · Lv1」，不编具体物品名、不给图标、不跳物品详情。
 
+### 并行路线副本
+
+部分子关卡在原表是**并行/分支地图**，不是多个独立房间，走一条路线只经过其中一部分。
+
+| 项 | 规则 |
+| --- | --- |
+| 数据来源 | `battle.layers[].layerDatas[].map` 的 `levelRoom`（节点坐标）+ `link`（连线）+ `startRoomId` |
+| 判定 | `daily.mjs` 的 `buildDailyRoutes`：`links ≥ nodes`（存在环）即 `parallelMap=true`；线性单路边数恒为节点数-1 |
+| 现状 | `plan_4`（巡山采药）3 个：`daily_herb_1` 药草山林 / `daily_herb_2` 岩壁山路 / `daily_herb_3` 湿地湖边（菱形双路）；其余 16 个为线性 |
+| 渲染 | `parallelMap` 关卡用 `DungeonRouteMap`（`fit` 自适应）+ 提示「并行路线，每次只经过其中一条」；点节点在下显示该房间波次/采集，未选显示空态 |
+| 节点对齐 | 节点 `id` 即房间 `roomId`；节点名取房间卡 `rooms[].name`（如「药草山林 3」），不显示原表房间别名（如「林地入口」） |
+| 线性关卡 | `parallelMap=false`，维持原「全部 / 房间N」选项卡，不渲染地图 |
+
 ### URL
 
 | 参数 | 取值 |

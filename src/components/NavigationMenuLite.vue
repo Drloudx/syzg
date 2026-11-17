@@ -36,7 +36,7 @@ const liteNavList = [
   { name: '角色图鉴', path: '/heroes', icon: '/ui/class_icon_s_zs.webp' },
   { name: '伙伴邮件', path: '/partner-mails', icon: '/ui/mail_list_new_task_pt.webp' },
   { name: '魔物图鉴', path: '/pets', icon: '/ui/colect_mon_072.webp' },
-  { name: '菜谱查询', path: '/recipes', icon: '/ui/item_30047.webp' },
+  { name: '食谱查询', path: '/recipes', icon: '/ui/item_30047.webp' },
   { name: '魔物收益', path: '/petseggs', icon: '/ui/pet_079.webp' },
   { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
   { name: '相关模拟', path: '/sims', icon: '/ui/colect_mon_072.webp' },

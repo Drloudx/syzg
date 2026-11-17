@@ -241,13 +241,13 @@
           </UiSection>
 
           <!-- ② 通关掉落（完全对齐关卡图鉴：使用 RewardPools，经验、银币均有专属图标与品质框） -->
-          <UiSection title="通关掉落" data-source-entry="settlement">
+          <UiSection :title="hasEstimatedDrops ? '预估通关掉落' : '通关掉落'" data-source-entry="settlement">
             <template #title-end>
               <button
                 v-if="activeStageDrops.length"
                 type="button"
                 class="prob-detail-btn"
-                @click.stop="openRewardDetail('通关掉落', activeStageDrops)"
+                @click.stop="openRewardDetail(hasEstimatedDrops ? '预估通关掉落' : '通关掉落', activeStageDrops)"
               >
                 概率明细
               </button>
@@ -262,8 +262,22 @@
 
           <!-- ③ 房间内容与掉落来源（完全按关卡图鉴规范，分房间、波次怪带图标、展示采集植物） -->
           <UiSection v-if="activeStage.rooms?.length" title="房间内容与掉落来源">
-            <!-- 房间选项卡（多房间时展示，对齐关卡图鉴） -->
-            <UiFilterRow v-if="activeStage.rooms.length > 1" label="房间：" class="stage-room-tabs">
+            <!-- 并行/分支路线：先出路线图，点击节点看对应房间（避免把并行房间误当多个独立副本） -->
+            <template v-if="activeStage.parallelMap && activeStage.routes?.length">
+              <p class="stage-route-hint">
+                该副本为<strong>并行路线</strong>，每次只经过其中一条路线，并非多个独立房间。点击地图节点查看对应房间内容。
+              </p>
+              <DungeonRouteMap
+                v-model:route-index="selectedRouteIndex"
+                v-model:room-id="selectedRouteRoomId"
+                v-model:variant-id="selectedRouteVariantId"
+                :routes="activeStage.routes"
+                fit
+              />
+            </template>
+
+            <!-- 房间选项卡（仅线性关卡，多房间时展示，对齐关卡图鉴） -->
+            <UiFilterRow v-else-if="activeStage.rooms.length > 1" label="房间：" class="stage-room-tabs">
               <UiFilterPill
                 :active="selectedRoomKey === null"
                 @click="selectedRoomKey = null"
@@ -279,6 +293,11 @@
                 {{ room.name || `房间 ${room.index}` }}
               </UiFilterPill>
             </UiFilterRow>
+
+            <UiEmptyState
+              v-if="activeStage.parallelMap && !displayedRooms.length"
+              text="点击上方地图节点查看房间内容"
+            />
 
             <!-- 房间列表（对齐关卡图鉴 room-card / room-variant / room-collection 规范） -->
             <div class="rooms-flow-list">
@@ -384,6 +403,7 @@ import {
   UiInfoRow
 } from '../components/ui/index.js'
 import RewardPools from '../components/RewardPools.vue'
+import DungeonRouteMap from '../components/dungeons/DungeonRouteMap.vue'
 import { openRewardDetail } from '../utils/rewardModalState.js'
 import { openMonsterDetail } from '../utils/monsterModalState.js'
 
@@ -461,11 +481,25 @@ const activeStage = computed(() => {
 
 /** 关卡房间选择（对齐关卡图鉴） */
 const selectedRoomKey = ref(null)
+// 并行路线图：当前布局、选中节点、候选变体
+const selectedRouteIndex = ref(0)
+const selectedRouteRoomId = ref('')
+const selectedRouteVariantId = ref('')
 watch(() => activeStage.value?.battleId, () => {
   selectedRoomKey.value = null
+  selectedRouteIndex.value = 0
+  // 默认定位到路线起点，便于直接看到第一间内容
+  const firstLayer = activeStage.value?.routes?.[0]
+  selectedRouteRoomId.value = firstLayer?.startRoomId || firstLayer?.nodes?.[0]?.id || ''
+  selectedRouteVariantId.value = ''
 })
 const displayedRooms = computed(() => {
   if (!activeStage.value?.rooms?.length) return []
+  // 分支路线：只显示地图上选中的那一间（未选则不显示，等用户点节点）
+  if (activeStage.value.parallelMap) {
+    if (!selectedRouteRoomId.value) return []
+    return activeStage.value.rooms.filter(r => r.roomId === selectedRouteRoomId.value)
+  }
   if (selectedRoomKey.value === null) return activeStage.value.rooms
   return activeStage.value.rooms.filter(r => r.roomId === selectedRoomKey.value)
 })
@@ -544,6 +578,10 @@ function getCollectionRewardEntries(col) {
 }
 
 const activeStageDrops = computed(() => getStageRewardEntries(activeStage.value))
+
+const hasEstimatedDrops = computed(() => {
+  return activeStageDrops.value.some(entry => entry.rawMin !== undefined && entry.min !== undefined && entry.rawMin !== entry.min)
+})
 
 function matchesText(haystack, needle) {
   if (!needle) return true
@@ -1455,6 +1493,22 @@ onBeforeUnmount(() => {
 
 /* 房间选项卡（多房间时展示，对齐关卡图鉴） */
 .stage-room-tabs {
+  margin-bottom: 12px;
+}
+
+/* 并行路线提示 */
+.stage-route-hint {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.stage-route-hint strong {
+  color: var(--accent-ink);
+}
+
+/* 地图与房间列表之间的间距 */
+.stage-route-hint + .dungeon-route-map {
   margin-bottom: 12px;
 }
 

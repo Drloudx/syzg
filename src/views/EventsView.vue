@@ -130,13 +130,13 @@
         </UiSection>
 
         <!-- 奖励 -->
-        <UiSection :title="activeTab === 'random' ? '事件奖励' : '预估探索奖励'">
+        <UiSection :title="rewardSectionTitle">
           <template #title-end>
             <button
               v-if="selectedItem?.reward?.entries?.length"
               type="button"
               class="prob-detail-btn prob-detail-btn--section"
-              @click.stop="openRewardDetail(selectedItem?.name || (activeTab === 'random' ? '事件奖励' : '预估探索奖励'), selectedItem.reward.entries)"
+              @click.stop="openRewardDetail(selectedItem?.name || rewardSectionTitle, selectedItem.reward.entries)"
             >
               概率明细
             </button>
@@ -221,6 +221,20 @@ const eventCommentPageKey = computed(() => {
   const prefix =
     activeTab.value === 'random' ? COMMENT_PAGE_PREFIX.event : COMMENT_PAGE_PREFIX.explore
   return buildPageKey(prefix, selectedItem.value.id)
+})
+
+/**
+ * 奖励区标题：随机事件中若存在多抽并入的预估区间则标为「预估事件奖励」，单抽标「事件奖励」；
+ * 探索区域统称为「预估探索奖励」。
+ */
+const rewardSectionTitle = computed(() => {
+  if (activeTab.value === 'random') {
+    const hasEstimated = selectedItem.value?.reward?.entries?.some(
+      e => e.rawMin !== undefined && e.min !== undefined && e.rawMin !== e.min
+    )
+    return hasEstimated ? '预估事件奖励' : '事件奖励'
+  }
+  return '预估探索奖励'
 })
 
 /**

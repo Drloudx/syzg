@@ -154,7 +154,7 @@ export const DEFAULT_TOOL_LINKS = [
   { slot: 1, title: '模拟招募', description: '欢迎游戏抽卡概率、欧非鉴定器', route: '/gacha', iconSource: 'nav', badgeText: 'HOT', badgeColor: 'red' },
   { slot: 2, title: '魔物出战推荐', description: '实现属性收益最大化', route: '/sims', queryString: 'tab=monster-team', iconSource: 'custom', badgeText: 'NEW', badgeColor: 'green' },
   { slot: 3, title: '魔物收益速查', description: '各魔物蛋孵化时间、银币收益与经验收益全览', route: '/petseggs', iconSource: 'nav', badgeText: '111' },
-  { slot: 4, title: '菜谱查询', description: '食材组合、战斗增益 Buff', route: '/recipes', iconSource: 'nav' }
+  { slot: 4, title: '食谱查询', description: '食材组合、战斗增益 Buff', route: '/recipes', iconSource: 'nav' }
 ]
 
 /** 核心角色默认值（生产 D1 `home_heroes` 快照；只存 heroId + tip，其余运行时 join heroes.json） */

@@ -373,7 +373,7 @@ const PAGE_TITLES = {
   '/partner-mails': '伙伴邮件',
   '/pets': '魔物图鉴',
   '/monsters': '怪物图鉴',
-  '/recipes': '菜谱查询',
+  '/recipes': '食谱查询',
   '/misc': '其他',
   '/achievement': '成就查询',
   '/tasks': '任务图鉴',

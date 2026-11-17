@@ -260,10 +260,33 @@ export function parseRewardEntries(rewards, items, rewardId) {
   for (const group of parseRewardGroups(rewardId, { rewards, items })) {
     const groupRate = Number(group.rate ?? 1)
     const groupCount = Number(group.num ?? 1)
+    const validRules = (group.rules || []).filter(r => r && (r.typeId || r.targetName))
+    const isSingleItem = validRules.length === 1
+
     for (const rule of group.rules) {
       if (!rule.typeId || rule.actualProb === 0) continue
-      const min = Number(rule.min ?? 0)
-      const max = Number(rule.max ?? min)
+      const rawMin = Number(rule.min ?? 0)
+      const rawMax = Number(rule.max ?? rawMin)
+      const actualProb = Number(rule.actualProb ?? 1)
+      const pSingle = groupRate > 0 ? actualProb / groupRate : actualProb
+      const cumulativeProb = groupRate * (1 - Math.pow(1 - pSingle, groupCount))
+
+      let min = rawMin
+      let max = rawMax
+      if (groupCount > 1) {
+        if (isSingleItem) {
+          min = rawMin * groupCount
+          max = rawMax * groupCount
+        } else {
+          const avgPerDraw = (rawMin + rawMax) / 2
+          const theoMax = groupCount * rawMax
+          const expVal = groupCount * pSingle * avgPerDraw
+          const std = Math.sqrt(groupCount * pSingle * (1 - pSingle)) * avgPerDraw
+          min = Math.min(theoMax, Math.max(rawMin, Math.round(expVal - 1.25 * std)))
+          max = Math.min(theoMax, Math.max(min, Math.round(expVal + 1.25 * std)))
+        }
+      }
+
       /*
        * 图标兜底：个别物品原表 `img` 是空串（实测 4 条制作图纸，如 `item_50083` 哨塔制作图），
        * 直接产出 `icon: ''` 会让 `<img src="">` 变成「破图 or 加载当前页面」。
@@ -271,12 +294,13 @@ export function parseRewardEntries(rewards, items, rewardId) {
        */
       const rawIcon = group.kind === 'fixed' ? rule.targetImg : String(rule.targetImg || '').replace(/^\/images\//, '/')
       const icon = rawIcon && String(rawIcon).trim() ? rawIcon : `/Common_ItemIcon/${rule.typeId}.webp`
-      const actualProb = Number(rule.actualProb ?? 1)
-      const pSingle = groupRate > 0 ? actualProb / groupRate : actualProb
-      const cumulativeProb = groupRate * (1 - Math.pow(1 - pSingle, groupCount))
+
       entries.push({
-        kind: group.kind === 'fixed' ? rule.mode : 'item', name: rule.targetName,
+        kind: group.kind === 'fixed' ? rule.mode : 'item',
+        name: rule.targetName,
         count: min,
+        rawMin,
+        rawMax,
         min,
         max: Math.max(min, max),
         // 区间支持：max > min 表示随机数量，展示层据此渲染「min~max」
