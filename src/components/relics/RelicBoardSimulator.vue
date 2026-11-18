@@ -73,26 +73,18 @@
             <button
               type="button"
               class="sim-btn"
+              :class="{ 'is-active': globalMaxCountPerRelic === 4 }"
+              @click="setGlobalMaxCount(4)"
+            >
+              每种最多 4 件
+            </button>
+            <button
+              type="button"
+              class="sim-btn"
               :class="{ 'is-active': globalMaxCountPerRelic === 3 }"
               @click="setGlobalMaxCount(3)"
             >
               每种最多 3 件 (默认)
-            </button>
-            <button
-              type="button"
-              class="sim-btn"
-              :class="{ 'is-active': globalMaxCountPerRelic === 2 }"
-              @click="setGlobalMaxCount(2)"
-            >
-              每种最多 2 件
-            </button>
-            <button
-              type="button"
-              class="sim-btn"
-              :class="{ 'is-active': globalMaxCountPerRelic === 1 }"
-              @click="setGlobalMaxCount(1)"
-            >
-              每种最多 1 件
             </button>
             <button
               type="button"
@@ -128,8 +120,8 @@
               </span>
             </div>
             <div class="inventory-batch-actions">
+              <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(4)">全部设为 4</button>
               <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(3)">全部设为 3</button>
-              <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(2)">全部设为 2</button>
               <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(1)">全部设为 1</button>
               <button type="button" class="sim-btn sim-btn--xs sim-btn--subtle" @click="resetAllMaxCounts">重置数量</button>
             </div>
