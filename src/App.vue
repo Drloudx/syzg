@@ -195,41 +195,61 @@
           </div>
           <div class="info-body">
             <!-- 最近几条（只读、不放输入框）：点开进入讨论区 -->
-            <div class="recent-discussions">
-              <UiEmptyState v-if="recentLoading" type="loading" text="加载中..." />
-              <p v-else-if="!recentComments.length" class="info-note">还没有讨论。</p>
-              <ul v-else class="recent-list">
-                <li v-for="c in recentComments" :key="c.id" class="recent-item">
-                  <button type="button" class="recent-btn" @click="openDiscussionFor(c)">
-                    <!-- 缩小的头像：与讨论区里一致，没有头像时用昵称首字占位 -->
-                    <img
-                      v-if="recentAvatarUrl(c.avatar)"
-                      class="recent-avatar"
-                      :src="recentAvatarUrl(c.avatar)"
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <span v-else class="recent-avatar recent-avatar-fallback" aria-hidden="true">
-                      {{ (c.nick || '?').slice(0, 1) }}
-                    </span>
-                    <span class="recent-main">
-                      <span class="recent-header">
-                        <span class="recent-nick">{{ c.nick }}</span>
-                        <time v-if="c.createdAt" class="recent-time" :datetime="isoTime(c.createdAt)">{{ formatTime(c.createdAt) }}</time>
+            <div class="recent-discussions-wrap">
+              <div
+                ref="recentDiscussionsRef"
+                class="recent-discussions"
+                @scroll="syncRecentScrollState"
+              >
+                <UiEmptyState v-if="recentLoading" type="loading" text="加载中..." />
+                <p v-else-if="!recentComments.length" class="info-note">还没有讨论。</p>
+                <ul v-else class="recent-list">
+                  <li v-for="c in recentComments" :key="c.id" class="recent-item">
+                    <button type="button" class="recent-btn" @click="openDiscussionFor(c)">
+                      <!-- 缩小的头像：与讨论区里一致，没有头像时用昵称首字占位 -->
+                      <img
+                        v-if="recentAvatarUrl(c.avatar)"
+                        class="recent-avatar"
+                        :src="recentAvatarUrl(c.avatar)"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span v-else class="recent-avatar recent-avatar-fallback" aria-hidden="true">
+                        {{ (c.nick || '?').slice(0, 1) }}
                       </span>
-                      <!--
-                        正文里的 `[e:包:名]` 表情 token 也要出图，否则右栏会显示成一串内部标识。
-                        **必须套一层普通 inline 容器**：`.recent-body` 是 `display:-webkit-box`
-                        的两行截断（-webkit-line-clamp:2），直接塞 `<img>` 会被当成 box item
-                        竖着堆起来；包一层 inline span 后，图片回到正常的行内排版，
-                        截断仍按这个容器的行数生效。
-                      -->
-                      <span class="recent-body"><span class="recent-body-text"><EmoticonText :text="c.body" /></span></span>
-                    </span>
-                  </button>
-                </li>
-              </ul>
+                      <span class="recent-main">
+                        <span class="recent-header">
+                          <span class="recent-nick">{{ c.nick }}</span>
+                          <time v-if="c.createdAt" class="recent-time" :datetime="isoTime(c.createdAt)">{{ formatTime(c.createdAt) }}</time>
+                        </span>
+                        <!--
+                          正文里的 `[e:包:名]` 表情 token 也要出图，否则右栏会显示成一串内部标识。
+                          **必须套一层普通 inline 容器**：`.recent-body` 是 `display:-webkit-box`
+                          的两行截断（-webkit-line-clamp:2），直接塞 `<img>` 会被当成 box item
+                          竖着堆起来；包一层 inline span 后，图片回到正常的行内排版，
+                          截断仍按这个容器的行数生效。
+                        -->
+                        <span class="recent-body"><span class="recent-body-text"><EmoticonText :text="c.body" /></span></span>
+                      </span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+              <span
+                v-if="canScrollRecentUp"
+                class="recent-scroll-cue recent-scroll-cue--up"
+                aria-hidden="true"
+                @click="scrollRecent('up')"
+                @wheel.prevent="onCueWheel"
+              ></span>
+              <span
+                v-if="canScrollRecentDown"
+                class="recent-scroll-cue recent-scroll-cue--down"
+                aria-hidden="true"
+                @click="scrollRecent('down')"
+                @wheel.prevent="onCueWheel"
+              ></span>
             </div>
 
             <div class="info-section recent-foot">
@@ -618,6 +638,42 @@ watch(
   { immediate: true }
 )
 
+// --- 右栏「最新讨论」滚动状态与指示箭头（对标左侧导航栏设计） ---
+const recentDiscussionsRef = ref(null)
+const canScrollRecentUp = ref(false)
+const canScrollRecentDown = ref(false)
+let recentResizeObserver = null
+
+const syncRecentScrollState = () => {
+  const el = recentDiscussionsRef.value
+  if (!el) {
+    canScrollRecentUp.value = false
+    canScrollRecentDown.value = false
+    return
+  }
+  canScrollRecentUp.value = el.scrollTop > 1
+  canScrollRecentDown.value = (
+    el.scrollHeight > el.clientHeight + 1 &&
+    el.scrollTop + el.clientHeight < el.scrollHeight - 1
+  )
+}
+
+function scrollRecent(direction) {
+  const el = recentDiscussionsRef.value
+  if (!el) return
+  const offset = direction === 'up' ? -120 : 120
+  el.scrollBy({ top: offset, behavior: 'smooth' })
+}
+
+function onCueWheel(e) {
+  const el = recentDiscussionsRef.value
+  if (el) el.scrollTop += e.deltaY
+}
+
+watch(recentComments, () => {
+  nextTick(syncRecentScrollState)
+})
+
 /**
  * 账号体系的接线：
  *   - 恢复会话（下面那个 `restoreSession`）；
@@ -905,11 +961,22 @@ onMounted(() => {
   }
 
   // 右栏「最新讨论」的前台轮询由 useVisibilityPolling 自动接管（见其定义处的说明）
+  window.addEventListener('resize', syncRecentScrollState, { passive: true })
+  nextTick(syncRecentScrollState)
+  if (typeof ResizeObserver !== 'undefined' && recentDiscussionsRef.value) {
+    recentResizeObserver = new ResizeObserver(syncRecentScrollState)
+    recentResizeObserver.observe(recentDiscussionsRef.value)
+  }
 })
 
 onBeforeUnmount(() => {
   document.removeEventListener('error', handleGlobalImageError, true)
   window.removeEventListener('resize', scheduleStickyClipping)
+  window.removeEventListener('resize', syncRecentScrollState)
+  if (recentResizeObserver) {
+    recentResizeObserver.disconnect()
+    recentResizeObserver = null
+  }
   if (stickyClipFrame) window.cancelAnimationFrame(stickyClipFrame)
   if (pendingClearRaf) cancelAnimationFrame(pendingClearRaf)
   if (bootLoadingRaf) cancelAnimationFrame(bootLoadingRaf)
@@ -1831,7 +1898,16 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   border-color: rgba(212, 163, 89, 0.5);
 }
 
-/* 右栏「最新讨论」列表：紧凑、只读、不放输入框（点开进讨论区发言） */
+/* 右栏「最新讨论」容器（提供指示箭头锚点） */
+.recent-discussions-wrap {
+  position: relative;
+  flex: 0 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 右栏「最新讨论」列表：紧凑、只读、不放输入框（隐藏滚动条，由上下箭头指示滚动） */
 .recent-discussions {
   /*
    * **按内容高度**（`flex: 0 1 auto`），不能是 `flex: 1 1 auto`：
@@ -1843,6 +1919,78 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.recent-discussions::-webkit-scrollbar {
+  display: none;
+}
+
+/* 讨论区上下滚动渐变指示箭头（对标左侧导航栏设计） */
+.recent-scroll-cue {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 28px;
+  z-index: 3;
+  cursor: pointer;
+  background: linear-gradient(to bottom, transparent, rgba(224, 207, 180, 0.95) 82%);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  transition: opacity 0.2s ease;
+}
+.recent-scroll-cue::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid var(--accent-ink, #557574);
+  border-bottom: 2px solid var(--accent-ink, #557574);
+  transform: translateX(-50%) rotate(45deg);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.recent-scroll-cue:hover::after {
+  border-color: #382411;
+  transform: translateX(-50%) rotate(45deg) scale(1.15);
+}
+
+.recent-scroll-cue--up {
+  top: 0;
+  bottom: auto;
+  background: linear-gradient(to top, transparent, rgba(224, 207, 180, 0.95) 82%);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.recent-scroll-cue--up::after {
+  top: 6px;
+  bottom: auto;
+  transform: translateX(-50%) rotate(225deg);
+}
+.recent-scroll-cue--up:hover::after {
+  border-color: #382411;
+  transform: translateX(-50%) rotate(225deg) scale(1.15);
+}
+
+.dark-mode .recent-scroll-cue,
+.dark-theme .recent-scroll-cue {
+  background: linear-gradient(to bottom, transparent, rgba(43, 31, 21, 0.96) 82%) !important;
+}
+.dark-mode .recent-scroll-cue--up,
+.dark-theme .recent-scroll-cue--up {
+  background: linear-gradient(to top, transparent, rgba(43, 31, 21, 0.96) 82%) !important;
+}
+.dark-mode .recent-scroll-cue::after,
+.dark-theme .recent-scroll-cue::after {
+  border-right-color: var(--accent, #7faea9) !important;
+  border-bottom-color: var(--accent, #7faea9) !important;
+}
+.dark-mode .recent-scroll-cue:hover::after,
+.dark-theme .recent-scroll-cue:hover::after {
+  border-right-color: #ffd78c !important;
+  border-bottom-color: #ffd78c !important;
 }
 .recent-list {
   list-style: none;
@@ -2060,6 +2208,11 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.info-body::-webkit-scrollbar {
+  display: none;
 }
 
 .info-body > .info-meta-rows,
