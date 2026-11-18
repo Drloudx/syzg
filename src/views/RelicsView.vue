@@ -240,7 +240,7 @@ import { parseRequirementParts, getElementSlug } from '../utils/relicSolver.js'
 
 const getElementIconUrl = cat => {
   const slug = getElementSlug(cat)
-  return slug ? getImageUrl(`/images/HeroBagPanel/card_atr_${slug}.webp`) : ''
+  return slug ? getImageUrl(`/images/relics/relic_atr_${slug}.webp`) : ''
 }
 
 const route = useRoute()
@@ -493,11 +493,11 @@ onMounted(loadData)
 .relic-entry__effect-label { font-size: 12px; font-weight: 700; color: var(--text-muted); }
 .relic-entry__more { font-size: 12px; color: var(--accent-ink); white-space: nowrap; }
 .filter-element-icon {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
-  vertical-align: -2px;
-  margin-right: 2px;
+  vertical-align: -3px;
+  margin-right: 3px;
 }
 .relic-cat-tag {
   display: inline-flex;
@@ -505,10 +505,10 @@ onMounted(loadData)
   gap: 3px;
 }
 .relic-tag-icon {
-  width: 13px;
-  height: 13px;
+  width: 15px;
+  height: 15px;
   object-fit: contain;
-  vertical-align: -1px;
+  vertical-align: -2px;
 }
 .relic-entry__resonances {
   margin-top: 6px;
@@ -524,36 +524,35 @@ onMounted(loadData)
 .relic-entry__res-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 .relic-res-badges-wrap {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 .resonance-mini-badge {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  background: rgba(0, 0, 0, 0.04);
-  padding: 1px 4px 1px 2px;
-  border-radius: 3px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  gap: 3px;
+  background: none;
+  border: none;
+  padding: 0;
   line-height: 1;
 }
 :root[data-theme='dark'] .resonance-mini-badge,
 .dark-mode .resonance-mini-badge {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: none;
+  border: none;
 }
 .resonance-mini-icon {
-  width: 13px;
-  height: 13px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
   vertical-align: middle;
 }
 .resonance-mini-num {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--text-main, #333);
 }

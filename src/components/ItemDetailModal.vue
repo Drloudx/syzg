@@ -1037,7 +1037,7 @@ const openRelicDetail = relicId => {
 
 const getElementIconUrl = cat => {
   const slug = getElementSlug(cat)
-  return slug ? getImageUrl(`/images/HeroBagPanel/card_atr_${slug}.webp`) : ''
+  return slug ? getImageUrl(`/images/relics/relic_atr_${slug}.webp`) : ''
 }
 
 /** 遗器文本里的 `{…}` 是游戏的高亮数值 —— 转成加粗高亮。 */
@@ -1961,32 +1961,31 @@ onBeforeUnmount(cancelBodyScrollRestore)
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 12px;
   flex: 0 0 auto;
 }
 .resonance-req-badge {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
-  background: rgba(0, 0, 0, 0.05);
-  padding: 1px 6px 1px 2px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
   line-height: 1;
 }
 :root[data-theme='dark'] .resonance-req-badge,
 .dark-mode .resonance-req-badge {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: none;
+  border: none;
 }
 .resonance-req-icon {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   vertical-align: middle;
 }
 .resonance-req-num {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-main, #333);
 }
@@ -2000,10 +1999,10 @@ onBeforeUnmount(cancelBodyScrollRestore)
   gap: 4px;
 }
 .relic-tag-icon {
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
-  vertical-align: -2px;
+  vertical-align: -3px;
 }
 .relic-resonance-row__text { flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
 .relic-hl {
