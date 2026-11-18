@@ -31,8 +31,14 @@
 
     <UiEmptyState v-if="loading" type="loading" text="正在加载遗器图鉴..." />
     <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadData" />
+
+    <!-- 法盘模拟器视图 -->
+    <div v-else-if="isSim" id="relicsScroll" class="relics-content">
+      <RelicBoardSimulator :relics="relics" :fapan="fapan" :dungeons="dungeons" />
+    </div>
+
     <!-- 规则视图（独立 tab，不是列表底部的区块） -->
-    <UiCardGrid v-else-if="!isList" id="relicsScroll" class="relics-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
+    <UiCardGrid v-else-if="tab === 'rules'" id="relicsScroll" class="relics-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
       <UiSection title="遗器与法盘玩法规则">
         <div class="rule-copy">
           <p class="rule-scope"><b>⚠ 适用范围</b>：遗器 / 法盘的属性加成与技能效果，<b>只在对应秘境副本（如亚空回廊）的战斗内生效</b>，离开副本即失效，不影响主线、日常等其它玩法。</p>
@@ -202,6 +208,7 @@ import {
   UiTag, UiEmptyState, UiBackToTop, UiSection, UiTabs
 } from '../components/ui/index.js'
 import ItemDetailModal from '../components/ItemDetailModal.vue'
+import RelicBoardSimulator from '../components/relics/RelicBoardSimulator.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -215,13 +222,15 @@ const typeOptions = [
   { value: 'core', label: '核心' }
 ]
 
-/** 顶部 Tab：遗器列表 / 玩法规则（规则是独立视图，不是列表底部区块）。 */
+/** 顶部 Tab：法盘模拟 / 遗器列表 / 玩法规则 */
 const tabs = [
+  { value: 'sim', label: '法盘模拟' },
   { value: 'list', label: '遗器列表' },
   { value: 'rules', label: '玩法规则' }
 ]
-const tab = computed(() => (tabs.some(entry => entry.value === route.query.tab) ? route.query.tab : 'list'))
+const tab = computed(() => (tabs.some(entry => entry.value === route.query.tab) ? route.query.tab : 'sim'))
 const isList = computed(() => tab.value === 'list')
+const isSim = computed(() => tab.value === 'sim')
 function changeTab(value) {
   router.push({ path: '/relics', query: { ...route.query, tab: value } })
 }

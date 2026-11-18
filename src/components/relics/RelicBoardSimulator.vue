@@ -1,0 +1,1220 @@
+<template>
+  <div class="relic-simulator">
+    <!-- 顶部控制面板 -->
+    <div class="sim-ctrl paper-panel">
+      <!-- 格子与等级快速配置 -->
+      <div class="sim-ctrl__section">
+        <div class="sim-ctrl__header">
+          <span class="sim-ctrl__title">法盘格子设定</span>
+          <span class="sim-ctrl__badge">当前开启 <b>{{ openCells.size }}</b> / 52 格（点击棋盘格子可自定义点亮/锁定）</span>
+        </div>
+        <div class="sim-level-row">
+          <div class="sim-level-slider-wrap">
+            <label class="sim-level-label" for="fapanLevelSlider">法盘等级：<b>Lv.{{ fapanLevel }}</b></label>
+            <input
+              id="fapanLevelSlider"
+              v-model.number="fapanLevel"
+              type="range"
+              min="1"
+              max="30"
+              step="1"
+              class="sim-level-slider"
+              @input="onLevelSliderChange"
+            />
+          </div>
+          <div class="sim-btn-group">
+            <button type="button" class="sim-btn" :class="{ 'is-active': fapanLevel === 30 && openCells.size === 52 }" @click="setLevelQuick(30)">满级全开 (52格)</button>
+            <button type="button" class="sim-btn" :class="{ 'is-active': fapanLevel === 1 && openCells.size === 22 }" @click="setLevelQuick(1)">初始中心 (22格)</button>
+            <button type="button" class="sim-btn sim-btn--subtle" @click="clearAllGrids">清空全盘</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 核心遗器选择 -->
+      <div class="sim-ctrl__section">
+        <div class="sim-ctrl__header">
+          <span class="sim-ctrl__title">选择核心遗器（最多 4 种）</span>
+          <span class="sim-ctrl__badge">已选 <b>{{ selectedCoreIds.length }}</b> / 4 种</span>
+        </div>
+        <div class="core-selector-grid">
+          <div
+            v-for="core in coreRelicOptions"
+            :key="core.id"
+            class="core-chip"
+            :class="{ 'is-selected': selectedCoreIds.includes(core.id) }"
+            @click="toggleCoreRelic(core.id)"
+          >
+            <img :src="getImageUrl(`/images/Common_ItemIcon/${core.icon}.webp`)" :alt="core.name" class="core-chip__icon" />
+            <div class="core-chip__info">
+              <span class="core-chip__name">{{ core.name }}</span>
+              <span class="core-chip__shape">{{ core.shape.width }}×{{ core.shape.height }} 格</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 属性与遗器过滤排除 -->
+      <div class="sim-ctrl__section">
+        <div class="sim-ctrl__header sim-ctrl__header--collapsible" @click="showFilters = !showFilters">
+          <span class="sim-ctrl__title">属性与遗器排除过滤（不想要的属性打勾排除）</span>
+          <span class="sim-ctrl__toggle-link">{{ showFilters ? '收起选项 ▲' : '展开选项 ▼' }}<template v-if="totalExcludedCount > 0">（已排除 {{ totalExcludedCount }} 项）</template></span>
+        </div>
+        <div v-show="showFilters" class="filter-options-wrap">
+          <div class="filter-group">
+            <span class="filter-group__label">排除属性：</span>
+            <div class="filter-pills">
+              <span
+                v-for="stat in allStatNames"
+                :key="stat"
+                class="filter-pill"
+                :class="{ 'is-excluded': excludedStats.includes(stat) }"
+                @click="toggleExcludedStat(stat)"
+              >
+                {{ stat }}
+              </span>
+            </div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-group__label">排除元素：</span>
+            <div class="filter-pills">
+              <span
+                v-for="cat in allCategoryNames"
+                :key="cat"
+                class="filter-pill"
+                :class="{ 'is-excluded': excludedCategories.includes(cat) }"
+                @click="toggleExcludedCat(cat)"
+              >
+                {{ cat }}
+              </span>
+            </div>
+          </div>
+          <div v-if="excludedRelicIds.length" class="filter-group">
+            <span class="filter-group__label">单件排除：</span>
+            <div class="filter-pills">
+              <span
+                v-for="rid in excludedRelicIds"
+                :key="rid"
+                class="filter-pill is-excluded"
+                @click="removeExcludedRelic(rid)"
+              >
+                {{ getRelicName(rid) }} ✕
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 求解触发与操作按钮 -->
+      <div class="sim-action-row">
+        <button type="button" class="sim-main-btn" @click="runAutoSolver">
+          <span class="sim-main-btn__icon">⚡</span> 智能自动装配
+        </button>
+        <button type="button" class="sim-reset-btn" @click="resetPlacements">
+          清空已放置
+        </button>
+        <div v-if="solutionNotice" class="sim-notice" :class="solutionNoticeType">
+          {{ solutionNotice }}
+        </div>
+      </div>
+    </div>
+
+    <!-- 法盘主体展示区域（居中核心） -->
+    <div class="board-stage-wrap paper-panel">
+      <div class="board-header">
+        <div class="board-title-group">
+          <span class="board-title">法盘 · 亚空回廊</span>
+          <span class="board-desc">8 × 7 矩形八角盘（四角切角镂空 · 满级有效 52 格）</span>
+        </div>
+        <div class="board-stats-quick">
+          <span class="quick-stat">已放置：<b>{{ solution?.usedCellCount || 0 }}</b> / {{ openCells.size }} 格</span>
+          <span class="quick-stat">利用率：<b>{{ solution ? Math.round(solution.fillRate * 100) : 0 }}%</b></span>
+        </div>
+      </div>
+
+      <!-- 8×7 法盘底板 + 跨格遗器 + SVG 共鸣光束 -->
+      <div ref="boardRef" class="fapan-stage">
+        <!-- 底层网格插槽（8×7，四角镂空，提供交互点击切换开/关） -->
+        <div class="board-grid-slots" :style="{ '--cols': 8, '--rows': 7 }">
+          <template v-for="y in 7" :key="`row-${y-1}`">
+            <template v-for="x in 8" :key="`cell-${x-1}-${y-1}`">
+              <div
+                class="grid-slot"
+                :class="{
+                  'is-corner': isPermanentCorner(x - 1, y - 1),
+                  'is-open': !isPermanentCorner(x - 1, y - 1) && openCells.has(`${x - 1},${y - 1}`),
+                  'is-locked': !isPermanentCorner(x - 1, y - 1) && !openCells.has(`${x - 1},${y - 1}`),
+                  'is-energy-range': activeEnergyRangeCells.has(`${x - 1},${y - 1}`)
+                }"
+                :title="getSlotTitle(x - 1, y - 1)"
+                @click="onSlotClick(x - 1, y - 1)"
+              >
+                <span v-if="activeEnergyRangeCells.has(`${x - 1},${y - 1}`)" class="range-diamond-icon">✦</span>
+                <span v-else-if="!isPermanentCorner(x - 1, y - 1) && !openCells.has(`${x - 1},${y - 1}`)" class="lock-icon">🔒</span>
+              </div>
+            </template>
+          </template>
+        </div>
+
+        <!-- 上层遗器装配（跨格铺放） -->
+        <div class="board-placed-layer" :style="{ '--cols': 8, '--rows': 7 }">
+          <div
+            v-for="(item, idx) in placedRelics"
+            :key="`${item.relicId}-${idx}`"
+            class="relic-block"
+            :class="[
+              `element-${getElementClass(item.relic?.categoryName)}`,
+              { 'is-core': item.isCore, 'is-active-inspect': inspectingRelic?.relicId === item.relicId }
+            ]"
+            :style="{
+              gridColumn: `${item.x + 1} / span ${item.width}`,
+              gridRow: `${item.y + 1} / span ${item.height}`
+            }"
+            @click="inspectRelic(item)"
+          >
+            <span class="relic-block__roman">{{ getRomanLevel(item.level || 5) }}</span>
+            <img
+              :src="getImageUrl(`/images/Common_ItemIcon/${item.relic.icon}.webp`)"
+              :alt="item.relic.name"
+              class="relic-block__img"
+            />
+            <span class="relic-block__tag">{{ item.relic.name }}</span>
+          </div>
+        </div>
+
+        <!-- SVG 炫彩共鸣发光光束层（轻盈通透微光） -->
+        <svg v-if="resonanceBeams.length" class="board-beam-layer" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <filter id="beamSoftGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" />
+            </filter>
+          </defs>
+          <g v-for="(beam, bIdx) in resonanceBeams" :key="`beam-${bIdx}`">
+            <!-- 柔和微光晕外层 -->
+            <line
+              :x1="beam.x1"
+              :y1="beam.y1"
+              :x2="beam.x2"
+              :y2="beam.y2"
+              :stroke="beam.color"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              opacity="0.28"
+              filter="url(#beamSoftGlow)"
+            />
+            <!-- 核心细光束内层 -->
+            <line
+              :x1="beam.x1"
+              :y1="beam.y1"
+              :x2="beam.x2"
+              :y2="beam.y2"
+              :stroke="beam.color"
+              stroke-width="0.75"
+              stroke-linecap="round"
+              opacity="0.45"
+            />
+          </g>
+        </svg>
+      </div>
+
+      <!-- 选中遗器详情弹层/卡片 -->
+      <div v-if="inspectingRelic" class="relic-inspect-bar">
+        <div class="inspect-relic-left">
+          <img :src="getImageUrl(`/images/Common_ItemIcon/${inspectingRelic.relic.icon}.webp`)" class="inspect-icon" />
+          <div class="inspect-text">
+            <div class="inspect-title-row">
+              <span class="inspect-name">{{ inspectingRelic.relic.name }}</span>
+              <span class="inspect-meta">（{{ inspectingRelic.width }}×{{ inspectingRelic.height }}格 · {{ inspectingRelic.relic.categoryName || '核心' }}）</span>
+            </div>
+            <p class="inspect-effect">{{ getRelicEffectText(inspectingRelic.relic, inspectingRelic.level || 5) }}</p>
+          </div>
+        </div>
+        <div class="inspect-actions">
+          <button type="button" class="inspect-action-btn" @click="removePlacedRelic(inspectingRelic)">卸下此件</button>
+          <button v-if="!inspectingRelic.isCore" type="button" class="inspect-action-btn inspect-action-btn--warn" @click="excludeThisRelic(inspectingRelic.relic.id)">排除此件</button>
+          <button type="button" class="inspect-action-btn inspect-action-btn--close" @click="inspectingRelic = null">关闭 ✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部收益面板：共鸣达成清单 + 全局属性合计 -->
+    <div class="sim-summary paper-panel">
+      <!-- 共鸣激活清单 -->
+      <div class="summary-section">
+        <h4 class="summary-title">⚡ 核心共鸣达成情况</h4>
+        <div v-if="allResonanceStatus.length" class="resonance-list">
+          <div
+            v-for="(res, rIdx) in allResonanceStatus"
+            :key="`res-${rIdx}`"
+            class="res-item"
+            :class="{ 'is-met': res.isMet }"
+          >
+            <span class="res-item__status">{{ res.isMet ? '✔ 已激活' : '✘ 未达成' }}</span>
+            <div class="res-item__content">
+              <span class="res-item__head"><b>[{{ res.coreName }}]</b> {{ res.requirement }}</span>
+              <span class="res-item__desc">{{ res.text }}</span>
+            </div>
+          </div>
+        </div>
+        <p v-else class="summary-empty">未选择核心遗器或暂无共鸣需求。</p>
+      </div>
+
+      <!-- 全局加成汇总 -->
+      <div class="summary-section">
+        <h4 class="summary-title">📊 全局属性收益汇总</h4>
+        <div v-if="solution?.totalStats?.length" class="stats-cloud">
+          <div v-for="stat in solution.totalStats" :key="stat.name" class="stat-badge">
+            <span class="stat-badge__name">{{ stat.name }}</span>
+            <span class="stat-badge__val">+{{ stat.value }}{{ stat.name.includes('率') || stat.name.includes('伤害') || stat.name.includes('加成') || stat.name.includes('缩减') || stat.name.includes('攻击') ? '%' : '' }}</span>
+            <span class="stat-badge__count">({{ stat.count }}件)</span>
+          </div>
+        </div>
+        <p v-else class="summary-empty">法盘上暂未放置提供基础属性的遗器。</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed, onMounted, nextTick } from 'vue'
+import { getImageUrl } from '../../utils/env.js'
+import {
+  isPermanentCorner,
+  getCoreResonanceRangeCells,
+  getDefaultOpenGridSet,
+  solveFapanPlacement,
+  evaluateResonances
+} from '../../utils/relicSolver.js'
+
+const props = defineProps({
+  relics: {
+    type: Array,
+    default: () => []
+  },
+  fapan: {
+    type: Array,
+    default: () => []
+  },
+  dungeons: {
+    type: Array,
+    default: () => []
+  }
+})
+
+// 棋盘格位状态
+const fapanLevel = ref(30)
+const openCells = ref(new Set())
+const boardRef = ref(null)
+
+// 选定核心与过滤配置
+const selectedCoreIds = ref(['core_101']) // 默认选 1 个幽夜大弓
+const excludedStats = ref([])
+const excludedCategories = ref([])
+const excludedRelicIds = ref([])
+const showFilters = ref(false)
+
+// 放置结果
+const solution = ref(null)
+const inspectingRelic = ref(null)
+const solutionNotice = ref('')
+const solutionNoticeType = ref('is-info')
+
+// 基础选项提取
+const coreRelicOptions = computed(() => {
+  return props.relics.filter(r => r.type === 'core')
+})
+
+const allStatNames = computed(() => {
+  const set = new Set()
+  for (const r of props.relics) {
+    if (r.type === 'base' && r.attributeName) set.add(r.attributeName)
+  }
+  return Array.from(set)
+})
+
+const allCategoryNames = ['火属性', '水属性', '地属性', '风属性']
+
+const totalExcludedCount = computed(() => {
+  return excludedStats.value.length + excludedCategories.value.length + excludedRelicIds.value.length
+})
+
+const placedRelics = computed(() => solution.value?.placedRelics || [])
+
+// 所有选定核心的共鸣达标状态
+const allResonanceStatus = computed(() => {
+  if (!solution.value) {
+    const selectedCores = coreRelicOptions.value.filter(c => selectedCoreIds.value.includes(c.id))
+    return evaluateResonances([], selectedCores).unmet
+  }
+  return [...solution.value.activeResonances, ...solution.value.unmetResonances]
+})
+
+// 初始化与等级切换
+function initBoardGrids() {
+  const fCells = props.fapan[0]?.cells || []
+  openCells.value = getDefaultOpenGridSet(fapanLevel.value, fCells)
+}
+
+function onLevelSliderChange() {
+  initBoardGrids()
+  runAutoSolver()
+}
+
+function setLevelQuick(lv) {
+  fapanLevel.value = lv
+  initBoardGrids()
+  runAutoSolver()
+}
+
+function clearAllGrids() {
+  openCells.value.clear()
+  resetPlacements()
+}
+
+function onSlotClick(x, y) {
+  if (isPermanentCorner(x, y)) return
+  const key = `${x},${y}`
+  if (openCells.value.has(key)) {
+    openCells.value.delete(key)
+    // 移除落在该格子上的遗器
+    if (solution.value?.placedRelics) {
+      solution.value.placedRelics = solution.value.placedRelics.filter(p => {
+        const inX = x >= p.x && x < p.x + p.width
+        const inY = y >= p.y && y < p.y + p.height
+        return !(inX && inY)
+      })
+    }
+  } else {
+    openCells.value.add(key)
+  }
+}
+
+function getSlotTitle(x, y) {
+  if (isPermanentCorner(x, y)) return '永久隐藏切角（不可用）'
+  const key = `${x},${y}`
+  return openCells.value.has(key) ? `已开启可用 (${x}, ${y}) · 点击可锁定` : `未开启锁定 (${x}, ${y}) · 点击可开启`
+}
+
+// 核心遗器选择
+function toggleCoreRelic(id) {
+  const idx = selectedCoreIds.value.indexOf(id)
+  if (idx >= 0) {
+    selectedCoreIds.value.splice(idx, 1)
+  } else {
+    if (selectedCoreIds.value.length >= 4) {
+      solutionNotice.value = '核心遗器同场最多只能放置 4 种！'
+      solutionNoticeType.value = 'is-warn'
+      return
+    }
+    selectedCoreIds.value.push(id)
+  }
+  runAutoSolver()
+}
+
+// 排除过滤
+function toggleExcludedStat(stat) {
+  const idx = excludedStats.value.indexOf(stat)
+  if (idx >= 0) excludedStats.value.splice(idx, 1)
+  else excludedStats.value.push(stat)
+  runAutoSolver()
+}
+
+function toggleExcludedCat(cat) {
+  const idx = excludedCategories.value.indexOf(cat)
+  if (idx >= 0) excludedCategories.value.splice(idx, 1)
+  else excludedCategories.value.push(cat)
+  runAutoSolver()
+}
+
+function removeExcludedRelic(rid) {
+  excludedRelicIds.value = excludedRelicIds.value.filter(id => id !== rid)
+  runAutoSolver()
+}
+
+function getRelicName(rid) {
+  return props.relics.find(r => r.id === rid)?.name || rid
+}
+
+// 求解器驱动
+function runAutoSolver() {
+  if (!openCells.value.size) {
+    solutionNotice.value = '当前未开启任何法盘格子，请先点击开启格子！'
+    solutionNoticeType.value = 'is-warn'
+    solution.value = null
+    return
+  }
+
+  const res = solveFapanPlacement({
+    openCells: openCells.value,
+    selectedCoreIds: selectedCoreIds.value,
+    excludedStats: excludedStats.value,
+    excludedCategories: excludedCategories.value,
+    excludedRelicIds: excludedRelicIds.value,
+    allRelics: props.relics
+  })
+
+  solution.value = res
+  if (res.placedRelics.length === 0) {
+    solutionNotice.value = '在当前开启格子与过滤条件下，未能放置任何遗器。'
+    solutionNoticeType.value = 'is-warn'
+  } else {
+    solutionNotice.value = `装配完成！共放置 ${res.placedRelics.length} 件遗器，激活 ${res.activeResonances.length} 条共鸣，格子利用率 ${Math.round(res.fillRate * 100)}%`
+    solutionNoticeType.value = 'is-success'
+  }
+}
+
+function resetPlacements() {
+  if (solution.value) {
+    solution.value.placedRelics = []
+    solution.value.usedCellCount = 0
+    solution.value.fillRate = 0
+    solution.value.activeResonances = []
+    solution.value.totalStats = []
+  }
+  inspectingRelic.value = null
+  solutionNotice.value = '已清空法盘装配。'
+  solutionNoticeType.value = 'is-info'
+}
+
+// 遗器检视与单件操作
+function inspectRelic(item) {
+  inspectingRelic.value = item
+}
+
+function removePlacedRelic(target) {
+  if (!solution.value) return
+  solution.value.placedRelics = solution.value.placedRelics.filter(p => p !== target)
+  inspectingRelic.value = null
+}
+
+function excludeThisRelic(relicId) {
+  if (!excludedRelicIds.value.includes(relicId)) {
+    excludedRelicIds.value.push(relicId)
+  }
+  inspectingRelic.value = null
+  runAutoSolver()
+}
+
+function getRelicEffectText(relic, lv = 5) {
+  return relic.levels?.[lv - 1]?.text || relic.desc || relic.tip || ''
+}
+
+// 视觉样式辅助
+function getElementClass(catName) {
+  switch (catName) {
+    case '火属性': return 'fire'
+    case '水属性': return 'water'
+    case '地属性': return 'earth'
+    case '风属性': return 'wind'
+    default: return 'neutral'
+  }
+}
+
+function getRomanLevel(lv) {
+  const roman = ['I', 'II', 'III', 'IV', 'V']
+  return roman[lv - 1] || 'I'
+}
+
+// 当前生效的核心十字共鸣能量范围 (Set<"x,y">)
+const activeEnergyRangeCells = computed(() => {
+  const set = new Set()
+  const cores = placedRelics.value.filter(p => p.isCore)
+  const targetCores = inspectingRelic.value?.isCore ? [inspectingRelic.value] : cores
+  for (const c of targetCores) {
+    const range = getCoreResonanceRangeCells(c)
+    for (const k of range) {
+      if (openCells.value.has(k)) {
+        set.add(k)
+      }
+    }
+  }
+  return set
+})
+
+// 计算共鸣发光光束坐标 (0..100 SVG 百分比坐标，柔和淡雅连线，严格仅限十字能量范围内)
+const resonanceBeams = computed(() => {
+  if (!solution.value || !solution.value.placedRelics) return []
+  const beams = []
+  const placed = solution.value.placedRelics
+  const cores = placed.filter(p => p.isCore)
+  const bases = placed.filter(p => !p.isCore)
+
+  for (const core of cores) {
+    const cx1 = ((core.x + core.width / 2) / 8) * 100
+    const cy1 = ((core.y + core.height / 2) / 7) * 100
+
+    // 计算当前核心的十字能量范围
+    const coreRangeCells = getCoreResonanceRangeCells(core)
+
+    // 统计各元素所需满足的最大配额
+    const neededCounts = {}
+    for (const res of (core.relic.resonances || [])) {
+      for (const part of (res.requirementParts || [])) {
+        neededCounts[part.categoryName] = Math.max(neededCounts[part.categoryName] || 0, part.count || 0)
+      }
+    }
+
+    // 针对每个需要共鸣的元素，严格仅连接落在当前核心十字能量范围内的基础遗器
+    const connectedBases = new Set()
+    for (const [elementName, neededCount] of Object.entries(neededCounts)) {
+      if (neededCount <= 0) continue
+
+      const inRangeBases = bases.filter(b => {
+        if (b.relic?.categoryName !== elementName || connectedBases.has(b)) return false
+        for (let dy = 0; dy < b.height; dy += 1) {
+          for (let dx = 0; dx < b.width; dx += 1) {
+            if (coreRangeCells.has(`${b.x + dx},${b.y + dy}`)) return true
+          }
+        }
+        return false
+      })
+
+      const candidates = inRangeBases
+        .map(b => {
+          const bx = ((b.x + b.width / 2) / 8) * 100
+          const by = ((b.y + b.height / 2) / 7) * 100
+          const dist = Math.hypot(bx - cx1, by - cy1)
+          return { base: b, dist, bx, by }
+        })
+        .sort((a, b) => a.dist - b.dist)
+        .slice(0, neededCount)
+
+      let color = '#ffd666'
+      if (elementName === '火属性') color = '#ff7875'
+      else if (elementName === '水属性') color = '#69c0ff'
+      else if (elementName === '地属性') color = '#ffd666'
+      else if (elementName === '风属性') color = '#95de64'
+
+      for (const item of candidates) {
+        connectedBases.add(item.base)
+        beams.push({
+          x1: cx1,
+          y1: cy1,
+          x2: item.bx,
+          y2: item.by,
+          color
+        })
+      }
+    }
+  }
+  return beams
+})
+
+onMounted(() => {
+  initBoardGrids()
+  runAutoSolver()
+})
+</script>
+
+<style scoped>
+.relic-simulator {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* 控制面板 */
+.sim-ctrl {
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sim-ctrl__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed var(--border-soft, rgba(0,0,0,0.1));
+}
+.sim-ctrl__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.sim-ctrl__header--collapsible {
+  cursor: pointer;
+  user-select: none;
+}
+.sim-ctrl__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main, #333);
+}
+.sim-ctrl__badge {
+  font-size: 12px;
+  color: var(--text-muted, #777);
+}
+.sim-ctrl__badge b {
+  color: var(--accent-ink, #557574);
+}
+.sim-ctrl__toggle-link {
+  font-size: 12px;
+  color: var(--accent-ink, #557574);
+}
+
+/* 等级滑块与快速预设 */
+.sim-level-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.sim-level-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 280px;
+}
+.sim-level-label {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.sim-level-slider {
+  flex: 1;
+  accent-color: var(--accent-ink, #557574);
+  cursor: pointer;
+}
+.sim-btn-group {
+  display: flex;
+  gap: 6px;
+}
+.sim-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-soft, #ddd);
+  background: var(--paper-solid, #fff);
+  color: var(--text-main, #333);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.sim-btn.is-active {
+  background: var(--accent-ink, #557574);
+  color: #fff;
+  border-color: var(--accent-ink, #557574);
+}
+.sim-btn--subtle {
+  color: var(--text-muted, #888);
+}
+
+/* 核心遗器选择卡片网格 */
+.core-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+.core-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-soft, #ddd);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+.core-chip:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+.core-chip.is-selected {
+  background: rgba(184, 134, 11, 0.15);
+  border-color: #d4af37;
+  box-shadow: 0 0 0 1px #d4af37;
+}
+.core-chip__icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+.core-chip__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.core-chip__name {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.core-chip__shape {
+  font-size: 10.5px;
+  color: var(--text-muted, #777);
+}
+
+/* 过滤选项 */
+.filter-options-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+.filter-group {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.filter-group__label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted, #666);
+  white-space: nowrap;
+  flex: 0 0 65px;
+}
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.filter-pill {
+  padding: 2px 8px;
+  font-size: 11.5px;
+  border-radius: 4px;
+  border: 1px solid var(--border-soft, #ddd);
+  background: var(--paper-solid, #fff);
+  color: var(--text-main, #333);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+.filter-pill.is-excluded {
+  background: rgba(180, 40, 40, 0.12);
+  color: #b32d2e;
+  border-color: rgba(180, 40, 40, 0.4);
+  text-decoration: line-through;
+}
+
+/* 操作行 */
+.sim-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.sim-main-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  background: var(--accent-ink, #557574);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition: all 0.15s ease;
+}
+.sim-main-btn:hover {
+  filter: brightness(1.1);
+}
+.sim-reset-btn {
+  padding: 8px 14px;
+  font-size: 13px;
+  border: 1px solid var(--border-soft, #ddd);
+  background: var(--paper-solid, #fff);
+  color: var(--text-muted, #666);
+  border-radius: 6px;
+  cursor: pointer;
+}
+.sim-notice {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.sim-notice.is-success { color: #2e7d32; }
+.sim-notice.is-warn { color: #d32f2f; }
+.sim-notice.is-info { color: var(--text-muted, #666); }
+
+/* 法盘主舞台 */
+.board-stage-wrap {
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 100%), var(--paper-soft);
+}
+.board-header {
+  width: 100%;
+  max-width: 580px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.board-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-main, #333);
+}
+.board-desc {
+  font-size: 11.5px;
+  color: var(--text-muted, #777);
+  display: block;
+}
+.board-stats-quick {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-muted, #666);
+}
+.board-stats-quick b {
+  color: var(--accent-ink, #557574);
+}
+
+/* 棋盘容器（8×7 比例，带切角遮罩与石质外框） */
+.fapan-stage {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  aspect-ratio: 8 / 7;
+  background: #252321;
+  border: 6px solid #4a453f;
+  border-radius: 12px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* 底层槽位 */
+.board-grid-slots {
+  position: absolute;
+  inset: 6px;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  gap: 4px;
+}
+.grid-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.grid-slot.is-corner {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.grid-slot.is-open {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+}
+.grid-slot.is-open:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.grid-slot.is-locked {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.grid-slot.is-locked:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+.grid-slot.is-energy-range {
+  border: 1.5px solid rgba(240, 145, 30, 0.75) !important;
+  background: rgba(230, 120, 20, 0.12) !important;
+  box-shadow: inset 0 0 6px rgba(240, 140, 20, 0.25);
+}
+.range-diamond-icon {
+  font-size: 13px;
+  color: #ffaa33;
+  opacity: 0.9;
+  text-shadow: 0 0 6px rgba(255, 170, 50, 0.9);
+  pointer-events: none;
+  line-height: 1;
+}
+.lock-icon {
+  font-size: 10px;
+  opacity: 0.35;
+}
+
+/* 上层遗器装配网格 */
+.board-placed-layer {
+  position: absolute;
+  inset: 6px;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  gap: 4px;
+  pointer-events: none; /* 让空隙点击穿透到底层 slot */
+}
+
+/* 单个放置的遗器块 */
+.relic-block {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), inset 0 0 4px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.relic-block:hover {
+  transform: scale(0.98);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+.relic-block.is-active-inspect {
+  outline: 2px solid #fff;
+  transform: scale(0.98);
+}
+
+/* 元素主题颜色 */
+.relic-block.element-fire {
+  background: linear-gradient(135deg, rgba(140, 30, 20, 0.88), rgba(65, 12, 10, 0.95));
+  border: 1.5px solid #e74c3c;
+}
+.relic-block.element-water {
+  background: linear-gradient(135deg, rgba(20, 80, 140, 0.88), rgba(10, 40, 75, 0.95));
+  border: 1.5px solid #3498db;
+}
+.relic-block.element-earth {
+  background: linear-gradient(135deg, rgba(130, 85, 35, 0.88), rgba(65, 42, 18, 0.95));
+  border: 1.5px solid #d38b28;
+}
+.relic-block.element-wind {
+  background: linear-gradient(135deg, rgba(30, 110, 55, 0.88), rgba(15, 55, 28, 0.95));
+  border: 1.5px solid #2ecc71;
+}
+.relic-block.is-core {
+  background: linear-gradient(135deg, rgba(160, 115, 25, 0.92), rgba(75, 50, 10, 0.98)) !important;
+  border: 2px solid #ffd700 !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4), inset 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* 遗器图片与标识 */
+.relic-block__img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+.relic-block__roman {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+  pointer-events: none;
+}
+.relic-block__tag {
+  position: absolute;
+  bottom: 2px;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  pointer-events: none;
+}
+
+/* SVG 光束连线层 */
+.board-beam-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: screen;
+  opacity: 0.8;
+}
+
+/* 检视条 */
+.relic-inspect-bar {
+  width: 100%;
+  max-width: 540px;
+  padding: 10px 14px;
+  background: var(--paper-solid, #fff);
+  border: 1px solid var(--border-soft, #ddd);
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.inspect-relic-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 280px;
+}
+.inspect-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+.inspect-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.inspect-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.inspect-name {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+.inspect-meta {
+  font-size: 11.5px;
+  color: var(--text-muted, #777);
+}
+.inspect-effect {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-main, #333);
+}
+.inspect-actions {
+  display: flex;
+  gap: 6px;
+}
+.inspect-action-btn {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-soft, #ddd);
+  background: var(--paper-solid, #fff);
+  cursor: pointer;
+}
+.inspect-action-btn--warn {
+  color: #b32d2e;
+  border-color: rgba(179, 45, 46, 0.4);
+}
+.inspect-action-btn--close {
+  color: var(--text-muted, #888);
+}
+
+/* 底部收益面板 */
+.sim-summary {
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.summary-title {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-main, #333);
+}
+.summary-empty {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-muted, #888);
+}
+
+/* 共鸣条目 */
+.resonance-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.res-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.03);
+  border-left: 3px solid #999;
+}
+.res-item.is-met {
+  background: rgba(46, 125, 50, 0.08);
+  border-left-color: #2e7d32;
+}
+.res-item__status {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #888;
+}
+.res-item.is-met .res-item__status {
+  color: #2e7d32;
+}
+.res-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.res-item__head {
+  font-size: 12.5px;
+  color: var(--text-main, #333);
+}
+.res-item__desc {
+  font-size: 12px;
+  color: var(--text-muted, #666);
+}
+
+/* 词条属性云 */
+.stats-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stat-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(85, 117, 116, 0.08);
+  border: 1px solid rgba(85, 117, 116, 0.25);
+}
+.stat-badge__name {
+  font-size: 12.5px;
+  color: var(--text-muted, #555);
+}
+.stat-badge__val {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--accent-ink, #557574);
+}
+.stat-badge__count {
+  font-size: 11px;
+  color: var(--text-muted, #888);
+}
+
+@media (max-width: 640px) {
+  .sim-ctrl, .board-stage-wrap, .sim-summary {
+    padding: 12px;
+  }
+  .core-selector-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .fapan-stage {
+    max-width: 100%;
+  }
+  .relic-block__roman {
+    font-size: 9px;
+  }
+  .relic-block__tag {
+    display: none;
+  }
+}
+</style>
