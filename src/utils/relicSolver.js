@@ -166,7 +166,7 @@ export function solveFapanPlacement({
   excludedCategories = [], // string[] 排除元素
   excludedRelicIds = [], // string[] 排除特定遗器
   relicMaxCounts = {}, // { [relicId]: number } 单个遗器数量上限/库存限制
-  globalMaxCountPerRelic = 3, // number | null 全局单品上限（默认每种最多 3 件）
+  globalMaxCountPerRelic = 4, // number | null 全局单品上限（默认每种最多 4 件）
   allRelics = []
 }) {
   const openSet = openCells instanceof Set ? openCells : new Set(openCells)

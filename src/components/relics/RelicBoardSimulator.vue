@@ -76,7 +76,7 @@
               :class="{ 'is-active': globalMaxCountPerRelic === 4 }"
               @click="setGlobalMaxCount(4)"
             >
-              每种最多 4 件
+              每种最多 4 件 (默认)
             </button>
             <button
               type="button"
@@ -84,7 +84,7 @@
               :class="{ 'is-active': globalMaxCountPerRelic === 3 }"
               @click="setGlobalMaxCount(3)"
             >
-              每种最多 3 件 (默认)
+              每种最多 3 件
             </button>
             <button
               type="button"
@@ -470,7 +470,7 @@ const excludedRelicIds = ref([])
 const showFilters = ref(false)
 
 // 基础遗器库存与数量上限配置
-const globalMaxCountPerRelic = ref(3) // 全局单品上限（默认每种最多 3 件）
+const globalMaxCountPerRelic = ref(4) // 全局单品上限（默认每种最多 4 件）
 const relicMaxCounts = ref({}) // 单个遗器限制 { [relicId]: number }
 const showInventory = ref(false)
 const inventoryFilterCat = ref('all')
@@ -683,7 +683,7 @@ function batchSetMaxCount(val) {
 
 function resetAllMaxCounts() {
   relicMaxCounts.value = {}
-  globalMaxCountPerRelic.value = 3
+  globalMaxCountPerRelic.value = 4
   runAutoSolver()
 }
 
