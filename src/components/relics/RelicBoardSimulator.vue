@@ -160,30 +160,50 @@
               </div>
               <div class="inv-card__stepper">
                 <span class="inv-stepper-label">可用上限</span>
-                <div class="stepper-ctrl">
-                  <button
-                    type="button"
-                    class="stepper-btn"
-                    :disabled="getRelicMaxCount(relic.id) <= 0"
-                    @click="stepRelicMaxCount(relic.id, -1)"
+                <div class="inv-stepper-row">
+                  <label
+                    class="inv-required-check"
+                    :class="{ 'is-checked': isRelicRequired(relic.id) }"
+                    :title="isRelicRequired(relic.id) ? '已设为必选：自动搭配时必须包含该遗器' : '设为必选：自动搭配时必须包含该遗器'"
                   >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    min="0"
-                    max="99"
-                    class="stepper-input"
-                    :value="getRelicMaxCount(relic.id)"
-                    @change="onStepperInputChange(relic.id, $event)"
-                  />
-                  <button
-                    type="button"
-                    class="stepper-btn"
-                    @click="stepRelicMaxCount(relic.id, 1)"
-                  >
-                    +
-                  </button>
+                    <input
+                      type="checkbox"
+                      class="inv-required-input"
+                      :checked="isRelicRequired(relic.id)"
+                      @change="toggleRelicRequired(relic.id)"
+                    />
+                    <span class="inv-required-box" aria-hidden="true">
+                      <svg v-if="isRelicRequired(relic.id)" viewBox="0 0 12 12" class="inv-check-icon">
+                        <path d="M2 6.2L4.6 8.8L10 3.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span class="inv-required-text">必选</span>
+                  </label>
+                  <div class="stepper-ctrl">
+                    <button
+                      type="button"
+                      class="stepper-btn"
+                      :disabled="getRelicMaxCount(relic.id) <= 0"
+                      @click="stepRelicMaxCount(relic.id, -1)"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      min="0"
+                      max="99"
+                      class="stepper-input"
+                      :value="getRelicMaxCount(relic.id)"
+                      @change="onStepperInputChange(relic.id, $event)"
+                    />
+                    <button
+                      type="button"
+                      class="stepper-btn"
+                      @click="stepRelicMaxCount(relic.id, 1)"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
                 <span class="inv-used-indicator">
                   已用: <b>{{ getRelicUsedCount(relic.id) }}</b> 件
@@ -212,21 +232,6 @@
                 @click="toggleExcludedStat(stat)"
               >
                 {{ stat }}
-              </span>
-            </div>
-          </div>
-          <div class="filter-group">
-            <span class="filter-group__label">排除元素：</span>
-            <div class="filter-pills">
-              <span
-                v-for="cat in allCategoryNames"
-                :key="cat"
-                class="filter-pill"
-                :class="{ 'is-excluded': excludedCategories.includes(cat) }"
-                @click="toggleExcludedCat(cat)"
-              >
-                <img :src="getElementIconUrl(cat)" :alt="cat" class="inline-element-icon" />
-                {{ cat }}
               </span>
             </div>
           </div>
@@ -465,13 +470,13 @@ const boardRef = ref(null)
 // 选定核心与过滤配置
 const selectedCoreIds = ref(['core_101']) // 默认选 1 个幽夜大弓
 const excludedStats = ref([])
-const excludedCategories = ref([])
 const excludedRelicIds = ref([])
 const showFilters = ref(false)
 
-// 基础遗器库存与数量上限配置
+// 基础遗器库存、必选与数量上限配置
 const globalMaxCountPerRelic = ref(4) // 全局单品上限（默认每种最多 4 件）
 const relicMaxCounts = ref({}) // 单个遗器限制 { [relicId]: number }
+const requiredRelicIds = ref([]) // 勾选必选的基础遗器列表
 const showInventory = ref(false)
 const inventoryFilterCat = ref('all')
 
@@ -540,7 +545,7 @@ const allStatNames = computed(() => {
 const allCategoryNames = ['火属性', '水属性', '地属性', '风属性']
 
 const totalExcludedCount = computed(() => {
-  return excludedStats.value.length + excludedCategories.value.length + excludedRelicIds.value.length
+  return excludedStats.value.length + excludedRelicIds.value.length
 })
 
 const placedRelics = computed(() => solution.value?.placedRelics || [])
@@ -624,13 +629,6 @@ function toggleExcludedStat(stat) {
   runAutoSolver()
 }
 
-function toggleExcludedCat(cat) {
-  const idx = excludedCategories.value.indexOf(cat)
-  if (idx >= 0) excludedCategories.value.splice(idx, 1)
-  else excludedCategories.value.push(cat)
-  runAutoSolver()
-}
-
 function removeExcludedRelic(rid) {
   excludedRelicIds.value = excludedRelicIds.value.filter(id => id !== rid)
   runAutoSolver()
@@ -640,7 +638,25 @@ function getRelicName(rid) {
   return props.relics.find(r => r.id === rid)?.name || rid
 }
 
-// 基础遗器库存与数量上限方法
+// 基础遗器库存、必选与数量上限方法
+function isRelicRequired(id) {
+  return requiredRelicIds.value.includes(id)
+}
+
+function toggleRelicRequired(id) {
+  const idx = requiredRelicIds.value.indexOf(id)
+  if (idx >= 0) {
+    requiredRelicIds.value.splice(idx, 1)
+  } else {
+    requiredRelicIds.value.push(id)
+    // 设为必选时，若当前可用上限为 0，自动提升为至少 1
+    if (getRelicMaxCount(id) <= 0) {
+      relicMaxCounts.value = { ...relicMaxCounts.value, [id]: 1 }
+    }
+  }
+  runAutoSolver()
+}
+
 function getRelicMaxCount(id) {
   if (relicMaxCounts.value[id] !== undefined) {
     return relicMaxCounts.value[id]
@@ -661,6 +677,10 @@ function stepRelicMaxCount(id, delta) {
   const current = getRelicMaxCount(id)
   const next = Math.max(0, Math.min(99, current + delta))
   relicMaxCounts.value = { ...relicMaxCounts.value, [id]: next }
+  // 上限设为 0 时自动取消必选
+  if (next <= 0 && isRelicRequired(id)) {
+    requiredRelicIds.value = requiredRelicIds.value.filter(rid => rid !== id)
+  }
   runAutoSolver()
 }
 
@@ -668,6 +688,10 @@ function onStepperInputChange(id, event) {
   const val = parseInt(event.target.value, 10)
   const validVal = isNaN(val) ? 0 : Math.max(0, Math.min(99, val))
   relicMaxCounts.value = { ...relicMaxCounts.value, [id]: validVal }
+  // 上限设为 0 时自动取消必选
+  if (validVal <= 0 && isRelicRequired(id)) {
+    requiredRelicIds.value = requiredRelicIds.value.filter(rid => rid !== id)
+  }
   runAutoSolver()
 }
 
@@ -678,12 +702,16 @@ function batchSetMaxCount(val) {
   }
   relicMaxCounts.value = next
   globalMaxCountPerRelic.value = val
+  if (val <= 0) {
+    requiredRelicIds.value = []
+  }
   runAutoSolver()
 }
 
 function resetAllMaxCounts() {
   relicMaxCounts.value = {}
   globalMaxCountPerRelic.value = 4
+  requiredRelicIds.value = []
   runAutoSolver()
 }
 
@@ -705,8 +733,9 @@ function runAutoSolver() {
     openCells: openCells.value,
     selectedCoreIds: selectedCoreIds.value,
     excludedStats: excludedStats.value,
-    excludedCategories: excludedCategories.value,
+    excludedCategories: [],
     excludedRelicIds: excludedRelicIds.value,
+    requiredRelicIds: requiredRelicIds.value,
     relicMaxCounts: relicMaxCounts.value,
     globalMaxCountPerRelic: globalMaxCountPerRelic.value,
     allRelics: props.relics
@@ -719,7 +748,10 @@ function runAutoSolver() {
   } else {
     const isLimited = globalMaxCountPerRelic.value !== null || hasCustomInventoryCount.value > 0
     const limitTip = (isLimited && res.fillRate < 0.98) ? '（受单品数量上限约束未填满空余格）' : ''
-    solutionNotice.value = `装配完成！共放置 ${res.placedRelics.length} 件遗器，激活 ${res.activeResonances.length} 条共鸣，格子利用率 ${Math.round(res.fillRate * 100)}%${limitTip}`
+    const reqTip = (res.missingRequiredRelicIds && res.missingRequiredRelicIds.length)
+      ? '，部分必选遗器因空间不足未能放置'
+      : (requiredRelicIds.value.length ? '，已满足所有勾选必选' : '')
+    solutionNotice.value = `装配完成！共放置 ${res.placedRelics.length} 件遗器，激活 ${res.activeResonances.length} 条共鸣，格子利用率 ${Math.round(res.fillRate * 100)}%${limitTip}${reqTip}`
     solutionNoticeType.value = 'is-success'
   }
 }
@@ -1210,6 +1242,82 @@ onMounted(() => {
 .inv-stepper-label {
   font-size: 10px;
   color: var(--text-muted, #888);
+}
+.inv-stepper-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.inv-required-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 11.5px;
+  color: var(--text-muted, #7c6448);
+  padding: 2px 3px;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+.inv-required-check:hover {
+  color: var(--text-main, #3e2a14);
+}
+.inv-required-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.inv-required-box {
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid var(--border-color, #8f7351);
+  border-radius: 3px;
+  background: var(--paper-soft, #f4ecd9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+.inv-required-check:hover .inv-required-box {
+  border-color: var(--accent-ink, #2f4a49);
+}
+.inv-required-check.is-checked .inv-required-box {
+  background: var(--accent-ink, #2f4a49);
+  border-color: var(--accent-ink, #2f4a49);
+}
+.inv-check-icon {
+  width: 11px;
+  height: 11px;
+  stroke: #ffd78c;
+}
+.inv-required-text {
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 500;
+  transition: color 0.15s ease, font-weight 0.15s ease;
+}
+.inv-required-check.is-checked .inv-required-text {
+  color: var(--accent-ink, #2f4a49);
+  font-weight: 700;
+}
+.dark-mode .inv-required-box,
+.dark-theme .inv-required-box {
+  background: rgba(30, 22, 14, 0.7);
+  border-color: #7a5c3d;
+}
+.dark-mode .inv-required-check.is-checked .inv-required-box,
+.dark-theme .inv-required-check.is-checked .inv-required-box {
+  background: #3e6863;
+  border-color: #558781;
+}
+.dark-mode .inv-required-check.is-checked .inv-required-text,
+.dark-theme .inv-required-check.is-checked .inv-required-text {
+  color: #ffd78c;
 }
 .stepper-ctrl {
   display: inline-flex;

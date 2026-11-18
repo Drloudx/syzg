@@ -251,4 +251,26 @@ test('多核心联合求解与共鸣全达成（消解选择顺序影响，同�
   }
 })
 
+test('勾选必选基础遗器必须强制上盘且不破坏核心共鸣', () => {
+  const openCells = getDefaultOpenGridSet(30, fapanCells)
+  // 选定 2 个核心：虚空圣杯 (core_104, 火水风) 与 雷鸣杖冠 (core_107, 水地风火)
+  const selectedCoreIds = ['core_104', 'core_107']
+  // 必选遗器：指定 2x2 血瞳宝匣 (crit_1001, 火) 与 2x2 急速之靴 (atkSpeed_1001, 水)
+  const requiredRelicIds = ['crit_1001', 'atkSpeed_1001']
+
+  const res = solveFapanPlacement({
+    openCells,
+    selectedCoreIds,
+    requiredRelicIds,
+    globalMaxCountPerRelic: 4,
+    allRelics
+  })
+
+  assert.equal(res.success, true)
+  assert.equal(res.unmetResonances.length, 0, '核心共鸣仍应 100% 达成')
+  assert.ok((res.usedCounts['crit_1001'] || 0) >= 1, '必须放置至少 1 件必选遗器血瞳宝匣')
+  assert.ok((res.usedCounts['atkSpeed_1001'] || 0) >= 1, '必须放置至少 1 件必选遗器急速之靴')
+  assert.equal(res.missingRequiredRelicIds.length, 0, '不应有缺失的必选遗器')
+})
+
 

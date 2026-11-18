@@ -165,6 +165,7 @@ export function solveFapanPlacement({
   excludedStats = [], // string[] 排除属性
   excludedCategories = [], // string[] 排除元素
   excludedRelicIds = [], // string[] 排除特定遗器
+  requiredRelicIds = [], // string[] 必选基础遗器（必须在棋盘上放置至少 1 件）
   relicMaxCounts = {}, // { [relicId]: number } 单个遗器数量上限/库存限制
   globalMaxCountPerRelic = 4, // number | null 全局单品上限（默认每种最多 4 件）
   allRelics = []
@@ -173,11 +174,13 @@ export function solveFapanPlacement({
   const excludedStatSet = new Set(excludedStats)
   const excludedCatSet = new Set(excludedCategories)
   const excludedRelicSet = new Set(excludedRelicIds)
+  const requiredRelicSet = new Set(requiredRelicIds)
 
   // 获取特定遗器的可用最大数量上限
   function getMaxLimit(relicId) {
     if (relicMaxCounts && typeof relicMaxCounts[relicId] === 'number') {
-      return Math.max(0, relicMaxCounts[relicId])
+      const val = Math.max(0, relicMaxCounts[relicId])
+      return requiredRelicSet.has(relicId) ? Math.max(1, val) : val
     }
     if (typeof globalMaxCountPerRelic === 'number' && globalMaxCountPerRelic > 0) {
       return globalMaxCountPerRelic
@@ -209,6 +212,8 @@ export function solveFapanPlacement({
   // 基础遗器池
   const candidateBases = allRelics.filter(r => {
     if (r.type !== 'base') return false
+    // 勾选必选的基础遗器强制保留进入候选池
+    if (requiredRelicSet.has(r.id)) return true
     if (excludedRelicSet.has(r.id)) return false
     if (r.categoryName && excludedCatSet.has(r.categoryName)) return false
     if (r.attributeName && excludedStatSet.has(r.attributeName)) return false
@@ -419,9 +424,12 @@ export function solveFapanPlacement({
               // 评分准则：
               // 1. 同时满足多个核心共鸣（benefitedCount >= 2）优先（一石多鸟）
               // 2. 元素总需求量高者优先
-              // 3. 占用面积更小优先（1x1 优先于大件，不挤占后续格子）
-              // 4. 触碰十字格数更少优先（边缘微触碰，保护十字通道畅通）
-              const moveScore = (benefitedCount * 1000) + (demand * 50) - (area * 20) - totalOverlapCells
+              // 3. 必选遗器且尚未放置过，赋予额外权重优先达成
+              // 4. 占用面积更小优先（1x1 优先于大件，不挤占后续格子）
+              // 5. 触碰十字格数更少优先（边缘微触碰，保护十字通道畅通）
+              const isReq = requiredRelicSet.has(relic.id) && used === 0
+              const reqBonus = isReq ? 5000 : 0
+              const moveScore = (benefitedCount * 1000) + (demand * 50) + reqBonus - (area * 20) - totalOverlapCells
 
               if (!bestMove || moveScore > bestMove.score) {
                 bestMove = {
@@ -454,8 +462,55 @@ export function solveFapanPlacement({
       }
     }
 
+    // 4.5 阶段 2.5：优先确保所有必选遗器至少放置 1 件（大面积优先放置）
+    const pendingRequired = candidateBases
+      .filter(r => requiredRelicSet.has(r.id) && (currentUsedCountMap.get(r.id) || 0) === 0)
+      .sort((a, b) => {
+        const areaA = (a.shape?.width || 1) * (a.shape?.height || 1)
+        const areaB = (b.shape?.width || 1) * (b.shape?.height || 1)
+        return areaB - areaA
+      })
+
+    for (const relic of pendingRequired) {
+      if ((currentUsedCountMap.get(relic.id) || 0) >= getMaxLimit(relic.id)) continue
+      const positions = findValidPlacements(relic, currentBoardMask)
+      if (positions.length) {
+        // 优先选择触碰核心十字格最少的位置（减少通道潜在占用）
+        positions.sort((posA, posB) => {
+          let overlapA = 0
+          let overlapB = 0
+          for (const ci of coreInfos) {
+            for (let dy = 0; dy < (relic.shape?.height || 1); dy += 1) {
+              for (let dx = 0; dx < (relic.shape?.width || 1); dx += 1) {
+                if (ci.rangeCells.has(`${posA.x + dx},${posA.y + dy}`)) overlapA += 1
+                if (ci.rangeCells.has(`${posB.x + dx},${posB.y + dy}`)) overlapB += 1
+              }
+            }
+          }
+          return overlapA - overlapB
+        })
+        const chosen = positions[0]
+        currentBoardMask |= chosen.mask
+        currentPlacedRelics.push({
+          relicId: relic.id,
+          relic,
+          x: chosen.x,
+          y: chosen.y,
+          width: relic.shape.width,
+          height: relic.shape.height,
+          level: 5,
+          isCore: false
+        })
+        currentUsedCountMap.set(relic.id, (currentUsedCountMap.get(relic.id) || 0) + 1)
+      }
+    }
+
     // 5. 阶段 3：用未被排除的基础遗器贪心填充剩余空余格子
     const fillCandidates = [...candidateBases].sort((a, b) => {
+      const aIsReq = requiredRelicSet.has(a.id) && (currentUsedCountMap.get(a.id) || 0) < getMaxLimit(a.id)
+      const bIsReq = requiredRelicSet.has(b.id) && (currentUsedCountMap.get(b.id) || 0) < getMaxLimit(b.id)
+      if (aIsReq && !bIsReq) return -1
+      if (!aIsReq && bIsReq) return 1
       const areaA = a.shape.width * a.shape.height
       const areaB = b.shape.width * b.shape.height
       if (areaB !== areaA) return areaB - areaA
@@ -495,8 +550,14 @@ export function solveFapanPlacement({
 
     const resEval = evaluateResonances(currentPlacedRelics, coreRelics)
     const usedCellCount = currentPlacedRelics.reduce((sum, p) => sum + p.width * p.height, 0)
-    // 方案总评分：共鸣达成数绝对第一优先，辅以有效格利用率
-    const score = (resEval.active.length * 100000) - (resEval.unmet.length * 50000) + (usedCellCount * 10)
+    let missingRequiredCount = 0
+    for (const rid of requiredRelicSet) {
+      if (!currentUsedCountMap.get(rid) || currentUsedCountMap.get(rid) < 1) {
+        missingRequiredCount += 1
+      }
+    }
+    // 方案总评分：共鸣达成数绝对第一优先，必选遗器未满足大幅扣分，辅以有效格利用率
+    const score = (resEval.active.length * 100000) - (resEval.unmet.length * 50000) - (missingRequiredCount * 80000) + (usedCellCount * 10)
 
     if (!bestSolution || score > bestSolution.score) {
       bestSolution = {
@@ -505,10 +566,11 @@ export function solveFapanPlacement({
         boardMask: currentBoardMask,
         usedCellCount,
         resEval,
-        usedCountMap: currentUsedCountMap
+        usedCountMap: currentUsedCountMap,
+        missingRequiredCount
       }
-      // 若当前方案已达成所有可能共鸣且无未达成条目，则提前收敛
-      if (resEval.unmet.length === 0) {
+      // 若当前方案已达成所有可能共鸣且所有必选遗器均已放置，则提前收敛
+      if (resEval.unmet.length === 0 && missingRequiredCount === 0) {
         break
       }
     }
@@ -520,6 +582,7 @@ export function solveFapanPlacement({
   const finalUsedCellCount = bestSolution ? bestSolution.usedCellCount : 0
   const totalStats = calculateTotalStats(finalPlacedRelics)
   const usedCounts = bestSolution ? Object.fromEntries(bestSolution.usedCountMap.entries()) : {}
+  const missingRequiredRelicIds = Array.from(requiredRelicSet).filter(id => !bestSolution?.usedCountMap?.get(id))
 
   return {
     success: true,
@@ -532,7 +595,8 @@ export function solveFapanPlacement({
     unmetResonances: resonanceStatus.unmet,
     allResonances: resonanceStatus.all,
     totalStats,
-    usedCounts
+    usedCounts,
+    missingRequiredRelicIds
   }
 }
 
