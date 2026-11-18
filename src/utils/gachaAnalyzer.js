@@ -121,10 +121,10 @@ export const KNOWN_POOLS = {
   'hero:2': { id: 'hero:2', rawId: '2', name: '公主招募', kind: 'hero_limited', upTypes: ['hero_060'] },
   'hero:3': { id: 'hero:3', rawId: '3', name: '新锐招募', kind: 'hero_standard', upTypes: [] },
   'hero:5': { id: 'hero:5', rawId: '5', name: '幽夜招募', kind: 'hero_limited', upTypes: ['hero_071'] },
-  'pet:1': { id: 'pet:1', rawId: '1', name: '特别贩售', kind: 'pet', upTypes: [] },
-  'pet:2': { id: 'pet:2', rawId: '2', name: '常规贩售', kind: 'pet', upTypes: [] },
-  'pet:3': { id: 'pet:3', rawId: '3', name: '御卫贩售', kind: 'pet', upTypes: ['pet_106'] },
-  'pet:5': { id: 'pet:5', rawId: '5', name: '古堡贩售', kind: 'pet', upTypes: ['pet_104'] },
+  'pet:1': { id: 'pet:1', rawId: '1', name: '魔物常规', kind: 'pet_standard', upTypes: [] },
+  'pet:2': { id: 'pet:2', rawId: '2', name: '常规贩售', kind: 'pet_standard', upTypes: [] },
+  'pet:3': { id: 'pet:3', rawId: '3', name: '御卫贩售', kind: 'pet_limited', upTypes: ['pet_106'] },
+  'pet:5': { id: 'pet:5', rawId: '5', name: '古堡贩售', kind: 'pet_limited', upTypes: ['pet_104'] },
   // 兼容纯数字键
   '1': { id: 'hero:1', rawId: '1', name: '常规招募', kind: 'hero_standard', upTypes: [] },
   '2': { id: 'hero:2', rawId: '2', name: '公主招募', kind: 'hero_limited', upTypes: ['hero_060'] },
@@ -150,16 +150,22 @@ export function resolveCanonicalPoolKey(rawPoolId, isPet = false) {
 /**
  * 判定卡池种类
  * @param {Object} pool
- * @returns {'hero_limited' | 'hero_standard' | 'pet'}
+ * @returns {'hero_limited' | 'pet_limited' | 'hero_standard' | 'pet_standard'}
  */
 export function classifyPoolKind(pool = {}) {
   const poolIdStr = String(pool.id || '')
   const nameStr = String(pool.name || '')
-  if (pool.kind === 'pet' || poolIdStr.startsWith('pet:') || poolIdStr.includes('pet') || nameStr.includes('蛋') || nameStr.includes('魔物') || nameStr.includes('贩售') || nameStr.includes('孵化')) {
-    return 'pet'
-  }
   const upTypes = pool.upTypes || []
-  if (upTypes.length > 0 || nameStr.includes('up') || nameStr.includes('UP') || nameStr.includes('限定') || nameStr.includes('活动') || nameStr.includes('公主') || nameStr.includes('幽夜')) {
+  const isPet = pool.kind === 'pet' || pool.kind === 'pet_limited' || pool.kind === 'pet_standard' || pool.isPet || poolIdStr.startsWith('pet:') || poolIdStr.includes('pet') || nameStr.includes('蛋') || nameStr.includes('魔物') || nameStr.includes('贩售') || nameStr.includes('孵化')
+
+  if (isPet) {
+    if (upTypes.length > 0 || nameStr.includes('up') || nameStr.includes('UP') || nameStr.includes('限定') || nameStr.includes('御卫') || nameStr.includes('古堡') || nameStr.includes('活动') || pool.kind === 'pet_limited') {
+      return 'pet_limited'
+    }
+    return 'pet_standard'
+  }
+
+  if (upTypes.length > 0 || nameStr.includes('up') || nameStr.includes('UP') || nameStr.includes('限定') || nameStr.includes('活动') || nameStr.includes('公主') || nameStr.includes('幽夜') || pool.kind === 'hero_limited') {
     return 'hero_limited'
   }
   return 'hero_standard'
@@ -381,8 +387,11 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
     const cKey = resolveCanonicalPoolKey(item.poolId, meta.isPet)
     const matchedPool = KNOWN_POOLS[cKey] || KNOWN_POOLS[String(item.poolId)] || {}
 
-    let poolName = item.poolName || matchedPool.name || (meta.isPet ? '特别贩售' : '常规招募')
-    let poolKind = meta.isPet ? 'pet' : (matchedPool.kind || 'hero_standard')
+    let poolName = item.poolName || matchedPool.name || (meta.isPet ? '魔物常规' : '常规招募')
+    if (poolName === '特别贩售' || poolName.includes('特别贩售')) {
+      poolName = '魔物常规'
+    }
+    let poolKind = meta.isPet ? (matchedPool.kind || 'pet_standard') : (matchedPool.kind || 'hero_standard')
     if (poolInfoFallback && String(item.poolId) === String(poolInfoFallback.id)) {
       poolName = poolName || poolInfoFallback.name
       poolKind = poolKind || poolInfoFallback.kind
@@ -411,11 +420,12 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
     }
   }).sort((a, b) => a.at - b.at)
 
-  // 3. 初始化各卡池宏观分类桶（用于全局欧非总览统计）
+  // 3. 初始化各卡池宏观分类桶（用于全局欧非总览统计：伙伴限定、魔物限定、伙伴常规、魔物常规）
   const buckets = {
-    hero_limited: { name: '角色限定池', pulls: 0, golds: [], purples: [] },
-    hero_standard: { name: '角色常规池', pulls: 0, golds: [], purples: [] },
-    pet: { name: '魔物孵化池', pulls: 0, golds: [], purples: [] }
+    hero_limited: { name: '角色限定', pulls: 0, golds: [], purples: [] },
+    pet_limited: { name: '魔物限定', pulls: 0, golds: [], purples: [] },
+    hero_standard: { name: '角色常规', pulls: 0, golds: [], purples: [] },
+    pet_standard: { name: '魔物常规', pulls: 0, golds: [], purples: [] }
   }
 
   // 独立卡池保底跟踪桶（解决官方多卡池保底互不相通机制）
@@ -450,7 +460,7 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
     pb.pityCount++
     pb.lastAt = Math.max(pb.lastAt, r.at)
 
-    const b = buckets[r.poolKind] || buckets.hero_standard
+    const b = buckets[r.poolKind] || (r.isPet ? buckets.pet_standard : buckets.hero_standard)
     b.pulls++
 
     const isNew = !seenItems.has(r.typeId)
@@ -463,7 +473,7 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
       let isUp = false
       if (r.upTypes && r.upTypes.length > 0) {
         isUp = r.upTypes.includes(r.typeId)
-      } else if (r.poolKind === 'hero_limited') {
+      } else if (r.poolKind === 'hero_limited' || r.poolKind === 'pet_limited') {
         isUp = true
       } else {
         isUp = false
@@ -473,7 +483,7 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
       // 若本次命中 UP，则重置大保底；若本次歪了，则进入大保底必中 UP 态
       if (isUp) {
         pb.isGuaranteedUp = false
-      } else if (r.poolKind === 'hero_limited' || (r.upTypes && r.upTypes.length > 0)) {
+      } else if (r.poolKind === 'hero_limited' || r.poolKind === 'pet_limited' || (r.upTypes && r.upTypes.length > 0)) {
         pb.isGuaranteedUp = true
       }
 
@@ -499,8 +509,18 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
   // 4. 指标统计汇总
   const totalPulls = records.length
   const totalCost = totalPulls * GAME_GACHA_CONFIG.CRYSTAL_PER_PULL
-  const allGolds = [...buckets.hero_limited.golds, ...buckets.hero_standard.golds, ...buckets.pet.golds]
-  const allPurples = [...buckets.hero_limited.purples, ...buckets.hero_standard.purples, ...buckets.pet.purples]
+  const allGolds = [
+    ...buckets.hero_limited.golds,
+    ...buckets.pet_limited.golds,
+    ...buckets.hero_standard.golds,
+    ...buckets.pet_standard.golds
+  ]
+  const allPurples = [
+    ...buckets.hero_limited.purples,
+    ...buckets.pet_limited.purples,
+    ...buckets.hero_standard.purples,
+    ...buckets.pet_standard.purples
+  ]
 
   const goldCount = allGolds.length
   const purpleCount = allPurples.length
@@ -508,7 +528,7 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
   const avgGoldPulls = goldCount > 0 ? Number((totalPulls / goldCount).toFixed(1)) : 0
   const goldRate = totalPulls > 0 ? Number(((goldCount / totalPulls) * 100).toFixed(2)) : 0
 
-  // 角色限定专属指标
+  // 1. 角色限定专属指标（伙伴）
   const lim = buckets.hero_limited
   const limGoldCount = lim.golds.length
   const limUpCount = lim.golds.filter(g => g.isUp).length
@@ -516,6 +536,24 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
   const limUpRate = limGoldCount > 0 ? Number(((limUpCount / limGoldCount) * 100).toFixed(1)) : 0
   const limAvgGold = limGoldCount > 0 ? Number((lim.pulls / limGoldCount).toFixed(1)) : 0
   const limAvgUp = limUpCount > 0 ? Number((lim.pulls / limUpCount).toFixed(1)) : 0
+
+  // 2. 魔物限定专属指标（魔物）
+  const petLim = buckets.pet_limited
+  const petLimGoldCount = petLim.golds.length
+  const petLimUpCount = petLim.golds.filter(g => g.isUp).length
+  const petLimOffCount = Math.max(0, petLimGoldCount - petLimUpCount)
+  const petLimUpRate = petLimGoldCount > 0 ? Number(((petLimUpCount / petLimGoldCount) * 100).toFixed(1)) : 0
+  const petLimAvgGold = petLimGoldCount > 0 ? Number((petLim.pulls / petLimGoldCount).toFixed(1)) : 0
+  const petLimAvgUp = petLimUpCount > 0 ? Number((petLim.pulls / petLimUpCount).toFixed(1)) : 0
+
+  // 3. 常规池合并指标（常规：角色常规 + 魔物常规）
+  const heroStd = buckets.hero_standard
+  const petStd = buckets.pet_standard
+  const stdPulls = heroStd.pulls + petStd.pulls
+  const stdHeroGoldCount = heroStd.golds.length
+  const stdPetGoldCount = petStd.golds.length
+  const stdTotalGoldCount = stdHeroGoldCount + stdPetGoldCount
+  const stdAvgGold = stdTotalGoldCount > 0 ? Number((stdPulls / stdTotalGoldCount).toFixed(1)) : 0
 
   // 计算限定池连 UP 次数与连续歪统计（全面支持历史最高连胜与当前连胜）
   let maxUpStreak = 0
@@ -541,16 +579,6 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
 
   const currentUpStreak = curRunningUpStreak
   const currentOffStreak = curRunningOffStreak
-
-  // 常规池指标
-  const std = buckets.hero_standard
-  const stdGoldCount = std.golds.length
-  const stdAvgGold = stdGoldCount > 0 ? Number((std.pulls / stdGoldCount).toFixed(1)) : 0
-
-  // 魔物蛋池指标
-  const pet = buckets.pet
-  const petGoldCount = pet.golds.length
-  const petAvgGold = petGoldCount > 0 ? Number((pet.pulls / petGoldCount).toFixed(1)) : 0
 
   // 欧非评价
   const luck = evaluateLuckScore({
@@ -664,7 +692,7 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
       }
     })
     .sort((a, b) => {
-      const orderMap = { hero_limited: 1, hero_standard: 2, pet: 3 }
+      const orderMap = { hero_limited: 1, pet_limited: 2, hero_standard: 3, pet_standard: 4 }
       const diffKind = (orderMap[a.poolKind] || 99) - (orderMap[b.poolKind] || 99)
       if (diffKind !== 0) return diffKind
       return b.lastAt - a.lastAt
@@ -722,7 +750,7 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
     isGuaranteedUp: pb.isGuaranteedUp,
     lastAt: pb.lastAt
   })).sort((a, b) => {
-    const orderMap = { hero_limited: 1, hero_standard: 2, pet: 3 }
+    const orderMap = { hero_limited: 1, pet_limited: 2, hero_standard: 3, pet_standard: 4 }
     const diffKind = (orderMap[a.kind] || 99) - (orderMap[b.kind] || 99)
     if (diffKind !== 0) return diffKind
     return b.lastAt - a.lastAt
@@ -730,8 +758,9 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
 
   // 宏观分类的已垫抽数取该分类下最新活跃卡池的独立垫抽数
   const latestLim = poolPities.find(p => p.kind === 'hero_limited')
+  const latestPetLim = poolPities.find(p => p.kind === 'pet_limited')
   const latestStd = poolPities.find(p => p.kind === 'hero_standard')
-  const latestPet = poolPities.find(p => p.kind === 'pet')
+  const latestPetStd = poolPities.find(p => p.kind === 'pet_standard')
 
   return {
     overview: {
@@ -763,21 +792,52 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
       isGuaranteedUp: latestLim ? latestLim.isGuaranteedUp : false,
       golds: lim.golds
     },
-    heroStandard: {
-      pulls: std.pulls,
-      goldCount: stdGoldCount,
+    petLimited: {
+      pulls: petLim.pulls,
+      goldCount: petLimGoldCount,
+      upCount: petLimUpCount,
+      offCount: petLimOffCount,
+      upRate: petLimUpRate,
+      avgGoldPulls: petLimAvgGold,
+      avgUpPulls: petLimAvgUp,
+      pityCount: latestPetLim ? latestPetLim.pityCount : 0,
+      pityMax: GAME_GACHA_CONFIG.PITY_5_STAR,
+      isGuaranteedUp: latestPetLim ? latestPetLim.isGuaranteedUp : false,
+      golds: petLim.golds
+    },
+    standard: {
+      pulls: stdPulls,
+      goldCount: stdTotalGoldCount,
+      heroGoldCount: stdHeroGoldCount,
+      petGoldCount: stdPetGoldCount,
       avgGoldPulls: stdAvgGold,
+      pityCount: latestStd ? latestStd.pityCount : (latestPetStd ? latestPetStd.pityCount : 0),
+      pityMax: GAME_GACHA_CONFIG.PITY_5_STAR
+    },
+    heroStandard: {
+      pulls: heroStd.pulls,
+      goldCount: stdHeroGoldCount,
+      avgGoldPulls: stdHeroGoldCount > 0 ? Number((heroStd.pulls / stdHeroGoldCount).toFixed(1)) : 0,
       pityCount: latestStd ? latestStd.pityCount : 0,
       pityMax: GAME_GACHA_CONFIG.PITY_5_STAR,
-      golds: std.golds
+      golds: heroStd.golds
     },
-    pet: {
-      pulls: pet.pulls,
-      goldCount: petGoldCount,
-      avgGoldPulls: petAvgGold,
-      pityCount: latestPet ? latestPet.pityCount : 0,
+    petStandard: {
+      pulls: petStd.pulls,
+      goldCount: stdPetGoldCount,
+      avgGoldPulls: stdPetGoldCount > 0 ? Number((petStd.pulls / stdPetGoldCount).toFixed(1)) : 0,
+      pityCount: latestPetStd ? latestPetStd.pityCount : 0,
       pityMax: GAME_GACHA_CONFIG.PITY_5_STAR,
-      golds: pet.golds
+      golds: petStd.golds
+    },
+    // 兼容历史字段
+    pet: {
+      pulls: petLim.pulls + petStd.pulls,
+      goldCount: petLimGoldCount + stdPetGoldCount,
+      avgGoldPulls: (petLimGoldCount + stdPetGoldCount) > 0 ? Number(((petLim.pulls + petStd.pulls) / (petLimGoldCount + stdPetGoldCount)).toFixed(1)) : 0,
+      pityCount: latestPetLim ? latestPetLim.pityCount : (latestPetStd ? latestPetStd.pityCount : 0),
+      pityMax: GAME_GACHA_CONFIG.PITY_5_STAR,
+      golds: [...petLim.golds, ...petStd.golds]
     },
     poolPities,
     banners: bannerGroups,

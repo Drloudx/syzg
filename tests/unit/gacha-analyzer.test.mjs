@@ -20,7 +20,8 @@ describe('gachaAnalyzer - 深渊之歌核心机制校验', () => {
     assert.equal(classifyPoolKind({ id: '2', kind: 'hero', upTypes: ['hero_060'] }), 'hero_limited')
     assert.equal(classifyPoolKind({ id: '1', kind: 'hero', upTypes: [] }), 'hero_standard')
     assert.equal(classifyPoolKind({ id: '3', kind: 'hero', name: '新锐招募' }), 'hero_standard')
-    assert.equal(classifyPoolKind({ id: '1', kind: 'pet' }), 'pet')
+    assert.equal(classifyPoolKind({ id: '1', kind: 'pet' }), 'pet_standard')
+    assert.equal(classifyPoolKind({ id: '3', kind: 'pet', upTypes: ['pet_106'] }), 'pet_limited')
   })
 
   it('保底进度垫刀与出金抽数精确计算（36抽上限）', () => {
@@ -160,11 +161,11 @@ describe('gachaAnalyzer - 深渊之歌核心机制校验', () => {
     assert.deepEqual(gongzhu.upHeroes, ['hero_060'], '公主招募UP为德莉')
     assert.equal(gongzhu.pityCount, 31, '公主招募独立垫抽数为31抽')
 
-    // 特别贩售必须归类为魔物池，UP 为空
-    const tebie = result.banners.find(b => b.poolId === 'pet:1' || b.poolName === '特别贩售')
-    assert.ok(tebie, '包含特别贩售')
-    assert.equal(tebie.poolKind, 'pet')
-    assert.deepEqual(tebie.upHeroes, [], '特别贩售UP必须为空，绝不能误配德莉')
+    // 特别贩售/魔物常规必须归类为魔物常规池，UP 为空
+    const tebie = result.banners.find(b => b.poolId === 'pet:1' || b.poolName === '特别贩售' || b.poolName === '魔物常规')
+    assert.ok(tebie, '包含魔物常规/特别贩售')
+    assert.equal(tebie.poolKind, 'pet_standard')
+    assert.deepEqual(tebie.upHeroes, [], '魔物常规UP必须为空，绝不能误配德莉')
   })
 
   it('5星伙伴与魔物收藏：魔物与伙伴均区分限定与常驻，限定优先排序且指标准确', () => {

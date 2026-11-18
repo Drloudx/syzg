@@ -501,39 +501,54 @@ export async function renderGachaReportCard({
 
   curY += pillH + 10
 
-  // 8. 三大卡池指标卡片 (限定 / 标准 / 魔物)
+  // 8. 三大卡池指标卡片 (伙伴 / 魔物 / 常规)
   const colW = Math.round((innerW - 16) / 3) // ~221
   const colH = 106
   const pools = [
     {
-      title: '限定',
+      title: '伙伴',
       pulls: analysis?.heroLimited?.pulls || 0,
       sub1Lbl: '出卡数/歪',
-      sub1Val: `${analysis?.heroLimited?.upCount || 0}/${analysis?.heroLimited?.offCount || 0}`,
-      sub1Color: '#16a34a',
+      sub1Parts: {
+        left: `${analysis?.heroLimited?.upCount || 0}`,
+        leftColor: '#15803d',
+        slash: '/',
+        right: `${analysis?.heroLimited?.offCount || 0}`,
+        rightColor: '#b91c1c'
+      },
       sub2Lbl: 'UP平均',
       sub2Val: analysis?.heroLimited?.avgUpPulls || '--',
-      sub2Color: '#16a34a'
-    },
-    {
-      title: '标准',
-      pulls: analysis?.heroStandard?.pulls || 0,
-      sub1Lbl: '出卡数',
-      sub1Val: `${analysis?.heroStandard?.goldCount || 0}`,
-      sub1Color: '#3e2a14',
-      sub2Lbl: '5星平均',
-      sub2Val: analysis?.heroStandard?.avgGoldPulls || '--',
-      sub2Color: '#16a34a'
+      sub2Color: '#15803d'
     },
     {
       title: '魔物',
-      pulls: analysis?.pet?.pulls || 0,
-      sub1Lbl: '出卡数',
-      sub1Val: `${analysis?.pet?.goldCount || 0}`,
-      sub1Color: '#3e2a14',
+      pulls: analysis?.petLimited?.pulls || 0,
+      sub1Lbl: '出卡数/歪',
+      sub1Parts: {
+        left: `${analysis?.petLimited?.upCount || 0}`,
+        leftColor: '#15803d',
+        slash: '/',
+        right: `${analysis?.petLimited?.offCount || 0}`,
+        rightColor: '#b91c1c'
+      },
+      sub2Lbl: 'UP平均',
+      sub2Val: analysis?.petLimited?.avgUpPulls || '--',
+      sub2Color: '#15803d'
+    },
+    {
+      title: '常规',
+      pulls: analysis?.standard?.pulls || 0,
+      sub1Lbl: '伙伴/魔物',
+      sub1Parts: {
+        left: `${analysis?.standard?.heroGoldCount || 0}`,
+        leftColor: '#15803d',
+        slash: '/',
+        right: `${analysis?.standard?.petGoldCount || 0}`,
+        rightColor: '#b45309'
+      },
       sub2Lbl: '5星平均',
-      sub2Val: analysis?.pet?.avgGoldPulls || '--',
-      sub2Color: '#16a34a'
+      sub2Val: analysis?.standard?.avgGoldPulls || '--',
+      sub2Color: '#15803d'
     }
   ]
 
@@ -578,8 +593,28 @@ export async function renderGachaReportCard({
     // 底部双指标
     const half = colW / 2
     ctx.font = '900 13px sans-serif'
-    ctx.fillStyle = p.sub1Color
-    ctx.fillText(p.sub1Val, cX + half / 2, cY + 70)
+    if (p.sub1Parts) {
+      const { left, leftColor, slash = '/', right, rightColor } = p.sub1Parts
+      const leftW = ctx.measureText(left).width
+      const slashW = ctx.measureText(slash).width
+      const rightW = ctx.measureText(right).width
+      const totalW = leftW + slashW + rightW
+      const startX = cX + half / 2 - totalW / 2
+
+      ctx.textAlign = 'left'
+      ctx.fillStyle = leftColor
+      ctx.fillText(left, startX, cY + 70)
+
+      ctx.fillStyle = '#8a6d4d'
+      ctx.fillText(slash, startX + leftW, cY + 70)
+
+      ctx.fillStyle = rightColor
+      ctx.fillText(right, startX + leftW + slashW, cY + 70)
+      ctx.textAlign = 'center'
+    } else {
+      ctx.fillStyle = p.sub1Color || '#3e2a14'
+      ctx.fillText(p.sub1Val, cX + half / 2, cY + 70)
+    }
     ctx.font = '600 10px sans-serif'
     ctx.fillStyle = '#8a6d4d'
     ctx.fillText(p.sub1Lbl, cX + half / 2, cY + 87)
@@ -756,7 +791,9 @@ export async function renderGachaReportCard({
       // A. 卡池头部标题条（彩色抽数药丸 + 卡池名 + 充裕间隔 + 日期范围）
       let pillBg = '#15803d'
       if (banner.poolKind === 'hero_limited') pillBg = '#6366f1'
-      else if (banner.poolKind === 'pet') pillBg = '#557574'
+      else if (banner.poolKind === 'pet_limited') pillBg = '#d97706'
+      else if (banner.poolKind === 'pet_standard' || banner.poolKind === 'pet') pillBg = '#557574'
+      else if (banner.poolKind === 'hero_standard') pillBg = '#15803d'
 
       const pillText = `${banner.pulls || 0} 抽`
       ctx.font = 'bold 11px sans-serif'
@@ -774,7 +811,8 @@ export async function renderGachaReportCard({
       ctx.fillStyle = '#3e2a14'
       ctx.textAlign = 'left'
       ctx.textBaseline = 'middle'
-      const poolNameText = banner.poolName || '招募卡池'
+      let poolNameText = banner.poolName || '招募卡池'
+      poolNameText = poolNameText.replace(/特别贩售/g, '魔物常规').replace(/魔物蛋池|魔物蛋/g, '魔物限定')
       const poolNameW = ctx.measureText(poolNameText).width
       const nameX = cardX + 14 + pillW + 12
       ctx.fillText(poolNameText, nameX, bInnerY + 10)
@@ -902,12 +940,13 @@ export async function renderGachaReportCard({
           ctx.stroke()
 
           // 角标状态：单角标设计；歪的 New 改为红色，不显示歪
+          const isLimited = banner.poolKind === 'hero_limited' || banner.poolKind === 'pet_limited'
           let badgeText = ''
           let badgeBg = '#d97706' // 默认 New 为琥珀橙
-          if (banner.poolKind === 'hero_limited' && !gold.isUp && gold.isNew) {
+          if (isLimited && !gold.isUp && gold.isNew) {
             badgeText = 'New'
             badgeBg = '#dc2626' // 歪的 New 变红
-          } else if (banner.poolKind === 'hero_limited' && !gold.isUp) {
+          } else if (isLimited && !gold.isUp) {
             badgeText = '歪'
             badgeBg = '#dc2626' // 纯歪
           } else if (gold.isNew) {

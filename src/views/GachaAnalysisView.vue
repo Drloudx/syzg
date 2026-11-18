@@ -208,74 +208,82 @@
 
         <!-- 三大卡池指标卡片：无论手机还是电脑，强制 3 栏并排（对标小黑盒「限定 / 标准 / 中坚」三列） -->
         <div class="pools-triple-columns">
-          <!-- 1. 限定 -->
+          <!-- 1. 伙伴 (角色限定) -->
           <div
             class="pool-column-box"
             :class="{ 'is-active': activeTab === 'hero_limited' }"
             @click="activeTab = 'hero_limited'"
           >
-            <div class="pcol-title">限定</div>
+            <div class="pcol-title">伙伴</div>
             <div class="pcol-pulls">
-              <strong class="pulls-num">{{ analysis.heroLimited.pulls }}</strong>
+              <strong class="pulls-num">{{ analysis.heroLimited?.pulls || 0 }}</strong>
               <small class="pulls-unit">抽</small>
             </div>
             <div class="pcol-details">
               <div class="pdetail-item">
                 <span class="pdetail-num">
-                  <span class="val-up">{{ analysis.heroLimited.upCount }}</span>
+                  <span class="val-up">{{ analysis.heroLimited?.upCount || 0 }}</span>
                   <span class="val-slash">/</span>
-                  <span class="val-off">{{ analysis.heroLimited.offCount }}</span>
+                  <span class="val-off">{{ analysis.heroLimited?.offCount || 0 }}</span>
                 </span>
                 <span class="pdetail-lbl">出卡数/歪</span>
               </div>
               <div class="pdetail-item">
-                <span class="pdetail-num text-emerald">{{ analysis.heroLimited.avgUpPulls || '--' }}</span>
+                <span class="pdetail-num text-emerald">{{ analysis.heroLimited?.avgUpPulls || '--' }}</span>
                 <span class="pdetail-lbl">UP平均</span>
               </div>
             </div>
           </div>
 
-          <!-- 2. 标准 -->
+          <!-- 2. 魔物 (魔物限定) -->
           <div
             class="pool-column-box"
-            :class="{ 'is-active': activeTab === 'hero_standard' }"
-            @click="activeTab = 'hero_standard'"
+            :class="{ 'is-active': activeTab === 'pet_limited' }"
+            @click="activeTab = 'pet_limited'"
           >
-            <div class="pcol-title">标准</div>
+            <div class="pcol-title">魔物</div>
             <div class="pcol-pulls">
-              <strong class="pulls-num">{{ analysis.heroStandard.pulls }}</strong>
+              <strong class="pulls-num">{{ analysis.petLimited?.pulls || 0 }}</strong>
               <small class="pulls-unit">抽</small>
             </div>
             <div class="pcol-details">
               <div class="pdetail-item">
-                <span class="pdetail-num">{{ analysis.heroStandard.goldCount }}</span>
-                <span class="pdetail-lbl">出卡数</span>
+                <span class="pdetail-num">
+                  <span class="val-up">{{ analysis.petLimited?.upCount || 0 }}</span>
+                  <span class="val-slash">/</span>
+                  <span class="val-off">{{ analysis.petLimited?.offCount || 0 }}</span>
+                </span>
+                <span class="pdetail-lbl">出卡数/歪</span>
               </div>
               <div class="pdetail-item">
-                <span class="pdetail-num text-emerald">{{ analysis.heroStandard.avgGoldPulls || '--' }}</span>
-                <span class="pdetail-lbl">5星平均</span>
+                <span class="pdetail-num text-emerald">{{ analysis.petLimited?.avgUpPulls || '--' }}</span>
+                <span class="pdetail-lbl">UP平均</span>
               </div>
             </div>
           </div>
 
-          <!-- 3. 魔物 -->
+          <!-- 3. 常规 (角色常规 + 魔物常规) -->
           <div
             class="pool-column-box"
-            :class="{ 'is-active': activeTab === 'pet' }"
-            @click="activeTab = 'pet'"
+            :class="{ 'is-active': activeTab === 'hero_standard' || activeTab === 'pet_standard' }"
+            @click="activeTab = 'hero_standard'"
           >
-            <div class="pcol-title">魔物</div>
+            <div class="pcol-title">常规</div>
             <div class="pcol-pulls">
-              <strong class="pulls-num">{{ analysis.pet.pulls }}</strong>
+              <strong class="pulls-num">{{ analysis.standard?.pulls || 0 }}</strong>
               <small class="pulls-unit">抽</small>
             </div>
             <div class="pcol-details">
               <div class="pdetail-item">
-                <span class="pdetail-num">{{ analysis.pet.goldCount }}</span>
-                <span class="pdetail-lbl">出卡数</span>
+                <span class="pdetail-num">
+                  <span class="val-hero">{{ analysis.standard?.heroGoldCount || 0 }}</span>
+                  <span class="val-slash">/</span>
+                  <span class="val-pet">{{ analysis.standard?.petGoldCount || 0 }}</span>
+                </span>
+                <span class="pdetail-lbl">伙伴/魔物</span>
               </div>
               <div class="pdetail-item">
-                <span class="pdetail-num text-emerald">{{ analysis.pet.avgGoldPulls || '--' }}</span>
+                <span class="pdetail-num text-emerald">{{ analysis.standard?.avgGoldPulls || '--' }}</span>
                 <span class="pdetail-lbl">5星平均</span>
               </div>
             </div>
@@ -440,7 +448,7 @@
             class="pity-chip-item"
             :title="`${p.name}: 已垫 ${p.pityCount} 抽，距保底还差 ${p.remain} 抽`"
           >
-            <div class="chip-label">{{ p.name }}已垫</div>
+            <div class="chip-label">{{ formatBannerName(p.name) }}已垫</div>
             <div class="chip-count">
               <span class="chip-dot" :class="resolvePoolDotClass(p.kind)"></span>
               <strong>{{ p.pityCount }}</strong> / {{ p.pityMax }}
@@ -468,7 +476,7 @@
                 <span class="banner-pulls-pill" :class="resolvePoolPillClass(banner.poolKind)">
                   {{ banner.pulls }} 抽
                 </span>
-                <span class="banner-name">{{ banner.poolName }}</span>
+                <span class="banner-name">{{ formatBannerName(banner.poolName) }}</span>
                 <span class="banner-date-range">{{ resolveBannerDateRange(banner) }}</span>
               </div>
             </div>
@@ -524,11 +532,11 @@
                       />
                       <!-- 状态徽章：单角标设计；歪的 New 改为红色，不显示歪 -->
                       <span
-                        v-if="banner.poolKind === 'hero_limited' && !gold.isUp && gold.isNew"
+                        v-if="isLimitedPool(banner.poolKind) && !gold.isUp && gold.isNew"
                         class="badge-new badge-new-wai"
                       >New</span>
                       <span
-                        v-else-if="banner.poolKind === 'hero_limited' && !gold.isUp"
+                        v-else-if="isLimitedPool(banner.poolKind) && !gold.isUp"
                         class="stamp-wai"
                       >歪</span>
                       <span
@@ -613,11 +621,11 @@
                   />
                   <!-- 角标：单角标设计；歪的 New 改为红色，不显示歪 -->
                   <span
-                    v-if="banner.poolKind === 'hero_limited' && !gold.isUp && gold.isNew"
+                    v-if="isLimitedPool(banner.poolKind) && !gold.isUp && gold.isNew"
                     class="grid-badge-new grid-badge-new-wai"
                   >New</span>
                   <span
-                    v-else-if="banner.poolKind === 'hero_limited' && !gold.isUp"
+                    v-else-if="isLimitedPool(banner.poolKind) && !gold.isUp"
                     class="grid-badge-wai"
                   >歪</span>
                   <span
@@ -1047,17 +1055,32 @@ watch(showFourStar, (val) => {
   try { localStorage.setItem(SHOW_4STAR_KEY, String(val)) } catch {}
 })
 
+function isLimitedPool(poolKind) {
+  return poolKind === 'hero_limited' || poolKind === 'pet_limited'
+}
+
+function formatBannerName(name = '') {
+  if (!name) return ''
+  let n = String(name)
+  n = n.replace(/特别贩售/g, '魔物常规')
+  n = n.replace(/魔物蛋池|魔物蛋/g, '魔物限定')
+  return n
+}
+
 function resolvePoolPillClass(poolKind) {
   if (poolKind === 'hero_limited') return 'pill-limited'
-  if (poolKind === 'pet') return 'pill-pet'
+  if (poolKind === 'pet_limited') return 'pill-pet-limited'
+  if (poolKind === 'hero_standard') return 'pill-standard'
+  if (poolKind === 'pet_standard' || poolKind === 'pet') return 'pill-pet-standard'
   return 'pill-standard'
 }
 
 const poolFilterOptions = [
   { value: 'all', label: '全部卡池' },
   { value: 'hero_limited', label: '角色限定' },
+  { value: 'pet_limited', label: '魔物限定' },
   { value: 'hero_standard', label: '角色常规' },
-  { value: 'pet', label: '魔物蛋池' }
+  { value: 'pet_standard', label: '魔物常规' }
 ]
 
 // 弹窗状态
@@ -1099,7 +1122,9 @@ const displayPoolPities = computed(() => {
 
 function resolvePoolDotClass(kind) {
   if (kind === 'hero_limited') return 'dot-emerald'
+  if (kind === 'pet_limited') return 'dot-gold'
   if (kind === 'hero_standard') return 'dot-teal'
+  if (kind === 'pet_standard' || kind === 'pet') return 'dot-brown'
   return 'dot-blue'
 }
 
@@ -2252,6 +2277,20 @@ onMounted(() => {
 :deep(.dark-mode) .val-off,
 .dark-mode .val-off { color: #f87171; }
 
+.val-hero {
+  color: #15803d;
+  font-weight: 900;
+}
+:deep(.dark-mode) .val-hero,
+.dark-mode .val-hero { color: #34d399; }
+
+.val-pet {
+  color: #b45309;
+  font-weight: 900;
+}
+:deep(.dark-mode) .val-pet,
+.dark-mode .val-pet { color: #fbbf24; }
+
 .text-emerald {
   color: #15803d !important;
   font-weight: 900;
@@ -2795,7 +2834,9 @@ onMounted(() => {
   flex-shrink: 0;
 }
 .dot-emerald { background: #00d084; box-shadow: 0 0 6px rgba(0, 208, 132, 0.5); }
+.dot-gold { background: #f59e0b; box-shadow: 0 0 6px rgba(245, 158, 11, 0.5); }
 .dot-teal { background: #14b8a6; box-shadow: 0 0 6px rgba(20, 184, 166, 0.5); }
+.dot-brown { background: #78716c; box-shadow: 0 0 6px rgba(120, 113, 108, 0.5); }
 .dot-blue { background: #3b82f6; box-shadow: 0 0 6px rgba(59, 130, 246, 0.5); }
 .chip-sub {
   font-size: 11px;
@@ -2851,6 +2892,10 @@ onMounted(() => {
 .banner-pulls-pill.pill-limited {
   background: #6366f1;
 }
+.banner-pulls-pill.pill-pet-limited {
+  background: #d97706;
+}
+.banner-pulls-pill.pill-pet-standard,
 .banner-pulls-pill.pill-pet {
   background: var(--accent, #557574);
 }
