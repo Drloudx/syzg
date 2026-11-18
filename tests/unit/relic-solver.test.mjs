@@ -273,4 +273,58 @@ test('勾选必选基础遗器必须强制上盘且不破坏核心共鸣', () =>
   assert.equal(res.missingRequiredRelicIds.length, 0, '不应有缺失的必选遗器')
 })
 
+test('多必选遗器在共鸣达成前提下尽量多放且雨露均沾（均衡轮流拉满）', () => {
+  const openCells = getDefaultOpenGridSet(30, fapanCells)
+  const selectedCoreIds = ['core_104', 'core_107']
+  // 两个 2x2 必选：血瞳宝匣 (crit_1001) 与 急速之靴 (atkSpeed_1001)
+  const requiredRelicIds = ['crit_1001', 'atkSpeed_1001']
+
+  const res = solveFapanPlacement({
+    openCells,
+    selectedCoreIds,
+    requiredRelicIds,
+    globalMaxCountPerRelic: 4,
+    allRelics
+  })
+
+  assert.equal(res.success, true)
+  assert.equal(res.unmetResonances.length, 0, '核心共鸣必须 100% 满额')
+
+  const countCrit = res.usedCounts['crit_1001'] || 0
+  const countAtkSpeed = res.usedCounts['atkSpeed_1001'] || 0
+
+  // 验证两者皆被尽量多放（各自至少 2 件以上，充分填充盘面）
+  assert.ok(countCrit >= 2, `血瞳宝匣应尽量多放（实际放了 ${countCrit} 件）`)
+  assert.ok(countAtkSpeed >= 2, `急速之靴应尽量多放（实际放了 ${countAtkSpeed} 件）`)
+
+  // 验证两者雨露均沾，件数差距不超过 1
+  assert.ok(
+    Math.abs(countCrit - countAtkSpeed) <= 1,
+    `多必选遗器应均衡放置，实际血瞳宝匣: ${countCrit}件，急速之靴: ${countAtkSpeed}件`
+  )
+})
+
+test('单必选基础遗器在共鸣达成且空间充裕时应尽量拉满上限', () => {
+  const openCells = getDefaultOpenGridSet(30, fapanCells)
+  // 选 1 个小核心：荆棘王冠 (core_105, 2x1)
+  const selectedCoreIds = ['core_105']
+  // 必选 2x2 血瞳宝匣 (crit_1001)，上限为 4
+  const requiredRelicIds = ['crit_1001']
+
+  const res = solveFapanPlacement({
+    openCells,
+    selectedCoreIds,
+    requiredRelicIds,
+    globalMaxCountPerRelic: 4,
+    allRelics
+  })
+
+  assert.equal(res.success, true)
+  assert.equal(res.unmetResonances.length, 0, '核心共鸣必须 100% 满额')
+  const countCrit = res.usedCounts['crit_1001'] || 0
+  assert.ok(countCrit >= 3, `在 52 格大棋盘且仅 1 个 2x1 核心下，2x2 必选应至少放置 3 件以上（实际放了 ${countCrit} 件）`)
+})
+
+
+
 
