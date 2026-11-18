@@ -147,7 +147,11 @@
               :quality="0"
               :show-name="false"
               @img-error="handleImageFallback"
-            />
+            >
+              <template #extra>
+                <span class="relic-card-roman">{{ getRomanLevel(getRelicDisplayLevel(relic)) }}</span>
+              </template>
+            </UiItemCard>
 
             <div class="relic-entry__body">
               <h3 class="relic-entry__name">
@@ -200,10 +204,10 @@
               -->
               <div class="relic-entry__effect">
                 <div class="relic-entry__effect-head">
-                  <span class="relic-entry__effect-label">{{ relic.type === 'core' ? '1 级技能' : '1 级加成' }}</span>
+                  <span class="relic-entry__effect-label">{{ getRelicDisplayLabel(relic) }}</span>
                   <span class="relic-entry__more">详情 ›</span>
                 </div>
-                <p class="relic-entry__effect-text" v-html="highlight(relic.levels[0]?.text)"></p>
+                <p class="relic-entry__effect-text" v-html="highlight(getRelicDisplayText(relic))"></p>
               </div>
             </div>
           </article>
@@ -352,6 +356,28 @@ const levelOptions = computed(() => {
   return [...set].sort((a, b) => a - b)
 })
 
+const getRelicDisplayLevel = (relic) => {
+  const targetLv = Number(level.value)
+  if (!targetLv) return 1
+  return targetLv
+}
+
+const getRelicDisplayText = (relic) => {
+  const lv = getRelicDisplayLevel(relic)
+  const item = relic.levels?.find(l => l.level === lv) || relic.levels?.[0]
+  return item?.text || ''
+}
+
+const getRelicDisplayLabel = (relic) => {
+  const lv = getRelicDisplayLevel(relic)
+  return relic.type === 'core' ? `${lv} 级技能` : `${lv} 级加成`
+}
+
+const getRomanLevel = lv => {
+  const map = { 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V' }
+  return map[lv] || 'I'
+}
+
 /** 高亮 `{…}` 包裹的数值，与游戏内一致。 */
 const highlight = text => String(text || '')
   .replace(/&/g, '&amp;')
@@ -455,6 +481,19 @@ onMounted(loadData)
 .relic-entry.is-target { outline: 2px solid var(--accent-ink); outline-offset: -2px; }
 /* 基础与核心统一底色：类型靠「基础/核心」标签区分，不再用背景色制造差异。 */
 .relic-entry :deep(.ui-item-card) { flex: 0 0 72px; margin: 0; }
+.relic-entry :deep(.ui-item-card__badge) {
+  top: 3px;
+  left: 6px;
+  right: auto;
+  bottom: auto;
+  font-family: 'Times New Roman', Times, serif, system-ui;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fce6a2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 3px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+  line-height: 1;
+}
 
 /* 属性背景底色（1:1 对标法盘棋盘样式：无条纹、平滑渐变、高亮边框） */
 .relic-entry--fire :deep(.ui-item-card__slot) {
