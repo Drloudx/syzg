@@ -92,18 +92,18 @@ function drawStripedBar(ctx, x, y, width, height, radius, gradientColors, text, 
   ctx.fillStyle = grad
   ctx.fillRect(x, y, width, height)
 
-  // 2. 45° 斜向条纹覆盖
+  // 2. 45° 斜向条纹覆盖（严格等价于 CSS repeating-linear-gradient(45deg, #fff 0, #fff 10px, transparent 10px, transparent 20px)）
+  // CSS 45° 渐变条纹向右下方倾斜（\ 走向），横向跨度为 10*√2 ≈ 14.14px，步长为 20*√2 ≈ 28.28px
   ctx.save()
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.18)'
-  const stripeWidth = 6
-  const stripeGap = 6
-  const step = stripeWidth + stripeGap
-  for (let sx = x - height; sx < x + width + height; sx += step) {
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.22)'
+  const stripeWidth = 10 * Math.SQRT2
+  const step = 20 * Math.SQRT2
+  for (let sx = x - height - step; sx < x + width + step; sx += step) {
     ctx.beginPath()
-    ctx.moveTo(sx, y + height)
-    ctx.lineTo(sx + height, y)
-    ctx.lineTo(sx + height + stripeWidth, y)
-    ctx.lineTo(sx + stripeWidth, y + height)
+    ctx.moveTo(sx, y)
+    ctx.lineTo(sx + stripeWidth, y)
+    ctx.lineTo(sx + stripeWidth + height, y + height)
+    ctx.lineTo(sx + height, y + height)
     ctx.closePath()
     ctx.fill()
   }
@@ -191,7 +191,7 @@ export async function renderGachaReportCard({
   calculatedH += 10   // 间隙
 
   if (overviewTags.length > 0) {
-    calculatedH += 24 + 10 // 标签行高度与间距
+    calculatedH += 22 + 10 // 标签行高度与间距
   }
 
   if (goldCollection.length > 0) {
@@ -594,73 +594,59 @@ export async function renderGachaReportCard({
 
   curY += colH + 10
 
-  // 9. 标签行（与页面高质感勋章标签同步）
+  // 9. 标签行（与页面轻量羊皮纸实体标签同步，无图标、配色轻盈契合UI）
   if (overviewTags.length > 0) {
     let tagX = pad
-    const tagH = 24
+    const tagH = 22
     for (const t of overviewTags) {
       const isGold = t.type === 'tag-gold'
       const isEmerald = t.type === 'tag-emerald'
       const isAmber = t.type === 'tag-amber'
       const isDanger = t.type === 'tag-danger'
-      const hasStar = isGold || isEmerald || isAmber
 
-      const starStr = hasStar ? '✦ ' : ''
-      const displayText = `${starStr}${t.text}`
+      const displayText = t.text
 
       ctx.font = 'bold 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif'
-      const tagW = Math.round(ctx.measureText(displayText).width + 20)
+      const tagW = Math.round(ctx.measureText(displayText).width + 16)
 
-      // 渐变底色
-      const tagGrad = ctx.createLinearGradient(tagX, curY, tagX + tagW, curY + tagH)
-      let tagTextColor = '#ffffff'
-      let tagBorderColor = 'rgba(255, 255, 255, 0.5)'
-      let tagShadowColor = 'rgba(0, 0, 0, 0.15)'
+      let tagBgColor = '#fff8e7'
+      let tagBorderColor = '#d49a3d'
+      let tagTextColor = '#8c4a00'
 
       if (isGold) {
-        tagGrad.addColorStop(0, '#f59e0b')
-        tagGrad.addColorStop(0.6, '#d97706')
-        tagGrad.addColorStop(1, '#b45309')
-        tagShadowColor = 'rgba(217, 119, 6, 0.35)'
+        tagBgColor = '#fff8e7'
+        tagBorderColor = '#d49a3d'
+        tagTextColor = '#8c4a00'
       } else if (isEmerald) {
-        tagGrad.addColorStop(0, '#10b981')
-        tagGrad.addColorStop(0.6, '#059669')
-        tagGrad.addColorStop(1, '#047857')
-        tagShadowColor = 'rgba(5, 150, 105, 0.3)'
+        tagBgColor = '#f0f9f3'
+        tagBorderColor = '#2ea366'
+        tagTextColor = '#146c36'
       } else if (isAmber) {
-        tagGrad.addColorStop(0, '#f97316')
-        tagGrad.addColorStop(1, '#ea580c')
-        tagShadowColor = 'rgba(234, 88, 12, 0.3)'
+        tagBgColor = '#fff5ec'
+        tagBorderColor = '#e06d2d'
+        tagTextColor = '#b43b02'
       } else if (isDanger) {
-        tagGrad.addColorStop(0, '#ef4444')
-        tagGrad.addColorStop(1, '#dc2626')
-        tagShadowColor = 'rgba(220, 38, 38, 0.3)'
+        tagBgColor = '#fef2f2'
+        tagBorderColor = '#dc2626'
+        tagTextColor = '#991b1b'
       } else {
-        tagGrad.addColorStop(0, 'rgba(143, 115, 81, 0.12)')
-        tagGrad.addColorStop(1, 'rgba(143, 115, 81, 0.12)')
+        tagBgColor = '#f7f3eb'
+        tagBorderColor = '#8f7351'
         tagTextColor = '#5a3e1b'
-        tagBorderColor = 'rgba(143, 115, 81, 0.4)'
-        tagShadowColor = 'transparent'
       }
 
-      ctx.save()
-      if (tagShadowColor !== 'transparent') {
-        ctx.shadowColor = tagShadowColor
-        ctx.shadowBlur = 6
-        ctx.shadowOffsetY = 2
-      }
-      roundRect(ctx, tagX, curY, tagW, tagH, tagH / 2)
-      ctx.fillStyle = tagGrad
+      // 4px 圆角实体矩形标签
+      roundRect(ctx, tagX, curY, tagW, tagH, 4)
+      ctx.fillStyle = tagBgColor
       ctx.fill()
-      ctx.restore()
 
-      // 白色高光描边
+      // 细致边框
       ctx.strokeStyle = tagBorderColor
       ctx.lineWidth = 1
-      roundRect(ctx, tagX + 0.5, curY + 0.5, tagW - 1, tagH - 1, (tagH - 1) / 2)
+      roundRect(ctx, tagX + 0.5, curY + 0.5, tagW - 1, tagH - 1, 3.5)
       ctx.stroke()
 
-      // 文字
+      // 墨色文字
       ctx.font = 'bold 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif'
       ctx.fillStyle = tagTextColor
       ctx.textAlign = 'center'

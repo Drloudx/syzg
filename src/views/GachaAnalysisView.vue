@@ -2268,119 +2268,93 @@ onMounted(() => {
 .dark-mode .pdetail-lbl { color: var(--text-muted, #bfa988); }
 
 /* ========================================================
-   底部欧气战绩成就勋章 (二游专属战绩胶囊徽章，契合项目调色盘)
+   底部欧气战绩成就标签 (契合羊皮纸大书院UI，轻盈实体标签感)
    ======================================================== */
 .profile-tags-row {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   padding-top: 6px;
 }
 .profile-tag-pill {
   font-size: 12px;
-  font-weight: 800;
-  padding: 4.5px 14px;
-  border-radius: 999px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  letter-spacing: 0.03em;
-  line-height: 1.3;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  box-shadow: 0 1px 2px rgba(60, 42, 22, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   cursor: default;
 }
 .profile-tag-pill:hover {
-  transform: translateY(-1.5px) scale(1.04);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(60, 42, 22, 0.12);
 }
 
-/* 欧皇金勋章：十连双金、单抽出奇迹、高连UP */
+/* 欧皇金标签：十连双金、单抽出奇迹、高连UP */
 .tag-gold {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 60%, #b45309 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  text-shadow: 0 1px 2px rgba(120, 53, 15, 0.45);
-}
-.tag-gold:hover {
-  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-.tag-gold::before {
-  content: '✦';
-  font-size: 11px;
-  color: #fef08a;
-  filter: drop-shadow(0 1px 2px rgba(120, 53, 15, 0.5));
+  background: #fff8e7;
+  color: #8c4a00;
+  border: 1px solid #d49a3d;
 }
 
-/* 翡翠绿勋章：连UP、小保底全胜、超常出金率 */
+/* 翡翠绿标签：连UP、小保底全胜、超常出金率 */
 .tag-emerald {
-  background: linear-gradient(135deg, #10b981 0%, #059669 60%, #047857 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 3px 8px rgba(5, 150, 105, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  text-shadow: 0 1px 2px rgba(6, 95, 70, 0.45);
-}
-.tag-emerald:hover {
-  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-.tag-emerald::before {
-  content: '✦';
-  font-size: 11px;
-  color: #a7f3d0;
-  filter: drop-shadow(0 1px 2px rgba(6, 95, 70, 0.5));
+  background: #f0f9f3;
+  color: #146c36;
+  border: 1px solid #2ea366;
 }
 
-/* 琥珀橙：大保底就绪 */
+/* 琥珀橙标签：大保底就绪 */
 .tag-amber {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 60%, #c2410c 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 3px 8px rgba(234, 88, 12, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-  text-shadow: 0 1px 2px rgba(154, 52, 18, 0.45);
-}
-.tag-amber:hover {
-  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-.tag-amber::before {
-  content: '✦';
-  font-size: 11px;
-  color: #fed7aa;
+  background: #fff5ec;
+  color: #b43b02;
+  border: 1px solid #e06d2d;
 }
 
 /* 典雅朱砂：连歪 */
 .tag-danger {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 60%, #b91c1c 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 3px 8px rgba(220, 38, 38, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  text-shadow: 0 1px 2px rgba(153, 27, 27, 0.45);
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #dc2626;
 }
 
 /* 中性朴素：综合出金率 */
 .tag-neutral {
-  background: rgba(143, 115, 81, 0.12);
+  background: #f7f3eb;
   color: #5a3e1b;
-  border: 1px solid rgba(143, 115, 81, 0.4);
-  box-shadow: 0 1px 3px rgba(60, 42, 22, 0.08);
+  border: 1px solid #8f7351;
 }
 
-/* 暗色模式下勋章立体高亮 */
+/* 暗色模式下标签自适应 */
 :deep(.dark-mode) .tag-gold, .dark-mode .tag-gold {
-  box-shadow: 0 3px 10px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: rgba(217, 119, 6, 0.16);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #fbbf24;
 }
 :deep(.dark-mode) .tag-emerald, .dark-mode .tag-emerald {
-  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.5);
+  color: #34d399;
 }
 :deep(.dark-mode) .tag-amber, .dark-mode .tag-amber {
-  box-shadow: 0 3px 10px rgba(249, 115, 22, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: rgba(234, 88, 12, 0.16);
+  border-color: rgba(249, 115, 22, 0.5);
+  color: #fb923c;
 }
 :deep(.dark-mode) .tag-danger, .dark-mode .tag-danger {
-  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: rgba(220, 38, 38, 0.16);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #f87171;
 }
 :deep(.dark-mode) .tag-neutral, .dark-mode .tag-neutral {
-  background: rgba(45, 33, 22, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
   color: #dfceb3;
-  border-color: rgba(143, 115, 81, 0.5);
 }
 /* 2. 五星收藏总览 (图3) */
 .collection-section {
