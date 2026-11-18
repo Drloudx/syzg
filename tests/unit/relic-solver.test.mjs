@@ -219,3 +219,36 @@ test('共鸣需求解析、元素映射与效果文本清洗', () => {
   assert.equal(formatted.includes('}'), false)
 })
 
+test('多核心联合求解与共鸣全达成（消解选择顺序影响，同一核心词条紧密聚合）', () => {
+  const openCells = getDefaultOpenGridSet(30, fapanCells)
+  // 4 核心组合：虚空圣杯 (2x2), 雷鸣杖冠 (2x2), 塞瓦之角 (2x1), 涓流长卷 (1x3)
+  const coreIdsOrderA = ['core_104', 'core_107', 'core_108', 'core_102']
+  const coreIdsOrderB = ['core_102', 'core_108', 'core_107', 'core_104']
+
+  for (const coreIds of [coreIdsOrderA, coreIdsOrderB]) {
+    const res = solveFapanPlacement({
+      openCells,
+      selectedCoreIds: coreIds,
+      globalMaxCountPerRelic: 3,
+      allRelics
+    })
+
+    assert.equal(res.success, true)
+    assert.equal(res.unmetResonances.length, 0, `不同选择顺序下均应达成全部共鸣，当前未达成数: ${res.unmetResonances.length}`)
+    assert.equal(res.activeResonances.length, 13, '4 核心全部 13 条共鸣应 100% 激活')
+    assert.ok(res.allResonances && res.allResonances.length === 13)
+
+    // 验证同一核心的词条是否紧密聚合（不交叉分散）
+    const seenCores = new Set()
+    let lastCoreId = null
+    for (const r of res.allResonances) {
+      if (r.coreId !== lastCoreId) {
+        assert.equal(seenCores.has(r.coreId), false, `核心 ${r.coreName} 的词条被中间截断分散了，没有聚在一起`)
+        seenCores.add(r.coreId)
+        lastCoreId = r.coreId
+      }
+    }
+  }
+})
+
+

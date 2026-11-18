@@ -245,24 +245,31 @@ export function solveFapanPlacement({
     return placements
   }
 
-  // 3. 阶段 1：放置核心遗器
-  // 核心遗器通常居中放置，以便其十字能量范围能够覆盖更多格子
-  function placeCoreRelics(coreIndex, currentMask, currentPlaced) {
-    if (coreIndex >= coreRelics.length) {
-      return { success: true, mask: currentMask, placed: [...currentPlaced] }
-    }
-    const core = coreRelics[coreIndex]
-    const validPositions = findValidPlacements(core, currentMask)
+  // 3. 核心布局候选生成与多核心联合需求求解
+  // 按照面积从大到小与 ID 确定性排序核心，消除用户点击选择顺序对结果的随机影响
+  const sortedCores = [...coreRelics].sort((a, b) => {
+    const areaA = (a.shape?.width || 1) * (a.shape?.height || 1)
+    const areaB = (b.shape?.width || 1) * (b.shape?.height || 1)
+    if (areaB !== areaA) return areaB - areaA
+    return a.id.localeCompare(b.id)
+  })
 
-    // 启发式：优先排在中心附近（x 接近 3, y 接近 2.5）
-    validPositions.sort((a, b) => {
+  function searchCoreLayouts(idx, currentMask, currentPlaced, maxResults = 16) {
+    if (idx >= sortedCores.length) {
+      return [{ mask: currentMask, placed: currentPlaced }]
+    }
+    const core = sortedCores[idx]
+    const positions = findValidPlacements(core, currentMask)
+    // 启发式：优先排在中心附近（x 接近 4, y 接近 3.5）
+    positions.sort((a, b) => {
       const distA = Math.hypot(a.x + a.width / 2 - 4, a.y + a.height / 2 - 3.5)
       const distB = Math.hypot(b.x + b.width / 2 - 4, b.y + b.height / 2 - 3.5)
       return distA - distB
     })
 
-    for (const pos of validPositions) {
-      const placedItem = {
+    const results = []
+    for (const pos of positions.slice(0, 4)) {
+      const item = {
         relicId: core.id,
         relic: core,
         x: pos.x,
@@ -272,28 +279,35 @@ export function solveFapanPlacement({
         level: 5,
         isCore: true
       }
-      const nextRes = placeCoreRelics(coreIndex + 1, currentMask | pos.mask, [...currentPlaced, placedItem])
-      if (nextRes.success) return nextRes
+      const sub = searchCoreLayouts(idx + 1, currentMask | pos.mask, [...currentPlaced, item], maxResults)
+      for (const s of sub) {
+        results.push(s)
+        if (results.length >= maxResults) return results
+      }
     }
-    return { success: false }
+    return results
   }
 
-  const coreResult = placeCoreRelics(0, boardMask, [])
-  if (coreResult.success) {
-    boardMask = coreResult.mask
-    placedRelics.push(...coreResult.placed)
-  } else if (coreRelics.length > 0) {
-    // 降级：尽量放能放下的核心
+  let candidateCoreLayouts = searchCoreLayouts(0, boardMask, [])
+  if (candidateCoreLayouts.length === 0 && sortedCores.length > 0) {
+    // 降级兜底：尽量放能放下的核心
     let partialMask = boardMask
-    for (const core of coreRelics) {
+    const partialPlaced = []
+    for (const core of sortedCores) {
       const positions = findValidPlacements(core, partialMask)
       if (positions.length) {
-        partialMask |= positions[0].mask
-        placedRelics.push({
+        positions.sort((a, b) => {
+          const distA = Math.hypot(a.x + a.width / 2 - 4, a.y + a.height / 2 - 3.5)
+          const distB = Math.hypot(b.x + b.width / 2 - 4, b.y + b.height / 2 - 3.5)
+          return distA - distB
+        })
+        const chosen = positions[0]
+        partialMask |= chosen.mask
+        partialPlaced.push({
           relicId: core.id,
           relic: core,
-          x: positions[0].x,
-          y: positions[0].y,
+          x: chosen.x,
+          y: chosen.y,
           width: core.shape.width,
           height: core.shape.height,
           level: 5,
@@ -301,165 +315,222 @@ export function solveFapanPlacement({
         })
       }
     }
-    boardMask = partialMask
+    candidateCoreLayouts = [{ mask: partialMask, placed: partialPlaced }]
+  } else if (candidateCoreLayouts.length === 0) {
+    candidateCoreLayouts = [{ mask: boardMask, placed: [] }]
   }
 
-  // 4. 阶段 2：在核心遗器的「十字能量共鸣范围」内放置对应的基础遗器
-  // 计算所有已放置核心的十字共鸣范围并集
-  const placedCores = placedRelics.filter(p => p.isCore)
-  const coreRanges = placedCores.map(c => ({
-    core: c,
-    rangeCells: getCoreResonanceRangeCells(c)
-  }))
+  // 4. 针对候选核心布局，执行【多核心联合需求 + 共鸣共享装配】
+  // 共鸣满是绝对第一优先级！
+  let bestSolution = null
 
-  for (const { core, rangeCells } of coreRanges) {
-    const targetTags = targetResonanceTags?.[core.relicId]
-    const resonancesToActivate = (core.relic.resonances || []).filter(res => {
-      if (!targetTags) return true
-      return targetTags.includes(res.tag)
+  for (const layout of candidateCoreLayouts) {
+    let currentBoardMask = layout.mask
+    const currentPlacedRelics = [...layout.placed]
+    const currentUsedCountMap = new Map()
+
+    const placedCores = currentPlacedRelics.filter(p => p.isCore)
+    const coreInfos = placedCores.map(c => {
+      const rangeCells = getCoreResonanceRangeCells(c)
+      const targetTags = targetResonanceTags?.[c.relicId]
+      const neededCounts = {}
+      for (const res of (c.relic.resonances || [])) {
+        if (targetTags && !targetTags.includes(res.tag)) continue
+        for (const part of (res.requirementParts || [])) {
+          neededCounts[part.categoryName] = Math.max(neededCounts[part.categoryName] || 0, part.count || 0)
+        }
+      }
+      return { core: c, rangeCells, neededCounts }
     })
 
-    // 统计当前核心各元素所需配额
-    const neededCounts = {}
-    for (const res of resonancesToActivate) {
-      for (const part of (res.requirementParts || [])) {
-        neededCounts[part.categoryName] = Math.max(neededCounts[part.categoryName] || 0, part.count || 0)
-      }
-    }
+    // 联合需求贪心闭环：反复寻找对当前所有核心共鸣贡献最大的位置
+    let keepPlacing = true
+    while (keepPlacing) {
+      let totalDeficit = 0
+      const deficits = []
 
-    for (const [elementName, neededCount] of Object.entries(neededCounts)) {
-      if (neededCount <= 0) continue
-
-      // 优先选小尺寸（1x1, 1x2, 2x1），且候选位置必须与 rangeCells 重叠！
-      const candidates = [...(basesByCat[elementName] || [])].sort((a, b) => {
-        return (a.shape.width * a.shape.height) - (b.shape.width * b.shape.height)
-      })
-
-      // 统计当前核心范围内已经覆盖的对应元素件数（对标源码：只要有 1 格落在 rangeCells 即算 1 件）
-      let currentOverlapCount = 0
-      for (const placed of placedRelics) {
-        if (!placed.isCore && placed.relic?.categoryName === elementName) {
-          let touches = false
-          for (let dy = 0; dy < placed.height; dy += 1) {
-            for (let dx = 0; dx < placed.width; dx += 1) {
-              if (rangeCells.has(`${placed.x + dx},${placed.y + dy}`)) {
-                touches = true
-                break
-              }
-            }
-            if (touches) break
-          }
-          if (touches) currentOverlapCount += 1
-        }
-      }
-
-      while (currentOverlapCount < neededCount && candidates.length > 0) {
-        let placedOne = false
-        for (const relic of candidates) {
-          const currentUsed = usedCountMap.get(relic.id) || 0
-          if (currentUsed >= getMaxLimit(relic.id)) {
-            continue
-          }
-          const positions = findValidPlacements(relic, boardMask)
-          // 过滤出至少有 1 格落在 rangeCells 内的位置
-          // 关键优化：优先选择占用十字能量格子最少（仅 1 格边缘触碰）、让主体延伸到十字外的紧凑位置，把通道留给其他共鸣元素！
-          const overlappingPositions = positions
-            .map(pos => {
-              let overlapCells = 0
-              for (let dy = 0; dy < relic.shape.height; dy += 1) {
-                for (let dx = 0; dx < relic.shape.width; dx += 1) {
-                  if (rangeCells.has(`${pos.x + dx},${pos.y + dy}`)) overlapCells += 1
+      for (const ci of coreInfos) {
+        for (const [elem, needed] of Object.entries(ci.neededCounts)) {
+          let touchCount = 0
+          for (const p of currentPlacedRelics) {
+            if (p.isCore || p.relic.categoryName !== elem) continue
+            let touches = false
+            for (let dy = 0; dy < p.height; dy += 1) {
+              for (let dx = 0; dx < p.width; dx += 1) {
+                if (ci.rangeCells.has(`${p.x + dx},${p.y + dy}`)) {
+                  touches = true
+                  break
                 }
               }
-              return { ...pos, overlapCells }
-            })
-            .filter(pos => pos.overlapCells > 0)
-            .sort((a, b) => {
-              // 优先占用十字格子更少（比如 1 格触碰优先于 4 格占满，保护宝贵的共鸣通道）
-              if (a.overlapCells !== b.overlapCells) return a.overlapCells - b.overlapCells
-              return 0
-            })
-
-          if (overlappingPositions.length > 0) {
-            const chosen = overlappingPositions[0]
-            boardMask |= chosen.mask
-            placedRelics.push({
-              relicId: relic.id,
-              relic,
-              x: chosen.x,
-              y: chosen.y,
-              width: relic.shape.width,
-              height: relic.shape.height,
-              level: 5,
-              isCore: false
-            })
-            usedCountMap.set(relic.id, currentUsed + 1)
-            currentOverlapCount += 1
-            placedOne = true
-            break
+              if (touches) break
+            }
+            if (touches) touchCount += 1
+          }
+          const def = Math.max(0, needed - touchCount)
+          if (def > 0) {
+            totalDeficit += def
+            deficits.push({ ci, elem, def })
           }
         }
-        if (!placedOne) break
       }
-    }
-  }
 
-  // 5. 阶段 3：用未被排除且未达数量上限的候选基础遗器贪心填充剩余空余格子
-  const fillCandidates = [...candidateBases].sort((a, b) => {
-    const areaA = a.shape.width * a.shape.height
-    const areaB = b.shape.width * b.shape.height
-    if (areaB !== areaA) return areaB - areaA
-    return a.name.localeCompare(b.name, 'zh')
-  })
-
-  let canContinue = true
-  while (canContinue) {
-    let placedInLoop = false
-    for (const relic of fillCandidates) {
-      const currentUsed = usedCountMap.get(relic.id) || 0
-      if (currentUsed >= getMaxLimit(relic.id)) {
-        continue
+      if (totalDeficit === 0) {
+        break // 所有核心共鸣需求已全部达成！
       }
-      const positions = findValidPlacements(relic, boardMask)
-      if (positions.length) {
-        const chosen = positions[0]
-        boardMask |= chosen.mask
-        placedRelics.push({
-          relicId: relic.id,
-          relic,
-          x: chosen.x,
-          y: chosen.y,
-          width: relic.shape.width,
-          height: relic.shape.height,
+
+      const elemDemand = {}
+      for (const d of deficits) {
+        elemDemand[d.elem] = (elemDemand[d.elem] || 0) + d.def
+      }
+
+      let bestMove = null
+
+      for (const [elemName, demand] of Object.entries(elemDemand)) {
+        const candidates = basesByCat[elemName] || []
+        for (const relic of candidates) {
+          const used = currentUsedCountMap.get(relic.id) || 0
+          if (used >= getMaxLimit(relic.id)) continue
+
+          const positions = findValidPlacements(relic, currentBoardMask)
+          for (const pos of positions) {
+            let benefitedCount = 0
+            let totalOverlapCells = 0
+
+            for (const ci of coreInfos) {
+              const def = deficits.find(d => d.ci === ci && d.elem === elemName)
+              if (!def) continue
+
+              let coreOverlap = 0
+              for (let dy = 0; dy < relic.shape.height; dy += 1) {
+                for (let dx = 0; dx < relic.shape.width; dx += 1) {
+                  if (ci.rangeCells.has(`${pos.x + dx},${pos.y + dy}`)) {
+                    coreOverlap += 1
+                  }
+                }
+              }
+              if (coreOverlap > 0) {
+                benefitedCount += 1
+                totalOverlapCells += coreOverlap
+              }
+            }
+
+            if (benefitedCount > 0) {
+              const area = relic.shape.width * relic.shape.height
+              // 评分准则：
+              // 1. 同时满足多个核心共鸣（benefitedCount >= 2）优先（一石多鸟）
+              // 2. 元素总需求量高者优先
+              // 3. 占用面积更小优先（1x1 优先于大件，不挤占后续格子）
+              // 4. 触碰十字格数更少优先（边缘微触碰，保护十字通道畅通）
+              const moveScore = (benefitedCount * 1000) + (demand * 50) - (area * 20) - totalOverlapCells
+
+              if (!bestMove || moveScore > bestMove.score) {
+                bestMove = {
+                  score: moveScore,
+                  relic,
+                  pos,
+                  benefitedCount
+                }
+              }
+            }
+          }
+        }
+      }
+
+      if (bestMove) {
+        currentBoardMask |= bestMove.pos.mask
+        currentPlacedRelics.push({
+          relicId: bestMove.relic.id,
+          relic: bestMove.relic,
+          x: bestMove.pos.x,
+          y: bestMove.pos.y,
+          width: bestMove.relic.shape.width,
+          height: bestMove.relic.shape.height,
           level: 5,
           isCore: false
         })
-        usedCountMap.set(relic.id, currentUsed + 1)
-        placedInLoop = true
+        currentUsedCountMap.set(bestMove.relic.id, (currentUsedCountMap.get(bestMove.relic.id) || 0) + 1)
+      } else {
         break
       }
     }
-    if (!placedInLoop) {
-      canContinue = false
+
+    // 5. 阶段 3：用未被排除的基础遗器贪心填充剩余空余格子
+    const fillCandidates = [...candidateBases].sort((a, b) => {
+      const areaA = a.shape.width * a.shape.height
+      const areaB = b.shape.width * b.shape.height
+      if (areaB !== areaA) return areaB - areaA
+      return a.name.localeCompare(b.name, 'zh')
+    })
+
+    let canContinue = true
+    while (canContinue) {
+      let placedInLoop = false
+      for (const relic of fillCandidates) {
+        const currentUsed = currentUsedCountMap.get(relic.id) || 0
+        if (currentUsed >= getMaxLimit(relic.id)) continue
+
+        const positions = findValidPlacements(relic, currentBoardMask)
+        if (positions.length) {
+          const chosen = positions[0]
+          currentBoardMask |= chosen.mask
+          currentPlacedRelics.push({
+            relicId: relic.id,
+            relic,
+            x: chosen.x,
+            y: chosen.y,
+            width: relic.shape.width,
+            height: relic.shape.height,
+            level: 5,
+            isCore: false
+          })
+          currentUsedCountMap.set(relic.id, currentUsed + 1)
+          placedInLoop = true
+          break
+        }
+      }
+      if (!placedInLoop) {
+        canContinue = false
+      }
+    }
+
+    const resEval = evaluateResonances(currentPlacedRelics, coreRelics)
+    const usedCellCount = currentPlacedRelics.reduce((sum, p) => sum + p.width * p.height, 0)
+    // 方案总评分：共鸣达成数绝对第一优先，辅以有效格利用率
+    const score = (resEval.active.length * 100000) - (resEval.unmet.length * 50000) + (usedCellCount * 10)
+
+    if (!bestSolution || score > bestSolution.score) {
+      bestSolution = {
+        score,
+        placedRelics: currentPlacedRelics,
+        boardMask: currentBoardMask,
+        usedCellCount,
+        resEval,
+        usedCountMap: currentUsedCountMap
+      }
+      // 若当前方案已达成所有可能共鸣且无未达成条目，则提前收敛
+      if (resEval.unmet.length === 0) {
+        break
+      }
     }
   }
 
-  // 6. 准确评估共鸣与属性
-  const resonanceStatus = evaluateResonances(placedRelics, coreRelics)
-  const totalStats = calculateTotalStats(placedRelics)
-  const usedCellCount = placedRelics.reduce((sum, p) => sum + p.width * p.height, 0)
-  const usedCounts = Object.fromEntries(usedCountMap.entries())
+  const resonanceStatus = bestSolution ? bestSolution.resEval : { active: [], unmet: [], all: [] }
+  const finalPlacedRelics = bestSolution ? bestSolution.placedRelics : []
+  const finalBoardMask = bestSolution ? bestSolution.boardMask : boardMask
+  const finalUsedCellCount = bestSolution ? bestSolution.usedCellCount : 0
+  const totalStats = calculateTotalStats(finalPlacedRelics)
+  const usedCounts = bestSolution ? Object.fromEntries(bestSolution.usedCountMap.entries()) : {}
 
   return {
     success: true,
-    placedRelics,
-    boardMask,
-    usedCellCount,
+    placedRelics: finalPlacedRelics,
+    boardMask: finalBoardMask,
+    usedCellCount: finalUsedCellCount,
     totalOpenCount: openSet.size,
-    fillRate: openSet.size > 0 ? (usedCellCount / openSet.size) : 0,
+    fillRate: openSet.size > 0 ? (finalUsedCellCount / openSet.size) : 0,
     activeResonances: resonanceStatus.active,
     unmetResonances: resonanceStatus.unmet,
-    elementCounts: resonanceStatus.elementCounts,
+    allResonances: resonanceStatus.all,
     totalStats,
     usedCounts
   }
@@ -472,6 +543,7 @@ export function solveFapanPlacement({
 export function evaluateResonances(placedRelics, coreRelics = []) {
   const active = []
   const unmet = []
+  const all = []
   const activeCores = coreRelics.length
     ? coreRelics
     : placedRelics.filter(p => p.isCore).map(p => p.relic)
@@ -484,7 +556,7 @@ export function evaluateResonances(placedRelics, coreRelics = []) {
     // 若核心未放置在盘上，则其所有共鸣均为未达成
     if (!corePlaced) {
       for (const res of (core.resonances || [])) {
-        unmet.push({
+        const entry = {
           coreId: core.id,
           coreName: core.name,
           tag: res.tag,
@@ -492,7 +564,9 @@ export function evaluateResonances(placedRelics, coreRelics = []) {
           requirementParts: res.requirementParts,
           text: res.text,
           isMet: false
-        })
+        }
+        unmet.push(entry)
+        all.push(entry)
       }
       continue
     }
@@ -526,7 +600,7 @@ export function evaluateResonances(placedRelics, coreRelics = []) {
       }
     }
 
-    // 逐项判定共鸣
+    // 逐项判定共鸣（按核心顺序紧密聚合，同一核心的所有词条排在一起）
     for (const res of (core.resonances || [])) {
       const isMet = (res.requirementParts || []).every(part => {
         return (categoryStats[part.categoryName] || 0) >= (part.count || 0)
@@ -540,12 +614,13 @@ export function evaluateResonances(placedRelics, coreRelics = []) {
         text: res.text,
         isMet
       }
+      all.push(entry)
       if (isMet) active.push(entry)
       else unmet.push(entry)
     }
   }
 
-  return { active, unmet }
+  return { active, unmet, all }
 }
 
 /**

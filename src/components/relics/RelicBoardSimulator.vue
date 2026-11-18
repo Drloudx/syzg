@@ -97,7 +97,7 @@
             <button
               type="button"
               class="sim-btn"
-              :class="{ 'is-active': globalMaxCountPerRelic === null && !hasCustomInventoryCount }"
+              :class="{ 'is-active': globalMaxCountPerRelic === null }"
               @click="setGlobalMaxCount(null)"
             >
               不限制
@@ -553,13 +553,13 @@ const totalExcludedCount = computed(() => {
 
 const placedRelics = computed(() => solution.value?.placedRelics || [])
 
-// 所有选定核心的共鸣达标状态
+// 所有选定核心的共鸣达标状态（同一核心的词条按核心聚合在一起展示）
 const allResonanceStatus = computed(() => {
   if (!solution.value) {
     const selectedCores = coreRelicOptions.value.filter(c => selectedCoreIds.value.includes(c.id))
-    return evaluateResonances([], selectedCores).unmet
+    return evaluateResonances([], selectedCores).all
   }
-  return [...solution.value.activeResonances, ...solution.value.unmetResonances]
+  return solution.value.allResonances || [...solution.value.activeResonances, ...solution.value.unmetResonances]
 })
 
 // 初始化与等级切换
@@ -656,11 +656,12 @@ function getRelicMaxCount(id) {
   if (typeof globalMaxCountPerRelic.value === 'number') {
     return globalMaxCountPerRelic.value
   }
-  return 3
+  return 99
 }
 
 function setGlobalMaxCount(val) {
   globalMaxCountPerRelic.value = val
+  relicMaxCounts.value = {}
   runAutoSolver()
 }
 
