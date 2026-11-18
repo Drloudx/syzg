@@ -456,41 +456,36 @@ onMounted(loadData)
 /* 基础与核心统一底色：类型靠「基础/核心」标签区分，不再用背景色制造差异。 */
 .relic-entry :deep(.ui-item-card) { flex: 0 0 72px; margin: 0; }
 
-/* 属性背景底色（对标游戏内背包槽位风格） */
+/* 属性背景底色（1:1 对标法盘棋盘样式：无条纹、平滑渐变、高亮边框） */
 .relic-entry--fire :deep(.ui-item-card__slot) {
-  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
-    linear-gradient(180deg, #873630 0%, #561d19 100%) !important;
-  border: 1.5px solid #a84b44 !important;
+  background: linear-gradient(135deg, rgba(140, 30, 20, 0.88), rgba(65, 12, 10, 0.95)) !important;
+  border: 1.5px solid #e74c3c !important;
   border-radius: 6px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), inset 0 0 4px rgba(255, 255, 255, 0.2);
 }
 .relic-entry--water :deep(.ui-item-card__slot) {
-  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
-    linear-gradient(180deg, #2d6b8f 0%, #183c50 100%) !important;
-  border: 1.5px solid #4489b0 !important;
+  background: linear-gradient(135deg, rgba(20, 80, 140, 0.88), rgba(10, 40, 75, 0.95)) !important;
+  border: 1.5px solid #3498db !important;
   border-radius: 6px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), inset 0 0 4px rgba(255, 255, 255, 0.2);
 }
 .relic-entry--earth :deep(.ui-item-card__slot) {
-  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
-    linear-gradient(180deg, #74552b 0%, #442f13 100%) !important;
-  border: 1.5px solid #94713c !important;
+  background: linear-gradient(135deg, rgba(130, 85, 35, 0.88), rgba(65, 42, 18, 0.95)) !important;
+  border: 1.5px solid #d38b28 !important;
   border-radius: 6px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), inset 0 0 4px rgba(255, 255, 255, 0.2);
 }
 .relic-entry--wind :deep(.ui-item-card__slot) {
-  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
-    linear-gradient(180deg, #506f2e 0%, #2c3e16 100%) !important;
-  border: 1.5px solid #6c913f !important;
+  background: linear-gradient(135deg, rgba(30, 110, 55, 0.88), rgba(15, 55, 28, 0.95)) !important;
+  border: 1.5px solid #2ecc71 !important;
   border-radius: 6px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35), inset 0 0 4px rgba(255, 255, 255, 0.2);
 }
 .relic-entry--core :deep(.ui-item-card__slot) {
-  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 6px),
-    linear-gradient(180deg, #a86c25 0%, #6e400f 100%) !important;
-  border: 1.5px solid #d49033 !important;
+  background: linear-gradient(135deg, rgba(160, 115, 25, 0.92), rgba(75, 50, 10, 0.98)) !important;
+  border: 2px solid #ffd700 !important;
   border-radius: 6px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4), inset 0 0 8px rgba(255, 215, 0, 0.3);
 }
 .relic-entry__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .relic-entry__name { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 5px; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
