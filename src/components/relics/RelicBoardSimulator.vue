@@ -173,8 +173,8 @@
                       @change="toggleRelicRequired(relic.id)"
                     />
                     <span class="inv-required-box" aria-hidden="true">
-                      <svg v-if="isRelicRequired(relic.id)" viewBox="0 0 12 12" class="inv-check-icon">
-                        <path d="M2 6.2L4.6 8.8L10 3.2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <svg v-if="isRelicRequired(relic.id)" viewBox="0 0 14 14" class="inv-check-icon">
+                        <path d="M2.5 7.2L5.5 10.2L11.5 3.8" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
                       </svg>
                     </span>
                     <span class="inv-required-text">必选</span>
@@ -1251,17 +1251,20 @@ onMounted(() => {
 .inv-required-check {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   cursor: pointer;
   user-select: none;
-  font-size: 11.5px;
-  color: var(--text-muted, #7c6448);
-  padding: 2px 3px;
+  padding: 3px 6px;
   border-radius: 4px;
+  border: 1px solid transparent;
   transition: all 0.15s ease;
 }
 .inv-required-check:hover {
-  color: var(--text-main, #3e2a14);
+  background: rgba(143, 115, 81, 0.12);
+}
+.inv-required-check.is-checked {
+  background: rgba(35, 73, 68, 0.1);
+  border-color: rgba(35, 73, 68, 0.3);
 }
 .inv-required-input {
   position: absolute;
@@ -1271,49 +1274,66 @@ onMounted(() => {
   pointer-events: none;
 }
 .inv-required-box {
-  width: 17px;
-  height: 17px;
-  border: 1.5px solid var(--border-color, #8f7351);
-  border-radius: 3px;
-  background: var(--paper-soft, #f4ecd9);
+  width: 18px;
+  height: 18px;
+  border: 1.8px solid var(--border-color, #8f7351);
+  border-radius: 4px;
+  background: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.15s ease;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
 }
 .inv-required-check:hover .inv-required-box {
-  border-color: var(--accent-ink, #2f4a49);
+  border-color: var(--accent-ink, #234944);
 }
 .inv-required-check.is-checked .inv-required-box {
-  background: var(--accent-ink, #2f4a49);
-  border-color: var(--accent-ink, #2f4a49);
+  background: var(--accent-ink, #234944);
+  border-color: var(--accent-ink, #234944);
+  box-shadow: 0 1px 3px rgba(35, 73, 68, 0.35);
 }
 .inv-check-icon {
-  width: 11px;
-  height: 11px;
-  stroke: #ffd78c;
+  width: 12px;
+  height: 12px;
+  display: block;
 }
 .inv-required-text {
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1;
-  font-weight: 500;
+  font-weight: 600;
+  color: var(--text-muted, #6b5134);
+  letter-spacing: 0.5px;
   transition: color 0.15s ease, font-weight 0.15s ease;
 }
 .inv-required-check.is-checked .inv-required-text {
-  color: var(--accent-ink, #2f4a49);
+  color: var(--accent-ink, #234944);
   font-weight: 700;
+}
+.dark-mode .inv-required-check:hover,
+.dark-theme .inv-required-check:hover {
+  background: rgba(212, 163, 89, 0.1);
+}
+.dark-mode .inv-required-check.is-checked,
+.dark-theme .inv-required-check.is-checked {
+  background: rgba(85, 135, 129, 0.15);
+  border-color: rgba(127, 174, 169, 0.4);
 }
 .dark-mode .inv-required-box,
 .dark-theme .inv-required-box {
-  background: rgba(30, 22, 14, 0.7);
-  border-color: #7a5c3d;
+  background: rgba(30, 22, 14, 0.9);
+  border-color: #8c6a46;
 }
 .dark-mode .inv-required-check.is-checked .inv-required-box,
 .dark-theme .inv-required-check.is-checked .inv-required-box {
   background: #3e6863;
-  border-color: #558781;
+  border-color: #7faea9;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.dark-mode .inv-required-text,
+.dark-theme .inv-required-text {
+  color: #c4ab89;
 }
 .dark-mode .inv-required-check.is-checked .inv-required-text,
 .dark-theme .inv-required-check.is-checked .inv-required-text {
