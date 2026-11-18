@@ -311,7 +311,7 @@
             :key="`${item.relicId}-${idx}`"
             class="relic-block"
             :class="[
-              `element-${getElementClass(item.relic?.categoryName)}`,
+              `element-${getElementClass(item.relic?.categoryName, item.isCore)}`,
               { 'is-core': item.isCore, 'is-active-inspect': inspectingRelic?.relicId === item.relicId }
             ]"
             :style="{
@@ -322,9 +322,10 @@
           >
             <span class="relic-block__roman">{{ getRomanLevel(item.level || 5) }}</span>
             <img
-              :src="getImageUrl(`/images/Common_ItemIcon/${item.relic.icon}.webp`)"
+              :src="getBoardRelicImg(item.relic)"
               :alt="item.relic.name"
               class="relic-block__img"
+              @error="handleBoardImgError($event, item.relic)"
             />
             <span class="relic-block__tag">{{ item.relic.name }}</span>
           </div>
@@ -506,12 +507,42 @@ const hasCustomInventoryCount = computed(() => {
   return Object.keys(relicMaxCounts.value).length
 })
 
+const STAT_DISPLAY_ORDER = [
+  '物理攻击',
+  '魔法攻击',
+  '物理穿透',
+  '魔法穿透',
+  '火属性伤害',
+  '水属性伤害',
+  '地属性伤害',
+  '风属性伤害',
+  '暴击率',
+  '暴击伤害',
+  '攻速加成',
+  '冷却缩减',
+  '生命值',
+  '法力值',
+  '物理防御',
+  '魔法防御',
+  '物理伤害减免',
+  '魔法伤害减免',
+  '暴击抗性',
+  '移速加成',
+]
+
 const allStatNames = computed(() => {
   const set = new Set()
   for (const r of props.relics) {
     if (r.type === 'base' && r.attributeName) set.add(r.attributeName)
   }
-  return Array.from(set)
+  return Array.from(set).sort((a, b) => {
+    const ia = STAT_DISPLAY_ORDER.indexOf(a)
+    const ib = STAT_DISPLAY_ORDER.indexOf(b)
+    if (ia !== -1 && ib !== -1) return ia - ib
+    if (ia !== -1) return -1
+    if (ib !== -1) return 1
+    return a.localeCompare(b, 'zh-CN')
+  })
 })
 
 const allCategoryNames = ['火属性', '水属性', '地属性', '风属性']
@@ -742,13 +773,27 @@ function getElementIconUrl(catName) {
   return slug ? getImageUrl(`/images/relics/relic_atr_${slug}.webp`) : ''
 }
 
-function getElementClass(catName) {
+function getElementClass(catName, isCore = false) {
+  if (isCore) return 'core'
   switch (catName) {
     case '火属性': return 'fire'
     case '水属性': return 'water'
     case '地属性': return 'earth'
     case '风属性': return 'wind'
-    default: return 'neutral'
+    default: return 'core'
+  }
+}
+
+const getBoardRelicImg = (relic) => {
+  if (!relic?.id) return ''
+  return getImageUrl(`/images/relics/board/${relic.id}.webp`)
+}
+
+const handleBoardImgError = (event, relic) => {
+  if (!relic || !event?.target) return
+  const fallback = getImageUrl(`/images/Common_ItemIcon/${relic.icon}.webp`)
+  if (event.target.src !== fallback) {
+    event.target.src = fallback
   }
 }
 
@@ -1496,32 +1541,42 @@ onMounted(() => {
 
 /* 遗器图片与标识 */
 .relic-block__img {
-  width: 70%;
-  height: 70%;
+  width: auto;
+  height: auto;
+  max-width: 88%;
+  max-height: 86%;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65));
+  pointer-events: none;
 }
 .relic-block__roman {
   position: absolute;
   top: 2px;
-  left: 4px;
-  font-size: 11px;
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 1px 2px #000;
+  left: 5px;
+  font-family: 'Times New Roman', Times, serif, system-ui;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fce6a2;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 3px rgba(0, 0, 0, 0.9);
   pointer-events: none;
+  z-index: 2;
+  line-height: 1;
 }
 .relic-block__tag {
   position: absolute;
   bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 9px;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 1px 2px #000;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 2px #000, 0 0 3px #000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 90%;
   pointer-events: none;
+  z-index: 2;
 }
 
 /* SVG 光束连线层 */

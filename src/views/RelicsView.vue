@@ -130,7 +130,10 @@
             :key="relic.id"
             :data-relic="relic.id"
             class="relic-entry"
-            :class="{ 'is-target': focus === relic.id }"
+            :class="[
+              { 'is-target': focus === relic.id },
+              `relic-entry--${getRelicCategoryClass(relic)}`
+            ]"
             role="button"
             tabindex="0"
             :aria-label="`查看 ${relic.name} 详情`"
@@ -331,6 +334,17 @@ const shapeCatalog = computed(() => {
 })
 
 const categoryName = value => data.value?.categoryNames?.[value] || `分类${value}`
+const getRelicCategoryClass = relic => {
+  if (!relic) return ''
+  if (relic.type === 'core') return 'core'
+  const map = {
+    '火属性': 'fire',
+    '水属性': 'water',
+    '地属性': 'earth',
+    '风属性': 'wind'
+  }
+  return map[relic.categoryName] || ''
+}
 const categoryOptions = computed(() => [...new Set(relics.value.map(r => r.relicCategory).filter(c => c > 0))].sort((a, b) => a - b))
 const levelOptions = computed(() => {
   const set = new Set()
@@ -441,6 +455,43 @@ onMounted(loadData)
 .relic-entry.is-target { outline: 2px solid var(--accent-ink); outline-offset: -2px; }
 /* 基础与核心统一底色：类型靠「基础/核心」标签区分，不再用背景色制造差异。 */
 .relic-entry :deep(.ui-item-card) { flex: 0 0 72px; margin: 0; }
+
+/* 属性背景底色（对标游戏内背包槽位风格） */
+.relic-entry--fire :deep(.ui-item-card__slot) {
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
+    linear-gradient(180deg, #873630 0%, #561d19 100%) !important;
+  border: 1.5px solid #a84b44 !important;
+  border-radius: 6px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.relic-entry--water :deep(.ui-item-card__slot) {
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
+    linear-gradient(180deg, #2d6b8f 0%, #183c50 100%) !important;
+  border: 1.5px solid #4489b0 !important;
+  border-radius: 6px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.relic-entry--earth :deep(.ui-item-card__slot) {
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
+    linear-gradient(180deg, #74552b 0%, #442f13 100%) !important;
+  border: 1.5px solid #94713c !important;
+  border-radius: 6px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.relic-entry--wind :deep(.ui-item-card__slot) {
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0px, rgba(255, 255, 255, 0.04) 2px, transparent 2px, transparent 6px),
+    linear-gradient(180deg, #506f2e 0%, #2c3e16 100%) !important;
+  border: 1.5px solid #6c913f !important;
+  border-radius: 6px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.relic-entry--core :deep(.ui-item-card__slot) {
+  background-image: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 2px, transparent 2px, transparent 6px),
+    linear-gradient(180deg, #a86c25 0%, #6e400f 100%) !important;
+  border: 1.5px solid #d49033 !important;
+  border-radius: 6px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
 .relic-entry__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .relic-entry__name { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 5px; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 .relic-entry__meta { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; color: var(--text-muted); font-size: 12px; line-height: 1.5; }
