@@ -64,7 +64,12 @@
     <template v-if="relicInfo">
       <UiSection title="遗器属性">
         <UiInfoRow label="类型" :value="relicInfo.type === 'core' ? '核心遗器' : '基础遗器'" />
-        <UiInfoRow v-if="relicInfo.categoryName" label="分类" :value="relicInfo.categoryName" />
+        <UiInfoRow v-if="relicInfo.categoryName" label="分类">
+          <span class="relic-detail-cat">
+            <img v-if="getElementIconUrl(relicInfo.categoryName)" :src="getElementIconUrl(relicInfo.categoryName)" class="relic-tag-icon" />
+            {{ relicInfo.categoryName }}
+          </span>
+        </UiInfoRow>
         <UiInfoRow v-if="relicInfo.attributeName" label="属性" :value="relicInfo.attributeName" />
         <UiInfoRow label="带出积分" :value="String(relicInfo.relicPoint)" />
         <UiInfoRow v-if="relicInfo.energyPattern" label="能量型" :value="String(relicInfo.energyPattern)" />
@@ -89,7 +94,16 @@
       <UiSection v-if="relicInfo.resonances.length" title="共鸣">
         <div class="relic-resonance-list">
           <div v-for="(res, index) in relicInfo.resonances" :key="index" class="relic-resonance-row">
-            <span class="relic-resonance-row__cond">{{ res.requirement }}</span>
+            <div class="relic-resonance-badges">
+              <span
+                v-for="part in (res.requirementParts || parseRequirementParts(res.requirement))"
+                :key="part.categoryName"
+                class="resonance-req-badge"
+              >
+                <img :src="getElementIconUrl(part.categoryName)" :alt="part.categoryName" class="resonance-req-icon" />
+                <span class="resonance-req-num">×{{ part.count }}</span>
+              </span>
+            </div>
             <span class="relic-resonance-row__text" v-html="formatRelicText(res.text)"></span>
           </div>
         </div>
@@ -869,6 +883,7 @@ import { pushItemDetail, popItemDetail, itemModalState } from '../utils/itemModa
 import { fetchWithFallback } from '../utils/request.js'
 import { PREVIEW_AVAILABLE_IDS, getRecipePreviewPath } from '../utils/recipeUtils'
 import { formatHighlightedText, EQUIP_QUALITY_LABELS, translateStatName } from '../utils/gameMappings.js'
+import { parseRequirementParts, getElementSlug } from '../utils/relicSolver.js'
 import { compareExchangeSources } from '../utils/exchangeData.js'
 import { isFacilityRecipeHidden, hasBrokenRewardPool } from '../config/blacklist.js'
 import { resolveItemRelations, resolveSimilarItems } from '../utils/relationData.js'
@@ -1018,6 +1033,11 @@ const relicDrops = computed(() => {
 const openRelicDetail = relicId => {
   if (!relicId) return
   router.push({ path: '/relics', query: { relic: relicId } }).finally(() => emit('update:visible', false))
+}
+
+const getElementIconUrl = cat => {
+  const slug = getElementSlug(cat)
+  return slug ? getImageUrl(`/images/HeroBagPanel/card_atr_${slug}.webp`) : ''
 }
 
 /** 遗器文本里的 `{…}` 是游戏的高亮数值 —— 转成加粗高亮。 */
@@ -1937,13 +1957,63 @@ onBeforeUnmount(cancelBodyScrollRestore)
   background: var(--paper-soft, #e9dcc3);
   border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
 }
-.relic-resonance-row__cond {
+.relic-resonance-badges {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
   flex: 0 0 auto;
+}
+.resonance-req-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 1px 6px 1px 2px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 1;
+}
+:root[data-theme='dark'] .resonance-req-badge,
+.dark-mode .resonance-req-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.resonance-req-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+.resonance-req-num {
+  font-size: 12px;
   font-weight: 700;
-  color: var(--q5-text, #b15d00);
+  color: var(--text-main, #333);
+}
+:root[data-theme='dark'] .resonance-req-num,
+.dark-mode .resonance-req-num {
+  color: #eee;
+}
+.relic-detail-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.relic-tag-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  vertical-align: -2px;
 }
 .relic-resonance-row__text { flex: 1 1 200px; min-width: 0; overflow-wrap: anywhere; }
-.relic-hl { color: var(--accent-ink, #557574); font-weight: 700; }
+.relic-hl {
+  color: #c86400;
+  font-weight: 700;
+}
+:root[data-theme='dark'] .relic-hl,
+.dark-mode .relic-hl {
+  color: #ff9800;
+}
 
 /* 详情页的占格形状 */
 .relic-shape-row {

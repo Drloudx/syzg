@@ -16,7 +16,10 @@
         </UiFilterRow>
         <UiFilterRow label="分类：">
           <UiFilterPill :active="!cate" @click="setFilter('cate', '')">全部</UiFilterPill>
-          <UiFilterPill v-for="value in categoryOptions" :key="value" :active="cate === String(value)" @click="setFilter('cate', String(value))">{{ categoryName(value) }}</UiFilterPill>
+          <UiFilterPill v-for="value in categoryOptions" :key="value" :active="cate === String(value)" @click="setFilter('cate', String(value))">
+            <img v-if="getElementIconUrl(categoryName(value))" :src="getElementIconUrl(categoryName(value))" :alt="categoryName(value)" class="filter-element-icon" />
+            {{ categoryName(value) }}
+          </UiFilterPill>
         </UiFilterRow>
         <UiFilterRow label="等级：">
           <UiFilterPill :active="!level" @click="setFilter('lv', '')">全部</UiFilterPill>
@@ -147,7 +150,10 @@
               <h3 class="relic-entry__name">
                 {{ relic.name }}
                 <UiTag :tone="relic.type === 'core' ? 'gold' : 'accent'">{{ relic.type === 'core' ? '核心' : '基础' }}</UiTag>
-                <UiTag v-if="relic.categoryName">{{ relic.categoryName }}</UiTag>
+                <UiTag v-if="relic.categoryName" class="relic-cat-tag">
+                  <img v-if="getElementIconUrl(relic.categoryName)" :src="getElementIconUrl(relic.categoryName)" :alt="relic.categoryName" class="relic-tag-icon" />
+                  {{ relic.categoryName }}
+                </UiTag>
               </h3>
 
               <div class="relic-entry__meta">
@@ -161,6 +167,27 @@
                 <span class="relic-entry__shape-label">占格 {{ relic.shape.width }}×{{ relic.shape.height }}</span>
                 <div class="shape-mini" :style="{ '--sw': relic.shape.width, '--sh': relic.shape.height }">
                   <span v-for="(cell, i) in relic.shapeCells" :key="i" class="shape-mini__cell"></span>
+                </div>
+              </div>
+
+              <!-- 核心遗器共鸣条件概览 -->
+              <div v-if="relic.type === 'core' && relic.resonances?.length" class="relic-entry__resonances">
+                <span class="relic-entry__res-label">共鸣要求：</span>
+                <div class="relic-entry__res-list">
+                  <div
+                    v-for="(res, rIdx) in relic.resonances"
+                    :key="rIdx"
+                    class="relic-res-badges-wrap"
+                  >
+                    <span
+                      v-for="part in (res.requirementParts || parseRequirementParts(res.requirement))"
+                      :key="part.categoryName"
+                      class="resonance-mini-badge"
+                    >
+                      <img :src="getElementIconUrl(part.categoryName)" :alt="part.categoryName" class="resonance-mini-icon" />
+                      <span class="resonance-mini-num">×{{ part.count }}</span>
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -209,6 +236,12 @@ import {
 } from '../components/ui/index.js'
 import ItemDetailModal from '../components/ItemDetailModal.vue'
 import RelicBoardSimulator from '../components/relics/RelicBoardSimulator.vue'
+import { parseRequirementParts, getElementSlug } from '../utils/relicSolver.js'
+
+const getElementIconUrl = cat => {
+  const slug = getElementSlug(cat)
+  return slug ? getImageUrl(`/images/HeroBagPanel/card_atr_${slug}.webp`) : ''
+}
 
 const route = useRoute()
 const router = useRouter()
@@ -459,8 +492,84 @@ onMounted(loadData)
 }
 .relic-entry__effect-label { font-size: 12px; font-weight: 700; color: var(--text-muted); }
 .relic-entry__more { font-size: 12px; color: var(--accent-ink); white-space: nowrap; }
+.filter-element-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  vertical-align: -2px;
+  margin-right: 2px;
+}
+.relic-cat-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.relic-tag-icon {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+  vertical-align: -1px;
+}
+.relic-entry__resonances {
+  margin-top: 6px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 11.5px;
+}
+.relic-entry__res-label {
+  flex-shrink: 0;
+  color: var(--text-muted);
+}
+.relic-entry__res-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.relic-res-badges-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.resonance-mini-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 1px 4px 1px 2px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 1;
+}
+:root[data-theme='dark'] .resonance-mini-badge,
+.dark-mode .resonance-mini-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.resonance-mini-icon {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+.resonance-mini-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-main, #333);
+}
+:root[data-theme='dark'] .resonance-mini-num,
+.dark-mode .resonance-mini-num {
+  color: #eee;
+}
 .relic-entry__effect-text { margin: 0; font-size: 13px; line-height: 1.7; overflow-wrap: anywhere; }
-.relics-content :deep(.relic-hl) { color: var(--accent-ink); font-weight: 700; }
+.relics-content :deep(.relic-hl) {
+  color: #c86400;
+  font-weight: 700;
+}
+:root[data-theme='dark'] .relics-content :deep(.relic-hl),
+.dark-mode .relics-content :deep(.relic-hl) {
+  color: #ff9800;
+}
 /* 法盘 */
 .fapan-note { margin: 0 0 12px; font-size: 13px; line-height: 1.7; color: var(--text-muted); }
 .fapan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }

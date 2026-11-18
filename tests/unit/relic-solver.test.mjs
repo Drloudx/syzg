@@ -10,7 +10,10 @@ import {
   getDefaultOpenGridSet,
   solveFapanPlacement,
   evaluateResonances,
-  calculateTotalStats
+  calculateTotalStats,
+  parseRequirementParts,
+  getElementSlug,
+  formatRelicEffect
 } from '../../src/utils/relicSolver.js'
 
 const relicsData = JSON.parse(readFileSync(resolve('public/data/parsed/relics.json'), 'utf8'))
@@ -187,3 +190,32 @@ test('限制基础遗器拥有量与单品数量上限（如全局每种限 1 �
   const phyAtkCount = resCustomLimit.placedRelics.filter(p => p.relicId === 'phyAtk_1001').length
   assert.ok(phyAtkCount <= 1, '单独限制 1 件的遗器使用数不超过 1')
 })
+
+test('共鸣需求解析、元素映射与效果文本清洗', () => {
+  // 1. parseRequirementParts
+  const parts = parseRequirementParts('{火属性 ×2 + 风属性 ×1}')
+  assert.deepEqual(parts, [
+    { categoryName: '火属性', count: 2 },
+    { categoryName: '风属性', count: 1 }
+  ])
+
+  const multiParts = parseRequirementParts('{火属性 ×1 + 水属性 ×1 + 地属性 ×1 + 风属性 ×1}')
+  assert.equal(multiParts.length, 4)
+
+  // 2. getElementSlug
+  assert.equal(getElementSlug('火属性'), 'fire')
+  assert.equal(getElementSlug('水属性'), 'water')
+  assert.equal(getElementSlug('地属性'), 'ground')
+  assert.equal(getElementSlug('风属性'), 'wind')
+
+  // 3. formatRelicEffect 消除大括号并将内部包裹为高亮 span
+  const rawText = '角色每次普通攻击时减少该效果冷却时间 {3} 秒，伤害提高 {20%}。'
+  const formatted = formatRelicEffect(rawText)
+  assert.equal(
+    formatted,
+    '角色每次普通攻击时减少该效果冷却时间 <span class="relic-num-hl">3</span> 秒，伤害提高 <span class="relic-num-hl">20%</span>。'
+  )
+  assert.equal(formatted.includes('{'), false)
+  assert.equal(formatted.includes('}'), false)
+})
+

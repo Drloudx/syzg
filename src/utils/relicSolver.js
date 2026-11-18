@@ -571,3 +571,47 @@ export function calculateTotalStats(placedRelics) {
     count: s.count
   }))
 }
+
+/**
+ * 解析共鸣需求字符串为结构化 parts
+ * 例子："{火属性 ×2 + 风属性 ×1}" -> [{ categoryName: "火属性", count: 2 }, { categoryName: "风属性", count: 1 }]
+ */
+export function parseRequirementParts(reqText) {
+  if (!reqText) return []
+  const parts = []
+  const regex = /(火属性|水属性|地属性|风属性)\s*[×x*]?\s*(\d+)/g
+  let match
+  while ((match = regex.exec(reqText)) !== null) {
+    parts.push({
+      categoryName: match[1],
+      count: parseInt(match[2], 10)
+    })
+  }
+  return parts
+}
+
+/**
+ * 获取元素图标的 slug
+ * "火属性" -> "fire", "水属性" -> "water", "地属性" -> "ground", "风属性" -> "wind"
+ */
+export function getElementSlug(catName) {
+  if (!catName) return ''
+  if (catName.includes('水')) return 'water'
+  if (catName.includes('火')) return 'fire'
+  if (catName.includes('地')) return 'ground'
+  if (catName.includes('风')) return 'wind'
+  return ''
+}
+
+/**
+ * 格式化遗器效果文本：移除大括号并将里面的数值包在高亮 span 中
+ */
+export function formatRelicEffect(text) {
+  if (!text) return ''
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\{([^{}]+)\}/g, '<span class="relic-num-hl">$1</span>')
+}
+

@@ -123,6 +123,7 @@
                 :class="{ 'is-active': inventoryFilterCat === cat }"
                 @click="inventoryFilterCat = cat"
               >
+                <img :src="getElementIconUrl(cat)" :alt="cat" class="inline-element-icon" />
                 {{ cat }}
               </span>
             </div>
@@ -159,7 +160,10 @@
                   <span class="inv-attr-badge" :class="`element-${getElementClass(relic.categoryName)}`">
                     {{ relic.attributeName }}
                   </span>
-                  <span class="inv-cat-badge">{{ relic.categoryName }}</span>
+                  <span class="inv-cat-badge">
+                    <img :src="getElementIconUrl(relic.categoryName)" :alt="relic.categoryName" class="inline-element-icon" />
+                    {{ relic.categoryName }}
+                  </span>
                 </div>
               </div>
               <div class="inv-card__stepper">
@@ -229,6 +233,7 @@
                 :class="{ 'is-excluded': excludedCategories.includes(cat) }"
                 @click="toggleExcludedCat(cat)"
               >
+                <img :src="getElementIconUrl(cat)" :alt="cat" class="inline-element-icon" />
                 {{ cat }}
               </span>
             </div>
@@ -252,7 +257,7 @@
       <!-- 求解触发与操作按钮 -->
       <div class="sim-action-row">
         <button type="button" class="sim-main-btn" @click="runAutoSolver">
-          <span class="sim-main-btn__icon">⚡</span> 智能自动装配
+          智能自动装配
         </button>
         <button type="button" class="sim-reset-btn" @click="resetPlacements">
           清空已放置
@@ -294,7 +299,6 @@
                 @click="onSlotClick(x - 1, y - 1)"
               >
                 <span v-if="activeEnergyRangeCells.has(`${x - 1},${y - 1}`)" class="range-diamond-icon">✦</span>
-                <span v-else-if="!isPermanentCorner(x - 1, y - 1) && !openCells.has(`${x - 1},${y - 1}`)" class="lock-icon">🔒</span>
               </div>
             </template>
           </template>
@@ -370,7 +374,7 @@
               <span class="inspect-name">{{ inspectingRelic.relic.name }}</span>
               <span class="inspect-meta">（{{ inspectingRelic.width }}×{{ inspectingRelic.height }}格 · {{ inspectingRelic.relic.categoryName || '核心' }}）</span>
             </div>
-            <p class="inspect-effect">{{ getRelicEffectText(inspectingRelic.relic, inspectingRelic.level || 5) }}</p>
+            <p class="inspect-effect" v-html="formatRelicEffect(getRelicEffectText(inspectingRelic.relic, inspectingRelic.level || 5))"></p>
           </div>
         </div>
         <div class="inspect-actions">
@@ -385,7 +389,7 @@
     <div class="sim-summary">
       <!-- 共鸣激活清单 -->
       <div class="summary-section">
-        <h4 class="summary-title">⚡ 核心共鸣达成情况</h4>
+        <h4 class="summary-title">核心共鸣达成情况</h4>
         <div v-if="allResonanceStatus.length" class="resonance-list">
           <div
             v-for="(res, rIdx) in allResonanceStatus"
@@ -393,10 +397,22 @@
             class="res-item"
             :class="{ 'is-met': res.isMet }"
           >
-            <span class="res-item__status">{{ res.isMet ? '✔ 已激活' : '✘ 未达成' }}</span>
+            <span class="res-item__status">{{ res.isMet ? '已激活' : '未达成' }}</span>
             <div class="res-item__content">
-              <span class="res-item__head"><b>[{{ res.coreName }}]</b> {{ res.requirement }}</span>
-              <span class="res-item__desc">{{ res.text }}</span>
+              <div class="res-item__head">
+                <span class="res-item__core-name">[{{ res.coreName }}]</span>
+                <div class="resonance-req-badges">
+                  <span
+                    v-for="part in (res.requirementParts || parseRequirementParts(res.requirement))"
+                    :key="part.categoryName"
+                    class="resonance-req-badge"
+                  >
+                    <img :src="getElementIconUrl(part.categoryName)" :alt="part.categoryName" class="resonance-req-icon" />
+                    <span class="resonance-req-num">×{{ part.count }}</span>
+                  </span>
+                </div>
+              </div>
+              <span class="res-item__desc" v-html="formatRelicEffect(res.text)"></span>
             </div>
           </div>
         </div>
@@ -405,7 +421,7 @@
 
       <!-- 全局加成汇总 -->
       <div class="summary-section">
-        <h4 class="summary-title">📊 全局属性收益汇总</h4>
+        <h4 class="summary-title">全局属性收益汇总</h4>
         <div v-if="solution?.totalStats?.length" class="stats-cloud">
           <div v-for="stat in solution.totalStats" :key="stat.name" class="stat-badge">
             <span class="stat-badge__name">{{ stat.name }}</span>
@@ -427,7 +443,10 @@ import {
   getCoreResonanceRangeCells,
   getDefaultOpenGridSet,
   solveFapanPlacement,
-  evaluateResonances
+  evaluateResonances,
+  parseRequirementParts,
+  getElementSlug,
+  formatRelicEffect
 } from '../../utils/relicSolver.js'
 
 const props = defineProps({
@@ -718,6 +737,11 @@ function getRelicEffectText(relic, lv = 5) {
 }
 
 // 视觉样式辅助
+function getElementIconUrl(catName) {
+  const slug = getElementSlug(catName)
+  return slug ? getImageUrl(`/images/HeroBagPanel/card_atr_${slug}.webp`) : ''
+}
+
 function getElementClass(catName) {
   switch (catName) {
     case '火属性': return 'fire'
@@ -1637,8 +1661,66 @@ onMounted(() => {
   gap: 2px;
 }
 .res-item__head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   font-size: 12.5px;
   color: var(--text-main, #333);
+}
+.res-item__core-name {
+  font-weight: 700;
+}
+.resonance-req-badges {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.resonance-req-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 1px 6px 1px 2px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 1;
+}
+:root[data-theme='dark'] .resonance-req-badge,
+.dark-mode .resonance-req-badge {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.resonance-req-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+.resonance-req-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-main, #333);
+}
+:root[data-theme='dark'] .resonance-req-num,
+.dark-mode .resonance-req-num {
+  color: #eee;
+}
+.inline-element-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  vertical-align: -2px;
+  margin-right: 2px;
+}
+.relic-num-hl {
+  color: #c86400;
+  font-weight: 700;
+}
+:root[data-theme='dark'] .relic-num-hl,
+.dark-mode .relic-num-hl {
+  color: #ff9800;
 }
 .res-item__desc {
   font-size: 12px;
