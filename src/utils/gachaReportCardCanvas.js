@@ -191,7 +191,7 @@ export async function renderGachaReportCard({
   calculatedH += 10   // 间隙
 
   if (overviewTags.length > 0) {
-    calculatedH += 22 + 10 // 标签行高度与间距
+    calculatedH += 24 + 10 // 标签行高度与间距
   }
 
   if (goldCollection.length > 0) {
@@ -594,25 +594,82 @@ export async function renderGachaReportCard({
 
   curY += colH + 10
 
-  // 9. 标签行
+  // 9. 标签行（与页面高质感勋章标签同步）
   if (overviewTags.length > 0) {
     let tagX = pad
+    const tagH = 24
     for (const t of overviewTags) {
-      ctx.font = 'bold 11px sans-serif'
-      const tagW = ctx.measureText(t.text).width + 16
-      roundRect(ctx, tagX, curY, tagW, 22, 11)
-      ctx.fillStyle = 'rgba(143, 115, 81, 0.14)'
+      const isGold = t.type === 'tag-gold'
+      const isEmerald = t.type === 'tag-emerald'
+      const isAmber = t.type === 'tag-amber'
+      const isDanger = t.type === 'tag-danger'
+      const hasStar = isGold || isEmerald || isAmber
+
+      const starStr = hasStar ? '✦ ' : ''
+      const displayText = `${starStr}${t.text}`
+
+      ctx.font = 'bold 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif'
+      const tagW = Math.round(ctx.measureText(displayText).width + 20)
+
+      // 渐变底色
+      const tagGrad = ctx.createLinearGradient(tagX, curY, tagX + tagW, curY + tagH)
+      let tagTextColor = '#ffffff'
+      let tagBorderColor = 'rgba(255, 255, 255, 0.5)'
+      let tagShadowColor = 'rgba(0, 0, 0, 0.15)'
+
+      if (isGold) {
+        tagGrad.addColorStop(0, '#f59e0b')
+        tagGrad.addColorStop(0.6, '#d97706')
+        tagGrad.addColorStop(1, '#b45309')
+        tagShadowColor = 'rgba(217, 119, 6, 0.35)'
+      } else if (isEmerald) {
+        tagGrad.addColorStop(0, '#10b981')
+        tagGrad.addColorStop(0.6, '#059669')
+        tagGrad.addColorStop(1, '#047857')
+        tagShadowColor = 'rgba(5, 150, 105, 0.3)'
+      } else if (isAmber) {
+        tagGrad.addColorStop(0, '#f97316')
+        tagGrad.addColorStop(1, '#ea580c')
+        tagShadowColor = 'rgba(234, 88, 12, 0.3)'
+      } else if (isDanger) {
+        tagGrad.addColorStop(0, '#ef4444')
+        tagGrad.addColorStop(1, '#dc2626')
+        tagShadowColor = 'rgba(220, 38, 38, 0.3)'
+      } else {
+        tagGrad.addColorStop(0, 'rgba(143, 115, 81, 0.12)')
+        tagGrad.addColorStop(1, 'rgba(143, 115, 81, 0.12)')
+        tagTextColor = '#5a3e1b'
+        tagBorderColor = 'rgba(143, 115, 81, 0.4)'
+        tagShadowColor = 'transparent'
+      }
+
+      ctx.save()
+      if (tagShadowColor !== 'transparent') {
+        ctx.shadowColor = tagShadowColor
+        ctx.shadowBlur = 6
+        ctx.shadowOffsetY = 2
+      }
+      roundRect(ctx, tagX, curY, tagW, tagH, tagH / 2)
+      ctx.fillStyle = tagGrad
       ctx.fill()
-      ctx.strokeStyle = 'rgba(143, 115, 81, 0.3)'
+      ctx.restore()
+
+      // 白色高光描边
+      ctx.strokeStyle = tagBorderColor
       ctx.lineWidth = 1
+      roundRect(ctx, tagX + 0.5, curY + 0.5, tagW - 1, tagH - 1, (tagH - 1) / 2)
       ctx.stroke()
-      ctx.fillStyle = '#3e2a14'
+
+      // 文字
+      ctx.font = 'bold 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif'
+      ctx.fillStyle = tagTextColor
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillText(t.text, tagX + tagW / 2, curY + 11)
+      ctx.fillText(displayText, tagX + tagW / 2, curY + tagH / 2)
+
       tagX += tagW + 8
     }
-    curY += 22 + 10
+    curY += tagH + 10
   }
 
   // 10. 5星伙伴和魔物收藏
