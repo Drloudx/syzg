@@ -140,6 +140,21 @@ test('排除指定属性与元素（如排除魔法攻击与风属性）', () =>
 test('限制基础遗器拥有量与单品数量上限（如全局每种限 1 件或自定义库存）', () => {
   const openCells = getDefaultOpenGridSet(30, fapanCells)
 
+  // 0. 测试默认情况下每种基础遗器最大使用数 <= 3
+  const resDefaultLimit = solveFapanPlacement({
+    openCells,
+    selectedCoreIds: ['core_101'],
+    allRelics
+  })
+  assert.equal(resDefaultLimit.success, true)
+  const defaultCountMap = {}
+  for (const placed of resDefaultLimit.placedRelics) {
+    if (!placed.isCore) {
+      defaultCountMap[placed.relicId] = (defaultCountMap[placed.relicId] || 0) + 1
+      assert.ok(defaultCountMap[placed.relicId] <= 3, `遗器 ${placed.relicId} 超出了默认限 3 件的限制`)
+    }
+  }
+
   // 1. 测试全局每种最多 1 件
   const resGlobalLimit = solveFapanPlacement({
     openCells,

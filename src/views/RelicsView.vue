@@ -33,9 +33,9 @@
     <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadData" />
 
     <!-- 法盘模拟器视图 -->
-    <div v-else-if="isSim" id="relicsScroll" class="relics-content">
+    <UiCardGrid v-else-if="isSim" id="relicsScroll" class="relics-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
       <RelicBoardSimulator :relics="relics" :fapan="fapan" :dungeons="dungeons" />
-    </div>
+    </UiCardGrid>
 
     <!-- 规则视图（独立 tab，不是列表底部的区块） -->
     <UiCardGrid v-else-if="tab === 'rules'" id="relicsScroll" class="relics-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">

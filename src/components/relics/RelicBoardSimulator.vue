@@ -1,7 +1,7 @@
 <template>
   <div class="relic-simulator">
     <!-- 顶部控制面板 -->
-    <div class="sim-ctrl paper-panel">
+    <div class="sim-ctrl">
       <!-- 格子与等级快速配置 -->
       <div class="sim-ctrl__section">
         <div class="sim-ctrl__header">
@@ -73,10 +73,10 @@
             <button
               type="button"
               class="sim-btn"
-              :class="{ 'is-active': globalMaxCountPerRelic === 1 }"
-              @click="setGlobalMaxCount(1)"
+              :class="{ 'is-active': globalMaxCountPerRelic === 3 }"
+              @click="setGlobalMaxCount(3)"
             >
-              每种最多 1 件
+              每种最多 3 件 (默认)
             </button>
             <button
               type="button"
@@ -89,10 +89,10 @@
             <button
               type="button"
               class="sim-btn"
-              :class="{ 'is-active': globalMaxCountPerRelic === 3 }"
-              @click="setGlobalMaxCount(3)"
+              :class="{ 'is-active': globalMaxCountPerRelic === 1 }"
+              @click="setGlobalMaxCount(1)"
             >
-              每种最多 3 件
+              每种最多 1 件
             </button>
             <button
               type="button"
@@ -100,7 +100,7 @@
               :class="{ 'is-active': globalMaxCountPerRelic === null && !hasCustomInventoryCount }"
               @click="setGlobalMaxCount(null)"
             >
-              不限制 (默认)
+              不限制
             </button>
           </div>
         </div>
@@ -127,8 +127,9 @@
               </span>
             </div>
             <div class="inventory-batch-actions">
-              <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(1)">全部设为 1</button>
+              <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(3)">全部设为 3</button>
               <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(2)">全部设为 2</button>
+              <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(1)">全部设为 1</button>
               <button type="button" class="sim-btn sim-btn--xs sim-btn--subtle" @click="resetAllMaxCounts">重置数量</button>
             </div>
           </div>
@@ -263,7 +264,7 @@
     </div>
 
     <!-- 法盘主体展示区域（居中核心） -->
-    <div class="board-stage-wrap paper-panel">
+    <div class="board-stage-wrap">
       <div class="board-header">
         <div class="board-title-group">
           <span class="board-title">法盘 · 亚空回廊</span>
@@ -381,7 +382,7 @@
     </div>
 
     <!-- 底部收益面板：共鸣达成清单 + 全局属性合计 -->
-    <div class="sim-summary paper-panel">
+    <div class="sim-summary">
       <!-- 共鸣激活清单 -->
       <div class="summary-section">
         <h4 class="summary-title">⚡ 核心共鸣达成情况</h4>
@@ -457,7 +458,7 @@ const excludedRelicIds = ref([])
 const showFilters = ref(false)
 
 // 基础遗器库存与数量上限配置
-const globalMaxCountPerRelic = ref(null) // 全局单品上限（1, 2, 3 或 null 不限）
+const globalMaxCountPerRelic = ref(3) // 全局单品上限（默认每种最多 3 件）
 const relicMaxCounts = ref({}) // 单个遗器限制 { [relicId]: number }
 const showInventory = ref(false)
 const inventoryFilterCat = ref('all')
@@ -605,7 +606,7 @@ function getRelicMaxCount(id) {
   if (typeof globalMaxCountPerRelic.value === 'number') {
     return globalMaxCountPerRelic.value
   }
-  return 99
+  return 3
 }
 
 function setGlobalMaxCount(val) {
@@ -639,7 +640,7 @@ function batchSetMaxCount(val) {
 
 function resetAllMaxCounts() {
   relicMaxCounts.value = {}
-  globalMaxCountPerRelic.value = null
+  globalMaxCountPerRelic.value = 3
   runAutoSolver()
 }
 
@@ -834,10 +835,12 @@ onMounted(() => {
 /* 控制面板 */
 .sim-ctrl {
   padding: 16px;
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
 }
 .sim-ctrl__section {
   display: flex;
@@ -1149,45 +1152,62 @@ onMounted(() => {
 .stepper-ctrl {
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--border-soft, #ccc);
+  border: 1px solid var(--border-color, #8f7351);
   border-radius: 4px;
   overflow: hidden;
-  background: #fff;
+  background: var(--paper-soft, #e9dcc3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
 .stepper-btn {
-  width: 20px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: none;
-  background: rgba(0, 0, 0, 0.04);
-  color: var(--text-main, #333);
-  font-size: 12px;
+  background: linear-gradient(180deg, var(--paper-soft, #f0e3c6), var(--paper-dark, #bba282));
+  color: var(--text-main, #3e2a14);
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s ease;
+  user-select: none;
+  transition: all 0.15s ease;
 }
 .stepper-btn:hover:not(:disabled) {
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--accent-ink, #2f4a49);
+  color: #fff;
+}
+.stepper-btn:active:not(:disabled) {
+  transform: scale(0.92);
 }
 .stepper-btn:disabled {
-  opacity: 0.3;
+  opacity: 0.35;
   cursor: not-allowed;
+  filter: grayscale(1);
 }
 .stepper-input {
-  width: 28px;
-  height: 22px;
+  width: 34px;
+  height: 24px;
   padding: 0;
+  margin: 0;
   border: none;
-  border-left: 1px solid var(--border-soft, #eee);
-  border-right: 1px solid var(--border-soft, #eee);
+  border-left: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
+  border-right: 1px solid var(--border-soft, rgba(143, 115, 81, 0.45));
+  background: var(--paper-solid, #f3ead5);
+  color: var(--text-main, #3e2a14);
   text-align: center;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: var(--text-main, #333);
+  font-size: 13px;
+  font-weight: 700;
   outline: none;
+  box-sizing: border-box;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.stepper-input::-webkit-outer-spin-button,
+.stepper-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .inv-used-indicator {
   font-size: 10px;
@@ -1288,12 +1308,13 @@ onMounted(() => {
 /* 法盘主舞台 */
 .board-stage-wrap {
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   background: radial-gradient(circle at center, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.08) 100%), var(--paper-soft);
+  border: 1px solid var(--border-soft);
 }
 .board-header {
   width: 100%;
@@ -1563,10 +1584,12 @@ onMounted(() => {
 /* 底部收益面板 */
 .sim-summary {
   padding: 16px;
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
 }
 .summary-title {
   margin: 0 0 10px;
