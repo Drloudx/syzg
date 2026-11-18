@@ -136,3 +136,39 @@ test('排除指定属性与元素（如排除魔法攻击与风属性）', () =>
   assert.equal(statNames.includes('魔法攻击'), false)
   assert.equal(statNames.includes('魔法穿透'), false)
 })
+
+test('限制基础遗器拥有量与单品数量上限（如全局每种限 1 件或自定义库存）', () => {
+  const openCells = getDefaultOpenGridSet(30, fapanCells)
+
+  // 1. 测试全局每种最多 1 件
+  const resGlobalLimit = solveFapanPlacement({
+    openCells,
+    selectedCoreIds: ['core_101'],
+    globalMaxCountPerRelic: 1,
+    allRelics
+  })
+  assert.equal(resGlobalLimit.success, true)
+  const countMap = {}
+  for (const placed of resGlobalLimit.placedRelics) {
+    if (!placed.isCore) {
+      countMap[placed.relicId] = (countMap[placed.relicId] || 0) + 1
+      assert.ok(countMap[placed.relicId] <= 1, `遗器 ${placed.relicId} 超出了每种限 1 件的限制`)
+    }
+  }
+
+  // 2. 测试单独指定特定属性遗器上限（如禁用阿娜希塔之碑，限制断锋短剑为 1 件）
+  const resCustomLimit = solveFapanPlacement({
+    openCells,
+    selectedCoreIds: ['core_101'],
+    relicMaxCounts: {
+      earthAttack_1001: 0, // 0 件代表禁用
+      phyAtk_1001: 1
+    },
+    allRelics
+  })
+  assert.equal(resCustomLimit.success, true)
+  const hasEarthAttack = resCustomLimit.placedRelics.some(p => p.relicId === 'earthAttack_1001')
+  assert.equal(hasEarthAttack, false, '被限制为 0 件的遗器绝不出现在盘上')
+  const phyAtkCount = resCustomLimit.placedRelics.filter(p => p.relicId === 'phyAtk_1001').length
+  assert.ok(phyAtkCount <= 1, '单独限制 1 件的遗器使用数不超过 1')
+})

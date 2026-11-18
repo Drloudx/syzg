@@ -165,12 +165,28 @@ export function solveFapanPlacement({
   excludedStats = [], // string[] 排除属性
   excludedCategories = [], // string[] 排除元素
   excludedRelicIds = [], // string[] 排除特定遗器
+  relicMaxCounts = {}, // { [relicId]: number } 单个遗器数量上限/库存限制
+  globalMaxCountPerRelic = null, // number | null 全局单品上限（如每种最多 1 件、2 件）
   allRelics = []
 }) {
   const openSet = openCells instanceof Set ? openCells : new Set(openCells)
   const excludedStatSet = new Set(excludedStats)
   const excludedCatSet = new Set(excludedCategories)
   const excludedRelicSet = new Set(excludedRelicIds)
+
+  // 获取特定遗器的可用最大数量上限
+  function getMaxLimit(relicId) {
+    if (relicMaxCounts && typeof relicMaxCounts[relicId] === 'number') {
+      return Math.max(0, relicMaxCounts[relicId])
+    }
+    if (typeof globalMaxCountPerRelic === 'number' && globalMaxCountPerRelic > 0) {
+      return globalMaxCountPerRelic
+    }
+    return 999
+  }
+
+  // 维护每种遗器已放置数量
+  const usedCountMap = new Map()
 
   // 1. 构建初始棋盘位掩码
   let boardMask = 0n
@@ -196,6 +212,7 @@ export function solveFapanPlacement({
     if (excludedRelicSet.has(r.id)) return false
     if (r.categoryName && excludedCatSet.has(r.categoryName)) return false
     if (r.attributeName && excludedStatSet.has(r.attributeName)) return false
+    if (getMaxLimit(r.id) <= 0) return false // 拥有数量或限制为 0 时直接排除
     return true
   })
 
@@ -335,6 +352,10 @@ export function solveFapanPlacement({
       while (currentOverlapCount < neededCount && candidates.length > 0) {
         let placedOne = false
         for (const relic of candidates) {
+          const currentUsed = usedCountMap.get(relic.id) || 0
+          if (currentUsed >= getMaxLimit(relic.id)) {
+            continue
+          }
           const positions = findValidPlacements(relic, boardMask)
           // 过滤出至少有 1 格落在 rangeCells 内的位置
           const overlappingPositions = positions.filter(pos => {
@@ -359,6 +380,7 @@ export function solveFapanPlacement({
               level: 5,
               isCore: false
             })
+            usedCountMap.set(relic.id, currentUsed + 1)
             // 计算新加入的重叠格数
             let added = 0
             for (let dy = 0; dy < relic.shape.height; dy += 1) {
@@ -376,7 +398,7 @@ export function solveFapanPlacement({
     }
   }
 
-  // 5. 阶段 3：用未被排除的候选基础遗器贪心填充剩余空余格子
+  // 5. 阶段 3：用未被排除且未达数量上限的候选基础遗器贪心填充剩余空余格子
   const fillCandidates = [...candidateBases].sort((a, b) => {
     const areaA = a.shape.width * a.shape.height
     const areaB = b.shape.width * b.shape.height
@@ -388,6 +410,10 @@ export function solveFapanPlacement({
   while (canContinue) {
     let placedInLoop = false
     for (const relic of fillCandidates) {
+      const currentUsed = usedCountMap.get(relic.id) || 0
+      if (currentUsed >= getMaxLimit(relic.id)) {
+        continue
+      }
       const positions = findValidPlacements(relic, boardMask)
       if (positions.length) {
         const chosen = positions[0]
@@ -402,6 +428,7 @@ export function solveFapanPlacement({
           level: 5,
           isCore: false
         })
+        usedCountMap.set(relic.id, currentUsed + 1)
         placedInLoop = true
         break
       }
@@ -415,6 +442,7 @@ export function solveFapanPlacement({
   const resonanceStatus = evaluateResonances(placedRelics, coreRelics)
   const totalStats = calculateTotalStats(placedRelics)
   const usedCellCount = placedRelics.reduce((sum, p) => sum + p.width * p.height, 0)
+  const usedCounts = Object.fromEntries(usedCountMap.entries())
 
   return {
     success: true,
@@ -426,7 +454,8 @@ export function solveFapanPlacement({
     activeResonances: resonanceStatus.active,
     unmetResonances: resonanceStatus.unmet,
     elementCounts: resonanceStatus.elementCounts,
-    totalStats
+    totalStats,
+    usedCounts
   }
 }
 

@@ -53,6 +53,150 @@
         </div>
       </div>
 
+      <!-- 基础遗器拥有量与单品上限配置（我的遗器背包） -->
+      <div class="sim-ctrl__section">
+        <div class="sim-ctrl__header sim-ctrl__header--collapsible" @click="showInventory = !showInventory">
+          <div class="sim-ctrl__title-wrap">
+            <span class="sim-ctrl__title">基础遗器数量限制（根据实际拥有量搭配）</span>
+            <span class="sim-ctrl__subtitle">限制单个遗器最大消耗，防止同种遗器放太多</span>
+          </div>
+          <span class="sim-ctrl__toggle-link">
+            {{ showInventory ? '收起库存面板 ▲' : '展开自定义拥有量 ▼' }}
+            <template v-if="hasCustomInventoryCount">（已限制 {{ hasCustomInventoryCount }} 种）</template>
+          </span>
+        </div>
+
+        <!-- 快捷单品上限条 -->
+        <div class="inventory-quick-bar">
+          <span class="inventory-quick-label">全局限制：</span>
+          <div class="sim-btn-group">
+            <button
+              type="button"
+              class="sim-btn"
+              :class="{ 'is-active': globalMaxCountPerRelic === 1 }"
+              @click="setGlobalMaxCount(1)"
+            >
+              每种最多 1 件
+            </button>
+            <button
+              type="button"
+              class="sim-btn"
+              :class="{ 'is-active': globalMaxCountPerRelic === 2 }"
+              @click="setGlobalMaxCount(2)"
+            >
+              每种最多 2 件
+            </button>
+            <button
+              type="button"
+              class="sim-btn"
+              :class="{ 'is-active': globalMaxCountPerRelic === 3 }"
+              @click="setGlobalMaxCount(3)"
+            >
+              每种最多 3 件
+            </button>
+            <button
+              type="button"
+              class="sim-btn"
+              :class="{ 'is-active': globalMaxCountPerRelic === null && !hasCustomInventoryCount }"
+              @click="setGlobalMaxCount(null)"
+            >
+              不限制 (默认)
+            </button>
+          </div>
+        </div>
+
+        <!-- 展开的各遗器精细拥有量控制面板 -->
+        <div v-show="showInventory" class="inventory-panel">
+          <div class="inventory-toolbar">
+            <div class="inventory-filter-tabs">
+              <span
+                class="inv-tab"
+                :class="{ 'is-active': inventoryFilterCat === 'all' }"
+                @click="inventoryFilterCat = 'all'"
+              >
+                全部 ({{ baseRelics.length }})
+              </span>
+              <span
+                v-for="cat in allCategoryNames"
+                :key="cat"
+                class="inv-tab"
+                :class="{ 'is-active': inventoryFilterCat === cat }"
+                @click="inventoryFilterCat = cat"
+              >
+                {{ cat }}
+              </span>
+            </div>
+            <div class="inventory-batch-actions">
+              <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(1)">全部设为 1</button>
+              <button type="button" class="sim-btn sim-btn--xs" @click="batchSetMaxCount(2)">全部设为 2</button>
+              <button type="button" class="sim-btn sim-btn--xs sim-btn--subtle" @click="resetAllMaxCounts">重置数量</button>
+            </div>
+          </div>
+
+          <div class="inventory-grid">
+            <div
+              v-for="relic in filteredBaseRelics"
+              :key="relic.id"
+              class="inv-card"
+              :class="{
+                'is-zero': getRelicMaxCount(relic.id) === 0,
+                'is-placed': getRelicUsedCount(relic.id) > 0,
+                'is-full': getRelicUsedCount(relic.id) > 0 && getRelicUsedCount(relic.id) >= getRelicMaxCount(relic.id)
+              }"
+            >
+              <img
+                :src="getImageUrl(`/images/Common_ItemIcon/${relic.icon}.webp`)"
+                :alt="relic.name"
+                class="inv-card__icon"
+              />
+              <div class="inv-card__main">
+                <div class="inv-card__head">
+                  <span class="inv-card__name">{{ relic.name }}</span>
+                  <span class="inv-card__shape">{{ relic.shape.width }}×{{ relic.shape.height }}格</span>
+                </div>
+                <div class="inv-card__tags">
+                  <span class="inv-attr-badge" :class="`element-${getElementClass(relic.categoryName)}`">
+                    {{ relic.attributeName }}
+                  </span>
+                  <span class="inv-cat-badge">{{ relic.categoryName }}</span>
+                </div>
+              </div>
+              <div class="inv-card__stepper">
+                <span class="inv-stepper-label">可用上限</span>
+                <div class="stepper-ctrl">
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    :disabled="getRelicMaxCount(relic.id) <= 0"
+                    @click="stepRelicMaxCount(relic.id, -1)"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    min="0"
+                    max="99"
+                    class="stepper-input"
+                    :value="getRelicMaxCount(relic.id)"
+                    @change="onStepperInputChange(relic.id, $event)"
+                  />
+                  <button
+                    type="button"
+                    class="stepper-btn"
+                    @click="stepRelicMaxCount(relic.id, 1)"
+                  >
+                    +
+                  </button>
+                </div>
+                <span class="inv-used-indicator">
+                  已用: <b>{{ getRelicUsedCount(relic.id) }}</b> 件
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 属性与遗器过滤排除 -->
       <div class="sim-ctrl__section">
         <div class="sim-ctrl__header sim-ctrl__header--collapsible" @click="showFilters = !showFilters">
@@ -312,6 +456,12 @@ const excludedCategories = ref([])
 const excludedRelicIds = ref([])
 const showFilters = ref(false)
 
+// 基础遗器库存与数量上限配置
+const globalMaxCountPerRelic = ref(null) // 全局单品上限（1, 2, 3 或 null 不限）
+const relicMaxCounts = ref({}) // 单个遗器限制 { [relicId]: number }
+const showInventory = ref(false)
+const inventoryFilterCat = ref('all')
+
 // 放置结果
 const solution = ref(null)
 const inspectingRelic = ref(null)
@@ -321,6 +471,19 @@ const solutionNoticeType = ref('is-info')
 // 基础选项提取
 const coreRelicOptions = computed(() => {
   return props.relics.filter(r => r.type === 'core')
+})
+
+const baseRelics = computed(() => {
+  return props.relics.filter(r => r.type === 'base')
+})
+
+const filteredBaseRelics = computed(() => {
+  if (inventoryFilterCat.value === 'all') return baseRelics.value
+  return baseRelics.value.filter(r => r.categoryName === inventoryFilterCat.value)
+})
+
+const hasCustomInventoryCount = computed(() => {
+  return Object.keys(relicMaxCounts.value).length
 })
 
 const allStatNames = computed(() => {
@@ -434,6 +597,57 @@ function getRelicName(rid) {
   return props.relics.find(r => r.id === rid)?.name || rid
 }
 
+// 基础遗器库存与数量上限方法
+function getRelicMaxCount(id) {
+  if (relicMaxCounts.value[id] !== undefined) {
+    return relicMaxCounts.value[id]
+  }
+  if (typeof globalMaxCountPerRelic.value === 'number') {
+    return globalMaxCountPerRelic.value
+  }
+  return 99
+}
+
+function setGlobalMaxCount(val) {
+  globalMaxCountPerRelic.value = val
+  runAutoSolver()
+}
+
+function stepRelicMaxCount(id, delta) {
+  const current = getRelicMaxCount(id)
+  const next = Math.max(0, Math.min(99, current + delta))
+  relicMaxCounts.value = { ...relicMaxCounts.value, [id]: next }
+  runAutoSolver()
+}
+
+function onStepperInputChange(id, event) {
+  const val = parseInt(event.target.value, 10)
+  const validVal = isNaN(val) ? 0 : Math.max(0, Math.min(99, val))
+  relicMaxCounts.value = { ...relicMaxCounts.value, [id]: validVal }
+  runAutoSolver()
+}
+
+function batchSetMaxCount(val) {
+  const next = {}
+  for (const r of baseRelics.value) {
+    next[r.id] = val
+  }
+  relicMaxCounts.value = next
+  globalMaxCountPerRelic.value = val
+  runAutoSolver()
+}
+
+function resetAllMaxCounts() {
+  relicMaxCounts.value = {}
+  globalMaxCountPerRelic.value = null
+  runAutoSolver()
+}
+
+function getRelicUsedCount(id) {
+  if (!solution.value?.placedRelics) return 0
+  return solution.value.placedRelics.filter(p => p.relicId === id).length
+}
+
 // 求解器驱动
 function runAutoSolver() {
   if (!openCells.value.size) {
@@ -449,6 +663,8 @@ function runAutoSolver() {
     excludedStats: excludedStats.value,
     excludedCategories: excludedCategories.value,
     excludedRelicIds: excludedRelicIds.value,
+    relicMaxCounts: relicMaxCounts.value,
+    globalMaxCountPerRelic: globalMaxCountPerRelic.value,
     allRelics: props.relics
   })
 
@@ -457,7 +673,9 @@ function runAutoSolver() {
     solutionNotice.value = '在当前开启格子与过滤条件下，未能放置任何遗器。'
     solutionNoticeType.value = 'is-warn'
   } else {
-    solutionNotice.value = `装配完成！共放置 ${res.placedRelics.length} 件遗器，激活 ${res.activeResonances.length} 条共鸣，格子利用率 ${Math.round(res.fillRate * 100)}%`
+    const isLimited = globalMaxCountPerRelic.value !== null || hasCustomInventoryCount.value > 0
+    const limitTip = (isLimited && res.fillRate < 0.98) ? '（受单品数量上限约束未填满空余格）' : ''
+    solutionNotice.value = `装配完成！共放置 ${res.placedRelics.length} 件遗器，激活 ${res.activeResonances.length} 条共鸣，格子利用率 ${Math.round(res.fillRate * 100)}%${limitTip}`
     solutionNoticeType.value = 'is-success'
   }
 }
@@ -747,6 +965,239 @@ onMounted(() => {
 .core-chip__shape {
   font-size: 10.5px;
   color: var(--text-muted, #777);
+}
+
+.sim-ctrl__title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sim-ctrl__subtitle {
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--text-muted, #777);
+}
+
+/* 基础遗器库存快捷与详情面板 */
+.inventory-quick-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.inventory-quick-label {
+  font-size: 12px;
+  color: var(--text-secondary, #555);
+  white-space: nowrap;
+}
+.inventory-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.025);
+  border-radius: 6px;
+  border: 1px solid var(--border-soft, #e2d9cb);
+}
+.inventory-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.inventory-filter-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.inv-tab {
+  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--paper-solid, #fff);
+  border: 1px solid var(--border-soft, #ddd);
+  color: var(--text-secondary, #555);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+.inv-tab:hover {
+  border-color: var(--accent-ink, #557574);
+}
+.inv-tab.is-active {
+  background: var(--accent-ink, #557574);
+  color: #fff;
+  border-color: var(--accent-ink, #557574);
+}
+.inventory-batch-actions {
+  display: flex;
+  gap: 6px;
+}
+.sim-btn--xs {
+  font-size: 11px;
+  padding: 2px 7px;
+}
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.inv-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background: var(--paper-solid, #fff);
+  border: 1px solid var(--border-soft, #ddd);
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+.inv-card.is-placed {
+  border-color: #d4af37;
+  background: rgba(212, 175, 55, 0.05);
+}
+.inv-card.is-full {
+  border-color: #b8860b;
+}
+.inv-card.is-zero {
+  opacity: 0.55;
+  filter: grayscale(0.6);
+  background: rgba(0, 0, 0, 0.02);
+}
+.inv-card__icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.inv-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.inv-card__head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.inv-card__name {
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-main, #333);
+}
+.inv-card__shape {
+  font-size: 10px;
+  color: var(--text-muted, #888);
+  white-space: nowrap;
+}
+.inv-card__tags {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.inv-attr-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.05);
+}
+.inv-attr-badge.element-fire {
+  color: #c93b2b;
+  background: rgba(201, 59, 43, 0.1);
+}
+.inv-attr-badge.element-water {
+  color: #1976d2;
+  background: rgba(25, 118, 210, 0.1);
+}
+.inv-attr-badge.element-earth {
+  color: #b8860b;
+  background: rgba(184, 134, 11, 0.1);
+}
+.inv-attr-badge.element-wind {
+  color: #2e7d32;
+  background: rgba(46, 125, 50, 0.1);
+}
+.inv-cat-badge {
+  font-size: 10px;
+  color: var(--text-muted, #777);
+}
+.inv-card__stepper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.inv-stepper-label {
+  font-size: 10px;
+  color: var(--text-muted, #888);
+}
+.stepper-ctrl {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-soft, #ccc);
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+.stepper-btn {
+  width: 20px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--text-main, #333);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+.stepper-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.1);
+}
+.stepper-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.stepper-input {
+  width: 28px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-left: 1px solid var(--border-soft, #eee);
+  border-right: 1px solid var(--border-soft, #eee);
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-main, #333);
+  outline: none;
+}
+.inv-used-indicator {
+  font-size: 10px;
+  color: var(--text-muted, #777);
+}
+.inv-used-indicator b {
+  color: var(--accent-ink, #557574);
+}
+.inv-card.is-full .inv-used-indicator b {
+  color: #b8860b;
 }
 
 /* 过滤选项 */
