@@ -335,17 +335,21 @@ export function solveFapanPlacement({
         return (a.shape.width * a.shape.height) - (b.shape.width * b.shape.height)
       })
 
-      // 统计当前核心范围内已经覆盖的对应元素格子数
+      // 统计当前核心范围内已经覆盖的对应元素件数（对标源码：只要有 1 格落在 rangeCells 即算 1 件）
       let currentOverlapCount = 0
       for (const placed of placedRelics) {
         if (!placed.isCore && placed.relic?.categoryName === elementName) {
+          let touches = false
           for (let dy = 0; dy < placed.height; dy += 1) {
             for (let dx = 0; dx < placed.width; dx += 1) {
               if (rangeCells.has(`${placed.x + dx},${placed.y + dy}`)) {
-                currentOverlapCount += 1
+                touches = true
+                break
               }
             }
+            if (touches) break
           }
+          if (touches) currentOverlapCount += 1
         }
       }
 
@@ -358,14 +362,23 @@ export function solveFapanPlacement({
           }
           const positions = findValidPlacements(relic, boardMask)
           // 过滤出至少有 1 格落在 rangeCells 内的位置
-          const overlappingPositions = positions.filter(pos => {
-            for (let dy = 0; dy < relic.shape.height; dy += 1) {
-              for (let dx = 0; dx < relic.shape.width; dx += 1) {
-                if (rangeCells.has(`${pos.x + dx},${pos.y + dy}`)) return true
+          // 关键优化：优先选择占用十字能量格子最少（仅 1 格边缘触碰）、让主体延伸到十字外的紧凑位置，把通道留给其他共鸣元素！
+          const overlappingPositions = positions
+            .map(pos => {
+              let overlapCells = 0
+              for (let dy = 0; dy < relic.shape.height; dy += 1) {
+                for (let dx = 0; dx < relic.shape.width; dx += 1) {
+                  if (rangeCells.has(`${pos.x + dx},${pos.y + dy}`)) overlapCells += 1
+                }
               }
-            }
-            return false
-          })
+              return { ...pos, overlapCells }
+            })
+            .filter(pos => pos.overlapCells > 0)
+            .sort((a, b) => {
+              // 优先占用十字格子更少（比如 1 格触碰优先于 4 格占满，保护宝贵的共鸣通道）
+              if (a.overlapCells !== b.overlapCells) return a.overlapCells - b.overlapCells
+              return 0
+            })
 
           if (overlappingPositions.length > 0) {
             const chosen = overlappingPositions[0]
@@ -381,14 +394,7 @@ export function solveFapanPlacement({
               isCore: false
             })
             usedCountMap.set(relic.id, currentUsed + 1)
-            // 计算新加入的重叠格数
-            let added = 0
-            for (let dy = 0; dy < relic.shape.height; dy += 1) {
-              for (let dx = 0; dx < relic.shape.width; dx += 1) {
-                if (rangeCells.has(`${chosen.x + dx},${chosen.y + dy}`)) added += 1
-              }
-            }
-            currentOverlapCount += added
+            currentOverlapCount += 1
             placedOne = true
             break
           }
@@ -495,6 +501,7 @@ export function evaluateResonances(placedRelics, coreRelics = []) {
     const rangeCells = getCoreResonanceRangeCells(corePlaced)
 
     // 统计落在当前核心 rangeCells 内的基础遗器元素统计（对标源码 CalculateRelicCategoryStats）
+    // 源码中使用 hashSet3 记录已统计过的遗器实例 uid，每件基础遗器只要有任意格子落在 rangeCells 内，该元素计数 +1
     const categoryStats = {
       火属性: 0,
       水属性: 0,
@@ -502,15 +509,20 @@ export function evaluateResonances(placedRelics, coreRelics = []) {
       风属性: 0
     }
 
-    for (const cellKey of rangeCells) {
-      const [cx, cy] = cellKey.split(',').map(Number)
-      for (const base of placedBaseItems) {
-        if (cx >= base.x && cx < base.x + base.width && cy >= base.y && cy < base.y + base.height) {
-          if (base.relic?.categoryName && categoryStats[base.relic.categoryName] !== undefined) {
-            categoryStats[base.relic.categoryName] += 1
+    for (const base of placedBaseItems) {
+      if (!base.relic?.categoryName || categoryStats[base.relic.categoryName] === undefined) continue
+      let touched = false
+      for (let dy = 0; dy < base.height; dy += 1) {
+        for (let dx = 0; dx < base.width; dx += 1) {
+          if (rangeCells.has(`${base.x + dx},${base.y + dy}`)) {
+            touched = true
+            break
           }
-          break
         }
+        if (touched) break
+      }
+      if (touched) {
+        categoryStats[base.relic.categoryName] += 1
       }
     }
 
