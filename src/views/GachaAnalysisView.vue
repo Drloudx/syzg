@@ -9,9 +9,6 @@
             <span>大书院数据分析</span>
           </div>
           <h1 class="analysis-header__title">招募记录分析</h1>
-          <p class="analysis-header__subtitle">
-            严格遵循《深渊之歌》官方 36 抽保底与 2.3% 基础出金机制 · 本地隐私计算
-          </p>
         </div>
 
         <div class="analysis-header__actions">
@@ -24,13 +21,13 @@
             <span>导入记录</span>
           </UiButton>
 
-          <UiButton variant="secondary" size="sm" @click="handleToolClick">
+          <UiButton variant="secondary" size="sm" @click="downloadExporterTool">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            <span>模拟器导出工具</span>
+            <span>下载抽卡记录导出工具</span>
           </UiButton>
         </div>
       </div>
@@ -40,14 +37,13 @@
     <div v-if="!hasRecords" class="analysis-empty-card executive-panel">
       <div class="empty-hero-block">
         <div class="empty-icon-shield">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="empty-svg-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="empty-svg-icon" aria-hidden="true">
             <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
           </svg>
         </div>
         <h2 class="empty-title">暂未导入抽卡历史记录</h2>
         <p class="empty-desc">
-          本工具专为《深渊之歌》玩家设计，精准测算 36 抽保底曲线与欧非指数。<br />
-          请使用模拟器专用一键导出工具提取游戏内真实历史，或导入已有的记录文件。
+          请使用数据导出工具提取游戏内抽卡记录，或导入已有的记录文件
         </p>
 
         <div class="empty-actions">
@@ -61,36 +57,35 @@
           </UiButton>
           <UiButton variant="secondary" size="md" @click="handleToolClick">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
             </svg>
-            <span>模拟器一键导出使用教程</span>
+            <span>导出工具使用教程</span>
           </UiButton>
         </div>
 
         <!-- 极简三步指引 -->
         <div class="quick-guide-grid">
           <div class="guide-step-card">
-            <div class="step-num">01</div>
-            <div class="step-content">
-              <div class="step-title">运行模拟器游戏</div>
-              <div class="step-text">在电脑上打开 MuMu 12 或雷电模拟器，并登录《深渊之歌》。</div>
+            <div class="step-header">
+              <span class="step-num">01</span>
+              <span class="step-title">启动模拟器与游戏</span>
             </div>
+            <div class="step-text">在电脑打开 MuMu 12/15、雷电等模拟器，启动《深渊之歌》并进入游戏主界面。</div>
           </div>
           <div class="guide-step-card">
-            <div class="step-num">02</div>
-            <div class="step-content">
-              <div class="step-title">启动导出工具</div>
-              <div class="step-text">运行项目目录中的 <code class="code-badge">tools/gacha-exporter/一键导出抽卡记录.bat</code>。</div>
+            <div class="step-header">
+              <span class="step-num">02</span>
+              <span class="step-title">运行导出工具</span>
             </div>
+            <div class="step-text">解压压缩包并双击 <code class="code-badge">深渊之歌抽卡导出工具.exe</code>，待状态灯变绿显示「抽卡监听中」。</div>
           </div>
           <div class="guide-step-card">
-            <div class="step-num">03</div>
-            <div class="step-content">
-              <div class="step-title">游戏内翻页捕获</div>
-              <div class="step-text">进入游戏【招募】->【记录查询】逐页翻看，数据即自动捕获完成！</div>
+            <div class="step-header">
+              <span class="step-num">03</span>
+              <span class="step-title">翻页捕获并导入</span>
             </div>
+            <div class="step-text">进入游戏【招募】→【记录查询】，点击工具「一键全自动翻页」，完成后导出并导入本页。</div>
           </div>
         </div>
       </div>
@@ -669,7 +664,7 @@
       <button
         type="button"
         class="fab-circle-btn btn-tool"
-        title="模拟器一键导出教程与工具"
+        title="导出工具使用教程"
         @click="handleToolClick"
       >
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -702,7 +697,7 @@
     >
       <div class="import-modal-content">
         <p class="import-desc">
-          支持导入由模拟器工具导出的 <code class="code-badge">gacha_records.json</code>，或直接粘贴 JSON 文本。
+          支持导入由导出工具生成的 <code class="code-badge">gacha_records.json</code>，或直接粘贴 JSON 文本。
         </p>
 
         <!-- 文件上传选择区 -->
@@ -755,70 +750,73 @@
       </template>
     </UiModal>
 
-    <!-- 弹窗 2：模拟器一键导出工具与教程 -->
+    <!-- 弹窗 2：抽卡记录导出工具使用教程 -->
     <UiModal
       v-model:visible="isToolModalOpen"
-      title="模拟器抽卡记录导出工具"
-      max-width="600px"
+      title="抽卡记录导出工具使用教程"
+      max-width="620px"
       teleport-to="body"
     >
       <div class="tool-modal-body">
-        <div class="tool-badge-callout">
-          <span class="callout-star">✦</span>
-          <span>纯官方绿色技术 · 无需改包 · 无需 Root · 模拟器一键直导</span>
+        <div class="tool-download-card">
+          <div class="tool-download-info">
+            <div class="tool-download-name">深渊之歌抽卡导出工具（桌面免安装版）</div>
+            <div class="tool-download-meta">解压即得 <code class="code-inline">深渊之歌抽卡导出工具.exe</code> 单文件 · 无需安装额外运行库</div>
+          </div>
+          <UiButton variant="primary" size="sm" @click="downloadExporterTool">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>下载工具 (.zip)</span>
+          </UiButton>
         </div>
 
-        <p class="tool-intro">
-          《深渊之歌》官方使用原生 TCP Socket 通信。我们为您提供了现成的 Windows 自动化导出工具，已预置在项目仓库中：
-        </p>
-
-        <div class="tool-path-box">
-          <div class="path-title">工具目录与脚本：</div>
-          <code class="path-code">vue-myrzg/tools/gacha-exporter/一键导出抽卡记录.bat</code>
+        <div v-if="isMobileDevice()" class="tool-mobile-tip">
+          当前导出工具仅支持 Windows 电脑端模拟器运行，请在电脑浏览器下载并使用。
         </div>
 
         <div class="tool-steps-flow">
           <div class="flow-step">
             <span class="step-badge">1</span>
             <div class="step-desc">
-              <strong>启动模拟器：</strong>在电脑上打开 <strong>MuMu 模拟器 12</strong>（或雷电），启动《深渊之歌》并登录游戏。
+              <strong>启动模拟器与游戏：</strong>在电脑打开 <strong>MuMu 12 / 15</strong>、雷电、夜神或逍遥模拟器，启动《深渊之歌》并登录进入主界面。
             </div>
           </div>
           <div class="flow-step">
             <span class="step-badge">2</span>
             <div class="step-desc">
-              <strong>运行脚本：</strong>双击运行 <code class="code-inline">一键导出抽卡记录.bat</code>，窗口提示监听已就绪。
+              <strong>双击运行工具：</strong>解压下载的压缩包，双击运行 <code class="code-inline">深渊之歌抽卡导出工具.exe</code>。工具会自动定位模拟器，待右上角状态灯变为绿色「抽卡监听中」即可。
+              <div class="step-sub-note">雷电模拟器如未自动连上，请在模拟器【设置 → 其他设置】开启「ADB 调试（本地连接）」后重启模拟器。</div>
             </div>
           </div>
           <div class="flow-step">
             <span class="step-badge">3</span>
             <div class="step-desc">
-              <strong>在游戏内翻页：</strong>进入游戏【招募】界面，点击左下角【记录查询】，逐页点击【下一页】浏览历史。
+              <strong>翻页捕获记录：</strong>在游戏内进入【招募】→ 点击左下角【记录查询】，点击工具界面的 <strong>一键全自动翻页</strong>（也可手动逐页点击下一页）；【伙伴招募】翻完后，切到【魔物贩售】再翻一次。
             </div>
           </div>
           <div class="flow-step">
             <span class="step-badge">4</span>
             <div class="step-desc">
-              <strong>自动导入：</strong>翻页完毕后，在黑框窗口按回车，工具将自动生成文件并复制剪贴板，本页面即可一键展示！
+              <strong>导出并导入分析：</strong>翻完后点击 <strong>导出并打开 Wiki 分析页</strong>，工具会自动生成 <code class="code-inline">gacha_records.json</code> 并复制到剪贴板；回到本页点击「导入记录」，直接粘贴或选择文件即可查看分析。
             </div>
           </div>
         </div>
 
-        <div class="command-copy-box">
-          <div class="copy-box-header">
-            <span>命令行启动（开发者 / 高级用户）：</span>
-            <button type="button" class="btn-copy-cmd" @click="copyCommand">
-              {{ commandCopied ? '已复制命令' : '复制命令' }}
-            </button>
-          </div>
-          <code class="cmd-text">node tools/gacha-exporter/export-gacha.mjs</code>
+        <div class="tool-warning-box">
+          <strong>安全提示：</strong>自动翻页期间请勿提前关闭游戏内的【记录查询】弹窗，以免误触主界面抽卡按钮；如需随时中止自动翻页，按 <code class="code-inline">Esc</code> 或 <code class="code-inline">Space</code>（空格）键即可急停。
         </div>
       </div>
 
       <template #footer>
         <div class="modal-footer-btns">
-          <UiButton variant="primary" size="sm" @click="isToolModalOpen = false">
+          <UiButton variant="secondary" size="sm" @click="isToolModalOpen = false">
             <span>我知道了</span>
+          </UiButton>
+          <UiButton variant="primary" size="sm" @click="isToolModalOpen = false; openImportModal()">
+            <span>去导入记录</span>
           </UiButton>
         </div>
       </template>
@@ -954,11 +952,21 @@ function isMobileDevice() {
 }
 
 function handleToolClick() {
-  if (isMobileDevice()) {
-    showToast('手机端工具暂未完成，请前往mumu模拟器')
-    return
-  }
   isToolModalOpen.value = true
+}
+
+function downloadExporterTool() {
+  const link = document.createElement('a')
+  link.href = '/tools/gacha-exporter.zip'
+  link.download = '深渊之歌抽卡导出工具.zip'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  if (isMobileDevice()) {
+    showToast('导出工具为 Windows 电脑端程序，请在电脑上解压运行')
+  } else {
+    showToast('已开始下载导出工具，解压后双击即可使用')
+  }
 }
 
 // 修改玩家档案（UID、昵称与头像）
@@ -1089,7 +1097,6 @@ const isToolModalOpen = ref(false)
 const importJsonText = ref('')
 const importError = ref('')
 const fileInputRef = ref(null)
-const commandCopied = ref(false)
 
 // 响应式解析分析结果
 const analysis = computed(() => {
@@ -1228,14 +1235,6 @@ function copyUid() {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(String(playerData.value.uid))
     alert(`已复制玩家 UID: ${playerData.value.uid}`)
-  }
-}
-
-function copyCommand() {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText('node tools/gacha-exporter/export-gacha.mjs')
-    commandCopied.value = true
-    setTimeout(() => { commandCopied.value = false }, 2000)
   }
 }
 
@@ -1538,11 +1537,16 @@ onMounted(() => {
 
 /* 空状态卡片 */
 .analysis-empty-card {
-  padding: 56px 24px;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 28px;
   text-align: center;
 }
 .empty-hero-block {
-  max-width: 580px;
+  width: 100%;
+  max-width: 760px;
   margin: 0 auto;
 }
 .empty-icon-shield {
@@ -1553,11 +1557,15 @@ onMounted(() => {
   height: 72px;
   border-radius: 50%;
   background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  margin-bottom: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  margin-bottom: 18px;
 }
 .empty-svg-icon {
-  color: #10b981;
+  color: #059669;
+}
+:deep(.dark-mode) .empty-svg-icon,
+.dark-mode .empty-svg-icon {
+  color: #34d399;
 }
 .empty-title {
   margin: 0 0 10px;
@@ -1570,9 +1578,10 @@ onMounted(() => {
   color: var(--text-main, #ebdcc3);
 }
 .empty-desc {
-  margin: 0 0 28px;
+  max-width: 540px;
+  margin: 0 auto 26px;
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--text-muted, #6b5134);
 }
 :deep(.dark-mode) .empty-desc,
@@ -1584,11 +1593,11 @@ onMounted(() => {
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 .quick-guide-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   text-align: left;
 }
@@ -1599,36 +1608,60 @@ onMounted(() => {
 }
 .guide-step-card {
   display: flex;
-  gap: 12px;
-  background: rgba(233, 220, 195, 0.7);
+  flex-direction: column;
+  gap: 8px;
+  background: rgba(233, 220, 195, 0.72);
   border: 1.5px solid var(--border-color, #8f7351);
-  border-radius: 8px;
-  padding: 14px;
+  border-radius: 10px;
+  padding: 15px 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 250, 240, 0.45);
 }
 :deep(.dark-mode) .guide-step-card,
 .dark-mode .guide-step-card {
-  background: rgba(43, 31, 21, 0.75);
+  background: rgba(43, 31, 21, 0.78);
   border-color: var(--border-color, #7d6040);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .step-num {
-  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(5, 150, 105, 0.32);
+  font-size: 12px;
   font-weight: 800;
-  color: #10b981;
-  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+  color: #065f46;
+  flex-shrink: 0;
+}
+:deep(.dark-mode) .step-num,
+.dark-mode .step-num {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: rgba(52, 211, 153, 0.42);
+  color: #6ee7b7;
 }
 .step-title {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 13.5px;
+  font-weight: 800;
   color: var(--text-main, #3e2a14);
-  margin-bottom: 4px;
+  line-height: 1.3;
 }
 :deep(.dark-mode) .step-title,
 .dark-mode .step-title {
   color: var(--text-main, #ebdcc3);
 }
 .step-text {
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.6;
   color: var(--text-muted, #6b5134);
 }
 :deep(.dark-mode) .step-text,
@@ -1636,13 +1669,20 @@ onMounted(() => {
   color: var(--text-muted, #bfa988);
 }
 .code-badge {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-variant-numeric: tabular-nums;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-variant-numeric: tabular-nums;
   font-size: 11px;
   font-weight: 700;
-  background: rgba(143, 115, 81, 0.15);
-  color: #92400e;
-  padding: 1px 4px;
-  border-radius: 3px;
+  background: rgba(143, 115, 81, 0.16);
+  color: #854d0e;
+  padding: 1px 5px;
+  border-radius: 4px;
+  word-break: keep-all;
+}
+:deep(.dark-mode) .code-badge,
+.dark-mode .code-badge {
+  background: rgba(196, 148, 56, 0.18);
+  color: #f5d08a;
 }
 
 /* ========================================================
@@ -3428,114 +3468,144 @@ onMounted(() => {
 .tool-modal-body {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
-.tool-badge-callout {
+.tool-download-card {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid rgba(16, 185, 129, 0.25);
-}
-.tool-intro {
-  margin: 0;
-  font-size: 13px;
-  color: var(--text-main, #3e2a14);
-  line-height: 1.6;
-}
-.tool-path-box {
-  background: rgba(143, 115, 81, 0.1);
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: rgba(233, 220, 195, 0.85);
   border: 1.5px solid var(--border-color, #8f7351);
-  border-radius: 6px;
-  padding: 10px 14px;
+  border-radius: 8px;
+  padding: 12px 14px;
 }
-.path-title {
-  font-size: 11px;
+:deep(.dark-mode) .tool-download-card,
+.dark-mode .tool-download-card {
+  background: rgba(43, 31, 21, 0.85);
+  border-color: var(--border-color, #7d6040);
+}
+.tool-download-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+.tool-download-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-main, #3e2a14);
+}
+.tool-download-meta {
+  font-size: 11.5px;
   color: var(--text-muted, #6b5134);
-  margin-bottom: 4px;
+  line-height: 1.45;
 }
-.path-code {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-variant-numeric: tabular-nums;
+:deep(.dark-mode) .tool-download-name,
+.dark-mode .tool-download-name {
+  color: var(--text-main, #ebdcc3);
+}
+:deep(.dark-mode) .tool-download-meta,
+.dark-mode .tool-download-meta {
+  color: var(--text-muted, #bfa988);
+}
+.tool-mobile-tip {
   font-size: 12px;
-  color: #92400e;
   font-weight: 700;
-  word-break: break-all;
+  color: #92400e;
+  background: rgba(217, 119, 6, 0.12);
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+:deep(.dark-mode) .tool-mobile-tip,
+.dark-mode .tool-mobile-tip {
+  color: #fcd34d;
+  background: rgba(217, 119, 6, 0.16);
+  border-color: rgba(251, 191, 36, 0.35);
 }
 .tool-steps-flow {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 9px;
 }
 .flow-step {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: rgba(233, 220, 195, 0.7);
-  padding: 10px 14px;
-  border-radius: 6px;
+  background: rgba(233, 220, 195, 0.68);
+  padding: 11px 14px;
+  border-radius: 8px;
   border: 1.5px solid var(--border-color, #8f7351);
+}
+:deep(.dark-mode) .flow-step,
+.dark-mode .flow-step {
+  background: rgba(35, 25, 17, 0.78);
+  border-color: var(--border-color, #7d6040);
 }
 .step-badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #10b981;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #059669;
   color: #ffffff;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 800;
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 .step-desc {
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--text-main, #3e2a14);
-  line-height: 1.5;
+  line-height: 1.55;
+}
+:deep(.dark-mode) .step-desc,
+.dark-mode .step-desc {
+  color: var(--text-main, #ebdcc3);
+}
+.step-sub-note {
+  margin-top: 5px;
+  font-size: 11.5px;
+  color: var(--text-muted, #6b5134);
+  line-height: 1.45;
+}
+:deep(.dark-mode) .step-sub-note,
+.dark-mode .step-sub-note {
+  color: var(--text-muted, #bfa988);
 }
 .code-inline {
-  background: rgba(143, 115, 81, 0.15);
-  color: #92400e;
+  background: rgba(143, 115, 81, 0.16);
+  color: #854d0e;
   font-weight: 700;
-  padding: 1px 4px;
-  border-radius: 3px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-variant-numeric: tabular-nums;
-}
-.command-copy-box {
-  background: rgba(143, 115, 81, 0.1);
-  border: 1.5px solid var(--border-color, #8f7351);
-  border-radius: 6px;
-  padding: 10px 14px;
-}
-.copy-box-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 11px;
-  color: var(--text-muted, #6b5134);
-  margin-bottom: 6px;
-}
-.btn-copy-cmd {
-  background: transparent;
-  border: 1px solid #374151;
-  color: #10b981;
-  font-size: 11px;
-  padding: 2px 8px;
+  padding: 1px 5px;
   border-radius: 4px;
-  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-variant-numeric: tabular-nums;
 }
-.cmd-text {
-  display: block;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; font-variant-numeric: tabular-nums;
+:deep(.dark-mode) .code-inline,
+.dark-mode .code-inline {
+  background: rgba(196, 148, 56, 0.18);
+  color: #f5d08a;
+}
+.tool-warning-box {
   font-size: 12px;
-  color: var(--accent-ink, #2f4a49);
-  font-weight: 700;
+  line-height: 1.55;
+  color: #991b1b;
+  background: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.28);
+  border-radius: 8px;
+  padding: 9px 12px;
+}
+:deep(.dark-mode) .tool-warning-box,
+.dark-mode .tool-warning-box {
+  color: #fca5a5;
+  background: rgba(185, 28, 28, 0.16);
+  border-color: rgba(248, 113, 113, 0.32);
 }
 
 /* 修改玩家档案弹窗样式 */
