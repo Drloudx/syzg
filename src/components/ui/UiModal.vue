@@ -22,7 +22,7 @@
           :aria-modal="teleportTo ? 'true' : undefined"
           :aria-label="title || '详情'"
           tabindex="-1"
-          :class="{ 'is-fullscreen': fullscreen, 'is-teleported': !!teleportTo }"
+          :class="{ 'is-fullscreen': fullscreen, 'is-teleported': !!teleportTo, 'is-compact': compact }"
           :style="fullscreen || !teleportTo ? {} : { maxWidth, ...(maxHeight ? { maxHeight } : {}) }"
         >
           <!-- 顶部木质标题条 -->
@@ -72,6 +72,7 @@ const props = defineProps({
   maxWidth: { type: String, default: '100%' },
   maxHeight: { type: String, default: '' },
   fullscreen: { type: Boolean, default: false },
+  compact: { type: Boolean, default: false },
   closable: { type: Boolean, default: true },
   closeOnOverlay: { type: Boolean, default: false },
   scrollId: { type: String, default: 'uiModalScroll' },
@@ -235,9 +236,9 @@ onBeforeUnmount(() => {
 /* 全局弹窗模式（如 teleportTo="body"） */
 .ui-modal-overlay.is-teleported {
   position: fixed;
-  background: var(--modal-overlay, rgba(24, 14, 6, 0.55));
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  background: var(--modal-overlay, rgba(20, 12, 5, 0.58));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -269,14 +270,38 @@ onBeforeUnmount(() => {
   min-height: 0;
   max-height: 100%;
   outline: none;
+  border-radius: 10px;
+  border: 1.5px solid var(--modal-border, var(--border-color, #8f7351));
+  background: var(--modal-surface, linear-gradient(180deg, #e5d5b5 0%, #dac7a2 100%));
+  box-shadow: var(--modal-shadow, 0 18px 44px rgba(24, 14, 6, 0.42), inset 0 1px 0 rgba(255, 248, 228, 0.28));
+}
+.ui-modal-window.is-teleported::before,
+.ui-modal-window.is-teleported::after {
+  content: none;
 }
 @media (min-width: 769px) {
   .ui-modal-window.is-teleported {
-    max-height: min(72vh, 640px);
+    max-height: min(76vh, 660px);
   }
 }
 .ui-modal-window.is-fullscreen {
   border-radius: 0;
+}
+.ui-modal-window.is-teleported .ui-modal-header {
+  position: relative;
+  padding: 12px 46px;
+  border-bottom: 2px solid var(--border-color, #8f7351);
+  box-shadow: inset 0 -1px 0 rgba(255, 235, 190, 0.14);
+}
+.ui-modal-window.is-teleported .ui-modal-close {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 6px;
+}
+.ui-modal-window.is-compact .ui-modal-body {
+  padding: 22px 24px 16px;
 }
 
 /* 木质标题条 */
@@ -344,6 +369,28 @@ onBeforeUnmount(() => {
   line-height: 1.65;
   overflow-wrap: anywhere;
   overscroll-behavior-y: contain;
+}
+.ui-modal-window.is-teleported .ui-modal-body {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(143, 115, 81, 0.42) transparent;
+}
+.ui-modal-window.is-teleported .ui-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.ui-modal-window.is-teleported .ui-modal-body::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.ui-modal-window.is-teleported .ui-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.ui-modal-window.is-teleported .ui-modal-body::-webkit-scrollbar-thumb {
+  background: rgba(143, 115, 81, 0.38);
+  border-radius: 999px;
+}
+.ui-modal-window.is-teleported .ui-modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(143, 115, 81, 0.62);
 }
 
 @media (min-width: 1025px) {
@@ -484,6 +531,12 @@ onBeforeUnmount(() => {
   flex-wrap: wrap;
 }
 .ui-modal-window.is-teleported .ui-modal-footer {
-  padding-bottom: 14px;
+  padding: 14px 20px 18px;
+  border-top: 1px solid var(--modal-footer-divider, rgba(143, 115, 81, 0.22));
+  gap: 12px;
+}
+.ui-modal-window.is-compact .ui-modal-footer {
+  border-top: none;
+  padding: 2px 24px 22px;
 }
 </style>

@@ -2,29 +2,31 @@
   <UiModal
     :visible="modelValue"
     title="公告"
-    max-width="440px"
+    max-width="580px"
     teleport-to="body"
     @update:visible="closeModal"
   >
     <UiEmptyState v-if="isLoading" type="loading" text="正在翻阅公告卷轴..." />
     <UiEmptyState v-else-if="error" type="error" :text="'加载失败: ' + error" />
     <div v-else class="notice-list">
-      <div v-for="notice in sortedNotices" :key="noticeKey(notice)" class="notice-item paper-panel-solid">
-        <h4 class="notice-item-title">
-          <UiTag v-if="notice.isPinned" tone="danger">置顶</UiTag>
-          {{ notice.title }}
-        </h4>
-        <span class="notice-item-date">{{ notice.date }}</span>
+      <article v-for="notice in sortedNotices" :key="noticeKey(notice)" class="notice-item">
+        <header class="notice-item-header">
+          <h4 class="notice-item-title">
+            <UiTag v-if="notice.isPinned" tone="danger">置顶</UiTag>
+            <span>{{ notice.title }}</span>
+          </h4>
+          <span class="notice-item-date">{{ notice.date }}</span>
+        </header>
         <!--
           正文用 RichTextView 渲染（受限标记 → VNode），**不用 v-html**。
           老数据是纯文本，解析器遇到无标记内容会原样输出，所以兼容。
         -->
         <RichTextView class="notice-item-content" :content="notice.content" />
-      </div>
+      </article>
 
       <!-- 交流群：所有公告通用，放在列表末尾，点击直接跳转加群 -->
       <div class="notice-contact">
-        <span class="notice-contact-label">交流群</span>
+        <span class="notice-contact-label">大书院交流群</span>
         <a
           class="notice-contact-link"
           href="https://qm.qq.com/q/iolDkZyD2E"
@@ -263,54 +265,108 @@ onMounted(() => {
   gap: 14px;
 }
 .notice-item {
-  padding: 12px 14px;
+  background: rgba(239, 229, 206, 0.78);
+  border: 1px solid rgba(143, 115, 81, 0.34);
+  border-radius: 8px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 6px rgba(62, 42, 20, 0.08), inset 0 1px 0 rgba(255, 250, 236, 0.35);
+}
+:global(.dark-mode .notice-item),
+:global(.dark-theme .notice-item) {
+  background: rgba(45, 33, 22, 0.78);
+  border-color: rgba(168, 132, 82, 0.34);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+.notice-item-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(143, 115, 81, 0.22);
+}
+:global(.dark-mode .notice-item-header),
+:global(.dark-theme .notice-item-header) {
+  border-bottom-color: rgba(196, 148, 56, 0.18);
 }
 .notice-item-title {
-  margin: 0 0 4px 0;
-  font-size: 15px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.45;
   color: var(--text-main, #3e2a14);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 .notice-item-date {
   font-size: 12px;
+  font-variant-numeric: tabular-nums;
   color: var(--text-faint, #8a6d4d);
   display: block;
-  margin-bottom: 8px;
-  font-style: italic;
 }
 .notice-item-content {
   margin: 0;
   font-size: 14px;
-  line-height: 1.7;
-  white-space: pre-wrap;
+  line-height: 1.82;
   color: var(--text-main, #3e2a14);
 }
+.notice-item-content :deep(.rich-line) {
+  margin-bottom: 0.6em;
+}
+.notice-item-content :deep(.rich-line:last-child) {
+  margin-bottom: 0;
+}
+.notice-item-content :deep(p) {
+  margin: 0 0 0.65em 0;
+}
+.notice-item-content :deep(p:last-child) {
+  margin-bottom: 0;
+}
+.notice-item-content :deep(strong) {
+  color: #2b1b0d;
+}
+:global(.dark-mode .notice-item-content strong),
+:global(.dark-theme .notice-item-content strong) {
+  color: #f3e4c8;
+}
 
-/* 交流群：与公告正文同字号，数值加粗可点 */
+/* 交流群：独立羊皮纸小条，与正文字号一致 */
 .notice-contact {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  font-size: 14px;
-  line-height: 1.7;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 16px;
+  background: rgba(233, 220, 195, 0.68);
+  border: 1px solid rgba(143, 115, 81, 0.3);
+  border-radius: 8px;
+  font-size: 13.5px;
   color: var(--text-main, #3e2a14);
+}
+:global(.dark-mode .notice-contact),
+:global(.dark-theme .notice-contact) {
+  background: rgba(45, 33, 22, 0.68);
+  border-color: rgba(168, 132, 82, 0.3);
 }
 .notice-contact-label {
   color: var(--text-muted, #6b5134);
   font-weight: 700;
 }
 .notice-contact-link {
-  color: var(--text-main, #3e2a14);
-  font-weight: 600;
+  color: var(--accent-ink, #2f4a49);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
   cursor: pointer;
 }
+:global(.dark-mode .notice-contact-link),
+:global(.dark-theme .notice-contact-link) {
+  color: #82b5b0;
+}
 .notice-contact-link:hover {
-  opacity: 0.75;
+  opacity: 0.78;
 }
 </style>

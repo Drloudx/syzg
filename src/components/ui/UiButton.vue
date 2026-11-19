@@ -133,13 +133,15 @@ const emit = defineEmits(['click'])
 
 /* 危险按钮 */
 .ui-btn--danger {
-  background: var(--danger, #8b0000);
-  color: #fdf6e3;
-  border: 1px solid #5c0000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(180deg, #7a2e26, #61221c);
+  color: #f6ead4;
+  border: 1px solid #4a1813;
+  box-shadow: 0 2px 4px rgba(38, 14, 10, 0.28), inset 0 1px 0 rgba(255, 224, 210, 0.16);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
 }
 .ui-btn--danger:hover:not(.is-disabled) {
-  background: #a51212;
+  background: linear-gradient(180deg, #8b362d, #6e2821);
+  border-color: #5c1f19;
 }
 
 /* 文字链 */

@@ -167,12 +167,22 @@
         <div class="acct-field">
           <span class="acct-label">头像</span>
           <button type="button" class="acct-avatar-row" @click="avatarPickerOpen = true">
-            <img v-if="selectedPath" :src="getImageUrl(selectedPath)" alt="" class="acct-avatar-thumb" />
-            <span v-else class="acct-avatar-thumb acct-avatar-thumb--empty" aria-hidden="true">
-              {{ regForm.nick.trim().slice(0, 1) || '?' }}
+            <div class="acct-avatar-thumb-box">
+              <img v-if="selectedPath" :src="getImageUrl(selectedPath)" alt="" class="acct-avatar-thumb" />
+              <span v-else class="acct-avatar-thumb acct-avatar-thumb--empty" aria-hidden="true">
+                {{ regForm.nick.trim().slice(0, 1) || '?' }}
+              </span>
+            </div>
+            <div class="acct-avatar-info">
+              <span class="acct-avatar-row-title">{{ selectedName || '希尔（女主）' }}</span>
+              <span class="acct-avatar-row-sub">点击挑选角色或魔物头像</span>
+            </div>
+            <span class="acct-row-action">
+              <span>更换头像</span>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
             </span>
-            <span class="acct-avatar-row-title">{{ selectedName || '希尔（女主）' }}</span>
-            <span class="acct-row-arrow">›</span>
           </button>
         </div>
 
@@ -498,12 +508,22 @@
         <div class="acct-field">
           <span class="acct-label">头像</span>
           <button type="button" class="acct-avatar-row" @click="avatarPickerOpen = true">
-            <img v-if="selectedPath" :src="getImageUrl(selectedPath)" alt="" class="acct-avatar-thumb" />
-            <span v-else class="acct-avatar-thumb acct-avatar-thumb--empty" aria-hidden="true">
-              {{ profileForm.nick.trim().slice(0, 1) || '?' }}
+            <div class="acct-avatar-thumb-box">
+              <img v-if="selectedPath" :src="getImageUrl(selectedPath)" alt="" class="acct-avatar-thumb" />
+              <span v-else class="acct-avatar-thumb acct-avatar-thumb--empty" aria-hidden="true">
+                {{ profileForm.nick.trim().slice(0, 1) || '?' }}
+              </span>
+            </div>
+            <div class="acct-avatar-info">
+              <span class="acct-avatar-row-title">{{ selectedName || '希尔（女主）' }}</span>
+              <span class="acct-avatar-row-sub">点击挑选角色或魔物头像</span>
+            </div>
+            <span class="acct-row-action">
+              <span>更换头像</span>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
             </span>
-            <span class="acct-avatar-row-title">{{ selectedName || '希尔（女主）' }}</span>
-            <span class="acct-row-arrow">›</span>
           </button>
         </div>
 
@@ -2345,52 +2365,120 @@ function formatDate(unixSec) {
   min-width: 96px;
 }
 
-/* ---------- 头像：主表单里的一行（点开才是选择器） ---------- */
+/* ---------- 头像：主表单里的一行（点开才是选择器，对齐抽卡档案弹窗精致UI） ---------- */
 
 .acct-avatar-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
-  padding: 7px 10px;
-  border: 1px solid var(--border-color, #8f7351);
+  padding: 8px 12px;
+  border: 1.5px solid var(--border-color, #8f7351);
   border-radius: 8px;
-  /* 与输入框同一底色，视觉上仍是"表单里的一格" */
-  background: var(--paper-solid, #d9c6a6);
+  background: var(--paper-soft, #e9dcc3);
   font: inherit;
   text-align: left;
   cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.18s ease;
+}
+
+.acct-avatar-row:hover {
+  background: var(--paper-solid, #dfceb3);
+  border-color: var(--accent, #557574);
+  box-shadow: 0 2px 8px rgba(60, 42, 22, 0.08);
 }
 
 .acct-avatar-row:active {
   filter: brightness(0.96);
 }
 
+.acct-avatar-thumb-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  filter: drop-shadow(0 2px 4px rgba(60, 42, 22, 0.18));
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
 .acct-avatar-thumb {
-  width: 38px;
-  height: 38px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  flex: none;
+  transform: scale(1.08);
+  border: 2px solid var(--border-color, #8f7351);
+  background: var(--paper-solid, #d9c6a6);
+  display: block;
+  box-sizing: border-box;
 }
 
 .acct-avatar-thumb--empty {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 17px;
+  font-size: 18px;
+  font-weight: 800;
   color: var(--text-muted);
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.08);
 }
 
-/* 单行：头像 + 名字 + ›。不写"点这里换一个" —— 有 › 就够表意了，
-   而这一行省下来的高度正好让注册表单在 800px 高的屏幕上不用滚。 */
+.acct-avatar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
 .acct-avatar-row-title {
   font-size: 14px;
-  color: var(--text-main);
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-weight: 800;
+  color: var(--text-main, #3e2a14);
+}
+
+.acct-avatar-row-sub {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted, #7c6246);
+}
+
+.acct-row-action {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-ink, #2f4a49);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.acct-avatar-row:hover .acct-row-action {
+  color: var(--accent, #557574);
+}
+
+:deep(.dark-mode) .acct-avatar-row,
+.dark-mode .acct-avatar-row {
+  background: rgba(35, 25, 17, 0.8);
+  border-color: var(--border-color, #7d6040);
+}
+:deep(.dark-mode) .acct-avatar-row:hover,
+.dark-mode .acct-avatar-row:hover {
+  background: rgba(45, 33, 22, 0.95);
+  border-color: #c49438;
+}
+:deep(.dark-mode) .acct-avatar-row-title,
+.dark-mode .acct-avatar-row-title {
+  color: var(--text-main, #ebdcc3);
+}
+:deep(.dark-mode) .acct-avatar-row-sub,
+.dark-mode .acct-avatar-row-sub {
+  color: var(--text-muted, #bfa988);
+}
+:deep(.dark-mode) .acct-row-action,
+.dark-mode .acct-row-action {
+  color: #7faea9;
 }
 </style>
