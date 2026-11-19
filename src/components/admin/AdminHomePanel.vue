@@ -701,6 +701,7 @@ import {
 } from '../../utils/adminHomeApi.js'
 import { saveNoticeSlots } from '../../utils/adminNoticesApi.js'
 import { getGroupedNavRoutes, navRouteOf } from '../../config/navRoutes.js'
+import { fetchWithFallback } from '../../utils/request.js'
 
 const TABS = [
   { key: 'banners', label: '海报轮播' },
@@ -1015,7 +1016,7 @@ async function load() {
   try {
     const [data, heroRes] = await Promise.all([
       fetchHomeAdmin(),
-      fetch('/data/parsed/heroes.json').then((r) => (r.ok ? r.json() : null)).catch(() => null)
+      fetchWithFallback('data/parsed/heroes.json').catch(() => null)
     ])
 
     banners.value = (data.banners || []).map((b) => ({
