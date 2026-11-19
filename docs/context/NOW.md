@@ -33,9 +33,10 @@
   - 修复点击物品详情传入字符串 `itemId` 导致空白的问题，改为先经 `fetchItemData()` 取完整对象。
 - **神匠之塔兑换对齐与移动端导航切换**：
   - 「幻象立方兑换」与「夜之符兑换」统一去掉「中心」二字，按钮落在 `.filter-extra-bar` 说明文字下方左侧，弹窗卡片样式对齐并统一亮度。
-- **首页「今日必做」看板与食谱页优化**：
+- **首页「今日必做」看板、食谱页与设施页优化**：
   - 移除武僧火锅/果香肉酱通心粉已过时 `craftNote` 并重建 `recipes.json`，同步优化 `RecipesView.vue` 卡片排版与留白。
   - 首页公告栏右侧改为后台可配的「今日必做」打卡看板（复用 `home_blocks` `section='daily'`，无需库迁移），同步调整公告柔和标签、交流群底部反馈条、海报沉稳角标及后台 `AdminHomePanel` / `AdminNoticeEditPanel` / `AdminNoticesPanel`。
+  - 设施功能页（`FacilitiesView.vue`）补充 `武器`/`防具`、`材料`/`道具`、`恢复`/`强化`/`加工` 分类筛选，补齐 `paper-panel` 纸面容器与桌面端双列工坊卡片、阶位分类胶囊及品质概率胶囊。
   - `App.vue` + `MenuModeModal.vue` 新增 `navTriggerMode`（默认 `'header'` 顶部直接导航，可选 `'floating'` 侧边悬浮球）。
   - 副本图鉴 `DungeonRouteMap.vue` 3D 节点底座、边线包边、`RoomContentList.vue` `detailsOnly` 精简、以及 `monsterIconMap.js` 大小写规范化与多级头像兜底一并收录。
 
