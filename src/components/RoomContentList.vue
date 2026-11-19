@@ -7,9 +7,13 @@
   `data-source-entry` 保留在元素上，供来源直达按 `dropEntry` 定位。
 -->
 <template>
-  <div class="room-list">
-    <article v-for="room in rooms" :key="`${room.layer}-${room.roomId}`" class="room-card">
-      <div v-if="room.level || room.hidden || room.unlockTasks?.length" class="room-card__heading" :class="{ 'room-card__heading--meta-only': !room.unlockTasks?.length }">
+  <div v-if="visibleRooms.length" class="room-list" :class="{ 'room-list--details-only': detailsOnly }">
+    <article v-for="room in visibleRooms" :key="`${room.layer}-${room.roomId}`" class="room-card">
+      <div
+        v-if="room.unlockTasks?.length || room.hidden || (!detailsOnly && room.level)"
+        class="room-card__heading"
+        :class="{ 'room-card__heading--meta-only': !room.unlockTasks?.length }"
+      >
         <div v-if="room.unlockTasks?.length" class="room-unlock-cond">
           <span class="unlock-cond-label">解锁条件：</span>
           <span
@@ -26,20 +30,20 @@
             {{ task.typeName }}「{{ task.name }}」
           </span>
         </div>
-        <div class="room-card__meta-tags">
-          <UiTag v-if="room.level" tone="default">Lv.{{ room.level }}</UiTag>
+        <div v-if="room.hidden || (!detailsOnly && room.level)" class="room-card__meta-tags">
+          <UiTag v-if="!detailsOnly && room.level" tone="default">Lv.{{ room.level }}</UiTag>
           <UiTag v-if="room.hidden" tone="muted">隐藏</UiTag>
         </div>
       </div>
-      <div class="room-card__variants">
+      <div v-if="room.variants?.length" class="room-card__variants">
         <template v-for="variant in room.variants" :key="variant.typeId">
           <div class="room-variant">
-            <div class="room-variant__title">
+            <div v-if="!detailsOnly" class="room-variant__title">
               <span>{{ variant.name }}</span>
               <UiTag v-if="variant.source?.candidate" tone="muted">随机候选</UiTag>
               <UiTag :tone="variant.kind.includes('宝箱') ? 'gold' : 'default'">{{ variant.kind }}</UiTag>
             </div>
-            <div v-if="variant.effects?.length" class="room-effects">
+            <div v-if="!detailsOnly && variant.effects?.length" class="room-effects">
               <div v-for="effect in variant.effects" :key="`${variant.typeId}-${effect.type}`" class="room-effect">
                 <strong>{{ effect.title }}</strong>
                 <p>{{ effect.summary }}</p>
@@ -111,7 +115,7 @@
                 </div>
               </div>
             </div>
-            <template v-if="variant.monsters?.length">
+            <template v-if="!detailsOnly && variant.monsters?.length">
               <div v-for="line in monsterWaveLines(variant)" :key="line.key" class="room-wave-line">
                 <strong class="wave-lead" v-if="line.wave">第{{ line.wave }}波：</strong>
                 <strong class="wave-lead" v-else>怪物：</strong>
@@ -140,9 +144,9 @@
                 </div>
               </div>
             </template>
-            <p v-else-if="variant.notFightRoom" class="room-variant__line">非战斗房间</p>
+            <p v-else-if="!detailsOnly && variant.notFightRoom" class="room-variant__line">非战斗房间</p>
             <!-- 房间 NPC 展示：优先展示带头像与名称的 NPC 胶囊流，兜底展示计数 -->
-            <div v-if="getRoomNpcs(variant.typeId).length" class="room-wave-line room-npc-line">
+            <div v-if="!detailsOnly && getRoomNpcs(variant.typeId).length" class="room-wave-line room-npc-line">
               <strong class="wave-lead">NPC：</strong>
               <div class="wave-monsters-flow">
                 <span
@@ -164,7 +168,7 @@
                 </span>
               </div>
             </div>
-            <p v-else-if="variant.npcCount" class="room-variant__line">NPC：{{ variant.npcCount }} 个</p>
+            <p v-else-if="!detailsOnly && variant.npcCount" class="room-variant__line">NPC：{{ variant.npcCount }} 个</p>
             <div
               v-for="collection in sortedCollections(variant.collections)"
               :key="`${variant.typeId}-${collection.collectTypeId}`"
@@ -218,10 +222,12 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { UiTag } from './ui/index.js'
 import RewardPools from './RewardPools.vue'
-import { handleImageFallback, getImageUrl } from '../utils/env.js'
+import { handleImageFallback } from '../utils/env.js'
+import { handleMonsterIconError } from '../utils/monsterIconMap.js'
 import { openMonsterDetail } from '../utils/monsterModalState.js'
 import { getRoomNpcs } from '../utils/roomNpcMap.js'
 import {
@@ -239,37 +245,37 @@ const goToTask = (taskId) => {
   router.push({ path: '/tasks', query: { task: taskId } })
 }
 
-const handleMonsterIconError = (event, mon) => {
-  const img = event?.target
-  if (!img) return
-  const typeId = String(mon?.typeId || '')
-  const clean = typeId.replace(/^(?:mon_|pet_)/i, '').replace(/_(?:rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02|\d+)$/i, '')
-  const padded = clean.padStart(3, '0')
-  const step = Number(img.dataset.fallbackStep || 0)
-
-  if (step === 0) {
-    img.dataset.fallbackStep = '1'
-    img.src = getImageUrl(`/images/PicHandBookPanel_Atlas/colect_mon_${clean}.webp`)
-  } else if (step === 1) {
-    img.dataset.fallbackStep = '2'
-    img.src = getImageUrl(`/images/PicHandBookPanel_Atlas/colect_mon_${padded}.webp`)
-  } else if (step === 2) {
-    img.dataset.fallbackStep = '3'
-    img.src = getImageUrl(`/images/model-previews/mon_${padded}.webp`)
-  } else {
-    handleImageFallback(event)
-  }
-}
-
-defineProps({
-  rooms: { type: Array, default: () => [] }
+const props = defineProps({
+  rooms: { type: Array, default: () => [] },
+  detailsOnly: { type: Boolean, default: false }
 })
 const emit = defineEmits(['item-click'])
+
+const hasVariantDetails = (variant) => Boolean(
+  variant?.mechanics?.length
+  || variant?.collections?.length
+  || sortedMonsterDrops(variant?.monsters).length
+)
+
+const visibleRooms = computed(() => {
+  if (!props.detailsOnly) return props.rooms
+  return props.rooms
+    .map(room => ({
+      ...room,
+      variants: (room.variants || []).filter(hasVariantDetails)
+    }))
+    .filter(room => room.variants.length || room.unlockTasks?.length || room.hidden)
+})
 </script>
 
 <style scoped>
 .room-list { display: flex; flex-direction: column; gap: 8px; overflow: visible; padding-right: 0; }
 .room-card { border: 1px solid var(--border-soft); border-radius: 5px; background: var(--paper-soft); padding: 9px 10px; }
+.room-list--details-only { margin-top: 8px; }
+.room-list--details-only .room-card { border: 0; border-top: 1px dashed var(--border-soft); border-radius: 0; background: transparent; padding: 8px 0 0; }
+.room-list--details-only .room-variant { border-left: 0; padding: 0; }
+.dark-mode .room-list--details-only .room-card,
+.dark-theme .room-list--details-only .room-card { background: transparent; border-color: var(--border-soft); }
 .room-card__heading, .room-variant__title, .room-collection__heading { display: flex; align-items: center; gap: 7px; min-width: 0; }
 .room-card__heading { color: var(--text-main); font-size: 13px; justify-content: space-between; flex-wrap: wrap; margin-bottom: 2px; }
 .room-card__heading--meta-only { justify-content: flex-end; }
@@ -308,16 +314,16 @@ const emit = defineEmits(['item-click'])
 .room-card__meta-tags { display: flex; align-items: center; gap: 7px; margin-left: auto; }
 .room-card__variants { display: flex; flex-direction: column; gap: 7px; margin-top: 7px; }
 .room-variant { border-left: 3px solid var(--accent); padding: 6px 0 6px 9px; min-width: 0; }
-.room-variant__title { font-size: 12px; font-weight: 700; color: var(--text-main); }
+.room-variant__title { font-size: 13px; font-weight: 700; color: var(--text-main); }
 .room-variant__title span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.room-variant__line { margin: 4px 0 0; color: var(--text-muted); font-size: 11px; line-height: 1.5; }
-.room-effects { display: grid; gap: 6px; margin-top: 7px; }
-.room-effect { min-width: 0; border-left: 2px solid var(--accent); padding-left: 8px; }
-.room-effect > strong { color: var(--text-main); font-size: 11px; }
-.room-effect > p { margin: 2px 0 0; color: var(--text-sub); font-size: 12px; line-height: 1.5; }
-.room-effect__options { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
-.room-effect__options span { border: 1px solid var(--border-soft); border-radius: 3px; background: var(--paper-solid); padding: 3px 6px; color: var(--text-sub); font-size: 11px; line-height: 1.4; }
-.room-effect__options b { margin-right: 5px; color: var(--text-main); }
+.room-variant__line { margin: 4px 0 0; color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+.room-effects { display: grid; gap: 8px; margin-top: 8px; }
+.room-effect { min-width: 0; border-left: 2px solid var(--accent); padding-left: 9px; }
+.room-effect > strong { display: block; color: var(--text-main); font-size: 13px; font-weight: 700; }
+.room-effect > p { margin: 3px 0 0; color: var(--text-main); font-size: 13px; line-height: 1.55; }
+.room-effect__options { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.room-effect__options span { border: 1px solid var(--border-soft); border-radius: 4px; background: var(--paper-solid); padding: 4px 8px; color: var(--text-main); font-size: 12px; line-height: 1.45; }
+.room-effect__options b { margin-right: 6px; color: var(--text-main); }
 .room-collection { margin-top: 6px; padding: 6px 7px; background: var(--paper-solid); border: 1px dashed var(--border-soft); border-radius: 4px; }
 .room-collection--monster { border-style: solid; }
 .room-collection__heading { justify-content: space-between; color: var(--text-main); font-size: 12px; font-weight: 700; margin-bottom: 9px; }

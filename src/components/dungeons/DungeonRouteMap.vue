@@ -44,13 +44,26 @@
             <svg class="route-map__links" :viewBox="`0 0 ${displayLayer.size.w} ${displayLayer.size.h}`" preserveAspectRatio="none" aria-hidden="true">
               <polyline
                 v-for="(link, index) in displayLayer.links"
+                :key="`route-link-casing-${index}`"
+                :points="link.points"
+                class="route-map__link-casing"
+                :class="{ 'route-map__link-casing--active': isLinkActive(link) }"
+              />
+              <polyline
+                v-for="(link, index) in displayLayer.links"
                 :key="`route-link-${index}`"
                 :points="link.points"
                 class="route-map__link"
                 :class="{ 'route-map__link--active': isLinkActive(link) }"
               />
             </svg>
-            <div v-for="node in displayLayer.nodes" :key="node.id" class="route-node-group" :style="nodeStyle(node, displayLayer)">
+            <div
+              v-for="node in displayLayer.nodes"
+              :key="node.id"
+              class="route-node-group"
+              :class="{ 'route-node-group--expanded': isNodeExpanded(node) }"
+              :style="nodeStyle(node, displayLayer)"
+            >
               <button
                 v-if="node.variantOptions?.length > 1"
                 type="button"
@@ -67,6 +80,16 @@
                 :aria-label="nodeLabel(node, variant)"
                 @click="selectRoom(node.id, variant.typeId)"
               >
+                <svg class="route-node__tile" viewBox="0 0 96 62" aria-hidden="true">
+                  <!-- 地面投影 -->
+                  <polygon points="48,13 88,33 48,55 8,33" fill="rgba(54, 34, 16, 0.26)" />
+                  <!-- 3D 底座左侧与右侧立体厚度边 -->
+                  <polygon points="10,27 48,46 48,53 10,34" fill="#66341d" />
+                  <polygon points="48,46 86,27 86,34 48,53" fill="#462211" />
+                  <!-- 底座象牙白斜角包边 + 赤陶顶面 -->
+                  <polygon class="route-tile-rim" points="48,7 86,26 48,45 10,26" />
+                  <polygon class="route-tile-face" points="48,9.5 82,26 48,42.5 14,26" />
+                </svg>
                 <img v-if="iconPath(variant)" :src="iconPath(variant)" alt="" />
                 <span v-else class="route-node__fallback" :aria-label="variantIndex === 0 ? iconGlyph(node) : '房间图标'">{{ variantIndex === 0 ? iconGlyph(node) : '' }}</span>
                 <i v-if="node.candidates && variantIndex === 0" class="route-node__random">{{ node.candidates + 1 }}</i>
@@ -135,6 +158,7 @@ const selectLayer = index => {
   resetMap()
 }
 const selectRoom = (roomId, variantId = '') => {
+  expandedNodes.value = new Set()
   emit('update:roomId', roomId)
   emit('update:variantId', variantId || selectedLayer.value?.nodes?.find(node => node.id === roomId)?.variantOptions?.[0]?.typeId || '')
 }
@@ -152,11 +176,10 @@ const clampZoom = value => {
   return Math.min(MAX_ROUTE_ZOOM, Math.max(MIN_ROUTE_ZOOM, base))
 }
 const setZoom = value => { routeZoom.value = Number(clampZoom(value).toFixed(2)) }
-const dimensions = layer => {
-  const sourceWidth = Math.max(1, Number(layer?.size?.w || 1600))
-  const sourceHeight = Math.max(1, Number(layer?.size?.h || 1000))
-  return { width: ROUTE_MAP_WIDTH, height: Math.round(ROUTE_MAP_WIDTH * sourceHeight / sourceWidth) }
-}
+const dimensions = layer => ({
+  width: Math.max(1, Number(layer?.size?.w || ROUTE_MAP_WIDTH)),
+  height: Math.max(1, Number(layer?.size?.h || 800))
+})
 const mapStyle = layer => ({
   width: `${dimensions(layer).width}px`,
   height: `${dimensions(layer).height}px`,
@@ -222,9 +245,14 @@ const setPan = (x, y) => {
  * 地图比容器大时 `h - scaledH` 正是底对齐；比容器小时取 0（顶对齐，居中反而不自然）。
  */
 const resetPan = () => {
-  const { h } = viewport.value
+  const { w, h } = viewport.value
   const size = dimensions(displayLayer.value)
-  setPan(0, Math.min(0, h - size.height * routeZoom.value))
+  const scaledW = size.width * routeZoom.value
+  const scaledH = size.height * routeZoom.value
+  setPan(
+    Math.round((w - scaledW) / 2),
+    Math.round((h - scaledH) / 2)
+  )
 }
 
 const zoomAt = (value, clientX, clientY) => {
@@ -260,22 +288,21 @@ const resetViewport = () => {
 const queueViewportReset = () => nextTick(() => requestAnimationFrame(resetViewport))
 const resetMap = () => {
   expandedNodes.value = new Set()
-  if (props.fit) {
-    // 适配整图：测量容器后按容器/地图尺寸算缩放（留 12px 余量），并居中
-    nextTick(() => requestAnimationFrame(() => {
-      const { w, h } = measureViewport()
-      const size = dimensions(displayLayer.value)
-      if (w > 0 && h > 0 && size.width > 0 && size.height > 0) {
-        const z = Math.min(w / size.width, (h - 12) / size.height)
-        setZoom(Math.max(MIN_ROUTE_ZOOM, Math.min(MAX_ROUTE_ZOOM, z)))
-        panX.value = Math.round((w - size.width * routeZoom.value) / 2)
-        panY.value = Math.round((h - size.height * routeZoom.value) / 2)
-      }
-    }))
-    return
-  }
-  routeZoom.value = DEFAULT_ROUTE_ZOOM
-  queueViewportReset()
+  nextTick(() => requestAnimationFrame(() => {
+    const { w, h } = measureViewport()
+    const size = dimensions(displayLayer.value)
+    if (w > 0 && h > 0 && size.width > 0 && size.height > 0) {
+      const padW = Math.max(24, w - 32)
+      const padH = Math.max(24, h - 24)
+      const fitZoom = Math.min(padW / size.width, padH / size.height)
+      const maxInitialZoom = props.fit ? MAX_ROUTE_ZOOM : 0.95
+      setZoom(Math.max(MIN_ROUTE_ZOOM, Math.min(maxInitialZoom, fitZoom)))
+      resetPan()
+      return
+    }
+    routeZoom.value = DEFAULT_ROUTE_ZOOM
+    queueViewportReset()
+  }))
 }
 const zoomBy = amount => {
   const rect = scrollRef.value?.getBoundingClientRect()
@@ -406,7 +433,14 @@ const handlePointerMove = event => {
     pointerDrag.panY + (event.clientY - pointerDrag.y)
   )
 }
-const handlePointerUp = event => { if (pointerDrag?.pointerId === event.pointerId) pointerDrag = null }
+const handlePointerUp = event => {
+  if (pointerDrag?.pointerId !== event.pointerId) return
+  const moved = Math.hypot(event.clientX - pointerDrag.x, event.clientY - pointerDrag.y)
+  pointerDrag = null
+  if (moved < 5 && expandedNodes.value.size > 0 && !event.target?.closest?.('.route-node-group--expanded')) {
+    expandedNodes.value = new Set()
+  }
+}
 
 const variantPriority = variant => {
   const text = `${variant?.kind || ''} ${variant?.name || ''}`
@@ -420,46 +454,50 @@ const variantPriority = variant => {
 const primaryVariant = node => [...(node?.variantOptions || [])].sort((a, b) => variantPriority(b) - variantPriority(a) || String(a.typeId).localeCompare(String(b.typeId)))[0]
 const isNodeExpanded = node => expandedNodes.value.has(node?.id)
 const toggleNode = nodeId => {
-  const next = new Set(expandedNodes.value)
-  if (next.has(nodeId)) next.delete(nodeId)
-  else next.add(nodeId)
-  expandedNodes.value = next
+  expandedNodes.value = expandedNodes.value.has(nodeId) ? new Set() : new Set([nodeId])
 }
-const visibleVariants = node => isNodeExpanded(node) ? node.variantOptions : [primaryVariant(node)].filter(Boolean)
+const selectedVariant = node => node?.id === props.roomId
+  ? node?.variantOptions?.find(option => option.typeId === props.variantId) || primaryVariant(node)
+  : primaryVariant(node)
+const visibleVariants = node => isNodeExpanded(node) ? node.variantOptions : [selectedVariant(node)].filter(Boolean)
 
 function orientLayer(layer) {
   if (!layer?.nodes?.length) return layer
-  const sourceNodes = layer.nodes.map(node => ({ ...node, sourceX: Number(node.x || 0), sourceY: Number(node.y || 0) }))
-  const start = sourceNodes.find(node => node.id === layer.startRoomId) || sourceNodes[0]
-  const end = sourceNodes.find(node => node.id === layer.endRoom) || sourceNodes.at(-1)
-  /*
-   * 轴跨度用「起点→终点」方向；但当两者在某一轴几乎重合时（如日常分支图起终点同 Y），
-   * 差值趋近 0 会把其余节点的偏移放大到天文数字（实测 -43520px）。
-   * 仅在这种情况下回退到该轴的包围盒跨度；正常副本起终点差异远大于 1px，行为不变。
-   */
-  const boxSpanX = Math.max(...sourceNodes.map(n => n.sourceX)) - Math.min(...sourceNodes.map(n => n.sourceX))
-  const boxSpanY = Math.max(...sourceNodes.map(n => n.sourceY)) - Math.min(...sourceNodes.map(n => n.sourceY))
-  let spanX = end.sourceX - start.sourceX
-  let spanY = end.sourceY - start.sourceY
-  if (Math.abs(spanX) < 1) spanX = boxSpanX || 1
-  if (Math.abs(spanY) < 1) spanY = boxSpanY || 1
-  const rawNodes = sourceNodes.map(node => {
-    const progressX = (node.sourceX - start.sourceX) / spanX
-    const progressY = (node.sourceY - start.sourceY) / spanY
-    return { ...node, x: progressX * 1100, y: (1 - progressY) * 680 }
-  })
-  const minX = Math.min(...rawNodes.map(node => node.x))
-  const maxX = Math.max(...rawNodes.map(node => node.x))
-  const minY = Math.min(...rawNodes.map(node => node.y))
-  const maxY = Math.max(...rawNodes.map(node => node.y))
-  const nodes = rawNodes.map(node => ({ ...node, x: Math.round(node.x - minX + 150), y: Math.round(node.y - minY + 110) }))
+  // Unity 原表坐标自带标准 2:1 等轴斜向棋盘比例（+X 向右、+Y 向上）；
+  // 网页只需按 1:1 等比翻转 Y 轴并居中留白，绝不按起终点分别拉伸 X/Y。
+  const sourceNodes = layer.nodes.map(node => ({
+    ...node,
+    sourceX: Number(node.x || 0),
+    sourceY: Number(node.y || 0)
+  }))
+  const xs = sourceNodes.map(n => n.sourceX)
+  const ys = sourceNodes.map(n => n.sourceY)
+  const minX = Math.min(...xs)
+  const maxX = Math.max(...xs)
+  const minY = Math.min(...ys)
+  const maxY = Math.max(...ys)
+  const spanX = maxX - minX
+  const spanY = maxY - minY
+
+  const padX = 120
+  const padY = 110
+  const canvasW = Math.max(520, Math.ceil(spanX + padX * 2))
+  const canvasH = Math.max(360, Math.ceil(spanY + padY * 2))
+  const offsetX = (canvasW - spanX) / 2
+  const offsetY = (canvasH - spanY) / 2
+
+  const nodes = sourceNodes.map(node => ({
+    ...node,
+    x: Math.round(offsetX + (node.sourceX - minX)),
+    y: Math.round(offsetY + (maxY - node.sourceY))
+  }))
   const nodeMap = new Map(nodes.map(node => [node.id, node]))
   const links = (layer.links || []).flatMap(link => {
     const from = nodeMap.get(link.rooms?.[0])
     const to = nodeMap.get(link.rooms?.[1])
     return from && to ? [{ ...link, points: `${from.x},${from.y} ${to.x},${to.y}` }] : []
   })
-  return { ...layer, size: { w: Math.max(900, Math.ceil(maxX - minX + 300)), h: Math.max(560, Math.ceil(maxY - minY + 220)) }, nodes, links }
+  return { ...layer, size: { w: canvasW, h: canvasH }, nodes, links }
 }
 
 const nodeStyle = (node, layer) => ({ left: `${Number(node.x || 0) / Math.max(1, Number(layer?.size?.w || 1600)) * 100}%`, top: `${Number(node.y || 0) / Math.max(1, Number(layer?.size?.h || 1000)) * 100}%` })
@@ -513,37 +551,248 @@ onBeforeUnmount(() => {
 .route-layout-tab small { display: block; margin-top: 2px; color: var(--text-sub); font-size: 10px; font-weight: 600; }
 .route-layout-tab--active { border-color: var(--accent); background: var(--hover-bg); color: var(--text-main); }
 .route-map-shell { position: relative; }
-.route-map-toolbar { position: absolute; z-index: 5; top: 10px; left: 10px; display: flex; align-items: center; gap: 4px; padding: 4px; border: 1px solid var(--border-soft); border-radius: 5px; background: var(--paper-solid); box-shadow: 0 2px 8px rgba(0,0,0,.22); }
-.route-map-toolbar button { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--border-soft); border-radius: 4px; background: var(--paper-soft); color: var(--text-main); padding: 0; font-size: 17px; font-weight: 800; cursor: pointer; }
-.route-map-toolbar button:hover:not(:disabled) { border-color: var(--accent); background: var(--hover-bg); }
+.route-map-toolbar {
+  position: absolute;
+  z-index: 8;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border-soft);
+  border-radius: 5px;
+  background: var(--paper-solid);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .24);
+}
+.route-map-toolbar button {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  background: var(--paper-soft);
+  color: var(--text-main);
+  padding: 0;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.route-map-toolbar button:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--hover-bg);
+}
 .route-map-toolbar button:disabled { opacity: .38; cursor: default; }
 .route-map-toolbar output { width: 46px; color: var(--text-main); font-size: 11px; font-weight: 800; text-align: center; }
-/* 桌面端操作提示：紧挨缩放控件**右侧**、同一水平线上。
-   工具栏 left:10px、实测宽 158px（4px padding×2 + 4 个 30px 控件 + 3 个 4px gap + 百分比格），
-   故 left = 10 + 158 + 8 = 176px；行高与工具栏等高（4+30+4）保持垂直居中。
-   颜色与左侧百分比一致（同为 --text-main），字号比正文大一号。
-   默认隐藏，仅「有精确指针（鼠标）」的桌面端显示——触屏端是双指缩放，没有 Ctrl+滚轮。 */
-.route-map-hint { display: none; position: absolute; z-index: 5; top: 10px; left: 176px; color: var(--text-main); font-size: 13px; line-height: 38px; white-space: nowrap; pointer-events: none; }
+/* 桌面端操作提示：紧挨缩放控件右侧（left = 10 + 158 + 8 = 176px），触屏端隐藏 */
+.route-map-hint {
+  display: none;
+  position: absolute;
+  z-index: 8;
+  top: 10px;
+  left: 176px;
+  color: var(--text-main);
+  font-size: 13px;
+  line-height: 38px;
+  white-space: nowrap;
+  pointer-events: none;
+}
 @media (hover: hover) and (pointer: fine) {
   .route-map-hint { display: block; }
 }
-.route-map-scroll { position: relative; width: 100%; height: clamp(360px,54vh,620px); overflow: hidden; padding: 2px 0 8px; touch-action: none; cursor: grab; user-select: none; border: 1px solid var(--border-soft); border-radius: 6px; background: var(--paper-dark); scrollbar-width: none; }
+.route-map-scroll {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 54vh, 620px);
+  overflow: hidden;
+  padding: 2px 0 8px;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--paper-dark);
+  box-shadow: inset 0 1px 0 rgba(255, 248, 232, 0.22), inset 0 0 24px rgba(62, 42, 20, 0.08);
+  scrollbar-width: none;
+}
 .route-map-scroll::-webkit-scrollbar { display: none; }
 .route-map-scroll:active { cursor: grabbing; }
 .route-map-space { position: relative; min-width: 100%; min-height: 100%; }
 .route-map { position: absolute; left: 0; top: 0; transform-origin: top left; overflow: visible; }
-.route-map__links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.route-map__link { fill: none; stroke: rgba(220,196,147,.42); stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
-.route-map__link--active { stroke: var(--accent); stroke-width: 12; }
-.route-node-group { position: absolute; z-index: 1; transform: translate(-50%,-50%); display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; max-width: 190px; }
-.route-node-expand { position: absolute; z-index: 3; top: -18px; left: 50%; width: 20px; height: 20px; transform: translateX(-50%); display: grid; place-items: center; border: 1px solid rgba(84,62,34,.45); border-radius: 50%; background: var(--paper-soft); color: var(--text-main); font-size: 14px; font-weight: 800; padding: 0; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.25); }
-.route-node { position: relative; width: 42px; height: 42px; flex: 0 0 42px; display: grid; place-items: center; border: 2px solid rgba(246,227,185,.76); border-radius: 50%; background: var(--paper-soft); color: var(--text-main); padding: 0; cursor: pointer; box-shadow: 0 2px 7px rgba(0,0,0,.35); transition: transform .16s ease,border-color .16s ease,box-shadow .16s ease; }
-.route-node:hover, .route-node--selected { transform: scale(1.12); border-color: var(--accent); box-shadow: 0 0 0 3px rgba(85,117,116,.26),0 3px 10px rgba(0,0,0,.38); }
-.route-node img { width: 36px; height: 36px; object-fit: contain; pointer-events: none; }
-.route-node span { font-size: 12px; font-weight: 800; }
-.route-node__fallback { width: 10px; height: 10px; border: 2px solid var(--accent); border-radius: 50%; background: var(--paper-solid); }
-.route-node--start { border-color: #65bb8c; }
-.route-node--end { border-color: var(--rarity-legend); }
-.route-node__random { position: absolute; right: -5px; top: -7px; display: grid; place-items: center; width: 14px; height: 14px; border: 1px solid var(--paper-solid); border-radius: 50%; background: var(--accent); color: #fff; font-size: 10px; font-style: normal; }
-@media (max-width: 440px) { .route-map-scroll { height: clamp(320px,48vh,440px); } }
+.route-map__links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.route-map__link-casing {
+  fill: none;
+  stroke: rgba(88, 58, 30, 0.26);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.route-map__link-casing--active {
+  stroke: transparent;
+}
+.route-map__link {
+  fill: none;
+  stroke: rgba(235, 220, 192, 0.92);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.route-map__link--active {
+  stroke: var(--accent);
+  stroke-width: 6;
+}
+:global(.dark-mode .route-map__link-casing),
+:global(.dark-theme .route-map__link-casing) {
+  stroke: rgba(14, 10, 6, 0.52);
+}
+:global(.dark-mode .route-map__link--active),
+:global(.dark-theme .route-map__link--active) {
+  stroke: var(--accent-bright);
+}
+.route-node-group {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  max-width: 320px;
+}
+.route-node-group--expanded {
+  z-index: 6;
+  background: rgba(233, 220, 195, 0.96);
+  border: 1.5px solid var(--border-color, #8f7351);
+  border-radius: 10px;
+  padding: 16px 14px 10px;
+  box-shadow: 0 10px 26px rgba(24, 18, 12, 0.34);
+}
+:global(.dark-mode .route-node-group--expanded),
+:global(.dark-theme .route-node-group--expanded) {
+  background: rgba(46, 38, 29, 0.94);
+  border-color: rgba(168, 132, 82, 0.55);
+}
+.route-node-expand {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  right: 6px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(84, 62, 34, 0.55);
+  border-radius: 50%;
+  background: var(--paper-soft);
+  color: var(--text-main);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.28);
+}
+.route-node-expand:hover {
+  background: var(--paper-solid);
+  border-color: var(--accent);
+}
+.route-node {
+  position: relative;
+  width: 96px;
+  height: 62px;
+  flex: 0 0 96px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
+  padding: 0;
+  cursor: pointer;
+  transition: transform .16s ease, filter .16s ease;
+}
+.route-node__tile {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  transition: filter .16s ease;
+}
+.route-tile-rim {
+  fill: #f2e5cb;
+  transition: fill .16s ease;
+}
+.route-tile-face {
+  fill: #8a4728;
+  transition: fill .16s ease;
+}
+.route-node--end .route-tile-rim {
+  fill: #f4be55;
+}
+.route-node:hover,
+.route-node--selected {
+  transform: scale(1.09);
+  z-index: 3;
+}
+.route-node:hover .route-tile-rim,
+.route-node--selected .route-tile-rim {
+  fill: #ffd859;
+}
+.route-node:hover .route-tile-face,
+.route-node--selected .route-tile-face {
+  fill: #a4542d;
+}
+.route-node--selected .route-node__tile {
+  filter: drop-shadow(0 0 6px rgba(242, 184, 56, 0.72));
+}
+.route-node img {
+  position: relative;
+  z-index: 1;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  transform: translateY(-12px);
+  pointer-events: none;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.42));
+}
+.route-node span {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-6px);
+  font-size: 12px;
+  font-weight: 800;
+  color: #f6ead4;
+}
+.route-node__fallback {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #ffd269;
+  border-radius: 50%;
+  background: #8a4728;
+}
+.route-node__random {
+  position: absolute;
+  z-index: 3;
+  right: 10px;
+  bottom: 6px;
+  display: grid;
+  place-items: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border: 1px solid var(--paper-solid);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  font-style: normal;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+@media (max-width: 440px) { .route-map-scroll { height: clamp(320px, 48vh, 440px); } }
 </style>

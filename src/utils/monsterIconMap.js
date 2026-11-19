@@ -1,4 +1,4 @@
-import { getImageUrl } from './env.js'
+import { getImageUrl, handleImageFallback } from './env.js'
 
 /**
  * 怪物 ID 到头像资源名称映射表（全量 240 种怪物配置）
@@ -12,8 +12,8 @@ export const MONSTER_ICON_MAP = {
   "010crazy": "avatar_Mon_010",
   "011": "avatar_Mon_011",
   "011_tower1_40": "avatar_Mon_011",
-  "011_1": "avatar_mon_011",
-  "011_2": "avatar_mon_011",
+  "011_1": "avatar_Mon_011",
+  "011_2": "avatar_Mon_011",
   "012": "avatar_Mon_012",
   "012_elite": "avatar_Mon_012",
   "034": "avatar_Mon_034",
@@ -46,15 +46,15 @@ export const MONSTER_ICON_MAP = {
   "004": "avatar_Mon_004",
   "016_s": "avatar_Mon_016",
   "006": "avatar_Mon_006",
-  "006_s": "avatar_mon_006",
-  "003_egg": "Mon_003_egg",
+  "006_s": "avatar_Mon_006",
+  "003_egg": "avatar_mon_003_egg",
   "007": "avatar_Mon_007",
   "007crazy": "avatar_Mon_007",
   "007_elite": "avatar_Mon_007",
   "008": "avatar_Mon_008",
   "008crazy": "avatar_Mon_008",
   "008_elite": "avatar_Mon_008",
-  "012_1": "avatar_mon_012",
+  "012_1": "avatar_Mon_012",
   "009": "avatar_Mon_009",
   "009crazy": "avatar_Mon_009",
   "009_fenLie": "avatar_Mon_009",
@@ -307,14 +307,24 @@ export const MONSTER_ICON_MAP = {
   "s_2_1_ycc": "avatar_Mon_051"
 }
 
+// 预编译 JSON 与原表里部分头像存在大小写差异，在 Linux 区分大小写环境下会 404，这里统一归一到实际文件名
+const ICON_FILENAME_FIXES = {
+  avatar_mon_006: 'avatar_Mon_006',
+  avatar_mon_011: 'avatar_Mon_011',
+  avatar_mon_012: 'avatar_Mon_012',
+  Mon_003_egg: 'avatar_mon_003_egg'
+}
+
+const normalizeMonsterIconName = name => ICON_FILENAME_FIXES[name] || name
+
 /**
  * 根据 monster 对象或 typeId 安全解析头像名称
  */
 export function getMonsterIconName(monsterOrId, explicitIcon = '') {
-  if (explicitIcon) return explicitIcon
+  if (explicitIcon) return normalizeMonsterIconName(explicitIcon)
   if (!monsterOrId) return ''
   const typeId = typeof monsterOrId === 'object' ? (monsterOrId.typeId || monsterOrId.id) : String(monsterOrId)
-  if (typeof monsterOrId === 'object' && monsterOrId.icon) return monsterOrId.icon
+  if (typeof monsterOrId === 'object' && monsterOrId.icon) return normalizeMonsterIconName(monsterOrId.icon)
   if (!typeId) return ''
   
   if (MONSTER_ICON_MAP[typeId]) return MONSTER_ICON_MAP[typeId]
@@ -345,4 +355,29 @@ export function getMonsterAvatarUrl(monsterOrId, explicitIcon = '') {
   const iconName = getMonsterIconName(monsterOrId, explicitIcon)
   if (!iconName) return ''
   return getImageUrl(`/images/HeadIconAtals/${iconName}.webp`)
+}
+
+/**
+ * 怪物小头像加载失败时的多级兜底（图鉴图标 → 补零图鉴图标 → 模型预览 → 统一占位图）
+ */
+export function handleMonsterIconError(event, mon) {
+  const img = event?.target
+  if (!img) return
+  const typeId = String(mon?.typeId || '')
+  const clean = typeId.replace(/^(?:mon_|pet_)/i, '').replace(/_(?:rf|h|srb|elite|boss|fenLie|crazy|main_03|main_02|\d+)$/i, '')
+  const padded = clean.padStart(3, '0')
+  const step = Number(img.dataset.fallbackStep || 0)
+
+  if (step === 0) {
+    img.dataset.fallbackStep = '1'
+    img.src = getImageUrl(`/images/PicHandBookPanel_Atlas/colect_mon_${clean}.webp`)
+  } else if (step === 1) {
+    img.dataset.fallbackStep = '2'
+    img.src = getImageUrl(`/images/PicHandBookPanel_Atlas/colect_mon_${padded}.webp`)
+  } else if (step === 2) {
+    img.dataset.fallbackStep = '3'
+    img.src = getImageUrl(`/images/model-previews/mon_${padded}.webp`)
+  } else {
+    handleImageFallback(event)
+  }
 }

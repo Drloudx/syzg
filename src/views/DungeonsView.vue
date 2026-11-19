@@ -168,7 +168,7 @@
                           :alt="mon.name"
                           loading="lazy"
                           decoding="async"
-                          @error="handleImageFallback"
+                          @error="handleMonsterIconError($event, mon)"
                         />
                         <span class="mon-name-txt">{{ mon.name }}</span>
                         <span class="mon-count-txt">×{{ mon.count }}</span>
@@ -203,7 +203,7 @@
                   </div>
                 </div>
                 <p v-else-if="selectedRouteRoom.npcCount">NPC ×{{ selectedRouteRoom.npcCount }}</p>
-                <p v-else class="route-room-detail__muted">普通战斗房间</p>
+                <p v-else :class="{ 'route-room-detail__muted': !selectedRouteRoom.effects?.length }">{{ roomInteractionText(selectedRouteRoom) }}</p>
               </div>
             </div>
             <div v-if="selectedRouteRoom.effects?.length" class="room-effects room-effects--route">
@@ -223,15 +223,24 @@
                 <UiTag v-for="entry in selectedRouteDrops" :key="entry.typeId" tone="default" :quality="entry.quality || 0">{{ entry.name }}</UiTag>
               </div>
             </div>
-            <p v-if="selectedRouteRoom.variants?.length > 1" class="route-room-detail__candidates">该位置有 {{ selectedRouteRoom.variants.length }} 种候选房间，进入副本时按游戏配置随机确定。</p>
             <div v-if="selectedRouteNode?.candidateOptions?.length > 1" class="route-room-detail__options">
-              <strong>随机候选</strong>
-              <span v-for="option in selectedRouteNode.candidateOptions" :key="`${selectedRouteNode.id}-${option.typeId}`">{{ candidateLabel(option) }}</span>
+              <strong>随机候选（{{ selectedRouteNode.candidateOptions.length }} 选 1，进图随机）</strong>
+              <div class="route-room-detail__option-list">
+                <button
+                  v-for="option in selectedRouteNode.candidateOptions"
+                  :key="`${selectedRouteNode.id}-${option.typeId}`"
+                  type="button"
+                  class="route-room-option-btn"
+                  :class="{ 'is-active': option.typeId === selectedRouteRoom.typeId }"
+                  @click="selectedRouteVariantId = option.typeId"
+                >{{ candidateLabel(option) }}</button>
+              </div>
             </div>
+            <RoomContentList v-if="displayRoomCards.length" :rooms="displayRoomCards" details-only @item-click="goToItem" />
           </div>
         </UiSection>
 
-        <UiSection v-if="selectedBattle.rooms?.length" title="房间内容与掉落来源">
+        <UiSection v-if="selectedBattle.rooms?.length && (!selectedBattle.routes?.length || !selectedRouteRoom)" title="房间内容与掉落来源">
           <RoomContentList :rooms="displayRoomCards" @item-click="goToItem" />
         </UiSection>
 
@@ -362,6 +371,7 @@ import RoomContentList from '../components/RoomContentList.vue'
 import RewardPools from '../components/RewardPools.vue'
 import { openRewardDetail } from '../utils/rewardModalState.js'
 import { getImageUrl, handleImageFallback, RESOURCE_BUILD_ID } from '../utils/env.js'
+import { handleMonsterIconError } from '../utils/monsterIconMap.js'
 import { openMonsterDetail } from '../utils/monsterModalState.js'
 import { getRoomNpcs } from '../utils/roomNpcMap.js'
 import { BASE_REWARD_PATHS, MAP_NAMES } from '../utils/gameMappings.js'
@@ -905,7 +915,23 @@ const handleStorySummaryClick = (dungeonId, count, event) => {
   setStoryOpen(dungeonId, false)
 }
 
-const candidateLabel = (option) => selectedRouteRoom.value?.variants?.find(variant => variant.typeId === option?.typeId)?.name || '未命名候选'
+const CANDIDATE_NAME_MAP = {
+  buff: '随机增益（Buff）',
+  恢复: '恢复房间'
+}
+const candidateLabel = (option) => {
+  const raw = selectedRouteRoom.value?.variants?.find(variant => variant.typeId === option?.typeId)?.name || '未命名候选'
+  return CANDIDATE_NAME_MAP[raw.trim()] || raw
+}
+const roomInteractionText = (room) => {
+  if (!room) return '无特殊交互'
+  if (room.effects?.length) return room.effects.map(effect => effect.title).filter(Boolean).join('、') || '房间效果'
+  if (selectedRouteNode.value?.id && selectedRouteNode.value.id === selectedRouteLayer.value?.startRoomId) return '副本入口（非战斗）'
+  if (room.notFightRoom || !room.monsters?.length) return '非战斗房间'
+  if (/boss|首领/i.test(room.kind || '')) return '首领战斗'
+  if (/精英/.test(room.kind || '')) return '精英战斗'
+  return '普通战斗房间'
+}
 
 watch([mapFilter, searchQuery], () => {
   const query = {}
@@ -988,14 +1014,14 @@ watch(() => [route.query.map, route.query.q], ([map, q]) => {
 .drop-note { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border-soft); line-height: 1.6; }
 .drop-note--room-intro { margin: 0 0 10px; padding: 0 0 8px; border-top: 0; border-bottom: 1px dashed var(--border-soft); }
 /* 房间内容与掉落来源的卡片样式随 RoomContentList 组件走，这里只保留路线详情用到的效果块。 */
-.room-effects { display: grid; gap: 6px; margin-top: 7px; }
-.room-effects--route { margin-top: 9px; border-top: 1px dashed var(--border-soft); padding-top: 7px; }
-.room-effect { min-width: 0; border-left: 2px solid var(--accent); padding-left: 8px; }
-.room-effect > strong { color: var(--text-main); font-size: 11px; }
-.room-effect > p { margin: 2px 0 0; color: var(--text-sub); font-size: 12px; line-height: 1.5; }
-.room-effect__options { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
-.room-effect__options span { border: 1px solid var(--border-soft); border-radius: 3px; background: var(--paper-solid); padding: 3px 6px; color: var(--text-sub); font-size: 11px; line-height: 1.4; }
-.room-effect__options b { margin-right: 5px; color: var(--text-main); }
+.room-effects { display: grid; gap: 8px; margin-top: 8px; }
+.room-effects--route { margin-top: 9px; border-top: 1px dashed var(--border-soft); padding-top: 8px; }
+.room-effect { min-width: 0; border-left: 2px solid var(--accent); padding-left: 9px; }
+.room-effect > strong { display: block; color: var(--text-main); font-size: 13px; font-weight: 700; }
+.room-effect > p { margin: 3px 0 0; color: var(--text-main); font-size: 13px; line-height: 1.55; }
+.room-effect__options { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.room-effect__options span { border: 1px solid var(--border-soft); border-radius: 4px; background: var(--paper-solid); padding: 4px 8px; color: var(--text-main); font-size: 12px; line-height: 1.45; }
+.room-effect__options b { margin-right: 6px; color: var(--text-main); }
 .special-drops { margin: 0 0 18px; }
 .special-drops :deep(.ui-empty-state) { padding: 24px 16px; }
 .special-drops__tabs { width: 100%; margin-bottom: 9px; }
@@ -1020,18 +1046,32 @@ watch(() => [route.query.map, route.query.q], ([map, q]) => {
 .route-room-detail__heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .route-room-detail__eyebrow { color: var(--text-muted); font-size: 10px; font-weight: 700; }
 .route-room-detail h3 { margin: 2px 0 0; color: var(--text-main); font-size: 15px; }
-.route-room-detail__candidates { margin: 7px 0 0; color: var(--text-muted); font-size: 12px; line-height: 1.55; }
+.route-room-detail__candidates { margin: 8px 0 0; color: var(--text-main); font-size: 12.5px; line-height: 1.55; }
 
 .route-room-detail__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 9px; }
 .route-room-detail__grid > div { min-width: 0; border-top: 1px dashed var(--border-soft); padding-top: 7px; }
-.route-room-detail__grid strong, .route-room-detail__drops > strong { color: var(--text-main); font-size: 11px; }
-.route-room-detail__grid p { margin: 3px 0 0; color: var(--text-sub); font-size: 12px; line-height: 1.5; }
+.route-room-detail__grid strong, .route-room-detail__drops > strong { color: var(--text-main); font-size: 12px; }
+.route-room-detail__grid p { margin: 3px 0 0; color: var(--text-main); font-size: 12.5px; line-height: 1.55; }
 .route-room-detail__muted { color: var(--text-muted) !important; }
 .route-room-detail__drops { margin-top: 9px; border-top: 1px dashed var(--border-soft); padding-top: 7px; }
 .route-room-detail__drop-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
-.route-room-detail__options { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 8px; margin-top: 8px; border-top: 1px dashed var(--border-soft); padding-top: 7px; color: var(--text-muted); font-size: 11px; }
+.route-room-detail__options { display: flex; flex-direction: column; gap: 6px; margin-top: 9px; border-top: 1px dashed var(--border-soft); padding-top: 8px; color: var(--text-main); font-size: 12px; }
 .route-room-detail__options strong { color: var(--text-main); }
-.route-room-detail__options span { padding: 2px 5px; border: 1px solid var(--border-soft); border-radius: 3px; background: var(--paper-solid); }
+.route-room-detail__option-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.route-room-option-btn {
+  padding: 4px 9px;
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  background: var(--paper-solid);
+  color: var(--text-main);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-ui);
+  cursor: pointer;
+  transition: border-color .15s, background-color .15s;
+}
+.route-room-option-btn:hover { border-color: var(--accent); background: var(--hover-bg); }
+.route-room-option-btn.is-active { border-color: var(--accent); background: var(--hover-bg); font-weight: 700; }
 @media (max-width: 1024px) {
   .dungeon-scroll { padding-bottom: calc(88px + var(--floating-control-size, 44px) + var(--safe-bottom, 0px)); }
 }
