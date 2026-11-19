@@ -376,16 +376,20 @@ const OutcomeDetails = defineComponent({
 }
 
 .ad-node-banner {
+  align-self: center;
+  max-width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 220px;
+  border: 1px solid rgba(143, 115, 81, 0.28);
 }
 
 .ad-node-banner img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   max-height: 220px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .ad-node-text,
