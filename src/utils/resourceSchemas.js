@@ -125,7 +125,13 @@ const schemas = {
       && Array.isArray(relic.resonances))
     && recordList(data.fapan) && data.fapan.every(entry => Number.isFinite(entry.width) && Number.isFinite(entry.height)
       && Array.isArray(entry.cells) && entry.cells.length === entry.width * entry.height)
-    && isList(data.dungeons) && isRecord(data.categoryNames) && isRecord(data.rules)
+    && isList(data.dungeons) && isRecord(data.categoryNames) && isRecord(data.rules),
+  /**
+   * `data/parsed/activity-dungeons.json`（活动副本 / 秘境爬塔）。
+   */
+  'data/parsed/activity-dungeons.json': data => isRecord(data) && data.schemaVersion === 1
+    && isList(data.dungeons) && data.dungeons.every(d => isRecord(d) && typeof d.id === 'string'
+      && isList(d.layers) && isList(d.roomPools) && isList(d.events) && isList(d.shop))
 }
 
 export function validateResource(path, data) {

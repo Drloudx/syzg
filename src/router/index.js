@@ -285,6 +285,16 @@ const routes = [
     meta: { title: '神匠之塔' }
   },
   {
+    /**
+     * 活动副本（秘境爬塔玩法，如 sp1 亚空回廊·特异次元）。
+     * URL 契约：`?dungeon=<id>&tab=layers|rooms|events|rules&layer=<n>&event=<eventId>`。
+     */
+    path: '/activity-dungeons',
+    name: 'activity-dungeons',
+    component: () => import('../views/ActivityDungeonsView.vue'),
+    meta: { title: '活动副本' }
+  },
+  {
     path: '/gacha',
     name: 'gacha',
     component: () => import('../views/GachaView.vue')

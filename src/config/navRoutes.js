@@ -27,6 +27,7 @@ export const NAV_ROUTES = [
   { name: '货运站', path: '/freight', icon: '/ui/cart_wagon.webp' },
   { name: '日常计划', path: '/daily', icon: '/ui/plan02.webp' },
   { name: '神匠之塔', path: '/tower', icon: '/ui/item_25002.webp' },
+  { name: '活动副本', path: '/activity-dungeons', icon: '/ui/item_20035.webp' },
   { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
   { name: '抽卡分析', path: '/gacha/analysis', icon: '/ui/item_20004_analysis.webp' },
   { name: '相关模拟', path: '/sims', icon: '/ui/colect_mon_072.webp' },
@@ -45,7 +46,8 @@ export const NAV_CATEGORY_DEFINITIONS = [
       '/events', '/recipes', '/achievement',
       /* 日常计划放图鉴资料末尾：它读的是关卡与掉落，性质接近图鉴 */
       '/daily',
-      '/tower'
+      '/tower',
+      '/activity-dungeons'
     ]
   },
   {

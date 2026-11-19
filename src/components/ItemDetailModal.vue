@@ -1718,7 +1718,7 @@ const canNavigateToSource = (src) => {
     const recipe = facilityCraftingRecipes.value.find(r => r.facility === src.facility && Number(r.level) === Number(src.level))
     if (recipe && !canOpenFacilityRecipe(recipe)) return false
   }
-  return ['monster', 'achievement', 'recipe', 'pvp', 'hidden', 'task', 'exchange', 'dungeon', 'stage', 'smithing', 'facility', 'event', 'explore', 'plant', 'camp', 'container', 'gacha'].includes(src.type)
+  return ['monster', 'achievement', 'recipe', 'pvp', 'hidden', 'task', 'exchange', 'dungeon', 'stage', 'smithing', 'facility', 'event', 'explore', 'plant', 'camp', 'container', 'gacha', 'relicFirst', 'relicClear', 'relicExplore', 'relicEvent'].includes(src.type)
 }
 
 const handleSourceClick = (src) => {
@@ -1805,6 +1805,24 @@ const handleSourceClick = (src) => {
       kind: src.poolKind || 'hero',
       pool: src.id || '',
       view: 'pool'
+    }
+  }
+  else if (src.type === 'relicFirst' || src.type === 'relicClear' || src.type === 'relicExplore') {
+    const dungeonId = String(src.id || '').split(':')[0] || ''
+    const layerMatch = String(src.des || '').match(/第\s*(\d+)/)
+    targetPath = '/activity-dungeons'
+    targetQuery = {
+      ...(dungeonId ? { dungeon: dungeonId } : {}),
+      tab: 'layers',
+      ...(layerMatch ? { layer: layerMatch[1] } : {})
+    }
+  }
+  else if (src.type === 'relicEvent') {
+    const eventId = String(src.id || '').split(':')[0] || ''
+    targetPath = '/activity-dungeons'
+    targetQuery = {
+      tab: 'events',
+      ...(eventId ? { event: eventId } : {})
     }
   }
 

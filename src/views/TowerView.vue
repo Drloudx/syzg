@@ -32,7 +32,7 @@
         </div>
         <button type="button" class="shop-trigger-btn" @click="openShop">
           <span class="btn-cube-icon" :style="{ '--icon-url': cssUrl(exchangeIconUrl) }" aria-hidden="true"></span>
-          <span>幻象立方兑换中心</span>
+          <span>幻象立方兑换</span>
           <span class="btn-arrow">→</span>
         </button>
       </div>
@@ -209,10 +209,10 @@
       </template>
     </UiVirtualGrid>
 
-    <!-- 幻象立方兑换中心弹窗 -->
+    <!-- 幻象立方兑换弹窗 -->
     <UiModal
       v-model:visible="shopModalOpen"
-      title="幻象立方兑换中心"
+      title="幻象立方兑换"
       width="780px"
     >
       <div class="tower-shop-modal">
@@ -256,7 +256,7 @@
                 <span class="cost-label">兑换消耗：</span>
                 <div class="cost-pill">
                   <span class="cost-icon" :style="{ '--icon-url': cssUrl(exchangeIconUrl) }" aria-hidden="true"></span>
-                  <span class="cost-val">{{ item.costCube }}</span>
+                  <span>幻象立方 ×{{ item.costCube }}</span>
                 </div>
               </div>
             </div>
@@ -540,15 +540,14 @@ onMounted(() => {
 /* 顶部辅助条（柔和羊皮纸微底色） */
 .filter-extra-bar {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 10px;
   padding: 8px 12px;
   background: rgba(143, 115, 81, 0.08);
   border: 1px dashed rgba(143, 115, 81, 0.35);
   border-radius: 6px;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .tower-summary-hint {
@@ -1091,130 +1090,111 @@ onMounted(() => {
   font-weight: normal;
 }
 
-/* 兑换商店弹窗内样式 */
+/* 兑换弹窗内样式（除兑换消耗标签外，与夜之符兑换保持一致） */
 .tower-shop-modal {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 4px;
+  gap: 14px;
 }
 
 .shop-intro-banner {
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: rgba(234, 221, 199, 0.72);
-  border: 1px solid rgba(143, 115, 81, 0.38);
+  gap: 12px;
+  padding: 12px;
   border-radius: 8px;
-  padding: 12px 16px;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 5px rgba(62, 42, 20, 0.05);
+  background: rgba(143, 115, 81, 0.12);
+  border: 1px solid rgba(143, 115, 81, 0.25);
 }
 
 .shop-cube-large {
   display: inline-block;
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   background-image: var(--icon-url, none);
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
 }
 
 .shop-intro-text h4 {
-  margin: 0 0 4px 0;
+  margin: 0 0 4px;
   font-size: 15px;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
 }
 
 .shop-intro-text p {
   margin: 0;
-  font-size: 12.5px;
-  color: #6b5134;
+  font-size: 13px;
+  color: #7b6348;
   line-height: 1.5;
 }
 
 .shop-items-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .shop-item-card {
   display: flex;
-  gap: 12px;
-  background: rgba(246, 237, 222, 0.85);
-  border: 1px solid rgba(143, 115, 81, 0.32);
+  gap: 10px;
+  padding: 10px;
   border-radius: 8px;
-  padding: 11px;
-  box-shadow: 0 1px 3px rgba(62, 42, 20, 0.06);
-  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-}
-
-.shop-item-card:hover {
-  background: rgba(250, 243, 230, 0.95);
-  border-color: rgba(143, 115, 81, 0.55);
-  box-shadow: 0 3px 8px rgba(62, 42, 20, 0.1);
-  transform: translateY(-1px);
+  border: 1px solid rgba(143, 115, 81, 0.34);
+  background: rgba(232, 218, 193, 0.9);
 }
 
 .shop-item-icon-col {
+  width: 72px;
   flex-shrink: 0;
 }
 
 .shop-item-details {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-width: 0;
+  gap: 5px;
 }
 
 .shop-item-head {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 6px;
 }
 
 .shop-item-title {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 700;
-  color: #3e2a14;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: var(--text-main, #3e2a14);
 }
 
 .shop-limit-tag {
-  font-size: 12px;
-  font-weight: 700;
-  color: #7a4f1d;
-  background: rgba(143, 115, 81, 0.14);
-  border: 1px solid rgba(143, 115, 81, 0.28);
-  padding: 2px 8px;
+  font-size: 11px;
+  padding: 2px 6px;
   border-radius: 4px;
-  flex-shrink: 0;
-  letter-spacing: 0.2px;
+  background: rgba(143, 115, 81, 0.14);
+  color: #7a4f1d;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .shop-item-desc {
-  margin: 4px 0;
-  font-size: 11.5px;
+  margin: 0;
+  font-size: 12px;
   color: #7b6348;
-  line-height: 1.4;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  line-height: 1.45;
 }
 
 .shop-cost-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 6px;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
 }
 
 .cost-label {
@@ -1226,22 +1206,20 @@ onMounted(() => {
 .cost-pill {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  background: rgba(124, 58, 237, 0.09);
-  border: 1px solid rgba(124, 58, 237, 0.28);
-  padding: 2px 9px;
-  border-radius: 12px;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(139, 90, 43, 0.13);
   font-size: 12px;
-  font-weight: 800;
-  color: #5b21b6;
-  box-shadow: 0 1px 2px rgba(91, 33, 182, 0.08);
+  font-weight: 600;
+  color: #4e3422;
 }
 
 .cost-icon {
   display: inline-block;
   flex-shrink: 0;
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   background-image: var(--icon-url, none);
   background-repeat: no-repeat;
   background-position: center;

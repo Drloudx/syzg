@@ -78,6 +78,22 @@
             <button class="icon-btn" @click.stop="isAccountOpen = true" title="账号">
               <img :src="getImageUrl('/ui/account.svg')" alt="账号" class="theme-icon-img" />
             </button>
+            <!-- 平板 / 原生壳顶部导航入口（仅 769~1024px 或原生壳，手机端在下方搜索栏旁） -->
+            <button
+              v-if="navTriggerMode === 'header' && !isGachaFullscreen"
+              type="button"
+              class="icon-btn tablet-nav-btn"
+              :class="{ 'is-active': isNavOpen, 'mobile-only': !isNative }"
+              aria-label="打开导航菜单"
+              title="导航菜单"
+              @click.stop="isNavOpen = !isNavOpen"
+            >
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="17" x2="20" y2="17"></line>
+              </svg>
+            </button>
             <div class="settings-container">
               <button class="icon-btn" @click.stop="toggleSettings" title="设置">
                 <img :src="getImageUrl('/ui/setting.svg')" alt="设置" class="setting-icon-img" />
@@ -138,6 +154,22 @@
             @focus="handleSearchFocus"
             @select="handleSelectSearchResult"
           />
+          <button
+            v-if="navTriggerMode === 'header' && !isGachaFullscreen"
+            type="button"
+            class="mobile-nav-btn"
+            :class="{ 'is-active': isNavOpen }"
+            aria-label="打开导航菜单"
+            title="导航菜单"
+            @click.stop="isNavOpen = !isNavOpen"
+          >
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true">
+              <line x1="4" y1="7" x2="20" y2="7"></line>
+              <line x1="4" y1="12" x2="20" y2="12"></line>
+              <line x1="4" y1="17" x2="20" y2="17"></line>
+            </svg>
+            <span>导航</span>
+          </button>
         </div>
       </div>
     </header>
@@ -258,8 +290,9 @@
       </div>
     </div>
 
-    <!-- 移动端边缘吸附可拖动快捷菜单挂件（方案 A）：二合一吸边手柄，点击展开顶部与导航 -->
+    <!-- 移动端边缘吸附可拖动快捷菜单挂件（仅悬浮球模式启用） -->
     <EdgeFloatingWidget
+      v-if="navTriggerMode === 'floating'"
       :hidden="isGachaFullscreen"
       @toggle-nav="isNavOpen = !isNavOpen"
     />
@@ -269,7 +302,7 @@
       
     <!-- 全局弹窗 -->
     <UpdateModal ref="updateModalRef" />
-    <MenuModeModal v-model="showMenuModeModal" v-model:mode="menuMode" />
+    <MenuModeModal v-model="showMenuModeModal" v-model:mode="menuMode" v-model:trigger-mode="navTriggerMode" />
     <NoticeModal v-model="showNoticeModal" />
     <VersionCheckModal v-model="showVersionCheckModal" @request-update="handleRequestUpdate" />
     <AboutModal v-model="showAboutModal" />
@@ -385,6 +418,8 @@ const PAGE_TITLES = {
   '/petseggs': '魔物收益',
   '/dungeons': '副本图鉴',
   '/chapters': '关卡图鉴',
+  '/tower': '神匠之塔',
+  '/activity-dungeons': '活动副本',
   '/glossary': '词条',
   '/gacha': '模拟招募',
   '/gacha/analysis': '抽卡分析',
@@ -686,6 +721,8 @@ const messageCallback = ref(null)
  * 用户改过之后以 `localStorage.menuMode` 为准（设置 → 切换菜单模式）。
  */
 const menuMode = ref(localStorage.getItem('menuMode') || 'bottom')
+const savedTriggerMode = localStorage.getItem('navTriggerMode')
+const navTriggerMode = ref(savedTriggerMode === 'floating' || savedTriggerMode === 'header' ? savedTriggerMode : 'header')
 const appScrollRoot = ref(null)
 let stickyClipFrame = 0
 let pendingClearRaf = 0
@@ -1234,8 +1271,44 @@ onBeforeUnmount(() => { itemLoadOperation += 1 })
     display: none;
   }
   .mobile-search-row {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
+  .mobile-search {
+    flex: 1;
+    min-width: 0;
+  }
+  .header-right .tablet-nav-btn {
+    display: none;
+  }
+}
+
+.mobile-nav-btn {
+  height: 36px;
+  padding: 0 11px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid rgba(143, 115, 81, 0.65);
+  border-radius: 4px;
+  background: rgba(70, 52, 36, 0.85);
+  color: var(--on-wood-text);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 1px 0 rgba(223, 206, 179, 0.15), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.mobile-nav-btn:hover,
+.mobile-nav-btn.is-active {
+  background: rgba(85, 117, 116, 0.58);
+  border-color: var(--accent-bright, #7a9a99);
 }
 
 .header-right {
