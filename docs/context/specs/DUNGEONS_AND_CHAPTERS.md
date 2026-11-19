@@ -396,8 +396,9 @@
 - 怪物立绘优先匹配 `PicHandBookPanel_Atlas` 官方立绘，非编号怪物（如 `tower1_damaged` 装置）回退骨骼模型图 `/images/model-previews/`，禁止正则贪婪回退到 `colect_mon_001`。
 - 安瑟恩单元图标对应 `avatar_Mon_042.webp`，禁止覆盖为不存在的 `avatar_Mon_092`。
 
-### 兑换中心与性能
-- 弹窗展示 `itemExchange.json` 中 `tower1` 兑换池，说明文案限定为「契约书、面包、华丽宝箱与升级材料」。
+### 幻象立方兑换与性能
+- 弹窗标题与触发按钮为「幻象立方兑换」（去掉「中心」二字），展示 `itemExchange.json` 中 `tower1` 兑换池，说明文案限定为「契约书、面包、华丽宝箱与升级材料」。
+- 按钮放在 `.filter-extra-bar` 说明文字下方左侧，弹窗卡片布局与视觉风格对齐活动副本「夜之符兑换」，「兑换消耗：」保留 `11px / #7b6348 / 600` 规格。
 - 卡片列表用 `UiVirtualGrid` **窗口化**，只渲染视口内若干行 + `overscan`。实测 1440×900：卡片 15、`<img>` 158、DOM 1787；此前「分批 slice + 哨兵」是只增不减，滚到底 80 张卡、787 个 `<img>`、离屏仍有 735 张解码（约 14 MB 位图）。
 - 🔴 列模板必须写在 `.tower-scroll-container :deep(.ui-card-grid)` 上。`UiVirtualGrid` 从 `getComputedStyle(.ui-card-grid).gridTemplateColumns` 数出列数，再以**内联 style** 写到每行 `.ui-virtual-grid__row`；因此给「行」写列模板永远无效。不覆盖该父级就落回 `UiCardGrid` 默认 `minmax(120px, 1fr)` —— 1440 宽会被分成 5 列 × 136px，塔卡挤成细条、内容竖排到 2201px，整页只剩表头（2026-11-05 实际发生）。塔卡最小列宽 460px，`tests/unit/tower-and-monster-forms.test.mjs` 守着。
 - 塔卡 `user-select: none`：移动端在卡片上拖动滚动会触发文本选择，整块变蓝并盖住立绘。
@@ -409,3 +410,15 @@
 - 理智 / 氪金 / 立方三个**装饰性图标**用 CSS 背景（`--icon-url`）绘制，不生成 `<img>`。
 - 楼层计数器使用标准 `.collection-counter` 与 `.count-num`，字号固定 13px。
 - 分段筛选项（`all` / `N-M` / `boss`）由 `summary` 现算，不写死 `1-20`、`首领关卡 (16层)` 之类的字面量。
+
+---
+
+## 六、活动副本
+
+> 对应路由 `/activity-dungeons`，解析器 `scripts/parse/activityDungeons.mjs`，预解析产物 `public/data/parsed/activity-dungeons.json`。
+
+- **开放判定**：以 `activityList[dungeonId]` 为唯一开关，与 `relics.mjs` 同口径（占位年份 `>= 2900` 如 `sp2` 整章隐藏，开放后自动出现）。
+- **怪物关卡修正**：依据 `Unit.cs`（`RoomDataType.spDungonRoom`）与 `UnitAttribute.InitUnitBaseAttributeData`，每层怪物等级取 `layer.battleLevel`，攻防修正取 `mon.levelScale * layer.battleLevelScale`，生命修正取 `(mon.levelScaleHp || mon.levelScale) * layer.battleLevelScaleHp`。
+- **房间池与事件**：随机战斗房间池支持按第 1～20 层切换预览关卡修正；随机事件弹窗支持交互推演（含全流程「返回上一步」与「重置到起点」）及全分支总览。
+- **层级列表性能**：采用 `UiVirtualGrid` 视口窗口化，列模板设于 `.ad-layers-scroll :deep(.ui-card-grid)`（最小列宽 `460px`），装饰性图标以 CSS `--icon-url` 绘制；点击物品须经 `fetchItemData()` 查出完整对象后再传入 `openItemDetail`。
+- **URL**：`?dungeon=<id>&tab=layers|rooms|events|rules&layer=<n>&event=<eventId>`。

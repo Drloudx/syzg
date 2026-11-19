@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-19 ｜ **最近代码提交**：`59efc5b2` ｜ **分支**：`main`
+**核对时间**：2026-11-20 ｜ **最近代码提交**：`e6c0e91e` ｜ **分支**：`main`
 
 ---
 
@@ -20,10 +20,21 @@
 | 部署 | Cloudflare Pages 项目 `syzg`，推送即上线 |
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
 | 数据源版本 | **1.7.15 付费测 (cdnVer 36, codeVersion 454C1B17)**；热更配置表（59 张，12 张实质变更）、剧情（674 份，6 份变更）、源码（2680 .cs）已同步就绪 |
-| 单测 | `npm run test:unit` **496 项全绿**（含 gacha-analyzer 9 项全绿） |
-| 最近重点修复 | 招募分析（抽卡记录分析与长图分享）重构为四池体系（伙伴限定、魔物限定、伙伴常规、魔物常规），顶部三大指标对齐为伙伴/魔物/常规并支持双色出卡与UP/5星平均，修复缓存拦截强制篡改昵称为探险家的硬编码，默认昵称规范为小小工匠，UID 零硬编码，长图生成与瀑布流斑马纹完全对齐；法盘模拟器支持基础遗器必选勾选与多必选遗器均衡轮流拉满算法（共鸣满额前提下雨露均沾最大化填充），移除排除元素行；右栏「最新讨论」默认触底滚动并清除遮罩 |
+| 单测 | `npm run test:unit` **499 项全绿**（含活动副本 3 项全绿） |
+| 最近重点修复 | 新增「活动副本」图鉴页（`/activity-dungeons`，当前开放 `sp1` 亚空回廊·特异次元 20 层/房间池/事件推演/夜之符兑换），接入 `UiVirtualGrid` 窗口化与 `ItemDetailModal` 来源直达；神匠之塔「幻象立方兑换」对齐夜之符兑换排版并移至文字下方；移动端支持顶部直接导航/侧边悬浮球切换（`navTriggerMode`）；副本路线图 3D 底座与怪物头像多级兜底 |
 | 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；蜘蛛头冠幼体数量异常、料理台自由制作无法烹饪武僧火锅/果香通心粉均已编制反馈材料并输出 Word 提交官方；小麦无法采集已获官方修复关闭 |
 | 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修） |
+
+### 本次推送（2026-11-20）
+
+- **活动副本（亚空回廊·特异次元）独立页面与数据链路落地**：
+  - 新增 `scripts/dev/import-relic-dungeon-assets.mjs`（导入 18 张 WebP，`570.4 KB`）与 `scripts/parse/activityDungeons.mjs`（产出 `public/data/parsed/activity-dungeons.json`，`198 KB`），按 `activityList` 隐藏未定档 `sp2`。
+  - 新增 `/activity-dungeons`（`ActivityDungeonsView.vue` + `ActivityDungeonEventModal.vue`）：「层级挑战」（`UiVirtualGrid` 窗口化）、遭遇房间池（按层预览关卡修正）、随机事件交互推演（全流程「返回上一步」）、夜之符兑换与玩法机制；打通 `ItemDetailModal` `relicFirst`/`relicClear`/`relicExplore`/`relicEvent` 跳转。
+  - 修复点击物品详情传入字符串 `itemId` 导致空白的问题，改为先经 `fetchItemData()` 取完整对象。
+- **神匠之塔兑换对齐与移动端导航切换**：
+  - 「幻象立方兑换」与「夜之符兑换」统一去掉「中心」二字，按钮落在 `.filter-extra-bar` 说明文字下方左侧，弹窗卡片样式对齐并统一亮度。
+  - `App.vue` + `MenuModeModal.vue` 新增 `navTriggerMode`（默认 `'header'` 顶部直接导航，可选 `'floating'` 侧边悬浮球）。
+  - 副本图鉴 `DungeonRouteMap.vue` 3D 节点底座、边线包边、`RoomContentList.vue` `detailsOnly` 精简、以及 `monsterIconMap.js` 大小写规范化与多级头像兜底一并收录。
 
 ### 本次推送（2026-11-19）
 
