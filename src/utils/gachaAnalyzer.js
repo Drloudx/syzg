@@ -124,6 +124,7 @@ export const KNOWN_POOLS = {
   'pet:1': { id: 'pet:1', rawId: '1', name: '魔物常规', kind: 'pet_standard', upTypes: [] },
   'pet:2': { id: 'pet:2', rawId: '2', name: '常规贩售', kind: 'pet_standard', upTypes: [] },
   'pet:3': { id: 'pet:3', rawId: '3', name: '御卫贩售', kind: 'pet_limited', upTypes: ['pet_106'] },
+  'pet:4': { id: 'pet:4', rawId: '4', name: '神秘贩售', kind: 'pet_standard', upTypes: [] },
   'pet:5': { id: 'pet:5', rawId: '5', name: '古堡贩售', kind: 'pet_limited', upTypes: ['pet_104'] },
   // 兼容纯数字键
   '1': { id: 'hero:1', rawId: '1', name: '常规招募', kind: 'hero_standard', upTypes: [] },
@@ -174,7 +175,7 @@ export function classifyPoolKind(pool = {}) {
 /**
  * 欧非评估算法（主流二游与小黑盒抽卡评级体系，基于 2.3% 基础概率与 36 抽保底模型）
  */
-export function evaluateLuckScore({ avgGoldPulls = 25, upRate = 50, goldCount = 0 }) {
+export function evaluateLuckScore({ avgGoldPulls = 24, upRate = 50, goldCount = 0 }) {
   if (goldCount === 0) {
     return {
       title: '暂未出金',
@@ -184,93 +185,75 @@ export function evaluateLuckScore({ avgGoldPulls = 25, upRate = 50, goldCount = 
     }
   }
 
-  // 1. 神话级欧皇档 (平均 <= 16 抽)
-  if (avgGoldPulls <= 16) {
+  // 1. 神话级欧皇档 (平均 <= 15 抽，约前 5% 极欧)
+  if (avgGoldPulls <= 15) {
     if (upRate >= 75) {
       return {
         title: '天命欧皇',
         ratingClass: 'godly',
-        desc: '神迹降临！平均十几抽出金且小保底未曾偏离，深渊群星为你加冕！',
+        desc: '神迹降临！平均十几抽出金且小保底几乎百发百中，深渊群星为你加冕！',
         percentile: 99.5
       }
     }
     if (upRate <= 40) {
       return {
-        title: '歪打正着的欧皇',
+        title: '速金歪王',
         ratingClass: 'godly',
-        desc: '出金速度堪比流星，虽常驻频频偷家，但架不住抽数实在太少了！',
-        percentile: 97.2
+        desc: '出金速度堪比流星，虽常驻频频抢镜，但架不住抽数实在太少了！',
+        percentile: 96.5
       }
     }
     return {
       title: '绝世欧皇',
       ratingClass: 'godly',
       desc: '极为罕见的超凡运气，平均出金极低，欧气震动深渊！',
-      percentile: 98.6
+      percentile: 98.5
     }
   }
 
-  // 2. 超强欧皇档 (16 < avg <= 20 抽)
-  if (avgGoldPulls <= 20) {
-    if (upRate >= 70) {
-      return {
-        title: '气运爆棚',
-        ratingClass: 'godly',
-        desc: '欧气冲天！低抽数出金叠加小保底连胜，探险征程势如破竹！',
-        percentile: 94.0
-      }
-    }
-    return {
-      title: '至尊欧皇',
-      ratingClass: 'godly',
-      desc: '出金抽数大幅领先平均线，欧气源源不绝，羡煞旁人！',
-      percentile: 91.5
-    }
-  }
-
-  // 3. 中度欧皇档 (20 < avg <= 24 抽)
-  if (avgGoldPulls <= 24) {
+  // 2. 大欧传奇档 (15 < avg <= 19 抽，约前 15%)
+  if (avgGoldPulls <= 19) {
     if (upRate >= 70) {
       return {
         title: '天选之子',
+        ratingClass: 'godly',
+        desc: '远超全服平均线的低抽数出金，且小保底屡屡命中真爱，令人称羡！',
+        percentile: 93.5
+      }
+    }
+    return {
+      title: '气运爆棚',
+      ratingClass: 'godly',
+      desc: '出金抽数大幅领先全服均值，好运源源不绝，旅途势如破竹！',
+      percentile: 90.0
+    }
+  }
+
+  // 3. 小欧稳赚档 (19 < avg <= 22.5 抽，优于官方 4.3% 期望)
+  if (avgGoldPulls <= 22.5) {
+    if (upRate >= 65) {
+      return {
+        title: '吉星高照',
         ratingClass: 'lucky',
-        desc: '小保底屡屡命中真爱，出金顺风顺水，令人称羡！',
-        percentile: 86.0
+        desc: '出金节奏明快且小保底胜率可观，抽卡体验十分舒心！',
+        percentile: 79.0
       }
     }
     return {
       title: '欧气满满',
       ratingClass: 'lucky',
-      desc: '运气出众，时常提前撞线出金，探险旅途一路顺风！',
-      percentile: 82.5
+      desc: '运气明显优于全服平均水准，时常提前撞线出金！',
+      percentile: 72.0
     }
   }
 
-  // 4. 小欧档 (24 < avg <= 27 抽)
-  if (avgGoldPulls <= 27) {
-    if (upRate >= 60) {
-      return {
-        title: '小欧怡情',
-        ratingClass: 'lucky',
-        desc: '手气偏佳，小保底胜率可观，稳中透着几分惬意！',
-        percentile: 72.0
-      }
-    }
-    return {
-      title: '略胜一筹',
-      ratingClass: 'lucky',
-      desc: '出金节奏轻快，整体表现小幅优于全服平均水准。',
-      percentile: 65.0
-    }
-  }
-
-  // 5. 正常档 (27 < avg <= 31 抽，主流抽卡评级)
-  if (avgGoldPulls <= 31) {
+  // 4. 正常均衡档 (22.5 < avg <= 26.5 抽，围绕 23.3~24.7 全服理论平均线)
+  if (avgGoldPulls <= 26.5) {
     if (upRate >= 70) {
       return {
         title: '稳中带欧',
         ratingClass: 'normal',
-        desc: '出金抽数中规中矩，但小保底格外给力，稳赚不亏！',
+        desc: '出金抽数贴合全服均值，但小保底格外给力，稳赚不亏！',
         percentile: 58.0
       }
     }
@@ -278,42 +261,42 @@ export function evaluateLuckScore({ avgGoldPulls = 25, upRate = 50, goldCount = 
       return {
         title: '歪卡常客',
         ratingClass: 'unlucky',
-        desc: '抽数符合常理，奈何常驻总是准时来客串，心态要放平！',
-        percentile: 42.0
+        desc: '出金抽数正常，奈何常驻总是准时来客串，下次一定不歪！',
+        percentile: 40.0
       }
     }
     return {
-      title: '平常心欧皇',
+      title: '不欧不非',
       ratingClass: 'normal',
-      desc: '出金抽数与概率模型完美吻合，不偏不倚，稳扎稳打。',
+      desc: '出金抽数与官方 4.3% 综合概率模型高度吻合，不偏不倚，稳扎稳打。',
       percentile: 50.0
     }
   }
 
-  // 6. 微非档 (31 < avg <= 34 抽)
-  if (avgGoldPulls <= 34) {
+  // 5. 偏非保底档 (26.5 < avg <= 30.5 抽)
+  if (avgGoldPulls <= 30.5) {
     if (upRate >= 65) {
       return {
         title: '迟来的真爱',
         ratingClass: 'normal',
-        desc: '虽然出金抽数偏多，但所幸当期 UP 最终都能如期相见！',
-        percentile: 32.0
+        desc: '虽然出金略慢于均值，但当期 UP 大多如期而至，算是不幸中的万幸！',
+        percentile: 33.0
       }
     }
     return {
-      title: '微度非酋',
+      title: '保底常客',
       ratingClass: 'unlucky',
-      desc: '出金多在 30 抽以上徘徊，非气偶有缠身，期待下一波转运！',
+      desc: '出金常逼近 30 抽关口，非气偶有缠身，期待下一发提前转运！',
       percentile: 22.0
     }
   }
 
-  // 7. 纯血非酋档 (avg > 34 抽)
+  // 6. 纯血非酋档 (avg > 30.5 抽)
   if (upRate <= 40) {
     return {
       title: '纯血非酋',
       ratingClass: 'bottom',
-      desc: '次次逼近 36 抽保底且屡屡被常驻背刺，真正的黑洞级非洲大酋长！',
+      desc: '次次逼近 36 抽硬保底且屡屡被常驻背刺，真正的深渊非酋王！',
       percentile: 2.5
     }
   }
@@ -321,8 +304,8 @@ export function evaluateLuckScore({ avgGoldPulls = 25, upRate = 50, goldCount = 
   return {
     title: '大保底战神',
     ratingClass: 'bottom',
-    desc: '吃满 36 抽小保底甚至触发 72 抽大保底，全靠硬保底抬走五星的真勇者！',
-    percentile: 6.0
+    desc: '几乎把把吃满 36 抽小保底甚至 72 抽大保底，全靠硬保底抬走五星的真勇者！',
+    percentile: 6.5
   }
 }
 
@@ -368,12 +351,18 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
   const petMap = options.petMap || KNOWN_PETS
   const poolInfoFallback = options.poolInfo || null
 
-  // 1. 过滤非氪金抽卡记录（剔除魔物蛋「常规贩售 / 常规贩卖」，其在游戏内为普通银币购买，非神晶/招募券抽卡）
+  // 1. 过滤非氪金抽卡记录（剔除魔物蛋「常规贩售 / 常规贩卖 / 神秘贩售」，其在游戏内为普通银币购买，consume_mowu2）
   const validRaw = (rawRecords || []).filter(item => {
     const meta = resolveItemMeta(item, heroMap, petMap)
     const cKey = resolveCanonicalPoolKey(item.poolId, meta.isPet)
     const pname = String(item.poolName || '')
-    if (cKey === 'pet:2' || pname.includes('常规贩售') || pname.includes('常规贩卖')) {
+    if (
+      cKey === 'pet:2' ||
+      cKey === 'pet:4' ||
+      pname.includes('常规贩售') ||
+      pname.includes('常规贩卖') ||
+      pname.includes('神秘贩售')
+    ) {
       return false
     }
     return true
@@ -612,27 +601,35 @@ export function analyzeGachaRecords(rawRecords = [], options = {}) {
     tags.push({ text: `连歪${maxOffStreak}次`, type: 'tag-danger' })
   }
 
-  // 4. 十连双金与超神单抽标签
+  // 4. 十连双金与超神单抽标签（同卡池短时间内连续出金判真·十连双金，否则判十连内连金）
   let hasDoubleGold = false
+  let hasNearDoubleGold = false
   let minGoldPull = 999
   for (let i = 0; i < allGolds.length; i++) {
     if (allGolds[i].pullCount < minGoldPull) {
       minGoldPull = allGolds[i].pullCount
     }
     if (i > 0 && allGolds[i].pullCount <= 10) {
-      hasDoubleGold = true
+      const prev = allGolds[i - 1]
+      const cur = allGolds[i]
+      const samePool = cur.poolKey === prev.poolKey
+      const sameTenPullWindow = samePool && cur.at && prev.at && Math.abs(cur.at - prev.at) <= 15000
+      if (sameTenPullWindow) hasDoubleGold = true
+      else hasNearDoubleGold = true
     }
   }
   if (hasDoubleGold) {
     tags.push({ text: '十连双金', type: 'tag-gold' })
+  } else if (hasNearDoubleGold) {
+    tags.push({ text: '十连内连金', type: 'tag-emerald' })
   }
   if (minGoldPull === 1) {
     tags.push({ text: '单抽出奇迹', type: 'tag-gold' })
   }
 
-  // 5. 出金率标签
-  if (goldRate >= 3.5) {
-    tags.push({ text: `超常出金率 ${goldRate}%`, type: 'tag-emerald' })
+  // 5. 出金率标签（官方综合概率 4.3%，>= 5.5% 才属超常）
+  if (goldRate >= 5.5) {
+    tags.push({ text: `超高出金率 ${goldRate}%`, type: 'tag-emerald' })
   } else if (totalPulls > 0) {
     tags.push({ text: `综合出金率 ${goldRate}%`, type: 'tag-neutral' })
   }

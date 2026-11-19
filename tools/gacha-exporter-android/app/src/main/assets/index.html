@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>深渊招募导出</title>
+  <style>
+    :root {
+      --wood-dark: #2b1f15;
+      --wood-mid: #3b2b1e;
+      --gold-border: #a36f0a;
+      --paper-bg: #f5eede;
+      --card-top: #ebdec9;
+      --card-bottom: #dccaad;
+      --card-border: #8f7351;
+      --inner-bg: #fffdf8;
+      --inner-border: #d8c7b0;
+      --text-main: #2b1f15;
+      --text-muted: #7a6248;
+      --teal: #486b6a;
+      --teal-dark: #375453;
+      --amber: #a36f0a;
+      --amber-dark: #875b08;
+      --emerald: #059669;
+      --blue: #0284c7;
+      --danger: #b91c1c;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--paper-bg);
+      background-image: radial-gradient(rgba(143, 115, 81, 0.08) 1px, transparent 1px);
+      background-size: 16px 16px;
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    /* 顶部深色原木导航栏 */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: linear-gradient(180deg, #332419 0%, var(--wood-dark) 100%);
+      border-bottom: 2px solid var(--gold-border);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    .brand-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #543b28, #2b1f15);
+      border: 1.5px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f8eedc;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: #c9b292;
+    }
+
+    .status-chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      background: var(--wood-mid);
+      border: 1px solid var(--gold-border);
+      color: #fbbf24;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .status-chip.is-ready { color: #34d399; border-color: #10b981; }
+    .status-chip.is-idle { color: #f87171; border-color: #b91c1c; }
+
+    .container {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* 主羊皮纸档案卡 */
+    .profile-card {
+      background: linear-gradient(180deg, var(--card-top) 0%, var(--card-bottom) 100%);
+      border: 2px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      box-shadow: 0 3px 10px rgba(43, 31, 21, 0.14);
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .avatar-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #f7e8d0;
+      border: 2.5px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(60, 42, 22, 0.2);
+    }
+
+    .profile-id-wrap {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profile-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .uid-pill {
+      display: inline-block;
+      margin-top: 3px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #f3ebdb;
+      border: 1px solid #b89d79;
+      font-size: 11px;
+      color: #5f4930;
+    }
+
+    .mini-actions {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .btn-ghost {
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid #b0987a;
+      background: #f5f0e6;
+      color: #3e2a14;
+    }
+    .btn-ghost:active { opacity: 0.8; }
+    .btn-ghost.btn-danger {
+      background: #feeeee;
+      border-color: #e4a8a8;
+      color: var(--danger);
+    }
+
+    /* 双栏关键统计横幅 */
+    .stats-banner {
+      display: flex;
+      align-items: center;
+      background: #f5eee0;
+      border: 1px solid #d1bea5;
+      border-radius: 9px;
+      padding: 8px 10px;
+    }
+
+    .stat-cell {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12.5px;
+    }
+
+    .stat-lbl { color: var(--text-muted); }
+    .stat-val { font-weight: 700; font-size: 14px; color: #be3c50; }
+    .stat-val.mode-blue { color: var(--blue); }
+    .stat-val.mode-green { color: var(--emerald); }
+
+    .stat-divider {
+      width: 1px;
+      height: 18px;
+      background: #d1bea5;
+    }
+
+    /* 胶囊状态 + 右侧虚线印章 */
+    .banner-row {
+      display: flex;
+      align-items: stretch;
+      gap: 8px;
+    }
+
+    .status-pill {
+      flex: 1;
+      background: var(--blue);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-pill.is-synced { background: var(--emerald); }
+    .status-pill.is-warn { background: #b45309; }
+    .btn-primary.btn-warn { background: #b45309; border-color: #92400e; color: #ffffff; }
+
+    .stamp-box {
+      border: 1.2px dashed var(--card-border);
+      background: #eee3ce;
+      border-radius: 8px;
+      padding: 4px 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .stamp-sub { font-size: 10px; color: var(--text-muted); }
+    .stamp-date { font-size: 11.5px; font-weight: 700; color: var(--text-main); }
+
+    /* 三大卡池指标卡（强制三列并排，无进度条） */
+    .triple-cols {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .pool-col {
+      background: var(--inner-bg);
+      border: 1px solid var(--inner-border);
+      border-radius: 9px;
+      padding: 9px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .pcol-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .pcol-pulls {
+      text-align: center;
+      color: var(--text-main);
+    }
+    .pcol-pulls strong { font-size: 19px; font-weight: 800; }
+    .pcol-pulls small { font-size: 11px; margin-left: 1px; }
+
+    .pcol-sub {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      padding-top: 2px;
+      border-top: 1px dashed #eadfce;
+    }
+    .text-green { color: var(--emerald); font-weight: 700; }
+    .text-amber { color: #b45309; font-weight: 700; }
+
+    /* 主操作按钮区 */
+    .action-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      flex: 1;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fffdf8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 2px 6px rgba(43, 31, 21, 0.18);
+    }
+    .btn-primary:disabled { opacity: 0.65; }
+    .btn-teal { background: var(--teal); border: 1px solid var(--teal-dark); }
+    .btn-teal:active { background: var(--teal-dark); }
+    .btn-amber { background: var(--amber); border: 1px solid var(--amber-dark); }
+    .btn-amber:active { background: var(--amber-dark); }
+    .btn-stop { background: #b91c1c; border: 1px solid #991b1b; flex: 0 0 auto; padding: 12px 14px; }
+
+    .btn-secondary {
+      flex: 1;
+      background: #faf4e8;
+      border: 1.2px solid #c8b69f;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #3e2a14;
+      cursor: pointer;
+    }
+    .btn-secondary:active { background: #ede3cf; }
+
+    /* 采样日志流卡片 */
+    .log-card {
+      background: #fcf9f2;
+      border: 1.2px solid #c8b69f;
+      border-radius: 11px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .log-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .log-box {
+      margin: 0;
+      min-height: 120px;
+      max-height: 220px;
+      overflow-y: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: #463424;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <header class="top-header">
+    <div class="brand-left">
+      <div class="brand-badge">
+        <svg viewBox="0 0 36 36" width="22" height="22">
+          <ellipse cx="18" cy="20" rx="11" ry="9" fill="#e486a5" stroke="#f8eedc" stroke-width="1.6"/>
+          <circle cx="14" cy="19" r="1.6" fill="#2b1f15"/>
+          <circle cx="22" cy="19" r="1.6" fill="#2b1f15"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">招募记录导出</div>
+        <div class="brand-sub">深渊之歌抽卡分析</div>
+      </div>
+    </div>
+    <div id="statusChip" class="status-chip is-idle">● 未开启监听</div>
+  </header>
+
+  <main class="container">
+    <!-- 1. 羊皮纸档案与三大指标卡 -->
+    <section class="profile-card">
+      <div class="profile-top">
+        <div class="avatar-circle">
+          <svg viewBox="0 0 36 36" width="28" height="28">
+            <ellipse cx="18" cy="20" rx="11" ry="9" fill="#e486a5" stroke="#784456" stroke-width="1.4"/>
+            <circle cx="14" cy="19" r="1.6" fill="#3e2a14"/>
+            <circle cx="22" cy="19" r="1.6" fill="#3e2a14"/>
+          </svg>
+        </div>
+        <div class="profile-id-wrap">
+          <div id="playerName" class="profile-name">小小工匠</div>
+          <span id="playerUid" class="uid-pill">UID: 未录入</span>
+        </div>
+        <div class="mini-actions">
+          <button type="button" class="btn-ghost" onclick="copyJson()">复制</button>
+          <button type="button" class="btn-ghost btn-danger" onclick="clearCache()">清空</button>
+        </div>
+      </div>
+
+      <div class="stats-banner">
+        <div class="stat-cell">
+          <span class="stat-lbl">总捕获</span>
+          <span id="totalPulls" class="stat-val">0 抽</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-cell">
+          <span class="stat-lbl">抓取模式</span>
+          <span id="modeStatus" class="stat-val mode-blue">等待启动</span>
+        </div>
+      </div>
+
+      <div class="banner-row">
+        <div id="statusPill" class="status-pill">
+          <span id="statusPillText">点击下方开启监听，进游戏触发一次请求即秒拉</span>
+        </div>
+        <div class="stamp-box">
+          <span class="stamp-sub">大书院采样自</span>
+          <span id="stampDate" class="stamp-date">2026年11月19日</span>
+        </div>
+      </div>
+
+      <div class="triple-cols">
+        <div class="pool-col">
+          <div class="pcol-title">伙伴</div>
+          <div class="pcol-pulls"><strong id="heroLimPulls">0</strong><small>抽</small></div>
+          <div class="pcol-sub">
+            <span id="heroLimFive" class="text-green">5星 0</span>
+            <span id="heroTotalInfo">限定池</span>
+          </div>
+        </div>
+        <div class="pool-col">
+          <div class="pcol-title">魔物</div>
+          <div class="pcol-pulls"><strong id="petLimPulls">0</strong><small>抽</small></div>
+          <div class="pcol-sub">
+            <span id="petLimFive" class="text-green">5星 0</span>
+            <span id="petTotalInfo">限定池</span>
+          </div>
+        </div>
+        <div class="pool-col">
+          <div class="pcol-title">常规</div>
+          <div class="pcol-pulls"><strong id="stdPulls">0</strong><small>抽</small></div>
+          <div class="pcol-sub">
+            <span id="stdSplit">伙伴0/魔物0</span>
+            <span id="stdFive" class="text-amber">5星 0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 操作按钮区 -->
+    <section class="action-grid">
+      <div class="action-row">
+        <button id="btnMainCapture" type="button" class="btn-primary btn-teal" onclick="onMainAction()">
+          开启监听并打开《深渊之歌》
+        </button>
+        <button id="btnStopVpn" type="button" class="btn-primary btn-stop" style="display:none" onclick="stopMonitor()">
+          停止
+        </button>
+      </div>
+      <div class="action-row">
+        <button type="button" class="btn-primary btn-amber" onclick="exportAndOpenWiki()">
+          导出并打开 Wiki 分析页
+        </button>
+        <button type="button" class="btn-secondary" style="flex:0 0 auto" onclick="shareJsonFile()">
+          分享文件
+        </button>
+      </div>
+    </section>
+
+    <!-- 3. 日志卡片 -->
+    <section class="log-card">
+      <div class="log-title">采样日志与协议状态</div>
+      <pre id="logBox" class="log-box">就绪：点击「开启监听并打开《深渊之歌》」，授予本地 VPN 权限后切入游戏，点开一次记录查询或任意界面即可 0.4 秒全量同步。</pre>
+    </section>
+  </main>
+
+  <script>
+    const FIVE_STARS = new Set([
+      'hero_019','hero_043','hero_049','hero_050','hero_051','hero_053',
+      'hero_055','hero_060','hero_061','hero_064','hero_065','hero_071',
+      'pet_074','pet_077','pet_078','pet_079','pet_104','pet_106','pet_118'
+    ]);
+
+    function resolveKind(r) {
+      const tId = r.typeId || '';
+      const pId = String(r.poolId || '1');
+      const isPet = tId.startsWith('pet_');
+      if (isPet) {
+        return (pId === '3' || pId === '5') ? 'pet_limited' : 'pet_standard';
+      }
+      return (pId === '2' || pId === '5') ? 'hero_limited' : 'hero_standard';
+    }
+
+    function updateDateStamp() {
+      const d = new Date();
+      document.getElementById('stampDate').textContent =
+        d.getFullYear() + '年' + String(d.getMonth() + 1).padStart(2, '0') + '月' + String(d.getDate()).padStart(2, '0') + '日';
+    }
+    updateDateStamp();
+
+    let latestState = {};
+
+    window.onNativeState = function (raw) {
+      try {
+        const st = typeof raw === 'string' ? JSON.parse(raw) : raw;
+        latestState = st || {};
+        renderState(latestState);
+      } catch (e) {}
+    };
+
+    function renderState(st) {
+      const chip = document.getElementById('statusChip');
+      if (st.hasToken && st.vpnRunning) {
+        chip.textContent = '● 令牌就绪';
+        chip.className = 'status-chip is-ready';
+      } else if (st.vpnRunning) {
+        chip.textContent = '● 监听令牌中';
+        chip.className = 'status-chip';
+      } else {
+        chip.textContent = '● 未开启监听';
+        chip.className = 'status-chip is-idle';
+      }
+
+      document.getElementById('playerName').textContent = st.nickname || '小小工匠';
+      document.getElementById('playerUid').textContent = st.uid ? ('UID: ' + st.uid) : 'UID: 未录入';
+
+      const recs = Array.isArray(st.records) ? st.records : [];
+      let heroLim = 0, heroLim5 = 0, petLim = 0, petLim5 = 0;
+      let stdH = 0, stdP = 0, std5 = 0, totH = 0, totP = 0;
+
+      for (const r of recs) {
+        const k = resolveKind(r);
+        const is5 = FIVE_STARS.has(r.typeId);
+        if ((r.typeId || '').startsWith('pet_')) totP++;
+        else totH++;
+
+        if (k === 'hero_limited') { heroLim++; if (is5) heroLim5++; }
+        else if (k === 'pet_limited') { petLim++; if (is5) petLim5++; }
+        else if (k === 'hero_standard') { stdH++; if (is5) std5++; }
+        else { stdP++; if (is5) std5++; }
+      }
+
+      document.getElementById('totalPulls').textContent = recs.length + ' 抽';
+      const modeEl = document.getElementById('modeStatus');
+      if (st.lastPullMs > 0 && recs.length > 0) {
+        modeEl.textContent = '直连 ' + st.lastPullMs + 'ms';
+        modeEl.className = 'stat-val mode-green';
+      } else if (st.hasToken) {
+        modeEl.textContent = '令牌已就绪';
+        modeEl.className = 'stat-val mode-green';
+      } else if (st.vpnRunning) {
+        modeEl.textContent = '监听中';
+        modeEl.className = 'stat-val mode-blue';
+      } else {
+        modeEl.textContent = '等待启动';
+        modeEl.className = 'stat-val mode-blue';
+      }
+
+      const pill = document.getElementById('statusPill');
+      const pillText = document.getElementById('statusPillText');
+      if (st.lastError) {
+        pill.className = 'status-pill is-warn';
+        pillText.textContent = '⚠ ' + st.lastError;
+      } else if (recs.length > 0) {
+        pill.className = 'status-pill is-synced';
+        pillText.textContent = '已同步 ' + recs.length + ' 条完整记录，点击导出即可查看分析';
+      } else if (st.vpnRunning) {
+        pill.className = 'status-pill';
+        pillText.textContent = '监听中：请切去游戏点开一次记录查询或任意界面';
+      } else {
+        pill.className = 'status-pill';
+        pillText.textContent = '点击下方开启监听，进游戏触发一次请求即自动拉取';
+      }
+
+      document.getElementById('heroLimPulls').textContent = heroLim;
+      document.getElementById('heroLimFive').textContent = '5星 ' + heroLim5;
+      document.getElementById('heroTotalInfo').textContent = '限定池';
+
+      document.getElementById('petLimPulls').textContent = petLim;
+      document.getElementById('petLimFive').textContent = '5星 ' + petLim5;
+      document.getElementById('petTotalInfo').textContent = '限定池';
+
+      document.getElementById('stdPulls').textContent = stdH + stdP;
+      document.getElementById('stdSplit').textContent = '伙伴' + stdH + '/魔物' + stdP;
+      document.getElementById('stdFive').textContent = '5星 ' + std5;
+
+      const btnMain = document.getElementById('btnMainCapture');
+      const btnStop = document.getElementById('btnStopVpn');
+      btnStop.style.display = st.vpnRunning ? 'flex' : 'none';
+      if (st.isPulling) {
+        btnMain.disabled = true;
+        btnMain.className = 'btn-primary btn-teal';
+        btnMain.textContent = '正在抓取中...';
+      } else if (st.lastError && st.vpnRunning && st.hasToken) {
+        btnMain.disabled = false;
+        btnMain.className = 'btn-primary btn-warn';
+        btnMain.textContent = '↻ 重试全量抓取';
+      } else {
+        btnMain.disabled = false;
+        btnMain.className = 'btn-primary btn-teal';
+        btnMain.textContent = (st.vpnRunning && st.hasToken) ? '全量抓取' : (st.vpnRunning ? '切回《深渊之歌》' : '开启监听并打开《深渊之歌》');
+      }
+
+      if (Array.isArray(st.logs) && st.logs.length > 0) {
+        const box = document.getElementById('logBox');
+        box.textContent = st.logs.join('\n');
+        box.scrollTop = box.scrollHeight;
+      }
+    }
+
+    function onMainAction() {
+      if (!window.AndroidExporter) return;
+      if (latestState.vpnRunning && latestState.hasToken) {
+        window.AndroidExporter.pullAllNow();
+      } else {
+        window.AndroidExporter.startMonitorAndGame();
+      }
+    }
+    function stopMonitor() { window.AndroidExporter && window.AndroidExporter.stopMonitor(); }
+    function copyJson() { window.AndroidExporter && window.AndroidExporter.copyJson(); }
+    function clearCache() { window.AndroidExporter && window.AndroidExporter.clearRecords(); }
+    function exportAndOpenWiki() { window.AndroidExporter && window.AndroidExporter.exportAndOpenWiki(); }
+    function shareJsonFile() { window.AndroidExporter && window.AndroidExporter.shareJsonFile(); }
+
+    if (window.AndroidExporter && window.AndroidExporter.getInitialState) {
+      window.onNativeState(window.AndroidExporter.getInitialState());
+    }
+  </script>
+</body>
+</html>

@@ -56,14 +56,17 @@ describe('gachaAnalyzer - 深渊之歌核心机制校验', () => {
     const godLuck = evaluateLuckScore({ avgGoldPulls: 12, upRate: 100, goldCount: 4 })
     assert.equal(godLuck.title, '天命欧皇')
 
-    const lucky = evaluateLuckScore({ avgGoldPulls: 22, upRate: 50, goldCount: 2 })
+    const chosenOne = evaluateLuckScore({ avgGoldPulls: 17, upRate: 80, goldCount: 4 })
+    assert.equal(chosenOne.title, '天选之子')
+
+    const lucky = evaluateLuckScore({ avgGoldPulls: 21, upRate: 50, goldCount: 2 })
     assert.equal(lucky.title, '欧气满满')
 
-    const normalLuck = evaluateLuckScore({ avgGoldPulls: 29, upRate: 50, goldCount: 2 })
-    assert.equal(normalLuck.title, '平常心欧皇')
-    assert.ok(!normalLuck.title.includes('学者'), '彻底告别冷门学者文案')
+    const normalLuck = evaluateLuckScore({ avgGoldPulls: 24.5, upRate: 50, goldCount: 2 })
+    assert.equal(normalLuck.title, '不欧不非')
+    assert.ok(!normalLuck.title.includes('学者') && !normalLuck.title.includes('欧皇'), '正常档不得带自相矛盾的欧皇或冷门学者文案')
 
-    const badLuck = evaluateLuckScore({ avgGoldPulls: 35, upRate: 20, goldCount: 1 })
+    const badLuck = evaluateLuckScore({ avgGoldPulls: 32, upRate: 20, goldCount: 2 })
     assert.ok(badLuck.title.includes('非酋') || badLuck.title.includes('保底'))
   })
 

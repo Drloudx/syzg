@@ -21,13 +21,21 @@
             <span>导入记录</span>
           </UiButton>
 
-          <UiButton variant="secondary" size="sm" @click="downloadExporterTool">
+          <UiButton variant="secondary" size="sm" @click="downloadPcTool">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
-            <span>下载抽卡记录导出工具</span>
+            <span>下载电脑工具</span>
+          </UiButton>
+
+          <UiButton variant="secondary" size="sm" @click="downloadMobileApk">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            <span>下载手机工具</span>
           </UiButton>
         </div>
       </div>
@@ -64,28 +72,86 @@
           </UiButton>
         </div>
 
-        <!-- 极简三步指引 -->
-        <div class="quick-guide-grid">
+        <!-- 平台引导切换：电脑模拟器 / 安卓手机端 -->
+        <div class="guide-platform-tabs" role="tablist" aria-label="选择导出工具平台">
+          <button
+            type="button"
+            class="guide-tab-btn"
+            :class="{ 'is-active': guidePlatform === 'pc' }"
+            @click="guidePlatform = 'pc'"
+          >
+            电脑模拟器端 (.exe)
+          </button>
+          <button
+            type="button"
+            class="guide-tab-btn"
+            :class="{ 'is-active': guidePlatform === 'mobile' }"
+            @click="guidePlatform = 'mobile'"
+          >
+            安卓手机端 (.apk)
+          </button>
+        </div>
+
+        <!-- 四步指引（2x2 宽敞卡片排版） -->
+        <div v-if="guidePlatform === 'pc'" class="quick-guide-grid">
           <div class="guide-step-card">
             <div class="step-header">
               <span class="step-num">01</span>
               <span class="step-title">启动模拟器与游戏</span>
             </div>
-            <div class="step-text">在电脑打开 MuMu 12/15、雷电等模拟器，启动《深渊之歌》并进入游戏主界面。</div>
+            <div class="step-text">打开 MuMu 12/15 或雷电模拟器并开启模拟权限（雷电需同时开本地 ADB 调试）后重启，启动《深渊之歌》进入主界面。</div>
           </div>
           <div class="guide-step-card">
             <div class="step-header">
               <span class="step-num">02</span>
-              <span class="step-title">运行导出工具</span>
+              <span class="step-title">运行电脑导出工具</span>
             </div>
-            <div class="step-text">解压压缩包并双击 <code class="code-badge">深渊之歌抽卡导出工具.exe</code>，待状态灯变绿显示「抽卡监听中」。</div>
+            <div class="step-text">点击右上角【下载电脑工具】，直接双击 <code class="code-badge">深渊之歌抽卡导出工具.exe</code>（单文件免安装），等待状态显示「监听令牌中」。</div>
           </div>
           <div class="guide-step-card">
             <div class="step-header">
               <span class="step-num">03</span>
-              <span class="step-title">翻页捕获并导入</span>
+              <span class="step-title">进游戏自动全拉</span>
             </div>
-            <div class="step-text">进入游戏【招募】→【记录查询】，点击工具「一键全自动翻页」，完成后导出并导入本页。</div>
+            <div class="step-text">在游戏内点开【招募】→【记录查询】，捕获令牌后会自动全量拉取并剔除银币池、同步头像与昵称；若获取失败，点一下翻页再点工具【全量抓取】。</div>
+          </div>
+          <div class="guide-step-card">
+            <div class="step-header">
+              <span class="step-num">04</span>
+              <span class="step-title">导出并导入分析</span>
+            </div>
+            <div class="step-text">点击工具界面【导出并打开 Wiki 分析页】，会自动保存 <code class="code-badge">gacha_records.json</code> 并复制；回本页点【导入记录】导入即可。</div>
+          </div>
+        </div>
+
+        <div v-else class="quick-guide-grid">
+          <div class="guide-step-card">
+            <div class="step-header">
+              <span class="step-num">01</span>
+              <span class="step-title">下载并安装工具</span>
+            </div>
+            <div class="step-text">点击【下载手机工具】安装 <code class="code-badge">深渊之歌抽卡导出工具.apk</code>，兼容官方版与 B 服《深渊之歌》。</div>
+          </div>
+          <div class="guide-step-card">
+            <div class="step-header">
+              <span class="step-num">02</span>
+              <span class="step-title">开启本地监听</span>
+            </div>
+            <div class="step-text">打开 App 点击【开启监听并打开《深渊之歌》】，确认允许建立本地监听通道（仅捕获游戏会话令牌，不经外部服务器）。</div>
+          </div>
+          <div class="guide-step-card">
+            <div class="step-header">
+              <span class="step-num">03</span>
+              <span class="step-title">触发请求自动同步</span>
+            </div>
+            <div class="step-text">切入游戏点开【招募】→【记录查询】或任意界面，自动抓完全部记录并发送通知提示；若获取失败，可在记录内点一下翻页再切回点【全量抓取】。</div>
+          </div>
+          <div class="guide-step-card">
+            <div class="step-header">
+              <span class="step-num">04</span>
+              <span class="step-title">导出或分享导入</span>
+            </div>
+            <div class="step-text">点【导出并打开 Wiki 分析页】自动复制并跳转，或点【分享文件】保存 JSON；回到本页点【导入记录】粘贴或选文件即可查看。</div>
           </div>
         </div>
       </div>
@@ -189,11 +255,11 @@
           </div>
         </div>
 
-        <!-- 当前版本横幅与统计印章（严格对标图2：绿色胶囊《歪打正着的欧皇》+ 黑盒统计自 2024年10月29日） -->
+        <!-- 当前版本横幅与统计印章 -->
         <div class="profile-version-banner">
           <div class="luck-pill-badge" :class="`luck--${analysis.overview.luck.ratingClass}`">
             <span class="pill-prefix">当前<br/>版本</span>
-            <span class="pill-title">《{{ analysis.overview.luck.title }}》</span>
+            <span class="pill-title">{{ luckBadgeGlyph }} 《{{ analysis.overview.luck.title }}》</span>
           </div>
           <div class="stamp-watermark-box">
             <span class="stamp-sub">大书院统计自</span>
@@ -664,29 +730,31 @@
       <button
         type="button"
         class="fab-circle-btn btn-tool"
-        title="导出工具使用教程"
-        @click="handleToolClick"
+        title="下载手机端导出工具 (.apk)"
+        @click="downloadMobileApk"
       >
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-          <polyline points="16 6 12 2 8 6"></polyline>
-          <line x1="12" y1="2" x2="12" y2="15"></line>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
         <span class="fab-circle-text">工具</span>
       </button>
     </div>
 
-    <!-- 手机端轻量提示条 -->
-    <Transition name="fade">
-      <div v-if="toastMessage" class="gacha-toast-banner" role="status">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <span>{{ toastMessage }}</span>
-      </div>
-    </Transition>
+    <!-- 悬浮提示条（Teleport 至 body + fixed 底部居中，绝不被顶栏裁切或抖动） -->
+    <Teleport to="body">
+      <Transition name="gacha-toast-fade">
+        <div v-if="toastMessage" class="gacha-toast-banner" role="status">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span>{{ toastMessage }}</span>
+        </div>
+      </Transition>
+    </Teleport>
 
     <!-- 弹窗 1：导入记录 (JSON 文件或直接粘贴) -->
     <UiModal
@@ -754,59 +822,121 @@
     <UiModal
       v-model:visible="isToolModalOpen"
       title="抽卡记录导出工具使用教程"
-      max-width="620px"
+      max-width="660px"
       teleport-to="body"
     >
       <div class="tool-modal-body">
-        <div class="tool-download-card">
-          <div class="tool-download-info">
-            <div class="tool-download-name">深渊之歌抽卡导出工具（桌面免安装版）</div>
-            <div class="tool-download-meta">解压即得 <code class="code-inline">深渊之歌抽卡导出工具.exe</code> 单文件 · 无需安装额外运行库</div>
+        <div class="tool-download-grid">
+          <div class="tool-download-card">
+            <div class="tool-download-info">
+              <div class="tool-download-name">电脑模拟器端（Windows 单文件版）</div>
+              <div class="tool-download-meta">直接运行 <code class="code-inline">深渊之歌抽卡导出工具.exe</code> · 无需解压、无需安装运行库</div>
+            </div>
+            <UiButton variant="primary" size="sm" @click="downloadPcTool">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>下载 .exe</span>
+            </UiButton>
           </div>
-          <UiButton variant="primary" size="sm" @click="downloadExporterTool">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span>下载工具 (.zip)</span>
-          </UiButton>
+
+          <div class="tool-download-card">
+            <div class="tool-download-info">
+              <div class="tool-download-name">安卓手机端（直连采样版）</div>
+              <div class="tool-download-meta">安装 <code class="code-inline">深渊之歌抽卡导出工具.apk</code> · 支持官服与 B 服，一键本地监听抓包</div>
+            </div>
+            <UiButton variant="secondary" size="sm" @click="downloadMobileApk">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>下载 .apk</span>
+            </UiButton>
+          </div>
         </div>
 
-        <div v-if="isMobileDevice()" class="tool-mobile-tip">
-          当前导出工具仅支持 Windows 电脑端模拟器运行，请在电脑浏览器下载并使用。
+        <div class="guide-platform-tabs modal-platform-tabs" role="tablist" aria-label="切换教程平台">
+          <button
+            type="button"
+            class="guide-tab-btn"
+            :class="{ 'is-active': guidePlatform === 'pc' }"
+            @click="guidePlatform = 'pc'"
+          >
+            电脑模拟器使用教程
+          </button>
+          <button
+            type="button"
+            class="guide-tab-btn"
+            :class="{ 'is-active': guidePlatform === 'mobile' }"
+            @click="guidePlatform = 'mobile'"
+          >
+            安卓手机使用教程
+          </button>
         </div>
 
-        <div class="tool-steps-flow">
+        <div v-if="guidePlatform === 'pc'" class="tool-steps-flow">
           <div class="flow-step">
             <span class="step-badge">1</span>
             <div class="step-desc">
-              <strong>启动模拟器与游戏：</strong>在电脑打开 <strong>MuMu 12 / 15</strong>、雷电、夜神或逍遥模拟器，启动《深渊之歌》并登录进入主界面。
+              <strong>启动模拟器与游戏：</strong>打开 <strong>MuMu 12 / 15</strong> 或 <strong>雷电模拟器</strong>，在模拟器设置开启 <strong>Root 权限</strong>并重启模拟器；然后启动《深渊之歌》登录进入主界面。
+              <div class="step-sub-note">雷电模拟器还需在【设置 → 其他设置】开启「ADB 调试（开启本地连接）」。若电脑同时插着手机 USB 调试，新版工具会自动跳过真机优先连模拟器。</div>
             </div>
           </div>
           <div class="flow-step">
             <span class="step-badge">2</span>
             <div class="step-desc">
-              <strong>双击运行工具：</strong>解压下载的压缩包，双击运行 <code class="code-inline">深渊之歌抽卡导出工具.exe</code>。工具会自动定位模拟器，待右上角状态灯变为绿色「抽卡监听中」即可。
-              <div class="step-sub-note">雷电模拟器如未自动连上，请在模拟器【设置 → 其他设置】开启「ADB 调试（本地连接）」后重启模拟器。</div>
+              <strong>运行工具等待监听：</strong>直接双击运行 <code class="code-inline">深渊之歌抽卡导出工具.exe</code>（单文件免安装）。待右上角状态变成绿色圆点并显示 <code class="code-inline">监听令牌中</code>。
             </div>
           </div>
           <div class="flow-step">
             <span class="step-badge">3</span>
             <div class="step-desc">
-              <strong>翻页捕获记录：</strong>在游戏内进入【招募】→ 点击左下角【记录查询】，点击工具界面的 <strong>一键全自动翻页</strong>（也可手动逐页点击下一页）；【伙伴招募】翻完后，切到【魔物贩售】再翻一次。
+              <strong>捕获令牌自动全量拉取：</strong>在游戏内打开【招募 → 记录查询】或邮箱/背包触发一次请求，工具捕获令牌后会自动全量拉取伙伴与魔物全部记录，并自动剔除银币池、同步 UID / 昵称 / 头像。
+              <div class="step-sub-note">若未自动触发或获取失败，可在游戏【记录查询】里点击一次翻页，再回到工具点击【全量抓取】即可；后续新抽了卡也直接点【全量抓取】刷新。</div>
             </div>
           </div>
           <div class="flow-step">
             <span class="step-badge">4</span>
             <div class="step-desc">
-              <strong>导出并导入分析：</strong>翻完后点击 <strong>导出并打开 Wiki 分析页</strong>，工具会自动生成 <code class="code-inline">gacha_records.json</code> 并复制到剪贴板；回到本页点击「导入记录」，直接粘贴或选择文件即可查看分析。
+              <strong>导出并导入分析：</strong>点击 <strong>导出并打开 Wiki 分析页</strong>，工具会自动保存 <code class="code-inline">gacha_records.json</code> 到同目录并复制到剪贴板；回到本页点【导入记录】，粘贴或选择该文件即可。
+            </div>
+          </div>
+        </div>
+
+        <div v-else class="tool-steps-flow">
+          <div class="flow-step">
+            <span class="step-badge">1</span>
+            <div class="step-desc">
+              <strong>安装手机端工具：</strong>点击上方 <strong>下载 .apk</strong> 安装 <code class="code-inline">深渊之歌抽卡导出工具.apk</code>（自动兼容官服 TapTap 与 B 服客户端）。
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-badge">2</span>
+            <div class="step-desc">
+              <strong>开启本地监听并切入游戏：</strong>打开导出工具 App，点击 <strong>开启监听并打开《深渊之歌》</strong>，在系统弹窗里确认允许建立<strong>本地监听通道</strong>。
+              <div class="step-sub-note">该通道仅在手机本地分流并只监听《深渊之歌》数据包，用于读取会话令牌，不上传任何数据到外部服务器；若有 Clash 等代理软件请先暂停以免通道冲突。</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-badge">3</span>
+            <div class="step-desc">
+              <strong>点开记录查询自动抓完：</strong>切入游戏打开【招募 → 记录查询】或任意有网络请求的界面，捕获令牌后会自动拉完伙伴与魔物全部记录（自动剔除银币池并同步昵称与头像），顶部通知栏提示“已全量抓完”后切回工具 App 即可。
+              <div class="step-sub-note">若获取失败或未自动同步，可在游戏【记录查询】中点一下翻页，再切回工具 App 点击【全量抓取】即可。</div>
+            </div>
+          </div>
+          <div class="flow-step">
+            <span class="step-badge">4</span>
+            <div class="step-desc">
+              <strong>导出或分享导入本页：</strong>在 App 内点击 <strong>导出并打开 Wiki 分析页</strong>（自动复制 JSON 并打开分析页）或点 <strong>分享文件</strong> 保存 <code class="code-inline">gacha_records.json</code>；在本页点击【导入记录】粘贴或选文件即可查看图表（抓完可点工具上的【停止】关闭本地监听）。
             </div>
           </div>
         </div>
 
         <div class="tool-warning-box">
-          <strong>安全提示：</strong>自动翻页期间请勿提前关闭游戏内的【记录查询】弹窗，以免误触主界面抽卡按钮；如需随时中止自动翻页，按 <code class="code-inline">Esc</code> 或 <code class="code-inline">Space</code>（空格）键即可急停。
+          <strong>使用与排查提示：</strong>双端工具均采用只读协议同步，不改游戏内存、不自动点击、不顶号，并会自动过滤魔物银币池（仅统计神晶/招募券抽卡）。若游戏切后台重连瞬间偶发 <code class="code-inline">Code=100</code> 报错，等 1~2 秒等游戏恢复登录态后再点一次【全量抓取】即可恢复。
         </div>
       </div>
 
@@ -901,6 +1031,39 @@
       v-model:visible="isAvatarPickerOpen"
       :nick="editNicknameInput"
     />
+
+    <!-- 弹窗 4：通用提示与确认弹窗（替代原生 alert / confirm） -->
+    <UiModal
+      v-model:visible="dialogModal.visible"
+      :title="dialogModal.title"
+      max-width="440px"
+      compact
+      teleport-to="body"
+    >
+      <div class="dialog-modal-body">
+        <p class="dialog-modal-message">{{ dialogModal.message }}</p>
+      </div>
+
+      <template #footer>
+        <div class="modal-footer-btns dialog-footer-btns">
+          <UiButton
+            v-if="dialogModal.mode === 'confirm'"
+            variant="secondary"
+            size="md"
+            @click="closeDialogModal"
+          >
+            <span>{{ dialogModal.cancelText || '取消' }}</span>
+          </UiButton>
+          <UiButton
+            :variant="dialogModal.isDanger ? 'danger' : 'primary'"
+            size="md"
+            @click="confirmDialogModal"
+          >
+            <span>{{ dialogModal.confirmText || '确定' }}</span>
+          </UiButton>
+        </div>
+      </template>
+    </UiModal>
   </div>
 </template>
 
@@ -908,7 +1071,7 @@
 import { ref, computed, onMounted, nextTick, watch } from 'vue'
 import { UiButton, UiModal } from '../components/ui/index.js'
 import AvatarPickerDialog from '../components/AvatarPickerDialog.vue'
-import { getImageUrl } from '../utils/env.js'
+import { getImageUrl, CLOUD_URL } from '../utils/env.js'
 import { loadAvatarCatalog, avatarPath, avatarEntry } from '../utils/avatarCatalog.js'
 import {
   analyzeGachaRecords,
@@ -951,22 +1114,43 @@ function isMobileDevice() {
   )
 }
 
+const guidePlatform = ref(isMobileDevice() ? 'mobile' : 'pc')
+
 function handleToolClick() {
   isToolModalOpen.value = true
 }
 
-function downloadExporterTool() {
+function triggerToolDownload(fileName, toastText) {
+  const encoded = `/tools/${encodeURIComponent(fileName)}`
+  const isNative = typeof window !== 'undefined' && (window.location.protocol === 'capacitor:' || window.Capacitor?.isNativePlatform?.())
+  const href = isNative ? `${CLOUD_URL}${encoded}` : encoded
   const link = document.createElement('a')
-  link.href = '/tools/gacha-exporter.zip'
-  link.download = '深渊之歌抽卡导出工具.zip'
+  link.href = href
+  link.download = fileName
+  if (isNative) {
+    link.target = '_blank'
+    link.rel = 'noopener noreferrer'
+  }
   document.body.appendChild(link)
   link.click()
   document.body.removeChild(link)
-  if (isMobileDevice()) {
-    showToast('导出工具为 Windows 电脑端程序，请在电脑上解压运行')
-  } else {
-    showToast('已开始下载导出工具，解压后双击即可使用')
-  }
+  showToast(toastText)
+}
+
+function downloadPcTool() {
+  triggerToolDownload(
+    '深渊之歌抽卡导出工具.exe',
+    isMobileDevice()
+      ? '已触发电脑端 (.exe) 下载，请在 Windows 电脑配合模拟器运行'
+      : '已开始下载电脑端工具 (深渊之歌抽卡导出工具.exe)，双击即可使用'
+  )
+}
+
+function downloadMobileApk() {
+  triggerToolDownload(
+    '深渊之歌抽卡导出工具.apk',
+    '已开始下载手机端导出工具 (.apk)，安装后即可使用'
+  )
 }
 
 // 修改玩家档案（UID、昵称与头像）
@@ -1015,11 +1199,49 @@ function openAvatarPickerDialog() {
   isAvatarPickerOpen.value = true
 }
 
+const GAME_AVATAR_ICON_MAP = {
+  hero_001: 'at001_0',
+  new_hero_002: 'at002_1',
+  hero_002_skin01: 'at002a_1',
+  hero_005_skin01: 'at005a',
+  hero_015_skin01: 'at015a_0',
+  hero_036_skin01: 'at036a',
+  hero_049_skin01: 'at049a_0',
+  hero_050_skin01: 'at050a_0',
+  hero_060_skin01: 'at060_a'
+}
+
+function normalizePlayerAvatarId(rawAvatar) {
+  let av = String(rawAvatar || '').trim()
+  const pathM = av.match(/^\/images\/HeadIconAtals\/([A-Za-z0-9_]+)\.webp$/i)
+  if (pathM) av = pathM[1]
+  else if (!av || av.startsWith('/') || av.startsWith('http')) return av
+  if (GAME_AVATAR_ICON_MAP[av]) return GAME_AVATAR_ICON_MAP[av]
+  const heroM = av.match(/^(?:new_)?hero_(\d{3})$/)
+  if (heroM) return `at${heroM[1]}_0`
+  const petM = av.match(/^pet_(\d{3})$/)
+  if (petM) return `avatar_pet_${petM[1]}`
+  if (/^at\d+$/.test(av)) return `${av}_0`
+  return av
+}
+
+function resolvePlayerAvatarSrc(rawAvatar) {
+  const normalized = normalizePlayerAvatarId(rawAvatar)
+  if (!normalized) return ''
+  if (normalized.startsWith('/') || normalized.startsWith('http')) return normalized
+  const fromCatalog = avatarPath(normalized) || avatarPath(rawAvatar)
+  if (fromCatalog) return fromCatalog
+  if (/^[A-Za-z0-9_]{1,40}$/.test(normalized)) {
+    return `/images/HeadIconAtals/${normalized}.webp`
+  }
+  return ''
+}
+
 function openEditProfileModal() {
   editUidInput.value = playerData.value.uid || ''
   editNicknameInput.value = playerData.value.nickname || '小小工匠'
-  selectedAvatarSrc.value = playerData.value.avatar || ''
-  activeAvatarId.value = avatarEntry(playerData.value.avatar)?.id || ''
+  selectedAvatarSrc.value = resolvePlayerAvatarSrc(playerData.value.avatar)
+  activeAvatarId.value = avatarEntry(selectedAvatarSrc.value)?.id || avatarEntry(playerData.value.avatar)?.id || ''
   isEditProfileModalOpen.value = true
 }
 
@@ -1036,6 +1258,13 @@ function saveProfileEdit() {
 
 const overviewTags = computed(() => {
   return analysis.value.overview?.tags || []
+})
+
+const luckBadgeGlyph = computed(() => {
+  const rc = analysis.value.overview?.luck?.ratingClass
+  if (rc === 'godly' || rc === 'lucky') return '✦'
+  if (rc === 'unlucky' || rc === 'bottom') return '❖'
+  return '◆'
 })
 
 // 筛选与视图状态
@@ -1138,7 +1367,8 @@ function resolvePoolDotClass(kind) {
 // 玩家头像（优先取自定义设置或抓取的头像，次选首个5星，没有则默认德莉）
 const topPulledAvatar = computed(() => {
   if (playerData.value?.avatar) {
-    return playerData.value.avatar
+    const resolved = resolvePlayerAvatarSrc(playerData.value.avatar)
+    if (resolved) return resolved
   }
   const limitedGolds = analysis.value.heroLimited?.golds || []
   if (limitedGolds.length > 0) {
@@ -1234,8 +1464,56 @@ function copyUid() {
   }
   if (navigator.clipboard) {
     navigator.clipboard.writeText(String(playerData.value.uid))
-    alert(`已复制玩家 UID: ${playerData.value.uid}`)
+    openAlertDialog(`已复制玩家 UID: ${playerData.value.uid}`)
   }
+}
+
+const dialogModal = ref({
+  visible: false,
+  mode: 'alert',
+  title: '提示',
+  message: '',
+  confirmText: '确定',
+  cancelText: '取消',
+  isDanger: false,
+  onConfirm: null
+})
+
+function openAlertDialog(message, title = '提示') {
+  dialogModal.value = {
+    visible: true,
+    mode: 'alert',
+    title,
+    message,
+    confirmText: '确定',
+    cancelText: '取消',
+    isDanger: false,
+    onConfirm: null
+  }
+}
+
+function openConfirmDialog({ title = '确认操作', message, confirmText = '确定', cancelText = '取消', isDanger = false, onConfirm }) {
+  dialogModal.value = {
+    visible: true,
+    mode: 'confirm',
+    title,
+    message,
+    confirmText,
+    cancelText,
+    isDanger,
+    onConfirm
+  }
+}
+
+function closeDialogModal() {
+  dialogModal.value.visible = false
+  dialogModal.value.onConfirm = null
+}
+
+function confirmDialogModal() {
+  const fn = dialogModal.value.onConfirm
+  closeDialogModal()
+  if (typeof fn === 'function') fn()
 }
 
 // 载入本地存储数据
@@ -1249,7 +1527,12 @@ function loadSavedData() {
       } else if (parsed && parsed.records) {
         rawRecords.value = parsed.records
         if (parsed.player) {
-          playerData.value = { ...playerData.value, ...parsed.player }
+          const savedPlayer = { ...parsed.player }
+          if (savedPlayer.avatar) {
+            const resolved = resolvePlayerAvatarSrc(savedPlayer.avatar)
+            if (resolved) savedPlayer.avatar = resolved
+          }
+          playerData.value = { ...playerData.value, ...savedPlayer }
         }
       }
     }
@@ -1294,7 +1577,7 @@ function handleFileSelect(e) {
       const content = event.target.result
       parseAndApplyRecords(JSON.parse(content))
       isImportModalOpen.value = false
-      alert(`成功导入真实记录！累计 ${rawRecords.value.length} 抽。`)
+      openAlertDialog(`成功导入记录！累计 ${rawRecords.value.length} 抽。`, '导入成功')
     } catch (err) {
       importError.value = `解析失败: ${err.message}`
     }
@@ -1311,7 +1594,7 @@ function confirmImport() {
     const parsed = JSON.parse(importJsonText.value.trim())
     parseAndApplyRecords(parsed)
     isImportModalOpen.value = false
-    alert(`成功导入真实记录！累计 ${rawRecords.value.length} 抽。`)
+    openAlertDialog(`成功导入记录！累计 ${rawRecords.value.length} 抽。`, '导入成功')
   } catch (err) {
     importError.value = `JSON 格式错误: ${err.message}`
   }
@@ -1324,7 +1607,12 @@ function parseAndApplyRecords(data) {
   } else if (data && Array.isArray(data.records)) {
     list = data.records
     if (data.player) {
-      playerData.value = { ...playerData.value, ...data.player }
+      const incomingPlayer = { ...data.player }
+      if (incomingPlayer.avatar) {
+        const resolved = resolvePlayerAvatarSrc(incomingPlayer.avatar)
+        if (resolved) incomingPlayer.avatar = resolved
+      }
+      playerData.value = { ...playerData.value, ...incomingPlayer }
     }
   } else if (data && Array.isArray(data.datas)) {
     list = data.datas
@@ -1390,10 +1678,17 @@ async function handleSaveScreenshot() {
 }
 
 function confirmClearRecords() {
-  if (confirm('确认清空当前已导入的所有真实抽卡记录吗？此操作不可撤销。')) {
-    rawRecords.value = []
-    localStorage.removeItem(STORAGE_KEY)
-  }
+  openConfirmDialog({
+    title: '清空抽卡记录',
+    message: '确认清空当前已导入的所有抽卡记录吗？此操作不可撤销。',
+    confirmText: '确认清空',
+    cancelText: '取消',
+    isDanger: true,
+    onConfirm: () => {
+      rawRecords.value = []
+      localStorage.removeItem(STORAGE_KEY)
+    }
+  })
 }
 
 onMounted(() => {
@@ -1534,6 +1829,29 @@ onMounted(() => {
   gap: 10px;
   flex-wrap: wrap;
 }
+@media (max-width: 768px) {
+  .analysis-header {
+    padding: 14px 12px;
+  }
+  .analysis-header__actions {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+  .analysis-header__actions :deep(.ui-btn) {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 7px 6px;
+    font-size: 11.5px;
+    gap: 4px;
+    white-space: nowrap;
+  }
+  .analysis-header__actions :deep(.ui-btn svg) {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+}
 
 /* 空状态卡片 */
 .analysis-empty-card {
@@ -1593,15 +1911,59 @@ onMounted(() => {
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  margin-bottom: 22px;
+}
+.guide-platform-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 10px;
+  background: rgba(143, 115, 81, 0.14);
+  border: 1px solid rgba(143, 115, 81, 0.28);
+  margin: 0 auto 16px;
+}
+.guide-platform-tabs.modal-platform-tabs {
+  margin: 0;
+  align-self: flex-start;
+}
+.guide-tab-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-muted, #6b5134);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+.guide-tab-btn.is-active {
+  background: #3e2a14;
+  color: #f8eedc;
+  box-shadow: 0 2px 6px rgba(43, 31, 21, 0.22);
+}
+:deep(.dark-mode) .guide-platform-tabs,
+.dark-mode .guide-platform-tabs {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 180, 128, 0.24);
+}
+:deep(.dark-mode) .guide-tab-btn,
+.dark-mode .guide-tab-btn {
+  color: #c9b292;
+}
+:deep(.dark-mode) .guide-tab-btn.is-active,
+.dark-mode .guide-tab-btn.is-active {
+  background: #c49438;
+  color: #2b1f15;
 }
 .quick-guide-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   text-align: left;
 }
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .quick-guide-grid {
     grid-template-columns: 1fr;
   }
@@ -1650,18 +2012,18 @@ onMounted(() => {
   color: #6ee7b7;
 }
 .step-title {
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 800;
   color: var(--text-main, #3e2a14);
-  line-height: 1.3;
+  line-height: 1.35;
 }
 :deep(.dark-mode) .step-title,
 .dark-mode .step-title {
   color: var(--text-main, #ebdcc3);
 }
 .step-text {
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 12.5px;
+  line-height: 1.68;
   color: var(--text-muted, #6b5134);
 }
 :deep(.dark-mode) .step-text,
@@ -2026,36 +2388,36 @@ onMounted(() => {
   flex-shrink: 0;
 }
 
-/* 生涯评级称号色（天选之子等） */
+/* 生涯评级称号色（天选之子等：小黑盒直觉 金皇→绿欧→青蓝常规→红非） */
 .luck-text--godly {
-  color: #b45309;
+  color: #a16207;
   font-weight: 900;
   letter-spacing: 0.02em;
 }
 .luck-text--lucky {
-  color: #0369a1;
+  color: #1b6b4e;
   font-weight: 900;
   letter-spacing: 0.02em;
 }
 .luck-text--normal {
-  color: #15803d;
+  color: #2f4f72;
   font-weight: 900;
   letter-spacing: 0.02em;
 }
 .luck-text--unlucky,
 .luck-text--bottom {
-  color: #b91c1c;
+  color: #8f2d36;
   font-weight: 900;
   letter-spacing: 0.02em;
 }
 :deep(.dark-mode) .luck-text--godly,
-.dark-mode .luck-text--godly { color: #fbbf24; }
+.dark-mode .luck-text--godly { color: #e6bf6e; }
 :deep(.dark-mode) .luck-text--lucky,
-.dark-mode .luck-text--lucky { color: #60a5fa; }
+.dark-mode .luck-text--lucky { color: #5ec29b; }
 :deep(.dark-mode) .luck-text--normal,
-.dark-mode .luck-text--normal { color: #34d399; }
+.dark-mode .luck-text--normal { color: #8ab4dc; }
 :deep(.dark-mode) .luck-text--unlucky,
-.dark-mode .luck-text--unlucky { color: #f87171; }
+.dark-mode .luck-text--unlucky { color: #e2878e; }
 
 /* 当前版本印章与称号横幅 */
 .profile-version-banner {
@@ -2067,56 +2429,88 @@ onMounted(() => {
   padding: 2px 0;
 }
 .luck-pill-badge {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 16px;
-  border-radius: 8px;
-  transform: rotate(-0.5deg);
-  box-shadow: 0 3px 10px rgba(60, 42, 22, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  gap: 10px;
+  padding: 6px 16px 6px 12px;
+  border-radius: 9px;
+  transform: rotate(-0.4deg);
+  border: 1.4px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.18),
+    0 3px 10px rgba(60, 42, 22, 0.16);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.luck-pill-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.11) 38%, rgba(255, 255, 255, 0) 56%);
+  pointer-events: none;
 }
 .luck-pill-badge:hover {
   transform: rotate(0deg) scale(1.02);
 }
 .luck--godly {
-  background: linear-gradient(135deg, #c49438 0%, #d8af56 100%);
-  color: #2b1f15;
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 3px 10px rgba(196, 148, 56, 0.35);
+  background: linear-gradient(135deg, #a87c32 0%, #c79a46 42%, #dfc076 70%, #b88b3a 100%);
+  color: #3a2208;
+  border-color: rgba(254, 243, 199, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 251, 235, 0.55),
+    inset 0 -2px 4px rgba(120, 74, 18, 0.28),
+    0 3px 11px rgba(168, 124, 50, 0.26);
 }
 .luck--lucky {
-  background: linear-gradient(135deg, #075985 0%, #0284c7 100%);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 3px 10px rgba(7, 89, 133, 0.3);
+  background: linear-gradient(135deg, #14533c 0%, #1b6b4e 42%, #24825f 74%, #185d44 100%);
+  color: #ecf7f2;
+  border-color: rgba(234, 208, 132, 0.52);
+  box-shadow:
+    inset 0 1px 0 rgba(196, 240, 221, 0.30),
+    inset 0 -2px 4px rgba(10, 42, 30, 0.32),
+    0 3px 11px rgba(27, 107, 78, 0.24);
 }
 .luck--normal {
-  background: linear-gradient(135deg, #166534 0%, #15803d 100%);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 3px 10px rgba(22, 101, 52, 0.3);
+  background: linear-gradient(135deg, #243b55 0%, #2f4f72 42%, #3b638d 74%, #294462 100%);
+  color: #eef4fa;
+  border-color: rgba(186, 210, 232, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(215, 230, 245, 0.28),
+    inset 0 -2px 4px rgba(18, 30, 45, 0.34),
+    0 3px 11px rgba(36, 59, 85, 0.24);
 }
 .luck--unlucky,
 .luck--bottom {
-  background: linear-gradient(135deg, #991b1b 0%, #b91c1c 100%);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.45);
-  box-shadow: 0 3px 10px rgba(153, 27, 27, 0.3);
+  background: linear-gradient(135deg, #5c1d24 0%, #7c2730 44%, #96333d 76%, #6e222a 100%);
+  color: #fdf2f2;
+  border-color: rgba(236, 180, 184, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(248, 212, 215, 0.26),
+    inset 0 -2px 4px rgba(45, 12, 16, 0.38),
+    0 3px 11px rgba(124, 39, 48, 0.26);
 }
 .pill-prefix {
+  position: relative;
   font-size: 9px;
   font-weight: 900;
-  line-height: 1.1;
+  line-height: 1.15;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.9;
+  letter-spacing: 0.06em;
+  padding: 2px 8px 2px 4px;
+  border-right: 1px solid currentColor;
+  opacity: 0.85;
 }
 .pill-title {
+  position: relative;
   font-size: 15px;
   font-weight: 900;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.16);
+}
+.luck--godly .pill-title {
+  text-shadow: 0 1px 0 rgba(255, 251, 235, 0.55);
 }
 
 .stamp-watermark-box {
@@ -3423,13 +3817,18 @@ onMounted(() => {
   display: flex;
   align-items: center;
   text-align: center;
-  color: #6b7280;
-  font-size: 11px;
+  color: var(--text-main, #3e2a14);
+  font-size: 12px;
+  font-weight: 700;
+}
+:deep(.dark-mode) .import-divider,
+.dark-mode .import-divider {
+  color: var(--text-main, #ebdcc3);
 }
 .import-divider::before, .import-divider::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid #232938;
+  border-bottom: 1px solid var(--border-color, rgba(143, 115, 81, 0.45));
 }
 .import-divider span {
   padding: 0 10px;
@@ -3469,6 +3868,16 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+.tool-download-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (max-width: 640px) {
+  .tool-download-grid {
+    grid-template-columns: 1fr;
+  }
 }
 .tool-download-card {
   display: flex;
@@ -3761,6 +4170,71 @@ onMounted(() => {
   color: #7faea9;
 }
 
+.dialog-modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 6px 4px 4px;
+}
+.dialog-modal-message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-main, #3e2a14);
+  word-break: break-word;
+}
+:deep(.dark-mode) .dialog-modal-message,
+.dark-mode .dialog-modal-message {
+  color: var(--text-main, #ebdcc3);
+}
+.dialog-footer-btns :deep(.ui-btn) {
+  min-width: 96px;
+}
 
-
+/* 悬浮提示条（Teleport 至 body 底部居中，不被顶栏遮挡且无文档流抖动） */
+:global(.gacha-toast-banner) {
+  position: fixed;
+  bottom: max(32px, env(safe-area-inset-bottom) + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: min(92vw, 480px);
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #3a291b 0%, #2b1f15 100%);
+  border: 1.5px solid #c49438;
+  color: #f8eedc;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  box-shadow: 0 8px 24px rgba(20, 12, 6, 0.36);
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  :global(.gacha-toast-banner) {
+    bottom: max(84px, env(safe-area-inset-bottom) + 74px);
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+  }
+}
+:global(.gacha-toast-banner svg) {
+  color: #34d399;
+  flex-shrink: 0;
+}
+:global(.gacha-toast-fade-enter-active),
+:global(.gacha-toast-fade-leave-active) {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+:global(.gacha-toast-fade-enter-from),
+:global(.gacha-toast-fade-leave-to) {
+  opacity: 0;
+  transform: translate(-50%, 8px);
+}
 </style>

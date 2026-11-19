@@ -13,6 +13,7 @@
  */
 
 import { ref } from 'vue'
+import { getLocalResourceUrl } from './env.js'
 
 /** 头像 ID 白名单（与服务端 `functions/api/[[path]].js` 的校验同源，都来自 avatarCatalog.json） */
 export const AVATAR_ID_RE = /^[A-Za-z0-9_]{1,40}$/
@@ -33,7 +34,8 @@ export async function loadAvatarCatalog() {
   if (avatarCatalogState.value === 'ready' || avatarCatalogState.value === 'loading') return
   avatarCatalogState.value = 'loading'
   try {
-    const res = await fetch('data/parsed/avatarCatalog.json')
+    const url = getLocalResourceUrl('data/parsed/avatarCatalog.json')
+    const res = await fetch(url)
     if (!res.ok) throw new Error(String(res.status))
     const data = await res.json()
     avatarGroups.value = Array.isArray(data?.groups) ? data.groups : []
@@ -44,16 +46,18 @@ export async function loadAvatarCatalog() {
   }
 }
 
-/** 头像 ID → 图片路径（清单未加载或 ID 未知时返回空串） */
-export function avatarPath(id) {
-  return avatarEntry(id)?.path || ''
+/** 头像 ID 或路径 → 图片路径（清单未加载或 ID 未知时返回空串或原路径） */
+export function avatarPath(idOrPath) {
+  if (!idOrPath) return ''
+  if (idOrPath.startsWith('/') || idOrPath.startsWith('http')) return idOrPath
+  return avatarEntry(idOrPath)?.path || ''
 }
 
-/** 头像 ID → 清单条目 `{id, path, name}`（含角色/魔物名，供选择器显示与提示） */
-export function avatarEntry(id) {
-  if (!id) return null
+/** 头像 ID 或路径 → 清单条目 `{id, path, name}`（含角色/魔物名，供选择器显示与提示） */
+export function avatarEntry(idOrPath) {
+  if (!idOrPath) return null
   for (const group of avatarGroups.value) {
-    const hit = (group.items || []).find((it) => it.id === id)
+    const hit = (group.items || []).find((it) => it.id === idOrPath || it.path === idOrPath)
     if (hit) return hit
   }
   return null

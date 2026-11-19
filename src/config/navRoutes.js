@@ -30,7 +30,7 @@ export const NAV_ROUTES = [
   { name: '日常计划', path: '/daily', icon: '/ui/plan02.webp' },
   { name: '神匠之塔', path: '/tower', icon: '/ui/item_25002.webp' },
   { name: '模拟招募', path: '/gacha', icon: '/ui/item_20004.webp' },
-  ...(isDev ? [{ name: '抽卡分析', path: '/gacha/analysis', icon: '/ui/item_20004.webp' }] : []),
+  ...(isDev ? [{ name: '抽卡分析', path: '/gacha/analysis', icon: '/ui/item_20004_analysis.webp' }] : []),
   { name: '相关模拟', path: '/sims', icon: '/ui/colect_mon_072.webp' },
   { name: '词条', path: '/glossary', icon: '/ui/buff_017.webp' },
   { name: '其他', path: '/misc', icon: '/ui/map_r_fb_12.webp' }

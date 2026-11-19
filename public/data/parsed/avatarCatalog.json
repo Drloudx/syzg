@@ -2,9 +2,9 @@
   "source": "public/images/HeadIconAtals",
   "note": "由 scripts/dev/sync-avatar-catalog.mjs 生成；只收录能对应到角色图鉴/魔物图鉴的头像，不含 avatar_Mon*",
   "matchedAgainst": {
-    "heroes": 34,
-    "pets": 32,
-    "skipped": 10
+    "heroes": 40,
+    "pets": 42,
+    "skipped": 13
   },
   "groups": [
     {
@@ -20,6 +20,16 @@
           "id": "at001b_0",
           "path": "/images/HeadIconAtals/at001b_0.webp",
           "name": "希尔（男主）"
+        },
+        {
+          "id": "at002_1",
+          "path": "/images/HeadIconAtals/at002_1.webp",
+          "name": "米托拉"
+        },
+        {
+          "id": "at002a_1",
+          "path": "/images/HeadIconAtals/at002a_1.webp",
+          "name": "米托拉-一日侍者"
         },
         {
           "id": "at005_0",
@@ -67,6 +77,11 @@
           "name": "芭杜尔"
         },
         {
+          "id": "at015a_0",
+          "path": "/images/HeadIconAtals/at015a_0.webp",
+          "name": "芭杜尔-阳葵田的守望者"
+        },
+        {
           "id": "at019_0",
           "path": "/images/HeadIconAtals/at019_0.webp",
           "name": "奇瓦"
@@ -97,9 +112,19 @@
           "name": "安娜"
         },
         {
+          "id": "at030_0",
+          "path": "/images/HeadIconAtals/at030_0.webp",
+          "name": "阿尔克丝"
+        },
+        {
           "id": "at031_0",
           "path": "/images/HeadIconAtals/at031_0.webp",
           "name": "波特温"
+        },
+        {
+          "id": "at032_0",
+          "path": "/images/HeadIconAtals/at032_0.webp",
+          "name": "诺姿"
         },
         {
           "id": "at033_0",
@@ -122,11 +147,6 @@
           "name": "贝尔卡-学院的优等生"
         },
         {
-          "id": "at037_0",
-          "path": "/images/HeadIconAtals/at037_0.webp",
-          "name": "剋"
-        },
-        {
           "id": "at041_0",
           "path": "/images/HeadIconAtals/at041_0.webp",
           "name": "埃迪蒂"
@@ -147,14 +167,29 @@
           "name": "迈妮娅"
         },
         {
+          "id": "at047_0",
+          "path": "/images/HeadIconAtals/at047_0.webp",
+          "name": "阿迪拉"
+        },
+        {
           "id": "at049_0",
           "path": "/images/HeadIconAtals/at049_0.webp",
           "name": "菲莉娜"
         },
         {
+          "id": "at049a_0",
+          "path": "/images/HeadIconAtals/at049a_0.webp",
+          "name": "菲莉娜-金鹿的假期"
+        },
+        {
           "id": "at050_0",
           "path": "/images/HeadIconAtals/at050_0.webp",
           "name": "米拉贝尔"
+        },
+        {
+          "id": "at050a_0",
+          "path": "/images/HeadIconAtals/at050a_0.webp",
+          "name": "米拉贝尔-胡萝卜收获日"
         },
         {
           "id": "at051_0",
@@ -170,6 +205,21 @@
           "id": "at055_0",
           "path": "/images/HeadIconAtals/at055_0.webp",
           "name": "迦南"
+        },
+        {
+          "id": "at060_0",
+          "path": "/images/HeadIconAtals/at060_0.webp",
+          "name": "德莉"
+        },
+        {
+          "id": "at060_a",
+          "path": "/images/HeadIconAtals/at060_a.webp",
+          "name": "德莉-彩虹芭菲公主"
+        },
+        {
+          "id": "at061_0",
+          "path": "/images/HeadIconAtals/at061_0.webp",
+          "name": "斯卡莉安"
         },
         {
           "id": "at062_0",
@@ -190,6 +240,16 @@
           "id": "at066_0",
           "path": "/images/HeadIconAtals/at066_0.webp",
           "name": "奥格"
+        },
+        {
+          "id": "at069_0",
+          "path": "/images/HeadIconAtals/at069_0.webp",
+          "name": "修瓦莉"
+        },
+        {
+          "id": "at071_0",
+          "path": "/images/HeadIconAtals/at071_0.webp",
+          "name": "洛莉安"
         }
       ]
     },
@@ -343,9 +403,19 @@
           "name": "雷素"
         },
         {
+          "id": "avatar_pet_076_a",
+          "path": "/images/HeadIconAtals/avatar_pet_076_a.webp",
+          "name": "雷素（2）"
+        },
+        {
           "id": "avatar_pet_077",
           "path": "/images/HeadIconAtals/avatar_pet_077.webp",
           "name": "真护之黑龙"
+        },
+        {
+          "id": "avatar_pet_077_a",
+          "path": "/images/HeadIconAtals/avatar_pet_077_a.webp",
+          "name": "真护之黑龙（2）"
         },
         {
           "id": "avatar_pet_078",
@@ -353,9 +423,19 @@
           "name": "星云史莱姆"
         },
         {
+          "id": "avatar_pet_078_a",
+          "path": "/images/HeadIconAtals/avatar_pet_078_a.webp",
+          "name": "星云史莱姆（2）"
+        },
+        {
           "id": "avatar_pet_079",
           "path": "/images/HeadIconAtals/avatar_pet_079.webp",
           "name": "东天之青龙"
+        },
+        {
+          "id": "avatar_pet_079_a",
+          "path": "/images/HeadIconAtals/avatar_pet_079_a.webp",
+          "name": "东天之青龙（2）"
         },
         {
           "id": "avatar_pet_083",
@@ -378,6 +458,11 @@
           "name": "石像鬼"
         },
         {
+          "id": "avatar_pet_093_a",
+          "path": "/images/HeadIconAtals/avatar_pet_093_a.webp",
+          "name": "石像鬼（2）"
+        },
+        {
           "id": "avatar_pet_094",
           "path": "/images/HeadIconAtals/avatar_pet_094.webp",
           "name": "布丁史莱姆"
@@ -388,14 +473,104 @@
           "name": "蜂刺骑兵"
         },
         {
+          "id": "avatar_pet_095_a",
+          "path": "/images/HeadIconAtals/avatar_pet_095_a.webp",
+          "name": "蜂刺骑兵（2）"
+        },
+        {
           "id": "avatar_pet_096",
           "path": "/images/HeadIconAtals/avatar_pet_096.webp",
           "name": "白银迷迷可"
         },
         {
-          "id": "avatar_pet_097",
-          "path": "/images/HeadIconAtals/avatar_pet_097.webp",
-          "name": "格里芬"
+          "id": "avatar_pet_096_a",
+          "path": "/images/HeadIconAtals/avatar_pet_096_a.webp",
+          "name": "白银迷迷可（2）"
+        },
+        {
+          "id": "avatar_pet_098",
+          "path": "/images/HeadIconAtals/avatar_pet_098.webp",
+          "name": "奶油布丁史莱姆"
+        },
+        {
+          "id": "avatar_pet_098_a",
+          "path": "/images/HeadIconAtals/avatar_pet_098_a.webp",
+          "name": "奶油布丁史莱姆（2）"
+        },
+        {
+          "id": "avatar_pet_100",
+          "path": "/images/HeadIconAtals/avatar_pet_100.webp",
+          "name": "幽灵史莱姆"
+        },
+        {
+          "id": "avatar_pet_101",
+          "path": "/images/HeadIconAtals/avatar_pet_101.webp",
+          "name": "青铜迷迷可"
+        },
+        {
+          "id": "avatar_pet_104",
+          "path": "/images/HeadIconAtals/avatar_pet_104.webp",
+          "name": "洛莉安的眷属"
+        },
+        {
+          "id": "avatar_pet_106",
+          "path": "/images/HeadIconAtals/avatar_pet_106.webp",
+          "name": "圣骑士史莱姆"
+        },
+        {
+          "id": "avatar_pet_106_a",
+          "path": "/images/HeadIconAtals/avatar_pet_106_a.webp",
+          "name": "圣骑士史莱姆（2）"
+        },
+        {
+          "id": "avatar_pet_107",
+          "path": "/images/HeadIconAtals/avatar_pet_107.webp",
+          "name": "黄金史莱姆"
+        },
+        {
+          "id": "avatar_pet_107_a",
+          "path": "/images/HeadIconAtals/avatar_pet_107_a.webp",
+          "name": "黄金史莱姆（2）"
+        },
+        {
+          "id": "avatar_pet_108",
+          "path": "/images/HeadIconAtals/avatar_pet_108.webp",
+          "name": "粉红史莱姆"
+        },
+        {
+          "id": "avatar_pet_108_a",
+          "path": "/images/HeadIconAtals/avatar_pet_108_a.webp",
+          "name": "粉红史莱姆（2）"
+        },
+        {
+          "id": "avatar_pet_109",
+          "path": "/images/HeadIconAtals/avatar_pet_109.webp",
+          "name": "澄黄史莱姆"
+        },
+        {
+          "id": "avatar_pet_109_a",
+          "path": "/images/HeadIconAtals/avatar_pet_109_a.webp",
+          "name": "澄黄史莱姆（2）"
+        },
+        {
+          "id": "avatar_pet_110",
+          "path": "/images/HeadIconAtals/avatar_pet_110.webp",
+          "name": "天青史莱姆"
+        },
+        {
+          "id": "avatar_pet_110_a",
+          "path": "/images/HeadIconAtals/avatar_pet_110_a.webp",
+          "name": "天青史莱姆（2）"
+        },
+        {
+          "id": "avatar_pet_117",
+          "path": "/images/HeadIconAtals/avatar_pet_117.webp",
+          "name": "纯白史莱姆"
+        },
+        {
+          "id": "avatar_pet_118",
+          "path": "/images/HeadIconAtals/avatar_pet_118.webp",
+          "name": "彩虹史莱姆"
         }
       ]
     }

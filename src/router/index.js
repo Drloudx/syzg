@@ -294,7 +294,7 @@ const routes = [
     alias: '/gacha-analysis',
     name: 'gacha-analysis',
     component: () => import('../views/GachaAnalysisView.vue'),
-    meta: { title: '招募记录分析' }
+    meta: { title: '抽卡分析' }
   },
   {
     /**

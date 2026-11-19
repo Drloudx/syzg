@@ -67,10 +67,15 @@ for (const hero of heroes) {
   }
 }
 
-/** `at001_0` / `at001b_0` / `at005a` → `hero_001`；取前三位数字，后缀差异视为同一角色的不同立绘 */
+/** `at001_0` / `at001b_0` / `at005a` / `at002_1` → `hero_001` 或 `new_hero_002` */
 function heroIdOf(base) {
+  if (/^at002_0$/i.test(base)) return null // 废弃初版米托拉头像，现役为 at002_1 / at002a_1
   const m = base.match(/^at(\d{3})/i)
-  return m ? `hero_${m[1]}` : null
+  if (!m) return null
+  const stdId = `hero_${m[1]}`
+  if (heroById.has(stdId)) return stdId
+  const newId = `new_hero_${m[1]}`
+  return heroById.has(newId) ? newId : stdId
 }
 /** `avatar_pet_006` / `avatar_pet_006_a` → `pet_006` */
 function petIdOf(base) {

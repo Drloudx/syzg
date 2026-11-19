@@ -382,10 +382,10 @@ export async function renderGachaReportCard({
 
   const luckTitle = analysis?.overview?.luck?.title || '寻常旅人'
   const ratingClass = analysis?.overview?.luck?.ratingClass || 'normal'
-  let luckColor = '#15803d'
-  if (ratingClass === 'godly') luckColor = '#b45309'
-  else if (ratingClass === 'lucky') luckColor = '#0369a1'
-  else if (ratingClass === 'unlucky' || ratingClass === 'bottom') luckColor = '#b91c1c'
+  let luckColor = '#2f4f72'
+  if (ratingClass === 'godly') luckColor = '#a16207'
+  else if (ratingClass === 'lucky') luckColor = '#1b6b4e'
+  else if (ratingClass === 'unlucky' || ratingClass === 'bottom') luckColor = '#8f2d36'
 
   ctx.font = '900 16px -apple-system, BlinkMacSystemFont, sans-serif'
   ctx.fillStyle = luckColor
@@ -396,78 +396,107 @@ export async function renderGachaReportCard({
   // 7. 版本胶囊与统计印章行（100% 像素级复刻界面 .luck-pill-badge 与 .stamp-watermark-box）
   const pillH = 32
 
-  // 7.1 左侧当前版本胶囊
+  // 7.1 左侧当前版本胶囊（3段质感金属/琉璃渐变 + 斜向高光 + 分隔线）
+  const glyph = (ratingClass === 'godly' || ratingClass === 'lucky')
+    ? '✦'
+    : (ratingClass === 'unlucky' || ratingClass === 'bottom' ? '❖' : '◆')
   ctx.font = '900 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-  const luckTitleStr = `《${luckTitle}》`
+  const luckTitleStr = `${glyph} 《${luckTitle}》`
   const titleW = ctx.measureText(luckTitleStr).width
-  const prefixW = 20
-  const pillW = Math.round(14 + prefixW + 8 + titleW + 14)
+  const prefixW = 24
+  const pillW = Math.round(14 + prefixW + 14 + titleW + 16)
 
-  // 135° 线性渐变背景
   const pillGrad = ctx.createLinearGradient(pad, curY, pad + pillW, curY + pillH)
-  let pillTextColor = '#ffffff'
-  let pillBorderColor = 'rgba(255, 255, 255, 0.45)'
+  let pillTextColor = '#eef4fa'
+  let pillBorderColor = 'rgba(186, 210, 232, 0.48)'
 
   if (ratingClass === 'godly') {
-    pillGrad.addColorStop(0, '#c49438')
-    pillGrad.addColorStop(1, '#d8af56')
-    pillTextColor = '#2b1f15'
-    pillBorderColor = 'rgba(255, 255, 255, 0.5)'
+    pillGrad.addColorStop(0, '#a87c32')
+    pillGrad.addColorStop(0.42, '#c79a46')
+    pillGrad.addColorStop(0.7, '#dfc076')
+    pillGrad.addColorStop(1, '#b88b3a')
+    pillTextColor = '#3a2208'
+    pillBorderColor = 'rgba(254, 243, 199, 0.65)'
   } else if (ratingClass === 'lucky') {
-    pillGrad.addColorStop(0, '#075985')
-    pillGrad.addColorStop(1, '#0284c7')
-    pillTextColor = '#ffffff'
-    pillBorderColor = 'rgba(255, 255, 255, 0.45)'
+    pillGrad.addColorStop(0, '#14533c')
+    pillGrad.addColorStop(0.42, '#1b6b4e')
+    pillGrad.addColorStop(0.74, '#24825f')
+    pillGrad.addColorStop(1, '#185d44')
+    pillTextColor = '#ecf7f2'
+    pillBorderColor = 'rgba(234, 208, 132, 0.52)'
   } else if (ratingClass === 'normal') {
-    pillGrad.addColorStop(0, '#166534')
-    pillGrad.addColorStop(1, '#15803d')
-    pillTextColor = '#ffffff'
-    pillBorderColor = 'rgba(255, 255, 255, 0.45)'
+    pillGrad.addColorStop(0, '#243b55')
+    pillGrad.addColorStop(0.42, '#2f4f72')
+    pillGrad.addColorStop(0.74, '#3b638d')
+    pillGrad.addColorStop(1, '#294462')
+    pillTextColor = '#eef4fa'
+    pillBorderColor = 'rgba(186, 210, 232, 0.48)'
   } else {
-    pillGrad.addColorStop(0, '#991b1b')
-    pillGrad.addColorStop(1, '#b91c1c')
-    pillTextColor = '#ffffff'
-    pillBorderColor = 'rgba(255, 255, 255, 0.45)'
+    pillGrad.addColorStop(0, '#5c1d24')
+    pillGrad.addColorStop(0.44, '#7c2730')
+    pillGrad.addColorStop(0.76, '#96333d')
+    pillGrad.addColorStop(1, '#6e222a')
+    pillTextColor = '#fdf2f2'
+    pillBorderColor = 'rgba(236, 180, 184, 0.45)'
   }
 
   // 绘制胶囊外层立体投影与渐变底色
   ctx.save()
-  let shadowColor = 'rgba(7, 89, 133, 0.35)'
-  if (ratingClass === 'godly') shadowColor = 'rgba(196, 148, 56, 0.35)'
-  else if (ratingClass === 'normal') shadowColor = 'rgba(22, 101, 52, 0.35)'
-  else if (ratingClass === 'unlucky' || ratingClass === 'bottom') shadowColor = 'rgba(153, 27, 27, 0.35)'
+  let shadowColor = 'rgba(36, 59, 85, 0.24)'
+  if (ratingClass === 'godly') shadowColor = 'rgba(168, 124, 50, 0.26)'
+  else if (ratingClass === 'lucky') shadowColor = 'rgba(27, 107, 78, 0.24)'
+  else if (ratingClass === 'unlucky' || ratingClass === 'bottom') shadowColor = 'rgba(124, 39, 48, 0.26)'
 
   ctx.shadowColor = shadowColor
   ctx.shadowBlur = 8
   ctx.shadowOffsetY = 3
-  roundRect(ctx, pad, curY, pillW, pillH, 8)
+  roundRect(ctx, pad, curY, pillW, pillH, 9)
   ctx.fillStyle = pillGrad
   ctx.fill()
   ctx.restore()
 
-  // 细白高光半透描边
+  // 内部柔和丝绸流光
+  ctx.save()
+  roundRect(ctx, pad, curY, pillW, pillH, 9)
+  ctx.clip()
+  const sheen = ctx.createLinearGradient(pad, curY, pad + pillW, curY + pillH * 0.6)
+  sheen.addColorStop(0.2, 'rgba(255, 255, 255, 0)')
+  sheen.addColorStop(0.38, 'rgba(255, 255, 255, 0.11)')
+  sheen.addColorStop(0.56, 'rgba(255, 255, 255, 0)')
+  ctx.fillStyle = sheen
+  ctx.fillRect(pad, curY, pillW, pillH)
+  ctx.restore()
+
+  // 金属镶边与顶部高光
   ctx.strokeStyle = pillBorderColor
-  ctx.lineWidth = 1.2
-  roundRect(ctx, pad + 0.6, curY + 0.6, pillW - 1.2, pillH - 1.2, 7.5)
+  ctx.lineWidth = 1.4
+  roundRect(ctx, pad + 0.7, curY + 0.7, pillW - 1.4, pillH - 1.4, 8.5)
   ctx.stroke()
 
-  // 竖排“当前\n版本”前缀
+  // 竖排“当前\n版本”前缀与右侧竖线分隔
   ctx.font = '900 8.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif'
   ctx.fillStyle = pillTextColor
-  ctx.globalAlpha = 0.92
+  ctx.globalAlpha = 0.86
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
-  const prefixCenterX = pad + 14 + prefixW / 2
+  const prefixCenterX = pad + 12 + prefixW / 2
   ctx.fillText('当前', prefixCenterX, curY + 10.5)
   ctx.fillText('版本', prefixCenterX, curY + 21.5)
+  const divX = pad + 12 + prefixW + 5
+  ctx.strokeStyle = pillTextColor
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  ctx.moveTo(divX, curY + 7)
+  ctx.lineTo(divX, curY + pillH - 7)
+  ctx.stroke()
   ctx.globalAlpha = 1.0
 
-  // 称号大字《天选之子》
+  // 称号大字 ✦ 《天选之子》
   ctx.font = '900 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif'
   ctx.fillStyle = pillTextColor
   ctx.textAlign = 'left'
   ctx.textBaseline = 'middle'
-  ctx.fillText(luckTitleStr, pad + 14 + prefixW + 8, curY + pillH / 2)
+  ctx.fillText(luckTitleStr, divX + 8, curY + pillH / 2)
 
   // 7.2 右侧水印印章（双行对齐：大书院统计自 + 日期）
   const stampSubText = '大书院统计自'

@@ -28,7 +28,7 @@
             <img :src="getImageUrl('/ui/logo.webp')" class="app-logo" alt="深渊之歌" />
             <div class="header-title-wrap">
               <h1 class="header-title">{{ pageTitle }}</h1>
-              <span class="header-brand">深渊之歌 · 资料库</span>
+              <span class="header-brand">深渊之歌wiki</span>
             </div>
           </div>
 
@@ -387,7 +387,7 @@ const PAGE_TITLES = {
   '/chapters': '关卡图鉴',
   '/glossary': '词条',
   '/gacha': '模拟招募',
-  '/gacha/analysis': '招募记录分析',
+  '/gacha/analysis': '抽卡分析',
   '/sims': '相关模拟',
   '/admin': '后台',
   '/privacy': '隐私协议',
