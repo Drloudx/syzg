@@ -418,11 +418,11 @@ const ensureRecipeVisible = matcher => {
 
 /* 菜谱为双列卡片网格（电脑端一行 2 个，移动端 1 列） */
 .recipe-scroll-container :deep(.ui-card-grid) {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 12px;
   align-content: flex-start;
 }
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .recipe-scroll-container :deep(.ui-card-grid) {
     grid-template-columns: 1fr;
     gap: 10px;
@@ -435,12 +435,12 @@ const ensureRecipeVisible = matcher => {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 10px 12px;
-  /* 与符石图鉴卡片（.rune-entry）同底色，统一全站卡片观感 */
+  padding: 12px 14px;
+  /* 与符石/活动副本卡片同底色，采用柔和暖棕轻阴影 */
   background: var(--paper-soft);
   border: 1px solid var(--border-soft);
   border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  box-shadow: 0 2px 5px rgba(62, 42, 20, 0.07);
   cursor: pointer;
   transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
   min-width: 0;
@@ -451,13 +451,14 @@ const ensureRecipeVisible = matcher => {
 .recipe-card:hover {
   transform: translateY(-2px);
   border-color: var(--accent-bright);
-  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 12px rgba(62, 42, 20, 0.13);
 }
 
 .recipe-card-head {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-right: 36px;
   min-width: 0;
 }
 .recipe-card-icon-wrap {
@@ -496,9 +497,10 @@ const ensureRecipeVisible = matcher => {
 }
 
 .recipe-card-body {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 7px;
   min-width: 0;
 }
 .recipe-card-body .buff-des-text {
@@ -514,15 +516,6 @@ const ensureRecipeVisible = matcher => {
   height: 28px;
 }
 
-/* ===== 卡片扩展内容（行内复用） ===== */
-.recipe-card-extra {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-
 .recipe-category-pills {
   display: flex;
   align-items: center;
@@ -536,20 +529,19 @@ const ensureRecipeVisible = matcher => {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: 8px;
+  gap: 7px;
 }
 
 .ingredient-chip {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 4px 10px;
-  background: rgba(43, 31, 21, 0.14);
+  padding: 3px 9px;
+  background: rgba(143, 115, 81, 0.1);
   border: 1px solid var(--border-faint);
   border-radius: 4px;
   font-size: 13px;
-  line-height: 1.6;
-  box-shadow: inset 0 1px 2px rgba(43, 31, 21, 0.1);
+  line-height: 1.55;
 }
 
 .ing-icon-img {
@@ -577,18 +569,21 @@ const ensureRecipeVisible = matcher => {
   text-align: center;
 }
 
-/* 获取途径条 */
+/* 获取途径条（通栏列表跳转条，箭号靠右贴边并在同排卡片底部对齐） */
 .source-link-bar {
-  display: inline-flex;
+  margin-top: auto;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  background: color-mix(in srgb, var(--text-main) 6%, transparent);
-  border: 1px dashed color-mix(in srgb, var(--text-main) 40%, transparent);
-  border-radius: 8px;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  background: color-mix(in srgb, var(--text-main) 5%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--text-main) 34%, transparent);
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
-  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .source-link-bar:hover {
@@ -690,12 +685,4 @@ const ensureRecipeVisible = matcher => {
   object-fit: contain;
   border-radius: 4px;
 }
-
-.source-detail-box {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
-
 </style>

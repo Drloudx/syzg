@@ -22,10 +22,14 @@ test('美味炖菜来源文案为「完成成就「战场美食家」获取」',
   assert.equal(RECIPE_SOURCE_CONFIG['item_30035'].text, '完成成就「战场美食家」获取');
 });
 
-test('果香肉酱通心粉与武僧火锅标注无法直接制作的特殊说明', () => {
-  const noteExpected = '不能通过食材直接做，需要从解锁配方后点击右下角料理食谱再这里点击食谱做';
-  assert.equal(RECIPE_SOURCE_CONFIG['item_30040'].craftNote, noteExpected);
-  assert.equal(RECIPE_SOURCE_CONFIG['item_30042'].craftNote, noteExpected);
+test('果香肉酱通心粉与武僧火锅不再标注无法自由制作提示（官方已修复）', () => {
+  assert.equal(RECIPE_SOURCE_CONFIG['item_30040'].craftNote, undefined);
+  assert.equal(RECIPE_SOURCE_CONFIG['item_30042'].craftNote, undefined);
+  const parsed = JSON.parse(fs.readFileSync('public/data/parsed/recipes.json', 'utf8'));
+  const hotpot = parsed.recipes.find(r => r.id === 'item_30040');
+  const pasta = parsed.recipes.find(r => r.id === 'item_30042');
+  assert.equal(hotpot?.sourceInfo?.craftNote, undefined);
+  assert.equal(pasta?.sourceInfo?.craftNote, undefined);
 });
 
 test('28 款料理的新版预览图均已生成到 public/images/recipes/ 且大小正常，不含冗余 _prev 文件', () => {

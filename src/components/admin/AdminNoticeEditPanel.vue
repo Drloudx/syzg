@@ -168,11 +168,11 @@ const noticeId = computed(() => String(route.params.id || ''))
 const isNew = computed(() => noticeId.value === 'new')
 
 const TAG_CLASSES = [
-  { value: 'pinned', label: '置顶（深红）' },
-  { value: 'patch', label: '功能更新（金）' },
-  { value: 'event', label: '数据 / 活动（青）' },
-  { value: 'info', label: '说明 / 社区（灰）' },
-  { value: 'gold', label: '强调（亮金）' }
+  { value: 'pinned', label: '置顶 / 版本（珊瑚红）' },
+  { value: 'patch', label: '功能更新（琥珀橙）' },
+  { value: 'event', label: '数据 / 活动（湖水青）' },
+  { value: 'info', label: '说明 / 公告（暖可可）' },
+  { value: 'gold', label: '社区 / 强调（鼠尾草绿）' }
 ]
 
 const loading = ref(true)
@@ -580,28 +580,28 @@ onMounted(load)
 }
 
 .color-preview-swatch.is-notice-pinned {
-  background: #a93226;
-  border-color: #7b241c;
+  background: rgba(214, 88, 88, 0.22);
+  border-color: rgba(214, 88, 88, 0.65);
 }
 
 .color-preview-swatch.is-notice-patch {
-  background: #c5913e;
-  border-color: #8c6422;
+  background: rgba(224, 154, 52, 0.24);
+  border-color: rgba(224, 154, 52, 0.68);
 }
 
 .color-preview-swatch.is-notice-event {
-  background: #2e86c1;
-  border-color: #1b4f72;
+  background: rgba(66, 138, 136, 0.22);
+  border-color: rgba(66, 138, 136, 0.65);
 }
 
 .color-preview-swatch.is-notice-info {
-  background: #7f8c8d;
-  border-color: #515a5a;
+  background: rgba(138, 112, 86, 0.22);
+  border-color: rgba(138, 112, 86, 0.6);
 }
 
 .color-preview-swatch.is-notice-gold {
-  background: #d4ac0d;
-  border-color: #9a7d0a;
+  background: rgba(88, 150, 102, 0.22);
+  border-color: rgba(88, 150, 102, 0.65);
 }
 
 /* 弹窗文本细节 */

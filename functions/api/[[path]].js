@@ -3946,22 +3946,91 @@ function normalizeBlockRow(raw, sectionLabel, rowIndex) {
   }
 }
 
+function formatDailyWindow(startHour, endHour) {
+  const start = `${String(startHour).padStart(2, '0')}:00`
+  const end = endHour >= 24 ? '23:59' : `${String(endHour).padStart(2, '0')}:00`
+  return `${start} ~ ${end}`
+}
+
+/** 校验并规整「今日必做」的一条；返回 { row } 或 { error } */
+function normalizeDailyRow(raw, rowIndex) {
+  const where = `今日必做第 ${rowIndex + 1} 项`
+  const label = raw?.label == null ? '' : String(raw.label).trim()
+  if (!label) return { error: `${where}缺少名称` }
+
+  const kind = raw?.kind === 'meal' ? 'meal' : 'regular'
+  const rawId = raw?.id == null ? '' : String(raw.id).trim()
+  const id = (rawId || `daily_${rowIndex + 1}`).slice(0, 64)
+  const hint = raw?.hint == null ? '' : String(raw.hint).trim()
+  const route = raw?.route == null ? '' : String(raw.route).trim()
+
+  if (route && (!route.startsWith('/') || route.startsWith('//') || /^(javascript|data|vbscript):/i.test(route))) {
+    return { error: `${where}：站内跳转路径必须是以单斜杠 / 开头的站内路由` }
+  }
+
+  if (kind === 'meal') {
+    const startParsed = Number(raw?.startHour)
+    const endParsed = Number(raw?.endHour)
+    const startHour = Number.isFinite(startParsed) ? Math.min(23, Math.max(0, Math.trunc(startParsed))) : 12
+    const endHour = Number.isFinite(endParsed) ? Math.min(24, Math.max(1, Math.trunc(endParsed))) : 24
+    if (endHour <= startHour) {
+      return { error: `${where}（${label}）：结束时间必须晚于开始时间` }
+    }
+    const windowText = raw?.windowText == null ? '' : String(raw.windowText).trim()
+    return {
+      row: {
+        id,
+        kind: 'meal',
+        label,
+        windowText: windowText || formatDailyWindow(startHour, endHour),
+        startHour,
+        endHour,
+        icon: raw?.icon === 'dinner' ? 'dinner' : 'tea'
+      }
+    }
+  }
+
+  return {
+    row: {
+      id,
+      kind: 'regular',
+      label,
+      hint,
+      route
+    }
+  }
+}
+
 function normalizeBlocks(list) {
   if (!Array.isArray(list)) return { error: 'blocks 需为数组' }
   const out = []
   for (const [i, blk] of list.entries()) {
-    const section = blk?.section === 'help' ? 'help' : 'guide'
+    const section = blk?.section === 'daily'
+      ? 'daily'
+      : (blk?.section === 'help' ? 'help' : 'guide')
     const title = String(blk?.title || '').trim()
-    if (!title) return { error: `第 ${i + 1} 个底栏缺少标题` }
+    if (!title) return { error: `第 ${i + 1} 个区块缺少标题` }
 
     // 逐行校验并规整（不透传原始对象，避免夹带未声明的字段）
     let rowsJson = null
     if (Array.isArray(blk?.rows)) {
       const rows = []
+      const seenIds = new Set()
       for (const [ri, raw] of blk.rows.entries()) {
-        const { row, error } = normalizeBlockRow(raw, `「${title}」`, ri)
-        if (error) return { error }
-        rows.push(row)
+        if (section === 'daily') {
+          const { row, error } = normalizeDailyRow(raw, ri)
+          if (error) return { error }
+          let uniqueId = row.id
+          while (seenIds.has(uniqueId)) {
+            uniqueId = `${row.id}_${ri + 1}`
+          }
+          seenIds.add(uniqueId)
+          rows.push({ ...row, id: uniqueId })
+        } else {
+          const { row, error } = normalizeBlockRow(raw, `「${title}」`, ri)
+          if (error) return { error }
+          rows.push(row)
+        }
       }
       rowsJson = JSON.stringify(rows)
     }

@@ -139,30 +139,151 @@
             Tab 与区块本身保留 —— 它们是页面固定结构，消失会让布局塌陷。
           -->
           <div v-else-if="!currentNoticesList.length" class="notice-empty">暂无公告</div>
+
+          <!-- 左栏底部的社区反馈入口：贴底对齐右侧今日必做看板 -->
+          <a
+            class="notice-feedback-bar"
+            href="https://qm.qq.com/q/iolDkZyD2E"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="notice-feedback-icon" aria-hidden="true">
+              <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 4.8A2.3 2.3 0 0 1 5.3 2.5h7.4A2.3 2.3 0 0 1 15 4.8v5.4a2.3 2.3 0 0 1-2.3 2.3H7.4L4.2 15v-2.5H5.3A2.3 2.3 0 0 1 3 10.2V4.8z" />
+                <circle cx="6.8" cy="7.5" r="0.7" fill="currentColor" stroke="none" />
+                <circle cx="9" cy="7.5" r="0.7" fill="currentColor" stroke="none" />
+                <circle cx="11.2" cy="7.5" r="0.7" fill="currentColor" stroke="none" />
+              </svg>
+            </span>
+            <span class="notice-feedback-text">
+              发现数据错误或有优化建议？前往交流群
+              <span class="notice-feedback-qq">963318625</span>
+              反馈
+            </span>
+            <span class="notice-feedback-arrow" aria-hidden="true">&gt;</span>
+          </a>
         </div>
 
         <!--
-          右侧：官方更新公告特色速览卡。
-          锚定「带版本号的那条」官方公告（版本日志才有版本号 + 特性要点）；
-          没有官方公告时整块隐藏，不留空壳。
+          右侧：今日必做打卡看板（8 项常规日常 2×4 均匀排布 + 2 项限时体力补给底栏）。
+          打卡进度按本地自然日持久化在 localStorage，次日自动重置。
         -->
-        <div v-if="officialPatchNotice" class="patch-highlight-box">
-          <div class="patch-highlight-head">
-            <div class="patch-ver-title">
-              <span>版本更新：{{ officialPatchNotice.version || officialPatchNotice.title }}</span>
+        <div
+          class="daily-checklist-box"
+          :class="{ 'is-all-done': totalDailyCount > 0 && dailyDoneCount === totalDailyCount }"
+        >
+          <div class="daily-box-head">
+            <div class="daily-head-left">
+              <span class="daily-head-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 2.5l1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6L10 2.5z" />
+                </svg>
+              </span>
+              <span class="daily-head-title">{{ dailyTitle }}</span>
+              <span class="daily-weekday-pill">{{ todayWeekdayLabel }}</span>
+            </div>
+            <div class="daily-head-right">
+              <button
+                v-if="dailyDoneCount > 0"
+                type="button"
+                class="daily-reset-btn"
+                title="清空今日打卡"
+                @click="resetDailyChecklist"
+              >
+                重置
+              </button>
+              <span class="daily-progress-pill" :class="{ 'is-complete': totalDailyCount > 0 && dailyDoneCount === totalDailyCount }">
+                <span v-if="totalDailyCount > 0 && dailyDoneCount === totalDailyCount" class="progress-spark" aria-hidden="true">✓</span>
+                <span>{{ dailyDoneCount }}/{{ totalDailyCount }}</span>
+              </span>
             </div>
           </div>
-          <ul v-if="patchFeatures.length" class="patch-features-list">
-            <li
-              v-for="(feat, i) in patchFeatures"
-              :key="i"
-              class="patch-feature-item"
-            >{{ feat }}</li>
-          </ul>
-          <button class="patch-view-full-btn" @click="openNoticeDetail(officialPatchNotice)">
-            <span>查看完整公告</span>
-            <span class="btn-arrow" aria-hidden="true">&gt;</span>
-          </button>
+
+          <!-- 上半区：常驻日常（2 列均匀分布） -->
+          <div v-if="dailyRegularItems.length" class="daily-regular-grid">
+            <div
+              v-for="item in dailyRegularItems"
+              :key="item.id"
+              class="daily-check-item"
+              :class="{ 'is-done': isDailyDone(item.id) }"
+              role="checkbox"
+              tabindex="0"
+              :aria-checked="isDailyDone(item.id)"
+              @click="toggleDailyItem(item.id)"
+              @keydown.enter.prevent="toggleDailyItem(item.id)"
+              @keydown.space.prevent="toggleDailyItem(item.id)"
+            >
+              <span class="daily-check-circle" aria-hidden="true">
+                <svg v-if="isDailyDone(item.id)" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2.5 6.3L4.9 8.7L9.5 3.6" />
+                </svg>
+              </span>
+              <span class="daily-item-label-wrap">
+                <span class="daily-item-label">{{ item.label }}</span>
+                <span v-if="item.hint" class="daily-item-hint">{{ item.hint }}</span>
+              </span>
+              <button
+                v-if="item.route"
+                type="button"
+                class="daily-jump-btn"
+                :title="`前往${item.label}`"
+                :aria-label="`前往${item.label}`"
+                @click.stop="goTo(item.route)"
+                @keydown.enter.stop
+                @keydown.space.stop
+              >
+                <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3.5 8.5L8.5 3.5M4.5 3.5h4v4" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 下半区：限时体力补给（横向均分） -->
+          <div v-if="dailyMealItems.length" class="daily-meal-row">
+            <div
+              v-for="meal in dailyMealItems"
+              :key="meal.id"
+              class="daily-meal-item"
+              :class="{
+                'is-done': isDailyDone(meal.id),
+                'is-active-window': !isDailyDone(meal.id) && isMealWindowOpen(meal)
+              }"
+              role="checkbox"
+              tabindex="0"
+              :aria-checked="isDailyDone(meal.id)"
+              @click="toggleDailyItem(meal.id)"
+              @keydown.enter.prevent="toggleDailyItem(meal.id)"
+              @keydown.space.prevent="toggleDailyItem(meal.id)"
+            >
+              <span class="daily-check-circle" aria-hidden="true">
+                <svg v-if="isDailyDone(meal.id)" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2.5 6.3L4.9 8.7L9.5 3.6" />
+                </svg>
+              </span>
+              <span class="daily-meal-icon" aria-hidden="true">
+                <svg v-if="meal.icon === 'tea'" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2.5 6.5h8.5v3.3a3.7 3.7 0 0 1-3.7 3.7H6.2a3.7 3.7 0 0 1-3.7-3.7V6.5z" />
+                  <path d="M11 7.3h1.3a1.6 1.6 0 0 1 0 3.2H11" />
+                  <path d="M5 3.2c0 .9.6 1.1.6 1.8M8 3.2c0 .9.6 1.1.6 1.8" />
+                </svg>
+                <svg v-else viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2.5 11.5h11" />
+                  <path d="M3.5 11.5a4.5 4.5 0 0 1 9 0" />
+                  <path d="M8 5.2V7" />
+                  <circle cx="8" cy="4.4" r="0.9" fill="currentColor" stroke="none" />
+                </svg>
+              </span>
+              <span class="daily-meal-info">
+                <span class="daily-meal-name">{{ meal.label }}</span>
+                <span class="daily-meal-time">{{ meal.windowText }}</span>
+              </span>
+              <span
+                v-if="!isDailyDone(meal.id) && isMealWindowOpen(meal)"
+                class="daily-meal-live-tag"
+              >可领</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -386,7 +507,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl } from '../utils/env.js'
-import { loadHomeConfig, hasHomeConfigCache, buildRouteTarget } from '../utils/homeConfig.js'
+import { loadHomeConfig, hasHomeConfigCache, buildRouteTarget, DEFAULT_DAILY_BLOCK, resolveDailyBlock } from '../utils/homeConfig.js'
 import { navIconOf } from '../config/navRoutes.js'
 import RichTextView from '../components/ui/RichTextView.vue'
 import UiEmptyState from '../components/ui/UiEmptyState.vue'
@@ -697,28 +818,98 @@ const activeNoticeTab = ref('site')
 /** 公告：{ site: [], official: [] }，由 loadHomeConfig() 填充 */
 const noticesData = ref({ site: [], official: [] })
 
-/**
- * 右侧速览卡指向的公告：**优先取官方频道里带 version 的那条**。
- *
- * 为什么按 version 而不是按日期：
- *   这张卡是「大版本更新速览」，展示版本号 + 特性要点。
- *   带 `version` 字段的才是版本日志；普通修复通知 / 前瞻没有版本号，
- *   放在这张卡上会变成「只有一行标题、没有要点」的空壳。
- *   所以只要库里还有任何一条带版本号的公告，卡片就锚定它，不随日期漂移。
- *
- * 找不到带版本号的，退回官方频道第一条（至少有内容可展示）。
- * 整个官方频道为空时返回 null，模板据此隐藏卡片。
- */
-const officialPatchNotice = computed(() => {
-  const list = noticesData.value.official || []
-  return list.find((n) => n.version) || list[0] || null
+// 今日必做看板（由 home_blocks.section = 'daily' 驱动，未配置时回落 DEFAULT_DAILY_BLOCK，按自然日自动重置）
+const DAILY_CHECKLIST_STORAGE_KEY = 'abyss_home_daily_checklist_v1'
+const WEEKDAY_LABELS = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+
+const dailyConfig = ref(resolveDailyBlock(DEFAULT_DAILY_BLOCK))
+const dailyTitle = computed(() => dailyConfig.value.title || '今日必做')
+const dailyRegularItems = computed(() => dailyConfig.value.regular || [])
+const dailyMealItems = computed(() => dailyConfig.value.meals || [])
+const totalDailyCount = computed(() => dailyRegularItems.value.length + dailyMealItems.value.length)
+const dailyActiveIdSet = computed(() => new Set([
+  ...dailyRegularItems.value.map((r) => r.id),
+  ...dailyMealItems.value.map((m) => m.id)
+]))
+
+function getLocalDateKey(now = new Date()) {
+  const y = now.getFullYear()
+  const m = String(now.getMonth() + 1).padStart(2, '0')
+  const d = String(now.getDate()).padStart(2, '0')
+  return `${y}-${m}-${d}`
+}
+
+function readDailyChecklist(dateKey) {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = window.localStorage.getItem(DAILY_CHECKLIST_STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    if (parsed?.date !== dateKey || !Array.isArray(parsed.done)) return []
+    return parsed.done
+  } catch {
+    return []
+  }
+}
+
+function writeDailyChecklist(dateKey, doneIds) {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.setItem(
+      DAILY_CHECKLIST_STORAGE_KEY,
+      JSON.stringify({ date: dateKey, done: doneIds })
+    )
+  } catch {
+    // 无痕或存储满时静默降级为内存态
+  }
+}
+
+const nowTick = ref(new Date())
+const todayDateKey = computed(() => getLocalDateKey(nowTick.value))
+const todayWeekdayLabel = computed(() => WEEKDAY_LABELS[nowTick.value.getDay()] || '')
+const currentHour = computed(() => nowTick.value.getHours())
+const dailyDoneIds = ref(readDailyChecklist(todayDateKey.value))
+const dailyDoneSet = computed(() => new Set(dailyDoneIds.value))
+const dailyDoneCount = computed(() => {
+  let count = 0
+  for (const id of dailyDoneSet.value) {
+    if (dailyActiveIdSet.value.has(id)) count += 1
+  }
+  return count
 })
 
-/** 速览卡的特性列表：直接用该公告自己的 features（没有就不显示列表） */
-const patchFeatures = computed(() => {
-  const own = officialPatchNotice.value?.features
-  return Array.isArray(own) ? own : []
-})
+function syncDailyClock() {
+  const now = new Date()
+  const nextDateKey = getLocalDateKey(now)
+  if (nextDateKey !== todayDateKey.value) {
+    dailyDoneIds.value = readDailyChecklist(nextDateKey)
+  }
+  nowTick.value = now
+}
+
+function isDailyDone(id) {
+  return dailyDoneSet.value.has(id)
+}
+
+function isMealWindowOpen(meal) {
+  return currentHour.value >= meal.startHour && currentHour.value < meal.endHour
+}
+
+function toggleDailyItem(id) {
+  syncDailyClock()
+  const next = new Set(dailyDoneIds.value)
+  if (next.has(id)) next.delete(id)
+  else next.add(id)
+  const list = Array.from(next)
+  dailyDoneIds.value = list
+  writeDailyChecklist(todayDateKey.value, list)
+}
+
+function resetDailyChecklist() {
+  syncDailyClock()
+  dailyDoneIds.value = []
+  writeDailyChecklist(todayDateKey.value, [])
+}
 
 const currentNoticesList = computed(() => noticesData.value[activeNoticeTab.value] || [])
 
@@ -920,6 +1111,7 @@ async function loadHomeContent() {
   coreLinks.value = cfg.coreLinks
   toolLinks.value = cfg.toolLinks
   homeBlocks.value = cfg.blocks
+  if (cfg.daily) dailyConfig.value = cfg.daily
 
   /*
    * 角色数据：读精简版 `hero-summary.json`（约 6 KB），不再下载 1959 KB 的 heroes.json。
@@ -956,18 +1148,37 @@ async function loadHomeContent() {
   applyNoticeFromQuery()
 }
 
+let dailyClockTimer = null
+const onVisibilityChange = () => {
+  if (typeof document !== 'undefined' && document.visibilityState === 'visible') {
+    syncDailyClock()
+  }
+}
+
 onMounted(() => {
   loadHomeContent()
+  syncDailyClock()
 
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', updateDesktopState)
+    dailyClockTimer = window.setInterval(syncDailyClock, 60000)
+  }
+  if (typeof document !== 'undefined') {
+    document.addEventListener('visibilitychange', onVisibilityChange)
   }
 })
 
 onBeforeUnmount(() => {
   stopCarousel()
+  if (dailyClockTimer) {
+    clearInterval(dailyClockTimer)
+    dailyClockTimer = null
+  }
   if (typeof window !== 'undefined') {
     window.removeEventListener('resize', updateDesktopState)
+  }
+  if (typeof document !== 'undefined') {
+    document.removeEventListener('visibilitychange', onVisibilityChange)
   }
 })
 </script>
@@ -1086,37 +1297,44 @@ onBeforeUnmount(() => {
   font-size: 11px;
   font-weight: 700;
   padding: 2px 8px;
-  border-radius: 3px;
+  border-radius: 4px;
   color: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.32);
 }
 
 .poster-tag.gold {
-  background: #c69234;
-  color: #1a1005;
+  background: rgba(186, 134, 48, 0.92);
+  color: #241407;
+  border: 1px solid rgba(235, 192, 112, 0.4);
 }
 
 .poster-tag.teal {
-  background: #4b7a78;
-  color: #fff;
+  background: rgba(56, 108, 104, 0.88);
+  color: #e2f2ef;
+  border: 1px solid rgba(132, 194, 186, 0.28);
 }
 
 .poster-tag.red {
-  background: #8b0000;
-  color: #fff;
+  background: rgba(146, 46, 42, 0.88);
+  color: #f9e6e0;
+  border: 1px solid rgba(212, 118, 108, 0.32);
 }
 
 .poster-tag.info {
-  background: #7a634b;
-  color: #f7eedf;
+  background: rgba(116, 92, 68, 0.88);
+  color: #f2e4ce;
+  border: 1px solid rgba(196, 168, 136, 0.28);
 }
 
 .poster-tag-sub {
   font-size: 11px;
-  color: #e5d2b7;
-  background: rgba(0, 0, 0, 0.45);
-  padding: 2px 6px;
-  border-radius: 3px;
+  font-weight: 600;
+  color: #dcc6a6;
+  background: rgba(0, 0, 0, 0.36);
+  border: 1px solid rgba(229, 210, 183, 0.18);
+  padding: 2px 7px;
+  border-radius: 4px;
   letter-spacing: 0.3px;
 }
 
@@ -1386,7 +1604,7 @@ onBeforeUnmount(() => {
   color: #725638;
   background: rgba(143, 115, 81, 0.12);
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 7px;
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
@@ -1406,26 +1624,28 @@ onBeforeUnmount(() => {
 
 .notices-body-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: stretch;
 }
 
 .notice-list-column {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
+  min-width: 0;
 }
 
 .notice-list-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   padding: 8px 10px;
-  background: rgba(62, 42, 20, 0.05);
-  border: 1px solid var(--border-faint);
-  border-radius: 4px;
+  background: rgba(255, 251, 244, 0.72);
+  border: 1px solid rgba(143, 115, 81, 0.22);
+  border-radius: 7px;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
   text-decoration: none;
   box-sizing: border-box;
   width: 100%;
@@ -1433,49 +1653,55 @@ onBeforeUnmount(() => {
 }
 
 .notice-list-item:hover {
-  background: rgba(198, 146, 52, 0.12);
-  border-color: #c69234;
-  transform: translateX(2px);
+  background: rgba(255, 246, 227, 0.96);
+  border-color: rgba(198, 146, 52, 0.58);
+  transform: translateY(-1px);
 }
 
 .notice-tag {
   font-size: 10.5px;
   font-weight: 700;
-  padding: 1.5px 6px;
-  border-radius: 3px;
+  padding: 1.5px 8px;
+  border-radius: 999px;
+  line-height: 1.4;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .notice-tag.pinned {
-  background: #8b1e1e;
-  color: #fff;
+  background: rgba(214, 88, 88, 0.14);
+  color: #a33333;
+  border: 1px solid rgba(214, 88, 88, 0.34);
 }
 
 .notice-tag.patch {
-  background: #c69234;
-  color: #2b1f15;
+  background: rgba(224, 154, 52, 0.16);
+  color: #9c5b10;
+  border: 1px solid rgba(224, 154, 52, 0.38);
 }
 
 .notice-tag.event {
-  background: #3d706e;
-  color: #fff;
+  background: rgba(66, 138, 136, 0.15);
+  color: #286361;
+  border: 1px solid rgba(66, 138, 136, 0.34);
 }
 
 .notice-tag.info {
-  background: #7a634b;
-  color: #f7eedf;
+  background: rgba(138, 112, 86, 0.14);
+  color: #614b36;
+  border: 1px solid rgba(138, 112, 86, 0.3);
 }
 
 .notice-tag.gold {
-  background: #d4a359;
-  color: #2b1a0d;
+  background: rgba(88, 150, 102, 0.15);
+  color: #31693e;
+  border: 1px solid rgba(88, 150, 102, 0.35);
 }
 
 .notice-item-title {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
-  color: #2b1f15;
+  color: #362415;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
@@ -1500,103 +1726,432 @@ onBeforeUnmount(() => {
   font-size: 12px;
   color: #9a8a75;
   border: 1px dashed rgba(143, 115, 81, 0.35);
-  border-radius: 4px;
+  border-radius: 7px;
   background: rgba(143, 115, 81, 0.05);
 }
 
-/* 官方更新公告特色速览卡 */
-.patch-highlight-box {
-  background: linear-gradient(135deg, rgba(62, 42, 20, 0.08) 0%, rgba(62, 42, 20, 0.03) 100%);
-  border: 1.5px dashed var(--border-color);
-  border-radius: 6px;
-  padding: 12px 14px;
+/* 左栏底部交流群反馈入口 */
+.notice-feedback-bar {
+  margin-top: auto;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  border: 1px dashed rgba(143, 115, 81, 0.48);
+  background: linear-gradient(135deg, rgba(255, 250, 240, 0.72), rgba(244, 228, 204, 0.48));
+  color: #5c4028;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
-.patch-highlight-head {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.patch-ver-title {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #8b0000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 6px;
-  width: 100%;
-}
-
-.patch-ver-tag {
-  font-size: 10px;
-  padding: 1px 5px;
-  background: #8b0000;
-  color: #fff;
-  border-radius: 2px;
-  font-weight: 700;
-}
-
-.patch-features-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.patch-feature-item {
-  font-size: 12px;
-  color: #4a341f;
-  line-height: 1.4;
-}
-
-/* 公告跳转按钮 (方案 T1 + H1 极简加深·深木浓墨：纯文字居中浮印·彻底无框无底·通透轻盈) */
-.patch-view-full-btn {
-  margin-top: 8px;
-  padding: 8px 0 2px;
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  color: #4a301a;
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  border-radius: 0;
-  cursor: pointer;
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  transition: all 0.2s ease;
-}
-
-.patch-view-full-btn .btn-arrow {
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-
-.patch-view-full-btn:hover {
-  background: transparent;
-  color: #1f140b;
-  font-weight: 700;
+.notice-feedback-bar:hover {
+  background: linear-gradient(135deg, rgba(255, 247, 232, 0.96), rgba(249, 229, 198, 0.76));
+  border-color: rgba(198, 146, 52, 0.65);
+  color: #362415;
   transform: translateY(-1px);
 }
 
-.patch-view-full-btn:hover .btn-arrow {
+.notice-feedback-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(212, 163, 89, 0.22);
+  color: #9e5d18;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notice-feedback-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.notice-feedback-text {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.notice-feedback-qq {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(218, 158, 86, 0.18);
+  border: 1px solid rgba(198, 146, 52, 0.34);
+  color: #8f4d14;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.notice-feedback-arrow {
+  font-size: 12px;
+  font-weight: 700;
+  color: #8a6439;
+  flex-shrink: 0;
+  transition: transform 0.15s ease;
+}
+
+.notice-feedback-bar:hover .notice-feedback-arrow {
   transform: translateX(3px);
+}
+
+/* 右侧：今日必做可爱手账看板 */
+.daily-checklist-box {
+  background: linear-gradient(155deg, rgba(255, 249, 238, 0.72) 0%, rgba(242, 227, 204, 0.48) 100%);
+  border: 1.5px dashed rgba(143, 115, 81, 0.55);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.daily-checklist-box.is-all-done {
+  border-color: rgba(88, 134, 96, 0.6);
+  background: linear-gradient(155deg, rgba(242, 249, 239, 0.78) 0%, rgba(232, 241, 224, 0.52) 100%);
+}
+
+.daily-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.daily-head-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.daily-head-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(198, 146, 52, 0.2);
+  color: #b56d22;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.daily-head-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.daily-head-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #3a2412;
+  letter-spacing: 0.4px;
+}
+
+.daily-weekday-pill {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #8a5624;
+  background: rgba(212, 163, 89, 0.22);
+  border: 1px solid rgba(198, 146, 52, 0.35);
+  border-radius: 999px;
+  padding: 1px 7px;
+  line-height: 1.4;
+}
+
+.daily-head-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.daily-reset-btn {
+  border: none;
+  background: transparent;
+  padding: 1px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8f7351;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.daily-reset-btn:hover {
+  color: #6b2416;
+  background: rgba(143, 115, 81, 0.14);
+}
+
+.daily-progress-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #6f4c2a;
+  background: rgba(255, 250, 240, 0.9);
+  border: 1px solid rgba(143, 115, 81, 0.35);
+  border-radius: 999px;
+  padding: 1px 8px;
+  transition: all 0.2s ease;
+}
+
+.daily-progress-pill.is-complete {
+  color: #2f653e;
+  background: rgba(111, 168, 123, 0.2);
+  border-color: rgba(78, 124, 88, 0.5);
+}
+
+.progress-spark {
+  font-size: 10px;
+}
+
+/* 上半区：8 项常驻日常（2 × 4 均匀分布） */
+.daily-regular-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.daily-check-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 7px;
+  min-width: 0;
+  border-radius: 7px;
+  background: rgba(255, 251, 244, 0.78);
+  border: 1px solid rgba(143, 115, 81, 0.22);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.daily-check-item:hover {
+  background: rgba(255, 246, 227, 0.96);
+  border-color: rgba(198, 146, 52, 0.6);
+  transform: translateY(-1px);
+}
+
+.daily-check-item.is-done {
+  background: rgba(235, 242, 230, 0.65);
+  border-color: rgba(98, 140, 102, 0.28);
+  opacity: 0.72;
+}
+
+.daily-check-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(143, 115, 81, 0.6);
+  background: rgba(255, 255, 255, 0.85);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.15s ease, border-color 0.15s ease;
+}
+
+.daily-check-circle svg {
+  width: 9px;
+  height: 9px;
+}
+
+.daily-check-item:hover .daily-check-circle,
+.daily-meal-item:hover .daily-check-circle {
+  border-color: #c69234;
+}
+
+.daily-check-item.is-done .daily-check-circle,
+.daily-meal-item.is-done .daily-check-circle {
+  background: #5a8f63;
+  border-color: #4a7c53;
+  transform: scale(1.04);
+}
+
+.daily-item-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.daily-item-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #362415;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.daily-check-item.is-done .daily-item-label {
+  text-decoration: line-through;
+  color: #5f705e;
+}
+
+.daily-item-hint {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #9b6028;
+  background: rgba(218, 158, 86, 0.16);
+  border-radius: 4px;
+  padding: 0 4px;
+  line-height: 1.45;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.daily-check-item.is-done .daily-item-hint {
+  opacity: 0.7;
+}
+
+.daily-jump-btn {
+  width: 17px;
+  height: 17px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: rgba(143, 115, 81, 0.12);
+  color: #7a5c3d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.daily-jump-btn svg {
+  width: 10px;
+  height: 10px;
+}
+
+.daily-jump-btn:hover {
+  background: #c69234;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+/* 下半区：2 项限时体力餐点（横向均分） */
+.daily-meal-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding-top: 7px;
+  margin-top: 1px;
+  border-top: 1px dashed rgba(143, 115, 81, 0.35);
+}
+
+.daily-meal-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
+  min-width: 0;
+  border-radius: 7px;
+  background: rgba(244, 219, 184, 0.36);
+  border: 1px solid rgba(198, 146, 52, 0.28);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.daily-meal-item:hover {
+  background: rgba(249, 224, 184, 0.62);
+  border-color: rgba(198, 146, 52, 0.62);
+  transform: translateY(-1px);
+}
+
+.daily-meal-item.is-active-window {
+  background: linear-gradient(135deg, rgba(255, 240, 212, 0.92), rgba(249, 222, 179, 0.65));
+  border-color: rgba(206, 134, 52, 0.65);
+}
+
+.daily-meal-item.is-done {
+  background: rgba(235, 242, 230, 0.65);
+  border-color: rgba(98, 140, 102, 0.28);
+  opacity: 0.72;
+}
+
+.daily-meal-icon {
+  width: 22px;
+  height: 22px;
+  color: #a86424;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.daily-meal-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.daily-meal-item.is-done .daily-meal-icon {
+  color: #5f705e;
+}
+
+.daily-meal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+
+.daily-meal-name {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #3a2412;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.daily-meal-item.is-done .daily-meal-name {
+  text-decoration: line-through;
+  color: #5f705e;
+}
+
+.daily-meal-time {
+  font-size: 10px;
+  color: #8b6a48;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.daily-meal-live-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #8f2d14;
+  background: rgba(236, 151, 86, 0.28);
+  border: 1px solid rgba(198, 108, 44, 0.35);
+  border-radius: 999px;
+  padding: 1px 5px;
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -2410,30 +2965,218 @@ onBeforeUnmount(() => {
   color: #ebdcc3;
 }
 
-.dark-mode .patch-highlight-box,
-.dark-theme .patch-highlight-box {
-  background: linear-gradient(135deg, rgba(62, 42, 20, 0.25) 0%, rgba(62, 42, 20, 0.12) 100%);
-  border-color: rgba(143, 115, 81, 0.4);
+.dark-mode .notice-tag.pinned,
+.dark-theme .notice-tag.pinned {
+  background: rgba(224, 102, 102, 0.22);
+  color: #f6b2b2;
+  border-color: rgba(224, 102, 102, 0.42);
 }
 
-.dark-mode .patch-feature-item,
-.dark-theme .patch-feature-item {
-  color: #cbb898;
+.dark-mode .notice-tag.patch,
+.dark-theme .notice-tag.patch {
+  background: rgba(229, 166, 72, 0.2);
+  color: #f4c97d;
+  border-color: rgba(229, 166, 72, 0.42);
 }
 
-.dark-mode .patch-view-full-btn,
-.dark-theme .patch-view-full-btn {
-  background: transparent;
-  border: none;
-  box-shadow: none;
+.dark-mode .notice-tag.event,
+.dark-theme .notice-tag.event {
+  background: rgba(88, 168, 164, 0.22);
+  color: #a6dedb;
+  border-color: rgba(88, 168, 164, 0.42);
+}
+
+.dark-mode .notice-tag.info,
+.dark-theme .notice-tag.info {
+  background: rgba(168, 140, 112, 0.22);
+  color: #d8c4aa;
+  border-color: rgba(168, 140, 112, 0.4);
+}
+
+.dark-mode .notice-tag.gold,
+.dark-theme .notice-tag.gold {
+  background: rgba(110, 174, 124, 0.22);
+  color: #aee0b8;
+  border-color: rgba(110, 174, 124, 0.42);
+}
+
+.dark-mode .notice-feedback-bar,
+.dark-theme .notice-feedback-bar {
+  background: linear-gradient(135deg, rgba(50, 35, 22, 0.72), rgba(36, 25, 15, 0.56));
+  border-color: rgba(168, 132, 82, 0.42);
+  color: #d6c09f;
+}
+
+.dark-mode .notice-feedback-bar:hover,
+.dark-theme .notice-feedback-bar:hover {
+  background: linear-gradient(135deg, rgba(68, 48, 29, 0.86), rgba(48, 34, 21, 0.74));
+  border-color: rgba(212, 163, 89, 0.62);
+  color: #f7ebd7;
+}
+
+.dark-mode .notice-feedback-icon,
+.dark-theme .notice-feedback-icon {
+  background: rgba(212, 163, 89, 0.18);
+  color: #e5b76b;
+}
+
+.dark-mode .notice-feedback-qq,
+.dark-theme .notice-feedback-qq {
+  background: rgba(212, 163, 89, 0.18);
+  border-color: rgba(212, 163, 89, 0.36);
+  color: #f1cb88;
+}
+
+.dark-mode .notice-feedback-arrow,
+.dark-theme .notice-feedback-arrow {
   color: #d8ba88;
 }
 
-.dark-mode .patch-view-full-btn:hover,
-.dark-theme .patch-view-full-btn:hover {
-  background: transparent;
-  color: #fff1d6;
-  font-weight: 700;
+.dark-mode .daily-checklist-box,
+.dark-theme .daily-checklist-box {
+  background: linear-gradient(155deg, rgba(50, 35, 22, 0.72) 0%, rgba(36, 25, 15, 0.56) 100%);
+  border-color: rgba(168, 132, 82, 0.42);
+}
+
+.dark-mode .daily-checklist-box.is-all-done,
+.dark-theme .daily-checklist-box.is-all-done {
+  background: linear-gradient(155deg, rgba(38, 56, 41, 0.68) 0%, rgba(30, 44, 32, 0.55) 100%);
+  border-color: rgba(110, 165, 118, 0.55);
+}
+
+.dark-mode .daily-head-icon,
+.dark-theme .daily-head-icon {
+  background: rgba(212, 163, 89, 0.18);
+  color: #e5b76b;
+}
+
+.dark-mode .daily-head-title,
+.dark-theme .daily-head-title {
+  color: #f4e6cf;
+}
+
+.dark-mode .daily-weekday-pill,
+.dark-theme .daily-weekday-pill {
+  color: #e5b76b;
+  background: rgba(212, 163, 89, 0.15);
+  border-color: rgba(212, 163, 89, 0.35);
+}
+
+.dark-mode .daily-reset-btn,
+.dark-theme .daily-reset-btn {
+  color: #b79f7f;
+}
+
+.dark-mode .daily-reset-btn:hover,
+.dark-theme .daily-reset-btn:hover {
+  color: #f4dfc0;
+  background: rgba(143, 115, 81, 0.25);
+}
+
+.dark-mode .daily-progress-pill,
+.dark-theme .daily-progress-pill {
+  color: #e5cfa8;
+  background: rgba(34, 24, 15, 0.75);
+  border-color: rgba(168, 132, 82, 0.38);
+}
+
+.dark-mode .daily-progress-pill.is-complete,
+.dark-theme .daily-progress-pill.is-complete {
+  color: #9ed2a6;
+  background: rgba(74, 124, 83, 0.3);
+  border-color: rgba(110, 165, 118, 0.52);
+}
+
+.dark-mode .daily-check-item,
+.dark-theme .daily-check-item {
+  background: rgba(32, 23, 15, 0.72);
+  border-color: rgba(143, 115, 81, 0.26);
+}
+
+.dark-mode .daily-check-item:hover,
+.dark-theme .daily-check-item:hover {
+  background: rgba(66, 47, 29, 0.85);
+  border-color: rgba(212, 163, 89, 0.55);
+}
+
+.dark-mode .daily-check-item.is-done,
+.dark-theme .daily-check-item.is-done,
+.dark-mode .daily-meal-item.is-done,
+.dark-theme .daily-meal-item.is-done {
+  background: rgba(38, 52, 40, 0.55);
+  border-color: rgba(98, 140, 102, 0.3);
+}
+
+.dark-mode .daily-check-circle,
+.dark-theme .daily-check-circle {
+  background: rgba(24, 17, 11, 0.85);
+  border-color: rgba(168, 132, 82, 0.55);
+}
+
+.dark-mode .daily-item-label,
+.dark-theme .daily-item-label,
+.dark-mode .daily-meal-name,
+.dark-theme .daily-meal-name {
+  color: #ebdcc3;
+}
+
+.dark-mode .daily-check-item.is-done .daily-item-label,
+.dark-theme .daily-check-item.is-done .daily-item-label,
+.dark-mode .daily-meal-item.is-done .daily-meal-name,
+.dark-theme .daily-meal-item.is-done .daily-meal-name {
+  color: #93aa95;
+}
+
+.dark-mode .daily-item-hint,
+.dark-theme .daily-item-hint {
+  color: #e5b76b;
+  background: rgba(212, 163, 89, 0.16);
+}
+
+.dark-mode .daily-jump-btn,
+.dark-theme .daily-jump-btn {
+  background: rgba(143, 115, 81, 0.2);
+  color: #d8ba88;
+}
+
+.dark-mode .daily-jump-btn:hover,
+.dark-theme .daily-jump-btn:hover {
+  background: #c69234;
+  color: #1f140b;
+}
+
+.dark-mode .daily-meal-row,
+.dark-theme .daily-meal-row {
+  border-top-color: rgba(168, 132, 82, 0.3);
+}
+
+.dark-mode .daily-meal-item,
+.dark-theme .daily-meal-item {
+  background: rgba(84, 56, 28, 0.45);
+  border-color: rgba(212, 163, 89, 0.3);
+}
+
+.dark-mode .daily-meal-item.is-active-window,
+.dark-theme .daily-meal-item.is-active-window {
+  background: linear-gradient(135deg, rgba(114, 72, 30, 0.65), rgba(84, 52, 24, 0.55));
+  border-color: rgba(235, 174, 88, 0.62);
+}
+
+.dark-mode .daily-meal-icon,
+.dark-theme .daily-meal-icon {
+  color: #e5b76b;
+}
+
+.dark-mode .daily-meal-time,
+.dark-theme .daily-meal-time {
+  color: #bfa988;
+}
+
+.dark-mode .daily-meal-live-tag,
+.dark-theme .daily-meal-live-tag {
+  color: #ffd3a8;
+  background: rgba(198, 108, 44, 0.32);
+  border-color: rgba(235, 146, 78, 0.45);
 }
 
 .dark-mode .hero-card,
@@ -2581,22 +3324,28 @@ onBeforeUnmount(() => {
     box-sizing: border-box;
   }
 
-  .patch-highlight-box {
+  .daily-checklist-box {
     order: -1;
-    padding: 10px 12px;
+    padding: 9px 10px;
     box-sizing: border-box;
     width: 100%;
     min-width: 0;
   }
 
-  .patch-ver-title {
-    font-size: 13px;
-    flex-wrap: wrap;
+  .daily-check-item,
+  .daily-meal-item {
+    padding: 5px 6px;
+    gap: 5px;
   }
 
-  .patch-feature-item {
-    font-size: 11.5px;
-    word-break: break-word;
+  .daily-item-label,
+  .daily-meal-name {
+    font-size: 11px;
+  }
+
+  .daily-item-hint {
+    font-size: 9px;
+    padding: 0 3px;
   }
 
   .notice-list-column {
@@ -2620,6 +3369,12 @@ onBeforeUnmount(() => {
 
   .notice-item-date {
     font-size: 10.5px;
+  }
+
+  .notice-feedback-bar {
+    padding: 7px 8px;
+    font-size: 11.5px;
+    gap: 7px;
   }
 
   .core-indexes-grid {

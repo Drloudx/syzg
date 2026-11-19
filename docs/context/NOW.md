@@ -22,7 +22,7 @@
 | 数据源版本 | **1.7.15 付费测 (cdnVer 36, codeVersion 454C1B17)**；热更配置表（59 张，12 张实质变更）、剧情（674 份，6 份变更）、源码（2680 .cs）已同步就绪 |
 | 单测 | `npm run test:unit` **499 项全绿**（含活动副本 3 项全绿） |
 | 最近重点修复 | 新增「活动副本」图鉴页（`/activity-dungeons`，当前开放 `sp1` 亚空回廊·特异次元 20 层/房间池/事件推演/夜之符兑换），接入 `UiVirtualGrid` 窗口化与 `ItemDetailModal` 来源直达；神匠之塔「幻象立方兑换」对齐夜之符兑换排版并移至文字下方；移动端支持顶部直接导航/侧边悬浮球切换（`navTriggerMode`）；副本路线图 3D 底座与怪物头像多级兜底 |
-| 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；蜘蛛头冠幼体数量异常、料理台自由制作无法烹饪武僧火锅/果香通心粉均已编制反馈材料并输出 Word 提交官方；小麦无法采集已获官方修复关闭 |
+| 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；蜘蛛头冠幼体数量异常已编制反馈材料并输出 Word 提交官方；小麦无法采集、料理台自由制作无法烹饪武僧火锅/果香通心粉均已获官方修复关闭 |
 | 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修） |
 
 ### 本次推送（2026-11-20）
@@ -33,6 +33,9 @@
   - 修复点击物品详情传入字符串 `itemId` 导致空白的问题，改为先经 `fetchItemData()` 取完整对象。
 - **神匠之塔兑换对齐与移动端导航切换**：
   - 「幻象立方兑换」与「夜之符兑换」统一去掉「中心」二字，按钮落在 `.filter-extra-bar` 说明文字下方左侧，弹窗卡片样式对齐并统一亮度。
+- **首页「今日必做」看板与食谱页优化**：
+  - 移除武僧火锅/果香肉酱通心粉已过时 `craftNote` 并重建 `recipes.json`，同步优化 `RecipesView.vue` 卡片排版与留白。
+  - 首页公告栏右侧改为后台可配的「今日必做」打卡看板（复用 `home_blocks` `section='daily'`，无需库迁移），同步调整公告柔和标签、交流群底部反馈条、海报沉稳角标及后台 `AdminHomePanel` / `AdminNoticeEditPanel` / `AdminNoticesPanel`。
   - `App.vue` + `MenuModeModal.vue` 新增 `navTriggerMode`（默认 `'header'` 顶部直接导航，可选 `'floating'` 侧边悬浮球）。
   - 副本图鉴 `DungeonRouteMap.vue` 3D 节点底座、边线包边、`RoomContentList.vue` `detailsOnly` 精简、以及 `monsterIconMap.js` 大小写规范化与多级头像兜底一并收录。
 

@@ -179,6 +179,71 @@ export const DEFAULT_BLOCKS = {
   }
 }
 
+/** 今日必做默认值（home_blocks.section = 'daily' 未配置时的前端兜底，也供后台「恢复默认」复用） */
+export const DEFAULT_DAILY_BLOCK = {
+  title: '今日必做',
+  rows: [
+    { id: 'checkin', kind: 'regular', label: '签到打卡', hint: '活动/月卡', route: '' },
+    { id: 'commission', kind: 'regular', label: '每日委托', hint: '', route: '' },
+    { id: 'activity', kind: 'regular', label: '活跃奖励', hint: '', route: '' },
+    { id: 'daily_plan', kind: 'regular', label: '日常计划', hint: '', route: '/daily' },
+    { id: 'challenge', kind: 'regular', label: '挑战赛', hint: '', route: '' },
+    { id: 'tower', kind: 'regular', label: '神匠之塔', hint: '', route: '/tower' },
+    { id: 'seeds', kind: 'regular', label: '种子购买', hint: '', route: '' },
+    { id: 'freight', kind: 'regular', label: '货运贸易和订单', hint: '', route: '/freight' },
+    { id: 'meal_tea', kind: 'meal', label: '领取下午茶', windowText: '12:00 ~ 23:59', startHour: 12, endHour: 24, icon: 'tea' },
+    { id: 'meal_dinner', kind: 'meal', label: '领取晚宴', windowText: '18:00 ~ 23:59', startHour: 18, endHour: 24, icon: 'dinner' }
+  ]
+}
+
+export function formatDailyMealWindow(startHour, endHour) {
+  const s = Math.min(23, Math.max(0, Math.trunc(Number(startHour) || 0)))
+  const e = Math.min(24, Math.max(1, Math.trunc(Number(endHour) || 24)))
+  const startStr = `${String(s).padStart(2, '0')}:00`
+  const endStr = e >= 24 ? '23:59' : `${String(e).padStart(2, '0')}:00`
+  return `${startStr} ~ ${endStr}`
+}
+
+/** 把 `home_blocks` 的 `daily` 行整理成视图使用的结构（过滤非法空条目） */
+export function resolveDailyBlock(rawBlock) {
+  const source = rawBlock && Array.isArray(rawBlock.rows) && rawBlock.rows.length
+    ? rawBlock
+    : DEFAULT_DAILY_BLOCK
+  const title = String(source.title || '').trim() || DEFAULT_DAILY_BLOCK.title
+  const regular = []
+  const meals = []
+  for (const [idx, row] of (source.rows || []).entries()) {
+    const label = String(row?.label || '').trim()
+    if (!label) continue
+    const id = String(row?.id || `daily_${idx + 1}`).trim()
+    if (row?.kind === 'meal') {
+      const startParsed = Number(row?.startHour)
+      const endParsed = Number(row?.endHour)
+      const startHour = Number.isFinite(startParsed) ? Math.min(23, Math.max(0, Math.trunc(startParsed))) : 12
+      const endHour = Number.isFinite(endParsed) ? Math.min(24, Math.max(1, Math.trunc(endParsed))) : 24
+      meals.push({
+        id,
+        kind: 'meal',
+        label,
+        startHour,
+        endHour,
+        windowText: String(row?.windowText || '').trim() || formatDailyMealWindow(startHour, endHour),
+        icon: row?.icon === 'dinner' ? 'dinner' : 'tea'
+      })
+    } else {
+      const route = String(row?.route || '').trim()
+      regular.push({
+        id,
+        kind: 'regular',
+        label,
+        hint: String(row?.hint || '').trim(),
+        route: route.startsWith('/') && !route.startsWith('//') ? route : ''
+      })
+    }
+  }
+  return { title, regular, meals }
+}
+
 /**
  * 拉取首页配置。
  *
@@ -255,6 +320,7 @@ async function requestHomeConfig(opts = {}) {
     toolLinks: DEFAULT_TOOL_LINKS,
     heroes: DEFAULT_HEROES,
     blocks: DEFAULT_BLOCKS,
+    daily: resolveDailyBlock(DEFAULT_DAILY_BLOCK),
     degraded: false
   }
 
@@ -345,13 +411,16 @@ async function requestHomeConfig(opts = {}) {
     result.heroes = data.heroes
   }
 
-  // ⑤ 底栏
+  // ⑤ 底栏与今日必做（共用 home_blocks 表）
   if (Array.isArray(data.blocks) && data.blocks.length) {
     const map = {}
     for (const b of data.blocks) map[b.section] = b
     result.blocks = {
       guide: map.guide || DEFAULT_BLOCKS.guide,
       help: map.help || DEFAULT_BLOCKS.help
+    }
+    if (map.daily && Array.isArray(map.daily.rows) && map.daily.rows.length) {
+      result.daily = resolveDailyBlock(map.daily)
     }
   }
 

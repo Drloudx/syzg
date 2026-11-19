@@ -14,14 +14,12 @@ export const RECIPE_SOURCE_CONFIG = {
   'item_30040': {
     text: '完成任务“禅武同如一，虎啸除心魔”获取配方',
     targetType: 'task',
-    targetId: 'm_2_8',
-    craftNote: '不能通过食材直接做，需要从解锁配方后点击右下角料理食谱再这里点击食谱做'
+    targetId: 'm_2_8'
   },
   'item_30042': {
     text: '完成任务“香甜美食在哪里”获取配方',
     targetType: 'task',
-    targetId: 's_2_10',
-    craftNote: '不能通过食材直接做，需要从解锁配方后点击右下角料理食谱再这里点击食谱做'
+    targetId: 's_2_10'
   }
 }
 

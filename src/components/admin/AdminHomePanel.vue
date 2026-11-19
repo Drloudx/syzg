@@ -509,6 +509,217 @@
         </div>
       </template>
 
+      <!-- ============ 今日必做 ============ -->
+      <template v-else-if="activeTab === 'daily'">
+        <div class="home-card">
+          <div class="home-card-head">
+            <span class="home-card-index">标题</span>
+            <input
+              v-model="dailyConfig.title"
+              class="admin-input home-input-flex home-title-input"
+              type="text"
+              placeholder="看板标题（如：今日必做）"
+            />
+            <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="restoreDefaultDaily">
+              恢复默认 10 项
+            </button>
+          </div>
+          <p class="admin-hint" style="margin: 0;">
+            ✦ 「常驻日常」在首页按 2 列均匀网格展示；「限时体力补给」在底栏横向并列。留存原条目仅修改文案或跳转页可保留玩家当天打卡勾选状态。
+          </p>
+        </div>
+
+        <!-- 上半区：常驻日常条目 -->
+        <div class="home-card">
+          <div class="home-card-head">
+            <span class="home-card-index">常驻</span>
+            <span class="home-title-input">常驻日常条目（{{ dailyConfig.regular.length }} 项）</span>
+            <div class="home-card-ops">
+              <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="addDailyRegular">
+                + 增加常驻日常
+              </button>
+            </div>
+          </div>
+
+          <div v-if="!dailyConfig.regular.length" class="admin-hint" style="margin: 4px 0;">
+            暂无常驻日常，点击右上角「+ 增加常驻日常」。
+          </div>
+
+          <div v-for="(item, ri) in dailyConfig.regular" :key="item._key" class="home-row-card">
+            <div class="home-row-main">
+              <span class="home-card-index">{{ ri + 1 }}</span>
+              <input
+                v-model="item.label"
+                class="admin-input home-input-flex"
+                type="text"
+                placeholder="项目名称（如：签到打卡）"
+              />
+              <input
+                v-model="item.hint"
+                class="admin-input daily-admin-hint-input"
+                type="text"
+                placeholder="小徽章（可选，如：活动/月卡）"
+              />
+              <div class="home-card-ops">
+                <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" :disabled="ri === 0" @click="moveItem(dailyConfig.regular, ri, -1)" title="上移">↑</button>
+                <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" :disabled="ri === dailyConfig.regular.length - 1" @click="moveItem(dailyConfig.regular, ri, 1)" title="下移">↓</button>
+                <button type="button" class="admin-btn admin-btn--danger admin-btn--sm" @click="removeDailyItem(dailyConfig.regular, ri, '常驻日常')">删除</button>
+              </div>
+            </div>
+
+            <div class="home-row-action">
+              <span class="home-row-action-label">直达页面（可选）</span>
+              <div
+                class="route-combobox"
+                :class="{ 'is-open': openRouteDropdownKey === `daily-${item._key}` }"
+                @click.stop
+              >
+                <button
+                  type="button"
+                  class="route-combobox-trigger"
+                  @click="toggleRouteDropdown(`daily-${item._key}`)"
+                >
+                  <span class="route-combobox-selected">{{ item.route ? getRouteLabel(item.route) : '（无跳转 · 仅打卡）' }}</span>
+                  <span class="route-combobox-arrow">▾</span>
+                </button>
+
+                <div v-if="openRouteDropdownKey === `daily-${item._key}`" class="route-combobox-dropdown" @click.stop>
+                  <div class="route-search-bar">
+                    <span class="route-search-icon">🔍</span>
+                    <input
+                      :ref="(el) => setRouteSearchInputRef(el, `daily-${item._key}`)"
+                      v-model="routeSearchQueries[`daily-${item._key}`]"
+                      type="text"
+                      class="admin-input route-search-input"
+                      placeholder="搜索页面名称或路径（如：日常 / daily）..."
+                      @click.stop
+                      @keydown.esc="openRouteDropdownKey = null"
+                    />
+                    <button
+                      v-if="routeSearchQueries[`daily-${item._key}`]"
+                      type="button"
+                      class="route-search-clear"
+                      @click.stop="routeSearchQueries[`daily-${item._key}`] = ''"
+                    >×</button>
+                  </div>
+
+                  <div class="route-options-scroll">
+                    <div
+                      class="route-option-item"
+                      :class="{ 'is-selected': !item.route }"
+                      @click="selectRoute(item, 'route', '')"
+                    >
+                      <div class="route-option-info">
+                        <span class="route-option-name">无跳转（仅打卡）</span>
+                        <span class="route-option-path">不显示右上角直达小箭头</span>
+                      </div>
+                      <span v-if="!item.route" class="route-option-check">✓</span>
+                    </div>
+                    <template v-for="grp in getFilteredRouteGroups(routeSearchQueries[`daily-${item._key}`])" :key="grp.key">
+                      <div class="route-group-header">{{ grp.label }}</div>
+                      <div
+                        v-for="r in grp.items"
+                        :key="r.path"
+                        class="route-option-item"
+                        :class="{ 'is-selected': item.route === r.path }"
+                        @click="selectRoute(item, 'route', r.path)"
+                      >
+                        <div class="route-option-info">
+                          <span class="route-option-name">{{ r.name }}</span>
+                          <span class="route-option-path">{{ r.path }}</span>
+                        </div>
+                        <span v-if="item.route === r.path" class="route-option-check">✓</span>
+                      </div>
+                    </template>
+                    <div v-if="getFilteredRouteGroups(routeSearchQueries[`daily-${item._key}`]).length === 0" class="route-option-empty">
+                      未找到匹配的页面
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                v-if="item.route"
+                type="button"
+                class="admin-btn admin-btn--ghost admin-btn--sm"
+                @click="item.route = ''"
+              >清空跳转</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 下半区：限时体力补给 -->
+        <div class="home-card">
+          <div class="home-card-head">
+            <span class="home-card-index">限时</span>
+            <span class="home-title-input">限时体力补给（{{ dailyConfig.meals.length }} 项）</span>
+            <div class="home-card-ops">
+              <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" @click="addDailyMeal">
+                + 增加限时补给
+              </button>
+            </div>
+          </div>
+
+          <div v-if="!dailyConfig.meals.length" class="admin-hint" style="margin: 4px 0;">
+            暂无限时补给，点击右上角「+ 增加限时补给」。
+          </div>
+
+          <div v-for="(meal, mi) in dailyConfig.meals" :key="meal._key" class="home-row-card">
+            <div class="home-row-main">
+              <span class="home-card-index">{{ mi + 1 }}</span>
+              <input
+                v-model="meal.label"
+                class="admin-input home-input-flex"
+                type="text"
+                placeholder="补给名称（如：领取下午茶）"
+              />
+              <select v-model="meal.icon" class="admin-input admin-select daily-admin-icon-select">
+                <option value="tea">茶杯图标（下午茶）</option>
+                <option value="dinner">餐盖图标（晚宴）</option>
+              </select>
+              <div class="home-card-ops">
+                <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" :disabled="mi === 0" @click="moveItem(dailyConfig.meals, mi, -1)" title="上移">↑</button>
+                <button type="button" class="admin-btn admin-btn--ghost admin-btn--sm" :disabled="mi === dailyConfig.meals.length - 1" @click="moveItem(dailyConfig.meals, mi, 1)" title="下移">↓</button>
+                <button type="button" class="admin-btn admin-btn--danger admin-btn--sm" @click="removeDailyItem(dailyConfig.meals, mi, '限时补给')">删除</button>
+              </div>
+            </div>
+
+            <div class="home-row-action daily-meal-time-row">
+              <span class="home-row-action-label">开放时段（小时）</span>
+              <input
+                v-model.number="meal.startHour"
+                type="number"
+                min="0"
+                max="23"
+                class="admin-input daily-admin-hour-input"
+              />
+              <span class="home-row-action-hint">点 ~</span>
+              <input
+                v-model.number="meal.endHour"
+                type="number"
+                min="1"
+                max="24"
+                class="admin-input daily-admin-hour-input"
+              />
+              <span class="home-row-action-hint">点</span>
+              <input
+                v-model="meal.windowText"
+                type="text"
+                class="admin-input home-row-action-target"
+                :placeholder="`展示文本（留空自动生成：${formatDailyMealWindow(meal.startHour, meal.endHour)}）`"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="home-actions">
+          <button type="button" class="admin-btn admin-btn--gold" :disabled="saving" @click="submitBlocks('今日必做已保存')">
+            {{ saving ? '保存中…' : '保存今日必做配置' }}
+          </button>
+          <span v-if="savedMessage" class="admin-saved">✓ {{ savedMessage }}</span>
+          <span v-if="errorMessage" class="admin-error">⚠ {{ errorMessage }}</span>
+        </div>
+      </template>
+
       <!-- ============ 底栏 ============ -->
       <template v-else-if="activeTab === 'blocks'">
         <div v-for="blk in blocks" :key="blk.section" class="home-card">
@@ -701,11 +912,13 @@ import {
 } from '../../utils/adminHomeApi.js'
 import { saveNoticeSlots } from '../../utils/adminNoticesApi.js'
 import { getGroupedNavRoutes, navRouteOf } from '../../config/navRoutes.js'
+import { DEFAULT_DAILY_BLOCK, formatDailyMealWindow, resolveDailyBlock } from '../../utils/homeConfig.js'
 import { fetchWithFallback } from '../../utils/request.js'
 
 const TABS = [
   { key: 'banners', label: '海报轮播' },
   { key: 'notices', label: '公告' },
+  { key: 'daily', label: '今日必做' },
   { key: 'links', label: '图鉴与工具' },
   { key: 'heroes', label: '核心角色' },
   { key: 'blocks', label: '底部两栏' }
@@ -726,19 +939,19 @@ const groupedRoutes = computed(() => getGroupedNavRoutes({ useAdminTitle: true }
 
 /** 海报角标配色：与 HomeView 的 .poster-tag 样式对应 */
 const TAG_CLASSES = [
-  { value: 'gold', label: '金色 · 版本焦点' },
-  { value: 'red', label: '红色 · 限时活动' },
-  { value: 'teal', label: '青色 · 工具功能' },
-  { value: 'info', label: '灰褐 · 信息通知' }
+  { value: 'gold', label: '琥珀金 · 版本焦点' },
+  { value: 'red', label: '沉稳红 · 限时活动' },
+  { value: 'teal', label: '深青绿 · 工具功能' },
+  { value: 'info', label: '胡桃棕 · 信息通知' }
 ]
 
 /** 公告标签配色：与 HomeView 的 .notice-tag 样式对应 */
 const NOTICE_TAG_CLASSES = [
-  { value: 'pinned', label: '置顶（深色）' },
-  { value: 'patch', label: '功能更新' },
-  { value: 'event', label: '数据 / 活动' },
-  { value: 'info', label: '说明 / 社区' },
-  { value: 'gold', label: '强调（金）' }
+  { value: 'pinned', label: '置顶 / 版本（珊瑚红）' },
+  { value: 'patch', label: '功能更新（琥珀橙）' },
+  { value: 'event', label: '数据 / 活动（湖水青）' },
+  { value: 'info', label: '说明 / 公告（暖可可）' },
+  { value: 'gold', label: '社区 / 强调（鼠尾草绿）' }
 ]
 
 /** 工具角标配色：与 HomeView 的 .tool-tag.is-badge-* 对应 */
@@ -814,6 +1027,7 @@ const notices = ref([])
 const links = ref({ core: [], tool: [] })
 const heroes = ref([])
 const blocks = ref([])
+const dailyConfig = ref({ title: '今日必做', regular: [], meals: [] })
 /** heroes.json 的完整角色表，供下拉选择 */
 const heroOptions = ref([])
 
@@ -967,6 +1181,8 @@ const activeTabHint = computed(() => {
       return '海报数量可增减，顺序即首页轮播顺序。仅 1 张时轮播箭头与圆点会自动隐藏。'
     case 'notices':
       return '固定项按槽位插在指定位置（如槽位 1 在最前、槽位 4 在第 4 位），滚动项按日期倒序填补空位。'
+    case 'daily':
+      return '分「常驻日常」与「限时体力补给」两区，支持增删、排序、微徽章与直达页；保留原条目不删改可保留玩家当日打卡进度。'
     case 'links':
       return '每区固定 4 格。图标「跟随导航」会自动取该路由在侧边栏的图标。二级参数手填，如 tab=hidden。'
     case 'heroes':
@@ -1061,6 +1277,19 @@ async function load() {
         actionValue: r.actionValue || ''
       }))
     }))
+
+    const resolvedDaily = resolveDailyBlock(bySection.daily)
+    dailyConfig.value = {
+      title: resolvedDaily.title,
+      regular: resolvedDaily.regular.map((item) => ({
+        ...item,
+        _key: keyed()
+      })),
+      meals: resolvedDaily.meals.map((meal) => ({
+        ...meal,
+        _key: keyed()
+      }))
+    }
 
     const list = heroRes?.heroes || heroRes?.list || []
     heroOptions.value = list.map((h) => ({
@@ -1358,7 +1587,68 @@ async function submitHeroes() {
   }
 }
 
-/* ---------- 底栏 ---------- */
+/* ---------- 今日必做 ---------- */
+
+let dailyIdSeq = 1
+function nextDailyItemId(prefix) {
+  return `${prefix}_${Date.now().toString(36)}_${dailyIdSeq++}`
+}
+
+function addDailyRegular() {
+  dailyConfig.value.regular.push({
+    _key: keyed(),
+    id: nextDailyItemId('daily'),
+    kind: 'regular',
+    label: '',
+    hint: '',
+    route: ''
+  })
+}
+
+function addDailyMeal() {
+  dailyConfig.value.meals.push({
+    _key: keyed(),
+    id: nextDailyItemId('meal'),
+    kind: 'meal',
+    label: '',
+    startHour: 12,
+    endHour: 24,
+    windowText: '',
+    icon: 'tea'
+  })
+}
+
+async function removeDailyItem(list, idx, kindLabel) {
+  const item = list[idx]
+  const name = item?.label ? `「${item.label}」` : `第 ${idx + 1} 项`
+  const ok = await askConfirm({
+    title: `删除${kindLabel}`,
+    lead: `确认删除${kindLabel} ${name} 吗？`,
+    content: '删除后需点击下方的「保存今日必做配置」才会正式写入生效。在此之前刷新页面即可撤销。',
+    confirmText: '确认删除',
+    isDanger: true
+  })
+  if (!ok) return
+  list.splice(idx, 1)
+}
+
+async function restoreDefaultDaily() {
+  const ok = await askConfirm({
+    title: '恢复默认 10 项',
+    lead: '确认把「今日必做」恢复为预设的 10 项清单吗？',
+    content: '恢复后需点击「保存今日必做配置」才会写入数据库。',
+    confirmText: '确认恢复'
+  })
+  if (!ok) return
+  const resolved = resolveDailyBlock(DEFAULT_DAILY_BLOCK)
+  dailyConfig.value = {
+    title: resolved.title,
+    regular: resolved.regular.map((item) => ({ ...item, _key: keyed() })),
+    meals: resolved.meals.map((meal) => ({ ...meal, _key: keyed() }))
+  }
+}
+
+/* ---------- 底栏（与今日必做共用 home_blocks 整组保存） ---------- */
 
 async function removeBlockRow(blk, ri) {
   const row = blk.rows[ri]
@@ -1374,11 +1664,39 @@ async function removeBlockRow(blk, ri) {
   blk.rows.splice(ri, 1)
 }
 
-async function submitBlocks() {
+function buildDailyBlockPayload() {
+  const title = String(dailyConfig.value.title || '').trim() || '今日必做'
+  const regularRows = dailyConfig.value.regular.map((item) => ({
+    id: item.id,
+    kind: 'regular',
+    label: String(item.label || '').trim(),
+    hint: String(item.hint || '').trim(),
+    route: String(item.route || '').trim()
+  }))
+  const mealRows = dailyConfig.value.meals.map((meal) => ({
+    id: meal.id,
+    kind: 'meal',
+    label: String(meal.label || '').trim(),
+    startHour: Number(meal.startHour),
+    endHour: Number(meal.endHour),
+    windowText: String(meal.windowText || '').trim(),
+    icon: meal.icon === 'dinner' ? 'dinner' : 'tea'
+  }))
+  return {
+    section: 'daily',
+    title,
+    subtitle: null,
+    rows: [...regularRows, ...mealRows],
+    isActive: 1
+  }
+}
+
+async function submitBlocks(successMsg) {
+  const msg = typeof successMsg === 'string' && successMsg ? successMsg : '底栏已保存'
   saving.value = true
   try {
-    await saveBlocks(blocks.value)
-    flash('底栏已保存')
+    await saveBlocks([...blocks.value, buildDailyBlockPayload()])
+    flash(msg)
     await load()
   } catch (err) {
     fail(err)
@@ -1718,21 +2036,21 @@ onUnmounted(() => {
 
 .color-preview-swatch.is-tag-gold,
 .color-preview-swatch.is-badge-gold {
-  background: #c69234;
+  background: #ba8630;
 }
 
 .color-preview-swatch.is-tag-red,
 .color-preview-swatch.is-badge-red {
-  background: #8b0000;
+  background: #922e2a;
 }
 
 .color-preview-swatch.is-tag-teal,
 .color-preview-swatch.is-badge-teal {
-  background: #4b7a78;
+  background: #386c68;
 }
 
 .color-preview-swatch.is-tag-info {
-  background: #7a634b;
+  background: #745c44;
 }
 
 .color-preview-swatch.is-badge-green {
@@ -1743,21 +2061,26 @@ onUnmounted(() => {
   background: #7a6a56;
 }
 
-/* 公告标签配色 */
+/* 公告标签配色（与 HomeView 柔和胶囊同源） */
 .color-preview-swatch.is-notice-pinned {
-  background: #8b0000;
+  background: rgba(214, 88, 88, 0.22);
+  box-shadow: inset 0 0 0 1.5px rgba(214, 88, 88, 0.65);
 }
 .color-preview-swatch.is-notice-patch {
-  background: #c69234;
+  background: rgba(224, 154, 52, 0.24);
+  box-shadow: inset 0 0 0 1.5px rgba(224, 154, 52, 0.68);
 }
 .color-preview-swatch.is-notice-event {
-  background: #4b7a78;
+  background: rgba(66, 138, 136, 0.22);
+  box-shadow: inset 0 0 0 1.5px rgba(66, 138, 136, 0.65);
 }
 .color-preview-swatch.is-notice-info {
-  background: #8f7351;
+  background: rgba(138, 112, 86, 0.22);
+  box-shadow: inset 0 0 0 1.5px rgba(138, 112, 86, 0.6);
 }
 .color-preview-swatch.is-notice-gold {
-  background: #c69234;
+  background: rgba(88, 150, 102, 0.22);
+  box-shadow: inset 0 0 0 1.5px rgba(88, 150, 102, 0.65);
 }
 
 .dark-mode .admin-select optgroup {
@@ -1835,6 +2158,26 @@ onUnmounted(() => {
 .home-input-wide {
   flex: 2;
   min-width: 0;
+}
+
+.daily-admin-hint-input {
+  width: 170px;
+  flex-shrink: 0;
+}
+
+.daily-admin-icon-select {
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.daily-admin-hour-input {
+  width: 64px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.daily-meal-time-row {
+  flex-wrap: wrap;
 }
 
 /* ==================== 核心角色自定义搜索下拉框与项目古木滚动条 ==================== */

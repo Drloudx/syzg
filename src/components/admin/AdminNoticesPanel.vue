@@ -645,17 +645,29 @@ onMounted(() => {
 .notice-card-tag {
   font-size: 11px;
   font-weight: 700;
-  padding: 2px 7px;
-  border-radius: 3px;
+  padding: 1.5px 8px;
+  border-radius: 999px;
+  line-height: 1.4;
   white-space: nowrap;
 }
 
-/* 标签配色 */
-.notice-card-tag.is-pinned { background: #8b0000; color: #fff; }
-.notice-card-tag.is-patch  { background: #c69234; color: #2b1f15; }
-.notice-card-tag.is-event  { background: #4b7a78; color: #fff; }
-.notice-card-tag.is-info   { background: #8f7351; color: #fff; }
-.notice-card-tag.is-gold   { background: #c69234; color: #2b1f15; }
+/* 标签配色（与 HomeView 柔和胶囊同源） */
+.notice-card-tag.is-pinned { background: rgba(214, 88, 88, 0.14); color: #a33333; border: 1px solid rgba(214, 88, 88, 0.34); }
+.notice-card-tag.is-patch  { background: rgba(224, 154, 52, 0.16); color: #9c5b10; border: 1px solid rgba(224, 154, 52, 0.38); }
+.notice-card-tag.is-event  { background: rgba(66, 138, 136, 0.15); color: #286361; border: 1px solid rgba(66, 138, 136, 0.34); }
+.notice-card-tag.is-info   { background: rgba(138, 112, 86, 0.14); color: #614b36; border: 1px solid rgba(138, 112, 86, 0.3); }
+.notice-card-tag.is-gold   { background: rgba(88, 150, 102, 0.15); color: #31693e; border: 1px solid rgba(88, 150, 102, 0.35); }
+
+:deep(.dark-mode) .notice-card-tag.is-pinned,
+.dark-mode .notice-card-tag.is-pinned { background: rgba(224, 102, 102, 0.22); color: #f6b2b2; border-color: rgba(224, 102, 102, 0.42); }
+:deep(.dark-mode) .notice-card-tag.is-patch,
+.dark-mode .notice-card-tag.is-patch  { background: rgba(229, 166, 72, 0.2); color: #f4c97d; border-color: rgba(229, 166, 72, 0.42); }
+:deep(.dark-mode) .notice-card-tag.is-event,
+.dark-mode .notice-card-tag.is-event  { background: rgba(88, 168, 164, 0.22); color: #a6dedb; border-color: rgba(88, 168, 164, 0.42); }
+:deep(.dark-mode) .notice-card-tag.is-info,
+.dark-mode .notice-card-tag.is-info   { background: rgba(168, 140, 112, 0.22); color: #d8c4aa; border-color: rgba(168, 140, 112, 0.4); }
+:deep(.dark-mode) .notice-card-tag.is-gold,
+.dark-mode .notice-card-tag.is-gold   { background: rgba(110, 174, 124, 0.22); color: #aee0b8; border-color: rgba(110, 174, 124, 0.42); }
 
 .notice-card-modal-badge {
   font-size: 10.5px;
