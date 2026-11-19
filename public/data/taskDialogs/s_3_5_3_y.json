@@ -135,7 +135,7 @@
     {
       "para": {
         "charaName": "米托拉",
-        "text": "[show]呃……他们是不是把店给忘了？[l]",
+        "text": "[show]呃……她们是不是把店给忘了？[l]",
         "nameSide": "left"
       },
       "key": "text"
@@ -154,7 +154,7 @@
     {
       "para": {
         "charaName": "米托拉",
-        "text": "[cm][show]好吧……就在这里等待他们的好消息了。说起来，呆在这儿还挺舒服的……[l][cm][hide]",
+        "text": "[cm][show]好吧……就在这里等待她们的好消息了。说起来，呆在这儿还挺舒服的……[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
@@ -170,7 +170,7 @@
     {
       "para": {
         "charaName": "米托拉",
-        "text": "[show]嗯？那边是……他们回来了！[l]",
+        "text": "[show]嗯？那边是……她们回来了！[l]",
         "nameSide": "left"
       },
       "key": "text"
@@ -390,7 +390,7 @@
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "text": "[show]没错没错，花能卖的好的缘故，有很大程度是因为米罗尼娅。开心笑起来的米罗尼娅，比之前那副愁眉苦脸的样子可爱多了。[l][cm]",
+        "text": "[show]没错没错，花能卖好的缘故，大部分都得归功于米罗尼娅。开心笑起来的米罗尼娅，比之前那副愁眉苦脸的样子可爱多了。[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -501,7 +501,7 @@
     {
       "para": {
         "charaName": "",
-        "text": "[show]（之后，一个关于可爱的卖花女孩传闻在魔爪湖渐渐传开……）[l][cm][hide]",
+        "text": "[show]（之后，一个关于可爱的卖花女孩的传闻在魔爪湖渐渐传开……）[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"

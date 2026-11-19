@@ -1,118 +1,118 @@
 {
+  "des": "前往蒸馏工厂废墟。",
+  "script": "s_3_1_4",
   "exps": [
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]这里是……蒸馏工厂？我们跑到这里来干什么？[l][cm]"
+        "text": "[show]这里是……蒸馏工厂？我们跑到这里来干什么？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾茵",
-        "text": "[show]看那里！看到那些正在游荡的家伙了吗？[l][cm][hide]"
+        "text": "[show]看那里！看到那些正在游荡的家伙了吗？[l][cm][hide]",
+        "charaName": "艾茵"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]唉？那不是那些好像傀儡一样的家伙吗？[l][cm]"
+        "text": "[show]唉？那不是那些好像傀儡一样的家伙吗？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]我记得当时我们把它们全都打倒了……怎么这些家伙又冒出来了？[l][cm]"
+        "text": "[show]我记得当时我们把它们全都打倒了……怎么这些家伙又冒出来了？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾茵",
-        "text": "[show]因为那些家伙都不算活着的生物了，光是打倒是没用的，要物理性的“销毁”才行哦～！[l][cm]"
+        "text": "[show]因为那些家伙都不算活着的生物了，光是打倒是没用的，要物理性的“销毁”才行哦～！[l][cm]",
+        "charaName": "艾茵"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]销毁……？[l][cm]"
+        "text": "[show]销毁……？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾茵",
-        "text": "[show]下不去手的话也没关系，反正这一次，艾茵也只需要{callName4}打倒这些东西就可以了。[l][cm]"
+        "text": "[show]下不去手的话也没关系，反正这一次，艾茵也只需要{callName4}打倒这些东西就可以了。[l][cm]",
+        "charaName": "艾茵"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]你让我们打倒那些“东西”……？你到底要做什么？[l][cm]"
+        "text": "[show]你让我们打倒那些“东西”……？你到底要做什么？[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾茵",
-        "text": "[show]只是稍微从他们身上进行一些……“采集”。这里就让艾茵先卖个关子，具体有什么用，你们很快就知道了。[l][cm]"
+        "text": "[show]只是稍微从他们身上进行一些……“采集”。这里就让艾茵先卖个关子，具体有什么用，你们很快就知道了。[l][cm]",
+        "charaName": "艾茵"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]啧，居然还在说谜语……[l][cm]"
+        "text": "[show]啧，居然还在说谜语……[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]行吧，这次就再信你这一回！[l][cm]"
+        "text": "[show]行吧，这次就再信你这一回！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米托拉",
-        "text": "[show]一会儿一定要好好讲清楚你要干什么啊！[l][cm]"
+        "text": "[show]一会儿一定要好好讲清楚你要干什么啊！[l][cm]",
+        "charaName": "米托拉"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾茵",
-        "text": "[show]放心，绝对是好事……是大好事！[l][cm]"
+        "text": "[show]放心，绝对是好事……是大好事！[l][cm]",
+        "charaName": "艾茵"
       },
       "key": "text"
     },
     {
       "para": {
         "nameSide": "left",
-        "charaName": "艾茵",
-        "text": "[show]哎呀，说了这么久，那些家伙发现我们了！{callName4}，快点上吧！[l][cm][hide]"
+        "text": "[show]哎呀，说了这么久，那些家伙发现我们了！{callName4}，快点上吧！[l][cm][hide]",
+        "charaName": "艾茵"
       },
       "key": "text"
     }
-  ],
-  "des": "前往蒸馏工厂废墟。",
-  "script": "s_3_1_4"
+  ]
 }

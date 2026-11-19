@@ -180,7 +180,7 @@
     {
       "para": {
         "charaName": "“老师”希瑟",
-        "text": "[show]米莉，谢谢你。这些仙人球，是老师来巴诺姆村收到过最好的礼物。[l][cm]",
+        "text": "[show]米莉，谢谢你。这棵仙人球，是自从老师到巴诺姆村以来，收到过最好的礼物。[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
@@ -228,7 +228,7 @@
     {
       "para": {
         "charaName": "“老师”希瑟",
-        "text": "[show]它们就是最美的鲜花。来，老师教你。[l][cm]",
+        "text": "[show]它就是最美的鲜花。来，老师教你。[l][cm]",
         "nameSide": "left"
       },
       "key": "text"

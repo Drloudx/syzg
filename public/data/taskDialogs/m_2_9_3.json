@@ -118,7 +118,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米拉贝尔",
+        "charaName": "米托拉",
         "text": "[cm][show]咦，居然一点都不在意吗……[l][cm]"
       },
       "key": "text"
@@ -126,7 +126,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米拉贝尔",
+        "charaName": "米托拉",
         "text": "[show]唉等等，你们两个怎么搞得像很熟一样！我也要去！等等我，{myName}！[l][cm][hide]"
       },
       "key": "text"

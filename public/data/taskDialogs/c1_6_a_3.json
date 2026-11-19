@@ -235,14 +235,6 @@
     },
     {
       "para": {
-        "charaName": "米托拉",
-        "text": "[show]（对啊……{myName}落到深渊的原因，就是因为被同类相残，不得已才……）[l][cm]",
-        "nameSide": "left"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
         "charaName": "迦南",
         "text": "[show]我明白你的意思……[l][cm]",
         "nameSide": "left"

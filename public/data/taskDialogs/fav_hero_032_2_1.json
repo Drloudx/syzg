@@ -37,7 +37,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]当时我的村子河边也有一条小溪，跟这里的小溪一样清澈。[l][cm]",
+        "text": "[show]当时，我们村子边也有一条小溪，跟这里的一样清澈。[l][cm]",
         "charaName": "诺姿"
       }
     },
@@ -179,7 +179,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]现在就让你看看我的本事，准备木材，升火！[l][cm]",
+        "text": "[show]现在就让你看看我的本事，准备木材，生火！[l][cm]",
         "charaName": "诺姿"
       }
     },
@@ -246,7 +246,7 @@
       "key": "text",
       "para": {
         "nameSide": "left",
-        "text": "[show]我……我这就把你抱回营地去！你一定不要出事啊！[l][cm]",
+        "text": "[show]我……我这就把你抱回营地去！你一定不要出事啊！[l][cm][hide]",
         "charaName": "诺姿"
       }
     },

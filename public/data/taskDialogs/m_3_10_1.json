@@ -1,158 +1,158 @@
 {
-  "script": "m_3_10_1",
   "exps": [
     {
       "para": {
+        "charaName": "贝尔卡",
         "text": "[show]咦，有人出来了！明明刚刚还没看到！[l][cm][hide]",
-        "charaName": "贝尔卡",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "米托拉",
         "text": "[show]不过这些人的样子，好像有点奇怪啊？[l][cm]",
-        "charaName": "米托拉",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "埃迪蒂",
         "text": "[show]你是……三队的巴尼？你为什么在这？[l][cm][hide]",
-        "charaName": "埃迪蒂",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "text": "[show]……[l][cm][hide]",
         "charaName": "巴尼",
+        "text": "[show]……[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "埃迪蒂",
         "text": "[show]喂，巴尼？我听三队长说你好几天都没有归队，他们还说你——[l][cm]",
-        "charaName": "埃迪蒂",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "贝尔卡",
         "text": "[show]埃迪蒂——！闪开！[l][cm][hide]",
-        "charaName": "贝尔卡",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "text": "[show]！[l][cm]",
         "charaName": "埃迪蒂",
+        "text": "[show]！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "贝尔卡",
         "text": "[show]呼……大家，先不要靠近他们！[l][cm]",
-        "charaName": "贝尔卡",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "米托拉",
         "text": "[show]这、这是怎么回事？[l][cm]",
-        "charaName": "米托拉",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "text": "[show]这些人……感觉和那些富魔水症的患者好像！他们也许已经失去理智了！[l][cm]",
         "charaName": "贝尔卡",
+        "text": "[show]这些人……感觉和那些富魔水症的患者好像！他们也许已经失去理智了！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "阿莱克西娅",
         "text": "[show]没错。我能隐隐感觉到他们……和尾指村的病人一样，体内充斥着紊乱的魔力。[l][cm]",
-        "charaName": "阿莱克西娅",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "塞弗德里克",
         "text": "[show]哈，失去理智的[color=f1401c]活傀儡[colorEnd]，这听上去可真酷。[l][cm]",
-        "charaName": "塞弗德里克",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "塞弗德里克",
         "text": "[show]这是怎么回事呢？这群人难道都是故意从镇子里走出来，先后都掉进了富魔水中染上了病，最后碰巧聚集到这儿？[l][cm]",
-        "charaName": "塞弗德里克",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "米托拉",
         "text": "[show]塞弗……！我建议你有话就说，有屁就放！[l][cm]",
-        "charaName": "米托拉",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "text": "[show]哈哈哈。米托拉小姐可真是不饶人。其实我很早就提到过，对我来说这里是完全未知的。这句话可不是假话。[l][cm]",
         "charaName": "塞弗德里克",
+        "text": "[show]哈哈哈。米托拉小姐可真是不饶人。其实我很早就提到过，对我来说这里是完全未知的。这句话可不是假话。[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "text": "[show]你说什么……！[l][cm]",
         "charaName": "米托拉",
+        "text": "[show]你说什么……！[l][cm]",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "阿莱克西娅",
         "text": "[show]塞弗德里克先生说得对，这些守卫的状态并不自然。但要治疗他们，且不说到底做不做得到，光是时间，就不是我们浪费得起的。[l][cm]",
-        "charaName": "阿莱克西娅",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
+        "charaName": "阿莱克西娅",
         "text": "[show]保险起见，我们还是先控制住他们，等一切结束之后，再来慢慢寻找拯救他们的方法吧。[l][cm][hide]",
-        "charaName": "阿莱克西娅",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "text": "[hide]",
         "charaName": "",
+        "text": "[hide]",
         "nameSide": "left"
       },
       "key": "text"
     }
   ],
+  "script": "m_3_10_1",
   "des": "到达蒸馏工厂废墟"
 }

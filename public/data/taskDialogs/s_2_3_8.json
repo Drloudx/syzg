@@ -91,7 +91,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "贝拉多娜",
-        "text": "[show]咳咳……总之！本小姐作为大家名门，正想要在这个村子里歇息一阵。听说你是村长，希望你能为本小姐指明一个借为歇脚的地方！[l][cm]"
+        "text": "[show]咳咳……总之！本小姐作为大家名门，正想要在这个村子里歇息一阵。听说你是村长，希望你能为本小姐指明一个借作歇脚的地方！[l][cm]"
       },
       "key": "text"
     },
@@ -181,7 +181,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "米拉贝尔",
+        "charaName": "贝拉多娜",
         "text": "[show]不、不管用？再看看这招！出来吧，眷属唷！[l][cm][hide]"
       },
       "key": "text"
@@ -189,7 +189,7 @@
     {
       "para": {
         "nameSide": "left",
-        "charaName": "贝拉多娜",
+        "charaName": "米拉贝尔",
         "text": "[show]什么东西飞过来了？嗨！[l][cm]"
       },
       "key": "text"

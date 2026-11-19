@@ -3,7 +3,7 @@
   "exps": [
     {
       "para": {
-        "text": "[show]非常感谢你能不远万里配我来这边，{myName}。[l]",
+        "text": "[show]非常感谢你能不远万里陪我来这边，{myName}。[l]",
         "charaName": "埃迪蒂",
         "nameSide": "left"
       },
@@ -246,7 +246,7 @@
     },
     {
       "para": {
-        "text": "[show]能在陪我走一走吗？我还想和你一起在谈谈我以前的事情……可以吗？[l]",
+        "text": "[show]能再陪我走一走吗？我还想和你一起再谈谈我以前的事情……可以吗？[l]",
         "charaName": "埃迪蒂",
         "nameSide": "left"
       },

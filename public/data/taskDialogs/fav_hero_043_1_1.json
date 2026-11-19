@@ -3,43 +3,32 @@
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]呜哇！这里还有药田呀！还种着这么多上好的药草！家里能有这么几块药圃，可是多少制药师做梦都得不到的好事啊！[l][cm]"
+        "text": "[show]呜哇！这里还有药田呀！还种着这么多上好的药草！家里能有这么几块药圃，可是多少制药师做梦都得不到的好事啊！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]好家伙，刚进门就给我这么大个惊喜，想必你的制药台准能让我惊掉下巴！[l]"
-      },
-      "key": "text"
-    },
-    {
-      "para": {
-        "options": [
-          {
-            "tag": "tag_5",
-            "text": "（把阿娜洛洁带到制药台前。）"
-          }
-        ]
-      },
-      "key": "option"
-    },
-    {
-      "para": {
-        "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[cm][show]哇哦！大药锅！天平秤！还有这么多玻璃瓶！就算是大书院最齐备的制药台，顶多也就这样了吧？[l][cm]"
+        "text": "[show]好家伙，刚进门就给我这么大个惊喜，想必你的制药台准能让我惊掉下巴！[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]这趟真没白来！{myName}，我把药材都备齐了，能在我这个新人制药师面前露一手你的绝活吗？求你了求你了！[l]"
+        "text": "[cm][show]哇哦！大药锅！天平秤！还有这么多玻璃瓶！就算是大书院最齐备的制药台，顶多也就这样了吧？[l][cm]",
+        "nameSide": "left"
+      },
+      "key": "text"
+    },
+    {
+      "para": {
+        "charaName": "阿娜洛洁",
+        "text": "[show]这趟真没白来！{myName}，我把药材都备齐了，能在我这个新人制药师面前露一手你的绝活吗？求你了求你了！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -68,24 +57,24 @@
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[cm][show]嗯嗯……手法老道，技艺精湛，这水准完全不输黑森林顶尖的制药师，你比我想的还要厉害多了！[l][cm]"
+        "text": "[cm][show]嗯嗯……手法老道，技艺精湛，这水准完全不输黑森林顶尖的制药师，你比我想的还要厉害多了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]不过你这是用的精炼制药法吧？也只有你这样的高手能在这么简陋的环境里炼出这么高质量的药水。[l][cm]"
+        "text": "[show]不过你这是用的精炼制药法吧？也只有你这样的高手能在这么简陋的环境里炼出这么高质量的药水。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]但这法子太吃制药师本事了。真的要把产量拉起来，会消耗你特别多精力，到最后可能效率也不高。[l]"
+        "text": "[show]但这法子太吃制药师本事了。真的要把产量拉起来，会消耗你特别多精力，到最后可能效率也不高。[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -107,8 +96,8 @@
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[cm][show]所以呢……我之前琢磨出了个新法子，主打的就是一个量大管饱，而且就算是菜鸟也能轻松上手！{myName}有兴趣为我指点一二不？[l]"
+        "text": "[cm][show]所以呢……我之前琢磨出了个新法子，主打的就是一个量大管饱，而且就算是菜鸟也能轻松上手！{myName}有兴趣为我指点一二不？[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -130,24 +119,24 @@
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[cm][show]好嘞！咱先把你这些精密器材放在一边，只用准备个大锅——就用我的这口吧——这种傻瓜式制药法就得用这种大家伙。[l][cm]"
+        "text": "[cm][show]好嘞！咱先把你这些精密器材放在一边，只用准备个大锅——就用我的这口吧——这种傻瓜式制药法就得用这种大家伙。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]就像我这样……先把药草备好，等水温稍微暖乎点，再把药草一股脑倒进去。然后照着这张时间表，掐着点儿往里加料。[l][cm]"
+        "text": "[show]就像我这样……先把药草备好，等水温稍微暖乎点，再把药草一股脑倒进去。然后照着这张时间表，掐着点儿往里加料。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]最后抄根棍子开搅，就像我这样拿着棍子搅呀搅呀……瞧！一大锅药水就这么成了。你看，质量还挺凑合，对吧！[l]"
+        "text": "[show]最后抄根棍子开搅，就像我这样拿着棍子搅呀搅呀……瞧！一大锅药水就这么成了。你看，质量还挺凑合，对吧！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -169,24 +158,24 @@
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[cm][show]嘿，普通人一学就会的法子，要求就别太高啦！关键是这法子能在合适的时间里，哐哐造出一大堆质量合格的生命药水。[l][cm]"
+        "text": "[cm][show]嘿，普通人一学就会的法子，要求就别太高啦！关键是这法子能在合适的时间里，哐哐造出一大堆质量合格的生命药水。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]你想想，咱要是整一堆大锅和药材，再雇些人手按这法子开工，那不得赚大发了！[l][cm]"
+        "text": "[show]你想想，咱要是整一堆大锅和药材，再雇些人手按这法子开工，那不得赚大发了！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]你这儿还有药田，连进原材料的钱都能省下一大笔。咱俩联手投点本钱进去，将来肯定赚得盆满钵满，这买卖绝对能成！[l]"
+        "text": "[show]你这儿还有药田，连进原材料的钱都能省下一大笔。咱俩联手投点本钱进去，将来肯定赚得盆满钵满，这买卖绝对能成！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -208,56 +197,56 @@
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[cm][show]啊呀。瞧我这脑子，一不留神就拐到别处去了。[l][cm]"
+        "text": "[cm][show]啊呀。瞧我这脑子，一不留神就拐到别处去了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]唉，都是常年跑买卖落下的毛病，总是不自觉地把啥事儿都往生意上扯，多包涵哈。[l][cm]"
+        "text": "[show]唉，都是常年跑买卖落下的毛病，总是不自觉地把啥事儿都往生意上扯，多包涵哈。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]对了……咱刚才聊到哪儿了……哦对！除了制药法，我还有个新配方呢。用赤剑草的浆液配上一小把金铃草粗末，再混进一些岩蟾蜍的趾甲，提神健脑，元气通透！[l][cm]"
+        "text": "[show]对了……咱刚才聊到哪儿了……哦对！除了制药法，我还有个新配方呢。用赤剑草的浆液配上一小把金铃草粗末，再混进一些岩蟾蜍的趾甲，提神健脑，元气通透！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]这配方我自己试过了。虽然还是个粗方，但效果也还成。最妙的是材料特别好找，野外随手就能弄到，质量差点儿但当个辅助用强化药也足够了。[l][cm]"
+        "text": "[show]这配方我自己试过了。虽然还是个粗方，但效果也还成。最妙的是材料特别好找，野外随手就能弄到，质量差点儿但当个辅助用强化药也足够了。[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]你说这配方定个啥价好？要不我先标个原价三百阿比，优惠价二百五，这样应该挺能勾人的吧？对了，还可以配魔力丸一起打包卖给那些秘术师！[l][cm]"
+        "text": "[show]你说这配方定个啥价好？要不我先标个原价三百阿比，优惠价二百五，这样应该挺能勾人的吧？对了，还可以配魔力丸一起打包卖给那些秘术师！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]啊，对了对了，我还有个绝妙的主意！就把这新配方和傻瓜制药法打包一起卖给那些新人制药师，销量肯定蹭蹭涨！[l][cm]"
+        "text": "[show]啊，对了对了，我还有个绝妙的主意！就把这新配方和傻瓜制药法打包一起卖给那些新人制药师，销量肯定蹭蹭涨！[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "阿娜洛洁",
-        "nameSide": "left",
-        "text": "[show]到时候咱们的生意火到不行！赚的钱够咱俩逍遥几辈子啦！[l]"
+        "text": "[show]到时候咱们的生意火到不行！赚的钱够咱俩逍遥几辈子啦！[l]",
+        "nameSide": "left"
       },
       "key": "text"
     },
@@ -275,36 +264,36 @@
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[cm]"
+        "text": "[cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[cm][show]（看来阿娜洛洁起了兴致，还是不要打扰她，让她说下去吧。）[l][cm]"
+        "text": "[cm][show]（看来阿娜洛洁起了兴致，还是不要打扰她，让她说下去吧。）[l][cm]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[show]（……于是和制药师阿娜洛洁硬是讨论了一整天的生意经。）[l][cm][hide]"
+        "text": "[show]（……于是和制药师阿娜洛洁硬是讨论了一整天的生意经。）[l][cm][hide]",
+        "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
         "charaName": "",
-        "nameSide": "left",
-        "text": "[hide]"
+        "text": "[hide]",
+        "nameSide": "left"
       },
       "key": "text"
     }
   ],
-  "des": "阿娜洛洁-交流制药经验-进入战役",
-  "script": "fav_hero_043_1_1"
+  "script": "fav_hero_043_1_1",
+  "des": "阿娜洛洁-交流制药经验-进入战役"
 }

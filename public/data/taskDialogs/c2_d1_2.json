@@ -71,7 +71,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]啊，我在检查你们刚刚撂倒家伙的遗体，确实有些发现。[l][cm]"
+        "text": "[show]啊，我在检查你们刚刚撂倒的家伙的遗体，确实有些发现。[l][cm]"
       },
       "key": "text"
     },
@@ -103,7 +103,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]能看它们的眼睛——视网膜浑浊，瞳孔占比大，显然是为了在微光甚至无光环境生存而产生的进化。[l][cm]"
+        "text": "[show]你们看它们的眼睛——视网膜浑浊，瞳孔占比大，显然是为了在微光甚至无光环境生存而产生的进化。[l][cm]"
       },
       "key": "text"
     },
@@ -135,7 +135,7 @@
       "para": {
         "nameSide": "left",
         "charaName": "安娜",
-        "text": "[show]那么答案就显然易见了——[l]"
+        "text": "[show]那么答案就显而易见了——[l]"
       },
       "key": "text"
     },

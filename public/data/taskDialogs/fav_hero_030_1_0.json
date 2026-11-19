@@ -11,23 +11,30 @@
     {
       "para": {
         "charaName": "阿尔克丝",
-        "text": "[show]你把我当成普通的客人就行，不……当成旅人就行，我付钱，你让我留宿……[l][cm]",
+        "text": "[show]你把我当成普通的客人就行，不……当成旅人就行，我付钱，你让我留宿……[l]",
         "nameSide": "left"
       },
       "key": "text"
     },
     {
       "para": {
-        "charaName": "",
-        "text": "[show]既是伙伴就不必付钱。||想来休息就过来吧。[l][cm]",
-        "nameSide": "left"
+        "options": [
+          {
+            "text": "既是伙伴就不必付钱。",
+            "tag": "tag_4"
+          },
+          {
+            "text": "想来休息就过来吧。",
+            "tag": "tag_4"
+          }
+        ]
       },
-      "key": "text"
+      "key": "option"
     },
     {
       "para": {
         "charaName": "阿尔克丝",
-        "text": "[show]伙伴吗……罢了，你愿意这样想的话，那也无妨。[l][cm]",
+        "text": "[cm][show]伙伴吗……罢了，你愿意这样想的话，那也无妨。[l][cm]",
         "nameSide": "left"
       },
       "key": "text"

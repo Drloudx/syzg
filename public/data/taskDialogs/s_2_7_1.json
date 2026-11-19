@@ -62,7 +62,7 @@
     {
       "para": {
         "charaName": "剋",
-        "text": "[show]至于食物的话……吾还需些时间准备。不然，先将酿交到那位施主吧。[l][cm][hide]",
+        "text": "[show]至于食物的话……吾还需些时间准备。不然，先将酿交给那位施主吧。[l][cm][hide]",
         "nameSide": "left"
       },
       "key": "text"
