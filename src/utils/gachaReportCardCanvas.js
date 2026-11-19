@@ -309,7 +309,7 @@ export async function renderGachaReportCard({
   ctx.font = 'bold 19px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif'
   ctx.textAlign = 'left'
   ctx.textBaseline = 'top'
-  ctx.fillText(playerData.nickname || '小工匠', avX + avSize + 12, avY + 6)
+  ctx.fillText(playerData.nickname || '小小工匠', avX + avSize + 12, avY + 6)
 
   // UID 胶囊
   const uidText = `UID: ${playerData.uid || '未录入'}`

@@ -119,7 +119,7 @@
 
           <div class="profile-identity">
             <div class="profile-name-row">
-              <span class="profile-name" title="点击修改昵称" @click="openEditProfileModal">{{ playerData.nickname || '小工匠' }}</span>
+              <span class="profile-name" title="点击修改昵称" @click="openEditProfileModal">{{ playerData.nickname || '小小工匠' }}</span>
               <button
                 type="button"
                 class="btn-edit-nickname"
@@ -925,7 +925,7 @@ const STORAGE_KEY = 'syzg_real_gacha_records_v1'
 const rawRecords = ref([])
 const playerData = ref({
   uid: '',
-  nickname: '小工匠',
+  nickname: '小小工匠',
   server: '官方服务器',
   avatar: ''
 })
@@ -966,7 +966,7 @@ const isEditProfileModalOpen = ref(false)
 const isAvatarPickerOpen = ref(false)
 const activeAvatarId = ref('')
 const editUidInput = ref('')
-const editNicknameInput = ref('小工匠')
+const editNicknameInput = ref('小小工匠')
 const selectedAvatarSrc = ref('')
 
 const availableAvatars = computed(() => {
@@ -1009,7 +1009,7 @@ function openAvatarPickerDialog() {
 
 function openEditProfileModal() {
   editUidInput.value = playerData.value.uid || ''
-  editNicknameInput.value = playerData.value.nickname || '小工匠'
+  editNicknameInput.value = playerData.value.nickname || '小小工匠'
   selectedAvatarSrc.value = playerData.value.avatar || ''
   activeAvatarId.value = avatarEntry(playerData.value.avatar)?.id || ''
   isEditProfileModalOpen.value = true
@@ -1017,7 +1017,7 @@ function openEditProfileModal() {
 
 function saveProfileEdit() {
   const newName = editNicknameInput.value.trim()
-  playerData.value.nickname = newName || '探险家'
+  playerData.value.nickname = newName || '小小工匠'
   playerData.value.uid = editUidInput.value.trim()
   if (selectedAvatarSrc.value) {
     playerData.value.avatar = selectedAvatarSrc.value
@@ -1251,9 +1251,6 @@ function loadSavedData() {
         rawRecords.value = parsed.records
         if (parsed.player) {
           playerData.value = { ...playerData.value, ...parsed.player }
-          if (playerData.value.nickname === '云汐渚梦') {
-            playerData.value.nickname = '探险家'
-          }
         }
       }
     }
@@ -1372,7 +1369,7 @@ async function handleSaveScreenshot() {
     if (!blob) throw new Error('生成图片失败')
 
     const dateStr = new Date().toISOString().slice(0, 10)
-    const nick = playerData.value.nickname || '小工匠'
+    const nick = playerData.value.nickname || '小小工匠'
     const fileName = `深渊之歌-招募分析-${nick}-${dateStr}.png`
 
     const result = await shareOrSaveImage(blob, fileName, {

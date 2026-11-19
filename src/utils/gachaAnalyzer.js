@@ -938,9 +938,9 @@ export function generateDemoGachaRecords() {
     version: 1,
     exportedAt: Math.floor(now / 1000),
     player: {
-      uid: 584484389,
-      nickname: '深渊探险家#3514',
-      server: '官方官服'
+      uid: '10001',
+      nickname: '小小工匠',
+      server: '官方服务器'
     },
     records
   }
