@@ -74,9 +74,43 @@ test('分类筛选按当前大组准确统计，且不漏项', () => {
 
 test('异常状态板块包含玩家重点关注的核心状态', () => {
   const statusNames = glossary.entries.filter(e => e.group === 'status').map(e => e.name)
-  for (const expected of ['中毒', '燃烧', '流血', '撕裂', '眩晕', '定身', '嘲讽', '护盾', '防御下降']) {
+  for (const expected of ['中毒', '燃烧', '流血', '撕裂', '眩晕', '定身', '嘲讽', '护盾', '防御下降', '霸体', '急冻']) {
     assert.ok(statusNames.includes(expected), `异常状态板块应包含「${expected}」`)
   }
+
+  // 霸体校验：Boss 来源与免控
+  const bati = glossary.entries.find(e => e.name === '霸体')
+  assert.ok(bati, '应存在霸体词条')
+  assert.equal(bati.category, '增益与生存', '霸体应归类在「增益与生存」')
+  assert.ok(bati.sources.monsters.length > 0, '霸体应包含 Boss 施加来源')
+  assert.ok(bati.sources.monsters.some(m => m.name.includes('砂蜘蛛女王')), '霸体来源应包含砂蜘蛛女王')
+  assert.ok(bati.icon.includes('buff_022'), '霸体应关联 buff_022 图标')
+
+  // 急冻校验：独立削弱与减速
+  const jidong = glossary.entries.find(e => e.name === '急冻')
+  assert.ok(jidong, '应存在急冻词条')
+  assert.equal(jidong.category, '削弱与减益', '急冻应归类在「削弱与减益」')
+  assert.ok(jidong.rules.some(r => r.value.includes('50%')), '急冻应包含 50% 移速削弱规则')
+  assert.ok(jidong.rules.some(r => r.value.includes('5 秒')), '急冻应包含 5 秒持续时间')
+  assert.ok(jidong.icon.includes('buff_001'), '急冻应关联 buff_001 图标')
+})
+
+test('怪物异变分类收录完整，包含常规精英异变与秘境词缀（嗜血、自愈）', () => {
+  const eliteEntries = glossary.entries.filter(e => e.category === '怪物异变')
+  const names = eliteEntries.map(e => e.name)
+  assert.equal(eliteEntries.length, 9, `怪物异变应收录 9 条特质，当前 ${eliteEntries.length} 条`)
+  for (const expected of ['异变：震颤', '异变：灼热', '异变：活性', '异变：电涌', '异变：地刺', '异变：剧毒', '异变：风暴', '嗜血', '自愈']) {
+    assert.ok(names.includes(expected), `怪物异变应包含「${expected}」`)
+  }
+  const shixue = eliteEntries.find(e => e.name === '嗜血')
+  assert.ok(shixue.tags.includes('嗜血的'), '嗜血词条应包含「嗜血的」别名标签供搜索')
+  assert.ok(shixue.rules.some(r => r.value.includes('15%')), '嗜血词条应包含 15% 普攻吸血规则')
+  assert.ok(shixue.icon.includes('buff_019'), '嗜血词条应关联 buff_019 图标')
+
+  const ziyu = eliteEntries.find(e => e.name === '自愈')
+  assert.ok(ziyu.tags.includes('自愈的'), '自愈词条应包含「自愈的」别名标签供搜索')
+  assert.ok(ziyu.rules.some(r => r.value.includes('25%')), '自愈词条应包含 25% 濒死血线规则')
+  assert.ok(ziyu.icon.includes('buff_019'), '自愈词条应关联 buff_019 图标')
 })
 
 test('自动提取施加来源：中毒与眩晕包含角色与怪物跳转数据', () => {

@@ -12,7 +12,9 @@ import {
   STATUS_RULES,
   matchCanonicalStatus,
   resolveBuffIcon,
+  isEliteBuff,
   isEliteBuffName,
+  resolveEliteEntryName,
   isCookBuff,
   isInternalBuffName,
   isPlainObject
@@ -22,7 +24,8 @@ import { buildSkillLevelIndex } from './skillLevelIndex.js'
 import {
   STATUS_ENCYCLOPEDIA,
   STATS_ENCYCLOPEDIA,
-  MECHANICS_ENCYCLOPEDIA
+  MECHANICS_ENCYCLOPEDIA,
+  ELITE_ENCYCLOPEDIA
 } from '../config/glossaryEncyclopedia.js'
 import { isBlacklisted } from '../config/blacklist.js'
 
@@ -176,10 +179,11 @@ export function buildGlossaryData({
     const name = String(buff.buffName || '').trim()
     if (!name || isCookBuff(buff) || isInternalBuffName(name)) continue
 
-    // 精英怪异变
-    if (isEliteBuffName(name)) {
-      if (!eliteByName.has(name)) eliteByName.set(name, [])
-      eliteByName.get(name).push(buff)
+    // 精英怪与秘境异变
+    if (isEliteBuff(buff)) {
+      const entryName = resolveEliteEntryName(buff)
+      if (!eliteByName.has(entryName)) eliteByName.set(entryName, [])
+      eliteByName.get(entryName).push(buff)
       claimedBuffs.add(buff)
       continue
     }
@@ -243,9 +247,10 @@ export function buildGlossaryData({
 
   // 3. 组装精英怪异变状态
   for (const [name, buffs] of eliteByName) {
+    const enc = ELITE_ENCYCLOPEDIA?.[name]
     const iconBuff = buffs.find(b => b.buffIcon)
     const icon = iconBuff ? resolveBuffIcon(iconBuff.buffIcon) : ''
-    const des = buffs.find(b => b.buffDes)?.buffDes || '精英怪物携带的异变特质，强化怪物的战斗能力。'
+    const des = enc?.summary || buffs.find(b => b.buffDes)?.buffDes || '精英怪物携带的异变特质，强化怪物的战斗能力。'
     const sources = aggregateSources(buffs, sourceIndex)
     statusEntries.push({
       id: `elite_${name}`,
@@ -253,9 +258,9 @@ export function buildGlossaryData({
       group: 'status',
       category: '怪物异变',
       icon,
-      tags: ['怪物特质', '异变'],
+      tags: enc?.defaultTags || ['怪物特质', '异变'],
       summary: des,
-      rules: [
+      rules: enc?.defaultRules || [
         { label: '特质类型', value: '精英首领常驻被动' },
         { label: '生效机制', value: '怪物入场即生效，无法被驱散' }
       ],

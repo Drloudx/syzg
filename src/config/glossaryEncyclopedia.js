@@ -154,6 +154,19 @@ export const STATUS_ENCYCLOPEDIA = {
       { label: '机制变体', value: '涵盖「弱点暴露」（贝尔卡）、「克敌之灵佑」（阿莱克西娅）、「破碎」（乌帕）、「大巧不工」（希尔）等放大敌方承受伤害的效果。' }
     ]
   },
+  jidong: {
+    name: '急冻',
+    category: '削弱与减益',
+    summary: '使目标陷入急冻状态，大幅降低移动速度并每秒受到持续魔法伤害。',
+    defaultTags: ['削弱', '减速', '急冻', '冰霜'],
+    defaultRules: [
+      { label: '持续时间', value: '5 秒' },
+      { label: '移速削弱', value: '移速加成降低 50%' },
+      { label: '结算频率', value: '每 1 秒结算一次' },
+      { label: '伤害类型', value: '魔法伤害（1% 魔法攻击加成）' },
+      { label: '装备联动', value: '霜寒、冷锋、熔霜等极寒装备对急冻目标具有额外伤害加成' }
+    ]
+  },
   shield: {
     name: '护盾',
     category: '增益与生存',
@@ -622,3 +635,27 @@ export const MECHANICS_ENCYCLOPEDIA = [
     ]
   }
 ]
+
+export const ELITE_ENCYCLOPEDIA = {
+  '嗜血': {
+    summary: '获得 15% 普通攻击吸血。敌方单位入场时附加【嗜血的】前缀。',
+    defaultTags: ['怪物特质', '异变', '嗜血的', '吸血', '秘境特质'],
+    defaultRules: [
+      { label: '特质类型', value: '秘境敌人异变特质' },
+      { label: '生效机制', value: '怪物入场即生效，附加【嗜血的】前缀，无法被驱散' },
+      { label: '普攻吸血', value: '普通攻击造成伤害的 15% 转化为自身生命值' },
+      { label: '出现场景', value: '亚空回廊·特异次元（sp1 秘境）敌方单位 50% 概率携带' }
+    ]
+  },
+  '自愈': {
+    summary: '生命值低于 25% 时，获得每秒恢复 4% 最大生命值的效果，持续 5 秒。敌方单位入场时附加【自愈的】前缀。',
+    defaultTags: ['怪物特质', '异变', '自愈的', '生命回复', '秘境特质'],
+    defaultRules: [
+      { label: '特质类型', value: '秘境敌人异变特质' },
+      { label: '生效机制', value: '怪物入场即生效，附加【自愈的】前缀，无法被驱散' },
+      { label: '濒死回复', value: '生命值低于 25% 时触发，每秒恢复 4% 最大生命，持续 5 秒' },
+      { label: '出现场景', value: '瓦希什塔秘境（sp2 秘境）敌方单位 50% 概率携带' }
+    ]
+  }
+}
+

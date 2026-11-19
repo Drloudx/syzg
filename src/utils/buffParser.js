@@ -272,15 +272,17 @@ export const STATUS_RULES = [
   { id: 'nightscale', name: '夜鳞毒', group: 'status', category: '持续伤害', buffTypes: ['00902SkillBuff'], desPattern: /夜鳞毒/ },
   { id: 'dotHalo', name: '持续伤害光环', group: 'status', category: '持续伤害', buffEffects: ['dotHalo'] },
   // —— 控制 ——
-  { id: 'stun', name: '眩晕', group: 'status', category: '控制', buffTypes: ['vertigo', 'mon069Stun', 'mon003StunBuff'], buffEffects: ['vertigo', 'mon069Stun'], buffTags: ['眩晕', '冰冻', '急冻'], desPattern: /眩晕|无法动弹|冻结/ },
+  { id: 'stun', name: '眩晕', group: 'status', category: '控制', buffTypes: ['vertigo', 'mon069Stun', 'mon003StunBuff'], buffEffects: ['vertigo', 'mon069Stun'], buffTags: ['眩晕', '冰冻'], desPattern: /眩晕|无法动弹|冻结/ },
   { id: 'root', name: '定身', group: 'status', category: '控制', buffTypes: ['fixed', 'hero043Skill2SpricalBuff'], buffEffects: ['Immobility', 'hero043Skill2SpricalBuff'], desPattern: /定身|无法移动/ },
   { id: 'taunt', name: '嘲讽', group: 'status', category: '控制', buffTypes: ['taunt', 'heroJob1Buff2'], buffEffects: ['taunt', 'heroJob1Buff2'], buffTags: ['嘲讽'], desPattern: /嘲讽|挑衅/ },
   { id: 'confuse', name: '混乱', group: 'status', category: '控制', buffEffects: ['confusion'] },
+  { id: 'baTi', name: '霸体', group: 'status', category: '控制', buffTypes: ['baTi', 'baTiBuff01'], desPattern: /霸体|免疫控制/ },
   // —— 削弱 ——
   { id: 'defDown', name: '防御下降', group: 'status', category: '削弱', attrNegative: ['phyDef', 'magicDef'] },
   // Thick 就是「攻速与移速变化」，减速、粘稠、麻痹等都挂它
   { id: 'weaken', name: '弱化', group: 'status', category: '削弱', buffEffects: ['Thick'], attrNegative: ['runSpeed', 'atkSpeed'] },
   { id: 'vuln', name: '易伤', group: 'status', category: '削弱', buffTypes: ['damageDeep', 'buff_damageDeep02'], buffEffects: ['Reduced_Defence', 'damAddHitAdd'], buffIds: ['buff_damageDeep01', 'buff_damageDeep02', '036Star4MonBuff', 'damAddAndHitAddBuff01'] },
+  { id: 'jidong', name: '急冻', group: 'status', category: '削弱', buffTypes: ['jidongBuff'], buffEffects: ['jidongBuff'], buffTags: ['急冻'], desPattern: /急冻/ },
   // —— 护盾与恢复 ——
   { id: 'shield', name: '护盾', group: 'status', category: '护盾恢复', buffTypes: ['shield'], buffEffects: ['Shield', 'maxHpShield', 'PhAtkShield', '051Skill1Buff'], buffTags: ['Shield'] },
   { id: 'hot', name: '持续回复', group: 'status', category: '护盾恢复', buffEffects: ['HOT'] },
@@ -385,9 +387,37 @@ export function isInternalBuffName(name) {
     || /白板/.test(text)
 }
 
+/** 秘境与精英怪物异变特质别名映射（ID -> 词条名） */
+export const ELITE_BUFF_ALIASES = {
+  sp1_enemyBuff_vimpire: '嗜血',
+  sp1_enemyBuff_slime: '自愈'
+}
+
+/** 怪物异变判定（精英/首领专属被动或秘境敌人专属词缀）。 */
+export function isEliteBuff(buff) {
+  if (!buff) return false
+  const id = String(buff.buffID || buff.id || '').trim()
+  if (ELITE_BUFF_ALIASES[id]) return true
+  const name = String(buff.buffName || '').trim()
+  if (/^异变：/.test(name) || name === '嗜血' || name === '自愈') return true
+  const nameAdd = String(buff.para?.nameAdd || '').trim()
+  return nameAdd === '嗜血的' || nameAdd === '自愈的'
+}
+
 /** 怪物异变（精英/首领专属）。 */
 export function isEliteBuffName(name) {
-  return /^异变：/.test(String(name || '').trim())
+  const text = String(name || '').trim()
+  return /^异变：/.test(text) || text === '嗜血' || text === '自愈'
+}
+
+/** 解析异变词条的规范展示名称 */
+export function resolveEliteEntryName(buff) {
+  const id = String(buff?.buffID || buff?.id || '').trim()
+  if (ELITE_BUFF_ALIASES[id]) return ELITE_BUFF_ALIASES[id]
+  const nameAdd = String(buff?.para?.nameAdd || '').trim()
+  if (nameAdd === '嗜血的') return '嗜血'
+  if (nameAdd === '自愈的') return '自愈'
+  return String(buff?.buffName || '').trim()
 }
 
 // ---------- 纯内部 / 表现层键（不展示给玩家） ----------
@@ -1071,9 +1101,10 @@ export function buildGlossaryEntries(buffData, options = {}) {
   for (const buff of fullPool) {
     const name = nameOf(buff)
     if (isCookBuff(buff) || isInternalBuffName(name)) continue
-    if (isEliteBuffName(name)) {
-      if (!eliteByName.has(name)) eliteByName.set(name, [])
-      eliteByName.get(name).push(buff)
+    if (isEliteBuff(buff)) {
+      const entryName = resolveEliteEntryName(buff)
+      if (!eliteByName.has(entryName)) eliteByName.set(entryName, [])
+      eliteByName.get(entryName).push(buff)
       claimed.add(buff)
       continue
     }
@@ -1088,7 +1119,7 @@ export function buildGlossaryEntries(buffData, options = {}) {
   for (const buff of featuredPool) {
     if (claimed.has(buff)) continue
     const name = nameOf(buff)
-    if (isCookBuff(buff) || isInternalBuffName(name) || isEliteBuffName(name)) continue
+    if (isCookBuff(buff) || isInternalBuffName(name) || isEliteBuff(buff)) continue
     if (!skillByName.has(name)) skillByName.set(name, [])
     skillByName.get(name).push(buff)
   }

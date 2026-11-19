@@ -172,7 +172,7 @@ function buildSkillBuffMap(skillJson, skillTriggerJson, buffData) {
       map.set(String(skillId), [...new Set([...valid, ...cascaded])])
     }
   }
-  for (const [skillId, skill] of Object.entries(skillJson || {})) add(skillId, skill?.levelData || skill)
+  for (const [skillId, skill] of Object.entries(skillJson || {})) add(skillId, skill)
   for (const [skillId, skill] of Object.entries(skillTriggerJson || {})) {
     add(skillId, skill?.levelData || skill)
     // skillTrigger 自己也带 skillId 字段
