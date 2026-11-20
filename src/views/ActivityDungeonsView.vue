@@ -1022,7 +1022,7 @@ onBeforeUnmount(() => {
 }
 
 .hint-symbol {
-  color: #8f7351;
+  color: var(--text-muted, #8f7351);
   font-size: 12px;
 }
 
@@ -1037,9 +1037,9 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, #e5d5be 0%, #cfba9f 100%);
-  border: 1px solid rgba(143, 115, 81, 0.5);
-  color: #3e2a14;
+  background: var(--ad-btn-bg, linear-gradient(135deg, #e5d5be 0%, #cfba9f 100%));
+  border: 1px solid var(--ad-btn-border, rgba(143, 115, 81, 0.5));
+  color: var(--text-main, #3e2a14);
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 13px;
@@ -1050,14 +1050,14 @@ onBeforeUnmount(() => {
 }
 
 .ad-action-btn:hover {
-  background: linear-gradient(135deg, #eedfc8 0%, #dbcbaf 100%);
+  background: var(--ad-btn-hover-bg, linear-gradient(135deg, #eedfc8 0%, #dbcbaf 100%));
   transform: translateY(-1px);
   box-shadow: 0 3px 6px rgba(62, 42, 20, 0.15);
 }
 
 .btn-arrow {
   font-size: 14px;
-  color: #8f7351;
+  color: var(--text-muted, #8f7351);
 }
 
 .ad-btn-icon,
@@ -1081,9 +1081,9 @@ onBeforeUnmount(() => {
   padding: 16px;
   padding-bottom: calc(20px + var(--safe-bottom, 0px));
   box-sizing: border-box;
-  background: #d7c4a4;
+  background: var(--ad-scroll-bg, #d7c4a4);
   border-radius: 8px;
-  border: 1px solid rgba(143, 115, 81, 0.32);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.32));
 }
 
 /*
@@ -1150,8 +1150,8 @@ onBeforeUnmount(() => {
 }
 
 .ad-layer-card.is-story-boss {
-  background: linear-gradient(180deg, #ede0c8 0%, #e3d1b2 100%);
-  border: 1.5px solid #cfa04b;
+  background: var(--ad-boss-bg, linear-gradient(180deg, #ede0c8 0%, #e3d1b2 100%));
+  border: 1.5px solid var(--ad-boss-border, #cfa04b);
   box-shadow: 0 3px 8px rgba(182, 123, 45, 0.12);
 }
 
@@ -1216,7 +1216,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 2px;
   font-size: 11px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   font-weight: 600;
 }
 
@@ -1256,7 +1256,7 @@ onBeforeUnmount(() => {
   border-radius: 3px;
   font-size: 10.5px;
   font-weight: 600;
-  color: #8c5d1e;
+  color: var(--ad-gold-text, #8c5d1e);
   background: rgba(186, 140, 70, 0.12);
   border: 1px solid rgba(186, 140, 70, 0.35);
 }
@@ -1271,7 +1271,7 @@ onBeforeUnmount(() => {
   border: 1px solid rgba(143, 115, 81, 0.22);
   font-size: 11px;
   font-weight: 700;
-  color: #6b5134;
+  color: var(--text-muted, #6b5134);
   cursor: pointer;
 }
 
@@ -1287,18 +1287,18 @@ onBeforeUnmount(() => {
   gap: 4px;
   padding: 6px 8px;
   border-radius: 4px;
-  background: rgba(143, 115, 81, 0.06);
+  background: var(--ad-enc-bg, rgba(143, 115, 81, 0.06));
   border-left: 3px solid #8f7351;
 }
 
 .ad-encounter-label {
   font-size: 11.5px;
   font-weight: 700;
-  color: #6b5134;
+  color: var(--text-muted, #6b5134);
 }
 
 .ad-encounter-label.is-boss {
-  color: #a42a18;
+  color: var(--ad-boss-title, #a42a18);
 }
 
 .ad-wave-row {
@@ -1321,8 +1321,8 @@ onBeforeUnmount(() => {
   gap: 5px;
   padding: 2px 8px 2px 3px;
   border-radius: 4px;
-  border: 1px solid rgba(143, 115, 81, 0.32);
-  background: rgba(255, 250, 240, 0.55);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.32));
+  background: var(--ad-pill-bg, rgba(255, 250, 240, 0.55));
   color: var(--text-main, #3e2a14);
   font-size: 11.5px;
   font-weight: 600;
@@ -1332,7 +1332,7 @@ onBeforeUnmount(() => {
 }
 
 .ad-mon-pill:hover {
-  background: rgba(250, 242, 226, 0.9);
+  background: var(--ad-pill-hover-bg, rgba(250, 242, 226, 0.9));
   border-color: #8f7351;
   transform: translateY(-1px);
 }
@@ -1347,7 +1347,7 @@ onBeforeUnmount(() => {
 
 .ad-mon-cnt {
   font-weight: 700;
-  color: #a16207;
+  color: var(--ad-count-color, #a16207);
 }
 
 .ad-random-mix {
@@ -1359,16 +1359,16 @@ onBeforeUnmount(() => {
 .ad-mix-pill {
   padding: 2px 8px;
   border-radius: 4px;
-  background: rgba(143, 115, 81, 0.11);
-  border: 1px solid rgba(143, 115, 81, 0.2);
-  color: #6b5134;
+  background: rgba(143, 115, 81, 0.14);
+  border: 1px solid rgba(143, 115, 81, 0.24);
+  color: var(--text-muted, #6b5134);
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .ad-mix-pill:hover {
-  background: rgba(143, 115, 81, 0.2);
+  background: rgba(143, 115, 81, 0.25);
   color: var(--text-main, #3e2a14);
 }
 
@@ -1392,7 +1392,7 @@ onBeforeUnmount(() => {
   padding: 2px 6px;
   border-radius: 4px;
   background: rgba(143, 115, 81, 0.2);
-  color: #4e3422;
+  color: var(--text-main, #4e3422);
   font-size: 11px;
   font-weight: 700;
   margin-top: 2px;
@@ -1420,8 +1420,8 @@ onBeforeUnmount(() => {
   gap: 4px;
   padding: 2px 8px 2px 5px;
   border-radius: 12px;
-  border: 1px solid rgba(143, 115, 81, 0.32);
-  background: rgba(255, 250, 240, 0.62);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.32));
+  background: var(--ad-chip-bg, rgba(255, 250, 240, 0.62));
   color: var(--text-main, #3e2a14);
   font-size: 11.5px;
   font-weight: 600;
@@ -1432,19 +1432,19 @@ onBeforeUnmount(() => {
 }
 
 .ad-reward-chip.is-clickable:hover {
-  background: rgba(250, 242, 226, 0.92);
+  background: var(--ad-chip-hover-bg, rgba(250, 242, 226, 0.92));
   border-color: #8f7351;
 }
 
 .ad-reward-chip.q-4 {
-  color: #633f82;
-  border-color: #c4abd5;
+  color: var(--ad-q4-color, #633f82);
+  border-color: var(--ad-q4-border, #c4abd5);
 }
 
 .ad-reward-chip.q-5 {
-  color: #8c5d1e;
-  border-color: #d4a753;
-  background: rgba(246, 232, 200, 0.78);
+  color: var(--ad-q5-color, #8c5d1e);
+  border-color: var(--ad-q5-border, #d4a753);
+  background: var(--ad-q5-bg, rgba(246, 232, 200, 0.78));
 }
 
 /* 房间池：自定义羊皮纸下拉选择器 */
@@ -1487,7 +1487,7 @@ onBeforeUnmount(() => {
   padding: 6px 12px;
   border-radius: 6px;
   border: 1px solid rgba(143, 115, 81, 0.45);
-  background: linear-gradient(180deg, #faf2e4 0%, #efe1c9 100%);
+  background: var(--ad-dropdown-bg, linear-gradient(180deg, #faf2e4 0%, #efe1c9 100%));
   color: var(--text-main, #3e2a14);
   font-size: 13px;
   font-weight: 600;
@@ -1500,14 +1500,14 @@ onBeforeUnmount(() => {
 }
 
 .ad-dropdown-scale {
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   font-size: 12px;
   font-weight: 500;
 }
 
 .ad-dropdown-caret {
   font-size: 11px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   transition: transform 0.15s ease;
 }
 
@@ -1556,8 +1556,8 @@ onBeforeUnmount(() => {
 }
 
 .ad-layer-option.is-active {
-  background: #4e3422;
-  color: #fff6e8;
+  background: var(--ad-active-bg, #4e3422);
+  color: var(--ad-active-color, #fff6e8);
 }
 
 .ad-opt-main {
@@ -1573,7 +1573,7 @@ onBeforeUnmount(() => {
 
 .ad-pool-tip {
   font-size: 12px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
 }
 
 .ad-rooms-grid,
@@ -1664,8 +1664,8 @@ onBeforeUnmount(() => {
   font-size: 11px;
   padding: 2px 7px;
   border-radius: 999px;
-  background: rgba(143, 115, 81, 0.14);
-  color: #6b5134;
+  background: rgba(143, 115, 81, 0.16);
+  color: var(--text-muted, #6b5134);
 }
 
 .ad-room-desc,
@@ -1673,14 +1673,14 @@ onBeforeUnmount(() => {
   margin: 0;
   font-size: 12px;
   line-height: 1.55;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
 }
 
 .ad-event-cta {
   margin-top: auto;
   font-size: 12px;
   font-weight: 700;
-  color: #8c5d1e;
+  color: var(--ad-gold-text, #8c5d1e);
 }
 
 .ad-room-flags {
@@ -1692,14 +1692,14 @@ onBeforeUnmount(() => {
 .ad-flag-pill {
   padding: 2px 7px;
   border-radius: 4px;
-  background: rgba(143, 115, 81, 0.14);
+  background: rgba(143, 115, 81, 0.16);
   color: var(--text-main, #3e2a14);
   font-size: 11px;
 }
 
 .ad-flag-pill.is-warn {
-  background: rgba(168, 56, 48, 0.13);
-  color: #8f2c24;
+  background: var(--ad-warn-bg, rgba(168, 56, 48, 0.13));
+  color: var(--ad-warn-color, #8f2c24);
 }
 
 .ad-room-waves {
@@ -1750,7 +1750,7 @@ onBeforeUnmount(() => {
 
 .ad-global-buff-desc {
   font-size: 12px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   margin-top: 2px;
 }
 
@@ -1797,7 +1797,7 @@ onBeforeUnmount(() => {
 .ad-shop-intro p {
   margin: 0;
   font-size: 13px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
 }
 
 .ad-shop-icon-lg {
@@ -1821,8 +1821,8 @@ onBeforeUnmount(() => {
   gap: 10px;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid rgba(143, 115, 81, 0.34);
-  background: rgba(232, 218, 193, 0.9);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.34));
+  background: var(--ad-shop-card-bg, rgba(232, 218, 193, 0.9));
 }
 
 .ad-shop-card-icon {
@@ -1856,7 +1856,7 @@ onBeforeUnmount(() => {
   padding: 2px 6px;
   border-radius: 4px;
   background: rgba(143, 115, 81, 0.14);
-  color: #7a4f1d;
+  color: var(--ad-gold-text, #7a4f1d);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -1864,7 +1864,7 @@ onBeforeUnmount(() => {
 .ad-shop-card-desc {
   margin: 0;
   font-size: 12px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   line-height: 1.45;
 }
 
@@ -1878,7 +1878,7 @@ onBeforeUnmount(() => {
 
 .ad-cost-label {
   font-size: 11px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   font-weight: 600;
 }
 
@@ -1888,9 +1888,41 @@ onBeforeUnmount(() => {
   gap: 4px;
   padding: 2px 8px;
   border-radius: 999px;
-  background: rgba(139, 90, 43, 0.13);
+  background: var(--ad-cost-pill-bg, rgba(139, 90, 43, 0.13));
   font-size: 12px;
   font-weight: 600;
-  color: #4e3422;
+  color: var(--text-main, #4e3422);
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --ad-scroll-bg: var(--paper, #261c13);
+  --ad-btn-bg: linear-gradient(135deg, #4a3726 0%, #3a2a1c 100%);
+  --ad-btn-border: rgba(216, 175, 86, 0.45);
+  --ad-btn-hover-bg: linear-gradient(135deg, #59432e 0%, #463423 100%);
+  --ad-boss-bg: linear-gradient(180deg, #3c2a1c 0%, #312116 100%);
+  --ad-boss-border: #b88a3a;
+  --ad-gold-text: #e2b86b;
+  --ad-enc-bg: rgba(143, 115, 81, 0.12);
+  --ad-boss-title: #f08c7a;
+  --ad-pill-bg: rgba(66, 49, 34, 0.85);
+  --ad-pill-hover-bg: rgba(84, 62, 42, 0.95);
+  --ad-count-color: #e5b963;
+  --ad-chip-bg: rgba(62, 46, 32, 0.85);
+  --ad-chip-hover-bg: rgba(84, 62, 42, 0.95);
+  --ad-q4-color: #d3b3f0;
+  --ad-q4-border: rgba(182, 138, 219, 0.5);
+  --ad-q5-color: #ebc878;
+  --ad-q5-border: #b88a3a;
+  --ad-q5-bg: rgba(126, 92, 34, 0.35);
+  --ad-dropdown-bg: linear-gradient(180deg, #423122 0%, #332519 100%);
+  --ad-active-bg: #7a5832;
+  --ad-active-color: #fff6e8;
+  --ad-warn-bg: rgba(196, 64, 43, 0.22);
+  --ad-warn-color: #f3a195;
+  --ad-shop-card-bg: rgba(52, 39, 27, 0.95);
+  --ad-cost-pill-bg: rgba(186, 140, 70, 0.22);
 }
 </style>

@@ -351,17 +351,17 @@ const OutcomeDetails = defineComponent({
 .ad-back-step-btn {
   padding: 5px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(143, 115, 81, 0.4);
-  background: rgba(232, 218, 193, 0.9);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.4));
+  background: var(--ad-ev-btn-bg, rgba(232, 218, 193, 0.9));
   color: var(--text-main, #3e2a14);
   font-size: 13px;
   cursor: pointer;
 }
 
 .ad-mode-btn.is-active {
-  background: #4e3422;
-  color: #fff6e8;
-  border-color: #4e3422;
+  background: var(--ad-ev-active-bg, #4e3422);
+  color: var(--ad-ev-active-color, #fff6e8);
+  border-color: var(--ad-ev-active-border, #4e3422);
 }
 
 .ad-node-box,
@@ -371,8 +371,8 @@ const OutcomeDetails = defineComponent({
   gap: 12px;
   padding: 14px;
   border-radius: 8px;
-  border: 1px solid rgba(143, 115, 81, 0.34);
-  background: rgba(232, 218, 193, 0.9);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.34));
+  background: var(--ad-ev-card-bg, rgba(232, 218, 193, 0.9));
 }
 
 .ad-node-banner {
@@ -411,8 +411,8 @@ const OutcomeDetails = defineComponent({
 .ad-all-opt {
   padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(139, 108, 72, 0.28);
-  background: rgba(224, 208, 180, 0.72);
+  border: 1px solid var(--border-soft, rgba(139, 108, 72, 0.28));
+  background: var(--ad-ev-opt-bg, rgba(224, 208, 180, 0.72));
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -428,7 +428,7 @@ const OutcomeDetails = defineComponent({
 
 .ad-option-btn-title {
   font-size: 14px;
-  color: #4e3422;
+  color: var(--text-main, #4e3422);
 }
 
 .ad-option-desc {
@@ -448,8 +448,8 @@ const OutcomeDetails = defineComponent({
   gap: 8px;
   padding: 7px 10px;
   border-radius: 6px;
-  border: 1px solid rgba(143, 115, 81, 0.34);
-  background: rgba(238, 226, 202, 0.85);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.34));
+  background: var(--ad-ev-action-bg, rgba(238, 226, 202, 0.85));
   color: var(--text-main, #3e2a14);
   font-size: 13px;
   cursor: pointer;
@@ -458,15 +458,15 @@ const OutcomeDetails = defineComponent({
 
 .ad-outcome-action:hover {
   border-color: #8b5a2b;
-  background: rgba(244, 234, 214, 0.95);
+  background: var(--ad-ev-action-hover-bg, rgba(244, 234, 214, 0.95));
 }
 
 .ad-chance-pill {
   flex-shrink: 0;
   padding: 2px 7px;
   border-radius: 999px;
-  background: rgba(139, 90, 43, 0.14);
-  color: #6f451f;
+  background: var(--ad-ev-chance-bg, rgba(139, 90, 43, 0.14));
+  color: var(--ad-ev-chance-color, #6f451f);
   font-size: 12px;
   font-weight: 700;
 }
@@ -477,7 +477,7 @@ const OutcomeDetails = defineComponent({
 
 .ad-outcome-arrow {
   font-size: 12px;
-  color: #8b5a2b;
+  color: var(--ad-ev-arrow-color, #8b5a2b);
   font-weight: 600;
 }
 
@@ -487,8 +487,8 @@ const OutcomeDetails = defineComponent({
   gap: 10px;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid rgba(139, 90, 43, 0.35);
-  background: rgba(226, 211, 184, 0.82);
+  border: 1px solid var(--border-soft, rgba(139, 90, 43, 0.35));
+  background: var(--ad-ev-opt-bg, rgba(226, 211, 184, 0.82));
 }
 
 .ad-finished-head,
@@ -508,8 +508,8 @@ const OutcomeDetails = defineComponent({
 .ad-node-id-pill {
   padding: 2px 8px;
   border-radius: 4px;
-  background: #4e3422;
-  color: #fff6e8;
+  background: var(--ad-ev-active-bg, #4e3422);
+  color: var(--ad-ev-active-color, #fff6e8);
   font-size: 12px;
   font-weight: 700;
   flex-shrink: 0;
@@ -544,8 +544,8 @@ const OutcomeDetails = defineComponent({
   align-self: flex-start;
   padding: 3px 9px;
   border-radius: 6px;
-  background: rgba(78, 122, 92, 0.14);
-  color: #2f5b3f;
+  background: var(--ad-ev-effect-bg, rgba(78, 122, 92, 0.14));
+  color: var(--ad-ev-effect-color, #2f5b3f);
   font-size: 12px;
   font-weight: 600;
 }
@@ -563,8 +563,8 @@ const OutcomeDetails = defineComponent({
   gap: 5px;
   padding: 3px 9px;
   border-radius: 12px;
-  border: 1px solid rgba(143, 115, 81, 0.34);
-  background: rgba(238, 226, 202, 0.82);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.34));
+  background: var(--ad-ev-chip-bg, rgba(238, 226, 202, 0.82));
   color: var(--text-main, #3e2a14);
   font-size: 12px;
 }
@@ -600,8 +600,8 @@ const OutcomeDetails = defineComponent({
   gap: 8px;
   padding: 6px 8px;
   border-radius: 6px;
-  background: rgba(238, 226, 202, 0.78);
-  border: 1px solid rgba(139, 108, 72, 0.24);
+  background: var(--ad-ev-action-bg, rgba(238, 226, 202, 0.78));
+  border: 1px solid var(--border-soft, rgba(139, 108, 72, 0.24));
 }
 
 :deep(.ad-buff-icon) {
@@ -628,14 +628,14 @@ const OutcomeDetails = defineComponent({
   gap: 6px;
   padding: 8px;
   border-radius: 6px;
-  background: rgba(168, 56, 48, 0.06);
-  border: 1px solid rgba(168, 56, 48, 0.18);
+  background: var(--ad-ev-battle-bg, rgba(168, 56, 48, 0.06));
+  border: 1px solid var(--ad-ev-battle-border, rgba(168, 56, 48, 0.18));
 }
 
 :deep(.ad-battle-title) {
   font-size: 12px;
   font-weight: 700;
-  color: #8f2c24;
+  color: var(--ad-ev-battle-color, #8f2c24);
 }
 
 :deep(.ad-wave-row) {
@@ -656,8 +656,8 @@ const OutcomeDetails = defineComponent({
   gap: 5px;
   padding: 2px 8px 2px 4px;
   border-radius: 999px;
-  border: 1px solid rgba(139, 108, 72, 0.3);
-  background: rgba(255, 252, 245, 0.92);
+  border: 1px solid var(--border-soft, rgba(139, 108, 72, 0.3));
+  background: var(--ad-ev-mon-bg, rgba(255, 252, 245, 0.92));
   font-size: 12px;
   color: var(--text-main);
   cursor: pointer;
@@ -676,6 +676,31 @@ const OutcomeDetails = defineComponent({
 
 :deep(.ad-mon-cnt) {
   font-weight: 700;
-  color: #7c4820;
+  color: var(--ad-ev-mon-cnt, #7c4820);
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --ad-ev-btn-bg: rgba(58, 43, 30, 0.92);
+  --ad-ev-active-bg: #7a5832;
+  --ad-ev-active-color: #fff6e8;
+  --ad-ev-active-border: #b88a3a;
+  --ad-ev-card-bg: rgba(46, 34, 24, 0.94);
+  --ad-ev-opt-bg: rgba(58, 43, 30, 0.82);
+  --ad-ev-action-bg: rgba(68, 50, 35, 0.88);
+  --ad-ev-action-hover-bg: rgba(86, 63, 44, 0.95);
+  --ad-ev-chance-bg: rgba(216, 175, 86, 0.18);
+  --ad-ev-chance-color: #e2b86b;
+  --ad-ev-arrow-color: #d8af56;
+  --ad-ev-effect-bg: rgba(94, 166, 118, 0.18);
+  --ad-ev-effect-color: #9ed9b1;
+  --ad-ev-chip-bg: rgba(62, 46, 32, 0.88);
+  --ad-ev-battle-bg: rgba(196, 64, 43, 0.14);
+  --ad-ev-battle-border: rgba(226, 128, 112, 0.35);
+  --ad-ev-battle-color: #f3a195;
+  --ad-ev-mon-bg: rgba(66, 49, 34, 0.9);
+  --ad-ev-mon-cnt: #e5b963;
 }
 </style>

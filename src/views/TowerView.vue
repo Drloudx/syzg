@@ -559,7 +559,7 @@ onMounted(() => {
 }
 
 .hint-symbol {
-  color: #8f7351;
+  color: var(--text-muted, #8f7351);
   font-size: 12px;
 }
 
@@ -567,9 +567,9 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: linear-gradient(135deg, #e5d5be 0%, #cfba9f 100%);
-  border: 1px solid rgba(143, 115, 81, 0.5);
-  color: #3e2a14;
+  background: var(--tw-btn-bg, linear-gradient(135deg, #e5d5be 0%, #cfba9f 100%));
+  border: 1px solid var(--tw-btn-border, rgba(143, 115, 81, 0.5));
+  color: var(--text-main, #3e2a14);
   padding: 5px 12px;
   border-radius: 20px;
   font-size: 13px;
@@ -580,7 +580,7 @@ onMounted(() => {
 }
 
 .shop-trigger-btn:hover {
-  background: linear-gradient(135deg, #eedfc8 0%, #dbcbaf 100%);
+  background: var(--tw-btn-hover-bg, linear-gradient(135deg, #eedfc8 0%, #dbcbaf 100%));
   transform: translateY(-1px);
   box-shadow: 0 3px 6px rgba(62, 42, 20, 0.15);
 }
@@ -598,7 +598,7 @@ onMounted(() => {
 
 .btn-arrow {
   font-size: 14px;
-  color: #8f7351;
+  color: var(--text-muted, #8f7351);
 }
 
 /* 滚动区域与网格 */
@@ -611,7 +611,7 @@ onMounted(() => {
 .tower-scroll-container {
   padding: 16px;
   box-sizing: border-box;
-  background: var(--paper-light, #dfceb3);
+  background: var(--tw-scroll-bg, #dfceb3);
 }
 
 /*
@@ -654,7 +654,7 @@ onMounted(() => {
 .tower-card {
   display: flex;
   background: var(--paper-soft, #f7efe1);
-  border: 1px solid rgba(143, 115, 81, 0.32);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.32));
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(62, 42, 20, 0.06);
@@ -685,8 +685,8 @@ onMounted(() => {
 }
 
 .tower-card.is-boss {
-  background: linear-gradient(180deg, #faf3e6 0%, #f3e5d0 100%);
-  border: 1.5px solid #d4a753;
+  background: var(--tw-boss-bg, linear-gradient(180deg, #faf3e6 0%, #f3e5d0 100%));
+  border: 1.5px solid var(--tw-boss-border, #d4a753);
   box-shadow: 0 3px 8px rgba(182, 123, 45, 0.12);
 }
 
@@ -780,7 +780,7 @@ onMounted(() => {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -815,33 +815,33 @@ onMounted(() => {
 }
 
 .el-fire {
-  background: #f8ded7;
-  color: #b3321f;
-  border: 1px solid #e2a89d;
+  background: var(--tw-el-fire-bg, #f8ded7);
+  color: var(--tw-el-fire-color, #b3321f);
+  border: 1px solid var(--tw-el-fire-border, #e2a89d);
 }
 
 .el-water {
-  background: #e2eef5;
-  color: #31648a;
-  border: 1px solid #a8c7dc;
+  background: var(--tw-el-water-bg, #e2eef5);
+  color: var(--tw-el-water-color, #31648a);
+  border: 1px solid var(--tw-el-water-border, #a8c7dc);
 }
 
 .el-wind {
-  background: #e4f0e3;
-  color: #38783d;
-  border: 1px solid #afd3b0;
+  background: var(--tw-el-wind-bg, #e4f0e3);
+  color: var(--tw-el-wind-color, #38783d);
+  border: 1px solid var(--tw-el-wind-border, #afd3b0);
 }
 
 .el-ground {
-  background: #f5eccf;
-  color: #8b5f25;
-  border: 1px solid #d9bf8c;
+  background: var(--tw-el-ground-bg, #f5eccf);
+  color: var(--tw-el-ground-color, #8b5f25);
+  border: 1px solid var(--tw-el-ground-border, #d9bf8c);
 }
 
 /* 关卡实机比例修正徽章 */
 .scale-fix-pill {
   font-size: 10.5px;
-  color: #8c5d1e;
+  color: var(--tw-gold-text, #8c5d1e);
   background: rgba(186, 140, 70, 0.12);
   border: 1px solid rgba(186, 140, 70, 0.35);
   padding: 1px 6px;
@@ -859,7 +859,7 @@ onMounted(() => {
   border-radius: 4px;
   font-size: 11px;
   font-weight: 700;
-  color: #6b5134;
+  color: var(--text-muted, #6b5134);
 }
 
 /*
@@ -880,21 +880,21 @@ onMounted(() => {
 
 /* 目标描述框 */
 .objective-box {
-  background: rgba(143, 115, 81, 0.06);
+  background: var(--tw-obj-bg, rgba(143, 115, 81, 0.06));
   border-left: 3px solid #8f7351;
   padding: 6px 8px;
   border-radius: 0 4px 4px 0;
 }
 
 .objective-box.boss-objective {
-  background: rgba(196, 64, 43, 0.07);
+  background: var(--tw-boss-obj-bg, rgba(196, 64, 43, 0.07));
   border-left: 3px solid #c4402b;
 }
 
 .objective-title {
   font-size: 11px;
   font-weight: 700;
-  color: #6b5134;
+  color: var(--text-muted, #6b5134);
   margin-bottom: 2px;
   display: flex;
   align-items: center;
@@ -902,18 +902,18 @@ onMounted(() => {
 }
 
 .boss-objective .objective-title {
-  color: #a42a18;
+  color: var(--tw-boss-title, #a42a18);
 }
 
 .obj-dot {
   font-size: 9px;
-  color: #8f7351;
+  color: var(--text-muted, #8f7351);
 }
 
 .objective-desc {
   margin: 0;
   font-size: 12.5px;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
   line-height: 1.4;
 }
 
@@ -937,7 +937,7 @@ onMounted(() => {
 }
 
 .rule-desc {
-  color: #682216;
+  color: var(--tw-rule-text, #682216);
   font-weight: 500;
 }
 
@@ -950,7 +950,7 @@ onMounted(() => {
 }
 
 .waves-header {
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   font-weight: 600;
   font-size: 11.5px;
 }
@@ -986,8 +986,8 @@ onMounted(() => {
   align-items: center;
   gap: 5px;
   padding: 2px 8px 2px 3px;
-  background: rgba(255, 250, 240, 0.55);
-  border: 1px solid rgba(143, 115, 81, 0.32);
+  background: var(--tw-pill-bg, rgba(255, 250, 240, 0.55));
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.32));
   border-radius: 4px;
   font-size: 11.5px;
   box-shadow: 0 1px 2px rgba(43, 31, 21, 0.04);
@@ -996,7 +996,7 @@ onMounted(() => {
 }
 
 .wave-mon-pill:hover {
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--tw-pill-hover-bg, rgba(255, 255, 255, 0.85));
   border-color: #8f7351;
   transform: translateY(-1px);
 }
@@ -1006,7 +1006,7 @@ onMounted(() => {
   height: 19px;
   border-radius: 50%;
   object-fit: cover;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--tw-avatar-bg, rgba(255, 255, 255, 0.5));
   border: 1px solid rgba(143, 115, 81, 0.25);
 }
 
@@ -1017,7 +1017,7 @@ onMounted(() => {
 
 .wave-mon-count {
   font-weight: 700;
-  color: #a16207;
+  color: var(--tw-count-color, #a16207);
 }
 
 /* 底部首通奖励（柔和半透明胶囊，拒绝刺眼纯白） */
@@ -1033,7 +1033,7 @@ onMounted(() => {
 .rewards-label {
   font-size: 11px;
   font-weight: 700;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
 }
 
 .rewards-group {
@@ -1046,8 +1046,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(255, 250, 240, 0.65);
-  border: 1px solid rgba(143, 115, 81, 0.32);
+  background: var(--tw-chip-bg, rgba(255, 250, 240, 0.65));
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.32));
   border-radius: 14px;
   padding: 2px 8px 2px 4px;
   font-size: 12px;
@@ -1056,20 +1056,20 @@ onMounted(() => {
 }
 
 .chip-ke {
-  color: #8c5d1e;
-  border-color: #dfc29a;
+  color: var(--tw-gold-text, #8c5d1e);
+  border-color: var(--tw-ke-border, #dfc29a);
 }
 
 .chip-cube {
-  color: #633f82;
-  border-color: #c4abd5;
+  color: var(--tw-cube-text, #633f82);
+  border-color: var(--tw-cube-border, #c4abd5);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .chip-cube:hover {
-  background: rgba(255, 255, 255, 0.9);
-  border-color: #9b6ab5;
+  background: var(--tw-chip-hover-bg, rgba(255, 255, 255, 0.9));
+  border-color: var(--tw-cube-hover-border, #9b6ab5);
   transform: translateY(-1px);
 }
 
@@ -1086,7 +1086,7 @@ onMounted(() => {
 
 .reward-tip {
   font-size: 10px;
-  color: #8867a5;
+  color: var(--tw-cube-tip, #8867a5);
   font-weight: normal;
 }
 
@@ -1127,7 +1127,7 @@ onMounted(() => {
 .shop-intro-text p {
   margin: 0;
   font-size: 13px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   line-height: 1.5;
 }
 
@@ -1142,8 +1142,8 @@ onMounted(() => {
   gap: 10px;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid rgba(143, 115, 81, 0.34);
-  background: rgba(232, 218, 193, 0.9);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.34));
+  background: var(--tw-shop-card-bg, rgba(232, 218, 193, 0.9));
 }
 
 .shop-item-icon-col {
@@ -1177,7 +1177,7 @@ onMounted(() => {
   padding: 2px 6px;
   border-radius: 4px;
   background: rgba(143, 115, 81, 0.14);
-  color: #7a4f1d;
+  color: var(--tw-gold-text, #7a4f1d);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -1185,7 +1185,7 @@ onMounted(() => {
 .shop-item-desc {
   margin: 0;
   font-size: 12px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   line-height: 1.45;
 }
 
@@ -1199,7 +1199,7 @@ onMounted(() => {
 
 .cost-label {
   font-size: 11px;
-  color: #7b6348;
+  color: var(--text-muted, #7b6348);
   font-weight: 600;
 }
 
@@ -1209,10 +1209,10 @@ onMounted(() => {
   gap: 4px;
   padding: 2px 8px;
   border-radius: 999px;
-  background: rgba(139, 90, 43, 0.13);
+  background: var(--tw-cost-pill-bg, rgba(139, 90, 43, 0.13));
   font-size: 12px;
   font-weight: 600;
-  color: #4e3422;
+  color: var(--text-main, #4e3422);
 }
 
 .cost-icon {
@@ -1224,5 +1224,47 @@ onMounted(() => {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --tw-scroll-bg: var(--paper, #261c13);
+  --tw-btn-bg: linear-gradient(135deg, #4a3726 0%, #3a2a1c 100%);
+  --tw-btn-border: rgba(216, 175, 86, 0.45);
+  --tw-btn-hover-bg: linear-gradient(135deg, #59432e 0%, #463423 100%);
+  --tw-boss-bg: linear-gradient(180deg, #3c2a1c 0%, #312116 100%);
+  --tw-boss-border: #b88a3a;
+  --tw-el-fire-bg: rgba(185, 58, 42, 0.24);
+  --tw-el-fire-color: #f6b0a3;
+  --tw-el-fire-border: rgba(226, 128, 112, 0.48);
+  --tw-el-water-bg: rgba(54, 122, 170, 0.24);
+  --tw-el-water-color: #9fd0f0;
+  --tw-el-water-border: rgba(120, 178, 214, 0.48);
+  --tw-el-wind-bg: rgba(62, 138, 72, 0.24);
+  --tw-el-wind-color: #a3dfb0;
+  --tw-el-wind-border: rgba(120, 194, 134, 0.48);
+  --tw-el-ground-bg: rgba(180, 130, 52, 0.24);
+  --tw-el-ground-color: #ebc883;
+  --tw-el-ground-border: rgba(217, 179, 108, 0.48);
+  --tw-gold-text: #e2b86b;
+  --tw-obj-bg: rgba(143, 115, 81, 0.12);
+  --tw-boss-obj-bg: rgba(196, 64, 43, 0.14);
+  --tw-boss-title: #f08c7a;
+  --tw-rule-text: #f1aba0;
+  --tw-pill-bg: rgba(66, 49, 34, 0.85);
+  --tw-pill-hover-bg: rgba(84, 62, 42, 0.95);
+  --tw-avatar-bg: rgba(34, 24, 16, 0.72);
+  --tw-count-color: #e5b963;
+  --tw-chip-bg: rgba(62, 46, 32, 0.85);
+  --tw-ke-border: rgba(216, 175, 86, 0.45);
+  --tw-cube-text: #d3b3f0;
+  --tw-cube-border: rgba(182, 138, 219, 0.5);
+  --tw-chip-hover-bg: rgba(86, 62, 104, 0.45);
+  --tw-cube-hover-border: #cfa4ec;
+  --tw-cube-tip: #c5a5df;
+  --tw-shop-card-bg: rgba(52, 39, 27, 0.95);
+  --tw-cost-pill-bg: rgba(186, 140, 70, 0.22);
 }
 </style>
