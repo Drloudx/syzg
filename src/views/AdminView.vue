@@ -1547,44 +1547,6 @@ textarea.admin-input {
   font-weight: 500;
 }
 
-/* ====== 后台专属定制复古滚动条（无系统三角、6px 精致金棕滑块） ====== */
-:global(.admin-shell *) {
-  scrollbar-color: auto;
-  scrollbar-width: auto;
-}
-
-:global(.admin-shell ::-webkit-scrollbar) {
-  width: 6px;
-  height: 6px;
-}
-:global(.admin-shell ::-webkit-scrollbar-button) {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-}
-:global(.admin-shell ::-webkit-scrollbar-track) {
-  background: rgba(143, 115, 81, 0.08);
-  border-radius: 4px;
-}
-:global(.admin-shell ::-webkit-scrollbar-thumb) {
-  background: rgba(143, 115, 81, 0.38);
-  border-radius: 4px;
-  transition: background 0.15s;
-}
-:global(.admin-shell ::-webkit-scrollbar-thumb:hover) {
-  background: #a88452;
-}
-
-:global(.dark-mode .admin-shell ::-webkit-scrollbar-track) {
-  background: rgba(30, 22, 14, 0.4);
-}
-:global(.dark-mode .admin-shell ::-webkit-scrollbar-thumb) {
-  background: rgba(220, 180, 120, 0.3);
-}
-:global(.dark-mode .admin-shell ::-webkit-scrollbar-thumb:hover) {
-  background: #e5b060;
-}
-
 @media (max-width: 900px) {
   .admin-workshop {
     padding: 10px 10px 8px !important;
@@ -1614,5 +1576,47 @@ textarea.admin-input {
     padding: 6px 8px;
     white-space: nowrap;
   }
+}
+</style>
+<style>
+/* ====== 后台专属定制复古滚动条（无系统三角、6px 精致金棕滑块） ====== */
+.admin-shell * {
+  scrollbar-color: auto;
+  scrollbar-width: auto;
+}
+
+.admin-shell ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.admin-shell ::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.admin-shell ::-webkit-scrollbar-track {
+  background: rgba(143, 115, 81, 0.08);
+  border-radius: 4px;
+}
+.admin-shell ::-webkit-scrollbar-thumb {
+  background: rgba(143, 115, 81, 0.38);
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.admin-shell ::-webkit-scrollbar-thumb:hover {
+  background: #a88452;
+}
+
+.dark-mode .admin-shell ::-webkit-scrollbar-track,
+.dark-theme .admin-shell ::-webkit-scrollbar-track {
+  background: rgba(30, 22, 14, 0.4);
+}
+.dark-mode .admin-shell ::-webkit-scrollbar-thumb,
+.dark-theme .admin-shell ::-webkit-scrollbar-thumb {
+  background: rgba(220, 180, 120, 0.3);
+}
+.dark-mode .admin-shell ::-webkit-scrollbar-thumb:hover,
+.dark-theme .admin-shell ::-webkit-scrollbar-thumb:hover {
+  background: #e5b060;
 }
 </style>

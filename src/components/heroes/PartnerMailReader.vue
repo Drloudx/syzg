@@ -180,8 +180,8 @@ watch(() => props.selectedMail?.id, async () => {
    The original light paper keeps its own ink even when the surrounding app is dark. */
 .mail-columns {
   position: relative;
-  --mail-ink: #533e26;
-  --mail-muted: rgb(83 62 38 / 69.803923%);
+  --mail-ink: var(--pm-ink, #533e26);
+  --mail-muted: var(--pm-muted, rgb(83 62 38 / 69.803923%));
   --mail-label: #e5d6b5;
   font-family: var(--font-ui);
   display: grid;
@@ -192,9 +192,9 @@ watch(() => props.selectedMail?.id, async () => {
   min-height: 0;
   min-width: 0;
   overflow: hidden;
-  background: rgba(221, 205, 176, .94);
-  border: 2px solid #8f7958;
-  box-shadow: inset 0 0 0 1px rgba(255, 244, 213, .65), 0 3px 10px rgba(45, 30, 12, .28);
+  background: var(--pm-cols-bg, rgba(221, 205, 176, .94));
+  border: 2px solid var(--pm-cols-border, #8f7958);
+  box-shadow: var(--pm-cols-shadow, inset 0 0 0 1px rgba(255, 244, 213, .65), 0 3px 10px rgba(45, 30, 12, .28));
   border-radius: 4px;
 }
 .mail-heroes, .mail-list { min-width: 0; min-height: 0; overflow-y: auto; background: transparent !important; }
@@ -236,18 +236,18 @@ watch(() => props.selectedMail?.id, async () => {
    把 flex:1 的 .mail-body-area 压成 0（实测 844x390 下 clientHeight=0，正文完全读不到，
    奖励区还溢出到视口外）。故：容器允许纵向滚动兜底，正文保留最小可读高度。 */
 .mail-content { position: relative; min-width: 0; min-height: 0; margin: 0 5px 0 0; display: flex; flex-direction: column; color: var(--mail-ink); overflow-y: auto; }
-.mail-content::before { content: ''; position: absolute; inset: 0; border-image: var(--mail-botm) 150 fill / 102px 90px 90px stretch; pointer-events: none; }
+.mail-content::before { content: ''; position: absolute; inset: 0; border-image: var(--mail-botm) 150 fill / 102px 90px 90px stretch; filter: var(--pm-botm-filter, none); pointer-events: none; }
 .mail-content > * { position: relative; }
 /* The black strip is centered at source y=44, or about 30px in the 102px top slice.
    Offset only the title to align its 25px line box without moving the sender below. */
 .mail-content h2 { top: 3px; flex: 0 0 25px; margin: 14px 28px 0 39px; font-family: inherit; font-size: 14px; font-weight: 400; line-height: 25px; color: #cfba96; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-.mail-meta { flex: 0 0 23px; margin: 8px 25px 0; color: var(--mail-muted); font-size: 12px; font-weight: 700; line-height: 23px; }
+.mail-meta { flex: 0 0 23px; margin: 8px 25px 0; color: var(--mail-muted); font-size: 12px; font-weight: var(--pm-meta-weight, 700); line-height: 23px; }
 /* min-height 96px：保证正文至少有可读高度；空间不足时由 .mail-content 的纵向滚动兜底 */
 .mail-body-area { position: relative; display: flex; flex: 1; min-height: 96px; margin: 9px 24px 23px; }
-.mail-body { flex: 1; min-width: 0; min-height: 0; overflow-y: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; font-weight: 700; line-height: 1.4; }
-.mail-rewards { flex: 0 0 64px; margin: 0 6px 24px; padding: 4px 8px; display: flex; align-items: center; gap: 8px; background: rgba(112, 105, 87, .42); }
+.mail-body { flex: 1; min-width: 0; min-height: 0; overflow-y: auto; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; font-weight: var(--pm-body-weight, 700); line-height: var(--pm-body-lh, 1.4); letter-spacing: var(--pm-body-ls, normal); }
+.mail-rewards { flex: 0 0 64px; margin: 0 6px 24px; padding: 4px 8px; display: flex; align-items: center; gap: 8px; background: var(--pm-rewards-bg, rgba(112, 105, 87, .42)); border-radius: 4px; }
 .mail-illustration { display: block; max-width: 100%; height: auto; margin: 12px auto 0; }
-.mail-reward-label { flex-shrink: 0; width: 30px; height: 60px; object-fit: contain; }
+.mail-reward-label { flex-shrink: 0; width: 30px; height: 60px; object-fit: contain; filter: var(--pm-label-filter, none); }
 .mail-reward-list { display: flex; gap: 8px; align-items: center; min-width: 0; overflow-x: auto; }
 .mail-reward-item.ui-item-card { flex: 0 0 60px; width: 60px; height: 60px; padding: 0; margin: 0; cursor: pointer; }
 .mail-reward-item:focus-visible { outline: 2px solid var(--accent-bright); outline-offset: -2px; }
@@ -275,5 +275,23 @@ watch(() => props.selectedMail?.id, async () => {
   .mail-content h2 { font-size: 13px; }
   .mail-body-area { margin-left: 17px; margin-right: 17px; }
   .mail-body { font-size: 13px; }
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --pm-cols-bg: rgba(34, 24, 16, 0.96);
+  --pm-cols-border: #6f563a;
+  --pm-cols-shadow: inset 0 0 0 1px rgba(216, 175, 86, 0.14), 0 4px 14px rgba(0, 0, 0, 0.45);
+  --pm-botm-filter: brightness(0.28) sepia(0.45) saturate(1.12) contrast(1.08);
+  --pm-ink: #e2d1b5;
+  --pm-muted: #b59d7a;
+  --pm-meta-weight: 500;
+  --pm-body-weight: 400;
+  --pm-body-lh: 1.65;
+  --pm-body-ls: 0.015em;
+  --pm-rewards-bg: rgba(22, 15, 9, 0.62);
+  --pm-label-filter: brightness(1.35) contrast(1.05);
 }
 </style>

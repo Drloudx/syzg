@@ -947,7 +947,8 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px 8px;
 }
 .sim-ctrl__header--collapsible {
   cursor: pointer;
@@ -990,7 +991,8 @@ onMounted(() => {
 }
 .sim-level-slider {
   flex: 1;
-  accent-color: var(--accent-ink, #557574);
+  background: transparent;
+  accent-color: var(--rb-slider-accent, #557574);
   cursor: pointer;
 }
 .sim-btn-group {
@@ -1008,9 +1010,9 @@ onMounted(() => {
   transition: all 0.15s ease;
 }
 .sim-btn.is-active {
-  background: var(--accent-ink, #557574);
-  color: #fff;
-  border-color: var(--accent-ink, #557574);
+  background: var(--rb-active-bg, #557574);
+  color: var(--rb-active-color, #fff);
+  border-color: var(--rb-active-border, #557574);
 }
 .sim-btn--subtle {
   color: var(--text-muted, #888);
@@ -1086,7 +1088,7 @@ onMounted(() => {
 }
 .inventory-quick-label {
   font-size: 12px;
-  color: var(--text-secondary, #555);
+  color: var(--text-muted, #555);
   white-space: nowrap;
 }
 .inventory-panel {
@@ -1117,7 +1119,7 @@ onMounted(() => {
   border-radius: 4px;
   background: var(--paper-solid, #fff);
   border: 1px solid var(--border-soft, #ddd);
-  color: var(--text-secondary, #555);
+  color: var(--text-muted, #555);
   cursor: pointer;
   user-select: none;
   transition: all 0.15s ease;
@@ -1126,9 +1128,9 @@ onMounted(() => {
   border-color: var(--accent-ink, #557574);
 }
 .inv-tab.is-active {
-  background: var(--accent-ink, #557574);
-  color: #fff;
-  border-color: var(--accent-ink, #557574);
+  background: var(--rb-active-bg, #557574);
+  color: var(--rb-active-color, #fff);
+  border-color: var(--rb-active-border, #557574);
 }
 .inventory-batch-actions {
   display: flex;
@@ -1467,9 +1469,9 @@ onMounted(() => {
   padding: 8px 20px;
   font-size: 14px;
   font-weight: 700;
-  background: var(--accent-ink, #557574);
-  color: #fff;
-  border: none;
+  background: var(--rb-active-bg, #557574);
+  color: var(--rb-active-color, #fff);
+  border: 1px solid var(--rb-active-border, transparent);
   border-radius: 6px;
   cursor: pointer;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
@@ -1491,8 +1493,8 @@ onMounted(() => {
   font-size: 12.5px;
   font-weight: 600;
 }
-.sim-notice.is-success { color: #2e7d32; }
-.sim-notice.is-warn { color: #d32f2f; }
+.sim-notice.is-success { color: var(--rb-success-color, #2e7d32); }
+.sim-notice.is-warn { color: var(--rb-warn-color, #d32f2f); }
 .sim-notice.is-info { color: var(--text-muted, #666); }
 
 /* 法盘主舞台 */
@@ -1829,7 +1831,7 @@ onMounted(() => {
   color: #888;
 }
 .res-item.is-met .res-item__status {
-  color: #2e7d32;
+  color: var(--rb-success-color, #2e7d32);
 }
 .res-item__content {
   display: flex;
@@ -1947,5 +1949,17 @@ onMounted(() => {
   .relic-block__tag {
     display: none;
   }
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --rb-active-bg: #2f5e5a;
+  --rb-active-color: #f3fbfa;
+  --rb-active-border: #6ba5a0;
+  --rb-slider-accent: #6ba5a0;
+  --rb-success-color: #7bd882;
+  --rb-warn-color: #f48b8b;
 }
 </style>

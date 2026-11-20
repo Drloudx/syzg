@@ -759,9 +759,9 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .rich-editor {
-  border: 1.5px solid rgba(122, 92, 61, 0.4);
+  border: 1.5px solid var(--border-soft, rgba(122, 92, 61, 0.4));
   border-radius: 6px;
-  background: #fdfbf7;
+  background: var(--rte-bg, #fdfbf7);
   display: flex;
   flex-direction: column;
   transition: all 0.2s ease;
@@ -782,8 +782,8 @@ onBeforeUnmount(() => {
   right: 16px;
   bottom: 16px;
   z-index: 10001;
-  background: #fdfbf7;
-  border: 2px solid #7a5c3d;
+  background: var(--rte-bg, #fdfbf7);
+  border: 2px solid var(--border-color, #7a5c3d);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
@@ -794,7 +794,7 @@ onBeforeUnmount(() => {
   gap: 3px;
   padding: 6px 10px;
   border-bottom: 1px solid rgba(143, 115, 81, 0.25);
-  background: rgba(143, 115, 81, 0.08);
+  background: var(--rte-toolbar-bg, rgba(143, 115, 81, 0.08));
   flex-wrap: wrap;
 }
 
@@ -808,9 +808,9 @@ onBeforeUnmount(() => {
   padding: 0 7px;
   font-size: 13px;
   font-weight: 600;
-  color: #4a341c;
-  background: #fffdf8;
-  border: 1px solid rgba(143, 115, 81, 0.35);
+  color: var(--rte-btn-color, #4a341c);
+  background: var(--rte-btn-bg, #fffdf8);
+  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.35));
   border-radius: 4px;
   cursor: pointer;
   line-height: 1;
@@ -818,16 +818,16 @@ onBeforeUnmount(() => {
 }
 
 .rich-tool-btn:hover:not(:disabled) {
-  background: #f4ecdc;
+  background: var(--rte-btn-hover-bg, #f4ecdc);
   border-color: #b08d5e;
-  color: #2b1b0d;
+  color: var(--text-main, #2b1b0d);
 }
 
 /* 按钮激活态：温润羊皮纸微凹高亮 */
 .rich-tool-btn.is-active {
-  background: #e8d7be !important;
-  border-color: #a87f4c !important;
-  color: #3b220d !important;
+  background: var(--rte-btn-active-bg, #e8d7be) !important;
+  border-color: var(--rte-btn-active-border, #a87f4c) !important;
+  color: var(--rte-btn-active-color, #3b220d) !important;
   box-shadow: inset 0 1.5px 3px rgba(80, 50, 20, 0.2);
   font-weight: 800;
 }
@@ -835,7 +835,7 @@ onBeforeUnmount(() => {
 .rich-tool-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  background: #f5f2eb;
+  background: var(--rte-btn-disabled-bg, #f5f2eb);
   border-color: rgba(143, 115, 81, 0.2);
 }
 
@@ -908,8 +908,8 @@ onBeforeUnmount(() => {
   top: calc(100% + 5px);
   left: 0;
   z-index: 200;
-  background: #fffdf8;
-  border: 1.5px solid #7a5c3d;
+  background: var(--rte-popover-bg, #fffdf8);
+  border: 1.5px solid var(--border-color, #7a5c3d);
   border-radius: 6px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
   padding: 10px 12px;
@@ -919,7 +919,7 @@ onBeforeUnmount(() => {
 .rich-popover-title {
   font-size: 11.5px;
   font-weight: 700;
-  color: #755c3f;
+  color: var(--text-muted, #755c3f);
   margin-bottom: 8px;
   padding-bottom: 4px;
   border-bottom: 1px dashed rgba(143, 115, 81, 0.3);
@@ -972,7 +972,7 @@ onBeforeUnmount(() => {
   gap: 4px;
   font-size: 12px;
   font-weight: 600;
-  color: #4a341c;
+  color: var(--rte-btn-color, #4a341c);
   cursor: pointer;
   position: relative;
 }
@@ -987,9 +987,9 @@ onBeforeUnmount(() => {
 .rich-btn-clear {
   padding: 3px 8px;
   font-size: 11px;
-  color: #8b0000;
-  background: rgba(139, 0, 0, 0.06);
-  border: 1px solid rgba(139, 0, 0, 0.25);
+  color: var(--rte-danger-color, #8b0000);
+  background: var(--rte-danger-bg, rgba(139, 0, 0, 0.06));
+  border: 1px solid var(--rte-danger-border, rgba(139, 0, 0, 0.25));
   border-radius: 3px;
   cursor: pointer;
 }
@@ -1016,19 +1016,19 @@ onBeforeUnmount(() => {
   padding: 5px 6px;
   border: 1px solid rgba(143, 115, 81, 0.2);
   border-radius: 4px;
-  background: #fff;
+  background: var(--rte-btn-bg, #fff);
   cursor: pointer;
   font-size: 12px;
   text-align: center;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
   font-family: ui-monospace, monospace;
 }
 
 .rich-fontsize-item:hover,
 .rich-fontsize-item.is-active {
-  background: #f4ecdc;
+  background: var(--rte-btn-hover-bg, #f4ecdc);
   border-color: #c5913e;
-  color: #8f5a1a;
+  color: var(--rte-accent-text, #8f5a1a);
   font-weight: 700;
 }
 
@@ -1051,16 +1051,16 @@ onBeforeUnmount(() => {
   padding: 5px 8px;
   border: 1px solid rgba(143, 115, 81, 0.2);
   border-radius: 4px;
-  background: #fff;
+  background: var(--rte-btn-bg, #fff);
   cursor: pointer;
   font-size: 13px;
   font-family: ui-monospace, monospace;
   font-weight: 700;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
 }
 
 .rich-lineheight-item:hover {
-  background: #f4ecdc;
+  background: var(--rte-btn-hover-bg, #f4ecdc);
   border-color: #c5913e;
   color: #c5913e;
 }
@@ -1086,13 +1086,13 @@ onBeforeUnmount(() => {
   background: transparent;
   border-radius: 4px;
   font-size: 13px;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
   cursor: pointer;
 }
 
 .rich-heading-item:hover,
 .rich-heading-item.is-active {
-  background: #f4ecdc;
+  background: var(--rte-btn-hover-bg, #f4ecdc);
   font-weight: 700;
 }
 
@@ -1128,7 +1128,7 @@ onBeforeUnmount(() => {
 .rich-link-label {
   font-size: 11px;
   font-weight: 600;
-  color: #755c3f;
+  color: var(--text-muted, #755c3f);
 }
 
 .rich-link-input {
@@ -1136,9 +1136,9 @@ onBeforeUnmount(() => {
   padding: 6px 8px;
   border: 1px solid rgba(143, 115, 81, 0.4);
   border-radius: 4px;
-  background: #fff;
+  background: var(--rte-input-bg, #fff);
   font-size: 13px;
-  color: #2b1b0d;
+  color: var(--text-main, #2b1b0d);
   outline: none;
   box-sizing: border-box;
 }
@@ -1174,24 +1174,24 @@ onBeforeUnmount(() => {
 .rich-btn-danger {
   padding: 4px 8px;
   font-size: 11.5px;
-  color: #8b0000;
-  background: rgba(139, 0, 0, 0.06);
-  border: 1px solid rgba(139, 0, 0, 0.25);
+  color: var(--rte-danger-color, #8b0000);
+  background: var(--rte-danger-bg, rgba(139, 0, 0, 0.06));
+  border: 1px solid var(--rte-danger-border, rgba(139, 0, 0, 0.25));
   border-radius: 4px;
   cursor: pointer;
 }
 
 .rich-link-test-btn {
   font-size: 11.5px;
-  color: #2563eb;
+  color: var(--rte-link-color, #2563eb);
   text-decoration: underline;
   cursor: pointer;
   margin-right: auto;
 }
 
 .rich-tool-btn--clear {
-  color: #8b0000;
-  border-color: rgba(139, 0, 0, 0.25);
+  color: var(--rte-danger-color, #8b0000);
+  border-color: var(--rte-danger-border, rgba(139, 0, 0, 0.25));
 }
 
 .rich-toolbar-spacer {
@@ -1200,7 +1200,7 @@ onBeforeUnmount(() => {
 
 .rich-counter {
   font-size: 12px;
-  color: #755c3f;
+  color: var(--text-muted, #755c3f);
   margin-right: 6px;
   font-family: ui-monospace, monospace;
 }
@@ -1210,7 +1210,7 @@ onBeforeUnmount(() => {
   flex: 1;
   overflow-y: auto;
   padding: 18px 24px;
-  background: #fffdfa;
+  background: var(--rte-canvas-bg, #fffdfa);
   cursor: text;
 }
 
@@ -1220,7 +1220,7 @@ onBeforeUnmount(() => {
   outline: none;
   font-size: 14.5px;
   line-height: 1.5;
-  color: #2b1b0d;
+  color: var(--text-main, #2b1b0d);
   font-synthesis: style weight;
 }
 
@@ -1243,7 +1243,7 @@ onBeforeUnmount(() => {
 :deep(.rich-tiptap-content .ProseMirror h1) {
   font-size: 20px;
   font-weight: 800;
-  color: #2b1b0d;
+  color: var(--text-main, #2b1b0d);
   margin: 0.8em 0 0.4em 0;
   border-bottom: 1.5px dashed rgba(143, 115, 81, 0.35);
   padding-bottom: 5px;
@@ -1252,20 +1252,20 @@ onBeforeUnmount(() => {
 :deep(.rich-tiptap-content .ProseMirror h2) {
   font-size: 17.5px;
   font-weight: 800;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
   margin: 0.7em 0 0.3em 0;
 }
 
 :deep(.rich-tiptap-content .ProseMirror h3) {
   font-size: 15.5px;
   font-weight: 700;
-  color: #3e2a14;
+  color: var(--text-main, #3e2a14);
   margin: 0.6em 0 0.3em 0;
 }
 
 :deep(.rich-tiptap-content .ProseMirror code) {
-  background: rgba(143, 115, 81, 0.12);
-  color: #8b0000;
+  background: rgba(143, 115, 81, 0.16);
+  color: var(--rte-danger-color, #8b0000);
   padding: 1px 5px;
   border-radius: 3px;
   font-family: ui-monospace, monospace;
@@ -1278,7 +1278,7 @@ onBeforeUnmount(() => {
   background: rgba(143, 115, 81, 0.08);
   border-left: 3.5px solid #c5913e;
   border-radius: 4px;
-  color: #6b5134;
+  color: var(--text-muted, #6b5134);
   font-size: 13.5px;
 }
 
@@ -1305,7 +1305,7 @@ onBeforeUnmount(() => {
 }
 
 :deep(.rich-tiptap-content .ProseMirror a.rich-link) {
-  color: #2563eb;
+  color: var(--rte-link-color, #2563eb);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -1322,10 +1322,10 @@ onBeforeUnmount(() => {
   flex-wrap: wrap;
   gap: 6px;
   padding: 6px 12px;
-  background: rgba(143, 115, 81, 0.05);
+  background: var(--rte-toolbar-bg, rgba(143, 115, 81, 0.05));
   border-top: 1px solid rgba(143, 115, 81, 0.2);
   font-size: 12px;
-  color: #755c3f;
+  color: var(--text-muted, #755c3f);
 }
 
 .rich-hint-tag {
@@ -1335,6 +1335,29 @@ onBeforeUnmount(() => {
 .rich-fullscreen-tip {
   margin-left: auto;
   font-weight: 700;
-  color: #c5913e;
+  color: var(--gold, #c5913e);
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --rte-bg: #261c13;
+  --rte-canvas-bg: #221911;
+  --rte-toolbar-bg: rgba(143, 115, 81, 0.14);
+  --rte-btn-bg: #36281c;
+  --rte-btn-color: #ebdcc3;
+  --rte-btn-hover-bg: #463424;
+  --rte-btn-active-bg: #5e442c;
+  --rte-btn-active-border: #c5913e;
+  --rte-btn-active-color: #fff6e8;
+  --rte-btn-disabled-bg: #2a1f15;
+  --rte-popover-bg: #2e2217;
+  --rte-input-bg: #1e150e;
+  --rte-accent-text: #e2b86b;
+  --rte-danger-color: #f39c9c;
+  --rte-danger-bg: rgba(226, 90, 90, 0.14);
+  --rte-danger-border: rgba(226, 90, 90, 0.36);
+  --rte-link-color: #8bc3ff;
 }
 </style>

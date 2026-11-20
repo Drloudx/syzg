@@ -1335,7 +1335,7 @@ const getPetRanges = (pet) => {
   height: 32px;
   flex: 0 0 32px;
   border-radius: 6px;
-  background: var(--paper-light, rgba(255, 255, 255, 0.5));
+  background: var(--pets-avatar-bg, rgba(255, 255, 255, 0.5));
   border: 1px solid var(--border-soft);
   display: flex;
   align-items: center;
@@ -2523,5 +2523,12 @@ const getPetRanges = (pet) => {
   width: 14px;
   height: 14px;
   object-fit: contain;
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --pets-avatar-bg: rgba(34, 24, 16, 0.72);
 }
 </style>

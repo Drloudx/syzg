@@ -2065,8 +2065,8 @@ onBeforeUnmount(() => {
 .daily-meal-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 8px;
+  gap: 5px;
+  padding: 5px 6px;
   min-width: 0;
   border-radius: 7px;
   background: rgba(244, 219, 184, 0.36);
@@ -2094,8 +2094,8 @@ onBeforeUnmount(() => {
 }
 
 .daily-meal-icon {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   color: #a86424;
   display: inline-flex;
   align-items: center;
@@ -2104,8 +2104,8 @@ onBeforeUnmount(() => {
 }
 
 .daily-meal-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
 }
 
 .daily-meal-item.is-done .daily-meal-icon {
@@ -2121,7 +2121,7 @@ onBeforeUnmount(() => {
 }
 
 .daily-meal-name {
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   color: #3a2412;
   line-height: 1.2;
@@ -2144,13 +2144,13 @@ onBeforeUnmount(() => {
 }
 
 .daily-meal-live-tag {
-  font-size: 9.5px;
+  font-size: 9px;
   font-weight: 700;
   color: #8f2d14;
   background: rgba(236, 151, 86, 0.28);
   border: 1px solid rgba(198, 108, 44, 0.35);
   border-radius: 999px;
-  padding: 1px 5px;
+  padding: 1px 4px;
   flex-shrink: 0;
 }
 
@@ -2164,7 +2164,7 @@ onBeforeUnmount(() => {
   align-items: center;
   position: relative;
   /* 适度拉长至 220px（越过第一张卡片右缘约 25px 进入间隙与第二张卡片左侧过渡带），比例最协调 */
-  background: linear-gradient(90deg, rgba(250, 243, 230, 0.96) 0%, rgba(246, 236, 218, 0.78) 48%, rgba(246, 236, 218, 0.28) 80%, rgba(246, 236, 218, 0) 100%);
+  background: var(--home-ribbon-bg, linear-gradient(90deg, rgba(250, 243, 230, 0.96) 0%, rgba(246, 236, 218, 0.78) 48%, rgba(246, 236, 218, 0.28) 80%, rgba(246, 236, 218, 0) 100%));
   border-left: 3.5px solid #b88628;
   border-top: none;
   border-right: none;
@@ -2175,7 +2175,7 @@ onBeforeUnmount(() => {
   margin-bottom: 9px;
   width: 220px;
   box-sizing: border-box;
-  box-shadow: -1px 0 4px rgba(184, 134, 40, 0.2);
+  box-shadow: var(--home-ribbon-shadow, -1px 0 4px rgba(184, 134, 40, 0.2));
 }
 
 .section-title.section-title-ribbon::before {
@@ -2185,7 +2185,7 @@ onBeforeUnmount(() => {
 .section-title.section-title-ribbon > span:first-child {
   font-size: 15.5px;
   font-weight: 700;
-  color: #2b1f15;
+  color: var(--text-main, #2b1f15);
   letter-spacing: 0.5px;
 }
 
@@ -2195,7 +2195,7 @@ onBeforeUnmount(() => {
   gap: 8px;
   font-size: 16px;
   font-weight: 700;
-  color: #2b1f15;
+  color: var(--text-main, #2b1f15);
   padding: 4px 2px;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -2488,15 +2488,15 @@ onBeforeUnmount(() => {
 }
 
 .hero-star-badge.star-5 {
-  background: rgba(255, 250, 240, 0.95);
-  color: #b15d00;
-  border: 1px solid #ffb64d;
+  background: var(--home-star5-bg, rgba(255, 250, 240, 0.95));
+  color: var(--home-star5-color, #b15d00);
+  border: 1px solid var(--home-star5-border, #ffb64d);
 }
 
 .hero-star-badge.star-4 {
-  background: rgba(253, 245, 255, 0.95);
-  color: #a536aa;
-  border: 1px solid #ee62f1;
+  background: var(--home-star4-bg, rgba(253, 245, 255, 0.95));
+  color: var(--home-star4-color, #a536aa);
+  border: 1px solid var(--home-star4-border, #ee62f1);
 }
 
 .hero-star-badge .star-icon {
@@ -3396,5 +3396,19 @@ onBeforeUnmount(() => {
     grid-template-columns: 1fr;
     gap: 8px;
   }
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --home-ribbon-bg: linear-gradient(90deg, rgba(64, 46, 30, 0.94) 0%, rgba(50, 36, 24, 0.72) 55%, rgba(50, 36, 24, 0.2) 85%, transparent 100%);
+  --home-ribbon-shadow: -1px 0 6px rgba(0, 0, 0, 0.35);
+  --home-star5-bg: rgba(62, 43, 24, 0.94);
+  --home-star5-color: #ffbe5e;
+  --home-star5-border: rgba(215, 145, 45, 0.75);
+  --home-star4-bg: rgba(54, 34, 62, 0.94);
+  --home-star4-color: #f377f6;
+  --home-star4-border: rgba(165, 75, 175, 0.72);
 }
 </style>
