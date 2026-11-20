@@ -79,6 +79,7 @@ test('旧地址 ?tab=ph3&q=护盾 会落到词条百科，并且**搜索词不�
 
 test('词条百科里能搜到战斗规则，搜不到时有空态', async ({ page }) => {
   await page.goto('/#/glossary')
+  await dismissGlobalModals(page)
   await expect(page.locator('.glossary-page')).toBeVisible({ timeout: 20_000 })
 
   const search = page.locator('input[placeholder*="词条名称"]').first()
@@ -128,11 +129,12 @@ test('伤害结算流水线八步均支持展开纯数学公式卡片与精确�
   const toggleButtons = modal.locator('.rule-toggle-btn')
   await expect(toggleButtons).toHaveCount(8)
 
-  // 展开第三步：验证分式公式、精确 K(L) 系数及直观结论均已渲染且无旧四舍五入值
+  // 展开第三步：验证分式公式、X₂ 衔接公式及精确 K(L) 系数均已渲染且无旧四舍五入值
   await toggleButtons.nth(2).click()
   const diagram = modal.locator('.step-inline-diagram').first()
   await expect(diagram).toBeVisible()
   await expect(diagram).toContainText('实际承伤比')
+  await expect(diagram).toContainText('X₂ = X₁ × 实际承伤比')
   await expect(diagram).toContainText('K(L) + 防御 × (1 − 穿透率)')
   await expect(diagram).toContainText('0.6125, 45.269, 351.98')
   await expect(diagram).toContainText('0.5011, 37.039, 287.98')
@@ -143,10 +145,12 @@ test('伤害结算流水线八步均支持展开纯数学公式卡片与精确�
   await diagram.screenshot({ path: shotPath })
   await testInfo.attach('step3-formula', { path: shotPath, contentType: 'image/png' })
 
-  // 展开第七步与第八步，验证八步顺序与新增公式解析可展开且不横向溢出
+  // 展开第四步、第七步与第八步，验证八步代号串联（X₂ → X₃、D）且不横向溢出
+  await toggleButtons.nth(3).click()
   await toggleButtons.nth(6).click()
   await toggleButtons.nth(7).click()
-  await expect(modal.locator('.step-inline-diagram')).toHaveCount(3)
+  await expect(modal.locator('.step-inline-diagram')).toHaveCount(4)
+  await expect(modal).toContainText('X₃ = X₂')
   const overflow = await modal.locator('.ui-modal-body').evaluate(el => el.scrollWidth > el.clientWidth + 2)
   expect(overflow).toBe(false)
 
@@ -157,4 +161,10 @@ test('伤害结算流水线八步均支持展开纯数学公式卡片与精确�
   const darkShotPath = testInfo.outputPath('step3-formula-dark.png')
   await diagram.screenshot({ path: darkShotPath })
   await testInfo.attach('step3-formula-dark', { path: darkShotPath, contentType: 'image/png' })
+
+  // 切到等级压制词条验证深色模式下对照表红色/绿色文字对比度切换生效
+  await page.goto('/#/glossary?id=mech_level_suppression&section=mechanics')
+  await dismissGlobalModals(page)
+  await enableDarkMode(page)
+  await expect(modal.locator('.level-sup-table__red').nth(1)).toHaveCSS('color', 'rgb(241, 148, 138)')
 })

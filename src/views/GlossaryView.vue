@@ -201,10 +201,10 @@
         </UiSection>
 
         <!-- 施加来源：角色 -->
-        <UiSection v-if="currentEntry.sources?.heroes?.length"
-          :title="`施加角色（${currentEntry.sources.heroes.length} 位）`">
+        <UiSection v-if="currentHeroSources.length"
+          :title="`施加角色（${currentHeroSources.length} 位）`">
           <div class="source-chips">
-            <button v-for="hero in currentEntry.sources.heroes" :key="hero.name"
+            <button v-for="hero in currentHeroSources" :key="hero.name"
               type="button" class="source-chip source-chip--hero"
               :title="`前往查看角色「${hero.name}」`"
               @click="navigateToHero(hero)">
@@ -231,10 +231,10 @@
         </UiSection>
 
         <!-- 施加来源：魔物 -->
-        <UiSection v-if="currentEntry.sources?.pets?.length"
-          :title="`魔物伙伴（${currentEntry.sources.pets.length} 种）`">
+        <UiSection v-if="currentPetSources.length"
+          :title="`魔物伙伴（${currentPetSources.length} 种）`">
           <div class="source-chips">
-            <button v-for="pet in currentEntry.sources.pets" :key="pet.name"
+            <button v-for="pet in currentPetSources" :key="pet.name"
               type="button" class="source-chip source-chip--pet"
               :title="`前往查看魔物「${pet.name}」`"
               @click="navigateToPet(pet)">
@@ -246,10 +246,10 @@
         </UiSection>
 
         <!-- 关联道具 -->
-        <UiSection v-if="currentEntry.sources?.items?.length"
-          :title="`关联道具与料理（${currentEntry.sources.items.length} 件）`">
+        <UiSection v-if="currentItemSources.length"
+          :title="`关联道具与料理（${currentItemSources.length} 件）`">
           <div class="source-chips">
-            <button v-for="item in currentEntry.sources.items" :key="item.id || item.name"
+            <button v-for="item in currentItemSources" :key="item.id || item.name"
               type="button" class="source-chip source-chip--item"
               :title="`查看道具「${item.name}」`"
               @click="navigateToItem(item)">
@@ -313,11 +313,11 @@ const DAMAGE_FLOW_DIAGRAMS = [
     step: '第一步',
     title: '第一步：原始基准伤害公式',
     equations: ['原始伤害 X = 基础伤害 + 技能倍率 × 对应攻击属性'],
-    parenNote: '(对应属性按该段攻击配置取「物理攻击 / 魔法攻击 / 最大生命」；无攻击者时仅取基础伤害)',
+    parenNote: '(对应属性按该段攻击配置取「物理攻击 / 魔法攻击 / max(物攻, 魔攻) [auto]」；无攻击者或空配置仅取基础伤害)',
     takeaway: '取值属性、伤害类型（物/魔）与元素（水/火/风/地）相互独立，按技能各自设定生效。',
     notes: [
-      { tone: 'add', title: '属性与伤害类型分离', text: '按物攻取值不代表一定是物理伤害；按生命百分比计算也不代表无视防御，仍需进入第三步防御结算。' },
-      { tone: 'key', title: '无攻击者 / 环境伤害', text: '无攻击者时直接取基础伤害并跳过第三～六步（防御、暴击、浮动与等级压制），但仍受目标自身增减伤与抗性影响。' }
+      { tone: 'add', title: '属性与伤害类型分离', text: '按物攻取值不代表一定是物理伤害；按生命百分比预先算入基础伤害的技能也仍受防御结算，除非标记 realDam。' },
+      { tone: 'key', title: '无攻击者 / 环境伤害', text: '无攻击者时直接取基础伤害并跳过第三～五步（防御、暴击、浮动），但仍受目标自身增减伤与抗性影响。' }
     ]
   },
   {
@@ -349,6 +349,7 @@ const DAMAGE_FLOW_DIAGRAMS = [
       num: 'K(L)',
       den: 'K(L) + 防御 × (1 − 穿透率)'
     },
+    equations: ['防御后伤害 X₂ = X₁ × 实际承伤比'],
     parenNote: '(分子 = K(L), 分母 = K(L) + 防御 × (1 − 穿透率))',
     paramLines: [
       [
@@ -366,7 +367,7 @@ const DAMAGE_FLOW_DIAGRAMS = [
     ],
     takeaway: '当「有效防御 = K(L)」时正好减伤 50%; 防御越高减伤越多，但边际递减。',
     notes: [
-      { tone: 'k', title: '穿透率与满穿', text: '穿透率 = min(100%, 自身对应穿透 + 普攻额外穿透 + 本次无视防御)（普攻额外穿透仅普通攻击计入）；满 100% 穿透时有效防御归 0、承伤比变为 100%。' },
+      { tone: 'k', title: '穿透率与真伤跳过', text: '穿透率 = min(100%, 自身对应穿透 + 普攻额外穿透 + 本次无视防御)（普攻额外穿透仅普通攻击计入）；满 100% 穿透或标记为真实伤害（realDam = true）时直接跳过防御减免，此时 X₂ = X₁。' },
       { tone: 'def', title: '常用 K 值（物 / 魔）', text: '1级 398/326 · 20级 1502/1229 · 40级 3143/2571 · 60级 5273/4314 · 100级 11004/9003。' }
     ]
   },
@@ -377,7 +378,7 @@ const DAMAGE_FLOW_DIAGRAMS = [
       '净暴击率 p = clamp( 攻击者暴击率 − 目标暴击抗性, 0%, 100% )',
       '触发暴击：X₃ = X₂ × (暴击伤害% ÷ 100%)   |   未暴击：X₃ = X₂'
     ],
-    parenNote: '(进入前提：有攻击者 且 本次伤害允许暴击 且 自身暴击率 > 0%)',
+    parenNote: '(进入条件：(允许暴击 且 自身暴击率 > 0%) 或 触发强制暴击 realCirt)',
     paramLines: [
       [
         { text: '常规角色默认暴击伤害 = ' },
@@ -385,10 +386,10 @@ const DAMAGE_FLOW_DIAGRAMS = [
         { text: '（暴击造成 1.5 倍伤害）' }
       ]
     ],
-    takeaway: '目标暴击抗性按 1:1 百分比直接抵消攻击方暴击率；p ≤ 0% 时不暴击，p ≥ 100% 时必定暴击。',
+    takeaway: '目标暴击抗性按 1:1 百分比直接抵消攻击方暴击率；p ≤ 0% 不暴击，p ≥ 100% 必暴击。',
     notes: [
       { tone: 'crit', title: '哪些攻击能暴击', text: '常规普攻默认允许暴击；技能、追加伤害与持续伤害是否允许暴击由具体配置决定，不能仅凭面板暴击率推断技能会暴击。' },
-      { tone: 'crit-dam', title: '强制暴击前提', text: '持有「强制暴击（realCirt / normalAtkRealCrit）」效果可跳过概率随机，但仍受「允许暴击且面板暴击率 > 0%」外层条件限制。' }
+      { tone: 'crit-dam', title: '强制暴击机制', text: '持有强制暴击（realCirt / normalAtkRealCrit）时直接跳过概率与暴击抗性强制暴击，不再要求本次攻击原本开启暴击或面板暴击率 > 0%。' }
     ]
   },
   {
@@ -417,10 +418,10 @@ const DAMAGE_FLOW_DIAGRAMS = [
     step: '第六步',
     title: '第六步：动态增伤、易伤与受击事件',
     equations: [
-      'D₁ = D₀ × (1 + 普攻状态标签增伤) × (1 + 通用输出增伤) × (1 + 目标易伤) × (1 + 动态物/魔增伤) × (1 + 动态元素增伤) × (1 + 普攻/技能增伤)'
+      'D₁ = D₀ × (1 + 普攻状态标签增伤) × (1 + 通用输出增伤) × (1 + 目标易伤) × (1 + 技能受击易伤) × (1 + 动态物/魔增伤) × (1 + 动态元素增伤) × (1 + 普攻/技能增伤)'
     ],
     parenNote: '(与第二步不同：各独立维度之间「逐项相乘」；同一字段内的多个来源先相加再 +1)',
-    takeaway: '受击方的「易伤（正数）/ 全局减伤（负数）」归入 (1 + 目标易伤) 项，直接与攻方动态增伤连乘。',
+    takeaway: '受击方的「易伤（正数）/ 全局减伤（负数）」与技能受击易伤分别乘算，直接与攻方动态增伤连乘。',
     notes: [
       { tone: 'key', title: '同项相加与跨项相乘', text: '例如同时获得通用增伤 +20% 与目标易伤 +25%，合计乘数为 1.20 × 1.25 = 1.50；Buff 持续伤害不吃「普攻/技能增伤」。' },
       { tone: 'add', title: '事件回调改写', text: '本步同时串联攻击与受击事件（如按目标生命或叠层加成的专属效果 1 + rate × 层数），直接改写当前结算伤害。' }
@@ -448,7 +449,7 @@ const DAMAGE_FLOW_DIAGRAMS = [
         { text: '−50.00%', accent: true }
       ]
     ],
-    takeaway: '保底 1 点之后仍会触发普攻职业闪避等后置取消事件（可置 0），最后执行第二次截断取整得最终伤害 D。',
+    takeaway: '保底 1 点之后仍会判定普攻职业闪避（可置 0）与秘境遗器技能增伤倍率，最后第二次截断取整得最终伤害 D。',
     notes: [
       { tone: 'suppress', title: '与第二步抗性的区别', text: '本步的动态类型抗性与动态元素抗性各自独立封顶 100% 并相乘（例双 20% 抗性为 0.8 × 0.8 = 0.64），不与第二步抗性相加减。' }
     ]
@@ -596,8 +597,17 @@ const currentEntry = computed(() => {
   if (!openedId.value) return null
   return entries.value.find(e => (e.id && e.id === openedId.value) || e.name === openedId.value) || null
 })
+const currentHeroSources = computed(() => {
+  return (currentEntry.value?.sources?.heroes || []).filter(h => !isBlacklisted(h))
+})
 const currentMonsterSources = computed(() => {
   return (currentEntry.value?.sources?.monsters || []).filter(m => !isBlacklisted(m))
+})
+const currentPetSources = computed(() => {
+  return (currentEntry.value?.sources?.pets || []).filter(p => !isBlacklisted(p))
+})
+const currentItemSources = computed(() => {
+  return (currentEntry.value?.sources?.items || []).filter(i => !isBlacklisted(i))
 })
 
 watch(openedId, () => {
@@ -978,7 +988,7 @@ img.detail-header__icon {
 
 .level-sup-table th {
   padding: 8px 12px;
-  background: rgba(139, 90, 43, 0.08);
+  background: var(--level-sup-th-bg, rgba(139, 90, 43, 0.08));
   color: var(--text-muted);
   font-weight: 700;
   border-bottom: 1px solid var(--border-soft);
@@ -997,7 +1007,7 @@ img.detail-header__icon {
 }
 
 .level-sup-table__row--max {
-  background: rgba(180, 50, 50, 0.06);
+  background: var(--level-sup-max-bg, rgba(180, 50, 50, 0.06));
 }
 
 .level-sup-table__diff {
@@ -1015,13 +1025,13 @@ img.detail-header__icon {
   border-radius: 3px;
 }
 
-.level-sup-table__red {
-  color: #c0392b;
+.level-sup-table td.level-sup-table__red {
+  color: var(--level-sup-red, #c0392b);
   font-weight: 600;
 }
 
-.level-sup-table__dmg {
-  color: #27ae60;
+.level-sup-table td.level-sup-table__dmg {
+  color: var(--level-sup-dmg, #27ae60);
   font-weight: 600;
 }
 
@@ -1223,7 +1233,7 @@ img.detail-header__icon {
 
 .formula-card__text code {
   padding: 1px 4px;
-  background: rgba(0, 0, 0, 0.06);
+  background: var(--glossary-code-bg, rgba(0, 0, 0, 0.06));
   border-radius: 3px;
   font-family: monospace;
 }
@@ -1312,6 +1322,12 @@ img.detail-header__icon {
     color: var(--accent-ink);
   }
 }
+
+@media (max-width: 480px) {
+  .glossary-content {
+    padding-inline: 6px;
+  }
+}
 </style>
 
 <style>
@@ -1320,5 +1336,10 @@ img.detail-header__icon {
   --glossary-formula-bg: #32251a;
   --glossary-formula-border: rgba(143, 115, 81, 0.45);
   --glossary-formula-accent: #f0b95d;
+  --glossary-code-bg: rgba(255, 240, 210, 0.1);
+  --level-sup-th-bg: rgba(255, 240, 210, 0.08);
+  --level-sup-max-bg: rgba(226, 90, 90, 0.14);
+  --level-sup-red: #f1948a;
+  --level-sup-dmg: #58d68d;
 }
 </style>
