@@ -109,156 +109,57 @@
               <UiInfoRow :label="r.label">
                 <div class="rule-value-content">
                   <span class="rule-value-text">{{ r.value }}</span>
-                  <!-- 步骤专属可折叠公式图解按钮 -->
+                  <!-- 步骤专属可折叠公式与解析按钮 -->
                   <button v-if="currentEntry.id === 'mech_damage_flow' && hasStepDiagram(r.label)"
                     type="button" class="rule-toggle-btn"
                     @click="toggleStepDiagram(r.label)">
                     <span class="rule-toggle-icon">{{ isStepExpanded(r.label) ? '▲' : '▼' }}</span>
-                    <span>{{ isStepExpanded(r.label) ? '收起公式图解' : '展开公式图解' }}</span>
+                    <span>{{ isStepExpanded(r.label) ? '收起公式与解析' : '展开公式与解析' }}</span>
                   </button>
                 </div>
               </UiInfoRow>
 
-              <!-- 第二步：属性与特攻乘区公式图解 -->
+              <!-- 八步结算流水线：统一清晰数学式与解析卡片 -->
               <transition name="formula-fade">
-                <div v-if="currentEntry.id === 'mech_damage_flow' && r.label.includes('第二步') && isStepExpanded(r.label)" class="step-inline-diagram">
-                  <div class="formula-card">
-                    <div class="formula-card__badge">◆ 第二步：属性与特定目标（特攻）加成公式</div>
-                    <div class="formula-card__math">
-                      <span class="math-term">乘区倍率</span>
-                      <span class="math-sym">=</span>
-                      <span class="math-num">1</span>
-                      <span class="math-sym">+</span>
-                      <div class="math-pill math-pill--add">
-                        <span class="math-pill__label">伤害类型与属性增伤</span>
-                        <span class="math-pill__code">damAddTypes（如物伤、火伤等）</span>
-                      </div>
-                      <span class="math-sym">+</span>
-                      <div class="math-pill math-pill--key">
-                        <span class="math-pill__label">特定敌人特攻加成</span>
-                        <span class="math-pill__code">damKeyTypes（如对Boss伤害加成）</span>
-                      </div>
-                      <span class="math-sym">−</span>
-                      <div class="math-pill math-pill--res">
-                        <span class="math-pill__label">目标对应属性抗性</span>
-                        <span class="math-pill__code">damResTypes（如火抗、魔抗等）</span>
-                      </div>
-                    </div>
-
-                    <div class="formula-card__notes">
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--add"></span>
-                        <div class="formula-card__text"><strong>普通属性增伤</strong>：如「物理伤害 +15%」、「火属性伤害 +20%」，不论打何种目标均全量生效。</div>
-                      </div>
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--key"></span>
-                        <div class="formula-card__text"><strong>特定敌人特攻</strong>：如「对首领(Boss)伤害 +20%」，仅当受击目标携带 <code>boss</code> 等匹配标签时生效。</div>
-                      </div>
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--res"></span>
-                        <div class="formula-card__text"><strong>目标属性抗性</strong>：如受击方的火属性抗性、风抗或魔抗，直接在该乘区内按比例抵消对应增伤。</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </transition>
-
-              <!-- 第三步：双曲线防御与穿透公式图解 -->
-              <transition name="formula-fade">
-                <div v-if="currentEntry.id === 'mech_damage_flow' && r.label.includes('第三步') && isStepExpanded(r.label)" class="step-inline-diagram">
-                  <div class="formula-card">
-                    <div class="formula-card__badge">◆ 第三步：双曲线防御承伤比公式</div>
-                    <div class="formula-card__math">
-                      <span class="math-term">实际承伤比</span>
-                      <span class="math-sym">=</span>
-                      <div class="math-fraction">
-                        <div class="math-fraction__num">
-                          <div class="math-pill math-pill--k">
-                            <span class="math-pill__label">等级防御常数 K(L)</span>
-                            <span class="math-pill__code">伤害减半基准值</span>
-                          </div>
-                        </div>
-                        <div class="math-fraction__bar"></div>
-                        <div class="math-fraction__den">
-                          <div class="math-pill math-pill--k">
-                            <span class="math-pill__label">K(L)</span>
-                            <span class="math-pill__code">基准常数</span>
-                          </div>
-                          <span class="math-sym">+</span>
-                          <div class="math-pill math-pill--def">
-                            <span class="math-pill__label">面板防御 × (1 − 穿透率)</span>
-                            <span class="math-pill__code">有效防御（穿透削减后）</span>
-                          </div>
+                <div
+                  v-if="currentEntry.id === 'mech_damage_flow' && getStepDiagram(r.label) && isStepExpanded(r.label)"
+                  class="step-inline-diagram"
+                >
+                  <div v-for="diagram in [getStepDiagram(r.label)]" :key="diagram.title" class="formula-card">
+                    <div class="formula-display">
+                      <div v-if="diagram.fraction" class="formula-fraction-row">
+                        <span class="formula-lhs">{{ diagram.fraction.lhs }}</span>
+                        <span class="formula-eq-sym">=</span>
+                        <div class="formula-fraction">
+                          <div class="formula-fraction__num">{{ diagram.fraction.num }}</div>
+                          <div class="formula-fraction__bar"></div>
+                          <div class="formula-fraction__den">{{ diagram.fraction.den }}</div>
                         </div>
                       </div>
-                    </div>
 
-                    <div class="formula-card__notes">
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--k"></span>
-                        <div class="formula-card__text"><strong>K(L) 防御常数与 50% 减伤</strong>：随攻击方等级 L 递增（物理 0.6125L² + 45.27L + 352 / 魔法 0.5011L² + 37.04L + 288）。当受击方有效防御等于 K(L) 时，承受伤害正好减半（承伤 50%，减伤 50%）；防御越高减伤越多（例如 2 倍 K 时减伤 66.7%）。</div>
+                      <div v-for="(eq, idx) in diagram.equations || []" :key="idx" class="formula-eq-line">
+                        {{ eq }}
                       </div>
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--def"></span>
-                        <div class="formula-card__text"><strong>防御穿透与真实伤害</strong>：穿透率按百分比直接削减有效防御；达到 100% 穿透时有效防御归零，承伤比变为 100%，直接打出无视防御的<strong>真实伤害</strong>。</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </transition>
 
-              <!-- 第四步：暴击结算公式图解 -->
-              <transition name="formula-fade">
-                <div v-if="currentEntry.id === 'mech_damage_flow' && r.label.includes('第四步') && isStepExpanded(r.label)" class="step-inline-diagram">
-                  <div class="formula-card">
-                    <div class="formula-card__badge">◆ 第四步：净暴击率与暴伤倍率判定</div>
-                    <div class="formula-card__math">
-                      <div class="math-pill math-pill--crit">
-                        <span class="math-pill__label">净暴击率</span>
-                        <span class="math-pill__code">max(0%, 自身暴击率 − 目标暴击抗性) ÷ 100</span>
-                      </div>
-                      <span class="math-sym">➔</span>
-                      <span class="math-term">判定暴击则乘算</span>
-                      <div class="math-pill math-pill--crit-dam">
-                        <span class="math-pill__label">暴击伤害倍率</span>
-                        <span class="math-pill__code">面板暴伤 ÷ 100（默认 1.5 倍）</span>
+                      <div class="formula-display__meta">
+                        <div v-if="diagram.parenNote" class="formula-meta-paren">{{ diagram.parenNote }}</div>
+                        <div v-for="(line, idx) in diagram.paramLines || []" :key="`p-${idx}`" class="formula-meta-param">
+                          <template v-for="(seg, sIdx) in line" :key="sIdx">
+                            <sup v-if="seg.sup" class="formula-sup">{{ seg.text }}</sup>
+                            <span v-else-if="seg.accent" class="formula-meta-highlight">{{ seg.text }}</span>
+                            <template v-else>{{ seg.text }}</template>
+                          </template>
+                        </div>
+                        <div v-if="diagram.takeaway" class="formula-meta-takeaway">{{ diagram.takeaway }}</div>
                       </div>
                     </div>
 
-                    <div class="formula-card__notes">
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--crit"></span>
-                        <div class="formula-card__text"><strong>暴击抗性直接扣减</strong>：受击方的暴击抗性直接 1:1 抵消攻击方的暴击率。净暴击率归零时无法触发暴击。</div>
-                      </div>
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--crit-dam"></span>
-                        <div class="formula-card__text"><strong>真实暴击例外</strong>：若角色具备「真实暴击」（realCirt）特性，则无视概率强制判定暴击并全额享受暴伤加成。</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </transition>
-
-              <!-- 第六步：等级压制惩罚公式图解 -->
-              <transition name="formula-fade">
-                <div v-if="currentEntry.id === 'mech_damage_flow' && r.label.includes('第六步') && isStepExpanded(r.label)" class="step-inline-diagram">
-                  <div class="formula-card">
-                    <div class="formula-card__badge">◆ 第六步：等级压制惩罚结算公式</div>
-                    <div class="formula-card__math">
-                      <span class="math-term">最终伤害系数</span>
-                      <span class="math-sym">=</span>
-                      <span class="math-num">1</span>
-                      <span class="math-sym">−</span>
-                      <div class="math-pill math-pill--suppress">
-                        <span class="math-pill__label">压制减伤率 y</span>
-                        <span class="math-pill__code">min(50%, 0.008 × 等级差^1.5)</span>
-                      </div>
-                    </div>
-
-                    <div class="formula-card__notes">
-                      <div class="formula-card__note">
-                        <span class="formula-card__bullet formula-card__bullet--suppress"></span>
-                        <div class="formula-card__text"><strong>单向惩罚与 50% 上限</strong>：仅在怪物等级高于自身时触发惩罚；当等级差达到 16 级及以上时锁定最大 50% 减伤，不会无限降低伤害。</div>
+                    <div v-if="diagram.notes && diagram.notes.length" class="formula-card__notes">
+                      <div v-for="(note, nIdx) in diagram.notes" :key="nIdx" class="formula-card__note">
+                        <span class="formula-card__bullet" :class="`formula-card__bullet--${note.tone || 'default'}`"></span>
+                        <div class="formula-card__text">
+                          <strong>{{ note.title }}</strong>：{{ note.text }}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -407,11 +308,180 @@ const LEVEL_SUPPRESSION_ROWS = [
   { diff: '差 16 级及以上', redRate: '50.00%', dmgRate: '50.00%', isMax: true }
 ]
 
+const DAMAGE_FLOW_DIAGRAMS = [
+  {
+    step: '第一步',
+    title: '第一步：原始基准伤害公式',
+    equations: ['原始伤害 X = 基础伤害 + 技能倍率 × 对应攻击属性'],
+    parenNote: '(对应属性按该段攻击配置取「物理攻击 / 魔法攻击 / 最大生命」；无攻击者时仅取基础伤害)',
+    takeaway: '取值属性、伤害类型（物/魔）与元素（水/火/风/地）相互独立，按技能各自设定生效。',
+    notes: [
+      { tone: 'add', title: '属性与伤害类型分离', text: '按物攻取值不代表一定是物理伤害；按生命百分比计算也不代表无视防御，仍需进入第三步防御结算。' },
+      { tone: 'key', title: '无攻击者 / 环境伤害', text: '无攻击者时直接取基础伤害并跳过第三～六步（防御、暴击、浮动与等级压制），但仍受目标自身增减伤与抗性影响。' }
+    ]
+  },
+  {
+    step: '第二步',
+    title: '第二步：第一增减伤区（属性与特攻相加减）',
+    equations: ['X₁ = X × ( 1 + 类型增伤 + 元素增伤 + 特定目标特攻 − 目标类型抗性 − 目标元素抗性 )'],
+    parenNote: '(同区内部全部相加减；括号整体不设 100% 封顶)',
+    paramLines: [
+      [
+        { text: '示例：火增伤 ' },
+        { text: '+20%', accent: true },
+        { text: ' 命中火抗 ' },
+        { text: '−30%', accent: true },
+        { text: '（弱点）→ 倍率 = 1 + 0.20 − (−0.30) = ' },
+        { text: '×1.50', accent: true }
+      ]
+    ],
+    takeaway: '仅当受击方在本区抗性为负时触发「弱点」飘字（若同时暴击会被暴击飘字覆盖）。',
+    notes: [
+      { tone: 'add', title: '匹配规则', text: '类型（物理/魔法）与元素（水/火/风/地）按「本次伤害」自带属性匹配；特定目标加成（如首领特攻）按目标携带标签逐项累加。' },
+      { tone: 'res', title: '同区加减而非连乘', text: '攻方静态类型/元素增伤与守方对应静态抗性处于同一括号内直接加减，不要把它们拆成独立乘法。' }
+    ]
+  },
+  {
+    step: '第三步',
+    title: '第三步：双曲线防御承伤比公式',
+    fraction: {
+      lhs: '实际承伤比',
+      num: 'K(L)',
+      den: 'K(L) + 防御 × (1 − 穿透率)'
+    },
+    parenNote: '(分子 = K(L), 分母 = K(L) + 防御 × (1 − 穿透率))',
+    paramLines: [
+      [
+        { text: 'K(L) = a·L' },
+        { text: '2', sup: true },
+        { text: ' + b·L + c  (L=攻击方等级)' }
+      ],
+      [
+        { text: '物理 [a,b,c] = [ ' },
+        { text: '0.6125, 45.269, 351.98', accent: true },
+        { text: ' ]  |  魔法 [ ' },
+        { text: '0.5011, 37.039, 287.98', accent: true },
+        { text: ' ]' }
+      ]
+    ],
+    takeaway: '当「有效防御 = K(L)」时正好减伤 50%; 防御越高减伤越多，但边际递减。',
+    notes: [
+      { tone: 'k', title: '穿透率与满穿', text: '穿透率 = min(100%, 自身对应穿透 + 普攻额外穿透 + 本次无视防御)（普攻额外穿透仅普通攻击计入）；满 100% 穿透时有效防御归 0、承伤比变为 100%。' },
+      { tone: 'def', title: '常用 K 值（物 / 魔）', text: '1级 398/326 · 20级 1502/1229 · 40级 3143/2571 · 60级 5273/4314 · 100级 11004/9003。' }
+    ]
+  },
+  {
+    step: '第四步',
+    title: '第四步：净暴击率与暴伤倍率结算',
+    equations: [
+      '净暴击率 p = clamp( 攻击者暴击率 − 目标暴击抗性, 0%, 100% )',
+      '触发暴击：X₃ = X₂ × (暴击伤害% ÷ 100%)   |   未暴击：X₃ = X₂'
+    ],
+    parenNote: '(进入前提：有攻击者 且 本次伤害允许暴击 且 自身暴击率 > 0%)',
+    paramLines: [
+      [
+        { text: '常规角色默认暴击伤害 = ' },
+        { text: '150%', accent: true },
+        { text: '（暴击造成 1.5 倍伤害）' }
+      ]
+    ],
+    takeaway: '目标暴击抗性按 1:1 百分比直接抵消攻击方暴击率；p ≤ 0% 时不暴击，p ≥ 100% 时必定暴击。',
+    notes: [
+      { tone: 'crit', title: '哪些攻击能暴击', text: '常规普攻默认允许暴击；技能、追加伤害与持续伤害是否允许暴击由具体配置决定，不能仅凭面板暴击率推断技能会暴击。' },
+      { tone: 'crit-dam', title: '强制暴击前提', text: '持有「强制暴击（realCirt / normalAtkRealCrit）」效果可跳过概率随机，但仍受「允许暴击且面板暴击率 > 0%」外层条件限制。' }
+    ]
+  },
+  {
+    step: '第五步',
+    title: '第五步：随机浮动与第一次截断取整',
+    equations: ['阶段一伤害 D₀ = trunc( X₃ × 浮动倍率 F )'],
+    parenNote: '(开启浮动时 F 在 [atkFloatMin, atkFloatMax] 区间内均匀随机取值；未开启时 F = 1.0)',
+    paramLines: [
+      [
+        { text: '常见基础浮动 4 档：' },
+        { text: '80%~120%', accent: true },
+        { text: ' · ' },
+        { text: '85%~115%', accent: true },
+        { text: ' · ' },
+        { text: '90%~110%', accent: true },
+        { text: ' · ' },
+        { text: '95%~105%', accent: true }
+      ]
+    ],
+    takeaway: '浮动之后立刻执行第一次向零截断取整（trunc 直接舍去小数），再进入后续乘区。',
+    notes: [
+      { tone: 'add', title: '开关差异', text: '常规普攻通常开启浮动，技能与追加伤害默认关闭（F 固定为 1.0），具体仍看攻击实现类配置。' }
+    ]
+  },
+  {
+    step: '第六步',
+    title: '第六步：动态增伤、易伤与受击事件',
+    equations: [
+      'D₁ = D₀ × (1 + 普攻状态标签增伤) × (1 + 通用输出增伤) × (1 + 目标易伤) × (1 + 动态物/魔增伤) × (1 + 动态元素增伤) × (1 + 普攻/技能增伤)'
+    ],
+    parenNote: '(与第二步不同：各独立维度之间「逐项相乘」；同一字段内的多个来源先相加再 +1)',
+    takeaway: '受击方的「易伤（正数）/ 全局减伤（负数）」归入 (1 + 目标易伤) 项，直接与攻方动态增伤连乘。',
+    notes: [
+      { tone: 'key', title: '同项相加与跨项相乘', text: '例如同时获得通用增伤 +20% 与目标易伤 +25%，合计乘数为 1.20 × 1.25 = 1.50；Buff 持续伤害不吃「普攻/技能增伤」。' },
+      { tone: 'add', title: '事件回调改写', text: '本步同时串联攻击与受击事件（如按目标生命或叠层加成的专属效果 1 + rate × 层数），直接改写当前结算伤害。' }
+    ]
+  },
+  {
+    step: '第七步',
+    title: '第七步：等级压制、独立抗性与保底取整',
+    equations: [
+      '等级倍率 = 1 − min( 50%, 0.8% × ΔL^1.5 )   （ΔL = max(目标等级 − 攻击者等级, 0)）',
+      'D₂ = max( 1, D₁ × 等级倍率 × [1 − min(1, 动态类型抗性)] × [1 − min(1, 动态元素抗性)] )'
+    ],
+    parenNote: '(ΔL ≥ 16 级起固定封顶减伤 50%；攻击低等级目标时等级倍率固定 100%，无额外增伤)',
+    paramLines: [
+      [
+        { text: '越级压制节点：差1级 ' },
+        { text: '−0.80%', accent: true },
+        { text: ' · 5级 ' },
+        { text: '−8.94%', accent: true },
+        { text: ' · 10级 ' },
+        { text: '−25.30%', accent: true },
+        { text: ' · 15级 ' },
+        { text: '−46.48%', accent: true },
+        { text: ' · ≥16级 ' },
+        { text: '−50.00%', accent: true }
+      ]
+    ],
+    takeaway: '保底 1 点之后仍会触发普攻职业闪避等后置取消事件（可置 0），最后执行第二次截断取整得最终伤害 D。',
+    notes: [
+      { tone: 'suppress', title: '与第二步抗性的区别', text: '本步的动态类型抗性与动态元素抗性各自独立封顶 100% 并相乘（例双 20% 抗性为 0.8 × 0.8 = 0.64），不与第二步抗性相加减。' }
+    ]
+  },
+  {
+    step: '第八步',
+    title: '第八步：吸血、反伤与护盾吸收',
+    equations: [
+      '生命损失 = max( D − 当前总护盾, 0 )   |   剩余护盾 = max( 当前总护盾 − D, 0 )'
+    ],
+    parenNote: '(吸血与反伤均按「护盾前」最终伤害 D 计算；打在护盾上或溢出残血仍按 D 取基数)',
+    paramLines: [
+      [
+        { text: '普攻吸血 = trunc(D × 吸血% / 100) × (1 + 受治疗加成% / 100)   |   普攻反伤基础 = trunc(D × 反伤% / 100)' }
+      ]
+    ],
+    takeaway: '护盾享受前七步全部防御与抗性减免；同时存在多个护盾时从最新施加者开始逆序扣除。',
+    notes: [
+      { tone: 'def', title: '反伤再结算规则', text: '通用普攻反伤由受击者作为攻击方生成「魔法、无元素、Buff 形态」伤害重走流程（无暴击浮动），不会再次递归触发普攻反伤。' },
+      { tone: 'k', title: '锁血与重伤濒死', text: '扣血后若携带锁血（lockHp ≠ 0），当前生命不低于 lockHp；普通副本归零先判濒死重伤。' }
+    ]
+  }
+]
+
 const expandedStepDiagrams = ref({})
 
+function getStepDiagram(label) {
+  if (!label) return null
+  return DAMAGE_FLOW_DIAGRAMS.find(item => label.startsWith(item.step)) || null
+}
+
 function hasStepDiagram(label) {
-  if (!label) return false
-  return label.includes('第二步') || label.includes('第三步') || label.includes('第四步') || label.includes('第六步')
+  return Boolean(getStepDiagram(label))
 }
 
 function isStepExpanded(label) {
@@ -973,99 +1043,134 @@ img.detail-header__icon {
   border-radius: 4px;
 }
 
-/* 第二步乘区拆解与公式图解卡片 */
+/* 步骤公式与解析卡片（象牙白单层洁净板面 + 书卷衬线分式排版；深色变量由末尾非 scoped 块注入） */
 .formula-card {
   margin-top: 8px;
-  padding: 14px 16px;
-  background: var(--paper-soft);
-  border: 1px solid var(--border-soft);
+  padding: 20px 18px 16px;
+  background: var(--glossary-formula-bg, #fdf9f0);
+  border: 1px solid var(--glossary-formula-border, rgba(135, 107, 72, 0.28));
   border-radius: 6px;
 }
 
-.formula-card__math {
+.formula-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.formula-fraction-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 10px;
-  background: rgba(139, 90, 43, 0.05);
-  border: 1px dashed var(--border-soft);
-  border-radius: 6px;
-  margin-bottom: 14px;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, "Times New Roman", serif;
+  font-size: clamp(16px, 3.8vw, 20px);
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 4px;
 }
 
-.math-term {
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--accent-ink);
+.formula-lhs {
+  color: var(--text-main);
 }
 
-.math-sym {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-muted);
+.formula-eq-sym {
+  color: var(--text-main);
+  opacity: 0.82;
 }
 
-.math-num {
-  font-size: 16px;
-  font-weight: 700;
-  color: #27ae60;
-}
-
-.math-pill {
+.formula-fraction {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  padding: 5px 9px;
-  border-radius: 6px;
-  border: 1px solid;
-  text-align: center;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  vertical-align: middle;
 }
 
-.math-pill--add {
-  background: rgba(41, 128, 185, 0.08);
-  border-color: rgba(41, 128, 185, 0.35);
-  color: #1a5276;
+.formula-fraction__num {
+  padding: 0 14px 6px;
+  font-size: inherit;
+  font-weight: 500;
+  color: var(--text-main);
 }
 
-.math-pill--key {
-  background: rgba(211, 84, 0, 0.08);
-  border-color: rgba(211, 84, 0, 0.35);
-  color: #935116;
+.formula-fraction__bar {
+  width: 100%;
+  height: 1.5px;
+  background: var(--text-main);
+  opacity: 0.85;
 }
 
-.math-pill--res {
-  background: rgba(192, 57, 43, 0.08);
-  border-color: rgba(192, 57, 43, 0.35);
-  color: #78281f;
+.formula-fraction__den {
+  padding: 6px 12px 0;
+  font-size: clamp(15px, 3.6vw, 19px);
+  font-weight: 500;
+  color: var(--text-main);
 }
 
-.math-pill__label {
-  font-size: 12.5px;
+.formula-eq-line {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, "Times New Roman", serif;
+  font-size: clamp(14.5px, 3.3vw, 17px);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.formula-sup {
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+.formula-display__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: 2px;
+}
+
+.formula-meta-paren {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.formula-meta-param {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.formula-meta-highlight {
   font-weight: 700;
-  line-height: 1.25;
+  color: var(--glossary-formula-accent, #8a4b08);
 }
 
-.math-pill__code {
-  font-size: 11px;
-  font-family: var(--font-mono, 'Consolas', monospace);
-  line-height: 1.25;
-  opacity: 0.9;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+.formula-meta-takeaway {
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
 
 .formula-card__notes {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 13px;
-  line-height: 1.6;
+  gap: 7px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(135, 107, 72, 0.22);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.formula-card__note strong {
   color: var(--text-main);
 }
 
@@ -1076,11 +1181,12 @@ img.detail-header__icon {
 }
 
 .formula-card__bullet {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  margin-top: 6px;
+  margin-top: 7px;
   flex-shrink: 0;
+  background: var(--accent-ink);
 }
 
 .formula-card__bullet--add {
@@ -1092,6 +1198,26 @@ img.detail-header__icon {
 }
 
 .formula-card__bullet--res {
+  background: #c0392b;
+}
+
+.formula-card__bullet--k {
+  background: #27ae60;
+}
+
+.formula-card__bullet--def {
+  background: #8e44ad;
+}
+
+.formula-card__bullet--crit {
+  background: #e67e22;
+}
+
+.formula-card__bullet--crit-dam {
+  background: #e74c3c;
+}
+
+.formula-card__bullet--suppress {
   background: #c0392b;
 }
 
@@ -1145,133 +1271,6 @@ img.detail-header__icon {
   width: 100%;
 }
 
-.formula-card__badge {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent-ink);
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px dashed var(--border-soft);
-}
-
-/* 分数形式数学公式 */
-.math-fraction {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  vertical-align: middle;
-  padding: 0 4px;
-}
-
-.math-fraction__num {
-  padding-bottom: 4px;
-}
-
-.math-fraction__bar {
-  width: 100%;
-  height: 2px;
-  background: var(--text-muted, #8a6a1f);
-  border-radius: 1px;
-}
-
-.math-fraction__den {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding-top: 4px;
-}
-
-/* 专属药丸色彩 */
-.math-pill--k {
-  background: rgba(39, 174, 96, 0.08);
-  border-color: rgba(39, 174, 96, 0.35);
-  color: #1e8449;
-}
-.formula-card__bullet--k {
-  background: #27ae60;
-}
-
-.math-pill--def {
-  background: rgba(142, 68, 173, 0.08);
-  border-color: rgba(142, 68, 173, 0.35);
-  color: #6c3483;
-}
-.formula-card__bullet--def {
-  background: #8e44ad;
-}
-
-.math-pill--crit {
-  background: rgba(230, 126, 34, 0.08);
-  border-color: rgba(230, 126, 34, 0.35);
-  color: #b9770e;
-}
-.formula-card__bullet--crit {
-  background: #e67e22;
-}
-
-.math-pill--crit-dam {
-  background: rgba(231, 76, 60, 0.08);
-  border-color: rgba(231, 76, 60, 0.35);
-  color: #922b21;
-}
-.formula-card__bullet--crit-dam {
-  background: #e74c3c;
-}
-
-.math-pill--suppress {
-  background: rgba(192, 57, 43, 0.08);
-  border-color: rgba(192, 57, 43, 0.35);
-  color: #78281f;
-}
-.formula-card__bullet--suppress {
-  background: #c0392b;
-}
-
-.dark-theme .math-pill--add {
-  background: rgba(52, 152, 219, 0.15);
-  border-color: rgba(52, 152, 219, 0.45);
-  color: #70bbf0;
-}
-.dark-theme .math-pill--key {
-  background: rgba(230, 126, 34, 0.15);
-  border-color: rgba(230, 126, 34, 0.45);
-  color: #f39c12;
-}
-.dark-theme .math-pill--res {
-  background: rgba(231, 76, 60, 0.15);
-  border-color: rgba(231, 76, 60, 0.45);
-  color: #f1948a;
-}
-.dark-theme .math-pill--k {
-  background: rgba(46, 204, 113, 0.15);
-  border-color: rgba(46, 204, 113, 0.45);
-  color: #58d68d;
-}
-.dark-theme .math-pill--def {
-  background: rgba(155, 89, 182, 0.15);
-  border-color: rgba(155, 89, 182, 0.45);
-  color: #bb8fce;
-}
-.dark-theme .math-pill--crit {
-  background: rgba(243, 156, 18, 0.15);
-  border-color: rgba(243, 156, 18, 0.45);
-  color: #f8c471;
-}
-.dark-theme .math-pill--crit-dam {
-  background: rgba(231, 76, 60, 0.15);
-  border-color: rgba(231, 76, 60, 0.45);
-  color: #f1948a;
-}
-.dark-theme .math-pill--suppress {
-  background: rgba(231, 76, 60, 0.15);
-  border-color: rgba(231, 76, 60, 0.45);
-  color: #f1948a;
-}
-.dark-theme .math-pill__code {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.06);
-}
-
 /* 过渡动画 */
 .formula-fade-enter-active,
 .formula-fade-leave-active {
@@ -1312,5 +1311,14 @@ img.detail-header__icon {
     max-width: none;
     color: var(--accent-ink);
   }
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --glossary-formula-bg: #32251a;
+  --glossary-formula-border: rgba(143, 115, 81, 0.45);
+  --glossary-formula-accent: #f0b95d;
 }
 </style>

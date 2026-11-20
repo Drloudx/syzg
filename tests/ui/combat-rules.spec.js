@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { enableDarkMode } from '../helpers/theme.mjs'
 
 /**
  * 旧「战斗规则页」的兼容与内容可达性。
@@ -101,4 +102,59 @@ test('战斗规则不再有独立的 /misc 视图（防止有人把它加回来�
   // 老的专用容器不该再出现
   await expect(page.locator('.combat-rules')).toHaveCount(0)
   await expect(page.locator('[data-rule-section]')).toHaveCount(0)
+})
+
+const dismissGlobalModals = async (page) => {
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    const clicked = await page.evaluate(() => {
+      const button = [...document.querySelectorAll('.ui-modal-overlay.is-teleported .ui-modal-close')]
+        .find(element => element.getClientRects().length > 0)
+      if (!button) return false
+      button.click()
+      return true
+    })
+    if (!clicked) break
+    await page.waitForTimeout(250)
+  }
+}
+
+test('伤害结算流水线八步均支持展开纯数学公式卡片与精确系数', async ({ page }, testInfo) => {
+  await page.goto('/#/glossary?id=mech_damage_flow&section=mechanics')
+  await dismissGlobalModals(page)
+
+  const modal = page.locator('.ui-modal-overlay:not(.is-teleported)')
+  await expect(modal).toBeVisible({ timeout: 20_000 })
+
+  const toggleButtons = modal.locator('.rule-toggle-btn')
+  await expect(toggleButtons).toHaveCount(8)
+
+  // 展开第三步：验证分式公式、精确 K(L) 系数及直观结论均已渲染且无旧四舍五入值
+  await toggleButtons.nth(2).click()
+  const diagram = modal.locator('.step-inline-diagram').first()
+  await expect(diagram).toBeVisible()
+  await expect(diagram).toContainText('实际承伤比')
+  await expect(diagram).toContainText('K(L) + 防御 × (1 − 穿透率)')
+  await expect(diagram).toContainText('0.6125, 45.269, 351.98')
+  await expect(diagram).toContainText('0.5011, 37.039, 287.98')
+  await expect(diagram).toContainText('当「有效防御 = K(L)」时正好减伤 50%')
+  await expect(diagram).not.toContainText('45.27L')
+
+  const shotPath = testInfo.outputPath('step3-formula.png')
+  await diagram.screenshot({ path: shotPath })
+  await testInfo.attach('step3-formula', { path: shotPath, contentType: 'image/png' })
+
+  // 展开第七步与第八步，验证八步顺序与新增公式解析可展开且不横向溢出
+  await toggleButtons.nth(6).click()
+  await toggleButtons.nth(7).click()
+  await expect(modal.locator('.step-inline-diagram')).toHaveCount(3)
+  const overflow = await modal.locator('.ui-modal-body').evaluate(el => el.scrollWidth > el.clientWidth + 2)
+  expect(overflow).toBe(false)
+
+  // 深色模式下卡片底色必须切至暗木底，避免亮底浅字看不清
+  await enableDarkMode(page)
+  const darkCard = diagram.locator('.formula-card')
+  await expect(darkCard).toHaveCSS('background-color', 'rgb(50, 37, 26)')
+  const darkShotPath = testInfo.outputPath('step3-formula-dark.png')
+  await diagram.screenshot({ path: darkShotPath })
+  await testInfo.attach('step3-formula-dark', { path: darkShotPath, contentType: 'image/png' })
 })
