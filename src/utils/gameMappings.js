@@ -470,6 +470,7 @@ export const STAT_NAMES = {
   rebDam: '反伤率',
   vampire: '吸血率',
   cureAdd: '受治疗加成',
+  skillCool: '冷却缩减',
   collection: '采集范围',
   poisonMax: '中毒上限',
   poisonDown: '毒素消退',

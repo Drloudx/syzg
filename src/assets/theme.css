@@ -837,22 +837,22 @@ input, textarea, select {
   color: #fff2db !important;
   border-color: #ba8c46 !important;
 }
-.filter-btn.quality-text-1.active { background: var(--q1); color: #2b1f15 !important; }
-.filter-btn.quality-text-2.active { background: var(--q2); color: #2b1f15 !important; }
-.filter-btn.quality-text-3.active { background: var(--q3); color: #17231f !important; }
-.filter-btn.quality-text-4.active { background: var(--q4); color: #2b1f15 !important; }
-.filter-btn.quality-text-5.active { background: var(--q5); color: #2b1f15 !important; }
+.filter-btn.quality-text-1.active { background: #cfc0a6; border-color: #8f7756; color: #2b1f15 !important; }
+.filter-btn.quality-text-2.active { background: #b9ca76; border-color: #6d8225; color: #222d04 !important; }
+.filter-btn.quality-text-3.active { background: #9bc3e2; border-color: #4278a5; color: #0e2c46 !important; }
+.filter-btn.quality-text-4.active { background: #cfa3d3; border-color: #8c4b94; color: #390f3e !important; }
+.filter-btn.quality-text-5.active { background: #ecc078; border-color: #b4721e; color: #3c1e00 !important; }
 
 .dark-mode .filter-btn.quality-text-1.active,
-.dark-theme .filter-btn.quality-text-1.active { background: #cbb898 !important; color: #18110a !important; }
+.dark-theme .filter-btn.quality-text-1.active { background: #b5a284 !important; color: #18110a !important; }
 .dark-mode .filter-btn.quality-text-2.active,
-.dark-theme .filter-btn.quality-text-2.active { background: #9ebb28 !important; color: #121c05 !important; }
+.dark-theme .filter-btn.quality-text-2.active { background: #8ea836 !important; color: #121c05 !important; }
 .dark-mode .filter-btn.quality-text-3.active,
-.dark-theme .filter-btn.quality-text-3.active { background: #429eed !important; color: #06182c !important; }
+.dark-theme .filter-btn.quality-text-3.active { background: #5596cc !important; color: #071a2e !important; }
 .dark-mode .filter-btn.quality-text-4.active,
-.dark-theme .filter-btn.quality-text-4.active { background: #d85ee0 !important; color: #210524 !important; }
+.dark-theme .filter-btn.quality-text-4.active { background: #b66ebd !important; color: #1f0722 !important; }
 .dark-mode .filter-btn.quality-text-5.active,
-.dark-theme .filter-btn.quality-text-5.active { background: #f7a028 !important; color: #281200 !important; }
+.dark-theme .filter-btn.quality-text-5.active { background: #d89542 !important; color: #261300 !important; }
 
 /* ====== 8. 滚动条（羊皮纸质感） ====== */
 

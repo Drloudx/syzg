@@ -76,7 +76,7 @@
     </UiFilterPanel>
 
     <!-- 按行窗口化，列数沿用响应式网格样式。 -->
-    <UiVirtualGrid ref="itemGrid" id="itemsGridScroll" class="items-card-grid" v-if="isDataReady" :items="filteredItems" item-key="typeId">
+    <UiVirtualGrid ref="itemGrid" id="itemsGridScroll" class="items-card-grid paper-panel" v-if="isDataReady" :items="filteredItems" item-key="typeId">
       <template #default="{ item }">
         <UiItemCard
           :key="item.typeId"
@@ -360,30 +360,46 @@ const handleItemClick = (item) => {
 </script>
 
 <style scoped>
-/* 物品网格：桌面端精准 7 列布局 */
+/* 物品网格：桌面端精准 7 列、手机端 5 列，统一羊皮纸容器与紧凑留白 */
+.items-card-grid {
+  background: var(--paper);
+  padding-top: 10px;
+  padding-inline: 10px;
+}
+
 .items-card-grid :deep(.ui-card-grid) {
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 6px;
 }
 
 @media (max-width: 1100px) {
   .items-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
 }
 
 @media (max-width: 768px) {
   .items-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 640px) {
+  .items-card-grid {
+    padding-inline: 6px;
   }
 }
 
 @media (max-width: 480px) {
+  .items-card-grid {
+    padding-top: 8px;
+    padding-inline: 4px;
+  }
   .items-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
+    gap: 3px;
   }
 }
 </style>

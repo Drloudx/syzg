@@ -12,7 +12,7 @@
         <UiFilterPill
           v-for="sub in subCategories"
           :key="sub.type"
-          :active="selectedSub === sub.type"
+          :active="String(selectedSub) === String(sub.type)"
           @click="selectedSub = sub.type"
         >{{ sub.name }}</UiFilterPill>
       </UiFilterRow>
@@ -52,41 +52,54 @@
       <template #footer>
         <div class="equips-toolbar">
           <span class="collection-counter">共 <span class="count-num">{{ filteredItems.length }}</span> 件装备</span>
-          <div class="view-mode-toggle" role="group" aria-label="视图模式切换">
+          <div class="equips-toolbar__actions">
             <button
               type="button"
-              class="view-mode-btn"
-              :class="{ 'is-active': viewMode === 'detail' }"
-              title="图文详情模式（直接查看装备主属性与适用职业）"
-              @click="viewMode = 'detail'"
+              class="random-guide-btn"
+              title="查看 1~10 级随机词条数值区间与品质规则"
+              @click="showRandomGuide = true"
             >
-              <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M2 3h3v3H2V3zm5 1h7v1H7V4zm0 6h7v1H7v-1zM2 9h3v3H2V9z"/>
-              </svg>
-              <span>图文模式</span>
+              随机词条速查
             </button>
-            <button
-              type="button"
-              class="view-mode-btn"
-              :class="{ 'is-active': viewMode === 'grid' }"
-              title="紧凑图标模式（7 列背包格子布局）"
-              @click="viewMode = 'grid'"
-            >
-              <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
-              </svg>
-              <span>图标模式</span>
-            </button>
+            <div class="view-mode-toggle" role="group" aria-label="视图模式切换">
+              <button
+                type="button"
+                class="view-mode-btn"
+                :class="{ 'is-active': viewMode === 'detail' }"
+                aria-label="图文模式"
+                title="图文详情模式（直接查看装备主属性与适用职业）"
+                @click="viewMode = 'detail'"
+              >
+                <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M2 3h3v3H2V3zm5 1h7v1H7V4zm0 6h7v1H7v-1zM2 9h3v3H2V9z"/>
+                </svg>
+                <span>图文模式</span>
+              </button>
+              <button
+                type="button"
+                class="view-mode-btn"
+                :class="{ 'is-active': viewMode === 'grid' }"
+                aria-label="图标模式"
+                title="紧凑图标模式（背包格子布局）"
+                @click="viewMode = 'grid'"
+              >
+                <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                </svg>
+                <span>图标模式</span>
+              </button>
+            </div>
           </div>
         </div>
       </template>
     </UiFilterPanel>
 
-    <!-- 列表区：支持图文详情与紧凑网格双模式 -->
+    <!-- 列表区：图文与图标模式统一置于羊皮纸容器内，手机端保持 5 列 -->
     <UiCardGrid
       id="itemsGridScroll"
       v-if="isDataReady"
-      :class="{ 'items-card-grid': viewMode === 'grid', 'equips-content paper-panel': viewMode === 'detail' }"
+      class="equips-content paper-panel"
+      :class="{ 'items-card-grid': viewMode === 'grid' }"
       :content-style="viewMode === 'detail' ? { gridTemplateColumns: 'minmax(0, 1fr)' } : null"
     >
       <!-- 1. 图文详情模式（仿符石图鉴） -->
@@ -105,10 +118,15 @@
               @img-error="handleImgError"
             />
             <div class="equip-entry__body">
-              <h3 class="equip-entry__name">{{ item.name }}</h3>
+              <div class="equip-entry__head">
+                <h3 class="equip-entry__name" :class="`quality-text-${item.quality || 1}`">{{ item.name }}</h3>
+                <UiTag v-if="equipMetaOf(item).suitName" tone="accent">{{ equipMetaOf(item).suitName }}</UiTag>
+              </div>
               <div class="equip-entry__meta">
                 <UiTag :quality="item.quality">{{ item.equip?.equipLevel || 1 }} 阶</UiTag>
                 <span>{{ getMetaText(item) }}</span>
+                <UiTag v-if="equipMetaOf(item).randomCount > 0">随机×{{ equipMetaOf(item).randomCount }}</UiTag>
+                <UiTag v-else-if="item.equip?.noRandomAbility">无随机</UiTag>
               </div>
               <p v-if="getEquipEffectHtml(item)" class="equip-entry__effect" v-html="getEquipEffectHtml(item)"></p>
             </div>
@@ -137,6 +155,15 @@
     </UiEmptyState>
     <UiEmptyState v-else type="loading" text="数据加载中..." />
     <UiBackToTop scroll-container="#itemsGridScroll" />
+
+    <UiModal
+      v-model:visible="showRandomGuide"
+      title="随机词条数值速查"
+      :close-on-overlay="true"
+      scroll-id="equipRandomGuideScroll"
+    >
+      <EquipRandomAttrPanel standalone />
+    </UiModal>
   </div>
 </template>
 
@@ -150,6 +177,8 @@ import {
   isVisibleEquipItem,
   calculateEquipAttributeRange,
   buildEquipAttributeItems,
+  formatEquipAttrValue,
+  getEquipRandomAttrCount,
   translateAttr,
   translateJobArray,
   parseEquipSuit
@@ -158,6 +187,7 @@ import { getImageUrl } from '../utils/env'
 import { isBlacklisted, isEquipTierHidden, visibleEquipTiers } from '../config/blacklist.js'
 import { getRarityName, JOB_NAMES } from '../utils/gameMappings'
 import { useLazyList } from '../composables/useLazyList'
+import EquipRandomAttrPanel from '../components/EquipRandomAttrPanel.vue'
 import {
   UiBackToTop,
   UiButton,
@@ -166,6 +196,7 @@ import {
   UiFilterPill,
   UiFilterRow,
   UiItemCard,
+  UiModal,
   UiTag,
   UiFilterPanel,
   UiSearchInput
@@ -178,13 +209,62 @@ const allItems = ref([])
 const subCategories = ref([])
 const isDataReady = ref(false)
 const loadError = ref(false)
+const showRandomGuide = ref(false)
 let loadOperation = 0
 
-const searchQuery = ref('')
-const selectedSub = ref(null)
-const selectedLevel = ref(null)
-const selectedRarity = ref(null)
-const selectedJob = ref(route.query.job ? Number(route.query.job) : null)
+const parseQueryInt = value => {
+  const n = Number(value)
+  return Number.isInteger(n) && n > 0 ? n : null
+}
+
+const searchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
+const selectedSub = ref(route.query.sub ? String(route.query.sub) : null)
+const selectedLevel = ref(parseQueryInt(route.query.tier))
+const selectedRarity = ref(parseQueryInt(route.query.rarity))
+const selectedJob = ref(parseQueryInt(route.query.job))
+
+// 筛选条件同步到 URL（保留 itemId 等既有参数，不覆盖）
+watch([searchQuery, selectedSub, selectedLevel, selectedRarity, selectedJob], () => {
+  const nextQuery = { ...route.query }
+  if (searchQuery.value.trim()) nextQuery.q = searchQuery.value.trim()
+  else delete nextQuery.q
+
+  if (selectedSub.value !== null) nextQuery.sub = String(selectedSub.value)
+  else delete nextQuery.sub
+
+  if (selectedLevel.value !== null) nextQuery.tier = String(selectedLevel.value)
+  else delete nextQuery.tier
+
+  if (selectedRarity.value !== null) nextQuery.rarity = String(selectedRarity.value)
+  else delete nextQuery.rarity
+
+  if (selectedJob.value !== null) nextQuery.job = String(selectedJob.value)
+  else delete nextQuery.job
+
+  const same = ['q', 'sub', 'tier', 'rarity', 'job'].every(
+    k => (nextQuery[k] ?? undefined) === (route.query[k] ?? undefined)
+  )
+  if (!same) {
+    router.replace({ query: nextQuery })
+  }
+})
+
+watch(() => route.query, (q) => {
+  const nextQ = typeof q.q === 'string' ? q.q : ''
+  if (nextQ !== searchQuery.value) searchQuery.value = nextQ
+
+  const nextSub = q.sub ? String(q.sub) : null
+  if (nextSub !== selectedSub.value) selectedSub.value = nextSub
+
+  const nextTier = parseQueryInt(q.tier)
+  if (nextTier !== selectedLevel.value) selectedLevel.value = nextTier
+
+  const nextRarity = parseQueryInt(q.rarity)
+  if (nextRarity !== selectedRarity.value) selectedRarity.value = nextRarity
+
+  const nextJob = parseQueryInt(q.job)
+  if (nextJob !== selectedJob.value) selectedJob.value = nextJob
+})
 
 // 视图模式：'detail' 图文模式（默认），'grid' 紧凑图标模式
 const viewMode = ref(localStorage.getItem('equips_view_mode') || 'detail')
@@ -265,6 +345,27 @@ function buildSearchIndex(items) {
   return idx
 }
 
+/** 缓存每件装备的轻量展示元信息（套装名 + 默认随机词条条数），避免滚动/筛选时重复解析 */
+const equipMetaMap = ref(new Map())
+
+function buildEquipMetaMap(items) {
+  const map = new Map()
+  for (const item of items) {
+    if (!item?.equip) continue
+    let suitName = ''
+    try {
+      suitName = parseEquipSuit(item)?.suitName || ''
+    } catch (_) {}
+    const randomCount = getEquipRandomAttrCount(item, item.quality || 1)
+    map.set(item.typeId, { suitName, randomCount })
+  }
+  return map
+}
+
+function equipMetaOf(item) {
+  return equipMetaMap.value.get(item?.typeId) || { suitName: '', randomCount: 0 }
+}
+
 /** 搜索用的文本（索引未命中时回落到即时拼接，保证不漏） */
 function searchTextOf(item) {
   const cached = searchIndex.value.get(item.typeId)
@@ -279,8 +380,9 @@ const loadItems = async () => {
     const data = await fetchItemData()
     if (operation !== loadOperation) return
     allItems.value = data.items
-    // 建搜索索引（只做一次；后面每次按键只查 Map）
+    // 建搜索索引与展示缓存（只做一次；后面每次按键/滚动只查 Map）
     searchIndex.value = buildSearchIndex(data.items)
+    equipMetaMap.value = buildEquipMetaMap(data.items)
     subCategories.value = data.categoryTree.find(c => String(c.type) === '4')?.info || []
     isDataReady.value = true
   } catch (error) {
@@ -377,7 +479,7 @@ function getMetaText(item) {
   return parts.join(' · ')
 }
 
-// 提取全部装备属性效果（对齐符石图鉴效果文本与字体样式）
+// 提取全部装备属性效果（补全百分比属性 % 后缀）
 function getEquipEffectHtml(item) {
   if (!item?.equip) return ''
   const range = calculateEquipAttributeRange(item, item.quality, 0)
@@ -386,7 +488,7 @@ function getEquipEffectHtml(item) {
   if (!items.length) return ''
   const parts = items.map(a => {
     const label = translateAttr(a.key)
-    const val = a.min === a.max ? `${a.min}` : `${a.min}~${a.max}`
+    const val = formatEquipAttrValue(a.key, a.min, a.max)
     return `${label}增加 <span class="value-highlight">${val}</span>`
   })
   return `${parts.join('，')}。`
@@ -399,9 +501,37 @@ function getEquipEffectHtml(item) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 8px 12px;
   padding: 4px 2px 2px 2px;
   margin-top: 2px;
+}
+
+.equips-toolbar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.random-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--paper-soft);
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.random-guide-btn:hover {
+  border-color: var(--accent-ink);
+  background: var(--hover-bg);
 }
 
 .collection-counter {
@@ -444,7 +574,7 @@ function getEquipEffectHtml(item) {
 
 .view-mode-btn:hover {
   color: var(--accent-ink);
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--hover-bg);
 }
 
 .view-mode-btn.is-active {
@@ -484,10 +614,14 @@ function getEquipEffectHtml(item) {
    */
 }
 
+.equips-content.items-card-grid {
+  padding-inline: 10px;
+}
+
 .equips-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
   /* 行高按内容排布，不被拉伸 */
   align-content: start;
 }
@@ -501,6 +635,7 @@ function getEquipEffectHtml(item) {
   background: var(--paper-soft);
   border: 1px solid var(--border-soft);
   border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(43, 31, 21, 0.06);
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
 }
@@ -525,10 +660,20 @@ function getEquipEffectHtml(item) {
   min-width: 0;
 }
 
+.equip-entry__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+
 .equip-entry__name {
-  margin: 0 0 6px;
+  margin: 0;
   font-size: 14px;
-  line-height: 1.6;
+  font-weight: 700;
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
 
@@ -551,20 +696,20 @@ function getEquipEffectHtml(item) {
 /* ==================== 2. 紧凑图标模式（7 列背包格子布局） ==================== */
 .items-card-grid :deep(.ui-card-grid) {
   grid-template-columns: repeat(7, 1fr);
-  gap: 8px;
+  gap: 6px;
 }
 
 @media (max-width: 1100px) {
   .items-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
 }
 
 @media (max-width: 900px) {
   .equips-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
   .equip-entry {
     padding: 10px;
@@ -577,7 +722,7 @@ function getEquipEffectHtml(item) {
 @media (max-width: 768px) {
   .items-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    gap: 4px;
   }
 }
 
@@ -585,12 +730,18 @@ function getEquipEffectHtml(item) {
   .equips-content {
     padding-inline: 10px;
   }
+  .equips-content.items-card-grid {
+    padding-inline: 6px;
+  }
 }
 
 @media (max-width: 480px) {
+  .equips-content.items-card-grid {
+    padding: 8px 4px calc(88px + var(--safe-bottom, 0px));
+  }
   .items-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
+    gap: 3px;
   }
   .view-mode-btn span:not(.view-mode-icon) {
     display: none;

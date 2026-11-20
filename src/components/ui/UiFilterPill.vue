@@ -75,74 +75,65 @@ const emit = defineEmits(['click'])
   font-weight: 700;
 }
 
-/* 浅色模式品质激活态 */
-.ui-filter-pill.quality-text-1.is-active { background: var(--q1); }
-.ui-filter-pill.quality-text-2.is-active { background: var(--q2); }
-.ui-filter-pill.quality-text-3.is-active { background: var(--q3); }
-.ui-filter-pill.quality-text-4.is-active { background: var(--q4); }
-.ui-filter-pill.quality-text-5.is-active { background: var(--q5); }
-.ui-filter-pill.quality-text-6.is-active { background: var(--q6); }
-.ui-filter-pill.quality-text-1.is-active,
-.ui-filter-pill.quality-text-2.is-active,
-.ui-filter-pill.quality-text-3.is-active,
-.ui-filter-pill.quality-text-4.is-active,
-.ui-filter-pill.quality-text-5.is-active,
-.ui-filter-pill.quality-text-6.is-active {
-  color: #2b1f15 !important;
-  border-color: rgba(0, 0, 0, 0.35);
-}
+/* 浅色模式品质激活态：去荧光矿石色，贴合羊皮纸暖调 */
+.ui-filter-pill.quality-text-1.is-active { background: #cfc0a6; border-color: #8f7756; color: #2b1f15 !important; }
+.ui-filter-pill.quality-text-2.is-active { background: #b9ca76; border-color: #6d8225; color: #222d04 !important; }
+.ui-filter-pill.quality-text-3.is-active { background: #9bc3e2; border-color: #4278a5; color: #0e2c46 !important; }
+.ui-filter-pill.quality-text-4.is-active { background: #cfa3d3; border-color: #8c4b94; color: #390f3e !important; }
+.ui-filter-pill.quality-text-5.is-active { background: #ecc078; border-color: #b4721e; color: #3c1e00 !important; }
+.ui-filter-pill.quality-text-6.is-active { background: #de929b; border-color: #a43b4b; color: #4b0c17 !important; }
 
-/* 暗色模式品质激活态：鲜亮实体品质胶囊芯片 + 清晰深黑粗体文字，告别灰暗与不可读 */
+/* 暗色模式品质激活态：沉稳温润的实体品质胶囊 + 高对比深色文字 */
 .dark-mode .ui-filter-pill.quality-text-1.is-active,
 .dark-theme .ui-filter-pill.quality-text-1.is-active {
-  background: #cbb898 !important;
+  background: #b5a284 !important;
   color: #18110a !important;
-  border-color: #dfceb3 !important;
+  border-color: #d6c3a4 !important;
   font-weight: 700 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }
 
 .dark-mode .ui-filter-pill.quality-text-2.is-active,
 .dark-theme .ui-filter-pill.quality-text-2.is-active {
-  background: #9ebb28 !important;
+  background: #8ea836 !important;
   color: #121c05 !important;
-  border-color: #c4e43d !important;
+  border-color: #b4cf52 !important;
   font-weight: 700 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }
 
 .dark-mode .ui-filter-pill.quality-text-3.is-active,
 .dark-theme .ui-filter-pill.quality-text-3.is-active {
-  background: #429eed !important;
-  color: #06182c !important;
-  border-color: #7cc0fc !important;
+  background: #5596cc !important;
+  color: #071a2e !important;
+  border-color: #83b8e6 !important;
   font-weight: 700 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }
 
 .dark-mode .ui-filter-pill.quality-text-4.is-active,
 .dark-theme .ui-filter-pill.quality-text-4.is-active {
-  background: #d85ee0 !important;
-  color: #210524 !important;
-  border-color: #f79aff !important;
+  background: #b66ebd !important;
+  color: #1f0722 !important;
+  border-color: #d796de !important;
   font-weight: 700 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }
 
 .dark-mode .ui-filter-pill.quality-text-5.is-active,
 .dark-theme .ui-filter-pill.quality-text-5.is-active {
-  background: #f7a028 !important;
-  color: #281200 !important;
-  border-color: #ffd072 !important;
+  background: #d89542 !important;
+  color: #261300 !important;
+  border-color: #f0bc72 !important;
   font-weight: 700 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }
 
 .dark-mode .ui-filter-pill.quality-text-6.is-active,
 .dark-theme .ui-filter-pill.quality-text-6.is-active {
-  background: #e72155 !important;
-  color: #fff1f5 !important;
-  border-color: #ff7098 !important;
+  background: #c74f64 !important;
+  color: #fff1f4 !important;
+  border-color: #e67d90 !important;
   font-weight: 700 !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45) !important;
 }

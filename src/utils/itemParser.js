@@ -22,6 +22,22 @@ let cachedEquipEnhanceConfig = null
 
 const EQUIP_ENHANCE_ATTRS = new Set(['phyAtk', 'magicAtk', 'phyDef', 'magicDef', 'maxHp'])
 const EQUIP_ENHANCE_ATTR_ORDER = new Map(['phyAtk', 'magicAtk', 'phyDef', 'magicDef', 'maxHp'].map((key, index) => [key, index]))
+// 与源码 ExtentionMethod.GetAttrValueStr 对齐：装备面板与随机词条中带 % 号的属性键
+const EQUIP_PERCENT_ATTRS = new Set([
+  'atkSpeed',
+  'crit',
+  'critRes',
+  'critDam',
+  'cirtDam',
+  'runSpeed',
+  'repelRes',
+  'phyAtkPen',
+  'magicAtkPen',
+  'rebDam',
+  'vampire',
+  'cureAdd',
+  'skillCool'
+])
 
 /**
  * 物品列表默认排序：分类逐级升序，同分类内品质降序，再按 ID / 名称兜底。
@@ -1086,6 +1102,89 @@ export function buildEquipAttributeItems(attributeRange = {}) {
       return a.sourceIndex - b.sourceIndex
     })
     .map(({ sourceIndex, ...attribute }) => attribute)
+}
+
+/** 判断属性键在装备面板与随机词条中是否带 `%` 单位后缀 */
+export function isEquipPercentAttr(attrKey) {
+  return EQUIP_PERCENT_ATTRS.has(String(attrKey || ''))
+}
+
+/** 格式化装备数值或区间，自动按游戏 GetAttrValueStr 规则补 `%` */
+export function formatEquipAttrValue(attrKey, min, max = min, { withPlus = false } = {}) {
+  const unit = isEquipPercentAttr(attrKey) ? '%' : ''
+  const prefix = withPlus ? '+' : ''
+  const lo = Number(min) || 0
+  const hi = Number(max) || 0
+  if (lo === hi) return `${prefix}${lo}${unit}`
+  return `${prefix}${lo}${unit}~${hi}${unit}`
+}
+
+/** 获取装备在指定品质下生成的随机词条数量（尊重 noRandomAbility） */
+export function getEquipRandomAttrCount(item, quality, config = getEquipGlobalConfig()) {
+  if (!item?.equip || item.equip.noRandomAbility) return 0
+  const qKey = String(Number(quality) || 1)
+  return Math.max(0, Number(config?.gachaNumControl?.[qKey] ?? 0))
+}
+
+/** 获取装备品质对随机词条 roll 区间的限制系数（白/绿 0.6、蓝 0.7、紫 0.9、橙/红 1.0） */
+export function getEquipQualityRandomCoefficient(quality, config = getEquipGlobalConfig()) {
+  const qKey = String(Number(quality) || 5)
+  const coeff = Number(config?.equipQualityRandomCoefficient?.[qKey] ?? 1)
+  return Number.isFinite(coeff) ? Math.min(1, Math.max(0, coeff)) : 1
+}
+
+/** 获取全局随机词条支持的全部等级（通常为 1 ~ 10） */
+export function getEquipRandomAttrLevels(config = getEquipGlobalConfig()) {
+  const firstPool = Object.values(config?.attrAddPool || {})[0] || {}
+  const levels = Object.keys(firstPool)
+    .map(Number)
+    .filter(n => Number.isInteger(n) && n > 0)
+    .sort((a, b) => a - b)
+  return levels.length ? levels : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+/** 随机词条的 5 档词条品质（对应源码 ExtentionMethod.GetEquipRandomAttrQuality，最高为橙色 5 档） */
+export const EQUIP_RANDOM_ATTR_QUALITIES = [
+  { quality: 1, label: '白', minRatio: 0, maxRatio: 0.2 },
+  { quality: 2, label: '绿', minRatio: 0.2, maxRatio: 0.4 },
+  { quality: 3, label: '蓝', minRatio: 0.4, maxRatio: 0.6 },
+  { quality: 4, label: '紫', minRatio: 0.6, maxRatio: 0.8 },
+  { quality: 5, label: '橙', minRatio: 0.8, maxRatio: 1 }
+]
+
+/**
+ * 按游戏 ExtentionMethod.GetEquipRandomAttrValue / GetEquipRandomAttrQuality 公式，
+ * 计算指定词条等级与词条品质档位（1~5 白~橙）下，全局 14 项随机词条的数值区间。
+ */
+export function buildEquipRandomAttrPool(attrLevel = 1, attrQuality = 5, config = getEquipGlobalConfig()) {
+  const pool = config?.equipAttrPool || {}
+  const addPool = config?.attrAddPool || {}
+  const levels = getEquipRandomAttrLevels(config)
+  const minLvl = levels[0] || 1
+  const maxLvl = levels[levels.length - 1] || 10
+  const safeLevel = Math.min(maxLvl, Math.max(minLvl, Number(attrLevel) || minLvl))
+  const tier = EQUIP_RANDOM_ATTR_QUALITIES.find(q => q.quality === Number(attrQuality))
+    || EQUIP_RANDOM_ATTR_QUALITIES[EQUIP_RANDOM_ATTR_QUALITIES.length - 1]
+
+  return Object.entries(pool).map(([key, entry]) => {
+    const base = Number(entry?.base) || 0
+    const maxFactor = Number(entry?.max) || 0
+    const levelMult = Number(addPool[entry?.levelAddPool]?.[String(safeLevel)] ?? 1)
+    const min = roundToEven(base * (1 + maxFactor * tier.minRatio) * levelMult)
+    const max = roundToEven(base * (1 + maxFactor * tier.maxRatio) * levelMult)
+    const orangeMin = roundToEven(base * (1 + maxFactor * 0.8) * levelMult)
+    // 译名强制走官方 lan.json（translateAttr），不使用 equipAttrPool 里的内部开发别名
+    return {
+      key,
+      label: translateAttr(key),
+      min,
+      max,
+      orangeMin,
+      isPercent: isEquipPercentAttr(key),
+      rangeText: formatEquipAttrValue(key, min, max),
+      orangeText: formatEquipAttrValue(key, orangeMin, orangeMin)
+    }
+  })
 }
 
 /**

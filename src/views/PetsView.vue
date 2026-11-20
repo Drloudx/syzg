@@ -1451,10 +1451,10 @@ const getPetRanges = (pet) => {
 
 /* ====== 筛选面板：继承 theme.css 全局 .filter-panel（padding 12px 14px，搜索框与其余图鉴页面一致） ====== */
 
-/* ====== 魔物卡牌网格（大幅面 5 列精致展示） ====== */
+/* ====== 魔物卡牌网格（大幅面 5 列精致展示，保持地图透底与适度间距） ====== */
 .pets-card-grid :deep(.ui-card-grid) {
   grid-template-columns: repeat(5, 1fr);
-  gap: 12px;
+  gap: 10px;
 }
 
 .pets-card-grid :deep(.ui-item-card) {
@@ -1531,7 +1531,7 @@ const getPetRanges = (pet) => {
 @media (max-width: 1100px) {
   .pets-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    gap: 8px;
   }
 }
 
@@ -1539,7 +1539,7 @@ const getPetRanges = (pet) => {
 @media (max-width: 600px) {
   .pets-card-grid :deep(.ui-card-grid) {
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
   /*
    * 手机端特性表格：窄屏下把非关键列（星级/属性）压到最小，

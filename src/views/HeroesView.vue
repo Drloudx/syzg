@@ -1448,7 +1448,7 @@ const handleGiftClick = (giftId) => {
   flex-direction: column;
 }
 
-/* 英雄卡网格：网格内通栏自定义列（卡面为游戏原图比例） */
+/* 英雄卡网格：网格内通栏自定义列（卡面为游戏原图比例），保持地图透底与适度间距 */
 .heroes-scroll :deep(.ui-card-grid) {
   padding: 4px;
 }
@@ -1456,12 +1456,12 @@ const handleGiftClick = (giftId) => {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 4px;
+  gap: 6px;
 }
 @media (max-width: 767px) {
   .heroes-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
+    gap: 4px;
   }
 }
 

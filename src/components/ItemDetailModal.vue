@@ -239,6 +239,12 @@
       </div>
 
       <UiStatGrid v-if="computedUnitItems.length" :items="computedUnitItems" />
+      <p v-if="hasNonEnhanceAttrs && equipEnhanceConfig && equipEnhanceConfig.maxLevel > 0" class="equip-enhance-scope-note">
+        强化仅提升攻击、防御与生命值基础属性，暴击/抗性/穿透等固定属性不随强化变动。
+      </p>
+      <p v-if="item.equip.noRandomAbility" class="equip-enhance-scope-note">
+        随机属性：该装备不会生成随机词条。
+      </p>
     </UiSection>
 
 
@@ -366,6 +372,11 @@
           </div>
         </div>
       </div>
+    </UiSection>
+
+    <!-- 随机属性（置于特殊/可携带效果下方，默认收起一行摘要，展开可查 1~10 级词条池） -->
+    <UiSection v-if="item.itemType === 2 && item.equip && !item.equip.noRandomAbility" title="随机属性">
+      <EquipRandomAttrPanel :item="item" :quality="selectedAttrQuality" />
     </UiSection>
 
     <!-- 神器进阶 -->
@@ -875,9 +886,10 @@
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl, handleImageFallback } from '../utils/env'
-import { translateJobArray, translateAttr, translateCategory, parseItemUnlocks, getItemImageUrl, getItemAcquisition, getCachedItem, parseRuneEffect, parseEquipGroup, parseEquipSuit, parseItemAffixes, calculateEquipAttributeRange, buildEquipAttributeItems, getEquipEnhanceConfig, fetchItemData } from '../utils/itemParser'
+import { translateJobArray, translateAttr, translateCategory, parseItemUnlocks, getItemImageUrl, getItemAcquisition, getCachedItem, parseRuneEffect, parseEquipGroup, parseEquipSuit, parseItemAffixes, calculateEquipAttributeRange, buildEquipAttributeItems, formatEquipAttrValue, getEquipEnhanceConfig, fetchItemData } from '../utils/itemParser'
 import { getRarityName } from '../utils/gameMappings'
 import AcquisitionRewards from './AcquisitionRewards.vue'
+import EquipRandomAttrPanel from './EquipRandomAttrPanel.vue'
 import { getRuneSourceTarget } from '../utils/runeData.js'
 import { pushItemDetail, popItemDetail, itemModalState } from '../utils/itemModalState'
 import { fetchWithFallback } from '../utils/request.js'
@@ -1271,7 +1283,7 @@ const stagePreview = computed(() => {
   const attrItems = attrRange
     ? buildEquipAttributeItems(attrRange).map(a => ({
         label: translateAttr(a.key),
-        value: a.min === a.max ? `+${a.min}` : `+${a.min}~${a.max}`,
+        value: formatEquipAttrValue(a.key, a.min, a.max, { withPlus: true }),
         tone: 2
       }))
     : []
@@ -1399,9 +1411,14 @@ const computedUnitItems = computed(() => {
   if (!computedUnitData.value) return []
   return buildEquipAttributeItems(computedUnitData.value).map(attribute => ({
     label: translateAttr(attribute.key),
-    value: attribute.min === attribute.max ? `+${attribute.min}` : `+${attribute.min}~${attribute.max}`,
+    value: formatEquipAttrValue(attribute.key, attribute.min, attribute.max, { withPlus: true }),
     tone: 2
   }))
+})
+
+const hasNonEnhanceAttrs = computed(() => {
+  if (!computedUnitData.value) return false
+  return buildEquipAttributeItems(computedUnitData.value).some(attribute => !attribute.grows)
 })
 // ===================
 
@@ -2122,6 +2139,12 @@ onBeforeUnmount(cancelBodyScrollRestore)
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+.equip-enhance-scope-note {
+  margin: 8px 0 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-muted, #6b5134);
 }
 
 .smithing-recipe {
