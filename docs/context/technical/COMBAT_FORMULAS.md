@@ -5,19 +5,19 @@
 > **何时读**：核对伤害链、属性叠加、上限或 Buff 结算时。
 > **何时更新**：公式依据（源码或配置）变化时。
 
-**核对时间**：2026-10-17（§8.5 触发粒度新增；其余公式依据的源码核对日期为 2026-09-16，见下文）
+**核对时间**：2026-11-20（按 1.7.15 `游戏数据/源码` 复核 `DamageResolver.cs` 与 `CombatPanel.cs` 变更；其余历史小节核对时间见 2026-10-17 / 2026-09-16）
 
 本文按本地游戏源码的实际调用链整理，覆盖属性生成、普通攻击、技能、增减伤、防御穿透、暴击浮动、等级压制、元素抗性、Buff、护盾、回复及 PvP 差异。
 
-核对日期：2026-09-16。源码是本地反编译 C#，不能据此保证与正在运营的客户端/服务端版本完全相同。本文区分三种结论：**源码确认**（能指出计算及调用位置）、**配置确认**（本地表的具体值）、**待验证**（赋值链异常、版本或运行环境未闭合）。下文没有标“待验证”的公式均指这份源码中的行为。
+核对日期：2026-11-20（§4.1~§4.6 按 1.7.15 源码刷新；其余小节为 2026-09-16 / 2026-10-17）。源码是本地反编译 C#，不能据此保证与正在运营的客户端/服务端版本完全相同。本文区分三种结论：**源码确认**（能指出计算及调用位置）、**配置确认**（本地表的具体值）、**待验证**（赋值链异常、版本或运行环境未闭合）。下文没有标“待验证”的公式均指这份源码中的行为。
 
 ## 1. 来源、范围与阅读入口
 
-源码根目录为项目同级的 `源码/源码/Assembly-CSharp/`，配置优先核对项目 `raw/` 与同级 `Config_decrypted/`。剧情表不参与此结算。
+源码入口为项目同级的 `游戏数据/源码/Assembly-CSharp/`，配置优先核对项目 `raw/` 与同级 `游戏数据/配置表/`。剧情表不参与此结算。
 
 | 机制 | 主要证据与定位 |
 | --- | --- |
-| 通用伤害与事件顺序 | [CombatPanel.cs](../../../../源码/源码/Assembly-CSharp/CombatPanel.cs)：`CalculateMaster`（5727）、`CalculateFinalDamage`（6041）、`CheckCirt`（6202） |
+| 通用伤害与事件顺序 | `CombatPanel.cs`（`CalculateMaster`、`ApplyPreSettlementDamageModifiers`、`ProcessDamageAfterSettlement`）；`DamageResolver.cs`（1.7.15 拆分：`CalculateFinalDamage`、`CheckCirt`） |
 | 扣血、护盾、回复 | 同文件：`CalcuateDamageUpdateHpBar`（6296）、`RemoveShiledBuff`（6252）、`UnitTakeReply`（7326） |
 | 完整英雄属性 | [HeroBattleAttributeGroup.cs](../../../../源码/源码/Assembly-CSharp/HeroBattleAttributeGroup.cs)：属性 getter（373）、`GetBase*Add`（468）、成长（669） |
 | 战斗属性及上限 | [UnitAttribute.cs](../../../../源码/源码/Assembly-CSharp/UnitAttribute.cs)：属性 getter/setter（256）、英雄初始化（367）、PvP 初始化（462）、怪物（557）、宠物（683） |
@@ -133,7 +133,7 @@ flowchart TD
 原始伤害 X = baseDamage + muPower × 对应攻击属性
 ```
 
-`CalculateFinalDamage` 只直接处理 `muAddType=phyAtk/magicAtk`；无攻击者时这两个分支只取 baseDamage。其他或空类型不会自动回退为固定伤害。
+`DamageResolver.CalculateFinalDamage` 处理 `muAddType` 的 `"phyAtk"`、`"magicAtk"`、`"auto"`（取 `max(phyAtk, magicAtk)`，1.7.15 新增）及空串（仅取 `baseDamage`）；无攻击者时直接取 `baseDamage`。其他未定义类型记录错误并返回 `0`。
 
 原始值为零时内部函数直接返回 0，但外层仍可能走到保底 1 或其他回调；不能据内部返回值概括最终扣血。
 
@@ -181,11 +181,11 @@ X2 = X1 × M
 
 系数来自 `monLevelStrength.datas.kValueData`，项目的对应 parsed 表一致。没有攻击者时直接用 X1，跳过防御、暴击、浮动与后续等级压制；仍可能受到目标增减伤、抗性和 Buff 影响。
 
-有攻击者却把 damageType 留空时，`GetDamageTypeKValue` 返回 null，调用方随后索引列表；**不能把空伤害类型解释成“真实伤害”**。`CalculateMaster` 的 `realDam` 参数在这份方法体内未被使用，也不能据其名称推断它有效。
+有攻击者却把 damageType 留空时，`GetDamageTypeKValue` 返回 null，调用方随后索引列表；**不能把空伤害类型解释成“真实伤害”**。1.7.15 的 `DamageResolver.CalculateFinalDamage` 已启用 `realDam` 参数（`!realDam && flag2`）：`realDam=true` 时跳过防御与 `K(L)` 计算，直接取 `X2 = X1`。
 
 ### 4.4 暴击与浮动
 
-暴击必须同时满足：有攻击者、调用入口 `needCirt=true`、攻击者 crit > 0。
+暴击入口在 1.7.15 `DamageResolver.cs` 改为：`(needCirt && crit > 0)` 或 `realCirt=true`（含 `normalAtkRealCrit`）。
 
 ```text
 p = clamp((攻击者 crit - 目标 critRes) / 100, 0, 1)
@@ -193,7 +193,7 @@ p = clamp((攻击者 crit - 目标 critRes) / 100, 0, 1)
 不暴击时 X3 = X2
 ```
 
-`CheckCirt` 对 p≤0 返回 false，p≥1 返回 true，否则用浮点随机数比较。强制暴击 `realCirt` 或普攻 `normalAtkRealCrit` 能绕过概率结果，**仍在 needCirt=true 且 crit>0 的外层条件内**。
+`CheckCirt` 对 p≤0 返回 false，p≥1 返回 true，否则用 `Random.Range(0f, 1f) <= p` 比较。1.7.15 中 `realCirt=true` 可直接跳过 `needCirt`、`crit > 0` 与 `CheckCirt` 概率判定强制暴击。
 
 仅在 `needFloat=true` 且有攻击者时：
 
@@ -224,6 +224,7 @@ D0 = 取整(X3 × F)
 | 1 | 普攻命中带指定 Buff 标签的目标 | 1 + 标签增伤合计 |
 | 2 | 攻击者 `unitAtkDamAddValue` | 1 + 通用输出增伤 |
 | 3 | 目标 `unitDamageAddValue` | 1 + 受到伤害变化；负数为减伤 |
+| 3b | 目标 `unitBeHitSkillDamAddValue`（1.7.15 新增） | 1 + 受击技能易伤（仅 `formType=skill`） |
 | 4 | 攻击者 `unitPhyDamAddValue/unitMagicDamAddValue` | 1 + 对应物理/魔法增伤 |
 | 5 | 攻击者 `unitWater/Fire/Wind/EarthDamAddValue` | 1 + 对应元素增伤 |
 | 6 | 攻击者 `unitNormalAtkDamAddValue/unitSkillDamAddValue` | 1 + 对应普攻/技能增伤；Buff 形态不走这两项 |
@@ -265,8 +266,8 @@ D1 = 前述伤害 × 等级倍率
      × [1 - min(1, unitPhyRes 或 unitMagicRes)]
      × [1 - min(1, 对应 unitWater/Fire/Wind/EarthRes)]
 D2 = max(1, D1)
-触发普攻 beHitByNorAtkJob 后：
-D = 取整(target.unitDamage)
+触发普攻 beHitByNorAtkJob 与秘境遗器技能增伤 `spRelicSkillDmgAddRate`（1.7.15 `ApplySpRelicSkillDamageAdd`）后：
+D = max(1, 取整(target.unitDamage))
 ```
 
 无相应类型/元素的项不参与。第二组抗性上限 1，无下限；与第 4.2 节的 damResTypes 完全不同。两个 20% 的不同抗性乘区组合为 0.8×0.8。

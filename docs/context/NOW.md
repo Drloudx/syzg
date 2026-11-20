@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-20 ｜ **最近代码提交**：`28b7f787`（含装备/图鉴/公式改版） ｜ **分支**：`main`
+**核对时间**：2026-11-20 ｜ **最近代码提交**：`c75f0d04` ｜ **分支**：`main`
 
 ---
 
@@ -30,7 +30,7 @@
 - **装备随机词条体系、图鉴容器/间距统一与词条百科八步公式重构**：
   - 装备图鉴（`EquipsView.vue`、`ItemDetailModal.vue`、`EquipRandomAttrPanel.vue`、`itemParser.js`、`gameMappings.js`）补全随机词条池速查与详情面板（词条品质白~橙默认橙 × 1~10 级），对齐 `lan.json` 属性译名与 `%` 单位，柔化 `UiFilterPill` / `theme.css` 1~6 档品质胶囊配色，URL 双向同步筛选参数，图标模式套用 `.paper-panel` 并保持 `PC 7 列 / 手机 5 列`。
   - 物品图鉴（`ItemsView.vue`）同步接入 `.paper-panel` 羊皮纸容器并收紧间距；角色与魔物图鉴（`HeroesView.vue`、`PetsView.vue`）因原图卡框特性保留地图透底并微调卡片间隙。
-  - 词条百科 `mech_damage_flow`（`glossaryEncyclopedia.js`、`GlossaryView.vue`）八步流水线对齐源码流程并改用单层衬线数学分式与深色变量适配（`#32251a`），重建 `glossary.json` 与 `search-index.json`。
+  - 词条百科 `mech_damage_flow`（`glossaryEncyclopedia.js`、`GlossaryView.vue`、`COMBAT_FORMULAS.md`）按 1.7.15 源码（`DamageResolver.cs` / `CombatPanel.cs`）核对刷新八步流水线、补齐第三步 `X₂ = X₁ × 实际承伤比`、修正吸血/防穿/暴击/元素抗性口径、改用单层衬线数学分式与深色变量适配，修复弹窗黑名单来源一致性和等级压制表红绿数值优先级覆盖，重建 `glossary.json` 与搜索索引。
 - **活动副本（亚空回廊·特异次元）独立页面与数据链路落地**：
   - 新增 `scripts/dev/import-relic-dungeon-assets.mjs`（导入 18 张 WebP，`570.4 KB`）与 `scripts/parse/activityDungeons.mjs`（产出 `public/data/parsed/activity-dungeons.json`，`198 KB`），按 `activityList` 隐藏未定档 `sp2`。
   - 新增 `/activity-dungeons`（`ActivityDungeonsView.vue` + `ActivityDungeonEventModal.vue`）：「层级挑战」（`UiVirtualGrid` 窗口化）、遭遇房间池（按层预览关卡修正）、随机事件交互推演（全流程「返回上一步」）、夜之符兑换与玩法机制；打通 `ItemDetailModal` `relicFirst`/`relicClear`/`relicExplore`/`relicEvent` 跳转。
