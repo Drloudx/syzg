@@ -5,7 +5,7 @@
       `ui-tag--${tone}`,
       quality ? `badge-${quality}` : ''
     ]"
-    @click="$emit('click')"
+    @click="$emit('click', $event)"
   >
     <slot />
   </span>

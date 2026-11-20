@@ -90,3 +90,38 @@ test('装备详情显示百分比单位，且随机属性位于特殊效果下�
   await expect(modal).toContainText('该装备不会生成随机词条')
   await expect(modal.locator('.ui-section__title', { hasText: '随机属性' })).toHaveCount(0)
 })
+
+test('装备列表去掉随机标签且默认隐藏套装与词条，可一键展开套装/武器/特殊装备词条并点击徽章筛选同套', async ({ page }) => {
+  await page.goto('/#/equip?q=%E7%BB%93%E6%99%B6%E5%AE%88%E6%8A%A4%E8%80%85')
+  await dismissGlobalModals(page)
+
+  // 列表卡片不再展示 随机×N / 无随机 标签
+  await expect(page.locator('.equip-entry__meta', { hasText: /随机×|无随机/ })).toHaveCount(0)
+
+  const suitToggle = page.getByRole('button', { name: /套装与词条/ })
+  await expect(suitToggle).toHaveAttribute('aria-pressed', 'false')
+  await expect(page.locator('.equip-entry__suits')).toHaveCount(0)
+
+  await suitToggle.click()
+  await expect(suitToggle).toHaveAttribute('aria-pressed', 'true')
+  const suitsBox = page.locator('.equip-entry__suits').first()
+  await expect(suitsBox).toBeVisible()
+  await expect(suitsBox).toContainText('2件')
+
+  // 清空搜索后，点击任意带套装卡片右上角套装徽章，仅筛选该套装且不误触打开弹窗
+  await page.locator('.ui-search__clear').click()
+  const firstSuitTag = page.locator('.equip-suit-tag').first()
+  const suitName = (await firstSuitTag.textContent()).trim()
+  await firstSuitTag.click()
+  await expect(page.locator('.ui-modal-overlay')).toHaveCount(0)
+  await expect(page.locator('input[type="search"], .ui-search-input input, .ui-search__input').first()).toHaveValue(suitName)
+
+  // 搜索武器与特殊装备，验证可携带效果词条直接显示（localStorage 保持开启）
+  await page.goto('/#/equip?q=%E6%B9%96%E6%99%B6%E9%95%BF%E5%88%80')
+  await dismissGlobalModals(page)
+  const weaponEntry = page.locator('.equip-entry', { hasText: '湖晶长刀' }).first()
+  await expect(weaponEntry.locator('.equip-entry__suits')).toBeVisible()
+  await expect(weaponEntry.locator('.equip-affix-num').first()).toBeVisible()
+
+  await page.screenshot({ path: 'C:/Users/Drloud/.gemini/antigravity/brain/847c7e7a-a7d9-4b99-bf78-bafaddd89801/scratch/equip-suit-expanded.png' })
+})

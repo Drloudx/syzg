@@ -54,6 +54,18 @@
           <span class="collection-counter">共 <span class="count-num">{{ filteredItems.length }}</span> 件装备</span>
           <div class="equips-toolbar__actions">
             <button
+              v-if="viewMode === 'detail'"
+              type="button"
+              class="suit-toggle-btn"
+              :class="{ 'is-active': showSuitEffects }"
+              :aria-pressed="showSuitEffects"
+              title="切换是否在装备卡片底部直接展示套装效果及武器/特殊装备词条"
+              @click="showSuitEffects = !showSuitEffects"
+            >
+              <span class="suit-toggle-indicator" aria-hidden="true">{{ showSuitEffects ? '✓' : '' }}</span>
+              <span>套装与词条</span>
+            </button>
+            <button
               type="button"
               class="random-guide-btn"
               title="查看 1~10 级随机词条数值区间与品质规则"
@@ -120,15 +132,40 @@
             <div class="equip-entry__body">
               <div class="equip-entry__head">
                 <h3 class="equip-entry__name" :class="`quality-text-${item.quality || 1}`">{{ item.name }}</h3>
-                <UiTag v-if="equipMetaOf(item).suitName" tone="accent">{{ equipMetaOf(item).suitName }}</UiTag>
+                <UiTag
+                  v-if="equipMetaOf(item).suitName"
+                  tone="accent"
+                  class="equip-suit-tag"
+                  :class="{ 'is-filtered': searchQuery.trim() === equipMetaOf(item).suitName }"
+                  :title="searchQuery.trim() === equipMetaOf(item).suitName ? '点击取消按此套装筛选' : `点击筛选【${equipMetaOf(item).suitName}】同套装备`"
+                  @click.stop="toggleSuitFilter(equipMetaOf(item).suitName)"
+                >{{ equipMetaOf(item).suitName }}</UiTag>
               </div>
               <div class="equip-entry__meta">
                 <UiTag :quality="item.quality">{{ item.equip?.equipLevel || 1 }} 阶</UiTag>
                 <span>{{ getMetaText(item) }}</span>
-                <UiTag v-if="equipMetaOf(item).randomCount > 0">随机×{{ equipMetaOf(item).randomCount }}</UiTag>
-                <UiTag v-else-if="item.equip?.noRandomAbility">无随机</UiTag>
               </div>
               <p v-if="getEquipEffectHtml(item)" class="equip-entry__effect" v-html="getEquipEffectHtml(item)"></p>
+              <ul v-if="showSuitEffects && equipMetaOf(item).suitEffects.length" class="equip-entry__suits">
+                <li
+                  v-for="eff in equipMetaOf(item).suitEffects"
+                  :key="eff.num"
+                  class="equip-suit-line"
+                >
+                  <span class="equip-suit-num">{{ eff.num }}件</span>
+                  <span class="equip-suit-des" v-html="eff.desHtml"></span>
+                </li>
+              </ul>
+              <ul v-if="showSuitEffects && equipMetaOf(item).affixes.length" class="equip-entry__suits">
+                <li
+                  v-for="affix in equipMetaOf(item).affixes"
+                  :key="affix.id"
+                  class="equip-suit-line"
+                >
+                  <span v-if="affix.skillName" class="equip-suit-num equip-affix-num">{{ affix.skillName }}</span>
+                  <span class="equip-suit-des" v-html="affix.desHtml"></span>
+                </li>
+              </ul>
             </div>
           </article>
         </div>
@@ -178,10 +215,10 @@ import {
   calculateEquipAttributeRange,
   buildEquipAttributeItems,
   formatEquipAttrValue,
-  getEquipRandomAttrCount,
   translateAttr,
   translateJobArray,
-  parseEquipSuit
+  parseEquipSuit,
+  parseItemAffixes
 } from '../utils/itemParser'
 import { getImageUrl } from '../utils/env'
 import { isBlacklisted, isEquipTierHidden, visibleEquipTiers } from '../config/blacklist.js'
@@ -274,6 +311,26 @@ watch(viewMode, val => {
   } catch (_) {}
 })
 
+// 图文模式下是否直接展开展示套装效果（默认关闭，保持卡片紧凑密度）
+const readShowSuitEffects = () => {
+  try {
+    return localStorage.getItem('equips_show_suit_effects') === '1'
+  } catch (_) {
+    return false
+  }
+}
+const showSuitEffects = ref(readShowSuitEffects())
+watch(showSuitEffects, val => {
+  try {
+    localStorage.setItem('equips_show_suit_effects', val ? '1' : '0')
+  } catch (_) {}
+})
+
+function toggleSuitFilter(suitName) {
+  if (!suitName) return
+  searchQuery.value = searchQuery.value.trim() === suitName ? '' : suitName
+}
+
 /** 可见品阶（已排除 config/blacklist.js 里隐藏的阶） */
 const tierOptions = computed(() => visibleEquipTiers())
 
@@ -307,14 +364,22 @@ function buildSearchIndex(items) {
       getRarityName(item.quality)
     ]
 
-    // ② 套装：名称 + 每条效果（去掉 { } 花括号后拼原文）
+    // ② 套装与可携带词条：名称 + 每条效果（去掉 HTML 标签后拼原文）
     try {
       const suit = parseEquipSuit(item)
       if (suit) {
         parts.push(suit.suitName)
         for (const e of suit.suitEffects || []) {
-          // desHtml 里含 <span> 标签，去掉标签保留文字
           parts.push(String(e.desHtml || '').replace(/<[^>]+>/g, ''))
+        }
+      }
+      const affGroups = parseItemAffixes(item)
+      if (affGroups) {
+        for (const g of affGroups) {
+          for (const a of g.prefixes || []) {
+            if (a.skillName) parts.push(a.skillName)
+            parts.push(String(a.desHtml || '').replace(/<[^>]+>/g, ''))
+          }
         }
       }
     } catch (_) { /* 个别数据异常不影响整体 */ }
@@ -345,7 +410,7 @@ function buildSearchIndex(items) {
   return idx
 }
 
-/** 缓存每件装备的轻量展示元信息（套装名 + 默认随机词条条数），避免滚动/筛选时重复解析 */
+/** 缓存每件装备的轻量展示元信息（套装名 + 套装效果 + 武器/特殊装备词条），避免滚动/筛选时重复解析 */
 const equipMetaMap = ref(new Map())
 
 function buildEquipMetaMap(items) {
@@ -353,17 +418,26 @@ function buildEquipMetaMap(items) {
   for (const item of items) {
     if (!item?.equip) continue
     let suitName = ''
+    let suitEffects = []
+    let affixes = []
     try {
-      suitName = parseEquipSuit(item)?.suitName || ''
+      const suit = parseEquipSuit(item)
+      suitName = suit?.suitName || ''
+      suitEffects = Array.isArray(suit?.suitEffects) ? suit.suitEffects : []
     } catch (_) {}
-    const randomCount = getEquipRandomAttrCount(item, item.quality || 1)
-    map.set(item.typeId, { suitName, randomCount })
+    try {
+      const affGroups = parseItemAffixes(item)
+      if (Array.isArray(affGroups)) {
+        affixes = affGroups.flatMap(g => g.prefixes || [])
+      }
+    } catch (_) {}
+    map.set(item.typeId, { suitName, suitEffects, affixes })
   }
   return map
 }
 
 function equipMetaOf(item) {
-  return equipMetaMap.value.get(item?.typeId) || { suitName: '', randomCount: 0 }
+  return equipMetaMap.value.get(item?.typeId) || { suitName: '', suitEffects: [], affixes: [] }
 }
 
 /** 搜索用的文本（索引未命中时回落到即时拼接，保证不漏） */
@@ -514,9 +588,11 @@ function getEquipEffectHtml(item) {
   flex-wrap: wrap;
 }
 
+.suit-toggle-btn,
 .random-guide-btn {
   display: inline-flex;
   align-items: center;
+  gap: 5px;
   padding: 4px 10px;
   border-radius: 6px;
   border: 1px solid var(--border-soft);
@@ -526,9 +602,36 @@ function getEquipEffectHtml(item) {
   font-weight: 700;
   cursor: pointer;
   line-height: 1.4;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
 }
 
+.suit-toggle-btn {
+  color: var(--accent-ink);
+}
+
+.suit-toggle-indicator {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  border: 1.5px solid var(--border-color, #8f7351);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  background: transparent;
+  color: inherit;
+  transition: all 0.15s ease;
+}
+
+.suit-toggle-btn.is-active .suit-toggle-indicator {
+  border-color: var(--eq-toggle-check-border, #557574);
+  background: var(--eq-toggle-check-bg, #557574);
+  color: var(--eq-toggle-check-color, #fff);
+}
+
+.suit-toggle-btn:hover,
 .random-guide-btn:hover {
   border-color: var(--accent-ink);
   background: var(--hover-bg);
@@ -693,6 +796,65 @@ function getEquipEffectHtml(item) {
   overflow-wrap: anywhere;
 }
 
+.equip-suit-tag {
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.equip-suit-tag:hover {
+  filter: brightness(1.06);
+}
+
+.equip-suit-tag.is-filtered {
+  outline: 1.5px solid var(--accent-ink);
+  outline-offset: 1px;
+}
+
+.equip-entry__suits {
+  margin: 7px 0 0;
+  padding: 7px 0 0;
+  list-style: none;
+  border-top: 1px dashed var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.equip-suit-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.equip-suit-num {
+  flex-shrink: 0;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: var(--eq-suit-num-bg, rgba(143, 115, 81, 0.14));
+  color: var(--eq-suit-num-color, #6b4c24);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.equip-suit-des {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.equip-suit-des :deep(.suit-val),
+.equip-suit-des :deep(.affix-val) {
+  color: var(--eq-suit-val, #2563eb) !important;
+  font-weight: 700;
+}
+
+.equip-affix-num {
+  background: var(--eq-affix-num-bg, rgba(59, 130, 246, 0.12));
+  color: var(--eq-affix-num-color, #25589e);
+}
+
 /* ==================== 2. 紧凑图标模式（7 列背包格子布局） ==================== */
 .items-card-grid :deep(.ui-card-grid) {
   grid-template-columns: repeat(7, 1fr);
@@ -749,5 +911,19 @@ function getEquipEffectHtml(item) {
   .view-mode-btn {
     padding: 4px 6px;
   }
+}
+</style>
+
+<style>
+.dark-mode,
+.dark-theme {
+  --eq-toggle-check-bg: #c49234;
+  --eq-toggle-check-border: #c49234;
+  --eq-toggle-check-color: #18110a;
+  --eq-suit-num-bg: rgba(216, 175, 86, 0.16);
+  --eq-suit-num-color: #e2b86b;
+  --eq-affix-num-bg: rgba(96, 165, 250, 0.16);
+  --eq-affix-num-color: #93c5fd;
+  --eq-suit-val: #7cc4ff;
 }
 </style>

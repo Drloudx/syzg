@@ -130,9 +130,13 @@ for (const [name, path] of [
 
 /* 盒模型判据单独一条：单独跑更快定位到"哪个组件的 border/padding 被深色改了" */
 for (const [name, path] of [
+  ['首页', '/#/'],
   ['物品页', '/#/items'],
+  ['装备页', '/#/equip'],
   ['角色页', '/#/heroes'],
   ['符石页', '/#/runes'],
+  ['遗器法盘', '/#/relics'],
+  ['伙伴邮件', '/#/partner-mails'],
   ['怪物收益', '/#/misc'],
   ['神匠之塔', '/#/tower'],
   ['活动副本', '/#/activity-dungeons']
