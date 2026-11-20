@@ -256,6 +256,12 @@ export default defineConfig({
     }
   },
   build: {
+    // Vite 8 默认 target 为 baseline-widely-available（Chrome 107+），LightningCSS 会把
+    // `@media (max-width: 1024px)` 改写为 Level 4 区间语法 `@media (width<=1024px)`，
+    // 导致国内手机浏览器（QQ/百度/UC/华为/Vivo X5 内核、Blink < 104）与 iOS < 16.4
+    // 整段丢弃移动端媒体查询、直接渲染电脑端三栏 UI。锁定经典兼容目标以保留传统 max/min-width。
+    target: ['es2020', 'chrome87', 'edge88', 'firefox78', 'safari14'],
+    cssTarget: ['chrome80', 'edge80', 'firefox78', 'safari13', 'ios13'],
     rollupOptions: {
       output: {
         // Rolldown 支持函数式 manualChunks：把 Capacitor 原生壳依赖与 Vue 运行时从主包拆出，降低首屏主包体积与长缓存命中率
