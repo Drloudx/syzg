@@ -37,6 +37,14 @@ function readJson(dir, name) {
   return JSON.parse(readFileSync(file, 'utf8'))
 }
 
+// CI / 线上构建环境自适应：未包含 raw/ 原始表且产物已入库就绪时，跳过重新生成
+if (!CHECK && !existsSync(join(rawDir, 'buff.json'))) {
+  if (existsSync(OUT)) {
+    console.log('\n[data:damage] 检测到当前环境未包含 raw/ 原始表（CI/线上部署环境），且 public/data/parsed/damage-calc.json 已就绪，跳过重新生成。\n')
+    process.exit(0)
+  }
+}
+
 const heroData = readJson(parsedDir, 'heroes.json')
 const monsterData = readJson(parsedDir, 'monsters.json')
 const levelStrengthData = readJson(parsedDir, 'monLevelStrength.json')
