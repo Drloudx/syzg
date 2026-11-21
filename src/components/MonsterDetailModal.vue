@@ -86,7 +86,7 @@
               <span class="scene-scale-badge">关卡修正</span>
               <span class="scene-scale-text">
                 <span v-if="effectiveScaleHp !== 1">生命值 ×{{ Math.round(effectiveScaleHp * 100) }}%</span>
-                <span v-if="effectiveScaleAtk !== 1"> · 攻防 ×{{ Math.round(effectiveScaleAtk * 100) }}%</span>
+                <span v-if="effectiveScaleAtk !== 1"> · 攻击 ×{{ Math.round(effectiveScaleAtk * 100) }}%</span>
               </span>
               <span class="scene-scale-base">(未修正标准生命: {{ baseUnscaledHp.toLocaleString('zh-CN') }})</span>
             </div>
@@ -667,8 +667,8 @@ const statGroups = computed(() => {
     maxHp: Math.floor(Number(raw.maxHp || 0) * coefficient * hpScale),
     phyAtk: Math.floor(Number(raw.phyAtk || 0) * coefficient * atkScale),
     magicAtk: Math.floor(Number(raw.magicAtk || 0) * coefficient * atkScale),
-    phyDef: Math.floor(Number(raw.phyDef || 0) * coefficient * atkScale),
-    magicDef: Math.floor(Number(raw.magicDef || 0) * coefficient * atkScale)
+    phyDef: Math.floor(Number(raw.phyDef || 0) * coefficient),
+    magicDef: Math.floor(Number(raw.magicDef || 0) * coefficient)
   }
   const growthKeys = ['maxHp', 'phyAtk', 'magicAtk', 'phyDef', 'magicDef']
   const fixedKeys = ['crit', 'critRes', 'critDam', 'atkRange', 'atkFloatMin', 'atkFloatMax', 'runSpeed', 'repelRes', 'phyAtkPen', 'magicAtkPen', 'rebDam', 'vampire', 'cureAdd']

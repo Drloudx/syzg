@@ -120,8 +120,8 @@
                   </span>
                 </div>
                 <!-- 关卡实机比例修正 -->
-                <div v-if="layer.scaleHp !== 1 || layer.scaleAtk !== 1" class="scale-fix-pill" title="关卡实机攻防/生命缩放">
-                  修正: 生命×{{ Math.round(layer.scaleHp * 100) }}% · 攻防×{{ Math.round(layer.scaleAtk * 100) }}%
+                <div v-if="layer.scaleHp !== 1 || layer.scaleAtk !== 1" class="scale-fix-pill" title="关卡实机攻击/生命缩放">
+                  修正: 生命×{{ Math.round(layer.scaleHp * 100) }}% · 攻击×{{ Math.round(layer.scaleAtk * 100) }}%
                 </div>
                 <!-- 理智消耗：图标随 summary.tiItemTypeId 对应的原始图标（item_10012） -->
                 <div class="ti-cost-pill" title="挑战消耗理智">
@@ -158,7 +158,7 @@
                       @click="onWaveMonClick(mon, layer.showLevel)"
                       tabindex="0"
                       role="button"
-                      :title="`查看【${mon.name}】属性 (实机修正: 生命×${Math.round((mon.levelScaleHp||1)*100)}% 攻防×${Math.round((mon.levelScale||1)*100)}%)`"
+                      :title="`查看【${mon.name}】属性 (实机修正: 生命×${Math.round((mon.levelScaleHp||1)*100)}% 攻击×${Math.round((mon.levelScale||1)*100)}%)`"
                       @keydown.enter.prevent="onWaveMonClick(mon, layer.showLevel)"
                     >
                       <img

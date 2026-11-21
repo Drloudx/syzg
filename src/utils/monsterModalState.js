@@ -25,7 +25,7 @@ export const monsterModalState = reactive({
   initialLevel: null,
   /** 场景生命缩放系数（如割草经验本中的 0.3） */
   scaleHp: 1,
-  /** 场景攻防缩放系数 */
+  /** 场景攻击缩放系数 */
   scaleAtk: 1,
   /** 打开前的滚动位置，关闭时恢复 */
   savedScrollTop: 0

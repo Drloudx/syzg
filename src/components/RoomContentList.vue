@@ -42,6 +42,7 @@
               <span>{{ variant.name }}</span>
               <UiTag v-if="variant.source?.candidate" tone="muted">随机候选</UiTag>
               <UiTag :tone="variant.kind.includes('宝箱') ? 'gold' : 'default'">{{ variant.kind }}</UiTag>
+              <UiTag v-if="variantUniformScaleLabel(variant)" tone="gold" :title="variantUniformScaleTitle(variant)">{{ variantUniformScaleLabel(variant) }}</UiTag>
             </div>
             <div v-if="!detailsOnly && variant.effects?.length" class="room-effects">
               <div v-for="effect in variant.effects" :key="`${variant.typeId}-${effect.type}`" class="room-effect">
@@ -76,7 +77,7 @@
                         v-for="unit in mech.units"
                         :key="unit.typeId"
                         class="wave-mon-pill is-clickable"
-                        :title="unit.name + ' · 点击查看详情'"
+                        :title="monsterPillTitle(unit)"
                         role="button"
                         tabindex="0"
                         @click.stop="openMonsterDetail(unit.typeId, null, room?.level || room?.gameLevel, { scaleHp: unit.levelScaleHp, scaleAtk: unit.levelScale })"
@@ -93,6 +94,7 @@
                         />
                         <span class="mon-name-txt">{{ unit.name }}</span>
                         <span v-if="unit.count > 1" class="mon-count-txt">×{{ unit.count }}</span>
+                        <span v-if="showMonsterInlineScale(variant, unit)" class="mon-scale-txt">{{ formatMonsterScale(unit) }}</span>
                         <span class="mon-arrow-txt">→</span>
                       </span>
                     </div>
@@ -124,7 +126,7 @@
                     v-for="mon in line.monsters"
                     :key="mon.typeId"
                     class="wave-mon-pill is-clickable"
-                    :title="(mon.rank ? `${mon.name} (Rank ${mon.rank})` : mon.name) + ' · 点击查看详情'"
+                    :title="monsterPillTitle(mon)"
                     role="button"
                     tabindex="0"
                     @click.stop="openMonsterDetail(mon.typeId, null, room?.level || room?.gameLevel, { scaleHp: mon.levelScaleHp, scaleAtk: mon.levelScale })"
@@ -140,6 +142,7 @@
                     />
                     <span class="mon-name-txt">{{ mon.name }}</span>
                     <span class="mon-count-txt">×{{ mon.count }}</span>
+                    <span v-if="showMonsterInlineScale(variant, mon)" class="mon-scale-txt">{{ formatMonsterScale(mon) }}</span>
                   </span>
                 </div>
               </div>
@@ -250,6 +253,65 @@ const props = defineProps({
   detailsOnly: { type: Boolean, default: false }
 })
 const emit = defineEmits(['item-click'])
+
+const resolveMonsterScales = (unit) => {
+  const rawHp = Number(unit?.levelScaleHp)
+  const rawAtk = Number(unit?.levelScale)
+  const hp = Number.isFinite(rawHp) && rawHp > 0 ? rawHp : 1
+  const atk = Number.isFinite(rawAtk) && rawAtk > 0 ? rawAtk : 1
+  return {
+    hpPct: Math.round(hp * 100),
+    atkPct: Math.round(atk * 100),
+    isDefault: Math.abs(hp - 1) < 1e-6 && Math.abs(atk - 1) < 1e-6
+  }
+}
+
+const formatMonsterScale = (unit) => {
+  const { hpPct, atkPct, isDefault } = resolveMonsterScales(unit)
+  if (isDefault) return ''
+  return hpPct === atkPct ? `×${hpPct}%` : `血×${hpPct}%/攻×${atkPct}%`
+}
+
+const monsterPillTitle = (unit) => {
+  const base = unit?.rank ? `${unit.name} (Rank ${unit.rank})` : (unit?.name || '')
+  const { hpPct, atkPct, isDefault } = resolveMonsterScales(unit)
+  if (isDefault) return `${base} · 点击查看详情`
+  return `${base} · 关卡修正：生命×${hpPct}% / 攻击×${atkPct}% · 点击查看详情`
+}
+
+const collectVariantMonsters = (variant) => [
+  ...(variant?.monsters || []),
+  ...((variant?.mechanics || []).flatMap(mech => mech?.units || []))
+]
+
+const getUniformVariantScale = (variant) => {
+  const units = collectVariantMonsters(variant)
+  if (!units.length) return null
+  const first = resolveMonsterScales(units[0])
+  if (first.isDefault) return null
+  const allSame = units.every(u => {
+    const cur = resolveMonsterScales(u)
+    return cur.hpPct === first.hpPct && cur.atkPct === first.atkPct
+  })
+  return allSame ? first : null
+}
+
+const variantUniformScaleLabel = (variant) => {
+  const s = getUniformVariantScale(variant)
+  if (!s) return ''
+  return s.hpPct === s.atkPct ? `关卡修正 ×${s.hpPct}%` : `修正 血×${s.hpPct}%·攻×${s.atkPct}%`
+}
+
+const variantUniformScaleTitle = (variant) => {
+  const s = getUniformVariantScale(variant)
+  if (!s) return ''
+  return `该房间全部怪物套用关卡修正：生命值 ×${s.hpPct}%、攻击 ×${s.atkPct}%`
+}
+
+const showMonsterInlineScale = (variant, unit) => {
+  if (getUniformVariantScale(variant)) return false
+  return !resolveMonsterScales(unit).isDefault
+}
 
 const hasVariantDetails = (variant) => Boolean(
   variant?.mechanics?.length
@@ -409,6 +471,15 @@ const visibleRooms = computed(() => {
   color: #a16207;
 }
 
+.mon-scale-txt {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7c4d12;
+  background: rgba(196, 138, 44, 0.16);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
 .dark-mode .wave-mon-pill,
 .dark-theme .wave-mon-pill {
   background: rgba(45, 33, 22, 0.75);
@@ -430,6 +501,12 @@ const visibleRooms = computed(() => {
 .dark-mode .mon-count-txt,
 .dark-theme .mon-count-txt {
   color: #eab308;
+}
+
+.dark-mode .mon-scale-txt,
+.dark-theme .mon-scale-txt {
+  color: #f3c86b;
+  background: rgba(216, 175, 86, 0.16);
 }
 
 .wave-npc-pill {

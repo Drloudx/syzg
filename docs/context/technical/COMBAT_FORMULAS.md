@@ -624,8 +624,8 @@ P 已达到 1 时再加穿透没有通用防御收益；目标 D 越大，相同
 
 这些是本地文件能观察到的问题，不等同于对线上版本的定论：
 
-1. **英雄穿透似乎未转入战斗属性。** HeroBattleAttributeGroup 汇总了 PhyAtkPen/MagicAtkPen，但 UnitAttribute 的英雄及 PvP 初始化没有相应赋值；怪物/宠物初始化则明确赋值。仍有效的独立入口包括技能 ignoreDef，以及 `EquipBuff_qixiBuff` 写入的普攻穿透。需核对原始程序集/运行快照是否有其他补写。
-2. **物理穿透营地字段疑似用错。** HeroBattleAttributeGroup.PhyAtkPen 最后一项为 campResearch_magicAtkPen，尽管存在 campResearch_phyAtkPen。本文保留所见事实，不擅自改成“意图公式”。
+1. **英雄穿透已转入战斗属性，但 1.7.15 源码漏除 `100`（实机已验证）。** 1.7.15 版 `UnitAttribute.cs:436-437` 已新增 `phyAtkPen = heroBattleData.attributeGroup.PhyAtkPen` 与 `magicAtkPen = heroBattleData.attributeGroup.MagicAtkPen`，但 `HeroBattleAttributeGroup` 汇总的装备/营地穿透仍为百分数（如 `2` 表示 `2%`），未除以 `100f` 即直接进入 `DamageResolver.cs:134` 的 `Mathf.Min(num8 + damageInfo.ignoreDef, 1f)`。结果任意 `≥ 1` 点的装备/营地 `phyAtkPen` 或 `magicAtkPen` 在实机中均被钳位为 `1.0`（`100%` 无视防御），而技能/被动通过 `damageInfo.ignoreDef` 传入的小数（如 `0.06f`）不受影响。
+2. **物理穿透营地字段疑似用错。** `HeroBattleAttributeGroup.cs:403` `PhyAtkPen` 最后一项仍为 `campResearch_magicAtkPen`，尽管存在 `campResearch_phyAtkPen`。本文保留所见事实，不擅自改成“意图公式”。
 3. **装备特殊属性列表处理异常。** AddEquipSpecialAttribute 在找不到匹配项时调用 baseList.Add(specialProperty)，此时 specialProperty 为 null，而非待加入的 item；所读构造器也未初始化这些特殊列表。装备属性存在并不保证成功传入战斗。
 4. **部分字段有存储无消费。** damAtkAddTypes 在已搜索的结算链没有找到实际计算；unitData.addSp 也只找到初始化。不能按名称发明增伤或回蓝机制。
 5. **霸体通用过滤未闭合。** CheckBaTi 有方法体但未找到调用；控制/击退可能有其他专属检查，不能据方法存在宣布统一免疫已实现。

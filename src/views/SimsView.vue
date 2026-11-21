@@ -7,7 +7,7 @@
     -->
     <UiFilterPanel class="sim-filter-panel paper-panel">
       <template #search>
-        <UiSearchInput v-model="petQuery" placeholder="搜索魔物名称或被动..." />
+        <UiSearchInput v-if="board === 'monster-team'" v-model="petQuery" placeholder="搜索魔物名称或被动..." />
       </template>
 
       <UiFilterRow label="板块：">
@@ -21,7 +21,7 @@
         >{{ b.name }}</UiFilterPill>
       </UiFilterRow>
 
-      <div class="sim-filters">
+      <div v-if="board === 'monster-team'" class="sim-filters">
           <UiFilterRow label="角色加权：">
             <template v-if="team.length">
               <UiFilterPill
@@ -52,8 +52,8 @@
       </div>
     </UiFilterPanel>
 
-    <UiEmptyState v-if="loading" type="loading" text="正在装配模拟数据..." />
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="load" />
+    <UiEmptyState v-if="board === 'monster-team' && loading" type="loading" text="正在装配模拟数据..." />
+    <UiEmptyState v-else-if="board === 'monster-team' && errorMessage" type="error" :text="errorMessage" @retry="load" />
 
     <!--
       🔴 正文滚动容器必须带 data-main-scroll（UI_COMPONENT_LIBRARY §3 第 9 条）。
@@ -61,11 +61,13 @@
       不再自建 div —— 自建容器漏标会让内容滚到筛选框上方，且失败是静默的。
     -->
     <UiCardGrid v-else id="simsScroll" class="sim-content" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
+      <DamageCalculatorPanel v-if="board === 'damage'" />
+
       <!--
         出战队伍 + 魔物搭配 放在**同一张面板**里：
         上半是出战队伍（可折叠），下半是魔物搭配。
       -->
-      <section class="sim-board-body paper-panel">
+      <section v-else class="sim-board-body paper-panel">
         <!-- 出战队伍：标题右侧带展开/收起 -->
         <UiSection
           class="sim-team-section"
@@ -365,7 +367,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, defineAsyncComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getImageUrl } from '../utils/env'
 import { fetchWithFallback } from '../utils/request'
@@ -383,6 +385,8 @@ import UiSection from '../components/ui/UiSection.vue'
 import UiModal from '../components/ui/UiModal.vue'
 import UiSegmentedToggle from '../components/ui/UiSegmentedToggle.vue'
 import HeroPickCard from '../components/heroes/HeroPickCard.vue'
+
+const DamageCalculatorPanel = defineAsyncComponent(() => import('../components/sims/DamageCalculatorPanel.vue'))
 
 /** 游戏原素材：队伍被动点亮/未点亮标记（来自 PetPanel_Atlas） */
 const TEAM_BUFF_ON = getImageUrl('/images/PetPanel_Atlas/team_buff_on.webp')
@@ -423,7 +427,10 @@ const GENERIC_OPTIONS = [
  * 每个模拟是一个板块，用 `?tab=` 寻址（与 `/misc?tab=pvp` 同构）。
  * 新增模拟时往这里加一项即可，筛选行的 pill 自动出现。
  */
-const BOARDS = [{ id: 'monster-team', name: '魔物出战', title: '按队伍被动推荐 3 只出战魔物' }]
+const BOARDS = [
+  { id: 'monster-team', name: '魔物出战', title: '按队伍被动推荐 3 只出战魔物' },
+  { id: 'damage', name: '伤害计算', title: '手动填写面板，按 1.7.15 八步公式计算技能伤害' },
+]
 
 /** 板块 id 白名单；非法值一律回落到第一个（与 RewardsView 的 resolveMainCategory 同策略） */
 const resolveBoard = (value) => (BOARDS.some((b) => b.id === value) ? value : BOARDS[0].id)
@@ -541,9 +548,19 @@ async function load() {
 }
 
 onMounted(async () => {
-  // 先规范化板块参数（地址上没有 `?tab=` 时补上当前板块），再拉数据
+  // 先规范化板块参数（地址上没有 `?tab=` 时补上当前板块），再按需拉数据
   await normalizeBoardQuery()
-  await load()
+  if (board.value === 'monster-team') {
+    await load()
+  } else {
+    loading.value = false
+  }
+})
+
+watch(board, (next) => {
+  if (next === 'monster-team' && !heroes.value.length && !loading.value) {
+    load()
+  }
 })
 
 /**

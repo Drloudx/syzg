@@ -139,7 +139,8 @@ for (const [name, path] of [
   ['伙伴邮件', '/#/partner-mails'],
   ['怪物收益', '/#/misc'],
   ['神匠之塔', '/#/tower'],
-  ['活动副本', '/#/activity-dungeons']
+  ['活动副本', '/#/activity-dungeons'],
+  ['伤害计算', '/#/sims?tab=damage']
 ]) {
   test(`🔴 深色不改元素的 border/padding（${name}）`, async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 })

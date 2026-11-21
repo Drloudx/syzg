@@ -175,7 +175,7 @@
                     class="ad-scale-pill"
                     title="来源自游戏源码 Unit.cs / UnitAttribute.cs 关卡修正倍率"
                   >
-                    关卡修正: 生命×{{ Math.round(layer.scaleHp * 100) }}% · 攻防×{{ Math.round(layer.scaleAtk * 100) }}%
+                    关卡修正: 生命×{{ Math.round(layer.scaleHp * 100) }}% · 攻击×{{ Math.round(layer.scaleAtk * 100) }}%
                   </span>
                 </div>
 
@@ -212,7 +212,7 @@
                       :key="`${mon.typeId}-${mi}`"
                       type="button"
                       class="ad-mon-pill"
-                      :title="`查看【${mon.name}】Lv.${layer.battleLevel} 属性（生命×${Math.round(mon.levelScaleHp * 100)}% 攻防×${Math.round(mon.levelScale * 100)}%）`"
+                      :title="`查看【${mon.name}】Lv.${layer.battleLevel} 属性（生命×${Math.round(mon.levelScaleHp * 100)}% 攻击×${Math.round(mon.levelScale * 100)}%）`"
                       @click="onLayerMonsterClick(mon, layer.battleLevel)"
                     >
                       <img
@@ -242,7 +242,7 @@
                       :key="`${mon.typeId}-${mi}`"
                       type="button"
                       class="ad-mon-pill"
-                      :title="`查看【${mon.name}】Lv.${layer.battleLevel} 属性（生命×${Math.round(mon.levelScaleHp * 100)}% 攻防×${Math.round(mon.levelScale * 100)}%）`"
+                      :title="`查看【${mon.name}】Lv.${layer.battleLevel} 属性（生命×${Math.round(mon.levelScaleHp * 100)}% 攻击×${Math.round(mon.levelScale * 100)}%）`"
                       @click="onLayerMonsterClick(mon, layer.battleLevel)"
                     >
                       <img
@@ -392,7 +392,7 @@
                 <span class="ad-dropdown-btn-text">
                   第 {{ previewLayerObj?.layer || 1 }} 层 · Lv.{{ previewLayerObj?.battleLevel || '-' }}
                   <span class="ad-dropdown-scale">
-                    (生命×{{ Math.round((previewLayerObj?.scaleHp || 1) * 100) }}% · 攻防×{{ Math.round((previewLayerObj?.scaleAtk || 1) * 100) }}%)
+                    (生命×{{ Math.round((previewLayerObj?.scaleHp || 1) * 100) }}% · 攻击×{{ Math.round((previewLayerObj?.scaleAtk || 1) * 100) }}%)
                   </span>
                 </span>
                 <span class="ad-dropdown-caret" :class="{ 'is-open': layerMenuOpen }">▾</span>
@@ -409,7 +409,7 @@
                   @click="selectPreviewLayer(l.layer)"
                 >
                   <span class="ad-opt-main">第 {{ l.layer }} 层 · Lv.{{ l.battleLevel }}</span>
-                  <span class="ad-opt-sub">生命×{{ Math.round(l.scaleHp * 100) }}% · 攻防×{{ Math.round(l.scaleAtk * 100) }}%</span>
+                  <span class="ad-opt-sub">生命×{{ Math.round(l.scaleHp * 100) }}% · 攻击×{{ Math.round(l.scaleAtk * 100) }}%</span>
                 </button>
               </div>
             </div>
@@ -545,7 +545,7 @@
               <p><b>随机迷宫生成</b>：每层进入时按递归回溯算法现算 <code>width × height</code> 迷宫（第 1～2 层 7×7，逐步扩至第 19～20 层 10×10），非固定平面地图。</p>
               <p><b>宝箱与探索进度</b>：每走 <code>exploreStepNum</code>（6）步触发探索宝箱累计；击败本层守关首领时带出全部持有宝箱并结算通关奖励；若中途失败或撤离，仅保留 <b>半数宝箱（向下取整，<code>curBoxNum / 2</code>）</b>。</p>
               <p><b>强制战斗与逃跑</b>：带有「封锁周围格 / 踩入即战」标记的战斗房在未击败前会锁住周边格；逃跑将扣除对应比例队伍生命值（普通/中等/困难战斗房为 10%，首领房不扣血）。</p>
-              <p><b>怪物关卡修正</b>：同层所有战斗（含随机房、事件战斗、首领房）共享该层的 <code>battleLevel</code>、<code>battleLevelScale</code>（攻防修正）与 <code>battleLevelScaleHp</code>（生命修正）。</p>
+              <p><b>怪物关卡修正</b>：同层所有战斗（含随机房、事件战斗、首领房）共享该层的 <code>battleLevel</code>、<code>battleLevelScale</code>（攻击修正）与 <code>battleLevelScaleHp</code>（生命修正）。</p>
               <p><b>遗器法盘作用域</b>：法盘上嵌入的遗器属性与共鸣技能仅在本秘境战斗内生效，不影响主线、日常或神匠之塔。</p>
             </div>
           </UiSection>

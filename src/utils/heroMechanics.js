@@ -122,15 +122,37 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
   },
   '06404': {
     reviewStatus: 'verified',
-    damage: { crit: 'conditional' },
-    conditions: ['普通攻击改造部分按普通攻击结算并可暴击；魔剑元素爆发及其附加伤害不能暴击。'],
+    damage: {
+      form: 'buff',
+      formLabel: 'Buff伤害',
+      types: ['magicAtk'],
+      typeLabels: ['魔法'],
+      elements: ['fire'],
+      elementLabels: ['火'],
+      scaling: ['phyAtk'],
+      scalingLabels: ['物理攻击'],
+      multiplier: 1.5,
+      segments: [{ damageType: 'magicAtk', elementType: 'fire', scaling: 'phyAtk', multiplier: 1.5, baseDamage: 0 }],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'magicDamage', 'magicPenetration', 'fireDamage'],
+      excludes: ['normalDamage', 'skillDamage', 'normalAndSkillDamage']
+    },
+    outcomes: ['damage'],
+    outcomeLabels: ['伤害'],
+    conditions: ['普通攻击改造部分按普通攻击结算并可暴击；魔剑5层元素爆发（150%物理攻击加成，按烬刃火/霜锋水对应属性结算）与切换引爆均按Buff伤害结算且不能暴击。'],
     notes: []
   },
   '02504': {
     reviewStatus: 'verified',
-    damage: { crit: 'no' },
+    damage: { form: 'skill', formLabel: '技能伤害', crit: 'no' },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'earthDamage', 'skillDamage', 'normalAndSkillDamage'],
+      excludes: ['normalDamage']
+    },
     features: ['多段'],
-    conditions: ['天赋额外发射的弩箭按技能伤害结算，不能暴击；普通攻击本体仍可暴击。'],
+    conditions: ['天赋额外发射的弩箭按技能伤害结算（同一目标连续命中后续伤害衰减50%），不能暴击；普通攻击本体仍可暴击。'],
     notes: []
   },
   '02604': {
@@ -141,8 +163,29 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
   },
   '03304': {
     reviewStatus: 'verified',
-    damage: { crit: 'no' },
-    conditions: ['天赋附加的最大生命值伤害不能暴击；普通攻击本体仍按普通攻击结算。'],
+    damage: {
+      form: 'normalAtk',
+      formLabel: '普通攻击',
+      types: ['phyAtk'],
+      typeLabels: ['物理'],
+      elements: ['water'],
+      elementLabels: ['水'],
+      scaling: ['phyAtk', 'maxHp'],
+      scalingLabels: ['物理攻击', '最大生命'],
+      multiplier: 1,
+      segments: [
+        { damageType: 'phyAtk', elementType: 'water', scaling: 'phyAtk', multiplier: 1, baseDamage: 0 },
+        { damageType: 'phyAtk', elementType: 'water', scaling: 'maxHp', multiplier: 0.03, baseDamage: 0 }
+      ],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'waterDamage', 'normalDamage', 'normalAndSkillDamage'],
+      excludes: ['skillDamage']
+    },
+    outcomes: ['damage'],
+    outcomeLabels: ['伤害'],
+    conditions: ['受击5次后的强化范围挥砍（100%物理攻击水属性 + 3%自身最大生命值附加水属性物理伤害）均不启用暴击；其余常规普攻仍可暴击。'],
     notes: []
   },
   '03404': {
@@ -159,8 +202,24 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
   },
   '06604': {
     reviewStatus: 'verified',
-    damage: { crit: 'no' },
-    conditions: ['冰爆伤害不能暴击；触发冰岩的普通攻击仍按普通攻击结算。'],
+    damage: {
+      form: 'skill',
+      formLabel: '技能伤害',
+      types: ['phyAtk'],
+      typeLabels: ['物理'],
+      elements: ['water'],
+      elementLabels: ['水'],
+      scaling: ['phyAtk'],
+      scalingLabels: ['物理攻击'],
+      multiplier: 0.75,
+      segments: [{ damageType: 'phyAtk', elementType: 'water', scaling: 'phyAtk', multiplier: 0.75, baseDamage: 0 }],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'waterDamage', 'skillDamage', 'normalAndSkillDamage'],
+      excludes: ['normalDamage']
+    },
+    conditions: ['冰爆伤害按技能伤害结算，实际配置为水属性物理伤害（与文本“魔法伤害”不一致）且不能暴击；触发冰岩的普通攻击仍按普通攻击结算。'],
     notes: []
   },
   '00104': {
@@ -186,22 +245,219 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
   },
   '00804': {
     reviewStatus: 'verified',
-    damage: { form: 'buff', formLabel: 'Buff伤害', crit: 'no' },
+    damage: {
+      form: 'buff',
+      formLabel: 'Buff伤害',
+      types: ['magicAtk'],
+      typeLabels: ['魔法'],
+      elements: ['fire'],
+      elementLabels: ['火'],
+      scaling: ['magicAtk'],
+      scalingLabels: ['魔法攻击'],
+      multiplier: 0.3,
+      segments: [{ damageType: 'magicAtk', elementType: 'fire', scaling: 'magicAtk', multiplier: 0.3, baseDamage: 0 }],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['magicAtk', 'magicDamage', 'magicPenetration', 'fireDamage'],
+      excludes: ['normalDamage', 'skillDamage', 'normalAndSkillDamage']
+    },
     outcomes: ['damageOverTime'],
     outcomeLabels: ['持续伤害'],
-    conditions: ['【灼烧】的持续伤害不能暴击；天赋由角色自身暴击触发。'],
+    conditions: ['【灼烧】每秒造成1次持续伤害、持续5秒（共5跳），按Buff伤害结算且不能暴击；实际配置倍率为每秒30%魔法攻击（与技能文本“10%”不一致）。'],
     notes: []
   },
   '01204': {
     reviewStatus: 'verified',
     damage: { crit: 'no' },
-    conditions: ['第5次普攻触发的火箭附加伤害不能暴击；普通攻击本体仍可暴击。'],
+    conditions: ['第5次普攻触发100%火属性物理附加箭矢（按普通攻击结算但不可暴击）并附加持续3秒的【灼烧】（每秒1跳20%火属性物理伤害，共3跳，不可暴击）；普通攻击本体仍可暴击。'],
     notes: []
   },
   '04104': {
     reviewStatus: 'verified',
-    damage: { crit: 'yes' },
-    conditions: ['反击有30%概率触发；触发后有4秒冷却。'],
+    damage: {
+      form: 'normalAtk',
+      formLabel: '普通攻击',
+      types: ['phyAtk'],
+      typeLabels: ['物理'],
+      elements: ['water'],
+      elementLabels: ['水'],
+      scaling: ['phyAtk'],
+      scalingLabels: ['物理攻击'],
+      multiplier: 1,
+      segments: [{ damageType: 'phyAtk', elementType: 'water', scaling: 'phyAtk', multiplier: 1, baseDamage: 0 }],
+      crit: 'yes'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'waterDamage', 'normalDamage', 'normalAndSkillDamage'],
+      excludes: ['skillDamage']
+    },
+    conditions: ['反击有30%概率触发，造成100%水属性普通攻击伤害并可暴击；触发后有4秒冷却。'],
+    notes: []
+  },
+  '01404': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'none',
+      formLabel: '无直接伤害',
+      types: [],
+      typeLabels: [],
+      elements: [],
+      elementLabels: [],
+      scaling: [],
+      scalingLabels: [],
+      multiplier: 0,
+      segments: [],
+      crit: 'na'
+    },
+    bonuses: { applies: [], excludes: [] },
+    outcomes: ['statBuff'],
+    outcomeLabels: ['属性增益'],
+    conditions: ['对处于【流血】状态的敌人进行普通攻击时，该次普攻对流血标签伤害加成提高30%，不单独造成额外一段伤害。'],
+    notes: []
+  },
+  '03004': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'normalAtk',
+      formLabel: '普通攻击',
+      types: ['phyAtk'],
+      typeLabels: ['物理'],
+      elements: ['earth'],
+      elementLabels: ['地'],
+      scaling: ['phyAtk'],
+      scalingLabels: ['物理攻击'],
+      multiplier: 2,
+      segments: [{ damageType: 'phyAtk', elementType: 'earth', scaling: 'phyAtk', multiplier: 2, baseDamage: 0 }],
+      crit: 'yes'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'earthDamage', 'normalDamage', 'normalAndSkillDamage'],
+      excludes: ['skillDamage']
+    },
+    outcomes: ['damage', 'statBuff'],
+    outcomeLabels: ['伤害', '属性增益'],
+    conditions: ['触发狂暴后的强化挥砍将普攻倍率提升至200%地属性物理伤害，按普通攻击结算并可暴击。'],
+    notes: []
+  },
+  '03104': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'buff',
+      formLabel: 'Buff伤害',
+      types: ['magicAtk'],
+      typeLabels: ['魔法'],
+      elements: [],
+      elementLabels: [],
+      scaling: ['magicAtk'],
+      scalingLabels: ['魔法攻击'],
+      multiplier: 0.5,
+      segments: [{ damageType: 'magicAtk', elementType: '', scaling: 'magicAtk', multiplier: 0.5, baseDamage: 0 }],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['magicAtk', 'magicDamage', 'magicPenetration'],
+      excludes: ['normalDamage', 'skillDamage', 'normalAndSkillDamage']
+    },
+    outcomes: ['damageOverTime'],
+    outcomeLabels: ['持续伤害'],
+    conditions: ['每第4次普通攻击使目标中毒3秒，每秒造成50%魔法攻击加成的无属性魔法伤害（共3跳），按Buff伤害结算且不能暴击。'],
+    notes: []
+  },
+  '03204': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'none',
+      formLabel: '无直接伤害',
+      types: [],
+      typeLabels: [],
+      elements: [],
+      elementLabels: [],
+      scaling: [],
+      scalingLabels: [],
+      multiplier: 0,
+      segments: [],
+      crit: 'na'
+    },
+    bonuses: { applies: [], excludes: [] },
+    outcomes: ['statBuff'],
+    outcomeLabels: ['属性增益'],
+    conditions: ['目标生命值低于50%时每层提供3%物理攻击、3点攻速与5%移速（最多叠加3层），不造成直接伤害。'],
+    notes: []
+  },
+  '04504': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'buff',
+      formLabel: 'Buff伤害',
+      types: ['magicAtk'],
+      typeLabels: ['魔法'],
+      elements: [],
+      elementLabels: [],
+      scaling: ['magicAtk'],
+      scalingLabels: ['魔法攻击'],
+      multiplier: 0.65,
+      segments: [{ damageType: 'magicAtk', elementType: '', scaling: 'magicAtk', multiplier: 0.65, baseDamage: 0 }],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['magicAtk', 'magicDamage', 'magicPenetration'],
+      excludes: ['normalDamage', 'skillDamage', 'normalAndSkillDamage']
+    },
+    outcomes: ['damage'],
+    outcomeLabels: ['伤害'],
+    conditions: ['普攻叠满5层电荷后引爆，造成1次65%魔法攻击加成的无属性魔法伤害（按Buff伤害结算，不能暴击）。'],
+    notes: []
+  },
+  '04704': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'normalAtk',
+      formLabel: '普通攻击',
+      types: ['phyAtk'],
+      typeLabels: ['物理'],
+      elements: ['wind'],
+      elementLabels: ['风'],
+      scaling: ['phyAtk'],
+      scalingLabels: ['物理攻击'],
+      multiplier: 0.8,
+      segments: [
+        { damageType: 'phyAtk', elementType: 'wind', scaling: 'phyAtk', multiplier: 0.8, baseDamage: 0 },
+        { damageType: 'phyAtk', elementType: 'wind', scaling: 'phyAtk', multiplier: 0.4, baseDamage: 0 }
+      ],
+      crit: 'yes'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'windDamage', 'normalDamage', 'normalAndSkillDamage'],
+      excludes: ['skillDamage']
+    },
+    outcomes: ['damage'],
+    outcomeLabels: ['伤害'],
+    conditions: ['将普攻改为扇形顺劈：主目标80%风属性物理伤害、其余范围内目标40%风属性物理伤害；两段均按普通攻击结算并可暴击。'],
+    notes: []
+  },
+  '06904': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'buff',
+      formLabel: 'Buff伤害',
+      types: ['phyAtk'],
+      typeLabels: ['物理'],
+      elements: ['earth'],
+      elementLabels: ['地'],
+      scaling: ['phyAtk'],
+      scalingLabels: ['物理攻击'],
+      multiplier: 0.03,
+      segments: [{ damageType: 'phyAtk', elementType: 'earth', scaling: 'phyAtk', multiplier: 0.03, baseDamage: 0 }],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'earthDamage'],
+      excludes: ['normalDamage', 'skillDamage', 'normalAndSkillDamage']
+    },
+    outcomes: ['damageOverTime'],
+    outcomeLabels: ['持续伤害'],
+    conditions: ['普攻附加持续5秒的【蜂毒】（最多3层），每秒每层造成3%物理攻击加成的地属性物理伤害（满层每秒9%，共5跳），按Buff伤害结算且不能暴击。'],
     notes: []
   },
   '03703': {
