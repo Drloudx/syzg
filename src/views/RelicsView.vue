@@ -234,6 +234,7 @@
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { fetchWithFallback } from '../utils/request.js'
+import { fetchItemMetaData } from '../utils/itemParser.js'
 import { getImageUrl, handleImageFallback } from '../utils/env.js'
 import { useLazyList } from '../composables/useLazyList.js'
 import { resolveScrollTarget } from '../utils/scrollTarget.js'
@@ -444,11 +445,11 @@ async function loadData() {
     data.value = await fetchWithFallback('data/parsed/relics.json')
     /*
      * ItemDetailModal 用 categoryTree 解析 `item.category`（数字分类路径）。
-     * 遗器本身不带分类路径，但组件需要它才不报错，故顺手取 items.json 的分类树。
+     * 仅加载 ~2 KB 的 items-meta.json，不再为了分类树拖入整张 items.json。
      */
     try {
-      const itemsData = await fetchWithFallback('data/parsed/items.json')
-      categoryTree.value = itemsData?.categoryTree || []
+      const itemsMeta = await fetchItemMetaData()
+      categoryTree.value = itemsMeta?.categoryTree || []
     } catch { /* 分类树失败不影响遗器列表 */ }
   } catch (cause) {
     error.value = '遗器图鉴加载失败，请重试。'

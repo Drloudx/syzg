@@ -187,8 +187,10 @@
       </template>
     </UiCardGrid>
 
-    <UiEmptyState v-else-if="loadError" type="error" text="装备数据暂时不可用">
-      <template #action><UiButton @click="loadItems">重新加载</UiButton></template>
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage">
+      <template #action>
+        <UiButton @click="retryLoadItems">{{ errorNeedsReload ? '刷新页面' : '重新加载' }}</UiButton>
+      </template>
     </UiEmptyState>
     <UiEmptyState v-else type="loading" text="数据加载中..." />
     <UiBackToTop scroll-container="#itemsGridScroll" />
@@ -209,7 +211,7 @@ import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   compareItemsByCategoryQuality,
-  fetchItemData,
+  fetchEquipListData,
   getItemImageUrl,
   isVisibleEquipItem,
   calculateEquipAttributeRange,
@@ -221,6 +223,7 @@ import {
   parseItemAffixes
 } from '../utils/itemParser'
 import { getImageUrl } from '../utils/env'
+import { formatResourceLoadError, isResourceVersionMismatch } from '../utils/resourceClient.js'
 import { isBlacklisted, isEquipTierHidden, visibleEquipTiers } from '../config/blacklist.js'
 import { getRarityName, JOB_NAMES } from '../utils/gameMappings'
 import { useLazyList } from '../composables/useLazyList'
@@ -245,7 +248,8 @@ const router = useRouter()
 const allItems = ref([])
 const subCategories = ref([])
 const isDataReady = ref(false)
-const loadError = ref(false)
+const errorMessage = ref('')
+const errorNeedsReload = ref(false)
 const showRandomGuide = ref(false)
 let loadOperation = 0
 
@@ -449,9 +453,10 @@ function searchTextOf(item) {
 
 const loadItems = async () => {
   const operation = ++loadOperation
-  loadError.value = false
+  errorMessage.value = ''
+  errorNeedsReload.value = false
   try {
-    const data = await fetchItemData()
+    const data = await fetchEquipListData()
     if (operation !== loadOperation) return
     allItems.value = data.items
     // 建搜索索引与展示缓存（只做一次；后面每次按键/滚动只查 Map）
@@ -460,9 +465,20 @@ const loadItems = async () => {
     subCategories.value = data.categoryTree.find(c => String(c.type) === '4')?.info || []
     isDataReady.value = true
   } catch (error) {
-    if (operation === loadOperation) loadError.value = true
+    if (operation === loadOperation) {
+      errorNeedsReload.value = isResourceVersionMismatch(error)
+      errorMessage.value = formatResourceLoadError(error, '装备数据加载失败，请重试')
+    }
     console.error('Equipment loading failed:', error)
   }
+}
+
+const retryLoadItems = () => {
+  if (errorNeedsReload.value && typeof window !== 'undefined') {
+    window.location.reload()
+    return
+  }
+  loadItems()
 }
 onMounted(loadItems)
 onBeforeUnmount(() => { loadOperation += 1 })

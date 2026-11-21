@@ -1,4 +1,5 @@
-const DEFAULT_TIMEOUT_MS = 8000
+// items.json 原文约 2.9 MB（压缩传输约 327 KB），晚高峰回源容易超过 8 秒，放宽到 25 秒
+const DEFAULT_TIMEOUT_MS = 25000
 
 /**
  * `crypto.subtle` 是否存在。
@@ -192,4 +193,31 @@ export function createCachedLoader(load) {
     }
     return pending
   }
+}
+
+export function isResourceVersionMismatch(error) {
+  return typeof error?.message === 'string' && error.message.includes('Resource version mismatch')
+}
+
+/** 将资源加载异常转为面向用户的可读提示，区分超时、版本更新与网络错误。 */
+export function formatResourceLoadError(error, defaultMessage = '数据加载失败，请重试') {
+  const msg = String(error?.message || '')
+  if (!msg) return defaultMessage
+  if (msg.includes('Resource version mismatch')) {
+    return '站点刚刚更新，当前页面版本已过期，请刷新页面获取最新版本'
+  }
+  if (msg.includes('timed out')) {
+    return `${defaultMessage}（请求超时，可能当前网络或 CDN 回源较慢）`
+  }
+  const statusMatch = msg.match(/Resource request failed \((\d+)\)/)
+  if (statusMatch) {
+    return `${defaultMessage}（服务器返回 HTTP ${statusMatch[1]}）`
+  }
+  if (msg.includes('Invalid resource data')) {
+    return `${defaultMessage}（数据格式校验失败，请刷新页面重试）`
+  }
+  if (/failed to fetch|networkerror|load failed/i.test(msg)) {
+    return `${defaultMessage}（网络连接失败，请检查网络或代理后重试）`
+  }
+  return defaultMessage
 }

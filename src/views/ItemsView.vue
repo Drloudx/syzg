@@ -91,7 +91,9 @@
       <template #empty><UiEmptyState text="无匹配物品" /></template>
     </UiVirtualGrid>
     <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage">
-      <template #action><UiButton @click="loadItems">重试</UiButton></template>
+      <template #action>
+        <UiButton @click="retryLoadItems">{{ errorNeedsReload ? '刷新页面' : '重试' }}</UiButton>
+      </template>
     </UiEmptyState>
     <UiEmptyState v-else type="loading" text="数据加载中..." />
 
@@ -101,9 +103,10 @@
 
 <script setup>
 import { ref, shallowRef, computed, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
-import { compareItemsByCategoryQuality, fetchItemData, getItemImageUrl, isVisibleEquipItem } from '../utils/itemParser'
+import { compareItemsByCategoryQuality, fetchItemListData, getItemImageUrl, isVisibleEquipItem } from '../utils/itemParser'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { fetchWithFallback } from '../utils/request.js'
+import { formatResourceLoadError, isResourceVersionMismatch } from '../utils/resourceClient.js'
 import { itemModalState } from '../utils/itemModalState'
 import { visibleEquipTiers } from '../config/blacklist.js'
 import { isVisible, loadChapterLock } from '../config/visibility.js'
@@ -127,6 +130,7 @@ const allItems = shallowRef([])
 const categoryTree = ref([])
 const isDataReady = ref(false)
 const errorMessage = ref('')
+const errorNeedsReload = ref(false)
 const itemGrid = ref(null)
 let loadOperation = 0
 let initialDetailId = route.query.itemId || null
@@ -159,16 +163,29 @@ watch(selectedMain, () => {
 const loadItems = async () => {
   const operation = ++loadOperation
   errorMessage.value = ''
+  errorNeedsReload.value = false
   isDataReady.value = false
   try {
-    const data = await fetchItemData()
+    const data = await fetchItemListData()
     if (operation !== loadOperation) return
     allItems.value = data.items
     categoryTree.value = data.categoryTree
     isDataReady.value = true
   } catch (error) {
-    if (operation === loadOperation) errorMessage.value = '物品数据加载失败，请重试'
+    if (operation === loadOperation) {
+      errorNeedsReload.value = isResourceVersionMismatch(error)
+      errorMessage.value = formatResourceLoadError(error, '物品数据加载失败，请重试')
+    }
+    console.error('Items loading failed:', error)
   }
+}
+
+const retryLoadItems = () => {
+  if (errorNeedsReload.value && typeof window !== 'undefined') {
+    window.location.reload()
+    return
+  }
+  loadItems()
 }
 
 onMounted(async () => {

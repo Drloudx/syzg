@@ -97,24 +97,7 @@ export function buildPetData(maps) {
             levelData,
             maxLevel: levelData.length
           })
-          /*
-           * 特性摘要：供「特性表格」视图使用。
-           * `maxText` = 满级（7 级）文本；`rangeText` = 「1 级 → 7 级」的数值区间摘要
-           * （例如「15% → 27%」）。区间取首末两级文本里 `{…}` 高亮片段；两级的片段数量/顺序
-           * 不一致时退化为整段文本，避免给出错误对照。
-           */
-          const pctOf = text => [...String(text || '').matchAll(/\{([^}]+)\}/g)].map(m => m[1])
-          const firstPct = pctOf(levelData[0]?.des)
-          const lastPct = pctOf(levelData[levelData.length - 1]?.des)
-          /*
-           * 只列出**确实随等级变化**的数值（首级 ≠ 满级）。
-           * 「100%→100%」这类恒定值对读者没信息量，剔除。
-           * 两级的高亮片段数量/顺序不一致时不生成区间，避免错配。
-           */
-          const changed = firstPct.length && firstPct.length === lastPct.length
-            ? firstPct.map((v, i) => [v, lastPct[i]]).filter(([a, b]) => a !== b)
-            : []
-          const rangeText = changed.map(([a, b]) => `${a} → ${b}`).join('，')
+          const rangeText = extractLevelRangeText(levelData[0]?.des, levelData[levelData.length - 1]?.des)
           traitSummary = {
             name: getCleanSkillName(rawName),
             maxText: levelData[levelData.length - 1]?.des || '',
@@ -417,40 +400,76 @@ export function getPetBreakthroughRoadmap(star, petSetting, s1Name = '技能', s
 }
 
 /**
+ * 从首级与满级技能描述中提取随等级变化的数值区间摘要（如「15% → 27%」）。
+ * 优先对比 `{…}` 高亮片段；若均未变化（如个别配置未用 `{}` 包裹成长值），退回对比文本中的数值/百分比片段。
+ * 两级片段数量不一致时不生成区间，避免错配。
+ */
+export function extractLevelRangeText(firstDes, lastDes) {
+  const firstStr = String(firstDes || '')
+  const lastStr = String(lastDes || '')
+  const pctOf = text => [...text.matchAll(/\{([^}]+)\}/g)].map(m => m[1])
+  const firstPct = pctOf(firstStr)
+  const lastPct = pctOf(lastStr)
+
+  let changed = firstPct.length && firstPct.length === lastPct.length
+    ? firstPct.map((v, i) => [v, lastPct[i]]).filter(([a, b]) => a !== b)
+    : []
+
+  if (!changed.length) {
+    const numOf = text => [...text.matchAll(/\d+(?:\.\d+)?%?/g)].map(m => m[0])
+    const firstNums = numOf(firstStr)
+    const lastNums = numOf(lastStr)
+    if (firstNums.length && firstNums.length === lastNums.length) {
+      changed = firstNums.map((v, i) => [v, lastNums[i]]).filter(([a, b]) => a !== b)
+    }
+  }
+
+  return changed.map(([a, b]) => `${a} → ${b}`).join('，')
+}
+
+/**
  * 魔物检索文本聚合（WeakMap 缓存）。
  * @param {object} pet 魔物对象
  * @param {object} [options]
  * @param {boolean} [options.includeSkills=true] 是否包含主动/被动技能（特性表格视图应为 false，避免未展示技能产生误解）
+ * @param {'trait'|'skill'|'passive'|null} [options.scope=null] 表格分栏检索范围（仅命中当前表格展示列，避免货不对板）
  */
 const petSearchTextCache = new WeakMap()
-export function getPetSearchText(pet, { includeSkills = true } = {}) {
+export function getPetSearchText(pet, { includeSkills = true, scope = null } = {}) {
   if (!pet || typeof pet !== 'object') return ''
-  const cacheKey = includeSkills ? 'all' : 'traitOnly'
+  const resolvedScope = scope || (includeSkills ? 'all' : 'trait')
   let cachedMap = petSearchTextCache.get(pet)
   if (!cachedMap) {
     cachedMap = {}
     petSearchTextCache.set(pet, cachedMap)
   }
-  if (cachedMap[cacheKey]) return cachedMap[cacheKey]
+  if (cachedMap[resolvedScope]) return cachedMap[resolvedScope]
 
   const traitTexts = []
-  if (pet.trait) {
+  if ((resolvedScope === 'all' || resolvedScope === 'trait') && pet.trait) {
     if (pet.trait.name) traitTexts.push(pet.trait.name)
     if (pet.trait.maxText) traitTexts.push(pet.trait.maxText)
     if (pet.trait.rangeText) traitTexts.push(pet.trait.rangeText)
   }
 
   const skillTexts = []
-  if (includeSkills && Array.isArray(pet.skills)) {
-    for (const s of pet.skills) {
-      if (s.name) skillTexts.push(s.name)
-      if (Array.isArray(s.levelData)) {
-        for (const l of s.levelData) {
-          if (l.des) skillTexts.push(l.des)
-          if (l.name && l.name !== s.name) skillTexts.push(l.name)
-        }
+  const appendSkill = (s) => {
+    if (!s) return
+    if (s.name) skillTexts.push(s.name)
+    if (Array.isArray(s.levelData)) {
+      for (const l of s.levelData) {
+        if (l.des) skillTexts.push(l.des)
+        if (l.name && l.name !== s.name) skillTexts.push(l.name)
       }
     }
+  }
+
+  if (resolvedScope === 'all' && Array.isArray(pet.skills)) {
+    pet.skills.forEach(appendSkill)
+  } else if (resolvedScope === 'skill') {
+    appendSkill(pet.skills?.[2])
+  } else if (resolvedScope === 'passive') {
+    appendSkill(pet.skills?.[3])
   }
 
   const raw = [
@@ -466,7 +485,7 @@ export function getPetSearchText(pet, { includeSkills = true } = {}) {
   ].filter(Boolean).join(' ')
 
   const text = raw.replace(/[{}\[\]]/g, ' ').toLowerCase()
-  cachedMap[cacheKey] = text
+  cachedMap[resolvedScope] = text
   return text
 }
 

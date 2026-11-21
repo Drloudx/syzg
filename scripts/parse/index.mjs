@@ -160,8 +160,11 @@ for (const job of jobs) {
   if (job.name === 'items') itemData = output.data
   if (job.name === 'tasks') taskData = output.data
   if (job.name === 'recipes') recipeData = output.data
-  // heroes 现在产出两个文件（heroes.json + hero-summary.json），主数据取第一个
-  if (job.name === 'heroes') heroData = output.files?.[0]?.data || output.data
+  // heroes 现在产出全量 + 拆分列表/邮件/单角色详情文件，写盘前先清旧目录避免孤立文件残留
+  if (job.name === 'heroes') {
+    rmSync(join(parsedDir, 'heroes'), { recursive: true, force: true })
+    heroData = output.files?.[0]?.data || output.data
+  }
   if (job.name === 'pets') petData = output.data
   const files = output.files || [output]
   files.forEach(writeOutput)

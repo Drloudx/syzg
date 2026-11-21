@@ -8,6 +8,9 @@ import { resolveEquipSummons } from './equipSummonMechanics.js'
 
 // 缓存数据，避免重复请求
 let cachedItems = null
+let cachedItemsFullLoaded = false
+let cachedEquipsData = null
+let cachedItemDetailsMap = null
 let cachedCategoryTree = null
 let lanDict = null
 let cachedAvatars = null
@@ -804,26 +807,258 @@ export function buildEquipUpgrades({ equipQualityUpgradeRes = {}, rewardRes = {}
   return result
 }
 
-function setItemCache(data) {
-  cachedItems = data.items
-  cachedCategoryTree = data.categoryTree
-  lanDict = data.lanDict
-  cachedAvatars = data.avatars
-  cachedRewards = data.rewards
-  cachedEquipEnchants = data.equipEnchants
-  cachedSkillTriggers = data.skillTriggers
-  cachedEquipGroups = data.equipGroups
-  cachedEquipSuits = data.equipSuits
-  cachedItemAffixes = data.itemAffixes
-  cachedEquipGlobalConfig = data.equipGlobalConfig || null
-  cachedEquipEnhanceConfig = data.equipEnhanceConfig || buildEquipEnhanceConfig(data.equipGlobalConfig)
+const ITEM_DETAIL_KEYS = [
+  'acquisition',
+  'smithing',
+  'homeItemUnlocks',
+  'facilityCrafting',
+  'useActionPara',
+  'useActionPara2',
+  'seedInfo',
+  'petEggInfo',
+  'potionInfo',
+  'heroStarUsage',
+  'origin',
+  'use2Info',
+  'getTip',
+  'skinUnlock'
+]
+
+function stripItemDetailFields(item) {
+  if (!item || typeof item !== 'object') return item
+  const out = {}
+  for (const [k, v] of Object.entries(item)) {
+    if (!ITEM_DETAIL_KEYS.includes(k)) out[k] = v
+  }
+  // 物品图鉴筛选「家具图纸」仅需判定 catalogVisible 标记
+  if (Array.isArray(item.homeItemUnlocks) && item.homeItemUnlocks.some(u => u?.catalogVisible)) {
+    out.homeItemUnlocks = [{ catalogVisible: true }]
+  }
+  return out
+}
+
+function pickItemDetailFields(item) {
+  if (!item || typeof item !== 'object') return null
+  const detail = {}
+  let hasAny = false
+  for (const k of ITEM_DETAIL_KEYS) {
+    if (item[k] !== undefined) {
+      detail[k] = item[k]
+      hasAny = true
+    }
+  }
+  return hasAny ? detail : null
+}
+
+function pickSkillTriggerSubset(data, { includeEnchants = false } = {}) {
+  const all = data?.skillTriggers || {}
+  const used = new Set()
+  const prefixPool = data?.equipGlobalConfig?.prefixPool || {}
+
+  for (const groups of Object.values(data?.itemAffixes || {})) {
+    if (!Array.isArray(groups)) continue
+    for (const g of groups) {
+      for (const prefixId of (g?.prefixes || [])) {
+        const triggerId = prefixPool[prefixId]?.skillTriggerId || prefixId
+        if (triggerId) used.add(triggerId)
+      }
+    }
+  }
+
+  for (const suit of Object.values(data?.equipSuits || {})) {
+    if (suit?.suitSkill1) used.add(suit.suitSkill1)
+    if (suit?.suitSkill2) used.add(suit.suitSkill2)
+    if (suit?.suitSkill3) used.add(suit.suitSkill3)
+  }
+
+  if (includeEnchants) {
+    const enchants = data?.equipEnchants?.datas || data?.equipEnchants || {}
+    for (const enchant of Object.values(enchants)) {
+      if (enchant?.skillTriggerId) used.add(enchant.skillTriggerId)
+    }
+  }
+
+  const subset = {}
+  for (const key of used) {
+    if (all[key]) subset[key] = all[key]
+  }
+  return subset
 }
 
 /**
- * 统一加载构建期预解析的核心数据。
+ * 将全量 `items.json` 拆分为 4 份轻量化按需产物：
+ *   - `metaData`（~2 KB）：仅含 categoryTree（遗器图鉴等分类路径解析用）
+ *   - `equipsData`（~260 KB）：装备图鉴首屏所需的装备列表与词条/套装配置
+ *   - `listData`（~480 KB）：物品图鉴与材料索引所需的精简全物品列表（剥离 rewards 与弹窗大字段）
+ *   - `extraData`（~1.7 MB）：rewards 奖励表与各物品弹窗详情大字段，打开详情弹窗时再懒加载
+ */
+export function splitItemDataBundle(data) {
+  const items = Array.isArray(data?.items) ? data.items : []
+  const slimItems = items.map(stripItemDetailFields)
+  const equipItems = slimItems.filter(item =>
+    (item?.equip && Object.keys(item.equip).length > 0) || String(item?.category?.[0] || '') === '4'
+  )
+
+  const detailsById = {}
+  for (const item of items) {
+    if (!item?.typeId) continue
+    const detail = pickItemDetailFields(item)
+    if (detail) detailsById[item.typeId] = detail
+  }
+
+  const sharedEquipConfig = {
+    categoryTree: data.categoryTree || [],
+    lanDict: data.lanDict || {},
+    equipEnchants: data.equipEnchants || {},
+    equipGroups: data.equipGroups || {},
+    equipSuits: data.equipSuits || {},
+    itemAffixes: data.itemAffixes || {},
+    equipGlobalConfig: data.equipGlobalConfig || null,
+    equipEnhanceConfig: data.equipEnhanceConfig || null
+  }
+
+  return {
+    metaData: { categoryTree: data.categoryTree || [] },
+    equipsData: {
+      ...sharedEquipConfig,
+      items: equipItems,
+      skillTriggers: pickSkillTriggerSubset(data, { includeEnchants: false })
+    },
+    listData: {
+      ...sharedEquipConfig,
+      items: slimItems,
+      avatars: data.avatars || [],
+      skillTriggers: pickSkillTriggerSubset(data, { includeEnchants: true })
+    },
+    extraData: {
+      rewards: data.rewards || {},
+      detailsById
+    }
+  }
+}
+
+function mergeDetailsIntoItems(items, detailsById) {
+  if (!Array.isArray(items) || !detailsById) return items
+  return items.map(item => {
+    const detail = item?.typeId ? detailsById[item.typeId] : null
+    return detail ? { ...item, ...detail } : item
+  })
+}
+
+function setSharedItemConfigs(data) {
+  if (data.categoryTree) cachedCategoryTree = data.categoryTree
+  if (data.lanDict) lanDict = data.lanDict
+  if (data.avatars) cachedAvatars = data.avatars
+  if (data.rewards) cachedRewards = data.rewards
+  if (data.equipEnchants) cachedEquipEnchants = data.equipEnchants
+  if (data.skillTriggers) cachedSkillTriggers = { ...(cachedSkillTriggers || {}), ...data.skillTriggers }
+  if (data.equipGroups) cachedEquipGroups = data.equipGroups
+  if (data.equipSuits) cachedEquipSuits = data.equipSuits
+  if (data.itemAffixes) cachedItemAffixes = data.itemAffixes
+  if (data.equipGlobalConfig) cachedEquipGlobalConfig = data.equipGlobalConfig
+  if (data.equipEnhanceConfig || data.equipGlobalConfig) {
+    cachedEquipEnhanceConfig = data.equipEnhanceConfig || buildEquipEnhanceConfig(data.equipGlobalConfig)
+  }
+}
+
+function setItemCache(data, { isFullList = true } = {}) {
+  setSharedItemConfigs(data)
+  if (Array.isArray(data.items)) {
+    const merged = mergeDetailsIntoItems(data.items, cachedItemDetailsMap)
+    if (isFullList) {
+      cachedItems = merged
+      cachedItemsFullLoaded = true
+    } else if (!cachedItemsFullLoaded) {
+      cachedItems = merged
+    }
+  }
+}
+
+/**
+ * 仅加载物品分类树（~2 KB），供遗器图鉴等无需物品表的页面使用。
+ */
+export const fetchItemMetaData = createCachedLoader(async () => {
+  if (cachedCategoryTree) return { categoryTree: cachedCategoryTree }
+  const parsed = await fetchWithFallback('data/parsed/items-meta.json')
+  cachedCategoryTree = parsed.categoryTree || []
+  return parsed
+})
+
+/**
+ * 仅加载装备图鉴所需轻量数据（`data/parsed/equips.json`，约 260 KB 原文）。
+ */
+export const fetchEquipListData = createCachedLoader(async () => {
+  if (cachedEquipsData) return cachedEquipsData
+  const parsed = await fetchWithFallback('data/parsed/equips.json')
+  setItemCache(parsed, { isFullList: false })
+  cachedEquipsData = {
+    ...parsed,
+    items: mergeDetailsIntoItems(parsed.items, cachedItemDetailsMap)
+  }
+  return cachedEquipsData
+})
+
+/**
+ * 加载精简全量物品列表（`data/parsed/items-list.json`，不含 rewards 与详情大字段）。
+ */
+export const fetchItemListData = createCachedLoader(async () => {
+  if (cachedItemsFullLoaded && cachedItems && cachedCategoryTree) {
+    return {
+      items: cachedItems,
+      categoryTree: cachedCategoryTree,
+      lanDict,
+      avatars: cachedAvatars,
+      rewards: cachedRewards,
+      equipEnchants: cachedEquipEnchants,
+      skillTriggers: cachedSkillTriggers,
+      equipGroups: cachedEquipGroups,
+      equipSuits: cachedEquipSuits,
+      itemAffixes: cachedItemAffixes,
+      equipGlobalConfig: cachedEquipGlobalConfig,
+      equipEnhanceConfig: cachedEquipEnhanceConfig
+    }
+  }
+  const parsed = await fetchWithFallback('data/parsed/items-list.json')
+  setItemCache(parsed, { isFullList: true })
+  return { ...parsed, items: cachedItems }
+})
+
+/**
+ * 按需加载物品详情大字段与 rewards 奖励总表（`data/parsed/items-extra.json`）。
+ */
+export const fetchItemExtraData = createCachedLoader(async () => {
+  if (cachedItemDetailsMap && cachedRewards) {
+    return { rewards: cachedRewards, detailsById: cachedItemDetailsMap }
+  }
+  const parsed = await fetchWithFallback('data/parsed/items-extra.json')
+  cachedRewards = parsed.rewards || {}
+  cachedItemDetailsMap = parsed.detailsById || {}
+  if (cachedItems) cachedItems = mergeDetailsIntoItems(cachedItems, cachedItemDetailsMap)
+  if (cachedEquipsData?.items) {
+    cachedEquipsData = {
+      ...cachedEquipsData,
+      items: mergeDetailsIntoItems(cachedEquipsData.items, cachedItemDetailsMap)
+    }
+  }
+  return parsed
+})
+
+/**
+ * 获取已缓存的合并物品详情（优先回填 items-extra 的重字段）。
+ */
+export function getCachedItemDetail(typeId) {
+  if (!typeId) return null
+  const base = getCachedItem(typeId)
+  const detail = cachedItemDetailsMap?.[typeId]
+  if (base && detail) return { ...base, ...detail }
+  return base || null
+}
+
+/**
+ * 统一加载构建期预解析的核心数据（全量兜底契约，供单测或兼容调用）。
  */
 export const fetchItemData = createCachedLoader(async () => {
-  if (cachedItems && cachedCategoryTree) {
+  if (cachedItemsFullLoaded && cachedItems && cachedCategoryTree && cachedRewards) {
     return {
       items: cachedItems,
       categoryTree: cachedCategoryTree,
@@ -841,7 +1076,7 @@ export const fetchItemData = createCachedLoader(async () => {
   }
 
   const parsed = await fetchWithFallback('data/parsed/items.json')
-  setItemCache(parsed)
+  setItemCache(parsed, { isFullList: true })
   return parsed
 })
 

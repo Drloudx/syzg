@@ -3,7 +3,7 @@
  * 对应浏览器端 src/utils/heroParser.js 的 buildHeroData（同一纯函数）
  * 依赖 items/heroBuilder 共用物品表（由 index.mjs 传入）
  */
-import { buildHeroData } from '../../src/utils/heroParser.js'
+import { buildHeroData, splitHeroDataBundle } from '../../src/utils/heroParser.js'
 import { readJson, publicDataDir } from './shared.mjs'
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -95,6 +95,8 @@ export function buildHeroesFile(itemData) {
     }))
   }
 
+  const { listData, mailsData, detailFiles } = splitHeroDataBundle(data)
+
   /*
    * 🔴 同时给出 `data` 与 `files`。
    *
@@ -106,7 +108,10 @@ export function buildHeroesFile(itemData) {
     data,
     files: [
       { file: 'parsed/heroes.json', data },
-      { file: 'parsed/hero-summary.json', data: summary }
+      { file: 'parsed/hero-summary.json', data: summary },
+      { file: 'parsed/heroes-list.json', data: listData },
+      { file: 'parsed/partner-mails.json', data: mailsData },
+      ...detailFiles.map(d => ({ file: `parsed/heroes/${d.id}.json`, data: d.data }))
     ]
   }
 }

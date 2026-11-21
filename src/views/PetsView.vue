@@ -38,7 +38,7 @@
 
       <div class="pets-toolbar">
         <div class="collection-counter">共 <span class="count-num">{{ filteredPets.length }}</span> 只魔物</div>
-        <!-- 视图模式：图文详情 / 特性表格（桌面默认图文，手机默认表格） -->
+        <!-- 视图模式：图文详情 / 特性 / 技能 / 队伍被动（桌面默认图文，手机默认特性表格） -->
         <div class="view-mode-toggle" role="group" aria-label="视图模式切换">
           <button
             type="button"
@@ -62,20 +62,44 @@
             <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
               <path d="M1 2h14v2H1V2zm0 4h4v3H1V6zm6 0h4v3H7V6zm6 0h2v3h-2V6zM1 11h4v3H1v-3zm6 0h4v3H7v-3zm6 0h2v3h-2v-3z" />
             </svg>
-            <span>特性表格</span>
+            <span>特性</span>
+          </button>
+          <button
+            type="button"
+            class="view-mode-btn"
+            :class="{ 'is-active': viewMode === 'skill' }"
+            title="技能表格：一表看全部魔物的主动技能与 1~4 级效果"
+            @click="setViewMode('skill')"
+          >
+            <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M9.5 1.5L4 9h4l-1.5 5.5L13 7H9l.5-5.5z" />
+            </svg>
+            <span>技能</span>
+          </button>
+          <button
+            type="button"
+            class="view-mode-btn"
+            :class="{ 'is-active': viewMode === 'passive' }"
+            title="队伍被动表格：一表看全部魔物的队伍被动与 1~4 级效果"
+            @click="setViewMode('passive')"
+          >
+            <svg class="view-mode-icon" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 1.5l5.5 2.2v4c0 3.3-2.3 5.9-5.5 6.8C4.8 13.6 2.5 11 2.5 7.7v-4L8 1.5z" />
+            </svg>
+            <span>队伍被动</span>
           </button>
         </div>
       </div>
 
       <!-- 表头行（完全对齐魔物收益页）：放在筛选面板 footer 里，属于顶部固定栏 -->
-      <template v-if="viewMode === 'table'" #footer>
+      <template v-if="isTableMode" #footer>
         <div class="pets-th-row">
           <div class="pets-th th-name">魔物</div>
           <div class="pets-th th-star">星级</div>
           <div class="pets-th th-element">属性</div>
-          <div class="pets-th th-trait">特性名</div>
-          <div class="pets-th th-effect">特性效果（满级 7 级）</div>
-          <div class="pets-th th-range">1 级 → 7 级</div>
+          <div class="pets-th th-trait">{{ tableColMeta.nameLabel }}</div>
+          <div class="pets-th th-effect">{{ tableColMeta.effectLabel }}</div>
+          <div class="pets-th th-range">{{ tableColMeta.rangeLabel }}</div>
         </div>
       </template>
     </UiFilterPanel>
@@ -84,10 +108,10 @@
     <UiEmptyState v-if="!isDataReady && !errorMessage" type="loading" text="正在装配魔物图鉴数据..." />
     <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="loadPetsData" />
 
-    <!-- 特性表格视图（结构借鉴魔物收益页：滚动容器 + paper-panel + flex 行） -->
-    <div v-else-if="viewMode === 'table'" id="petsTableScroll" class="pets-table-scroll" data-main-scroll>
+    <!-- 表格视图（特性 / 技能 / 队伍被动共用骨架：滚动容器 + paper-panel + flex 行） -->
+    <div v-else-if="isTableMode" id="petsTableScroll" class="pets-table-scroll" data-main-scroll>
       <div class="pets-table-container paper-panel">
-        <div v-for="pet in filteredPets" :key="pet.id" class="pets-table-row" @click="handlePetClick(pet)">
+        <div v-for="{ pet, entry } in tableRows" :key="pet.id" class="pets-table-row" @click="handlePetClick(pet)">
           <!-- 魔物头像 + 名称 -->
           <div class="pets-td td-name">
             <div class="pet-avatar-wrapper">
@@ -112,18 +136,19 @@
             <span class="element-tag" :class="`element-${pet.element}`">{{ pet.elementName }}</span>
           </div>
 
-          <!-- 特性名 -->
+          <!-- 特性 / 技能 / 被动名（主动技能附带 CD 标签） -->
           <div class="pets-td td-trait">
-            <span class="trait-name">{{ pet.trait?.name || '—' }}</span>
+            <span class="trait-name">{{ entry.name || '—' }}</span>
+            <span v-if="entry.cd > 0" class="skill-cd-tag">CD {{ entry.cd }}s</span>
           </div>
 
-          <!-- 特性效果（满级 7 级） -->
-          <div class="pets-td td-effect" v-html="pet.trait ? formatSkillDescription(pet.trait.maxText) : '—'"></div>
+          <!-- 满级效果 -->
+          <div class="pets-td td-effect" v-html="entry.maxText ? formatSkillDescription(entry.maxText) : '—'"></div>
 
-          <!-- 1 级 → 7 级（纯数值换行） -->
+          <!-- 1 级 → 满级（纯数值换行） -->
           <div class="pets-td td-range">
-            <div v-if="getPetRanges(pet).length" class="range-list">
-              <span v-for="(rangeItem, idx) in getPetRanges(pet)" :key="idx" class="range-item">
+            <div v-if="entry.ranges.length" class="range-list">
+              <span v-for="(rangeItem, idx) in entry.ranges" :key="idx" class="range-item">
                 {{ rangeItem }}
               </span>
             </div>
@@ -132,7 +157,7 @@
         </div>
 
         <!-- 空态提示：筛选无结果时展示，避免表格坍塌为一条线 -->
-        <UiEmptyState v-if="filteredPets.length === 0" text="未找到匹配的魔物特性数据" />
+        <UiEmptyState v-if="filteredPets.length === 0" :text="tableColMeta.emptyText" />
       </div>
     </div>
 
@@ -181,7 +206,7 @@
       <UiEmptyState v-if="filteredPets.length === 0" text="未找到匹配的魔物数据" />
     </UiCardGrid>
 
-    <UiBackToTop :scroll-container="viewMode === 'table' ? '#petsTableScroll' : '#petsGridScroll'" />
+    <UiBackToTop :scroll-container="isTableMode ? '#petsTableScroll' : '#petsGridScroll'" />
 
     <!-- FULLSCREEN DETAIL MODAL -->
     <UiModal
@@ -778,7 +803,8 @@ import {
   getPetTraitTiers,
   getPetActiveSkillTiers,
   getPetBreakthroughRoadmap,
-  getPetSearchText
+  getPetSearchText,
+  extractLevelRangeText
 } from '../utils/petParser'
 import { getImageUrl } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
@@ -815,17 +841,41 @@ const detailVisible = ref(false)
 const selectedPet = ref(null)
 
 /**
- * 视图模式：`detail`（魔物卡片）/ `table`（特性表格）。
+ * 视图模式：`detail`（图文）/ `table`（特性）/ `skill`（技能）/ `passive`（队伍被动）。
  *
- * 桌面默认「图文」，手机默认「特性表格」——手机上表格比 5 列大卡片更好扫读，
- * 但保留切换按钮，两种视图在两端都能用。用户手动切换后记到 localStorage。
+ * 桌面默认「图文」，手机默认「特性」表格；保留 `table` 键名以兼容既有 localStorage。
  */
 const VIEW_MODE_KEY = 'pets_view_mode'
+const VALID_VIEW_MODES = ['detail', 'table', 'skill', 'passive']
 const isNarrowScreen = () => typeof window !== 'undefined' && window.matchMedia('(max-width: 600px)').matches
+const storedViewMode = typeof localStorage !== 'undefined' ? localStorage.getItem(VIEW_MODE_KEY) : null
 const viewMode = ref(
-  (typeof localStorage !== 'undefined' && localStorage.getItem(VIEW_MODE_KEY)) ||
-  (isNarrowScreen() ? 'table' : 'detail')
+  VALID_VIEW_MODES.includes(storedViewMode)
+    ? storedViewMode
+    : (isNarrowScreen() ? 'table' : 'detail')
 )
+const isTableMode = computed(() => viewMode.value !== 'detail')
+const TABLE_COLUMN_META = {
+  table: {
+    nameLabel: '特性名',
+    effectLabel: '特性效果（满级 7 级）',
+    rangeLabel: '1 级 → 7 级',
+    emptyText: '未找到匹配的魔物特性数据'
+  },
+  skill: {
+    nameLabel: '技能名',
+    effectLabel: '技能效果（满级 4 级）',
+    rangeLabel: '1 级 → 4 级',
+    emptyText: '未找到匹配的魔物技能数据'
+  },
+  passive: {
+    nameLabel: '被动名',
+    effectLabel: '被动效果（满级 4 级）',
+    rangeLabel: '1 级 → 4 级',
+    emptyText: '未找到匹配的魔物队伍被动数据'
+  }
+}
+const tableColMeta = computed(() => TABLE_COLUMN_META[viewMode.value] || TABLE_COLUMN_META.table)
 function setViewMode(mode) {
   viewMode.value = mode
   try { localStorage.setItem(VIEW_MODE_KEY, mode) } catch { /* 隐私模式下忽略 */ }
@@ -919,15 +969,21 @@ const filteredPets = computed(() => {
   }
   
   // Search Query：空格表示“且”，顿号/逗号/斜杠表示“或”
-  // 🔴 特性表格视图只检索特性相关内容，不检索主动技能与队伍被动，避免表格中未展示技能引发“货不对板”的困惑
+  // 表格各分栏仅检索当前表格展示列（避免未展示技能命中导致“货不对板”）
   if (searchQuery.value && searchQuery.value.trim()) {
-    const isTable = viewMode.value === 'table'
+    const searchOpt = viewMode.value === 'table'
+      ? { includeSkills: false }
+      : viewMode.value === 'skill'
+        ? { scope: 'skill' }
+        : viewMode.value === 'passive'
+          ? { scope: 'passive' }
+          : { includeSkills: true }
     const termGroups = searchQuery.value.trim().toLowerCase()
       .split(/\s+/)
       .map(group => group.split(/[、,，|/]+/).filter(Boolean))
       .filter(group => group.length)
     result = result.filter(pet => {
-      const searchText = getPetSearchText(pet, { includeSkills: !isTable })
+      const searchText = getPetSearchText(pet, searchOpt)
       return termGroups.every(group => group.some(term => searchText.includes(term)))
     })
   }
@@ -1190,14 +1246,11 @@ const variantImgUrl = (pet) => {
 }
 
 /**
- * 提取魔物 1 级 → 7 级特性数值变化区间。
- * 纯数值展示：去掉「物理攻击」「魔法攻击」等汉字修饰，仅保留数字与百分比（如 500% → 1100%）；
- * 多个属性区间拆分为数组，便于多行换行展示。
+ * 将 `rangeText`（如「500%物理攻击 → 1100%物理攻击，...」）规范为纯数值换行数组。
  */
-const getPetRanges = (pet) => {
-  const trait = pet?.trait
-  if (!trait || !trait.rangeText) return []
-  const rawParts = String(trait.rangeText).split(/[，,]/).map(s => s.trim()).filter(Boolean)
+const parseRangeItems = (rangeText) => {
+  if (!rangeText) return []
+  const rawParts = String(rangeText).split(/[，,]/).map(s => s.trim()).filter(Boolean)
   return rawParts.map(part => {
     if (!part.includes('→')) return part
     const [left, right] = part.split('→').map(s => s.trim())
@@ -1206,6 +1259,34 @@ const getPetRanges = (pet) => {
     return (cleanLeft && cleanRight) ? `${cleanLeft} → ${cleanRight}` : part
   })
 }
+
+const getTableEntry = (pet) => {
+  if (viewMode.value === 'skill' || viewMode.value === 'passive') {
+    const skill = pet?.skills?.[viewMode.value === 'skill' ? 2 : 3]
+    const levels = Array.isArray(skill?.levelData) ? skill.levelData : []
+    const first = levels[0]
+    const last = levels[levels.length - 1]
+    const rangeText = extractLevelRangeText(first?.des, last?.des)
+    return {
+      name: skill?.name || '—',
+      cd: viewMode.value === 'skill' ? Number(last?.cd || 0) : 0,
+      maxText: last?.des || '',
+      ranges: parseRangeItems(rangeText)
+    }
+  }
+  const trait = pet?.trait
+  return {
+    name: trait?.name || '—',
+    cd: 0,
+    maxText: trait?.maxText || '',
+    ranges: parseRangeItems(trait?.rangeText)
+  }
+}
+
+const tableRows = computed(() => filteredPets.value.map(pet => ({
+  pet,
+  entry: getTableEntry(pet)
+})))
 </script>
 
 <style scoped>
@@ -1227,7 +1308,9 @@ const getPetRanges = (pet) => {
 .view-mode-toggle {
   display: inline-flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 3px;
+  max-width: 100%;
   background: var(--paper-soft, rgba(0, 0, 0, 0.05));
   border: 1px solid var(--border-soft);
   border-radius: 6px;
@@ -1373,10 +1456,29 @@ const getPetRanges = (pet) => {
 .element-tag.element-3 { color: #2e6938 !important; } /* 风 */
 .element-tag.element-4 { color: #784c20 !important; } /* 地 */
 
-/* 特性名称 */
+/* 特性 / 技能 / 被动名称 + 可选冷却标签 */
+.td-trait {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
 .trait-name {
   font-weight: 600;
   color: var(--text-main);
+}
+.skill-cd-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  background: rgba(62, 42, 20, 0.06);
+  border: 1px solid var(--border-soft);
+  border-radius: 4px;
+  padding: 0 5px;
+  line-height: 1.45;
+  white-space: nowrap;
 }
 
 /* 1 级 → 7 级数值列：纯数值小气泡，颜色沉稳古朴，多数值时一行一个清晰换行 */
@@ -1541,6 +1643,11 @@ const getPetRanges = (pet) => {
     grid-template-columns: repeat(4, 1fr);
     gap: 6px;
   }
+  .view-mode-btn {
+    padding: 3px 7px;
+    gap: 3px;
+  }
+  .view-mode-icon { width: 12px; height: 12px; }
   /*
    * 手机端特性表格：窄屏下把非关键列（星级/属性）压到最小，
    * 空间让给「特性效果」和「1 级 → 7 级」两列，避免内容被裁。

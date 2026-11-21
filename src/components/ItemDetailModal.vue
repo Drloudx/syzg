@@ -851,8 +851,8 @@
         </UiAccordion>
       </div>
 
-      <div v-else-if="item.origin && item.origin.length > 0">
-        <div v-for="(org, idx) in item.origin" :key="idx" class="origin-item ui-list-row">
+      <div v-else-if="itemOrigin.length > 0">
+        <div v-for="(org, idx) in itemOrigin" :key="idx" class="origin-item ui-list-row">
           <span class="origin-val">{{ org.value || org }}</span>
           <UiButton v-if="org.battleId" variant="secondary" size="sm">前往</UiButton>
         </div>
@@ -886,7 +886,7 @@
 import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl, handleImageFallback } from '../utils/env'
-import { translateJobArray, translateAttr, translateCategory, parseItemUnlocks, getItemImageUrl, getItemAcquisition, getCachedItem, parseRuneEffect, parseEquipGroup, parseEquipSuit, parseItemAffixes, calculateEquipAttributeRange, buildEquipAttributeItems, formatEquipAttrValue, getEquipEnhanceConfig, fetchItemData } from '../utils/itemParser'
+import { translateJobArray, translateAttr, translateCategory, parseItemUnlocks, getItemImageUrl, getItemAcquisition, getCachedItem, getCachedItemDetail, parseRuneEffect, parseEquipGroup, parseEquipSuit, parseItemAffixes, calculateEquipAttributeRange, buildEquipAttributeItems, formatEquipAttrValue, getEquipEnhanceConfig, fetchEquipListData, fetchItemExtraData, fetchItemListData } from '../utils/itemParser'
 import { getRarityName } from '../utils/gameMappings'
 import AcquisitionRewards from './AcquisitionRewards.vue'
 import EquipRandomAttrPanel from './EquipRandomAttrPanel.vue'
@@ -1064,13 +1064,21 @@ const jobList = computed(() => {
   return translateJobArray(props.item.equip.job)
 })
 
-const unlockText = computed(() => {
-  return parseItemUnlocks(props.item)
+const sharedResourcesTick = ref(0)
+const resolvedItem = computed(() => {
+  void sharedResourcesTick.value
+  const typeId = props.item?.typeId
+  const cached = typeId ? getCachedItemDetail(typeId) : null
+  return cached ? { ...props.item, ...cached } : props.item
 })
 
-const heroStarUsage = computed(() => props.item?.heroStarUsage || null)
-const heroUnlock = computed(() => props.item?.heroUnlock || null)
-const skinUnlock = computed(() => props.item?.skinUnlock || null)
+const unlockText = computed(() => {
+  return parseItemUnlocks(resolvedItem.value)
+})
+
+const heroStarUsage = computed(() => resolvedItem.value?.heroStarUsage || null)
+const heroUnlock = computed(() => resolvedItem.value?.heroUnlock || null)
+const skinUnlock = computed(() => resolvedItem.value?.skinUnlock || null)
 const activeSkinTab = ref('portrait')
 const skinTabOptions = [
   { value: 'portrait', label: '完整立绘' },
@@ -1091,13 +1099,14 @@ const openSkinLightbox = () => {
     skinLightboxVisible.value = true
   }
 }
-const homeItemUnlocks = computed(() => (props.item?.homeItemUnlocks || [])
+const homeItemUnlocks = computed(() => (resolvedItem.value?.homeItemUnlocks || [])
   .filter(unlock => unlock?.typeId && unlock.catalogVisible !== false))
-const potionInfo = computed(() => props.item?.potionInfo || null)
-const seedInfo = computed(() => props.item?.seedInfo || null)
-const petEggInfo = computed(() => props.item?.petEggInfo || null)
-const smithingRecipes = computed(() => props.item?.smithing?.recipes || [])
-const facilityCraftingRecipes = computed(() => props.item?.facilityCrafting || [])
+const potionInfo = computed(() => resolvedItem.value?.potionInfo || null)
+const seedInfo = computed(() => resolvedItem.value?.seedInfo || null)
+const petEggInfo = computed(() => resolvedItem.value?.petEggInfo || null)
+const smithingRecipes = computed(() => resolvedItem.value?.smithing?.recipes || [])
+const facilityCraftingRecipes = computed(() => resolvedItem.value?.facilityCrafting || [])
+const itemOrigin = computed(() => Array.isArray(resolvedItem.value?.origin) ? resolvedItem.value.origin : [])
 const usageSectionTitle = computed(() =>
   heroStarUsage.value || heroUnlock.value ? '用途' : '解锁内容'
 )
@@ -1331,7 +1340,7 @@ const equipEnhanceConfig = ref(getEquipEnhanceConfig())
 const refreshEnhanceConfig = () => {
   const cfg = getEquipEnhanceConfig()
   if (!cfg || !cfg.maxLevel) {
-    fetchItemData().then(() => {
+    fetchEquipListData().then(() => {
       equipEnhanceConfig.value = getEquipEnhanceConfig()
     }).catch(() => {})
   } else {
@@ -1431,8 +1440,8 @@ const acquisition = computed(() => {
    * 官方把 5 个材料/入场券的奖励池填错了（挂成幽夜古堡通关结算池），
    * 照实渲染会显示一堆无关掉落。名单见 blacklist.BROKEN_REWARD_POOL_ITEM_IDS。
    */
-  if (hasBrokenRewardPool(props.item)) return null
-  return getItemAcquisition(props.item)
+  if (hasBrokenRewardPool(resolvedItem.value)) return null
+  return getItemAcquisition(resolvedItem.value)
 })
 const acquisitionTitle = computed(() => {
   if (acquisition.value?.action === 'appraisal') return '鉴定奖励'
@@ -1441,7 +1450,7 @@ const acquisitionTitle = computed(() => {
 
 const handleRewardClick = (rule) => {
   if (rule.typeId) {
-    const targetItem = getCachedItem(rule.typeId)
+    const targetItem = getCachedItemDetail(rule.typeId) || getCachedItem(rule.typeId)
     if (targetItem) {
       openNestedItem(targetItem)
     }
@@ -1455,11 +1464,11 @@ const diaryData = ref(null)
 const bookContent = ref(null)
 
 const bookEventId = computed(() => {
-  if (!props.item) return null
+  if (!resolvedItem.value) return null
   // 防御：`category` 可能是数字（如遗器）或缺失，不能直接 .includes
-  const cat = Array.isArray(props.item.category) ? props.item.category : []
+  const cat = Array.isArray(resolvedItem.value.category) ? resolvedItem.value.category : []
   if (cat.includes(5) || cat.includes('5') || cat.includes(54) || cat.includes('54')) {
-    const p = props.item.useActionPara
+    const p = resolvedItem.value.useActionPara
     if (p && p.eventType && p.eventType.length > 0) {
       return p.eventType[0]
     }
@@ -1519,6 +1528,8 @@ const loadSharedResources = () => {
   sharedResourcesLoading.value = true
   sharedResourcesError.value = ''
   sharedResourcesPending = Promise.all([
+    fetchItemExtraData().catch(() => {}),
+    fetchItemListData().catch(() => {}),
     fetchWithFallback('data/parsed/recipes.json').then(data => {
       menuDict.value = Object.fromEntries(data.recipes.map(recipe => [recipe.id, recipe]))
     }),
@@ -1537,6 +1548,7 @@ const loadSharedResources = () => {
     }).catch(() => {})
   ]).then(() => {
     sharedResourcesLoaded = true
+    sharedResourcesTick.value += 1
   }).catch(error => {
     sharedResourcesError.value = '部分来源或配方暂时无法加载，请重试。'
     console.error('Failed to load item detail resources:', error)
@@ -1863,10 +1875,10 @@ const recipeInfo = computed(() => {
 
 // 料理的 useDes 是旧版展示文案，实际结算和现版本界面均以绑定 Buff 为准。
 const isRecipeItem = computed(() => {
-  const buffId = props.item?.useActionPara2?.buff || ''
+  const buffId = resolvedItem.value?.useActionPara2?.buff || ''
   return !!recipeInfo.value || buffId.startsWith('cook_')
 })
-const displayUseDes = computed(() => isRecipeItem.value ? '' : (props.item?.useDes || ''))
+const displayUseDes = computed(() => isRecipeItem.value ? '' : (resolvedItem.value?.useDes || ''))
 const effectSectionTitle = computed(() => {
   if (isRecipeItem.value) return '料理效果'
   if (bookContent.value && !displayUseDes.value) return '内容展示'

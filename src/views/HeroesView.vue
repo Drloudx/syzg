@@ -123,7 +123,7 @@
       <UiEmptyState v-if="filteredHeroes.length === 0" text="未找到匹配的角色数据" />
     </UiCardGrid>
 
-    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="initData" />
+    <UiEmptyState v-else-if="errorMessage" type="error" :text="errorMessage" @retry="retryInitData" />
     <UiEmptyState v-else type="loading" text="正在装配角色图鉴数据..." />
 
     <!-- 角色详情全屏弹窗 -->
@@ -290,11 +290,13 @@
 
         <!-- TAB CONTENT: SKILLS & STARS -->
         <div v-if="activeTab === 'skills'" class="tab-pane-content">
-          <UiSection title="主动技能与天赋">
+          <UiEmptyState v-if="heroDetailLoading && !(selectedHero.skills?.length)" type="loading" text="正在加载技能与档案..." />
+          <UiEmptyState v-else-if="heroDetailError && !(selectedHero.skills?.length)" type="error" :text="heroDetailError" @retry="openFromQueryId(selectedHero.id)" />
+          <UiSection v-else title="主动技能与天赋">
             <!-- Skills Select Grid -->
             <div class="skills-select-grid">
               <div
-                v-for="(skill, sIdx) in selectedHero.skills"
+                v-for="(skill, sIdx) in (selectedHero.skills || [])"
                 :key="skill.id"
                 class="skill-select-card"
                 :class="{ active: activeSkillIndex === sIdx }"
@@ -314,11 +316,11 @@
 
               <!-- Talent Passive -->
               <div
-                v-for="(talent, tIdx) in selectedHero.talentSkills"
+                v-for="(talent, tIdx) in (selectedHero.talentSkills || [])"
                 :key="talent.id"
                 class="skill-select-card"
-                :class="{ active: activeSkillIndex === (selectedHero.skills.length + tIdx) }"
-                @click="activeSkillIndex = (selectedHero.skills.length + tIdx)"
+                :class="{ active: activeSkillIndex === ((selectedHero.skills?.length || 0) + tIdx) }"
+                @click="activeSkillIndex = ((selectedHero.skills?.length || 0) + tIdx)"
               >
                 <img
                   :src="getImageUrl(`/images/Common_SkillIcon/${talent.icon}.webp`)"
@@ -813,8 +815,10 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getImageUrl } from '../utils/env'
-import { fetchItemData } from '../utils/itemParser'
-import { fetchHeroData, calculateStats, calculateUpgradeCosts, breakthroughConsumesItems } from '../utils/heroParser'
+import { fetchItemListData } from '../utils/itemParser'
+import { fetchHeroListData, fetchHeroDetailData, buildHeroSearchText, calculateStats, calculateUpgradeCosts, breakthroughConsumesItems } from '../utils/heroParser'
+import { prefetchResourceManifest } from '../utils/request.js'
+import { formatResourceLoadError, isResourceVersionMismatch } from '../utils/resourceClient.js'
 import { MECHANICS_CRIT_LABELS, MECHANICS_LABELS } from '../utils/heroMechanics.js'
 import { isBlacklisted } from '../config/blacklist.js'
 import { useLazyList } from '../composables/useLazyList'
@@ -858,17 +862,19 @@ const itemsCache = ref([])
 const consumeCache = ref({})
 const isDataReady = ref(false)
 const errorMessage = ref('')
+const errorNeedsReload = ref(false)
+const heroDetailLoading = ref(false)
+const heroDetailError = ref('')
 
 /**
- * items.json 只服务于「等级突破」材料的名称与图标解析（calculateUpgradeCosts），
- * 角色列表本身不消费它。这里按需加载：只在首次打开角色详情时取，
- * 避免只浏览列表就拉入整张物品表（移动端在线走 CDN，同样经 manifest 版本校验）。
+ * 物品列表只服务于「等级突破」材料的名称与图标解析（calculateUpgradeCosts），
+ * 角色列表本身不消费它。这里按需加载：只在首次打开角色详情且真的带材料时取，
  * 失败不阻断详情，材料回落为 typeId + 空图标（heroParser 已有兜底）。
  */
 let itemsLoadPromise = null
 const loadItemsOnce = () => {
   if (!itemsLoadPromise) {
-    itemsLoadPromise = fetchItemData()
+    itemsLoadPromise = fetchItemListData()
       .then(coreData => { itemsCache.value = coreData.items })
       .catch(err => {
         console.error('Error loading item data for breakthrough costs:', err)
@@ -945,91 +951,13 @@ const heroDetailTabs = computed(() => {
   return tabs
 })
 
-// 角色页搜索使用页面可见文本汇总，不把图片路径、内部 ID 等实现字段暴露为搜索结果。
-// 这样新增技能/档案字段时，只要页面能展示该文本，搜索也会自动覆盖。
-const SEARCH_IGNORED_KEYS = new Set([
-  'id', 'key', 'icon', 'img', 'vocal', 'face', 'dialog', 'taskTypeId',
-  'consumeKey', 'typeId', 'sourceRefs', 'reviewStatus', 'spType', 'type'
-])
-
-// 机制标签没有单独的英文表，搜索时补充常用英文别名，中文页面文本仍是唯一展示来源。
-const SEARCH_LABEL_ALIASES = {
-  '物理': 'physical phy',
-  '魔法': 'magic magical spell',
-  '真实': 'true real',
-  '水': 'water',
-  '火': 'fire flame',
-  '风': 'wind',
-  '地': 'earth',
-  '物理攻击': 'physical attack phy atk',
-  '魔法攻击': 'magic attack magic atk spell power',
-  '普通攻击': 'normal attack basic attack',
-  '技能伤害': 'skill damage ability damage',
-  '伤害': 'damage',
-  '持续伤害': 'damage over time dot',
-  '护盾': 'shield',
-  '治疗': 'heal healing',
-  '召唤': 'summon',
-  '属性增益': 'buff boost',
-  '属性削弱': 'debuff',
-  '属性继承': 'inherit inheritance',
-  '伤害减免': 'damage reduction damage taken reduction',
-  '控制': 'control crowd control cc',
-  '暴击': 'crit critical',
-  '最大生命': 'max hp maximum health',
-  '物理穿透': 'physical penetration armor penetration',
-  '魔法穿透': 'magic penetration',
-  '范围': 'area aoe',
-  '多段': 'multi hit multihit',
-  '持续': 'duration',
-  '反伤': 'reflect counter damage',
-  '近卫': 'vanguard guard',
-  '守护': 'defender tank guard 护卫',
-  '秘术': 'mage caster',
-  '射手': 'archer ranged',
-  '突袭': 'assassin rogue',
-  '支援': 'support healer'
-}
-
-const getSearchAliases = (value, mapped = '') => {
-  const labels = [value, mapped].filter(Boolean)
-  return labels
-    .flatMap(label => [label, SEARCH_LABEL_ALIASES[label] || ''])
-    .filter(Boolean)
-    .join(' ')
-}
-
-const collectHeroSearchText = (value, key = '', seen = new Set()) => {
-  if (value == null || SEARCH_IGNORED_KEYS.has(key)) return ''
-
-  if (typeof value === 'string') {
-    const mapped = MECHANICS_LABELS[value]
-    return getSearchAliases(value, mapped)
-  }
-
-  // 数值也是页面可见信息（等级、星级、百分比等），允许直接搜索数字。
-  if (typeof value === 'number') return String(value)
-  if (typeof value !== 'object') return ''
-  if (seen.has(value)) return ''
-  seen.add(value)
-
-  if (Array.isArray(value)) {
-    return value.map(item => collectHeroSearchText(item, '', seen)).join(' ')
-  }
-
-  return Object.entries(value)
-    .map(([childKey, childValue]) => collectHeroSearchText(childValue, childKey, seen))
-    .join(' ')
-}
-
 const heroSearchTextCache = new WeakMap()
 const getHeroSearchText = hero => {
   if (!hero || typeof hero !== 'object') return ''
   const cached = heroSearchTextCache.get(hero)
   if (cached) return cached
 
-  const rarityText = `${hero.rare ?? ''}星 ${hero.rare ?? ''} star rarity`
-  const text = `${rarityText} ${collectHeroSearchText(hero)}`.toLowerCase()
+  const text = buildHeroSearchText(hero)
   heroSearchTextCache.set(hero, text)
   return text
 }
@@ -1037,17 +965,17 @@ const getHeroSearchText = hero => {
 const initData = async () => {
   isDataReady.value = false
   errorMessage.value = ''
+  errorNeedsReload.value = false
   try {
-    const parsedData = await fetchHeroData()
+    const parsedData = await fetchHeroListData()
     allHeroes.value = parsedData.heroes
     heroLevelConfig.value = parsedData.heroLevel
     heroRankConfig.value = parsedData.heroRank
     playerLevelCap.value = Number(parsedData.playerLevelCap) || 1
-    
-    // 累计计算器所需消耗表已内置在预解析 heroes.json 中。
     consumeCache.value = parsedData.consumeDatas || {}
 
     isDataReady.value = true
+    prefetchResourceManifest('data/parsed/heroes/hero_001.json')
 
     // Check URL parameters for direct character opening
     if (route.query.id) {
@@ -1055,8 +983,17 @@ const initData = async () => {
     }
   } catch (err) {
     console.error('Error initializing HeroesView:', err)
-    errorMessage.value = '角色图鉴加载失败，请重试'
+    errorNeedsReload.value = isResourceVersionMismatch(err)
+    errorMessage.value = formatResourceLoadError(err, '角色图鉴加载失败，请重试')
   }
+}
+
+const retryInitData = () => {
+  if (errorNeedsReload.value && typeof window !== 'undefined') {
+    window.location.reload()
+    return
+  }
+  initData()
 }
 
 onMounted(() => {
@@ -1076,7 +1013,39 @@ watch(() => route.query.id, (newId) => {
 function openFromQueryId(id) {
   const found = allHeroes.value.find(h => h.id === id)
   if (found) {
-    selectedHero.value = found
+    selectedHero.value = {
+      ...found,
+      skills: found.skills || [],
+      talentSkills: found.talentSkills || [],
+      starSkills: found.starSkills || [],
+      jobTraits: found.jobTraits || [],
+      archives: found.archives || [],
+      behavior: found.behavior || {},
+      itemFavor: found.itemFavor || []
+    }
+    heroDetailError.value = ''
+    if (!found.skills?.length) {
+      heroDetailLoading.value = true
+      fetchHeroDetailData(found.id)
+        .then(detail => {
+          if (selectedHero.value?.id === found.id) {
+            selectedHero.value = { ...found, ...detail }
+          }
+        })
+        .catch(err => {
+          console.error('Error loading hero detail:', err)
+          if (selectedHero.value?.id === found.id) {
+            heroDetailError.value = formatResourceLoadError(err, '角色详情加载失败，请重试')
+          }
+        })
+        .finally(() => {
+          if (selectedHero.value?.id === found.id) {
+            heroDetailLoading.value = false
+          }
+        })
+    } else {
+      heroDetailLoading.value = false
+    }
     // 详情才需要物品表（突破材料名称/图标）；不 await，详情先渲染，材料到位后计算属性自行重算。
     // 只有该角色的突破档位**真的带材料**时才加载：当前原表 heroRank 引用的 consume 全部只有
     // money、没有 items（已按 raw/consume.json 核对），无条件加载等于白下整张 items.json。
@@ -1189,13 +1158,12 @@ function handleSkillIconError(e) {
 // Active Skill selected getter
 const currentSelectedSkill = computed(() => {
   if (!selectedHero.value) return null
-  const numSkills = selectedHero.value.skills.length
-  if (activeSkillIndex.value < numSkills) {
-    return selectedHero.value.skills[activeSkillIndex.value]
-  } else {
-    const tIdx = activeSkillIndex.value - numSkills
-    return selectedHero.value.talentSkills[tIdx] || null
+  const skills = selectedHero.value.skills || []
+  const talents = selectedHero.value.talentSkills || []
+  if (activeSkillIndex.value < skills.length) {
+    return skills[activeSkillIndex.value]
   }
+  return talents[activeSkillIndex.value - skills.length] || null
 })
 
 // 技能等级与消耗规划

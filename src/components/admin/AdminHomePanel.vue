@@ -1232,7 +1232,7 @@ async function load() {
   try {
     const [data, heroRes] = await Promise.all([
       fetchHomeAdmin(),
-      fetchWithFallback('data/parsed/heroes.json').catch(() => null)
+      fetchWithFallback('data/parsed/heroes-list.json').catch(() => null)
     ])
 
     banners.value = (data.banners || []).map((b) => ({

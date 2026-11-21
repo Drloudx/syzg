@@ -49,6 +49,16 @@ const schemas = {
     && Array.isArray(data.categoryTree) && Array.isArray(data.avatars)
     && ['lanDict', 'rewards', 'equipEnchants', 'skillTriggers', 'equipGroups', 'equipSuits', 'itemAffixes']
       .every(key => isRecord(data[key])),
+  'data/parsed/items-meta.json': data => isRecord(data) && Array.isArray(data.categoryTree),
+  'data/parsed/equips.json': data => isRecord(data) && recordList(data.items, 'typeId')
+    && Array.isArray(data.categoryTree)
+    && ['lanDict', 'equipEnchants', 'skillTriggers', 'equipGroups', 'equipSuits', 'itemAffixes']
+      .every(key => isRecord(data[key])),
+  'data/parsed/items-list.json': data => isRecord(data) && recordList(data.items, 'typeId')
+    && Array.isArray(data.categoryTree) && Array.isArray(data.avatars)
+    && ['lanDict', 'equipEnchants', 'skillTriggers', 'equipGroups', 'equipSuits', 'itemAffixes']
+      .every(key => isRecord(data[key])),
+  'data/parsed/items-extra.json': data => isRecord(data) && isRecord(data.rewards) && isRecord(data.detailsById),
   'data/parsed/furniture.json': data => isRecord(data) && recordList(data.furniture)
     && data.furniture.every(entry => Array.isArray(entry.categoryIds)
       && Array.isArray(entry.sourceTags) && isList(entry.skins)
@@ -80,6 +90,15 @@ const schemas = {
         && typeof mail.hasAttachment === 'boolean'))
     && ['heroLevel', 'heroRank', 'consumeDatas'].every(key => isRecord(data[key]))
     && Number.isFinite(data.playerLevelCap) && data.playerLevelCap > 0,
+  'data/parsed/heroes-list.json': data => isRecord(data) && recordList(data.heroes)
+    && data.heroes.every(hero => isRecord(hero.unitData))
+    && ['heroLevel', 'heroRank', 'consumeDatas'].every(key => isRecord(data[key]))
+    && Number.isFinite(data.playerLevelCap) && data.playerLevelCap > 0,
+  'data/parsed/partner-mails.json': data => isRecord(data) && recordList(data.mailboxes)
+    && data.mailboxes.every(box => isList(box.mails)
+      && box.mails.every(mail => hasId(mail) && [1, 2].includes(mail.mailType)
+        && typeof mail.title === 'string' && typeof mail.content === 'string'
+        && typeof mail.hasAttachment === 'boolean')),
   'data/parsed/pets.json': data => isRecord(data) && recordList(data.pets)
     && data.pets.every(pet => isList(pet.skills))
     && isRecord(data.petLevel) && isRecord(data.petSetting)
@@ -131,7 +150,13 @@ const schemas = {
    */
   'data/parsed/activity-dungeons.json': data => isRecord(data) && data.schemaVersion === 1
     && isList(data.dungeons) && data.dungeons.every(d => isRecord(d) && typeof d.id === 'string'
-      && isList(d.layers) && isList(d.roomPools) && isList(d.events) && isList(d.shop))
+      && isList(d.layers) && isList(d.roomPools) && isList(d.events) && isList(d.shop)),
+  'data/parsed/damage-calc.json': data => isRecord(data)
+    && recordList(data.heroes) && data.heroes.every(h => Array.isArray(h.skills)
+      && Array.isArray(h.talentSkills) && Array.isArray(h.starSkills) && typeof h.img === 'string')
+    && recordList(data.monsters) && isRecord(data.levelStrength)
+    && isRecord(data.effects) && recordList(data.effects.pets)
+    && recordList(data.effects.suits) && recordList(data.effects.equips)
 }
 
 export function validateResource(path, data) {

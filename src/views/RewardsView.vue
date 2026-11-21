@@ -503,7 +503,7 @@ import {
   UiBackToTop
 } from '../components/ui/index.js'
 import { fetchWithFallback } from '../utils/request.js'
-import { getCachedItem, fetchItemData } from '../utils/itemParser'
+import { getCachedItem, fetchItemListData } from '../utils/itemParser'
 import { getImageUrl } from '../utils/env'
 import { isBlacklisted } from '../config/blacklist.js'
 import { REWARD_MODE_INFO } from '../utils/gameMappings'
@@ -813,7 +813,7 @@ const needsItemData = () => ITEM_CONSUMING_CATS.has(currentMainCat.value)
 
 const ensureItemData = () => {
   if (!needsItemData() || itemDataPromise) return itemDataPromise
-  itemDataPromise = fetchItemData()
+  itemDataPromise = fetchItemListData()
     .then(() => { itemDataVersion.value += 1 })
     .catch(err => {
       console.error('Failed to load item data for RewardsView', err)

@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-20 ｜ **最近代码提交**：`3cf3b6bd` ｜ **分支**：`main`
+**核对时间**：2026-11-21 ｜ **最近代码提交**：`13a3967a` ｜ **分支**：`main`
 
 ---
 
@@ -20,10 +20,22 @@
 | 部署 | Cloudflare Pages 项目 `syzg`，推送即上线 |
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
 | 数据源版本 | **1.7.15 付费测 (cdnVer 36, codeVersion 454C1B17)**；热更配置表（59 张，12 张实质变更）、剧情（674 份，6 份变更）、源码（2680 .cs）已同步就绪 |
-| 单测 | `npm run test:unit` 见当日验证日志（模块与完整性单测全绿） |
-| 最近重点修复 | 装备图鉴「套装与词条」默认关闭展开开关与套装徽章快捷筛选；全站深色模式与 UI 巡检收口（遗器法盘模拟器按钮与提示对比度/窄屏换行、首页标题丝带/角标/下午茶截断、伙伴邮件暗古卷信纸、魔物表格头像、富文本编辑器深色与后台全局滚动条警告清理）；神匠之塔与活动副本深色适配；移动端旧内核媒体查询兼容性 |
+| 单测 | 见当日验证日志（模块与完整性单测全绿） |
+| 最近重点修复 | `/sims?tab=damage` 角色伤害计算器完善与源码校准；`items.json`（`2,844 KB` → 首屏 `186 KB`/`660 KB`/`2 KB`）与 `heroes.json`（`3,082 KB` → 首屏 `601 KB`/`250 KB`+单角色分片）按需拆分、请求超时放宽至 `25s` 及错配刷新提示；魔物图鉴新增「技能/队伍被动」表格、遗器模拟器折叠按钮可见性优化；官方异常反馈文档 |
 | 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；蜘蛛头冠幼体数量异常已编制反馈材料并输出 Word 提交官方；小麦无法采集、料理台自由制作无法烹饪武僧火锅/果香通心粉均已获官方修复关闭 |
 | 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修） |
+
+### 本次推送（2026-11-21）
+
+- **角色伤害计算器完整化与公式校准（`/#/sims?tab=damage`，交接详档：[DAMAGE_CALCULATOR.md](technical/DAMAGE_CALCULATOR.md)）**：
+  - 独立预解析脚本 [build-damage-calc-data.mjs](../../scripts/dev/build-damage-calc-data.mjs) 生成精简数据集 `public/data/parsed/damage-calc.json`（`572.2 KB`，`40` 名角色含 `img`、`talentSkills` 与 `160` 枚 `starSkills` / `121` 个可见怪物形态 / `1~101` 级 `levelStrength` / `35` 条战斗特效）；
+  - 机制校准与扩展：[heroMechanics.js](../../src/utils/heroMechanics.js) 清零 40 名角色被动 `pending`（18 个直伤被动校准 `form`/`crit`/`elements`/`segments`）；[damageEffects.js](../../src/utils/damageEffects.js) 接入 22 种魔物特性（`Lv.1~7`）、8 项可见套装特效与 5 项可见装备特技（按 `isBlacklisted` 与 `isEquipTierHidden` 剔除隐藏/4~5 阶装备）；[heroStarsDamage.js](../../src/utils/heroStarsDamage.js) 覆盖全 160 枚星阶（70 战斗向 / 13 面板不重复叠加 / 77 机制生存向）；[damageCalculator.js](../../src/utils/damageCalculator.js) 补入普攻标签增伤 `tagDamAdd` 与分段 `ignoreDef` / `allowCrit` / `realCrit`；
+  - 页面与口径修正：[DamageCalculatorPanel.vue](../../src/components/sims/DamageCalculatorPanel.vue)、[MonsterDetailModal.vue](../../src/components/MonsterDetailModal.vue)、[RoomContentList.vue](../../src/components/RoomContentList.vue)、[ActivityDungeonsView.vue](../../src/views/ActivityDungeonsView.vue)、[TowerView.vue](../../src/views/TowerView.vue) 与 [monsterModalState.js](../../src/utils/monsterModalState.js) 统一修正怪物双防不受房间 `levelScale` 缩放并将关卡修正文案从「攻防」改为「攻击」；角色与怪物弹窗改用「魔物出战」同款筛选+多列卡片网格，新增星阶切换栏、魔物特性弹窗及套装/装备芯片汇总栏，面板默认与重置值设为等级 `50` / 双攻 `4500` / 暴击 `10%` / 暴伤 `155%`。
+- **官方客户端异常反馈文档**：
+  - 补齐 `docs/feedback/` 下 1.7.15 物/魔穿透未除 100 异常分析，以及 [营地研究_野营篝火回蓝失效与药水道具冷却及物理穿透异常分析.md](../feedback/营地研究_野营篝火回蓝失效与药水道具冷却及物理穿透异常分析.md)。
+- **大表按需拆分、请求超时与图鉴 UI 优化**：
+  - 将 `items.json`（`2,844 KB`）拆出 `equips.json`（`186 KB`）、`items-list.json`（`660 KB`）、`items-meta.json`（`2 KB`）、`items-extra.json`（`1,877 KB`）；将 `heroes.json`（`3,082 KB`）拆出 `heroes-list.json`（`601 KB`）、`partner-mails.json`（`250 KB`）与 40 份单角色详情 `heroes/<id>.json`，同步更新所有图鉴入口与弹窗懒加载逻辑；
+  - 默认资源请求超时放宽至 `25s` 并区分超时/版本过期/断网提示；魔物图鉴新增「技能 / 队伍被动」表格分栏；遗器法盘折叠开关升级为实体按钮条。
 
 ### 本次推送（2026-11-20）
 

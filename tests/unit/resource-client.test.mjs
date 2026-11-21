@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { readFileSync, readdirSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
-import { createCachedLoader, createResourceClient, fetchJsonWithTimeout } from '../../src/utils/resourceClient.js'
+import { createCachedLoader, createResourceClient, fetchJsonWithTimeout, formatResourceLoadError, isResourceVersionMismatch } from '../../src/utils/resourceClient.js'
 import { validateResource } from '../../src/utils/resourceSchemas.js'
 import { CLOUD_URL, getImageUrl, getLocalResourceUrl, handleImageFallback, resetImageFallback } from '../../src/utils/env.js'
 import { collectResourceManifests, collectImageVersions } from '../../vite.config.js'
@@ -232,7 +232,7 @@ test('notices remain refreshable instead of entering the immutable table cache',
 })
 
 test('current parsed data satisfies schemas and missing required fields fail clearly', () => {
-  for (const name of ['items', 'heroes', 'pets', 'monsters', 'tasks', 'recipes', 'monLevelStrength', 'item-sources']) {
+  for (const name of ['items', 'items-meta', 'equips', 'items-list', 'items-extra', 'heroes', 'heroes-list', 'partner-mails', 'pets', 'monsters', 'tasks', 'recipes', 'monLevelStrength', 'item-sources']) {
     const path = `data/parsed/${name}.json`
     const data = JSON.parse(readFileSync(new URL(`../../public/${path}`, import.meta.url), 'utf8'))
     assert.equal(validateResource(path, data), true, name)
@@ -267,7 +267,8 @@ test('build manifests are grouped, content addressed and exclude live notices', 
       assert.equal(hash(readFileSync(new URL(path, publicDir))), expected)
     }
   }
-  assert.ok(assets.find(asset => asset.fileName.includes('data-parsed-')).source.length < 5000)
+  // 顶层 data/parsed/ 保持在 ~5 KB 内（不把 dungeons/stages/heroes 详情子目录混进来）
+  assert.ok(assets.find(asset => asset.fileName.includes('data-parsed-')).source.length < 6500)
 })
 
 function imageElement(source) {
@@ -335,4 +336,18 @@ test('image and local resource helpers preserve existing API paths', () => {
   assert.equal(getImageUrl(`${CLOUD_URL}/images/item.webp`), `${CLOUD_URL}/images/item.webp`)
   assert.equal(getImageUrl({}), '')
   assert.equal(getLocalResourceUrl('/data/parsed/items.json'), 'data/parsed/items.json')
+})
+
+test('formatResourceLoadError classifies timeout, version mismatch, HTTP status, and network errors', () => {
+  const mismatch = new Error('Resource version mismatch: data/parsed/items.json')
+  assert.equal(isResourceVersionMismatch(mismatch), true)
+  assert.match(formatResourceLoadError(mismatch, '装备数据加载失败'), /刷新页面/)
+
+  const timeout = new Error('Resource request timed out: data/parsed/items.json')
+  assert.equal(isResourceVersionMismatch(timeout), false)
+  assert.match(formatResourceLoadError(timeout, '装备数据加载失败'), /请求超时/)
+
+  assert.match(formatResourceLoadError(new Error('Resource request failed (504): x'), '失败'), /HTTP 504/)
+  assert.match(formatResourceLoadError(new TypeError('Failed to fetch'), '失败'), /网络连接失败/)
+  assert.equal(formatResourceLoadError(new Error('unknown'), '默认提示'), '默认提示')
 })

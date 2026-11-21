@@ -370,7 +370,8 @@ import EmoticonText from './components/EmoticonText.vue'
 import RewardProbabilityModal from './components/RewardProbabilityModal.vue'
 import { itemModalState, openItemDetail } from './utils/itemModalState'
 import { monsterModalState } from './utils/monsterModalState'
-import { fetchItemData } from './utils/itemParser'
+import { fetchItemListData } from './utils/itemParser'
+import { formatResourceLoadError } from './utils/resourceClient.js'
 import { resetModalScrollCoordinator } from './utils/modalScrollCoordinator.js'
 import { prefetchRouteChunks, routeLoading, routeLoadingText, routeNavigating } from './router/index.js'
 
@@ -1045,7 +1046,7 @@ const loadGlobalItem = async newId => {
     // 关闭时用它把列表滚回点击处。否则 app-main 被钳制后捕获到的 scrollTop 会被钳到 0。
     const savedScroll = appScrollRoot.value?.scrollTop ?? 0
     try {
-      const { items, categoryTree } = await fetchItemData()
+      const { items, categoryTree } = await fetchItemListData()
       // The detail can be closed before the async data request resolves. Do
       // not let that stale request reopen the modal after itemId was removed.
       if (operation !== itemLoadOperation || route.query.itemId !== newId) return
@@ -1058,7 +1059,7 @@ const loadGlobalItem = async newId => {
     } catch (e) {
       console.error('Failed to global invoke item:', e)
       if (operation === itemLoadOperation && route.query.itemId === newId) {
-        itemLoadError.value = '物品数据暂时不可用，请检查网络后重试。'
+        itemLoadError.value = formatResourceLoadError(e, '物品数据暂时不可用，请检查网络后重试。')
       }
     }
   }

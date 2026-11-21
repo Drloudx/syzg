@@ -60,10 +60,21 @@
             <span class="sim-ctrl__title">基础遗器数量限制（根据实际拥有量搭配）</span>
             <span class="sim-ctrl__subtitle">限制单个遗器最大消耗，防止同种遗器放太多</span>
           </div>
-          <span class="sim-ctrl__toggle-link">
-            {{ showInventory ? '收起库存面板 ▲' : '展开自定义拥有量 ▼' }}
-            <template v-if="hasCustomInventoryCount">（已限制 {{ hasCustomInventoryCount }} 种）</template>
-          </span>
+          <button
+            type="button"
+            class="sim-ctrl__toggle-btn"
+            :class="{ 'is-open': showInventory, 'has-badge': hasCustomInventoryCount }"
+            :aria-expanded="showInventory"
+            @click.stop="showInventory = !showInventory"
+          >
+            <span>
+              {{ showInventory ? '收起库存面板' : '展开自定义拥有量' }}
+              <template v-if="hasCustomInventoryCount">（已限制 {{ hasCustomInventoryCount }} 种）</template>
+            </span>
+            <svg class="sim-ctrl__toggle-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M4.2 6.2a.75.75 0 0 1 1.06 0L8 8.94l2.74-2.74a.75.75 0 1 1 1.06 1.06l-3.27 3.27a.75.75 0 0 1-1.06 0L4.2 7.26a.75.75 0 0 1 0-1.06z" />
+            </svg>
+          </button>
         </div>
 
         <!-- 快捷单品上限条 -->
@@ -218,7 +229,21 @@
       <div class="sim-ctrl__section">
         <div class="sim-ctrl__header sim-ctrl__header--collapsible" @click="showFilters = !showFilters">
           <span class="sim-ctrl__title">属性与遗器排除过滤（不想要的属性打勾排除）</span>
-          <span class="sim-ctrl__toggle-link">{{ showFilters ? '收起选项 ▲' : '展开选项 ▼' }}<template v-if="totalExcludedCount > 0">（已排除 {{ totalExcludedCount }} 项）</template></span>
+          <button
+            type="button"
+            class="sim-ctrl__toggle-btn"
+            :class="{ 'is-open': showFilters, 'has-badge': totalExcludedCount > 0 }"
+            :aria-expanded="showFilters"
+            @click.stop="showFilters = !showFilters"
+          >
+            <span>
+              {{ showFilters ? '收起选项' : '展开选项' }}
+              <template v-if="totalExcludedCount > 0">（已排除 {{ totalExcludedCount }} 项）</template>
+            </span>
+            <svg class="sim-ctrl__toggle-chevron" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M4.2 6.2a.75.75 0 0 1 1.06 0L8 8.94l2.74-2.74a.75.75 0 1 1 1.06 1.06l-3.27 3.27a.75.75 0 0 1-1.06 0L4.2 7.26a.75.75 0 0 1 0-1.06z" />
+            </svg>
+          </button>
         </div>
         <div v-show="showFilters" class="filter-options-wrap">
           <div class="filter-group">
@@ -953,6 +978,14 @@ onMounted(() => {
 .sim-ctrl__header--collapsible {
   cursor: pointer;
   user-select: none;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.sim-ctrl__header--collapsible > .sim-ctrl__title,
+.sim-ctrl__header--collapsible > .sim-ctrl__title-wrap {
+  flex: 1 1 0%;
+  min-width: 0;
 }
 .sim-ctrl__title {
   font-size: 14px;
@@ -966,9 +999,46 @@ onMounted(() => {
 .sim-ctrl__badge b {
   color: var(--accent-ink, #557574);
 }
-.sim-ctrl__toggle-link {
+.sim-ctrl__toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--rb-toggle-border, rgba(85, 117, 116, 0.38));
+  background: var(--rb-toggle-bg, rgba(85, 117, 116, 0.1));
+  color: var(--rb-toggle-color, var(--accent-ink, #3f6160));
+  font: inherit;
   font-size: 12px;
-  color: var(--accent-ink, #557574);
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.sim-ctrl__toggle-btn:hover {
+  background: var(--rb-toggle-hover-bg, rgba(85, 117, 116, 0.18));
+  border-color: var(--rb-toggle-hover-border, rgba(85, 117, 116, 0.58));
+}
+.sim-ctrl__toggle-btn.is-open {
+  background: var(--rb-active-bg, #557574);
+  color: var(--rb-active-color, #fff);
+  border-color: var(--rb-active-border, #557574);
+}
+.sim-ctrl__toggle-btn.has-badge:not(.is-open) {
+  background: var(--rb-toggle-hover-bg, rgba(85, 117, 116, 0.16));
+  border-color: var(--rb-toggle-hover-border, var(--accent-ink, #557574));
+}
+.sim-ctrl__toggle-chevron {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform 0.18s ease;
+}
+.sim-ctrl__toggle-btn.is-open .sim-ctrl__toggle-chevron {
+  transform: rotate(180deg);
 }
 
 /* 等级滑块与快速预设 */
@@ -1937,6 +2007,17 @@ onMounted(() => {
   .sim-ctrl, .board-stage-wrap, .sim-summary {
     padding: 12px;
   }
+  .sim-ctrl__header--collapsible {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .sim-ctrl__toggle-btn {
+    width: 100%;
+    justify-content: space-between;
+    padding: 7px 12px;
+    font-size: 13px;
+  }
   .core-selector-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1958,6 +2039,11 @@ onMounted(() => {
   --rb-active-bg: #2f5e5a;
   --rb-active-color: #f3fbfa;
   --rb-active-border: #6ba5a0;
+  --rb-toggle-bg: rgba(107, 165, 160, 0.15);
+  --rb-toggle-border: rgba(107, 165, 160, 0.44);
+  --rb-toggle-color: #a8dbd6;
+  --rb-toggle-hover-bg: rgba(107, 165, 160, 0.25);
+  --rb-toggle-hover-border: rgba(107, 165, 160, 0.68);
   --rb-slider-accent: #6ba5a0;
   --rb-success-color: #7bd882;
   --rb-warn-color: #f48b8b;

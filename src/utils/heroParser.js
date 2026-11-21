@@ -3,12 +3,15 @@ import { createCachedLoader } from './resourceClient.js'
 import { getItemImageUrl, roundToEven } from './itemParser.js'
 import { resolvePlayablePlayerLevelCap } from './levelConfig.js'
 import { JOB_NAMES, ELEMENT_NAMES, BASE_REWARD_ICONS, REWARD_MODE_INFO, getCleanSkillName, cleanDialogueBase } from './gameMappings.js'
-import { buildSkillMechanics, buildTalentMechanics, buildSummonMechanics, resolveSummonConfig, resolveSummonConfigs } from './heroMechanics.js'
+import { MECHANICS_LABELS, buildSkillMechanics, buildTalentMechanics, buildSummonMechanics, resolveSummonConfig, resolveSummonConfigs } from './heroMechanics.js'
 import { buildPartnerMailboxes, parseHeroMail } from './partnerMailData.js'
 import { describeBuff } from './buffParser.js'
 import { isHiddenHero } from '../config/blacklist.js'
 
 let cachedHeroes = null
+let cachedHeroList = null
+let cachedPartnerMails = null
+const cachedHeroDetails = new Map()
 let cachedMailboxes = null
 let cachedHeroLevel = null
 let cachedHeroRank = null
@@ -401,6 +404,203 @@ export function buildHeroData(maps) {
       consumeDatas
     }
 }
+
+const SEARCH_IGNORED_KEYS = new Set([
+  'id', 'key', 'icon', 'img', 'vocal', 'face', 'dialog', 'taskTypeId',
+  'consumeKey', 'typeId', 'sourceRefs', 'reviewStatus', 'spType', 'type', 'searchText'
+])
+
+const SEARCH_LABEL_ALIASES = {
+  '物理': 'physical phy',
+  '魔法': 'magic magical spell',
+  '真实': 'true real',
+  '水': 'water',
+  '火': 'fire flame',
+  '风': 'wind',
+  '地': 'earth',
+  '物理攻击': 'physical attack phy atk',
+  '魔法攻击': 'magic attack magic atk spell power',
+  '普通攻击': 'normal attack basic attack',
+  '技能伤害': 'skill damage ability damage',
+  '伤害': 'damage',
+  '持续伤害': 'damage over time dot',
+  '护盾': 'shield',
+  '治疗': 'heal healing',
+  '召唤': 'summon',
+  '属性增益': 'buff boost',
+  '属性削弱': 'debuff',
+  '属性继承': 'inherit inheritance',
+  '伤害减免': 'damage reduction damage taken reduction',
+  '控制': 'control crowd control cc',
+  '暴击': 'crit critical',
+  '最大生命': 'max hp maximum health',
+  '物理穿透': 'physical penetration armor penetration',
+  '魔法穿透': 'magic penetration',
+  '范围': 'area aoe',
+  '多段': 'multi hit multihit',
+  '持续': 'duration',
+  '反伤': 'reflect counter damage',
+  '近卫': 'vanguard guard',
+  '守护': 'defender tank guard 护卫',
+  '秘术': 'mage caster',
+  '射手': 'archer ranged',
+  '突袭': 'assassin rogue',
+  '支援': 'support healer'
+}
+
+function getSearchAliases(value, mapped = '') {
+  const labels = [value, mapped].filter(Boolean)
+  return labels
+    .flatMap(label => [label, SEARCH_LABEL_ALIASES[label] || ''])
+    .filter(Boolean)
+    .join(' ')
+}
+
+function collectHeroSearchText(value, key = '', seen = new Set()) {
+  if (value == null || SEARCH_IGNORED_KEYS.has(key)) return ''
+  if (typeof value === 'string') {
+    return getSearchAliases(value, MECHANICS_LABELS[value])
+  }
+  if (typeof value === 'number') return String(value)
+  if (typeof value !== 'object') return ''
+  if (seen.has(value)) return ''
+  seen.add(value)
+  if (Array.isArray(value)) {
+    return value.map(item => collectHeroSearchText(item, '', seen)).join(' ')
+  }
+  return Object.entries(value)
+    .map(([childKey, childValue]) => collectHeroSearchText(childValue, childKey, seen))
+    .join(' ')
+}
+
+/**
+ * 构建期/运行期共用的角色全文检索串（覆盖技能、星阶、档案、语音及机制别名，分词去重减小体积）。
+ */
+export function buildHeroSearchText(hero) {
+  if (!hero || typeof hero !== 'object') return ''
+  if (typeof hero.searchText === 'string' && hero.searchText) return hero.searchText
+  const rarityText = `${hero.rare ?? ''}星 ${hero.rare ?? ''} star rarity`
+  const raw = `${rarityText} ${collectHeroSearchText(hero)}`.toLowerCase()
+  const tokens = raw.split(/\s+/).filter(Boolean)
+  return [...new Set(tokens)].join(' ')
+}
+
+function pickHeroListConsumes(heroRank, consumeDatas = {}) {
+  const keys = new Set()
+  for (const rankInfo of Object.values(heroRank?.heroRank || {})) {
+    for (const byJob of Object.values(rankInfo?.upgradeConsume || {})) {
+      for (const key of Object.values(byJob || {})) if (key) keys.add(key)
+    }
+  }
+  const source = consumeDatas?.datas || consumeDatas || {}
+  const subset = {}
+  for (const key of keys) {
+    if (source[key]) subset[key] = source[key]
+  }
+  return subset
+}
+
+/**
+ * 将全量 `heroes.json` 拆分为 3 类按需产物：
+ *   - `listData`（`heroes-list.json`）：40 名角色卡片信息 + 预计算去重 `searchText` + 等级/突破配置
+ *   - `mailsData`（`partner-mails.json`）：伙伴邮件页面专属邮箱集合
+ *   - `detailFiles`（`heroes/<id>.json`）：单角色技能/星阶/天赋/职业特性/档案/语音详情
+ */
+export function splitHeroDataBundle(data) {
+  const heroes = Array.isArray(data?.heroes) ? data.heroes : []
+  const listHeroes = heroes.map(h => ({
+    id: h.id,
+    name: h.name,
+    name2: h.name2,
+    rare: h.rare,
+    job: h.job,
+    jobName: h.jobName,
+    element: h.element,
+    elementName: h.elementName,
+    img: h.img,
+    icon: h.icon,
+    des: h.des,
+    skins: h.skins,
+    maxStarCount: h.maxStarCount,
+    starGrowthRate: h.starGrowthRate,
+    starLimitInfo: h.starLimitInfo,
+    unitData: h.unitData,
+    searchText: buildHeroSearchText(h)
+  }))
+
+  const detailFiles = heroes.map(h => ({
+    id: h.id,
+    data: {
+      id: h.id,
+      skills: h.skills || [],
+      starSkills: h.starSkills || [],
+      talentSkills: h.talentSkills || [],
+      jobTraits: h.jobTraits || [],
+      archives: h.archives || [],
+      behavior: h.behavior || {},
+      itemFavor: h.itemFavor || []
+    }
+  }))
+
+  return {
+    listData: {
+      schemaVersion: 1,
+      heroes: listHeroes,
+      heroLevel: data.heroLevel,
+      heroRank: data.heroRank,
+      playerLevelCap: data.playerLevelCap || 1,
+      consumeDatas: pickHeroListConsumes(data.heroRank, data.consumeDatas)
+    },
+    mailsData: {
+      schemaVersion: 1,
+      mailboxes: data.mailboxes || []
+    },
+    detailFiles
+  }
+}
+
+/**
+ * 角色图鉴列表轻量加载（`data/parsed/heroes-list.json`）。
+ */
+export const fetchHeroListData = createCachedLoader(async () => {
+  if (cachedHeroList) return cachedHeroList
+  const parsed = await fetchWithFallback('data/parsed/heroes-list.json')
+  cachedHeroList = parsed
+  cachedHeroLevel = parsed.heroLevel
+  cachedHeroRank = parsed.heroRank
+  cachedPlayerLevelCap = parsed.playerLevelCap || 1
+  cachedHeroConsume = parsed.consumeDatas || {}
+  return parsed
+})
+
+/**
+ * 单角色详情按需加载（`data/parsed/heroes/<heroId>.json`）。
+ */
+export async function fetchHeroDetailData(heroId) {
+  if (!heroId) throw new Error('Missing heroId')
+  if (cachedHeroDetails.has(heroId)) return cachedHeroDetails.get(heroId)
+  if (Array.isArray(cachedHeroes)) {
+    const full = cachedHeroes.find(h => h.id === heroId)
+    if (full) {
+      cachedHeroDetails.set(heroId, full)
+      return full
+    }
+  }
+  const detail = await fetchWithFallback(`data/parsed/heroes/${heroId}.json`)
+  cachedHeroDetails.set(heroId, detail)
+  return detail
+}
+
+/**
+ * 伙伴邮件独立数据加载（`data/parsed/partner-mails.json`）。
+ */
+export const fetchPartnerMailsData = createCachedLoader(async () => {
+  if (cachedPartnerMails) return cachedPartnerMails
+  const parsed = await fetchWithFallback('data/parsed/partner-mails.json')
+  cachedPartnerMails = parsed
+  cachedMailboxes = parsed.mailboxes || []
+  return parsed
+})
 
 /**
  * 角色图鉴数据加载：读取构建期预解析的 parsed/heroes.json。

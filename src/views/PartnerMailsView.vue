@@ -19,7 +19,7 @@
     </UiFilterPanel>
 
     <UiEmptyState v-if="loading" type="loading" text="正在读取伙伴邮件..." />
-    <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadPartnerMails" />
+    <UiEmptyState v-else-if="error" type="error" :text="error" @retry="retryLoadPartnerMails" />
     <div v-else class="partner-mails-scroll">
       <PartnerMailReader :heroes="filteredHeroes" :selected-hero="selectedHero"
         :mails="selectedMails" :selected-mail="selectedMail"
@@ -32,7 +32,8 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { UiFilterPanel, UiSearchInput, UiFilterRow, UiFilterPill, UiEmptyState } from '../components/ui/index.js'
-import { fetchHeroData } from '../utils/heroParser.js'
+import { fetchPartnerMailsData } from '../utils/heroParser.js'
+import { formatResourceLoadError, isResourceVersionMismatch } from '../utils/resourceClient.js'
 import { ELEMENT_NAMES, JOB_NAMES } from '../utils/gameMappings.js'
 import PartnerMailReader from '../components/heroes/PartnerMailReader.vue'
 import { isBlacklisted } from '../config/blacklist.js'
@@ -43,7 +44,7 @@ const openReward = item => {
 }
 
 const heroes = ref([]), selectedHero = ref(null), selectedMail = ref(null), searchQuery = ref('')
-const selectedRarity = ref(null), selectedJob = ref(null), selectedElement = ref(null), loading = ref(true), error = ref('')
+const selectedRarity = ref(null), selectedJob = ref(null), selectedElement = ref(null), loading = ref(true), error = ref(''), errorNeedsReload = ref(false)
 const jobsList = Object.values(JOB_NAMES)
 const filteredHeroes = computed(() => heroes.value.filter(h => !isBlacklisted({ id: h.id, name: h.name, label: h.name2 }) && (!selectedRarity.value || h.rare === selectedRarity.value) && (!selectedJob.value || h.job === selectedJob.value) && (!selectedElement.value || h.element === selectedElement.value) && (!searchQuery.value.trim() || `${h.name} ${h.name2 || ''} ${h.mails.map(mail => mail.title).join(' ')}`.toLowerCase().includes(searchQuery.value.trim().toLowerCase()))))
 const selectedMails = computed(() => selectedHero.value?.mails || [])
@@ -82,15 +83,25 @@ watch(() => [route.query.hero, route.query.mail], applyRouteSelection)
 const loadPartnerMails = async () => {
   loading.value = true
   error.value = ''
+  errorNeedsReload.value = false
   try {
-    const data = await fetchHeroData()
+    const data = await fetchPartnerMailsData()
     heroes.value = data.mailboxes || []
     applyRouteSelection()
   } catch (e) {
-    error.value = '伙伴邮件数据加载失败，请重试'
+    errorNeedsReload.value = isResourceVersionMismatch(e)
+    error.value = formatResourceLoadError(e, '伙伴邮件数据加载失败，请重试')
   } finally {
     loading.value = false
   }
+}
+
+const retryLoadPartnerMails = () => {
+  if (errorNeedsReload.value && typeof window !== 'undefined') {
+    window.location.reload()
+    return
+  }
+  loadPartnerMails()
 }
 
 onMounted(() => {

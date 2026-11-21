@@ -2,7 +2,7 @@
  * 物品/装备核心数据预解析：public/data/parsed/items.json
  * 对应浏览器端 src/utils/itemParser.js 的 buildItemData（同一纯函数）
  */
-import { buildItemData } from '../../src/utils/itemParser.js'
+import { buildItemData, splitItemDataBundle } from '../../src/utils/itemParser.js'
 import { buildRegularFacilityRecipes, indexRegularFacilityRecipes } from '../../src/utils/facilityData.js'
 import { readJson } from './shared.mjs'
 import { loadSkinModelImages } from './skin-models.mjs'
@@ -42,5 +42,15 @@ export function buildItemsFile() {
   for (const item of data.items || []) {
     if (facilityRecipes[item.typeId]) item.facilityCrafting = facilityRecipes[item.typeId]
   }
-  return { file: 'parsed/items.json', data }
+  const { metaData, equipsData, listData, extraData } = splitItemDataBundle(data)
+  return {
+    data,
+    files: [
+      { file: 'parsed/items.json', data },
+      { file: 'parsed/items-meta.json', data: metaData },
+      { file: 'parsed/equips.json', data: equipsData },
+      { file: 'parsed/items-list.json', data: listData },
+      { file: 'parsed/items-extra.json', data: extraData }
+    ]
+  }
 }
