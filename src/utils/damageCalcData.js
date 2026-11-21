@@ -100,6 +100,7 @@ export function toDamageHeroRecord(hero) {
     floatMin: Number(unit.atkFloatMin ?? 0.9),
     floatMax: Number(unit.atkFloatMax ?? 1.1),
     baseCritDam: Number(unit.critDam ?? 150),
+    baseAtkSpeed: Number(unit.atkSpeed ?? 0.7),
     skills,
     talentSkills,
   }

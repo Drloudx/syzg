@@ -20,6 +20,7 @@ import {
   toDamageMonsterForms,
 } from '../../src/utils/damageCalcData.js'
 import { buildDamageEffectsCatalog } from '../../src/utils/damageEffects.js'
+import { extractSkillSummonsFromRaw, getSkillDotProfile } from '../../src/utils/damageDoTAndSummons.js'
 import { buildHeroStarRecords } from '../../src/utils/heroStarsDamage.js'
 import { isBlacklisted, isEquipTierHidden, isHiddenHero } from '../../src/config/blacklist.js'
 
@@ -51,17 +52,41 @@ const levelStrengthData = readJson(parsedDir, 'monLevelStrength.json')
 const petsData = readJson(parsedDir, 'pets.json')
 const itemsData = readJson(parsedDir, 'items.json')
 const buffDatas = readJson(rawDir, 'buff.json')
+const rawSkillFile = readJson(rawDir, 'skill.json')
+const rawMonFile = readJson(rawDir, 'mon.json')
+const rawSkillsMap = rawSkillFile?.datas || rawSkillFile || {}
+const monDatas = rawMonFile?.datas || rawMonFile || {}
+
+function enrichAbility(sk) {
+  const dotProfile = getSkillDotProfile(sk.id)
+  const summons = extractSkillSummonsFromRaw({
+    skillId: sk.id,
+    rawSkillsMap,
+    buffDatas,
+    monDatas,
+  })
+  return {
+    ...sk,
+    ...(dotProfile ? { dotProfile } : {}),
+    ...(summons.length ? { summons } : {}),
+  }
+}
 
 const heroes = (heroData.heroes || heroData.list || [])
   .filter((h) => h && !isHiddenHero(h) && !isBlacklisted(h))
-  .map((h) => ({
-    ...toDamageHeroRecord(h),
-    starSkills: buildHeroStarRecords({
-      rawHero: h,
-      skillTriggersData: itemsData.skillTriggers,
-      buffDatas,
-    }),
-  }))
+  .map((h) => {
+    const rec = toDamageHeroRecord(h)
+    return {
+      ...rec,
+      skills: rec.skills.map(enrichAbility),
+      talentSkills: rec.talentSkills.map(enrichAbility),
+      starSkills: buildHeroStarRecords({
+        rawHero: h,
+        skillTriggersData: itemsData.skillTriggers,
+        buffDatas,
+      }),
+    }
+  })
 const monsters = (monsterData.monsters || monsterData.list || [])
   .filter((m) => m && !isBlacklisted(m))
   .flatMap(toDamageMonsterForms)

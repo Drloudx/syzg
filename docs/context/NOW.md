@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-21 ｜ **最近代码提交**：`13a3967a` ｜ **分支**：`main`
+**核对时间**：2026-11-22 ｜ **最近代码提交**：`50989632`（本次提交前） ｜ **分支**：`main`
 
 ---
 
@@ -28,9 +28,9 @@
 ### 本次推送（2026-11-21）
 
 - **角色伤害计算器完整化与公式校准（`/#/sims?tab=damage`，交接详档：[DAMAGE_CALCULATOR.md](technical/DAMAGE_CALCULATOR.md)）**：
-  - 独立预解析脚本 [build-damage-calc-data.mjs](../../scripts/dev/build-damage-calc-data.mjs) 生成精简数据集 `public/data/parsed/damage-calc.json`（`572.2 KB`，`40` 名角色含 `img`、`talentSkills` 与 `160` 枚 `starSkills` / `121` 个可见怪物形态 / `1~101` 级 `levelStrength` / `35` 条战斗特效）；
-  - 机制校准与扩展：[heroMechanics.js](../../src/utils/heroMechanics.js) 清零 40 名角色被动 `pending`（18 个直伤被动校准 `form`/`crit`/`elements`/`segments`）；[damageEffects.js](../../src/utils/damageEffects.js) 接入 22 种魔物特性（`Lv.1~7`）、8 项可见套装特效与 5 项可见装备特技（按 `isBlacklisted` 与 `isEquipTierHidden` 剔除隐藏/4~5 阶装备）；[heroStarsDamage.js](../../src/utils/heroStarsDamage.js) 覆盖全 160 枚星阶（70 战斗向 / 13 面板不重复叠加 / 77 机制生存向）；[damageCalculator.js](../../src/utils/damageCalculator.js) 补入普攻标签增伤 `tagDamAdd` 与分段 `ignoreDef` / `allowCrit` / `realCrit`；
-  - 页面与口径修正：[DamageCalculatorPanel.vue](../../src/components/sims/DamageCalculatorPanel.vue)、[MonsterDetailModal.vue](../../src/components/MonsterDetailModal.vue)、[RoomContentList.vue](../../src/components/RoomContentList.vue)、[ActivityDungeonsView.vue](../../src/views/ActivityDungeonsView.vue)、[TowerView.vue](../../src/views/TowerView.vue) 与 [monsterModalState.js](../../src/utils/monsterModalState.js) 统一修正怪物双防不受房间 `levelScale` 缩放并将关卡修正文案从「攻防」改为「攻击」；角色与怪物弹窗改用「魔物出战」同款筛选+多列卡片网格，新增星阶切换栏、魔物特性弹窗及套装/装备芯片汇总栏，面板默认与重置值设为等级 `50` / 双攻 `4500` / 暴击 `10%` / 暴伤 `155%`。
+  - 独立预解析脚本 [build-damage-calc-data.mjs](../../scripts/dev/build-damage-calc-data.mjs) 生成精简数据集 `public/data/parsed/damage-calc.json`（`578.5 KB`，`40` 名角色含 `img`、`baseAtkSpeed`、`talentSkills` 与 `160` 枚 `starSkills` / `121` 个可见怪物形态 / `1~101` 级 `levelStrength` / `35` 条战斗特效）；
+  - 机制校准与扩展：[heroMechanics.js](../../src/utils/heroMechanics.js) 清零 40 名角色被动 `pending`（18 个直伤被动校准 `form`/`crit`/`elements`/`segments`）；[damageEffects.js](../../src/utils/damageEffects.js) 接入 22 种魔物特性（`Lv.1~7`；含 `pet_106` 圣骑士史莱姆按 `PetBuff_10604` 同步增益召唤师与全部友方召唤物）、8 项可见套装特效与 5 项可见装备特技（按 `isBlacklisted` 与 `isEquipTierHidden` 剔除隐藏/4~5 阶装备）；[heroStarsDamage.js](../../src/utils/heroStarsDamage.js) 覆盖全 160 枚星阶并接入召唤系星阶（乌尔勒 `06505`/`06508`、德莉 `06005`/`06006`、安娜 `02907`/`02908`、贝拉多娜 `02606`/`02608`）；[damageDoTAndSummons.js](../../src/utils/damageDoTAndSummons.js) 与 [damageDps.js](../../src/utils/damageDps.js) 实现通用 DPS 循环（+300% 攻速上限、50% 冷缩上限、DoT 多跳完整总伤，按 `Hero065Skill2.cs` 校准乌尔勒 `06503` 对单静止扫射为 `7` 跳、召唤物独立继承输出、自动稳态循环 / 自定义爆发轴）、词条边际收益排序、A/B 基准对比与 `DC2:` 无服务端差量短码分享；[damageCalculator.js](../../src/utils/damageCalculator.js) 补入普攻标签增伤 `tagDamAdd` 与分段 `ignoreDef` / `allowCrit` / `realCrit`；
+  - 页面与口径修正：[DamageCalculatorPanel.vue](../../src/components/sims/DamageCalculatorPanel.vue)、[MonsterDetailModal.vue](../../src/components/MonsterDetailModal.vue)、[RoomContentList.vue](../../src/components/RoomContentList.vue)、[ActivityDungeonsView.vue](../../src/views/ActivityDungeonsView.vue)、[TowerView.vue](../../src/views/TowerView.vue) 与 [monsterModalState.js](../../src/utils/monsterModalState.js) 统一修正怪物双防不受房间 `levelScale` 缩放并将关卡修正文案从「攻防」改为「攻击」；星阶区增加同技能风格的直出属性说明栏（`.dc-star-detail-box`），纯召唤技能在顶部 `.dc-result-grid` 直接渲染召唤单次普攻 / 单轮总期望 / 折算秒伤卡片，默认与重置值设为等级 `50` / 双攻 `4500` / 暴击 `10%` / 暴伤 `155%`，并加入「面板直抄 / 二区增伤」明确分栏、综合 DPS 卡、多段八步白盒切换、基准 A 对比与 `localStorage`/URL 短码分享。
 - **官方客户端异常反馈文档**：
   - 补齐 `docs/feedback/` 下 1.7.15 物/魔穿透未除 100 异常分析，以及 [营地研究_野营篝火回蓝失效与药水道具冷却及物理穿透异常分析.md](../feedback/营地研究_野营篝火回蓝失效与药水道具冷却及物理穿透异常分析.md)。
 - **大表按需拆分、请求超时与图鉴 UI 优化**：

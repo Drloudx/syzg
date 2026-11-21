@@ -11,6 +11,16 @@ import {
 } from '../../src/utils/damageCalculator.js'
 import { parseMonsterWeakness } from '../../src/utils/damageCalcData.js'
 import { aggregateDamageEffects, isEffectApplicable } from '../../src/utils/damageEffects.js'
+import {
+  calcEffectiveAtkSpeed,
+  calcEffectiveCooldown,
+  calculateDpsStatWeights,
+  calculateHeroDpsRotation,
+  compareAgainstBaseline,
+  decodeSharePayload,
+  encodeCompactShareCode,
+  evaluateHeroAbility,
+} from '../../src/utils/damageDps.js'
 import { applyStarTransformsToSkill, calculateHeroStarEffects } from '../../src/utils/heroStarsDamage.js'
 import { validateResource } from '../../src/utils/resourceSchemas.js'
 
@@ -407,4 +417,421 @@ test('全角色 160 枚星阶技能（命座）覆盖完整且额外段/倍率/�
   assert.ok(Math.abs(mitStars.tgtPhyDefPct - (-0.25)) < 1e-6)
   assert.ok(Math.abs(mitStars.tgtMagicDefPct - (-0.25)) < 1e-6)
   assert.equal(mitStars.activeCount, 2)
+})
+
+test('通用 DPS 循环、攻速/冷缩上限、按技能生效乘区、词条边际收益与基准对比精确', () => {
+  const data = JSON.parse(readFileSync('public/data/parsed/damage-calc.json', 'utf8'))
+  assert.equal(data.heroes.every((h) => typeof h.baseAtkSpeed === 'number' && h.baseAtkSpeed > 0), true)
+
+  // 1. 攻速上限 +300% 与冷缩上限 50%
+  const aspdCap = calcEffectiveAtkSpeed(0.7, 450)
+  assert.equal(aspdCap.isCapped, true)
+  assert.equal(aspdCap.cappedAddPct, 300)
+  assert.ok(Math.abs(aspdCap.effectiveAtkSpeed - 2.8) < 1e-6)
+
+  const cdrCap = calcEffectiveCooldown(20, 80)
+  assert.equal(cdrCap.isCapped, true)
+  assert.equal(cdrCap.cappedCoolDownPct, 50)
+  assert.equal(cdrCap.effectiveCd, 10)
+
+  // 2. 奇瓦 30s 自动木桩循环：验证普攻/技能独立吃各自特效（麦田3件只加成普攻，荒原2件只加成技能）
+  const qiwa = data.heroes.find((h) => h.name === '奇瓦')
+  const baseAtk = {
+    level: 50,
+    phyAtk: 4500,
+    magicAtk: 4500,
+    crit: 10,
+    critDam: 155,
+    atkSpeedAddPct: 0,
+    coolDownPct: 0,
+    unitElemDamAddPct: { fire: 0, water: 0, wind: 0, earth: 0 },
+  }
+  const baseTgt = { level: 50, phyDef: 0, magicDef: 0, critRes: 0, damResElementPct: 0 }
+
+  const rot0 = calculateHeroDpsRotation({
+    hero: qiwa,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    rotationConfig: { mode: 'auto', durationSec: 30, skillCastLossSec: 0.5 },
+  })
+  assert.ok(rot0.totalDps > 0)
+  assert.equal(rot0.entries.length, qiwa.skills.length + qiwa.talentSkills.length)
+  const shareSum = rot0.entries.reduce((s, e) => s + e.sharePct, 0)
+  assert.ok(Math.abs(shareSum - 100) < 1e-6)
+
+  // +100% 攻速只提升普攻 DPS，不改变技能与被动 DPS
+  const rotAspd = calculateHeroDpsRotation({
+    hero: qiwa,
+    atk: { ...baseAtk, atkSpeedAddPct: 100 },
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    rotationConfig: { mode: 'auto', durationSec: 30, skillCastLossSec: 0.5 },
+  })
+  assert.ok(Math.abs(rotAspd.normalDps - rot0.normalDps * 2) < 1e-6)
+  assert.ok(Math.abs(rotAspd.skillDps - rot0.skillDps) < 1e-6)
+
+  // +50% 冷却缩减使技能输出翻倍
+  const rotCdr = calculateHeroDpsRotation({
+    hero: qiwa,
+    atk: { ...baseAtk, coolDownPct: 50 },
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    rotationConfig: { mode: 'auto', durationSec: 30, skillCastLossSec: 0 },
+  })
+  const rotNoLoss = calculateHeroDpsRotation({
+    hero: qiwa,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    rotationConfig: { mode: 'auto', durationSec: 30, skillCastLossSec: 0 },
+  })
+  assert.ok(Math.abs(rotCdr.skillDps - rotNoLoss.skillDps * 2) < 1e-4)
+
+  // 套装按技能形态分流：同时选 荒原2件（技能独立×1.13）和 麦田3件（普攻独立×1.40）
+  const rotSuits = calculateHeroDpsRotation({
+    hero: qiwa,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    effectState: { suitIds: ['suit_122', 'suit_133'] },
+    rotationConfig: { mode: 'auto', durationSec: 30, skillCastLossSec: 0.5 },
+  })
+  assert.ok(rotSuits.normalDps > rot0.normalDps * 1.38)
+  assert.ok(rotSuits.skillDps > rot0.skillDps * 1.12)
+
+  // 3. 自定义爆发轴模式：手填普攻 10 次 + 技能各 1 次 / 20s
+  const rotCustom = calculateHeroDpsRotation({
+    hero: qiwa,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    rotationConfig: {
+      mode: 'custom',
+      durationSec: 20,
+      abilities: { '01901': { customCasts: 10 }, '01902': { customCasts: 1 }, '01903': { customCasts: 1 }, '01904': { enabled: false } },
+    },
+  })
+  const normalEntry = rotCustom.entries.find((e) => e.id === '01901')
+  const skill1Entry = rotCustom.entries.find((e) => e.id === '01902')
+  assert.equal(normalEntry.casts, 10)
+  assert.equal(rotCustom.talentDps, 0)
+  assert.ok(Math.abs(rotCustom.totalDps - (normalEntry.totalDamage + skill1Entry.totalDamage + rotCustom.entries.find((e) => e.id === '01903').totalDamage) / 20) < 1e-6)
+
+  // 4. 词条边际收益排序正确且过滤未用伤害属性（奇瓦纯魔法不含物攻/物穿）
+  const weights = calculateDpsStatWeights({
+    hero: qiwa,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    rotationConfig: { mode: 'auto', durationSec: 30, skillCastLossSec: 0.5 },
+  })
+  assert.equal(weights.some((w) => w.key === 'phyAtk'), false)
+  assert.equal(weights.some((w) => w.key === 'magicAtk'), true)
+  assert.equal(weights.some((w) => w.key === 'elem_fire'), true)
+  for (let i = 1; i < weights.length; i += 1) {
+    assert.ok(weights[i - 1].diffPct >= weights[i].diffPct)
+  }
+
+  // 5. A/B 基准对比差值
+  const cmp = compareAgainstBaseline(rotAspd.totalDps, rot0.totalDps)
+  assert.equal(cmp.direction, 'up')
+  assert.ok(cmp.diff > 0 && cmp.diffPct > 0)
+})
+
+test('持续伤害 DoT 跳数、召唤物独立继承结算与无服务端 DC2 短码分享精确', () => {
+  const data = JSON.parse(readFileSync('public/data/parsed/damage-calc.json', 'utf8'))
+  const baseAtk = {
+    level: 50,
+    phyAtk: 4500,
+    magicAtk: 4500,
+    crit: 10,
+    critDam: 155,
+    phyAtkPenPct: 20,
+    magicAtkPenPct: 20,
+    unitElemDamAddPct: { fire: 50, water: 0, wind: 0, earth: 0 },
+  }
+  const baseTgt = { level: 50, phyDef: 500, magicDef: 500, critRes: 0, damResElementPct: 0 }
+
+  // 1. DoT：奇瓦 01902 7跳喷射 + 1段火种；艾薇杜尔 05303 6跳火焰 + 1段重击；修瓦莉 06904 3层×5跳；斯卡莉安 06103 附加罪魂诅咒 5 跳
+  const qiwa = data.heroes.find((h) => h.name === '奇瓦')
+  const fireSkill = qiwa.skills.find((s) => s.id === '01902')
+  const qiwaEval = evaluateHeroAbility({
+    hero: qiwa,
+    skill: fireSkill,
+    levelIndex: fireSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+  })
+  assert.equal(qiwaEval.dotSummary.hasDot, true)
+  assert.equal(qiwaEval.dotSummary.totalTicks, 8) // 7 跳喷射 + 1 次火种
+  assert.ok(qiwaEval.dotSummary.fullExpected > qiwaEval.result.expected * 4)
+
+  const xiuwali = data.heroes.find((h) => h.name === '修瓦莉')
+  const beeTalent = xiuwali.talentSkills[0]
+  const beeEval = evaluateHeroAbility({
+    hero: xiuwali,
+    skill: beeTalent,
+    levelIndex: 0,
+    atk: baseAtk,
+    tgt: baseTgt,
+  })
+  assert.equal(beeEval.dotSummary.hasDot, true)
+  assert.equal(beeEval.dotSummary.tickBreakdown[0].factor, 15) // 3层 × 5跳
+
+  const scar = data.heroes.find((h) => h.name === '斯卡莉安')
+  const curseSkill = scar.skills.find((s) => s.id === '06103')
+  const curseEval = evaluateHeroAbility({
+    hero: scar,
+    skill: curseSkill,
+    levelIndex: curseSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+  })
+  assert.equal(curseEval.dotSummary.extraDotResults.length, 1)
+  assert.equal(curseEval.dotSummary.extraDotResults[0].ticks, 5)
+
+  // 2. 召唤物：德莉 06002 常驻 2 弓箭手 + 1 剑盾且继承 100% 魔穿；乌尔勒 06502 2 枚先时浮游炮；安娜火精灵不吃装备 50% 火伤
+  const deli = data.heroes.find((h) => h.name === '德莉')
+  const deliRot = calculateHeroDpsRotation({
+    hero: deli,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    rotationConfig: { mode: 'auto', durationSec: 30, skillCastLossSec: 0.5 },
+  })
+  const summonEntries = deliRot.entries.filter((e) => e.category === 'summon')
+  assert.equal(summonEntries.length, 2)
+  assert.ok(deliRot.summonDps > 0)
+
+  const anna = data.heroes.find((h) => h.name === '安娜')
+  const annaCall = anna.skills.find((s) => s.id === '02902')
+  const annaEval0 = evaluateHeroAbility({
+    hero: anna,
+    skill: annaCall,
+    levelIndex: annaCall.levels.length - 1,
+    atk: { ...baseAtk, unitElemDamAddPct: { fire: 0, water: 0, wind: 0, earth: 0 } },
+    tgt: baseTgt,
+  })
+  const annaEvalFire = evaluateHeroAbility({
+    hero: anna,
+    skill: annaCall,
+    levelIndex: annaCall.levels.length - 1,
+    atk: baseAtk, // +50% fire
+    tgt: baseTgt,
+  })
+  assert.equal(annaEval0.summonResults.length, 1)
+  assert.equal(annaEvalFire.summonResults[0].singleExpected, annaEval0.summonResults[0].singleExpected)
+
+  // 3. 无服务端差量短码 DC2 往返编码一致且精简
+  const sampleSnap = {
+    heroId: 'hero_060',
+    skillIndex: 1,
+    skillLevelMap: { '06003': 11 },
+    monsterId: 'mon_010',
+    presetMonLevel: 65,
+    atk: {
+      level: 55,
+      phyAtk: 4500,
+      magicAtk: 6200,
+      maxHp: 12000,
+      crit: 35,
+      critDam: 185,
+      phyAtkPenPct: 0,
+      magicAtkPenPct: 25,
+      normalAtkPhyPenPct: 0,
+      normalAtkMagPenPct: 0,
+      atkSpeedAddPct: 40,
+      coolDownPct: 20,
+      ignoreDefPct: 0,
+      damAddZone1Pct: 0,
+      unitAtkDamAddPct: 0,
+      unitPhyDamAddPct: 0,
+      unitMagicDamAddPct: 0,
+      unitNormalDamAddPct: 0,
+      unitSkillDamAddPct: 0,
+      unitElemDamAddPct: { fire: 0, water: 0, wind: 15, earth: 0 },
+      spRelicSkillDmgAddPct: 0,
+      extraEventMult: 1,
+      realDam: false,
+      realCrit: false,
+    },
+    tgt: {
+      level: 65,
+      phyDef: 0,
+      magicDef: 420,
+      critRes: 0,
+      damResElementPct: -20,
+      damResTypePct: 0,
+      unitDamageAddPct: 0,
+      unitBeHitSkillDamAddPct: 0,
+      unitTypeResPct: 0,
+      unitElemResPct: 0,
+    },
+    starSelection: { starLevels: { '06005': 4 }, starStacks: {} },
+    effectState: { petId: 'pet_017', petLevel: 7, petStacks: 1, petSynergy: true, suitIds: ['suit_122'], suitStacks: {}, equipIds: [], equipStacks: {} },
+    rotationConfig: { mode: 'auto', durationSec: 60, skillCastLossSec: 0.5, abilities: {} },
+  }
+  const code = encodeCompactShareCode(sampleSnap)
+  assert.ok(code.startsWith('DC2:'))
+  assert.ok(code.length < 480)
+  const decoded = decodeSharePayload(code)
+  assert.equal(decoded.heroId, 'hero_060')
+  assert.equal(decoded.atk.magicAtk, 6200)
+  assert.equal(decoded.atk.unitElemDamAddPct.wind, 15)
+  assert.equal(decoded.tgt.damResElementPct, -20)
+  assert.equal(decoded.effectState.petId, 'pet_017')
+  assert.equal(decoded.rotationConfig.durationSec, 60)
+})
+
+test('圣骑士史莱姆与召唤向星阶生效、乌尔勒清扫指令单点扫射跳数校准', () => {
+  const data = JSON.parse(readFileSync('public/data/parsed/damage-calc.json', 'utf8'))
+  const baseAtk = { level: 50, phyAtk: 4500, magicAtk: 4500, crit: 10, critDam: 155 }
+  const baseTgt = { level: 50, phyDef: 0, magicDef: 0 }
+
+  // 1. 乌尔勒：06503 单点静止扫射按 7 跳结算；圣骑士史莱姆 Lv.7 (4层) 使 06502 浮游炮折算秒伤精确提升 80%
+  const wuerle = data.heroes.find((h) => h.id === 'hero_065')
+  const sweepSkill = wuerle.skills.find((s) => s.id === '06503')
+  const droneSkill = wuerle.skills.find((s) => s.id === '06502')
+
+  const sweepEval = evaluateHeroAbility({
+    hero: wuerle,
+    skill: sweepSkill,
+    levelIndex: sweepSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+  })
+  assert.equal(sweepEval.dotSummary.totalTicks, 7)
+
+  const droneBase = evaluateHeroAbility({
+    hero: wuerle,
+    skill: droneSkill,
+    levelIndex: droneSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+  })
+  const droneSlime = evaluateHeroAbility({
+    hero: wuerle,
+    skill: droneSkill,
+    levelIndex: droneSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    effectState: { petId: 'pet_106', petLevel: 7, petStacks: 4 },
+  })
+  assert.ok(droneSlime.summonResults[0].singleExpected > droneBase.summonResults[0].singleExpected * 1.79)
+  assert.ok(droneSlime.summonResults[0].steadyDps > droneBase.summonResults[0].steadyDps * 1.79)
+
+  // 乌尔勒 1星(06505 浮游炮+60%物攻) + 4星(06508 退场200%自爆) 均生效
+  const droneFullStar = evaluateHeroAbility({
+    hero: wuerle,
+    skill: droneSkill,
+    levelIndex: droneSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    starSelection: { starLevels: { '06505': 4, '06508': 1 }, starStacks: {} },
+  })
+  assert.ok(droneFullStar.summonResults[0].singleExpected > droneBase.summonResults[0].singleExpected * 1.59)
+  assert.ok(droneFullStar.summonResults[0].expiryBlastPerUnit > 0)
+  assert.ok(droneFullStar.summonResults[0].steadyDps > droneFullStar.summonResults[0].singleExpected * 0.81 * 0.5)
+
+  // 2. 德莉：06005(+60%侍从伤) + 06006(+40%侍从攻速) 与圣骑士加成生效
+  const deli = data.heroes.find((h) => h.id === 'hero_060')
+  const callSkill = deli.skills.find((s) => s.id === '06002')
+  const callBase = evaluateHeroAbility({
+    hero: deli,
+    skill: callSkill,
+    levelIndex: callSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+  })
+  const callStar = evaluateHeroAbility({
+    hero: deli,
+    skill: callSkill,
+    levelIndex: callSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    starSelection: { starLevels: { '06005': 4, '06006': 4 }, starStacks: {} },
+  })
+  assert.ok(Math.abs(callStar.summonResults[0].atkSpeed - 1.05) < 1e-6)
+  assert.ok(callStar.summonResults[0].steadyDps > callBase.summonResults[0].steadyDps * 2.2)
+
+  // 3. 贝拉多娜 4星(02608 +2只蝙蝠=3只) & 安娜 3/4星(02907/02908)
+  const bella = data.heroes.find((h) => h.id === 'hero_026')
+  const batSkill = bella.skills.find((s) => s.id === '02603')
+  const batStar = evaluateHeroAbility({
+    hero: bella,
+    skill: batSkill,
+    levelIndex: batSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    starSelection: { starLevels: { '02608': 1 }, starStacks: {} },
+  })
+  assert.equal(batStar.summonResults[0].count, 3)
+
+  const anna = data.heroes.find((h) => h.id === 'hero_029')
+  const spiritSkill = anna.skills.find((s) => s.id === '02902')
+  const spiritStar = evaluateHeroAbility({
+    hero: anna,
+    skill: spiritSkill,
+    levelIndex: spiritSkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    starSelection: { starLevels: { '02907': 4, '02908': 1 }, starStacks: {} },
+  })
+  assert.ok(Math.abs(spiritStar.summonResults[0].atkPct - 0.7) < 1e-6)
+  assert.equal(spiritStar.summonResults[0].durtime, 20)
+
+  // 4. 阿娜洛洁：04303 强买强卖为 2 段（无重复幻影第3段）、04304 清算欠账仅算 90% 债务追加且按 4 攻周期折算、04306 2星「追偿利息」附加 5 跳地魔 DoT
+  const ana = data.heroes.find((h) => h.id === 'hero_043')
+  const buySkill = ana.skills.find((s) => s.id === '04303')
+  const debtTalent = ana.talentSkills.find((s) => s.id === '04304')
+  assert.equal(buySkill.segments.length, 2)
+  assert.equal(debtTalent.segments.length, 1)
+  assert.ok(Math.abs(debtTalent.levels[0].segments[0][0] - 0.9) < 1e-6)
+
+  const buyBase = evaluateHeroAbility({
+    hero: ana,
+    skill: buySkill,
+    levelIndex: buySkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+  })
+  const buyStar2 = evaluateHeroAbility({
+    hero: ana,
+    skill: buySkill,
+    levelIndex: buySkill.levels.length - 1,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    starSelection: { starLevels: { '04306': 4 }, starStacks: {} },
+  })
+  assert.equal(buyBase.dotSummary.hasDot, false)
+  assert.equal(buyStar2.dotSummary.hasDot, true)
+  assert.equal(buyStar2.dotSummary.extraDotResults.length, 1)
+  assert.equal(buyStar2.dotSummary.extraDotResults[0].ticks, 5)
+  assert.equal(buyStar2.dotSummary.extraDotResults[0].totalExpected, 29250)
+
+  const anaRot0 = calculateHeroDpsRotation({
+    hero: ana,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+  })
+  const anaRot2 = calculateHeroDpsRotation({
+    hero: ana,
+    atk: baseAtk,
+    tgt: baseTgt,
+    effectsCatalog: data.effects,
+    starSelection: { starLevels: { '04306': 4 }, starStacks: {} },
+  })
+  assert.ok(anaRot2.skillDps > anaRot0.skillDps + 1500)
 })

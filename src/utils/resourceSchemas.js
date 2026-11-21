@@ -153,7 +153,8 @@ const schemas = {
       && isList(d.layers) && isList(d.roomPools) && isList(d.events) && isList(d.shop)),
   'data/parsed/damage-calc.json': data => isRecord(data)
     && recordList(data.heroes) && data.heroes.every(h => Array.isArray(h.skills)
-      && Array.isArray(h.talentSkills) && Array.isArray(h.starSkills) && typeof h.img === 'string')
+      && Array.isArray(h.talentSkills) && Array.isArray(h.starSkills) && typeof h.img === 'string'
+      && typeof h.baseAtkSpeed === 'number')
     && recordList(data.monsters) && isRecord(data.levelStrength)
     && isRecord(data.effects) && recordList(data.effects.pets)
     && recordList(data.effects.suits) && recordList(data.effects.equips)

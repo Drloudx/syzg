@@ -218,12 +218,25 @@ const COMBAT_STAR_EXTRACTORS = {
 
   // ===== 贝拉多娜 026 =====
   '02606': {
-    label: '释放技能2后物理攻击提高',
+    label: '释放技能2后自身与蝙蝠物攻提高',
     when: { always: true },
     extract: (p, buffs) => {
       const val = round4(buffs[p.addBuffId]?.para?.attr?.phyAtk?.percent)
-      return { mods: { phyAtkPct: val }, badge: `物攻+${Math.round(val * 100)}%` }
+      return {
+        mods: { phyAtkPct: val },
+        summonSkillIds: ['02603'],
+        summonMods: { summonPhyAtkPct: val },
+        badge: `自身与蝙蝠物攻+${Math.round(val * 100)}%`,
+      }
     },
+  },
+  '02608': {
+    label: '技能2额外召唤2只吸血蝙蝠',
+    when: { skillId: '02603' },
+    extract: () => ({
+      summonMods: { summonExtraCount: 2 },
+      badge: '额外召唤 +2 只蝙蝠（共3只）',
+    }),
   },
 
   // ===== 梅莉莉 027 =====
@@ -256,6 +269,30 @@ const COMBAT_STAR_EXTRACTORS = {
       const d = buffs[p.addBuffId]?.para?.damage
       const seg = toSeg(d, { ignoreDef: num(d?.ignoreDef, 1) })
       return { extraSegs: seg ? [seg] : [], badge: `6层印记追加100%无视防御段` }
+    },
+  },
+
+  // ===== 安娜 029 =====
+  '02907': {
+    label: '召唤精灵额外继承安娜属性',
+    when: { skillIds: ['02902', '02903'] },
+    extract: (p) => {
+      const val = round4(p.attAddRate)
+      return {
+        summonMods: { summonInheritAtkAdd: val },
+        badge: `火/风精灵额外继承属性+${Math.round(val * 100)}%`,
+      }
+    },
+  },
+  '02908': {
+    label: '召唤精灵存在时间延长',
+    when: { skillIds: ['02902', '02903'] },
+    extract: (p) => {
+      const dur = num(p.sumTimeAdd)
+      return {
+        summonMods: { summonDurtimeAdd: dur },
+        badge: `火/风精灵存在+${dur}秒`,
+      }
     },
   },
 
@@ -345,6 +382,30 @@ const COMBAT_STAR_EXTRACTORS = {
     label: '技能1倍率提升',
     when: { skillId: '04102' },
     extract: (p) => ({ skillMultScale: round4(p.skill_1DamAddRate), badge: `涌流斩倍率+${Math.round(num(p.skill_1DamAddRate) * 100)}%` }),
+  },
+
+  // ===== 阿娜洛洁 043 =====
+  '04306': {
+    label: '技能2爆炸附加5秒地属性利息DoT',
+    when: { skillId: '04303' },
+    extract: (p) => {
+      const d = p.addNewBuff?.newBuffPara?.damage || {}
+      const mul = round4(d.muPower)
+      return {
+        extraDots: [
+          {
+            name: '追偿利息（Buff DoT）',
+            damageType: d.damageType || 'magicAtk',
+            elementType: d.elementType || 'earth',
+            scaling: d.muAddType || 'magicAtk',
+            multiplier: mul,
+            baseDamage: 0,
+            ticks: 5,
+          },
+        ],
+        badge: `强买强卖附加利息 ${Math.round(mul * 100)}%/秒×5秒`,
+      }
+    },
   },
 
   // ===== 艾尔菲帕 045 =====
@@ -508,6 +569,30 @@ const COMBAT_STAR_EXTRACTORS = {
     },
   },
 
+  // ===== 德莉 060 =====
+  '06005': {
+    label: '征召号令侍从伤害提高',
+    when: { skillId: '06002' },
+    extract: (p) => {
+      const val = round4(p.sumDamAdd)
+      return {
+        summonMods: { summonUnitAtkDamAdd: val },
+        badge: `征召侍从伤害+${Math.round(val * 100)}%`,
+      }
+    },
+  },
+  '06006': {
+    label: '魔弹增加且侍从攻速提高',
+    when: { skillIds: ['06002', '06003'] },
+    extract: (p) => {
+      const spd = num(p.addNewBuff?.newBuffPara?.attr?.atkSpeed?.baseValue)
+      return {
+        summonMods: { summonAtkSpeedPct: spd },
+        badge: `侍从攻速+${spd}% · 魔弹+1`,
+      }
+    },
+  },
+
   // ===== 露比特·鲁特 062 =====
   '06205': {
     label: '技能1倍率提升',
@@ -544,10 +629,40 @@ const COMBAT_STAR_EXTRACTORS = {
   },
 
   // ===== 乌尔勒 065 =====
+  '06505': {
+    label: '先时浮游炮物理攻击提高（并降低承伤）',
+    when: { skillIds: ['06502', '06504'] },
+    extract: (p) => {
+      const val = round4(p.summonAddNewBuff?.newBuffPara?.attr?.phyAtk?.percent)
+      return {
+        summonMods: { summonPhyAtkPct: val },
+        badge: `浮游炮物攻+${Math.round(val * 100)}%（承伤-30%）`,
+      }
+    },
+  },
   '06506': {
     label: '技能2主光束倍率提升（外围50%溅射）',
     when: { skillId: '06503' },
     extract: (p) => ({ skillMultScale: round4(p.skill2AddDamRate), badge: `清扫指令倍率+${Math.round(num(p.skill2AddDamRate) * 100)}%` }),
+  },
+  '06508': {
+    label: '浮游炮退场/销毁自爆',
+    when: { skillIds: ['06502', '06504'] },
+    extract: (p) => {
+      const d = p.deadDamage || {}
+      const mul = round4(d.muPower ?? 2)
+      return {
+        summonMods: {
+          expiryBlast: {
+            multiplier: mul,
+            damageType: d.damageType || 'phyAtk',
+            elementType: d.elementType || 'fire',
+            scaling: d.muAddType || 'phyAtk',
+          },
+        },
+        badge: `浮游炮退场自爆 ${Math.round(mul * 100)}%物攻(每只)`,
+      }
+    },
   },
 
   // ===== 奥格 066 =====
@@ -722,6 +837,17 @@ export function calculateHeroStarEffects(hero, starSelection = {}, skill = null,
     muPowerAdd: 0,
     firstHitRealCrit: false,
     extraSegs: [],
+    extraDots: [],
+    summonMods: {
+      summonUnitAtkDamAdd: 0,
+      summonPhyAtkPct: 0,
+      summonMagicAtkPct: 0,
+      summonAtkSpeedPct: 0,
+      summonInheritAtkAdd: 0,
+      summonDurtimeAdd: 0,
+      summonExtraCount: 0,
+      expiryBlasts: [],
+    },
     activeCount: 0,
   }
 
@@ -756,6 +882,17 @@ export function calculateHeroStarEffects(hero, starSelection = {}, skill = null,
     if (!scoped) continue
 
     addMods(acc, entry.mods, stacks)
+    if (entry.summonMods && (!entry.summonSkillIds || entry.summonSkillIds.includes(skill?.id))) {
+      const sm = entry.summonMods
+      if (sm.summonUnitAtkDamAdd) acc.summonMods.summonUnitAtkDamAdd += num(sm.summonUnitAtkDamAdd)
+      if (sm.summonPhyAtkPct) acc.summonMods.summonPhyAtkPct += num(sm.summonPhyAtkPct)
+      if (sm.summonMagicAtkPct) acc.summonMods.summonMagicAtkPct += num(sm.summonMagicAtkPct)
+      if (sm.summonAtkSpeedPct) acc.summonMods.summonAtkSpeedPct += num(sm.summonAtkSpeedPct)
+      if (sm.summonInheritAtkAdd) acc.summonMods.summonInheritAtkAdd += num(sm.summonInheritAtkAdd)
+      if (sm.summonDurtimeAdd) acc.summonMods.summonDurtimeAdd += num(sm.summonDurtimeAdd)
+      if (sm.summonExtraCount) acc.summonMods.summonExtraCount += num(sm.summonExtraCount)
+      if (sm.expiryBlast) acc.summonMods.expiryBlasts.push(sm.expiryBlast)
+    }
     if (entry.skillMultScale) {
       acc.skillMultScale *= (1 + num(entry.skillMultScale))
     }
@@ -773,6 +910,9 @@ export function calculateHeroStarEffects(hero, starSelection = {}, skill = null,
     }
     if (Array.isArray(entry.extraSegs) && entry.extraSegs.length) {
       acc.extraSegs.push(...entry.extraSegs)
+    }
+    if (Array.isArray(entry.extraDots) && entry.extraDots.length) {
+      acc.extraDots.push(...entry.extraDots)
     }
   }
 
@@ -821,10 +961,15 @@ export function applyStarTransformsToSkill(skill, levelIndex = 0, starEffects = 
     ? { ...lv, segments: nextVals }
     : lv))
 
+  const starExtraDots = Array.isArray(starEffects.extraDots) ? starEffects.extraDots : []
+
   return {
     ...skill,
     crit: starEffects.allowCritOverrideFromStar ? 'yes' : skill.crit,
     segments: nextDefs,
     levels: nextLevels,
+    ...(starExtraDots.length
+      ? { starExtraDots: [...(Array.isArray(skill.starExtraDots) ? skill.starExtraDots : []), ...starExtraDots] }
+      : {}),
   }
 }

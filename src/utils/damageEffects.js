@@ -81,8 +81,10 @@ function extractPetTraitLevelMods(petId, para, buffDatas) {
       return { phyAtkPct: round4(para?.addNewBuff?.newBuffPara?.attr?.phyAtk?.percent) }
     case 'pet_104':
       return { unitAtkDamAdd: round4(para?.addNewBuffList?.[0]?.newBuffPara?.attr?.unitDamAdd?.baseValue) }
-    case 'pet_106':
-      return { unitAtkDamAdd: round4(para?.addNewBuff?.newBuffPara?.damageAddRate) }
+    case 'pet_106': {
+      const rate = round4(para?.addNewBuff?.newBuffPara?.damageAddRate)
+      return { unitAtkDamAdd: rate, summonUnitAtkDamAdd: rate }
+    }
     case 'pet_117':
       return { eventMult: round4(para?.addNewBuff?.newBuffPara?.damageAddRate) }
     case 'pet_118':
@@ -201,8 +203,8 @@ const PET_TRAIT_META = {
     maxStacks: 4,
     defaultStacks: 1,
     stackLabel: '友方召唤物数',
-    effectLabel: '按召唤物数量提高全伤',
-    note: '',
+    effectLabel: '按召唤物数量提高召唤师与友方召唤物全伤',
+    note: '按 PetBuff_10604 源码同步作用于角色本体及所有友方召唤物',
   },
   pet_117: { when: { damageType: 'magicAtk' }, effectLabel: '对【纯白标记】目标魔法独立连乘', note: '按事件区(unitDamage *= 1 + rate)结算' },
   pet_118: { when: { form: ['normalAtk', 'skill'] }, effectLabel: '对【虹彩标记】目标普攻/技能独立连乘', note: '按事件区(unitDamage *= 1 + rate)结算' },
@@ -389,6 +391,7 @@ function addMods(acc, mods, scale = 1) {
   if (mods.unitMagicDamAdd) acc.unitMagicDamAdd += num(mods.unitMagicDamAdd) * scale
   if (mods.unitNormalDamAdd) acc.unitNormalDamAdd += num(mods.unitNormalDamAdd) * scale
   if (mods.unitSkillDamAdd) acc.unitSkillDamAdd += num(mods.unitSkillDamAdd) * scale
+  if (mods.summonUnitAtkDamAdd) acc.summonUnitAtkDamAdd += num(mods.summonUnitAtkDamAdd) * scale
 
   for (const el of ['fire', 'water', 'wind', 'earth']) {
     if (mods.damAddElement?.[el]) acc.damAddElement[el] += num(mods.damAddElement[el]) * scale
@@ -417,6 +420,7 @@ export function aggregateDamageEffects(catalog = {}, selection = {}, context = {
     unitMagicDamAdd: 0,
     unitNormalDamAdd: 0,
     unitSkillDamAdd: 0,
+    summonUnitAtkDamAdd: 0,
     unitElemDamAdd: { fire: 0, water: 0, wind: 0, earth: 0 },
     extraEventMult: 1,
     activeItems: [],

@@ -108,10 +108,32 @@ export const HERO_SKILL_MECHANICS_OVERRIDES = {
     ],
     notes: []
   },
-  '04304': {
+  '04303': {
     reviewStatus: 'verified',
     damage: { form: 'skill', formLabel: '技能伤害', crit: 'no' },
-    conditions: ['第3次普通攻击触发的【欠账】清算伤害不能暴击；普通攻击本体仍按普通攻击结算。'],
+    conditions: ['对至多3名敌人各射出1支弩箭（对单仅命中1支），1秒后禁锢结束在目标位置爆炸；开启2星「追偿利息」后附加5秒地属性利息DoT。'],
+    notes: []
+  },
+  '04304': {
+    reviewStatus: 'verified',
+    damage: {
+      form: 'skill',
+      formLabel: '被动·技能伤害',
+      types: ['phyAtk'],
+      typeLabels: ['物理'],
+      elements: [],
+      elementLabels: [],
+      scaling: ['phyAtk'],
+      scalingLabels: ['物理攻击'],
+      multiplier: 0.9,
+      segments: [{ damageType: 'phyAtk', elementType: '', scaling: 'phyAtk', multiplier: 0.9, baseDamage: 0 }],
+      crit: 'no'
+    },
+    bonuses: {
+      applies: ['phyAtk', 'physicalDamage', 'physicalPenetration', 'skillDamage', 'normalAndSkillDamage'],
+      excludes: ['normalDamage']
+    },
+    conditions: ['每第3次普通攻击后的下1次普攻会替换为100%物理攻击加成的地属性技能箭（与原普攻二选一，不额外叠加）并标记1层【欠账】；目标每次受物理普攻时消耗1层【欠账】，额外造成90%物理攻击加成的物理技能伤害。'],
     notes: []
   },
   '05504': {
@@ -753,9 +775,13 @@ function collectDescriptionDamageEntries(description) {
 
     const damageType = /真实伤害/.test(context)
       ? 'realAtk'
-      : /魔法伤害/.test(context) || scaling === 'magicAtk'
+      : /魔法伤害/.test(context)
         ? 'magicAtk'
-        : 'phyAtk'
+        : /物理伤害/.test(context)
+          ? 'phyAtk'
+          : scaling === 'magicAtk'
+            ? 'magicAtk'
+            : 'phyAtk'
     entries.push({
       damageType,
       elementType: '',
@@ -820,7 +846,11 @@ function buildBaseMechanics({ type, levelValue, buffDatas }) {
   const damageKey = entry => JSON.stringify([entry.damageType, entry.scaling, entry.multiplier, entry.baseDamage])
   const structuredKeys = new Set(structuredEntries.map(damageKey))
   const textEntries = defensiveOnly ? [] : collectDescriptionDamageEntries(description)
-    .filter(entry => !structuredKeys.has(damageKey(entry)))
+    .filter(entry => !structuredEntries.some(s =>
+      s.damageType === entry.damageType
+      && s.scaling === entry.scaling
+      && Math.abs(s.multiplier - entry.multiplier) <= 0.02
+      && s.baseDamage === entry.baseDamage))
   const entries = structuredEntries.concat(textEntries)
   const uniqueEntries = entries.filter((entry, index, list) => {
     const key = JSON.stringify(entry)
