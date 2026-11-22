@@ -572,8 +572,9 @@ const hidePackImage = (event) => {
   outline-offset: -2px;
 }
 
-/* 原版时装商店：纸质姓名栏 → 商店专用立绘 → 奖励 → 价格。
-   以九宫格保留背景四角；静态图鉴不模拟账号已拥有状态。 */
+/* 原版时装商店：立绘四周贴边不留灰框，下方沿用原绿色托盘 #4b5226 + shop_skin_tray.webp，
+   价格底带改为通栏平直深色横带（替换原先发虚的椭圆渐隐），数字用游戏余额充足色 #f8eedc。
+   静态图鉴不模拟账号已拥有与余额不足状态。 */
 .ui-exchange-trade.is-skin {
   min-height: 0;
   display: flex;
@@ -669,10 +670,16 @@ const hidePackImage = (event) => {
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 28px;
-  padding: 2px 0;
-  margin-bottom: 12px;
-  background: radial-gradient(ellipse 98% 85% at 50% 50%, rgba(0, 0, 0, 0.36) 0%, rgba(0, 0, 0, 0.28) 40%, rgba(0, 0, 0, 0.16) 75%, rgba(0, 0, 0, 0.10) 100%);
+  min-height: 36px;
+  padding: 4px 0;
+  margin: 0 0 12px;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 18, 8, 0.24) 0%,
+    rgba(16, 18, 8, 0.50) 10%,
+    rgba(16, 18, 8, 0.50) 90%,
+    rgba(16, 18, 8, 0.24) 100%
+  );
   border: 0;
   box-sizing: border-box;
 }
@@ -701,7 +708,7 @@ const hidePackImage = (event) => {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
 }
 .ui-exchange-trade.is-skin .ui-exchange-trade__item--consume .ui-exchange-trade__item-count {
-  color: #df4822;
+  color: #f8eedc;
   font-size: 16px;
   font-weight: 500;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.6);
@@ -713,6 +720,10 @@ const hidePackImage = (event) => {
   }
   .ui-exchange-trade__title { font-size: 14px; }
   .ui-exchange-trade.is-skin { padding: 0; }
+  .ui-exchange-trade.is-skin .ui-exchange-trade__consume-footer {
+    min-height: 30px;
+    margin: 0 0 10px;
+  }
   .ui-exchange-trade:is(.is-compact, .is-shop) {
     grid-template-rows: 26px auto minmax(0, 1fr) minmax(20px, max-content);
   }

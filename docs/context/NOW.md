@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-23 ｜ **最近代码提交**：`2f34d4a0`（本次提交前） ｜ **分支**：`main`
+**核对时间**：2026-11-23 ｜ **最近代码提交**：`794a8d81`（本次提交前） ｜ **分支**：`main`
 
 ---
 
@@ -27,7 +27,10 @@
 
 ### 本次推送（2026-11-23）
 
-- **`/gacha` 卡池外层 UI 锚点、视觉资产与文本配色对齐**：
+- **`/gacha` 卡池记录弹层与时装商店样式对齐**：
+  - [GachaTipPanel.vue](../../src/components/gacha/GachaTipPanel.vue) 移除「记录查询」右下角「深度抽卡分析 >」跳转键并将返回键 `.tip-panel__close` 对齐至 `(687, 335)`（与卡池关闭钮同位）；
+  - [UiExchangeTrade.vue](../../src/components/ui/UiExchangeTrade.vue) 保持时装立绘贴边与底部绿色托盘（`#4b5226` + `shop_skin_tray.webp`），将价格栏底部椭圆阴影改为通栏平直深色横带、价格文字色修正为 `#f8eedc`。
+- **`/gacha` 卡池外层 UI 锚点、视觉资产与文本配色对齐（`794a8d81`）**：
   - 补齐「古堡贩卖」（`pet:4ce:5`）立绘 [gacha_pet104.webp](../../public/images/gacha/gacha_pet104.webp)，并从 `device_20261113` 同步限时卡池底板 `gacha_page_sp` 与选中高光 `gacha_page_on`（橙金外框＋右侧菱形标记）及对应 `324×84` 切片；
   - [gacha.mjs](../../scripts/parse/gacha.mjs) 与 [gacha.json](../../public/data/parsed/gacha.json) 输出 `assets.bg`，[GachaPoolPanel.vue](../../src/components/gacha/GachaPoolPanel.vue) 在 `公主招募` / `幽夜招募` 启用专属背景并隐藏默认木桌，按 `HeroPoolPanel.prefab` 的 `1534×750` `UIAnchor`/`UIRect` 对齐四周控件（保留右上 `.sound-btn`）、修正 `幽夜之影 洛莉安` 与 `兑换商店` 重叠、同步按钮与页签倒计时字体色，[gacha.css](../../src/assets/gacha.css) 加宽货币槽至 `162px`（底牌 `154×28`），[gachaLayout.js](../../src/utils/gachaLayout.js) 与 [GachaTipPanel.vue](../../src/components/gacha/GachaTipPanel.vue) 统一蛋池 UP 菱形头像路径及 `76×76` 尺寸。
 

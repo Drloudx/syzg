@@ -114,23 +114,12 @@
         <div class="g-abs g-text g-text--center tip-record__page" :style="gachaPos(0, -326)">
           <span class="tip-record__page-cur">{{ page }}</span><span class="tip-record__page-total"> / {{ pageMax }}</span>
         </div>
-
-        <!-- 深度抽卡分析跳转按键 -->
-        <button
-          class="g-abs g-hit g-focusable tip-record__analysis-btn"
-          :style="gachaPos(370, -326)"
-          type="button"
-          title="打开深度抽卡分析"
-          @click="openAnalysis"
-        >
-          <span class="g-text">深度抽卡分析 &gt;</span>
-        </button>
       </template>
 
-      <!-- Back (587,335)：com_btn_back 100×68 -->
+      <!-- Back (687,335)：与卡池页关闭钮 `close-btn` 同位（1534 画布 TopRight），com_btn_back 100×68 -->
       <button
         class="g-abs g-hit g-focusable tip-panel__close"
-        :style="gachaPos(587, 335)"
+        :style="gachaPos(687, 335)"
         type="button"
         title="关闭"
         @click="emit('close')"
@@ -155,7 +144,6 @@
  * 数据，这里展示的是**本地模拟抽取记录**，页面已标明「模拟」。
  */
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
 import GachaStage from './GachaStage.vue'
 import { gachaPos, resolveGachaUpAvatar } from '../../utils/gachaLayout'
 import { getImageUrl } from '../../utils/env'
@@ -171,11 +159,6 @@ const props = defineProps({
   /** 伙伴池 'hero' | 魔物池 'pet' */
   kind: { type: String, default: 'hero' }
 })
-
-const router = useRouter()
-const openAnalysis = () => {
-  router.push('/gacha/analysis')
-}
 
 const upAvatar = candidate => resolveGachaUpAvatar(candidate, props.kind)
 
@@ -567,34 +550,6 @@ function formatTime(timestamp) {
   z-index: 3;
   width: 120px;
   font-size: 24px;
-}
-
-.tip-record__analysis-btn {
-  z-index: 3;
-  height: 38px;
-  padding: 0 16px;
-  background: rgba(43, 31, 21, 0.85);
-  border: 1px solid var(--border-color, #8f7351);
-  border-radius: 4px;
-  color: #ebd7b2;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.16s ease;
-}
-
-.tip-record__analysis-btn:hover {
-  background: var(--wood, #3e2a14);
-  border-color: var(--accent, #7a9a99);
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.tip-record__analysis-btn .g-text {
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
 .tip-panel__close {
