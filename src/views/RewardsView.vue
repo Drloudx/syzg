@@ -55,7 +55,18 @@
         </UiFilterRow>
       </div>
 
-      <UiFilterRow v-if="currentMainCat === 'hidden' && currentHiddenType !== 'rules'" label="状态：">
+      <UiFilterRow v-if="currentMainCat === 'hidden' && currentHiddenType === 'encounter'" label="事件：">
+        <UiFilterPill
+          v-for="kind in encounterKindOptions"
+          :key="kind.value"
+          :active="currentEncounterKind === kind.value"
+          @click="currentEncounterKind = kind.value"
+        >
+          {{ kind.label }}
+        </UiFilterPill>
+      </UiFilterRow>
+
+      <UiFilterRow v-else-if="currentMainCat === 'hidden' && currentHiddenType !== 'nest' && currentHiddenType !== 'rules'" label="状态：">
         <UiFilterPill
           v-for="status in hiddenStatusOptions"
           :key="status.value"
@@ -66,10 +77,15 @@
         </UiFilterPill>
       </UiFilterRow>
 
-      <div v-if="currentMainCat === 'hidden' && currentHiddenType !== 'rules'" class="hidden-count">
+      <div v-if="currentMainCat === 'hidden' && (currentHiddenType === 'encounter' || currentHiddenType === 'nest')" class="hidden-count">
+        共有 <span class="count-num">{{ groupedHiddenRewards.length }}</span> 个点位
+      </div>
+      <div v-else-if="currentMainCat === 'hidden' && currentHiddenType !== 'rules'" class="hidden-count">
         共有 <span class="count-num">{{ mapHiddenRewards.length }}</span> 个点位
-        <span class="hidden-count__divider">·</span>
-        已收集 <span class="count-num">{{ hiddenCollectedCount }}</span> / {{ mapHiddenRewards.length }}
+        <template v-if="hiddenCollectibleTotal > 0">
+          <span class="hidden-count__divider">·</span>
+          已收集 <span class="count-num">{{ hiddenCollectedCount }}</span> / {{ hiddenCollectibleTotal }}
+        </template>
       </div>
 
       <!-- 兑换三级分类（Row 3） -->
@@ -335,16 +351,16 @@
       <!-- 被隐藏的物品 -->
       <template v-else-if="currentMainCat === 'hidden'">
         <!-- 刷新机制与探索规则 -->
-        <div v-if="currentHiddenType === 'rules' && matchesRewardQuery(hiddenRulesSearchData, '探索 规则 刷新 机制 宝箱 书籍 偶遇 聆听 跨天 自由探索')" class="hidden-rules-container">
+        <div v-if="currentHiddenType === 'rules' && matchesRewardQuery(hiddenRulesSearchData, '探索 规则 刷新 机制 宝箱 书籍 偶遇 聆听 跨天 自由探索 魔物蛋巢 蛋巢 体力 魔物蛋 稀有蛋')" class="hidden-rules-container">
           <UiSection title="点位类型与刷新周期">
             <div class="hidden-rule-grid">
               <article class="hidden-rule-card">
                 <div class="hidden-rule-card__head">
                   <span class="rule-badge rule-badge--once">常驻探索</span>
-                  <h4>被隐藏的物品 / ？？？</h4>
+                  <h4>被隐藏的物品 / 书籍 / ？？？</h4>
                 </div>
                 <p><strong>机制属性</strong>：<code>一次性收集 (collectOnce)</code></p>
-                <p>固定分布在各自由探索地图的隐秘角落。全地图点位为永久一次性拾取，采集后永久标记完成，<strong>不再刷新</strong>。</p>
+                <p>固定分布在各自由探索地图的房间内。全部 <strong>场景宝箱</strong> 与 <strong>书籍</strong> 点位均为永久一次性拾取，交互采集一次后永久记录完成，<strong>不再刷新</strong>。</p>
               </article>
 
               <article class="hidden-rule-card">
@@ -352,9 +368,18 @@
                   <span class="rule-badge rule-badge--daily">每日轮换</span>
                   <h4>驻足聆听 / 偶遇事件</h4>
                 </div>
-                <p><strong>机制属性</strong>：<code>每日跨天重置 (crossDay: 1)</code> · <code>区域共享池 (pool)</code></p>
-                <p><strong>并非一次性</strong>！同一大区域内的多个街道或候选房间共享同一个偶遇事件池。系统每天基于日期跨天在候选房间中<strong>随机激活其中 1 个点位</strong>。</p>
-                <p>当天前往对应激活房间完成交互采集后，该区域该池当天进入冷却；<strong>次日跨天重置后，该区域会再次随机轮换出新的点位</strong>。若当天在某房间未找到，说明当天轮换在同区域的其他房间，或当日已完成采集。</p>
+                <p><strong>机制属性</strong>：<code>每日 04:00 重置次数 (crossDay: 1)</code> · <code>子区域分池轮换 (caijiSeed)</code></p>
+                <p><strong>并非一次性</strong>！同一探索区域（如「风车平野」「尾指村」等）内的候选房间共享同一个 <code>lt_pool_*</code>（驻足聆听）或 <code>oy_pool_*</code>（偶遇事件）池；<strong>同区域内的「驻足聆听」与「偶遇事件」各自独立成池、互不占用次数</strong>，每个周期最多可各激活并采集 <strong>1 次</strong>。</p>
+                <p>池内具体激活哪个房间点位，由游戏内昼夜周期（<code>WeatherEffect</code>）的随机种子决定；在尚未采集时，若游戏内昼夜切换至下一周期，点位位置可能按种子轮换到同池其他房间。完成任意 1 个点位交互后，该子区域对应的这个池即进入当日冷却，于次日 <strong>凌晨 04:00（<code>CrossDayHour = 4</code>）</strong> 重置可采集次数。</p>
+              </article>
+
+              <article class="hidden-rule-card hidden-rule-card--wide">
+                <div class="hidden-rule-card__head">
+                  <span class="rule-badge rule-badge--nest">每日轮换</span>
+                  <h4>魔物蛋巢</h4>
+                </div>
+                <p><strong>机制属性</strong>：<code>每日 04:00 重置次数 (crossDay: 1)</code> · <code>双房间对半轮换 (caijiSeed)</code> · <code>消耗 1 体力 (collect_white)</code></p>
+                <p>大地图野外蛋巢按组分布在各探索区域，每组包含 <strong>2 个</strong>候选房间，各自占据 <strong>50%</strong> 区间，按游戏内昼夜周期（<code>WeatherEffect</code>）的随机种子激活其中 1 个（若一处未见，可在同组另一个候选房间找到）；每次采集必出 <strong>1 颗</strong>对应章节魔物蛋，另有 <strong>2%</strong> 概率额外掉落 <strong>1 颗稀有蛋</strong>。采后该组进入冷却，各组独立计次，于次日 <strong>凌晨 04:00（<code>CrossDayHour = 4</code>）</strong> 重置。</p>
               </article>
             </div>
           </UiSection>
@@ -368,11 +393,15 @@
             :key="group.id || group.roomId"
             :id="`hidden-${group.id || group.roomId}`"
             class="hidden-list-row"
-            :class="{ 'is-collected': isHiddenCollected(group) }"
+            :class="{ 'is-collected': !isNonCollectibleReward(group) && isHiddenCollected(group) }"
           >
             <div class="hidden-row-head">
               <div class="hidden-row-title">{{ group.areaName }} - {{ group.roomName }}</div>
-              <UiCollectionToggle :active="isHiddenCollected(group)" @toggle="toggleHiddenCollected(group)" />
+              <UiCollectionToggle
+                v-if="!isNonCollectibleReward(group)"
+                :active="isHiddenCollected(group)"
+                @toggle="toggleHiddenCollected(group)"
+              />
             </div>
             <div class="hidden-row-info">
               <span class="row-title">{{ group.collectName }}</span>
@@ -413,7 +442,10 @@
             />
           </UiListRow>
 
-          <UiEmptyState v-if="!groupedHiddenRewards.length" :text="currentHiddenType === 'encounter' ? '当前筛选下暂无驻足聆听/偶遇事件数据' : '当前筛选下暂无隐藏点位数据'" />
+          <UiEmptyState
+            v-if="!groupedHiddenRewards.length"
+            :text="currentHiddenType === 'encounter' ? '当前筛选下暂无驻足聆听/偶遇事件数据' : (currentHiddenType === 'nest' ? '当前筛选下暂无魔物蛋巢数据' : '当前筛选下暂无隐藏点位数据')"
+          />
         </div>
       </template>
 
@@ -556,24 +588,42 @@ const hiddenTypeOptions = [
   { id: 'all', name: '全部' },
   { id: 'hidden', name: '被隐藏的物品' },
   { id: 'encounter', name: '驻足聆听 / 偶遇事件' },
+  { id: 'nest', name: '魔物蛋巢' },
   { id: 'rules', name: '刷新机制' }
 ]
 const currentHiddenType = ref('all')
 const currentHiddenCat = ref('')
 const currentHiddenStatus = ref('all')
+const currentEncounterKind = ref('all')
 const slotCosts = ref(null)
 
 const isEncounterReward = group => group.sourceLabel === '偶遇' || group.collectId?.startsWith('oy_') || group.collectId?.startsWith('lt_')
+const isNestReward = group => group.sourceLabel === '魔物蛋' || group.collectId?.includes('yeWaiPet')
+const isNonCollectibleReward = group => isEncounterReward(group) || isNestReward(group)
+const isListeningReward = group => group.collectId?.startsWith('lt_') || group.collectName === '驻足聆听'
+const isRandomEncounterReward = group => group.collectId?.startsWith('oy_') || group.collectName === '偶遇事件'
 
 const filteredHiddenRewardsByType = computed(() => {
   if (currentHiddenType.value === 'hidden') {
-    return hiddenRewardsData.value.filter(h => !isEncounterReward(h))
+    return hiddenRewardsData.value.filter(h => !isNonCollectibleReward(h))
   }
   if (currentHiddenType.value === 'encounter') {
-    return hiddenRewardsData.value.filter(isEncounterReward)
+    const encounters = hiddenRewardsData.value.filter(isEncounterReward)
+    if (currentEncounterKind.value === 'listening') return encounters.filter(isListeningReward)
+    if (currentEncounterKind.value === 'encounter') return encounters.filter(isRandomEncounterReward)
+    return encounters
+  }
+  if (currentHiddenType.value === 'nest') {
+    return hiddenRewardsData.value.filter(isNestReward)
   }
   return hiddenRewardsData.value
 })
+
+const encounterKindOptions = [
+  { value: 'all', label: '全部' },
+  { value: 'listening', label: '驻足聆听' },
+  { value: 'encounter', label: '偶遇事件' }
+]
 
 const hiddenStatusOptions = [
   { value: 'all', label: '全部' },
@@ -599,20 +649,22 @@ const mapHiddenRewards = computed(() => {
 
 const groupedHiddenRewards = computed(() => {
   let groups = mapHiddenRewards.value
-  if (currentHiddenStatus.value === 'collected') groups = groups.filter(isHiddenCollected)
-  if (currentHiddenStatus.value === 'uncollected') groups = groups.filter(group => !isHiddenCollected(group))
+  if (currentHiddenType.value !== 'encounter' && currentHiddenType.value !== 'nest') {
+    if (currentHiddenStatus.value === 'collected') groups = groups.filter(g => !isNonCollectibleReward(g) && isHiddenCollected(g))
+    if (currentHiddenStatus.value === 'uncollected') groups = groups.filter(group => !isNonCollectibleReward(group) && !isHiddenCollected(group))
+  }
   return groups.filter(group => matchesRewardQuery(group))
 })
 
-watch(currentHiddenType, newType => {
+watch([currentHiddenType, currentEncounterKind], ([newType]) => {
   if (newType !== 'rules' && currentHiddenCat.value !== 'all' && !hiddenMapCategories.value.includes(currentHiddenCat.value)) {
     currentHiddenCat.value = 'all'
   }
 })
 
 const hiddenRulesSearchData = {
-  title: '被隐藏的物品 场景宝箱 书籍 驻足聆听 偶遇事件 刷新机制 探索规则 自由探索',
-  content: '一次性收集 collectOnce 每日跨天重置 crossDay 区域共享池 pool 随机轮换 候选房间 冷却'
+  title: '被隐藏的物品 场景宝箱 书籍 驻足聆听 偶遇事件 魔物蛋巢 刷新机制 探索规则 自由探索',
+  content: '一次性收集 collectOnce 每日 04:00 重置 crossDay CrossDayHour 子区域分池轮换 caijiSeed lt_pool oy_pool WeatherEffect 昼夜周期 随机轮换 候选房间 冷却 魔物蛋巢 野外 体力 collect_white 魔物蛋 稀有蛋'
 }
 
 const hiddenProgressId = group => {
@@ -629,8 +681,12 @@ const toggleHiddenCollected = group => {
   appStateStore.toggleHiddenRewardCollected(hiddenProgressId(group))
 }
 
+const hiddenCollectibleTotal = computed(() => {
+  return mapHiddenRewards.value.filter(h => !isNonCollectibleReward(h)).length
+})
+
 const hiddenCollectedCount = computed(() => {
-  return mapHiddenRewards.value.filter(isHiddenCollected).length
+  return mapHiddenRewards.value.filter(h => !isNonCollectibleReward(h) && isHiddenCollected(h)).length
 })
 
 const queryText = value => {
@@ -717,6 +773,10 @@ const applyTabsFromRoute = () => {
     currentHiddenStatus.value = hiddenStatusOptions.some(status => status.value === requestedStatus)
       ? requestedStatus
       : 'all'
+    const requestedKind = queryText(route.query.kind)
+    currentEncounterKind.value = encounterKindOptions.some(kind => kind.value === requestedKind)
+      ? requestedKind
+      : 'all'
   }
 }
 
@@ -729,6 +789,7 @@ const syncTabsToRoute = async () => {
   delete query.type
   delete query.map
   delete query.status
+  delete query.kind
   delete query.q
 
   if (currentMainCat.value === 'pvp') {
@@ -742,7 +803,13 @@ const syncTabsToRoute = async () => {
     }
     if (currentHiddenType.value !== 'rules' && currentHiddenCat.value) {
       query.map = currentHiddenCat.value
-      query.status = currentHiddenStatus.value
+      if (currentHiddenType.value === 'encounter') {
+        if (currentEncounterKind.value && currentEncounterKind.value !== 'all') {
+          query.kind = currentEncounterKind.value
+        }
+      } else if (currentHiddenType.value !== 'nest') {
+        query.status = currentHiddenStatus.value
+      }
     }
   }
   if (searchQuery.value.trim()) query.q = searchQuery.value.trim()
@@ -867,10 +934,12 @@ const scrollToTarget = async () => {
     if (rewardGroup) {
       currentHiddenCat.value = rewardGroup.bigMapName
       if (currentHiddenType.value !== 'all') {
-        const isEncounter = isEncounterReward(rewardGroup)
-        if (isEncounter && currentHiddenType.value === 'hidden') currentHiddenType.value = 'encounter'
-        else if (!isEncounter && currentHiddenType.value === 'encounter') currentHiddenType.value = 'hidden'
+        const resolvedType = isEncounterReward(rewardGroup)
+          ? 'encounter'
+          : (isNestReward(rewardGroup) ? 'nest' : 'hidden')
+        if (currentHiddenType.value !== resolvedType) currentHiddenType.value = resolvedType
       }
+      currentEncounterKind.value = 'all'
     }
   } else {
     currentMainCat.value = 'pvp'
@@ -919,14 +988,14 @@ watch(() => route.query.id, () => {
 })
 
 watch(
-  () => [route.query.tab, route.query.sub, route.query.season, route.query.type, route.query.map, route.query.status, route.query.q],
+  () => [route.query.tab, route.query.sub, route.query.season, route.query.type, route.query.map, route.query.status, route.query.kind, route.query.q],
   () => {
     if (routeTabsReady.value) applyTabsFromRoute()
   }
 )
 
 watch(
-  [currentMainCat, currentSubCat, currentExchangeCat, currentHiddenType, currentHiddenCat, currentHiddenStatus, searchQuery],
+  [currentMainCat, currentSubCat, currentExchangeCat, currentHiddenType, currentHiddenCat, currentHiddenStatus, currentEncounterKind, searchQuery],
   () => syncTabsToRoute()
 )
 
@@ -1250,6 +1319,10 @@ const closePrevImg = () => {
   box-sizing: border-box;
 }
 
+.hidden-rule-card--wide {
+  grid-column: 1 / -1;
+}
+
 .dark-mode .hidden-rule-card {
   background: rgba(35, 26, 17, 0.72);
 }
@@ -1294,6 +1367,16 @@ const closePrevImg = () => {
 .rule-badge--hide {
   background: rgba(147, 112, 219, 0.16);
   color: #6a3ab2;
+}
+
+.rule-badge--nest {
+  background: rgba(46, 139, 87, 0.15);
+  color: #216e43;
+}
+
+.dark-mode .rule-badge--nest {
+  background: rgba(68, 178, 116, 0.2);
+  color: #7ee0a8;
 }
 
 .hidden-rule-card p {

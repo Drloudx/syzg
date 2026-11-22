@@ -85,3 +85,52 @@ test('聆听偶遇与带货币点位应正确提取固定货币与计算抽取�
   assert.equal(items[1].rules[1].actualProb, 0.5)
 })
 
+test('大地图野外魔物蛋巢应收录进隐藏点位且不重复写入 hidden 来源，排除副本蛋巢', () => {
+  const { hidden, sources } = buildHiddenRewards({
+    rewardRes: {
+      datas: {
+        yeWaiPet_c1: {
+          typeId: 'yeWaiPet_c1',
+          category: ['采集', '魔物蛋'],
+          items: [
+            { rate: 1, num: 1, rules: [{ typeId: 'pet_007', min: 1, max: 1, chance: 1 }] },
+            { rate: 0.02, num: 1, rules: [{ typeId: 'pet_071', min: 1, max: 1, chance: 1 }] }
+          ]
+        }
+      }
+    },
+    collectTypeRes: {
+      datas: {
+        yeWaiPet_c1: { collectTypeId: 'yeWaiPet_c1', collectType: 2, crossDay: 1, reward: 'yeWaiPet_c1', name: '魔物蛋巢' },
+        dungeonEgg_c1: { collectTypeId: 'dungeonEgg_c1', collectType: 2, reward: 'yeWaiPet_c1', name: '魔物蛋巢' }
+      }
+    },
+    collectRes: {
+      datas: {
+        c1yeWaiPet01: { typeId: 'c1yeWaiPet01', collectTypeId: 'yeWaiPet_c1' },
+        dungeonEgg_c1: { typeId: 'dungeonEgg_c1', collectTypeId: 'dungeonEgg_c1' }
+      }
+    },
+    roomRes: {
+      datas: {
+        stage_c1_area1_8: { typeId: 'stage_c1_area1_8', battleData: { spObj: [{ caijiTypeId: 'c1yeWaiPet01' }] } },
+        dg_egg_room: { typeId: 'dg_egg_room', battleData: { spObj: [{ caijiTypeId: 'dungeonEgg_c1' }] } }
+      }
+    },
+    levelRoomRes: {
+      datas: {
+        c1_area1_8: { typeId: 'c1_area1_8', roomTypeId: 'stage_c1_area1_8', areaId: 'c1_area1', name: '枯草小径' }
+      }
+    },
+    areaRes: { datas: { c1_area1: { name: '驿站住民区' }, c1_map: { name: '秋日荒野' } } }
+  })
+
+  assert.equal(hidden.length, 1)
+  assert.equal(hidden[0].collectName, '魔物蛋巢')
+  assert.equal(hidden[0].sourceLabel, '魔物蛋')
+  assert.equal(hidden[0].rewardItems[1].kind, 'random')
+  assert.equal(hidden[0].rewardItems[1].rules[0].actualProb, 0.02)
+  assert.equal(sources.pet_007, undefined, '魔物蛋巢由 supplementalItemSources 生成 collect 来源，不重复进 hidden 来源')
+  assert.equal(sources.pet_071, undefined)
+})
+

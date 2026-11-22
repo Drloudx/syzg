@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url'
 import { execSync } from 'node:child_process'
 import { checkFontSubset } from './font-subset-lib.mjs'
 import { EMOTICON_ITEMS } from '../../src/config/emoticons.js'
+import { isBlacklisted } from '../../src/config/blacklist.js'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '../..')
 const parsedDir = join(root, 'public/data/parsed')
@@ -86,6 +87,7 @@ try {
   const expectedRelations = new Set()
 
   for (const lr of Object.values(levelRoomData)) {
+    if (isBlacklisted({ id: lr?.typeId, name: lr?.name })) continue
     const room = roomData.get(lr?.roomTypeId)
     if (!room) continue
     const collectIds = new Set()
@@ -101,9 +103,11 @@ try {
       const collect = collectData.get(collectId)
       const collectType = collectTypeData.get(collect?.collectTypeId)
       const reward = rewardData.get(collectType?.reward)
-      // 与 src/utils/hiddenRewardsData.js 同口径：collectType === 5（检视）才是「隐藏点」。
+      // 与 src/utils/hiddenRewardsData.js 同口径：collectType === 5（检视）或大地图野外魔物蛋巢（yeWaiPet_* + crossDay === 1）。
       // 不能用 reward.category 的中文名（书籍是 '大地图采集/书籍'，不是 '场景宝箱'）。
-      if (Number(collectType?.collectType) === 5) {
+      const isIncludedCollect = Number(collectType?.collectType) === 5
+        || (String(collectType?.collectTypeId || '').startsWith('yeWaiPet_') && Number(collectType?.crossDay) === 1)
+      if (isIncludedCollect) {
         expectedRelations.add(`${lr.typeId}|${lr.roomTypeId}|${collectId}|${reward.typeId}`)
       }
     }

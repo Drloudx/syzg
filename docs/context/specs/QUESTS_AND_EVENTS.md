@@ -236,9 +236,9 @@
 
 | 项 | 规则 |
 | --- | --- |
-| 筛选 | 类型（全部 / 一次性 / 偶遇事件 / 刷新机制）、地图、名称、本地收集状态 |
-| 点位分类 | 常驻探索（`collectOnce` 一次性，永久不刷新）；偶遇事件（`crossDay: 1` 每日跨天轮换，区域池随机激活 1 点） |
-| 状态存储 | `collectedHiddenRewardIds` —— **不反映账号领取** |
+| 筛选 | 类型（全部 `all` / 被隐藏的物品 `hidden` / 驻足聆听 / 偶遇事件 `encounter` / 魔物蛋巢 `nest` / 刷新机制 `rules`）、地图、事件（`kind=listening\|encounter`，仅 `encounter`）、名称、本地收集状态（仅 `all`/`hidden`） |
+| 点位分类 | 常驻探索（`collectOnce` 一次性，永久不刷新）；`lt_pool_*`（驻足聆听）与 `oy_pool_*`（偶遇事件）同区各自独立成池，受 `WeatherEffect` 昼夜周期种子轮换，次日 `04:00`（`CrossDayHour=4`）重置；大地图野外魔物蛋巢（`yeWaiPet_*`，`crossDay: 1`）按 2 房间 50%/50% 轮换、消耗 1 体力、`04:00` 重置，不收录副本蛋巢 |
+| 状态存储 | `collectedHiddenRewardIds` —— 仅作用于常驻探索点位，**不反映账号领取** |
 | 点位预览 | 由 `HIDDEN_PREV_MAP`（按 `collectId` 键）维护，文件为 `public/images/hidden_points/<collectId>.webp`，**有图才显示**，采用 `UiImageLightbox` 全屏预览 |
 
 ### 育室槽位
@@ -247,5 +247,5 @@
 
 ### URL
 
-`tab/sub/season/type/map/status/q` 根据当前分类同步；`id` 定位并高亮奖励区块。
+`tab/sub/season/type/map/status/kind/q` 根据当前分类同步；`id` 定位并高亮奖励区块。
 物品只追加 `itemId`；预览使用全局 `UiImageLightbox`，**不恢复旧的手写低层级遮罩**。

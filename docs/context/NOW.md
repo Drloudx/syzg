@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-22 ｜ **最近代码提交**：`134acbba`（本次提交前） ｜ **分支**：`main`
+**核对时间**：2026-11-22 ｜ **最近代码提交**：`369a94d7`（本次提交前） ｜ **分支**：`main`
 
 ---
 
@@ -21,12 +21,14 @@
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
 | 数据源版本 | **1.7.15 付费测 (cdnVer 36, codeVersion 454C1B17)**；热更配置表（59 张，12 张实质变更）、剧情（674 份，6 份变更）、源码（2680 .cs）已同步就绪 |
 | 单测 | 见当日验证日志（模块与完整性单测全绿） |
-| 最近重点修复 | 词条百科新增「Buff 效果」与全局搜索出处定位（补全魔物特性/套装/符石/词缀/活动秘境/遗器/职业被动跳转）；`tasks.json` 拆分 `tasks-list.json`（Gzip `45.7 KB`）+ `515` 份单任务详情，`dialog-search.json` 按分类拆出 `1~4` 分片按需检索；伤害计算器通用 DPS 循环、DoT/召唤联动与角色星阶机制校准 |
+| 最近重点修复 | 词条百科新增「Buff 效果」与全局搜索出处定位；`tasks.json` 与 `dialog-search.json` 按需拆分；`/misc?tab=hidden` 隐藏点位补充大地图野外魔物蛋巢筛选、拆分 `驻足聆听 / 偶遇事件` 切换并校准 `04:00` 双池轮换刷新机制说明；伤害计算器通用 DPS 循环、DoT/召唤联动与角色星阶机制校准 |
 | 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；蜘蛛头冠幼体数量异常已编制反馈材料并输出 Word 提交官方；小麦无法采集、料理台自由制作无法烹饪武僧火锅/果香通心粉均已获官方修复关闭 |
 | 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修） |
 
 ### 本次推送（2026-11-22）
 
+- **隐藏点位收录地图魔物蛋巢、驻足聆听 / 偶遇事件拆分与刷新机制校准**：
+  - [hiddenRewardsData.js](../../src/utils/hiddenRewardsData.js)、[searchData.js](../../src/utils/searchData.js) 与 [RewardsView.vue](../../src/views/RewardsView.vue) 新增大地图野外魔物蛋巢筛选（`?type=nest`，前 3 章共 `19` 个点位，不收录副本蛋巢），修正 `rate < 1` 单规则稀有蛋概率展示（`概率 2%`）；`驻足聆听 / 偶遇事件` 隐藏已收集状态栏并拆分 `事件：全部 / 驻足聆听 / 偶遇事件`（`?kind=`）；「刷新机制」页按源码校准同区 `lt_pool_*` / `oy_pool_*` 独立双池、`WeatherEffect` 昼夜周期种子、次日 `04:00` 重置与地图蛋巢双房间 `50%` 轮换规则，同步更新 [QUESTS_AND_EVENTS.md](specs/QUESTS_AND_EVENTS.md) 与 [verify.mjs](../../scripts/dev/verify.mjs)。
 - **词条百科「Buff 效果」全量索引与全局搜索出处跳转**：
   - [buffSourceIndex.js](../../src/utils/buffSourceIndex.js) 补全 `pet.skillSp` 魔物特性、已实装装备套装、符石、装备词缀、开放中活动秘境/事件、遗器、职业通用被动（如射手 `猎人标记`）与副本石像祝福出处，按可见性/黑名单过滤隐藏套装、未开放秘境 `sp2` 与隐藏角色专属 Buff；
   - [glossaryData.js](../../src/utils/glossaryData.js)、[searchData.js](../../src/utils/searchData.js) 与 [GlossaryView.vue](../../src/views/GlossaryView.vue) 新增 `buffs` 页签（`296` 条，配 `useLazyList` 分批渲染），支持从顶部全局搜索直达对应 Buff 详情及一键跳转角色/魔物/装备/符石/秘境/遗器/副本页面（`glossary.json` `554.4 KB` / Gzip `87.7 KB`，`search-index.json` `1079.5 KB` / Gzip `186.1 KB`）。

@@ -134,7 +134,7 @@ function normalizeHiddenRewardItems(r) {
     const totalChance = rules.reduce((sum, rl) => sum + (Number(rl.chance) || 1), 0)
     const rate = Number(grp.rate ?? 1)
     const num = Number(grp.num ?? 1)
-    const isRandom = rules.length > 1
+    const isRandom = rules.length > 1 || rate < 1
 
     result.push({
       kind: isRandom ? 'random' : 'fixed',
@@ -207,30 +207,41 @@ export function buildHiddenRewards(maps) {
 
   // 🔴 判据必须是源码语义，不是中文分类名。
   // 源码 `BattleManager.GetCollectUIText(collectType)`：1=对话 2=采集 3=挖掘 4=伐 5=检视。
-  // 「场景宝箱」与「书籍」在游戏里都是 collectType=5（检视）的采集物，只是 reward.category 文案不同：
-  //   旧：['采集','场景宝箱']；1.7.15 起：['大地图采集','cN','书籍']、['采集','聆听偶遇']。
-  // 2026-11-11 前这里写死 `includes('场景宝箱')`，导致 22 本新书 + 2 个聆听偶遇点全部漏收。
+  // 「场景宝箱」「书籍」「驻足聆听 / 偶遇事件」在游戏里都是 collectType=5（检视）；
+  // 另有大地图野外「魔物蛋巢」（collectType=2, collectTypeId 以 yeWaiPet_ 开头且 crossDay=1），
+  // 只收正式地图房间（levelRoom），不收副本魔物蛋巢（dungeonEgg_*）。
   const INSPECT_COLLECT_TYPE = 5
-  const inspectRewardIds = new Set()
+  const isOutdoorEggNestType = (ct) =>
+    String(ct?.collectTypeId || '').startsWith('yeWaiPet_') && Number(ct?.crossDay) === 1
+  const isIncludedCollectType = (ct) =>
+    Number(ct?.collectType) === INSPECT_COLLECT_TYPE || isOutdoorEggNestType(ct)
+
+  const includedRewardIds = new Set()
   for (const ct of Object.values(collectTypeData)) {
-    if (Number(ct?.collectType) === INSPECT_COLLECT_TYPE && ct?.reward) inspectRewardIds.add(ct.reward)
+    if (isIncludedCollectType(ct) && ct?.reward) includedRewardIds.add(ct.reward)
   }
 
   for (const r of Object.values(rewardData)) {
-    if (!inspectRewardIds.has(r.typeId)) continue
+    if (!includedRewardIds.has(r.typeId)) continue
     {
       const collectTypes = []
       for (const ct of Object.values(collectTypeData)) {
-        if (ct.reward === r.typeId && Number(ct?.collectType) === INSPECT_COLLECT_TYPE) {
+        if (ct.reward === r.typeId && isIncludedCollectType(ct)) {
           collectTypes.push(ct)
         }
       }
 
       const collects = []
       for (const ct of collectTypes) {
+        const isEggNest = isOutdoorEggNestType(ct)
         for (const c of Object.values(collectData)) {
           if (c.collectTypeId === ct.collectTypeId) {
-            collects.push({ ...c, baseName: ct.name, tip: ct.tip })
+            collects.push({
+              ...c,
+              baseName: ct.name,
+              tip: ct.tip || (isEggNest ? '消耗 1 体力 · 每日 04:00 重置' : ''),
+              isEggNest
+            })
           }
         }
       }
@@ -295,30 +306,35 @@ export function buildHiddenRewards(maps) {
                 rewardItems: normalizedRewardItems,
                 // 页面「隐藏奖励」分组名：按 reward 分类区分，避免把书/偶遇都标成宝箱。
                 category: Array.isArray(r.category) ? r.category : [],
-                sourceLabel: Array.isArray(r.category) && r.category.includes('书籍')
-                  ? '书籍'
-                  : (Array.isArray(r.category) && r.category.includes('聆听偶遇') ? '偶遇' : '场景宝箱'),
+                sourceLabel: c.isEggNest
+                  ? '魔物蛋'
+                  : (Array.isArray(r.category) && r.category.includes('书籍')
+                    ? '书籍'
+                    : (Array.isArray(r.category) && r.category.includes('聆听偶遇') ? '偶遇' : '场景宝箱')),
                 id: entryId
               })
 
-              const locStr = `${bigMapName} - ${areaName} - ${lr.name || rm.name}`
-              // 展示名按 reward 分类区分：书籍类显示「书籍」，其余检视类沿用「场景宝箱」。
-              const sourceLabel = Array.isArray(r.category) && r.category.includes('书籍') ? '书籍' : '场景宝箱'
-              for (const itemGrp of normalizedRewardItems) {
-                // 基础货币（银币等）不作为隐藏探索点逆向来源写入，避免来源列表过度膨胀
-                if (itemGrp.kind === 'fixed' && itemGrp.rules[0]?.mode === 'money') continue
-                for (const rule of (itemGrp.rules || [])) {
-                  const tId = rule.typeId
-                  if (!tId) continue
-                  if (!globalSources[tId]) globalSources[tId] = []
-                  globalSources[tId].push({
-                    type: 'hidden',
-                    id: entryId,
-                    roomId: lr.typeId || rm.typeId,
-                    name: sourceLabel,
-                    des: locStr,
-                    bigMapId
-                  })
+              // 魔物蛋巢（collectType=2）已由 supplementalItemSources 生成 `type: 'collect'` 来源，不再重复写入 hidden 来源。
+              if (!c.isEggNest) {
+                const locStr = `${bigMapName} - ${areaName} - ${lr.name || rm.name}`
+                // 展示名按 reward 分类区分：书籍类显示「书籍」，其余检视类沿用「场景宝箱」。
+                const sourceLabel = Array.isArray(r.category) && r.category.includes('书籍') ? '书籍' : '场景宝箱'
+                for (const itemGrp of normalizedRewardItems) {
+                  // 基础货币（银币等）不作为隐藏探索点逆向来源写入，避免来源列表过度膨胀
+                  if (itemGrp.kind === 'fixed' && itemGrp.rules[0]?.mode === 'money') continue
+                  for (const rule of (itemGrp.rules || [])) {
+                    const tId = rule.typeId
+                    if (!tId) continue
+                    if (!globalSources[tId]) globalSources[tId] = []
+                    globalSources[tId].push({
+                      type: 'hidden',
+                      id: entryId,
+                      roomId: lr.typeId || rm.typeId,
+                      name: sourceLabel,
+                      des: locStr,
+                      bigMapId
+                    })
+                  }
                 }
               }
             }

@@ -134,16 +134,20 @@ function buildExchangeSearchList(maps, officialExchangeIndex) {
 
 // ---------- 场景宝箱（隐藏）搜索条目 ----------
 function buildHiddenSearchList(hiddenList = []) {
-  return hiddenList.map(h => ({
-    id: `${h.roomId || ''}:${h.collectName || ''}`,
-    type: 'hidden',
-    name: h.collectName || h.roomName || '',
-    quality: 3,
-    category: '隐藏',
-    subTag: h.areaName || h.bigMapName || '',
-    categoryTags: ['隐藏', '场景宝箱', h.areaName, h.bigMapName],
-    keywords: `${h.collectName || ''} ${h.roomName || ''} ${h.areaName || ''} ${h.bigMapName || ''} 场景宝箱 隐藏`.toLowerCase()
-  }))
+  return hiddenList.map(h => {
+    const label = h.sourceLabel || '场景宝箱'
+    const extraKeywords = label === '魔物蛋' ? '魔物蛋巢 魔物蛋' : label
+    return {
+      id: `${h.roomId || ''}:${h.collectName || ''}`,
+      type: 'hidden',
+      name: h.collectName || h.roomName || '',
+      quality: 3,
+      category: '隐藏',
+      subTag: h.areaName || h.bigMapName || '',
+      categoryTags: ['隐藏', label, h.areaName, h.bigMapName],
+      keywords: `${h.collectName || ''} ${h.roomName || ''} ${h.areaName || ''} ${h.bigMapName || ''} ${extraKeywords} 隐藏`.toLowerCase()
+    }
+  })
 }
 
 // ---------- 家具搜索条目 ----------
