@@ -36,3 +36,22 @@ export function gachaFitScaleByHeight(height) {
   if (!height) return 0
   return height / GACHA_DESIGN_HEIGHT
 }
+
+/**
+ * 解析招募页与概率详情 UP 框内的头像路径（与源码 `HeroPoolUI` / `HeroPoolTips` 一致）：
+ * - 伙伴：`heroDataById.Icon` → `HeadIconAtals/at<NNN>_0.webp`（`new_hero_*` 为 `_1.webp`）；
+ * - 魔物蛋：`petMonDataById.icon` → `HeadIconAtals/avatar_pet_<NNN>.webp`（不是图鉴全身图 `colect_mon_*`）。
+ */
+export function resolveGachaUpAvatar(candidate, kind = '') {
+  const typeId = String(candidate?.typeId ?? '')
+  if (kind === 'hero' || (!kind && typeId.includes('hero'))) {
+    const plain = /^hero_0*(\d+)$/.exec(typeId)
+    if (plain) return `/images/HeadIconAtals/at${String(plain[1]).padStart(3, '0')}_0.webp`
+    const variant = /^new_hero_0*(\d+)$/.exec(typeId)
+    if (variant) return `/images/HeadIconAtals/at${String(variant[1]).padStart(3, '0')}_1.webp`
+  } else if (kind === 'pet' || typeId.startsWith('pet_')) {
+    const petMatch = /^pet_0*(\d+)$/.exec(typeId)
+    if (petMatch) return `/images/HeadIconAtals/avatar_pet_${String(petMatch[1]).padStart(3, '0')}.webp`
+  }
+  return candidate?.icon ?? ''
+}

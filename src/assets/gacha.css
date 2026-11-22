@@ -279,29 +279,33 @@
 
 /* ---------- 货币条与抽取消耗行（卡池列表页与招募结果一览共用，数据见 utils/gachaCurrency.js） ---------- */
 
-/* 整行：右锚定、槽间距 14（prefab 底牌之间约 16px 空隙） */
+/* 整行：右锚定、槽间距 4（prefab 槽宽 162、相邻 `+` 与下一枚图标间距极紧凑） */
 .currency-row {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 4px;
 }
 
-/* 槽：高度固定为底牌高 28，图标(36)/「+」(40) 允许溢出，底牌才不会被撑高 */
+/* 槽：高度固定为底牌高 28，min-width: 162 对齐 prefab（bg w=154 + add 右探 8px）；
+   数值较少时文字仍居中在图标与「+」之间，数字很长时底牌随内容横向延伸。 */
 .currency-slot {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
+  gap: 4px;
+  min-width: 162px;
   height: 28px;
-  padding-right: 2px;
+  padding-left: 5px;
+  padding-right: 0;
+  box-sizing: border-box;
 }
 
-/* 底牌：铺满槽盒（槽盒高 28 = 底牌高）。注意不要加 translateY(-50%)——
-   槽内 icon/label/add 都以槽盒为中心溢出居中，底牌再用 transform 上移半高
-   就会整体偏高约 15px（用户报告「阴影和数据没对齐」的根因）。 */
+/* 底牌：铺满左侧 154px（右侧留 8px 给「+」菱形外沿压边，还原 prefab `bg(-23..131)` 与 `add(99..139)`）。
+   注意不要加 translateY(-50%)——槽内 icon/label/add 都以槽盒为中心溢出居中。 */
 .currency-slot__bg {
   position: absolute;
-  inset: 0;
+  inset: 0 8px 0 0;
 }
 
 .currency-slot__icon {
@@ -315,9 +319,10 @@
 .currency-slot__label {
   position: relative;
   font-size: 20px;
-  text-align: left;
+  text-align: center;
+  padding: 0 2px;
   white-space: nowrap;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
 }
 
 .currency-slot__add {
@@ -331,9 +336,6 @@
   border: 0;
   padding: 0;
   background: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   pointer-events: auto;
   z-index: 5;
 }

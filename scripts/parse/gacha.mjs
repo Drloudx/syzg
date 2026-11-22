@@ -293,11 +293,16 @@ function buildHeroPool(def, meta, heroes, itemsTable) {
   const para = conf.para ?? {}
   const upTypes = Array.isArray(conf.upTypes) ? conf.upTypes : []
 
-  // 期次贴图 / 立绘 / 小图标
+  // 期次贴图 / 立绘 / 专属背景 / 小图标
   const img = time?.img ?? ''
+  const poolBg = time?.poolBg ?? ''
   const imgTitle = time?.imgTitle ?? ''
   const icon = conf.icon ?? ''
+  const gachaImgDir = join(parsedDir, '..', '..', 'images', 'gacha')
   const cover = img ? `/images/gacha/${img}.webp` : '/images/gacha/gacha_p0.webp'
+  const bg = poolBg && existsSync(join(gachaImgDir, `${poolBg}.webp`))
+    ? `/images/gacha/${poolBg}.webp`
+    : ''
 
   return {
     id: def.id,
@@ -324,6 +329,8 @@ function buildHeroPool(def, meta, heroes, itemsTable) {
     assets: {
       cover,
       coverSprite: img,
+      bg,
+      bgSprite: poolBg,
       titleSprite: imgTitle,
       poolSprite: icon
     },
@@ -426,13 +433,17 @@ function buildPetPool(def, meta, pets, itemsTable) {
   const tiers = buildPetTiersFromRaw(conf, pets)
   const name = text(conf.name) || `魔物蛋池${def.poolTypeId}`
   const img = time?.img ?? ''
+  const poolBg = time?.poolBg ?? ''
   const imgTitle = time?.imgTitle ?? ''
   const icon = conf.icon ?? ''
-  // 封面大图若未导出（如圣经贩售 gacha_pet104 暂缺），回退常规蛋池封面，避免 404
+  // 封面大图若未导出，回退常规蛋池封面，避免 404
   const gachaImgDir = join(parsedDir, '..', '..', 'images', 'gacha')
   const cover = img && existsSync(join(gachaImgDir, `${img}.webp`))
     ? `/images/gacha/${img}.webp`
     : '/images/gacha/gacha_egg0.webp'
+  const bg = poolBg && existsSync(join(gachaImgDir, `${poolBg}.webp`))
+    ? `/images/gacha/${poolBg}.webp`
+    : ''
   return {
     id: def.id, era: def.era, kind: 'pet',
     poolTypeId: def.poolTypeId, slotId: def.slotId, stateKey: def.id,
@@ -453,6 +464,8 @@ function buildPetPool(def, meta, pets, itemsTable) {
     assets: {
       cover,
       coverSprite: img,
+      bg,
+      bgSprite: poolBg,
       titleSprite: imgTitle,
       poolSprite: icon
     },

@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-22 ｜ **最近代码提交**：`ad1a648c`（本次提交前） ｜ **分支**：`main`
+**核对时间**：2026-11-23 ｜ **最近代码提交**：`2f34d4a0`（本次提交前） ｜ **分支**：`main`
 
 ---
 
@@ -21,9 +21,15 @@
 | 后端 | `functions/api/[[path]].js`（单文件）+ D1 `myrzg-comments` |
 | 数据源版本 | **1.7.15 付费测 (cdnVer 36, codeVersion 454C1B17)**；热更配置表（59 张，12 张实质变更）、剧情（674 份，6 份变更）、源码（2680 .cs）已同步就绪 |
 | 单测 | 见当日验证日志（模块与完整性单测全绿） |
-| 最近重点修复 | 词条百科新增「Buff 效果」与全局搜索出处定位；`tasks.json` 与 `dialog-search.json` 按需拆分；`/misc?tab=hidden` 隐藏点位补充大地图野外魔物蛋巢筛选、拆分 `驻足聆听 / 偶遇事件` 切换并校准 `04:00` 双池轮换刷新机制说明；伤害计算器通用 DPS 循环、DoT/召唤联动与角色星阶机制校准 |
+| 最近重点修复 | `/gacha` 卡池外层 UI 四周锚点、专属背景、货币槽宽度、限时页签底色与选中菱形标及文本配色对齐；词条百科「Buff 效果」全局搜索定位；`tasks.json` 与 `dialog-search.json` 按需拆分；`/misc?tab=hidden` 隐藏点位大地图蛋巢与刷新说明校准 |
 | 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；蜘蛛头冠幼体数量异常已编制反馈材料并输出 Word 提交官方；小麦无法采集、料理台自由制作无法烹饪武僧火锅/果香通心粉均已获官方修复关闭 |
 | 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修） |
+
+### 本次推送（2026-11-23）
+
+- **`/gacha` 卡池外层 UI 锚点、视觉资产与文本配色对齐**：
+  - 补齐「古堡贩卖」（`pet:4ce:5`）立绘 [gacha_pet104.webp](../../public/images/gacha/gacha_pet104.webp)，并从 `device_20261113` 同步限时卡池底板 `gacha_page_sp` 与选中高光 `gacha_page_on`（橙金外框＋右侧菱形标记）及对应 `324×84` 切片；
+  - [gacha.mjs](../../scripts/parse/gacha.mjs) 与 [gacha.json](../../public/data/parsed/gacha.json) 输出 `assets.bg`，[GachaPoolPanel.vue](../../src/components/gacha/GachaPoolPanel.vue) 在 `公主招募` / `幽夜招募` 启用专属背景并隐藏默认木桌，按 `HeroPoolPanel.prefab` 的 `1534×750` `UIAnchor`/`UIRect` 对齐四周控件（保留右上 `.sound-btn`）、修正 `幽夜之影 洛莉安` 与 `兑换商店` 重叠、同步按钮与页签倒计时字体色，[gacha.css](../../src/assets/gacha.css) 加宽货币槽至 `162px`（底牌 `154×28`），[gachaLayout.js](../../src/utils/gachaLayout.js) 与 [GachaTipPanel.vue](../../src/components/gacha/GachaTipPanel.vue) 统一蛋池 UP 菱形头像路径及 `76×76` 尺寸。
 
 ### 本次推送（2026-11-22）
 

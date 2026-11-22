@@ -8,12 +8,13 @@ test('卡池宽屏布景覆盖两侧，角色与蛋池主视觉保持比例', as
     await expect(page.locator('.pool-cover')).toBeVisible()
     await expect.poll(() => page.locator('.pool-cover').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true)
     await expect.poll(() => page.locator('.pool-cover').evaluate(img => getComputedStyle(img).opacity)).toBe('1')
-    const sizes = await page.locator('.pool-bgmain').evaluate(img => {
+    const sizes = await page.locator('.pool-bgcustom, .pool-bgmain').evaluate(img => {
       const rect = img.getBoundingClientRect()
       const stage = img.closest('.gacha-stage').getBoundingClientRect()
       const cover = img.closest('.gacha-stage').querySelector('.pool-cover')
-      return { left: rect.left + rect.width * 184 / 2048 - stage.left,
-        right: stage.right - (rect.right - rect.width * 184 / 2048),
+      const pad = img.classList.contains('pool-bgmain') ? rect.width * 184 / 2048 : 0
+      return { left: rect.left + pad - stage.left,
+        right: stage.right - (rect.right - pad),
         coverRatio: cover.clientWidth / cover.clientHeight, originalRatio: cover.naturalWidth / cover.naturalHeight }
     })
     expect(sizes.left).toBeLessThan(1)

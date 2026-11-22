@@ -157,7 +157,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import GachaStage from './GachaStage.vue'
-import { gachaPos } from '../../utils/gachaLayout'
+import { gachaPos, resolveGachaUpAvatar } from '../../utils/gachaLayout'
 import { getImageUrl } from '../../utils/env'
 import { formatHighlightedText } from '../../utils/gameMappings'
 
@@ -177,26 +177,7 @@ const openAnalysis = () => {
   router.push('/gacha/analysis')
 }
 
-/**
- * 指定伙伴头像：游戏的 `HeroPoolUI` 与 `HeroPoolTips` 用的是 `heroDataById.Icon`
- * （`at*_0` 圆形面部头像，资源在 `public/images/HeadIconAtals/`），
- * 与卡池外侧面板完全一致；魔物蛋池则保持蛋自身图标。
- */
-function upAvatar(candidate) {
-  const typeId = String(candidate?.typeId ?? '')
-  if (props.kind === 'hero' || (!props.kind && typeId.includes('hero'))) {
-    // 头像文件已统一为 .webp（`at<3位编号>_0.webp` / `_1.webp`）
-    const plain = /^hero_0*(\d+)$/.exec(typeId)
-    if (plain) return `/images/HeadIconAtals/at${String(plain[1]).padStart(3, '0')}_0.webp`
-    const variant = /^new_hero_0*(\d+)$/.exec(typeId)
-    if (variant) return `/images/HeadIconAtals/at${String(variant[1]).padStart(3, '0')}_1.webp`
-  } else if (props.kind === 'pet' || typeId.startsWith('pet_')) {
-    // 魔物蛋概率详情头像显示**成体魔物**图（colect_mon_XXX），不是蛋图。
-    const m = /^pet_0*(\d+)$/.exec(typeId)
-    if (m) return `/images/PicHandBookPanel_Atlas/colect_mon_${String(m[1]).padStart(3, '0')}.webp`
-  }
-  return candidate?.icon ?? ''
-}
+const upAvatar = candidate => resolveGachaUpAvatar(candidate, props.kind)
 
 const emit = defineEmits(['close', 'open-candidate'])
 
@@ -383,11 +364,11 @@ function formatTime(timestamp) {
 
 .tip-up-slot__icon {
   position: relative;
-  /* 头像垫在金环下、环作描边：接近填满 100px 画布、居中（同 GachaPoolPanel） */
+  /* prefab `heroPoolTip` 下 `icon` 为 76×76，与 GachaPoolPanel 一致嵌在金环内窗且不外溢 */
   top: 0;
   z-index: 1;
-  width: 84px;
-  height: 84px;
+  width: 76px;
+  height: 76px;
   object-fit: contain;
 }
 

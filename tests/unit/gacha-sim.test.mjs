@@ -11,6 +11,7 @@ import {
   resolveDuplicate,
   summarizeTiers
 } from '../../src/utils/gachaSim.js'
+import { resolveGachaUpAvatar } from '../../src/utils/gachaLayout.js'
 
 const gacha = JSON.parse(readFileSync(new URL('../../public/data/parsed/gacha.json', import.meta.url), 'utf8'))
 const heroPool = gacha.pools.find(pool => pool.id === 'hero:4ce:1')
@@ -173,4 +174,20 @@ test('概率文案：两位小数、极小值用 <0.01%', () => {
   assert.equal(formatGachaRate(4.3), '4.30%')
   assert.equal(formatGachaRate(0.005), '<0.01%')
   assert.equal(formatGachaRate(0), '0%')
+})
+
+test('UP 头像与古堡贩卖封面图：魔物蛋池走 HeadIconAtals 菱形头像，古堡贩卖封面指向 gacha_pet104.webp', () => {
+  assert.equal(resolveGachaUpAvatar({ typeId: 'hero_071' }, 'hero'), '/images/HeadIconAtals/at071_0.webp')
+  assert.equal(resolveGachaUpAvatar({ typeId: 'new_hero_002' }, 'hero'), '/images/HeadIconAtals/at002_1.webp')
+  assert.equal(resolveGachaUpAvatar({ typeId: 'pet_104' }, 'pet'), '/images/HeadIconAtals/avatar_pet_104.webp')
+  assert.equal(resolveGachaUpAvatar({ typeId: 'pet_106' }, 'pet'), '/images/HeadIconAtals/avatar_pet_106.webp')
+
+  const castlePool = gacha.pools.find(pool => pool.id === 'pet:4ce:5')
+  assert.equal(castlePool?.assets?.cover, '/images/gacha/gacha_pet104.webp')
+
+  const princessPool = gacha.pools.find(pool => pool.id === 'hero:4ce:2')
+  assert.equal(princessPool?.assets?.bg, '/images/gacha/gacha_bg_chara060.webp')
+
+  const nightPool = gacha.pools.find(pool => pool.id === 'hero:4ce:5')
+  assert.equal(nightPool?.assets?.bg, '/images/gacha/gacha_bg_chara071.webp')
 })
