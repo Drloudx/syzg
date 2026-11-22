@@ -7,7 +7,7 @@
 > **何时读**：接续任务、排期或需要知道"现在做到哪了"时。
 > **何时更新**：状态实质变化时（完成一项、新增阻塞、改变下一步）。**不写"本轮又做了什么"。**
 
-**核对时间**：2026-11-22 ｜ **最近代码提交**：`369a94d7`（本次提交前） ｜ **分支**：`main`
+**核对时间**：2026-11-22 ｜ **最近代码提交**：`ad1a648c`（本次提交前） ｜ **分支**：`main`
 
 ---
 
@@ -27,6 +27,8 @@
 
 ### 本次推送（2026-11-22）
 
+- **装备可携带效果「魔爪」（`equip_305`）机制补充卡片**：
+  - [equipSummonMechanics.js](../../src/utils/equipSummonMechanics.js)、[itemParser.js](../../src/utils/itemParser.js) 与 [ItemDetailModal.vue](../../src/components/ItemDetailModal.vue) 在保持官方原始描述不变的前提下，在词缀说明下方独立展示 `.affix-summon-card` 机制补充卡片，标注低血量触发的 `20%` 吸血实际持续 `10 秒`、源码判定条件为 `≤ 40%`、物理攻击 `+10%` 整场常驻（`item_443002` 等）。
 - **隐藏点位收录地图魔物蛋巢、驻足聆听 / 偶遇事件拆分与刷新机制校准**：
   - [hiddenRewardsData.js](../../src/utils/hiddenRewardsData.js)、[searchData.js](../../src/utils/searchData.js) 与 [RewardsView.vue](../../src/views/RewardsView.vue) 新增大地图野外魔物蛋巢筛选（`?type=nest`，前 3 章共 `19` 个点位，不收录副本蛋巢），修正 `rate < 1` 单规则稀有蛋概率展示（`概率 2%`）；`驻足聆听 / 偶遇事件` 隐藏已收集状态栏并拆分 `事件：全部 / 驻足聆听 / 偶遇事件`（`?kind=`）；「刷新机制」页按源码校准同区 `lt_pool_*` / `oy_pool_*` 独立双池、`WeatherEffect` 昼夜周期种子、次日 `04:00` 重置与地图蛋巢双房间 `50%` 轮换规则，同步更新 [QUESTS_AND_EVENTS.md](specs/QUESTS_AND_EVENTS.md) 与 [verify.mjs](../../scripts/dev/verify.mjs)。
 - **词条百科「Buff 效果」全量索引与全局搜索出处跳转**：

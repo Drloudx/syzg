@@ -103,3 +103,22 @@ test('item_442001（蜘蛛统御头冠）词缀解析集成：带育母召唤物
   assert.equal(prefix.summons[0].name, '砂蜘蛛的蛋')
   assert.equal(prefix.summons[1].name, '砂蜘蛛幼体')
 })
+
+test('item_443002（魔爪异变臂铠）可携带效果保持游戏原描述，并在补充卡片中展示吸血持续 10 秒与 ≤40% 口径', async () => {
+  const { fetchItemData, parseItemAffixes } = await import('../../src/utils/itemParser.js')
+  const data = await fetchItemData()
+  const mockItem = Object.values(data.items).find(x => x.typeId === 'item_443002')
+
+  assert.ok(mockItem, '应当能获取到 item_443002')
+  const affixGroups = parseItemAffixes(mockItem)
+  assert.ok(Array.isArray(affixGroups) && affixGroups.length > 0)
+
+  const claw = affixGroups.flatMap(g => g.prefixes || []).find(p => p.id === 'equip_305' || p.skillName === '魔爪')
+  assert.ok(claw, '应包含魔爪词缀')
+  assert.equal(claw.desHtml.includes('实际 ≤'), false, '官方原始描述应保持不变')
+  assert.ok(Array.isArray(claw.notes) && claw.notes.length === 2, '应在 notes 中补充持续时间与触发口径')
+  assert.equal(claw.notes[0].label, '持续时间')
+  assert.ok(claw.notes[0].value.includes('10 秒'))
+  assert.equal(claw.notes[1].label, '触发口径')
+  assert.ok(claw.notes[1].value.includes('≤ 40%'))
+})

@@ -369,6 +369,16 @@
                 </div>
               </div>
             </div>
+
+            <!-- 词缀源码实机机制补充卡片 -->
+            <div v-if="affix.notes && affix.notes.length" class="affix-summons-container">
+              <div class="affix-summon-card">
+                <div v-for="note in affix.notes" :key="note.key" class="mechanics-row">
+                  <span class="mechanics-label">{{ note.label }}</span>
+                  <span class="mechanics-text">{{ note.value }}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -488,6 +498,16 @@
                               <em>{{ note.label }}</em>：{{ note.value }}
                             </span>
                           </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- 词缀源码实机机制补充卡片 -->
+                    <div v-if="affix.notes && affix.notes.length" class="affix-summons-container">
+                      <div class="affix-summon-card">
+                        <div v-for="note in affix.notes" :key="note.key" class="mechanics-row">
+                          <span class="mechanics-label">{{ note.label }}</span>
+                          <span class="mechanics-text">{{ note.value }}</span>
                         </div>
                       </div>
                     </div>

@@ -180,3 +180,33 @@ export function resolveEquipSummons(triggerId, level = 1) {
   const lvlKey = String(level)
   return entry[lvlKey] || entry['1'] || null
 }
+
+/**
+ * 装备词缀文案漏写/偏差的源码实机机制补充卡片映射（不改原表描述，展示在词缀说明卡片下方）。
+ * - 魔爪 equip_305:
+ *   - 常量/Buff：`equip305AddBuff1_1`（物理攻击 +10%，`buffTime: 0` 常驻）；
+ *     `equip305AddBuff2_1`（[Equip305AddBuff.cs]，`hpRate: 0.4`，`cd: 200`）触发 `equip305AddBuff2_AddBuff1`（吸血 +20%，`buffTime: 10`）。
+ */
+const EQUIP_MECHANICS_NOTE_MAP = {
+  equip_305: {
+    1: [
+      { key: 'duration', label: '持续时间', value: '低血量触发的 20% 吸血持续 10 秒；物理攻击 +10% 整场常驻' },
+      { key: 'trigger', label: '触发口径', value: '源码判定为当前生命值 ≤ 40% 时触发，冷却时间 200 秒' }
+    ]
+  }
+}
+
+/**
+ * 根据词条 triggerId 与等级获取需要补充展示的源码机制说明行。
+ * @param {string} triggerId 词条技能触发器 ID（如 equip_305）
+ * @param {number|string} [level=1] 词条档位/等级
+ * @returns {Array<{key: string, label: string, value: string}>|null}
+ */
+export function resolveEquipMechanicsNotes(triggerId, level = 1) {
+  if (!triggerId) return null
+  const entry = EQUIP_MECHANICS_NOTE_MAP[triggerId]
+  if (!entry) return null
+
+  const lvlKey = String(level)
+  return entry[lvlKey] || entry['1'] || null
+}

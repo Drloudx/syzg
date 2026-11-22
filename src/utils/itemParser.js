@@ -4,7 +4,7 @@ import { buildFullCategoryTree, getCategoryName, translateStatName } from './gam
 import { resolveHomeItemUnlocks } from './furnitureData.js'
 import { buildRuneEffect } from './runeData.js'
 import { parseItemAcquisition, parseEquipmentPool, parseRewardGroups } from './acquisitionRules.js'
-import { resolveEquipSummons } from './equipSummonMechanics.js'
+import { resolveEquipSummons, resolveEquipMechanicsNotes } from './equipSummonMechanics.js'
 
 // 缓存数据，避免重复请求
 let cachedItems = null
@@ -1537,12 +1537,14 @@ export function parseItemAffixes(item) {
 
       const formattedDes = levelData.des.replace(/\{([^}]+)\}/g, "<span class='affix-val' style='color: #3b82f6;'>$1</span>");
       const summons = resolveEquipSummons(triggerId, poolEntry?.level || 1);
+      const notes = resolveEquipMechanicsNotes(triggerId, poolEntry?.level || 1);
 
       return {
         id: prefixId,
         skillName: poolEntry?.name || levelData.skillName || '',
         desHtml: formattedDes,
-        summons: summons || null
+        summons: summons || null,
+        notes: notes || null
       };
     }).filter(Boolean);
 
