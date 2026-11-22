@@ -168,3 +168,50 @@ test('伤害结算流水线八步均支持展开纯数学公式卡片与精确�
   await enableDarkMode(page)
   await expect(modal.locator('.level-sup-table__red').nth(1)).toHaveCSS('color', 'rgb(241, 148, 138)')
 })
+
+test('顶部全局搜索可查出 Buff 效果并跳转词条百科及具体出处页', async ({ page }) => {
+  const errors = []
+  page.on('pageerror', error => errors.push(error.message))
+
+  // 1. 复现用户反馈场景：在角色图鉴页使用顶部全局搜索「魔力充沛」
+  await page.goto('/#/heroes')
+  await dismissGlobalModals(page)
+
+  const globalInput = page.locator('.global-search-input:visible').first()
+  await expect(globalInput).toBeVisible({ timeout: 20_000 })
+  await globalInput.click()
+  await globalInput.fill('魔力充沛')
+
+  const resultItem = page.locator('.search-result-item:visible', { hasText: '魔力充沛' }).first()
+  await expect(resultItem).toBeVisible({ timeout: 10_000 })
+  await resultItem.click()
+
+  await expect(page).toHaveURL(/#\/glossary.*section=buffs/, { timeout: 15_000 })
+  const modal = page.locator('.ui-modal-overlay:not(.is-teleported)')
+  await expect(modal).toBeVisible({ timeout: 15_000 })
+  await expect(modal).toContainText('战斗结束后魔力恢复提高 30%')
+  await expect(modal).toContainText('亚空回廊·特异次元')
+
+  // 点击秘境来源芯片跳转到活动副本详情
+  await modal.locator('.source-chip', { hasText: '亚空回廊·特异次元' }).first().click()
+  await expect(page).toHaveURL(/#\/activity-dungeons\?dungeon=sp1/, { timeout: 15_000 })
+
+  // 2. 验证「优雅」→ 梅莉莉（角色详情页）与「普攻伤害提升」→ 吵吵蕈（魔物图鉴页）
+  await page.goto('/#/glossary?section=buffs')
+  await dismissGlobalModals(page)
+  const glossarySearch = page.locator('input[placeholder*="词条名称"]').first()
+  await glossarySearch.fill('优雅')
+  await page.locator('.glossary-card__button', { hasText: '优雅' }).first().click()
+  await expect(modal).toContainText('梅莉莉')
+  await modal.locator('.source-chip', { hasText: '梅莉莉' }).first().click()
+  await expect(page).toHaveURL(/#\/heroes\?id=hero_027/, { timeout: 15_000 })
+
+  await page.goto('/#/glossary?section=buffs&q=%E6%99%AE%E6%94%BB%E4%BC%A4%E5%AE%B3%E6%8F%90%E5%8D%87')
+  await dismissGlobalModals(page)
+  await page.locator('.glossary-card__button', { hasText: '普攻伤害提升' }).first().click()
+  await expect(modal).toContainText('吵吵蕈')
+  await modal.locator('.source-chip', { hasText: '吵吵蕈' }).first().click()
+  await expect(page).toHaveURL(/#\/pets\?id=pet_016/, { timeout: 15_000 })
+
+  expect(errors).toEqual([])
+})

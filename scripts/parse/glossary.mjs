@@ -28,6 +28,10 @@ export function buildGlossaryFile(monstersData, { heroes, pets } = {}) {
   const petList = pets || readJson('parsed/pets.json')?.pets || []
   const monsterList = Array.isArray(monsters) ? monsters : []
 
+  const readOptional = rel => {
+    try { return readJson(rel) } catch { return null }
+  }
+
   const data = buildGlossaryData({
     buffJson: readJson('buff.json'),
     heroJson: readJson('hero.json'),
@@ -38,6 +42,15 @@ export function buildGlossaryFile(monstersData, { heroes, pets } = {}) {
     itemJson: readJson('item.json'),
     heroSkillUpgradeJson: readJson('heroSkillUpgrade.json'),
     fileMonJson: readJson('fileMon.json'),
+    equipSuitJson: readOptional('equip/equipSuit.json'),
+    equipEnchantJson: readOptional('equip/equipEnchant.json'),
+    equipGlobalConfigJson: readOptional('equip/装备符石数据对应表equipGlobalConfig.json'),
+    relicDungeonInfoJson: readOptional('relicDungeonInfo.json'),
+    relicDungeonEventsJson: readOptional('relicDungeonEvents.json'),
+    activityListJson: readOptional('activityList.json'),
+    relicInfoJson: readOptional('relicInfo.json'),
+    generalJson: readOptional('general.json'),
+    battleBuffCardJson: readOptional('battleBuffCard.json'),
     monstersJson: monsters,
     visibleHeroIds: new Set(heroList.map(h => h.id).filter(Boolean)),
     visiblePetIds: new Set(petList.map(p => p.id).filter(Boolean)),

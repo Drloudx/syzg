@@ -4,7 +4,12 @@
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { buildDialogSearchIndex, buildTaskData } from '../../src/utils/taskParser.js'
+import {
+  buildDialogSearchIndex,
+  buildTaskData,
+  splitDialogSearchBundle,
+  splitTaskDataBundle
+} from '../../src/utils/taskParser.js'
 import { publicDataDir, readJson } from './shared.mjs'
 
 /** 已裁剪的剧情副本目录（由 `scripts/dev/check-task-data.mjs --apply` 维护）。 */
@@ -73,17 +78,34 @@ export function buildTasksFile() {
     dialogIds: readDialogIdSet()
   }
   const data = buildTaskData(maps)
-  return { file: 'parsed/tasks.json', data }
+  const { listData, detailFiles } = splitTaskDataBundle(data)
+  return {
+    data,
+    files: [
+      { file: 'parsed/tasks.json', data },
+      { file: 'parsed/tasks-list.json', data: listData },
+      ...detailFiles.map(d => ({ file: `parsed/tasks/${d.id}.json`, data: d.data }))
+    ]
+  }
 }
 
 /**
- * 任务图鉴的**剧情全文搜索索引** -> `public/data/parsed/dialog-search.json`。
+ * 任务图鉴的**剧情全文搜索索引** -> `public/data/parsed/dialog-search.json` + 分片 `dialog-search/<type>.json`。
  *
  * 独立产物的理由（首屏体积）与「为什么存全文而不是倒排」见
  * `taskParser.js` 的 `buildDialogSearchIndex` 注释。
  */
 export function buildDialogSearchFile(tasksData) {
+  const resolvedTasks = tasksData || buildTasksFile().data
   const scripts = readTaskDialogScripts()
-  const data = buildDialogSearchIndex(tasksData || buildTasksFile().data, scripts)
-  return { file: 'parsed/dialog-search.json', data }
+  const data = buildDialogSearchIndex(resolvedTasks, scripts)
+  const { availableTypes, shards } = splitDialogSearchBundle(data, resolvedTasks)
+  return {
+    data,
+    files: [
+      { file: 'parsed/dialog-search.json', data },
+      { file: 'parsed/dialog-search/index.json', data: { types: availableTypes } },
+      ...shards.map(s => ({ file: `parsed/dialog-search/${s.type}.json`, data: s.data }))
+    ]
+  }
 }

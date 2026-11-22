@@ -363,7 +363,8 @@ function buildGlossarySearchList(glossaryJson) {
   const sections = glossaryJson?.sections || [
     { id: 'status', name: '异常与状态' },
     { id: 'stats', name: '战斗属性' },
-    { id: 'mechanics', name: '核心机制' }
+    { id: 'mechanics', name: '核心机制' },
+    { id: 'buffs', name: 'Buff 效果' }
   ]
   const sectionMap = {}
   for (const s of sections) sectionMap[s.id] = s.name
@@ -374,6 +375,20 @@ function buildGlossarySearchList(glossaryJson) {
     const secName = sectionMap[e.group] || '词条'
     const categoryName = e.category || secName
     const quality = e.group === 'mechanics' ? 5 : (e.group === 'stats' ? 4 : 3)
+    const s = e.sources || {}
+    const sourceNames = [
+      ...(s.heroes || []).map(x => x.name),
+      ...(s.pets || []).map(x => x.name),
+      ...(s.suits || []).map(x => x.name),
+      ...(s.dungeons || []).map(x => x.name),
+      ...(s.relics || []).map(x => x.name),
+      ...(s.jobs || []).map(x => x.name),
+      ...(s.runes || []).map(x => x.name),
+      ...(s.affixes || []).map(x => x.name),
+      ...(s.roomBuffs || []).map(x => x.name),
+      ...(s.items || []).map(x => x.name)
+    ].filter(Boolean).slice(0, 8).join(' ')
+    const tagsText = Array.isArray(e.tags) ? e.tags.slice(0, 6).join(' ') : ''
     list.push({
       id: e.id || e.name,
       type: 'glossary',
@@ -383,7 +398,7 @@ function buildGlossarySearchList(glossaryJson) {
       subTag: categoryName,
       categoryTags: ['词条', secName, categoryName],
       glossaryGroup: e.group || 'all',
-      keywords: `${e.name} 词条 百科 机制 ${secName} ${categoryName} ${e.summary || ''}`.toLowerCase()
+      keywords: `${e.name} buff 词条 百科 ${secName} ${categoryName} ${tagsText} ${sourceNames} ${e.summary || ''}`.toLowerCase()
     })
   }
   return list

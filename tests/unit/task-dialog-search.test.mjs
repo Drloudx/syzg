@@ -131,3 +131,24 @@ test('索引行与页面用的是同一个清洗函数（主角称呼等必须�
   assert.ok(!/\[show\]|\[l\]|\[cm\]|\[hide\]/.test(all), '剧情索引里仍残留舞台标记')
   assert.ok(!/\{myName\}|\{callName\d\}/.test(all), '剧情索引里仍残留主角称呼占位符')
 })
+
+test('任务列表与详情分片、剧情搜索分片与全量产物完全对齐', () => {
+  const list = read('public/data/parsed/tasks-list.json')
+  assert.equal(list.tasks.length, tasks.tasks.length, 'tasks-list.json 条目数应与 tasks.json 一致')
+  for (const slim of list.tasks.slice(0, 10)) {
+    const full = tasks.tasks.find(t => t.id === slim.id)
+    assert.ok(full, `tasks.json 应包含 ${slim.id}`)
+    assert.equal(slim.steps, undefined, 'tasks-list.json 不应包含 steps 重字段')
+    const detail = read(`public/data/parsed/tasks/${slim.id}.json`)
+    assert.deepEqual(detail, full, `parsed/tasks/${slim.id}.json 应与 tasks.json 原条目一致`)
+  }
+
+  const dsIndex = read('public/data/parsed/dialog-search/index.json')
+  assert.ok(Array.isArray(dsIndex.types) && dsIndex.types.length > 0, 'dialog-search/index.json 应列出可用分类')
+  const merged = {}
+  for (const t of dsIndex.types) {
+    const shard = read(`public/data/parsed/dialog-search/${t}.json`)
+    Object.assign(merged, shard.tasks || {})
+  }
+  assert.deepEqual(merged, search.tasks, '全部 dialog-search/<type>.json 合并后应与 dialog-search.json 一致')
+})

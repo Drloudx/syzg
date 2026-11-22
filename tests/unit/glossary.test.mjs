@@ -26,6 +26,15 @@ const glossary = buildGlossaryData({
   itemJson: readRaw('item.json'),
   heroSkillUpgradeJson: readRaw('heroSkillUpgrade.json'),
   fileMonJson: readRaw('fileMon.json'),
+  equipSuitJson: readRaw('equip/equipSuit.json'),
+  equipEnchantJson: readRaw('equip/equipEnchant.json'),
+  equipGlobalConfigJson: readRaw('equip/装备符石数据对应表equipGlobalConfig.json'),
+  relicDungeonInfoJson: readRaw('relicDungeonInfo.json'),
+  relicDungeonEventsJson: readRaw('relicDungeonEvents.json'),
+  activityListJson: readRaw('activityList.json'),
+  relicInfoJson: readRaw('relicInfo.json'),
+  generalJson: readRaw('general.json'),
+  battleBuffCardJson: readRaw('battleBuffCard.json'),
   monstersJson,
   visibleHeroIds: new Set(heroList.map(h => h.id).filter(Boolean)),
   visiblePetIds: new Set(petList.map(p => p.id).filter(Boolean)),
@@ -33,9 +42,9 @@ const glossary = buildGlossaryData({
 })
 const buffData = buffJson
 
-test('三大板块分组清晰，且每组的 count 与实际词条数一致', () => {
-  assert.deepEqual(GLOSSARY_SECTIONS.map(g => g.id), ['status', 'stats', 'mechanics'])
-  assert.deepEqual(glossary.sections.map(g => g.id), ['status', 'stats', 'mechanics'])
+test('四大板块分组清晰，且每组的 count 与实际词条数一致', () => {
+  assert.deepEqual(GLOSSARY_SECTIONS.map(g => g.id), ['status', 'stats', 'mechanics', 'buffs'])
+  assert.deepEqual(glossary.sections.map(g => g.id), ['status', 'stats', 'mechanics', 'buffs'])
   for (const sec of glossary.sections) {
     const actual = glossary.entries.filter(entry => entry.group === sec.id).length
     assert.equal(sec.count, actual, `分组「${sec.name}」标注 ${sec.count}，实际 ${actual}`)
@@ -206,11 +215,14 @@ test('来源只保留图鉴里点得开的条目（角色/魔物/怪物）', () 
     return (s.heroes || []).length + (s.monsters || []).length + (s.pets || []).length + (s.items || []).length
   }
   for (const entry of before.entries) {
+    if (entry.group === 'buffs') continue
     if (totalOf(entry) === 0) continue
     const after = glossary.entries.find(e => e.id === entry.id)
     assert.ok(after, `词条「${entry.name}」不应因过滤而消失`)
     assert.ok(totalOf(after) > 0, `词条「${entry.name}」过滤前有来源，过滤后不应变空`)
   }
+  // 独占属于 hide=true（如米托拉（旧）00207）的 Buff，按可见集合过滤后应整条剔除而非留空来源
+  assert.ok(!glossary.entries.some(e => e.name === '不屈的蛮勇'), '隐藏角色的专属 Buff「不屈的蛮勇」不应泄漏')
 
   const stun = glossary.entries.find(e => e.name === '眩晕')
   assert.ok(stun.sources.heroes.length > 0, '眩晕仍应有可跳转的角色来源')
@@ -249,4 +261,38 @@ test('核心机制板块包含伤害结算与等级压制机制', () => {
   const levelSupp = mechEntries.find(e => e.name.includes('等级压制'))
   assert.ok(levelSupp, '应包含等级压制词条')
   assert.ok(levelSupp.rules.some(r => r.value.includes('50%')), '等级压制必须说明 50% 减伤上限')
+})
+
+test('Buff 效果板块覆盖角色/魔物/套装/活动遗器/职业被动等出处并支持检索定位', () => {
+  const buffEntries = glossary.entries.filter(e => e.group === 'buffs')
+  assert.ok(buffEntries.length > 100, `Buff 效果应收录具体战斗 Buff，当前 ${buffEntries.length} 条`)
+
+  // 1. 活动秘境遗器 Buff：魔力充沛（且不泄漏未开放秘境 sp2）
+  const mpRestore = buffEntries.find(e => e.name === '魔力充沛')
+  assert.ok(mpRestore, '应包含「魔力充沛」词条')
+  assert.ok(mpRestore.summary.includes('30%'), '魔力充沛摘要应保留 30% 数值说明')
+  assert.ok(mpRestore.sources.dungeons.some(d => d.name.includes('亚空回廊')), '魔力充沛来源应包含亚空回廊')
+  assert.ok(!mpRestore.sources.dungeons.some(d => d.name.includes('瓦希什塔')), '不应泄漏未开放秘境 sp2')
+
+  // 2. 子 Buff 级联与角色命座关联：优雅 -> 梅莉莉
+  const graceful = buffEntries.find(e => e.name === '优雅')
+  assert.ok(graceful, '应包含「优雅」词条（由星阶触发子 Buff 补入）')
+  assert.ok(graceful.sources.heroes.some(h => h.name === '梅莉莉'), '优雅来源应关联到梅莉莉')
+
+  // 3. 魔物特性：普攻伤害提升 -> 吵吵蕈（且不泄漏未实装 hide 套装金弦守护者）
+  const normalAtkUp = buffEntries.find(e => e.name === '普攻伤害提升')
+  assert.ok(normalAtkUp, '应包含「普攻伤害提升」词条')
+  assert.ok(normalAtkUp.sources.pets.some(p => p.name === '吵吵蕈'), '普攻伤害提升应关联魔物吵吵蕈（pet.skillSp）')
+  assert.ok(!normalAtkUp.sources.suits.some(s => s.name === '金弦守护者'), '不应泄漏 hide=true 未实装套装金弦守护者')
+
+  // 4. 职业被动 Buff：猎人标记 -> 射手职业被动
+  const hunterMark = buffEntries.find(e => e.name === '猎人标记')
+  assert.ok(hunterMark, '应包含「猎人标记」词条')
+  assert.ok(hunterMark.sources.jobs.some(j => j.name.includes('射手')), '猎人标记应关联射手职业被动')
+
+  // 5. 已实装套装 Buff 关联（如风羽/蛇鳞/麦田等可见套装）
+  assert.ok(
+    glossary.entries.some(e => (e.sources?.suits || []).length > 0),
+    '词条百科应至少关联到一个已实装的装备套装来源'
+  )
 })

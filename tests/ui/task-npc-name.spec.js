@@ -147,3 +147,28 @@ test('后续任务可点击跳转到目标任务', async ({ page }) => {
   console.log('切换后标题含目标名：', title.includes(label))
   expect(title, '应打开被点击的任务').toContain(label)
 })
+
+test('任务列表走轻量 tasks-list，剧情搜索按分类懒加载对应分片', async ({ page }) => {
+  const requests = []
+  page.on('request', req => {
+    const url = req.url()
+    if (url.includes('/data/parsed/')) requests.push(url)
+  })
+
+  await page.goto('/#/tasks?type=4')
+  await expect(page.locator('.app-container')).not.toHaveClass(/is-boot-loading/)
+  await dismissGlobalModals(page)
+  await expect(page.locator('.task-list-row').first()).toBeVisible({ timeout: 20_000 })
+
+  // 列表只拉 tasks-list.json，不应下载全量 tasks.json 或 dialog-search.json
+  expect(requests.some(u => u.includes('tasks-list.json'))).toBe(true)
+  expect(requests.some(u => /\/tasks\.json(?:\?|$)/.test(u))).toBe(false)
+  expect(requests.some(u => /\/dialog-search\.json(?:\?|$)/.test(u))).toBe(false)
+
+  // 在「伙伴」分类下搜剧情词，仅拉取 dialog-search/4.json，不拉主线 1.json
+  const searchInput = page.locator('input[placeholder*="搜索任务名称"]').first()
+  await searchInput.fill('小工匠')
+  await expect(page.locator('.task-card-dialog-hit').first()).toBeVisible({ timeout: 15_000 })
+  expect(requests.some(u => u.includes('/dialog-search/4.json'))).toBe(true)
+  expect(requests.some(u => u.includes('/dialog-search/1.json'))).toBe(false)
+})

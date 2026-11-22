@@ -35,8 +35,8 @@
     <UiEmptyState v-if="loading" type="loading" text="正在加载游戏机制与状态词条..." />
     <UiEmptyState v-else-if="error" type="error" :text="error" @retry="loadData" />
     <UiCardGrid v-else id="glossaryScroll" class="glossary-content paper-panel" :content-style="{ gridTemplateColumns: 'minmax(0, 1fr)' }">
-      <div v-if="filteredEntries.length" class="glossary-grid">
-        <article v-for="entry in filteredEntries" :key="entry.id || entry.name"
+      <div v-if="displayedEntries.length" class="glossary-grid">
+        <article v-for="entry in displayedEntries" :key="entry.id || entry.name"
           class="glossary-card" :class="{ 'is-target': openedId === (entry.id || entry.name) }">
           <button type="button" class="glossary-card__button"
             :aria-label="`查看 ${entry.name} 的百科详情`"
@@ -245,7 +245,52 @@
           </div>
         </UiSection>
 
-        <!-- 关联道具 -->
+        <!-- 装备、套装、符石与词缀 -->
+        <UiSection v-if="currentEquipSourceChips.length"
+          :title="`装备 / 套装 / 词缀（${currentEquipSourceChips.length} 项）`">
+          <div class="source-chips">
+            <button v-for="chip in currentEquipSourceChips" :key="chip.key"
+              type="button" class="source-chip source-chip--equip"
+              :title="chip.title"
+              @click="chip.onClick()">
+              <span class="source-chip__name">{{ chip.name }}</span>
+              <span v-if="chip.skillName" class="source-chip__skill">「{{ chip.skillName }}」</span>
+              <span class="source-chip__arrow">➔</span>
+            </button>
+          </div>
+        </UiSection>
+
+        <!-- 秘境、遗器与副本祝福 -->
+        <UiSection v-if="currentDungeonSourceChips.length"
+          :title="`秘境 / 遗器 / 副本（${currentDungeonSourceChips.length} 项）`">
+          <div class="source-chips">
+            <button v-for="chip in currentDungeonSourceChips" :key="chip.key"
+              type="button" class="source-chip source-chip--dungeon"
+              :title="chip.title"
+              @click="chip.onClick()">
+              <span class="source-chip__name">{{ chip.name }}</span>
+              <span v-if="chip.skillName" class="source-chip__skill">「{{ chip.skillName }}」</span>
+              <span class="source-chip__arrow">➔</span>
+            </button>
+          </div>
+        </UiSection>
+
+        <!-- 职业通用被动 -->
+        <UiSection v-if="currentJobSources.length"
+          :title="`职业通用被动（${currentJobSources.length} 项）`">
+          <div class="source-chips">
+            <button v-for="job in currentJobSources" :key="`${job.id}-${job.name}`"
+              type="button" class="source-chip source-chip--job"
+              :title="`前往角色图鉴查看「${job.name}」`"
+              @click="router.push({ path: '/heroes' })">
+              <span class="source-chip__name">{{ job.name }}</span>
+              <span v-if="job.skillName" class="source-chip__skill">「{{ job.skillName }}」</span>
+              <span class="source-chip__arrow">➔</span>
+            </button>
+          </div>
+        </UiSection>
+
+        <!-- 关联道具与料理 -->
         <UiSection v-if="currentItemSources.length"
           :title="`关联道具与料理（${currentItemSources.length} 件）`">
           <div class="source-chips">
@@ -272,6 +317,7 @@ import { fetchWithFallback } from '../utils/request.js'
 import { getImageUrl, handleImageFallback } from '../utils/env.js'
 import { facetCountsForGroup, GLOSSARY_SECTIONS } from '../utils/glossaryData.js'
 import { resolveScrollTarget } from '../utils/scrollTarget.js'
+import { useLazyList } from '../composables/useLazyList.js'
 import {
   UiTabs, UiFilterPanel, UiSearchInput, UiFilterRow, UiFilterPill, UiCardGrid, UiTag,
   UiButton, UiEmptyState, UiBackToTop, UiSection, UiInfoRow, UiModal
@@ -285,7 +331,8 @@ const sectionTabs = [
   { value: 'all', label: '全部' },
   { value: 'status', label: '异常与状态' },
   { value: 'stats', label: '战斗属性' },
-  { value: 'mechanics', label: '核心机制' }
+  { value: 'mechanics', label: '核心机制' },
+  { value: 'buffs', label: 'Buff 效果' }
 ]
 
 const LEVEL_SUPPRESSION_ROWS = [
@@ -543,6 +590,16 @@ const filteredEntries = computed(() => {
     if (!keyword) return true
 
     // 关键词全文匹配
+    const s = entry.sources || {}
+    const extraSourceTerms = [
+      ...(s.suits || []).flatMap(x => [x.name, x.skillName]),
+      ...(s.runes || []).map(x => x.name),
+      ...(s.affixes || []).map(x => x.name),
+      ...(s.dungeons || []).flatMap(x => [x.name, x.skillName]),
+      ...(s.relics || []).map(x => x.name),
+      ...(s.jobs || []).flatMap(x => [x.name, x.skillName]),
+      ...(s.roomBuffs || []).map(x => x.name)
+    ]
     const haystack = [
       entry.name,
       entry.category,
@@ -550,40 +607,50 @@ const filteredEntries = computed(() => {
       entry.summary,
       ...(entry.tags || []),
       ...(entry.rules || []).flatMap(r => [r.label, r.value]),
-      ...(entry.sources?.heroes || []).filter(h => !isBlacklisted(h)).flatMap(h => [h.name, h.skillName]),
-      ...(entry.sources?.monsters || []).filter(m => !isBlacklisted(m)).flatMap(m => [m.name, m.skillName]),
-      ...(entry.sources?.pets || []).filter(p => !isBlacklisted(p)).flatMap(p => [p.name, p.skillName]),
-      ...(entry.sources?.items || []).filter(i => !isBlacklisted(i)).map(i => i.name)
+      ...(s.heroes || []).filter(h => !isBlacklisted(h)).flatMap(h => [h.name, h.skillName]),
+      ...(s.monsters || []).filter(m => !isBlacklisted(m)).flatMap(m => [m.name, m.skillName]),
+      ...(s.pets || []).filter(p => !isBlacklisted(p)).flatMap(p => [p.name, p.skillName]),
+      ...(s.items || []).filter(i => !isBlacklisted(i)).map(i => i.name),
+      ...extraSourceTerms
     ].filter(Boolean).join(' ').toLowerCase()
 
     return haystack.includes(keyword)
   })
 })
 
+const { displayedItems: displayedEntries } = useLazyList(filteredEntries, 60, '#glossaryScroll')
+
 // 来源摘要显示
+function countEntrySources(entry) {
+  const s = entry?.sources || {}
+  const items = (s.items || []).filter(i => !isBlacklisted(i))
+  return {
+    heroes: (s.heroes || []).filter(h => !isBlacklisted(h)).length,
+    monsters: (s.monsters || []).filter(m => !isBlacklisted(m)).length,
+    pets: (s.pets || []).filter(p => !isBlacklisted(p)).length,
+    equips: items.filter(i => i.isEquip).length
+      + (s.suits || []).length + (s.runes || []).length + (s.affixes || []).length,
+    dungeons: (s.dungeons || []).length + (s.relics || []).length + (s.roomBuffs || []).length,
+    jobs: (s.jobs || []).length,
+    items: items.filter(i => !i.isEquip).length
+  }
+}
+
 function hasSources(entry) {
-  const s = entry.sources
-  if (!s) return false
-  const heroesCount = (s.heroes || []).filter(h => !isBlacklisted(h)).length
-  const monstersCount = (s.monsters || []).filter(m => !isBlacklisted(m)).length
-  const petsCount = (s.pets || []).filter(p => !isBlacklisted(p)).length
-  const itemsCount = (s.items || []).filter(i => !isBlacklisted(i)).length
-  return Boolean(heroesCount || monstersCount || petsCount || itemsCount)
+  const c = countEntrySources(entry)
+  return Boolean(c.heroes || c.monsters || c.pets || c.equips || c.dungeons || c.jobs || c.items)
 }
 
 function sourceSummaryText(entry) {
-  const s = entry.sources
-  if (!s) return ''
+  const c = countEntrySources(entry)
   const parts = []
-  const heroes = (s.heroes || []).filter(h => !isBlacklisted(h))
-  const monsters = (s.monsters || []).filter(m => !isBlacklisted(m))
-  const pets = (s.pets || []).filter(p => !isBlacklisted(p))
-  const items = (s.items || []).filter(i => !isBlacklisted(i))
-
-  if (heroes.length) parts.push(`${heroes.length} 位角色`)
-  if (monsters.length) parts.push(`${monsters.length} 种怪物`)
-  if (pets.length) parts.push(`${pets.length} 种魔物`)
-  if (items.length) parts.push(`${items.length} 件道具`)
+  if (c.heroes) parts.push(`${c.heroes} 位角色`)
+  if (c.pets) parts.push(`${c.pets} 种魔物`)
+  if (c.equips) parts.push(`${c.equips} 项装备/套装`)
+  if (c.dungeons) parts.push(`${c.dungeons} 处秘境/遗器`)
+  if (c.jobs) parts.push(`${c.jobs} 项职业被动`)
+  if (c.monsters) parts.push(`${c.monsters} 种怪物`)
+  if (c.items) parts.push(`${c.items} 件道具`)
   return parts.length ? `来源：${parts.join(' · ')}` : ''
 }
 
@@ -607,7 +674,88 @@ const currentPetSources = computed(() => {
   return (currentEntry.value?.sources?.pets || []).filter(p => !isBlacklisted(p))
 })
 const currentItemSources = computed(() => {
-  return (currentEntry.value?.sources?.items || []).filter(i => !isBlacklisted(i))
+  return (currentEntry.value?.sources?.items || []).filter(i => !isBlacklisted(i) && !i.isEquip)
+})
+const currentJobSources = computed(() => currentEntry.value?.sources?.jobs || [])
+const currentEquipSourceChips = computed(() => {
+  const s = currentEntry.value?.sources || {}
+  const chips = []
+  for (const suit of s.suits || []) {
+    chips.push({
+      key: `suit-${suit.id || suit.name}-${suit.skillName || ''}`,
+      name: suit.name,
+      skillName: suit.skillName ? `套装·${suit.skillName}` : '套装',
+      title: `前往装备图鉴查看「${suit.name}」`,
+      onClick: () => router.push(
+        suit.equipId
+          ? { path: '/equip', query: { itemId: suit.equipId } }
+          : { path: '/equip', query: { q: suit.name } }
+      )
+    })
+  }
+  for (const item of (s.items || []).filter(i => !isBlacklisted(i) && i.isEquip)) {
+    chips.push({
+      key: `equip-${item.id || item.name}`,
+      name: item.name,
+      skillName: '单件装备',
+      title: `前往装备图鉴查看「${item.name}」`,
+      onClick: () => router.push({ path: '/equip', query: { itemId: item.id } })
+    })
+  }
+  for (const rune of s.runes || []) {
+    chips.push({
+      key: `rune-${rune.id || rune.name}`,
+      name: rune.name,
+      skillName: '符石',
+      title: `前往符石图鉴查看「${rune.name}」`,
+      onClick: () => router.push(rune.id ? { path: '/runes', query: { focus: rune.id } } : { path: '/runes', query: { q: rune.name } })
+    })
+  }
+  for (const affix of s.affixes || []) {
+    chips.push({
+      key: `affix-${affix.id || affix.name}`,
+      name: affix.name,
+      skillName: affix.skillName || '装备词缀',
+      title: `前往装备图鉴查看词缀「${affix.name}」`,
+      onClick: () => router.push({ path: '/equip' })
+    })
+  }
+  return chips
+})
+const currentDungeonSourceChips = computed(() => {
+  const s = currentEntry.value?.sources || {}
+  const chips = []
+  for (const d of s.dungeons || []) {
+    chips.push({
+      key: `dungeon-${d.id}-${d.eventId || d.skillName || ''}`,
+      name: d.name,
+      skillName: d.skillName || '活动秘境',
+      title: `前往活动副本查看「${d.name}」`,
+      onClick: () => router.push({
+        path: '/activity-dungeons',
+        query: d.eventId ? { dungeon: d.id, tab: 'events', event: d.eventId } : { dungeon: d.id }
+      })
+    })
+  }
+  for (const r of s.relics || []) {
+    chips.push({
+      key: `relic-${r.id || r.name}`,
+      name: r.name,
+      skillName: '核心遗器',
+      title: `前往遗器图鉴查看「${r.name}」`,
+      onClick: () => router.push({ path: '/relics', query: { tab: 'list', relic: r.id } })
+    })
+  }
+  for (const rb of s.roomBuffs || []) {
+    chips.push({
+      key: `roombuff-${rb.id || rb.name}`,
+      name: rb.name,
+      skillName: rb.skillName || '副本增益',
+      title: `前往副本图鉴查看「${rb.name}」`,
+      onClick: () => router.push({ path: '/dungeons' })
+    })
+  }
+  return chips
 })
 
 watch(openedId, () => {

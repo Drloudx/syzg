@@ -130,6 +130,11 @@
           <UiTag tone="wood">{{ selectedTask.subLabel }}</UiTag>
         </div>
 
+        <UiEmptyState v-if="detailLoading && !Array.isArray(selectedTask.steps)" type="loading" text="正在加载任务详情..." />
+        <UiEmptyState v-else-if="detailError && !Array.isArray(selectedTask.steps)" type="error" :text="detailError">
+          <template #action><UiButton @click="openDetail(selectedTask)">重试</UiButton></template>
+        </UiEmptyState>
+        <template v-else-if="Array.isArray(selectedTask.steps)">
         <!-- 接取信息与背景 -->
         <UiSection title="接取信息与背景">
           <!--
@@ -360,6 +365,7 @@
           :page-key="taskCommentPageKey"
           :page-label="selectedTask?.name || ''"
         />
+        </template>
       </template>
     </UiModal>
 
@@ -386,7 +392,7 @@ import {
   UiButton,
   UiAccordion
 } from '../components/ui/index.js'
-import { loadTaskData } from '../utils/taskParser'
+import { fetchTaskListData, fetchTaskDetailData, fetchDialogSearchShard } from '../utils/taskParser'
 import { TASK_TYPE_LABELS, cleanDialogueLine, resolveRegionName } from '../utils/gameMappings'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { fetchWithFallback, prefetchResourceManifest } from '../utils/request.js'
@@ -444,64 +450,73 @@ const searchQuery = ref(route.query.q || '')
 const dialogSearch = shallowRef(null)
 const dialogSearchLoading = ref(false)
 const dialogSearchError = ref('')
-/** 在途的索引加载 Promise；重复调用复用同一个，见 ensureDialogSearch 的说明 */
-let dialogSearchPending = null
+const DEFAULT_DIALOG_SEARCH_TYPES = ['1', '2', '3', '4']
+let dialogSearchTypesCache = null
+let dialogSearchTypesPromise = null
+const loadedDialogSearchTypes = new Set()
+const dialogSearchShardPromises = new Map()
 
-/**
- * 按需加载剧情索引。**返回在途 Promise**，调用方 `await` 它即可等到数据可用。
- *
- * 🔴 必须返回在途 Promise、并复用同一个：只写「已在加载中就 `return`」的话，
- * 调用方 `await` 到的是 `undefined`，紧接着读 `dialogHits` 仍是空。
- * 冷链接（`?task=...&q=...`）正好命中这个时序：watch 先发起加载，
- * `openDetail` 随后调用本函数被早退挡住 → 详情打开了但**没有定位**。
- * 语义是"等到加载完成"，不是"别重复加载"。
- *
- * ## 失败自动重试一次
- *
- * 索引走 CDN 取（失败才回退包内文件），而 CDN 侧的失败**多半是瞬时的**：
- * 内容刚更新时新旧副本交替、网络抖动、边缘节点切换 —— 刷新一下就好。
- *
- * 所以这里**替用户刷新**：失败后隔一小会儿重试一次。
- * 重试成功用户**什么都不会看到**；两次都失败才显示提示。
- *
- * ⚠️ 只自动重试一次：`fetchWithFallback` 失败时会**清掉缓存条目**，
- * 所以第二次调用是**真的重新发请求**（不是拿同一个失败结果）。
- * 但也不能无限重试 —— 真挂了的话，反复请求只是白烧用户流量与 CDN 额度。
- */
 const DIALOG_SEARCH_RETRY_DELAY_MS = 600
 
-const ensureDialogSearch = () => {
-  if (dialogSearch.value) return Promise.resolve()
-  if (dialogSearchPending) return dialogSearchPending
+const getAvailableDialogSearchTypes = async () => {
+  if (dialogSearchTypesCache) return dialogSearchTypesCache
+  if (dialogSearchTypesPromise) return dialogSearchTypesPromise
+  dialogSearchTypesPromise = (async () => {
+    try {
+      const idx = await fetchWithFallback('data/parsed/dialog-search/index.json')
+      dialogSearchTypesCache = Array.isArray(idx?.types) && idx.types.length ? idx.types.map(String) : DEFAULT_DIALOG_SEARCH_TYPES
+    } catch {
+      dialogSearchTypesCache = DEFAULT_DIALOG_SEARCH_TYPES
+    } finally {
+      dialogSearchTypesPromise = null
+    }
+    return dialogSearchTypesCache
+  })()
+  return dialogSearchTypesPromise
+}
+
+const loadDialogSearchOneShard = (type) => {
+  const key = String(type)
+  if (loadedDialogSearchTypes.has(key)) return Promise.resolve()
+  if (dialogSearchShardPromises.has(key)) return dialogSearchShardPromises.get(key)
+  const pending = (async () => {
+    let data
+    try {
+      data = await fetchDialogSearchShard(key)
+    } catch (firstErr) {
+      console.warn(`剧情索引分片(${key})首次加载失败，自动重试一次：`, firstErr)
+      await new Promise((r) => setTimeout(r, DIALOG_SEARCH_RETRY_DELAY_MS))
+      data = await fetchDialogSearchShard(key)
+    }
+    loadedDialogSearchTypes.add(key)
+    dialogSearch.value = { ...(dialogSearch.value || {}), ...(data?.tasks || {}) }
+  })().finally(() => {
+    dialogSearchShardPromises.delete(key)
+  })
+  dialogSearchShardPromises.set(key, pending)
+  return pending
+}
+
+const ensureDialogSearch = async (targetType = filterType.value) => {
+  const available = await getAvailableDialogSearchTypes()
+  const needed = (!targetType || targetType === 'all')
+    ? available
+    : (available.includes(String(targetType)) ? [String(targetType)] : [])
+  const missing = needed.filter((t) => !loadedDialogSearchTypes.has(t))
+  if (!missing.length) return
+
   dialogSearchLoading.value = true
   dialogSearchError.value = ''
-  dialogSearchPending = (async () => {
-    try {
-      let data
-      try {
-        data = await fetchWithFallback('data/parsed/dialog-search.json')
-      } catch (firstErr) {
-        console.warn('剧情索引首次加载失败，自动重试一次：', firstErr)
-        await new Promise((r) => setTimeout(r, DIALOG_SEARCH_RETRY_DELAY_MS))
-        data = await fetchWithFallback('data/parsed/dialog-search.json')
-      }
-      dialogSearch.value = data?.tasks || {}
-    } catch (err) {
-      console.error('加载剧情搜索索引失败:', err)
-      /*
-       * 文案要说清**怎么办**：写成「剧情搜索暂时不可用」的话，"暂时"听起来像服务器
-       * 挂了，而实际上刷新一下多半就好，但提示里没有"刷新"两个字，用户只能干看着。
-       */
-      dialogSearchError.value = '剧情搜索加载失败，刷新页面重试'
-      // 保持 null（**不是** {}）：{} 是真值，会让下次调用在入口直接返回，
-      // 于是"重新搜索"也拿不到数据 —— 只有刷新整页才行（而文案正是这么说的）
-      dialogSearch.value = null
-    } finally {
+  try {
+    await Promise.all(missing.map((t) => loadDialogSearchOneShard(t)))
+  } catch (err) {
+    console.error('加载剧情搜索索引失败:', err)
+    dialogSearchError.value = '剧情搜索加载失败，刷新页面重试'
+  } finally {
+    if (dialogSearchShardPromises.size === 0) {
       dialogSearchLoading.value = false
-      dialogSearchPending = null
     }
-  })()
-  return dialogSearchPending
+  }
 }
 
 /**
@@ -545,6 +560,9 @@ const dialogHits = computed(() => {
 
 const detailVisible = ref(false)
 const selectedTask = ref(null)
+const detailLoading = ref(false)
+const detailError = ref('')
+let detailRequestToken = 0
 
 /** 讨论区归属键：`task:<id>` */
 const taskCommentPageKey = computed(() => buildPageKey(COMMENT_PAGE_PREFIX.task, selectedTask.value?.id))
@@ -693,8 +711,8 @@ const filteredTasks = computed(() => {
  * 那种情况下 `searchQuery` 在初始化时就已有值、不会触发 change 事件，
  * 不加 immediate 索引永远不加载 —— 表现为"分享出去的搜索链接点开没有剧情命中"。
  */
-watch(searchQuery, (q) => {
-  if (String(q || '').trim()) ensureDialogSearch()
+watch([searchQuery, filterType], ([q, type]) => {
+  if (String(q || '').trim()) ensureDialogSearch(type)
 }, { flush: 'post', immediate: true })
 
 
@@ -728,13 +746,35 @@ const openTaskById = (id) => {
   openDetail(target)
 }
 
-const openDetail = (item) => {
+const openDetail = async (item) => {
+  const token = ++detailRequestToken
   selectedTask.value = item
+  detailError.value = ''
   openSteps.value = {}
   dialogOpen.value = {}
   dialogContent.value = {}
   detailVisible.value = true
   router.replace({ query: { ...route.query, task: item.id } })
+
+  if (!Array.isArray(item?.steps)) {
+    detailLoading.value = true
+    try {
+      const detail = await fetchTaskDetailData(item.id)
+      if (token !== detailRequestToken || !detailVisible.value) return
+      Object.assign(item, detail)
+      selectedTask.value = { ...item }
+    } catch (err) {
+      if (token !== detailRequestToken || !detailVisible.value) return
+      console.error('加载任务详情失败:', err)
+      detailError.value = '任务详情加载失败，请重试'
+      return
+    } finally {
+      if (token === detailRequestToken) detailLoading.value = false
+    }
+  } else {
+    detailLoading.value = false
+  }
+
   // 从搜索结果点进来时，自动展开并滚到命中的那句剧情
   revealDialogHit(item.id)
 }
@@ -758,8 +798,8 @@ const revealDialogHit = async (taskId) => {
    * 完成触发，而索引是并行发起的。这时 `dialogHits` 还是空的，直接返回就会
    * 出现"分享出去的搜索链接点开没有定位"。所以先等索引就绪（失败则静默放弃）。
    */
-  if (!dialogSearch.value && searchQuery.value.trim()) {
-    await ensureDialogSearch()
+  if (!dialogHits.value[taskId] && searchQuery.value.trim()) {
+    await ensureDialogSearch(selectedTask.value?.type ?? filterType.value)
   }
   const hit = dialogHits.value[taskId]
   if (!hit) return
@@ -813,7 +853,10 @@ const revealDialogHit = async (taskId) => {
 }
 
 const closeDetail = () => {
+  detailRequestToken += 1
   detailVisible.value = false
+  detailLoading.value = false
+  detailError.value = ''
   selectedTask.value = null
   if (route.query.task) {
     const q = { ...route.query }
@@ -889,14 +932,15 @@ const loadTasks = async () => {
   errorMessage.value = ''
   isDataReady.value = false
   try {
-    const data = await loadTaskData()
+    const data = await fetchTaskListData()
     if (operation !== loadOperation) return
     allTasks.value = data.tasks
     tasks.value = HIDE_CLOSED_TASKS ? data.tasks.filter((t) => !t.close) : data.tasks
     subOptions.value = data.subOptions
     isDataReady.value = true
-    // 任务剧情正文是「展开步骤才取」，取之前要先读 data-taskDialogs 清单（97 KB，最重的一份）。
-    // 刻意放在这里（而不是启动时全局预取）：只有进任务页的用户才需要它。
+    // 任务详情/剧情搜索/正文按需取用，预取各自清单省一次冷点击等待；均不在首屏内联
+    prefetchResourceManifest('data/parsed/tasks/index.json')
+    prefetchResourceManifest('data/parsed/dialog-search/index.json')
     prefetchResourceManifest('data/taskDialogs/dialog.json')
     // 分享链接直达：?task=<任务id> 自动打开详情
     const taskId = route.query.task

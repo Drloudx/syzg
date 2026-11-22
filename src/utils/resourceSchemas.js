@@ -115,6 +115,9 @@ const schemas = {
   'data/parsed/tasks.json': data => isRecord(data) && recordList(data.tasks)
     && data.tasks.every(task => isList(task.steps) && isRecord(task.getTask))
     && isRecord(data.subOptions) && isRecord(data.stats),
+  'data/parsed/tasks-list.json': data => isRecord(data) && recordList(data.tasks)
+    && isRecord(data.subOptions) && isRecord(data.stats),
+  'data/parsed/dialog-search/index.json': data => isRecord(data) && Array.isArray(data.types),
   'data/parsed/recipes.json': data => isRecord(data) && recordList(data.recipes),
   /**
    * `data/parsed/tower.json`（神匠之塔）。

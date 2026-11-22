@@ -28,6 +28,9 @@ const firstNonEmpty = (list) => list.find((x) => x && x.trim())
 
 // ---------- 主解析 ----------
 let cachedTaskData = null
+let cachedTaskListData = null
+const cachedTaskDetails = new Map()
+const cachedDialogSearchShards = new Map()
 
 /**
  * 构建期纯函数：由 18 个原始 JSON 对象生成任务图鉴最终数据。
@@ -1083,6 +1086,122 @@ export function buildTaskData(maps) {
   }
 
   return { tasks: rawTasks, subOptions, stats, TYPE_LABELS: TASK_TYPE_LABELS }
+}
+
+/**
+ * 将全量 `tasks.json` 拆分为列表轻量版与按任务按需加载的详情分片：
+ *   - `listData`（`tasks-list.json`）：仅保留列表筛选、搜索与卡片前 4 项奖励预览字段（~526 KB / Gzip ~46 KB）
+ *   - `detailFiles`（`tasks/<id>.json`）：单个任务的完整步骤、奖励、接取背景与任务链关联
+ */
+export function splitTaskDataBundle(data) {
+  const tasks = arr(data?.tasks)
+  const listTasks = tasks.map(t => ({
+    id: t.id,
+    name: t.name,
+    type: t.type,
+    typeOrder: t.typeOrder,
+    typeLabel: t.typeLabel,
+    subKey: t.subKey,
+    subRaw: t.subRaw,
+    subLabel: t.subLabel,
+    close: t.close,
+    des: t.des,
+    reward: {
+      entries: arr(t.reward?.entries).slice(0, 4),
+      text: []
+    }
+  }))
+
+  const detailFiles = tasks.map(t => ({
+    id: t.id,
+    data: t
+  }))
+
+  return {
+    listData: {
+      schemaVersion: 1,
+      tasks: listTasks,
+      subOptions: data?.subOptions || {},
+      stats: data?.stats || {},
+      TYPE_LABELS: data?.TYPE_LABELS || TASK_TYPE_LABELS
+    },
+    detailFiles
+  }
+}
+
+/**
+ * 按任务主分类 `type` 将全量 `dialog-search.json` 拆成按需分片（`dialog-search/<type>.json`）。
+ * 让用户只在特定分类下搜剧情时，无需下载全站 3.1 MB 剧情全文。
+ */
+export function splitDialogSearchBundle(searchData, tasksData) {
+  const typeById = new Map(arr(tasksData?.tasks).map(t => [t.id, String(t.type)]))
+  const buckets = new Map()
+  for (const [taskId, blocks] of Object.entries(searchData?.tasks || {})) {
+    const type = typeById.get(taskId) || 'other'
+    if (!buckets.has(type)) buckets.set(type, {})
+    buckets.get(type)[taskId] = blocks
+  }
+
+  const availableTypes = [...buckets.keys()].sort((a, b) => Number(a) - Number(b) || a.localeCompare(b))
+  const shards = availableTypes.map(type => {
+    const tasks = buckets.get(type)
+    const blockList = Object.values(tasks).flat()
+    return {
+      type,
+      data: {
+        generatedAt: searchData?.generatedAt || new Date().toISOString(),
+        tasks,
+        meta: {
+          type,
+          taskCount: Object.keys(tasks).length,
+          blockCount: blockList.length,
+          form: searchData?.meta?.form || 'per-dialog-lines'
+        }
+      }
+    }
+  })
+
+  return { availableTypes, shards }
+}
+
+/**
+ * 任务图鉴列表轻量加载（`data/parsed/tasks-list.json`）。
+ */
+export const fetchTaskListData = createCachedLoader(async () => {
+  if (cachedTaskListData) return cachedTaskListData
+  const parsed = await fetchWithFallback('data/parsed/tasks-list.json')
+  cachedTaskListData = parsed
+  return parsed
+})
+
+/**
+ * 单任务详情按需加载（`data/parsed/tasks/<id>.json`）。
+ */
+export async function fetchTaskDetailData(taskId) {
+  if (!taskId) throw new Error('Missing taskId')
+  if (cachedTaskDetails.has(taskId)) return cachedTaskDetails.get(taskId)
+  if (Array.isArray(cachedTaskData?.tasks)) {
+    const full = cachedTaskData.tasks.find(t => t.id === taskId)
+    if (full) {
+      cachedTaskDetails.set(taskId, full)
+      return full
+    }
+  }
+  const detail = await fetchWithFallback(`data/parsed/tasks/${encodeURIComponent(taskId)}.json`)
+  cachedTaskDetails.set(taskId, detail)
+  return detail
+}
+
+/**
+ * 按任务分类加载剧情搜索索引分片（`data/parsed/dialog-search/<type>.json`）。
+ */
+export async function fetchDialogSearchShard(type) {
+  const key = String(type || '')
+  if (!key) throw new Error('Missing dialog search shard type')
+  if (cachedDialogSearchShards.has(key)) return cachedDialogSearchShards.get(key)
+  const parsed = await fetchWithFallback(`data/parsed/dialog-search/${encodeURIComponent(key)}.json`)
+  cachedDialogSearchShards.set(key, parsed)
+  return parsed
 }
 
 /**

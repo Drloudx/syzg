@@ -29,6 +29,23 @@ const SPECIAL_FORM_OWNERS = {
   '091_RightHand': '091'
 }
 
+const JOB_NAMES = {
+  1: '近卫',
+  2: '守护',
+  3: '秘术',
+  4: '射手',
+  5: '突袭',
+  6: '支援'
+}
+
+function isDungeonOpen(activity) {
+  if (!activity) return true
+  if (activity.condition === 'false') return false
+  if (activity.startTime && activity.startTime === activity.endTime) return false
+  const year = Number(String(activity.startTime || '').slice(0, 4))
+  return !(Number.isFinite(year) && year >= 2900)
+}
+
 const KNOWN_HIDDEN_MONSTER_BASE_IDS = [
   '016', '017', '020', '021', '022', '023', '024', '025', '031', '032', '033', '080',
   '083', '084', '085', '086', '087', '088', '089', '090', '091'
@@ -114,8 +131,9 @@ function collectBuffIds(node, out, depth = 0) {
   }
   if (!isPlainObject(node)) return
   for (const [key, value] of Object.entries(node)) {
-    if (typeof value === 'string' && /^[A-Za-z0-9_\-[\]]+$/.test(value) && /buff/i.test(key)) out.add(value)
-    else if (Array.isArray(value) && /buff/i.test(key)) {
+    if (typeof value === 'string' && /^[A-Za-z0-9_\-[\]]+$/.test(value) && (/buff/i.test(key) || key === 'newBuffBaseId')) {
+      out.add(value)
+    } else if (Array.isArray(value) && /buff/i.test(key)) {
       for (const item of value) if (typeof item === 'string') out.add(item)
     }
     collectBuffIds(value, out, depth + 1)
@@ -233,6 +251,9 @@ function getSkillDisplayName(s, skillId = '') {
 
 export function buildBuffSourceIndex({
   heroJson, petJson, monJson, skillJson, skillTriggerJson, itemJson, buffJson, fileMonJson, monstersJson,
+  equipSuitJson, equipEnchantJson, equipGlobalConfigJson,
+  relicDungeonInfoJson, relicDungeonEventsJson, activityListJson, relicInfoJson,
+  generalJson, battleBuffCardJson,
   // 三张图鉴的可见 id 集合（`heroes.json` / `pets.json` / `monsters.json` 产物的口径）。
   // 给了就按它过滤来源 —— 保证「词条里能点的来源，目标图鉴一定点得开」。
   visibleHeroIds, visiblePetIds, visibleMonsterIds
@@ -349,9 +370,9 @@ export function buildBuffSourceIndex({
     const petId = pet.typeId || ''
     if (!visible(visiblePetIds, petId)) continue
     const petIcon = pet.icon || ''
-    const skillIds = collectSkillIds([pet.normalAttack, pet.skill1, pet.skill2, pet.skill3, pet.skillList])
+    const skillIds = collectSkillIds([pet.normalAttack, pet.skill1, pet.skill2, pet.skill3, pet.skillSp, pet.skillList])
     for (const skillId of skillIds) {
-      const sName = skillNameMap.get(skillId) || ''
+      const sName = skillNameMap.get(skillId) || (skillId === pet.skillSp ? '特性' : '')
       link(index, skillBuffMap.get(skillId) || [], {
         kind: '魔物',
         name: pet.name,
@@ -450,16 +471,182 @@ export function buildBuffSourceIndex({
     }
   }
 
-  // 物品 / 料理
-  for (const item of Object.values(itemJson?.datas || {})) {
+  // 物品 / 装备 / 料理
+  const itemDatas = itemJson?.datas || {}
+  for (const item of Object.values(itemDatas)) {
     if (!item?.name || isBlacklisted(item)) continue
     const ids = new Set()
     collectBuffIds(item, ids)
-    link(index, [...ids].filter(id => buffData[id]), {
+    const valid = [...ids].filter(id => buffData[id])
+    if (!valid.length) continue
+    const cascaded = getCascadedBuffIds(valid, buffData)
+    link(index, [...new Set([...valid, ...cascaded])], {
       kind: '物品',
       name: item.name,
       id: item.typeId || item.id || '',
-      icon: item.icon || ''
+      icon: item.img || item.icon || '',
+      isEquip: Array.isArray(item.category) && Number(item.category[0]) === 4
+    })
+  }
+
+  // 装备套装（equipSuit.json）
+  const suitDatas = equipSuitJson?.datas || equipSuitJson || {}
+  for (const suit of Object.values(suitDatas)) {
+    if (!suit?.suitName || isBlacklisted(suit)) continue
+    const equipId = (suit.equipTypeId || []).find(id => itemDatas[id] && !itemDatas[id].hide && !isBlacklisted(itemDatas[id])) || ''
+    if (!equipId && (suit.equipTypeId || []).length > 0) continue
+    const firstEquip = itemDatas[equipId]
+    for (const sd of suit.suitData || []) {
+      const trigId = String(sd?.skillTriggerId || '')
+      if (!trigId || !skillBuffMap.has(trigId)) continue
+      link(index, skillBuffMap.get(trigId), {
+        kind: '套装',
+        id: suit.typeId || '',
+        name: suit.suitName,
+        equipId,
+        icon: firstEquip?.img || '',
+        skillName: sd.suitNum ? `${sd.suitNum}件套` : ''
+      })
+    }
+  }
+
+  // 符石 / 附魔石（equipEnchant.json）
+  const enchantDatas = equipEnchantJson?.datas || equipEnchantJson || {}
+  for (const entry of Object.values(enchantDatas)) {
+    if (!entry?.typeId) continue
+    const item = itemDatas[entry.typeId]
+    if (isBlacklisted(item || entry) || item?.hide) continue
+    const trigId = String(entry.skillTriggerId || '')
+    if (!trigId || !skillBuffMap.has(trigId)) continue
+    link(index, skillBuffMap.get(trigId), {
+      kind: '符石',
+      id: entry.typeId,
+      name: item?.name || entry.tips || entry.typeId,
+      icon: item?.img || ''
+    })
+  }
+
+  // 装备词缀 / 锻造前缀（equipGlobalConfig.json -> prefixPool）
+  for (const [prefixId, entry] of Object.entries(equipGlobalConfigJson?.prefixPool || {})) {
+    if (!entry?.name || isBlacklisted(entry)) continue
+    const trigId = String(entry.skillTriggerId || '')
+    if (!trigId || !skillBuffMap.has(trigId)) continue
+    link(index, skillBuffMap.get(trigId), {
+      kind: '词缀',
+      id: prefixId,
+      name: entry.name,
+      skillName: '装备词缀'
+    })
+  }
+
+  // 活动秘境（relicDungeonInfo.json + relicDungeonEvents.json，受 activityList 开放状态约束）
+  const dungeonDatas = relicDungeonInfoJson?.datas || {}
+  const dungeonEventDatas = relicDungeonEventsJson?.datas || {}
+  const activityDatas = activityListJson?.datas || activityListJson || {}
+  for (const [dungeonId, conf] of Object.entries(dungeonDatas)) {
+    if (!conf?.name) continue
+    if (activityListJson && !isDungeonOpen(activityDatas[dungeonId])) continue
+    const directIds = new Set(Array.isArray(conf.heroBuff) ? conf.heroBuff.filter(id => buffData[id]) : [])
+    collectBuffIds(conf, directIds)
+    const validDirect = [...directIds].filter(id => buffData[id])
+    if (validDirect.length) {
+      const cascaded = getCascadedBuffIds(validDirect, buffData)
+      link(index, [...new Set([...validDirect, ...cascaded])], {
+        kind: '秘境',
+        id: dungeonId,
+        name: conf.name,
+        skillName: '活动遗器加成'
+      })
+    }
+    const eventIds = new Set()
+    for (const layer of conf.layers || []) {
+      for (const rr of layer.randomRooms || []) {
+        if (Array.isArray(rr?.events)) rr.events.forEach(evId => eventIds.add(evId))
+      }
+    }
+    for (const evId of eventIds) {
+      const ev = dungeonEventDatas[evId]
+      if (!ev) continue
+      const evIds = new Set()
+      collectBuffIds(ev.nodes, evIds)
+      const validEv = [...evIds].filter(id => buffData[id])
+      if (!validEv.length) continue
+      const cascaded = getCascadedBuffIds(validEv, buffData)
+      link(index, [...new Set([...validEv, ...cascaded])], {
+        kind: '秘境',
+        id: dungeonId,
+        eventId: evId,
+        name: conf.name,
+        skillName: ev.title ? `事件·${ev.title}` : '秘境事件'
+      })
+    }
+  }
+
+  // 法盘核心遗器（relicInfo.json，按已开放秘境掉落过滤以对齐遗器图鉴）
+  const openRelicIds = (() => {
+    if (!relicDungeonInfoJson || !activityListJson) return null
+    const openDungeons = new Set(
+      Object.keys(dungeonDatas).filter(id => isDungeonOpen(activityDatas[id]))
+    )
+    const allowed = new Set()
+    for (const entry of Object.values(itemDatas)) {
+      const para = entry?.useActionPara
+      if (!para || !Array.isArray(para.randomRelics)) continue
+      if (!para.spDungeonId || !openDungeons.has(para.spDungeonId)) continue
+      for (const drop of para.randomRelics) {
+        if (drop?.relicId) allowed.add(drop.relicId)
+      }
+    }
+    return allowed.size ? allowed : null
+  })()
+  const relicDatas = relicInfoJson?.datas || relicInfoJson || {}
+  for (const relic of Object.values(relicDatas)) {
+    if (!relic?.name || isBlacklisted(relic)) continue
+    if (openRelicIds && !openRelicIds.has(relic.id)) continue
+    const ids = new Set()
+    collectBuffIds(relic.skillTrigger, ids)
+    for (const trigId of collectSkillIds(relic.skillTrigger)) {
+      for (const bId of skillBuffMap.get(trigId) || []) ids.add(bId)
+    }
+    const valid = [...ids].filter(id => buffData[id])
+    if (!valid.length) continue
+    const cascaded = getCascadedBuffIds(valid, buffData)
+    link(index, [...new Set([...valid, ...cascaded])], {
+      kind: '遗器',
+      id: relic.id || '',
+      name: relic.name,
+      icon: relic.icon || ''
+    })
+  }
+
+  // 职业通用被动（general.json -> jobPaBuffConfDes）
+  for (const [jobId, entries] of Object.entries(generalJson?.jobPaBuffConfDes || {})) {
+    const jobName = JOB_NAMES[jobId] || ''
+    if (!jobName) continue
+    for (const entry of entries || []) {
+      const bId = entry?.buff
+      if (!bId || !buffData[bId]) continue
+      const cascaded = getCascadedBuffIds([bId], buffData)
+      link(index, [...new Set([bId, ...cascaded])], {
+        kind: '职业',
+        id: String(jobId),
+        name: `${jobName}职业被动`,
+        skillName: buffData[bId]?.buffName || entry.name || ''
+      })
+    }
+  }
+
+  // 副本石像祝福卡（battleBuffCard.json）
+  const towerCardDatas = battleBuffCardJson?.datas || battleBuffCardJson || {}
+  for (const card of Object.values(towerCardDatas)) {
+    const bId = card?.buffId
+    if (!card?.name || !bId || !buffData[bId]) continue
+    const cascaded = getCascadedBuffIds([bId], buffData)
+    link(index, [...new Set([bId, ...cascaded])], {
+      kind: '副本',
+      id: card.typeId || '',
+      name: `${card.name}（石像祝福）`,
+      skillName: '副本房间增益'
     })
   }
 
