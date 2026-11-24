@@ -493,7 +493,7 @@ const openCells = ref(new Set())
 const boardRef = ref(null)
 
 // 选定核心与过滤配置
-const selectedCoreIds = ref(['core_101']) // 默认选 1 个幽夜大弓
+const selectedCoreIds = ref(['core_107', 'core_102', 'core_104', 'core_103']) // 默认选雷鸣杖冠、涓流长卷、虚空圣杯、圣辉御盾
 const excludedStats = ref([])
 const excludedRelicIds = ref([])
 const showFilters = ref(false)
