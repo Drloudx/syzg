@@ -54,7 +54,7 @@ const PET_TRAIT_MECHANICS_NOTE_MAP = {
       {
         key: 'cooldown',
         label: '冷却时间',
-        value: '全等级（Lv.1 ~ Lv.7）内置冷却时间 15 秒（官方文案已注明持续 6 秒）'
+        value: '全等级（Lv.1 ~ Lv.7）内置冷却时间 15 秒'
       }
     ]
   }
