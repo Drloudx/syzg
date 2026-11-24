@@ -366,6 +366,14 @@
               <p class="lvl-des-txt" v-html="formatSkillDescription(activeSkillLevelData.des)"></p>
             </div>
 
+            <!-- 特性源码实机机制补充卡片（与装备 item_443002 同款视觉，不改动官方描述） -->
+            <div v-if="activeTraitNotes && activeTraitNotes.length" class="trait-mechanics-card">
+              <div v-for="note in activeTraitNotes" :key="note.key" class="mechanics-row">
+                <span class="mechanics-label">{{ note.label }}</span>
+                <span class="mechanics-text">{{ note.value }}</span>
+              </div>
+            </div>
+
             <!-- 培育/突破分段标尺 (货运站同款优雅设计，双向联动) -->
             <div class="pet-upgrade-section" v-if="activeSkill.type !== 'normal'">
               <!-- 1. 特性培育阶梯 (Trait: Lv.1 ~ Lv.7) -->
@@ -825,6 +833,7 @@ import {
 } from '../components/ui/index.js'
 import { isBlacklisted } from '../config/blacklist.js'
 import { ELEMENT_SLUGS, ELEMENT_NAMES, formatHighlightedText, BASE_REWARD_PATHS } from '../utils/gameMappings'
+import { resolvePetTraitNotes } from '../utils/petTraitMechanics'
 import { useLazyList } from '../composables/useLazyList'
 import CommentsPanel from '../components/CommentsPanel.vue'
 import { buildPageKey, COMMENT_PAGE_PREFIX } from '../utils/commentApi.js'
@@ -1056,6 +1065,11 @@ const activeSkill = computed(() => {
 const activeSkillLevelData = computed(() => {
   if (!activeSkill.value) return null
   return activeSkill.value.levelData.find(ld => ld.level === selectedSkillLevel.value) || activeSkill.value.levelData[0] || null
+})
+
+const activeTraitNotes = computed(() => {
+  if (activeSkill.value?.type !== 'trait') return null
+  return resolvePetTraitNotes(activeSkill.value.id, selectedSkillLevel.value)
 })
 
 const selectSkill = (idx) => {
@@ -2006,6 +2020,55 @@ const tableRows = computed(() => filteredPets.value.map(pet => ({
   line-height: 1.6;
   color: var(--text-main);
   margin: 0;
+}
+
+.trait-mechanics-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  background: rgba(122, 154, 153, 0.07);
+  border: 1px dashed rgba(122, 154, 153, 0.35);
+  border-radius: 4px;
+}
+
+:global(.dark-mode) .trait-mechanics-card,
+:global(.dark-theme) .trait-mechanics-card {
+  background: rgba(122, 154, 153, 0.12);
+  border-color: rgba(147, 179, 178, 0.3);
+}
+
+.trait-mechanics-card .mechanics-row {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: baseline;
+  column-gap: 8px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.trait-mechanics-card .mechanics-label {
+  color: var(--text-muted, #6b5134);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.trait-mechanics-card .mechanics-text {
+  min-width: 0;
+  color: var(--text-main, #3e2a14);
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .trait-mechanics-card {
+    padding: 6px 8px;
+    gap: 4px;
+  }
+  .trait-mechanics-card .mechanics-row {
+    grid-template-columns: 64px 1fr;
+    column-gap: 6px;
+    font-size: 11.5px;
+  }
 }
 
 .skill-meta-tags {
