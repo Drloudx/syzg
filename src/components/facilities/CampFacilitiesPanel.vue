@@ -8,7 +8,22 @@
         <UiFilterPill :active="!team" @click="setTeam('')">全部</UiFilterPill>
         <UiFilterPill v-for="option in teams" :key="option.id" :active="team === option.id" @click="setTeam(option.id)">{{ option.name }}</UiFilterPill>
       </UiFilterRow>
-      <div class="camp-count">共 <span class="count-num">{{ matches.length }}</span> 项</div>
+      <template v-else>
+        <UiFilterRow v-if="matches.length" label="建筑：">
+          <UiFilterPill
+            v-for="entry in matches"
+            :key="entry.id"
+            :active="selected?.id === entry.id"
+            :aria-label="entry.name"
+            @click="selectEntry(entry.id)"
+          >{{ entry.name }}</UiFilterPill>
+        </UiFilterRow>
+        <UiFilterRow v-if="selected" class="camp-level-selector" label="等级：">
+          <UiFilterPill :active="level === 'all'" @click="setLevel('all')">全部</UiFilterPill>
+          <UiFilterPill v-for="entry in selected.levels" :key="entry.level" :active="level === entry.level" @click="setLevel(entry.level)">{{ entry.level }}级</UiFilterPill>
+        </UiFilterRow>
+      </template>
+      <div class="camp-count">共 <span class="count-num">{{ isResearch ? matches.length : (selected ? visibleLevels.length : 0) }}</span> 项</div>
     </UiFilterPanel>
 
     <UiCardGrid id="campFacilitiesScroll" class="camp-grid paper-panel" wide>
@@ -17,34 +32,33 @@
         <CampResearchTree :entries="camp.research" :matches="matches" @select="selectResearch" />
       </div>
       <div v-else class="camp-content" :class="{ 'camp-research-detail': isResearch }">
-        <div v-if="!isResearch" class="camp-building-picker">
-          <button v-for="entry in matches" :key="entry.id" type="button" class="camp-building-choice" :class="{ 'is-active': selected.id === entry.id }"
-            :aria-label="entry.name" :aria-pressed="selected.id === entry.id" @click="selectEntry(entry.id)">
-            <img :src="getImageUrl(entry.icon)" :alt="entry.name" @error="handleImageError" />
-            <strong>{{ entry.name }}</strong><span>最高 {{ entry.levels.at(-1)?.level }} 级</span>
-          </button>
-        </div>
         <div class="camp-heading">
           <div class="camp-heading-portrait" :class="{ 'is-research': isResearch }" :style="isResearch ? { backgroundImage: `url('${getImageUrl('/images/CampCenterPanel/build_tree_iconbotm.webp')}')` } : {}">
             <img :src="getImageUrl(selected.icon)" :alt="selected.name" @error="handleImageError" />
           </div>
-          <div>
-            <h2>{{ selected.name }}</h2>
+          <div class="camp-heading-info">
+            <div class="camp-heading-title-row">
+              <h2>{{ selected.name }}</h2>
+              <span v-if="!isResearch && maxLevel" class="camp-max-badge">最高 {{ maxLevel }} 级</span>
+            </div>
             <p v-if="isResearch">{{ selected.description }}</p>
             <p v-else-if="selected.unlockCondition">开放条件：{{ selected.unlockCondition }}</p>
           </div>
           <UiButton v-if="isResearch" class="camp-overview-button" variant="secondary" size="sm" @click="showResearchTree">返回研究树</UiButton>
         </div>
-        <UiFilterRow class="camp-level-selector" :label="isResearch ? '等级：' : '当前：'">
-          <UiFilterPill :active="level === 'all'" @click="setLevel('all')">全部</UiFilterPill>
-          <UiFilterPill v-for="entry in selected.levels" :key="entry.level" :active="level === entry.level" @click="setLevel(entry.level)">{{ entry.level }}级</UiFilterPill>
-        </UiFilterRow>
-        <UiInfoRow v-if="isResearch" label="前置研究">
-          <UiButton v-if="selected.prerequisite" variant="link" size="sm" @click="goPrerequisite">{{ selected.prerequisite.name }} 1级</UiButton>
-          <span v-else>无</span>
-        </UiInfoRow>
 
-        <div class="camp-level-grid" :class="{ 'is-single': visibleLevels.length === 1 }">
+        <template v-if="isResearch">
+          <UiFilterRow class="camp-level-selector camp-level-selector--inline" label="等级：">
+            <UiFilterPill :active="level === 'all'" @click="setLevel('all')">全部</UiFilterPill>
+            <UiFilterPill v-for="entry in selected.levels" :key="entry.level" :active="level === entry.level" @click="setLevel(entry.level)">{{ entry.level }}级</UiFilterPill>
+          </UiFilterRow>
+          <UiInfoRow label="前置研究">
+            <UiButton v-if="selected.prerequisite" variant="link" size="sm" @click="goPrerequisite">{{ selected.prerequisite.name }} 1级</UiButton>
+            <span v-else>无</span>
+          </UiInfoRow>
+        </template>
+
+        <div class="camp-level-grid" :class="{ 'is-single': visibleLevels.length === 1, 'is-research': isResearch }">
         <UiSection v-for="entry in visibleLevels" :key="`${selected.id}:${entry.level}`" class="camp-level" :data-level="entry.level" :title="levelTitle(entry)">
           <template v-if="isResearch">
             <div class="camp-research-effect"><span>研究效果</span><strong>{{ selected.description }} {{ previousEffect(entry.level) }} → {{ entry.effect }}</strong></div>
@@ -63,41 +77,69 @@
             </div>
             <div v-if="entry.recipes.length" class="camp-links">
               <span>解锁改良配方</span>
-              <UiButton v-for="recipe in entry.recipes" :key="recipe.id" variant="link" size="sm" @click="goRecipe(recipe)">{{ recipe.name }}</UiButton>
+              <div class="camp-recipe-chips">
+                <button v-for="recipe in entry.recipes" :key="recipe.id" type="button" class="camp-recipe-chip" @click="goRecipe(recipe)">
+                  <img v-if="recipe.img" class="camp-recipe-icon" :src="getImageUrl(recipe.img)" alt="" @error="handleImageError" />
+                  <span>{{ recipe.name }}</span>
+                </button>
+              </div>
             </div>
           </template>
 
           <template v-else>
             <div class="camp-upgrade-comparison" :class="{ 'is-max': !entry.upgrade }">
               <div class="camp-upgrade-stage">
-                <img :src="getImageUrl(entry.icon)" :alt="`${selected.name}${entry.level}级`" @error="handleImageError" />
-                <h4>当前 {{ entry.level }}级{{ !entry.upgrade ? '（满级）' : '' }}</h4>
+                <div class="camp-stage-head">
+                  <img :src="getImageUrl(entry.icon)" :alt="`${selected.name}${entry.level}级`" @error="handleImageError" />
+                  <h4>当前 {{ entry.level }}级{{ !entry.upgrade ? '（满级）' : '' }}</h4>
+                </div>
                 <p v-if="entry.description" class="camp-description">{{ entry.description }}</p>
                 <UiInfoRow v-for="stat in entry.stats" :key="stat.key" :label="stat.label" :value="stat.value" />
                 <div v-if="entry.recipes.length" class="camp-links">
                   <span>本级开放配方</span>
-                  <UiButton v-for="recipe in entry.recipes" :key="recipe.id" variant="link" size="sm" @click="goRecipe(recipe)"><img v-if="recipe.img" class="camp-recipe-icon" :src="getImageUrl(recipe.img)" alt="" @error="handleImageError" /><span>{{ recipe.name }}</span></UiButton>
+                  <div class="camp-recipe-chips">
+                    <button v-for="recipe in entry.recipes" :key="recipe.id" type="button" class="camp-recipe-chip" @click="goRecipe(recipe)">
+                      <img v-if="recipe.img" class="camp-recipe-icon" :src="getImageUrl(recipe.img)" alt="" @error="handleImageError" />
+                      <span>{{ recipe.name }}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
               <div v-if="entry.upgrade" class="camp-upgrade-stage is-next">
-                <img :src="getImageUrl(nextLevel(entry).icon)" :alt="`${selected.name}${entry.upgrade.toLevel}级`" @error="handleImageError" />
-                <h4>升级后 {{ entry.upgrade.toLevel }}级</h4>
+                <div class="camp-stage-head">
+                  <img :src="getImageUrl(nextLevel(entry).icon)" :alt="`${selected.name}${entry.upgrade.toLevel}级`" @error="handleImageError" />
+                  <h4>升级后 {{ entry.upgrade.toLevel }}级</h4>
+                </div>
                 <p v-if="nextLevel(entry)?.description" class="camp-description">{{ nextLevel(entry).description }}</p>
                 <UiInfoRow v-for="stat in nextLevel(entry)?.stats || []" :key="stat.key" :label="stat.label" :value="stat.value" />
                 <div v-if="nextLevel(entry)?.recipes.length" class="camp-links">
                   <span>升级后开放配方</span>
-                  <UiButton v-for="recipe in nextLevel(entry).recipes" :key="recipe.id" variant="link" size="sm" @click="goRecipe(recipe)"><img v-if="recipe.img" class="camp-recipe-icon" :src="getImageUrl(recipe.img)" alt="" @error="handleImageError" /><span>{{ recipe.name }}</span></UiButton>
+                  <div class="camp-recipe-chips">
+                    <button v-for="recipe in nextLevel(entry).recipes" :key="recipe.id" type="button" class="camp-recipe-chip" @click="goRecipe(recipe)">
+                      <img v-if="recipe.img" class="camp-recipe-icon" :src="getImageUrl(recipe.img)" alt="" @error="handleImageError" />
+                      <span>{{ recipe.name }}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
             <template v-if="entry.upgrade">
-              <UiInfoRow label="升级条件">
-                <span v-if="entry.upgrade.playerLevel">玩家等级 {{ entry.upgrade.playerLevel }}级</span>
-                <UiButton v-if="entry.upgrade.centerLevel" variant="link" size="sm" @click="goBuilding({ building: 'center', buildingLevel: entry.upgrade.centerLevel })">营地中心 {{ entry.upgrade.centerLevel }}级</UiButton>
-              </UiInfoRow>
-              <div v-if="nextLevel(entry)?.appearance" class="camp-links">
-                <span>建筑外观</span>
-                <UiButton variant="link" size="sm" @click="goFurniture(nextLevel(entry).appearance.id)">{{ nextLevel(entry).appearance.name }}</UiButton>
+              <div class="camp-upgrade-meta">
+                <UiInfoRow label="升级条件">
+                  <span v-if="entry.upgrade.playerLevel">玩家等级 {{ entry.upgrade.playerLevel }}级</span>
+                  <button
+                    v-if="entry.upgrade.centerLevel"
+                    type="button"
+                    class="camp-recipe-chip"
+                    @click="goBuilding({ building: 'center', buildingLevel: entry.upgrade.centerLevel })"
+                  >营地中心 {{ entry.upgrade.centerLevel }}级</button>
+                </UiInfoRow>
+                <div v-if="nextLevel(entry)?.appearance" class="camp-links camp-links--inline">
+                  <span>建筑外观</span>
+                  <button type="button" class="camp-recipe-chip" @click="goFurniture(nextLevel(entry).appearance.id)">
+                    {{ nextLevel(entry).appearance.name }}
+                  </button>
+                </div>
               </div>
               <div class="camp-materials">
                 <h4>升级消耗</h4>
@@ -146,6 +188,7 @@ const matches = computed(() => {
       ...(level.upgrade?.rewards || []).map(reward => reward.name)])].some(value => String(value || '').toLowerCase().includes(query))))
 })
 const selected = computed(() => matches.value.find(entry => entry.id === route.query[isResearch.value ? 'research' : 'building']) || matches.value[0])
+const maxLevel = computed(() => selected.value?.levels?.at(-1)?.level || 0)
 const researchDetail = computed(() => isResearch.value && !!route.query.research && selected.value?.id === route.query.research)
 const level = computed(() => selected.value?.levels.some(entry => entry.level === Number(route.query.level)) ? Number(route.query.level)
   : route.query.level === 'all' ? 'all' : selected.value?.levels[0]?.level || 'all')
@@ -182,58 +225,123 @@ watch([() => props.mode, () => selected.value?.id, researchDetail], async () => 
 /* The shared active pill uses a background token as text; keep camp controls readable in both themes. */
 .camp-filter-panel :deep(.ui-filter-pill.is-active), .camp-level-selector :deep(.ui-filter-pill.is-active) { color: var(--on-wood-text) !important; }
 .camp-count { font-size: 13px; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+.camp-count .count-num { color: var(--accent-ink); }
 /* The page shell clips this surface below the sticky filters on desktop. */
-.camp-grid { background: var(--paper); }
+.camp-grid { background: var(--paper); padding: 14px; }
 .camp-grid :deep(.ui-card-grid) { grid-template-columns: minmax(0, 1fr); }
-.camp-content { min-width: 0; padding: 12px 14px 24px; }
-.camp-heading { display: flex; gap: 14px; align-items: center; margin: 16px 0; }
-.camp-heading-portrait { width: 80px; height: 80px; flex: 0 0 80px; display: grid; place-items: center; background-size: contain; background-repeat: no-repeat; background-position: center; }
-.camp-heading img { width: 72px; height: 72px; object-fit: contain; }
-.camp-heading-portrait.is-research img { width: 48px; height: 48px; }
-.camp-heading > div { min-width: 0; }
-.camp-heading h2 { font-size: 18px; margin: 0; line-height: 1.6; letter-spacing: 0; }
-.camp-heading p, .camp-description, .camp-materials p { margin: 6px 0; font-size: 13px; line-height: 1.6; white-space: pre-line; overflow-wrap: anywhere; color: var(--text-main); }
-.camp-level-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; align-items: start; }
+.camp-content { min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.camp-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--paper-soft);
+  min-width: 0;
+}
+.camp-heading-portrait {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: 1px solid var(--border-faint);
+  background: rgba(143, 115, 81, 0.1);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.camp-heading img { width: 48px; height: 48px; object-fit: contain; }
+.camp-heading-portrait.is-research { border-color: transparent; background-color: transparent; }
+.camp-heading-portrait.is-research img { width: 42px; height: 42px; }
+.camp-heading-info { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.camp-heading-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.camp-heading h2 { font-size: 15.5px; margin: 0; line-height: 1.4; letter-spacing: 0; color: var(--text-main); }
+.camp-max-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: rgba(143, 115, 81, 0.12);
+  border-radius: 999px;
+  padding: 1px 8px;
+  white-space: nowrap;
+}
+.camp-heading p, .camp-description, .camp-materials p { margin: 0; font-size: 12.5px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; color: var(--text-muted); }
+.camp-description { color: var(--text-main); font-size: 13px; }
+.camp-level-selector--inline { padding-block: 10px; border-block: 1px solid var(--border-soft); }
+.camp-level-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 12px; align-items: start; }
+.camp-level-grid.is-research { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
 .camp-level-grid.is-single { grid-template-columns: minmax(0, 1fr); }
-.camp-level { margin: 0; padding: 14px; border: 1px solid var(--border-soft); border-radius: 6px; background: var(--paper-soft); }
-.camp-level-selector { padding-block: 10px; border-block: 1px solid var(--border-soft); }
-.camp-building-picker { display: grid; grid-template-columns: repeat(auto-fit, minmax(86px, 1fr)); gap: 8px; }
-.camp-building-choice { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border: 1px solid var(--border-soft); border-radius: 6px; background: var(--paper-soft); color: var(--text-main); cursor: pointer; font: inherit; font-size: 12px; }
-.camp-building-choice.is-active { outline: 2px solid var(--accent-ink); outline-offset: -2px; background: var(--highlight-bg, var(--paper-soft)); }
-.camp-building-choice img { width: 52px; height: 52px; object-fit: contain; }
-.camp-building-choice > span { color: var(--text-muted); font-size: 11px; }
-.camp-upgrade-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 12px; }
+.camp-level { margin: 0; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 8px; background: var(--paper-soft); box-shadow: 0 2px 5px rgba(62, 42, 20, 0.05); }
+.camp-upgrade-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; align-items: stretch; }
 .camp-upgrade-comparison.is-max { grid-template-columns: minmax(0, 1fr); }
-.camp-upgrade-stage { min-width: 0; padding: 4px 10px 8px 0; }
-.camp-upgrade-stage.is-next { border-left: 1px solid var(--border-soft); padding-inline: 10px 0; }
-.camp-upgrade-stage > img { display: block; width: 76px; height: 76px; object-fit: contain; margin: 0 auto 6px; }
-.camp-upgrade-stage > h4 { text-align: center; margin: 0 0 10px; font-size: 13px; }
-.camp-upgrade-stage.is-next > h4 { color: var(--accent-ink); }
+.camp-upgrade-stage {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  background: var(--paper);
+  border: 1px solid var(--border-faint);
+  border-radius: 6px;
+}
+.camp-upgrade-stage.is-next { border-color: rgba(122, 154, 153, 0.42); }
+.camp-stage-head { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-bottom: 6px; border-bottom: 1px dashed var(--border-faint); }
+.camp-stage-head > img { display: block; width: 64px; height: 64px; object-fit: contain; }
+.camp-stage-head > h4 { text-align: center; margin: 0; font-size: 13px; font-weight: 700; color: var(--text-main); }
+.camp-upgrade-stage.is-next .camp-stage-head > h4 { color: var(--accent-ink); }
+.camp-upgrade-meta { display: flex; flex-direction: column; gap: 6px; padding-top: 2px; border-top: 1px dashed var(--border-faint); }
 .camp-research-effect { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-left: 3px solid var(--accent-ink); background: var(--paper); margin-bottom: 12px; font-size: 13px; line-height: 1.7; }
 .camp-research-effect > span { color: var(--text-muted); font-size: 12px; }
 .camp-research-effect > strong { font-weight: 600; }
-.camp-heading .camp-overview-button { margin-left: auto; flex: 0 0 auto; align-self: flex-start; }
+.camp-heading .camp-overview-button { margin-left: auto; flex: 0 0 auto; align-self: center; }
 .camp-overview-button { background: var(--input-bg); color: var(--input-text); }
 .camp-level :deep(.ui-section__title) { letter-spacing: 0; }
 .camp-level :deep(.ui-info-row) { line-height: 1.6; }
-.camp-materials h4 { font-size: 13px; line-height: 1.6; margin: 10px 0 6px; }
-.camp-rewards { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; }
-.camp-rewards :deep(.ui-reward-card__name) { white-space: normal; overflow-wrap: anywhere; line-height: 1.6; }
-.camp-links :deep(.ui-btn) { white-space: normal; overflow-wrap: anywhere; letter-spacing: 0; }
-.camp-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin-top: 10px; font-size: 13px; line-height: 1.6; }
-.camp-links > span { color: var(--text-muted); }
-.camp-recipe-icon { width: 22px; height: 22px; flex: 0 0 22px; object-fit: contain; }
+.camp-materials h4 { font-size: 13px; line-height: 1.6; margin: 10px 0 6px; color: var(--text-main); }
+.camp-rewards { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 8px; }
+.camp-rewards :deep(.ui-reward-card) { background: var(--paper); border-color: var(--border-faint); border-radius: 6px; box-shadow: none; }
+.camp-rewards :deep(.ui-reward-card__name) { white-space: normal; overflow-wrap: anywhere; line-height: 1.5; font-size: 12px; }
+.camp-links { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 2px; font-size: 12.5px; line-height: 1.5; }
+.camp-links--inline { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 8px; margin-top: 0; padding: 4px 0; }
+.camp-links > span { color: var(--text-muted); font-size: 12px; font-weight: 600; }
+.camp-recipe-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.camp-recipe-chip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--paper-soft);
+  color: var(--text-main);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+}
+.camp-recipe-chip:hover { border-color: var(--accent-bright); color: var(--accent-ink); box-shadow: 0 2px 5px rgba(62, 42, 20, 0.1); }
+.camp-recipe-icon { width: 18px; height: 18px; flex: 0 0 18px; object-fit: contain; }
 @media (max-width: 640px) {
-  .camp-content { padding: 10px 12px 20px; }
-  .camp-building-picker { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
-  .camp-building-choice { padding: 8px 2px; }
-  .camp-building-choice img { width: 42px; height: 42px; }
-  .camp-level-grid { grid-template-columns: minmax(0, 1fr); }
+  .camp-grid { padding: 10px; }
+  .camp-content { gap: 10px; }
+  .camp-heading { padding: 9px 10px; gap: 10px; }
+  .camp-heading-portrait { width: 48px; height: 48px; flex-basis: 48px; }
+  .camp-heading img { width: 42px; height: 42px; }
+  .camp-level-grid, .camp-level-grid.is-research { grid-template-columns: minmax(0, 1fr); }
   .camp-level { padding: 10px; }
-  .camp-heading-portrait { width: 64px; height: 64px; flex-basis: 64px; }
-  .camp-heading img { width: 56px; height: 56px; }
-  .camp-heading .camp-overview-button { align-self: center; }
+  .camp-upgrade-comparison { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .camp-upgrade-stage { padding: 9px 10px; gap: 6px; }
+  .camp-stage-head { flex-direction: row; justify-content: flex-start; gap: 10px; padding-bottom: 6px; }
+  .camp-stage-head > img { width: 44px; height: 44px; }
+  .camp-stage-head > h4 { text-align: left; }
   .camp-upgrade-stage :deep(.ui-info-row) { flex-wrap: wrap; gap: 2px; }
-  .camp-rewards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .camp-rewards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 }
 </style>
