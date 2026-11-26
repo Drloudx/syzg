@@ -838,6 +838,12 @@ function stripItemDetailFields(item) {
       ...(first?.icon ? { icon: first.icon } : {})
     }]
   }
+  // 角色碎片头像渲染（getItemImageUrl）在瘦身列表里仍需读取 useActionPara.heros[0].heroTypeId。
+  if (item.name?.includes('碎片') && Array.isArray(item.useActionPara?.heros) && item.useActionPara.heros.length > 0) {
+    out.useActionPara = {
+      heros: [{ heroTypeId: item.useActionPara.heros[0].heroTypeId }]
+    }
+  }
   return out
 }
 

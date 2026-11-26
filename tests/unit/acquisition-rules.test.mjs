@@ -214,3 +214,16 @@ test('furniture blueprints prefer Common_ItemIcon scroll art and preserve BuildI
   assert.equal(getItemImageUrl(slimScroll), '/images/Common_ItemIcon/item_50008.webp')
   assert.equal(getItemImageUrl(slimFallback), '/images/BuildItem/build_roomOnwall_xca2_0.webp')
 })
+
+test('hero fragments preserve portrait icon lookup across slim list split', () => {
+  const fragment = {
+    typeId: 'item_59002',
+    name: '米托拉碎片',
+    img: 'item_59001',
+    useAction: 'getHeroStar',
+    useActionPara: { heros: [{ heroTypeId: 'hero_002', num: 1 }] }
+  }
+  const avatars = [{ typeId: 'hero_002', img: 'at002_1' }]
+  const { listData } = splitItemDataBundle({ items: [fragment], avatars, categoryTree: [], lanDict: {} })
+  assert.equal(getItemImageUrl(listData.items[0], listData.avatars), '/images/HeroInfoPanel_Atlas/chara002_1_p.webp')
+})

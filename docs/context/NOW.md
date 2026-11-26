@@ -29,9 +29,9 @@
 
 - **事件图 `e_12.webp` 替换为 `2026-11-24` CDN 成图**：
   - 备份旧版草图至 `../vue-myrzg备份-资源/event-e_12-20261126/e_12.webp`（`35588 B`，SHA-256 `f31c6bf26aae5ebe30d88bb0f1e5350e8d3f8f2e32fa46996c1e1c926143a203`），替换写入新版 [e_12.webp](../../public/images/event/e_12.webp)（`36656 B`，SHA-256 `3795a1f9719fcfda5387335e3cd58b7c8e75ab48c58eedecb5a9814c0b100e42`）。
-- **属性研究树与详情布局优化、契约与家具制作图图标修复、2026-11-24 CDN 剧情与图集同步（`a0f13a8d` / `9d60a534`）**：
+- **属性研究树与详情布局优化、契约/碎片/家具制作图图标修复、2026-11-24 CDN 剧情与图集同步（`a0f13a8d` / `9d60a534` 及后续碎片修复）**：
   - [campResearchLayout.js](../../src/utils/campResearchLayout.js)、[CampResearchTree.vue](../../src/components/facilities/CampResearchTree.vue) 与 [CampFacilitiesPanel.vue](../../src/components/facilities/CampFacilitiesPanel.vue) 将研究树节点缩放至 `240×72`（`columnGap +28`、`rowGap +12`）并恢复细横向滚动条，研究详情默认展示全部等级、桌面端 `minmax(268px, 1fr)` 两栏、移动端 `返回研究树` 置入标题行；
-  - 从 `2026-11-24` CDN `Common_ItemIcon_Atlas` 补齐 `item_chara027.webp`（`指名契约书：梅莉莉`），[itemParser.js](../../src/utils/itemParser.js) 与 [items.mjs](../../scripts/parse/items.mjs) 改为制作图优先使用 `Common_ItemIcon` 官方卷轴图（`229/233`）并在瘦身产物保留 `homeItemUnlocks[0].icon` 供 `item_50066/50071/50072/50076` 回退 `BuildItem`；同步更新 [ITEMS_AND_EQUIPMENT.md](specs/ITEMS_AND_EQUIPMENT.md)、[acquisition-rules.test.mjs](../../tests/unit/acquisition-rules.test.mjs) 与 `public/data/parsed/**`。
+  - 从 `2026-11-24` CDN `Common_ItemIcon_Atlas` 补齐 `item_chara027.webp`（`指名契约书：梅莉莉`），[itemParser.js](../../src/utils/itemParser.js) 与 [items.mjs](../../scripts/parse/items.mjs) 改为制作图优先使用 `Common_ItemIcon` 官方卷轴图（`229/233`）、在 `stripItemDetailFields` 保留 `homeItemUnlocks[0].icon` 供 `item_50066/50071/50072/50076` 回退 `BuildItem`，同时保留角色碎片 `useActionPara.heros[0].heroTypeId` 使 `/items` 列表 `35` 个角色碎片恢复渲染 `HeroInfoPanel_Atlas/chara*_p.webp` 头像；同步更新 [ITEMS_AND_EQUIPMENT.md](specs/ITEMS_AND_EQUIPMENT.md)、[acquisition-rules.test.mjs](../../tests/unit/acquisition-rules.test.mjs) 与 `public/data/parsed/**`。
 - **`/facilities` 营地升级 UI 布局重构（`e43064f2`）**：
   - [CampFacilitiesPanel.vue](../../src/components/facilities/CampFacilitiesPanel.vue) 将建筑与等级选择迁入顶部 `UiFilterPanel`，建筑简介横幅对齐 `.facility-intro`，`.camp-level-grid` 改为 `minmax(460px, 1fr)` 自适应单列宽卡、`.camp-upgrade-stage` 改为对称嵌框子卡片并在移动端切换上下排布，开放配方与联动跳转统一为 `.camp-recipe-chip` 材质徽章。
 
