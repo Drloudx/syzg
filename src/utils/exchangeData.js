@@ -13,6 +13,26 @@ const LEGACY_TEST_TEAM = /^team\d*$/
 const UNUSED_EXCHANGE_TEAMS = /^baodimap\d+(?:_1)?$/
 const FORMAL_ENTRY_TEAMS = /^(?:market\d*|tuzi\w*|zhongzi|bke|ptjifen|payke|fuZhuang|pack|dailySupply)$/
 
+const EX_TO_DUNGEON = { ex01: 'sp1', ex02: 'sp2' }
+
+const isRelicDungeonOpen = (dungeonId, activityList = {}) => {
+  const activity = activityList[dungeonId]
+  if (!activity) return true
+  if (activity.condition === 'false') return false
+  if (activity.startTime && activity.startTime === activity.endTime) return false
+  const year = Number(String(activity.startTime || '').slice(0, 4))
+  return !(Number.isFinite(year) && year >= 2900)
+}
+
+const resolveExchangeSubLabel = (subKey, relicInfo = {}) => {
+  const dungeonId = EX_TO_DUNGEON[subKey]
+  if (dungeonId) {
+    const name = relicInfo[dungeonId]?.name
+    if (name) return String(name)
+  }
+  return SUB_LABELS[subKey] || subKey
+}
+
 const SUB_LABELS = {
   dailySupply: '每日补给',
   fixed: '固定商品',
@@ -94,7 +114,12 @@ export function buildOfficialExchangeIndex(maps = {}) {
   const general = maps.generalRes || {}
   const packDisplay = maps.packDisplayRes || {}
   const activities = maps.activityListRes?.datas || {}
+  const relicInfo = maps.relicDungeonInfoRes?.datas || maps.relicDungeonInfoRes || {}
   const index = {}
+  Object.defineProperty(index, '__meta', {
+    value: { relicInfo, activityList: activities },
+    enumerable: false
+  })
 
   for (const definition of MARKET_SHOPS) {
     if (isMarketShopHidden(definition)) continue
@@ -176,6 +201,9 @@ export function isVisibleExchange(exchange, officialIndex = {}) {
     || !CATEGORY_ORDER.some(category => category.teams.test(team))
     || isBlacklisted(exchange)) return false
 
+  const exDungeonId = EX_TO_DUNGEON[team]
+  if (exDungeonId && !isRelicDungeonOpen(exDungeonId, officialIndex?.__meta?.activityList)) return false
+
   if (!FORMAL_ENTRY_TEAMS.test(team)) return true
   const category = getCategory(exchange)
   return Boolean(officialIndex[exchange?.id]?.locations?.some(location => location.category === category.key))
@@ -192,7 +220,7 @@ export function getExchangeSourceMeta(exchange, officialIndex = {}) {
   if (/^[cC]\d+$/.test(subKey)) subKey = getMapName(subKey)
   return {
     category: category.key, categoryLabel: category.label,
-    sub: subKey, subLabel: SUB_LABELS[subKey] || subKey
+    sub: subKey, subLabel: resolveExchangeSubLabel(subKey, officialIndex?.__meta?.relicInfo)
   }
 }
 
@@ -405,28 +433,11 @@ export function buildExchangeData(maps) {
     // 且未开放的秘境**不列出**（sp2 活动时间是 2900+ 占位值 → 未定档）。
     const relicInfo = maps.relicDungeonInfoRes?.datas || maps.relicDungeonInfoRes || {}
     const activityList = maps.activityListRes?.datas || maps.activityListRes || {}
-    const EX_TO_DUNGEON = { ex01: 'sp1', ex02: 'sp2' }
-    const isRelicOpen = (dungeonId) => {
-      const activity = activityList[dungeonId]
-      if (!activity) return true
-      if (activity.condition === 'false') return false
-      if (activity.startTime && activity.startTime === activity.endTime) return false
-      const year = Number(String(activity.startTime || '').slice(0, 4))
-      return !(Number.isFinite(year) && year >= 2900)
-    }
-    const subLabelFor = (subKey) => {
-      const dungeonId = EX_TO_DUNGEON[subKey]
-      if (dungeonId) {
-        const name = relicInfo[dungeonId]?.name
-        if (name) return String(name)
-      }
-      return SUB_LABELS[subKey] || subKey
-    }
     for (const exchange of Object.values(rawExchange)) {
       if (!isVisibleExchange(exchange, officialIndex) || getCategory(exchange).key !== categoryKey) continue
       const team = exchange.team || ''
       const dungeonId = EX_TO_DUNGEON[team]
-      if (dungeonId && !isRelicOpen(dungeonId)) continue
+      if (dungeonId && !isRelicDungeonOpen(dungeonId, activityList)) continue
       let subKey = exchange.category?.[1] || exchange.team || '无'
       if (/^[cC]\d+$/.test(subKey)) subKey = getMapName(subKey)
       if (!subs[subKey]) subs[subKey] = []
@@ -435,7 +446,7 @@ export function buildExchangeData(maps) {
     }
     return Object.entries(subs)
       .map(([key, list]) => ({
-        key, label: subLabelFor(key),
+        key, label: resolveExchangeSubLabel(key, relicInfo),
         list: list.sort((a, b) => a.sort - b.sort || a.id.localeCompare(b.id))
       }))
       .sort((a, b) => getSubSortKey(a.key) - getSubSortKey(b.key) || a.key.localeCompare(b.key, 'zh-CN'))

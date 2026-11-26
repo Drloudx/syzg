@@ -1,4 +1,5 @@
 import { isBlacklisted } from '../config/blacklist.js'
+import { buildOfficialExchangeIndex, isVisibleExchange } from './exchangeData.js'
 import { getMapName } from './gameMappings.js'
 import { parseRewardGroups, getObtainableRewardRules } from './acquisitionRules.js'
 
@@ -270,23 +271,49 @@ export function buildSupplementalItemSources(maps) {
   /*
    * 商城售卖（`itemExchange` 表里 `category` 含「商城」的条目）。
    *
-   * 之前**完全没有**商城来源 → 商城里卖的东西（皮肤、时装等）「获取途径」一直是空，
-   * 皮肤详情页底部显示「数据未补充…」。商城是这些物品的唯一获取方式，属于真实来源。
-   *
-   * 判据与搜索索引的 `exchange` 条目一致（`isVisibleExchange` 过滤掉暂不使用/测试条目），
-   * 说明用条目自己的 `category` 拼（如「商城 · 服装」）并附价格档位提示。
+   * 必须与游戏内正式商城上架配置对齐：
+   *   1) `team === 'pack'`（特殊补给 / 家具礼包 / 饰品礼包）必须位于 `packDisplay` 未隐藏栏位的
+   *      `content` 中且 `packInfo.hide !== true`（如已从 `packDisplay` 移除的 `pack_jiaju02` 不收录）；
+   *   2) 其余商城兑换按 `buildOfficialExchangeIndex` + `isVisibleExchange` 校验真实上架入口。
    */
   const exchangeMap = maps.itemExchangeJson?.itemExchange || {}
+  const packCharge = maps.packChargeJson?.datas || maps.packChargeJson || {}
+  const packInfo = maps.packInfoJson?.datas || maps.packInfoJson || {}
+  const hasPackDisplay = Boolean(maps.packDisplayJson)
+  const visiblePackIds = new Set(
+    Object.values(maps.packDisplayJson || {}).flat()
+      .filter(display => display && !display.hide && Array.isArray(display.content))
+      .flatMap(display => display.content)
+  )
+  const hasShopIndex = Boolean(maps.shopJson || maps.packDisplayJson)
+  const officialShopIndex = hasShopIndex
+    ? buildOfficialExchangeIndex({
+      shopRes: maps.shopJson,
+      generalRes: maps.generalJson,
+      packDisplayRes: maps.packDisplayJson,
+      activityListRes: maps.activityListJson,
+      relicDungeonInfoRes: maps.relicDungeonInfoJson
+    })
+    : {}
   for (const entry of Object.values(exchangeMap)) {
     const cats = Array.isArray(entry?.category) ? entry.category : []
     if (!cats.includes('商城')) continue
-    if (!entry?.reward) continue
+    if (!entry?.reward || isBlacklisted(entry)) continue
+    const isPack = entry.team === 'pack'
+    if (isPack) {
+      if (packInfo[entry.id]?.hide === true) continue
+      if (hasPackDisplay && !visiblePackIds.has(entry.id)) continue
+    } else if (hasShopIndex && !isVisibleExchange(entry, officialShopIndex)) {
+      continue
+    }
     const catLabel = cats.filter(c => c !== '商城').join(' · ')
+    const packName = isPack ? (text(packInfo[entry.id]?.name) || text(entry.name)) : ''
+    const detail = [catLabel, packName && packName !== catLabel ? packName : ''].filter(Boolean).join(' · ')
     addReward(entry.reward, {
       type: 'shop',
       id: entry.id,
       name: catLabel || '商城',
-      des: `商城购买${catLabel ? ` · ${catLabel}` : ''}`
+      des: `商城购买${detail ? ` · ${detail}` : ''}`
     })
   }
 
@@ -297,8 +324,6 @@ export function buildSupplementalItemSources(maps) {
    * （如 skin002a「一曰侍者」）「获取途径」为空。
    * 链路：packCharge.<id> → reward.<id> → items；packInfo 提供展示名。
    */
-  const packCharge = maps.packChargeJson?.datas || maps.packChargeJson || {}
-  const packInfo = maps.packInfoJson?.datas || maps.packInfoJson || {}
   for (const [id, charge] of Object.entries(packCharge)) {
     if (!charge || typeof charge !== 'object' || !charge.reward) continue
     const info = packInfo[id] || {}

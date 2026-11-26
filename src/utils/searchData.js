@@ -415,7 +415,8 @@ export function buildSearchData(maps) {
     shopRes: maps.shopJson,
     generalRes: maps.generalJson,
     packDisplayRes: maps.packDisplayJson,
-    activityListRes: maps.activityListJson
+    activityListRes: maps.activityListJson,
+    relicDungeonInfoRes: maps.relicDungeonInfoJson
   })
   const {
     heroJson, itemJson, monJson, fileMonJson, petJson, achievementJson, rewardJson,

@@ -266,6 +266,12 @@ test('real build fills reported gaps without inventing unavailable packs, eggs o
   assert.ok(parents.has('item_26013'))
   assert.ok(sources.item_27011?.some(x => x.type === 'container' && x.id === 'item_26013'))
   assert.equal(parents.size, 24)
+  // 血族花棺制作图（item_50138）：秘境兑换已映射秘境名、且已从 packDisplay 移除的 pack_jiaju02 不收录
+  assert.ok(sources.item_50138.some(x => x.type === 'exchange' && x.id === 'ex01015' && x.name === '秘境兑换 · 亚空回廊·特异次元' && x.sub === 'ex01'))
+  assert.ok(!sources.item_50138.some(x => x.id === 'pack_jiaju02'))
+  // 在售家具礼包保留具体包名，未开放 ex02 不混入物品来源
+  assert.ok(sources.item_50132.some(x => x.type === 'shop' && x.id === 'pack_jiaju01' && x.des === '商城购买 · 家具礼包 · 古堡灯具制作图包'))
+  assert.ok(!allSources.some(x => x.type === 'exchange' && x.sub === 'ex02'))
   const fresh = build({ dungeonSources: buildDungeonsFiles().deps.dungeonSources }).files.find(x => x.file === 'parsed/item-sources.json').data
   assert.deepEqual(sources, fresh, 'standalone search must not depend on a stale dungeon source file')
 })

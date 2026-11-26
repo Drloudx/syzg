@@ -27,7 +27,10 @@
 
 ### 本地已提交待推送（2026-11-26）
 
-- **家具图鉴来源映射、图纸卷轴图标与 SP2 隐藏同步（`e43064f2`..`d8432c3e` 之后）**：
+- **物品「获取途径」对齐商城上架清单与秘境真实名称（`0258a1d5` 之后）**：
+  - [exchangeData.js](../../src/utils/exchangeData.js) 抽取 `resolveExchangeSubLabel` 与 `isRelicDungeonOpen` 并供 [searchData.js](../../src/utils/searchData.js) 共用，`ex01` 在物品来源与搜索索引均映射为「亚空回廊·特异次元」（`sub` 保留 `ex01` 维持跳转定位），同时过滤未开放秘境 `ex02`；
+  - [supplementalItemSources.js](../../src/utils/supplementalItemSources.js) 按 `packDisplay` 与 `shop` 在售清单校验 `itemExchange.category` 含「商城」的条目，剔除已下架的 `pack_jiaju02`（玫瑰葬礼制作图包）与孤立 `bke`/`payke` 条目，并补全在售家具礼包的具体包名；同步更新 [source-completion.test.mjs](../../tests/unit/source-completion.test.mjs)。
+- **家具图鉴来源映射、图纸卷轴图标与 SP2 隐藏同步（`0258a1d5`）**：
   - [gameMappings.js](../../src/utils/gameMappings.js) `SOURCE_TAG_NAMES` 补齐 `sp1 → 幽夜古堡`、`sp2 → 黏滑溪谷`、`c5商店 → 霜烬平原商店`；
   - [furnitureData.js](../../src/utils/furnitureData.js) 与 [furniture.mjs](../../scripts/parse/furniture.mjs) 补全 `s_sp1_*` / `sp_*` 任务、`sp1_area1_*` 场景房间、`成就id：*` 成就名称及裸 `market*` 商店购买的解析，清空 `furniture.json` 内可见条目的未映射 ID；
   - [FurnitureView.vue](../../src/views/FurnitureView.vue) 详情「家具图纸」改用 `getItemImageUrl` 显示 `Common_ItemIcon` 官方卷轴图（4 张缺图回退 `BuildItem`）；[blacklist.js](../../src/config/blacklist.js)、[FurnitureView.vue](../../src/views/FurnitureView.vue) 与 [searchData.js](../../src/utils/searchData.js) 联合过滤 `14` 件 SP2 专属家具与 `item_50203` 图纸（`239 → 225` 件）。
