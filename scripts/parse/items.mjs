@@ -2,10 +2,15 @@
  * 物品/装备核心数据预解析：public/data/parsed/items.json
  * 对应浏览器端 src/utils/itemParser.js 的 buildItemData（同一纯函数）
  */
+import { existsSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { buildItemData, splitItemDataBundle } from '../../src/utils/itemParser.js'
 import { buildRegularFacilityRecipes, indexRegularFacilityRecipes } from '../../src/utils/facilityData.js'
 import { readJson } from './shared.mjs'
 import { loadSkinModelImages } from './skin-models.mjs'
+
+const itemIconDir = join(dirname(fileURLToPath(import.meta.url)), '../../public/images/Common_ItemIcon')
 
 export function buildItemsFile() {
   const maps = {
@@ -41,6 +46,10 @@ export function buildItemsFile() {
   const facilityRecipes = indexRegularFacilityRecipes(buildRegularFacilityRecipes(maps))
   for (const item of data.items || []) {
     if (facilityRecipes[item.typeId]) item.facilityCrafting = facilityRecipes[item.typeId]
+    if ((item.useAction === 'unlockHomeItem' || item.useAction === 'unlockHomeItemSkin')) {
+      const hasItemIcon = Boolean(item.img) && existsSync(join(itemIconDir, `${item.img}.webp`))
+      if (!hasItemIcon) item.blueprintUseBuildIcon = true
+    }
   }
   const { metaData, equipsData, listData, extraData } = splitItemDataBundle(data)
   return {

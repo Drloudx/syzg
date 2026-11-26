@@ -7,7 +7,7 @@ import {
   formatCountProbability
 } from '../../src/utils/acquisitionRules.js'
 import * as mappings from '../../src/utils/gameMappings.js'
-import { buildItemData, getItemAcquisition, parseItemRewards } from '../../src/utils/itemParser.js'
+import { buildItemData, getItemAcquisition, getItemImageUrl, parseItemRewards, splitItemDataBundle } from '../../src/utils/itemParser.js'
 import { buildRegularFacilityRecipes } from '../../src/utils/facilityData.js'
 
 const items = {
@@ -190,4 +190,27 @@ test('formatRewardGroupLabel outputs player-facing game text', () => {
   assert.equal(formatRewardGroupLabel({ kind: 'fixed' }), '固定获得')
   assert.equal(formatRewardGroupLabel({ rate: 1, rules: [{ actualProb: 0.5 }] }), '必定获得以下其一')
   assert.equal(formatRewardGroupLabel({ rate: 0.07, rules: [{ actualProb: 0.07 }] }), '7.0% 概率获得以下其一')
+})
+
+test('furniture blueprints prefer Common_ItemIcon scroll art and preserve BuildItem fallback across slim split', () => {
+  const scrollBp = {
+    typeId: 'item_50008',
+    name: '原木桌子制作图',
+    img: 'item_50008',
+    useAction: 'unlockHomeItem',
+    useActionPara: { homeItems: [{ typeId: 'roomTable_xca2_0' }] },
+    homeItemUnlocks: [{ typeId: 'roomTable_xca2_0', icon: 'build_roomTable_xca2_0', catalogVisible: true }]
+  }
+  const fallbackBp = {
+    typeId: 'item_50066',
+    name: '加固置物板制作图',
+    img: 'item_50066',
+    useAction: 'unlockHomeItem',
+    useActionPara: { homeItems: [{ typeId: 'roomOnwall_xca2_0' }] },
+    homeItemUnlocks: [{ typeId: 'roomOnwall_xca2_0', icon: 'build_roomOnwall_xca2_0', catalogVisible: true }]
+  }
+  const { listData } = splitItemDataBundle({ items: [scrollBp, fallbackBp], categoryTree: [], lanDict: {} })
+  const [slimScroll, slimFallback] = listData.items
+  assert.equal(getItemImageUrl(slimScroll), '/images/Common_ItemIcon/item_50008.webp')
+  assert.equal(getItemImageUrl(slimFallback), '/images/BuildItem/build_roomOnwall_xca2_0.webp')
 })

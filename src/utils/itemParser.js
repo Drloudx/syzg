@@ -830,9 +830,13 @@ function stripItemDetailFields(item) {
   for (const [k, v] of Object.entries(item)) {
     if (!ITEM_DETAIL_KEYS.includes(k)) out[k] = v
   }
-  // 物品图鉴筛选「家具图纸」仅需判定 catalogVisible 标记
+  // 物品图鉴筛选「家具图纸」需判定 catalogVisible，无独立卷轴图时还需回退 icon。
   if (Array.isArray(item.homeItemUnlocks) && item.homeItemUnlocks.some(u => u?.catalogVisible)) {
-    out.homeItemUnlocks = [{ catalogVisible: true }]
+    const first = item.homeItemUnlocks.find(u => u?.catalogVisible)
+    out.homeItemUnlocks = [{
+      catalogVisible: true,
+      ...(first?.icon ? { icon: first.icon } : {})
+    }]
   }
   return out
 }
@@ -1196,14 +1200,21 @@ export function parseItemUnlocks(item) {
   return null
 }
 
+const BLUEPRINTS_WITHOUT_ITEM_ICON = new Set(['item_50066', 'item_50071', 'item_50072', 'item_50076'])
+
 /**
  * 智能获取物品图标
  */
 export function getItemImageUrl(item, avatars = cachedAvatars) {
   if (!item) return ''
 
-  // 家具图纸使用目标家具/外观的可展示图；错误或缺失的源配置明确显示占位。
+  // 家具图纸优先使用 Common_ItemIcon 官方卷轴图；未进图集的少数图纸回退目标家具/外观图。
   if (item.useAction === 'unlockHomeItem' || item.useAction === 'unlockHomeItemSkin') {
+    const imgName = String(item.img || '')
+    const useBuildFallback = !imgName || item.blueprintUseBuildIcon || BLUEPRINTS_WITHOUT_ITEM_ICON.has(imgName)
+    if (!useBuildFallback) {
+      return `/images/Common_ItemIcon/${imgName}.webp`
+    }
     const icon = item.homeItemUnlocks?.[0]?.icon || ''
     return icon ? `/images/BuildItem/${icon}.webp` : '/ui/visibility-off.svg'
   }

@@ -30,6 +30,7 @@
 - 好感礼物有专门分类；废弃的「旧版符石」**不再作为有效中类入口**。
 - 「配方」兼容 `category[1]=51`、`unlockMenu`、`unlockFormula`；食谱与制作配方**分别聚合**。
 - 家具图纸**必须**经 `unlockHomeItem/unlockHomeItemSkin` 关联至少一件静态家具，**不能仅凭名称带「图纸」收录**。
+- 家具图纸图标优先使用 `Common_ItemIcon/${img}.webp` 卷轴图；未进图集的 `4` 张图纸（`item_50066`、`item_50071`、`item_50072`、`item_50076`）在瘦身列表保留 `homeItemUnlocks[0].icon` 回退 `BuildItem/*.webp`。
 - 指名契约保留契约书图标；**只有角色碎片替换成头像**。
 - 特殊记忆碎片 `item_5900103` 保留原描述，**不套用**普通碎片文案；契约解锁、碎片消耗均沿真实外键。
 
