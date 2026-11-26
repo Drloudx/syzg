@@ -22,12 +22,14 @@
 | 数据源版本 | **1.7.15 付费测 (cdnVer 38)**；热更配置表（63 张）、剧情（675 条清单 / 新增 376 + 变更 51 已解密）、源码（2681 .cs，匹配 CDN `A0A4112C`）、Addressables/图片（`2026-11-24` CDN 258 个变更包已拉取）已同步 |
 | 单测 | `npm run test:unit` 527 项全绿；`link-integrity.test.mjs` 2 项通过；`vite build` 通过 |
 | 最近重点修复 | `/facilities`「营地升级」与「属性研究」布局重构与缩放优化；补齐 `item_chara027.webp`（指名契约书：梅莉莉）并修复 `233` 张家具制作图图标逻辑；同步 `2026-11-24` CDN 剧情与 Addressables |
-| 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；`public/images/event/e_12.webp` 线上已出成图（`游戏数据/图片资源/` 已更新，网站覆盖待确认）；蜘蛛头冠幼体数量异常等反馈已提交 |
+| 已知未修 | 6 项，见 [HANDOVER 十、当前遗留](HANDOVER.md#十当前遗留2026-11-09)；蜘蛛头冠幼体数量异常等反馈已提交 |
 | 本轮新增遗留 | 家具图标缺 125 个（沿袭 11-09）；`pet_101` 青铜迷迷可变异模型官方缺失（非本项目可修）；`item_10122/10123/30055/30056` 2026-11-24 图集暂无 |
 
 ### 本地已提交待推送（2026-11-26）
 
-- **属性研究树与详情布局优化、契约与家具制作图图标修复、2026-11-24 CDN 剧情与图集同步**：
+- **事件图 `e_12.webp` 替换为 `2026-11-24` CDN 成图**：
+  - 备份旧版草图至 `../vue-myrzg备份-资源/event-e_12-20261126/e_12.webp`（`35588 B`，SHA-256 `f31c6bf26aae5ebe30d88bb0f1e5350e8d3f8f2e32fa46996c1e1c926143a203`），替换写入新版 [e_12.webp](../../public/images/event/e_12.webp)（`36656 B`，SHA-256 `3795a1f9719fcfda5387335e3cd58b7c8e75ab48c58eedecb5a9814c0b100e42`）。
+- **属性研究树与详情布局优化、契约与家具制作图图标修复、2026-11-24 CDN 剧情与图集同步（`a0f13a8d` / `9d60a534`）**：
   - [campResearchLayout.js](../../src/utils/campResearchLayout.js)、[CampResearchTree.vue](../../src/components/facilities/CampResearchTree.vue) 与 [CampFacilitiesPanel.vue](../../src/components/facilities/CampFacilitiesPanel.vue) 将研究树节点缩放至 `240×72`（`columnGap +28`、`rowGap +12`）并恢复细横向滚动条，研究详情默认展示全部等级、桌面端 `minmax(268px, 1fr)` 两栏、移动端 `返回研究树` 置入标题行；
   - 从 `2026-11-24` CDN `Common_ItemIcon_Atlas` 补齐 `item_chara027.webp`（`指名契约书：梅莉莉`），[itemParser.js](../../src/utils/itemParser.js) 与 [items.mjs](../../scripts/parse/items.mjs) 改为制作图优先使用 `Common_ItemIcon` 官方卷轴图（`229/233`）并在瘦身产物保留 `homeItemUnlocks[0].icon` 供 `item_50066/50071/50072/50076` 回退 `BuildItem`；同步更新 [ITEMS_AND_EQUIPMENT.md](specs/ITEMS_AND_EQUIPMENT.md)、[acquisition-rules.test.mjs](../../tests/unit/acquisition-rules.test.mjs) 与 `public/data/parsed/**`。
 - **`/facilities` 营地升级 UI 布局重构（`e43064f2`）**：
