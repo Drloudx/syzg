@@ -137,22 +137,21 @@ test.describe('desktop application scroll shell', () => {
     expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1)
   })
 
-  test('keeps the exchange grid responsive without framing the data area', async ({ page }) => {
+  test('keeps the exchange grid responsive inside the framed parchment data area', async ({ page }) => {
     await page.goto('/#/exchange?cat=entrust')
-    await expect(page.locator('.exchange-list > .ui-exchange-trade').first()).toBeVisible()
+    await expect(page.locator('#exchangeScroll .ui-compact-shop-card').first()).toBeVisible()
     await dismissGlobalModals(page)
 
     const layout = await page.evaluate(() => {
       const filter = document.querySelector('.filter-panel')
       const dataArea = document.querySelector('#exchangeScroll')
-      const grid = document.querySelector('.exchange-list')
+      const grid = document.querySelector('.exchange-compact-grid')
       const dataStyle = getComputedStyle(dataArea)
       return {
         columns: getComputedStyle(grid).gridTemplateColumns.split(/\s+/).filter(Boolean).length,
         gridWidth: grid.clientWidth,
-        // 栅格为 `repeat(auto-fill, minmax(110px, 1fr))`：列数随可用宽度自适应，
-        // 断言应核对「自适应是否生效」而不是钉死某个具体列数（1440 宽为 6 列、1280 宽为 5 列）。
-        expectedColumns: Math.floor((grid.clientWidth + 10) / (110 + 10)),
+        // 栅格为 `repeat(auto-fill, minmax(290px, 1fr))`：列数随可用宽度自适应。
+        expectedColumns: Math.floor((grid.clientWidth + 10) / (290 + 10)),
         filterOverflow: getComputedStyle(filter).overflow,
         dataBorderWidth: [
           dataStyle.borderTopWidth,
@@ -164,11 +163,11 @@ test.describe('desktop application scroll shell', () => {
       }
     })
 
-    expect(layout.columns).toBeGreaterThanOrEqual(4)
+    expect(layout.columns).toBeGreaterThanOrEqual(2)
     expect(layout.columns).toBe(layout.expectedColumns)
     expect(layout.filterOverflow).toBe('visible')
-    expect(layout.dataBorderWidth).toEqual(['0px', '0px', '0px', '0px'])
-    expect(layout.dataHorizontalPadding).toEqual(['0px', '0px'])
+    expect(layout.dataBorderWidth).toEqual(['2px', '2px', '2px', '2px'])
+    expect(layout.dataHorizontalPadding).toEqual(['14px', '14px'])
   })
 
   test('uses formal shop entries and shows the real random-shop rules', async ({ page }) => {
@@ -184,7 +183,7 @@ test.describe('desktop application scroll shell', () => {
       'bke003', 'bke004', 'bke005', 'payke001', 'payke002', 'payke003', 'payke004', 'pack_gift1'
     ]
 
-    expect(byKey.market.label).toBe('地区商店')
+    expect(byKey.market.label).toBe('杂物商人')
     /*
      * ⚠️ **只有 3 个子类是对的**，第 4 个「黑森林/霜烬平原」（`c4_c5`）是**有意隐藏**的：
      *
@@ -208,8 +207,21 @@ test.describe('desktop application scroll shell', () => {
       ['随机商品', 10]
     ])
     expect(byKey.tuzi.subs.map(sub => [sub.label, sub.list.length])).toEqual([['全部候选', 37]])
-    // 时装（fuZhuang / packType 5）是商城的正式子类，必须出现在商店积分下。
-    expect(byKey.shop.subs.map(sub => sub.label)).toEqual(['氪金商店', '时装', '星型徽印', '翼型徽印', '回忆结晶'])
+    // 商城下划分为 礼包 / 外观 / 兑换 三个模块，每日补给保持独立分类。
+    expect(byKey.shop.label).toBe('商城')
+    expect(byKey.shop.subs.map(sub => [sub.moduleLabel, sub.label])).toEqual([
+      ['礼包', '礼包商城'],
+      ['礼包', '特殊补给'],
+      ['礼包', '家具礼包'],
+      ['礼包', '饰品礼包'],
+      ['外观', '时装商店'],
+      ['外观', '饰品商店'],
+      ['外观', '家具商店'],
+      ['兑换', '道具商店'],
+      ['兑换', '星型徽印'],
+      ['兑换', '翼型徽印'],
+      ['兑换', '回忆结晶']
+    ])
     expect(byKey.pack.label).toBe('每日补给')
     expect(byKey.pack.subs[0].list).toHaveLength(2)
     expect(excludedIds.filter(id => visibleIds.has(id))).toEqual([])
@@ -237,7 +249,7 @@ test.describe('desktop application scroll shell', () => {
 
     await page.goto('/#/exchange?cat=tuzi&sub=all&rarity=白')
     await expect(page.locator('.collection-counter')).toContainText('3')
-    await expect(page.locator('.ui-exchange-trade')).toHaveCount(3)
+    await expect(page.locator('.ui-compact-shop-card')).toHaveCount(3)
     await expect(page.locator('.ui-exchange-trade__meta')).toHaveCount(0)
 
     await page.goto('/#/exchange?cat=tuzi&sub=all&view=rules')
@@ -881,12 +893,12 @@ test.describe('desktop application scroll shell', () => {
     await expect(modal.locator('.unlock-hero-link')).toContainText('茜塔')
     await expect.poll(() => modal.locator('.unlock-hero-icon').evaluate(element => element.naturalWidth)).toBeGreaterThan(0)
     await expect.poll(() => modal.locator('.skin-portrait-preview img').first().evaluate(element => element.naturalWidth)).toBeGreaterThan(0)
-    await expect(modal.locator('.source-list')).toContainText('商店积分 · 时装')
+    await expect(modal.locator('.source-list')).toContainText('商城 · 时装')
     await expect(modal.locator('.source-list')).toContainText('兑换难得的休息日')
 
     const sourceGroup = modal.locator('.source-list .ui-accordion', { hasText: '兑换' })
     await sourceGroup.locator('.ui-accordion__head').click()
-    await sourceGroup.locator('.drawer-chip', { hasText: '商店积分 · 时装' }).click()
+    await sourceGroup.locator('.drawer-chip', { hasText: '商城 · 时装' }).click()
     await expect.poll(() => page.evaluate(() => new URLSearchParams(location.hash.split('?')[1]).get('sub'))).toBe('fuZhuang')
     await expect(page).toHaveURL(/#\/exchange\?cat=shop/)
     await expect(page.getByText('难得的休息日', { exact: true }).first()).toBeVisible()

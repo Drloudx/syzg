@@ -110,9 +110,9 @@ const resolveConsume = (consumeId, consumeRaw, itemRaw, virtualIcons) => {
     costs.push({
       kind: 'ti',
       id: virtualIcons.tiItemId,
-      name: virtualIcons.tiName || '理智',
+      name: virtualIcons.tiName || '体力',
       icon: virtualIcons.tiIcon,
-      quality: 2,
+      quality: virtualIcons.tiQuality || 5,
       num: Number(conf.ti)
     })
   }
@@ -327,7 +327,7 @@ export function buildActivityDungeonsFile() {
   const findItemByName = name => Object.values(itemRaw).find(entry => text(entry?.name) === name)
   const keItem = findItemByName('氪金')
   const moneyItem = findItemByName('银币')
-  const tiItem = findItemByName('理智') || itemRaw.item_10012
+  const tiItem = itemRaw.item_00005 || findItemByName('体力')
 
   const virtualIcons = {
     keItemId: keItem?.typeId || '',
@@ -336,9 +336,10 @@ export function buildActivityDungeonsFile() {
     moneyItemId: moneyItem?.typeId || '',
     moneyName: text(moneyItem?.name) || '银币',
     moneyIcon: text(moneyItem?.img),
-    tiItemId: tiItem?.typeId || 'item_10012',
-    tiName: text(tiItem?.name) || '理智',
-    tiIcon: text(tiItem?.img)
+    tiItemId: tiItem?.typeId || 'item_00005',
+    tiName: text(tiItem?.name) || '体力',
+    tiIcon: text(tiItem?.img) || 'item_00005',
+    tiQuality: Number(tiItem?.quality) || 5
   }
 
   const dungeons = []

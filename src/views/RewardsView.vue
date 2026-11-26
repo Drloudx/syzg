@@ -109,7 +109,8 @@
       v-else-if="pvpRewards"
       class="rewards-content"
       :class="{
-        'paper-panel': (currentMainCat === 'pvp' && currentSubCat !== 'exchange') || (currentMainCat === 'hidden' && currentHiddenType === 'rules'),
+        'paper-panel': currentMainCat === 'pvp' || (currentMainCat === 'hidden' && currentHiddenType === 'rules'),
+        'is-pvp-panel': currentMainCat === 'pvp',
         'is-rank-tab': currentMainCat === 'pvp' && ['rank', 'tier', 'battle'].includes(currentSubCat)
       }"
       id="rewardsScroll"
@@ -150,21 +151,15 @@
         </div>
         <UiEmptyState v-if="currentSubCat === 'rules' && !matchesRewardQuery(pvpRewards.rules, '挑战赛 赛事 赛区 规则 追加挑战')" text="未找到匹配的赛事规则" />
 
-        <!-- 兑换奖励（与 /exchange 页面完全统一的紧凑卡片网格规范） -->
+        <!-- 兑换奖励（复用通用 UiCompactShopGrid 紧凑双列商店样式） -->
         <div v-if="currentSubCat === 'exchange'" class="reward-list-container">
-          <div v-if="filteredPvpExchanges.length" class="exchange-list">
-            <UiExchangeTrade
-              v-for="ex in filteredPvpExchanges"
-              :key="ex.id"
-              :id="`pvpExchange-${ex.id}`"
-              :title="pvpExchangeTitle(ex)"
-              :reward-items="flattenPvpItems(ex.rewardItems)"
-              :consume-items="flattenPvpItems(ex.consumeItems)"
-              :limit-text="pvpLimitText(ex.limitCondition)"
-              compact
-              @item-click="openItem"
-            />
-          </div>
+          <UiCompactShopGrid
+            v-if="pvpCompactShopItems.length"
+            :items="pvpCompactShopItems"
+            card-class="pvp-shop-card"
+            cost-class="pvp-cost-pill"
+            @item-click="openItem"
+          />
           <UiEmptyState v-else text="未找到匹配的兑换奖励" />
         </div>
 
@@ -182,7 +177,7 @@
               flush
             >
               <div class="row-left">
-                <div class="tier-cell">
+                <div class="tier-cell" :class="`is-tier-${getTierBand(tier)}`">
                   <img
                     :src="getTierIcon(tier)"
                     :alt="tier.name"
@@ -237,7 +232,9 @@
               flush
             >
               <div class="row-left">
-                <span class="row-title">{{ rank.end === -1 ? `${rank.start}名以后` : `${rank.start} ~ ${rank.end}名` }}</span>
+                <span class="rank-badge">
+                  {{ rank.end === -1 ? `${rank.start}名以后` : `${rank.start} ~ ${rank.end}名` }}
+                </span>
               </div>
               <template #right>
                 <div class="row-right flex-start">
@@ -527,7 +524,7 @@ import {
   UiFilterRow,
   UiListRow,
   UiListPanel,
-  UiExchangeTrade,
+  UiCompactShopGrid,
   UiRewardCard,
   UiImageLightbox,
   UiSection,
@@ -549,7 +546,7 @@ const loading = ref(true)
 const pvpRewards = ref(null)
 
 const mainCategories = [
-  { id: 'pvp', name: '挑战赛奖励' },
+  { id: 'pvp', name: '挑战赛' },
   { id: 'hidden', name: '被隐藏的物品' },
   { id: 'slot_cost', name: '育室槽位消耗' }
 ]
@@ -732,8 +729,36 @@ const matchesRewardQuery = (value, extra = '') => {
 const filteredPvpExchanges = computed(() =>
   (pvpRewards.value?.exchange?.[currentExchangeCat.value] || []).filter(exchange => matchesRewardQuery(exchange, pvpExchangeTitle(exchange)))
 )
+const pvpCompactShopItems = computed(() => {
+  trackItemData()
+  return filteredPvpExchanges.value.map(ex => {
+    const reward = flattenPvpItems(ex.rewardItems)[0]
+    const cachedReward = reward?.typeId ? getCachedItem(reward.typeId) : null
+    const costs = flattenPvpItems(ex.consumeItems).map(c => ({
+      id: c.typeId,
+      name: c.name,
+      iconUrl: c.icon,
+      num: c.num
+    }))
+    return {
+      id: ex.id,
+      domId: `pvpExchange-${ex.id}`,
+      name: reward?.name || '兑换物品',
+      limitText: pvpLimitText(ex.limitCondition),
+      limitNum: ex.limitCondition?.num,
+      rewardItem: reward ? {
+        id: reward.typeId,
+        name: reward.name,
+        icon: cachedReward?.img || '',
+        quality: reward.quality,
+        num: reward.num
+      } : null,
+      costs
+    }
+  })
+})
 const filteredPvpTiers = computed(() =>
-  (pvpRewards.value?.tier || []).filter(tier => matchesRewardQuery(tier, tier.name))
+  [...(pvpRewards.value?.tier || [])].reverse().filter(tier => matchesRewardQuery(tier, tier.name))
 )
 const filteredPvpRanks = computed(() =>
   (pvpRewards.value?.rank || []).filter(rank => matchesRewardQuery(rank, `${rank.start} ${rank.end} 排名`))
@@ -1009,21 +1034,20 @@ const getIcon = (typeId) => {
   return getImageUrl('/ui/visibility-off.svg')
 }
 
+const getTierBand = (tier) => {
+  const name = tier?.name || ''
+  if (name.includes('灰羽')) return '1'
+  if (name.includes('黑羽')) return '2'
+  if (name.includes('青翎')) return '3'
+  if (name.includes('蓝翎')) return '4'
+  if (name.includes('赤翎')) return '5'
+  if (name.includes('白翼')) return '6'
+  const id = Number(tier?.id || tier?.typeOrder) || 1
+  return id <= 4 ? '1' : id <= 8 ? '2' : id <= 12 ? '3' : id <= 16 ? '4' : id <= 20 ? '5' : '6'
+}
+
 const getTierIcon = (tier) => {
-  let img = tier?.img
-  if (!img) {
-    const name = tier?.name || ''
-    if (name.includes('灰羽')) img = '1'
-    else if (name.includes('黑羽')) img = '2'
-    else if (name.includes('青翎')) img = '3'
-    else if (name.includes('蓝翎')) img = '4'
-    else if (name.includes('赤翎')) img = '5'
-    else if (name.includes('白翼')) img = '6'
-    else {
-      const id = Number(tier?.id || tier?.typeOrder) || 1
-      img = id <= 4 ? '1' : id <= 8 ? '2' : id <= 12 ? '3' : id <= 16 ? '4' : id <= 20 ? '5' : '6'
-    }
-  }
+  const img = tier?.img || getTierBand(tier)
   return getImageUrl(`/PvpPanel_Atlas/arena_dan_${img}_s.webp`)
 }
 
@@ -1117,10 +1141,28 @@ const closePrevImg = () => {
   min-height: 0;
 }
 
-/* 非兑换页签：段位奖励、战斗结算、赛事规则保留 paper-panel 羊皮纸底色与内边距 */
+/* 挑战赛板块与「被隐藏物品刷新机制」统一使用 #efe2c4 底色 + --paper-soft 卡片层级 */
 .rewards-content.paper-panel {
-  background: var(--paper);
-  padding: 12px 14px;
+  background: var(--modal-bg, #efe2c4);
+  padding: 14px;
+}
+
+.dark-mode .rewards-content.paper-panel,
+.dark-theme .rewards-content.paper-panel {
+  background: var(--modal-bg, #261b12);
+}
+
+.rewards-content.paper-panel.is-pvp-panel {
+  --pvp-th-bg: rgba(143, 115, 81, 0.14);
+  --pvp-row-even: rgba(143, 115, 81, 0.05);
+  --pvp-mode-bg: rgba(143, 115, 81, 0.14);
+}
+
+.dark-mode .rewards-content.paper-panel.is-pvp-panel,
+.dark-theme .rewards-content.paper-panel.is-pvp-panel {
+  --pvp-th-bg: rgba(0, 0, 0, 0.24);
+  --pvp-row-even: rgba(24, 17, 11, 0.35);
+  --pvp-mode-bg: rgba(127, 174, 169, 0.16);
 }
 
 /* 排名/段位/战斗结算奖励：表头和列表无缝贴合外层 paper-panel 边框，消除顶部阴影缝隙与两侧留白 */
@@ -1152,7 +1194,7 @@ const closePrevImg = () => {
 }
 
 .th-rank {
-  width: 140px;
+  width: 156px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -1175,11 +1217,7 @@ const closePrevImg = () => {
   }
 
   .th-rank {
-    width: 96px;
-  }
-
-  :deep(.ui-list-row.is-flush .ui-list-row__main) {
-    width: 96px;
+    width: 116px;
   }
 
   .th-reward {
@@ -1191,11 +1229,19 @@ const closePrevImg = () => {
   width: 100%;
   padding: 0;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .pvp-rule-copy {
   display: grid;
   gap: 8px;
+  padding: 12px 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(62, 42, 20, 0.05);
 }
 
 .pvp-rule-copy p {
@@ -1203,36 +1249,40 @@ const closePrevImg = () => {
   margin: 0;
   padding-left: 16px;
   color: var(--text-main);
-  font-size: 14px;
-  line-height: 1.75;
+  font-size: 13.5px;
+  line-height: 1.7;
 }
 
 .pvp-rule-copy p::before {
   content: '';
   position: absolute;
-  top: 0.68em;
+  top: 0.65em;
   left: 2px;
   width: 6px;
   height: 6px;
-  background: var(--accent-bright);
+  background: var(--accent-ink);
   transform: rotate(45deg);
 }
 
 .pvp-purchase-rule {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-top: 1px dashed var(--border-soft);
-  border-bottom: 1px dashed var(--border-soft);
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--accent-ink);
+  border-radius: 6px;
   color: var(--text-muted);
   font-size: 13px;
+  font-weight: 600;
 }
 
 .pvp-purchase-rule strong {
   color: var(--text-main);
+  font-weight: 700;
   text-align: right;
 }
 
@@ -1244,44 +1294,45 @@ const closePrevImg = () => {
 
 .pvp-area-rule {
   min-width: 0;
-  padding: 12px;
-  background: rgba(217, 198, 166, 0.62);
-  border: 1px solid var(--border-faint);
-  border-radius: 6px;
+  padding: 12px 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(62, 42, 20, 0.05);
 }
 
 .pvp-area-rule__head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   padding-bottom: 7px;
-  margin-bottom: 7px;
-  border-bottom: 1px solid var(--border-faint);
+  margin-bottom: 8px;
+  border-bottom: 1px dashed var(--border-faint);
 }
 
 .pvp-area-rule h4 {
   margin: 0;
   color: var(--text-main);
-  font-size: 15px;
+  font-size: 14.5px;
 }
 
 .pvp-area-rule__head span {
+  padding: 1px 7px;
+  border-radius: 4px;
+  background: var(--pvp-mode-bg, rgba(143, 115, 81, 0.14));
   color: var(--accent-ink);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   text-align: right;
+  white-space: nowrap;
 }
 
 .pvp-area-rule p {
   margin: 0;
-  color: var(--text-muted);
+  color: var(--text-main);
   font-size: 13px;
   line-height: 1.65;
-}
-
-.dark-mode .pvp-area-rule {
-  background: rgba(35, 26, 17, 0.62);
 }
 
 /* 被隐藏物品 / 偶遇事件：刷新机制与探索规则 */
@@ -1321,10 +1372,6 @@ const closePrevImg = () => {
 
 .hidden-rule-card--wide {
   grid-column: 1 / -1;
-}
-
-.dark-mode .hidden-rule-card {
-  background: rgba(35, 26, 17, 0.72);
 }
 
 .hidden-rule-card__head {
@@ -1403,21 +1450,6 @@ const closePrevImg = () => {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* 兑换列表：与 /exchange 页面完全统一的紧凑多列网格规范 */
-.exchange-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 14px 10px;
-  min-width: 0;
-}
-
-@media (max-width: 640px) {
-  .exchange-list {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px 6px;
-  }
-}
-
 /* 列布局 */
 .row-left {
   display: flex;
@@ -1457,11 +1489,17 @@ const closePrevImg = () => {
 }
 
 :deep(.ui-list-panel__header) {
-  padding: 6px 18px;
+  padding: 8px 18px;
+  background: var(--pvp-th-bg, rgba(143, 115, 81, 0.14));
+  color: var(--text-main);
 }
 
 :deep(.ui-list-row.is-flush) {
   padding: 10px 18px;
+}
+
+:deep(.ui-list-row.is-flush:nth-child(even)) {
+  background-color: var(--pvp-row-even, rgba(143, 115, 81, 0.06));
 }
 
 :deep(.ui-list-row.is-flush) .items-flex {
@@ -1469,18 +1507,31 @@ const closePrevImg = () => {
 }
 
 :deep(.ui-list-row.is-flush) .ui-reward-card {
-  padding: 6px 10px;
-  gap: 8px;
+  padding: 6px 11px 6px 7px;
+  gap: 9px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(62, 42, 20, 0.07);
+}
+
+:deep(.ui-list-row.is-flush) .ui-reward-card:hover {
+  border-color: var(--accent-bright);
+  box-shadow: 0 3px 8px rgba(62, 42, 20, 0.13);
 }
 
 :deep(.ui-list-row.is-flush) .ui-reward-card__icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
 }
 
 :deep(.ui-list-row.is-flush) .ui-reward-card__icon img {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
+}
+
+:deep(.ui-list-row.is-flush) .ui-list-row__main {
+  width: 156px;
 }
 
 :deep(.ui-list-row.is-flush) .row-left {
@@ -1497,29 +1548,67 @@ const closePrevImg = () => {
 }
 
 :deep(.ui-list-row.is-flush) .ui-reward-card__name {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 700;
+  color: var(--text-main);
 }
 
 :deep(.ui-list-row.is-flush) .ui-reward-card__qty {
   font-size: 12px;
   font-weight: 700;
+  color: var(--accent-ink);
 }
 
+/* 段位铭牌：沿用 --paper-soft 羊皮纸底 + 3px 左侧阶梯色条与极轻染色，柔和统一不抢戏 */
 .tier-cell {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
   width: 100%;
+  padding: 6px 9px 6px 8px;
+  border-radius: 7px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-left-width: 3px;
+  box-shadow: 0 1px 3px rgba(62, 42, 20, 0.06);
+  box-sizing: border-box;
+}
+
+.tier-cell.is-tier-1 {
+  border-left-color: #8a7f70;
+}
+
+.tier-cell.is-tier-2 {
+  border-left-color: #5b5349;
+}
+
+.tier-cell.is-tier-3 {
+  border-left-color: #4f8474;
+  background: linear-gradient(90deg, rgba(85, 138, 122, 0.12) 0%, var(--paper-soft) 55%);
+}
+
+.tier-cell.is-tier-4 {
+  border-left-color: var(--q3-text, #1768a8);
+  background: linear-gradient(90deg, rgba(63, 162, 255, 0.11) 0%, var(--paper-soft) 55%);
+}
+
+.tier-cell.is-tier-5 {
+  border-left-color: #b4533c;
+  background: linear-gradient(90deg, rgba(196, 84, 58, 0.11) 0%, var(--paper-soft) 55%);
+}
+
+.tier-cell.is-tier-6 {
+  border-left-color: var(--q5-text, #b15d00);
+  background: linear-gradient(90deg, rgba(255, 182, 77, 0.16) 0%, var(--paper-soft) 55%);
 }
 
 .tier-icon {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   flex-shrink: 0;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.28));
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
 }
 
 .tier-info {
@@ -1538,24 +1627,39 @@ const closePrevImg = () => {
   line-height: 1.2;
 }
 
+.tier-cell.is-tier-4 .tier-title { color: var(--q3-text); }
+.tier-cell.is-tier-5 .tier-title { color: #a13d27; }
+.tier-cell.is-tier-6 .tier-title { color: var(--q5-text); }
+
+.dark-mode .tier-cell.is-tier-5 .tier-title { color: #f0957f; }
+
 .tier-score-pill {
   display: inline-block;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
-  padding: 2px 7px;
-  border-radius: 10px;
-  background: rgba(43, 31, 21, 0.78);
-  color: #ffd78c;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(143, 115, 81, 0.15);
+  color: var(--text-muted);
   white-space: nowrap;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35);
-  letter-spacing: 0.3px;
 }
 
-.dark-mode .tier-score-pill {
-  background: rgba(18, 12, 7, 0.88);
-  color: #ffd78c;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.55);
+/* 排名区间标签：纯文本居中，去掉外框与底色避免表格内双层套框 */
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 4px 6px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  color: var(--text-main);
 }
 
 .battle-cell {
@@ -1563,8 +1667,12 @@ const closePrevImg = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 5px;
   width: 100%;
+  padding: 4px 6px;
+  border: none;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 .battle-cell .row-title {
@@ -1667,8 +1775,69 @@ const closePrevImg = () => {
     justify-content: flex-start;
   }
 
+  /* 手机端：挑战赛列表行改为「标题行 + 全宽奖励卡行」纵向堆叠，避免左列挤占空间导致奖励卡折行失衡 */
+  .rewards-content.is-rank-tab :deep(.ui-list-panel__header) {
+    display: none;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .ui-list-row__main {
+    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .row-left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .ui-list-row__right {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .items-flex {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .item-group {
+    display: contents;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .ui-reward-card {
+    padding: 5px 8px 5px 5px;
+    gap: 6px;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .ui-reward-card__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .ui-reward-card__icon img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .ui-reward-card__name {
+    font-size: 12px;
+  }
+
+  .rewards-content.is-rank-tab :deep(.ui-list-row.is-flush) .ui-reward-card__qty {
+    font-size: 11px;
+  }
+
   .tier-cell {
-    gap: 4px;
+    gap: 8px;
+    padding: 5px 10px 5px 8px;
   }
 
   .tier-icon {
@@ -1676,22 +1845,47 @@ const closePrevImg = () => {
     height: 28px;
   }
 
+  .tier-info {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: 8px;
+  }
+
   .tier-title {
-    font-size: 12px;
+    font-size: 13.5px;
   }
 
   .tier-score-pill {
-    font-size: 10px;
-    padding: 1px 4px;
+    font-size: 11px;
+    padding: 1px 7px;
+  }
+
+  .rank-badge {
+    justify-content: flex-start;
+    width: auto;
+    padding: 0;
+    font-size: 13.5px;
+  }
+
+  .battle-cell {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: auto;
+    gap: 8px;
+    padding: 0;
+    border: none;
+    background: transparent;
   }
 
   .battle-cell .row-title {
-    font-size: 12px;
+    font-size: 13.5px;
   }
 
   .battle-score-pill {
-    font-size: 10px;
-    padding: 1px 5px;
+    font-size: 11px;
+    padding: 1px 7px;
   }
 }
 
@@ -1782,16 +1976,16 @@ const closePrevImg = () => {
   background: rgba(217, 198, 166, 0.62);
 }
 
-/* 育室槽位消耗 */
+/* 育室槽位消耗：对齐全站词条/挑战赛暖羊皮纸层级（--modal-bg 外卡 + --paper-soft 内栏） */
 .slot-cost-row {
-  background-color: var(--paper-soft) !important;
+  background-color: var(--modal-bg, #efe2c4) !important;
   border: 1px solid var(--border-soft);
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 .dark-mode .slot-cost-row {
-  background-color: var(--paper-soft) !important;
+  background-color: var(--modal-bg, #261b12) !important;
   border-color: var(--border-soft);
 }
 
@@ -1817,7 +2011,7 @@ const closePrevImg = () => {
 }
 
 .slot-column-card {
-  background: var(--input-bg, #f3ead5);
+  background: var(--paper-soft);
   border: 1px solid var(--border-soft);
   border-radius: 6px;
   padding: 14px 16px;
@@ -1900,7 +2094,7 @@ const closePrevImg = () => {
 }
 
 .dark-mode .slot-column-card {
-  background: rgba(30, 22, 15, 0.6);
+  background: var(--paper-soft);
   border-color: var(--border-soft);
 }
 

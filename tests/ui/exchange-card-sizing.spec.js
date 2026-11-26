@@ -1,79 +1,67 @@
 import { expect, test } from '@playwright/test'
 import { enableDarkMode } from '../helpers/theme.mjs'
 
-// 本用例逐张比对 4 个分类下的全部卡片几何与图标解码结果，累计耗时稳定超过默认 45s 预算
-// （失败点在最后一步而不是任何断言），因此单独放宽超时，不改断言强度。
+// 本用例逐张比对 5 个分类下的卡片几何、图片解码、以及商品/消耗点击弹窗跳转，累计耗时较长
+// 因此单独放宽超时，不改断言强度。
 test.setTimeout(150_000)
 
-test('ordinary exchanges keep uniform frames with single-line titles and balanced icon spacing', async ({ page }, testInfo) => {
+async function dismissModals(page) {
+  for (let i = 0; i < 10; i++) {
+    const clicked = await page.evaluate(() => {
+      const btn = [...document.querySelectorAll('.ui-modal-overlay.is-teleported .ui-modal-close')]
+        .find(el => el.getClientRects().length > 0)
+      if (!btn) return false
+      btn.click()
+      return true
+    })
+    if (!clicked) break
+    await page.waitForTimeout(200)
+  }
+}
+
+test('ordinary exchanges keep uniform compact shop cards with balanced icon spacing and clickable costs', async ({ page }, testInfo) => {
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto('/#/exchange?cat=shop&sub=keShop')
-  for (let i = 0; i < 10; i++) {
-    const close = page.locator('.ui-modal-overlay.is-teleported .ui-modal-close:visible').first()
-    if (!await close.count()) break
-    await close.click()
-  }
-  const shopCard = page.locator('.is-shop').first()
+  await dismissModals(page)
+  const shopCard = page.locator('.ui-compact-shop-card').first()
   await expect(shopCard).toBeVisible()
   const measure = card => card.evaluate(el => {
     const frame = el.getBoundingClientRect()
-    const relativeBox = selector => {
-      const rect = el.querySelector(selector).getBoundingClientRect()
-      return { width: rect.width, height: rect.height, top: rect.top - frame.top }
-    }
+    const icon = el.querySelector('.ui-compact-shop-card__icon').getBoundingClientRect()
     return {
-      width: frame.width, height: frame.height,
-      title: relativeBox('h3'),
-      icon: relativeBox('.ui-exchange-trade__item--reward img'),
-      reward: relativeBox('.ui-exchange-trade__reward-stage'),
-      price: relativeBox('.ui-exchange-trade__consume-footer')
+      width: frame.width,
+      height: frame.height,
+      iconWidth: icon.width
     }
   })
   const reference = await measure(shopCard)
-  expect(Math.abs(reference.height - reference.width * 4 / 3)).toBeLessThan(1)
+  expect(Math.round(reference.iconWidth)).toBe(testInfo.project.name === 'mobile' ? 52 : 72)
   await page.screenshot({ path: testInfo.outputPath('shop-size-reference.png'), fullPage: true })
 
   await page.getByRole('button', { name: '委托兑换', exact: true }).click()
-  const cards = page.locator('.is-compact')
+  const cards = page.locator('.ui-compact-shop-card')
   await expect(cards.first()).toBeVisible()
-  const ordinaryReference = await measure(cards.first())
   const bounds = await cards.evaluateAll(elements => elements.map(el => {
     const r = el.getBoundingClientRect()
     return { top: r.top, width: r.width, height: r.height }
   }))
   expect(bounds.length).toBeGreaterThan(6)
   const columns = bounds.filter(rect => Math.abs(rect.top - bounds[0].top) < 1).length
-  expect(columns).toBe(testInfo.project.name === 'mobile' ? 4 : 6)
+  expect(columns).toBe(2)
   for (const card of await cards.all()) {
     const actual = await measure(card)
-    for (const field of ['width', 'height']) {
-      expect(Math.abs(actual[field] - reference[field])).toBeLessThan(1)
-    }
-    for (const part of ['title', 'reward', 'price']) {
-      for (const field of ['width', 'height', 'top']) {
-        expect(Math.abs(actual[part][field] - ordinaryReference[part][field]), `${part}.${field}`).toBeLessThan(1)
-      }
-    }
-    const title = card.locator('h3')
-    await expect(title).toHaveAttribute('title', await title.textContent())
-    expect(await title.evaluate(el => el.scrollHeight <= el.clientHeight + 1)).toBe(true)
-    expect(actual.title.top + actual.title.height).toBeLessThan(actual.reward.top)
-    expect(actual.reward.top + actual.reward.height).toBeLessThanOrEqual(actual.price.top + 1)
-    await expect.poll(() => card.locator('.ui-exchange-trade__item--reward img').evaluate(img => img.naturalWidth)).toBeGreaterThan(0)
+    expect(Math.abs(actual.width - reference.width)).toBeLessThan(1)
+    expect(Math.abs(actual.iconWidth - reference.iconWidth)).toBeLessThan(1)
+    await expect.poll(() => card.locator('.ui-item-card__icon').evaluate(img => img.naturalWidth)).toBeGreaterThan(0)
   }
-  await expect(cards.first().locator('h3')).toHaveText('契约书×1')
-  const longTitle = cards.locator('h3').filter({ hasText: '木架盆栽制作图' }).first()
-  expect(await longTitle.evaluate(el => el.clientHeight <= parseFloat(getComputedStyle(el).lineHeight) + 1)).toBe(true)
-  await expect(cards.locator('.ui-exchange-trade__label')).toHaveCount(0)
-  await expect(cards.locator('.ui-exchange-trade__item--reward .ui-exchange-trade__item-count')).toHaveCount(0)
-  expect(await cards.first().locator('.ui-exchange-trade__item--reward').evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgba(0, 0, 0, 0)')
+  await expect(cards.first().locator('.ui-compact-shop-card__title')).toHaveText('契约书')
   expect(await page.locator('.exchange-page').evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true)
   await page.screenshot({ path: testInfo.outputPath('ordinary-uniform.png'), fullPage: true })
   await enableDarkMode(page)
   await page.screenshot({ path: testInfo.outputPath('ordinary-dark.png'), fullPage: true })
 
-  await cards.first().locator('.ui-exchange-trade__item--reward').click()
+  await cards.first().click()
   await expect(page).toHaveURL(/itemId=item_20004/)
   const modal = page.locator('.app-main > .ui-modal-host > .ui-modal-overlay')
   await expect(modal).toBeVisible()
@@ -81,16 +69,19 @@ test('ordinary exchanges keep uniform frames with single-line titles and balance
   await expect(page).toHaveURL(/cat=entrust/)
   await expect(modal).toBeHidden()
 
-  for (const category of ['种子兑换', '兔子商人', '活跃兑换']) {
+  await cards.first().locator('.ui-compact-shop-cost.is-clickable').click()
+  await expect(page).toHaveURL(/itemId=item_29101/)
+  await expect(modal).toBeVisible()
+  await modal.locator('.ui-modal-close').click()
+  await expect(modal).toBeHidden()
+
+  for (const category of ['种子购买', '地牢商人', '活跃兑换']) {
     await page.getByRole('button', { name: category, exact: true }).click()
     await expect(cards.first()).toBeVisible()
-    await expect(cards.locator('.ui-exchange-trade__meta')).toHaveCount(0)
     for (const card of await cards.all()) {
       const actual = await measure(card)
       expect(Math.abs(actual.width - reference.width)).toBeLessThan(1)
-      expect(Math.abs(actual.height - reference.height)).toBeLessThan(1)
-      expect(Math.abs(actual.reward.height - ordinaryReference.reward.height)).toBeLessThan(1)
-      await expect.poll(() => card.locator('.ui-exchange-trade__item--reward img').evaluate(img => img.naturalWidth)).toBeGreaterThan(0)
+      await expect.poll(() => card.locator('.ui-item-card__icon').evaluate(img => img.naturalWidth)).toBeGreaterThan(0)
     }
     await page.screenshot({ path: testInfo.outputPath(`uniform-${category}.png`), fullPage: true })
   }
@@ -99,16 +90,12 @@ test('ordinary exchanges keep uniform frames with single-line titles and balance
 
 test('refresh rules move out of seed and rabbit cards and preserve share links and filters', async ({ page }, testInfo) => {
   await page.goto('/#/exchange?cat=seed&sub=random&view=rules')
-  for (let i = 0; i < 10; i++) {
-    const close = page.locator('.ui-modal-overlay.is-teleported .ui-modal-close:visible').first()
-    if (!await close.count()) break
-    await close.click()
-  }
+  await dismissModals(page)
   const panel = page.locator('.exchange-rules')
   const rulesButton = page.getByRole('button', { name: '刷新规则', exact: true })
   await expect(panel).toBeVisible()
   await expect(rulesButton).toHaveClass(/is-active/)
-  await expect(page.locator('.ui-exchange-trade')).toHaveCount(0)
+  await expect(page.locator('.ui-compact-shop-card')).toHaveCount(0)
   await expect(panel).toContainText('每池 5 选 2')
   await expect(panel).toContainText('金铃草种子')
   await expect(panel).toContainText('完成《往日的阴影》后解锁')
@@ -117,16 +104,16 @@ test('refresh rules move out of seed and rabbit cards and preserve share links a
   await page.screenshot({ path: testInfo.outputPath('seed-rules-tab.png'), fullPage: true })
   await page.getByRole('button', { name: '固定商品', exact: true }).click()
   await expect(panel).toHaveCount(0)
-  await expect(page.locator('.is-compact')).toHaveCount(4)
+  await expect(page.locator('.ui-compact-shop-card')).toHaveCount(4)
   await expect(page.locator('.exchange-summary, .ui-exchange-trade__meta')).toHaveCount(0)
   await expect(page).not.toHaveURL(/view=rules/)
 
-  await page.getByRole('button', { name: '兔子商人', exact: true }).click()
+  await page.getByRole('button', { name: '地牢商人', exact: true }).click()
   await expect(page.locator('.filter-panel').getByText('子类：', { exact: true })).toHaveCount(0)
   await expect(page.getByRole('button', { name: '全部候选', exact: true })).toHaveCount(1)
   await expect(rulesButton).toHaveCount(1)
   await page.getByRole('button', { name: '白', exact: true }).click()
-  await expect(page.locator('.is-compact')).toHaveCount(3)
+  await expect(page.locator('.ui-compact-shop-card')).toHaveCount(3)
   await rulesButton.click()
   await expect(panel).toBeVisible()
   await expect(panel).toContainText('每次共出现 10 项')
@@ -141,10 +128,10 @@ test('refresh rules move out of seed and rabbit cards and preserve share links a
   await page.screenshot({ path: testInfo.outputPath('rabbit-rules-dark.png'), fullPage: true })
   await page.getByRole('button', { name: '白', exact: true }).click()
   await expect(panel).toHaveCount(0)
-  await expect(page.locator('.is-compact')).toHaveCount(3)
+  await expect(page.locator('.ui-compact-shop-card')).toHaveCount(3)
   await page.getByRole('button', { name: '活跃兑换', exact: true }).click()
   await expect(page.locator('.filter-panel').getByText('子类：', { exact: true })).toHaveCount(0)
   await expect(page.getByRole('button', { name: 's1', exact: true })).toHaveCount(0)
   await expect(rulesButton).toHaveCount(0)
-  await expect(page.locator('.is-compact')).toHaveCount(16)
+  await expect(page.locator('.ui-compact-shop-card')).toHaveCount(16)
 })

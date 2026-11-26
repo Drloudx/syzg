@@ -23,7 +23,7 @@ export const NAV_ROUTES = [
   { name: '事件图鉴', path: '/events', icon: '/ui/mtl1.webp' },
   { name: '副本图鉴', path: '/dungeons', icon: '/ui/map_r_fb_03.webp' },
   { name: '关卡图鉴', path: '/chapters', icon: '/ui/stage_crystal.webp' },
-  { name: '兑换', path: '/exchange', icon: '/ui/map_r_fb_19.webp' },
+  { name: '兑换商店', path: '/exchange', icon: '/ui/map_r_fb_19.webp' },
   { name: '货运站', path: '/freight', icon: '/ui/cart_wagon.webp' },
   { name: '日常计划', path: '/daily', icon: '/ui/plan02.webp' },
   { name: '神匠之塔', path: '/tower', icon: '/ui/item_25002.webp' },
@@ -62,9 +62,9 @@ export const NAV_CATEGORY_DEFINITIONS = [
     adminTitle: '其他功能',
     /*
      * 顺序即渲染顺序（`getGroupedNavRoutes` 按本数组逐项取）。
-     * 当前：伙伴邮件 → 货运站 → 词条 → 兑换 → 其他。
+     * 当前：伙伴邮件 → 兑换商店 → 货运站 → 词条 → 其他。
      */
-    paths: ['/partner-mails', '/freight', '/glossary', '/exchange', '/misc']
+    paths: ['/partner-mails', '/exchange', '/freight', '/glossary', '/misc']
   }
 ]
 

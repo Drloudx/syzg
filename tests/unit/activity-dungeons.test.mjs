@@ -36,10 +36,12 @@ test('活动副本解析器：开放过滤、20层数据、实机缩放与兑换
   assert.equal(bossMon.levelScale, rawL19.battleLevelScale)
   assert.equal(bossMon.levelScaleHp, rawL19.battleLevelScaleHp)
 
-  // 兑换池（ex01）含理智与银币消耗条目
+  // 兑换池（ex01）含体力与银币消耗条目
   assert.equal(sp1.shop.length, 20)
   const tiItem = sp1.shop.find(s => s.id === 'ex01001')
   assert.equal(tiItem?.costs?.[0]?.kind, 'ti')
+  assert.equal(tiItem?.costs?.[0]?.id, 'item_00005')
+  assert.equal(tiItem?.costs?.[0]?.name, '体力')
   assert.equal(tiItem?.costs?.[0]?.num, 35)
   const moneyItem = sp1.shop.find(s => s.id === 'ex01012')
   assert.equal(moneyItem?.costs?.[0]?.kind, 'money')

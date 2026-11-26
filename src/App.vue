@@ -415,7 +415,7 @@ const PAGE_TITLES = {
   '/achievement': '成就查询',
   '/tasks': '任务图鉴',
   '/events': '事件图鉴',
-  '/exchange': '兑换',
+  '/exchange': '兑换商店',
   '/petseggs': '魔物收益',
   '/dungeons': '副本图鉴',
   '/chapters': '关卡图鉴',
@@ -614,8 +614,8 @@ function addRecentComment(comment) {
 }
 
 
-// 站内切页时刷新右栏。**绕过节流**：用户切页是明确意图，且服务端共享缓存让开销可控
-watch(() => route.fullPath, () => loadRecentDiscussions({ fresh: true }))
+// 跨页面跳转时刷新右栏（只监听 route.path，避免同页切分类/筛选/弹窗参数时无意义打 /api/recent）
+watch(() => route.path, () => loadRecentDiscussions({ fresh: true }))
 // 本机发表评论后**直接把那一条插进右栏**（不重新拉取，列表不重建、不闪）
 watch(commentPostedAt, () => addRecentComment(lastPostedComment.value))
 

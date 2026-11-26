@@ -574,39 +574,12 @@
           </div>
         </div>
 
-        <div class="ad-shop-grid">
-          <div v-for="entry in activeDungeon.shop" :key="entry.id" class="ad-shop-card">
-            <div class="ad-shop-card-icon">
-              <UiItemCard
-                v-if="entry.rewardItem"
-                :name="entry.rewardItem.name"
-                :img="getImageUrl(`/Common_ItemIcon/${entry.rewardItem.icon}.webp`)"
-                :quality="entry.rewardItem.quality"
-                :count="entry.rewardItem.num"
-                @click="openItem(entry.rewardItem.id)"
-              />
-            </div>
-            <div class="ad-shop-card-info">
-              <div class="ad-shop-card-head">
-                <span class="ad-shop-card-title">{{ entry.rewardItem?.name || entry.name }}</span>
-                <span class="ad-shop-limit">{{ entry.limitText }}</span>
-              </div>
-              <p class="ad-shop-card-desc">{{ entry.rewardItem?.desc || '活动秘境限定兑换物品。' }}</p>
-              <div class="ad-shop-costs">
-                <span class="ad-cost-label">兑换消耗：</span>
-                <span v-for="c in entry.costs" :key="`${entry.id}-${c.id}`" class="ad-cost-pill">
-                  <span
-                    v-if="c.icon"
-                    class="ad-mini-icon"
-                    :style="{ '--icon-url': cssUrl(getImageUrl(`/images/Common_ItemIcon/${c.icon}.webp`)) }"
-                    aria-hidden="true"
-                  ></span>
-                  <span>{{ c.name }} ×{{ c.num }}</span>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <UiCompactShopGrid
+          :items="activeDungeon.shop"
+          card-class="ad-shop-card"
+          cost-class="ad-cost-pill"
+          @item-click="openItem"
+        />
       </div>
     </UiModal>
 
@@ -632,7 +605,7 @@ import UiSearchInput from '../components/ui/UiSearchInput.vue'
 import UiEmptyState from '../components/ui/UiEmptyState.vue'
 import UiTag from '../components/ui/UiTag.vue'
 import UiModal from '../components/ui/UiModal.vue'
-import UiItemCard from '../components/ui/UiItemCard.vue'
+import UiCompactShopGrid from '../components/ui/UiCompactShopGrid.vue'
 import UiSection from '../components/ui/UiSection.vue'
 import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
 import ActivityDungeonEventModal from '../components/activity/ActivityDungeonEventModal.vue'
@@ -1809,90 +1782,6 @@ onBeforeUnmount(() => {
   background-repeat: no-repeat;
   background-position: center;
 }
-
-.ad-shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 10px;
-}
-
-.ad-shop-card {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.34));
-  background: var(--ad-shop-card-bg, rgba(232, 218, 193, 0.9));
-}
-
-.ad-shop-card-icon {
-  width: 72px;
-  flex-shrink: 0;
-}
-
-.ad-shop-card-info {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.ad-shop-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-}
-
-.ad-shop-card-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-main, #3e2a14);
-}
-
-.ad-shop-limit {
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: rgba(143, 115, 81, 0.14);
-  color: var(--ad-gold-text, #7a4f1d);
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.ad-shop-card-desc {
-  margin: 0;
-  font-size: 12px;
-  color: var(--text-muted, #7b6348);
-  line-height: 1.45;
-}
-
-.ad-shop-costs {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: auto;
-}
-
-.ad-cost-label {
-  font-size: 11px;
-  color: var(--text-muted, #7b6348);
-  font-weight: 600;
-}
-
-.ad-cost-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--ad-cost-pill-bg, rgba(139, 90, 43, 0.13));
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-main, #4e3422);
-}
 </style>
 
 <style>
@@ -1922,7 +1811,5 @@ onBeforeUnmount(() => {
   --ad-active-color: #fff6e8;
   --ad-warn-bg: rgba(196, 64, 43, 0.22);
   --ad-warn-color: #f3a195;
-  --ad-shop-card-bg: rgba(52, 39, 27, 0.95);
-  --ad-cost-pill-bg: rgba(186, 140, 70, 0.22);
 }
 </style>

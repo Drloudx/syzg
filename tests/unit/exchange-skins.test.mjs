@@ -33,16 +33,19 @@ test('fashion shares the visible shop category and source links, while hidden an
   const index = buildOfficialExchangeIndex(maps)
   const categories = buildExchangeData(maps)
   assert.deepEqual(categories.map(category => category.key), ['shop'])
-  assert.deepEqual(categories[0].subs.map(sub => sub.key), ['coins', 'costumes'])
+  assert.deepEqual(categories[0].subs.map(sub => [sub.key, sub.module]), [
+    ['costumes', 'appearance'],
+    ['coins', 'exchange']
+  ])
   assert.equal(isVisibleExchange(maps.exchangeRes.itemExchange.hidden, index), false)
   assert.equal(isVisibleExchange(maps.exchangeRes.itemExchange.orphan, index), false)
   assert.deepEqual(getExchangeSourceMeta(maps.exchangeRes.itemExchange.costume, index), {
-    category: 'shop', categoryLabel: '商店积分', sub: 'costumes', subLabel: '时装'
+    category: 'shop', categoryLabel: '商城', sub: 'costumes', subLabel: '时装'
   })
 })
 
 test('skin cards follow shop foreign keys and the configured price without inventing account ownership', () => {
-  const card = buildExchangeData(maps)[0].subs[1].list[0]
+  const card = buildExchangeData(maps)[0].subs[0].list[0]
   assert.deepEqual(card.skin, {
     id: 'skinRef', heroId: 'heroRef', heroName: '真实角色', name: '真实时装',
     quality: 3, image: '/images/PackPane/shop_portrait.webp'
@@ -53,5 +56,12 @@ test('skin cards follow shop foreign keys and the configured price without inven
   assert.equal('owned' in card, false)
   const changed = structuredClone(maps)
   changed.consumeRes.datas.price.ke = 160
-  assert.equal(buildExchangeData(changed)[0].subs[1].list[0].consumeItems[0].num, 160)
+  assert.equal(buildExchangeData(changed)[0].subs[0].list[0].consumeItems[0].num, 160)
+
+  const withSkinCard = structuredClone(maps)
+  withSkinCard.skinRes.datas.skinRef.skinCard = 'skincard015a'
+  assert.equal(
+    buildExchangeData(withSkinCard)[0].subs[0].list[0].skin.image,
+    '/images/chara/skincard/skincard015a.webp'
+  )
 })

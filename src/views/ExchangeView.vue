@@ -16,6 +16,15 @@
         >{{ category.label }}</UiFilterPill>
       </UiFilterRow>
 
+      <UiFilterRow v-if="moduleOptions.length" class="exchange-filter-row" label="模块：">
+        <UiFilterPill
+          v-for="mod in moduleOptions"
+          :key="mod.key"
+          :active="!showRefreshRules && selectedModule === mod.key"
+          @click="selectModule(mod.key)"
+        >{{ mod.label }}</UiFilterPill>
+      </UiFilterRow>
+
       <UiFilterRow v-if="showSubFilter" class="exchange-filter-row" label="子类：">
         <UiFilterPill
           v-for="sub in currentSubs"
@@ -72,30 +81,43 @@
       </UiSection>
     </div>
 
-    <!-- 兑换列表（滚动容器 id 供回到顶部定位，懒加载每批 60 项） -->
-    <UiCardGrid v-else id="exchangeScroll">
-      <div class="exchange-list" :class="{
-        'exchange-list--pack': selectedCat === 'pack',
-        'exchange-list--shop': selectedCat === 'shop' && !displayedExchanges.some(ex => ex.skin),
-        'exchange-list--skin': displayedExchanges.some(ex => ex.skin)
-      }">
+    <!-- 兑换列表（滚动容器 id 供回到顶部定位，懒加载每批 20 项） -->
+    <UiCardGrid v-else id="exchangeScroll" class="exchange-content-panel paper-panel">
+      <div
+        v-if="useLegacyExchangeCards"
+        class="exchange-list"
+        :class="{
+          'exchange-list--pack': isPackView || selectedCat === 'pack',
+          'exchange-list--skin': displayedExchanges.some(ex => ex.skin)
+        }"
+      >
         <UiExchangeTrade
           v-for="ex in displayedExchanges"
           :key="ex.id"
           :title="exchangeTitle(ex)"
           :reward-items="ex.rewardItems"
           :consume-items="ex.consumeItems"
+          :price-text="ex.priceText || ''"
           :limit-text="ex.limitText"
           :meta-text="hasRefreshRules ? '' : ex.metaText"
           :pack-image="packImage(ex)"
+          :pack="isPackView"
+          :daily="selectedCat === 'pack'"
           :skin="ex.skin"
-          :shop="selectedCat === 'shop' && !ex.skin"
-          :compact="selectedCat !== 'shop' && selectedCat !== 'pack'"
+          :shop="false"
+          :compact="false"
           @item-click="goToItem"
         />
 
         <UiEmptyState v-if="filteredExchanges.length === 0" text="未找到符合条件的兑换" />
       </div>
+      <UiCompactShopGrid
+        v-else-if="compactShopItems.length"
+        class="exchange-compact-grid"
+        :items="compactShopItems"
+        @item-click="goToItem"
+      />
+      <UiEmptyState v-else class="exchange-empty" text="未找到符合条件的兑换" />
     </UiCardGrid>
 
     <UiBackToTop scroll-container="#exchangeScroll" />
@@ -112,6 +134,7 @@ import { isBlacklisted } from '../config/blacklist.js'
 import {
   UiBackToTop,
   UiCardGrid,
+  UiCompactShopGrid,
   UiEmptyState,
   UiExchangeTrade,
   UiFilterPill,
@@ -131,18 +154,19 @@ const errorMessage = ref('')
 
 /**
  * 子类筛选只在**确实有多个子类可选**时才显示。
- * 只有单一子类时（如「神匠之塔兑换」只有塔1、「符石合成」只有 Gem、「PVP兑换」只有 s1、
- * 「通用兑换」只有「无」），筛选行是死按钮、子类名又常是内部代号，没有信息量。
+ * 只有单一子类时（如「神匠之塔兑换」只有塔1、「符石合成」只有 Gem、「挑战赛兑换」只有 s1），
+ * 筛选行是死按钮、子类名又常是内部代号，没有信息量。
  * `syncSubs` 会自动把 selectedSub 指向唯一子类，故隐藏筛选不影响列表内容。
  * `tuzi` / `huoyue` 两个分类按分类隐藏子类筛选。
  */
 const showSubFilter = computed(() =>
   currentSubs.value.length > 1 && !['tuzi', 'huoyue'].includes(selectedCat.value))
 
-// 保留旧皮肤购买分享链接，同时迁移为商城的时装子类。
+// 保留旧皮肤购买分享链接，同时迁移为商城 -> 外观 -> 时装商店。
 const categoryFromQuery = query => query.cat === 'fashion' ? 'shop' : query.cat
 const subFromQuery = query => query.sub || (query.cat === 'fashion' ? 'fuZhuang' : null)
 const selectedCat = ref(categoryFromQuery(route.query) || '')
+const selectedModule = ref(route.query.mod || '')
 const selectedSub = ref(subFromQuery(route.query))
 const selectedRarity = ref(route.query.rarity || 'all')
 const searchQuery = ref(route.query.q || '')
@@ -153,7 +177,7 @@ const handleImgError = (e) => {
 }
 
 const exchangeTitle = (exchange) => {
-  // 游戏商城直接使用兑换名称，包含“银币×2000”等实际获得数量。
+  // 游戏商城直接使用配置名称，包含“银币×2000”“体力×60”等实际名称。
   if (selectedCat.value === 'shop' && !exchange?.skin && exchange?.name?.trim()) return exchange.name.trim()
   if (exchange?.displayName) return exchange.displayName
   const firstReward = exchange?.rewardItems?.[0]
@@ -162,17 +186,21 @@ const exchangeTitle = (exchange) => {
 }
 
 const packImage = (exchange) => {
-  if (currentCategory.value?.key !== 'pack' || exchange?.team !== 'pack') return ''
-  return getImageUrl(`/images/PackPane/shop_goods_${exchange.id}.webp`)
+  if (!isPackView.value || !exchange?.packImage) return ''
+  return getImageUrl(exchange.packImage)
+}
+
+const normalizeLegacyQuery = () => {
+  if (route.query.cat !== 'fashion') return false
+  router.replace({ query: { ...route.query, cat: 'shop', sub: subFromQuery(route.query) } })
+  return true
 }
 
 const loadExchangeData = async () => {
   isDataReady.value = false
   errorMessage.value = ''
   try {
-    if (route.query.cat === 'fashion') {
-      await router.replace({ query: { ...route.query, cat: 'shop', sub: subFromQuery(route.query) } })
-    }
+    normalizeLegacyQuery()
     const data = await fetchWithFallback('data/parsed/parsed-exchange.json')
     // Rune recipes now have their own catalog; also exclude them from older cached payloads.
     categories.value = (data || []).filter(category => category.key !== 'gem')
@@ -246,24 +274,64 @@ const formattedRuleGroups = computed(() => {
   })
 })
 
+const moduleOptions = computed(() => {
+  const cat = currentCategory.value
+  if (!cat?.subs?.length) return []
+  const seen = new Set()
+  const out = []
+  for (const sub of cat.subs) {
+    if (isBlacklisted(sub.label) || isBlacklisted(sub.key) || !sub.module || seen.has(sub.module)) continue
+    seen.add(sub.module)
+    out.push({ key: sub.module, label: sub.moduleLabel || sub.module })
+  }
+  return out
+})
+
 const syncSubs = () => {
   const cat = currentCategory.value
   if (cat && cat.subs && cat.subs.length) {
     // **子类也要过黑名单**：否则被隐藏的地区（如黑森林/霜烬平原）仍作为筛选按钮出现，
     // 点进去是空列表（条目本身会被 filteredExchanges 过滤掉）——按钮与内容不一致。
-    const subs = cat.subs.filter(sub => !isBlacklisted(sub.label) && !isBlacklisted(sub.key))
-    currentSubs.value = subs
-    if (!selectedSub.value || !subs.some(s => s.key === selectedSub.value)) {
-      selectedSub.value = subs[0] ? subs[0].key : null
+    const allSubs = cat.subs.filter(sub => !isBlacklisted(sub.label) && !isBlacklisted(sub.key))
+    const modules = moduleOptions.value
+    if (modules.length) {
+      const matched = selectedSub.value ? allSubs.find(s => s.key === selectedSub.value) : null
+      if (matched?.module) {
+        selectedModule.value = matched.module
+      } else if (!modules.some(m => m.key === selectedModule.value)) {
+        selectedModule.value = modules[0].key
+      }
+      const modSubs = allSubs.filter(s => s.module === selectedModule.value)
+      currentSubs.value = modSubs
+      if (!selectedSub.value || !modSubs.some(s => s.key === selectedSub.value)) {
+        selectedSub.value = modSubs[0] ? modSubs[0].key : null
+      }
+    } else {
+      selectedModule.value = ''
+      currentSubs.value = allSubs
+      if (!selectedSub.value || !allSubs.some(s => s.key === selectedSub.value)) {
+        selectedSub.value = allSubs[0] ? allSubs[0].key : null
+      }
     }
   } else {
+    selectedModule.value = ''
     currentSubs.value = []
     selectedSub.value = null
   }
 }
 
+const selectModule = (modKey) => {
+  selectedModule.value = modKey
+  selectedView.value = 'items'
+  const allSubs = (currentCategory.value?.subs || []).filter(sub => !isBlacklisted(sub.label) && !isBlacklisted(sub.key))
+  const modSubs = allSubs.filter(s => s.module === modKey)
+  currentSubs.value = modSubs
+  selectedSub.value = modSubs[0] ? modSubs[0].key : null
+}
+
 watch(selectedCat, () => {
   const isRouteNavigation = categoryFromQuery(route.query) === selectedCat.value
+  selectedModule.value = isRouteNavigation ? (route.query.mod || '') : ''
   selectedSub.value = isRouteNavigation ? subFromQuery(route.query) : null
   selectedRarity.value = isRouteNavigation ? (route.query.rarity || 'all') : 'all'
   selectedView.value = isRouteNavigation && route.query.view === 'rules' ? 'rules' : 'items'
@@ -271,23 +339,28 @@ watch(selectedCat, () => {
 })
 
 watch(
-  () => [route.query.cat, route.query.sub, route.query.rarity, route.query.q, route.query.view],
-  ([cat, sub, rarity, query, view]) => {
+  () => [route.query.cat, route.query.mod, route.query.sub, route.query.rarity, route.query.q, route.query.view],
+  ([cat, mod, sub, rarity, query, view]) => {
     if (!isDataReady.value) return
-    if (cat === 'fashion') {
-      router.replace({ query: { ...route.query, cat: 'shop', sub: subFromQuery(route.query) } })
-    }
+    normalizeLegacyQuery()
     sub = subFromQuery({ cat, sub })
-    cat = categoryFromQuery({ cat })
+    cat = categoryFromQuery({ cat, sub })
     searchQuery.value = query || ''
     selectedView.value = view === 'rules' ? 'rules' : 'items'
     const targetCategory = categories.value.some(category => category.key === cat) ? cat : categories.value[0]?.key
     if (targetCategory && selectedCat.value !== targetCategory) {
       selectedCat.value = targetCategory
     }
+    if (mod && moduleOptions.value.some(m => m.key === mod)) {
+      selectedModule.value = mod
+    }
+    if (sub) selectedSub.value = sub
     syncSubs()
-    if (sub && currentSubs.value.some(option => option.key === sub)) selectedSub.value = sub
-    else if (!currentSubs.value.some(option => option.key === selectedSub.value)) syncSubs()
+    const visibleAll = (currentCategory.value?.subs || []).filter(s => !isBlacklisted(s.label) && !isBlacklisted(s.key))
+    if (sub && visibleAll.some(option => option.key === sub)) {
+      selectedSub.value = sub
+      syncSubs()
+    }
     selectedRarity.value = rarityOptions.value.some(option => option.value === rarity) ? rarity : 'all'
   }
 )
@@ -335,6 +408,41 @@ const filteredExchanges = computed(() => {
 })
 
 const { displayedItems: displayedExchanges } = useLazyList(filteredExchanges, 20, '#exchangeScroll')
+
+const isPackView = computed(() =>
+  selectedCat.value === 'shop' && selectedModule.value === 'pack'
+)
+
+const useLegacyExchangeCards = computed(() =>
+  isPackView.value || selectedCat.value === 'pack' || displayedExchanges.value.some(ex => ex.skin)
+)
+
+const compactShopItems = computed(() => {
+  if (useLegacyExchangeCards.value) return []
+  return displayedExchanges.value.map(ex => {
+    const reward = ex.rewardItems?.[0]
+    const rewardId = reward?.typeId || ''
+    return {
+      id: ex.id,
+      name: reward?.name || exchangeTitle(ex),
+      limitText: ex.limitText || '',
+      isUnlimited: !ex.limitText || ex.limitText === '不限购',
+      rewardItem: reward ? {
+        id: rewardId,
+        name: reward.name || exchangeTitle(ex),
+        icon: reward.icon,
+        quality: reward.quality || 1,
+        num: reward.num ?? 1
+      } : null,
+      costs: (ex.consumeItems || []).map(cost => ({
+        id: cost.typeId,
+        name: cost.name,
+        icon: cost.icon,
+        num: cost.num ?? 1
+      }))
+    }
+  })
+})
 
 watch([selectedCat, selectedSub, selectedRarity, searchQuery, selectedView], () => {
   const query = { ...route.query }
@@ -412,10 +520,20 @@ const goToItem = (typeId) => {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 12px 14px;
+  padding: 14px;
   box-sizing: border-box;
   overflow-y: auto;
   width: 100%;
+}
+
+/* 刷新规则容器与卡片：对齐 /misc?tab=pvp&sub=rules 配色层级（#efe2c4 底 + --paper-soft 卡片） */
+.exchange-rules.paper-panel {
+  background: var(--modal-bg, #efe2c4);
+}
+
+.dark-mode .exchange-rules.paper-panel,
+.dark-theme .exchange-rules.paper-panel {
+  background: var(--modal-bg, #261b12);
 }
 
 @media (min-width: 1025px) {
@@ -427,6 +545,11 @@ const goToItem = (typeId) => {
 .exchange-rule-copy {
   display: grid;
   gap: 8px;
+  padding: 12px 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(62, 42, 20, 0.05);
 }
 
 .exchange-rule-copy p {
@@ -434,18 +557,18 @@ const goToItem = (typeId) => {
   margin: 0;
   padding-left: 16px;
   color: var(--text-main);
-  font-size: 14px;
-  line-height: 1.75;
+  font-size: 13.5px;
+  line-height: 1.7;
 }
 
 .exchange-rule-copy p::before {
   content: '';
   position: absolute;
-  top: 0.68em;
+  top: 0.65em;
   left: 2px;
   width: 6px;
   height: 6px;
-  background: var(--accent-bright);
+  background: var(--accent-ink);
   transform: rotate(45deg);
 }
 
@@ -457,48 +580,53 @@ const goToItem = (typeId) => {
 
 .exchange-area-rule {
   min-width: 0;
-  padding: 12px;
-  background: rgba(217, 198, 166, 0.62);
-  border: 1px solid var(--border-faint);
-  border-radius: 6px;
+  padding: 12px 14px;
+  background: var(--paper-soft);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(62, 42, 20, 0.05);
   display: flex;
   flex-direction: column;
 }
 
 .exchange-area-rule__head {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
   padding-bottom: 7px;
-  margin-bottom: 7px;
-  border-bottom: 1px dashed var(--border-soft);
+  margin-bottom: 8px;
+  border-bottom: 1px dashed var(--border-faint);
 }
 
 .exchange-area-rule__head h4 {
   margin: 0;
   color: var(--text-main);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
 }
 
 .exchange-area-rule__head span {
+  padding: 1px 7px;
+  border-radius: 4px;
+  background: rgba(143, 115, 81, 0.14);
   color: var(--accent-ink);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   white-space: nowrap;
 }
 
+.dark-mode .exchange-area-rule__head span,
+.dark-theme .exchange-area-rule__head span {
+  background: rgba(127, 174, 169, 0.16);
+}
+
 .exchange-area-rule p {
   margin: 0;
-  color: var(--text-muted);
+  color: var(--text-main);
   font-size: 13px;
   line-height: 1.65;
   overflow-wrap: anywhere;
-}
-
-.dark-mode .exchange-area-rule {
-  background: rgba(35, 26, 17, 0.62);
 }
 
 @media (max-width: 640px) {
@@ -514,7 +642,32 @@ const goToItem = (typeId) => {
   white-space: nowrap;
 }
 
-/* 兑换列表：每条记录独立卡片，多列网格排列 */
+/* 兑换主内容容器：对齐挑战赛兑换、神匠之塔与活动副本商店弹窗的暖羊皮纸底框层级 */
+.exchange-content-panel.paper-panel {
+  padding: 14px;
+  background: var(--modal-bg, #efe2c4);
+}
+
+@media (min-width: 1025px) {
+  .exchange-content-panel.paper-panel {
+    flex: 1 0 auto !important;
+  }
+}
+
+.dark-mode .exchange-content-panel.paper-panel,
+.dark-theme .exchange-content-panel.paper-panel {
+  background: var(--modal-bg, #261b12);
+}
+
+/* 通用紧凑兑换卡容器：撑满 UiCardGrid 全宽 */
+.exchange-compact-grid,
+.exchange-empty {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+}
+
+/* 保留原样的特殊兑换列表（每日补给礼包 / 时装立绘） */
 .exchange-list {
   grid-column: 1 / -1;
   display: grid;
@@ -525,7 +678,8 @@ const goToItem = (typeId) => {
 
 /* 礼包卡片需要足够横向空间，避免左侧礼包图与右侧物品清单互相挤压。 */
 .exchange-list--pack {
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .exchange-list--skin {
@@ -533,26 +687,21 @@ const goToItem = (typeId) => {
   gap: 12px;
 }
 
-.exchange-list--shop {
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  gap: 14px 10px;
-}
-
 @media (max-width: 640px) {
+  .exchange-content-panel.paper-panel {
+    padding: 10px 10px calc(14px + var(--safe-bottom, 0px));
+  }
   .exchange-list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px 6px;
   }
   .exchange-list--pack {
     grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
   }
   .exchange-list--skin {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
-  }
-  .exchange-list--shop {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px 6px;
   }
 }
 

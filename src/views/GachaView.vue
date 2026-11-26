@@ -421,11 +421,11 @@ function openCandidate(candidate) {
  * 「委托兑换」，结果跳过去是**空列表**。这里直接映射到对应分类与子类。
  */
 const EXCHANGE_PACK_TARGETS = {
-  heroJifen: { cat: 'shop', sub: 'heroJifen' },   // 星型徽印
-  petJifen: { cat: 'shop', sub: 'petJifen' },     // 翼型徽印
-  ptJifen: { cat: 'shop', sub: 'ptJifen' },       // 回忆结晶
-  bke: { cat: 'shop', sub: 'keShop' },            // 氪金商店
-  fuZhuang: { cat: 'shop', sub: 'fuZhuang' },     // 时装
+  heroJifen: { cat: 'shop', sub: 'heroJifen' },         // 星型徽印
+  petJifen: { cat: 'shop', sub: 'petJifen' },           // 翼型徽印
+  ptJifen: { cat: 'shop', sub: 'ptJifen' },             // 回忆结晶
+  bke: { cat: 'shop', sub: 'keShop' },                  // 道具商店
+  fuZhuang: { cat: 'shop', sub: 'fuZhuang' },           // 时装商店
 }
 function handleExchange() {
   const pack = currentPool.value?.packDisplay

@@ -11,7 +11,38 @@ const EXCLUDE_TEAMS = ['equipQualityUpgrade001', 'equipQualityUpgrade002', 'equi
 const INACTIVE_TEST_TEAMS = ['weituogongzi', 'weiTuoBanDay']
 const LEGACY_TEST_TEAM = /^team\d*$/
 const UNUSED_EXCHANGE_TEAMS = /^baodimap\d+(?:_1)?$/
-const FORMAL_ENTRY_TEAMS = /^(?:market\d*|tuzi\w*|zhongzi|bke|ptjifen|payke|fuZhuang|pack|dailySupply)$/
+const FORMAL_ENTRY_TEAMS = /^(?:market\d*|tuzi\w*|zhongzi|bke|ptjifen|payke|fuZhuang|shiPin|jiaJu|pack|dailySupply)$/
+const APPEARANCE_SHOPS = new Set(['fuZhuang', 'shiPin', 'jiaJu'])
+const PACK_SUB_KEYS = {
+  礼包商城: 'packMall',
+  特殊补给: 'specialSupply',
+  家具礼包: 'furniturePack',
+  饰品礼包: 'accessoryPack'
+}
+const EXISTING_PACK_IMAGES = new Set([
+  'shop_goods_packPay_new1',
+  'shop_goods_packPay_hero1',
+  'shop_goods_packPay_pet1',
+  'shop_goods_packPay_hero2',
+  'shop_goods_packPay_mix1',
+  'shop_goods_packPay_mix2',
+  'shop_goods_pack_ti1',
+  'shop_goods_pack_gift1',
+  'shop_goods_pack_heroExp1',
+  'shop_goods_pack_equipExp1',
+  'shop_goods_pack_money1',
+  'shop_goods_pack_jiaju01',
+  'shop_goods_pack_jiaju03',
+  'shop_goods_pack_jiaju04',
+  'shop_goods_pack_jiaju05',
+  'shop_goods_pack_jiaju06',
+  'shop_goods_pack_jiaju07',
+  'shop_goods_pack_jiaju08',
+  'shop_goods_pack_jiaju09',
+  'shop_goods_pack_jiaju10',
+  'shop_goods_pack_shipin1',
+  'shop_goods_pack_shipin2'
+])
 
 const EX_TO_DUNGEON = { ex01: 'sp1', ex02: 'sp2' }
 
@@ -41,34 +72,25 @@ const SUB_LABELS = {
 }
 
 const CATEGORY_ORDER = [
-  { key: 'entrust', label: '委托兑换', teams: /^(?:weituo|weiTuo)/ },
-  { key: 'market', label: '地区商店', teams: /^market/ },
-  { key: 'gem', label: '符石合成', teams: /^Gem$/ },
-  { key: 'tuzi', label: '兔子商人', teams: /^tuzi/ },
+  { key: 'shop', label: '商城', teams: /^(?:bke|ptjifen|payke|fuZhuang|shiPin|jiaJu|pack)$/ },
+  { key: 'pack', label: '每日补给', teams: /^dailySupply$/ },
   { key: 'huoyue', label: '活跃兑换', teams: /^huoyue$/ },
-  { key: 'shop', label: '商店积分', teams: /^(bke|ptjifen|payke|fuZhuang)$/ },
-  { key: 'seed', label: '种子兑换', teams: /^zhongzi$/ },
-  { key: 'pack', label: '每日补给', teams: /^(pack|dailySupply)$/ },
   // 「爬塔」是玩家俗称；游戏内该玩法正式名为「神匠之塔」（tower.json 的 name、
   // exchangeTeam.json 的 tower1 → name 均为「神匠之塔」），故用正式名。
   { key: 'tower', label: '神匠之塔兑换', teams: /^tower1$/ },
-  { key: 'pvp', label: 'PVP兑换', teams: /^pvp001$/ },
+  { key: 'pvp', label: '挑战赛兑换', teams: /^pvp001$/ },
+  { key: 'ex', label: '活动副本兑换', teams: /^ex0[12]$/ },
+  { key: 'entrust', label: '委托兑换', teams: /^(?:weituo|weiTuo)/ },
+  { key: 'market', label: '杂物商人', teams: /^market/ },
+  { key: 'tuzi', label: '地牢商人', teams: /^tuzi/ },
+  { key: 'seed', label: '种子购买', teams: /^zhongzi$/ },
+  { key: 'gem', label: '符石合成', teams: /^Gem$/ },
   /*
-   * 🔴 2026-11-11 补：以下 2 个 team 在 itemExchange 里真实存在、也有正式入口，
-   * 但此前没有任何正则匹配 → isVisibleExchange 把整条兑换过滤掉，导致其产出物
-   * 「获取途径」为空（例：item_444003 洛莉安的晚礼服）。
-   *   · ex01/ex02 → exchangeTeam.json 里 show=true 的「夜之秘兑换 / 瓦哈兑换」（sp01/sp02 秘境商店）
-   *   · equip_sp01 → sp 神器兑换（兑换 444 段装备，随 sp1 秘境开放）
-   *
-   * shiPin / jiaJu 不在此列——它们由 `buildConfiguredShopSubs` 从 packDisplay 得到，
-   * 若在此再给一次会被 `getCategory` 归到 shop，导致商品重复（2026-11-11 已踩过）。
-   * 但为让 `isVisibleExchange` 放行，仍需在 CATEGORY_ORDER 里登记（它们归 shop）。
+   * 🔴 2026-11-11 补：equip_sp01 → sp 神器兑换（兑换 444 段装备，随 sp1 秘境开放），归入 shop。
+   * 为让 `isVisibleExchange` 放行，仍需在 CATEGORY_ORDER 里登记。
+   * 另：team='无' 的直充兑换（keIcon / speedIcon）不在任何商店上架，不展示。
    */
-  { key: 'shop', label: '饰品商店', teams: /^shiPin$/ },
-  { key: 'shop', label: '家具商店', teams: /^jiaJu$/ },
-  { key: 'ex', label: '秘境兑换', teams: /^ex0[12]$/ },
-  { key: 'shop', label: '秘境神器兑换', teams: /^equip_sp\d+$/ },
-  { key: 'general', label: '通用兑换', teams: /^(team\d*|无)$/ }
+  { key: 'shop', label: '秘境神器兑换', teams: /^equip_sp\d+$/ }
 ]
 
 const MARKET_SHOPS = [
@@ -125,7 +147,7 @@ export function buildOfficialExchangeIndex(maps = {}) {
     if (isMarketShopHidden(definition)) continue
     for (const id of getShopItems(shops[definition.shopId])) {
       addOfficialLocation(index, id, {
-        category: 'market', categoryLabel: '地区商店',
+        category: 'market', categoryLabel: '杂物商人',
         sub: definition.key, subLabel: definition.label
       })
     }
@@ -139,7 +161,7 @@ export function buildOfficialExchangeIndex(maps = {}) {
       if (isRandom) randomPoolNumber += 1
       for (const id of pool.exchangeIds || []) {
         addOfficialLocation(index, id, {
-          category: 'seed', categoryLabel: '种子兑换',
+          category: 'seed', categoryLabel: '种子购买',
           sub: isRandom ? 'random' : 'fixed',
           subLabel: isRandom ? '随机商品' : '固定商品',
           poolNumber: isRandom ? randomPoolNumber : 0,
@@ -154,7 +176,7 @@ export function buildOfficialExchangeIndex(maps = {}) {
     for (const pool of shop?.shopList || []) {
       for (const id of pool.exchangeIds || []) {
         addOfficialLocation(index, id, {
-          category: 'tuzi', categoryLabel: '兔子商人',
+          category: 'tuzi', categoryLabel: '地牢商人',
           sub: 'all', subLabel: '全部候选',
           pickCount: pool.num, candidateCount: pool.exchangeIds.length
         })
@@ -162,16 +184,30 @@ export function buildOfficialExchangeIndex(maps = {}) {
     }
   }
 
-  // 积分商店和皮肤商店以礼包中心的可见入口为准；孤立的 payKeShop 不会被误收录。
+  // 商城（礼包 / 外观 / 兑换）以 packDisplay 的可见入口为准。
   // packDisplay.json 顶层是 { '1': [...], '2': [...], ... }，必须 flat 一层才是 display 列表
-  for (const display of Object.values(packDisplay).flat()) {
-    if (display?.hide || !display?.shopTypeId) continue
-    const category = [2, 5].includes(display.packType) ? 'shop' : ''
-    if (!category) continue
+  const packInfo = maps.packInfoRes?.datas || maps.packInfoRes || {}
+  for (const [groupIndex, display] of Object.values(packDisplay).flat().entries()) {
+    if (!display || display.hide) continue
+    if (display.packType === 1 && Array.isArray(display.content)) {
+      const subKey = PACK_SUB_KEYS[display.name] || `pack_${groupIndex}`
+      for (const contentId of display.content) {
+        const info = packInfo[contentId]
+        if (info?.hide === true) continue
+        addOfficialLocation(index, info?.itemExchangeId || contentId, {
+          category: 'shop',
+          categoryLabel: '商城',
+          sub: subKey,
+          subLabel: display.name || subKey
+        })
+      }
+      continue
+    }
+    if (!display.shopTypeId || ![2, 5].includes(display.packType)) continue
     for (const id of getShopItems(shops[display.shopTypeId])) {
       addOfficialLocation(index, id, {
-        category,
-        categoryLabel: '商店积分',
+        category: 'shop',
+        categoryLabel: '商城',
         sub: display.shopTypeId,
         subLabel: display.name || shops[display.shopTypeId]?.name || display.shopTypeId
       })
@@ -194,11 +230,12 @@ export function buildOfficialExchangeIndex(maps = {}) {
 /** 搜索来源和兑换页共用同一套可见性，防止隐藏配置从物品详情重新出现。 */
 export function isVisibleExchange(exchange, officialIndex = {}) {
   const team = exchange?.team || '无'
+  const hasFormalIndex = Boolean(officialIndex[exchange?.id]?.locations?.length)
   if (EXCLUDE_TEAMS.includes(team)
     || INACTIVE_TEST_TEAMS.includes(team)
     || LEGACY_TEST_TEAM.test(team)
     || UNUSED_EXCHANGE_TEAMS.test(team)
-    || !CATEGORY_ORDER.some(category => category.teams.test(team))
+    || (!hasFormalIndex && !CATEGORY_ORDER.some(category => category.teams.test(team)))
     || isBlacklisted(exchange)) return false
 
   const exDungeonId = EX_TO_DUNGEON[team]
@@ -211,8 +248,9 @@ export function isVisibleExchange(exchange, officialIndex = {}) {
 
 export function getExchangeSourceMeta(exchange, officialIndex = {}) {
   const category = getCategory(exchange)
-  const formalLocation = FORMAL_ENTRY_TEAMS.test(exchange?.team || '无')
-    ? officialIndex[exchange?.id]?.locations?.find(location => location.category === category.key)
+  const indexedLocations = officialIndex[exchange?.id]?.locations || []
+  const formalLocation = (FORMAL_ENTRY_TEAMS.test(exchange?.team || '无') || category.key === 'other')
+    ? (indexedLocations.find(location => location.category === category.key) || indexedLocations[0] || null)
     : null
   if (formalLocation) return formalLocation
 
@@ -386,33 +424,97 @@ export function buildExchangeData(maps) {
   }
 
   // PackHeroSkinTempUI: shop.skins → skin.heroTypeId → hero.Name;
-  // 商店封面优先使用 shop.skins.img，缺失时回退到 skin.skinCard 或详情立绘。
+  // 商店封面优先使用官方 172×256 皮肤卡（skin.skinCard），缺失时再回退到 shop.skins.img 或详情立绘。
   const skinPresentation = (entry) => {
     const skin = maps.skinRes?.datas?.[entry.heroSkin]
     const hero = maps.heroRes?.datas?.[skin?.heroTypeId]
     if (!skin || !hero) return null
-    const fallbackImage = skin.skinCard ? `/images/chara/skincard/${skin.skinCard}.webp` : (skin.img ? `/images/chara/l/${skin.img}.webp` : '')
+    const cardImage = skin.skinCard ? `/images/chara/skincard/${skin.skinCard}.webp` : ''
+    const fallbackImage = entry.img
+      ? `/images/PackPane/${entry.img}.webp`
+      : (skin.img ? `/images/chara/l/${skin.img}.webp` : '')
     return {
       id: entry.heroSkin,
       heroId: skin.heroTypeId,
       heroName: hero.name,
       name: skin.name,
       quality: skin.quality,
-      image: entry.img ? `/images/PackPane/${entry.img}.webp` : fallbackImage
+      image: cardImage || fallbackImage
     }
   }
 
-  const buildConfiguredShopSubs = () => Object.values(maps.packDisplayRes || {}).flat()
-    .filter(display => !display?.hide && display?.shopTypeId
-      && [2, 5].includes(display.packType))
-    .map(display => ({
-      key: display.shopTypeId,
-      label: display.name || shops[display.shopTypeId]?.name || display.shopTypeId,
-      list: (shops[display.shopTypeId]?.shopList || []).flatMap(pool => [
-        ...(pool.exchangeIds || []).map(id => makeItem(id)),
-        ...(pool.skins || []).map(entry => makeItem(entry.exchangeId, { skin: skinPresentation(entry) }))
-      ]).filter(item => item && getCategory(rawExchange[item.id]).key === 'shop')
-    })).filter(sub => sub.list.length)
+  const buildPackModuleSubs = () => {
+    const packInfo = maps.packInfoRes?.datas || maps.packInfoRes || {}
+    const packCharge = maps.packChargeRes?.datas || maps.packChargeRes || {}
+    return Object.values(maps.packDisplayRes || {}).flat()
+      .filter(display => display && !display.hide && display.packType === 1 && Array.isArray(display.content))
+      .map((display, index) => {
+        const subKey = PACK_SUB_KEYS[display.name] || `pack_${index}`
+        const list = []
+        for (const contentId of display.content) {
+          const info = packInfo[contentId]
+          if (info?.hide === true) continue
+          const packImage = info?.icon && EXISTING_PACK_IMAGES.has(info.icon)
+            ? `/images/PackPane/${info.icon}.webp`
+            : ''
+          if (info?.itemExchangeId) {
+            const item = makeItem(info.itemExchangeId, {
+              id: contentId,
+              name: info.name || rawExchange[info.itemExchangeId]?.name || contentId,
+              packImage
+            })
+            if (item) list.push(item)
+            continue
+          }
+          const chargeId = info?.packChargeId || (packCharge[contentId] ? contentId : '')
+          const charge = chargeId ? packCharge[chargeId] : null
+          if (!charge || !charge.reward) continue
+          const fen = Number(charge.rmb)
+          const priceText = Number.isFinite(fen) && fen > 0
+            ? `¥${(fen / 100).toFixed(fen % 100 === 0 ? 0 : 2)}`
+            : ''
+          list.push({
+            id: contentId,
+            name: info?.name || charge.tip || contentId,
+            des: info?.tip || charge.tip || '',
+            sort: 0,
+            team: 'pack',
+            limitText: getLimitText(charge.limitCondition || {}),
+            consumeItems: [],
+            priceText,
+            rewardItems: resolveItemRules(normalizeItems(rawReward[charge.reward] || {})),
+            consumeId: '',
+            packImage
+          })
+        }
+        return { key: subKey, label: display.name || subKey, module: 'pack', moduleLabel: '礼包', list }
+      })
+      .filter(sub => sub.list.length)
+  }
+
+  const buildShopSubs = () => {
+    const displays = Object.values(maps.packDisplayRes || {}).flat()
+      .filter(display => display && !display.hide && display.shopTypeId && [2, 5].includes(display.packType))
+      .map(display => {
+        const isAppearance = display.packType === 5 || APPEARANCE_SHOPS.has(display.shopTypeId)
+        return {
+          key: display.shopTypeId,
+          label: display.name || shops[display.shopTypeId]?.name || display.shopTypeId,
+          module: isAppearance ? 'appearance' : 'exchange',
+          moduleLabel: isAppearance ? '外观' : '兑换',
+          list: (shops[display.shopTypeId]?.shopList || []).flatMap(pool => [
+            ...(pool.exchangeIds || []).map(id => makeItem(id)),
+            ...(pool.skins || []).map(entry => makeItem(entry.exchangeId, { skin: skinPresentation(entry) }))
+          ]).filter(Boolean)
+        }
+      })
+      .filter(sub => sub.list.length)
+    return [
+      ...buildPackModuleSubs(),
+      ...displays.filter(sub => sub.module === 'appearance'),
+      ...displays.filter(sub => sub.module === 'exchange')
+    ]
+  }
 
   const buildDailySubs = () => {
     const activity = maps.activityListRes?.datas?.dailySupply
@@ -456,7 +558,7 @@ export function buildExchangeData(maps) {
     market: buildMarketSubs,
     seed: buildSeedSubs,
     tuzi: buildRabbitSubs,
-    shop: buildConfiguredShopSubs,
+    shop: buildShopSubs,
     pack: buildDailySubs
   }
 

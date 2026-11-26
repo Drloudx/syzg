@@ -17,6 +17,8 @@ export function build() {
     shopRes: readJson('shop.json'),
     generalRes: readJson('general.json'),
     packDisplayRes: readJson('packDisplay.json'),
+    packInfoRes: readJson('packInfo.json'),
+    packChargeRes: readJson('packCharge.json'),
     activityListRes: readJson('activityList.json'),
     relicDungeonInfoRes: readJson('relicDungeonInfo.json'),
     conditionRes: readJson('condition.json'),

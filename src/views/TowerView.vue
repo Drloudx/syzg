@@ -226,42 +226,12 @@
         </div>
 
         <!-- 兑换物列表网格 -->
-        <div class="shop-items-grid">
-          <div
-            v-for="item in shopItems"
-            :key="item.id"
-            class="shop-item-card"
-          >
-            <!-- 物品图标与品质 -->
-            <div class="shop-item-icon-col">
-              <UiItemCard
-                v-if="item.rewardItem"
-                :name="item.rewardItem.name"
-                :img="getImageUrl(`/Common_ItemIcon/${item.rewardItem.icon}.webp`)"
-                :quality="item.rewardItem.quality"
-                :count="item.rewardItem.num"
-                @click="openItem(item.rewardItem.id)"
-              />
-            </div>
-
-            <!-- 物品说明与兑换消耗 -->
-            <div class="shop-item-details">
-              <div class="shop-item-head">
-                <span class="shop-item-title">{{ item.rewardItem?.name || item.name }}</span>
-                <span class="shop-limit-tag">{{ item.limitText }}</span>
-              </div>
-              <p class="shop-item-desc">{{ item.rewardItem?.desc || '神匠之塔稀有兑换道具。' }}</p>
-
-              <div class="shop-cost-row">
-                <span class="cost-label">兑换消耗：</span>
-                <div class="cost-pill">
-                  <span class="cost-icon" :style="{ '--icon-url': cssUrl(exchangeIconUrl) }" aria-hidden="true"></span>
-                  <span>幻象立方 ×{{ item.costCube }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <UiCompactShopGrid
+          :items="towerShopEntries"
+          card-class="shop-item-card"
+          cost-class="cost-pill"
+          @item-click="openItem"
+        />
       </div>
     </UiModal>
   </div>
@@ -277,7 +247,7 @@ import UiSearchInput from '../components/ui/UiSearchInput.vue'
 import UiEmptyState from '../components/ui/UiEmptyState.vue'
 import UiTag from '../components/ui/UiTag.vue'
 import UiModal from '../components/ui/UiModal.vue'
-import UiItemCard from '../components/ui/UiItemCard.vue'
+import UiCompactShopGrid from '../components/ui/UiCompactShopGrid.vue'
 import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
 import { getImageUrl } from '../utils/env.js'
 import { fetchWithFallback } from '../utils/request.js'
@@ -320,6 +290,19 @@ const exchangeIconUrl = computed(() => {
   const icon = summary.value.exchangeItemIcon
   return icon ? getImageUrl(`/images/Common_ItemIcon/${icon}.webp`) : ''
 })
+const towerShopEntries = computed(() => shopItems.value.map(item => ({
+  id: item.id,
+  name: item.name,
+  limitText: item.limitText,
+  limitNum: item.limitNum,
+  rewardItem: item.rewardItem,
+  costs: [{
+    id: exchangeItemId.value || 'cube',
+    name: '幻象立方',
+    iconUrl: exchangeIconUrl.value,
+    num: item.costCube
+  }]
+})))
 const staminaIconUrl = computed(() => {
   const icon = summary.value.tiItemIcon
   return icon ? getImageUrl(`/images/Common_ItemIcon/${icon}.webp`) : ''
@@ -1130,101 +1113,6 @@ onMounted(() => {
   color: var(--text-muted, #7b6348);
   line-height: 1.5;
 }
-
-.shop-items-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 10px;
-}
-
-.shop-item-card {
-  display: flex;
-  gap: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border-soft, rgba(143, 115, 81, 0.34));
-  background: var(--tw-shop-card-bg, rgba(232, 218, 193, 0.9));
-}
-
-.shop-item-icon-col {
-  width: 72px;
-  flex-shrink: 0;
-}
-
-.shop-item-details {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.shop-item-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-}
-
-.shop-item-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-main, #3e2a14);
-}
-
-.shop-limit-tag {
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: rgba(143, 115, 81, 0.14);
-  color: var(--tw-gold-text, #7a4f1d);
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.shop-item-desc {
-  margin: 0;
-  font-size: 12px;
-  color: var(--text-muted, #7b6348);
-  line-height: 1.45;
-}
-
-.shop-cost-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: auto;
-}
-
-.cost-label {
-  font-size: 11px;
-  color: var(--text-muted, #7b6348);
-  font-weight: 600;
-}
-
-.cost-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--tw-cost-pill-bg, rgba(139, 90, 43, 0.13));
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-main, #4e3422);
-}
-
-.cost-icon {
-  display: inline-block;
-  flex-shrink: 0;
-  width: 17px;
-  height: 17px;
-  background-image: var(--icon-url, none);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-}
 </style>
 
 <style>
@@ -1264,7 +1152,5 @@ onMounted(() => {
   --tw-chip-hover-bg: rgba(86, 62, 104, 0.45);
   --tw-cube-hover-border: #cfa4ec;
   --tw-cube-tip: #c5a5df;
-  --tw-shop-card-bg: rgba(52, 39, 27, 0.95);
-  --tw-cost-pill-bg: rgba(186, 140, 70, 0.22);
 }
 </style>
