@@ -27,7 +27,11 @@
 
 ### 本地已提交待推送（2026-11-26）
 
-- **事件图 `e_12.webp` 替换为 `2026-11-24` CDN 成图**：
+- **家具图鉴来源映射、图纸卷轴图标与 SP2 隐藏同步（`e43064f2`..`d8432c3e` 之后）**：
+  - [gameMappings.js](../../src/utils/gameMappings.js) `SOURCE_TAG_NAMES` 补齐 `sp1 → 幽夜古堡`、`sp2 → 黏滑溪谷`、`c5商店 → 霜烬平原商店`；
+  - [furnitureData.js](../../src/utils/furnitureData.js) 与 [furniture.mjs](../../scripts/parse/furniture.mjs) 补全 `s_sp1_*` / `sp_*` 任务、`sp1_area1_*` 场景房间、`成就id：*` 成就名称及裸 `market*` 商店购买的解析，清空 `furniture.json` 内可见条目的未映射 ID；
+  - [FurnitureView.vue](../../src/views/FurnitureView.vue) 详情「家具图纸」改用 `getItemImageUrl` 显示 `Common_ItemIcon` 官方卷轴图（4 张缺图回退 `BuildItem`）；[blacklist.js](../../src/config/blacklist.js)、[FurnitureView.vue](../../src/views/FurnitureView.vue) 与 [searchData.js](../../src/utils/searchData.js) 联合过滤 `14` 件 SP2 专属家具与 `item_50203` 图纸（`239 → 225` 件）。
+- **事件图 `e_12.webp` 替换为 `2026-11-24` CDN 成图（`df6be87a`）**：
   - 备份旧版草图至 `../vue-myrzg备份-资源/event-e_12-20261126/e_12.webp`（`35588 B`，SHA-256 `f31c6bf26aae5ebe30d88bb0f1e5350e8d3f8f2e32fa46996c1e1c926143a203`），替换写入新版 [e_12.webp](../../public/images/event/e_12.webp)（`36656 B`，SHA-256 `3795a1f9719fcfda5387335e3cd58b7c8e75ab48c58eedecb5a9814c0b100e42`）。
 - **属性研究树与详情布局优化、契约/碎片/家具制作图图标修复、2026-11-24 CDN 剧情与图集同步（`a0f13a8d` / `9d60a534` 及后续碎片修复）**：
   - [campResearchLayout.js](../../src/utils/campResearchLayout.js)、[CampResearchTree.vue](../../src/components/facilities/CampResearchTree.vue) 与 [CampFacilitiesPanel.vue](../../src/components/facilities/CampFacilitiesPanel.vue) 将研究树节点缩放至 `240×72`（`columnGap +28`、`rowGap +12`）并恢复细横向滚动条，研究详情默认展示全部等级、桌面端 `minmax(268px, 1fr)` 两栏、移动端 `返回研究树` 置入标题行；

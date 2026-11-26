@@ -438,12 +438,15 @@ export function getMapName(key) {
 const SOURCE_TAG_NAMES = {
   爬塔: '神匠之塔',
   塔1兑换: '兑换',
-  塔1: '兑换'
+  塔1: '兑换',
+  sp1: '幽夜古堡',
+  sp2: '黏滑溪谷',
+  c5商店: '霜烬平原商店'
 }
 export function getSourceTagName(tag) {
   if (!tag) return ''
   const raw = String(tag).trim()
-  return SOURCE_TAG_NAMES[raw] || getMapName(raw)
+  return SOURCE_TAG_NAMES[raw] || SOURCE_TAG_NAMES[raw.toLowerCase()] || getMapName(raw)
 }
 
 // ---------- 战斗/基础属性中文名（角色图鉴、怪物详情共用） ----------

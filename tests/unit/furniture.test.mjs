@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { test } from 'node:test'
 import { isBlacklisted } from '../../src/config/blacklist.js'
+import { getSourceTagName } from '../../src/utils/gameMappings.js'
 import {
   buildFurnitureData,
   formatFurnitureCondition,
@@ -180,7 +181,11 @@ test('current raw tables produce the formal catalog and only the four known miss
     consumeRes: readRaw('consume'),
     playerInitRes: readRaw('playerInit'),
     conditionRes: readRaw('condition'),
-    taskRes: readRaw('task')
+    taskRes: readRaw('task'),
+    rewardRes: readRaw('reward'),
+    levelRoomRes: readRaw('levelRoom'),
+    areaRes: readRaw('area'),
+    achievementRes: readRaw('achievement')
   })
 
   const formalIds = Object.values(homeItemRes.furniture)
@@ -281,4 +286,18 @@ test('current raw tables produce the formal catalog and only the four known miss
   )
   assert.deepEqual(unexpected, [], `出现了意料之外的新图标缺失：${unexpected.join(', ')}`)
   assert.ok(data.furniture.flatMap(entry => entry.skins).every(skin => !Object.hasOwn(skin, 'roomObj')))
+
+  // SP1/SP2 来源标签与获取方式（task / sp1_area1 / achievement / market*）映射检查
+  assert.equal(getSourceTagName('sp1'), '幽夜古堡')
+  assert.equal(getSourceTagName('sp2'), '黏滑溪谷')
+  assert.equal(data.furniture.find(entry => entry.id === 'mzhsn_xiaowu001')?.condition.summary, '幽夜古堡 支线 「美食之夜」')
+  assert.equal(data.furniture.find(entry => entry.id === 'mzhsn_zhuozi007')?.condition.summary, '幽夜古堡 · 会客厅')
+  assert.equal(data.furniture.find(entry => entry.id === 'roomOutdoor_yma1_0')?.condition.summary, '成就「想致富先撸树」（累计伐木 10 次）')
+  assert.equal(data.furniture.find(entry => entry.id === 'roomOutdoor_sca5_0')?.condition.summary, '索利德山地商店购买：营地警钟')
+
+  // SP2 家具实体与对应图纸均纳入黑名单隐藏
+  const sp2Furniture = data.furniture.filter(entry => entry.sourceTags.includes('sp2'))
+  assert.ok(sp2Furniture.length > 0)
+  assert.ok(sp2Furniture.every(entry => isBlacklisted({ id: entry.id, name: entry.name })))
+  assert.equal(isBlacklisted({ id: 'item_50203', name: '黏糊糊友谊之像制作图' }), true)
 })

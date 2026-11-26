@@ -298,15 +298,37 @@ function resolveTaskLabel(taskId, tasks) {
   const task = tasks[String(taskId)]
   if (!task) return ''
   const categories = asArray(task.category).map(String)
-  const chapter = categories.find(name => CHAPTER_TO_MAP[name])
-  const region = chapter ? getMapName(CHAPTER_TO_MAP[chapter]) : ''
+  const chapter = categories.find(name => CHAPTER_TO_MAP[name] || /^sp[12]$/i.test(name))
+  const region = chapter
+    ? (CHAPTER_TO_MAP[chapter] ? getMapName(CHAPTER_TO_MAP[chapter]) : getSourceTagName(chapter))
+    : ''
   const kind = categories.find(name => name === '主线' || name === '支线')
-    || (/^m/u.test(String(taskId)) ? '主线' : '支线')
+    || (/^(?:m|sp)_/u.test(String(taskId)) ? '主线' : '支线')
   return [region, kind, `「${task.name || ''}」`].filter(Boolean).join(' ')
 }
 
+/** 房间/场景 ID（如 `sp1_area1_2`）→ `地区 · 房间名`。 */
+function resolveAreaRoomLabel(roomId, levelRooms, areas) {
+  const room = levelRooms[String(roomId)]
+  if (!room?.name) return ''
+  const areaPrefix = String(roomId).match(/^(sp[12]_area\d+|c\d+_area\d+)_/i)?.[1]
+  const mapCode = String(roomId).match(/^(sp[12]|c\d+)_/i)?.[1]
+  const areaName = (areaPrefix && areas[areaPrefix]?.name)
+    || (mapCode && getSourceTagName(mapCode))
+    || ''
+  return [areaName, room.name].filter(Boolean).join(' · ')
+}
+
 /** 把 tip 里的 ID 全部换成可读名称。 */
-function formatAcquisitionNote(homeItem, { rewards = {}, tasks = {}, items = {}, homeItems = {} } = {}) {
+function formatAcquisitionNote(homeItem, {
+  rewards = {},
+  tasks = {},
+  items = {},
+  homeItems = {},
+  levelRooms = {},
+  areas = {},
+  achievements = {}
+} = {}) {
   const raw = trimSentenceEnd(homeItem?.tip)
   if (!raw) return '开启奖励宝箱后获得'
 
@@ -321,14 +343,30 @@ function formatAcquisitionNote(homeItem, { rewards = {}, tasks = {}, items = {},
   // 再让 resolveTaskLabel 统一生成「地区 类型 「名字」」。否则前缀会与生成的标签叠成
   // 「长支线秋日荒野 支线」「索利德山地任务支线：索利德山地 支线」这类重复文案。
   text = text.replace(
-    /(?:[cC][1-5]\s*)?(?:长?支线|种植支线|任务\s*[:：]?\s*支线|任务|成就|商店(?:购买)?|委托兑换)\s*[:：]?\s*(?=[sm]_[0-9])/gu,
+    /(?:[cC][1-5]\s*)?(?:长?支线|种植支线|任务\s*[:：]?\s*支线|任务|成就|商店(?:购买)?|委托兑换)\s*[:：]?\s*(?=[sm]_[0-9]|(?:[sm]_)?sp_?[12]_)/gu,
     ''
   )
 
+  const regionTag = asArray(homeItem?.category).map(tag => getSourceTagName(tag))
+    .find(label => label && !['商店', '委托', '支线', '主线', '任务', '礼包', '单卖', '赠送', '未分配', '无分类', '活动', '兑换商店', '兑换', '场景采集'].includes(label))
+
   text = text
+    .replace(/^market([0-9]+)$/gu, (whole, num) => {
+      const name = resolveMarketName(`market${num}`, rewards, items, homeItems)
+      if (!name) return whole
+      return regionTag ? `${regionTag}商店购买：${name}` : `商店购买：${name}`
+    })
     .replace(/market[0-9]+/gu, id => resolveMarketName(id, rewards, items, homeItems) || id)
     .replace(/weituo_item_([0-9]+)/gu, (whole, num) => items[`item_${num}`]?.name || whole)
-    .replace(/([sm]_[0-9]+(?:_[0-9]+)*)([^\s/：:（(]*)/gu, (whole, id, trailing) => {
+    .replace(/成就\s*id\s*[:：]?\s*([0-9]+)/giu, (whole, id) => {
+      const entry = achievements[String(id)]
+      if (!entry?.name) return whole
+      const desc = trimSentenceEnd(entry.des)
+      return desc ? `成就「${entry.name}」（${desc}）` : `成就「${entry.name}」`
+    })
+    .replace(/\b((?:sp[12]|c[0-9]+)_area[0-9]+_[0-9]+)\b/giu, id =>
+      resolveAreaRoomLabel(id, levelRooms, areas) || id)
+    .replace(/([sm]_sp[0-9]+_[0-9]+|sp_[0-9]+_[0-9]+|[sm]_[0-9]+(?:_[0-9]+)*)([^\s/：:（(]*)/gu, (whole, id, trailing) => {
       const label = resolveTaskLabel(id, tasks)
       if (!label) return whole
       // 原文在 ID 后常又跟一遍任务名（如「s_1_13格薇勒与秘密基地」），吃掉它避免重复
@@ -380,7 +418,10 @@ export function buildFurnitureData({
   playerInitRes,
   conditionRes,
   taskRes,
-  rewardRes
+  rewardRes,
+  levelRoomRes,
+  areaRes,
+  achievementRes
 }) {
   const homeItems = homeItemMapOf(homeItemRes)
   const items = itemMapOf(itemRes)
@@ -388,6 +429,9 @@ export function buildFurnitureData({
   const conditions = conditionMapOf(conditionRes)
   const tasks = asRecord(taskRes?.datas || taskRes)
   const rewards = asRecord(rewardRes?.datas || rewardRes)
+  const levelRooms = asRecord(levelRoomRes?.datas || levelRoomRes)
+  const areas = asRecord(areaRes?.datas || areaRes)
+  const achievements = asRecord(achievementRes?.achievement || achievementRes?.datas || achievementRes)
   const categories = normalizeCategories(settingRes)
   const categoryNames = categoryLookups(categories)
   const initialNums = new Map(asArray(playerInitRes?.homeItems || playerInitRes?.data?.homeItems)
@@ -478,10 +522,10 @@ export function buildFurnitureData({
         // formatFurnitureCondition 因无 rules 返回空串。回退用 tip，避免该行整条空白；
         // 仅在确有 tip 时回退，否则会误显示 formatAcquisitionNote 的默认句。
         summary: isAcquisitionCondition
-          ? formatAcquisitionNote(homeItem, { rewards, tasks, items, homeItems })
+          ? formatAcquisitionNote(homeItem, { rewards, tasks, items, homeItems, levelRooms, areas, achievements })
           : (formatFurnitureCondition(condition, taskRes)
             || (trimSentenceEnd(homeItem?.tip)
-              ? formatAcquisitionNote(homeItem, { rewards, tasks, items, homeItems })
+              ? formatAcquisitionNote(homeItem, { rewards, tasks, items, homeItems, levelRooms, areas, achievements })
               : '')),
         configNote: condition?.desc || '',
         reverse: condition?.reverse === true,

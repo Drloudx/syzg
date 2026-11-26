@@ -224,8 +224,8 @@
             >
               <span class="blueprint-entry__preview" :class="`quality-bg-${Number(blueprint.quality) || 1}`">
                 <img
-                  :class="{ 'is-placeholder': !buildItemImage(blueprint.icon) }"
-                  :src="buildItemImage(blueprint.icon) || missingImageUrl"
+                  :class="{ 'is-placeholder': !blueprintImage(blueprint) }"
+                  :src="blueprintImage(blueprint) || missingImageUrl"
                   :alt="blueprint.name"
                   loading="lazy"
                   @error="handlePreviewFallback"
@@ -284,6 +284,7 @@ import {
   UiTag
 } from '../components/ui/index.js'
 import { fetchFurnitureData, disguiseSourceText } from '../utils/furnitureData.js'
+import { getItemImageUrl } from '../utils/itemParser.js'
 import { getImageUrl, handleImageFallback } from '../utils/env.js'
 import { getRarityName } from '../utils/gameMappings.js'
 import { isBlacklisted } from '../config/blacklist.js'
@@ -330,6 +331,15 @@ const buildItemImage = icon => {
 }
 
 const missingImageUrl = getImageUrl('/ui/visibility-off.svg')
+const blueprintImage = blueprint => {
+  if (!blueprint) return ''
+  const path = getItemImageUrl({
+    img: blueprint.img,
+    useAction: blueprint.action,
+    homeItemUnlocks: [{ icon: blueprint.icon }]
+  })
+  return path && path !== '/ui/visibility-off.svg' ? getImageUrl(path) : ''
+}
 const furnitureImage = furniture => furniture?.displayImage
   ? getImageUrl(furniture.displayImage)
   : buildItemImage(furniture?.displayIcon)
@@ -422,12 +432,16 @@ const furnitureSearchText = furniture => [
   ...(furniture.crafting?.available === false ? [] : (furniture.consume?.currencies || []).map(item => item.name))
 ].filter(Boolean).join(' ').toLowerCase()
 
+const isFurnitureVisible = furniture => {
+  if (!furniture) return false
+  if (isBlacklisted({ id: furniture.id, name: furniture.name, place: furniture.place })) return false
+  return !(Array.isArray(furniture.sourceTags) && furniture.sourceTags.some(tag => /^sp2$/i.test(String(tag).trim())))
+}
+
 const filteredFurniture = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
   return allFurniture.value.filter(furniture => {
-    // 黑名单：家具名/地区命中即隐藏。字段名必须是 isBlacklisted 会读的那几个
-    // （name / place），传 mapName、region 之类会被静默忽略。
-    if (isBlacklisted({ id: furniture.id, name: furniture.name, place: furniture.place })) return false
+    if (!isFurnitureVisible(furniture)) return false
     if (selectedMain.value !== null && !sameValue(furniture.mainType, selectedMain.value)) return false
     if (selectedSub.value !== null && !sameValue(furniture.subType, selectedSub.value)) return false
     if (selectedQuality.value !== null && Number(furniture.quality) !== selectedQuality.value) return false
@@ -466,7 +480,7 @@ const syncDetailFromRoute = async rawId => {
     return
   }
 
-  const furniture = allFurniture.value.find(entry => String(entry.id) === id)
+  const furniture = allFurniture.value.find(entry => String(entry.id) === id && isFurnitureVisible(entry))
   if (!furniture) {
     detailVisible.value = false
     selectedFurniture.value = null

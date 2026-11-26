@@ -161,6 +161,8 @@ function buildFurnitureSearchList(maps) {
 
   return Object.values(furnitureMap)
     .filter(isFurnitureCatalogEntry)
+    .filter(furniture => !isBlacklisted({ id: furniture.typeId, name: furniture.name, desc: furniture.desc }))
+    .filter(furniture => !(Array.isArray(furniture.category) && furniture.category.some(tag => /^sp2$/i.test(String(tag).trim()))))
     .map(furniture => {
       const categoryIds = (furniture.objType || []).map(String)
       const mainName = categoryNames.get(categoryIds[0]) || categoryIds[0] || '家具'

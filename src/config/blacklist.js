@@ -128,6 +128,7 @@ export const EXACT_BLACKLIST = [
     'item_20037', // 回廊宝箱（木箱，SP2）
     'item_20038', // 回廊宝箱（铜边，SP2）
     'item_20039', // 回廊宝箱（银箱，SP2）
+    'item_50203', // 黏糊糊友谊之像制作图（SP2 主线 sp_2_6）
     'item_50204', // 公主野营帐篷制作图
     'item_50208', // 草莓挂灯制作图
     'item_50210', // 民家田野挂画制作图
@@ -142,6 +143,21 @@ export const EXACT_BLACKLIST = [
     'item_50225', // 史莱姆王国御座制作图
     'item_50226', // 史莱姆摆件制作图
     'item_52007', // 黏糊糊城堡外观套组
+    // SP2「黏滑溪谷」专属家具实体（category 含 sp2）
+    'slm_wangzuo',
+    'slm_fangzi001',
+    'slm_xiaowu007',
+    'slm_jiaju003',
+    'slm_jiaju011',
+    'slm_guashi002',
+    'slm_jiaju007',
+    'slm_jiaju004',
+    'slm_jiaju002',
+    'slm_jiaju010',
+    'slm_jiaju008',
+    'slm_guadeng',
+    'slm_diaoxiang',
+    'slm_jiaju014',
     /*
      * SP2 遗器三件套 + 秘境货币。
      *
