@@ -1,5 +1,5 @@
-// Match the original build_tree_botm artwork without stretching its square icon frame.
-export const CAMP_RESEARCH_NODE = Object.freeze({ width: 292, height: 88 })
+// Match the original build_tree_botm artwork (292:88 aspect ratio) at ~0.82x for denser overview.
+export const CAMP_RESEARCH_NODE = Object.freeze({ width: 240, height: 72 })
 
 /** Lay out the configured prerequisite graph from left to right; never invent game progress. */
 export function layoutCampResearch(entries) {
@@ -17,14 +17,14 @@ export function layoutCampResearch(entries) {
   }
   const columns = []
   for (const entry of entries) (columns[depth(entry)] ||= []).push(entry)
-  const columnGap = CAMP_RESEARCH_NODE.width + 40
-  const rowGap = CAMP_RESEARCH_NODE.height + 18
-  const width = Math.max(1, columns.length) * columnGap + 24
-  const height = Math.max(1, ...columns.map(column => column.length)) * rowGap + 28
+  const columnGap = CAMP_RESEARCH_NODE.width + 28
+  const rowGap = CAMP_RESEARCH_NODE.height + 12
+  const width = Math.max(1, columns.length) * columnGap - 4
+  const height = Math.max(1, ...columns.map(column => column.length)) * rowGap + 8
   const nodes = columns.flatMap((column, columnIndex) => column.map((entry, rowIndex) => ({
     ...entry,
     x: 12 + columnIndex * columnGap,
-    y: Math.max(14, (height - column.length * rowGap) / 2) + rowIndex * rowGap
+    y: Math.max(10, (height - (column.length * rowGap - 12)) / 2) + rowIndex * rowGap
   })))
   const positions = new Map(nodes.map(node => [node.id, node]))
   const edges = nodes.flatMap(node => {

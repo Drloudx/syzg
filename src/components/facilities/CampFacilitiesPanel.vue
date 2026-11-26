@@ -40,32 +40,36 @@
             <div class="camp-heading-title-row">
               <h2>{{ selected.name }}</h2>
               <span v-if="!isResearch && maxLevel" class="camp-max-badge">最高 {{ maxLevel }} 级</span>
+              <span v-else-if="isResearch && maxLevel" class="camp-max-badge">共 {{ maxLevel }} 级</span>
+              <UiButton v-if="isResearch" class="camp-overview-button" variant="secondary" size="sm" @click="showResearchTree">返回研究树</UiButton>
             </div>
             <p v-if="isResearch">{{ selected.description }}</p>
             <p v-else-if="selected.unlockCondition">开放条件：{{ selected.unlockCondition }}</p>
           </div>
-          <UiButton v-if="isResearch" class="camp-overview-button" variant="secondary" size="sm" @click="showResearchTree">返回研究树</UiButton>
         </div>
 
-        <template v-if="isResearch">
+        <div v-if="isResearch" class="camp-research-controls">
           <UiFilterRow class="camp-level-selector camp-level-selector--inline" label="等级：">
             <UiFilterPill :active="level === 'all'" @click="setLevel('all')">全部</UiFilterPill>
             <UiFilterPill v-for="entry in selected.levels" :key="entry.level" :active="level === entry.level" @click="setLevel(entry.level)">{{ entry.level }}级</UiFilterPill>
           </UiFilterRow>
-          <UiInfoRow label="前置研究">
-            <UiButton v-if="selected.prerequisite" variant="link" size="sm" @click="goPrerequisite">{{ selected.prerequisite.name }} 1级</UiButton>
-            <span v-else>无</span>
-          </UiInfoRow>
-        </template>
+          <div class="camp-prereq-row">
+            <span class="camp-prereq-label">前置研究</span>
+            <button v-if="selected.prerequisite" type="button" class="camp-recipe-chip" @click="goPrerequisite">{{ selected.prerequisite.name }} 1级</button>
+            <span v-else class="camp-prereq-none">无</span>
+          </div>
+        </div>
 
         <div class="camp-level-grid" :class="{ 'is-single': visibleLevels.length === 1, 'is-research': isResearch }">
         <UiSection v-for="entry in visibleLevels" :key="`${selected.id}:${entry.level}`" class="camp-level" :data-level="entry.level" :title="levelTitle(entry)">
           <template v-if="isResearch">
             <div class="camp-research-effect"><span>研究效果</span><strong>{{ selected.description }} {{ previousEffect(entry.level) }} → {{ entry.effect }}</strong></div>
             <UiInfoRow label="研究条件">
-              <span v-if="entry.playerLevel">玩家等级 {{ entry.playerLevel }}级</span>
-              <UiButton v-if="canLocateBuilding(entry)" variant="link" size="sm" @click="goBuilding(entry)">{{ entry.buildingName }} {{ entry.buildingLevel }}级</UiButton>
-              <span v-else-if="entry.buildingName"> · {{ entry.buildingName }} {{ entry.buildingLevel }}级</span>
+              <span class="camp-condition-group">
+                <span v-if="entry.playerLevel">玩家等级 {{ entry.playerLevel }}级</span>
+                <button v-if="canLocateBuilding(entry)" type="button" class="camp-recipe-chip" @click="goBuilding(entry)">{{ entry.buildingName }} {{ entry.buildingLevel }}级</button>
+                <span v-else-if="entry.buildingName">{{ entry.buildingName }} {{ entry.buildingLevel }}级</span>
+              </span>
             </UiInfoRow>
             <UiInfoRow label="研究时间" :value="formatCampDuration(entry.timeSeconds)" />
             <div class="camp-materials">
@@ -191,7 +195,7 @@ const selected = computed(() => matches.value.find(entry => entry.id === route.q
 const maxLevel = computed(() => selected.value?.levels?.at(-1)?.level || 0)
 const researchDetail = computed(() => isResearch.value && !!route.query.research && selected.value?.id === route.query.research)
 const level = computed(() => selected.value?.levels.some(entry => entry.level === Number(route.query.level)) ? Number(route.query.level)
-  : route.query.level === 'all' ? 'all' : selected.value?.levels[0]?.level || 'all')
+  : route.query.level === 'all' ? 'all' : (isResearch.value ? 'all' : selected.value?.levels[0]?.level || 'all'))
 const visibleLevels = computed(() => (selected.value?.levels || []).filter(entry => level.value === 'all' || entry.level === level.value))
 const updateQuery = patch => {
   const query = { ...route.query, ...patch }
@@ -201,10 +205,10 @@ const updateQuery = patch => {
 const setSearch = q => updateQuery({ q, level: 'all' })
 const setTeam = group => updateQuery({ group, research: undefined, level: 'all' })
 const selectEntry = id => updateQuery({ [isResearch.value ? 'research' : 'building']: id, level: 'all' })
-const selectResearch = id => updateQuery({ research: id, q: undefined, level: 1 })
+const selectResearch = id => updateQuery({ research: id, q: undefined, level: 'all' })
 const showResearchTree = () => updateQuery({ research: undefined, level: undefined })
 const setLevel = value => updateQuery({ [isResearch.value ? 'research' : 'building']: selected.value?.id, level: value })
-const goPrerequisite = () => updateQuery({ research: selected.value.prerequisite.id, group: undefined, q: undefined, level: 1 })
+const goPrerequisite = () => updateQuery({ research: selected.value.prerequisite.id, group: undefined, q: undefined, level: 'all' })
 const canLocateBuilding = entry => props.camp.buildings.some(building => building.id === entry.building && building.levels.some(level => level.level === entry.buildingLevel))
 const goBuilding = entry => router.push({ path: '/facilities', query: { facility: 'camp', mode: 'building', building: entry.building, level: entry.buildingLevel } })
 const goRecipe = recipe => router.push({ path: '/facilities', query: { facility: recipe.facility, mode: 'crafting', level: recipe.level, item: recipe.itemId } })
@@ -257,8 +261,8 @@ watch([() => props.mode, () => selected.value?.id, researchDetail], async () => 
 .camp-heading img { width: 48px; height: 48px; object-fit: contain; }
 .camp-heading-portrait.is-research { border-color: transparent; background-color: transparent; }
 .camp-heading-portrait.is-research img { width: 42px; height: 42px; }
-.camp-heading-info { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.camp-heading-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.camp-heading-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.camp-heading-title-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 8px; }
 .camp-heading h2 { font-size: 15.5px; margin: 0; line-height: 1.4; letter-spacing: 0; color: var(--text-main); }
 .camp-max-badge {
   font-size: 11px;
@@ -271,9 +275,23 @@ watch([() => props.mode, () => selected.value?.id, researchDetail], async () => 
 }
 .camp-heading p, .camp-description, .camp-materials p { margin: 0; font-size: 12.5px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; color: var(--text-muted); }
 .camp-description { color: var(--text-main); font-size: 13px; }
-.camp-level-selector--inline { padding-block: 10px; border-block: 1px solid var(--border-soft); }
+.camp-research-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 14px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--paper-soft);
+}
+.camp-level-selector--inline { padding: 0; border: 0; }
+.camp-prereq-row { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; margin-left: auto; }
+.camp-prereq-label { color: var(--text-muted); font-weight: 600; white-space: nowrap; }
+.camp-prereq-none { color: var(--text-muted); }
 .camp-level-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 12px; align-items: start; }
-.camp-level-grid.is-research { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+.camp-level-grid.is-research { grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); }
 .camp-level-grid.is-single { grid-template-columns: minmax(0, 1fr); }
 .camp-level { margin: 0; padding: 12px 14px; border: 1px solid var(--border-soft); border-radius: 8px; background: var(--paper-soft); box-shadow: 0 2px 5px rgba(62, 42, 20, 0.05); }
 .camp-upgrade-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; align-items: stretch; }
@@ -294,15 +312,17 @@ watch([() => props.mode, () => selected.value?.id, researchDetail], async () => 
 .camp-stage-head > h4 { text-align: center; margin: 0; font-size: 13px; font-weight: 700; color: var(--text-main); }
 .camp-upgrade-stage.is-next .camp-stage-head > h4 { color: var(--accent-ink); }
 .camp-upgrade-meta { display: flex; flex-direction: column; gap: 6px; padding-top: 2px; border-top: 1px dashed var(--border-faint); }
-.camp-research-effect { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-left: 3px solid var(--accent-ink); background: var(--paper); margin-bottom: 12px; font-size: 13px; line-height: 1.7; }
-.camp-research-effect > span { color: var(--text-muted); font-size: 12px; }
-.camp-research-effect > strong { font-weight: 600; }
-.camp-heading .camp-overview-button { margin-left: auto; flex: 0 0 auto; align-self: center; }
+.camp-research-effect { display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-left: 3px solid var(--accent-ink); border-radius: 0 6px 6px 0; background: var(--paper); margin-bottom: 10px; font-size: 12.5px; line-height: 1.6; }
+.camp-research-effect > span { color: var(--text-muted); font-size: 11.5px; }
+.camp-research-effect > strong { font-weight: 600; color: var(--text-main); }
+.camp-condition-group { display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 4px 6px; }
+.camp-heading-title-row .camp-overview-button { margin-left: auto; flex: 0 0 auto; }
 .camp-overview-button { background: var(--input-bg); color: var(--input-text); }
 .camp-level :deep(.ui-section__title) { letter-spacing: 0; }
 .camp-level :deep(.ui-info-row) { line-height: 1.6; }
 .camp-materials h4 { font-size: 13px; line-height: 1.6; margin: 10px 0 6px; color: var(--text-main); }
 .camp-rewards { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 8px; }
+.camp-research-detail .camp-rewards { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
 .camp-rewards :deep(.ui-reward-card) { background: var(--paper); border-color: var(--border-faint); border-radius: 6px; box-shadow: none; }
 .camp-rewards :deep(.ui-reward-card__name) { white-space: normal; overflow-wrap: anywhere; line-height: 1.5; font-size: 12px; }
 .camp-links { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 2px; font-size: 12.5px; line-height: 1.5; }
@@ -336,12 +356,14 @@ watch([() => props.mode, () => selected.value?.id, researchDetail], async () => 
   .camp-heading img { width: 42px; height: 42px; }
   .camp-level-grid, .camp-level-grid.is-research { grid-template-columns: minmax(0, 1fr); }
   .camp-level { padding: 10px; }
+  .camp-research-controls { padding: 8px 10px; }
+  .camp-prereq-row { margin-left: 0; }
   .camp-upgrade-comparison { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .camp-upgrade-stage { padding: 9px 10px; gap: 6px; }
   .camp-stage-head { flex-direction: row; justify-content: flex-start; gap: 10px; padding-bottom: 6px; }
   .camp-stage-head > img { width: 44px; height: 44px; }
   .camp-stage-head > h4 { text-align: left; }
   .camp-upgrade-stage :deep(.ui-info-row) { flex-wrap: wrap; gap: 2px; }
-  .camp-rewards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .camp-rewards, .camp-research-detail .camp-rewards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 }
 </style>
