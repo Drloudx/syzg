@@ -16,6 +16,8 @@
  * 数据口径见 docs/context/technical/HOME_CONTENT.md。
  */
 
+import { getApiBaseUrl } from './env.js'
+
 /** 海报默认值（生产 D1 `home_banners` 快照，按 sortOrder） */
 export const DEFAULT_BANNERS = [
   {
@@ -326,7 +328,7 @@ async function requestHomeConfig(opts = {}) {
 
   let data
   try {
-    const url = opts.fresh ? '/api/home-config?fresh=1' : '/api/home-config'
+    const url = `${getApiBaseUrl()}/api/home-config${opts.fresh ? '?fresh=1' : ''}`
     const res = await fetch(url, { headers: { accept: 'application/json' } })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     data = await res.json()

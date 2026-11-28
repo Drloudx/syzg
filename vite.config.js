@@ -6,6 +6,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
 const repoRoot = path.dirname(fileURLToPath(import.meta.url))
+const isTapTapBuild = (process.env.VITE_TARGET || '').trim() === 'taptap'
 const hashBytes = value => createHash('sha256').update(value).digest('hex')
 
 export function collectResourceManifests(publicDir) {
@@ -193,12 +194,48 @@ function resourceManifestPlugin() {
   }
 }
 
+function taptapHtmlPlugin() {
+  return {
+    name: 'taptap-html-rewrite',
+    apply: 'build',
+    transformIndexHtml(html) {
+      return html
+        .replace(/<link\s+rel=["']icon["']\s+href=["']\/([^"']+)["']\s*\/?>/i, '<link rel="icon" href="./$1">')
+        .replace(/<script\s+[^>]*src=["'](?:\.?\/)?baidu-analytics\.js["'][^>]*><\/script>\s*/i, '')
+    }
+  }
+}
+
+function taptapCssRelativeUrlPlugin() {
+  return {
+    name: 'taptap-css-relative-urls',
+    apply: 'build',
+    generateBundle(_options, bundle) {
+      for (const [fileName, chunk] of Object.entries(bundle)) {
+        if (chunk.type !== 'asset' || !fileName.endsWith('.css')) continue
+        const css = typeof chunk.source === 'string'
+          ? chunk.source
+          : Buffer.from(chunk.source).toString('utf8')
+        const depth = fileName.split('/').length - 1
+        const prefix = depth > 0 ? '../'.repeat(depth) : './'
+        const rewritten = css.replace(
+          /url\((['"]?)\/(images|ui|fonts)\/([^'")]+)\1\)/g,
+          (_whole, quote, root, rest) => `url(${quote}${prefix}${root}/${rest}${quote})`
+        )
+        if (rewritten !== css) chunk.source = rewritten
+      }
+    }
+  }
+}
+
 export default defineConfig({
+  ...(isTapTapBuild ? { base: './' } : {}),
   cacheDir: process.env.VITE_CACHE_DIR || 'node_modules/.vite',
   plugins: [
     vue(),
     fontUrlVersionPlugin(),
     resourceManifestPlugin(),
+    ...(isTapTapBuild ? [taptapHtmlPlugin(), taptapCssRelativeUrlPlugin()] : []),
   ],
   resolve: {
     alias: {
@@ -256,6 +293,7 @@ export default defineConfig({
     }
   },
   build: {
+    ...(isTapTapBuild ? { outDir: 'dist-taptap/syzg-wiki', emptyOutDir: true } : {}),
     // Vite 8 默认 target 为 baseline-widely-available（Chrome 107+），LightningCSS 会把
     // `@media (max-width: 1024px)` 改写为 Level 4 区间语法 `@media (width<=1024px)`，
     // 导致国内手机浏览器（QQ/百度/UC/华为/Vivo X5 内核、Blink < 104）与 iOS < 16.4

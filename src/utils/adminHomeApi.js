@@ -8,6 +8,7 @@
  * 🔴 所有写操作要求**超管**（role >= 2），服务端强校验；前端隐藏只是体验优化。
  */
 import { AdminApiError } from './adminApi.js'
+import { getApiBaseUrl } from './env.js'
 
 /** 与 adminApi.js 同量级（5~10 秒够本地与边缘节点往返） */
 const TIMEOUT_MS = 10_000
@@ -35,7 +36,7 @@ async function request(path, { method = 'GET', body } = {}) {
 
   let res
   try {
-    res = await fetch(path, {
+    res = await fetch(`${getApiBaseUrl()}${path}`, {
       method,
       headers,
       body: body === undefined ? undefined : JSON.stringify(body),

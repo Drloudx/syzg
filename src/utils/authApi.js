@@ -14,7 +14,7 @@
  * 详见 `docs/context/technical/ACCOUNT_SYSTEM.md` §四。
  */
 
-import { CLOUD_URL, isNative } from './env.js'
+import { getApiBaseUrl, isNative } from './env.js'
 
 const TIMEOUT_MS = 20000 // 比评论长一点：注册/登录前后要跑 60 万轮 PBKDF2（真机实测约 400ms，留足余量）
 
@@ -47,9 +47,8 @@ function apiBase() {
     if (typeof navigator !== 'undefined' && navigator.onLine === false) {
       throw new AuthApiError(NETWORK_ERROR, 0)
     }
-    return CLOUD_URL
   }
-  return ''
+  return getApiBaseUrl()
 }
 
 async function request(path, { method = 'GET', body, token } = {}) {

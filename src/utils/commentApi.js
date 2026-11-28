@@ -12,7 +12,7 @@
  *
  * 相关设计：docs/context/technical/COMMENTS_BACKEND.md
  */
-import { CLOUD_URL, isNative } from './env.js'
+import { getApiBaseUrl, isNative } from './env.js'
 import { getToken, whenSessionReady } from './authSession.js'
 import { COMMENT_PAGE_SIZE } from '../config/discussions.js'
 
@@ -85,9 +85,8 @@ function apiBase() {
     if (typeof navigator !== 'undefined' && navigator.onLine === false) {
       throw new CommentApiError(NETWORK_ERROR, 0)
     }
-    return CLOUD_URL
   }
-  return ''
+  return getApiBaseUrl()
 }
 
 export class CommentApiError extends Error {
@@ -226,14 +225,11 @@ export function fetchCommentContext(pageKey, id) {
  */
 export function fetchRecentComments({ fresh = false } = {}) {
   /*
-   * 这条**也带令牌**：右栏那条列表要能标出"哪条是你发的"。
-   * 服务端对 `/api/recent` 做了边缘共享缓存，而带 Authorization 的请求
-   * 本来就不会命中共享缓存 —— 这是**可接受的代价**：右栏本来就有 30 秒轮询，
-   * 少一层共享缓存不影响体感，但"自己那条显示不出来"会影响。
-   * （`mine` 是逐请求算的，不缓存反而是对的。）
+   * 服务端 /api/recent 只返回公开字段、不算 `mine`，无需等待会话恢复也不应附带
+   * Authorization 头（带 Authorization 会破坏边缘共享缓存且迫使首屏串行等 /api/auth/me）。
    */
-  if (!fresh) return request('/api/recent')
-  return request(`/api/recent?fresh=1&t=${Date.now()}`)
+  if (!fresh) return request('/api/recent', { token: '' })
+  return request(`/api/recent?fresh=1&t=${Date.now()}`, { token: '' })
 }
 
 /**

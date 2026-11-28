@@ -78,6 +78,7 @@ import { computed, nextTick, ref, watch } from 'vue'
 
 import { CAPTCHA_PROMPT_COUNT } from '../config/auth.js'
 import { fetchCaptcha } from '../utils/authApi.js'
+import { getImageUrl, isTapTap } from '../utils/env.js'
 
 const props = defineProps({
   /** 是否展开。父组件在"点了发送验证码"时置 true */
@@ -120,7 +121,10 @@ async function load() {
   try {
     const data = await fetchCaptcha()
     captchaId.value = data.captchaId
-    svg.value = data.svg
+    const rawSvg = typeof data.svg === 'string' ? data.svg : ''
+    svg.value = isTapTap
+      ? rawSvg.replaceAll('href="/ui/map_w1_bg.webp"', `href="${getImageUrl('/ui/map_w1_bg.webp')}"`)
+      : rawSvg
     state.value = 'picking'
     emit('state', 'picking')
     // 等 DOM 换上新的 SVG 再放开交互，避免把点击记到旧题上

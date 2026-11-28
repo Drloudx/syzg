@@ -97,18 +97,27 @@ export function getLocalResourceUrl(path) {
 
   const current = new URL(window.location.href)
 
-  // Web：锚定站点根，与路由无关
-  if (current.protocol === 'http:' || current.protocol === 'https:') {
+  // Web（非 TapTap 子路径构建）：锚定站点根，与路由无关
+  if (!isTapTap && (current.protocol === 'http:' || current.protocol === 'https:')) {
     return new URL(cleanPath, `${current.origin}/`).href
   }
 
-  // file://（Android 包内资产）：相对当前文档解析
+  // file://（Android 包内资产）与 TapTap 工具箱子路径托管：相对当前文档解析
   const base = new URL(window.location.href)
   base.hash = ''
   base.search = ''
   if (!base.pathname.endsWith('/') && !base.pathname.endsWith('.html')) base.pathname += '/'
   return new URL(cleanPath, base).href
 }
+
+// 识别是否为 TapTap 游戏工具箱构建目标（构建时注入 VITE_TARGET=taptap）
+let _isTapTap = false
+try {
+  _isTapTap = String(import.meta.env?.VITE_TARGET || '').trim() === 'taptap'
+} catch (_) {
+  _isTapTap = false
+}
+export const isTapTap = _isTapTap
 
 // 识别是否为 Android 原生 APP 环境
 // 注意：改为惰性安全求值，保证该模块能在 Node 构建脚本（scripts/parse/*.mjs）中安全 import
@@ -119,6 +128,14 @@ try {
   _isNative = false
 }
 export const isNative = _isNative
+
+/**
+ * 动态 API（评论 / 账号 / 首页配置）的请求基址。
+ * 主站 Web 走同域相对路径 `''`；Android 原生壳与 TapTap 工具箱构建均直连 `CLOUD_URL`。
+ */
+export function getApiBaseUrl() {
+  return (isNative || isTapTap) ? CLOUD_URL : ''
+}
 
 /**
  * 获取静态/动态资源基准路径
@@ -149,7 +166,9 @@ export function getImageUrl(path) {
     const uiPath = path.startsWith('/') ? path : `/${path}`;
     if (isNative) return uiPath;
     const uiVersion = getImageVersion(uiPath);
-    return uiVersion ? `${uiPath}?v=${encodeURIComponent(uiVersion)}` : uiPath;
+    // TapTap 子路径托管：需解析为当前文档基址的完整 URL（含 CSS var(--icon-url) 在 assets/*.css 内也可正确寻址）
+    const resolvedUi = isTapTap ? getLocalResourceUrl(uiPath) : uiPath;
+    return uiVersion ? `${resolvedUi}${resolvedUi.includes('?') ? '&' : '?'}v=${encodeURIComponent(uiVersion)}` : resolvedUi;
   }
 
   // Other large assets were moved to /images by the user
@@ -159,7 +178,7 @@ export function getImageUrl(path) {
   }
 
   const baseUrl = getResourceBaseUrl();
-  const url = `${baseUrl}${imgPath}`;
+  const url = (!baseUrl && isTapTap) ? getLocalResourceUrl(imgPath) : `${baseUrl}${imgPath}`;
   // 优先用该文件自己的内容哈希；未收录则回退全局 build id（保持旧行为，不会漏掉缓存刷新）。
   const version = getImageVersion(imgPath) || RESOURCE_BUILD_ID;
   return version ? `${url}${url.includes('?') ? '&' : '?'}v=${encodeURIComponent(version)}` : url;
@@ -179,8 +198,11 @@ export function handleImageFallback(event, { source, candidates = [], fallback =
   if (!element) return false
   const current = element.getAttribute?.('src') || element.src || ''
   let state = imageAttempts.get(element)
+  const resolvedFallback = (isTapTap && typeof fallback === 'string' && fallback.startsWith('/'))
+    ? `.${fallback}`
+    : fallback
   const original = source || (state?.candidates.includes(current) ? state.source : current)
-  const signature = JSON.stringify([original, candidates, fallback])
+  const signature = JSON.stringify([original, candidates, resolvedFallback])
   if (!state || state.signature !== signature) {
     const queue = []
     for (const candidate of [original, ...candidates]) {
@@ -191,7 +213,7 @@ export function handleImageFallback(event, { source, candidates = [], fallback =
         if (parsed.origin === CLOUD_URL) queue.push(`${parsed.pathname}${parsed.search}`)
       } catch (_) { /* Invalid paths proceed to the next bounded candidate. */ }
     }
-    if (fallback) queue.push(fallback)
+    if (resolvedFallback) queue.push(resolvedFallback)
     state = { source: original, signature, candidates: [...new Set(queue)], tried: new Set(), exhausted: false }
     imageAttempts.set(element, state)
   }

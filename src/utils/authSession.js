@@ -37,6 +37,7 @@ import {
   register,
   updateMe
 } from './authApi.js'
+import { getApiBaseUrl } from './env.js'
 import { deriveVerifier, isKdfAvailable, generatePasswordSalt } from './passwordKdf.js'
 
 const STORAGE_KEY = 'myrzg:auth'
@@ -321,7 +322,7 @@ export async function changePasswordWithCode({ code, newPassword }) {
 export async function resetPasswordWithCode({ email, code, newPassword }) {
   const normEmail = String(email || '').trim().toLowerCase()
   const verifier = await deriveFor(normEmail, newPassword)
-  const res = await fetch('/api/auth/reset-password', {
+  const res = await fetch(`${getApiBaseUrl()}/api/auth/reset-password`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ email: normEmail, code: String(code || '').trim(), verifier })

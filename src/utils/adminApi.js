@@ -22,6 +22,8 @@
  */
 
 /** 网络/超时（与 `commentApi` 同量级：5 秒够本地与边缘节点往返） */
+import { getApiBaseUrl } from './env.js'
+
 const TIMEOUT_MS = 10_000
 
 export class AdminApiError extends Error {
@@ -73,7 +75,7 @@ async function request(path, { method = 'GET', body } = {}) {
 
   let res
   try {
-    res = await fetch(path, {
+    res = await fetch(`${getApiBaseUrl()}${path}`, {
       method,
       headers,
       body: body === undefined ? undefined : JSON.stringify(body),
