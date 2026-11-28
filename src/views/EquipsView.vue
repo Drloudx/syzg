@@ -207,7 +207,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
+import { ref, shallowRef, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   compareItemsByCategoryQuality,
@@ -245,7 +245,7 @@ import {
 const route = useRoute()
 const router = useRouter()
 
-const allItems = ref([])
+const allItems = shallowRef([])
 const subCategories = ref([])
 const isDataReady = ref(false)
 const errorMessage = ref('')

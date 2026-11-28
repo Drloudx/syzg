@@ -611,7 +611,7 @@ import UiVirtualGrid from '../components/ui/UiVirtualGrid.vue'
 import ActivityDungeonEventModal from '../components/activity/ActivityDungeonEventModal.vue'
 import { getImageUrl } from '../utils/env.js'
 import { fetchWithFallback } from '../utils/request.js'
-import { fetchItemData } from '../utils/itemParser.js'
+import { fetchItemListData } from '../utils/itemParser.js'
 import { openMonsterDetail } from '../utils/monsterModalState.js'
 import { openItemDetail } from '../utils/itemModalState.js'
 
@@ -791,7 +791,7 @@ const goToRelicBoard = () => {
 const openItem = async itemId => {
   if (!itemId) return
   try {
-    const { items, categoryTree } = await fetchItemData()
+    const { items, categoryTree } = await fetchItemListData()
     const found = items.find(i => i.typeId === itemId)
     if (found) {
       openItemDetail(found, categoryTree)

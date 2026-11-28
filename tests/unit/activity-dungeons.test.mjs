@@ -83,7 +83,7 @@ test('活动副本层级列表复用 UiVirtualGrid 窗口化与列模板约定',
   assert.match(viewSource, /<UiVirtualGrid\b/, '层级挑战应接入 UiVirtualGrid 视口窗口化')
   assert.match(viewSource, /\.ad-layers-scroll\s+:deep\(\.ui-card-grid\)/, '列模板必须写在 :deep(.ui-card-grid) 上')
   assert.doesNotMatch(viewSource, /content-visibility:\s*auto/, '窗口化卡片不得加 content-visibility: auto')
-  assert.match(viewSource, /fetchItemData\s*\(/, '点击物品需先取完整物品对象再传给 openItemDetail')
+  assert.match(viewSource, /fetchItem(?:List)?Data\s*\(/, '点击物品需先取完整物品对象再传给 openItemDetail')
   assert.doesNotMatch(viewSource, /openItemDetail\(\s*itemId\s*\)/, '禁止把字符串 itemId 直接传给 openItemDetail')
 })
 

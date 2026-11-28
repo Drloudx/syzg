@@ -19,7 +19,23 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '../..')
 const read = p => JSON.parse(readFileSync(join(root, p), 'utf8'))
 
 const tasks = read('public/data/parsed/tasks.json')
-const search = read('public/data/parsed/dialog-search.json')
+const dsIndex = read('public/data/parsed/dialog-search/index.json')
+const mergedSearchTasks = {}
+for (const type of dsIndex.types || []) {
+  const shard = read(`public/data/parsed/dialog-search/${type}.json`)
+  assert.equal(shard.meta?.form, 'per-dialog-lines', `dialog-search/${type}.json 的 meta.form 应为 per-dialog-lines`)
+  for (const [taskId, blocks] of Object.entries(shard.tasks || {})) {
+    assert.equal(mergedSearchTasks[taskId], undefined, `任务 ${taskId} 不应在多个剧情搜索分片中重复`)
+    mergedSearchTasks[taskId] = blocks
+  }
+}
+const search = {
+  meta: {
+    form: 'per-dialog-lines',
+    taskCount: Object.keys(mergedSearchTasks).length
+  },
+  tasks: mergedSearchTasks
+}
 const dialogDir = join(root, 'public/data/taskDialogs')
 
 test('剧情副本只保留页面读取的 text / option，舞台指令不进产物', () => {
@@ -143,12 +159,10 @@ test('任务列表与详情分片、剧情搜索分片与全量产物完全对�
     assert.deepEqual(detail, full, `parsed/tasks/${slim.id}.json 应与 tasks.json 原条目一致`)
   }
 
-  const dsIndex = read('public/data/parsed/dialog-search/index.json')
   assert.ok(Array.isArray(dsIndex.types) && dsIndex.types.length > 0, 'dialog-search/index.json 应列出可用分类')
-  const merged = {}
+  assert.equal(existsSync(join(root, 'public/data/parsed/dialog-search.json')), false, '全量 dialog-search.json 已退役，不应继续生成')
   for (const t of dsIndex.types) {
     const shard = read(`public/data/parsed/dialog-search/${t}.json`)
-    Object.assign(merged, shard.tasks || {})
+    assert.ok(Object.keys(shard.tasks || {}).length > 0, `dialog-search/${t}.json 分片不应为空`)
   }
-  assert.deepEqual(merged, search.tasks, '全部 dialog-search/<type>.json 合并后应与 dialog-search.json 一致')
 })

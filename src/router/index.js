@@ -467,7 +467,24 @@ const ROUTE_LOADERS = routes
  *   `/gacha`（244 KB，占总视图 chunk 近一半）留给导航意图触发；
  *   `/admin` 是管理页，普通访客永远不会打开，不该占首屏空闲带宽。
  */
-const DEFERRED_PREFETCH_PATHS = new Set(['/gacha', '/admin'])
+const DEFERRED_PREFETCH_PATHS = new Set([
+  '/gacha',
+  '/gacha/analysis',
+  '/admin',
+  '/sims',
+  '/relics',
+  '/dungeons',
+  '/404',
+  '/:pathMatch(.*)*'
+])
+
+const NAV_INTENT_PREFETCH_PATHS = new Set([
+  '/gacha',
+  '/gacha/analysis',
+  '/sims',
+  '/relics',
+  '/dungeons'
+])
 
 /** 两次预取之间的间隔：既让首屏资源先落稳，也避免主线程被连续解析占满。 */
 const PREFETCH_STEP_MS = 220
@@ -489,19 +506,21 @@ const idlePrefetchPaths = new Set(
   ROUTE_LOADERS.map(route => route.path).filter(path => !DEFERRED_PREFETCH_PATHS.has(path))
 )
 
-/** 首屏空闲预取：跳过重包，逐个让出主线程，避免与首屏数据请求竞争。 */
+/** 首屏空闲预取：跳过重包与弱网/省流量模式，逐个让出主线程，避免与首屏数据请求竞争。 */
 export function prefetchRouteChunks() {
+  const conn = typeof navigator !== 'undefined' ? navigator.connection : null
+  if (conn?.saveData || conn?.effectiveType === '2g' || conn?.effectiveType === 'slow-2g') return
   const run = () => prefetchPaths(idlePrefetchPaths)
   if (typeof requestIdleCallback === 'function') requestIdleCallback(run, { timeout: 3000 })
   else setTimeout(run, 1200)
 }
 
-/** 导航意图预取：补齐被首屏跳过的重包（在 `NavigationMenu` 打开时调用）。 */
+/** 导航意图预取：补齐被首屏跳过的常用重包（在 `NavigationMenu` 打开时调用）。 */
 let deferredPrefetched = false
 export function prefetchDeferredRouteChunks() {
   if (deferredPrefetched) return
   deferredPrefetched = true
-  prefetchPaths(DEFERRED_PREFETCH_PATHS)
+  prefetchPaths(NAV_INTENT_PREFETCH_PATHS)
 }
 
 export default router

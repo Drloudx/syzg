@@ -116,6 +116,10 @@ function resolveImport(fromFile, spec) {
 }
 
 const srcFiles = walk('src').filter((f) => /\.(vue|js)$/.test(f))
+const backendFiles = [
+  path.join(ROOT, 'functions/api/[[path]].js'),
+  ...(existsSync(path.join(ROOT, 'server/api')) ? walk('server/api').filter((f) => f.endsWith('.js')) : [])
+]
 
 test('前端路由、接口路径与相对 import 的"目标"都真实存在', () => {
   const routes = collectRoutes()
@@ -148,6 +152,15 @@ test('前端路由、接口路径与相对 import 的"目标"都真实存在', (
       if (!apiExists(m[1])) problems.push(`${R}: 调用了 ${m[1]}，但 API 里没有对应分支`)
     }
 
+    for (const m of text.matchAll(/from\s+'(\.[^']+)'/g)) {
+      if (!resolveImport(f, m[1])) problems.push(`${R}: import '${m[1]}' 解析不到目标文件`)
+    }
+  }
+
+  for (const absFile of backendFiles) {
+    const f = path.relative(ROOT, absFile)
+    const text = readFileSync(absFile, 'utf8')
+    const R = rel(f)
     for (const m of text.matchAll(/from\s+'(\.[^']+)'/g)) {
       if (!resolveImport(f, m[1])) problems.push(`${R}: import '${m[1]}' 解析不到目标文件`)
     }

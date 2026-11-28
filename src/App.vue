@@ -184,12 +184,14 @@
       <main class="app-main" @click="isSearchOpen = false">
         <!-- 全局物品详情弹窗 -->
         <ItemDetailModal 
+          v-if="itemModalMounted"
           v-model:visible="itemModalState.visible" 
           :item="itemModalState.item"
           :categoryTree="itemModalState.categoryTree" 
         />
         <!-- 全局怪物详情弹窗：/daily、/dungeons、/chapters 点怪物名时弹出，不跳页 -->
         <MonsterDetailModal
+          v-if="monsterModalMounted"
           v-model:visible="monsterModalState.visible"
           :monster-id="monsterModalState.monsterId"
           :initial-level="monsterModalState.initialLevel"
@@ -301,12 +303,12 @@
     <NavigationMenu v-if="!isGachaFullscreen" :class="{ 'mobile-only': !isNative }" :is-open="isNavOpen" :menu-mode="menuMode" @close="isNavOpen = false" />
       
     <!-- 全局弹窗 -->
-    <UpdateModal ref="updateModalRef" />
-    <MenuModeModal v-model="showMenuModeModal" v-model:mode="menuMode" v-model:trigger-mode="navTriggerMode" />
+    <UpdateModal v-if="updateModalMounted" ref="updateModalRef" />
+    <MenuModeModal v-if="menuModeMounted" v-model="showMenuModeModal" v-model:mode="menuMode" v-model:trigger-mode="navTriggerMode" />
     <NoticeModal v-model="showNoticeModal" />
-    <VersionCheckModal v-model="showVersionCheckModal" @request-update="handleRequestUpdate" />
-    <AboutModal v-model="showAboutModal" />
-    <AccountModal v-model="isAccountOpen" />
+    <VersionCheckModal v-if="versionCheckMounted" v-model="showVersionCheckModal" @request-update="handleRequestUpdate" />
+    <AboutModal v-if="aboutMounted" v-model="showAboutModal" />
+    <AccountModal v-if="accountModalMounted" v-model="isAccountOpen" />
     <UiModal
       :visible="!!itemLoadError"
       title="物品详情加载失败"
@@ -321,7 +323,7 @@
       </template>
     </UiModal>
     
-    <RewardProbabilityModal />
+    <RewardProbabilityModal v-if="rewardModalMounted" />
 
     <UiModal
       v-model:visible="showMessageModal"
@@ -348,32 +350,37 @@
 </template>
 
 <script setup>
-import { Suspense, ref, computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
+import { ref, computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, watch } from 'vue'
 import { RouterView, useRoute, useRouter } from 'vue-router'
 import NavigationMenu from './components/NavigationMenu.vue'
 import GlobalSearchBox from './components/GlobalSearchBox.vue'
-import UpdateModal from './components/UpdateModal.vue'
-import MenuModeModal from './components/MenuModeModal.vue'
-import NoticeModal from './components/NoticeModal.vue'
-import VersionCheckModal from './components/VersionCheckModal.vue'
-import AboutModal from './components/AboutModal.vue'
-import AccountModal from './components/AccountModal.vue'
 import { avatarPath, avatarCatalogState, loadAvatarCatalog } from './utils/avatarCatalog.js'
 import { registerAccountModal } from './utils/accountModal.js'
 import { currentUser, restoreSession } from './utils/authSession.js'
 import { SITE_PAGE_KEY, fetchRecentComments } from './utils/commentApi.js'
 import { lastPostedComment, commentPostedAt } from './utils/commentEvents.js'
-import { UiButton, UiEmptyState, UiModal, EdgeFloatingWidget } from './components/ui/index.js'
-import ItemDetailModal from './components/ItemDetailModal.vue'
-import MonsterDetailModal from './components/MonsterDetailModal.vue'
+import UiButton from './components/ui/UiButton.vue'
+import UiEmptyState from './components/ui/UiEmptyState.vue'
+import UiModal from './components/ui/UiModal.vue'
+import EdgeFloatingWidget from './components/ui/EdgeFloatingWidget.vue'
 import EmoticonText from './components/EmoticonText.vue'
-import RewardProbabilityModal from './components/RewardProbabilityModal.vue'
 import { itemModalState, openItemDetail } from './utils/itemModalState'
 import { monsterModalState } from './utils/monsterModalState'
+import { rewardModalState } from './utils/rewardModalState.js'
 import { fetchItemListData } from './utils/itemParser'
 import { formatResourceLoadError } from './utils/resourceClient.js'
 import { resetModalScrollCoordinator } from './utils/modalScrollCoordinator.js'
 import { prefetchRouteChunks, routeLoading, routeLoadingText, routeNavigating } from './router/index.js'
+
+const UpdateModal = defineAsyncComponent(() => import('./components/UpdateModal.vue'))
+const MenuModeModal = defineAsyncComponent(() => import('./components/MenuModeModal.vue'))
+const NoticeModal = defineAsyncComponent(() => import('./components/NoticeModal.vue'))
+const VersionCheckModal = defineAsyncComponent(() => import('./components/VersionCheckModal.vue'))
+const AboutModal = defineAsyncComponent(() => import('./components/AboutModal.vue'))
+const AccountModal = defineAsyncComponent(() => import('./components/AccountModal.vue'))
+const ItemDetailModal = defineAsyncComponent(() => import('./components/ItemDetailModal.vue'))
+const MonsterDetailModal = defineAsyncComponent(() => import('./components/MonsterDetailModal.vue'))
+const RewardProbabilityModal = defineAsyncComponent(() => import('./components/RewardProbabilityModal.vue'))
 
 import { isBlacklisted } from './config/blacklist.js'
 import { getImageUrl, handleImageFallback, isNative } from './utils/env.js'
@@ -548,8 +555,11 @@ const recentLoaded = ref(false)
 const RECENT_CLIENT_THROTTLE_MS = 15000
 let recentFetchedAt = 0
 let recentInFlight = false
+const canShowRecentPanel = () =>
+  !isNative && route.path !== '/gacha' && typeof window !== 'undefined' && window.innerWidth >= 1025
 
 async function loadRecentDiscussions({ fresh = false, allowThrottled = false } = {}) {
+  if (!canShowRecentPanel()) return
   if (recentInFlight) return
   if (!allowThrottled && !fresh && Date.now() - recentFetchedAt < RECENT_CLIENT_THROTTLE_MS) return
   recentInFlight = true
@@ -614,8 +624,8 @@ function addRecentComment(comment) {
 }
 
 
-// 跨页面跳转时刷新右栏（只监听 route.path，避免同页切分类/筛选/弹窗参数时无意义打 /api/recent）
-watch(() => route.path, () => loadRecentDiscussions({ fresh: true }))
+// 跨页面跳转时刷新右栏（只监听 route.path，避免同页切分类/筛选/弹窗参数时无意义打 /api/recent；走 15s 客户端节流与 30s 服务端缓存）
+watch(() => route.path, () => loadRecentDiscussions())
 // 本机发表评论后**直接把那一条插进右栏**（不重新拉取，列表不重建、不闪）
 watch(commentPostedAt, () => addRecentComment(lastPostedComment.value))
 
@@ -635,7 +645,8 @@ watch(commentPostedAt, () => addRecentComment(lastPostedComment.value))
  * 否则会撞上那个缓存窗口、看到的是旧快照。
  */
 useVisibilityPolling(() => loadRecentDiscussions({ fresh: true }), {
-  intervalMs: RECENT_POLL_MS
+  intervalMs: RECENT_POLL_MS,
+  enabled: canShowRecentPanel
 })
 
 /**
@@ -713,6 +724,24 @@ const showMessageModal = ref(false)
 const messageTitle = ref('提示')
 const messageText = ref('')
 const messageCallback = ref(null)
+
+// 粘性按需挂载开关：全局弹窗首次打开后才加载分包并保持挂载（保留关闭过渡动画）
+const itemModalMounted = ref(false)
+const monsterModalMounted = ref(false)
+const accountModalMounted = ref(false)
+const rewardModalMounted = ref(false)
+const menuModeMounted = ref(false)
+const versionCheckMounted = ref(false)
+const aboutMounted = ref(false)
+const updateModalMounted = ref(isNative)
+
+watch(() => itemModalState.visible, (v) => { if (v) itemModalMounted.value = true }, { immediate: true })
+watch(() => monsterModalState.visible, (v) => { if (v) monsterModalMounted.value = true }, { immediate: true })
+watch(isAccountOpen, (v) => { if (v) accountModalMounted.value = true }, { immediate: true })
+watch(() => rewardModalState.visible, (v) => { if (v) rewardModalMounted.value = true }, { immediate: true })
+watch(showMenuModeModal, (v) => { if (v) menuModeMounted.value = true }, { immediate: true })
+watch(showVersionCheckModal, (v) => { if (v) versionCheckMounted.value = true }, { immediate: true })
+watch(showAboutModal, (v) => { if (v) aboutMounted.value = true }, { immediate: true })
 
 /**
  * 导航菜单呼出方式：`side`（侧边）/ `bottom`（底部）/ `top`（顶部）。
@@ -793,10 +822,13 @@ const setRoutePending = () => {
   pendingClearRaf = requestAnimationFrame(poll)
 }
 
+const lastClipTopMap = new WeakMap()
 const setClipTop = (element, boundary) => {
   if (!element) return
-  const clipTop = Math.max(0, boundary - element.getBoundingClientRect().top)
-  element.style.setProperty('--sticky-clip-top', `${clipTop}px`)
+  const next = `${Math.max(0, boundary - element.getBoundingClientRect().top)}px`
+  if (lastClipTopMap.get(element) === next) return
+  lastClipTopMap.set(element, next)
+  element.style.setProperty('--sticky-clip-top', next)
 }
 
 /*
@@ -876,11 +908,11 @@ const syncInlineModalAlignment = () => {
   }
   if (modalOpen && root && root.scrollTop <= 2 && rightCol && overlay && appMain) {
     // 用 appMain.top（稳定值）而非 overlay.top（进入动画 translateY 期间会偏移）计算目标高度
-    const h = Math.max(rightCol.getBoundingClientRect().bottom - appMain.getBoundingClientRect().top, 1)
-    overlay.style.minHeight = `${h}px`
-    appMain.style.minHeight = `${h}px`
+    const next = `${Math.max(rightCol.getBoundingClientRect().bottom - appMain.getBoundingClientRect().top, 1)}px`
+    if (overlay.style.minHeight !== next) overlay.style.minHeight = next
+    if (appMain.style.minHeight !== next) appMain.style.minHeight = next
   } else {
-    if (overlay) overlay.style.removeProperty('min-height')
+    if (overlay && overlay.style.minHeight) overlay.style.removeProperty('min-height')
     if (appMain && appMain.style.minHeight) appMain.style.removeProperty('min-height')
   }
 }
@@ -892,6 +924,10 @@ const scheduleStickyClipping = () => {
 
 let bootLoadingRaf = 0
 let mainObserver = null
+let recentDesktopMq = null
+const onRecentViewportChange = () => {
+  if (recentDesktopMq?.matches && !recentLoaded.value) loadRecentDiscussions()
+}
 const handleGlobalImageError = event => {
   if (!(event.target instanceof HTMLImageElement) || event.target.closest('[data-image-fallback="custom"]')) return
   handleImageFallback(event)
@@ -944,10 +980,12 @@ onMounted(() => {
     }
     bootLoadingRaf = requestAnimationFrame(reveal)
   } else {
-    // 移动端 / 窄屏没有骨架期滚动条处理，但仍要在首屏就绪后预取路由分包。
+    // 移动端 / 窄屏没有骨架期滚动条处理，但仍要在首屏就绪后预取路由分包（兼容首页 .home-view）。
     const started = performance.now()
     const settle = () => {
-      const page = document.querySelector('.page-view-container')
+      const page =
+        document.querySelector('.page-view-container') ||
+        document.querySelector('.app-main > *:not(.ui-modal-host)')
       const ready = page && !page.querySelector('.ui-empty-state--loading, .ui-empty-state--error')
       if (ready || performance.now() - started > 4000) {
         prefetchRouteChunks()
@@ -958,6 +996,11 @@ onMounted(() => {
     bootLoadingRaf = requestAnimationFrame(settle)
   }
 
+  if (!isNative && typeof window !== 'undefined' && 'matchMedia' in window) {
+    recentDesktopMq = window.matchMedia('(min-width: 1025px)')
+    recentDesktopMq.addEventListener('change', onRecentViewportChange)
+  }
+
   // 右栏「最新讨论」的前台轮询由 useVisibilityPolling 自动接管（见其定义处的说明）
   nextTick(scrollToRecentBottom)
 })
@@ -965,6 +1008,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('error', handleGlobalImageError, true)
   window.removeEventListener('resize', scheduleStickyClipping)
+  recentDesktopMq?.removeEventListener('change', onRecentViewportChange)
   if (stickyClipFrame) window.cancelAnimationFrame(stickyClipFrame)
   if (pendingClearRaf) cancelAnimationFrame(pendingClearRaf)
   if (bootLoadingRaf) cancelAnimationFrame(bootLoadingRaf)
@@ -994,10 +1038,23 @@ const toggleSettings = () => {
 const { universalFileInput, handleExportData, triggerUniversalImport, handleUniversalImport } = useBackupData(showMessage)
 
 const updateModalRef = ref(null)
+let pendingUpdateInfo = null
+
+watch(updateModalRef, (inst) => {
+  if (inst?.startUpdateWithInfo && pendingUpdateInfo) {
+    const target = pendingUpdateInfo
+    pendingUpdateInfo = null
+    inst.startUpdateWithInfo(target)
+  }
+})
 
 const handleRequestUpdate = (info) => {
-  if (updateModalRef.value) {
-    updateModalRef.value.startUpdateWithInfo(info)
+  pendingUpdateInfo = info
+  updateModalMounted.value = true
+  if (updateModalRef.value?.startUpdateWithInfo) {
+    const target = pendingUpdateInfo
+    pendingUpdateInfo = null
+    updateModalRef.value.startUpdateWithInfo(target)
   }
 }
 

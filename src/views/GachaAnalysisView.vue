@@ -387,6 +387,8 @@
                 :src="getImageUrl(resolveAvatarSrc(item))"
                 :alt="item.name"
                 class="collection-avatar-img"
+                loading="lazy"
+                decoding="async"
                 @error="handleImgFallback"
               />
               <span v-if="item.count > 1" class="collection-count-badge">{{ item.count }}</span>
@@ -546,7 +548,7 @@
             <div v-if="viewMode === 'list' && banner.upHeroes && banner.upHeroes.length > 0" class="banner-up-heroes-row">
               <span class="up-row-label">当期UP:</span>
               <div v-for="hId in banner.upHeroes" :key="hId" class="up-hero-mini-avatar">
-                <img :src="getImageUrl(resolveAvatarSrc({ typeId: hId }))" :alt="hId" @error="handleImgFallback" />
+                <img :src="getImageUrl(resolveAvatarSrc({ typeId: hId }))" :alt="hId" loading="lazy" decoding="async" @error="handleImgFallback" />
               </div>
             </div>
 
@@ -589,6 +591,8 @@
                         :src="getImageUrl(resolveAvatarSrc(gold))"
                         :alt="gold.name"
                         class="waterfall-avatar-img"
+                        loading="lazy"
+                        decoding="async"
                         @error="handleImgFallback"
                       />
                       <!-- 状态徽章：单角标设计；歪的 New 改为红色，不显示歪 -->
@@ -638,6 +642,8 @@
                           :src="getImageUrl(resolveAvatarSrc(p))"
                           :alt="p.name"
                           class="purple-mini-img"
+                          loading="lazy"
+                          decoding="async"
                           @error="handleImgFallback"
                         />
                       </div>
@@ -678,6 +684,8 @@
                     :src="getImageUrl(resolveAvatarSrc(gold))"
                     :alt="gold.name"
                     class="grid-hero-img"
+                    loading="lazy"
+                    decoding="async"
                     @error="handleImgFallback"
                   />
                   <!-- 角标：单角标设计；歪的 New 改为红色，不显示歪 -->
@@ -996,6 +1004,8 @@
                 :src="getImageUrl(avatarPreviewPath)"
                 alt="当前头像"
                 class="acct-avatar-thumb"
+                loading="lazy"
+                decoding="async"
                 @error="handleImgFallback"
               />
             </div>

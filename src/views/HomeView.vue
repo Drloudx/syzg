@@ -507,6 +507,7 @@
 import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { getImageUrl } from '../utils/env.js'
+import { fetchWithFallback } from '../utils/request.js'
 import { loadHomeConfig, hasHomeConfigCache, buildRouteTarget, DEFAULT_DAILY_BLOCK, resolveDailyBlock } from '../utils/homeConfig.js'
 import { navIconOf } from '../config/navRoutes.js'
 import RichTextView from '../components/ui/RichTextView.vue'
@@ -1082,11 +1083,7 @@ const ELEMENT_SLUGS = { 1: 'Water', 2: 'Fire', 3: 'Wind', 4: 'Ground' }
 let heroSummaryRequest = null
 function loadHeroSummary() {
   if (!heroSummaryRequest) {
-    heroSummaryRequest = fetch('/data/parsed/hero-summary.json')
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        return res.json()
-      })
+    heroSummaryRequest = fetchWithFallback('data/parsed/hero-summary.json')
       .then(data => data.heroes || [])
       .catch(err => {
         // 失败不缓存，下次进页面还能重试
@@ -1105,6 +1102,11 @@ function loadHeroSummary() {
  */
 async function loadHomeContent() {
   try {
+  // 首页配置与角色摘要无依赖，并行发起消除串行 RTT 瀑布
+  const heroSummaryPromise = loadHeroSummary().catch(err => {
+    console.warn('[home] hero-summary.json 加载失败，角色区留空：', err?.message || err)
+    return null
+  })
   const cfg = await loadHomeConfig()
   bannerList.value = cfg.banners
   noticesData.value = cfg.notices
@@ -1114,18 +1116,14 @@ async function loadHomeContent() {
   if (cfg.daily) dailyConfig.value = cfg.daily
 
   /*
-   * 角色数据：读精简版 `hero-summary.json`（约 6 KB），不再下载 1959 KB 的 heroes.json。
+   * 角色数据：读精简版 `hero-summary.json`（约 4 KB），不再下载完整版 heroes.json。
    *
-   * 精简版包含**全部 34 个角色**的 6 个字段，所以后台 `home_heroes` 换成任意角色都能查到；
+   * 精简版包含**全部角色**的摘要字段，所以后台 `home_heroes` 换成任意角色都能查到；
    * 它由 `scripts/parse/heroes.mjs` 与 heroes.json 同批次产出，两者不会脱节。
    * `/heroes`、`/sims`、`/gacha` 仍读完整版，不受影响。
    */
-  try {
-    featuredHeroes.value = resolveHeroes(cfg.heroes, await loadHeroSummary())
-  } catch (err) {
-    console.warn('[home] hero-summary.json 加载失败，角色区留空：', err?.message || err)
-    featuredHeroes.value = []
-  }
+  const summaryHeroes = await heroSummaryPromise
+  featuredHeroes.value = summaryHeroes ? resolveHeroes(cfg.heroes, summaryHeroes) : []
   } catch (err) {
     /*
      * 🔴 兜底：`loadHomeConfig()` 理论上内部已回落默认值，但仍要兜住。

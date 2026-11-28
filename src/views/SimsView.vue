@@ -367,7 +367,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, defineAsyncComponent } from 'vue'
+import { ref, shallowRef, computed, onMounted, watch, defineAsyncComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getImageUrl } from '../utils/env'
 import { fetchWithFallback } from '../utils/request'
@@ -395,7 +395,7 @@ const TEAM_BUFF_OFF = getImageUrl('/images/PetPanel_Atlas/team_buff.webp')
 const route = useRoute()
 const router = useRouter()
 
-const heroes = ref([])
+const heroes = shallowRef([])
 const pets = ref([])
 const team = ref([])
 const loading = ref(true)

@@ -94,6 +94,7 @@ const schemas = {
     && data.heroes.every(hero => isRecord(hero.unitData))
     && ['heroLevel', 'heroRank', 'consumeDatas'].every(key => isRecord(data[key]))
     && Number.isFinite(data.playerLevelCap) && data.playerLevelCap > 0,
+  'data/parsed/hero-summary.json': data => isRecord(data) && recordList(data.heroes),
   'data/parsed/partner-mails.json': data => isRecord(data) && recordList(data.mailboxes)
     && data.mailboxes.every(box => isList(box.mails)
       && box.mails.every(mail => hasId(mail) && [1, 2].includes(mail.mailType)

@@ -981,6 +981,9 @@ watch(() => [route.query.map, route.query.q], ([map, q]) => {
   }
 }
 .dungeon-card { overflow: visible; min-width: 0; align-self: start; }
+.dungeon-card.paper-panel { background-color: #e8dac1; }
+.dark-mode .dungeon-card.paper-panel,
+.dark-theme .dungeon-card.paper-panel { background-color: #34271b; }
 .dungeon-card__cover { min-height: 156px; position: relative; background: linear-gradient(135deg, var(--wood-soft), var(--wood)); background-size: cover; background-position: center; color: var(--on-image-text); padding: 16px; display: flex; flex-direction: column; justify-content: flex-end; }
 .dungeon-card__cover-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .dungeon-card__cover-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28, 18, 10, .16), rgba(28, 18, 10, .88)); }

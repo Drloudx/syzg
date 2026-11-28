@@ -194,7 +194,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, nextTick } from 'vue'
+import { ref, shallowRef, computed, watch, onMounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppStateStore } from '../stores/appState'
 import {
@@ -249,7 +249,7 @@ const achievements = ref([])
  * 用途：成就链跳转与 `?id=` 深链要能识别「被黑名单隐藏的成就」并给出明确提示。
  * 原实现只查 `achievements`（已过滤），深链静默找不到 —— 用户看到的是「点了没反应」。
  */
-const allAchievements = ref([])
+const allAchievements = shallowRef([])
 const isDataReady = ref(false)
 const errorMessage = ref('')
 let highlightTimer = 0
@@ -503,7 +503,7 @@ const ensureAchievementVisible = matcher => {
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  background-color: rgba(223, 206, 179, 0.92);
+  background-color: #e8dac1;
   border: 1.5px solid var(--border-soft, rgba(143, 115, 81, 0.35));
   border-radius: 8px;
   padding: 12px 16px;
@@ -512,9 +512,10 @@ const ensureAchievementVisible = matcher => {
   transition: all 0.2s ease;
 }
 
-.dark-mode .ach-list-row {
-  background-color: rgba(46, 34, 23, 0.84);
-  border-color: rgba(143, 115, 81, 0.3);
+.dark-mode .ach-list-row,
+.dark-theme .ach-list-row {
+  background-color: #34271b;
+  border-color: rgba(143, 115, 81, 0.38);
 }
 
 .ach-list-row:hover {
@@ -524,12 +525,13 @@ const ensureAchievementVisible = matcher => {
 }
 
 .ach-list-row.is-collected {
-  border-color: rgba(122, 154, 153, 0.6);
-  background-color: rgba(223, 206, 179, 0.96);
+  border-color: rgba(122, 154, 153, 0.65);
+  background-color: #efe2c4;
 }
-.dark-mode .ach-list-row.is-collected {
-  background-color: rgba(56, 44, 32, 0.85);
-  border-color: rgba(122, 154, 153, 0.45);
+.dark-mode .ach-list-row.is-collected,
+.dark-theme .ach-list-row.is-collected {
+  background-color: #3e2f21;
+  border-color: rgba(122, 154, 153, 0.5);
 }
 
 /* 左侧主体内容 */

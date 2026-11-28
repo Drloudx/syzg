@@ -83,9 +83,16 @@ export function preloadGachaSpineAssets(layers) {
             cachedFetch(pageUrl)
               .then(buffer => new Promise((resolve, reject) => {
                 const image = new Image()
-                image.onload = resolve
-                image.onerror = reject
-                image.src = URL.createObjectURL(new Blob([buffer], { type: imageMimeFromUrl(pageUrl) }))
+                const objectUrl = URL.createObjectURL(new Blob([buffer], { type: imageMimeFromUrl(pageUrl) }))
+                image.onload = () => {
+                  URL.revokeObjectURL(objectUrl)
+                  resolve(image)
+                }
+                image.onerror = err => {
+                  URL.revokeObjectURL(objectUrl)
+                  reject(err)
+                }
+                image.src = objectUrl
               }))
               .catch(() => {})
           } catch { /* 非页名行，忽略 */ }

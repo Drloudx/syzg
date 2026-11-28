@@ -1048,8 +1048,17 @@ watch(
   align-content: flex-start;
   gap: 6px;
 }
+/* 任务行：使用兑换卡片同款不透明暖纸底，隔绝背后地图线条透字（保持 1px 边框与原内边距） */
 .tasks-card-grid :deep(.ui-list-row) {
-  background-color: var(--panel-list-background);
+  background-color: #e8dac1;
+  border-color: var(--border-soft, rgba(143, 115, 81, 0.34));
+  border-bottom-color: var(--border-color, #8f7351);
+}
+.dark-mode .tasks-card-grid :deep(.ui-list-row),
+.dark-theme .tasks-card-grid :deep(.ui-list-row) {
+  background-color: #34271b;
+  border-color: rgba(143, 115, 81, 0.38);
+  border-bottom-color: rgba(143, 115, 81, 0.55);
 }
 .task-list-row {
   grid-column: 1 / -1;

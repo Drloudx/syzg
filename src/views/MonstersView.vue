@@ -67,7 +67,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, shallowRef, computed, onMounted, watch } from 'vue'
 import { fetchMonsterData } from '../utils/monsterParser'
 import { getImageUrl, handleImageFallback } from '../utils/env'
 import { useRoute, useRouter } from 'vue-router'
@@ -87,7 +87,7 @@ import {
 const route = useRoute()
 const router = useRouter()
 
-const allMonsters = ref([])
+const allMonsters = shallowRef([])
 const allLabels = ref([])
 const allPlaces = ref([])
 const isDataReady = ref(false)

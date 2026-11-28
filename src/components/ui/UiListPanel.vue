@@ -30,7 +30,7 @@ defineProps({
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
 
-:global(.dark-mode) .ui-list-panel {
+.dark-mode .ui-list-panel {
   background-color: var(--paper-soft, #32251a);
   border-color: var(--border-soft);
 }
@@ -54,7 +54,7 @@ defineProps({
   letter-spacing: 0.5px;
 }
 
-:global(.dark-mode) .ui-list-panel__header {
+.dark-mode .ui-list-panel__header {
   background: rgba(0, 0, 0, 0.25);
 }
 

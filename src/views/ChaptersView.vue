@@ -706,8 +706,17 @@ watch(() => route.query, (query) => {
   align-content: flex-start;
   gap: 6px;
 }
+/* 关卡列表行：使用兑换卡片同款不透明暖纸底，隔绝背后地图线条透字（保持 1px 边框与原内边距） */
 .chapters-card-grid :deep(.ui-list-row) {
-  background-color: var(--panel-list-background);
+  background-color: #e8dac1;
+  border-color: var(--border-soft, rgba(143, 115, 81, 0.34));
+  border-bottom-color: var(--border-color, #8f7351);
+}
+.dark-mode .chapters-card-grid :deep(.ui-list-row),
+.dark-theme .chapters-card-grid :deep(.ui-list-row) {
+  background-color: #34271b;
+  border-color: rgba(143, 115, 81, 0.38);
+  border-bottom-color: rgba(143, 115, 81, 0.55);
 }
 .stage-list-row {
   grid-column: 1 / -1;

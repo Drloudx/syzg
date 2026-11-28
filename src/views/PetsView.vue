@@ -804,7 +804,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, shallowRef, computed, onMounted, watch } from 'vue'
 import {
   fetchPetData,
   getPetVariantExtraEffects,
@@ -841,7 +841,7 @@ import { buildPageKey, COMMENT_PAGE_PREFIX } from '../utils/commentApi.js'
 const route = useRoute()
 const router = useRouter()
 
-const allPets = ref([])
+const allPets = shallowRef([])
 const petLevelData = ref(null)
 const petSetting = ref(null)
 const playerLevelCap = ref(1)
@@ -2032,8 +2032,8 @@ const tableRows = computed(() => filteredPets.value.map(pet => ({
   border-radius: 4px;
 }
 
-:global(.dark-mode) .trait-mechanics-card,
-:global(.dark-theme) .trait-mechanics-card {
+.dark-mode .trait-mechanics-card,
+.dark-theme .trait-mechanics-card {
   background: rgba(122, 154, 153, 0.12);
   border-color: rgba(147, 179, 178, 0.3);
 }

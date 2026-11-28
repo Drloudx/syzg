@@ -1377,7 +1377,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, watch } from 'vue'
+import { ref, shallowRef, reactive, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { getImageUrl } from '../../utils/env'
 import { fetchWithFallback } from '../../utils/request'
@@ -1437,9 +1437,9 @@ const MONSTER_WEAK_FILTERS = [
 
 const loading = ref(true)
 const errorMessage = ref('')
-const heroes = ref([])
-const monsters = ref([])
-const levelStrength = ref({})
+const heroes = shallowRef([])
+const monsters = shallowRef([])
+const levelStrength = shallowRef({})
 const effectsCatalog = ref({ pets: [], suits: [], equips: [] })
 
 const selectedHero = ref(null)

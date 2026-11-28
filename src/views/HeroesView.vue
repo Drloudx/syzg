@@ -812,7 +812,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, shallowRef, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getImageUrl } from '../utils/env'
 import { fetchItemListData } from '../utils/itemParser'
@@ -854,7 +854,7 @@ const route = useRoute()
 const router = useRouter()
 
 // Data refs
-const allHeroes = ref([])
+const allHeroes = shallowRef([])
 const heroLevelConfig = ref(null)
 const heroRankConfig = ref(null)
 const playerLevelCap = ref(1)

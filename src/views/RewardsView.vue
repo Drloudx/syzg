@@ -515,7 +515,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, nextTick, computed } from 'vue'
+import { ref, shallowRef, onMounted, watch, nextTick, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   UiCollectionToggle,
@@ -580,7 +580,7 @@ const currentExchangeCat = ref('s1')
 const routeTabsReady = ref(false)
 const searchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 
-const hiddenRewardsData = ref([])
+const hiddenRewardsData = shallowRef([])
 const hiddenTypeOptions = [
   { id: 'all', name: '全部' },
   { id: 'hidden', name: '被隐藏的物品' },
@@ -1915,9 +1915,10 @@ const closePrevImg = () => {
   border-color: var(--border-soft);
 }
 
-.dark-mode .hidden-list-row.is-collected {
-  border-color: rgba(122, 154, 153, 0.45);
-  background-color: rgba(56, 44, 32, 0.9) !important;
+.dark-mode .hidden-list-row.is-collected,
+.dark-theme .hidden-list-row.is-collected {
+  border-color: rgba(122, 154, 153, 0.5);
+  background-color: #3b2d20 !important;
 }
 
 .hidden-row-head {

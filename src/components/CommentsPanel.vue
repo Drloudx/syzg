@@ -9,7 +9,7 @@
     :data-count="comments.length"
   >
     <!-- 加载 / 错误 / 空 三态：统一用 UiEmptyState -->
-    <UiEmptyState v-if="loading && !comments.length" type="loading" text="评论加载中..." />
+    <UiEmptyState v-if="(loading || waitingForViewport) && !comments.length" type="loading" text="评论加载中..." />
 
     <template v-else>
       <div v-if="errorMessage" class="comments-error" role="alert">
@@ -211,7 +211,7 @@
 </template>
 
 <script setup>
-import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { UiButton, UiEmptyState, UiSection } from './ui/index.js'
 import CommentComposer from './CommentComposer.vue'
 import EmoticonText from './EmoticonText.vue'
@@ -387,6 +387,8 @@ async function onPosted(data) {
  */
 function reload() {
   actionError.value = ''
+  waitingForViewport.value = false
+  if (props.pageKey) loadedPageKey = props.pageKey
   return load()
 }
 
@@ -811,20 +813,63 @@ function isoTime(unixSec) {
 /**
  * 数据加载时机。
  *
- * - **普通形态**（详情里的讨论区）：换 pageKey 时重置并重新加载；
- *   默认展开、挂载即拉评论（按用户要求保持"直接看见讨论"的体验）。
- *   额度提醒（2026-10-02 记录，用户明确要求暂不优化）：物品图鉴是首页、点开很频繁，
- *   因此"每次打开详情一次评论请求"是评论功能最大的一项固定开销。要省额度时把本节的
- *   `UiSection` 改成 `collapsible` + 默认收起、展开时才 `load()` 即可（改动只需几行）。
+ * - **站内讨论区**（`!nestedView`）或不支持 `IntersectionObserver` 时：挂载与切 key 立即加载；
+ * - **详情页楼中楼**（`nestedView`）：通过 `IntersectionObserver`（提前 300px）在评论区接近视口时再发 `/api/comments`，
+ *   避免玩家只看物品/角色顶部数值时也产生大量无意义的评论库查询；短弹窗会在挂载后立即触发相交，无感知延迟。
  */
+const waitingForViewport = ref(false)
+const isInViewport = ref(false)
+let loadedPageKey = ''
+let visibilityObserver = null
+
+function shouldLoadImmediately() {
+  return !nestedView.value || typeof window === 'undefined' || !('IntersectionObserver' in window)
+}
+
+function triggerViewportLoad() {
+  if (!props.pageKey || loadedPageKey === props.pageKey) return
+  loadedPageKey = props.pageKey
+  waitingForViewport.value = false
+  load()
+}
+
+onMounted(() => {
+  if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return
+  const host = scrollHost()
+  if (!host) return
+  visibilityObserver = new IntersectionObserver(
+    entries => {
+      const hit = entries.some(entry => entry.isIntersecting || entry.intersectionRatio > 0)
+      isInViewport.value = hit
+      if (hit) triggerViewportLoad()
+    },
+    { rootMargin: '300px 0px' }
+  )
+  visibilityObserver.observe(host)
+})
+
+onBeforeUnmount(() => {
+  visibilityObserver?.disconnect()
+  visibilityObserver = null
+})
+
 watch(
   () => props.pageKey,
-  () => {
+  (nextKey) => {
     comments.value = []
     cursor.value = null
     hasMore.value = false
     actionError.value = ''
-    if (props.pageKey) load()
+    loadedPageKey = ''
+    if (!nextKey) {
+      waitingForViewport.value = false
+      return
+    }
+    if (shouldLoadImmediately() || isInViewport.value) {
+      triggerViewportLoad()
+    } else {
+      waitingForViewport.value = true
+    }
   },
   { immediate: true }
 )

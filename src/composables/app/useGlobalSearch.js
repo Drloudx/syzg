@@ -1,19 +1,39 @@
-import { computed, ref } from 'vue'
+import { computed, getCurrentScope, onScopeDispose, ref, shallowRef, watch } from 'vue'
 import { isBlacklisted } from '../../config/blacklist.js'
 import { fetchWithFallback } from '../../utils/request.js'
 
 const VALID_TYPES = new Set(['recipe', 'achievement', 'pet', 'pet_egg', 'item', 'furniture', 'role', 'equip', 'monster', 'task', 'event', 'explore', 'exchange', 'hidden', 'research', 'camp_building', 'partner_mail', 'dungeon', 'chapter', 'glossary'])
+const SEARCH_DEBOUNCE_MS = 120
 
 export function useGlobalSearch(route, router) {
   const globalQuery = ref('')
+  const debouncedQuery = ref('')
   const isSearchOpen = ref(false)
-  const searchIndex = ref([])
+  const searchIndex = shallowRef([])
   const isIndexLoaded = ref(false)
+
+  let debounceTimer = 0
+  watch(globalQuery, value => {
+    clearTimeout(debounceTimer)
+    if (!value.trim()) {
+      debouncedQuery.value = ''
+      return
+    }
+    debounceTimer = setTimeout(() => {
+      debouncedQuery.value = value
+    }, SEARCH_DEBOUNCE_MS)
+  })
+  if (getCurrentScope()) {
+    onScopeDispose(() => clearTimeout(debounceTimer))
+  }
 
   const fetchSearchIndex = async () => {
     if (isIndexLoaded.value) return
     try {
-      searchIndex.value = await fetchWithFallback('data/parsed/search-index.json')
+      const raw = await fetchWithFallback('data/parsed/search-index.json')
+      searchIndex.value = (Array.isArray(raw) ? raw : [])
+        .filter(item => VALID_TYPES.has(item.type) && !isBlacklisted(item) && item.keywords)
+        .map(item => ({ ...item, _nameLower: String(item.name || '').toLowerCase() }))
       isIndexLoaded.value = true
     } catch (error) {
       console.error('Fetch search-index.json error:', error)
@@ -26,14 +46,14 @@ export function useGlobalSearch(route, router) {
   }
 
   const filteredSearchIndex = computed(() => {
-    const query = globalQuery.value.trim().toLowerCase()
+    const query = debouncedQuery.value.trim().toLowerCase()
     if (!query) return []
     const parts = query.split(/\s+/).filter(Boolean)
     return searchIndex.value
-      .filter(item => VALID_TYPES.has(item.type) && !isBlacklisted(item) && item.keywords && parts.every(part => item.keywords.includes(part)))
+      .filter(item => parts.every(part => item.keywords.includes(part)))
       .sort((a, b) => {
-        const aName = String(a.name || '').toLowerCase()
-        const bName = String(b.name || '').toLowerCase()
+        const aName = a._nameLower
+        const bName = b._nameLower
         return Number(bName === query) - Number(aName === query)
           || Number(bName.startsWith(query)) - Number(aName.startsWith(query))
           || Number(bName.includes(query)) - Number(aName.includes(query))

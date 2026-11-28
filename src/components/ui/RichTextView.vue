@@ -199,13 +199,13 @@ export default defineComponent({
 }
 
 /* 暗色主题 */
-:global(.dark-mode) :deep(a.rich-link),
-:global(.dark-theme) :deep(a.rich-link) {
+.dark-mode .rich-text :deep(a.rich-link),
+.dark-theme .rich-text :deep(a.rich-link) {
   color: #7aa7ff;
 }
 
-:global(.dark-mode) :deep(a.rich-link:hover),
-:global(.dark-theme) :deep(a.rich-link:hover) {
+.dark-mode .rich-text :deep(a.rich-link:hover),
+.dark-theme .rich-text :deep(a.rich-link:hover) {
   color: #a8c4ff;
 }
 </style>

@@ -90,7 +90,7 @@ export function buildTasksFile() {
 }
 
 /**
- * 任务图鉴的**剧情全文搜索索引** -> `public/data/parsed/dialog-search.json` + 分片 `dialog-search/<type>.json`。
+ * 任务图鉴的**剧情全文搜索索引** -> 按主分类分片 `public/data/parsed/dialog-search/<type>.json` + 清单 `index.json`。
  *
  * 独立产物的理由（首屏体积）与「为什么存全文而不是倒排」见
  * `taskParser.js` 的 `buildDialogSearchIndex` 注释。
@@ -103,7 +103,6 @@ export function buildDialogSearchFile(tasksData) {
   return {
     data,
     files: [
-      { file: 'parsed/dialog-search.json', data },
       { file: 'parsed/dialog-search/index.json', data: { types: availableTypes } },
       ...shards.map(s => ({ file: `parsed/dialog-search/${s.type}.json`, data: s.data }))
     ]
